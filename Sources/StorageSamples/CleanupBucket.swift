@@ -131,7 +131,10 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
       }
 
       let objects = client.listObjectsByItems(
-        request: .init().with { $0.parent = bucket.name })
+        request: .init().with {
+          $0.parent = bucket.name
+          $0.versions = true
+        })
       for try await o in objects {
         try await client.deleteObject(
           request: .init().with {
@@ -149,18 +152,29 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
           options: .init().with { $0.idempotent = true })
       }
 
-      guard let enabled = bucket.hierarchicalNamespace?.enabled, enabled else {
-        // Only try to delete folders if the bucket can have folders.
-        continue
+      if bucket.iamConfig?.uniformBucketLevelAccess?.enabled == true {
+        let managedFolders = client.listManagedFoldersByItems(
+          request: .init().with { $0.parent = bucket.name })
+        for try await f in managedFolders {
+          try await client.deleteManagedFolder(
+            request: .init().with { $0.name = f.name },
+            options: .init().with { $0.idempotent = true })
+        }
       }
 
-      let folders = client.listManagedFoldersByItems(
-        request: .init().with { $0.parent = bucket.name })
-      for try await f in folders {
-        try await client.deleteFolder(
-          request: .init().with { $0.name = f.name },
-          options: .init().with { $0.idempotent = true })
+      if bucket.hierarchicalNamespace?.enabled == true {
+        let folders = client.listFoldersByItems(
+          request: .init().with { $0.parent = bucket.name })
+        for try await f in folders {
+          try await client.deleteFolder(
+            request: .init().with { $0.name = f.name },
+            options: .init().with { $0.idempotent = true })
+        }
       }
+
+      try await client.deleteBucket(
+        request: .init().with { $0.name = bucket.name },
+        options: .init().with { $0.idempotent = true })
     } catch {
       print("ERROR sweeping bucket \(name): \(error)")
     }
