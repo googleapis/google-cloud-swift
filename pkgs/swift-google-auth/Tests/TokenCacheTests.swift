@@ -428,6 +428,47 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
   }
 
+  @Test func cacheRefreshesWithSubsecondNormalRefreshSlack() async throws {
+    let provider = MockTokenProvider()
+    let clock = TestClock()
+    let now = Date()
+    let timeSource = MockTimeSource(currentDate: now)
+
+    let initialToken = Token(
+      accessToken: "initial-token", expirationDate: timeSource.now.addingTimeInterval(1.0))
+    await provider.configure(token: initialToken)
+
+    let cache = TokenCache(
+      provider: provider,
+      clock: clock,
+      timeSource: timeSource,
+      normalRefreshSlack: .milliseconds(500),
+      shortRefreshSlack: .milliseconds(100)
+    )
+
+    // Wait for the first fetch to complete and loop to sleep (1.0s - 0.5s = 0.5s)
+    await clock.sleeperWaiting()
+    #expect(await provider.count == 1)
+
+    let token1 = try await cache.token()
+    #expect(token1.accessToken == "initial-token")
+
+    let freshToken = Token(
+      accessToken: "fresh-token", expirationDate: timeSource.now.addingTimeInterval(1000))
+    await provider.configure(token: freshToken)
+
+    // Advance by 0.5s to reach the sub-second staleness threshold
+    timeSource.advance(by: 0.5)
+    clock.advance(by: .milliseconds(500))
+
+    // Wait for the background loop to complete the second fetch and sleep again
+    await clock.sleeperWaiting()
+    #expect(await provider.count == 2)
+
+    let token2 = try await cache.token()
+    #expect(token2.accessToken == "fresh-token")
+  }
+
   @Test func concurrentCallsShareActiveTaskPreventingThunderingHerds() async throws {
     let provider = MockTokenProvider()
     let clock = TestClock()

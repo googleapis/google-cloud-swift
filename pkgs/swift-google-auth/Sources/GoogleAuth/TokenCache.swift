@@ -215,9 +215,8 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
   }
 
   private func isStale(_ token: Token) -> Bool {
-    let seconds = Double(self.normalRefreshSlack.components.seconds)
-    let thresholdDate = timeSource.now.addingTimeInterval(seconds)
-    return token.expirationDate <= thresholdDate
+    let timeUntilExpiry = token.expirationDate.timeIntervalSince(timeSource.now)
+    return Duration.seconds(timeUntilExpiry) <= self.normalRefreshSlack
   }
 
   private func triggerRefresh() -> Task<Token, any Error> {
