@@ -130,6 +130,7 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
         continue
       }
 
+      // Include all object versions so noncurrent objects in versioned buckets are also deleted.
       let objects = client.listObjectsByItems(
         request: .init().with {
           $0.parent = bucket.name
@@ -152,6 +153,7 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
           options: .init().with { $0.idempotent = true })
       }
 
+      // Managed folders require uniform bucket-level access and must be deleted before the bucket.
       if bucket.iamConfig?.uniformBucketLevelAccess?.enabled == true {
         let managedFolders = client.listManagedFoldersByItems(
           request: .init().with { $0.parent = bucket.name })
@@ -162,6 +164,7 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
         }
       }
 
+      // Only try to delete hierarchical namespace folders if hierarchical namespace is enabled.
       if bucket.hierarchicalNamespace?.enabled == true {
         let folders = client.listFoldersByItems(
           request: .init().with { $0.parent = bucket.name })
