@@ -61,7 +61,7 @@ for dir in pkgs/*; do
     [[ -d "${dir}/Tests/IntegrationTests" ]] || continue
     count=$((count + 1))
     echo "--- Running ${dir} integration tests ---"
-    if resolve_package "${dir}" && swift test "${flags[@]}" --quiet --package-path "${dir}" --enable-all-traits; then
+    if resolve_package "${dir}" --enable-all-traits && swift test "${flags[@]}" --quiet --package-path "${dir}" --enable-all-traits; then
         echo; echo "✓ ${dir} passed"
     else
         echo; echo "✗ ${dir} failed"
