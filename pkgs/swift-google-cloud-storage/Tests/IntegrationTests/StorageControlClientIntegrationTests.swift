@@ -46,9 +46,14 @@ struct StorageControlClientIntegrationTests: Sendable {
     let storageClient = try StorageClient()
     let controlClient = try StorageControlClient()
 
-    // Seed objects for deletion test
-    _ = try await storageClient.writeObject(data, to: bucketName, as: file1)
-    _ = try await storageClient.writeObject(data, to: bucketName, as: file2)
+    // Seed objects for deletion test with ifGenerationMatch = 0 so uploads are idempotent.
+    let writeOptions = WriteObjectOptions().with {
+      $0.preconditions = .init().with { $0.ifGenerationMatch = 0 }
+    }
+    _ = try await storageClient.writeObject(
+      data, to: bucketName, as: file1, options: writeOptions)
+    _ = try await storageClient.writeObject(
+      data, to: bucketName, as: file2, options: writeOptions)
 
     do {
       // List objects with prefix via streaming AsyncSequence
@@ -60,19 +65,21 @@ struct StorageControlClientIntegrationTests: Sendable {
         options: .init()
       )
 
-      var objectNames = [String]()
+      var listedObjects = [Object]()
       for try await object in sequence {
-        objectNames.append(object.name)
+        listedObjects.append(object)
       }
+      let objectNames = listedObjects.map(\.name)
       #expect(objectNames.count == 2)
       #expect(objectNames.contains(file1))
       #expect(objectNames.contains(file2))
 
-      // Delete each discovered object
-      for name in objectNames {
+      // Delete each discovered object using its generation so DeleteObject is idempotent.
+      for object in listedObjects {
         let deleteRequest = DeleteObjectRequest().with {
           $0.bucket = bucketResource
-          $0.object = name
+          $0.object = object.name
+          $0.generation = object.generation
         }
         try await controlClient.deleteObject(request: deleteRequest, options: .init())
       }
@@ -111,10 +118,16 @@ struct StorageControlClientIntegrationTests: Sendable {
     let storageClient = try StorageClient()
     let controlClient = try StorageControlClient()
 
-    // Seed test objects using data-plane veneer
-    _ = try await storageClient.writeObject(data, to: bucketName, as: file1)
-    _ = try await storageClient.writeObject(data, to: bucketName, as: file2)
-    _ = try await storageClient.writeObject(data, to: bucketName, as: file3)
+    // Seed test objects using data-plane veneer with ifGenerationMatch = 0 for idempotency.
+    let writeOptions = WriteObjectOptions().with {
+      $0.preconditions = .init().with { $0.ifGenerationMatch = 0 }
+    }
+    _ = try await storageClient.writeObject(
+      data, to: bucketName, as: file1, options: writeOptions)
+    _ = try await storageClient.writeObject(
+      data, to: bucketName, as: file2, options: writeOptions)
+    _ = try await storageClient.writeObject(
+      data, to: bucketName, as: file3, options: writeOptions)
 
     do {
       // Unary list with prefix and pageSize
@@ -179,11 +192,7 @@ struct StorageControlClientIntegrationTests: Sendable {
     }
   }
 
-  @Test(
-    .disabled(
-      "Flakes due to backend internal error without retry; see https://github.com/googleapis/google-cloud-swift/issues/1167"
-    ))
-  func testObjectLifecycleAndMetadata() async throws {
+  @Test func testObjectLifecycleAndMetadata() async throws {
     let uniqueId = UUID().uuidString
     let originalName = "test-ctrl-obj-\(uniqueId)/original.txt"
     let movedName = "test-ctrl-obj-\(uniqueId)/moved.txt"
@@ -193,8 +202,13 @@ struct StorageControlClientIntegrationTests: Sendable {
     let storageClient = try StorageClient()
     let controlClient = try StorageControlClient()
 
-    // Upload initial object
-    let uploaded = try await storageClient.writeObject(data, to: bucketName, as: originalName)
+    // Upload initial object with ifGenerationMatch = 0 so the upload is idempotent and retried on
+    // transient backend errors.
+    let writeOptions = WriteObjectOptions().with {
+      $0.preconditions = .init().with { $0.ifGenerationMatch = 0 }
+    }
+    let uploaded = try await storageClient.writeObject(
+      data, to: bucketName, as: originalName, options: writeOptions)
     #expect(uploaded.name == originalName)
     #expect(uploaded.bucket == bucketResource)
 
@@ -211,7 +225,7 @@ struct StorageControlClientIntegrationTests: Sendable {
       #expect(fetched.generation == uploaded.generation)
       #expect(fetched.metageneration == uploaded.metageneration)
 
-      // Patch object metadata via gRPC UpdateObject
+      // Patch object metadata via gRPC UpdateObject with ifMetagenerationMatch for idempotency.
       let updateReq = UpdateObjectRequest().with {
         $0.object = Object().with {
           $0.bucket = bucketResource
@@ -220,17 +234,21 @@ struct StorageControlClientIntegrationTests: Sendable {
           $0.cacheControl = "public, max-age=3600"
         }
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["metadata", "cache_control"])
+        $0.ifMetagenerationMatch = fetched.metageneration
       }
       let updated = try await controlClient.updateObject(request: updateReq, options: .init())
       #expect(updated.metadata["test-env"] == "integration")
       #expect(updated.metadata["sdk-lang"] == "swift")
       #expect(updated.cacheControl == "public, max-age=3600")
 
-      // Atomically rename/move object via gRPC MoveObject
+      // Atomically rename/move object via gRPC MoveObject with source and destination generation
+      // preconditions so MoveObject is idempotent.
       let moveReq = MoveObjectRequest().with {
         $0.bucket = bucketResource
         $0.sourceObject = originalName
         $0.destinationObject = movedName
+        $0.ifSourceGenerationMatch = updated.generation
+        $0.ifGenerationMatch = 0
       }
       let moved = try await controlClient.moveObject(request: moveReq, options: .init())
       #expect(moved.name == movedName)
@@ -253,10 +271,11 @@ struct StorageControlClientIntegrationTests: Sendable {
         try await controlClient.getObject(request: getOriginalReq, options: .init())
       }
 
-      // Delete moved object via gRPC DeleteObject
+      // Delete moved object via gRPC DeleteObject with generation precondition for idempotency.
       let deleteReq = DeleteObjectRequest().with {
         $0.bucket = bucketResource
         $0.object = movedName
+        $0.generation = moved.generation
       }
       try await controlClient.deleteObject(request: deleteReq, options: .init())
     } catch {
@@ -291,7 +310,11 @@ struct StorageControlClientIntegrationTests: Sendable {
     let storageClient = try StorageClient()
     let controlClient = try StorageControlClient()
 
-    let uploaded = try await storageClient.writeObject(data, to: bucketName, as: uniqueName)
+    let writeOptions = WriteObjectOptions().with {
+      $0.preconditions = .init().with { $0.ifGenerationMatch = 0 }
+    }
+    let uploaded = try await storageClient.writeObject(
+      data, to: bucketName, as: uniqueName, options: writeOptions)
 
     do {
       // Attempt delete with invalid generation precondition
