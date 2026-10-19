@@ -96,6 +96,9 @@ import Testing
   static func makeClient() throws -> StorageControlClient {
     try StorageControlClient(
       .init().with {
+        // Cloud Storage enforces a project-wide CreateBucket rate limit of 1 bucket per 2 seconds
+        // and a per-bucket metadata update rate limit of 1 update per second. Extend the retry
+        // window so concurrent sample suites can back off without exhausting the default 60s limit.
         $0.retryPolicy = StorageBaseRetryPolicy.unbounded().withTimeLimit(.seconds(300))
         $0.backoffPolicy = ExponentialBackoff(clamping: .seconds(2))
       })

@@ -92,6 +92,8 @@ public func runBucketSamples(
   try await createBucketWithObjectRetention(
     client: client, projectId: projectId, bucketId: objectRetentionId)
 
+  // Create a separate Standard bucket for Autoclass and Requester Pays samples, as Autoclass
+  // cannot be enabled after changing the default storage class to NEARLINE.
   let autoclassBucketId = randomBucketId()
   bucketNames.append("projects/_/buckets/\(autoclassBucketId)")
   print("creating bucket for autoclass and requester pays samples")
@@ -117,6 +119,8 @@ public func runBucketSamples(
   print("running getRequesterPaysStatus() sample")
   try await getRequesterPaysStatus(client: client, bucketId: autoclassBucketId)
 
+  // Reuse a single bucket across compatible metadata, lifecycle, retention, UBLA, and ACL samples
+  // to reduce project-wide CreateBucket quota pressure.
   let ublaBucketId = randomBucketId()
   bucketNames.append("projects/_/buckets/\(ublaBucketId)")
   print("creating bucket without uniform bucket-level access")
@@ -227,6 +231,8 @@ public func runBucketSamples(
   try await removeBucketDefaultOwner(
     client: client, bucketId: ublaBucketId, userEmail: serviceAccount)
 
+  // Reuse the hierarchical namespace bucket (which has uniform bucket-level access enabled)
+  // for IAM policy samples.
   print("running addBucketIamMember() sample")
   try await addBucketIamMember(
     client: client, bucketId: hierarchicalNamespaceId, role: "roles/storage.objectViewer",
