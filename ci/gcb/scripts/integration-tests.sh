@@ -61,6 +61,8 @@ for dir in pkgs/*; do
     [[ -d "${dir}/Tests/IntegrationTests" ]] || continue
     count=$((count + 1))
     echo "--- Running ${dir} integration tests ---"
+    # Pass `--enable-all-traits` to `resolve_package` so the resolved workspace
+    # state matches `swift test` and does not re-trigger resolution without retries.
     if resolve_package "${dir}" --enable-all-traits && swift test "${flags[@]}" --quiet --package-path "${dir}" --enable-all-traits; then
         echo; echo "✓ ${dir} passed"
     else
