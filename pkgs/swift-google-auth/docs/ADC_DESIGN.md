@@ -71,8 +71,8 @@ See
 [CredentialParserRegistry.swift](../Sources/GoogleAuth/CredentialParserRegistry.swift)
 for the protocol and the thread-safe dynamic registry pattern implementation.
 
-The ADC resolver will read the file using `JSONSerialization` (weak typing) to
-extract the `"type"` field. It will then pass the dictionary to the
+The ADC resolver will decode a lightweight header struct from the raw file
+`Data` to extract the `"type"` field. It will then pass the raw `Data` to the
 corresponding registered parser, which can use `JSONDecoder` to decode the
 specific configuration struct (e.g., `ServiceAccountCredentials` or
 `UserCredentials`).

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import Synchronization
 
 /// Represents an access token used to authenticate requests.
 struct Token: Sendable, Hashable {
@@ -111,6 +112,10 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
   private let provider: any TokenProvider
   private var cachedToken: Token?
   private var activeRefreshTask: Task<Token, any Error>?
+  // Stored in a `Mutex` on a `let` property rather than an actor-isolated `var` because `init` is
+  // synchronous (`nonisolated`): capturing `[weak self]` in the background `Task` closure escapes
+  // `self`, after which Swift 6 forbids mutating actor-isolated properties in `init`.
+  private let backgroundTask = Mutex<Task<Void, Never>?>(nil)
   private let clock: C
   private let timeSource: any TimeSource
 
@@ -156,7 +161,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     let clock = self.clock
     let timeSource = self.timeSource
 
-    Task { [weak self] in
+    let task = Task { [weak self] in
       while !Task.isCancelled {
         let action: RefreshAction? = await { [weak self] in
           guard let self = self else { return nil }
@@ -175,9 +180,14 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
         }
       }
     }
+    self.backgroundTask.withLock { $0 = task }
   }
 
   deinit {
+    // Even though the background loop captures `self` weakly, explicitly cancelling `backgroundTask`
+    // wakes `clock.sleep(for:)` immediately on deallocation so the unstructured `Task` does not remain
+    // suspended in the clock's timer queue until its scheduled refresh sleep duration elapses.
+    backgroundTask.withLock { $0?.cancel() }
     activeRefreshTask?.cancel()
   }
 
@@ -215,9 +225,8 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
   }
 
   private func isStale(_ token: Token) -> Bool {
-    let seconds = Double(self.normalRefreshSlack.components.seconds)
-    let thresholdDate = timeSource.now.addingTimeInterval(seconds)
-    return token.expirationDate <= thresholdDate
+    let timeUntilExpiry = token.expirationDate.timeIntervalSince(timeSource.now)
+    return Duration.seconds(timeUntilExpiry) <= self.normalRefreshSlack
   }
 
   private func triggerRefresh() -> Task<Token, any Error> {

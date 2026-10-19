@@ -43,7 +43,7 @@ for dir in "${generated[@]}"; do
     count=$((count + 1))
 
     echo "::group:: --- Building ${dir} ---"
-    if swift build --build-tests "${flags[@]}" --package-path "${dir}"; then
+    if resolve_package "${dir}" && swift build --build-tests "${flags[@]}" --package-path "${dir}"; then
         echo "::notice:: ✓ ${dir} built"
         echo "::endgroup::"
     else

@@ -32,6 +32,7 @@ extension Clients {
       self.inner = try GoogleGax._HTTPClient(
         from: options,
         withDefaultEndpoint: "https://oracledatabase.googleapis.com",
+        clientHeader: Clients.clientHeader
       )
     }
 
@@ -83,7 +84,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListCloudExadataInfrastructuresResponse.self,
         timeout: options.attemptTimeout
@@ -135,7 +135,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.CloudExadataInfrastructure.self, timeout: options.attemptTimeout
       ).get()
@@ -189,7 +188,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.cloudExadataInfrastructure {
         try req.setBody(json: body)
       }
@@ -246,7 +244,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -299,7 +296,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -353,7 +349,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListCloudVmClustersResponse.self,
         timeout: options.attemptTimeout
@@ -405,7 +400,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.CloudVmCluster.self, timeout: options.attemptTimeout
       ).get()
@@ -458,7 +452,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.cloudVmCluster {
         try req.setBody(json: body)
       }
@@ -515,7 +508,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -567,7 +559,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListEntitlementsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -621,7 +612,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListDbServersResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -711,7 +701,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListDbNodesResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -764,7 +753,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListGiVersionsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -819,7 +807,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListMinorVersionsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -872,7 +859,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListDbSystemShapesResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -926,7 +912,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListAutonomousDatabasesResponse.self,
         timeout: options.attemptTimeout
@@ -978,7 +963,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.AutonomousDatabase.self, timeout: options.attemptTimeout
       ).get()
@@ -1032,7 +1016,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.autonomousDatabase {
         try req.setBody(json: body)
       }
@@ -1089,7 +1072,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.autonomousDatabase {
         try req.setBody(json: body)
       }
@@ -1145,7 +1127,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -1198,7 +1179,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -1252,7 +1232,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.GenerateAutonomousDatabaseWalletResponse.self,
@@ -1306,7 +1285,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListAutonomousDbVersionsResponse.self,
         timeout: options.attemptTimeout
@@ -1360,7 +1338,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListAutonomousDatabaseCharacterSetsResponse.self,
         timeout: options.attemptTimeout
@@ -1414,7 +1391,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListAutonomousDatabaseBackupsResponse.self,
         timeout: options.attemptTimeout
@@ -1468,7 +1444,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -1522,7 +1497,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -1576,7 +1550,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -1630,7 +1603,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -1684,7 +1656,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -1738,7 +1709,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -1790,7 +1760,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.AutonomousDatabaseRefreshableClones.self,
         timeout: options.attemptTimeout
@@ -1845,7 +1814,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListOdbNetworksResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -1896,7 +1864,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.OdbNetwork.self, timeout: options.attemptTimeout
       ).get()
@@ -1948,7 +1915,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.odbNetwork {
         try req.setBody(json: body)
       }
@@ -2004,7 +1970,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -2060,7 +2025,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListOdbSubnetsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -2112,7 +2076,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.OdbSubnet.self, timeout: options.attemptTimeout
       ).get()
@@ -2166,7 +2129,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.odbSubnet {
         try req.setBody(json: body)
       }
@@ -2223,7 +2185,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -2277,7 +2238,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListExadbVmClustersResponse.self,
         timeout: options.attemptTimeout
@@ -2329,7 +2289,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ExadbVmCluster.self, timeout: options.attemptTimeout
       ).get()
@@ -2382,7 +2341,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.exadbVmCluster {
         try req.setBody(json: body)
       }
@@ -2438,7 +2396,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -2492,7 +2449,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.exadbVmCluster {
         try req.setBody(json: body)
       }
@@ -2548,7 +2504,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -2603,7 +2558,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListExascaleDbStorageVaultsResponse.self,
         timeout: options.attemptTimeout
@@ -2655,7 +2609,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ExascaleDbStorageVault.self, timeout: options.attemptTimeout
       ).get()
@@ -2709,7 +2662,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.exascaleDbStorageVault {
         try req.setBody(json: body)
       }
@@ -2765,7 +2717,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -2817,7 +2768,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListDbSystemInitialStorageSizesResponse.self,
         timeout: options.attemptTimeout
@@ -2871,7 +2821,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListDatabasesResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -2922,7 +2871,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.Database.self, timeout: options.attemptTimeout
       ).get()
@@ -2975,7 +2923,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListPluggableDatabasesResponse.self,
         timeout: options.attemptTimeout
@@ -3027,7 +2974,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.PluggableDatabase.self, timeout: options.attemptTimeout
       ).get()
@@ -3081,7 +3027,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListDbSystemsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -3132,7 +3077,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.DbSystem.self, timeout: options.attemptTimeout
       ).get()
@@ -3184,7 +3128,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.dbSystem {
         try req.setBody(json: body)
       }
@@ -3240,7 +3183,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -3294,7 +3236,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListGoldengateDeploymentsResponse.self,
         timeout: options.attemptTimeout
@@ -3346,7 +3287,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.GoldengateDeployment.self, timeout: options.attemptTimeout
       ).get()
@@ -3400,7 +3340,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.goldengateDeployment {
         try req.setBody(json: body)
       }
@@ -3456,7 +3395,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -3509,7 +3447,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -3563,7 +3500,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -3618,7 +3554,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListGoldengateConnectionsResponse.self,
         timeout: options.attemptTimeout
@@ -3670,7 +3605,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.GoldengateConnection.self, timeout: options.attemptTimeout
       ).get()
@@ -3724,7 +3658,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.goldengateConnection {
         try req.setBody(json: body)
       }
@@ -3780,7 +3713,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -3833,7 +3765,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListGoldengateDeploymentVersionsResponse.self,
         timeout: options.attemptTimeout
@@ -3888,7 +3819,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListGoldengateDeploymentTypesResponse.self,
         timeout: options.attemptTimeout
@@ -3941,7 +3871,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListGoldengateDeploymentEnvironmentsResponse.self,
         timeout: options.attemptTimeout
@@ -3995,7 +3924,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListGoldengateConnectionTypesResponse.self,
         timeout: options.attemptTimeout
@@ -4049,7 +3977,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListDbVersionsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -4102,7 +4029,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListDatabaseCharacterSetsResponse.self,
         timeout: options.attemptTimeout
@@ -4157,7 +4083,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.ListGoldengateConnectionAssignmentsResponse.self,
         timeout: options.attemptTimeout
@@ -4209,7 +4134,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.GoldengateConnectionAssignment.self,
         timeout: options.attemptTimeout
@@ -4264,7 +4188,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.goldengateConnectionAssignment {
         try req.setBody(json: body)
       }
@@ -4320,7 +4243,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -4373,7 +4295,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudOracleDatabaseV1.TestGoldengateConnectionAssignmentResponse.self,
@@ -4424,7 +4345,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudLocation.ListLocationsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -4473,7 +4393,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudLocation.Location.self, timeout: options.attemptTimeout
       ).get()
@@ -4529,7 +4448,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.ListOperationsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -4580,7 +4498,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -4631,7 +4548,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -4684,7 +4600,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout

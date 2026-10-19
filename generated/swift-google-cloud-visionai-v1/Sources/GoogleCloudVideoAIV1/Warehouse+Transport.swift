@@ -32,6 +32,7 @@ extension Clients {
       self.inner = try GoogleGax._HTTPClient(
         from: options,
         withDefaultEndpoint: "https://warehouse-visionai.googleapis.com",
+        clientHeader: Clients.clientHeader
       )
     }
 
@@ -82,7 +83,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.asset {
         try req.setBody(json: body)
       }
@@ -138,7 +138,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.asset {
         try req.setBody(json: body)
       }
@@ -192,7 +191,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.Asset.self, timeout: options.attemptTimeout
       ).get()
@@ -247,7 +245,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ListAssetsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -298,7 +295,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -351,7 +347,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -405,7 +400,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.GenerateRetrievalUrlResponse.self, timeout: options.attemptTimeout
@@ -459,7 +453,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -513,7 +506,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -567,7 +559,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -623,7 +614,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ViewIndexedAssetsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -676,7 +666,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.index {
         try req.setBody(json: body)
       }
@@ -732,7 +721,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.index {
         try req.setBody(json: body)
       }
@@ -786,7 +774,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.Index.self, timeout: options.attemptTimeout
       ).get()
@@ -840,7 +827,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ListIndexesResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -891,7 +877,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -940,7 +925,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.corpus {
         try req.setBody(json: body)
       }
@@ -994,7 +978,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.Corpus.self, timeout: options.attemptTimeout
       ).get()
@@ -1047,7 +1030,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.corpus {
         try req.setBody(json: body)
       }
@@ -1103,7 +1085,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ListCorporaResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -1154,7 +1135,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -1207,7 +1187,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -1259,7 +1238,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.dataSchema {
         try req.setBody(json: body)
       }
@@ -1315,7 +1293,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.dataSchema {
         try req.setBody(json: body)
       }
@@ -1369,7 +1346,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.DataSchema.self, timeout: options.attemptTimeout
       ).get()
@@ -1420,7 +1396,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -1474,7 +1449,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ListDataSchemasResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -1527,7 +1501,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.annotation {
         try req.setBody(json: body)
       }
@@ -1583,7 +1556,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.Annotation.self, timeout: options.attemptTimeout
       ).get()
@@ -1638,7 +1610,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ListAnnotationsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -1693,7 +1664,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.annotation {
         try req.setBody(json: body)
       }
@@ -1749,7 +1719,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -1802,7 +1771,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ClipAssetResponse.self, timeout: options.attemptTimeout
@@ -1856,7 +1824,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.GenerateHlsUriResponse.self, timeout: options.attemptTimeout
@@ -1910,7 +1877,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -1965,7 +1931,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.searchConfig {
         try req.setBody(json: body)
       }
@@ -2022,7 +1987,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.searchConfig {
         try req.setBody(json: body)
       }
@@ -2077,7 +2041,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.SearchConfig.self, timeout: options.attemptTimeout
       ).get()
@@ -2129,7 +2092,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -2183,7 +2145,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ListSearchConfigsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -2237,7 +2198,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.searchHypernym {
         try req.setBody(json: body)
       }
@@ -2295,7 +2255,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.searchHypernym {
         try req.setBody(json: body)
       }
@@ -2351,7 +2310,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.SearchHypernym.self, timeout: options.attemptTimeout
       ).get()
@@ -2404,7 +2362,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -2458,7 +2415,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ListSearchHypernymsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -2511,7 +2467,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.SearchAssetsResponse.self, timeout: options.attemptTimeout
@@ -2565,7 +2520,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.SearchIndexEndpointResponse.self, timeout: options.attemptTimeout
@@ -2618,7 +2572,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.indexEndpoint {
         try req.setBody(json: body)
       }
@@ -2672,7 +2625,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.IndexEndpoint.self, timeout: options.attemptTimeout
       ).get()
@@ -2725,7 +2677,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ListIndexEndpointsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -2778,7 +2729,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.indexEndpoint {
         try req.setBody(json: body)
       }
@@ -2832,7 +2782,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -2885,7 +2834,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -2939,7 +2887,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -2993,7 +2940,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.collection {
         try req.setBody(json: body)
       }
@@ -3047,7 +2993,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -3098,7 +3043,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.Collection.self, timeout: options.attemptTimeout
       ).get()
@@ -3151,7 +3095,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.collection {
         try req.setBody(json: body)
       }
@@ -3208,7 +3151,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ListCollectionsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -3261,7 +3203,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.AddCollectionItemResponse.self, timeout: options.attemptTimeout
@@ -3315,7 +3256,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudVideoAIV1.RemoveCollectionItemResponse.self, timeout: options.attemptTimeout
@@ -3370,7 +3310,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudVideoAIV1.ViewCollectionItemsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -3419,7 +3358,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudLocation.ListLocationsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -3468,7 +3406,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudLocation.Location.self, timeout: options.attemptTimeout
       ).get()
@@ -3524,7 +3461,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.ListOperationsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -3816,7 +3752,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
@@ -3867,7 +3802,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -3920,7 +3854,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout

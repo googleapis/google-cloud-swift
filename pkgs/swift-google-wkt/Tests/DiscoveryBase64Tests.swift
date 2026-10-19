@@ -18,9 +18,14 @@ import Testing
 
 @Suite struct Base64Tests {
   @Test(arguments: [
+    // Empty input
     (Data(), ""),
+    // 3 bytes: encodes to 4 characters with URL-safe '_' instead of '/', no padding needed
     (Data("???".utf8), "Pz8_"),
+    // 4 bytes: encodes to 6 characters with padding ('==') omitted
     (Data("????".utf8), "Pz8_Pw"),
+    // Data slice with a non-zero startIndex (startIndex == 1)
+    (Data("x???".utf8).dropFirst(), "Pz8_"),
   ])
   func roundtrip(input: Data, want: String) throws {
     let got = _DiscoveryBase64.encode(input)

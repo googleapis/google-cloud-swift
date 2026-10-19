@@ -30,6 +30,7 @@ extension Clients {
       self.inner = try GoogleGax._HTTPClient(
         from: options,
         withDefaultEndpoint: "https://bigquerydatatransfer.googleapis.com",
+        clientHeader: Clients.clientHeader
       )
     }
 
@@ -109,7 +110,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleBigQueryDataTransferV1.DataSource.self, timeout: options.attemptTimeout
       ).get()
@@ -191,7 +191,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleBigQueryDataTransferV1.ListDataSourcesResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -284,7 +283,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.transferConfig {
         try req.setBody(json: body)
       }
@@ -390,7 +388,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.transferConfig {
         try req.setBody(json: body)
       }
@@ -477,7 +474,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -561,7 +557,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleBigQueryDataTransferV1.TransferConfig.self, timeout: options.attemptTimeout
       ).get()
@@ -647,7 +642,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleBigQueryDataTransferV1.ListTransferConfigsResponse.self,
         timeout: options.attemptTimeout
@@ -734,7 +728,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse.self,
@@ -822,7 +815,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleBigQueryDataTransferV1.StartManualTransferRunsResponse.self,
@@ -908,7 +900,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleBigQueryDataTransferV1.TransferRun.self, timeout: options.attemptTimeout
       ).get()
@@ -992,7 +983,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -1086,7 +1076,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleBigQueryDataTransferV1.ListTransferRunsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -1178,7 +1167,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleBigQueryDataTransferV1.ListTransferLogsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -1262,7 +1250,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleBigQueryDataTransferV1.CheckValidCredsResponse.self, timeout: options.attemptTimeout
@@ -1341,7 +1328,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
@@ -1393,7 +1379,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
@@ -1443,7 +1428,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudLocation.ListLocationsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -1492,7 +1476,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudLocation.Location.self, timeout: options.attemptTimeout
       ).get()

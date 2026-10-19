@@ -34,6 +34,7 @@
         self.inner = try GoogleGax._HTTPClient(
           from: options,
           withDefaultEndpoint: "https://aiplatform.googleapis.com",
+          clientHeader: Clients.clientHeader
         )
       }
 
@@ -81,7 +82,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.ragCorpus {
           try req.setBody(json: body)
         }
@@ -136,7 +136,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.ragCorpus {
           try req.setBody(json: body)
         }
@@ -191,7 +190,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudAIPlatformV1.RagCorpus.self, timeout: options.attemptTimeout
         ).get()
@@ -244,7 +242,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudAIPlatformV1.ListRagCorporaResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -298,7 +295,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -352,7 +348,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudAIPlatformV1.UploadRagFileResponse.self, timeout: options.attemptTimeout
@@ -407,7 +402,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -461,7 +455,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudAIPlatformV1.RagFile.self, timeout: options.attemptTimeout
         ).get()
@@ -516,7 +509,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudAIPlatformV1.ListRagFilesResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -569,7 +561,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -621,7 +612,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.ragEngineConfig {
           try req.setBody(json: body)
         }
@@ -676,7 +666,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudAIPlatformV1.RagEngineConfig.self, timeout: options.attemptTimeout
         ).get()
@@ -757,7 +746,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudLocation.ListLocationsResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -838,7 +826,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudLocation.Location.self, timeout: options.attemptTimeout
         ).get()
@@ -1329,7 +1316,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
@@ -1882,7 +1868,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
         ).get()
@@ -2399,7 +2384,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleIAMV1.TestIamPermissionsResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -6483,7 +6467,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleLongRunning.ListOperationsResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -10025,7 +10008,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -13458,7 +13440,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         _ = try await req.rpc(
           GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
         ).get()
@@ -16650,7 +16631,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         _ = try await req.rpc(
           GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
         ).get()
@@ -20320,7 +20300,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
         ).get()

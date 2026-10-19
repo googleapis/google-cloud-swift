@@ -29,6 +29,7 @@ extension Clients {
       self.inner = try GoogleGax._HTTPClient(
         from: options,
         withDefaultEndpoint: "https://iamcredentials.googleapis.com",
+        clientHeader: Clients.clientHeader
       )
     }
 
@@ -79,7 +80,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleIAMCredentialsV1.GenerateAccessTokenResponse.self, timeout: options.attemptTimeout
@@ -133,7 +133,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleIAMCredentialsV1.GenerateIdTokenResponse.self, timeout: options.attemptTimeout
@@ -187,7 +186,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleIAMCredentialsV1.SignBlobResponse.self, timeout: options.attemptTimeout
@@ -241,7 +239,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleIAMCredentialsV1.SignJwtResponse.self, timeout: options.attemptTimeout

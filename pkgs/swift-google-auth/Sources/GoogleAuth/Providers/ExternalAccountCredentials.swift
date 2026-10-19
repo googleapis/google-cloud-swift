@@ -109,7 +109,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
 
     let response: TokenResponse = try await RetryEngine.retry(
       configuration: retryConfiguration ?? .defaultConfiguration,
-      isRetryable: Self.isRetryable
+      isRetryable: AuthHTTPError.isRetryable
     ) {
       try await stsHandler.exchangeToken(
         request: request,
@@ -124,17 +124,6 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
       tokenType: response.tokenType,
       expirationDate: expirationDate
     )
-  }
-
-  /// Evaluates whether an error encountered during STS token exchange is eligible for retry.
-  ///
-  /// - Parameter error: The error encountered.
-  /// - Returns: `true` for transient HTTP status codes (5xx, 429, 408) or network errors; `false` otherwise.
-  static func isRetryable(_ error: any Error) -> Bool {
-    if let authError = error as? AuthHTTPError, let status = authError.statusCode {
-      return status >= 500 || status == 429 || status == 408
-    }
-    return true
   }
 }
 
@@ -255,7 +244,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     self.cache = TokenCache(
       provider: provider,
       clock: ContinuousClock(),
-      isRetryable: ExternalAccountTokenProvider.isRetryable
+      isRetryable: AuthHTTPError.isRetryable
     )
   }
 

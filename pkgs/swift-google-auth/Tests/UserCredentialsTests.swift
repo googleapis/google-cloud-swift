@@ -332,11 +332,13 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
   }
 
   @Test func tokenProviderMalformedResponseIsNonretryable() async throws {
+    let attempts = CallCounter()
     let malformedPayload = "invalid-json"
     let encodedData = Data(malformedPayload.utf8)
 
     let mock = MockHTTPClient([
       { (request: HTTPClientRequest) in
+        attempts.increment()
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
@@ -353,16 +355,29 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       refreshToken: "test-refresh-token"
     )
 
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3,
+      initialDelay: .milliseconds(1),
+      multiplier: 1.0,
+      maxDelay: .milliseconds(1)
+    )
+
     let source = try UserCredentials(
       user: data,
       httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
+      retryConfiguration: retryConfig,
       clock: TestClock()
     )
 
     await #expect(throws: AuthHTTPError.self) {
       _ = try await source.headers()
     }
+    #expect(attempts.getCount() == 1)
+
+    await #expect(throws: AuthHTTPError.self) {
+      _ = try await source.headers()
+    }
+    #expect(attempts.getCount() == 1)
   }
 
   @Test func builderMalformedAuthorizedJsonNonretryable() async throws {

@@ -28,6 +28,7 @@ extension Clients {
       self.inner = try GoogleGax._HTTPClient(
         from: options,
         withDefaultEndpoint: "https://gkerecommender.googleapis.com",
+        clientHeader: Clients.clientHeader
       )
     }
 
@@ -58,7 +59,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudGKERecommenderV1.FetchModelsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -92,7 +92,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudGKERecommenderV1.FetchModelServersResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -127,7 +126,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse.self,
         timeout: options.attemptTimeout
@@ -158,7 +156,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudGKERecommenderV1.FetchProfilesResponse.self, timeout: options.attemptTimeout
@@ -189,7 +186,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse.self,
@@ -221,7 +217,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse.self,

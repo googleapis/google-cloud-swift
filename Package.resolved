@@ -1,5 +1,5 @@
 {
-  "originHash" : "e243d1aa491ee851902701b3181d17d821c4f063706c93c2abfae7c874e76b99",
+  "originHash" : "333755bd8ab9f04f10d4b67a2072d4f55650b5c9a3a2f78c639d029bbbb94555",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -177,8 +177,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-api",
       "state" : {
-        "revision" : "c123425e1ef3ec24ea9ad48021692390c72d4971",
-        "version" : "0.4.0"
+        "revision" : "a75f97fad5a34ede5d1131d7b0fb56977fe7a872",
+        "version" : "0.5.0"
       }
     },
     {
@@ -186,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-auth",
       "state" : {
-        "revision" : "b268b555ad3eb781fcaec3d63633c50318846b4e",
-        "version" : "0.4.0"
+        "revision" : "eb390dd89b4596b83f69bdd69732a00e06e51b1b",
+        "version" : "0.5.0"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-cloud-aiplatform-v1",
       "state" : {
-        "revision" : "ddea5e63fbf5b3b7d7c8cc3d1f21b6be243e0c85",
-        "version" : "0.4.0"
+        "revision" : "6a98993d033309b5558f304207236859170c5bec",
+        "version" : "0.5.0"
       }
     },
     {
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-cloud-language-v2",
       "state" : {
-        "revision" : "e2a2bb5d724000b52f8eaa59b45d237a8074a105",
-        "version" : "0.4.0"
+        "revision" : "d167bf003657c4bf2093786490fb956ea34ffd9f",
+        "version" : "0.5.0"
       }
     },
     {
@@ -213,8 +213,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-gax",
       "state" : {
-        "revision" : "afb5f25d608802be848d0058fcd7cbc3fc1b32cc",
-        "version" : "0.4.0"
+        "revision" : "6e96a8e830e43d65b76677bcff139c0f3bc030fc",
+        "version" : "0.5.0"
       }
     },
     {
@@ -222,17 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-gax-grpc",
       "state" : {
-        "revision" : "715cc5c27b019cd72105b45d233ab7deb0ef41b0",
-        "version" : "0.4.0"
-      }
-    },
-    {
-      "identity" : "swift-google-rpc",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/googleapis/swift-google-rpc",
-      "state" : {
-        "revision" : "c8e8e7f245089ec640ceaa01b9c33798871a8110",
-        "version" : "0.4.0"
+        "revision" : "b8cb1cc3506abe74c9a4f36adfae57412ca8b736",
+        "version" : "0.5.0"
       }
     },
     {
@@ -240,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-wkt",
       "state" : {
-        "revision" : "ba7519a84676e1a9dd9fdd113a2dd31ea8a5d4bd",
-        "version" : "0.4.0"
+        "revision" : "0053238ec44d170dce901347484a98d4221606a6",
+        "version" : "0.5.0"
       }
     },
     {
@@ -249,8 +240,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-wkt-convert",
       "state" : {
-        "revision" : "5a1fbb5935bdf37643de896597ca5dc44b25f130",
-        "version" : "0.4.0"
+        "revision" : "001c115cbb20f4b28ef775a2a2c327bc5ab2e5d4",
+        "version" : "0.5.0"
       }
     },
     {
@@ -276,8 +267,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log",
       "state" : {
-        "revision" : "9c6fb14227f55d8f711ce3847dc2f419fb0ecacb",
-        "version" : "1.15.1"
+        "revision" : "4038b6a4f74a1426f47eb1dd5b4bb5628a15d597",
+        "version" : "1.16.1"
       }
     },
     {
@@ -294,8 +285,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio",
       "state" : {
-        "revision" : "21de5f08c1a166a6dd293d0e587ad977bf8dac5d",
-        "version" : "2.103.0"
+        "revision" : "6db9d9abd92ad7399b8a564cafbb87d3507245fa",
+        "version" : "2.104.0"
       }
     },
     {

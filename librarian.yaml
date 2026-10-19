@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: swift
-version: v0.48.1-0.20261013213236-984188ef724e
+version: v0.48.1-0.20261019201610-7b9c44c06ee1
 repo: googleapis/google-cloud-swift
 sources:
   conformance:
@@ -1023,6 +1023,7 @@ libraries:
           api_path: google/storage/control/v2
           module_type: grpc-client
           module_path: StorageControlProtos
+          idempotency_hook: resolveIdempotency
         - output: pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/StorageControl
           api_path: google/storage/control/v2
           module_type: convert-swift
@@ -1114,6 +1115,9 @@ libraries:
             - policy.proto
             - options.proto
           module_path: StorageControlProtos
+        - output: pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/version
+          api_path: ""
+          module_type: package-version
       name_overrides:
         .google.storage.v2.Storage: StorageControl
       lro_any_converter: StorageControlLROAnyConverter

@@ -42,10 +42,10 @@ for dir in "${packages[@]}"; do
     fi
 
     echo; echo; echo "--- Building ${name} ---"
-    if swift build --build-tests "${pkg_flags[@]}" --package-path "${dir}" >${dir}/.build.log 2>&1; then
+    if { resolve_package "${dir}" && swift build --build-tests "${pkg_flags[@]}" --package-path "${dir}"; } >"${dir}/.build.log" 2>&1; then
         echo "✓ ${name} built successfully"
     else
-        cat ${dir}/.build.log
+        cat "${dir}/.build.log"
         echo "✗ ${name} failed to build"
         errors=$((errors + 1))
         continue

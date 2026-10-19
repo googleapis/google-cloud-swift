@@ -25,10 +25,7 @@ public struct WKTAny: Codable, Equatable, Sendable {
   let _type: String
   let fields: WKTStruct
 
-  /// Return the type URL of the contents, or `nil` if it is unknown.
-  ///
-  /// Values without a typeURL indicate a decoding error. The contents
-  /// cannot be extracted.
+  /// The type URL that uniquely identifies the type of the serialized protocol buffer message.
   public var typeURL: String {
     get {
       return self._type

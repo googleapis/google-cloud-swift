@@ -29,6 +29,7 @@
         self.inner = try GoogleGax._HTTPClient(
           from: options,
           withDefaultEndpoint: "https://sqladmin.googleapis.com",
+          clientHeader: Clients.clientHeader
         )
       }
 
@@ -88,7 +89,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -151,7 +151,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -214,7 +213,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -276,7 +274,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -357,7 +354,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -419,7 +415,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -484,7 +479,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -549,7 +543,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -614,7 +607,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -679,7 +671,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -744,7 +735,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.DatabaseInstance.self, timeout: options.attemptTimeout
         ).get()
@@ -806,7 +796,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -857,7 +846,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -911,7 +899,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.InstancesListResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -973,7 +960,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.InstancesListServerCasResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -1036,7 +1022,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.InstancesListServerCertificatesResponse.self,
           timeout: options.attemptTimeout
@@ -1100,7 +1085,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.InstancesListEntraIdCertificatesResponse.self,
           timeout: options.attemptTimeout
@@ -1169,7 +1153,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -1235,7 +1218,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -1298,7 +1280,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -1361,7 +1342,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -1423,7 +1403,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -1485,7 +1464,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -1550,7 +1528,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -1616,7 +1593,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -1682,7 +1658,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -1747,7 +1722,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -1809,7 +1783,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
         ).get()
@@ -1871,7 +1844,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -1936,7 +1908,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -2001,7 +1972,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -2067,7 +2037,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -2133,7 +2102,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudSqlV1.SqlInstancesVerifyExternalSyncSettingsResponse.self,
@@ -2197,7 +2165,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
@@ -2260,7 +2227,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -2326,7 +2292,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.SqlInstancesGetDiskShrinkConfigResponse.self,
           timeout: options.attemptTimeout
@@ -2389,7 +2354,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
@@ -2456,7 +2420,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.SqlInstancesGetLatestRecoveryTimeResponse.self,
           timeout: options.attemptTimeout
@@ -2519,7 +2482,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -2584,7 +2546,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -2650,7 +2611,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.SqlInstancesReleaseSsrsLeaseResponse.self,
           timeout: options.attemptTimeout
@@ -2714,7 +2674,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
         }
@@ -2763,7 +2722,6 @@
         var req = try await self.inner.newRequest(
           percentEncodedPath: path, query: query, options: options)
         configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.context {
           try req.setBody(json: body)
         }

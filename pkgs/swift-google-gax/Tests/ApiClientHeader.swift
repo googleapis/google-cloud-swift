@@ -41,11 +41,23 @@ import Testing
     let built = header.build()
     #expect(built.contains("gl-swift/"))
     #expect(built.contains("gax/"))
-    #expect(built.contains("rest/"))
+    #expect(!built.contains("rest/"))
     #expect(!built.contains("grpc/"))
     #expect(!built.contains("gapic/"))
     #expect(!built.contains("pb/"))
     #expect(header.description == built)
+  }
+
+  @Test func factoryMethods() {
+    let gapicHeader = _ApiClientHeader.gapic(packageVersion: "0.5.0").build()
+    #expect(gapicHeader.contains("gapic/0.5.0"))
+    #expect(!gapicHeader.contains("rest/"))
+    #expect(!gapicHeader.contains("grpc/"))
+
+    let veneerHeader = _ApiClientHeader.veneer(packageVersion: "1.0.0").build()
+    #expect(veneerHeader.contains("gccl/1.0.0"))
+    #expect(!veneerHeader.contains("rest/"))
+    #expect(!veneerHeader.contains("grpc/"))
   }
 
   @Test func customTokens() {
