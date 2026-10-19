@@ -154,23 +154,33 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
       }
 
       // Managed folders require uniform bucket-level access and must be deleted before the bucket.
+      // Sort by length descending so nested subfolders are deleted before their parents.
       if bucket.iamConfig?.uniformBucketLevelAccess?.enabled == true {
         let managedFolders = client.listManagedFoldersByItems(
           request: .init().with { $0.parent = bucket.name })
+        var managedFolderNames: [String] = []
         for try await f in managedFolders {
+          managedFolderNames.append(f.name)
+        }
+        for name in managedFolderNames.sorted(by: { $0.count > $1.count }) {
           try await client.deleteManagedFolder(
-            request: .init().with { $0.name = f.name },
+            request: .init().with { $0.name = name },
             options: .init().with { $0.idempotent = true })
         }
       }
 
       // Only try to delete hierarchical namespace folders if hierarchical namespace is enabled.
+      // Sort by length descending so nested subfolders are deleted before their parents.
       if bucket.hierarchicalNamespace?.enabled == true {
         let folders = client.listFoldersByItems(
           request: .init().with { $0.parent = bucket.name })
+        var folderNames: [String] = []
         for try await f in folders {
+          folderNames.append(f.name)
+        }
+        for name in folderNames.sorted(by: { $0.count > $1.count }) {
           try await client.deleteFolder(
-            request: .init().with { $0.name = f.name },
+            request: .init().with { $0.name = name },
             options: .init().with { $0.idempotent = true })
         }
       }
