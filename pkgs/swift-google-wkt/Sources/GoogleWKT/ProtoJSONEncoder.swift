@@ -412,6 +412,7 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
     guard !self.omits(key) else { return }
     guard let value = value else { return }
     var sink = _KeyedSink(impl: self.impl, key: key)
+    defer { self.impl = sink.impl }
     try sink.encodeProtoJSON(
       value, omit: self.omitted(below: key), omitEmptyCollections: self.omitEmptyCollections,
       encodeNilWhenNil: false)
@@ -431,6 +432,7 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
       }
     }
     var sink = _KeyedSink(impl: self.impl, key: key)
+    defer { self.impl = sink.impl }
     try sink.encodeProtoJSON(
       value, omit: self.omitted(below: key), omitEmptyCollections: self.omitEmptyCollections,
       encodeNilWhenNil: true)
