@@ -22,7 +22,7 @@ public func runControlSamples(
   let name = "projects/_/buckets/\(id)"
   bucketNames.append(name)
 
-  let _ = try await client.createBucket(
+  _ = try await client.createBucket(
     request: .init().with {
       $0.parent = "projects/_"
       $0.bucketId = id
@@ -64,7 +64,7 @@ public func runAnywhereCacheSamples(
   let name = "projects/_/buckets/\(id)"
   bucketNames.append(name)
 
-  let _ = try await client.createBucket(
+  _ = try await client.createBucket(
     request: .init().with {
       $0.parent = "projects/_"
       $0.bucketId = id
