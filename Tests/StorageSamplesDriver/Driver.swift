@@ -48,13 +48,27 @@ import Testing
 
   @Test(.enabled(if: Self.enabled())) func runControlSamples() async throws {
     let projectId = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]!
+    let client = try Self.makeClient()
+    var bucketNames: [String] = []
+    do {
+      try await StorageSamples.runControlSamples(
+        client: client, projectId: projectId, bucketNames: &bucketNames)
+      await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)
+    } catch {
+      await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)
+      throw error
+    }
+  }
+
+  @Test(.enabled(if: Self.anywhereCacheEnabled())) func runAnywhereCacheSamples() async throws {
+    let projectId = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]!
     let zone =
       ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_ZONE"]
       ?? "us-central1-f"
     let client = try Self.makeClient()
     var bucketNames: [String] = []
     do {
-      try await StorageSamples.runControlSamples(
+      try await StorageSamples.runAnywhereCacheSamples(
         client: client, projectId: projectId, zone: zone, bucketNames: &bucketNames)
       await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)
     } catch {
@@ -107,5 +121,11 @@ import Testing
   static func enabled() -> Bool {
     ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil
       && ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_ENABLE_FLAKES"] == "true"
+  }
+
+  static func anywhereCacheEnabled() -> Bool {
+    Self.enabled()
+      && ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_ENABLE_ANYWHERE_CACHE"]
+        == "true"
   }
 }
