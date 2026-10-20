@@ -180,7 +180,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     } catch {
       throw CredentialsError.cannotFetchToken(
         message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
-        source: error
+        underlyingError: error
       )
     }
   }

@@ -315,7 +315,7 @@ import Testing
       )
     }
 
-    #expect(error == RequestError.exhausted(.elapsedTime(source: transientError)))
+    #expect(error == RequestError.exhausted(.elapsedTime(underlyingError: transientError)))
     #expect(attempts == 1)
   }
 
@@ -349,7 +349,7 @@ import Testing
       )
     }
 
-    #expect(error == RequestError.exhausted(.elapsedTime(source: transientError)))
+    #expect(error == RequestError.exhausted(.elapsedTime(underlyingError: transientError)))
     #expect(attempts == 1)
   }
 
@@ -665,7 +665,7 @@ import Testing
         sleep: { _ in }
       )
     }
-    #expect(error == RequestError.exhausted(.elapsedTime(source: transientError)))
+    #expect(error == RequestError.exhausted(.elapsedTime(underlyingError: transientError)))
   }
 
   @Test func noSleepPastOverallTimeoutAfterThrottle() async throws {
@@ -707,7 +707,7 @@ import Testing
         sleep: { _ in }
       )
     }
-    #expect(error == RequestError.exhausted(.elapsedTime(source: transientError)))
+    #expect(error == RequestError.exhausted(.elapsedTime(underlyingError: transientError)))
   }
 
   final class AtomicCounter: Sendable {

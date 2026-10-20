@@ -91,7 +91,7 @@ import Testing
   @Test func requestErrorExhaustedCase() {
     let exhausted = PolicyExhaustedError.elapsedTime(
       maximumDuration: .seconds(30),
-      source: .badURL("http://example.com")
+      underlyingError: .badURL("http://example.com")
     )
     let error: RequestError = .exhausted(exhausted)
 
@@ -136,17 +136,17 @@ import Testing
     )
 
     let timeExhaustedWithSource = PolicyExhaustedError.elapsedTime(
-      maximumDuration: .seconds(10), source: .unimplemented)
+      maximumDuration: .seconds(10), underlyingError: .unimplemented)
     #expect(
       timeExhaustedWithSource.debugDescription
         == "PolicyExhaustedError.elapsedTime("
-        + "maximumDuration: 10.0 seconds, source: RequestError.unimplemented)"
+        + "maximumDuration: 10.0 seconds, underlyingError: RequestError.unimplemented)"
     )
 
-    let timeExhaustedNoLimit = PolicyExhaustedError.elapsedTime(source: .unimplemented)
+    let timeExhaustedNoLimit = PolicyExhaustedError.elapsedTime(underlyingError: .unimplemented)
     #expect(
       timeExhaustedNoLimit.debugDescription
-        == "PolicyExhaustedError.elapsedTime(source: RequestError.unimplemented)"
+        == "PolicyExhaustedError.elapsedTime(underlyingError: RequestError.unimplemented)"
     )
 
     let timeExhaustedEmpty = PolicyExhaustedError.elapsedTime()
@@ -164,10 +164,10 @@ import Testing
     )
 
     let attemptExhaustedWithSource = PolicyExhaustedError.attemptCount(
-      maximumAttempts: 5, source: .unimplemented)
+      maximumAttempts: 5, underlyingError: .unimplemented)
     #expect(
       attemptExhaustedWithSource.debugDescription
-        == "PolicyExhaustedError.attemptCount(maximumAttempts: 5, source: RequestError.unimplemented)"
+        == "PolicyExhaustedError.attemptCount(maximumAttempts: 5, underlyingError: RequestError.unimplemented)"
     )
   }
 }

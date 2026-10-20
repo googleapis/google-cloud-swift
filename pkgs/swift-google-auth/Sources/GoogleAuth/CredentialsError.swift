@@ -38,7 +38,7 @@ public enum CredentialsError: Error, Sendable {
   /// ## Troubleshooting
   ///
   /// The `message` value explains how the credentials were configured and what to verify next. The
-  /// `source` value is the underlying failure, such as a transport error or an unsuccessful
+  /// `underlyingError` value is the underlying failure, such as a transport error or an unsuccessful
   /// response from the token endpoint.
   ///
   /// Credentials may be configured to use a metadata server implicitly: Application Default
@@ -53,7 +53,7 @@ public enum CredentialsError: Error, Sendable {
   ///
   /// - Important: The `message` wording is intended for humans and may change between releases.
   ///   Do not parse it or branch on its contents.
-  case cannotFetchToken(message: String, source: any Error)
+  case cannotFetchToken(message: String, underlyingError: any Error)
 }
 
 extension CredentialsError: CustomDebugStringConvertible {
@@ -63,11 +63,11 @@ extension CredentialsError: CustomDebugStringConvertible {
       return "Operation not supported: \(detail)"
     case .parseError(let detail):
       return "Configuration parse error: \(detail)"
-    case .cannotFetchToken(let message, let error):
+    case .cannotFetchToken(let message, let underlyingError):
       return
         """
         \(message)
-        Underlying error: \(error)
+        Underlying error: \(underlyingError)
         """
     }
   }
@@ -80,8 +80,8 @@ extension CredentialsError: CustomStringConvertible {
       return "Operation not supported: \(detail)"
     case .parseError(let detail):
       return "Configuration parse error: \(detail)"
-    case .cannotFetchToken(let message, let source):
-      return "\(message): \(source)"
+    case .cannotFetchToken(let message, let underlyingError):
+      return "\(message): \(underlyingError)"
     }
   }
 }

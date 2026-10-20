@@ -125,8 +125,8 @@ extension AuthHTTPError {
   static func isRetryable(_ error: any Error) -> Bool {
     if let credentialsError = error as? CredentialsError {
       switch credentialsError {
-      case .cannotFetchToken(_, let source):
-        return isRetryable(source)
+      case .cannotFetchToken(_, let underlyingError):
+        return isRetryable(underlyingError)
       case .parseError, .notSupported:
         return false
       }

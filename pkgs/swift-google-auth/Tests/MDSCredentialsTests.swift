@@ -171,8 +171,8 @@ import Testing
       _ = try await provider.headers()
     }
     let error = #expect(throws: AuthHTTPError.self) {
-      if case let .cannotFetchToken(_, source) = credentialsError {
-        throw source
+      if case let .cannotFetchToken(_, underlyingError) = credentialsError {
+        throw underlyingError
       }
     }
     if case let .transportError(urlError) = error {
@@ -301,11 +301,13 @@ import Testing
     let error = await #expect(throws: CredentialsError.self) {
       _ = try await provider.headers()
     }
-    guard case let .cannotFetchToken(_, source) = error else {
+    guard case let .cannotFetchToken(_, underlyingError) = error else {
       Issue.record("expected a .cannotFetchToken error, got=\(error)")
       return
     }
-    #expect(source is AuthHTTPError, "expected AuthHTTPError as the source, got \(source)")
+    #expect(
+      underlyingError is AuthHTTPError,
+      "expected AuthHTTPError as the underlyingError, got \(underlyingError)")
     let count = attempts.getCount()
     #expect(count == 1, "Expected no retries on permanent HTTP 404 error, got \(count) calls")
 
@@ -349,8 +351,9 @@ import Testing
       false
     ),
   ])
-  func isRetryableUnwrapsCredentialsError(source: AuthHTTPError, expected: Bool) {
-    let wrapped = CredentialsError.cannotFetchToken(message: "failed", source: source)
+  func isRetryableUnwrapsCredentialsError(underlyingError: AuthHTTPError, expected: Bool) {
+    let wrapped = CredentialsError.cannotFetchToken(
+      message: "failed", underlyingError: underlyingError)
     #expect(AuthHTTPError.isRetryable(wrapped) == expected)
   }
 
@@ -379,12 +382,13 @@ import Testing
     let error = await #expect(throws: CredentialsError.self) {
       _ = try await provider.headers()
     }
-    guard case let .cannotFetchToken(_, source) = error else {
+    guard case let .cannotFetchToken(_, underlyingError) = error else {
       Issue.record("expected a .cannotFetchToken error, got=\(error)")
       return
     }
-    guard case .decodingError = source as? AuthHTTPError else {
-      Issue.record("expected AuthHTTPError.decodingError as the source, got \(source)")
+    guard case .decodingError = underlyingError as? AuthHTTPError else {
+      Issue.record(
+        "expected AuthHTTPError.decodingError as the underlyingError, got \(underlyingError)")
       return
     }
     #expect(attempts.getCount() == 1, "Expected no retries on decoding error")

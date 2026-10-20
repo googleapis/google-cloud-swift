@@ -34,14 +34,15 @@ import GoogleAuth
   }
 
   @Test func cannotFetchTokenDetails() {
-    let source = CredentialsError.notSupported("--inner--")
-    let got = CredentialsError.cannotFetchToken(message: "--message here--", source: source)
+    let underlyingError = CredentialsError.notSupported("--inner--")
+    let got = CredentialsError.cannotFetchToken(
+      message: "--message here--", underlyingError: underlyingError)
     #expect(got.description == "--message here--: Operation not supported: --inner--")
     #expect(
       got.debugDescription.contains("--message here--"),
       "\(got):\n\(got.debugDescription)")
     #expect(
-      got.debugDescription.contains("\(source)"),
+      got.debugDescription.contains("\(underlyingError)"),
       "\(got):\n\(got.debugDescription)")
   }
 }
