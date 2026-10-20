@@ -72,6 +72,9 @@ extension StorageControlProtocol {
         return resource
       }
     }
+    // Unreachable at runtime: `RewriteObjectSequence` only finishes (`next()` returning `nil`)
+    // after yielding a response with `done == true` (which returns or throws above) or throwing an
+    // error. Required to satisfy the compiler that all paths return or throw.
     throw GoogleGax.RequestError.malformedResponse(
       "RewriteObject sequence terminated before completion.")
   }
