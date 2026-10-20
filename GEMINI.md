@@ -12,6 +12,9 @@ This document outlines critical rules, coding standards, and workflow practices 
 - **Access Control and Testing**:
   - Do not elevate visibility of types, functions, or properties (such as using `package`, `public`, or `@_spi`) solely to facilitate unit testing.
   - Keep internal implementation details `internal` (default access) and use `@testable import <Target>` in test files.
+- **Error Types**:
+  - Error types that are expected to be surfaced to or handled by users must conform to both `CustomStringConvertible` and `CustomDebugStringConvertible`.
+  - When an uncaught error escapes `@main`, the Swift runtime formats it using `String(reflecting: error)` (`CustomDebugStringConvertible.debugDescription`). Ensure `debugDescription` includes both the structured type/case context and the human-readable explanation so top-level crashes remain actionable.
 
 ## Dependencies and Local Development
 
