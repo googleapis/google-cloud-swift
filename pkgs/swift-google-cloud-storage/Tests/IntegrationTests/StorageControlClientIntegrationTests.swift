@@ -74,7 +74,8 @@ struct StorageControlClientIntegrationTests: Sendable {
       #expect(objectNames.contains(file1))
       #expect(objectNames.contains(file2))
 
-      // Delete each discovered object using its generation so DeleteObject is idempotent.
+      // Delete each discovered object by its specific generation (which is immutable and treated as
+      // idempotent by DeleteObjectRequest.resolveIdempotency).
       for object in listedObjects {
         let deleteRequest = DeleteObjectRequest().with {
           $0.bucket = bucketResource
@@ -271,7 +272,8 @@ struct StorageControlClientIntegrationTests: Sendable {
         try await controlClient.getObject(request: getOriginalReq, options: .init())
       }
 
-      // Delete moved object via gRPC DeleteObject with generation precondition for idempotency.
+      // Delete move target by its specific generation (which is immutable and treated as idempotent
+      // by DeleteObjectRequest.resolveIdempotency).
       let deleteReq = DeleteObjectRequest().with {
         $0.bucket = bucketResource
         $0.object = movedName
