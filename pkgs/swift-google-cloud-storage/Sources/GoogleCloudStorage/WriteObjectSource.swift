@@ -40,7 +40,8 @@ public enum WriteObjectSourceError: Error, Sendable, CustomStringConvertible,
   public var debugDescription: String {
     switch self {
     case .offsetOutOfBounds(let offset, let size):
-      return "WriteObjectSourceError.offsetOutOfBounds(offset: \(offset), size: \(size))"
+      return
+        "WriteObjectSourceError.offsetOutOfBounds(offset: \(offset), size: \(size)): \(description)"
     case .readFailed(let underlyingError):
       return
         "WriteObjectSourceError.readFailed(underlyingError: \(String(reflecting: underlyingError)))"

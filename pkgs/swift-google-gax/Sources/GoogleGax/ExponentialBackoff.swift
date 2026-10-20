@@ -47,11 +47,12 @@ extension ExponentialBackoffError: CustomDebugStringConvertible {
   public var debugDescription: String {
     switch self {
     case .invalidScalingFactor(let scaling):
-      return "ExponentialBackoffError.invalidScalingFactor(\(scaling))"
+      return "ExponentialBackoffError.invalidScalingFactor(\(scaling)): \(description)"
     case .invalidInitialDelay(let delay):
-      return "ExponentialBackoffError.invalidInitialDelay(\(delay))"
+      return "ExponentialBackoffError.invalidInitialDelay(\(delay)): \(description)"
     case .emptyRange(let initial, let maximum):
-      return "ExponentialBackoffError.emptyRange(initial: \(initial), maximum: \(maximum))"
+      return
+        "ExponentialBackoffError.emptyRange(initial: \(initial), maximum: \(maximum)): \(description)"
     }
   }
 }

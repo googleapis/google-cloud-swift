@@ -225,11 +225,11 @@ public enum WKTDurationError: Error, Sendable, Equatable, CustomStringConvertibl
   public var debugDescription: String {
     switch self {
     case .mismatchedSigns:
-      return "WKTDurationError.mismatchedSigns"
+      return "WKTDurationError.mismatchedSigns: \(description)"
     case .outOfRange:
-      return "WKTDurationError.outOfRange"
+      return "WKTDurationError.outOfRange: \(description)"
     case .invalidFormat:
-      return "WKTDurationError.invalidFormat"
+      return "WKTDurationError.invalidFormat: \(description)"
     }
   }
 }

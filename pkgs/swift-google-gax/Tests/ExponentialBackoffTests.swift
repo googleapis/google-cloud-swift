@@ -133,26 +133,36 @@ import Testing
 
   @Test func exponentialBackoffErrorConformances() {
     let scalingErr = ExponentialBackoffError.invalidScalingFactor(0.5)
+    let anyScalingErr: any Error = scalingErr
     #expect(scalingErr.description == "Invalid scaling factor: 0.5 (must be >= 1.0)")
-    #expect(scalingErr.debugDescription == "ExponentialBackoffError.invalidScalingFactor(0.5)")
+    #expect(
+      scalingErr.debugDescription
+        == "ExponentialBackoffError.invalidScalingFactor(0.5): Invalid scaling factor: 0.5 (must be >= 1.0)"
+    )
+    #expect(String(reflecting: anyScalingErr) == scalingErr.debugDescription)
 
     let delayErr = ExponentialBackoffError.invalidInitialDelay(.seconds(0))
+    let anyDelayErr: any Error = delayErr
     #expect(delayErr.description == "Invalid initial delay: 0.0 seconds (must be > 0)")
     #expect(
-      delayErr.debugDescription == "ExponentialBackoffError.invalidInitialDelay(0.0 seconds)"
+      delayErr.debugDescription
+        == "ExponentialBackoffError.invalidInitialDelay(0.0 seconds): Invalid initial delay: 0.0 seconds (must be > 0)"
     )
+    #expect(String(reflecting: anyDelayErr) == delayErr.debugDescription)
 
     let rangeErr = ExponentialBackoffError.emptyRange(
       initial: .seconds(10), maximum: .seconds(5)
     )
+    let anyRangeErr: any Error = rangeErr
     #expect(
       rangeErr.description
         == "Invalid delay range: initial delay 10.0 seconds must be <= maximum delay 5.0 seconds"
     )
     #expect(
       rangeErr.debugDescription
-        == "ExponentialBackoffError.emptyRange(initial: 10.0 seconds, maximum: 5.0 seconds)"
+        == "ExponentialBackoffError.emptyRange(initial: 10.0 seconds, maximum: 5.0 seconds): Invalid delay range: initial delay 10.0 seconds must be <= maximum delay 5.0 seconds"
     )
+    #expect(String(reflecting: anyRangeErr) == rangeErr.debugDescription)
 
     let identical = ExponentialBackoffError.invalidScalingFactor(0.5)
     #expect(scalingErr == identical)

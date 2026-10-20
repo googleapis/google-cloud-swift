@@ -46,7 +46,7 @@ extension ClientError: CustomDebugStringConvertible {
   public var debugDescription: String {
     switch self {
     case .invalidEndpoint(let endpoint):
-      return "ClientError.invalidEndpoint(\(String(reflecting: endpoint)))"
+      return "ClientError.invalidEndpoint(\(String(reflecting: endpoint))): \(description)"
     }
   }
 }

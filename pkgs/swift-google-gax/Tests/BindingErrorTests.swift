@@ -233,6 +233,9 @@ import Testing
     #expect(path.debugDescription.contains("PathMismatch(substitutions:"))
 
     let err = BindingError(paths: [path])
+    let anyError: any Error = err
     #expect(err.debugDescription.contains("BindingError(paths:"))
+    #expect(err.debugDescription.hasSuffix(": field 'name' needs to be set"))
+    #expect(String(reflecting: anyError) == err.debugDescription)
   }
 }

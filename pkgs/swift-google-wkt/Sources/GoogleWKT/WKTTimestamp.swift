@@ -394,9 +394,9 @@ public enum WKTTimestampError: Error, Sendable, Equatable, CustomStringConvertib
   public var debugDescription: String {
     switch self {
     case .outOfRange:
-      return "WKTTimestampError.outOfRange"
+      return "WKTTimestampError.outOfRange: \(description)"
     case .invalidFormat:
-      return "WKTTimestampError.invalidFormat"
+      return "WKTTimestampError.invalidFormat: \(description)"
     }
   }
 }

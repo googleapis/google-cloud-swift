@@ -67,7 +67,7 @@ extension CredentialsError: CustomDebugStringConvertible {
       return
         """
         \(message)
-        Underlying error: \(error)
+        Underlying error: \(String(reflecting: error))
         """
     }
   }

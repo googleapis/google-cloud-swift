@@ -44,9 +44,10 @@ public enum CustomerEncryptionKeyError: Error, Sendable, Equatable,
   public var debugDescription: String {
     switch self {
     case .invalidKeyLength(let actual, let expected):
-      return "CustomerEncryptionKeyError.invalidKeyLength(actual: \(actual), expected: \(expected))"
+      return
+        "CustomerEncryptionKeyError.invalidKeyLength(actual: \(actual), expected: \(expected)): \(description)"
     case .invalidBase64Key:
-      return "CustomerEncryptionKeyError.invalidBase64Key"
+      return "CustomerEncryptionKeyError.invalidBase64Key: \(description)"
     }
   }
 }

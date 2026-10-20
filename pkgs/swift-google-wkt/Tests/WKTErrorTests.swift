@@ -19,38 +19,58 @@ import Testing
 @Suite struct WKTAnyErrorTests {
   @Test func mismatchedTypeURL() {
     let error = WKTAnyError.mismatchedTypeURL
+    let anyError: any Error = error
     #expect(
       error.description
         == "The type URL of the message does not match the contents in the WKTAny."
     )
-    #expect(error.debugDescription == "WKTAnyError.mismatchedTypeURL")
+    #expect(
+      error.debugDescription
+        == "WKTAnyError.mismatchedTypeURL: The type URL of the message does not match the contents in the WKTAny."
+    )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func invalidNestedAnyType() {
     let error = WKTAnyError.invalidNestedAnyType
+    let anyError: any Error = error
     #expect(
       error.description
         == "The @type field in a nested WKTAny is missing or invalid."
     )
-    #expect(error.debugDescription == "WKTAnyError.invalidNestedAnyType")
+    #expect(
+      error.debugDescription
+        == "WKTAnyError.invalidNestedAnyType: The @type field in a nested WKTAny is missing or invalid."
+    )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func missingValueField() {
     let error = WKTAnyError.missingValueField
+    let anyError: any Error = error
     #expect(
       error.description
         == "The message is encoded as a JSON string but the 'value' field is missing."
     )
-    #expect(error.debugDescription == "WKTAnyError.missingValueField")
+    #expect(
+      error.debugDescription
+        == "WKTAnyError.missingValueField: The message is encoded as a JSON string but the 'value' field is missing."
+    )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func invalidValueField() {
     let error = WKTAnyError.invalidValueField
+    let anyError: any Error = error
     #expect(
       error.description
         == "The message is encoded as a JSON string but the 'value' field is not a string."
     )
-    #expect(error.debugDescription == "WKTAnyError.invalidValueField")
+    #expect(
+      error.debugDescription
+        == "WKTAnyError.invalidValueField: The message is encoded as a JSON string but the 'value' field is not a string."
+    )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func equatable() {
@@ -62,28 +82,43 @@ import Testing
 @Suite struct WKTDurationErrorTests {
   @Test func mismatchedSigns() {
     let error = WKTDurationError.mismatchedSigns
+    let anyError: any Error = error
     #expect(
       error.description == "The seconds and nanosecond signs did not match."
     )
-    #expect(error.debugDescription == "WKTDurationError.mismatchedSigns")
+    #expect(
+      error.debugDescription
+        == "WKTDurationError.mismatchedSigns: The seconds and nanosecond signs did not match."
+    )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func outOfRange() {
     let error = WKTDurationError.outOfRange
+    let anyError: any Error = error
     #expect(
       error.description
         == "The seconds or nanosecond components are out of range."
     )
-    #expect(error.debugDescription == "WKTDurationError.outOfRange")
+    #expect(
+      error.debugDescription
+        == "WKTDurationError.outOfRange: The seconds or nanosecond components are out of range."
+    )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func invalidFormat() {
     let error = WKTDurationError.invalidFormat
+    let anyError: any Error = error
     #expect(
       error.description
         == "Invalid format when parsing a duration from a string."
     )
-    #expect(error.debugDescription == "WKTDurationError.invalidFormat")
+    #expect(
+      error.debugDescription
+        == "WKTDurationError.invalidFormat: Invalid format when parsing a duration from a string."
+    )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func equatable() {
@@ -95,20 +130,30 @@ import Testing
 @Suite struct WKTTimestampErrorTests {
   @Test func outOfRange() {
     let error = WKTTimestampError.outOfRange
+    let anyError: any Error = error
     #expect(
       error.description
         == "The seconds or nanosecond components are out of range."
     )
-    #expect(error.debugDescription == "WKTTimestampError.outOfRange")
+    #expect(
+      error.debugDescription
+        == "WKTTimestampError.outOfRange: The seconds or nanosecond components are out of range."
+    )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func invalidFormat() {
     let error = WKTTimestampError.invalidFormat
+    let anyError: any Error = error
     #expect(
       error.description
         == "Invalid format when parsing a timestamp from a string."
     )
-    #expect(error.debugDescription == "WKTTimestampError.invalidFormat")
+    #expect(
+      error.debugDescription
+        == "WKTTimestampError.invalidFormat: Invalid format when parsing a timestamp from a string."
+    )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func equatable() {
