@@ -234,8 +234,11 @@ import Testing
 
     let err = BindingError(paths: [path])
     let anyError: any Error = err
-    #expect(err.debugDescription.contains("BindingError(paths:"))
-    #expect(err.debugDescription.hasSuffix(": field 'name' needs to be set"))
+    #expect(
+      err.debugDescription.hasPrefix(
+        "BindingError(\(String(reflecting: err.description)), paths:"
+      )
+    )
     #expect(String(reflecting: anyError) == err.debugDescription)
   }
 }

@@ -51,8 +51,11 @@ import Testing
     let anyError: any Error = error
 
     #expect(error.description == "URL binding error: field 'name' needs to be set")
-    #expect(error.debugDescription.hasPrefix("RequestError.binding(BindingError(paths:"))
-    #expect(error.debugDescription.contains("field 'name' needs to be set"))
+    #expect(
+      error.debugDescription.hasPrefix(
+        "RequestError.binding(BindingError(\(String(reflecting: bindingError.description)), paths:"
+      )
+    )
     #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
@@ -118,7 +121,7 @@ import Testing
     let anyError: any Error = error
 
     #expect(error.description == "Method unimplemented")
-    #expect(error.debugDescription == "RequestError.unimplemented: Method unimplemented")
+    #expect(error.debugDescription == "RequestError.unimplemented")
     #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
@@ -127,8 +130,10 @@ import Testing
     let anyError: any Error = error
 
     #expect(error.description == "Malformed response: missing 'name' field")
-    #expect(error.debugDescription.contains("RequestError.malformedResponse("))
-    #expect(error.debugDescription.contains("missing 'name' field"))
+    #expect(
+      error.debugDescription
+        == "RequestError.malformedResponse(\(String(reflecting: "missing 'name' field")))"
+    )
     #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
@@ -157,13 +162,13 @@ import Testing
     #expect(
       timeExhaustedWithSource.debugDescription
         == "PolicyExhaustedError.elapsedTime("
-        + "maximumDuration: 10.0 seconds, source: RequestError.unimplemented: Method unimplemented)"
+        + "maximumDuration: 10.0 seconds, source: RequestError.unimplemented)"
     )
 
     let timeExhaustedNoLimit = PolicyExhaustedError.elapsedTime(source: .unimplemented)
     #expect(
       timeExhaustedNoLimit.debugDescription
-        == "PolicyExhaustedError.elapsedTime(source: RequestError.unimplemented: Method unimplemented)"
+        == "PolicyExhaustedError.elapsedTime(source: RequestError.unimplemented)"
     )
 
     let timeExhaustedEmpty = PolicyExhaustedError.elapsedTime()
@@ -184,7 +189,7 @@ import Testing
       maximumAttempts: 5, source: .unimplemented)
     #expect(
       attemptExhaustedWithSource.debugDescription
-        == "PolicyExhaustedError.attemptCount(maximumAttempts: 5, source: RequestError.unimplemented: Method unimplemented)"
+        == "PolicyExhaustedError.attemptCount(maximumAttempts: 5, source: RequestError.unimplemented)"
     )
   }
 }

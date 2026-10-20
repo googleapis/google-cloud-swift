@@ -21,10 +21,7 @@ import Testing
     let error = ClientError.invalidEndpoint("bad://endpoint:123")
     let anyError: any Error = error
     #expect(error.description == "Invalid endpoint: bad://endpoint:123")
-    #expect(
-      error.debugDescription
-        == "ClientError.invalidEndpoint(\"bad://endpoint:123\"): Invalid endpoint: bad://endpoint:123"
-    )
+    #expect(error.debugDescription == "ClientError.invalidEndpoint(\"bad://endpoint:123\")")
     #expect(String(reflecting: anyError) == error.debugDescription)
 
     let identical = ClientError.invalidEndpoint("bad://endpoint:123")

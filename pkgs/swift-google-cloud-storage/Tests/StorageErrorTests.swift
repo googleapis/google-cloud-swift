@@ -204,7 +204,7 @@ import Testing
     #expect(error.description == "Seek offset out of bounds: offset 200 exceeds size 100")
     #expect(
       error.debugDescription
-        == "WriteObjectSourceError.offsetOutOfBounds(offset: 200, size: 100): Seek offset out of bounds: offset 200 exceeds size 100"
+        == "WriteObjectSourceError.offsetOutOfBounds(offset: 200, size: 100)"
     )
     #expect(String(reflecting: anyError) == error.debugDescription)
   }

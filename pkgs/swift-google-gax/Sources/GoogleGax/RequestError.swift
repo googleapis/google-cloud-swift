@@ -193,11 +193,11 @@ extension RequestError: CustomDebugStringConvertible {
     case .exhausted(let error):
       return "RequestError.exhausted(\(String(reflecting: error)))"
     case .unimplemented:
-      return "RequestError.unimplemented: \(description)"
+      return "RequestError.unimplemented"
     case .malformedResponse(let message):
-      return "RequestError.malformedResponse(\"\(message)\")"
+      return "RequestError.malformedResponse(\(String(reflecting: message)))"
     case .badURL(let url):
-      return "RequestError.badURL(\"\(url)\")"
+      return "RequestError.badURL(\(String(reflecting: url)))"
     }
   }
 }

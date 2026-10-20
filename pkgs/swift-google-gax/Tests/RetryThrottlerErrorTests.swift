@@ -48,7 +48,7 @@ import Testing
     )
     #expect(
       error.debugDescription
-        == "RetryThrottlerError.tokensOutOfRange(tokens: -1, minTokens: 0, errorCost: 5): Token counts and error costs must be non-negative (tokens: -1, minTokens: 0, errorCost: 5)"
+        == "RetryThrottlerError.tokensOutOfRange(tokens: -1, minTokens: 0, errorCost: 5): Token counts and error costs must be non-negative"
     )
     #expect(String(reflecting: anyError) == error.debugDescription)
   }

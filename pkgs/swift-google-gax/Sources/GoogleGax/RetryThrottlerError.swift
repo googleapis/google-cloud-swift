@@ -65,7 +65,7 @@ extension RetryThrottlerError: CustomDebugStringConvertible {
         "RetryThrottlerError.tooFewMinTokens(tokens: \(tokens), minTokens: \(minTokens)): \(description)"
     case .tokensOutOfRange(let tokens, let minTokens, let errorCost):
       return
-        "RetryThrottlerError.tokensOutOfRange(tokens: \(tokens), minTokens: \(minTokens), errorCost: \(errorCost)): \(description)"
+        "RetryThrottlerError.tokensOutOfRange(tokens: \(tokens), minTokens: \(minTokens), errorCost: \(errorCost)): Token counts and error costs must be non-negative"
     }
   }
 }
