@@ -87,13 +87,18 @@ swift package add-target-dependency GoogleWKT <target-name> --package swift-goog
 import Foundation
 import GoogleWKT
 
+// Create a WKTTimestamp from the current time or a Foundation.Date
+let now = WKTTimestamp.now
+let fromDate = WKTTimestamp(Date())
+print("Date: \(fromDate.date), RFC 3339: \(fromDate)")
+
 // Create a WKTTimestamp with seconds and nanoseconds
 let timestamp = try WKTTimestamp(seconds: 1_700_000_000, nanos: 500_000_000)
 print("Seconds: \(timestamp.seconds), Nanos: \(timestamp.nanos)")
 
 // Encodes to and decodes from RFC 3339 formatted JSON strings
 let encoder = JSONEncoder()
-let data = try encoder.encode(timestamp) // "2023-11-14T22:13:20.500000000Z"
+let data = try encoder.encode(timestamp) // "2023-11-14T22:13:20.500Z"
 
 let decoded = try JSONDecoder().decode(WKTTimestamp.self, from: data)
 ```

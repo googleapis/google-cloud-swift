@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 
 let secondsPerDay: Int64 = 86_400
 let secondsPerHour: Int64 = 3_600
@@ -62,18 +62,18 @@ public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
   /// The minimum value for the `seconds` component.
   ///
   /// Corresponds to 0001-01-01T00:00:00Z
-  static public let minSeconds: Int64 = -62_135_596_800
+  public static let minSeconds: Int64 = -62_135_596_800
 
   /// The maximum value for the `seconds` component.
   ///
   /// Corresponds to 9999-12-31T23:59:59Z
-  static public let maxSeconds: Int64 = 253_402_300_799
+  public static let maxSeconds: Int64 = 253_402_300_799
 
   /// The maximum value for the `nanos` component.
-  static public let maxNanos: Int32 = nanosPerSecond - 1
+  public static let maxNanos: Int32 = nanosPerSecond - 1
 
   /// The minimum value for the `nanos` component.
-  static public let minNanos: Int32 = 0
+  public static let minNanos: Int32 = 0
 
   /// Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must
   /// be between -62135596800 and 253402300799 inclusive (which corresponds to
@@ -108,6 +108,102 @@ public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
     self.nanos = nanos
   }
 
+  /// Creates a new instance, clamping out-of-range values to the valid range.
+  ///
+  /// Nanoseconds outside `0...999_999_999` are carried or borrowed into `seconds`.
+  /// If the resulting timestamp is before `0001-01-01T00:00:00Z`, it is clamped to
+  /// `minSeconds` and `minNanos`. If it is after `9999-12-31T23:59:59.999999999Z`,
+  /// it is clamped to `maxSeconds` and `maxNanos`.
+  ///
+  /// - Parameters:
+  ///   - seconds: The number of seconds from the epoch.
+  ///   - nanos: The number of nanoseconds added to `seconds`. Defaults to `0`.
+  public init(clampingSeconds seconds: Int64, nanos: Int32 = 0) {
+    var carry = Int64(nanos / nanosPerSecond)
+    var adjustedNanos = nanos % nanosPerSecond
+    if adjustedNanos < 0 {
+      carry -= 1
+      adjustedNanos += nanosPerSecond
+    }
+    let (adjustedSeconds, overflow) = seconds.addingReportingOverflow(carry)
+    if overflow {
+      self.seconds = carry < 0 ? Self.minSeconds : Self.maxSeconds
+      self.nanos = carry < 0 ? Self.minNanos : Self.maxNanos
+    } else if adjustedSeconds < Self.minSeconds {
+      self.seconds = Self.minSeconds
+      self.nanos = Self.minNanos
+    } else if adjustedSeconds > Self.maxSeconds {
+      self.seconds = Self.maxSeconds
+      self.nanos = Self.maxNanos
+    } else {
+      self.seconds = adjustedSeconds
+      self.nanos = adjustedNanos
+    }
+  }
+
+  /// Creates a new instance from a `Foundation.Date`, clamping out-of-range dates
+  /// to the valid `WKTTimestamp` range.
+  ///
+  /// - Parameter date: The `Foundation.Date` to convert.
+  /// - Note: Converting from `Date` may lose sub-microsecond precision because
+  ///   `Date` stores time intervals as a 64-bit floating-point number (`Double`).
+  ///   If `date.timeIntervalSince1970` is `NaN`, the timestamp defaults to the
+  ///   Unix epoch (`1970-01-01T00:00:00Z`).
+  public init(_ date: Date) {
+    let interval = date.timeIntervalSince1970
+    if interval.isNaN {
+      self.init(clampingSeconds: 0, nanos: 0)
+      return
+    }
+    if interval <= TimeInterval(Self.minSeconds) {
+      self.init(clampingSeconds: Self.minSeconds, nanos: Self.minNanos)
+      return
+    }
+    if interval >= TimeInterval(Self.maxSeconds) + 1.0 {
+      self.init(clampingSeconds: Self.maxSeconds, nanos: Self.maxNanos)
+      return
+    }
+
+    let wholeSeconds = floor(interval)
+    let secs = Int64(wholeSeconds)
+    let rawNanos = ((interval - wholeSeconds) * TimeInterval(nanosPerSecond)).rounded()
+    self.init(clampingSeconds: secs, nanos: Int32(rawNanos))
+  }
+
+  /// Creates a new instance by parsing an RFC 3339 formatted string.
+  ///
+  /// Returns `nil` if the string is not a valid RFC 3339 timestamp or falls
+  /// outside the valid range (`0001-01-01T00:00:00Z` to `9999-12-31T23:59:59.999999999Z`).
+  ///
+  /// - Parameter rfc3339: The RFC 3339 timestamp string to parse.
+  public init?(rfc3339: String) {
+    guard let parsed = try? Self(fromString: rfc3339) else {
+      return nil
+    }
+    self = parsed
+  }
+
+  /// The current point in time as a `WKTTimestamp`.
+  public static var now: WKTTimestamp {
+    WKTTimestamp(Date())
+  }
+
+  /// The interval between this timestamp and 00:00:00 UTC on 1 January 1970.
+  ///
+  /// - Note: Converting to `TimeInterval` (`Double`) may lose sub-microsecond
+  ///   precision.
+  public var timeIntervalSince1970: TimeInterval {
+    TimeInterval(seconds) + TimeInterval(nanos) / TimeInterval(nanosPerSecond)
+  }
+
+  /// A `Foundation.Date` representation of this timestamp.
+  ///
+  /// - Note: Converting to `Date` may lose sub-microsecond precision because
+  ///   `Date` stores time intervals as a 64-bit floating-point number (`Double`).
+  public var date: Date {
+    Date(timeIntervalSince1970: timeIntervalSince1970)
+  }
+
   public static func < (lhs: WKTTimestamp, rhs: WKTTimestamp) -> Bool {
     if lhs.seconds != rhs.seconds {
       return lhs.seconds < rhs.seconds
@@ -115,8 +211,8 @@ public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
     return lhs.nanos < rhs.nanos
   }
 
-  public init(from encoder: any Decoder) throws {
-    let rfc3339 = try String(from: encoder)
+  public init(from decoder: any Decoder) throws {
+    let rfc3339 = try String(from: decoder)
     self = try Self.init(fromString: rfc3339)
   }
 
@@ -152,6 +248,13 @@ public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
     try self.init(seconds: baseSeconds, nanos: nanos)
   }
 
+  private static func parseUnsignedInt(_ substring: Substring) -> Int? {
+    guard !substring.isEmpty, substring.allSatisfy({ $0.isASCII && $0.isNumber }) else {
+      return nil
+    }
+    return Int(substring)
+  }
+
   private static func parseDateSegment(_ segment: Substring) throws -> Int64 {
     // segment is YYYY-MM-DD
     guard segment.count == 10,
@@ -168,9 +271,9 @@ public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
         segment.startIndex, offsetBy: 8)..<segment.index(
           segment.startIndex, offsetBy: 10)]
 
-    guard let year = Int(yearStr),
-      let month = Int(monthStr),
-      let day = Int(dayStr)
+    guard let year = parseUnsignedInt(yearStr),
+      let month = parseUnsignedInt(monthStr),
+      let day = parseUnsignedInt(dayStr)
     else {
       throw WKTTimestampError.invalidFormat
     }
@@ -220,9 +323,9 @@ public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
         segment.startIndex, offsetBy: 6)..<segment.index(
           segment.startIndex, offsetBy: 8)]
 
-    guard let hour = Int(hourStr),
-      let minute = Int(minuteStr),
-      let second = Int(secondStr)
+    guard let hour = parseUnsignedInt(hourStr),
+      let minute = parseUnsignedInt(minuteStr),
+      let second = parseUnsignedInt(secondStr)
     else {
       throw WKTTimestampError.invalidFormat
     }
@@ -246,7 +349,7 @@ public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
     }
     pos = rfc3339.index(after: pos)
     let fracStart = pos
-    while pos < rfc3339.endIndex && rfc3339[pos].isNumber {
+    while pos < rfc3339.endIndex && rfc3339[pos].isASCII && rfc3339[pos].isNumber {
       pos = rfc3339.index(after: pos)
     }
     guard let nanos = parseNanos(from: rfc3339[fracStart..<pos]) else {
@@ -268,16 +371,38 @@ public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
     if suffix.hasPrefix("+") || suffix.hasPrefix("-") {
       let isNegative = suffix.hasPrefix("-")
       let offsetPart = suffix.dropFirst()
-      // Formats can be HH:MM or HHMM
-      let hhmm = offsetPart.replacingOccurrences(of: ":", with: "")
-      guard (hhmm.count == 4 || hhmm.count == 2),
-        let offsetH = Int(hhmm.prefix(2)),
-        offsetH < 24
-      else {
+      let offsetH: Int
+      let offsetM: Int
+
+      if offsetPart.count == 5 {
+        let colonIdx = offsetPart.index(offsetPart.startIndex, offsetBy: 2)
+        guard offsetPart[colonIdx] == ":",
+          let h = parseUnsignedInt(offsetPart.prefix(2)),
+          let m = parseUnsignedInt(offsetPart.suffix(2))
+        else {
+          throw WKTTimestampError.invalidFormat
+        }
+        offsetH = h
+        offsetM = m
+      } else if offsetPart.count == 4 {
+        guard let h = parseUnsignedInt(offsetPart.prefix(2)),
+          let m = parseUnsignedInt(offsetPart.suffix(2))
+        else {
+          throw WKTTimestampError.invalidFormat
+        }
+        offsetH = h
+        offsetM = m
+      } else if offsetPart.count == 2 {
+        guard let h = parseUnsignedInt(offsetPart) else {
+          throw WKTTimestampError.invalidFormat
+        }
+        offsetH = h
+        offsetM = 0
+      } else {
         throw WKTTimestampError.invalidFormat
       }
-      let offsetM = hhmm.count == 4 ? (Int(hhmm.suffix(2)) ?? 0) : 0
-      guard offsetM < 60 else {
+
+      guard offsetH < 24 && offsetM < 60 else {
         throw WKTTimestampError.invalidFormat
       }
 
@@ -335,6 +460,14 @@ private let fourDigitStyle = IntegerFormatStyle<Int>(locale: Locale(identifier: 
 private let twoDigitStyle = IntegerFormatStyle<Int>(locale: Locale(identifier: "en_US_POSIX"))
   .grouping(.never)
   .precision(.integerLength(2))
+
+// Makes `WKTTimestamp` conform to `CustomStringConvertible`, providing string interpolation and textual representation.
+extension WKTTimestamp: CustomStringConvertible {
+  /// A textual representation of this timestamp in RFC 3339 format.
+  public var description: String {
+    toString()
+  }
+}
 
 // Makes `WKTTimestamp` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `WKTAny`.
 extension WKTTimestamp: _AnyPackable {
