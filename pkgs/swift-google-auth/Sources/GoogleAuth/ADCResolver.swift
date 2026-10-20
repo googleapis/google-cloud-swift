@@ -24,13 +24,44 @@ package enum ADCContents: Equatable, Sendable {
 }
 
 /// Errors occurring during the resolution or loading of Application Default Credentials.
-package enum ADCResolverError: Error, Equatable {
+package enum ADCResolverError: Error, Equatable, CustomStringConvertible,
+  CustomDebugStringConvertible
+{
   /// The credential file was not found. If `isEnvironmentOverride` is `true`, the path came from `GOOGLE_APPLICATION_CREDENTIALS`.
   case fileNotFound(path: String, isEnvironmentOverride: Bool)
   /// The credential file contents could not be parsed as valid JSON.
   case invalidFormat
   /// The credential JSON contains an unsupported `type` field value.
   case unsupportedType(String)
+
+  package var description: String {
+    switch self {
+    case .fileNotFound(let path, let isEnvironmentOverride):
+      if isEnvironmentOverride {
+        return
+          "The Application Default Credentials file specified by GOOGLE_APPLICATION_CREDENTIALS was not found at '\(path)'."
+      }
+      return "The Application Default Credentials file was not found at '\(path)'."
+    case .invalidFormat:
+      return
+        "The Application Default Credentials file is not valid JSON or is missing the 'type' field."
+    case .unsupportedType(let type):
+      return
+        "The Application Default Credentials file contains an unsupported credential type '\(type)'."
+    }
+  }
+
+  package var debugDescription: String {
+    switch self {
+    case .fileNotFound(let path, let isEnvironmentOverride):
+      return
+        "ADCResolverError.fileNotFound(path: \(String(reflecting: path)), isEnvironmentOverride: \(isEnvironmentOverride)): \(description)"
+    case .invalidFormat:
+      return "ADCResolverError.invalidFormat: \(description)"
+    case .unsupportedType(let type):
+      return "ADCResolverError.unsupportedType(\(String(reflecting: type))): \(description)"
+    }
+  }
 }
 
 /// Loads the Application Default Credentials file content if available, or signals fallback to the Metadata Server.

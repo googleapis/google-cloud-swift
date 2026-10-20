@@ -22,8 +22,9 @@ import GoogleAuth
     let anyError: any Error = got
     #expect(got.description == "Operation not supported: -- details here --")
     #expect(
-      got.debugDescription.contains("-- details here --"),
-      "\(got):\n\(got.debugDescription)")
+      got.debugDescription
+        == "CredentialsError.notSupported(\"-- details here --\"): Operation not supported: -- details here --"
+    )
     #expect(String(reflecting: anyError) == got.debugDescription)
   }
 
@@ -32,8 +33,9 @@ import GoogleAuth
     let anyError: any Error = got
     #expect(got.description == "Configuration parse error: -- details here --")
     #expect(
-      got.debugDescription.contains("-- details here --"),
-      "\(got):\n\(got.debugDescription)")
+      got.debugDescription
+        == "CredentialsError.parseError(\"-- details here --\"): Configuration parse error: -- details here --"
+    )
     #expect(String(reflecting: anyError) == got.debugDescription)
   }
 
@@ -43,7 +45,7 @@ import GoogleAuth
     let anyError: any Error = got
     #expect(got.description == "--message here--: Operation not supported: --inner--")
     #expect(
-      got.debugDescription.contains("--message here--"),
+      got.debugDescription.hasPrefix("CredentialsError.cannotFetchToken: --message here--"),
       "\(got):\n\(got.debugDescription)")
     #expect(
       got.debugDescription.contains(String(reflecting: source)),
