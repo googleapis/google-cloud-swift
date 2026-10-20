@@ -99,6 +99,20 @@ import Testing
     #expect(policy.onInProgress(state: PollingState()) == .exhausted(exhaustedError))
   }
 
+  @Test func testLimitedAttemptCountRemainingNone() {
+    let mock = MockPollingPolicy(remainingTime: { _ in nil })
+    let policy = mock.withAttemptLimit(3)
+
+    #expect(policy.remainingTime(state: PollingState()) == nil)
+  }
+
+  @Test func testLimitedAttemptCountRemainingSome() {
+    let mock = MockPollingPolicy(remainingTime: { _ in .seconds(123) })
+    let policy = mock.withAttemptLimit(3)
+
+    #expect(policy.remainingTime(state: PollingState()) == .seconds(123))
+  }
+
   @Test func equatable() {
     let a = AlwaysPoll.unbounded().withAttemptLimit(3)
     let b = AlwaysPoll.unbounded().withAttemptLimit(3)

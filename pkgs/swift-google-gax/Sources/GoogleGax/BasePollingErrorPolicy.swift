@@ -58,4 +58,8 @@ public struct BasePollingErrorPolicy: PollingErrorPolicy, Sendable, Equatable {
   public func onInProgress(state: PollingState) -> InProgressResult {
     self.inner.onInProgress(state: state)
   }
+
+  public func remainingTime(state: PollingState) -> Duration? {
+    self.inner.remainingTime(state: state)
+  }
 }

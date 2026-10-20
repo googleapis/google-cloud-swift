@@ -116,6 +116,7 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
   public func wait() async throws -> ResponseType {
     var state = self.initialState
     var pollingState = PollingState()
+    var lastError: RequestError? = nil
     while !state.done {
       switch pollingPolicy.onInProgress(state: pollingState) {
       case .keepPolling:
@@ -124,16 +125,24 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
         throw error
       }
       let delay = backoffPolicy.backoffDelay(for: pollingState)
+      if let remaining = pollingPolicy.remainingTime(state: pollingState), remaining < delay {
+        throw RequestError.exhausted(.elapsedTime(source: lastError))
+      }
       try await sleep(delay)
+      if let remaining = pollingPolicy.remainingTime(state: pollingState), remaining <= .zero {
+        throw RequestError.exhausted(.elapsedTime(source: lastError))
+      }
       pollingState.attemptCount += 1
       do {
         state = try await pollOp()
+        lastError = nil
       } catch let requestError as RequestError {
         let flow = pollingPolicy.onError(state: pollingState, error: requestError)
         switch flow {
         case .permanent(let e), .exhausted(let e):
           throw e
-        case .retry:
+        case .retry(let e):
+          lastError = e
           continue
         }
       } catch {

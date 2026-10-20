@@ -35,6 +35,7 @@ import Testing
   @Test func alwaysPollOnInProgress() {
     let p = AlwaysPoll.unbounded()
     #expect(p.onInProgress(state: PollingState()) == .keepPolling)
+    #expect(p.remainingTime(state: PollingState()) == nil)
   }
 
   @Test func equatable() {

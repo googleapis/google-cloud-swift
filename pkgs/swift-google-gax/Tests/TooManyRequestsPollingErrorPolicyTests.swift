@@ -43,6 +43,15 @@ import Testing
     #expect(called.withLock { $0 })
   }
 
+  @Test func testTooManyRequestsRemainingTimeForwards() {
+    let mockNone = MockPollingPolicy(remainingTime: { _ in nil })
+    #expect(mockNone.continueOnTooManyRequests().remainingTime(state: PollingState()) == nil)
+
+    let mockSome = MockPollingPolicy(remainingTime: { _ in .seconds(42) })
+    #expect(
+      mockSome.continueOnTooManyRequests().remainingTime(state: PollingState()) == .seconds(42))
+  }
+
   @Test func equatable() {
     let a = AlwaysPoll.unbounded().continueOnTooManyRequests()
     let b = AlwaysPoll.unbounded().continueOnTooManyRequests()

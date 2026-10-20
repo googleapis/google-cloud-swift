@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
+
 extension TooManyRequests: PollingErrorPolicy where P: PollingErrorPolicy {
   public func onError(state: PollingState, error: RequestError) -> PollingResult {
     if isTooManyRequests(error) {
@@ -22,6 +24,10 @@ extension TooManyRequests: PollingErrorPolicy where P: PollingErrorPolicy {
 
   public func onInProgress(state: PollingState) -> InProgressResult {
     inner.onInProgress(state: state)
+  }
+
+  public func remainingTime(state: PollingState) -> Duration? {
+    inner.remainingTime(state: state)
   }
 }
 

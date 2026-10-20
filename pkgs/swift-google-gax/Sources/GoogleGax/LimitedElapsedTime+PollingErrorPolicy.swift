@@ -40,6 +40,16 @@ extension LimitedElapsedTime: PollingErrorPolicy where P: PollingErrorPolicy {
       return .keepPolling
     }
   }
+
+  public func remainingTime(state: PollingState) -> Duration? {
+    let deadline = state.start + maximumDuration
+    let now = ContinuousClock.now
+    let remaining = now < deadline ? (deadline - now) : .zero
+    if let innerRemaining = inner.remainingTime(state: state) {
+      return min(remaining, innerRemaining)
+    }
+    return remaining
+  }
 }
 
 extension PollingErrorPolicy {

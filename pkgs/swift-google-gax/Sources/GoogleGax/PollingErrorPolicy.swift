@@ -44,11 +44,25 @@ public protocol PollingErrorPolicy: Sendable {
   ///   - state: The current state of the polling loop.
   /// - Returns: The result of the in-progress polling decision.
   func onInProgress(state: PollingState) -> InProgressResult
+
+  /// The remaining time in the polling policy.
+  ///
+  /// For policies based on time, this returns the remaining time in the
+  /// policy. The polling loop can use this value to avoid sleeping past the
+  /// policy's deadline. For policies that are not time based this returns `nil`.
+  ///
+  /// - Parameter state: The current state of the polling loop.
+  /// - Returns: The remaining time, or `nil` if the policy is not time-based.
+  func remainingTime(state: PollingState) -> Duration?
 }
 
 extension PollingErrorPolicy {
   /// By default, this method continues polling.
   public func onInProgress(state: PollingState) -> InProgressResult {
     .keepPolling
+  }
+
+  public func remainingTime(state: PollingState) -> Duration? {
+    nil
   }
 }

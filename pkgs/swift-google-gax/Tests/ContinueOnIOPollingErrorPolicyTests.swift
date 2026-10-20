@@ -41,6 +41,14 @@ import Testing
     #expect(called.withLock { $0 })
   }
 
+  @Test func continueIORemainingTimeForwards() {
+    let mockNone = MockPollingPolicy(remainingTime: { _ in nil })
+    #expect(mockNone.continueOnIO().remainingTime(state: PollingState()) == nil)
+
+    let mockSome = MockPollingPolicy(remainingTime: { _ in .seconds(42) })
+    #expect(mockSome.continueOnIO().remainingTime(state: PollingState()) == .seconds(42))
+  }
+
   @Test func equatable() {
     let a = AlwaysPoll.unbounded().continueOnIO()
     let b = AlwaysPoll.unbounded().continueOnIO()

@@ -40,6 +40,10 @@ extension LimitedAttemptCount: PollingErrorPolicy where P: PollingErrorPolicy & 
       return .keepPolling
     }
   }
+
+  public func remainingTime(state: PollingState) -> Duration? {
+    inner.remainingTime(state: state)
+  }
 }
 
 extension PollingErrorPolicy {

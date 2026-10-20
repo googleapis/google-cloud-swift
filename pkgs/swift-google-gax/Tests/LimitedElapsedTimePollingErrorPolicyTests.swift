@@ -102,6 +102,59 @@ import Testing
     #expect(policy.onInProgress(state: PollingState()) == .exhausted(exhaustedError))
   }
 
+  @Test func testLimitedTimeRemainingInnerLonger() {
+    let mock = MockPollingPolicy(remainingTime: { _ in .seconds(30) })
+    let limit = Duration.seconds(60)
+    let policy = mock.withTimeLimit(limit)
+
+    let state = PollingState().with {
+      $0.start = .now - .seconds(55)
+    }
+    let remaining = policy.remainingTime(state: state)
+    #expect(remaining != nil)
+    if let remaining = remaining {
+      #expect(remaining <= .seconds(5))
+    }
+  }
+
+  @Test func testLimitedTimeRemainingInnerShorter() {
+    let mock = MockPollingPolicy(remainingTime: { _ in .seconds(5) })
+    let limit = Duration.seconds(60)
+    let policy = mock.withTimeLimit(limit)
+
+    let state = PollingState().with {
+      $0.start = .now - .seconds(5)
+    }
+    let remaining = policy.remainingTime(state: state)
+    #expect(remaining == .seconds(5))
+  }
+
+  @Test func testLimitedTimeRemainingInnerIsNone() {
+    let mock = MockPollingPolicy(remainingTime: { _ in nil })
+    let limit = Duration.seconds(60)
+    let policy = mock.withTimeLimit(limit)
+
+    let state = PollingState().with {
+      $0.start = .now - .seconds(50)
+    }
+    let remaining = policy.remainingTime(state: state)
+    #expect(remaining != nil)
+    if let remaining = remaining {
+      #expect(remaining <= .seconds(10))
+    }
+  }
+
+  @Test func testLimitedTimeRemainingExpired() {
+    let mock = MockPollingPolicy(remainingTime: { _ in nil })
+    let limit = Duration.seconds(60)
+    let policy = mock.withTimeLimit(limit)
+
+    let state = PollingState().with {
+      $0.start = .now - .seconds(70)
+    }
+    #expect(policy.remainingTime(state: state) == .zero)
+  }
+
   @Test func equatable() {
     let a = AlwaysPoll.unbounded().withTimeLimit(.seconds(30))
     let b = AlwaysPoll.unbounded().withTimeLimit(.seconds(30))

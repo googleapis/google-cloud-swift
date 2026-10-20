@@ -35,6 +35,7 @@ import Testing
     #expect(p.onError(state: state, error: resourceExhausted) == .retry(resourceExhausted))
     #expect(p.onError(state: state, error: permissionDenied) == .permanent(permissionDenied))
     #expect(p.onInProgress(state: state) == .keepPolling)
+    #expect(p.remainingTime(state: state) == nil)
   }
 
   @Test("Verify BasePollingErrorPolicy.defaultPolicy enforces 30-minute limit")
@@ -50,6 +51,7 @@ import Testing
     }
     #expect(p.onError(state: activeState, error: unavailable) == .retry(unavailable))
     #expect(p.onInProgress(state: activeState) == .keepPolling)
+    #expect(p.remainingTime(state: activeState) != nil)
 
     let expiredState = PollingState().with {
       $0.start = start - .seconds(30 * 60 + 1)
@@ -59,6 +61,7 @@ import Testing
     #expect(
       p.onInProgress(state: expiredState)
         == .exhausted(RequestError.exhausted(.elapsedTime(maximumDuration: .seconds(30 * 60)))))
+    #expect(p.remainingTime(state: expiredState) == .zero)
   }
 
   @Test func equatable() {

@@ -331,7 +331,91 @@ import GoogleRpc
     let error = await #expect(throws: RequestError.self) {
       try await op.wait()
     }
-    #expect(error == RequestError.exhausted(.elapsedTime(maximumDuration: limit)))
+    #expect(error == RequestError.exhausted(.elapsedTime()))
+    #expect(pollProvider.pollCount == 0)
+  }
+
+  @Test func noSleepPastRemainingTimeOnInProgress() async throws {
+    var pollingPolicy = MockPollingPolicy()
+    pollingPolicy.remainingTime = { _ in .milliseconds(100) }
+    let pollProvider = MockPoller<String>()
+    let sleepProvider = MockSleeper()
+
+    let op = _PollableOperationImpl<String>(
+      initialState: Self.pendingState(),
+      polling: pollingPolicy,
+      backoff: MockBackoff(delay: .seconds(10)),
+      poll: pollProvider.poll,
+      sleep: sleepProvider.sleep
+    )
+
+    let error = await #expect(throws: RequestError.self) {
+      try await op.wait()
+    }
+    #expect(error == RequestError.exhausted(.elapsedTime()))
+    #expect(pollProvider.pollCount == 0)
+    #expect(sleepProvider.sleepCount == 0)
+  }
+
+  @Test func noSleepPastRemainingTimeAfterErrorPreservesSource() async throws {
+    let transientError = Self.transient()
+    let remainingValues: [Duration?] = [.seconds(5), .seconds(5), .milliseconds(100)]
+    let remainingIndex = Atomic<Int>(0)
+    var pollingPolicy = MockPollingPolicy()
+    pollingPolicy.onError = { _, e in .retry(e) }
+    pollingPolicy.remainingTime = { _ in
+      let (oldValue, _) = remainingIndex.add(1, ordering: .sequentiallyConsistent)
+      return oldValue < remainingValues.count ? remainingValues[oldValue] : nil
+    }
+
+    let pollProvider = MockPoller<String>()
+    pollProvider.responses = [
+      { @Sendable () throws in throw transientError }
+    ]
+    let sleepProvider = MockSleeper()
+
+    let op = _PollableOperationImpl<String>(
+      initialState: Self.pendingState(),
+      polling: pollingPolicy,
+      backoff: MockBackoff(delay: .seconds(1)),
+      poll: pollProvider.poll,
+      sleep: sleepProvider.sleep
+    )
+
+    let error = await #expect(throws: RequestError.self) {
+      try await op.wait()
+    }
+    #expect(error == RequestError.exhausted(.elapsedTime(source: transientError)))
+    #expect(pollProvider.pollCount == 1)
+    #expect(sleepProvider.sleepCount == 1)
+  }
+
+  @Test func postSleepRemainingTimeExhaustedThrowsBeforePolling() async throws {
+    let remainingValues: [Duration?] = [.seconds(2), .zero]
+    let remainingIndex = Atomic<Int>(0)
+    var pollingPolicy = MockPollingPolicy()
+    pollingPolicy.remainingTime = { _ in
+      let (oldValue, _) = remainingIndex.add(1, ordering: .sequentiallyConsistent)
+      return oldValue < remainingValues.count ? remainingValues[oldValue] : nil
+    }
+
+    let pollProvider = MockPoller<String>()
+    let sleepProvider = MockSleeper()
+
+    let op = _PollableOperationImpl<String>(
+      initialState: Self.pendingState(),
+      polling: pollingPolicy,
+      backoff: MockBackoff(delay: .seconds(1)),
+      poll: pollProvider.poll,
+      sleep: sleepProvider.sleep
+    )
+
+    let error = await #expect(throws: RequestError.self) {
+      try await op.wait()
+    }
+    #expect(error == RequestError.exhausted(.elapsedTime()))
+    #expect(pollProvider.pollCount == 0)
+    #expect(sleepProvider.sleepCount == 1)
   }
 
   @Test func waitWithLimitedAttemptCountExpires() async throws {
