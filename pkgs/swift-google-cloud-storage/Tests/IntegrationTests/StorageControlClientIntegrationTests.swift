@@ -18,6 +18,7 @@ import GoogleGax
 @testable import GoogleCloudStorage
 import GoogleWKT
 import GoogleIAMV1
+import Synchronization
 import Testing
 
 @Suite(
@@ -450,9 +451,12 @@ struct StorageControlClientIntegrationTests: Sendable {
 
   @Test func testRewriteObjectUntilDone() async throws {
     let uniquePrefix = "test-ctrl-rewrite-\(UUID().uuidString)"
-    let sourceName = "\(uniquePrefix)/source.txt"
-    let destName = "\(uniquePrefix)/dest.txt"
-    let data = Data("Hello gRPC RewriteObjectUntilDone!".utf8)
+    let sourceName = "\(uniquePrefix)/source.bin"
+    let destName = "\(uniquePrefix)/dest.bin"
+    // Use a 2 MiB payload with maxBytesRewrittenPerCall = 1 MiB and a storage class transition
+    // so the backend executes a multi-step rewrite across multiple RPCs.
+    let oneMiB = 1_048_576
+    let data = Data(repeating: 0x41, count: 2 * oneMiB)
 
     let storageClient = try StorageClient()
     let controlClient = try StorageControlClient()
@@ -467,7 +471,8 @@ struct StorageControlClientIntegrationTests: Sendable {
       }
     }
 
-    _ = try await storageClient.writeObject(data, to: bucketName, as: sourceName)
+    let uploaded = try await storageClient.writeObject(data, to: bucketName, as: sourceName)
+    let targetStorageClass = uploaded.storageClass == "NEARLINE" ? "STANDARD" : "NEARLINE"
 
     do {
       let rewriteReq = RewriteObjectRequest().with {
@@ -476,10 +481,19 @@ struct StorageControlClientIntegrationTests: Sendable {
         $0.destinationBucket = bucketResource
         $0.destinationName = destName
         $0.ifGenerationMatch = 0
+        $0.maxBytesRewrittenPerCall = Int64(oneMiB)
+        $0.destination = Object().with {
+          $0.storageClass = targetStorageClass
+        }
       }
-      let rewritten = try await controlClient.rewriteObjectUntilDone(request: rewriteReq)
+      let stepCount = Mutex(0)
+      let rewritten = try await controlClient.rewriteObjectUntilDone(request: rewriteReq) { _ in
+        stepCount.withLock { $0 += 1 }
+      }
       #expect(rewritten.name == destName)
       #expect(rewritten.size == Int64(data.count))
+      #expect(rewritten.storageClass == targetStorageClass)
+      #expect(stepCount.withLock { $0 } >= 2)
     } catch {
       await cleanup()
       throw error
