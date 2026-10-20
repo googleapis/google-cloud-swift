@@ -331,11 +331,15 @@ import GoogleRpc
     let error = await #expect(throws: RequestError.self) {
       try await op.wait()
     }
+    // `sleep` takes 60ms, exceeding the 50ms limit, so the post-sleep `remainingTime` check
+    // catches the expiration before `pollProvider.poll()` is called.
     #expect(error == RequestError.exhausted(.elapsedTime()))
     #expect(pollProvider.pollCount == 0)
   }
 
   @Test func noSleepPastRemainingTimeOnInProgress() async throws {
+    // When the remaining time (100ms) is shorter than the next backoff delay (10s),
+    // the poller should fail immediately without sleeping or polling.
     var pollingPolicy = MockPollingPolicy()
     pollingPolicy.remainingTime = { _ in .milliseconds(100) }
     let pollProvider = MockPoller<String>()
@@ -358,6 +362,10 @@ import GoogleRpc
   }
 
   @Test func noSleepPastRemainingTimeAfterErrorPreservesSource() async throws {
+    // Iteration 1: pre-sleep (5s >= 1s) and post-sleep (5s > 0) succeed; `poll()` throws a
+    // retryable error (`transientError`).
+    // Iteration 2: pre-sleep remaining time (100ms) is less than the backoff delay (1s), so the
+    // poller throws `.elapsedTime(source: transientError)` without sleeping a second time.
     let transientError = Self.transient()
     let remainingValues: [Duration?] = [.seconds(5), .seconds(5), .milliseconds(100)]
     let remainingIndex = Atomic<Int>(0)
@@ -391,6 +399,8 @@ import GoogleRpc
   }
 
   @Test func postSleepRemainingTimeExhaustedThrowsBeforePolling() async throws {
+    // Pre-sleep remaining time (2s) allows the 1s sleep, but post-sleep remaining time is `.zero`,
+    // verifying that the poller aborts before issuing an extra post-deadline `poll()` RPC.
     let remainingValues: [Duration?] = [.seconds(2), .zero]
     let remainingIndex = Atomic<Int>(0)
     var pollingPolicy = MockPollingPolicy()

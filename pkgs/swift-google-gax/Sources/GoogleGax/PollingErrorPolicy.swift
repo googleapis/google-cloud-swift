@@ -62,6 +62,7 @@ extension PollingErrorPolicy {
     .keepPolling
   }
 
+  /// By default, policies are not time-based and return `nil`.
   public func remainingTime(state: PollingState) -> Duration? {
     nil
   }
