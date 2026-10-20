@@ -113,7 +113,7 @@ extension RequestError {
       return code == .unavailable || code == .resourceExhausted || code == .deadlineExceeded
         || code == .internal || code == .unknown
     case .exhausted(let details):
-      return details.source?.isTransientTestError ?? false
+      return details.underlyingError?.isTransientTestError ?? false
     default:
       return false
     }
@@ -131,7 +131,7 @@ extension RequestError {
     case .http(let details):
       return details.statusCode == 409
     case .exhausted(let details):
-      return details.source?.isAlreadyExists ?? false
+      return details.underlyingError?.isAlreadyExists ?? false
     default:
       return false
     }
@@ -149,7 +149,7 @@ extension RequestError {
     case .http(let details):
       return details.statusCode == 404
     case .exhausted(let details):
-      return details.source?.isNotFound ?? false
+      return details.underlyingError?.isNotFound ?? false
     default:
       return false
     }
@@ -169,7 +169,7 @@ extension RequestError {
     case .http(let details):
       return details.statusCode == 412 || details.statusCode == 409
     case .exhausted(let details):
-      return details.source?.isFailedPreconditionOrAborted ?? false
+      return details.underlyingError?.isFailedPreconditionOrAborted ?? false
     default:
       return false
     }
