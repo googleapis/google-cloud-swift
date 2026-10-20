@@ -456,6 +456,16 @@ struct StorageControlClientIntegrationTests: Sendable {
 
     let storageClient = try StorageClient()
     let controlClient = try StorageControlClient()
+    let cleanup = {
+      for name in [sourceName, destName] {
+        _ = try? await controlClient.deleteObject(
+          request: DeleteObjectRequest().with {
+            $0.bucket = bucketResource
+            $0.object = name
+          }
+        )
+      }
+    }
 
     _ = try await storageClient.writeObject(data, to: bucketName, as: sourceName)
 
@@ -471,24 +481,10 @@ struct StorageControlClientIntegrationTests: Sendable {
       #expect(rewritten.name == destName)
       #expect(rewritten.size == Int64(data.count))
     } catch {
-      for name in [sourceName, destName] {
-        _ = try? await controlClient.deleteObject(
-          request: DeleteObjectRequest().with {
-            $0.bucket = bucketResource
-            $0.object = name
-          }
-        )
-      }
+      await cleanup()
       throw error
     }
 
-    for name in [sourceName, destName] {
-      try? await controlClient.deleteObject(
-        request: DeleteObjectRequest().with {
-          $0.bucket = bucketResource
-          $0.object = name
-        }
-      )
-    }
+    await cleanup()
   }
 }
