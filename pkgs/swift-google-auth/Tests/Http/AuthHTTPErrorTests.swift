@@ -102,7 +102,7 @@ import Testing
     #expect(error.isRetryable == expected)
     #expect(AuthHTTPError.isRetryable(error) == expected)
 
-    let wrapped = CredentialsError.cannotFetchToken(message: "failed", source: error)
+    let wrapped = CredentialsError.cannotFetchToken(message: "failed", underlyingError: error)
     #expect(AuthHTTPError.isRetryable(wrapped) == expected)
   }
 
@@ -114,7 +114,7 @@ import Testing
     #expect(AuthHTTPError.isRetryable(decodingError) == false)
     #expect(
       AuthHTTPError.isRetryable(
-        CredentialsError.cannotFetchToken(message: "failed", source: decodingError)
+        CredentialsError.cannotFetchToken(message: "failed", underlyingError: decodingError)
       ) == false
     )
 
@@ -123,7 +123,7 @@ import Testing
     #expect(AuthHTTPError.isRetryable(invalidUTF8) == false)
     #expect(
       AuthHTTPError.isRetryable(
-        CredentialsError.cannotFetchToken(message: "failed", source: invalidUTF8)
+        CredentialsError.cannotFetchToken(message: "failed", underlyingError: invalidUTF8)
       ) == false
     )
 
@@ -132,7 +132,7 @@ import Testing
     #expect(AuthHTTPError.isRetryable(transportError) == true)
     #expect(
       AuthHTTPError.isRetryable(
-        CredentialsError.cannotFetchToken(message: "failed", source: transportError)
+        CredentialsError.cannotFetchToken(message: "failed", underlyingError: transportError)
       ) == true
     )
 
@@ -141,7 +141,7 @@ import Testing
     #expect(AuthHTTPError.isRetryable(unknownError) == true)
     #expect(
       AuthHTTPError.isRetryable(
-        CredentialsError.cannotFetchToken(message: "failed", source: unknownError)
+        CredentialsError.cannotFetchToken(message: "failed", underlyingError: unknownError)
       ) == true
     )
 

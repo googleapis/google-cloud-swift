@@ -130,8 +130,12 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
         continue
       }
 
+      // Include all object versions so noncurrent objects in versioned buckets are also deleted.
       let objects = client.listObjectsByItems(
-        request: .init().with { $0.parent = bucket.name })
+        request: .init().with {
+          $0.parent = bucket.name
+          $0.versions = true
+        })
       for try await o in objects {
         try await client.deleteObject(
           request: .init().with {
@@ -149,18 +153,41 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
           options: .init().with { $0.idempotent = true })
       }
 
-      guard let enabled = bucket.hierarchicalNamespace?.enabled, enabled else {
-        // Only try to delete folders if the bucket can have folders.
-        continue
+      // Managed folders require uniform bucket-level access and must be deleted before the bucket.
+      // Sort by length descending so nested subfolders are deleted before their parents.
+      if bucket.iamConfig?.uniformBucketLevelAccess?.enabled == true {
+        let managedFolders = client.listManagedFoldersByItems(
+          request: .init().with { $0.parent = bucket.name })
+        var managedFolderNames: [String] = []
+        for try await f in managedFolders {
+          managedFolderNames.append(f.name)
+        }
+        for name in managedFolderNames.sorted(by: { $0.count > $1.count }) {
+          try await client.deleteManagedFolder(
+            request: .init().with { $0.name = name },
+            options: .init().with { $0.idempotent = true })
+        }
       }
 
-      let folders = client.listManagedFoldersByItems(
-        request: .init().with { $0.parent = bucket.name })
-      for try await f in folders {
-        try await client.deleteFolder(
-          request: .init().with { $0.name = f.name },
-          options: .init().with { $0.idempotent = true })
+      // Only try to delete hierarchical namespace folders if hierarchical namespace is enabled.
+      // Sort by length descending so nested subfolders are deleted before their parents.
+      if bucket.hierarchicalNamespace?.enabled == true {
+        let folders = client.listFoldersByItems(
+          request: .init().with { $0.parent = bucket.name })
+        var folderNames: [String] = []
+        for try await f in folders {
+          folderNames.append(f.name)
+        }
+        for name in folderNames.sorted(by: { $0.count > $1.count }) {
+          try await client.deleteFolder(
+            request: .init().with { $0.name = name },
+            options: .init().with { $0.idempotent = true })
+        }
       }
+
+      try await client.deleteBucket(
+        request: .init().with { $0.name = bucket.name },
+        options: .init().with { $0.idempotent = true })
     } catch {
       print("ERROR sweeping bucket \(name): \(error)")
     }

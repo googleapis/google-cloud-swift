@@ -98,7 +98,7 @@ import Foundation
 
       if let prevError = lastError {
         if let remaining = remainingTime, remaining < nextDelay {
-          throw RequestError.exhausted(.elapsedTime(source: prevError))
+          throw RequestError.exhausted(.elapsedTime(underlyingError: prevError))
         }
         try await sleep(nextDelay)
 
@@ -118,7 +118,7 @@ import Foundation
 
         remainingTime = retryPolicy.remainingTime(state: state)
         if let remaining = remainingTime, remaining <= .zero {
-          throw RequestError.exhausted(.elapsedTime(source: prevError))
+          throw RequestError.exhausted(.elapsedTime(underlyingError: prevError))
         }
       }
 

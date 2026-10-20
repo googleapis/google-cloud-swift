@@ -80,7 +80,8 @@ import Testing
     #expect(p.onError(state: expired, error: e) == .exhausted(e))
     #expect(
       p.onThrottle(state: expired, error: e)
-        == .exhausted(.exhausted(.elapsedTime(maximumDuration: .seconds(60), source: e))))
+        == .exhausted(
+          .exhausted(.elapsedTime(maximumDuration: .seconds(60), underlyingError: e))))
   }
 
   @Test func equatable() {
