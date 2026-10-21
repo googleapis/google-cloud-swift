@@ -631,6 +631,8 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     taskToCancel?.cancel()
   }
 
+  /// Computes the expected number of payload bytes to be transferred in this read operation,
+  /// or `nil` if the transfer size is unknown (such as chunked decompressive transcoding).
   fileprivate static func parseExpectedReadBytes(
     from headers: NIOHTTP1.HTTPHeaders,
     metadata: ReadObjectMetadata,
@@ -639,6 +641,8 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     if options.range?.isZeroBytes == true {
       return 0
     }
+    // For ranged responses (`206 Partial Content`), `Content-Range` specifies the exact
+    // inclusive byte span (`start-end`) being transferred in this download.
     if let contentRangeHeader = headers.first(name: "Content-Range"),
       let contentRange = try? HttpContentRange.parse(contentRangeHeader)
     {
@@ -650,6 +654,11 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     {
       return contentLength
     }
+    // When GCS performs decompressive transcoding on a compressed object, it strips
+    // `Content-Encoding` (`metadata.contentEncoding == nil`), omits `Content-Length`, and
+    // reports the compressed size on disk in `x-goog-stored-content-length`. Only fall back
+    // to `storedContentLength` for full-object reads when `Content-Encoding` is present
+    // (meaning raw compressed bytes are being served without transcoding).
     if (options.range ?? .entire) == .entire,
       let storedLength = metadata.storedContentLength,
       metadata.contentEncoding != nil

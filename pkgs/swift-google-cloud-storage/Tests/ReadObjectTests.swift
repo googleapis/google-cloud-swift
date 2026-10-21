@@ -1850,7 +1850,10 @@ import Testing
   }
 
   @Test(arguments: [
+    // No size headers at all (e.g., chunked transfer encoding without Content-Length).
     [:] as [String: String],
+    // Decompressive transcoding: GCS strips Content-Encoding, omits Content-Length, and sends
+    // the compressed size in x-goog-stored-content-length, so the uncompressed stream size is unknown.
     ["x-goog-stored-content-length": "42"],
   ])
   func downloadObjectWithoutSizeHeadersLeavesReadObjectDetailsTotalBytesNil(
