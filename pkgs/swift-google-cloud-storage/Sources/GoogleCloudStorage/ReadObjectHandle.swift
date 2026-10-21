@@ -282,13 +282,19 @@ final class ReadObjectCoordinator: @unchecked Sendable {
       }
       let initialResumeState = self.state.resumeState
       let newTask = Task { () throws -> ReadObjectMetadata in
+        var localResumeState = initialResumeState
+        defer {
+          self.lock.withLock {
+            self.state.resumeState = localResumeState
+          }
+        }
         let (response, metadata) = try await Self.fetchInitial(
           httpClient: self.httpClient,
           bucket: self.bucket,
           object: self.object,
           options: self.options,
           resumeLoop: self.resumeLoop,
-          resumeState: initialResumeState
+          resumeState: &localResumeState
         )
         let (rawCrc, rawMd5) = StorageClient.extractExpectedChecksums(from: response.headers)
         try self.lock.withLock {
@@ -635,10 +641,10 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     object: String,
     options: ReadObjectOptions,
     resumeLoop: _ResumeLoop<ReadObjectDetails>,
-    resumeState: ResumeState<ReadObjectDetails>
+    resumeState: inout ResumeState<ReadObjectDetails>
   ) async throws -> (_HTTPClientResponse, ReadObjectMetadata) {
     do {
-      return try await resumeLoop.run(state: resumeState) { _ in
+      return try await resumeLoop.run(state: &resumeState) { _ in
         let request = try await httpClient.buildReadObjectRequest(
           bucket: bucket, object: object, options: options)
         let response: _HTTPClientResponse

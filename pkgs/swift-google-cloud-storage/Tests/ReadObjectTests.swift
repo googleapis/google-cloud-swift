@@ -1707,4 +1707,116 @@ import Testing
       }
     }
   }
+
+  @Test func downloadObjectInitialRetryCountsTowardTotalResumeLimitOnStreamFailure() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "initial-retry-total-limit.bin"
+    let chunk1 = Data("FirstPart-".utf8)
+
+    let initialUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    // Attempt 1: Initial fetch fails with a transient 503 error (consumes resume #1).
+    registry.register(
+      response: .success(statusCode: 503, data: Data("Service Unavailable".utf8), headers: nil),
+      for: initialUrl
+    )
+
+    // Attempt 2: Initial fetch succeeds (200 OK), yields chunk1, then fails mid-stream.
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [chunk1],
+        error: MockNetworkError(),
+        headers: [
+          "Content-Length": "100",
+          "x-goog-generation": "444",
+        ]
+      ),
+      for: initialUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let options = ReadObjectOptions().with {
+      $0.resumePolicy = StorageResumePolicy<ReadObjectDetails>.unbounded().withTotalResumeLimit(2)
+    }
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+
+    var received = Data()
+    do {
+      for try await chunk in result.body {
+        received.append(contentsOf: chunk)
+      }
+      Issue.record("Expected ReadObjectError.resumeFailed when total resume limit is exhausted")
+    } catch ReadObjectError.resumeFailed(let bytesReceived, let underlyingError) {
+      #expect(bytesReceived == UInt64(chunk1.count))
+      if case .io(let underlying) = underlyingError {
+        #expect(underlying is MockNetworkError)
+      } else {
+        Issue.record("Expected underlyingError to be .io(MockNetworkError), got \(underlyingError)")
+      }
+    } catch {
+      Issue.record("Expected ReadObjectError.resumeFailed, got \(error)")
+    }
+
+    #expect(received == chunk1)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+  }
+
+  @Test
+  func downloadObjectInitialRetryCountsTowardConsecutiveErrorLimitWhenStreamFailsImmediately()
+    async throws
+  {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "initial-retry-consecutive-limit.bin"
+
+    let initialUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    // Attempt 1: Initial fetch fails with a transient 503 error (consecutiveErrorCount becomes 1).
+    registry.register(
+      response: .success(statusCode: 503, data: Data("Service Unavailable".utf8), headers: nil),
+      for: initialUrl
+    )
+
+    // Attempt 2: Initial fetch succeeds (200 OK), but stream fails before yielding any bytes.
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [],
+        error: MockNetworkError(),
+        headers: [
+          "Content-Length": "100",
+          "x-goog-generation": "555",
+        ]
+      ),
+      for: initialUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let options = ReadObjectOptions().with {
+      $0.resumePolicy = StorageResumePolicy<ReadObjectDetails>.unbounded().stopOnConsecutiveErrors(
+        2)
+    }
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+
+    do {
+      for try await _ in result.body {}
+      Issue.record(
+        "Expected ReadObjectError.resumeFailed when consecutive error limit is exhausted")
+    } catch ReadObjectError.resumeFailed(let bytesReceived, let underlyingError) {
+      #expect(bytesReceived == 0)
+      if case .io(let underlying) = underlyingError {
+        #expect(underlying is MockNetworkError)
+      } else {
+        Issue.record("Expected underlyingError to be .io(MockNetworkError), got \(underlyingError)")
+      }
+    } catch {
+      Issue.record("Expected ReadObjectError.resumeFailed, got \(error)")
+    }
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+  }
 }
