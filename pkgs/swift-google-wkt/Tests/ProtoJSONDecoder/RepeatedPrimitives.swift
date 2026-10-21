@@ -83,13 +83,13 @@ extension ProtoJSONDecoderTest {
         RepeatedPrimitives().with {
           $0.fieldData = [
             Data("42".utf8),
-            Data([251, 255, 191]),
+            Data([251, 255, 191] as [UInt8]),
             Data("????".utf8),
             Data("????".utf8),
           ]
         }
       ),
-    ])
+    ] as [(String, RepeatedPrimitives)])
   func decodeRepeated(input: String, want: RepeatedPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(RepeatedPrimitives.self, from: Data(input.utf8))

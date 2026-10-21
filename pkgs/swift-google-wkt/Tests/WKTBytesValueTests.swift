@@ -57,15 +57,15 @@ import Testing
       ("{\"value\":\"Pz8/Pw\"}", Data("????".utf8)),
       ("{\"value\":\"Pz8_Pw==\"}", Data("????".utf8)),
       ("{\"value\":\"Pz8_Pw\"}", Data("????".utf8)),
-      ("{\"value\":\"+/+/\"}", Data([251, 255, 191])),
-      ("{\"value\":\"-_-_\"}", Data([251, 255, 191])),
-      ("{\"value\":\"/w==\"}", Data([255])),
-      ("{\"value\":\"/w\"}", Data([255])),
-      ("{\"value\":\"_w==\"}", Data([255])),
-      ("{\"value\":\"_w\"}", Data([255])),
+      ("{\"value\":\"+/+/\"}", Data([251, 255, 191] as [UInt8])),
+      ("{\"value\":\"-_-_\"}", Data([251, 255, 191] as [UInt8])),
+      ("{\"value\":\"/w==\"}", Data([255] as [UInt8])),
+      ("{\"value\":\"/w\"}", Data([255] as [UInt8])),
+      ("{\"value\":\"_w==\"}", Data([255] as [UInt8])),
+      ("{\"value\":\"_w\"}", Data([255] as [UInt8])),
       ("{\"value\":\" a G V s b G 8 \"}", Data("hello".utf8)),
       ("{\"value\":\"\"}", Data()),
-    ])
+    ] as [(String, Data)])
   func decodeJSON(_ args: (String, Data)) throws {
     let data = Data(args.0.utf8)
     let decoder = _ProtoJSONDecoder()
@@ -92,10 +92,10 @@ import Testing
       ("aGVsbG8", Data("hello".utf8)),
       ("Pz8_Pw==", Data("????".utf8)),
       ("Pz8_Pw", Data("????".utf8)),
-      ("-_-_", Data([251, 255, 191])),
-      ("_w", Data([255])),
+      ("-_-_", Data([251, 255, 191] as [UInt8])),
+      ("_w", Data([255] as [UInt8])),
       ("", Data()),
-    ])
+    ] as [(String, Data)])
   func bytesValueAnyUnpack(_ args: (String, Data)) throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"\#(args.0)"}}"#
@@ -242,8 +242,8 @@ import Testing
       (#""aGVsbG8""#, Data("hello".utf8)),
       (#""Pz8_Pw""#, Data("????".utf8)),
       (#""Pz8_Pw==""#, Data("????".utf8)),
-      (#""-_-_""#, Data([251, 255, 191])),
-    ])
+      (#""-_-_""#, Data([251, 255, 191] as [UInt8])),
+    ] as [(String, Data)])
   func singleValueContainerDecodeVariants(_ args: (String, Data)) throws {
     let decoder = _ProtoJSONDecoder()
     let decoded = try decoder.decode(SingleValueBytesWrapper.self, from: Data(args.0.utf8))

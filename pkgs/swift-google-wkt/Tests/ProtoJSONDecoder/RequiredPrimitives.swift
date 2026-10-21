@@ -68,7 +68,7 @@ extension ProtoJSONDecoderTest {
       (
         #"{"fieldData":   "-_-_" }"#,
         RequiredPrimitives().with {
-          $0.fieldData = Data([251, 255, 191])
+          $0.fieldData = Data([251, 255, 191] as [UInt8])
         }
       ),
       (
@@ -92,7 +92,7 @@ extension ProtoJSONDecoderTest {
       (#"{"fieldUInt64": "42"   }"#, RequiredPrimitives().with { $0.fieldUInt64 = 42 }),
       (#"{"fieldFloat":  "42"   }"#, RequiredPrimitives().with { $0.fieldFloat = 42 }),
       (#"{"fieldDouble": "42"   }"#, RequiredPrimitives().with { $0.fieldDouble = 42 }),
-    ])
+    ] as [(String, RequiredPrimitives)])
   func decodeRequired(input: String, want: RequiredPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(RequiredPrimitives.self, from: Data(input.utf8))

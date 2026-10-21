@@ -83,13 +83,13 @@ extension ProtoJSONDecoderTest {
         MapPrimitives().with {
           $0.fieldData = [
             "a": Data("42".utf8),
-            "b": Data([251, 255, 191]),
+            "b": Data([251, 255, 191] as [UInt8]),
             "c": Data("????".utf8),
             "d": Data("????".utf8),
           ]
         }
       ),
-    ])
+    ] as [(String, MapPrimitives)])
   func decodeRepeated(input: String, want: MapPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(MapPrimitives.self, from: Data(input.utf8))
