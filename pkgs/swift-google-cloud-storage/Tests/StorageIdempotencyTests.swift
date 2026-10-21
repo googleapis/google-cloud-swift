@@ -272,6 +272,11 @@ import Testing
 
     var clientOptions = ClientOptions()
     clientOptions.retryPolicy = StorageBaseRetryPolicy.defaultPolicy
+    // Use `CircuitBreaker` instead of the default `AdaptiveThrottler`: on a fresh
+    // `AdaptiveThrottler`, the first failure sets `rejectProbability = 0.5`, which has a
+    // `(0.5)^9` (~0.2%) chance of rejecting 9 consecutive retry attempts and exhausting the
+    // 10-attempt retry limit before the second RPC is ever sent.
+    clientOptions.retryThrottler = CircuitBreaker()
     clientOptions.backoffPolicy = try ExponentialBackoff(
       initialDelay: .milliseconds(1),
       maximumDelay: .milliseconds(2)
@@ -737,6 +742,11 @@ import Testing
 
     var clientOptions = ClientOptions()
     clientOptions.retryPolicy = StorageBaseRetryPolicy.defaultPolicy
+    // Use `CircuitBreaker` instead of the default `AdaptiveThrottler`: on a fresh
+    // `AdaptiveThrottler`, the first failure sets `rejectProbability = 0.5`, which has a
+    // `(0.5)^9` (~0.2%) chance of rejecting 9 consecutive retry attempts and exhausting the
+    // 10-attempt retry limit before the second RPC is ever sent.
+    clientOptions.retryThrottler = CircuitBreaker()
     clientOptions.backoffPolicy = try ExponentialBackoff(
       initialDelay: .milliseconds(1),
       maximumDelay: .milliseconds(2)
