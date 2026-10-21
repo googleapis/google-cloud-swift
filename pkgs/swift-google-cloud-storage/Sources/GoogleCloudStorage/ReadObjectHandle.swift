@@ -232,7 +232,8 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     var hasValidatedChecksums: Bool = false
 
     init(options: ReadObjectOptions) {
-      self.resumeState = ResumeState(details: ReadObjectDetails())
+      let initialTotalBytes: UInt64? = options.range?.isZeroBytes == true ? 0 : nil
+      self.resumeState = ResumeState(details: ReadObjectDetails(totalBytes: initialTotalBytes))
       if options.checksums?.crc32c != nil {
         self.crc32cCalculator = CRC32CCalculator()
       }
@@ -284,8 +285,8 @@ final class ReadObjectCoordinator: @unchecked Sendable {
       let newTask = Task { () throws -> ReadObjectMetadata in
         // Track resume attempts made during the initial request on a local copy and
         // persist the updated state back to the coordinator on exit. This ensures
-        // `totalResumeCount` and `consecutiveErrorCount` carry over to `nextChunkImpl()`
-        // if the response stream later fails mid-download.
+        // `totalResumeCount`, `consecutiveErrorCount`, and `details.totalBytes` carry
+        // over to `nextChunkImpl()` if the response stream later fails mid-download.
         var localResumeState = initialResumeState
         defer {
           self.lock.withLock {
@@ -639,8 +640,46 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     taskToCancel?.cancel()
   }
 
+  /// Computes the expected number of payload bytes to be transferred in this read operation,
+  /// or `nil` if the transfer size is unknown (such as chunked decompressive transcoding).
+  fileprivate static func parseExpectedReadBytes(
+    from headers: NIOHTTP1.HTTPHeaders,
+    metadata: ReadObjectMetadata,
+    options: ReadObjectOptions
+  ) -> UInt64? {
+    if options.range?.isZeroBytes == true {
+      return 0
+    }
+    // For ranged responses (`206 Partial Content`), `Content-Range` specifies the exact
+    // inclusive byte span (`start-end`) being transferred in this download.
+    if let contentRangeHeader = headers.first(name: "Content-Range"),
+      let contentRange = try? HttpContentRange.parse(contentRangeHeader)
+    {
+      let (count, overflow) = (contentRange.end - contentRange.start).addingReportingOverflow(1)
+      return overflow ? nil : count
+    }
+    if let contentLengthStr = headers.first(name: "Content-Length"),
+      let contentLength = UInt64(contentLengthStr)
+    {
+      return contentLength
+    }
+    // When GCS performs decompressive transcoding on a compressed object, it strips
+    // `Content-Encoding` (`metadata.contentEncoding == nil`), omits `Content-Length`, and
+    // reports the compressed size on disk in `x-goog-stored-content-length`. Only fall back
+    // to `storedContentLength` for full-object reads when `Content-Encoding` is present
+    // (meaning raw compressed bytes are being served without transcoding).
+    if (options.range ?? .entire) == .entire,
+      let storedLength = metadata.storedContentLength,
+      metadata.contentEncoding != nil
+    {
+      return storedLength
+    }
+    return nil
+  }
+
   /// Executes the initial GET request to retrieve object headers and open the response body stream,
-  /// updating `resumeState` in place if transient errors require retries before headers are received.
+  /// updating `resumeState` in place if transient errors require retries before headers are received
+  /// and populating `details.totalBytes` once headers arrive.
   fileprivate static func fetchInitial(
     httpClient: GoogleGax._HTTPClient,
     bucket: String,
@@ -650,7 +689,7 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     resumeState: inout ResumeState<ReadObjectDetails>
   ) async throws -> (_HTTPClientResponse, ReadObjectMetadata) {
     do {
-      return try await resumeLoop.run(state: &resumeState) { _ in
+      let (response, metadata) = try await resumeLoop.run(state: &resumeState) { _ in
         let request = try await httpClient.buildReadObjectRequest(
           bucket: bucket, object: object, options: options)
         let response: _HTTPClientResponse
@@ -679,6 +718,11 @@ final class ReadObjectCoordinator: @unchecked Sendable {
         throw ReadObjectError.unexpectedServerResponse(
           statusCode: statusCode, message: message)
       }
+      resumeState.details.totalBytes = parseExpectedReadBytes(
+        from: response.headers, metadata: metadata, options: options)
+      return (response, metadata)
+    } catch is CancellationError {
+      throw CancellationError()
     } catch let error as ReadObjectError {
       throw error
     } catch let error as RequestError {

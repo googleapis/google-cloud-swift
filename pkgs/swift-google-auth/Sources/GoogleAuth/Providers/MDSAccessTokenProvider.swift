@@ -85,13 +85,36 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   ///
   /// - Parameter hostEnv: The value of `GCE_METADATA_HOST`, if set.
   /// - Returns: The base URL to use for metadata server requests.
-  private func resolveBaseEndpoint(hostEnv: String?) -> URL {
+  /// - Throws: `CredentialsError.cannotFetchToken` if `GCE_METADATA_HOST` is not a valid URL.
+  private func resolveBaseEndpoint(hostEnv: String?) throws -> URL {
     if let endpoint = self.endpoint {
       return endpoint
     }
     if let hostEnv = hostEnv, !hostEnv.isEmpty {
-      let hostString = hostEnv.hasPrefix("http") ? hostEnv : "http://\(hostEnv)"
-      return URL(string: hostString)!
+      // Check explicitly for `http://` or `https://` scheme prefixes rather than `hasPrefix("http")`
+      // so hostnames starting with `"http"` (e.g. `http-metadata-proxy.internal:8080`) still get an
+      // `http://` scheme prepended instead of having the hostname parsed as the URL scheme.
+      let lowercased = hostEnv.lowercased()
+      let hasScheme = lowercased.hasPrefix("http://") || lowercased.hasPrefix("https://")
+      let hostString = hasScheme ? hostEnv : "http://\(hostEnv)"
+      guard
+        let url = URL(string: hostString),
+        let host = url.host,
+        !host.isEmpty,
+        url.path.isEmpty || url.path == "/",
+        url.query == nil,
+        url.fragment == nil
+      else {
+        // Wrap `CredentialsError.parseError` inside `.cannotFetchToken` so callers always receive
+        // `.cannotFetchToken` from `fetchToken()`, while `AuthHTTPError.isRetryable(_:)` unwraps
+        // the underlying `.parseError` and treats invalid configuration as a permanent failure.
+        throw CredentialsError.cannotFetchToken(
+          message: "Could not fetch an access token from the metadata server.",
+          underlyingError: CredentialsError.parseError(
+            "Invalid GCE_METADATA_HOST URL: '\(hostEnv)'")
+        )
+      }
+      return url
     }
     return URL(string: Self.defaultEndpoint)!
   }
@@ -134,9 +157,21 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   @concurrent
   func fetchToken() async throws -> Token {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
-    let baseEndpoint = self.resolveBaseEndpoint(hostEnv: hostEnv)
+    let baseEndpoint = try self.resolveBaseEndpoint(hostEnv: hostEnv)
+    let isADCFallback =
+      self.fromADC && self.endpoint == nil && (hostEnv == nil || hostEnv?.isEmpty == true)
 
-    var urlComponents = URLComponents(url: baseEndpoint, resolvingAgainstBaseURL: false)!
+    guard
+      var urlComponents = URLComponents(url: baseEndpoint, resolvingAgainstBaseURL: false),
+      let host = urlComponents.host,
+      !host.isEmpty
+    else {
+      throw CredentialsError.cannotFetchToken(
+        message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
+        underlyingError: CredentialsError.parseError(
+          "Invalid metadata server endpoint URL: '\(baseEndpoint.absoluteString)'")
+      )
+    }
     urlComponents.path = "/computeMetadata/v1/instance/service-accounts/default/token"
 
     if !self.scopes.isEmpty {
@@ -146,7 +181,11 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     }
 
     guard let url = urlComponents.url else {
-      throw URLError(.badURL)
+      throw CredentialsError.cannotFetchToken(
+        message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
+        underlyingError: CredentialsError.parseError(
+          "Invalid metadata server endpoint URL: '\(baseEndpoint.absoluteString)'")
+      )
     }
 
     let headers = ["Metadata-Flavor": "Google"]
@@ -165,8 +204,6 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
 
     // ADC falls back to the metadata server when it finds no other credentials. Outside Google
     // Cloud that fallback cannot succeed, so fail fast instead of retrying.
-    let isADCFallback = self.fromADC && hostEnv == nil
-
     do {
       if isADCFallback {
         return try await fetchOperation()

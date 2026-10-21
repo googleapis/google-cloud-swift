@@ -131,6 +131,87 @@ import Testing
     )
   }
 
+  @Test(arguments: [
+    ("http-metadata-proxy.internal:8080", "http://http-metadata-proxy.internal:8080"),
+    ("https-metadata-proxy.internal", "http://https-metadata-proxy.internal"),
+    ("http://127.0.0.1:8080", "http://127.0.0.1:8080"),
+    ("https://127.0.0.1:8443", "https://127.0.0.1:8443"),
+    ("HTTP://127.0.0.1:8080", "HTTP://127.0.0.1:8080"),
+    ("HTTPS://127.0.0.1:8443", "HTTPS://127.0.0.1:8443"),
+    ("[::1]:8080", "http://[::1]:8080"),
+  ])
+  func gceMetadataHostSchemeAndPrefixResolution(hostEnv: String, expectedBase: String)
+    async throws
+  {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let mockPayload = MockResponse(
+      accessToken: "mock-override-token", expiresIn: 3600, tokenType: "Bearer")
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedData = try encoder.encode(mockPayload)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        Self.checkRequest(request)
+        #expect(
+          request.url
+            == "\(expectedBase)/computeMetadata/v1/instance/service-accounts/default/token"
+        )
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData))
+        )
+      }
+    ])
+
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(
+      client: client, environment: ["GCE_METADATA_HOST": hostEnv])
+    let headers = try await provider.headers()
+
+    #expect(headers["Authorization"] == "Bearer mock-override-token")
+  }
+
+  @Test(arguments: [
+    "http://",
+    "https://",
+    "http://:8080",
+    "127.0.0.1:abc",
+    "::1",
+    "ftp://127.0.0.1:8080",
+    "http://invalid host with spaces",
+    "invalid host with spaces",
+    "://missing-scheme",
+  ])
+  func gceMetadataHostInvalidURLThrowsErrorWithoutCrash(invalidHost: String) async throws {
+    // Pass an empty MockHTTPClient: its `deinit` asserts that all queued responses were consumed,
+    // which verifies that invalid `GCE_METADATA_HOST` values fail before making any network calls.
+    let mock = MockHTTPClient([])
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(
+      client: client, environment: ["GCE_METADATA_HOST": invalidHost])
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    guard let error, case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected .cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    guard case .parseError = underlyingError as? CredentialsError else {
+      Issue.record(
+        "Expected CredentialsError.parseError as underlyingError, got \(underlyingError)")
+      return
+    }
+    #expect(AuthHTTPError.isRetryable(error) == false)
+  }
+
   @Test func adcNoMDS() async throws {
     let mock = MockHTTPClient([
       { (request: HTTPClientRequest) in
