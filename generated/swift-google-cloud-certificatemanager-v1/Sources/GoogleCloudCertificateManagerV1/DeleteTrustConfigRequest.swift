@@ -25,7 +25,7 @@ public struct DeleteTrustConfigRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// `projects/*/locations/*/trustConfigs/*`.
   public var name: Swift.String = Swift.String()
 
-  /// The current etag of the TrustConfig.
+  /// Optional. The current etag of the TrustConfig.
   /// If an etag is provided and does not match the current etag of the resource,
   /// deletion will be blocked and an ABORTED error will be returned.
   public var etag: Swift.String = Swift.String()

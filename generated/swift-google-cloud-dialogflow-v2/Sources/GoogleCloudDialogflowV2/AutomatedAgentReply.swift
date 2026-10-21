@@ -15,7 +15,7 @@
 // limitations under the License.
 
 #if Participants
-  import Foundation
+  public import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Represents a response from an automated agent.
@@ -28,6 +28,30 @@
     ///
     /// [google.cloud.dialogflow.v2.Sessions.DetectIntent]: <doc:SessionsClient/detectIntent(request:options:)>
     public var detectIntentResponse: DetectIntentResponse? = nil
+
+    /// Response messages from the automated agent.
+    public var responseMessages: [ResponseMessage] = []
+
+    /// Name of the intent if an intent is matched for the query.
+    /// For a V2 query, the value format is `projects/<Project ID>/locations/
+    /// <Location ID>/agent/intents/<Intent ID>`.
+    /// For a V3 query, the value format is `projects/<Project ID>/locations/
+    /// <Location ID>/agents/<Agent ID>/intents/<Intent ID>`.
+    public var intent: Swift.String = Swift.String()
+
+    /// Event name if an event is triggered for the query.
+    public var event: Swift.String = Swift.String()
+
+    /// The confidence of the match. Values range from 0.0 (completely uncertain)
+    /// to 1.0 (completely certain).
+    /// This value is for informational purpose only and is only used to help match
+    /// the best intent within the classification threshold. This value may change
+    /// for the same end-user expression at any time due to a model retraining or
+    /// change in implementation.
+    public var matchConfidence: Swift.Float = Swift.Float()
+
+    /// The collection of current parameters at the time of this response.
+    public var parameters: GoogleWKT.WKTStruct? = nil
 
     /// AutomatedAgentReply type.
     public var automatedAgentReplyType: AutomatedAgentReply.AutomatedAgentReplyType =
@@ -42,6 +66,9 @@
     /// Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
     /// ID>/flows/<Flow ID>/pages/<Page ID>`.
     public var cxCurrentPage: Swift.String = Swift.String()
+
+    /// The auth code for accessing Call Companion UI.
+    public var callCompanionAuthCode: Foundation.Data = Foundation.Data()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,15 +96,27 @@
       init?(intValue: Swift.Int) { nil }
 
       static let detectIntentResponse = CodingKeys(stringValue: "detectIntentResponse")
+      static let responseMessages = CodingKeys(stringValue: "responseMessages")
+      static let intent = CodingKeys(stringValue: "intent")
+      static let event = CodingKeys(stringValue: "event")
+      static let matchConfidence = CodingKeys(stringValue: "matchConfidence")
+      static let parameters = CodingKeys(stringValue: "parameters")
       static let automatedAgentReplyType = CodingKeys(stringValue: "automatedAgentReplyType")
       static let allowCancellation = CodingKeys(stringValue: "allowCancellation")
       static let cxCurrentPage = CodingKeys(stringValue: "cxCurrentPage")
+      static let callCompanionAuthCode = CodingKeys(stringValue: "callCompanionAuthCode")
 
       static let _knownKeys: Set<Swift.String> = [
         "detectIntentResponse",
+        "responseMessages",
+        "intent",
+        "event",
+        "matchConfidence",
+        "parameters",
         "automatedAgentReplyType",
         "allowCancellation",
         "cxCurrentPage",
+        "callCompanionAuthCode",
       ]
     }
 
@@ -85,6 +124,21 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.detectIntentResponse = try container.decodeIfPresent(
         DetectIntentResponse.self, forKey: .detectIntentResponse)
+      if let value = try container.decodeIfPresent(
+        [ResponseMessage].self, forKey: .responseMessages)
+      {
+        self.responseMessages = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .intent) {
+        self.intent = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .event) {
+        self.event = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .matchConfidence) {
+        self.matchConfidence = value
+      }
+      self.parameters = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .parameters)
       if let value = try container.decodeIfPresent(
         AutomatedAgentReply.AutomatedAgentReplyType.self, forKey: .automatedAgentReplyType)
       {
@@ -96,6 +150,11 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cxCurrentPage) {
         self.cxCurrentPage = value
       }
+      if let value = try container.decodeIfPresent(
+        Foundation.Data.self, forKey: .callCompanionAuthCode)
+      {
+        self.callCompanionAuthCode = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -105,9 +164,15 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.detectIntentResponse, forKey: .detectIntentResponse)
+      try container.encode(self.responseMessages, forKey: .responseMessages)
+      try container.encode(self.intent, forKey: .intent)
+      try container.encode(self.event, forKey: .event)
+      try container.encode(self.matchConfidence, forKey: .matchConfidence)
+      try container.encodeIfPresent(self.parameters, forKey: .parameters)
       try container.encode(self.automatedAgentReplyType, forKey: .automatedAgentReplyType)
       try container.encode(self.allowCancellation, forKey: .allowCancellation)
       try container.encode(self.cxCurrentPage, forKey: .cxCurrentPage)
+      try container.encode(self.callCompanionAuthCode, forKey: .callCompanionAuthCode)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

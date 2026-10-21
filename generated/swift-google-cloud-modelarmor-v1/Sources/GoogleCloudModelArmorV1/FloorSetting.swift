@@ -46,6 +46,9 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. Metadata for FloorSetting
   public var floorSettingMetadata: FloorSetting.FloorSettingMetadata? = nil
 
+  /// Optional. Google MCP Server floor setting.
+  public var googleMcpServerFloorSetting: McpServerFloorSetting? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `FloorSetting`.
@@ -80,6 +83,7 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
     static let integratedServices = CodingKeys(stringValue: "integratedServices")
     static let aiPlatformFloorSetting = CodingKeys(stringValue: "aiPlatformFloorSetting")
     static let floorSettingMetadata = CodingKeys(stringValue: "floorSettingMetadata")
+    static let googleMcpServerFloorSetting = CodingKeys(stringValue: "googleMcpServerFloorSetting")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -90,6 +94,7 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
       "integratedServices",
       "aiPlatformFloorSetting",
       "floorSettingMetadata",
+      "googleMcpServerFloorSetting",
     ]
   }
 
@@ -114,6 +119,8 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
       AiPlatformFloorSetting.self, forKey: .aiPlatformFloorSetting)
     self.floorSettingMetadata = try container.decodeIfPresent(
       FloorSetting.FloorSettingMetadata.self, forKey: .floorSettingMetadata)
+    self.googleMcpServerFloorSetting = try container.decodeIfPresent(
+      McpServerFloorSetting.self, forKey: .googleMcpServerFloorSetting)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -131,6 +138,8 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.integratedServices, forKey: .integratedServices)
     try container.encodeIfPresent(self.aiPlatformFloorSetting, forKey: .aiPlatformFloorSetting)
     try container.encodeIfPresent(self.floorSettingMetadata, forKey: .floorSettingMetadata)
+    try container.encodeIfPresent(
+      self.googleMcpServerFloorSetting, forKey: .googleMcpServerFloorSetting)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -314,6 +323,8 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
     case unspecified
     /// AI Platform.
     case aiPlatform
+    /// Google MCP Server (via Shim Service Extension)
+    case googleMcpServer
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -344,6 +355,7 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
       switch self {
       case .unspecified: return 0
       case .aiPlatform: return 1
+      case .googleMcpServer: return 2
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -356,6 +368,7 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
       switch self {
       case .unspecified: return "INTEGRATED_SERVICE_UNSPECIFIED"
       case .aiPlatform: return "AI_PLATFORM"
+      case .googleMcpServer: return "GOOGLE_MCP_SERVER"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -368,6 +381,7 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
       switch stringValue {
       case "INTEGRATED_SERVICE_UNSPECIFIED": self = .unspecified
       case "AI_PLATFORM": self = .aiPlatform
+      case "GOOGLE_MCP_SERVER": self = .googleMcpServer
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -379,6 +393,7 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
       switch intValue {
       case 0: self = .unspecified
       case 1: self = .aiPlatform
+      case 2: self = .googleMcpServer
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -406,6 +421,7 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
       switch self {
       case .unspecified: return try container.encode("INTEGRATED_SERVICE_UNSPECIFIED")
       case .aiPlatform: return try container.encode("AI_PLATFORM")
+      case .googleMcpServer: return try container.encode("GOOGLE_MCP_SERVER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

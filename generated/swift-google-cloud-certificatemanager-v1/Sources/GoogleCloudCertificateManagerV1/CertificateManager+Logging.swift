@@ -404,6 +404,21 @@ extension Clients {
         })
     }
 
+    public func updateCertificateIssuanceConfig(
+      request: UpdateCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "updateCertificateIssuanceConfig",
+        action: {
+          (r: UpdateCertificateIssuanceConfigRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.updateCertificateIssuanceConfig(request: r, options: o)
+        })
+    }
+
     public func deleteCertificateIssuanceConfig(
       request: DeleteCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

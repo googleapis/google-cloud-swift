@@ -21,8 +21,8 @@ import Foundation
 public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// A user-defined name of the trust config. TrustConfig names must be
-  /// unique globally and match pattern
+  /// Identifier. A user-defined name of the trust config. TrustConfig names must
+  /// be unique globally and match pattern
   /// `projects/*/locations/*/trustConfigs/*`.
   public var name: Swift.String = Swift.String()
 
@@ -32,10 +32,10 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The last update timestamp of a TrustConfig.
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
-  /// Set of labels associated with a TrustConfig.
+  /// Optional. Set of labels associated with a TrustConfig.
   public var labels: [Swift.String: Swift.String] = [:]
 
-  /// One or more paragraphs of text description of a TrustConfig.
+  /// Optional. One or more paragraphs of text description of a TrustConfig.
   public var description: Swift.String = Swift.String()
 
   /// This checksum is computed by the server based on the value of other
@@ -43,13 +43,29 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// client has an up-to-date value before proceeding.
   public var etag: Swift.String = Swift.String()
 
-  /// Set of trust stores to perform validation against.
+  /// Optional. Defines a mapping from a trust domain to a TrustStore. This is
+  /// used for SPIFFE certificate validation.
+  public var spiffeTrustStores: [Swift.String: TrustConfig.TrustStore] = [:]
+
+  /// Optional. Set of trust stores to perform validation against.
   ///
   /// This field is supported when TrustConfig is configured with Load Balancers,
   /// currently not supported for SPIFFE certificate validation.
   ///
   /// Only one TrustStore specified is currently allowed.
   public var trustStores: [TrustConfig.TrustStore] = []
+
+  /// Optional. A certificate matching an allowlisted certificate is always
+  /// considered valid as long as the certificate is parseable, proof of private
+  /// key possession is established, and constraints on the certificate's SAN
+  /// field are met.
+  public var allowlistedCertificates: [TrustConfig.AllowlistedCertificate] = []
+
+  /// Optional. Input only. Immutable. Tag keys/values directly bound to this
+  /// resource. For example:
+  ///   "123/environment": "production",
+  ///   "123/costCenter": "marketing"
+  public var tags: [Swift.String: Swift.String] = [:]
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -82,7 +98,10 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     static let labels = CodingKeys(stringValue: "labels")
     static let description = CodingKeys(stringValue: "description")
     static let etag = CodingKeys(stringValue: "etag")
+    static let spiffeTrustStores = CodingKeys(stringValue: "spiffeTrustStores")
     static let trustStores = CodingKeys(stringValue: "trustStores")
+    static let allowlistedCertificates = CodingKeys(stringValue: "allowlistedCertificates")
+    static let tags = CodingKeys(stringValue: "tags")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -91,7 +110,10 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       "labels",
       "description",
       "etag",
+      "spiffeTrustStores",
       "trustStores",
+      "allowlistedCertificates",
+      "tags",
     ]
   }
 
@@ -115,9 +137,22 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.etag = value
     }
     if let value = try container.decodeIfPresent(
+      [Swift.String: TrustConfig.TrustStore].self, forKey: .spiffeTrustStores)
+    {
+      self.spiffeTrustStores = value
+    }
+    if let value = try container.decodeIfPresent(
       [TrustConfig.TrustStore].self, forKey: .trustStores)
     {
       self.trustStores = value
+    }
+    if let value = try container.decodeIfPresent(
+      [TrustConfig.AllowlistedCertificate].self, forKey: .allowlistedCertificates)
+    {
+      self.allowlistedCertificates = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -133,7 +168,10 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.etag, forKey: .etag)
+    try container.encode(self.spiffeTrustStores, forKey: .spiffeTrustStores)
     try container.encode(self.trustStores, forKey: .trustStores)
+    try container.encode(self.allowlistedCertificates, forKey: .allowlistedCertificates)
+    try container.encode(self.tags, forKey: .tags)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -143,6 +181,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct TrustAnchor: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
+    /// Kind of the trust anchor. Required.
     public var kind: KindOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -216,6 +255,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// Kind of the trust anchor. Required.
     public enum KindOneOf: Codable, Equatable, Sendable {
       /// PEM root certificate of the PKI used for validation.
       ///
@@ -249,6 +289,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct IntermediateCA: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
+    /// Kind of the intermediate CA. Required.
     public var kind: KindOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -322,6 +363,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// Kind of the intermediate CA. Required.
     public enum KindOneOf: Codable, Equatable, Sendable {
       /// PEM intermediate certificate used for building up paths
       /// for validation.
@@ -356,11 +398,11 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct TrustStore: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    /// List of Trust Anchors to be used while performing validation
+    /// Optional. List of Trust Anchors to be used while performing validation
     /// against a given TrustStore.
     public var trustAnchors: [TrustConfig.TrustAnchor] = []
 
-    /// Set of intermediate CA certificates used for the path building
+    /// Optional. Set of intermediate CA certificates used for the path building
     /// phase of chain validation.
     ///
     /// The field is currently not supported if TrustConfig is used for the
@@ -443,6 +485,88 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Packs this `TrustStore` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._slowAnySerialize(message: self)
+    }
+  }
+
+  /// Defines an allowlisted certificate.
+  public struct AllowlistedCertificate: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Required. PEM certificate that is allowlisted. The certificate can be up
+    /// to 5k bytes, and must be a parseable X.509 certificate.
+    public var pemCertificate: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `AllowlistedCertificate`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = AllowlistedCertificate().with { $0.pemCertificate = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let pemCertificate = CodingKeys(stringValue: "pemCertificate")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "pemCertificate"
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pemCertificate) {
+        self.pemCertificate = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.pemCertificate, forKey: .pemCertificate)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// The type URL for `AllowlistedCertificate`: `"type.googleapis.com/google.cloud.certificatemanager.v1.TrustConfig.AllowlistedCertificate"`.
+    public static var _anyTypeUrl: Swift.String {
+      return
+        "type.googleapis.com/google.cloud.certificatemanager.v1.TrustConfig.AllowlistedCertificate"
+    }
+
+    /// Initialize an instance of `AllowlistedCertificate` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.certificatemanager.v1.TrustConfig.AllowlistedCertificate"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `AllowlistedCertificate` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {

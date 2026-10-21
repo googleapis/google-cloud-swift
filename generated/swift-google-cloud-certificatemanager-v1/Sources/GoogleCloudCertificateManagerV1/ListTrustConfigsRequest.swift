@@ -25,19 +25,19 @@ public struct ListTrustConfigsRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// listed, specified in the format `projects/*/locations/*`.
   public var parent: Swift.String = Swift.String()
 
-  /// Maximum number of TrustConfigs to return per call.
+  /// Optional. Maximum number of TrustConfigs to return per call.
   public var pageSize: Swift.Int32 = Swift.Int32()
 
-  /// The value returned by the last `ListTrustConfigsResponse`. Indicates
-  /// that this is a continuation of a prior `ListTrustConfigs` call, and that
-  /// the system should return the next page of data.
+  /// Optional. The value returned by the last `ListTrustConfigsResponse`.
+  /// Indicates that this is a continuation of a prior `ListTrustConfigs` call,
+  /// and that the system should return the next page of data.
   public var pageToken: Swift.String = Swift.String()
 
-  /// Filter expression to restrict the TrustConfigs returned.
+  /// Optional. Filter expression to restrict the TrustConfigs returned.
   public var filter: Swift.String = Swift.String()
 
-  /// A list of TrustConfig field names used to specify the order of the
-  /// returned results. The default sorting order is ascending. To specify
+  /// Optional. A list of TrustConfig field names used to specify the order of
+  /// the returned results. The default sorting order is ascending. To specify
   /// descending order for a field, add a suffix `" desc"`.
   public var orderBy: Swift.String = Swift.String()
 

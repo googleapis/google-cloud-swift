@@ -113,6 +113,10 @@
     /// Cloud Speech-to-Text.
     public var useGeminiAsr: Swift.Bool = Swift.Bool()
 
+    /// Optional. Disables emission of interim input transcriptions when set to
+    /// `true`.
+    public var disableInterimInputTranscripts: Swift.Bool? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SpeechToTextConfig`.
@@ -148,6 +152,8 @@
       static let useTimeoutBasedEndpointing = CodingKeys(stringValue: "useTimeoutBasedEndpointing")
       static let geminiAsrConfig = CodingKeys(stringValue: "geminiAsrConfig")
       static let useGeminiAsr = CodingKeys(stringValue: "useGeminiAsr")
+      static let disableInterimInputTranscripts = CodingKeys(
+        stringValue: "disableInterimInputTranscripts")
 
       static let _knownKeys: Set<Swift.String> = [
         "speechModelVariant",
@@ -160,6 +166,7 @@
         "useTimeoutBasedEndpointing",
         "geminiAsrConfig",
         "useGeminiAsr",
+        "disableInterimInputTranscripts",
       ]
     }
 
@@ -198,6 +205,8 @@
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useGeminiAsr) {
         self.useGeminiAsr = value
       }
+      self.disableInterimInputTranscripts = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .disableInterimInputTranscripts)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -216,6 +225,8 @@
       try container.encode(self.useTimeoutBasedEndpointing, forKey: .useTimeoutBasedEndpointing)
       try container.encodeIfPresent(self.geminiAsrConfig, forKey: .geminiAsrConfig)
       try container.encode(self.useGeminiAsr, forKey: .useGeminiAsr)
+      try container.encodeIfPresent(
+        self.disableInterimInputTranscripts, forKey: .disableInterimInputTranscripts)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -227,11 +238,6 @@
     public struct GeminiAsrConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
-      /// Optional. The Gemini ASR model ID used for transcription.
-      /// This value overrides the default model ID configured on the server.
-      /// Example: "gemini-3-flash-lite-asr-preview"
-      public var modelId: Swift.String = Swift.String()
-
       /// Optional. The required duration of detected silence (or non-speech)
       /// before end-of-speech is committed.
       public var silenceDurationMs: Swift.Int32 = Swift.Int32()
@@ -258,7 +264,7 @@
       /// Commonly used to initialize the value, for example:
       ///
       /// ```
-      /// let value = GeminiAsrConfig().with { $0.modelId = ... }
+      /// let value = GeminiAsrConfig().with { $0.silenceDurationMs = ... }
       /// ```
       @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
@@ -273,14 +279,12 @@
         init(stringValue: Swift.String) { self.stringValue = stringValue }
         init?(intValue: Swift.Int) { nil }
 
-        static let modelId = CodingKeys(stringValue: "modelId")
         static let silenceDurationMs = CodingKeys(stringValue: "silenceDurationMs")
         static let prefixPaddingMs = CodingKeys(stringValue: "prefixPaddingMs")
         static let startOfSpeechSensitivity = CodingKeys(stringValue: "startOfSpeechSensitivity")
         static let endOfSpeechSensitivity = CodingKeys(stringValue: "endOfSpeechSensitivity")
 
         static let _knownKeys: Set<Swift.String> = [
-          "modelId",
           "silenceDurationMs",
           "prefixPaddingMs",
           "startOfSpeechSensitivity",
@@ -290,9 +294,6 @@
 
       public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
-          self.modelId = value
-        }
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .silenceDurationMs) {
           self.silenceDurationMs = value
         }
@@ -318,7 +319,6 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.modelId, forKey: .modelId)
         try container.encode(self.silenceDurationMs, forKey: .silenceDurationMs)
         try container.encode(self.prefixPaddingMs, forKey: .prefixPaddingMs)
         try container.encode(self.startOfSpeechSensitivity, forKey: .startOfSpeechSensitivity)

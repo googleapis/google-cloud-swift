@@ -153,9 +153,21 @@ public struct Template: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. Metadata for multi language detection.
     public var multiLanguageDetection: Template.TemplateMetadata.MultiLanguageDetection? = nil
 
+    /// Optional. Specifies the configuration for the Filter version to be used.
+    /// If this field is populated, it takes precedence over any values set in
+    /// the deprecated `filter_version` fields within `RaiFilterSettings`,
+    /// `PiAndJailbreakFilterSettings`.
+    public var filterVersionSelector: FilterVersionSelector? = nil
+
     /// Optional. Specifies the modalities to scan.
     /// If empty, only text modality will be scanned.
     public var modalities: [Modality] = []
+
+    /// Optional. Indicates whether the template is subject to data residency
+    /// compliance. If true (default for new templates), the template is subject
+    /// to data residency compliance. If false, the template bypasses data
+    /// residency compliance checks.
+    public var dataResidencyCompliant: Swift.Bool? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -196,7 +208,9 @@ public struct Template: Codable, Equatable, GoogleWKT._AnyPackable,
       static let logSanitizeOperations = CodingKeys(stringValue: "logSanitizeOperations")
       static let enforcementType = CodingKeys(stringValue: "enforcementType")
       static let multiLanguageDetection = CodingKeys(stringValue: "multiLanguageDetection")
+      static let filterVersionSelector = CodingKeys(stringValue: "filterVersionSelector")
       static let modalities = CodingKeys(stringValue: "modalities")
+      static let dataResidencyCompliant = CodingKeys(stringValue: "dataResidencyCompliant")
 
       static let _knownKeys: Set<Swift.String> = [
         "ignorePartialInvocationFailures",
@@ -208,7 +222,9 @@ public struct Template: Codable, Equatable, GoogleWKT._AnyPackable,
         "logSanitizeOperations",
         "enforcementType",
         "multiLanguageDetection",
+        "filterVersionSelector",
         "modalities",
+        "dataResidencyCompliant",
       ]
     }
 
@@ -254,9 +270,13 @@ public struct Template: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       self.multiLanguageDetection = try container.decodeIfPresent(
         Template.TemplateMetadata.MultiLanguageDetection.self, forKey: .multiLanguageDetection)
+      self.filterVersionSelector = try container.decodeIfPresent(
+        FilterVersionSelector.self, forKey: .filterVersionSelector)
       if let value = try container.decodeIfPresent([Modality].self, forKey: .modalities) {
         self.modalities = value
       }
+      self.dataResidencyCompliant = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .dataResidencyCompliant)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -278,7 +298,9 @@ public struct Template: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.logSanitizeOperations, forKey: .logSanitizeOperations)
       try container.encode(self.enforcementType, forKey: .enforcementType)
       try container.encodeIfPresent(self.multiLanguageDetection, forKey: .multiLanguageDetection)
+      try container.encodeIfPresent(self.filterVersionSelector, forKey: .filterVersionSelector)
       try container.encode(self.modalities, forKey: .modalities)
+      try container.encodeIfPresent(self.dataResidencyCompliant, forKey: .dataResidencyCompliant)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -21,11 +21,12 @@ import Foundation
 public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// A user-defined name of the certificate. Certificate names must be unique
-  /// globally and match pattern `projects/*/locations/*/certificates/*`.
+  /// Identifier. A user-defined name of the certificate. Certificate names must
+  /// be unique globally and match pattern
+  /// `projects/*/locations/*/certificates/*`.
   public var name: Swift.String = Swift.String()
 
-  /// One or more paragraphs of text description of a certificate.
+  /// Optional. One or more paragraphs of text description of a certificate.
   public var description: Swift.String = Swift.String()
 
   /// Output only. The creation timestamp of a Certificate.
@@ -34,7 +35,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The last update timestamp of a Certificate.
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
-  /// Set of labels associated with a Certificate.
+  /// Optional. Set of labels associated with a Certificate.
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. The list of Subject Alternative Names of dnsName type defined
@@ -49,9 +50,19 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The expiry timestamp of a Certificate.
   public var expireTime: GoogleWKT.WKTTimestamp? = nil
 
-  /// Immutable. The scope of the certificate.
+  /// Optional. Immutable. The scope of the certificate.
   public var scope: Certificate.Scope = Certificate.Scope()
 
+  /// Output only. The list of resources that use this Certificate.
+  public var usedBy: [Certificate.UsedBy] = []
+
+  /// Optional. Input only. Immutable. Tag keys/values directly bound to this
+  /// resource. For example:
+  ///   "123/environment": "production",
+  ///   "123/costCenter": "marketing"
+  public var tags: [Swift.String: Swift.String] = [:]
+
+  /// Type of the certificate. Required.
   public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -86,10 +97,13 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     static let labels = CodingKeys(stringValue: "labels")
     static let selfManaged = CodingKeys(stringValue: "selfManaged")
     static let managed = CodingKeys(stringValue: "managed")
+    static let managedIdentity = CodingKeys(stringValue: "managedIdentity")
     static let sanDnsnames = CodingKeys(stringValue: "sanDnsnames")
     static let pemCertificate = CodingKeys(stringValue: "pemCertificate")
     static let expireTime = CodingKeys(stringValue: "expireTime")
     static let scope = CodingKeys(stringValue: "scope")
+    static let usedBy = CodingKeys(stringValue: "usedBy")
+    static let tags = CodingKeys(stringValue: "tags")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -99,10 +113,13 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       "labels",
       "selfManaged",
       "managed",
+      "managedIdentity",
       "sanDnsnames",
       "pemCertificate",
       "expireTime",
       "scope",
+      "usedBy",
+      "tags",
     ]
   }
 
@@ -133,6 +150,12 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Certificate.Scope.self, forKey: .scope) {
       self.scope = value
     }
+    if let value = try container.decodeIfPresent([Certificate.UsedBy].self, forKey: .usedBy) {
+      self.usedBy = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
 
     var type: TypeOneOf? = nil
     let typeCheckAndSet = {
@@ -154,6 +177,11 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try typeCheckAndSet(.managed(managed))
     }
+    if let managedIdentity = try container.decodeIfPresent(
+      Certificate.ManagedIdentityCertificate.self, forKey: .managedIdentity)
+    {
+      try typeCheckAndSet(.managedIdentity(managedIdentity))
+    }
     self.type = type
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -172,6 +200,8 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.pemCertificate, forKey: .pemCertificate)
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
     try container.encode(self.scope, forKey: .scope)
+    try container.encode(self.usedBy, forKey: .usedBy)
+    try container.encode(self.tags, forKey: .tags)
 
     if let choice = self.type {
       switch choice {
@@ -179,6 +209,8 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(value, forKey: .selfManaged)
       case .managed(let value):
         try container.encode(value, forKey: .managed)
+      case .managedIdentity(let value):
+        try container.encode(value, forKey: .managedIdentity)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -192,11 +224,12 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct SelfManagedCertificate: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    /// Input only. The PEM-encoded certificate chain.
+    /// Optional. Input only. The PEM-encoded certificate chain.
     /// Leaf certificate comes first, followed by intermediate ones if any.
     public var pemCertificate: Swift.String = Swift.String()
 
-    /// Input only. The PEM-encoded private key of the leaf certificate.
+    /// Optional. Input only. The PEM-encoded private key of the leaf
+    /// certificate.
     public var pemPrivateKey: Swift.String = Swift.String()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -285,16 +318,16 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct ManagedCertificate: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    /// Immutable. The domains for which a managed SSL certificate will be
-    /// generated. Wildcard domains are only supported with DNS challenge
+    /// Optional. Immutable. The domains for which a managed SSL certificate will
+    /// be generated. Wildcard domains are only supported with DNS challenge
     /// resolution.
     public var domains: [Swift.String] = []
 
-    /// Immutable. Authorizations that will be used for performing domain
-    /// authorization.
+    /// Optional. Immutable. Authorizations that will be used for performing
+    /// domain authorization.
     public var dnsAuthorizations: [Swift.String] = []
 
-    /// Immutable. The resource name for a
+    /// Optional. Immutable. The resource name for a
     /// [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
     /// used to configure private PKI certificates in the format
     /// `projects/*/locations/*/certificateIssuanceConfigs/*`.
@@ -624,7 +657,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     public struct AuthorizationAttemptInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
-      /// Domain name of the authorization attempt.
+      /// Output only. Domain name of the authorization attempt.
       public var domain: Swift.String = Swift.String()
 
       /// Output only. State of the domain for managed certificate issuance.
@@ -641,6 +674,14 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Provided to help address the configuration issues. Not guaranteed to be
       /// stable. For programmatic access use FailureReason enum.
       public var details: Swift.String = Swift.String()
+
+      /// Output only. The timestamp, when the authorization attempt was made.
+      public var attemptTime: GoogleWKT.WKTTimestamp? = nil
+
+      /// Output only. Troubleshooting information for the authorization attempt.
+      /// This field is only populated if the authorization attempt failed.
+      public var troubleshooting:
+        Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -671,12 +712,16 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
         static let state = CodingKeys(stringValue: "state")
         static let failureReason = CodingKeys(stringValue: "failureReason")
         static let details = CodingKeys(stringValue: "details")
+        static let attemptTime = CodingKeys(stringValue: "attemptTime")
+        static let troubleshooting = CodingKeys(stringValue: "troubleshooting")
 
         static let _knownKeys: Set<Swift.String> = [
           "domain",
           "state",
           "failureReason",
           "details",
+          "attemptTime",
+          "troubleshooting",
         ]
       }
 
@@ -699,6 +744,11 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
           self.details = value
         }
+        self.attemptTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .attemptTime)
+        self.troubleshooting = try container.decodeIfPresent(
+          Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.self,
+          forKey: .troubleshooting)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
@@ -711,8 +761,470 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(self.state, forKey: .state)
         try container.encode(self.failureReason, forKey: .failureReason)
         try container.encode(self.details, forKey: .details)
+        try container.encodeIfPresent(self.attemptTime, forKey: .attemptTime)
+        try container.encodeIfPresent(self.troubleshooting, forKey: .troubleshooting)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// Troubleshooting information for the authorization attempt.
+      public struct Troubleshooting: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Output only. The list of issues discovered during the authorization
+        /// attempt.
+        public var issues:
+          [Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.Issue] = []
+
+        /// Output only. CNAME troubleshooting information.
+        public var cname:
+          Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.CNAME? = nil
+
+        /// Output only. IPs troubleshooting information.
+        public var ips:
+          Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.IPs? = nil
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `Troubleshooting`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = Troubleshooting().with { $0.issues = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let issues = CodingKeys(stringValue: "issues")
+          static let cname = CodingKeys(stringValue: "cname")
+          static let ips = CodingKeys(stringValue: "ips")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "issues",
+            "cname",
+            "ips",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.Issue].self,
+            forKey: .issues)
+          {
+            self.issues = value
+          }
+          self.cname = try container.decodeIfPresent(
+            Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.CNAME.self,
+            forKey: .cname)
+          self.ips = try container.decodeIfPresent(
+            Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.IPs.self,
+            forKey: .ips)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.issues, forKey: .issues)
+          try container.encodeIfPresent(self.cname, forKey: .cname)
+          try container.encodeIfPresent(self.ips, forKey: .ips)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// CNAME troubleshooting information.
+        public struct CNAME: Codable, Equatable, GoogleWKT._AnyPackable,
+          Sendable
+        {
+          /// Output only. The name of the CNAME record for the domain, equals to
+          /// `dns_resource_record.name` in the corresponding `DnsAuthorization`.
+          public var name: Swift.String = Swift.String()
+
+          /// Output only. The expected value of the CNAME record for the domain,
+          /// equals to `dns_resource_record.data` in the corresponding
+          /// `DnsAuthorization`.
+          public var expectedData: Swift.String = Swift.String()
+
+          /// Output only. The resolved CNAME chain.
+          /// Empty list if the CNAME record for `CNAME.name` is not found.
+          /// Otherwise the first item is the value of the CNAME record for
+          /// `CNAME.name`.
+          /// If the CNAME chain is longer, the second item is the value of the
+          /// CNAME record for the first item, and so on.
+          public var resolvedData: [Swift.String] = []
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+          /// Initialize a new instance of `CNAME`.
+          public init() {}
+
+          /// Use `config` to return a new instance of this object, with some fields updated.
+          ///
+          /// Commonly used to initialize the value, for example:
+          ///
+          /// ```
+          /// let value = CNAME().with { $0.name = ... }
+          /// ```
+          @inlinable
+          public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+            var copy = self
+            try config(&copy)
+            return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let name = CodingKeys(stringValue: "name")
+            static let expectedData = CodingKeys(stringValue: "expectedData")
+            static let resolvedData = CodingKeys(stringValue: "resolvedData")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "name",
+              "expectedData",
+              "resolvedData",
+            ]
+          }
+
+          public init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+              self.name = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .expectedData) {
+              self.expectedData = value
+            }
+            if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resolvedData)
+            {
+              self.resolvedData = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleWKT.WKTValue.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.name, forKey: .name)
+            try container.encode(self.expectedData, forKey: .expectedData)
+            try container.encode(self.resolvedData, forKey: .resolvedData)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
+          }
+
+          /// The type URL for `CNAME`: `"type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.CNAME"`.
+          public static var _anyTypeUrl: Swift.String {
+            return
+              "type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.CNAME"
+          }
+
+          /// Initialize an instance of `CNAME` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.CNAME"`,
+          ///   or if deserialization fails.
+          public init(fromAny any: GoogleWKT.WKTAny) throws {
+            self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          }
+
+          /// Packs this `CNAME` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
+          public func _pack() throws -> GoogleWKT.WKTStruct {
+            return try GoogleWKT._slowAnySerialize(message: self)
+          }
+        }
+
+        /// IPs troubleshooting information.
+        public struct IPs: Codable, Equatable, GoogleWKT._AnyPackable,
+          Sendable
+        {
+          /// Output only. The list of IP addresses, where the certificate is
+          /// attached and port 443 is open.
+          public var serving: [Swift.String] = []
+
+          /// Output only. The list of IP addresses, where the certificate is
+          /// attached, but port 443 is not open.
+          public var servingOnAltPorts: [Swift.String] = []
+
+          /// Output only. The list of IP addresses resolved from the domain's
+          /// A/AAAA records. Can contain both ipv4 and ipv6 addresses.
+          public var resolved: [Swift.String] = []
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+          /// Initialize a new instance of `IPs`.
+          public init() {}
+
+          /// Use `config` to return a new instance of this object, with some fields updated.
+          ///
+          /// Commonly used to initialize the value, for example:
+          ///
+          /// ```
+          /// let value = IPs().with { $0.serving = ... }
+          /// ```
+          @inlinable
+          public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+            var copy = self
+            try config(&copy)
+            return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let serving = CodingKeys(stringValue: "serving")
+            static let servingOnAltPorts = CodingKeys(stringValue: "servingOnAltPorts")
+            static let resolved = CodingKeys(stringValue: "resolved")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "serving",
+              "servingOnAltPorts",
+              "resolved",
+            ]
+          }
+
+          public init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent([Swift.String].self, forKey: .serving) {
+              self.serving = value
+            }
+            if let value = try container.decodeIfPresent(
+              [Swift.String].self, forKey: .servingOnAltPorts)
+            {
+              self.servingOnAltPorts = value
+            }
+            if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resolved) {
+              self.resolved = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleWKT.WKTValue.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.serving, forKey: .serving)
+            try container.encode(self.servingOnAltPorts, forKey: .servingOnAltPorts)
+            try container.encode(self.resolved, forKey: .resolved)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
+          }
+
+          /// The type URL for `IPs`: `"type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.IPs"`.
+          public static var _anyTypeUrl: Swift.String {
+            return
+              "type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.IPs"
+          }
+
+          /// Initialize an instance of `IPs` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting.IPs"`,
+          ///   or if deserialization fails.
+          public init(fromAny any: GoogleWKT.WKTAny) throws {
+            self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          }
+
+          /// Packs this `IPs` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
+          public func _pack() throws -> GoogleWKT.WKTStruct {
+            return try GoogleWKT._slowAnySerialize(message: self)
+          }
+        }
+
+        /// The issue discovered during the authorization attempt.
+        ///
+        /// - Note: Adding cases to this enumeration is not considered a breaking change.
+        ///   Always include an `@unknown default:` case when switching over this type.
+        ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+        ///   expecting specific values to remain unparsed; future releases may promote
+        ///   them to named cases.
+        public enum Issue: Codable, Equatable, Hashable, Sendable {
+          /// Issue is unspecified.
+          case unspecified
+          /// The resolved CNAME value doesn't match the expected CNAME.
+          case cnameMismatch
+          /// Domain has A/AAAA records that point to IPs, where the certificate
+          /// is not attached.
+          case resolvedToNotServing
+          /// Domain has A/AAAA records that point to IPs, where the certificate
+          /// is attached, but port 443 is not open.
+          case resolvedToServingOnAltPorts
+          /// Domain doesn't have any A/AAAA records.
+          case noResolvedIps
+          /// Certificate is not configured to be served from any IPs (e.g.
+          /// Certificate is not attached to any load balancer).
+          case certificateNotAttached
+          /// Encodes an unknown integer value.
+          ///
+          /// The most common cause for an unknown value is for the service to send
+          /// a value unknown to the library. We recommend you update your library to
+          /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific integer values in this case;
+          ///   future releases may promote them to named enum cases.
+          case unknownIntValue(Int)
+          /// Encodes an unknown string value.
+          ///
+          /// The most common cause for an unknown value is for the service to send
+          /// a value unknown to the library. We recommend you update your library to
+          /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific string literals in this case;
+          ///   future releases may promote them to named enum cases.
+          case unknownStringValue(String)
+
+          public init() {
+            self = .unspecified
+          }
+
+          /// Returns the integer value associated with the enumeration.
+          ///
+          /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+          public var intValue: Int? {
+            switch self {
+            case .unspecified: return 0
+            case .cnameMismatch: return 1
+            case .resolvedToNotServing: return 2
+            case .resolvedToServingOnAltPorts: return 3
+            case .noResolvedIps: return 4
+            case .certificateNotAttached: return 5
+            case .unknownIntValue(let v): return v
+            case .unknownStringValue: return nil
+            }
+          }
+
+          /// Returns the string value (or name) associated with the enumeration.
+          ///
+          /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+          public var stringValue: Swift.String? {
+            switch self {
+            case .unspecified: return "ISSUE_UNSPECIFIED"
+            case .cnameMismatch: return "CNAME_MISMATCH"
+            case .resolvedToNotServing: return "RESOLVED_TO_NOT_SERVING"
+            case .resolvedToServingOnAltPorts: return "RESOLVED_TO_SERVING_ON_ALT_PORTS"
+            case .noResolvedIps: return "NO_RESOLVED_IPS"
+            case .certificateNotAttached: return "CERTIFICATE_NOT_ATTACHED"
+            case .unknownIntValue: return nil
+            case .unknownStringValue(let v): return v
+            }
+          }
+
+          /// Initialize from a string value.
+          ///
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Issue/unknownStringValue(_:)).
+          public init(stringValue: Swift.String) {
+            switch stringValue {
+            case "ISSUE_UNSPECIFIED": self = .unspecified
+            case "CNAME_MISMATCH": self = .cnameMismatch
+            case "RESOLVED_TO_NOT_SERVING": self = .resolvedToNotServing
+            case "RESOLVED_TO_SERVING_ON_ALT_PORTS": self = .resolvedToServingOnAltPorts
+            case "NO_RESOLVED_IPS": self = .noResolvedIps
+            case "CERTIFICATE_NOT_ATTACHED": self = .certificateNotAttached
+            default: self = .unknownStringValue(stringValue)
+            }
+          }
+
+          /// Initialize from an integer value.
+          ///
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Issue/unknownIntValue(_:)).
+          public init(intValue: Int) {
+            switch intValue {
+            case 0: self = .unspecified
+            case 1: self = .cnameMismatch
+            case 2: self = .resolvedToNotServing
+            case 3: self = .resolvedToServingOnAltPorts
+            case 4: self = .noResolvedIps
+            case 5: self = .certificateNotAttached
+            default: self = .unknownIntValue(intValue)
+            }
+          }
+
+          public init(from decoder: any Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            if let v = try? container.decode(Int.self) {
+              self.init(intValue: v)
+              return
+            }
+            if let s = try? container.decode(String.self) {
+              if let v = Int(s) {
+                self.init(intValue: v)
+              } else {
+                self.init(stringValue: s)
+              }
+              return
+            }
+            throw DecodingError.dataCorruptedError(
+              in: container, debugDescription: "Expected enum value, must be integer or string.")
+          }
+
+          public func encode(to encoder: any Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .unspecified: return try container.encode("ISSUE_UNSPECIFIED")
+            case .cnameMismatch: return try container.encode("CNAME_MISMATCH")
+            case .resolvedToNotServing: return try container.encode("RESOLVED_TO_NOT_SERVING")
+            case .resolvedToServingOnAltPorts:
+              return try container.encode("RESOLVED_TO_SERVING_ON_ALT_PORTS")
+            case .noResolvedIps: return try container.encode("NO_RESOLVED_IPS")
+            case .certificateNotAttached: return try container.encode("CERTIFICATE_NOT_ATTACHED")
+            case .unknownIntValue(let v): return try container.encode(v)
+            case .unknownStringValue(let v): return try container.encode(v)
+            }
+          }
+        }
+
+        /// The type URL for `Troubleshooting`: `"type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting"
+        }
+
+        /// Initialize an instance of `Troubleshooting` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.Troubleshooting"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `Troubleshooting` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -1145,6 +1657,194 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// Configuration and state of a Managed Identity Certificate.
+  /// Certificate Manager provisions and renews Managed Identity Certificates
+  /// automatically, for as long as it's authorized to do so.
+  public struct ManagedIdentityCertificate: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Required. Immutable. SPIFFE ID of the Managed Identity used for this
+    /// certificate.
+    public var identity: Swift.String = Swift.String()
+
+    /// Output only. State of the managed certificate resource.
+    public var state: Certificate.ManagedCertificate.State = Certificate.ManagedCertificate.State()
+
+    /// Output only. Information about issues with provisioning a managed
+    /// certificate.
+    public var provisioningIssue: Certificate.ManagedCertificate.ProvisioningIssue? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `ManagedIdentityCertificate`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = ManagedIdentityCertificate().with { $0.identity = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let identity = CodingKeys(stringValue: "identity")
+      static let state = CodingKeys(stringValue: "state")
+      static let provisioningIssue = CodingKeys(stringValue: "provisioningIssue")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "identity",
+        "state",
+        "provisioningIssue",
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .identity) {
+        self.identity = value
+      }
+      if let value = try container.decodeIfPresent(
+        Certificate.ManagedCertificate.State.self, forKey: .state)
+      {
+        self.state = value
+      }
+      self.provisioningIssue = try container.decodeIfPresent(
+        Certificate.ManagedCertificate.ProvisioningIssue.self, forKey: .provisioningIssue)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.identity, forKey: .identity)
+      try container.encode(self.state, forKey: .state)
+      try container.encodeIfPresent(self.provisioningIssue, forKey: .provisioningIssue)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// The type URL for `ManagedIdentityCertificate`: `"type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedIdentityCertificate"`.
+    public static var _anyTypeUrl: Swift.String {
+      return
+        "type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedIdentityCertificate"
+    }
+
+    /// Initialize an instance of `ManagedIdentityCertificate` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedIdentityCertificate"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `ManagedIdentityCertificate` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._slowAnySerialize(message: self)
+    }
+  }
+
+  /// Defines a resource that uses the certificate.
+  public struct UsedBy: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Output only. Full name of the resource
+    /// https://google.aip.dev/122#full-resource-names, e.g.
+    /// `//certificatemanager.googleapis.com/projects/*/locations/*/certificateMaps/*/certificateMapEntries/*`
+    /// or
+    /// `//compute.googleapis.com/projects/*/locations/*/targetHttpsProxies/*`.
+    public var name: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `UsedBy`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = UsedBy().with { $0.name = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let name = CodingKeys(stringValue: "name")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "name"
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+        self.name = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.name, forKey: .name)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// The type URL for `UsedBy`: `"type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.UsedBy"`.
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.UsedBy"
+    }
+
+    /// Initialize an instance of `UsedBy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.UsedBy"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `UsedBy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._slowAnySerialize(message: self)
+    }
+  }
+
   /// Certificate scope.
   ///
   /// - Note: Adding cases to this enumeration is not considered a breaking change.
@@ -1153,16 +1853,22 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
   public enum Scope: Codable, Equatable, Hashable, Sendable {
-    /// Certificates with default scope are served from core Google data centers.
-    /// If unsure, choose this option.
+    /// Use the DEFAULT scope if you plan to use the certificate with global
+    /// external Application Load Balancer, global external proxy Network
+    /// Load Balancer, or any of the regional Google Cloud services.
     case `default`
-    /// Certificates with scope EDGE_CACHE are special-purposed certificates,
-    /// served from Edge Points of Presence.
+    /// Use the EDGE_CACHE scope if you plan to use the certificate with Media
+    /// CDN.
+    /// The certificates are served from Edge Points of Presence.
     /// See https://cloud.google.com/vpc/docs/edge-locations.
     case edgeCache
-    /// Certificates with ALL_REGIONS scope are served from all Google Cloud
+    /// Use the ALL_REGIONS scope if you plan to use the certificate with
+    /// cross-region internal Application Load Balancer.
+    /// The certificates are served from all Google Cloud
     /// regions. See https://cloud.google.com/compute/docs/regions-zones.
     case allRegions
+    /// Associated with certificates used as client certificates in Backend mTLS.
+    case clientAuth
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -1194,6 +1900,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       case .`default`: return 0
       case .edgeCache: return 1
       case .allRegions: return 2
+      case .clientAuth: return 3
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -1207,6 +1914,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       case .`default`: return "DEFAULT"
       case .edgeCache: return "EDGE_CACHE"
       case .allRegions: return "ALL_REGIONS"
+      case .clientAuth: return "CLIENT_AUTH"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -1220,6 +1928,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       case "DEFAULT": self = .`default`
       case "EDGE_CACHE": self = .edgeCache
       case "ALL_REGIONS": self = .allRegions
+      case "CLIENT_AUTH": self = .clientAuth
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -1232,6 +1941,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       case 0: self = .`default`
       case 1: self = .edgeCache
       case 2: self = .allRegions
+      case 3: self = .clientAuth
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -1260,17 +1970,22 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       case .`default`: return try container.encode("DEFAULT")
       case .edgeCache: return try container.encode("EDGE_CACHE")
       case .allRegions: return try container.encode("ALL_REGIONS")
+      case .clientAuth: return try container.encode("CLIENT_AUTH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
     }
   }
 
+  /// Type of the certificate. Required.
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// If set, defines data of a self-managed certificate.
     indirect case selfManaged(Certificate.SelfManagedCertificate)
     /// If set, contains configuration and state of a managed certificate.
     indirect case managed(Certificate.ManagedCertificate)
+    /// If set, contains configuration and state of a managed identity
+    /// certificate.
+    indirect case managedIdentity(Certificate.ManagedIdentityCertificate)
   }
 
   /// The type URL for `Certificate`: `"type.googleapis.com/google.cloud.certificatemanager.v1.Certificate"`.

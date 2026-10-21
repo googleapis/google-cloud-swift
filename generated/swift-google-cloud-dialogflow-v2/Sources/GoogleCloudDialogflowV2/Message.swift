@@ -31,6 +31,9 @@
     /// Only one of `content` and `companion_query` should be set - not both.
     public var content: Swift.String = Swift.String()
 
+    /// Optional. Automated agent responses.
+    public var responseMessages: [ResponseMessage] = []
+
     /// Optional. The message language.
     /// This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
     /// language tag. Example: "en-US".
@@ -82,6 +85,7 @@
 
       static let name = CodingKeys(stringValue: "name")
       static let content = CodingKeys(stringValue: "content")
+      static let responseMessages = CodingKeys(stringValue: "responseMessages")
       static let languageCode = CodingKeys(stringValue: "languageCode")
       static let participant = CodingKeys(stringValue: "participant")
       static let participantRole = CodingKeys(stringValue: "participantRole")
@@ -93,6 +97,7 @@
       static let _knownKeys: Set<Swift.String> = [
         "name",
         "content",
+        "responseMessages",
         "languageCode",
         "participant",
         "participantRole",
@@ -110,6 +115,11 @@
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
         self.content = value
+      }
+      if let value = try container.decodeIfPresent(
+        [ResponseMessage].self, forKey: .responseMessages)
+      {
+        self.responseMessages = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
         self.languageCode = value
@@ -138,6 +148,7 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.content, forKey: .content)
+      try container.encode(self.responseMessages, forKey: .responseMessages)
       try container.encode(self.languageCode, forKey: .languageCode)
       try container.encode(self.participant, forKey: .participant)
       try container.encode(self.participantRole, forKey: .participantRole)

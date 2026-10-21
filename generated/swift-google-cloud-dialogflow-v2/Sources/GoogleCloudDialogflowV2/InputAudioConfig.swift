@@ -132,6 +132,10 @@
     /// If unset, this setting is inherited from the ConversationProfile.
     public var useGeminiAsr: Swift.Bool? = nil
 
+    /// Optional. Disables emission of interim input transcriptions when set to
+    /// `true`.
+    public var disableInterimInputTranscripts: Swift.Bool? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `InputAudioConfig`.
@@ -175,6 +179,8 @@
         stringValue: "optOutConformerModelMigration")
       static let geminiAsrConfig = CodingKeys(stringValue: "geminiAsrConfig")
       static let useGeminiAsr = CodingKeys(stringValue: "useGeminiAsr")
+      static let disableInterimInputTranscripts = CodingKeys(
+        stringValue: "disableInterimInputTranscripts")
 
       static let _knownKeys: Set<Swift.String> = [
         "audioEncoding",
@@ -193,6 +199,7 @@
         "optOutConformerModelMigration",
         "geminiAsrConfig",
         "useGeminiAsr",
+        "disableInterimInputTranscripts",
       ]
     }
 
@@ -254,6 +261,8 @@
       self.geminiAsrConfig = try container.decodeIfPresent(
         SpeechToTextConfig.GeminiAsrConfig.self, forKey: .geminiAsrConfig)
       self.useGeminiAsr = try container.decodeIfPresent(Swift.Bool.self, forKey: .useGeminiAsr)
+      self.disableInterimInputTranscripts = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .disableInterimInputTranscripts)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -283,6 +292,8 @@
         self.optOutConformerModelMigration, forKey: .optOutConformerModelMigration)
       try container.encodeIfPresent(self.geminiAsrConfig, forKey: .geminiAsrConfig)
       try container.encodeIfPresent(self.useGeminiAsr, forKey: .useGeminiAsr)
+      try container.encodeIfPresent(
+        self.disableInterimInputTranscripts, forKey: .disableInterimInputTranscripts)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

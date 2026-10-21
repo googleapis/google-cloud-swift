@@ -119,9 +119,10 @@
       /// "N/A" otherwise.
       /// Section name: "reason_for_cancellation".
       case reasonForCancellation
-      /// "Unsatisfied" or "Satisfied" depending on the customer's feelings at
-      /// the end of the conversation.
-      /// Section name: "customer_satisfaction".
+      /// Customer satisfaction derived from the text transcript only (not audio).
+      /// Categorized based on customer statements by the end of the conversation.
+      /// `D` for dissatisfied and `N` for neutral or satisfied (default).
+      /// Section name: `customer_satisfaction`.
       case customerSatisfaction
       /// Key entities extracted from the conversation, such as ticket number,
       /// order number, dollar amount, etc.

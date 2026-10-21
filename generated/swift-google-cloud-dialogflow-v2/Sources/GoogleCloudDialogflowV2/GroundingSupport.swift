@@ -24,7 +24,7 @@
     Sendable
   {
     /// Optional. Segment of the content this support belongs to.
-    public var segment: Segment? = nil
+    public var segment: GoogleCloudDialogflowV2.Segment? = nil
 
     /// Optional. A list of indices into `grounding_chunks` field specifying the
     /// citations associated with the claim. For instance [1, 3] means that
@@ -68,7 +68,8 @@
 
     public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.segment = try container.decodeIfPresent(Segment.self, forKey: .segment)
+      self.segment = try container.decodeIfPresent(
+        GoogleCloudDialogflowV2.Segment.self, forKey: .segment)
       if let value = try container.decodeIfPresent(
         [Swift.Int32].self, forKey: .groundingChunkIndices)
       {

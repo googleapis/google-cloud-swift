@@ -30,7 +30,7 @@ public struct OutboundEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. User provided description.
   public var description: Swift.String? = nil
 
-  /// Required. Immutable. User provided IP address to use for outbound DNS forwarding. This address must be a free address on the subnetwork.
+  /// Optional. Immutable. User provided IP address to use for outbound DNS forwarding. This address must be a free address on the subnetwork. If omitted, a free IP address from the subnetwork is automatically allocated.
   public var endpointIp: Swift.String? = nil
 
   /// Optional. Labels as key value pairs

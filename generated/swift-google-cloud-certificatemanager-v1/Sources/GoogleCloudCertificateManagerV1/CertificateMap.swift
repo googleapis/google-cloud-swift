@@ -21,12 +21,12 @@ import Foundation
 public struct CertificateMap: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// A user-defined name of the Certificate Map. Certificate Map names must be
-  /// unique globally and match pattern
+  /// Identifier. A user-defined name of the Certificate Map. Certificate Map
+  /// names must be unique globally and match pattern
   /// `projects/*/locations/*/certificateMaps/*`.
   public var name: Swift.String = Swift.String()
 
-  /// One or more paragraphs of text description of a certificate map.
+  /// Optional. One or more paragraphs of text description of a certificate map.
   public var description: Swift.String = Swift.String()
 
   /// Output only. The creation timestamp of a Certificate Map.
@@ -35,13 +35,19 @@ public struct CertificateMap: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The update timestamp of a Certificate Map.
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
-  /// Set of labels associated with a Certificate Map.
+  /// Optional. Set of labels associated with a Certificate Map.
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. A list of GCLB targets that use this Certificate Map.
   /// A Target Proxy is only present on this list if it's attached to a
   /// Forwarding Rule.
   public var gclbTargets: [CertificateMap.GclbTarget] = []
+
+  /// Optional. Input only. Immutable. Tag keys/values directly bound to this
+  /// resource. For example:
+  ///   "123/environment": "production",
+  ///   "123/costCenter": "marketing"
+  public var tags: [Swift.String: Swift.String] = [:]
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,6 +80,7 @@ public struct CertificateMap: Codable, Equatable, GoogleWKT._AnyPackable,
     static let updateTime = CodingKeys(stringValue: "updateTime")
     static let labels = CodingKeys(stringValue: "labels")
     static let gclbTargets = CodingKeys(stringValue: "gclbTargets")
+    static let tags = CodingKeys(stringValue: "tags")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -82,6 +89,7 @@ public struct CertificateMap: Codable, Equatable, GoogleWKT._AnyPackable,
       "updateTime",
       "labels",
       "gclbTargets",
+      "tags",
     ]
   }
 
@@ -106,6 +114,9 @@ public struct CertificateMap: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.gclbTargets = value
     }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -120,6 +131,7 @@ public struct CertificateMap: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.gclbTargets, forKey: .gclbTargets)
+    try container.encode(self.tags, forKey: .tags)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -16,6 +16,7 @@
 
 #if AnswerRecords || Conversations || Participants || Sessions
   import Foundation
+  public import GoogleRpc
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// The result of sentiment analysis. Sentiment analysis inspects user input
@@ -39,6 +40,11 @@
   {
     /// The sentiment analysis result for `query_text`.
     public var queryTextSentiment: Sentiment? = nil
+
+    /// Output only. The status of the sentiment analysis operation.
+    /// If the operation failed, this field will contain the error details.
+    /// For example, it might indicate a quota issue (RESOURCE_EXHAUSTED).
+    public var status: GoogleRpc.Status? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,9 +72,11 @@
       init?(intValue: Swift.Int) { nil }
 
       static let queryTextSentiment = CodingKeys(stringValue: "queryTextSentiment")
+      static let status = CodingKeys(stringValue: "status")
 
       static let _knownKeys: Set<Swift.String> = [
-        "queryTextSentiment"
+        "queryTextSentiment",
+        "status",
       ]
     }
 
@@ -76,6 +84,7 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.queryTextSentiment = try container.decodeIfPresent(
         Sentiment.self, forKey: .queryTextSentiment)
+      self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -85,6 +94,7 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.queryTextSentiment, forKey: .queryTextSentiment)
+      try container.encodeIfPresent(self.status, forKey: .status)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -3,7 +3,7 @@
 
 ## Overview
 
-This client library was generated from the "20261002" revision of the API.
+This client library was generated from the "20261009" revision of the API.
 
 The following types provide methods to make RPCs. They are a good starting point
 to learn about this library.

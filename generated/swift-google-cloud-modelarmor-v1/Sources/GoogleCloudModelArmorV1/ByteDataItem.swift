@@ -27,6 +27,10 @@ public struct ByteDataItem: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. Bytes Data
   public var byteData: Foundation.Data = Foundation.Data()
 
+  /// Optional. Label of the file. This is used to identify the file in the
+  /// response.
+  public var fileLabel: Swift.String = Swift.String()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `ByteDataItem`.
@@ -54,10 +58,12 @@ public struct ByteDataItem: Codable, Equatable, GoogleWKT._AnyPackable,
 
     static let byteDataType = CodingKeys(stringValue: "byteDataType")
     static let byteData = CodingKeys(stringValue: "byteData")
+    static let fileLabel = CodingKeys(stringValue: "fileLabel")
 
     static let _knownKeys: Set<Swift.String> = [
       "byteDataType",
       "byteData",
+      "fileLabel",
     ]
   }
 
@@ -71,6 +77,9 @@ public struct ByteDataItem: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .byteData) {
       self.byteData = value
     }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fileLabel) {
+      self.fileLabel = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -81,6 +90,7 @@ public struct ByteDataItem: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.byteDataType, forKey: .byteDataType)
     try container.encode(self.byteData, forKey: .byteData)
+    try container.encode(self.fileLabel, forKey: .fileLabel)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

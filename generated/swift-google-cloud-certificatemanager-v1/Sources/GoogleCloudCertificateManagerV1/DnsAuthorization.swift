@@ -22,8 +22,8 @@ import Foundation
 public struct DnsAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// A user-defined name of the dns authorization. DnsAuthorization names must
-  /// be unique globally and match pattern
+  /// Identifier. A user-defined name of the dns authorization. DnsAuthorization
+  /// names must be unique globally and match pattern
   /// `projects/*/locations/*/dnsAuthorizations/*`.
   public var name: Swift.String = Swift.String()
 
@@ -33,10 +33,10 @@ public struct DnsAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The last update timestamp of a DnsAuthorization.
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
-  /// Set of labels associated with a DnsAuthorization.
+  /// Optional. Set of labels associated with a DnsAuthorization.
   public var labels: [Swift.String: Swift.String] = [:]
 
-  /// One or more paragraphs of text description of a DnsAuthorization.
+  /// Optional. One or more paragraphs of text description of a DnsAuthorization.
   public var description: Swift.String = Swift.String()
 
   /// Required. Immutable. A domain that is being authorized. A DnsAuthorization
@@ -49,10 +49,17 @@ public struct DnsAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
   /// configuration.
   public var dnsResourceRecord: DnsAuthorization.DnsResourceRecord? = nil
 
-  /// Immutable. Type of DnsAuthorization. If unset during resource creation the
-  /// following default will be used:
-  /// - in location global: FIXED_RECORD.
+  /// Optional. Immutable. Type of DnsAuthorization. If unset during resource
+  /// creation the following default will be used:
+  /// - in location `global`: FIXED_RECORD,
+  /// - in other locations: PER_PROJECT_RECORD.
   public var type: DnsAuthorization.Type_ = DnsAuthorization.Type_()
+
+  /// Optional. Input only. Immutable. Tag keys/values directly bound to this
+  /// resource. For example:
+  ///   "123/environment": "production",
+  ///   "123/costCenter": "marketing"
+  public var tags: [Swift.String: Swift.String] = [:]
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -87,6 +94,7 @@ public struct DnsAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
     static let domain = CodingKeys(stringValue: "domain")
     static let dnsResourceRecord = CodingKeys(stringValue: "dnsResourceRecord")
     static let type = CodingKeys(stringValue: "type")
+    static let tags = CodingKeys(stringValue: "tags")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -97,6 +105,7 @@ public struct DnsAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
       "domain",
       "dnsResourceRecord",
       "type",
+      "tags",
     ]
   }
 
@@ -124,6 +133,9 @@ public struct DnsAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(DnsAuthorization.Type_.self, forKey: .type) {
       self.type = value
     }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -140,6 +152,7 @@ public struct DnsAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.domain, forKey: .domain)
     try container.encodeIfPresent(self.dnsResourceRecord, forKey: .dnsResourceRecord)
     try container.encode(self.type, forKey: .type)
+    try container.encode(self.tags, forKey: .tags)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -32,7 +32,7 @@ public struct SanitizationResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public var filterMatchState: FilterMatchState = FilterMatchState()
 
   /// Output only. Results for all filters where the key is the filter name -
-  /// either of "csam", "malicious_uris", "rai", "pi_and_jailbreak" ,"sdp".
+  /// either of "csam", "malicious_uris", "rai", "pi_and_jailbreak", "sdp".
   public var filterResults: [Swift.String: FilterResult] = [:]
 
   /// Output only. A field indicating the outcome of the invocation, irrespective
@@ -131,6 +131,10 @@ public struct SanitizationResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Output only. The stream chunk processed by the Sanitization service.
     public var streamChunkProcessed: DataItem? = nil
 
+    /// Output only. Provides details about the Filter Version configuration used
+    /// to sanitize this request.
+    public var filterVersionConfig: FilterVersionConfig? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SanitizationMetadata`.
@@ -161,12 +165,14 @@ public struct SanitizationResult: Codable, Equatable, GoogleWKT._AnyPackable,
       static let ignorePartialInvocationFailures = CodingKeys(
         stringValue: "ignorePartialInvocationFailures")
       static let streamChunkProcessed = CodingKeys(stringValue: "streamChunkProcessed")
+      static let filterVersionConfig = CodingKeys(stringValue: "filterVersionConfig")
 
       static let _knownKeys: Set<Swift.String> = [
         "errorCode",
         "errorMessage",
         "ignorePartialInvocationFailures",
         "streamChunkProcessed",
+        "filterVersionConfig",
       ]
     }
 
@@ -185,6 +191,8 @@ public struct SanitizationResult: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       self.streamChunkProcessed = try container.decodeIfPresent(
         DataItem.self, forKey: .streamChunkProcessed)
+      self.filterVersionConfig = try container.decodeIfPresent(
+        FilterVersionConfig.self, forKey: .filterVersionConfig)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -198,6 +206,7 @@ public struct SanitizationResult: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(
         self.ignorePartialInvocationFailures, forKey: .ignorePartialInvocationFailures)
       try container.encodeIfPresent(self.streamChunkProcessed, forKey: .streamChunkProcessed)
+      try container.encodeIfPresent(self.filterVersionConfig, forKey: .filterVersionConfig)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

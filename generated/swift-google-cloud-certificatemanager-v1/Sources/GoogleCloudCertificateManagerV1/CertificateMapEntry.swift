@@ -21,12 +21,13 @@ import Foundation
 public struct CertificateMapEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// A user-defined name of the Certificate Map Entry. Certificate Map Entry
-  /// names must be unique globally and match pattern
+  /// Identifier. A user-defined name of the Certificate Map Entry. Certificate
+  /// Map Entry names must be unique globally and match pattern
   /// `projects/*/locations/*/certificateMaps/*/certificateMapEntries/*`.
   public var name: Swift.String = Swift.String()
 
-  /// One or more paragraphs of text description of a certificate map entry.
+  /// Optional. One or more paragraphs of text description of a certificate map
+  /// entry.
   public var description: Swift.String = Swift.String()
 
   /// Output only. The creation timestamp of a Certificate Map Entry.
@@ -35,17 +36,18 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The update timestamp of a Certificate Map Entry.
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
-  /// Set of labels associated with a Certificate Map Entry.
+  /// Optional. Set of labels associated with a Certificate Map Entry.
   public var labels: [Swift.String: Swift.String] = [:]
 
-  /// A set of Certificates defines for the given `hostname`. There can be
-  /// defined up to four certificates in each Certificate Map Entry. Each
+  /// Optional. A set of Certificates defines for the given `hostname`. There can
+  /// be defined up to four certificates in each Certificate Map Entry. Each
   /// certificate must match pattern `projects/*/locations/*/certificates/*`.
   public var certificates: [Swift.String] = []
 
   /// Output only. A serving state of this Certificate Map Entry.
   public var state: ServingState = ServingState()
 
+  /// The matcher for this certificate map entry. Required.
   public var match: MatchOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -279,6 +281,7 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The matcher for this certificate map entry. Required.
   public enum MatchOneOf: Codable, Equatable, Sendable {
     /// A Hostname (FQDN, e.g. `example.com`) or a wildcard hostname expression
     /// (`*.example.com`) for a set of hostnames with common suffix. Used as
