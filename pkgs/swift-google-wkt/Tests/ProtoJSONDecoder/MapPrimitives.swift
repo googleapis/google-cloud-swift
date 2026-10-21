@@ -112,7 +112,7 @@ extension ProtoJSONDecoderTest {
       #"{"fieldData":   {"a": "a"} }"#,
       #"{"fieldData":   {"a": "NDI=="} }"#,
       #"{"fieldData":   {"a": "QUJD="} }"#,
-      #"{"fieldData":   {"a": "ND=I"} }"#,
+      #"{"fieldData":   {"a": "QQ=A"} }"#,
       #"{"fieldData":   {"a": "-_+/"} }"#,
     ])
   func decodeMapBad(input: String) throws {

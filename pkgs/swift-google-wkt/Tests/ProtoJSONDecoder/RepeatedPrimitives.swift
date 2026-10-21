@@ -112,7 +112,7 @@ extension ProtoJSONDecoderTest {
       #"{"fieldData":   ["a"] }"#,
       #"{"fieldData":   ["NDI=="] }"#,
       #"{"fieldData":   ["QUJD="] }"#,
-      #"{"fieldData":   ["ND=I"] }"#,
+      #"{"fieldData":   ["QQ=A"] }"#,
       #"{"fieldData":   ["-_+/"] }"#,
     ])
   func decodeRepeatedBad(input: String) throws {

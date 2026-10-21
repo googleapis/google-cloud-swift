@@ -115,7 +115,7 @@ import Testing
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"a"}}"#,
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"aGVsbG8=="}}"#,
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"QUJD="}}"#,
-      #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"ND=I"}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"QQ=A"}}"#,
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"-_+/"}}"#,
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"!@#$"}}"#,
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":123}}"#,
@@ -256,7 +256,7 @@ import Testing
       #""a""#,
       #""aGVsbG8==""#,
       #""QUJD=""#,
-      #""ND=I""#,
+      #""QQ=A""#,
       #""-_+/""#,
       #""!@#$""#,
     ])
