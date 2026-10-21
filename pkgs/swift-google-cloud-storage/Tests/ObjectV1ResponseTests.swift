@@ -219,25 +219,49 @@ import Testing
     #expect(object.componentCount == 16)
   }
 
-  @Test func numericFieldsWithInvalidValuesDefaultToZero() throws {
-    let jsonString = """
-      {
-        "generation": "invalid_number",
-        "metageneration": "not_an_int",
-        "size": "bad_size",
-        "componentCount": "invalid_count"
-      }
-      """
+  @Test(arguments: [
+    #"{"generation": "invalid_number"}"#,
+    #"{"generation": "999999999999999999999"}"#,
+    #"{"generation": ""}"#,
+    #"{"metageneration": "not_an_int"}"#,
+    #"{"size": "bad_size"}"#,
+    #"{"size": "12.34"}"#,
+    #"{"size": 12.34}"#,
+    #"{"componentCount": "invalid_count"}"#,
+    #"{"componentCount": "2147483648"}"#,
+    #"{"componentCount": "-2147483649"}"#,
+    #"{"componentCount": 2147483648}"#,
+  ])
+  func numericFieldsWithInvalidStringThrowDataCorrupted(jsonString: String) throws {
     let data = try #require(jsonString.data(using: .utf8))
-
     let decoder = GoogleWKT._ProtoJSONDecoder()
-    let v1 = try decoder.decode(ObjectV1Response.self, from: data)
-    let object = v1.toObject()
 
-    #expect(object.generation == 0)
-    #expect(object.metageneration == 0)
-    #expect(object.size == 0)
-    #expect(object.componentCount == 0)
+    let error = #expect(throws: DecodingError.self) {
+      try decoder.decode(ObjectV1Response.self, from: data)
+    }
+    guard case .dataCorrupted = error else {
+      Issue.record("Expected DecodingError.dataCorrupted, got \(String(describing: error))")
+      return
+    }
+  }
+
+  @Test(arguments: [
+    #"{"generation": true}"#,
+    #"{"metageneration": [1, 2]}"#,
+    #"{"size": {"value": 10}}"#,
+    #"{"componentCount": false}"#,
+  ])
+  func numericFieldsWithInvalidTypeThrowTypeMismatch(jsonString: String) throws {
+    let data = try #require(jsonString.data(using: .utf8))
+    let decoder = GoogleWKT._ProtoJSONDecoder()
+
+    let error = #expect(throws: DecodingError.self) {
+      try decoder.decode(ObjectV1Response.self, from: data)
+    }
+    guard case .typeMismatch = error else {
+      Issue.record("Expected DecodingError.typeMismatch, got \(String(describing: error))")
+      return
+    }
   }
 
   @Test(arguments: [
