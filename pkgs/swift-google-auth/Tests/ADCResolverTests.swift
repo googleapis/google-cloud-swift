@@ -22,9 +22,14 @@ struct ADCResolverTests {
   @Test("load ADC no file at env is error")
   func loadADCNoFileAtEnvIsError() {
     let env = ["GOOGLE_APPLICATION_CREDENTIALS": "file-does-not-exist.json"]
-    #expect(throws: ADCResolverError.self) {
+    let error = #expect(throws: CredentialsError.self) {
       _ = try loadADC(environment: env)
     }
+    guard case let .cannotLoadFile(message, _) = error else {
+      Issue.record("Expected CredentialsError.cannotLoadFile, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("file-does-not-exist.json"))
   }
 
   @Test("load ADC no well known path fallback to mds")
@@ -55,50 +60,5 @@ struct ADCResolverTests {
     // Validate it fell back to MDS with the correct quota project ID from the environment overriding the config
     let mdsCreds = try #require(creds as? MDSCredentials)
     #expect(mdsCreds.quotaProjectID == "env-quota-project")
-  }
-
-  @Test("ADCResolverError descriptions")
-  func adcResolverErrorDescriptions() {
-    let envNotFound = ADCResolverError.fileNotFound(
-      path: "/missing.json", isEnvironmentOverride: true)
-    #expect(
-      envNotFound.description
-        == "The Application Default Credentials file specified by GOOGLE_APPLICATION_CREDENTIALS was not found at '/missing.json'."
-    )
-    #expect(
-      String(reflecting: envNotFound as any Error)
-        == "ADCResolverError.fileNotFound(path: \"/missing.json\", isEnvironmentOverride: true): \(envNotFound.description)"
-    )
-
-    let defaultNotFound = ADCResolverError.fileNotFound(
-      path: "/default.json", isEnvironmentOverride: false)
-    #expect(
-      defaultNotFound.description
-        == "The Application Default Credentials file was not found at '/default.json'."
-    )
-    #expect(
-      String(reflecting: defaultNotFound as any Error)
-        == "ADCResolverError.fileNotFound(path: \"/default.json\", isEnvironmentOverride: false): \(defaultNotFound.description)"
-    )
-
-    let invalidFormat = ADCResolverError.invalidFormat
-    #expect(
-      invalidFormat.description
-        == "The Application Default Credentials file is not valid JSON or is missing the 'type' field."
-    )
-    #expect(
-      String(reflecting: invalidFormat as any Error)
-        == "ADCResolverError.invalidFormat: \(invalidFormat.description)"
-    )
-
-    let unsupported = ADCResolverError.unsupportedType("custom_type")
-    #expect(
-      unsupported.description
-        == "The Application Default Credentials file contains an unsupported credential type 'custom_type'."
-    )
-    #expect(
-      String(reflecting: unsupported as any Error)
-        == "ADCResolverError.unsupportedType(\"custom_type\"): \(unsupported.description)"
-    )
   }
 }

@@ -38,6 +38,57 @@ import Testing
     )
   }
 
+  @Test func resolveProviderForADCMissingFileThrowsCannotLoadFile() throws {
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try Credentials(
+        configuration: .adc(),
+        environment: ["GOOGLE_APPLICATION_CREDENTIALS": "/nonexistent/path/to/creds.json"]
+      )
+    }
+    guard case let .cannotLoadFile(message, _) = error else {
+      Issue.record("Expected CredentialsError.cannotLoadFile, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("/nonexistent/path/to/creds.json"))
+  }
+
+  @Test func resolveProviderForADCInvalidJSONThrowsParseError() throws {
+    let tempFile = FileManager.default.temporaryDirectory
+      .appendingPathComponent(UUID().uuidString + ".json")
+    try Data("not-valid-json".utf8).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try Credentials(
+        configuration: .adc(),
+        environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path]
+      )
+    }
+    guard case .parseError = error else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+      return
+    }
+  }
+
+  @Test func resolveProviderForADCUnknownTypeThrowsNotSupported() throws {
+    let tempFile = FileManager.default.temporaryDirectory
+      .appendingPathComponent(UUID().uuidString + ".json")
+    try Data(#"{"type": "gdch_service_account"}"#.utf8).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try Credentials(
+        configuration: .adc(),
+        environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path]
+      )
+    }
+    guard case let .notSupported(message) = error else {
+      Issue.record("Expected CredentialsError.notSupported, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("gdch_service_account"))
+  }
+
   @Test func adcNotFoundError() async throws {
     let fileManager = FileManager.default
     let tempDirectoryURL = fileManager.temporaryDirectory

@@ -14,7 +14,7 @@
 
 import Foundation
 
-/// Represents any error occurring during credentials resolution or initialization.
+/// Represents any error occurring during credentials resolution, initialization, or token retrieval.
 ///
 /// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
@@ -32,6 +32,22 @@ public enum CredentialsError: Error, Sendable {
   /// Examples include malformed Service Account or Authorized User JSON key files, missing required fields
   /// (such as `client_email` or `private_key`), invalid RSA private key PEM formatting, or invalid STS response payloads.
   case parseError(String)
+
+  /// The credentials file could not be loaded or read from disk.
+  ///
+  /// ## Troubleshooting
+  ///
+  /// This error occurs when the `GOOGLE_APPLICATION_CREDENTIALS` environment variable is set to a
+  /// path that does not exist or cannot be read.
+  ///
+  /// The `message` value identifies the file path that could not be loaded, and `underlyingError`
+  /// provides the underlying filesystem error. Verify that the path in
+  /// `GOOGLE_APPLICATION_CREDENTIALS` is accurate and that the process has read permissions for
+  /// the file.
+  ///
+  /// - Important: The `message` wording is intended for humans and may change between releases.
+  ///   Do not parse it or branch on its contents.
+  case cannotLoadFile(message: String, underlyingError: any Error)
 
   /// The credentials could not obtain an access token.
   ///
@@ -63,6 +79,12 @@ extension CredentialsError: CustomDebugStringConvertible {
       return "CredentialsError.notSupported(\(String(reflecting: detail))): \(description)"
     case .parseError(let detail):
       return "CredentialsError.parseError(\(String(reflecting: detail))): \(description)"
+    case .cannotLoadFile(let message, let underlyingError):
+      return
+        """
+        CredentialsError.cannotLoadFile: \(message)
+        Underlying error: \(String(reflecting: underlyingError))
+        """
     case .cannotFetchToken(let message, let underlyingError):
       return
         """
@@ -80,6 +102,8 @@ extension CredentialsError: CustomStringConvertible {
       return "Operation not supported: \(detail)"
     case .parseError(let detail):
       return "Configuration parse error: \(detail)"
+    case .cannotLoadFile(let message, let underlyingError):
+      return "\(message): \(underlyingError)"
     case .cannotFetchToken(let message, let underlyingError):
       return "\(message): \(underlyingError)"
     }

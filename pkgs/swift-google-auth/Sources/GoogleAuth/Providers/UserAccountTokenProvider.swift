@@ -18,8 +18,6 @@ import Foundation
   import FoundationNetworking
 #endif
 
-// MARK: - TokenProvider
-
 /// A `TokenProvider` implementation that exchanges an OAuth 2.0 refresh token for an access token.
 ///
 /// Implements the standard [OAuth 2.0 Refreshing an Access Token](https://datatracker.ietf.org/doc/html/rfc6749#section-6)
@@ -45,7 +43,7 @@ struct UserAccountTokenProvider: TokenProvider {
   /// Fetches a fresh OAuth 2.0 access token by executing the refresh token grant.
   ///
   /// - Returns: A valid `Token` containing the access token string and expiration date.
-  /// - Throws: An `AuthHTTPError` or network error if the token endpoint cannot be reached or rejects the request.
+  /// - Throws: `CredentialsError.cannotFetchToken` if the token endpoint cannot be reached or rejects the request.
   @concurrent
   func fetchToken() async throws -> Token {
     let scopesStr = scopes.isEmpty ? nil : scopes.joined(separator: " ")
@@ -59,13 +57,23 @@ struct UserAccountTokenProvider: TokenProvider {
     )
 
     // Wrap active POST request in exponential backoff retry loop
-    let response: Oauth2RefreshResponse = try await RetryEngine.retry(
-      configuration: retryConfiguration,
-      isRetryable: AuthHTTPError.isRetryable
-    ) {
-      return try await httpClient.post(
-        url: tokenUri,
-        body: requestBody
+    let response: Oauth2RefreshResponse
+    do {
+      response = try await RetryEngine.retry(
+        configuration: retryConfiguration,
+        isRetryable: AuthHTTPError.isRetryable
+      ) {
+        return try await httpClient.post(
+          url: tokenUri,
+          body: requestBody
+        )
+      }
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch {
+      throw CredentialsError.cannotFetchToken(
+        message: "Could not refresh user access token from \(tokenUri.absoluteString).",
+        underlyingError: error
       )
     }
 
@@ -78,8 +86,6 @@ struct UserAccountTokenProvider: TokenProvider {
     )
   }
 }
-
-// MARK: - Request & Response DTOs
 
 /// The JSON request body sent to an OAuth 2.0 token endpoint to refresh an access token.
 ///

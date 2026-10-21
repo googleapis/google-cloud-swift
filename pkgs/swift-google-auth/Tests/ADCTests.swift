@@ -119,7 +119,7 @@ import Testing
     #expect(provider is GoogleAuth.UserCredentials)
   }
 
-  @Test func throwsInvalidFormatOnMissingType() throws {
+  @Test func throwsParseErrorOnMissingType() throws {
     let json = """
       {
         "project_id": "test-project-id"
@@ -130,12 +130,16 @@ import Testing
     try Data(json.utf8).write(to: tempFile)
     defer { try? FileManager.default.removeItem(at: tempFile) }
 
-    #expect(throws: ADCResolverError.invalidFormat) {
+    let error = #expect(throws: CredentialsError.self) {
       _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
+    }
+    guard case .parseError = error else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+      return
     }
   }
 
-  @Test func throwsUnsupportedTypeOnUnknownType() throws {
+  @Test func throwsNotSupportedOnUnknownType() throws {
     let json = """
       {
         "type": "unknown_credential_type"
@@ -146,8 +150,13 @@ import Testing
     try Data(json.utf8).write(to: tempFile)
     defer { try? FileManager.default.removeItem(at: tempFile) }
 
-    #expect(throws: ADCResolverError.unsupportedType("unknown_credential_type")) {
+    let error = #expect(throws: CredentialsError.self) {
       _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
     }
+    guard case let .notSupported(message) = error else {
+      Issue.record("Expected CredentialsError.notSupported, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("unknown_credential_type"))
   }
 }

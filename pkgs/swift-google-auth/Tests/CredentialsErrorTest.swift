@@ -39,6 +39,21 @@ import GoogleAuth
     #expect(String(reflecting: anyError) == got.debugDescription)
   }
 
+  @Test func cannotLoadFileDetails() {
+    let underlyingError = CredentialsError.notSupported("--inner--")
+    let got = CredentialsError.cannotLoadFile(
+      message: "--message here--", underlyingError: underlyingError)
+    let anyError: any Error = got
+    #expect(got.description == "--message here--: Operation not supported: --inner--")
+    #expect(
+      got.debugDescription.hasPrefix("CredentialsError.cannotLoadFile: --message here--"),
+      "\(got):\n\(got.debugDescription)")
+    #expect(
+      got.debugDescription.contains(String(reflecting: underlyingError)),
+      "\(got):\n\(got.debugDescription)")
+    #expect(String(reflecting: anyError) == got.debugDescription)
+  }
+
   @Test func cannotFetchTokenDetails() {
     let underlyingError = CredentialsError.notSupported("--inner--")
     let got = CredentialsError.cannotFetchToken(

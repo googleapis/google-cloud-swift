@@ -146,6 +146,12 @@ import Testing
     )
 
     // Other CredentialsError cases are permanent
+    #expect(
+      AuthHTTPError.isRetryable(
+        CredentialsError.cannotLoadFile(
+          message: "missing", underlyingError: URLError(.fileDoesNotExist))
+      ) == false
+    )
     #expect(AuthHTTPError.isRetryable(CredentialsError.parseError("invalid")) == false)
     #expect(AuthHTTPError.isRetryable(CredentialsError.notSupported("unsupported")) == false)
 

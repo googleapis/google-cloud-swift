@@ -294,9 +294,14 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       clock: TestClock()
     )
 
-    await #expect(throws: AuthHTTPError.self) {
+    let error = await #expect(throws: CredentialsError.self) {
       _ = try await source.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    #expect(underlyingError is AuthHTTPError)
   }
 
   @Test func tokenProviderNonretryableError() async throws {
@@ -326,9 +331,14 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       clock: TestClock()
     )
 
-    await #expect(throws: AuthHTTPError.self) {
+    let error = await #expect(throws: CredentialsError.self) {
       _ = try await source.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    #expect(underlyingError is AuthHTTPError)
   }
 
   @Test func tokenProviderMalformedResponseIsNonretryable() async throws {
@@ -369,14 +379,24 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       clock: TestClock()
     )
 
-    await #expect(throws: AuthHTTPError.self) {
+    let error1 = await #expect(throws: CredentialsError.self) {
       _ = try await source.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError1) = error1 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error1))")
+      return
+    }
+    #expect(underlyingError1 is AuthHTTPError)
     #expect(attempts.getCount() == 1)
 
-    await #expect(throws: AuthHTTPError.self) {
+    let error2 = await #expect(throws: CredentialsError.self) {
       _ = try await source.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError2) = error2 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error2))")
+      return
+    }
+    #expect(underlyingError2 is AuthHTTPError)
     #expect(attempts.getCount() == 1)
   }
 
@@ -511,9 +531,14 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       clock: clock
     )
 
-    await #expect(throws: AuthHTTPError.self) {
+    let error = await #expect(throws: CredentialsError.self) {
       _ = try await source.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    #expect(underlyingError is AuthHTTPError)
 
     // Give the background task a moment to run and either sleep or terminate.
     try? await Task.sleep(for: .milliseconds(100))

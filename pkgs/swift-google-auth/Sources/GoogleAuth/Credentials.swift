@@ -459,6 +459,7 @@ public struct Credentials: Sendable {
   /// Returns cached headers if valid, or waits for an active refresh if the token is missing or expired.
   ///
   /// - Returns: The HTTP header fields to apply to the request.
+  /// - Throws: A `CredentialsError` if token resolution fails.
   public func headers() async throws -> AuthHeaders {
     return try await self.credentialsProvider.headers()
   }

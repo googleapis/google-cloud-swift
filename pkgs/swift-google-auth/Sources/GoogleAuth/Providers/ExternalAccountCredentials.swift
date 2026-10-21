@@ -93,10 +93,20 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   /// Fetches a fresh Google Cloud access token by retrieving a subject token and exchanging it via STS.
   ///
   /// - Returns: A valid `Token` containing the exchanged access token string and expiration date.
-  /// - Throws: An error if subject token acquisition fails or STS rejects the exchange request.
+  /// - Throws: `CredentialsError.cannotFetchToken` if subject token acquisition fails or STS rejects the exchange request.
   @concurrent
   func fetchToken() async throws -> Token {
-    let subjectToken = try await subjectTokenProvider.subjectToken()
+    let subjectToken: String
+    do {
+      subjectToken = try await subjectTokenProvider.subjectToken()
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch {
+      throw CredentialsError.cannotFetchToken(
+        message: "Could not obtain subject token for external account credentials.",
+        underlyingError: error
+      )
+    }
 
     let request = ExchangeTokenRequest(
       subjectToken: subjectToken,
@@ -107,14 +117,25 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
       clientAuthentication: clientAuthentication
     )
 
-    let response: TokenResponse = try await RetryEngine.retry(
-      configuration: retryConfiguration ?? .defaultConfiguration,
-      isRetryable: AuthHTTPError.isRetryable
-    ) {
-      try await stsHandler.exchangeToken(
-        request: request,
-        url: tokenURL,
-        encoding: .urlEncoded
+    let response: TokenResponse
+    do {
+      response = try await RetryEngine.retry(
+        configuration: retryConfiguration ?? .defaultConfiguration,
+        isRetryable: AuthHTTPError.isRetryable
+      ) {
+        try await stsHandler.exchangeToken(
+          request: request,
+          url: tokenURL,
+          encoding: .urlEncoded
+        )
+      }
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch {
+      throw CredentialsError.cannotFetchToken(
+        message:
+          "Could not exchange subject token for an access token at \(tokenURL.absoluteString).",
+        underlyingError: error
       )
     }
 
@@ -254,7 +275,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
   /// `x-goog-user-project: <workforcePoolUserProject>`.
   ///
   /// - Returns: The HTTP header fields to apply to the request.
-  /// - Throws: An error if token resolution fails.
+  /// - Throws: `CredentialsError.cannotFetchToken` if token resolution fails.
   func headers() async throws -> AuthHeaders {
     let token = try await cache.token()
     var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]

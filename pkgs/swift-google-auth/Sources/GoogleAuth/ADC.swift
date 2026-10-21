@@ -46,7 +46,7 @@ enum ADC: Sendable {
   ///   - scopes: Scopes requested for the issued token.
   ///   - environment: The environment variable dictionary used for discovery (defaults to `ProcessInfo.processInfo.environment`).
   /// - Returns: A configured `CredentialsProvider` ready to furnish authentication headers.
-  /// - Throws: An `ADCResolverError` or `CredentialsError` if loading or parsing fails, or if an unsupported credential type is encountered.
+  /// - Throws: A `CredentialsError` if loading or parsing fails, or if an unsupported credential type is encountered.
   static func resolve(
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
@@ -69,8 +69,12 @@ enum ADC: Sendable {
       // Decode only the top-level `"type"` discriminator first so the original JSON `Data`
       // can be passed directly to the registered parser without an intermediate
       // `[String: Any]` dictionary roundtrip.
-      guard let header = try? JSONDecoder().decode(CredentialHeader.self, from: data) else {
-        throw ADCResolverError.invalidFormat
+      let header: CredentialHeader
+      do {
+        header = try JSONDecoder().decode(CredentialHeader.self, from: data)
+      } catch {
+        throw CredentialsError.parseError(
+          "Failed to parse Application Default Credentials JSON: \(error.localizedDescription)")
       }
 
       if let source = try CredentialParserRegistry.shared.parse(
@@ -83,7 +87,8 @@ enum ADC: Sendable {
       ) {
         return source
       }
-      throw ADCResolverError.unsupportedType(header.type)
+      throw CredentialsError.notSupported(
+        "Unsupported Application Default Credentials type: \(header.type)")
     }
   }
 }

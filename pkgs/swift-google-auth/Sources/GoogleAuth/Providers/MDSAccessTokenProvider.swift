@@ -214,6 +214,8 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
           operation: fetchOperation
         )
       }
+    } catch is CancellationError {
+      throw CancellationError()
     } catch {
       throw CredentialsError.cannotFetchToken(
         message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
