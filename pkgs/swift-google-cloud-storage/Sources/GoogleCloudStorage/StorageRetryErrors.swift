@@ -24,13 +24,13 @@ struct StorageRetryErrors: RetryPolicy, Sendable, Equatable {
   init() {}
 
   public func onError(state: RetryState, error: RequestError) -> RetryResult {
-    if isRetryable(error) {
+    if Self.isRetryable(error) {
       return .retry(error)
     }
     return .permanent(error)
   }
 
-  func isRetryable(_ error: RequestError) -> Bool {
+  static func isRetryable(_ error: RequestError) -> Bool {
     switch error {
     case .http(let details):
       let code = details.statusCode
