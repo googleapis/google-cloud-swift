@@ -642,14 +642,18 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     if let contentRangeHeader = headers.first(name: "Content-Range"),
       let contentRange = try? HttpContentRange.parse(contentRangeHeader)
     {
-      return contentRange.end - contentRange.start + 1
+      let (count, overflow) = (contentRange.end - contentRange.start).addingReportingOverflow(1)
+      return overflow ? nil : count
     }
     if let contentLengthStr = headers.first(name: "Content-Length"),
       let contentLength = UInt64(contentLengthStr)
     {
       return contentLength
     }
-    if let storedLength = metadata.storedContentLength, metadata.contentEncoding != nil {
+    if (options.range ?? .entire) == .entire,
+      let storedLength = metadata.storedContentLength,
+      metadata.contentEncoding != nil
+    {
       return storedLength
     }
     return nil
@@ -697,6 +701,8 @@ final class ReadObjectCoordinator: @unchecked Sendable {
       localResumeState.details.totalBytes = parseExpectedReadBytes(
         from: response.headers, metadata: metadata, options: options)
       return (response, metadata, localResumeState)
+    } catch is CancellationError {
+      throw CancellationError()
     } catch let error as ReadObjectError {
       throw error
     } catch let error as RequestError {

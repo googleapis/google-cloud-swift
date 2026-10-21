@@ -1890,4 +1890,121 @@ import Testing
       ]
     )
   }
+
+  @Test func downloadObjectPopulatesTotalBytesFromStoredContentLengthWhenContentEncodingPresent()
+    async throws
+  {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "compressed-stored-length.bin"
+    let payload = Data("compressed-bytes".utf8)
+
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [payload],
+        headers: [
+          "x-goog-stored-content-length": String(payload.count),
+          "Content-Encoding": "gzip",
+        ]
+      ),
+      for: downloadUrl
+    )
+
+    let policy = RecordingResumePolicy()
+    let client = try makeClient(registry: registry)
+    let options = ReadObjectOptions().with {
+      $0.enableDecompressiveTranscoding = false
+      $0.resumePolicy = policy
+    }
+
+    let download = client.readObject(from: bucket, object: objectName, options: options)
+    var received = Data()
+    for try await chunk in download.body {
+      received.append(contentsOf: chunk)
+    }
+
+    #expect(received == payload)
+    #expect(
+      policy.progressDetails == [
+        ReadObjectDetails(bytesRead: UInt64(payload.count), totalBytes: UInt64(payload.count))
+      ]
+    )
+  }
+
+  @Test func downloadObjectPreservesInitialFetchResumeStateAcrossStreamResumes() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "initial-and-stream-resume.bin"
+    let chunk1 = Data("Part1-".utf8)
+    let chunk2 = Data("Part2".utf8)
+    let fullPayload = chunk1 + chunk2
+
+    let initialUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+    let resumeUrl = registry.url(
+      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&generation=888"
+    )
+
+    // Attempt 1: 503 transient failure before headers
+    registry.register(
+      response: .success(statusCode: 503, data: Data("Unavailable".utf8), headers: nil),
+      for: initialUrl
+    )
+
+    // Attempt 2: 200 OK yielding chunk1, then network failure
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [chunk1],
+        error: MockNetworkError(),
+        headers: [
+          "Content-Length": String(fullPayload.count),
+          "x-goog-generation": "888",
+        ]
+      ),
+      for: initialUrl
+    )
+
+    // Attempt 3: 206 Partial Content yielding chunk2
+    registry.register(
+      response: .stream(
+        statusCode: 206,
+        chunks: [chunk2],
+        headers: [
+          "Content-Range": "bytes \(chunk1.count)-\(fullPayload.count - 1)/\(fullPayload.count)",
+          "Content-Length": String(chunk2.count),
+          "x-goog-generation": "888",
+        ]
+      ),
+      for: resumeUrl
+    )
+
+    let policy = RecordingResumePolicy()
+    let client = try makeClient(registry: registry)
+    let options = ReadObjectOptions().with {
+      $0.resumePolicy = policy
+    }
+
+    let download = client.readObject(from: bucket, object: objectName, options: options)
+    var received = Data()
+    for try await chunk in download.body {
+      received.append(contentsOf: chunk)
+    }
+
+    #expect(received == fullPayload)
+    #expect(
+      policy.errorDetails == [
+        ReadObjectDetails(bytesRead: 0, totalBytes: nil),
+        ReadObjectDetails(bytesRead: UInt64(chunk1.count), totalBytes: UInt64(fullPayload.count)),
+      ]
+    )
+    #expect(
+      policy.progressDetails == [
+        ReadObjectDetails(bytesRead: UInt64(chunk1.count), totalBytes: UInt64(fullPayload.count)),
+        ReadObjectDetails(
+          bytesRead: UInt64(fullPayload.count), totalBytes: UInt64(fullPayload.count)),
+      ]
+    )
+  }
 }
