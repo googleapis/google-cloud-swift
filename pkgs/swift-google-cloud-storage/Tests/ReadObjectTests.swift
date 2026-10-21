@@ -1708,6 +1708,9 @@ import Testing
     }
   }
 
+  /// Verifies that retries occurring during `fetchInitial()` update `totalResumeCount` on the
+  /// coordinator's `ResumeState` so subsequent stream failures enforce `LimitedTotalResumes`
+  /// across the entire download.
   @Test func downloadObjectInitialRetryCountsTowardTotalResumeLimitOnStreamFailure() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
@@ -1716,7 +1719,7 @@ import Testing
 
     let initialUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
 
-    // Attempt 1: Initial fetch fails with a transient 503 error (consumes resume #1).
+    // Attempt 1: Initial fetch fails with a transient 503 error (totalResumeCount becomes 1).
     registry.register(
       response: .success(statusCode: 503, data: Data("Service Unavailable".utf8), headers: nil),
       for: initialUrl
@@ -1738,6 +1741,8 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
+      // `LimitedTotalResumes` halts when `totalResumeCount >= maxTotalResumes` (which is checked
+      // after incrementing on each error), so a limit of 2 allows 1 retry and halts on the 2nd error.
       $0.resumePolicy = StorageResumePolicy<ReadObjectDetails>.unbounded().withTotalResumeLimit(2)
     }
     let result = client.readObject(from: bucket, object: objectName, options: options)
@@ -1764,6 +1769,9 @@ import Testing
     #expect(requests.count == 2)
   }
 
+  /// Verifies that `consecutiveErrorCount` accumulated during `fetchInitial()` is preserved until
+  /// actual byte progress is made, halting immediately if the response stream fails before yielding
+  /// any bytes.
   @Test
   func downloadObjectInitialRetryCountsTowardConsecutiveErrorLimitWhenStreamFailsImmediately()
     async throws
@@ -1796,6 +1804,9 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
+      // `StopOnConsecutiveErrors` halts when `consecutiveErrorCount >= maxConsecutiveErrors`
+      // (checked after incrementing on each error), so a limit of 2 allows 1 retry and halts on the
+      // 2nd consecutive error without forward byte progress.
       $0.resumePolicy = StorageResumePolicy<ReadObjectDetails>.unbounded().stopOnConsecutiveErrors(
         2)
     }

@@ -282,6 +282,10 @@ final class ReadObjectCoordinator: @unchecked Sendable {
       }
       let initialResumeState = self.state.resumeState
       let newTask = Task { () throws -> ReadObjectMetadata in
+        // Track resume attempts made during the initial request on a local copy and
+        // persist the updated state back to the coordinator on exit. This ensures
+        // `totalResumeCount` and `consecutiveErrorCount` carry over to `nextChunkImpl()`
+        // if the response stream later fails mid-download.
         var localResumeState = initialResumeState
         defer {
           self.lock.withLock {
@@ -635,6 +639,8 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     taskToCancel?.cancel()
   }
 
+  /// Executes the initial GET request to retrieve object headers and open the response body stream,
+  /// updating `resumeState` in place if transient errors require retries before headers are received.
   fileprivate static func fetchInitial(
     httpClient: GoogleGax._HTTPClient,
     bucket: String,
