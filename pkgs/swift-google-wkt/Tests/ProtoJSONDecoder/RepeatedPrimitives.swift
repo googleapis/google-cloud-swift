@@ -78,6 +78,17 @@ extension ProtoJSONDecoderTest {
         #"{"fieldData":   ["NDI="] }"#,
         RepeatedPrimitives().with { $0.fieldData = [Data(base64Encoded: "NDI=")!] }
       ),
+      (
+        #"{"fieldData":   ["NDI", "-_-_", "Pz8_Pw", "Pz8_Pw=="] }"#,
+        RepeatedPrimitives().with {
+          $0.fieldData = [
+            Data("42".utf8),
+            Data([251, 255, 191]),
+            Data("????".utf8),
+            Data("????".utf8),
+          ]
+        }
+      ),
     ])
   func decodeRepeated(input: String, want: RepeatedPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
@@ -97,7 +108,12 @@ extension ProtoJSONDecoderTest {
       #"{"fieldUInt64": ["bad"] }"#,
       #"{"fieldFloat":  ["bad"] }"#,
       #"{"fieldDouble": ["bad"] }"#,
-      #"{"fieldData":   ["bad"] }"#,
+      #"{"fieldData":   ["bad!"] }"#,
+      #"{"fieldData":   ["a"] }"#,
+      #"{"fieldData":   ["NDI=="] }"#,
+      #"{"fieldData":   ["QUJD="] }"#,
+      #"{"fieldData":   ["ND=I"] }"#,
+      #"{"fieldData":   ["-_+/"] }"#,
     ])
   func decodeRepeatedBad(input: String) throws {
     let decoder = _ProtoJSONDecoder()

@@ -102,7 +102,7 @@ fileprivate struct InternalSingleValueContainer {
 
   func decodeData() throws -> Data {
     let string = try self.decode(String.self)
-    guard let data = Data(base64Encoded: string) else {
+    guard let data = decodeProtoBase64(string) else {
       throw DecodingError.dataCorruptedError(
         in: self, debugDescription: "Expected a base64 string.")
     }
@@ -175,7 +175,7 @@ fileprivate struct InternalKeyedContainer<K: CodingKey> {
 
   func decodeData(forKey key: Self.Key) throws -> Data {
     let string = try self.decode(String.self, forKey: key)
-    guard let data = Data(base64Encoded: string) else {
+    guard let data = decodeProtoBase64(string) else {
       throw DecodingError.dataCorruptedError(
         forKey: key, in: self, debugDescription: "Expected a base64 encoded string")
     }
@@ -229,7 +229,7 @@ fileprivate struct InternalUnkeyedDecodingContainer {
 
   mutating func decodeData() throws -> Data {
     let string = try self.decode(String.self)
-    guard let data = Data(base64Encoded: string) else {
+    guard let data = decodeProtoBase64(string) else {
       throw DecodingError.dataCorruptedError(
         in: self, debugDescription: "Expected a base64 string.")
     }

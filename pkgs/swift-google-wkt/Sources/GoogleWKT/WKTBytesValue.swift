@@ -40,7 +40,7 @@ extension Foundation.Data: _AnyPackable {
     guard case let .string(s) = v else {
       throw WKTAnyError.invalidValueField
     }
-    guard let d = Data(base64Encoded: s) else {
+    guard let d = decodeProtoBase64(s) else {
       throw WKTAnyError.invalidValueField
     }
     self = d
@@ -50,4 +50,71 @@ extension Foundation.Data: _AnyPackable {
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: .string(self.base64EncodedString())]
   }
+}
+
+/// Decodes a Base64 or URL-safe Base64 string, with or without `=` padding, as permitted by the
+/// Protobuf JSON Mapping specification for `bytes`.
+func decodeProtoBase64(_ input: String) -> Data? {
+  var hasStandard = false
+  var hasURLSafe = false
+  var hasWhitespace = false
+  var dataCount = 0
+  var padCount = 0
+
+  for byte in input.utf8 {
+    switch byte {
+    case UInt8(ascii: " "), UInt8(ascii: "\t"), UInt8(ascii: "\n"), UInt8(ascii: "\r"):
+      hasWhitespace = true
+    case UInt8(ascii: "="):
+      padCount += 1
+    default:
+      if padCount > 0 {
+        return nil
+      }
+      if byte == UInt8(ascii: "+") || byte == UInt8(ascii: "/") {
+        hasStandard = true
+      } else if byte == UInt8(ascii: "-") || byte == UInt8(ascii: "_") {
+        hasURLSafe = true
+      }
+      dataCount += 1
+    }
+  }
+
+  if hasStandard && hasURLSafe {
+    return nil
+  }
+
+  let remainder = dataCount % 4
+  if remainder == 1 {
+    return nil
+  }
+  let expectedPad = (4 - remainder) % 4
+  if padCount != 0 && padCount != expectedPad {
+    return nil
+  }
+
+  if !hasURLSafe && !hasWhitespace && padCount == expectedPad {
+    return Data(base64Encoded: input)
+  }
+
+  var bytes: [UInt8] = []
+  bytes.reserveCapacity(dataCount + expectedPad)
+  for byte in input.utf8 {
+    switch byte {
+    case UInt8(ascii: "-"):
+      bytes.append(UInt8(ascii: "+"))
+    case UInt8(ascii: "_"):
+      bytes.append(UInt8(ascii: "/"))
+    case UInt8(ascii: " "), UInt8(ascii: "\t"), UInt8(ascii: "\n"), UInt8(ascii: "\r"),
+      UInt8(ascii: "="):
+      continue
+    default:
+      bytes.append(byte)
+    }
+  }
+  for _ in 0..<expectedPad {
+    bytes.append(UInt8(ascii: "="))
+  }
+
+  return Data(base64Encoded: String(decoding: bytes, as: UTF8.self))
 }
