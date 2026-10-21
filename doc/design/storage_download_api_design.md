@@ -142,19 +142,27 @@ The download API reuses the existing `ChecksumOptions` struct defined in `WriteO
 ```swift
 /// Configuration options for checksum validation (reused from `WriteObjectOptions.swift`).
 public struct ChecksumOptions: Sendable, Hashable {
-  public var crc32c: ChecksumValue?
-  public var md5: ChecksumValue?
+  public var crc32c: CRC32CValue?
+  public var md5: MD5Value?
 
-  public enum ChecksumValue: Sendable, Hashable, ExpressibleByStringLiteral, ExpressibleByIntegerLiteral {
+  public enum CRC32CValue: Sendable, Hashable, ExpressibleByStringLiteral, ExpressibleByIntegerLiteral {
     case auto
     case value(String)
 
     public init(stringLiteral value: String)
     public init(_ intValue: UInt32)
-    public init(integerLiteral value: UInt64)
+    public init(integerLiteral value: UInt32)
   }
 
-  public init(crc32c: ChecksumValue? = .auto, md5: ChecksumValue? = nil)
+  public enum MD5Value: Sendable, Hashable, ExpressibleByStringLiteral {
+    case auto
+    case value(String)
+
+    public init(stringLiteral value: String)
+    public init(_ data: Data)
+  }
+
+  public init(crc32c: CRC32CValue? = .auto, md5: MD5Value? = nil)
 
   public static var `default`: ChecksumOptions { ChecksumOptions(crc32c: .auto, md5: nil) }
   public static var off: ChecksumOptions { ChecksumOptions(crc32c: nil, md5: nil) }
