@@ -232,7 +232,8 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     var hasValidatedChecksums: Bool = false
 
     init(options: ReadObjectOptions) {
-      self.resumeState = ResumeState(details: ReadObjectDetails())
+      let initialTotalBytes: UInt64? = options.range?.isZeroBytes == true ? 0 : nil
+      self.resumeState = ResumeState(details: ReadObjectDetails(totalBytes: initialTotalBytes))
       if options.checksums?.crc32c != nil {
         self.crc32cCalculator = CRC32CCalculator()
       }
@@ -282,7 +283,7 @@ final class ReadObjectCoordinator: @unchecked Sendable {
       }
       let initialResumeState = self.state.resumeState
       let newTask = Task { () throws -> ReadObjectMetadata in
-        let (response, metadata) = try await Self.fetchInitial(
+        let (response, metadata, updatedResumeState) = try await Self.fetchInitial(
           httpClient: self.httpClient,
           bucket: self.bucket,
           object: self.object,
@@ -295,6 +296,7 @@ final class ReadObjectCoordinator: @unchecked Sendable {
           if self.state.isCancelled {
             throw CancellationError()
           }
+          self.state.resumeState = updatedResumeState
           self.state.metadata = metadata
           self.state.expectedCrc32c = rawCrc
           self.state.expectedMd5 = rawMd5
@@ -629,6 +631,30 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     taskToCancel?.cancel()
   }
 
+  fileprivate static func parseExpectedReadBytes(
+    from headers: NIOHTTP1.HTTPHeaders,
+    metadata: ReadObjectMetadata,
+    options: ReadObjectOptions
+  ) -> UInt64? {
+    if options.range?.isZeroBytes == true {
+      return 0
+    }
+    if let contentRangeHeader = headers.first(name: "Content-Range"),
+      let contentRange = try? HttpContentRange.parse(contentRangeHeader)
+    {
+      return contentRange.end - contentRange.start + 1
+    }
+    if let contentLengthStr = headers.first(name: "Content-Length"),
+      let contentLength = UInt64(contentLengthStr)
+    {
+      return contentLength
+    }
+    if let storedLength = metadata.storedContentLength, metadata.contentEncoding != nil {
+      return storedLength
+    }
+    return nil
+  }
+
   fileprivate static func fetchInitial(
     httpClient: GoogleGax._HTTPClient,
     bucket: String,
@@ -636,9 +662,10 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     options: ReadObjectOptions,
     resumeLoop: _ResumeLoop<ReadObjectDetails>,
     resumeState: ResumeState<ReadObjectDetails>
-  ) async throws -> (_HTTPClientResponse, ReadObjectMetadata) {
+  ) async throws -> (_HTTPClientResponse, ReadObjectMetadata, ResumeState<ReadObjectDetails>) {
+    var localResumeState = resumeState
     do {
-      return try await resumeLoop.run(state: resumeState) { _ in
+      let (response, metadata) = try await resumeLoop.run(state: &localResumeState) { _ in
         let request = try await httpClient.buildReadObjectRequest(
           bucket: bucket, object: object, options: options)
         let response: _HTTPClientResponse
@@ -667,6 +694,9 @@ final class ReadObjectCoordinator: @unchecked Sendable {
         throw ReadObjectError.unexpectedServerResponse(
           statusCode: statusCode, message: message)
       }
+      localResumeState.details.totalBytes = parseExpectedReadBytes(
+        from: response.headers, metadata: metadata, options: options)
+      return (response, metadata, localResumeState)
     } catch let error as ReadObjectError {
       throw error
     } catch let error as RequestError {
