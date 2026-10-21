@@ -106,13 +106,7 @@ extension StorageClient {
     let (rawCrc, rawMd5) = extractExpectedChecksums(from: headers)
     var checksums = ObjectChecksums()
     var hasChecksums = false
-    if let rawCrc, let data = Data(base64Encoded: rawCrc), data.count == 4 {
-      let idx = data.startIndex
-      let val =
-        (UInt32(data[idx]) << 24)
-        | (UInt32(data[idx + 1]) << 16)
-        | (UInt32(data[idx + 2]) << 8)
-        | UInt32(data[idx + 3])
+    if let rawCrc, let val = crc32cFromBase64(rawCrc) {
       checksums.crc32C = val
       hasChecksums = true
     }
