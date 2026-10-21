@@ -1849,7 +1849,13 @@ import Testing
     )
   }
 
-  @Test func downloadObjectWithoutSizeHeadersLeavesReadObjectDetailsTotalBytesNil() async throws {
+  @Test(arguments: [
+    [:] as [String: String],
+    ["x-goog-stored-content-length": "42"],
+  ])
+  func downloadObjectWithoutSizeHeadersLeavesReadObjectDetailsTotalBytesNil(
+    headers: [String: String]
+  ) async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "unknown-size.bin"
@@ -1860,7 +1866,7 @@ import Testing
       response: .stream(
         statusCode: 200,
         chunks: [payload],
-        headers: ["x-goog-stored-content-length": "42"]
+        headers: headers
       ),
       for: downloadUrl
     )
