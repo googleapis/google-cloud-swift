@@ -91,6 +91,9 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       return endpoint
     }
     if let hostEnv = hostEnv, !hostEnv.isEmpty {
+      // Check explicitly for `http://` or `https://` scheme prefixes rather than `hasPrefix("http")`
+      // so hostnames starting with `"http"` (e.g. `http-metadata-proxy.internal:8080`) still get an
+      // `http://` scheme prepended instead of having the hostname parsed as the URL scheme.
       let lowercased = hostEnv.lowercased()
       let hasScheme = lowercased.hasPrefix("http://") || lowercased.hasPrefix("https://")
       let hostString = hasScheme ? hostEnv : "http://\(hostEnv)"
@@ -99,6 +102,9 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
         let host = url.host,
         !host.isEmpty
       else {
+        // Wrap `CredentialsError.parseError` inside `.cannotFetchToken` so callers always receive
+        // `.cannotFetchToken` from `fetchToken()`, while `AuthHTTPError.isRetryable(_:)` unwraps
+        // the underlying `.parseError` and treats invalid configuration as a permanent failure.
         throw CredentialsError.cannotFetchToken(
           message: "Could not fetch an access token from the metadata server.",
           underlyingError: CredentialsError.parseError(

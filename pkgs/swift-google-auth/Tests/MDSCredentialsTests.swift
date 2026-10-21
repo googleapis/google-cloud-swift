@@ -185,6 +185,8 @@ import Testing
     "://missing-scheme",
   ])
   func gceMetadataHostInvalidURLThrowsErrorWithoutCrash(invalidHost: String) async throws {
+    // Pass an empty MockHTTPClient: its `deinit` asserts that all queued responses were consumed,
+    // which verifies that invalid `GCE_METADATA_HOST` values fail before making any network calls.
     let mock = MockHTTPClient([])
     let client = AuthHTTPClient(mock: mock)
     let provider = MDSCredentials(
