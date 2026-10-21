@@ -74,7 +74,7 @@ enum ADC: Sendable {
         header = try JSONDecoder().decode(CredentialHeader.self, from: data)
       } catch {
         throw CredentialsError.parseError(
-          "Failed to parse Application Default Credentials JSON: \(error.localizedDescription)")
+          "Failed to parse Application Default Credentials JSON: \(error)")
       }
 
       if let source = try CredentialParserRegistry.shared.parse(
