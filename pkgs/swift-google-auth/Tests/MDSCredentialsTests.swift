@@ -138,6 +138,7 @@ import Testing
     ("https://127.0.0.1:8443", "https://127.0.0.1:8443"),
     ("HTTP://127.0.0.1:8080", "HTTP://127.0.0.1:8080"),
     ("HTTPS://127.0.0.1:8443", "HTTPS://127.0.0.1:8443"),
+    ("[::1]:8080", "http://[::1]:8080"),
   ])
   func gceMetadataHostSchemeAndPrefixResolution(hostEnv: String, expectedBase: String)
     async throws
@@ -180,6 +181,10 @@ import Testing
   @Test(arguments: [
     "http://",
     "https://",
+    "http://:8080",
+    "127.0.0.1:abc",
+    "::1",
+    "ftp://127.0.0.1:8080",
     "http://invalid host with spaces",
     "invalid host with spaces",
     "://missing-scheme",
