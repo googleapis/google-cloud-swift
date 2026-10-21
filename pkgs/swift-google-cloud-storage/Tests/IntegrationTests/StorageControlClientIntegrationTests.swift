@@ -473,6 +473,7 @@ struct StorageControlClientIntegrationTests: Sendable {
 
     let uploaded = try await storageClient.writeObject(data, to: bucketName, as: sourceName)
     let targetStorageClass = uploaded.storageClass == "NEARLINE" ? "STANDARD" : "NEARLINE"
+    let stepCount = Mutex(0)
 
     do {
       let rewriteReq = RewriteObjectRequest().with {
@@ -486,7 +487,6 @@ struct StorageControlClientIntegrationTests: Sendable {
           $0.storageClass = targetStorageClass
         }
       }
-      let stepCount = Mutex(0)
       let rewritten = try await controlClient.rewriteObjectUntilDone(request: rewriteReq) { _ in
         stepCount.withLock { $0 += 1 }
       }
