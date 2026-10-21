@@ -31,12 +31,13 @@ package struct StringOrInt<T: FixedWidthInteger & Decodable & Sendable>: Decodab
     } else {
       do {
         self.value = try container.decode(T.self)
-      } catch DecodingError.typeMismatch {
+      } catch DecodingError.typeMismatch(_, let context) {
         throw DecodingError.typeMismatch(
-          T.self,
+          StringOrInt<T>.self,
           DecodingError.Context(
             codingPath: container.codingPath,
-            debugDescription: "Expected to decode \(T.self) or String"
+            debugDescription: "Expected to decode \(T.self) or String",
+            underlyingError: DecodingError.typeMismatch(T.self, context)
           )
         )
       }
