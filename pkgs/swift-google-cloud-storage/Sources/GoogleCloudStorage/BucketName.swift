@@ -30,16 +30,6 @@ package enum BucketName: Sendable {
     return "projects/_/buckets/\(bucket)"
   }
 
-  /// Alias for `formatResourceName(_:)`.
-  package static func formatBucketResourceName(_ bucket: String) -> String {
-    formatResourceName(bucket)
-  }
-
-  /// Alias for `formatResourceName(_:)`.
-  package static func format(_ bucket: String) -> String {
-    formatResourceName(bucket)
-  }
-
   /// Extracts the simple bucket name from a bucket resource name (`projects/_/buckets/<bucket>`)
   /// or plain bucket name (`<bucket>`).
   ///
@@ -55,10 +45,5 @@ package enum BucketName: Sendable {
       return String(remainder)
     }
     return bucket
-  }
-
-  /// Alias for `extractBucketName(_:)`.
-  package static func extract(_ bucket: String) -> String {
-    extractBucketName(bucket)
   }
 }
