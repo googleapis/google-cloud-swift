@@ -100,7 +100,10 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       guard
         let url = URL(string: hostString),
         let host = url.host,
-        !host.isEmpty
+        !host.isEmpty,
+        url.path.isEmpty || url.path == "/",
+        url.query == nil,
+        url.fragment == nil
       else {
         // Wrap `CredentialsError.parseError` inside `.cannotFetchToken` so callers always receive
         // `.cannotFetchToken` from `fetchToken()`, while `AuthHTTPError.isRetryable(_:)` unwraps
@@ -155,9 +158,13 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   func fetchToken() async throws -> Token {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
     let baseEndpoint = try self.resolveBaseEndpoint(hostEnv: hostEnv)
-    let isADCFallback = self.fromADC && hostEnv == nil
+    let isADCFallback =
+      self.fromADC && self.endpoint == nil && (hostEnv == nil || hostEnv?.isEmpty == true)
 
-    guard var urlComponents = URLComponents(url: baseEndpoint, resolvingAgainstBaseURL: false)
+    guard
+      var urlComponents = URLComponents(url: baseEndpoint, resolvingAgainstBaseURL: false),
+      let host = urlComponents.host,
+      !host.isEmpty
     else {
       throw CredentialsError.cannotFetchToken(
         message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
