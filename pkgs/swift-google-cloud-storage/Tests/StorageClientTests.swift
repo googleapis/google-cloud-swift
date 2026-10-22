@@ -29,7 +29,7 @@ import Testing
 
     let client = try StorageClient(options)
     #expect(client.options.client.endpoint == "https://override.googleapis.com")
-    #expect(client.inner.clientHeader.build().contains("gccl/0.5.0"))
+    #expect(client.inner.clientHeader.build().contains("gccl/\(PackageVersion.version)"))
     #expect(client.inner.clientHeader.build().contains("rest/"))
   }
 
