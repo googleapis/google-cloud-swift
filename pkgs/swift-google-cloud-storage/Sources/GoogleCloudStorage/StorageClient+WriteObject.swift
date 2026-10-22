@@ -514,16 +514,14 @@ extension StorageClient {
     options: WriteObjectOptions,
     isResumedSession: inout Bool,
     maxBytesSent: inout UInt64,
-    lastCommittedBytes: inout UInt64?
+    lastCommittedBytes: inout UInt64
   ) async throws -> (status: ResumableUploadStatus, crc32cSeed: UInt32?) {
     let queryResult = try await queryUploadStatus(
       httpClient: httpClient, uploadId: uploadId, options: options)
     if case .inprogress(let committedBytes) = queryResult.status {
       if isResumedSession {
         maxBytesSent = committedBytes
-        if lastCommittedBytes != nil {
-          lastCommittedBytes = committedBytes
-        }
+        lastCommittedBytes = committedBytes
         isResumedSession = false
       } else {
         guard committedBytes <= maxBytesSent else {
@@ -533,16 +531,14 @@ extension StorageClient {
               "Server reported committed offset \(committedBytes) exceeding bytes sent (\(maxBytesSent))"
           )
         }
-        if let lastCommitted = lastCommittedBytes {
-          guard committedBytes >= lastCommitted else {
-            throw WriteObjectError.unexpectedServerResponse(
-              statusCode: 308,
-              message:
-                "Server reported committed offset \(committedBytes) prior to last committed offset (\(lastCommitted))"
-            )
-          }
-          lastCommittedBytes = committedBytes
+        guard committedBytes >= lastCommittedBytes else {
+          throw WriteObjectError.unexpectedServerResponse(
+            statusCode: 308,
+            message:
+              "Server reported committed offset \(committedBytes) prior to last committed offset (\(lastCommittedBytes))"
+          )
         }
+        lastCommittedBytes = committedBytes
       }
     }
     return queryResult
@@ -587,7 +583,7 @@ extension StorageClient {
       isResumedSession = true
     }
     var maxBytesSent = initialBytes
-    var lastCommittedBytes: UInt64? = nil
+    var lastCommittedBytes = initialBytes
     var resumeState = ResumeState(
       details: WriteObjectDetails(
         bytesWritten: initialBytes,
@@ -743,6 +739,7 @@ extension StorageClient {
         }
         uploadStatus = chunkResult.status
         if case .inprogress(let nextBytes) = chunkResult.status {
+          lastCommittedBytes = nextBytes
           let chunkStart = chunkToSend.chunkStartOffset
           let chunkEnd = chunkStart + UInt64(chunkToSend.data.count)
 
@@ -814,7 +811,7 @@ extension StorageClient {
       isResumedSession = true
     }
     var maxBytesSent = initialBytes
-    var lastCommittedBytes: UInt64? = initialBytes
+    var lastCommittedBytes = initialBytes
     var resumeState = ResumeState(
       details: WriteObjectDetails(
         bytesWritten: initialBytes,
