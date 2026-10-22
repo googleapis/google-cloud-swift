@@ -119,7 +119,7 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
     var state = self.initialState
     var pollingState = PollingState()
     // Tracks the most recent transient error from `pollOp()` so it can be attached as the
-    // `source` if a time-based policy expires before the next successful poll.
+    // `underlyingError` if a time-based policy expires before the next successful poll.
     var lastError: RequestError? = nil
     while !state.done {
       switch pollingPolicy.onInProgress(state: pollingState) {
@@ -131,13 +131,13 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
       let delay = backoffPolicy.backoffDelay(for: pollingState)
       // Avoid sleeping if the next backoff delay would exceed the policy's remaining time budget.
       if let remaining = pollingPolicy.remainingTime(state: pollingState), remaining < delay {
-        throw RequestError.exhausted(.elapsedTime(source: lastError))
+        throw RequestError.exhausted(.elapsedTime(underlyingError: lastError))
       }
       try await sleep(delay)
       // Re-check after waking up in case the deadline expired during `sleep(delay)`, preventing an
       // extra post-deadline `getOperation` RPC.
       if let remaining = pollingPolicy.remainingTime(state: pollingState), remaining <= .zero {
-        throw RequestError.exhausted(.elapsedTime(source: lastError))
+        throw RequestError.exhausted(.elapsedTime(underlyingError: lastError))
       }
       pollingState.attemptCount += 1
       do {

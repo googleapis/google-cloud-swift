@@ -361,11 +361,11 @@ import GoogleRpc
     #expect(sleepProvider.sleepCount == 0)
   }
 
-  @Test func noSleepPastRemainingTimeAfterErrorPreservesSource() async throws {
+  @Test func noSleepPastRemainingTimeAfterErrorPreservesUnderlyingError() async throws {
     // Iteration 1: pre-sleep (5s >= 1s) and post-sleep (5s > 0) succeed; `poll()` throws a
     // retryable error (`transientError`).
     // Iteration 2: pre-sleep remaining time (100ms) is less than the backoff delay (1s), so the
-    // poller throws `.elapsedTime(source: transientError)` without sleeping a second time.
+    // poller throws `.elapsedTime(underlyingError: transientError)` without sleeping a second time.
     let transientError = Self.transient()
     let remainingValues: [Duration?] = [.seconds(5), .seconds(5), .milliseconds(100)]
     let remainingIndex = Atomic<Int>(0)
@@ -393,7 +393,7 @@ import GoogleRpc
     let error = await #expect(throws: RequestError.self) {
       try await op.wait()
     }
-    #expect(error == RequestError.exhausted(.elapsedTime(source: transientError)))
+    #expect(error == RequestError.exhausted(.elapsedTime(underlyingError: transientError)))
     #expect(pollProvider.pollCount == 1)
     #expect(sleepProvider.sleepCount == 1)
   }
