@@ -42,6 +42,7 @@ public struct StorageSizeDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = StorageSizeDetails().with { $0.dataStorageSizeInGbs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

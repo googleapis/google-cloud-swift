@@ -43,6 +43,7 @@ public struct ListApplicationsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = ListApplicationsResponse().with { $0.applications = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

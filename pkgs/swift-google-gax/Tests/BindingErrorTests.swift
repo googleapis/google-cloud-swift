@@ -233,6 +233,12 @@ import Testing
     #expect(path.debugDescription.contains("PathMismatch(substitutions:"))
 
     let err = BindingError(paths: [path])
-    #expect(err.debugDescription.contains("BindingError(paths:"))
+    let anyError: any Error = err
+    #expect(
+      err.debugDescription.hasPrefix(
+        "BindingError(\(String(reflecting: err.description)), paths:"
+      )
+    )
+    #expect(String(reflecting: anyError) == err.debugDescription)
   }
 }

@@ -22,9 +22,14 @@ struct ADCResolverTests {
   @Test("load ADC no file at env is error")
   func loadADCNoFileAtEnvIsError() {
     let env = ["GOOGLE_APPLICATION_CREDENTIALS": "file-does-not-exist.json"]
-    #expect(throws: ADCResolverError.self) {
+    let error = #expect(throws: CredentialsError.self) {
       _ = try loadADC(environment: env)
     }
+    guard case let .cannotLoadFile(message, _) = error else {
+      Issue.record("Expected CredentialsError.cannotLoadFile, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("file-does-not-exist.json"))
   }
 
   @Test("load ADC no well known path fallback to mds")

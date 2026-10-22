@@ -41,6 +41,7 @@ public struct ListDataTableRowsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = ListDataTableRowsResponse().with { $0.dataTableRows = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

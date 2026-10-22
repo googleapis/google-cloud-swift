@@ -37,6 +37,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataSource().with { $0.entity = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

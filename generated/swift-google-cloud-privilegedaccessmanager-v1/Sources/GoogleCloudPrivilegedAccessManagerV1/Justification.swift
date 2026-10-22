@@ -35,6 +35,7 @@ public struct Justification: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Justification().with { $0.unstructuredJustification = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

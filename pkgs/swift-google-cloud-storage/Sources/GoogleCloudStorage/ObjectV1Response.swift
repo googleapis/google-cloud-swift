@@ -15,32 +15,32 @@
 import Foundation
 package import GoogleWKT
 
-package struct StringOrInt64: Decodable, Sendable {
-  package let value: Int64
+package struct StringOrInt<T: FixedWidthInteger & Decodable & Sendable>: Decodable, Sendable {
+  package let value: T
 
   package init(from decoder: any Decoder) throws {
     let container = try decoder.singleValueContainer()
-    if let intVal = try? container.decode(Int64.self) {
-      self.value = intVal
-    } else if let strVal = try? container.decode(String.self), let parsed = Int64(strVal) {
+    if let strVal = try? container.decode(String.self) {
+      guard let parsed = T(strVal) else {
+        throw DecodingError.dataCorruptedError(
+          in: container,
+          debugDescription: "Invalid \(T.self) string value: \(strVal)"
+        )
+      }
       self.value = parsed
     } else {
-      self.value = 0
-    }
-  }
-}
-
-package struct StringOrInt32: Decodable, Sendable {
-  package let value: Int32
-
-  package init(from decoder: any Decoder) throws {
-    let container = try decoder.singleValueContainer()
-    if let intVal = try? container.decode(Int32.self) {
-      self.value = intVal
-    } else if let strVal = try? container.decode(String.self), let parsed = Int32(strVal) {
-      self.value = parsed
-    } else {
-      self.value = 0
+      do {
+        self.value = try container.decode(T.self)
+      } catch DecodingError.typeMismatch(_, let context) {
+        throw DecodingError.typeMismatch(
+          StringOrInt<T>.self,
+          DecodingError.Context(
+            codingPath: container.codingPath,
+            debugDescription: "Expected to decode \(T.self) or String",
+            underlyingError: DecodingError.typeMismatch(T.self, context)
+          )
+        )
+      }
     }
   }
 }
@@ -68,10 +68,10 @@ package struct ObjectV1Response: Decodable, Sendable {
   package var name: String?
   package var bucket: String?
   package var etag: String?
-  package var generation: StringOrInt64?
-  package var metageneration: StringOrInt64?
+  package var generation: StringOrInt<Int64>?
+  package var metageneration: StringOrInt<Int64>?
   package var storageClass: String?
-  package var size: StringOrInt64?
+  package var size: StringOrInt<Int64>?
   package var contentEncoding: String?
   package var contentDisposition: String?
   package var cacheControl: String?
@@ -79,7 +79,7 @@ package struct ObjectV1Response: Decodable, Sendable {
   package var contentLanguage: String?
   package var contentType: String?
   package var timeCreated: GoogleWKT.WKTTimestamp?
-  package var componentCount: StringOrInt32?
+  package var componentCount: StringOrInt<Int32>?
   package var crc32c: String?
   package var md5Hash: String?
   package var updated: GoogleWKT.WKTTimestamp?

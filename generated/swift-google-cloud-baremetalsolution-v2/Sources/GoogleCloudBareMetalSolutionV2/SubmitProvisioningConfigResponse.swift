@@ -36,6 +36,7 @@ public struct SubmitProvisioningConfigResponse: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = SubmitProvisioningConfigResponse().with { $0.provisioningConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

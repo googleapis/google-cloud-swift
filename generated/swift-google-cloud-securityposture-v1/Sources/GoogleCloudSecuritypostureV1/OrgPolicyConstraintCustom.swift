@@ -39,6 +39,7 @@ public struct OrgPolicyConstraintCustom: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = OrgPolicyConstraintCustom().with { $0.customConstraint = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

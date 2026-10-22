@@ -157,6 +157,7 @@
     /// ```
     /// let value = Intent().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -373,6 +374,7 @@
       /// ```
       /// let value = TrainingPhrase().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -467,6 +469,7 @@
         /// ```
         /// let value = Part().with { $0.text = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -751,6 +754,7 @@
       /// ```
       /// let value = Parameter().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -881,6 +885,7 @@
       /// ```
       /// let value = Message().with { $0.text = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1075,6 +1080,7 @@
         /// ```
         /// let value = Text().with { $0.text = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1158,6 +1164,7 @@
         /// ```
         /// let value = Image().with { $0.imageUri = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1248,6 +1255,7 @@
         /// ```
         /// let value = QuickReplies().with { $0.title = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1342,6 +1350,7 @@
         /// ```
         /// let value = Card().with { $0.title = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1423,6 +1432,7 @@
           /// ```
           /// let value = Button().with { $0.text = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1539,6 +1549,7 @@
         /// ```
         /// let value = SimpleResponse().with { $0.textToSpeech = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1633,6 +1644,7 @@
         /// ```
         /// let value = SimpleResponses().with { $0.simpleResponses = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1726,6 +1738,7 @@
         /// ```
         /// let value = BasicCard().with { $0.title = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1810,6 +1823,7 @@
           /// ```
           /// let value = Button().with { $0.title = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1872,6 +1886,7 @@
             /// ```
             /// let value = OpenUriAction().with { $0.uri = ... }
             /// ```
+            @inlinable
             public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
               var copy = self
               try config(&copy)
@@ -1997,6 +2012,7 @@
         /// ```
         /// let value = Suggestion().with { $0.title = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2076,6 +2092,7 @@
         /// ```
         /// let value = Suggestions().with { $0.suggestions = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2162,6 +2179,7 @@
         /// ```
         /// let value = LinkOutSuggestion().with { $0.destinationName = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2254,6 +2272,7 @@
         /// ```
         /// let value = ListSelect().with { $0.title = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2334,6 +2353,7 @@
           /// ```
           /// let value = Item().with { $0.info = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -2450,6 +2470,7 @@
         /// ```
         /// let value = CarouselSelect().with { $0.items = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2518,6 +2539,7 @@
           /// ```
           /// let value = Item().with { $0.info = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -2641,6 +2663,7 @@
         /// ```
         /// let value = SelectItemInfo().with { $0.key = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2730,6 +2753,7 @@
         /// ```
         /// let value = MediaContent().with { $0.mediaType = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2806,6 +2830,7 @@
           /// ```
           /// let value = ResponseMediaObject().with { $0.name = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -3080,6 +3105,7 @@
         /// ```
         /// let value = BrowseCarouselCard().with { $0.items = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -3162,6 +3188,7 @@
           /// ```
           /// let value = BrowseCarouselCardItem().with { $0.openUriAction = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -3247,6 +3274,7 @@
             /// ```
             /// let value = OpenUrlAction().with { $0.url = ... }
             /// ```
+            @inlinable
             public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
               var copy = self
               try config(&copy)
@@ -3657,6 +3685,7 @@
         /// ```
         /// let value = TableCard().with { $0.title = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -3777,6 +3806,7 @@
         /// ```
         /// let value = ColumnProperties().with { $0.header = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -3993,6 +4023,7 @@
         /// ```
         /// let value = TableCardRow().with { $0.cells = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -4083,6 +4114,7 @@
         /// ```
         /// let value = TableCardCell().with { $0.text = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -4390,6 +4422,7 @@
       /// ```
       /// let value = FollowupIntentInfo().with { $0.followupIntentName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

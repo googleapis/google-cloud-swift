@@ -39,6 +39,7 @@ public struct FetchGitAheadBehindResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = FetchGitAheadBehindResponse().with { $0.commitsAhead = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

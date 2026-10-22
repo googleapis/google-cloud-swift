@@ -64,6 +64,7 @@ public struct NodePoolAutoscaling: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NodePoolAutoscaling().with { $0.enabled = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

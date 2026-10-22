@@ -37,6 +37,7 @@
     /// ```
     /// let value = DeployedIndexAuthConfig().with { $0.authProvider = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -104,6 +105,7 @@
       /// ```
       /// let value = AuthProvider().with { $0.audiences = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

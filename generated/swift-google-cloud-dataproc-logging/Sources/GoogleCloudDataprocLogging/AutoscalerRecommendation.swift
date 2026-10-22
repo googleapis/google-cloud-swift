@@ -40,6 +40,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = AutoscalerRecommendation().with { $0.inputs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -111,6 +112,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = Inputs().with { $0.clusterMetrics = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -228,6 +230,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = Outputs().with { $0.decision = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

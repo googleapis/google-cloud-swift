@@ -71,6 +71,7 @@
     /// ```
     /// let value = Environment().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -169,6 +170,7 @@
       /// ```
       /// let value = VersionConfig().with { $0.version = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -264,6 +266,7 @@
       /// ```
       /// let value = TestCasesConfig().with { $0.testCases = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -365,6 +368,7 @@
       /// ```
       /// let value = WebhookConfig().with { $0.webhookOverrides = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

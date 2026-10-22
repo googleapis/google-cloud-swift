@@ -37,6 +37,7 @@ public struct NodeTaints: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NodeTaints().with { $0.taints = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

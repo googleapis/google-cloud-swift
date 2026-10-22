@@ -39,6 +39,7 @@ public struct ImageSegmentationPredictionParams: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = ImageSegmentationPredictionParams().with { $0.confidenceThreshold = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

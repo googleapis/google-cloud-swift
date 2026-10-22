@@ -36,6 +36,7 @@ public struct PlaceholderSubstitutionRule: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = PlaceholderSubstitutionRule().with { $0.attribute = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -42,6 +42,7 @@ public struct DiskMigrationStep: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DiskMigrationStep().with { $0.creatingSourceDiskSnapshot = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

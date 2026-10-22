@@ -39,6 +39,7 @@
     /// ```
     /// let value = InstanceGroupManagerStatusStatefulPerInstanceConfigs().with { $0.allEffective = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

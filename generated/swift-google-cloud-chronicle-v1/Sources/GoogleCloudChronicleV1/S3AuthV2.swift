@@ -36,6 +36,7 @@ public struct S3AuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = S3AuthV2().with { $0.accessKeySecretAuth = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

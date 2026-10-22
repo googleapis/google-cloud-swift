@@ -40,6 +40,7 @@ public struct SetDefaultProcessorVersionMetadata: Codable, Equatable, GoogleWKT.
   /// ```
   /// let value = SetDefaultProcessorVersionMetadata().with { $0.commonMetadata = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

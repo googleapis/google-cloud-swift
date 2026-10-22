@@ -43,6 +43,7 @@ public struct AccessControlAction: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AccessControlAction().with { $0.operationType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

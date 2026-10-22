@@ -139,6 +139,7 @@ public struct PriceInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PriceInfo().with { $0.currencyCode = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -256,6 +257,7 @@ public struct PriceInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PriceRange().with { $0.price = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

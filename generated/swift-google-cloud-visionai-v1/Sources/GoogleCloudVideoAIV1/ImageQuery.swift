@@ -35,6 +35,7 @@ public struct ImageQuery: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ImageQuery().with { $0.inputImage = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

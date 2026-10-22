@@ -41,6 +41,7 @@ public struct AwsInstancePlacement: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AwsInstancePlacement().with { $0.tenancy = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

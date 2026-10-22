@@ -27,20 +27,18 @@ import GoogleAuth
   @Test func then() {
     let got = RequestOptions().with {
       $0.attemptTimeout = .seconds(3)
+      $0.idempotent = true
       $0.quotaProject = "my-quota-project"
     }
     #expect(got.attemptTimeout == .seconds(3))
+    #expect(got.idempotent == true)
     #expect(got.quotaProject == "my-quota-project")
   }
 
   @Test func thenThrowing() throws {
     let got = try RequestOptions().with {
       $0.retryPolicy = NeverRetry()
-      $0.backoffPolicy = try ExponentialBackoff(
-        config: ExponentialBackoffConfig().with {
-          $0.initialDelay = .milliseconds(100)
-        }
-      )
+      $0.backoffPolicy = try ExponentialBackoff(initialDelay: .milliseconds(100))
       $0.pollingBackoffPolicy = MockBackoff(delay: .seconds(2))
     }
     #expect(got.retryPolicy != nil)
@@ -57,6 +55,7 @@ import GoogleAuth
   @Test func defaults() {
     let got = RequestOptions()
     #expect(got.attemptTimeout == nil)
+    #expect(got.idempotent == nil)
     #expect(got.quotaProject == nil)
     #expect(got.pollingBackoffPolicy == nil)
     #expect(got.headers.isEmpty)
@@ -64,13 +63,26 @@ import GoogleAuth
 
   @Test func headers() {
     let got = RequestOptions().with {
+      $0.headers = [
+        ("x-multi-header", "val-1"),
+        ("x-multi-header", "val-2"),
+      ]
+      $0.headers["X-Custom-Header"] = "initial-value"
       $0.headers["x-custom-header"] = "custom-value"
     }
     #expect(got.headers["x-custom-header"] == "custom-value")
+    #expect(got.headers["X-CUSTOM-HEADER"] == "custom-value")
+    #expect(got.headers.values(for: "x-custom-header") == ["custom-value"])
+    #expect(got.headers.values(for: "x-multi-header") == ["val-1", "val-2"])
+
+    let fromLiteral = RequestOptions().with {
+      $0.headers = ["x-literal-header": "literal-value"]
+    }
+    #expect(fromLiteral.headers["X-Literal-Header"] == "literal-value")
   }
 
   @Test func sanitizeCustomHeadersStripsReserved() {
-    let input: [String: String] = [
+    let input: HTTPHeaders = [
       "authorization": "Bearer bad",
       "AUTHORIZATION": "Bearer bad-upper",
       "Authorization": "Bearer bad-title",
@@ -94,7 +106,7 @@ import GoogleAuth
   }
 
   @Test func sanitizeCustomHeadersExcludesAuthHeaders() {
-    let input: [String: String] = [
+    let input: HTTPHeaders = [
       "x-custom-future-auth": "custom-value",
       "X-Another-Future-Auth": "another-value",
       "x-legitimate-custom": "legit-val",

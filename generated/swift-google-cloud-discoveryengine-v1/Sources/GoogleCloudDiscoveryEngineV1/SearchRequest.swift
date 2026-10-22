@@ -494,6 +494,7 @@
     /// ```
     /// let value = SearchRequest().with { $0.servingConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -783,6 +784,7 @@
       /// ```
       /// let value = ImageQuery().with { $0.imageBytes = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -921,6 +923,7 @@
       /// ```
       /// let value = DataStoreSpec().with { $0.dataStore = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1096,6 +1099,7 @@
       /// ```
       /// let value = FacetSpec().with { $0.facetKey = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1232,6 +1236,7 @@
         /// ```
         /// let value = FacetKey().with { $0.key = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1375,6 +1380,7 @@
       /// ```
       /// let value = BoostSpec().with { $0.conditionBoostSpecs = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1471,6 +1477,7 @@
         /// ```
         /// let value = ConditionBoostSpec().with { $0.condition = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1564,6 +1571,7 @@
           /// ```
           /// let value = BoostControlSpec().with { $0.fieldName = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1659,6 +1667,7 @@
             /// ```
             /// let value = ControlPoint().with { $0.attributeValue = ... }
             /// ```
+            @inlinable
             public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
               var copy = self
               try config(&copy)
@@ -2063,6 +2072,7 @@
       /// ```
       /// let value = QueryExpansionSpec().with { $0.condition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2282,6 +2292,7 @@
       /// ```
       /// let value = SpellCorrectionSpec().with { $0.mode = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2515,6 +2526,7 @@
       /// ```
       /// let value = ContentSearchSpec().with { $0.snippetSpec = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2608,6 +2620,7 @@
         /// ```
         /// let value = SnippetSpec().with { $0.maxSnippetCount = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2805,6 +2818,7 @@
         /// ```
         /// let value = SummarySpec().with { $0.summaryResultCount = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2929,6 +2943,7 @@
           /// ```
           /// let value = ModelPromptSpec().with { $0.preamble = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -3020,6 +3035,7 @@
           /// ```
           /// let value = ModelSpec().with { $0.version = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -3178,6 +3194,7 @@
         /// ```
         /// let value = ExtractiveContentSpec().with { $0.maxExtractiveAnswerCount = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -3307,6 +3324,7 @@
         /// ```
         /// let value = ChunkSpec().with { $0.numPreviousChunks = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -3574,6 +3592,7 @@
       /// ```
       /// let value = NaturalLanguageQueryUnderstandingSpec().with { $0.filterExtractionCondition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3936,6 +3955,7 @@
       /// ```
       /// let value = SearchAsYouTypeSpec().with { $0.condition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4014,6 +4034,7 @@
         /// ```
         /// let value = Field().with { $0.key = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -4250,6 +4271,7 @@
       /// ```
       /// let value = DisplaySpec().with { $0.matchHighlightingCondition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4469,6 +4491,7 @@
       /// ```
       /// let value = CrowdingSpec().with { $0.field = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4719,6 +4742,7 @@
       /// ```
       /// let value = SessionSpec().with { $0.queryId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4811,6 +4835,7 @@
       /// ```
       /// let value = RelevanceFilterSpec().with { $0.keywordSearchThreshold = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4875,6 +4900,7 @@
         /// ```
         /// let value = RelevanceThresholdSpec().with { $0.relevanceThreshold = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -5019,6 +5045,7 @@
       /// ```
       /// let value = RelevanceScoreSpec().with { $0.returnRelevanceScore = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5111,6 +5138,7 @@
       /// ```
       /// let value = SearchAddonSpec().with { $0.disableSemanticAddOn = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5215,6 +5243,7 @@
       /// ```
       /// let value = CustomRankingParams().with { $0.expressionsToPrecompute = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

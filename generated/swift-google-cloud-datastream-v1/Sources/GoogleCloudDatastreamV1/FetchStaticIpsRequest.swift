@@ -25,10 +25,10 @@ public struct FetchStaticIpsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// returned. Must be in the format `projects/*/locations/*`.
   public var name: Swift.String = Swift.String()
 
-  /// Maximum number of Ips to return, will likely not be specified.
+  /// Optional. Maximum number of Ips to return, will likely not be specified.
   public var pageSize: Swift.Int32 = Swift.Int32()
 
-  /// A page token, received from a previous `ListStaticIps` call.
+  /// Optional. A page token, received from a previous `ListStaticIps` call.
   /// will likely not be specified.
   public var pageToken: Swift.String = Swift.String()
 
@@ -44,6 +44,7 @@ public struct FetchStaticIpsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FetchStaticIpsRequest().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

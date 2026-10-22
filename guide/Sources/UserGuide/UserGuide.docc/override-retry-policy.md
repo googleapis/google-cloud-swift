@@ -77,8 +77,8 @@ apply to that request only, and take precedence over the client configuration.
 Because the idempotency heuristic is conservative, some requests are never
 retried even though the service documents them as safe to repeat. A delete
 request guarded by an etag is one example: repeating it cannot delete a
-different version of the resource. Use `idempotency` to tell the library the
-request is safe to retry:
+different version of the resource. Set `idempotent` to `true` to tell the
+library the request is safe to retry:
 
 @Snippet(path: "OverrideRetryPolicy", slice: "idempotency")
 
@@ -95,5 +95,8 @@ request is safe to retry:
   API requests that use long-running operations.
 * [Override the default polling policies](<doc:override-polling-policy>) describes
   how to change how the Swift client libraries poll long-running operations.
+* [Update IAM policies using optimistic concurrency control](<doc:optimistic-concurrency-control-iam>)
+  describes how to write an application-level retry loop for read-modify-write
+  operations guarded by an `etag`.
 * [Enable logging](<doc:enable-logging>) describes how to enable debug logging
   to troubleshoot requests and responses.

@@ -37,6 +37,7 @@
     /// ```
     /// let value = ManagedInstanceLastAttempt().with { $0.errors = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -96,6 +97,7 @@
       /// ```
       /// let value = Errors().with { $0.errors = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -171,6 +173,7 @@
         /// ```
         /// let value = Errors().with { $0.code = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -253,6 +256,7 @@
           /// ```
           /// let value = ErrorDetails().with { $0.errorInfo = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)

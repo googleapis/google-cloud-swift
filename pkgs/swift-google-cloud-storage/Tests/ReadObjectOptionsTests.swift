@@ -65,11 +65,11 @@ import Testing
     let preconditions = StoragePreconditions().with {
       $0.ifGenerationMatch = 123
     }
-    let csek = try CustomerEncryptionKeyOptions(key: Data(repeating: 0x42, count: 32))
-    let options = ReadObjectOptions().with {
+    let keyData = Data(repeating: 0x42, count: 32)
+    let options = try ReadObjectOptions().with {
       $0.generation = 456
       $0.preconditions = preconditions
-      $0.customerEncryptionKey = csek
+      $0.customerEncryptionKey = try CustomerEncryptionKeyOptions(key: keyData)
       $0.range = ReadObjectRange(range: 0...1024)!
       $0.enableDecompressiveTranscoding = false
       $0.resumePolicy = NeverResume<ReadObjectDetails>()
@@ -77,21 +77,26 @@ import Testing
     }
 
     #expect(options.generation == 456)
-    #expect(options.preconditions?.ifGenerationMatch == 123)
-    #expect(options.customerEncryptionKey == csek)
+    #expect(options.preconditions == preconditions)
+    #expect(options.customerEncryptionKey?.keyBase64 == keyData.base64EncodedString())
     #expect(options.range == ReadObjectRange(range: 0...1024)!)
     #expect(options.enableDecompressiveTranscoding == false)
     #expect(options.resumePolicy != nil)
     #expect(options.checksums == .off)
+
+    #expect(throws: CustomerEncryptionKeyError.invalidKeyLength(actual: 1, expected: 32)) {
+      _ = try ReadObjectOptions().with {
+        $0.customerEncryptionKey = try CustomerEncryptionKeyOptions(key: Data([0x01]))
+      }
+    }
   }
 
   @Test func readObjectMetadataProperties() throws {
-    let timestamp = try GoogleWKT.WKTTimestamp(seconds: 1_700_000_000, nanos: 500_000_000)
     let checksums = ObjectChecksums().with {
       $0.crc32C = 0x1234_5678
       $0.md5Hash = Data([0xAA, 0xBB, 0xCC, 0xDD])
     }
-    let metadata = ReadObjectMetadata().with {
+    let metadata = try ReadObjectMetadata().with {
       $0.bucket = "my-bucket"
       $0.name = "my-object.txt"
       $0.size = 2048
@@ -103,7 +108,7 @@ import Testing
       $0.contentEncoding = "gzip"
       $0.contentDisposition = "inline"
       $0.storageClass = "STANDARD"
-      $0.updateTime = timestamp
+      $0.updateTime = try GoogleWKT.WKTTimestamp(seconds: 1_700_000_000, nanos: 500_000_000)
     }
 
     #expect(metadata.bucket == "my-bucket")
@@ -119,10 +124,17 @@ import Testing
     #expect(metadata.contentEncoding == "gzip")
     #expect(metadata.contentDisposition == "inline")
     #expect(metadata.storageClass == "STANDARD")
-    #expect(metadata.updateTime == timestamp)
+    #expect(metadata.updateTime?.seconds == 1_700_000_000)
+    #expect(metadata.updateTime?.nanos == 500_000_000)
 
     let set: Set<ReadObjectMetadata> = [metadata]
     #expect(set.contains(metadata))
+
+    #expect(throws: GoogleWKT.WKTTimestampError.outOfRange) {
+      _ = try ReadObjectMetadata().with {
+        $0.updateTime = try GoogleWKT.WKTTimestamp(seconds: 0, nanos: -1)
+      }
+    }
   }
 
   @Test func objectMetadataInteroperability() throws {
@@ -278,7 +290,7 @@ import Testing
 
     let resolved = ReadObjectOptions().withDefaults(defaults)
     #expect(resolved.generation == 100)
-    #expect(resolved.preconditions?.ifGenerationMatch == 100)
+    #expect(resolved.preconditions == StoragePreconditions().with { $0.ifGenerationMatch = 100 })
     #expect(resolved.customerEncryptionKey == defaultCsek)
     #expect(resolved.range == ReadObjectRange(prefix: 512))
     #expect(resolved.enableDecompressiveTranscoding == false)
@@ -317,7 +329,7 @@ import Testing
 
     let resolved = options.withDefaults(defaults)
     #expect(resolved.generation == 200)
-    #expect(resolved.preconditions?.ifGenerationMatch == 200)
+    #expect(resolved.preconditions == StoragePreconditions().with { $0.ifGenerationMatch = 200 })
     #expect(resolved.customerEncryptionKey == overrideCsek)
     #expect(resolved.range == .entire)
     #expect(resolved.enableDecompressiveTranscoding == true)

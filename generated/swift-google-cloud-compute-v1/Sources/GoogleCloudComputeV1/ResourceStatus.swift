@@ -61,6 +61,7 @@
     /// ```
     /// let value = ResourceStatus().with { $0.effectiveInstanceMetadata = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

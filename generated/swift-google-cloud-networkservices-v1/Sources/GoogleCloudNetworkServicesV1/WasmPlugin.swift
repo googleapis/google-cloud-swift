@@ -88,6 +88,7 @@ public struct WasmPlugin: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WasmPlugin().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -240,6 +241,7 @@ public struct WasmPlugin: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VersionDetails().with { $0.pluginConfigData = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -446,6 +448,7 @@ public struct WasmPlugin: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LogConfig().with { $0.enable = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -687,6 +690,7 @@ public struct WasmPlugin: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UsedBy().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

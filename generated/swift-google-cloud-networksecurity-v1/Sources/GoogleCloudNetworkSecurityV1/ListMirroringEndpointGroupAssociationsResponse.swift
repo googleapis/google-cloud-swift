@@ -43,6 +43,7 @@ public struct ListMirroringEndpointGroupAssociationsResponse: Codable, Equatable
   /// ```
   /// let value = ListMirroringEndpointGroupAssociationsResponse().with { $0.mirroringEndpointGroupAssociations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

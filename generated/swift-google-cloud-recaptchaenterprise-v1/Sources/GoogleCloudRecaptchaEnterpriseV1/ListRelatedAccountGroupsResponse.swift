@@ -41,6 +41,7 @@ public struct ListRelatedAccountGroupsResponse: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = ListRelatedAccountGroupsResponse().with { $0.relatedAccountGroups = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

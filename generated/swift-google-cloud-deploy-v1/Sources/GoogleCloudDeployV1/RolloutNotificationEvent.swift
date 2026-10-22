@@ -59,6 +59,7 @@ public struct RolloutNotificationEvent: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = RolloutNotificationEvent().with { $0.message = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

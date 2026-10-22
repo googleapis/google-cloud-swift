@@ -118,6 +118,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AutoMlTablesInputs().with { $0.optimizationObjectiveRecallValue = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -271,6 +272,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Transformation().with { $0.auto = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -412,6 +414,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AutoTransformation().with { $0.columnName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -506,6 +509,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = NumericTransformation().with { $0.columnName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -600,6 +604,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CategoricalTransformation().with { $0.columnName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -704,6 +709,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = TimestampTransformation().with { $0.columnName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -806,6 +812,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = TextTransformation().with { $0.columnName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -895,6 +902,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = NumericArrayTransformation().with { $0.columnName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -988,6 +996,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CategoricalArrayTransformation().with { $0.columnName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1073,6 +1082,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = TextArrayTransformation().with { $0.columnName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

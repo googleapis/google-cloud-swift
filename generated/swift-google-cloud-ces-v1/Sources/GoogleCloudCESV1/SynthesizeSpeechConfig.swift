@@ -65,6 +65,7 @@ public struct SynthesizeSpeechConfig: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = SynthesizeSpeechConfig().with { $0.voice = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

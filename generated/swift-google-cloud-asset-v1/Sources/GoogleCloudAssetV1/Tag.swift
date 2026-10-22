@@ -47,6 +47,7 @@ public struct Tag: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Tag().with { $0.tagKey = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

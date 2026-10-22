@@ -42,6 +42,7 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT.
   /// ```
   /// let value = ListAddressGroupReferencesResponse().with { $0.addressGroupReferences = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -114,6 +115,7 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT.
     /// ```
     /// let value = AddressGroupReference().with { $0.firewallPolicy = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

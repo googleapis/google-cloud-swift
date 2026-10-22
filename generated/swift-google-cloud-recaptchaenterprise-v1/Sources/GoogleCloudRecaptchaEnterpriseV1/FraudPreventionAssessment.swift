@@ -53,6 +53,7 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = FraudPreventionAssessment().with { $0.transactionRisk = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -134,6 +135,7 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = RiskReason().with { $0.reason = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -364,6 +366,7 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = StolenInstrumentVerdict().with { $0.risk = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -446,6 +449,7 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = CardTestingVerdict().with { $0.risk = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -528,6 +532,7 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = BehavioralTrustVerdict().with { $0.trust = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -42,6 +42,7 @@ public struct AudioFormat: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AudioFormat().with { $0.codec = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -46,6 +46,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = QueuedResourceState().with { $0.state = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -197,6 +198,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CreatingData().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -265,6 +267,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AcceptedData().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -333,6 +336,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ProvisioningData().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -405,6 +409,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FailedData().with { $0.error = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -479,6 +484,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DeletingData().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -547,6 +553,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ActiveData().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -615,6 +622,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SuspendingData().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -683,6 +691,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SuspendedData().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

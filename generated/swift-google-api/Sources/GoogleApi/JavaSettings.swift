@@ -66,6 +66,7 @@ public struct JavaSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = JavaSettings().with { $0.libraryPackage = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

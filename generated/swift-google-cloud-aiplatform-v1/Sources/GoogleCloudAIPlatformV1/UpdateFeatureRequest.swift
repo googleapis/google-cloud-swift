@@ -63,6 +63,7 @@
     /// ```
     /// let value = UpdateFeatureRequest().with { $0.feature = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

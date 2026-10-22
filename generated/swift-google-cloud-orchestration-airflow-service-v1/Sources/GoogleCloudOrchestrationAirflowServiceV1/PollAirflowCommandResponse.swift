@@ -43,6 +43,7 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = PollAirflowCommandResponse().with { $0.output = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -116,6 +117,7 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = Line().with { $0.lineNumber = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -205,6 +207,7 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = ExitInfo().with { $0.exitCode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

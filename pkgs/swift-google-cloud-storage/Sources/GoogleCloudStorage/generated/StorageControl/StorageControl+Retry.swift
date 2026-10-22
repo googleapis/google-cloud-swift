@@ -54,6 +54,7 @@ extension Clients {
     public func createFolder(
       request: CreateFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> Folder {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -68,6 +69,7 @@ extension Clients {
     public func deleteFolder(
       request: DeleteFolderRequest, options: GoogleGax.RequestOptions
     ) async throws {
+      let options = request.resolveIdempotency(options: options)
       try await self._intercept(
         request: request,
         options: options,
@@ -80,6 +82,7 @@ extension Clients {
     public func getFolder(
       request: GetFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> Folder {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -94,6 +97,7 @@ extension Clients {
     public func listFolders(
       request: ListFoldersRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListFoldersResponse {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -108,6 +112,7 @@ extension Clients {
     public func renameFolder(
       request: RenameFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -123,6 +128,7 @@ extension Clients {
     public func deleteFolderRecursive(
       request: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -138,6 +144,7 @@ extension Clients {
     public func getStorageLayout(
       request: GetStorageLayoutRequest, options: GoogleGax.RequestOptions
     ) async throws -> StorageLayout {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -152,6 +159,7 @@ extension Clients {
     public func createManagedFolder(
       request: CreateManagedFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedFolder {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -166,6 +174,7 @@ extension Clients {
     public func deleteManagedFolder(
       request: DeleteManagedFolderRequest, options: GoogleGax.RequestOptions
     ) async throws {
+      let options = request.resolveIdempotency(options: options)
       try await self._intercept(
         request: request,
         options: options,
@@ -179,6 +188,7 @@ extension Clients {
     public func getManagedFolder(
       request: GetManagedFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedFolder {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -193,6 +203,7 @@ extension Clients {
     public func listManagedFolders(
       request: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListManagedFoldersResponse {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -208,10 +219,11 @@ extension Clients {
     public func updateManagedFolder(
       request: UpdateManagedFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedFolder {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: UpdateManagedFolderRequest, o: GoogleGax.RequestOptions) async throws -> ManagedFolder
           in
@@ -222,6 +234,7 @@ extension Clients {
     public func createAnywhereCache(
       request: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -237,6 +250,7 @@ extension Clients {
     public func updateAnywhereCache(
       request: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -252,6 +266,7 @@ extension Clients {
     public func disableAnywhereCache(
       request: DisableAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> AnywhereCache {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -267,6 +282,7 @@ extension Clients {
     public func pauseAnywhereCache(
       request: PauseAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> AnywhereCache {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -281,6 +297,7 @@ extension Clients {
     public func resumeAnywhereCache(
       request: ResumeAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> AnywhereCache {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -295,6 +312,7 @@ extension Clients {
     public func getAnywhereCache(
       request: GetAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> AnywhereCache {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -309,6 +327,7 @@ extension Clients {
     public func listAnywhereCaches(
       request: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListAnywhereCachesResponse {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -324,10 +343,11 @@ extension Clients {
     public func createRapidCache(
       request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: CreateRapidCacheRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -339,10 +359,11 @@ extension Clients {
     public func updateRapidCache(
       request: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: UpdateRapidCacheRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -354,10 +375,11 @@ extension Clients {
     public func disableRapidCache(
       request: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: DisableRapidCacheRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -369,10 +391,11 @@ extension Clients {
     public func getRapidCache(
       request: GetRapidCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> RapidCache {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: GetRapidCacheRequest, o: GoogleGax.RequestOptions) async throws -> RapidCache
           in
@@ -383,10 +406,11 @@ extension Clients {
     public func listRapidCaches(
       request: ListRapidCachesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListRapidCachesResponse {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: ListRapidCachesRequest, o: GoogleGax.RequestOptions) async throws
             -> ListRapidCachesResponse
@@ -398,6 +422,7 @@ extension Clients {
     public func getProjectIntelligenceConfig(
       request: GetProjectIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -413,10 +438,11 @@ extension Clients {
     public func updateProjectIntelligenceConfig(
       request: UpdateProjectIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: UpdateProjectIntelligenceConfigRequest, o: GoogleGax.RequestOptions) async throws
             -> IntelligenceConfig
@@ -428,6 +454,7 @@ extension Clients {
     public func getFolderIntelligenceConfig(
       request: GetFolderIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -443,10 +470,11 @@ extension Clients {
     public func updateFolderIntelligenceConfig(
       request: UpdateFolderIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: UpdateFolderIntelligenceConfigRequest, o: GoogleGax.RequestOptions) async throws
             -> IntelligenceConfig
@@ -458,6 +486,7 @@ extension Clients {
     public func getOrganizationIntelligenceConfig(
       request: GetOrganizationIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -473,10 +502,11 @@ extension Clients {
     public func updateOrganizationIntelligenceConfig(
       request: UpdateOrganizationIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: UpdateOrganizationIntelligenceConfigRequest, o: GoogleGax.RequestOptions) async throws
             -> IntelligenceConfig
@@ -488,6 +518,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -503,6 +534,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -518,6 +550,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -533,6 +566,7 @@ extension Clients {
     public func getIntelligenceFinding(
       request: GetIntelligenceFindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceFinding {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -548,6 +582,7 @@ extension Clients {
     public func listIntelligenceFindings(
       request: ListIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListIntelligenceFindingsResponse {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -563,6 +598,7 @@ extension Clients {
     public func summarizeIntelligenceFindings(
       request: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> SummarizeIntelligenceFindingsResponse {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -578,6 +614,7 @@ extension Clients {
     public func getIntelligenceFindingRevision(
       request: GetIntelligenceFindingRevisionRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceFindingRevision {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -593,6 +630,7 @@ extension Clients {
     public func listIntelligenceFindingRevisions(
       request: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListIntelligenceFindingRevisionsResponse {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -608,6 +646,7 @@ extension Clients {
     public func viewObjectFullContext(
       request: ViewObjectFullContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> ObjectFullContext {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,
@@ -623,6 +662,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
+      let options = request.resolveIdempotency(options: options)
       return try await self._intercept(
         request: request,
         options: options,

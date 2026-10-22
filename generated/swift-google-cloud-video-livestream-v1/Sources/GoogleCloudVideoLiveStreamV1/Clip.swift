@@ -85,6 +85,7 @@ public struct Clip: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Clip().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -201,6 +202,7 @@ public struct Clip: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TimeSlice().with { $0.markinTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -284,6 +286,7 @@ public struct Clip: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Slice().with { $0.timeSlice = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -397,6 +400,7 @@ public struct Clip: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ClipManifest().with { $0.manifestKey = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

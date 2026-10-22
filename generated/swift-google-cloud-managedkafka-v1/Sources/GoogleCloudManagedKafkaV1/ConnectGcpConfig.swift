@@ -43,6 +43,7 @@ public struct ConnectGcpConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ConnectGcpConfig().with { $0.accessConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

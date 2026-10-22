@@ -138,6 +138,7 @@
       /// ```
       /// let value = AggregatedListRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -266,6 +267,7 @@
       /// ```
       /// let value = DeleteRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -387,6 +389,7 @@
       /// ```
       /// let value = DeleteNamedSetRequest().with { $0.namedSet = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -512,6 +515,7 @@
       /// ```
       /// let value = DeleteRoutePolicyRequest().with { $0.policy = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -619,6 +623,7 @@
       /// ```
       /// let value = GetRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -722,6 +727,7 @@
       /// ```
       /// let value = GetNamedSetRequest().with { $0.namedSet = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -831,6 +837,7 @@
       /// ```
       /// let value = GetNatIpInfoRequest().with { $0.natName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1025,6 +1032,7 @@
       /// ```
       /// let value = GetNatMappingInfoRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1148,6 +1156,7 @@
       /// ```
       /// let value = GetRoutePolicyRequest().with { $0.policy = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1251,6 +1260,7 @@
       /// ```
       /// let value = GetRouterStatusRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1367,6 +1377,7 @@
       /// ```
       /// let value = InsertRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1550,6 +1561,7 @@
       /// ```
       /// let value = ListRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1763,6 +1775,7 @@
       /// ```
       /// let value = ListBgpRoutesRequest().with { $0.addressFamily = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2111,6 +2124,7 @@
       /// ```
       /// let value = ListNamedSetsRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2312,6 +2326,7 @@
       /// ```
       /// let value = ListRoutePoliciesRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2447,6 +2462,7 @@
       /// ```
       /// let value = PatchRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2574,6 +2590,7 @@
       /// ```
       /// let value = PatchNamedSetRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2701,6 +2718,7 @@
       /// ```
       /// let value = PatchRoutePolicyRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2813,6 +2831,7 @@
       /// ```
       /// let value = PreviewRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2936,6 +2955,7 @@
       /// ```
       /// let value = UpdateRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3063,6 +3083,7 @@
       /// ```
       /// let value = UpdateNamedSetRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3190,6 +3211,7 @@
       /// ```
       /// let value = UpdateRoutePolicyRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

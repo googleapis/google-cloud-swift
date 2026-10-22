@@ -46,6 +46,7 @@ public struct UpdateDataAttributeRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = UpdateDataAttributeRequest().with { $0.updateMask = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

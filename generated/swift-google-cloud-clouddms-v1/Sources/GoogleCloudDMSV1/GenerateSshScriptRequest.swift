@@ -45,6 +45,7 @@ public struct GenerateSshScriptRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = GenerateSshScriptRequest().with { $0.migrationJob = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

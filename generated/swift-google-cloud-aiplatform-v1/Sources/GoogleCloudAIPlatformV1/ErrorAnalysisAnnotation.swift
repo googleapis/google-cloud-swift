@@ -48,6 +48,7 @@
     /// ```
     /// let value = ErrorAnalysisAnnotation().with { $0.attributedItems = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -132,6 +133,7 @@
       /// ```
       /// let value = AttributedItem().with { $0.annotationResourceName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

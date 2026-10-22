@@ -95,6 +95,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CaPool().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -222,6 +223,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PublishingOptions().with { $0.publishCaCert = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -553,6 +555,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IssuancePolicy().with { $0.allowedKeyTypes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -660,6 +663,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AllowedKeyType().with { $0.rsa = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -758,6 +762,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = RsaKeyType().with { $0.minModulusSize = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -852,6 +857,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = EcKeyType().with { $0.signatureAlgorithm = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1118,6 +1124,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = IssuanceModes().with { $0.allowCsrBasedIssuance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -49,6 +49,7 @@
     /// ```
     /// let value = ListModelEvaluationsResponse().with { $0.modelEvaluations = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

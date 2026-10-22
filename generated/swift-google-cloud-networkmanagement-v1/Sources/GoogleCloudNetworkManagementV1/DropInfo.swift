@@ -54,6 +54,7 @@ public struct DropInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DropInfo().with { $0.cause = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

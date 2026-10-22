@@ -37,6 +37,7 @@ public struct TransliterationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TransliterationConfig().with { $0.enableTransliteration = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

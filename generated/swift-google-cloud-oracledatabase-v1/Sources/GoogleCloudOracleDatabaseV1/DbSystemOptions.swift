@@ -37,6 +37,7 @@ public struct DbSystemOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DbSystemOptions().with { $0.storageManagement = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

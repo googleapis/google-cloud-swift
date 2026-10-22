@@ -39,6 +39,7 @@
     /// ```
     /// let value = PurgeUserEventsResponse().with { $0.purgeCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

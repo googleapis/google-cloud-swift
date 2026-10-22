@@ -87,6 +87,7 @@
     /// ```
     /// let value = AgentAssistantFeedback().with { $0.answerRelevance = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -191,6 +192,7 @@
       /// ```
       /// let value = SummarizationFeedback().with { $0.startTime = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -304,6 +306,7 @@
       /// ```
       /// let value = KnowledgeSearchFeedback().with { $0.answerCopied = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -404,6 +407,7 @@
       /// ```
       /// let value = KnowledgeAssistFeedback().with { $0.answerCopied = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -487,6 +491,7 @@
       /// ```
       /// let value = CompanionFeedback().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

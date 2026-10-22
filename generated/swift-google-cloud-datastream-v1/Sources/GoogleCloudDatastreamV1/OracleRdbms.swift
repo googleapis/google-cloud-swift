@@ -36,6 +36,7 @@ public struct OracleRdbms: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OracleRdbms().with { $0.oracleSchemas = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

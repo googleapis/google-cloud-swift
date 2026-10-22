@@ -66,7 +66,7 @@ import NIOFoundationCompat
   }
 
   public func isError() -> Bool {
-    !(200...300).contains(self.response.status.code)
+    !(200..<300).contains(self.response.status.code)
   }
 
   @concurrent
@@ -105,7 +105,11 @@ import NIOFoundationCompat
     // so `Data` references `buffer`'s underlying storage without copying.
     let data = Data(buffer: buffer, byteTransferStrategy: .noCopy)
     let decoder = _ProtoJSONDecoder()
-    let payload = try decoder.decode(type, from: data)
-    return .success(payload)
+    do {
+      let payload = try decoder.decode(type, from: data)
+      return .success(payload)
+    } catch {
+      return .failure(.malformedResponse("Failed to decode \(type): \(error)"))
+    }
   }
 }

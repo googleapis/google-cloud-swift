@@ -41,6 +41,7 @@ public struct TransformationResultStatus: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = TransformationResultStatus().with { $0.resultStatusType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

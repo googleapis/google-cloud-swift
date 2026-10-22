@@ -98,6 +98,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DatasetConfig().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -364,6 +365,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SourceProjects().with { $0.projectNumbers = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -443,6 +445,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SourceFolders().with { $0.folderNumbers = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -521,6 +524,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CloudStorageLocations().with { $0.locations = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -600,6 +604,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CloudStorageBuckets().with { $0.cloudStorageBuckets = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -658,6 +663,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CloudStorageBucket().with { $0.bucketName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -798,6 +804,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Link().with { $0.dataset = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -907,6 +914,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BucketErrors().with { $0.validatedCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1078,6 +1086,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ProjectErrors().with { $0.validatedCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1270,6 +1279,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ValidationErrorsBeforeIngestion().with { $0.bucketErrors = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

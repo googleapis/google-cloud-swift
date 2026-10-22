@@ -55,6 +55,7 @@
     /// ```
     /// let value = NearestNeighborQuery().with { $0.entityId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -176,6 +177,7 @@
       /// ```
       /// let value = Embedding().with { $0.value = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -268,6 +270,7 @@
       /// ```
       /// let value = StringFilter().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -374,6 +377,7 @@
       /// ```
       /// let value = NumericFilter().with { $0.valueInt = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -663,6 +667,7 @@
       /// ```
       /// let value = Parameters().with { $0.approximateNeighborCandidates = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

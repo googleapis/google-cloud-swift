@@ -36,6 +36,7 @@ public struct StorageClientOptions: Sendable {
   }
 
   /// Override specific values using closure modification.
+  @inlinable
   public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
     try config(&copy)

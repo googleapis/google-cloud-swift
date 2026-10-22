@@ -46,6 +46,7 @@ public struct ReplayDiff: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ReplayDiff().with { $0.accessDiff = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

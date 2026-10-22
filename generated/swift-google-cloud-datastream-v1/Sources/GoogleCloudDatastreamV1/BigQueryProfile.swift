@@ -17,7 +17,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// BigQuery warehouse profile.
+/// Profile for connecting to a BigQuery destination.
 public struct BigQueryProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
@@ -33,6 +33,7 @@ public struct BigQueryProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BigQueryProfile().with { $0.<placeholder> = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

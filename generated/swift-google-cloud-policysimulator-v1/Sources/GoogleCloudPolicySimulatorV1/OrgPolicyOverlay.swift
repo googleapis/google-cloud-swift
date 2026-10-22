@@ -53,6 +53,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OrgPolicyOverlay().with { $0.policies = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -124,6 +125,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PolicyOverlay().with { $0.policyParent = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -212,6 +214,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CustomConstraintOverlay().with { $0.customConstraintParent = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

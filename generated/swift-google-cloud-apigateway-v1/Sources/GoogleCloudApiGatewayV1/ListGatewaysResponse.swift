@@ -43,6 +43,7 @@ public struct ListGatewaysResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListGatewaysResponse().with { $0.gateways = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

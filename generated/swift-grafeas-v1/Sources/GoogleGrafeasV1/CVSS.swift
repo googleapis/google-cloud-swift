@@ -94,6 +94,7 @@ public struct CVSS: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CVSS().with { $0.baseScore = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

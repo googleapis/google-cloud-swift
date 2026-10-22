@@ -107,8 +107,20 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Configuration for query insights.
   public var queryInsightsConfig: Instance.QueryInsightsInstanceConfig? = nil
 
+  /// Output only. Instance level Query Insights information, which is read-only
+  /// and available in the output only. Contains the effective query insights
+  /// settings for this instance, by merging customer's provided
+  /// `QueryInsightsInstanceConfig` with the Query Insights defaults.
+  public var queryInsightsInfo: Instance.QueryInsightsInstanceInfo? = nil
+
   /// Configuration for observability.
   public var observabilityConfig: Instance.ObservabilityInstanceConfig? = nil
+
+  /// Output only. Instance level observability information, contains the
+  /// effective values of observability settings for this instance, by merging
+  /// customer's provided `ObservabilityInstanceConfig` with the
+  /// Observability defaults.
+  public var observabilityInstanceInfo: Instance.ObservabilityInstanceInfo? = nil
 
   /// Read pool instance configuration.
   /// This is required if the value of instanceType is READ_POOL.
@@ -178,6 +190,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Instance().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -206,7 +219,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     static let writableNode = CodingKeys(stringValue: "writableNode")
     static let nodes = CodingKeys(stringValue: "nodes")
     static let queryInsightsConfig = CodingKeys(stringValue: "queryInsightsConfig")
+    static let queryInsightsInfo = CodingKeys(stringValue: "queryInsightsInfo")
     static let observabilityConfig = CodingKeys(stringValue: "observabilityConfig")
+    static let observabilityInstanceInfo = CodingKeys(stringValue: "observabilityInstanceInfo")
     static let readPoolConfig = CodingKeys(stringValue: "readPoolConfig")
     static let ipAddress = CodingKeys(stringValue: "ipAddress")
     static let publicIpAddress = CodingKeys(stringValue: "publicIpAddress")
@@ -238,7 +253,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       "writableNode",
       "nodes",
       "queryInsightsConfig",
+      "queryInsightsInfo",
       "observabilityConfig",
+      "observabilityInstanceInfo",
       "readPoolConfig",
       "ipAddress",
       "publicIpAddress",
@@ -304,8 +321,12 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.queryInsightsConfig = try container.decodeIfPresent(
       Instance.QueryInsightsInstanceConfig.self, forKey: .queryInsightsConfig)
+    self.queryInsightsInfo = try container.decodeIfPresent(
+      Instance.QueryInsightsInstanceInfo.self, forKey: .queryInsightsInfo)
     self.observabilityConfig = try container.decodeIfPresent(
       Instance.ObservabilityInstanceConfig.self, forKey: .observabilityConfig)
+    self.observabilityInstanceInfo = try container.decodeIfPresent(
+      Instance.ObservabilityInstanceInfo.self, forKey: .observabilityInstanceInfo)
     self.readPoolConfig = try container.decodeIfPresent(
       Instance.ReadPoolConfig.self, forKey: .readPoolConfig)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress) {
@@ -370,7 +391,10 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.writableNode, forKey: .writableNode)
     try container.encode(self.nodes, forKey: .nodes)
     try container.encodeIfPresent(self.queryInsightsConfig, forKey: .queryInsightsConfig)
+    try container.encodeIfPresent(self.queryInsightsInfo, forKey: .queryInsightsInfo)
     try container.encodeIfPresent(self.observabilityConfig, forKey: .observabilityConfig)
+    try container.encodeIfPresent(
+      self.observabilityInstanceInfo, forKey: .observabilityInstanceInfo)
     try container.encodeIfPresent(self.readPoolConfig, forKey: .readPoolConfig)
     try container.encode(self.ipAddress, forKey: .ipAddress)
     try container.encode(self.publicIpAddress, forKey: .publicIpAddress)
@@ -413,6 +437,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MachineConfig().with { $0.cpuCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -513,6 +538,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Node().with { $0.zoneId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -624,6 +650,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QueryInsightsInstanceConfig().with { $0.recordApplicationTags = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -699,6 +726,125 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// Instance level Query Insights information, which is read-only and available
+  /// in the output only.
+  public struct QueryInsightsInstanceInfo: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Output only. Whether Query Insights is enabled.
+    public var enabled: Swift.Bool = Swift.Bool()
+
+    /// Output only. Whether to record application tags.
+    public var recordApplicationTags: Swift.Bool = Swift.Bool()
+
+    /// Output only. Whether to record client address.
+    public var recordClientAddress: Swift.Bool = Swift.Bool()
+
+    /// Output only. Maximum query string length.
+    public var queryStringLength: Swift.UInt32 = Swift.UInt32()
+
+    /// Output only. Number of query execution plans captured per minute.
+    public var queryPlansPerMinute: Swift.UInt32 = Swift.UInt32()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `QueryInsightsInstanceInfo`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = QueryInsightsInstanceInfo().with { $0.enabled = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let recordApplicationTags = CodingKeys(stringValue: "recordApplicationTags")
+      static let recordClientAddress = CodingKeys(stringValue: "recordClientAddress")
+      static let queryStringLength = CodingKeys(stringValue: "queryStringLength")
+      static let queryPlansPerMinute = CodingKeys(stringValue: "queryPlansPerMinute")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled",
+        "recordApplicationTags",
+        "recordClientAddress",
+        "queryStringLength",
+        "queryPlansPerMinute",
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+        self.enabled = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .recordApplicationTags)
+      {
+        self.recordApplicationTags = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .recordClientAddress) {
+        self.recordClientAddress = value
+      }
+      if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .queryStringLength) {
+        self.queryStringLength = value
+      }
+      if let value = try container.decodeIfPresent(Swift.UInt32.self, forKey: .queryPlansPerMinute)
+      {
+        self.queryPlansPerMinute = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enabled, forKey: .enabled)
+      try container.encode(self.recordApplicationTags, forKey: .recordApplicationTags)
+      try container.encode(self.recordClientAddress, forKey: .recordClientAddress)
+      try container.encode(self.queryStringLength, forKey: .queryStringLength)
+      try container.encode(self.queryPlansPerMinute, forKey: .queryPlansPerMinute)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// The type URL for `QueryInsightsInstanceInfo`: `"type.googleapis.com/google.cloud.alloydb.v1.Instance.QueryInsightsInstanceInfo"`.
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.cloud.alloydb.v1.Instance.QueryInsightsInstanceInfo"
+    }
+
+    /// Initialize an instance of `QueryInsightsInstanceInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.alloydb.v1.Instance.QueryInsightsInstanceInfo"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `QueryInsightsInstanceInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._slowAnySerialize(message: self)
+    }
+  }
+
   /// Observability Instance specific configuration.
   public struct ObservabilityInstanceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
@@ -750,6 +896,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ObservabilityInstanceConfig().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -843,6 +990,152 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  public struct ObservabilityInstanceInfo: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Output only. Observability feature status for an instance.
+    public var enabled: Swift.Bool = Swift.Bool()
+
+    /// Output only. Preserve comments in query string for an instance.
+    public var preserveComments: Swift.Bool = Swift.Bool()
+
+    /// Output only. Track wait events during query execution for an instance.
+    public var trackWaitEvents: Swift.Bool = Swift.Bool()
+
+    /// Output only. Track wait event types during query execution for an
+    /// instance.
+    public var trackWaitEventTypes: Swift.Bool = Swift.Bool()
+
+    /// Output only. Query string length. The default value is 10k.
+    public var maxQueryStringLength: Swift.Int32 = Swift.Int32()
+
+    /// Output only. Record application tags for an instance.
+    public var recordApplicationTags: Swift.Bool = Swift.Bool()
+
+    /// Output only. Number of query execution plans captured by Insights per
+    /// minute for all queries combined.
+    public var queryPlansPerMinute: Swift.Int32 = Swift.Int32()
+
+    /// Output only. Track actively running queries on the instance.
+    public var trackActiveQueries: Swift.Bool = Swift.Bool()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `ObservabilityInstanceInfo`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = ObservabilityInstanceInfo().with { $0.enabled = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let enabled = CodingKeys(stringValue: "enabled")
+      static let preserveComments = CodingKeys(stringValue: "preserveComments")
+      static let trackWaitEvents = CodingKeys(stringValue: "trackWaitEvents")
+      static let trackWaitEventTypes = CodingKeys(stringValue: "trackWaitEventTypes")
+      static let maxQueryStringLength = CodingKeys(stringValue: "maxQueryStringLength")
+      static let recordApplicationTags = CodingKeys(stringValue: "recordApplicationTags")
+      static let queryPlansPerMinute = CodingKeys(stringValue: "queryPlansPerMinute")
+      static let trackActiveQueries = CodingKeys(stringValue: "trackActiveQueries")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "enabled",
+        "preserveComments",
+        "trackWaitEvents",
+        "trackWaitEventTypes",
+        "maxQueryStringLength",
+        "recordApplicationTags",
+        "queryPlansPerMinute",
+        "trackActiveQueries",
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
+        self.enabled = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .preserveComments) {
+        self.preserveComments = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .trackWaitEvents) {
+        self.trackWaitEvents = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .trackWaitEventTypes) {
+        self.trackWaitEventTypes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxQueryStringLength)
+      {
+        self.maxQueryStringLength = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .recordApplicationTags)
+      {
+        self.recordApplicationTags = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .queryPlansPerMinute) {
+        self.queryPlansPerMinute = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .trackActiveQueries) {
+        self.trackActiveQueries = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.enabled, forKey: .enabled)
+      try container.encode(self.preserveComments, forKey: .preserveComments)
+      try container.encode(self.trackWaitEvents, forKey: .trackWaitEvents)
+      try container.encode(self.trackWaitEventTypes, forKey: .trackWaitEventTypes)
+      try container.encode(self.maxQueryStringLength, forKey: .maxQueryStringLength)
+      try container.encode(self.recordApplicationTags, forKey: .recordApplicationTags)
+      try container.encode(self.queryPlansPerMinute, forKey: .queryPlansPerMinute)
+      try container.encode(self.trackActiveQueries, forKey: .trackActiveQueries)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// The type URL for `ObservabilityInstanceInfo`: `"type.googleapis.com/google.cloud.alloydb.v1.Instance.ObservabilityInstanceInfo"`.
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.cloud.alloydb.v1.Instance.ObservabilityInstanceInfo"
+    }
+
+    /// Initialize an instance of `ObservabilityInstanceInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.alloydb.v1.Instance.ObservabilityInstanceInfo"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `ObservabilityInstanceInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._slowAnySerialize(message: self)
+    }
+  }
+
   /// Configuration for a read pool instance.
   public struct ReadPoolConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
@@ -862,6 +1155,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ReadPoolConfig().with { $0.nodeCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -945,6 +1239,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ClientConnectionConfig().with { $0.requireConnectors = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1032,6 +1327,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PscInterfaceConfig().with { $0.networkAttachmentResource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1154,6 +1450,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PscAutoConnectionConfig().with { $0.consumerProject = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1280,6 +1577,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PscInstanceConfig().with { $0.serviceAttachmentLink = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1414,6 +1712,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InstanceNetworkConfig().with { $0.authorizedExternalNetworks = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1500,6 +1799,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AuthorizedNetwork().with { $0.cidrRange = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1608,6 +1908,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ConnectionPoolConfig().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

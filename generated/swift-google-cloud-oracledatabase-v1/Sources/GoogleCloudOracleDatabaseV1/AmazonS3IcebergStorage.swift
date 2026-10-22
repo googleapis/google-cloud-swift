@@ -51,6 +51,7 @@ public struct AmazonS3IcebergStorage: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = AmazonS3IcebergStorage().with { $0.schemeType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

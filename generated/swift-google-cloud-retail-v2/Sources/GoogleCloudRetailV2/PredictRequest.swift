@@ -173,6 +173,7 @@ public struct PredictRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PredictRequest().with { $0.placement = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -638,6 +638,44 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
     return try await poller.wait()
   }
 
+  /// Updates a CertificateIssuanceConfig.
+  ///
+  /// @Snippet(path: "CertificateManager_UpdateCertificateIssuanceConfig")
+  public func updateCertificateIssuanceConfig(
+    request: UpdateCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateCertificateIssuanceConfig(request: request, options: options)
+  }
+
+  /// Updates a CertificateIssuanceConfig.
+  ///
+  /// @Snippet(path: "CertificateManager_UpdateCertificateIssuanceConfig")
+  public func updateCertificateIssuanceConfigPollingUntilDone(
+    request: UpdateCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
+  ) async throws -> CertificateIssuanceConfig {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<CertificateIssuanceConfig>.State in
+      return try op._extractStatus(CertificateIssuanceConfig.self)
+    }
+    let rawOp = try await self.updateCertificateIssuanceConfig(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CertificateIssuanceConfig>.State
+      in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Deletes a single CertificateIssuanceConfig.
   ///
   /// @Snippet(path: "CertificateManager_DeleteCertificateIssuanceConfig")
@@ -801,6 +839,23 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   }
 
   /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CertificateManager_ListLocations")
   public func listLocations(
@@ -1048,6 +1103,16 @@ extension Clients {
     /// See `CertificateManagerClient.createCertificateIssuanceConfig`.
     func createCertificateIssuanceConfigPollingUntilDone(
       request: CreateCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> CertificateIssuanceConfig
+
+    /// See `CertificateManagerClient.updateCertificateIssuanceConfig`.
+    func updateCertificateIssuanceConfig(
+      request: UpdateCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `CertificateManagerClient.updateCertificateIssuanceConfig`.
+    func updateCertificateIssuanceConfigPollingUntilDone(
+      request: UpdateCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> CertificateIssuanceConfig
 
     /// See `CertificateManagerClient.deleteCertificateIssuanceConfig`.
@@ -1912,6 +1977,42 @@ extension Clients.CertificateManagerProtocol {
     return try await self.createCertificateIssuanceConfigPollingUntilDone(request: request)
   }
 
+  public func updateCertificateIssuanceConfig(request: UpdateCertificateIssuanceConfigRequest)
+    async throws -> GoogleLongRunning.Operation
+  {
+    try await self.updateCertificateIssuanceConfig(request: request, options: .init())
+  }
+
+  public func updateCertificateIssuanceConfig(
+    request: UpdateCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateCertificateIssuanceConfigPollingUntilDone(
+    request: UpdateCertificateIssuanceConfigRequest
+  ) async throws -> CertificateIssuanceConfig {
+    return try await self.updateCertificateIssuanceConfigPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func updateCertificateIssuanceConfigPollingUntilDone(
+    request: UpdateCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
+  ) async throws -> CertificateIssuanceConfig {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateCertificateIssuanceConfigPollingUntilDone(
+    certificateIssuanceConfig: CertificateIssuanceConfig?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> CertificateIssuanceConfig {
+    let request = UpdateCertificateIssuanceConfigRequest().with {
+      $0.certificateIssuanceConfig = certificateIssuanceConfig
+      $0.updateMask = updateMask
+    }
+    return try await self.updateCertificateIssuanceConfigPollingUntilDone(request: request)
+  }
+
   public func deleteCertificateIssuanceConfig(request: DeleteCertificateIssuanceConfigRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -2133,6 +2234,23 @@ extension Clients.CertificateManagerProtocol {
   }
 
   /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CertificateManager_ListLocations")
   public func listLocationsByItems(

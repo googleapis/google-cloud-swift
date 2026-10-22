@@ -24,8 +24,6 @@ import Testing
   ])
   func formatResourceNameTests(input: String, expected: String) {
     #expect(BucketName.formatResourceName(input) == expected)
-    #expect(BucketName.formatBucketResourceName(input) == expected)
-    #expect(BucketName.format(input) == expected)
   }
 
   @Test(arguments: [
@@ -37,6 +35,5 @@ import Testing
   ])
   func extractBucketNameTests(input: String, expected: String) {
     #expect(BucketName.extractBucketName(input) == expected)
-    #expect(BucketName.extract(input) == expected)
   }
 }

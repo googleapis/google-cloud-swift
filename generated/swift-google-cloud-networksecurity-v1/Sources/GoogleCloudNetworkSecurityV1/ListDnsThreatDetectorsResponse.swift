@@ -43,6 +43,7 @@ public struct ListDnsThreatDetectorsResponse: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = ListDnsThreatDetectorsResponse().with { $0.dnsThreatDetectors = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -45,6 +45,7 @@ public struct ListCertificateIssuanceConfigsResponse: Codable, Equatable, Google
   /// ```
   /// let value = ListCertificateIssuanceConfigsResponse().with { $0.certificateIssuanceConfigs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

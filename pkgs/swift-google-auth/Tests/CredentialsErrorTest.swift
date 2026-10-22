@@ -19,29 +19,53 @@ import GoogleAuth
 @Suite struct CredentialsErrorTest {
   @Test func notSupported() {
     let got = CredentialsError.notSupported("-- details here --")
+    let anyError: any Error = got
     #expect(got.description == "Operation not supported: -- details here --")
     #expect(
-      got.debugDescription.contains("-- details here --"),
-      "\(got):\n\(got.debugDescription)")
+      got.debugDescription
+        == "CredentialsError.notSupported(\"-- details here --\"): Operation not supported: -- details here --"
+    )
+    #expect(String(reflecting: anyError) == got.debugDescription)
   }
 
   @Test func parseError() {
     let got = CredentialsError.parseError("-- details here --")
+    let anyError: any Error = got
     #expect(got.description == "Configuration parse error: -- details here --")
     #expect(
-      got.debugDescription.contains("-- details here --"),
+      got.debugDescription
+        == "CredentialsError.parseError(\"-- details here --\"): Configuration parse error: -- details here --"
+    )
+    #expect(String(reflecting: anyError) == got.debugDescription)
+  }
+
+  @Test func cannotLoadFileDetails() {
+    let underlyingError = CredentialsError.notSupported("--inner--")
+    let got = CredentialsError.cannotLoadFile(
+      message: "--message here--", underlyingError: underlyingError)
+    let anyError: any Error = got
+    #expect(got.description == "--message here--: Operation not supported: --inner--")
+    #expect(
+      got.debugDescription.hasPrefix("CredentialsError.cannotLoadFile: --message here--"),
       "\(got):\n\(got.debugDescription)")
+    #expect(
+      got.debugDescription.contains(String(reflecting: underlyingError)),
+      "\(got):\n\(got.debugDescription)")
+    #expect(String(reflecting: anyError) == got.debugDescription)
   }
 
   @Test func cannotFetchTokenDetails() {
-    let source = CredentialsError.notSupported("--inner--")
-    let got = CredentialsError.cannotFetchToken(message: "--message here--", source: source)
+    let underlyingError = CredentialsError.notSupported("--inner--")
+    let got = CredentialsError.cannotFetchToken(
+      message: "--message here--", underlyingError: underlyingError)
+    let anyError: any Error = got
     #expect(got.description == "--message here--: Operation not supported: --inner--")
     #expect(
-      got.debugDescription.contains("--message here--"),
+      got.debugDescription.hasPrefix("CredentialsError.cannotFetchToken: --message here--"),
       "\(got):\n\(got.debugDescription)")
     #expect(
-      got.debugDescription.contains("\(source)"),
+      got.debugDescription.contains(String(reflecting: underlyingError)),
       "\(got):\n\(got.debugDescription)")
+    #expect(String(reflecting: anyError) == got.debugDescription)
   }
 }

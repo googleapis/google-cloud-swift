@@ -39,6 +39,7 @@ public struct ExportTaxonomiesResponse: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = ExportTaxonomiesResponse().with { $0.taxonomies = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

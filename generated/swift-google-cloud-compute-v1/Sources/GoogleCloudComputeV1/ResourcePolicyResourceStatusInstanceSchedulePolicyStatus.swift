@@ -43,6 +43,7 @@
     /// ```
     /// let value = ResourcePolicyResourceStatusInstanceSchedulePolicyStatus().with { $0.lastRunStartTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

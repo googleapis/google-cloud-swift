@@ -46,6 +46,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Encryption().with { $0.id = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -173,6 +174,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Aes128Encryption().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -241,6 +243,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SampleAesEncryption().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -317,6 +320,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MpegCommonEncryption().with { $0.scheme = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -401,6 +405,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SecretManagerSource().with { $0.secretVersion = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -477,6 +482,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Widevine().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -545,6 +551,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Fairplay().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -613,6 +620,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Playready().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -681,6 +689,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Clearkey().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -761,6 +770,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DrmSystems().with { $0.widevine = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

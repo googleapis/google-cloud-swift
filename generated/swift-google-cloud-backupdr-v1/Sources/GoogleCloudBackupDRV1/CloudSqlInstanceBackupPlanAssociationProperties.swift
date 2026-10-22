@@ -37,6 +37,7 @@ public struct CloudSqlInstanceBackupPlanAssociationProperties: Codable, Equatabl
   /// ```
   /// let value = CloudSqlInstanceBackupPlanAssociationProperties().with { $0.instanceCreateTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

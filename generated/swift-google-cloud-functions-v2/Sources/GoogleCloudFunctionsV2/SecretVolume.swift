@@ -55,6 +55,7 @@ public struct SecretVolume: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SecretVolume().with { $0.mountPath = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -140,6 +141,7 @@ public struct SecretVolume: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SecretVersion().with { $0.version = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

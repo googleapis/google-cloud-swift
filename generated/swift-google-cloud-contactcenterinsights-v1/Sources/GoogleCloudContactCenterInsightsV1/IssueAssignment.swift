@@ -44,6 +44,7 @@ public struct IssueAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = IssueAssignment().with { $0.issue = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

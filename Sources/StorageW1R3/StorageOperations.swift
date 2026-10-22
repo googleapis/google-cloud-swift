@@ -26,6 +26,7 @@ enum StorageOperations {
     objectName: String,
     buffer: ByteChunk,
     isResumable: Bool,
+    chunkSize: Int? = nil,
     isStreaming: Bool = false,
     crc32cEnabled: Bool
   ) async throws -> GoogleCloudStorage.Object {
@@ -38,7 +39,7 @@ enum StorageOperations {
         if isStreaming {
           $0.chunkSize = nil
         } else {
-          $0.chunkSize = 32 * 1024 * 1024
+          $0.chunkSize = chunkSize
         }
         $0.resumableUploadThreshold = buffer.count
       } else {
@@ -102,7 +103,7 @@ enum StorageOperations {
             try await client.deleteObject(
               request: deleteReq,
               options: .init().with {
-                $0.idempotency = true
+                $0.idempotent = true
                 $0.retryPolicy = StorageBaseRetryPolicy.unbounded()
                   .withTimeLimit(.seconds(30))
                   .countedAndLogged(

@@ -41,6 +41,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
   /// ```
   /// let value = SharedRegionalCertificateAuthority().with { $0.managedServerCa = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -128,6 +129,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
     /// ```
     /// let value = RegionalManagedCertificateAuthority().with { $0.caCerts = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -188,6 +190,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
       /// ```
       /// let value = RegionalCertChain().with { $0.certificates = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

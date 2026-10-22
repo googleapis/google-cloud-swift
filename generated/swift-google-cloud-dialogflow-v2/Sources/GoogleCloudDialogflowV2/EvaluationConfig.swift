@@ -40,6 +40,7 @@
     /// ```
     /// let value = EvaluationConfig().with { $0.datasets = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -140,6 +141,7 @@
       /// ```
       /// let value = SmartReplyConfig().with { $0.allowlistDocument = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -234,6 +236,7 @@
       /// ```
       /// let value = SmartComposeConfig().with { $0.allowlistDocument = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

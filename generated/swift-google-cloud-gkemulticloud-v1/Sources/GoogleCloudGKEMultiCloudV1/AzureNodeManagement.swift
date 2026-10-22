@@ -41,6 +41,7 @@ public struct AzureNodeManagement: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AzureNodeManagement().with { $0.autoRepair = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -36,6 +36,7 @@ public struct SuggestionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SuggestionConfig().with { $0.skipSuggestionSteps = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

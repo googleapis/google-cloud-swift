@@ -58,6 +58,7 @@
     /// ```
     /// let value = SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig().with { $0.autoDeployConfidenceThreshold = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

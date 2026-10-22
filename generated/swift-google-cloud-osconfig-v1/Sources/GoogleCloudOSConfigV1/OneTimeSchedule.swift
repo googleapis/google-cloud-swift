@@ -37,6 +37,7 @@ public struct OneTimeSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OneTimeSchedule().with { $0.executeTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

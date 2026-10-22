@@ -14,19 +14,20 @@
 
 import Foundation
 
+/// Adapter registered with `CredentialParserRegistry` to construct `ServiceAccountCredentials`
+/// from raw `"service_account"` ADC JSON `Data`.
 internal struct ServiceAccountParser: CredentialSourceParser {
   internal static let type = "service_account"
 
   internal init() {}
 
   internal func parse(
-    config: [String: Any],
+    data: Data,
     quotaProjectID: String?,
     universeDomain: String?,
     scopes: [String],
     environment: [String: String]
   ) throws -> any CredentialsProvider {
-    let data = try JSONSerialization.data(withJSONObject: config, options: [])
     return try ServiceAccountCredentials(
       keyJSON: data,
       quotaProjectID: quotaProjectID,
@@ -68,9 +69,12 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
       throw CredentialsError.parseError(
         "Failed to parse Service Account key JSON: \(error.localizedDescription)")
     }
-    let provider = ServiceAccountTokenProvider(key: key, accessSpecifier: accessSpecifier)
+    let provider = try ServiceAccountTokenProvider(key: key, accessSpecifier: accessSpecifier)
 
-    self.tokenProvider = TokenCache(provider: provider)
+    self.tokenProvider = TokenCache(
+      provider: provider,
+      isRetryable: { _ in false }
+    )
     self.quotaProjectID = quotaProjectID
     _ = universeDomain
   }

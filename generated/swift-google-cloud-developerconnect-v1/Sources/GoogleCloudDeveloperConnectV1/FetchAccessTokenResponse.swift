@@ -45,6 +45,7 @@ public struct FetchAccessTokenResponse: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = FetchAccessTokenResponse().with { $0.token = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

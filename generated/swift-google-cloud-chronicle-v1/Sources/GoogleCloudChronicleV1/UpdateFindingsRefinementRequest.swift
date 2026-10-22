@@ -45,6 +45,7 @@ public struct UpdateFindingsRefinementRequest: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = UpdateFindingsRefinementRequest().with { $0.findingsRefinement = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

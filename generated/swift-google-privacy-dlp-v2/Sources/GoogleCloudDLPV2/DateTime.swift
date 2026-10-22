@@ -48,6 +48,7 @@ public struct DateTime: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DateTime().with { $0.date = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -118,6 +119,7 @@ public struct DateTime: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TimeZone().with { $0.offsetMinutes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

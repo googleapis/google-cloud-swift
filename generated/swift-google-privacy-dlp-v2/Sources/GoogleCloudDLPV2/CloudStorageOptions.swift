@@ -73,6 +73,7 @@ public struct CloudStorageOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CloudStorageOptions().with { $0.fileSet = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -175,6 +176,7 @@ public struct CloudStorageOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FileSet().with { $0.url = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

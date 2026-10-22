@@ -56,6 +56,7 @@ public struct SpeechRecognitionAlternative: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = SpeechRecognitionAlternative().with { $0.transcript = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

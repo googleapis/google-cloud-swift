@@ -37,6 +37,7 @@ public struct RecognitionResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RecognitionResult().with { $0.transcript = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

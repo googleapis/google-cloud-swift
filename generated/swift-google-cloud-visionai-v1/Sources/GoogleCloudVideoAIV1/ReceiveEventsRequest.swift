@@ -35,6 +35,7 @@ public struct ReceiveEventsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ReceiveEventsRequest().with { $0.setupRequest = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -148,6 +149,7 @@ public struct ReceiveEventsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SetupRequest().with { $0.cluster = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -59,6 +59,7 @@ public struct GenerateAttachedClusterAgentTokenRequest: Codable, Equatable, Goog
   /// ```
   /// let value = GenerateAttachedClusterAgentTokenRequest().with { $0.attachedCluster = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

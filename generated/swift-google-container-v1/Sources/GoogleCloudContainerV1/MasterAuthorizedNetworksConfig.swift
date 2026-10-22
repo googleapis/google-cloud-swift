@@ -49,6 +49,7 @@ public struct MasterAuthorizedNetworksConfig: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = MasterAuthorizedNetworksConfig().with { $0.enabled = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -130,6 +131,7 @@ public struct MasterAuthorizedNetworksConfig: Codable, Equatable, GoogleWKT._Any
     /// ```
     /// let value = CidrBlock().with { $0.displayName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

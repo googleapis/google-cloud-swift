@@ -35,6 +35,7 @@ public struct CreateSequenceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CreateSequenceRequest().with { $0.sequence = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

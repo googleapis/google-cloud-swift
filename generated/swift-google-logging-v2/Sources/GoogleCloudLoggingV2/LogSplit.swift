@@ -48,6 +48,7 @@ public struct LogSplit: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = LogSplit().with { $0.uid = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

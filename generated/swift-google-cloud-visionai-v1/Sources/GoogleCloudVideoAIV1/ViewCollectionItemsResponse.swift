@@ -41,6 +41,7 @@ public struct ViewCollectionItemsResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ViewCollectionItemsResponse().with { $0.items = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

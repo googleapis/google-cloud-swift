@@ -94,6 +94,7 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AttachedDisk().with { $0.initializeParams = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -233,6 +234,7 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InitializeParams().with { $0.diskName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

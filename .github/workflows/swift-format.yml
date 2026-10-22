@@ -39,4 +39,4 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # ratchet:actions/checkout@v6
-      - uses: crate-ci/typos@512fc24f32f44ab01972217aaaf3dc86ec234d53 # ratchet:crate-ci/typos@v1.45.0
+      - uses: crate-ci/typos@00f422f3b19c57bc6338715ebfe3316d38768461 # ratchet:crate-ci/typos@v1.45.0

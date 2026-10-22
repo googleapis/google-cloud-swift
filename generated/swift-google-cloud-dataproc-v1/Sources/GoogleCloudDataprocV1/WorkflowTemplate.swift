@@ -105,6 +105,7 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WorkflowTemplate().with { $0.id = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -244,6 +245,7 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EncryptionConfig().with { $0.kmsKey = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

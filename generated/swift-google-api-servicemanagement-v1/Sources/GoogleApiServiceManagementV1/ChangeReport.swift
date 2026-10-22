@@ -44,6 +44,7 @@ public struct ChangeReport: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ChangeReport().with { $0.configChanges = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

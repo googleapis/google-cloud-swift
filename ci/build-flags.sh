@@ -36,3 +36,36 @@ source "${_BUILD_FLAGS_SCRIPT_DIR}/glinux-flags.sh"
 add_glinux_flags
 
 flags=("${build_flags[@]}")
+
+resolve_flags=(
+    --scratch-path "${GOOGLE_CLOUD_SWIFT_SCRATCH_PATH:-${REPO_ROOT}/.build-cache}"
+)
+
+# Resolves package dependencies for a given directory with retries to handle
+# transient network or TLS flakes when fetching remote repositories.
+#
+# Sub-packages in `pkgs/*`, `guide`, and `generated/*` do not track a
+# `Package.resolved` file in git, so SwiftPM fetches remote dependency updates
+# each time a sub-package is built or tested. Running `swift package resolve`
+# with the shared `--scratch-path` and any package-specific flags (such as
+# `--enable-all-traits`) beforehand ensures that dependency resolution happens
+# inside the retry loop and that the subsequent `swift build` / `swift test`
+# reuses the resolved workspace state without hitting the network.
+resolve_package() {
+    local dir="${1:-.}"
+    shift || true
+    local pkg_resolve_flags=("${resolve_flags[@]}")
+    if [[ "${dir}" == "." || "${dir}" == "${REPO_ROOT}" ]]; then
+        pkg_resolve_flags+=(--disable-automatic-resolution)
+    fi
+    local delay
+    for delay in 0 5 10; do
+        if (( delay > 0 )); then
+            sleep "${delay}"
+        fi
+        if swift package resolve "${pkg_resolve_flags[@]}" --package-path "${dir}" "$@"; then
+            return 0
+        fi
+    done
+    return 1
+}

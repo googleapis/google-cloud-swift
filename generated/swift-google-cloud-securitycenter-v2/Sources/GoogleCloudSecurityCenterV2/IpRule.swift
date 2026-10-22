@@ -43,6 +43,7 @@ public struct IpRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = IpRule().with { $0.`protocol` = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -112,6 +113,7 @@ public struct IpRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PortRange().with { $0.min = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

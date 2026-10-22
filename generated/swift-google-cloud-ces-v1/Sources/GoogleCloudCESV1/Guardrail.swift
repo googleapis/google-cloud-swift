@@ -65,6 +65,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Guardrail().with { $0.contentFilter = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -233,6 +234,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ContentFilter().with { $0.bannedContents = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -481,6 +483,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LlmPromptSecurity().with { $0.defaultSettings = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -575,6 +578,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = DefaultSecuritySettings().with { $0.defaultPromptTemplate = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -715,6 +719,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LlmPolicy().with { $0.maxConversationMessages = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -956,6 +961,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ModelSafety().with { $0.safetySettings = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1019,6 +1025,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = SafetySetting().with { $0.category = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1431,6 +1438,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CodeCallback().with { $0.beforeAgentCallback = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

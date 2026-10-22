@@ -41,6 +41,7 @@ public struct PagedExpandLegacyMappedResponse: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = PagedExpandLegacyMappedResponse().with { $0.alphabetized = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

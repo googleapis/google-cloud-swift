@@ -66,6 +66,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BlockchainNode().with { $0.ethereumDetails = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -204,6 +205,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ConnectionInfo().with { $0.endpointInfo = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -270,6 +272,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = EndpointInfo().with { $0.jsonRpcApiEndpoint = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -409,6 +412,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EthereumDetails().with { $0.gethDetails = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -529,6 +533,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GethDetails().with { $0.garbageCollectionMode = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -744,6 +749,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = EthereumEndpoints().with { $0.beaconApiEndpoint = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -865,6 +871,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ValidatorConfig().with { $0.mevRelayUrls = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

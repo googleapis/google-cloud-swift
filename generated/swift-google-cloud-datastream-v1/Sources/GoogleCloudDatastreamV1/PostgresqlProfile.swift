@@ -17,7 +17,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// PostgreSQL database profile.
+/// Profile for connecting to a PostgreSQL source.
 public struct PostgresqlProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
@@ -60,6 +60,7 @@ public struct PostgresqlProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PostgresqlProfile().with { $0.hostname = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

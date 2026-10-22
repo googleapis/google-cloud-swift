@@ -41,6 +41,7 @@ public struct UpdateGoogleChannelConfigRequest: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = UpdateGoogleChannelConfigRequest().with { $0.googleChannelConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

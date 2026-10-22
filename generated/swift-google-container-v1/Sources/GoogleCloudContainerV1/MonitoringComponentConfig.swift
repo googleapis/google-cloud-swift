@@ -37,6 +37,7 @@ public struct MonitoringComponentConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = MonitoringComponentConfig().with { $0.enableComponents = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

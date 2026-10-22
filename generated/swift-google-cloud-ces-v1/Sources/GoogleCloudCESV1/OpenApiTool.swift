@@ -67,6 +67,7 @@ public struct OpenApiTool: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OpenApiTool().with { $0.openApiSchema = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

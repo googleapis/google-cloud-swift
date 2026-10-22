@@ -48,6 +48,7 @@ public struct DatastoreFirestoreMigrationMetadata: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = DatastoreFirestoreMigrationMetadata().with { $0.migrationState = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

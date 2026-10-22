@@ -82,6 +82,7 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = ServiceConnectionPolicy().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -227,6 +228,7 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = PscConfig().with { $0.subnetworks = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -499,6 +501,7 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = PscConnection().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

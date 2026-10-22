@@ -104,6 +104,7 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ResourceMaintenance().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -268,6 +269,7 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Resource().with { $0.resourceName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -369,6 +371,7 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Maintenance().with { $0.maintenanceName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

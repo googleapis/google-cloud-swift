@@ -39,6 +39,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = AccountDefenderAssessment().with { $0.labels = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -114,6 +115,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = AccountTakeoverVerdict().with { $0.risk = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -211,6 +213,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = AccountRiskReason().with { $0.reason = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -436,6 +439,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = AccountTrustReason().with { $0.reason = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

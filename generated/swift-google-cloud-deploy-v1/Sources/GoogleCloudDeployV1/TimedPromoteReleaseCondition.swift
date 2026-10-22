@@ -40,6 +40,7 @@ public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = TimedPromoteReleaseCondition().with { $0.nextPromotionTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -107,6 +108,7 @@ public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleWKT._AnyPa
     /// ```
     /// let value = Targets().with { $0.sourceTargetId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

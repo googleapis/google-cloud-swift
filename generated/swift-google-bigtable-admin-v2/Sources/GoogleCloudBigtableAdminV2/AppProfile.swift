@@ -58,6 +58,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AppProfile().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -225,6 +226,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MultiClusterRoutingUseAny().with { $0.clusterIds = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -313,6 +315,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RowAffinity().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -428,6 +431,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SingleClusterRouting().with { $0.clusterId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -520,6 +524,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StandardIsolation().with { $0.priority = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -583,6 +588,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = MemoryConfig().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -681,6 +687,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DataBoostIsolationReadOnly().with { $0.computeBillingOwner = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

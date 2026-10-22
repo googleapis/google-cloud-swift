@@ -21,7 +21,7 @@ import Foundation
 public struct PostgresqlColumn: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Column name.
+  /// The column name.
   public var column: Swift.String = Swift.String()
 
   /// The PostgreSQL data type.
@@ -57,6 +57,7 @@ public struct PostgresqlColumn: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PostgresqlColumn().with { $0.column = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

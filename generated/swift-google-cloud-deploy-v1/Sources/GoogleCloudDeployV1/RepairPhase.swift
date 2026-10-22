@@ -37,6 +37,7 @@ public struct RepairPhase: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RepairPhase().with { $0.retry = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -44,6 +44,7 @@
     /// ```
     /// let value = QueryInput().with { $0.audioConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

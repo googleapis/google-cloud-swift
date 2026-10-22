@@ -37,6 +37,7 @@
     /// ```
     /// let value = SummarySuggestion().with { $0.summarySections = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -99,6 +100,7 @@
       /// ```
       /// let value = SummarySection().with { $0.section = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

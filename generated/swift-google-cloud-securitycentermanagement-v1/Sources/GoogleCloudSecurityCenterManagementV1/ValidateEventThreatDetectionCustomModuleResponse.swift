@@ -42,6 +42,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
   /// ```
   /// let value = ValidateEventThreatDetectionCustomModuleResponse().with { $0.errors = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -118,6 +119,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
     /// ```
     /// let value = CustomModuleValidationError().with { $0.description = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -217,6 +219,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
     /// ```
     /// let value = Position().with { $0.lineNumber = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

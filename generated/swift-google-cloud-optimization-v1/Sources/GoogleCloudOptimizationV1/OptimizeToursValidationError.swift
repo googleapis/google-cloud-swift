@@ -306,6 +306,7 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = OptimizeToursValidationError().with { $0.code = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -402,6 +403,7 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleWKT._AnyPa
     /// ```
     /// let value = FieldReference().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

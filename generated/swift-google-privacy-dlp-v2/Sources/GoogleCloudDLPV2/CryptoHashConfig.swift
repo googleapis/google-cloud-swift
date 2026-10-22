@@ -44,6 +44,7 @@ public struct CryptoHashConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CryptoHashConfig().with { $0.cryptoKey = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

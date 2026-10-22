@@ -40,6 +40,7 @@ public struct AutonomousDatabaseApex: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = AutonomousDatabaseApex().with { $0.apexVersion = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

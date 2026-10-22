@@ -23,26 +23,16 @@ package enum ADCContents: Equatable, Sendable {
   case fallbackToMds
 }
 
-/// Errors occurring during the resolution or loading of Application Default Credentials.
-package enum ADCResolverError: Error, Equatable {
-  /// The credential file was not found. If `isEnvironmentOverride` is `true`, the path came from `GOOGLE_APPLICATION_CREDENTIALS`.
-  case fileNotFound(path: String, isEnvironmentOverride: Bool)
-  /// The credential file contents could not be parsed as valid JSON.
-  case invalidFormat
-  /// The credential JSON contains an unsupported `type` field value.
-  case unsupportedType(String)
-}
-
 /// Loads the Application Default Credentials file content if available, or signals fallback to the Metadata Server.
 ///
 /// Follows the error semantics defined for [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials):
 /// - If `GOOGLE_APPLICATION_CREDENTIALS` is set but points to a non-existent or unreadable file,
-///   throws `ADCResolverError.fileNotFound(..., isEnvironmentOverride: true)` immediately rather than falling back.
+///   throws `CredentialsError.cannotLoadFile(message:underlyingError:)` immediately rather than falling back.
 /// - If the well-known file location does not exist, returns `.fallbackToMds`.
 ///
 /// - Parameter environment: The environment dictionary to inspect.
 /// - Returns: An `ADCContents` value containing either raw file data or a fallback signal.
-/// - Throws: An `ADCResolverError` if an environment-specified file cannot be found or read.
+/// - Throws: A `CredentialsError.cannotLoadFile` if an environment-specified file cannot be found or read.
 package func loadADC(
   environment: [String: String] = ProcessInfo.processInfo.environment
 ) throws -> ADCContents {
@@ -67,7 +57,11 @@ package func loadADC(
     return .contents(data)
   } catch {
     if isEnvironmentOverride {
-      throw ADCResolverError.fileNotFound(path: filePath.string, isEnvironmentOverride: true)
+      throw CredentialsError.cannotLoadFile(
+        message:
+          "Could not load credentials file at '\(filePath.string)' specified by GOOGLE_APPLICATION_CREDENTIALS",
+        underlyingError: error
+      )
     } else {
       return .fallbackToMds
     }

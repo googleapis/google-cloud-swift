@@ -55,6 +55,7 @@ public struct AclEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AclEntry().with { $0.principal = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

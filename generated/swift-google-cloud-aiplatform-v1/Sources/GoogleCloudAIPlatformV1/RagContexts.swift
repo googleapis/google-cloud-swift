@@ -37,6 +37,7 @@
     /// ```
     /// let value = RagContexts().with { $0.contexts = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -115,6 +116,7 @@
       /// ```
       /// let value = Context().with { $0.sourceUri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

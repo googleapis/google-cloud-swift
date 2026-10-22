@@ -40,6 +40,7 @@ public struct GenerateCredentialsResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = GenerateCredentialsResponse().with { $0.kubeconfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

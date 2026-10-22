@@ -318,15 +318,82 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     )
 
     // First call throws the 403 error (permanent)
-    await #expect(throws: (any Error).self) {
+    let error1 = await #expect(throws: CredentialsError.self) {
       _ = try await creds.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError1) = error1 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error1))")
+      return
+    }
+    #expect(underlyingError1 is AuthHTTPError)
     #expect(attempts.getCount() == 1)
 
     // Second call should fail immediately WITHOUT calling the backend again (permanent error cached)
-    await #expect(throws: (any Error).self) {
+    let error2 = await #expect(throws: CredentialsError.self) {
       _ = try await creds.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError2) = error2 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error2))")
+      return
+    }
+    #expect(underlyingError2 is AuthHTTPError)
+    #expect(attempts.getCount() == 1)
+  }
+
+  @Test("Programmatic credentials do not retry on malformed response")
+  func programmaticCredentialsDoesNotRetryOnMalformedResponse() async throws {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+    let attempts = CallCounter()
+    let malformedData = Data("invalid-json".utf8)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: malformedData))
+        )
+      }
+    ])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3,
+      initialDelay: .milliseconds(1),
+      multiplier: 1.0,
+      maxDelay: .milliseconds(1)
+    )
+
+    let httpClient = AuthHTTPClient(mock: mock)
+    let creds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL,
+      retryConfiguration: retryConfig,
+      httpClient: httpClient
+    )
+
+    let error1 = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    guard case let .cannotFetchToken(_, underlyingError1) = error1 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error1))")
+      return
+    }
+    #expect(underlyingError1 is AuthHTTPError)
+    #expect(attempts.getCount() == 1)
+
+    let error2 = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    guard case let .cannotFetchToken(_, underlyingError2) = error2 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error2))")
+      return
+    }
+    #expect(underlyingError2 is AuthHTTPError)
     #expect(attempts.getCount() == 1)
   }
 
@@ -344,19 +411,29 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       httpClient: httpClient
     )
 
-    // First attempt should throw the provider error
-    await #expect(throws: (any Error).self) {
+    // First attempt should throw the provider error wrapped in CredentialsError.cannotFetchToken
+    let error1 = await #expect(throws: CredentialsError.self) {
       _ = try await creds.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError1) = error1 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error1))")
+      return
+    }
+    #expect(underlyingError1 is MockFailingSubjectTokenProvider.ProviderError)
 
     // Depending on how the TokenCache background task is scheduled, this count may be 1 or 2.
     let count1 = await provider.callCount
     #expect(count1 >= 1)
 
     // Since it's retryable, second attempt should call provider again
-    await #expect(throws: (any Error).self) {
+    let error2 = await #expect(throws: CredentialsError.self) {
       _ = try await creds.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError2) = error2 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error2))")
+      return
+    }
+    #expect(underlyingError2 is MockFailingSubjectTokenProvider.ProviderError)
 
     let count2 = await provider.callCount
     #expect(count2 > count1)

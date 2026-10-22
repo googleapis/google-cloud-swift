@@ -122,6 +122,7 @@
     /// ```
     /// let value = SearchResponse().with { $0.results = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -288,6 +289,7 @@
       /// ```
       /// let value = SearchResult().with { $0.id = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -400,6 +402,7 @@
         /// ```
         /// let value = RankSignals().with { $0.keywordSimilarityScore = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -514,6 +517,7 @@
           /// ```
           /// let value = CustomSignal().with { $0.name = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -628,6 +632,7 @@
         /// ```
         /// let value = RetrievalSignals().with { $0.retrievalSources = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -867,6 +872,7 @@
       /// ```
       /// let value = Facet().with { $0.key = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -941,6 +947,7 @@
         /// ```
         /// let value = FacetValue().with { $0.value = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1097,6 +1104,7 @@
       /// ```
       /// let value = Summary().with { $0.summaryText = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1177,6 +1185,7 @@
         /// ```
         /// let value = SafetyAttributes().with { $0.categories = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1263,6 +1272,7 @@
         /// ```
         /// let value = CitationMetadata().with { $0.citations = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1351,6 +1361,7 @@
         /// ```
         /// let value = Citation().with { $0.startIndex = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1447,6 +1458,7 @@
         /// ```
         /// let value = CitationSource().with { $0.referenceIndex = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1541,6 +1553,7 @@
         /// ```
         /// let value = Reference().with { $0.title = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1621,6 +1634,7 @@
           /// ```
           /// let value = ChunkContent().with { $0.content = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1737,6 +1751,7 @@
         /// ```
         /// let value = SummaryWithMetadata().with { $0.summary = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2076,6 +2091,7 @@
       /// ```
       /// let value = QueryExpansionInfo().with { $0.expandedQuery = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2174,6 +2190,7 @@
       /// ```
       /// let value = NaturalLanguageQueryUnderstandingInfo().with { $0.extractedFilters = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2259,6 +2276,7 @@
         /// ```
         /// let value = StructuredExtractedFilter().with { $0.expression = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2323,6 +2341,7 @@
           /// ```
           /// let value = StringConstraint().with { $0.fieldName = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -2428,6 +2447,7 @@
           /// ```
           /// let value = NumberConstraint().with { $0.fieldName = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -2683,6 +2703,7 @@
           /// ```
           /// let value = GeolocationConstraint().with { $0.fieldName = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -2790,6 +2811,7 @@
           /// ```
           /// let value = AndExpression().with { $0.expressions = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -2877,6 +2899,7 @@
           /// ```
           /// let value = OrExpression().with { $0.expressions = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -2963,6 +2986,7 @@
           /// ```
           /// let value = Expression().with { $0.stringConstraint = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -3187,6 +3211,7 @@
       /// ```
       /// let value = SessionInfo().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

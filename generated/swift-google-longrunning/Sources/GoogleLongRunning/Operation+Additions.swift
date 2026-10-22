@@ -61,7 +61,8 @@ extension Operation {
     let error = GoogleGax.RequestError.service(
       GoogleGax.ServiceError(
         code: GoogleRpc.Code(intValue: Int(status.code)),
-        message: status.message))
+        message: status.message,
+        details: status.details.map { GoogleGax.StatusDetail(from: $0) }))
     return .init(done: true, result: .failure(error))
   }
 

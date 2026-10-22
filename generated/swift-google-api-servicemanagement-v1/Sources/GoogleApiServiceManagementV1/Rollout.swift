@@ -65,6 +65,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Rollout().with { $0.rolloutId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -211,6 +212,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TrafficPercentStrategy().with { $0.percentages = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -290,6 +292,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DeleteServiceStrategy().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

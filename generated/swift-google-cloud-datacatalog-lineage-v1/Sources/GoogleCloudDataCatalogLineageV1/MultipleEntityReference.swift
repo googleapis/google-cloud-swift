@@ -37,6 +37,7 @@ public struct MultipleEntityReference: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = MultipleEntityReference().with { $0.entities = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

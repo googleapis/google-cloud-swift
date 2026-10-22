@@ -35,6 +35,7 @@ public struct AssetSource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AssetSource().with { $0.assetGcsSource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -121,6 +122,7 @@ public struct AssetSource: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AssetGcsSource().with { $0.gcsUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -199,6 +201,7 @@ public struct AssetSource: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AssetContentData().with { $0.assetContentData = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

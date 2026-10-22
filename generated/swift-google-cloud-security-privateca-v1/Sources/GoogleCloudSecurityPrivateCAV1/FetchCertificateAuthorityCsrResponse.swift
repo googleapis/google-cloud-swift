@@ -39,6 +39,7 @@ public struct FetchCertificateAuthorityCsrResponse: Codable, Equatable, GoogleWK
   /// ```
   /// let value = FetchCertificateAuthorityCsrResponse().with { $0.pemCsr = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

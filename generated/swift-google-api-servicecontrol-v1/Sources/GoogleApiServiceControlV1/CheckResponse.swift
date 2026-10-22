@@ -56,6 +56,7 @@ public struct CheckResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CheckResponse().with { $0.operationId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -145,6 +146,7 @@ public struct CheckResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CheckInfo().with { $0.unusedArguments = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -249,6 +251,7 @@ public struct CheckResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ConsumerInfo().with { $0.projectNumber = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

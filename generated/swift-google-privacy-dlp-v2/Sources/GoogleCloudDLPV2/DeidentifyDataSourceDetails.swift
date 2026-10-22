@@ -42,6 +42,7 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = DeidentifyDataSourceDetails().with { $0.requestedOptions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -115,6 +116,7 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPac
     /// ```
     /// let value = RequestedDeidentifyOptions().with { $0.snapshotDeidentifyTemplate = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

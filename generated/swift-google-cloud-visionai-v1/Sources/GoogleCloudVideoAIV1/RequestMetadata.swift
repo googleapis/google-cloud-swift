@@ -54,6 +54,7 @@ public struct RequestMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RequestMetadata().with { $0.stream = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

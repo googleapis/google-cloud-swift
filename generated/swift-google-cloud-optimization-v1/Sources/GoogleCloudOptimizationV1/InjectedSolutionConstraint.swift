@@ -48,6 +48,7 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = InjectedSolutionConstraint().with { $0.routes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -140,6 +141,7 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = ConstraintRelaxation().with { $0.relaxations = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -254,6 +256,7 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleWKT._AnyPack
       /// ```
       /// let value = Relaxation().with { $0.level = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

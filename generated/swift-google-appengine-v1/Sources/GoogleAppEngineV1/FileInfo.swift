@@ -47,6 +47,7 @@ public struct FileInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FileInfo().with { $0.sourceUrl = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

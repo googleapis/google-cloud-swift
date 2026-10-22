@@ -42,6 +42,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AuthConfig().with { $0.authType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -163,6 +164,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UserPassword().with { $0.username = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -254,6 +256,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Oauth2JwtBearer().with { $0.clientKey = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -320,6 +323,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = JwtClaims().with { $0.issuer = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -437,6 +441,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Oauth2ClientCredentials().with { $0.clientId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -529,6 +534,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SshPublicKey().with { $0.username = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

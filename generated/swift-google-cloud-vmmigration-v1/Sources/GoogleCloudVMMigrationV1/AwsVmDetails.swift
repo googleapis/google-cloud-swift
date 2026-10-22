@@ -92,6 +92,7 @@ public struct AwsVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AwsVmDetails().with { $0.vmId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

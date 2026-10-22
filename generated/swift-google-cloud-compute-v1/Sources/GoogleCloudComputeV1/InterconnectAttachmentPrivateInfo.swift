@@ -39,6 +39,7 @@
     /// ```
     /// let value = InterconnectAttachmentPrivateInfo().with { $0.tag8021Q = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -46,6 +46,7 @@ public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = VideoClassificationPredictionResult().with { $0.segmentStartTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -124,6 +125,7 @@ public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleWKT
     /// ```
     /// let value = IdentifiedClassification().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

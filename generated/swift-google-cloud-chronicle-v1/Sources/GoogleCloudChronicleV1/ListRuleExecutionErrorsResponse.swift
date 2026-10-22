@@ -41,6 +41,7 @@ public struct ListRuleExecutionErrorsResponse: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = ListRuleExecutionErrorsResponse().with { $0.ruleExecutionErrors = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

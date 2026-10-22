@@ -62,6 +62,7 @@ public struct CollectUserEventRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = CollectUserEventRequest().with { $0.prebuiltRule = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

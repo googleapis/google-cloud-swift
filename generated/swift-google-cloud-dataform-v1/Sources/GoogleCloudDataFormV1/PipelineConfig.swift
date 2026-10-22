@@ -41,6 +41,7 @@ public struct PipelineConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PipelineConfig().with { $0.pipelineType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

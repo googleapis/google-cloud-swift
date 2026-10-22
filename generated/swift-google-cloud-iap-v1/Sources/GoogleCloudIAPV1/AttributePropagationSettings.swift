@@ -74,6 +74,7 @@ public struct AttributePropagationSettings: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = AttributePropagationSettings().with { $0.expression = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

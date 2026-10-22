@@ -38,6 +38,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AuditData().with { $0.permissionDelta = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -98,6 +99,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PermissionDelta().with { $0.addedPermissions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

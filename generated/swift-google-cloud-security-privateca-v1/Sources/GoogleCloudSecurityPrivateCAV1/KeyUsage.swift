@@ -49,6 +49,7 @@ public struct KeyUsage: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = KeyUsage().with { $0.baseKeyUsage = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -146,6 +147,7 @@ public struct KeyUsage: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = KeyUsageOptions().with { $0.digitalSignature = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -298,6 +300,7 @@ public struct KeyUsage: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ExtendedKeyUsageOptions().with { $0.serverAuth = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

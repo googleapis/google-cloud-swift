@@ -89,6 +89,7 @@ public struct WasmPluginVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WasmPluginVersion().with { $0.pluginConfigData = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

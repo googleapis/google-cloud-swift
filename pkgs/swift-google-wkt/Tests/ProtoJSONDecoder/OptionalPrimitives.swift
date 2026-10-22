@@ -70,6 +70,30 @@ extension ProtoJSONDecoderTest {
           $0.fieldData = Data(base64Encoded: "NDI=")!
         }
       ),
+      (
+        #"{"fieldData":   "NDI" }"#,
+        OptionalPrimitives().with {
+          $0.fieldData = Data("42".utf8)
+        }
+      ),
+      (
+        #"{"fieldData":   "-_-_" }"#,
+        OptionalPrimitives().with {
+          $0.fieldData = Data([251, 255, 191] as [UInt8])
+        }
+      ),
+      (
+        #"{"fieldData":   "Pz8_Pw" }"#,
+        OptionalPrimitives().with {
+          $0.fieldData = Data("????".utf8)
+        }
+      ),
+      (
+        #"{"fieldData":   "Pz8_Pw==" }"#,
+        OptionalPrimitives().with {
+          $0.fieldData = Data("????".utf8)
+        }
+      ),
       (#"{"fieldBool":   "true" }"#, OptionalPrimitives().with { $0.fieldBool = true }),
       (#"{"fieldInt":    "42"   }"#, OptionalPrimitives().with { $0.fieldInt = 42 }),
       (#"{"fieldInt32":  "42"   }"#, OptionalPrimitives().with { $0.fieldInt32 = 42 }),
@@ -79,7 +103,7 @@ extension ProtoJSONDecoderTest {
       (#"{"fieldUInt64": "42"   }"#, OptionalPrimitives().with { $0.fieldUInt64 = 42 }),
       (#"{"fieldFloat":  "42"   }"#, OptionalPrimitives().with { $0.fieldFloat = 42 }),
       (#"{"fieldDouble": "42"   }"#, OptionalPrimitives().with { $0.fieldDouble = 42 }),
-    ])
+    ] as [(String, OptionalPrimitives)])
   func decodeOptionals(input: String, want: OptionalPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(OptionalPrimitives.self, from: Data(input.utf8))
@@ -99,7 +123,12 @@ extension ProtoJSONDecoderTest {
       #"{"fieldFloat":  "bad" }"#,
       #"{"fieldDouble": "bad" }"#,
       // #"{"fieldString": 42 }"#, TReturns a different error
-      #"{"fieldData":   "bad" }"#,
+      #"{"fieldData":   "bad!" }"#,
+      #"{"fieldData":   "a" }"#,
+      #"{"fieldData":   "NDI==" }"#,
+      #"{"fieldData":   "QUJD=" }"#,
+      #"{"fieldData":   "QQ=A" }"#,
+      #"{"fieldData":   "-_+/" }"#,
     ])
   func decodeOptionalBad(input: String) throws {
     let decoder = _ProtoJSONDecoder()

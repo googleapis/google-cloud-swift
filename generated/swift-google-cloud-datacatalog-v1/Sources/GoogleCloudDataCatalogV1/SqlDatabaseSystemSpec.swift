@@ -59,6 +59,7 @@ public struct SqlDatabaseSystemSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SqlDatabaseSystemSpec().with { $0.sqlEngine = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

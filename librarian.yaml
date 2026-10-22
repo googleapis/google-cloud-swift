@@ -12,18 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: swift
-version: v0.47.1-0.20261007185424-effccd554d55
+version: v0.48.1-0.20261019201610-7b9c44c06ee1
 repo: googleapis/google-cloud-swift
 sources:
   conformance:
     commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
     sha256: 55912546338433f465a552e9ef09930c63b9eb697053937416890cff83a8622d
   discovery:
-    commit: c225bb4f2741bfe21fa20343d3e1a1218e33ab18
-    sha256: e9a85b5856627e860205dd08ad1a22a4348a2a59e722fcf5bb22a0f49d6e47a9
+    commit: b147ddc71bba82f2b697aa295b46af81ebe9261d
+    sha256: a53714974808ed42d631c5cbd74c39ea17d938b29030deae888226a6404bd39b
   googleapis:
-    commit: 180d93c4b1dbeec2e615c003dd3c19ef992e5e85
-    sha256: 55af71cc87fcaf838b79096e9d672d740c6a5c8a6aed72545a431a368db7daf7
+    commit: cec791da64be8ae9fc9d5402515a144e63f673bf
+    sha256: 4a4f6bbd8fc8bfccfaa09290afe7013c5cbd6c894a4d646efbd014ace41f0f90
   protobuf:
     commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
     sha256: 55912546338433f465a552e9ef09930c63b9eb697053937416890cff83a8622d
@@ -1023,6 +1023,7 @@ libraries:
           api_path: google/storage/control/v2
           module_type: grpc-client
           module_path: StorageControlProtos
+          idempotency_hook: resolveIdempotency
         - output: pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/StorageControl
           api_path: google/storage/control/v2
           module_type: convert-swift
@@ -1114,6 +1115,9 @@ libraries:
             - policy.proto
             - options.proto
           module_path: StorageControlProtos
+        - output: pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/version
+          api_path: ""
+          module_type: package-version
       name_overrides:
         .google.storage.v2.Storage: StorageControl
       lro_any_converter: StorageControlLROAnyConverter

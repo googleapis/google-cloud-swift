@@ -44,6 +44,7 @@ public struct ListSecurityCenterServicesResponse: Codable, Equatable, GoogleWKT.
   /// ```
   /// let value = ListSecurityCenterServicesResponse().with { $0.securityCenterServices = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

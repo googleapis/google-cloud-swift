@@ -36,6 +36,7 @@ public struct UnregisterSubscriberResponse: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = UnregisterSubscriberResponse().with { $0.topic = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

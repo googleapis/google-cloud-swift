@@ -52,6 +52,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = InternalServerConfig().with { $0.serviceAttachment = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -138,6 +139,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AllowedConsumer().with { $0.project = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -249,6 +251,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DeniedConsumer().with { $0.project = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -362,6 +365,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PscEndpoint().with { $0.endpoint = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

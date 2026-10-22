@@ -36,6 +36,7 @@ public struct ReadRepositoryFileResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ReadRepositoryFileResponse().with { $0.contents = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

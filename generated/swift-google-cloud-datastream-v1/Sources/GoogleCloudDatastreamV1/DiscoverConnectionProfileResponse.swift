@@ -36,6 +36,7 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = DiscoverConnectionProfileResponse().with { $0.oracleRdbms = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -54,6 +55,8 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
     static let sqlServerRdbms = CodingKeys(stringValue: "sqlServerRdbms")
     static let salesforceOrg = CodingKeys(stringValue: "salesforceOrg")
     static let mongodbCluster = CodingKeys(stringValue: "mongodbCluster")
+    static let spannerDatabase = CodingKeys(stringValue: "spannerDatabase")
+    static let sourceCatalog = CodingKeys(stringValue: "sourceCatalog")
 
     static let _knownKeys: Set<Swift.String> = [
       "oracleRdbms",
@@ -62,6 +65,8 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
       "sqlServerRdbms",
       "salesforceOrg",
       "mongodbCluster",
+      "spannerDatabase",
+      "sourceCatalog",
     ]
   }
 
@@ -103,6 +108,15 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
     {
       try dataObjectCheckAndSet(.mongodbCluster(mongodbCluster))
     }
+    if let spannerDatabase = try container.decodeIfPresent(
+      SpannerDatabase.self, forKey: .spannerDatabase)
+    {
+      try dataObjectCheckAndSet(.spannerDatabase(spannerDatabase))
+    }
+    if let sourceCatalog = try container.decodeIfPresent(SourceCatalog.self, forKey: .sourceCatalog)
+    {
+      try dataObjectCheckAndSet(.sourceCatalog(sourceCatalog))
+    }
     self.dataObject = dataObject
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -127,6 +141,10 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
         try container.encode(value, forKey: .salesforceOrg)
       case .mongodbCluster(let value):
         try container.encode(value, forKey: .mongodbCluster)
+      case .spannerDatabase(let value):
+        try container.encode(value, forKey: .spannerDatabase)
+      case .sourceCatalog(let value):
+        try container.encode(value, forKey: .sourceCatalog)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -148,6 +166,11 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
     indirect case salesforceOrg(SalesforceOrg)
     /// Enriched MongoDB cluster.
     indirect case mongodbCluster(MongodbCluster)
+    /// Enriched Spanner database.
+    indirect case spannerDatabase(SpannerDatabase)
+    /// Enriched source catalog. This is mainly used to represent SaaS sources
+    /// databases.
+    indirect case sourceCatalog(SourceCatalog)
   }
 
   /// The type URL for `DiscoverConnectionProfileResponse`: `"type.googleapis.com/google.cloud.datastream.v1.DiscoverConnectionProfileResponse"`.

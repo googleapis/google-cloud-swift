@@ -56,6 +56,7 @@ public struct ReportResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ReportResponse().with { $0.reportErrors = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -140,6 +141,7 @@ public struct ReportResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ReportError().with { $0.operationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

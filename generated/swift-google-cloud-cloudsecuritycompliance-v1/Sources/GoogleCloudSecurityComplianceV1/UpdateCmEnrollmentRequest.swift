@@ -40,6 +40,7 @@ public struct UpdateCmEnrollmentRequest: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = UpdateCmEnrollmentRequest().with { $0.cmEnrollment = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

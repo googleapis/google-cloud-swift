@@ -40,6 +40,7 @@ public struct RelativeDistinguishedName: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = RelativeDistinguishedName().with { $0.attributes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

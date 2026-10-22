@@ -46,6 +46,7 @@ public struct ExecStepConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ExecStepConfig().with { $0.localPath = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

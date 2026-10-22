@@ -44,6 +44,7 @@ public struct UserSpecifiedAnnotation: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = UserSpecifiedAnnotation().with { $0.key = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

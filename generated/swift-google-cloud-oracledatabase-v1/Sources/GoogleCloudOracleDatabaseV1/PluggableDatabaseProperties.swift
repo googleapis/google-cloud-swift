@@ -78,6 +78,7 @@ public struct PluggableDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = PluggableDatabaseProperties().with { $0.compartmentId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -216,6 +217,7 @@ public struct PluggableDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPac
     /// ```
     /// let value = DefinedTagValue().with { $0.tags = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -48,6 +48,7 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SourceMetadata().with { $0.pluginInstanceActionSource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -156,6 +157,7 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PluginInstanceActionSource().with { $0.pluginInstance = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

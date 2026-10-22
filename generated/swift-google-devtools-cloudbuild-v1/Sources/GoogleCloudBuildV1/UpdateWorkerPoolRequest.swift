@@ -46,6 +46,7 @@ public struct UpdateWorkerPoolRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = UpdateWorkerPoolRequest().with { $0.workerPool = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

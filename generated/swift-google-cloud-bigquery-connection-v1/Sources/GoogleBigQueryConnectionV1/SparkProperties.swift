@@ -53,6 +53,7 @@ public struct SparkProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SparkProperties().with { $0.serviceAccountId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

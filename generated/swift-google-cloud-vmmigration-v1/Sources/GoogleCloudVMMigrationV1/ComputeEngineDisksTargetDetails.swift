@@ -40,6 +40,7 @@ public struct ComputeEngineDisksTargetDetails: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = ComputeEngineDisksTargetDetails().with { $0.disksTargetDetails = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

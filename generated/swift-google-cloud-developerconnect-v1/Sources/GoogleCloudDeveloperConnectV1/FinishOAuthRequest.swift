@@ -40,6 +40,7 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FinishOAuthRequest().with { $0.oauthParams = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -136,6 +137,7 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = OAuthParams().with { $0.code = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -228,6 +230,7 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GoogleOAuthParams().with { $0.scopes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

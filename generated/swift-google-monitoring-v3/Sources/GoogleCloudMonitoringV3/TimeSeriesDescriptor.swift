@@ -40,6 +40,7 @@ public struct TimeSeriesDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TimeSeriesDescriptor().with { $0.labelDescriptors = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -121,6 +122,7 @@ public struct TimeSeriesDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ValueDescriptor().with { $0.key = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

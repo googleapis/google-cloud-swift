@@ -21,7 +21,7 @@ import Foundation
 public struct MysqlColumn: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Column name.
+  /// The column name.
   public var column: Swift.String = Swift.String()
 
   /// The MySQL data type. Full data types list can be found here:
@@ -61,6 +61,7 @@ public struct MysqlColumn: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MysqlColumn().with { $0.column = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

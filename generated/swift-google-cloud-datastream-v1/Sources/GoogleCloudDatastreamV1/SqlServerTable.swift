@@ -21,7 +21,7 @@ import Foundation
 public struct SqlServerTable: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Table name.
+  /// The table name.
   public var table: Swift.String = Swift.String()
 
   /// SQLServer columns in the schema.
@@ -41,6 +41,7 @@ public struct SqlServerTable: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SqlServerTable().with { $0.table = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

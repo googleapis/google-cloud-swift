@@ -59,6 +59,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Manifest().with { $0.fileName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -154,6 +155,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DashConfig().with { $0.segmentReferenceScheme = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -17,7 +17,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// MySQL database profile.
+/// Profile for connecting to a MySQL source.
 public struct MysqlProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
@@ -53,6 +53,7 @@ public struct MysqlProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MysqlProfile().with { $0.hostname = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -32,6 +32,20 @@ public struct WKTFieldMask: Codable, Equatable, Sendable {
     self.paths = paths
   }
 
+  /// Use `config` to return a new instance of this object, with some fields updated.
+  ///
+  /// Commonly used to initialize the value, for example:
+  ///
+  /// ```
+  /// let value = WKTFieldMask().with { $0.paths = ["user.display_name", "photo"] }
+  /// ```
+  @inlinable
+  public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
+    var copy = self
+    try config(&copy)
+    return copy
+  }
+
   public func encode(to encoder: any Encoder) throws {
     let joined = self.stringValue
     try joined.encode(to: encoder)
@@ -89,10 +103,16 @@ extension WKTFieldMask: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
-    guard case let .string(v)? = any.fields[WKTAny.valueField] else {
+    // FieldMask uses custom JSON encoding and is packed under the "value" field as a
+    // comma-separated JSON string. Check for the presence of "value" first before validating
+    // that it is a string.
+    guard let v = any.fields[WKTAny.valueField] else {
+      throw WKTAnyError.missingValueField
+    }
+    guard case let .string(s) = v else {
       throw WKTAnyError.invalidValueField
     }
-    self.paths = try Self.pathsFromString(string: v)
+    self.paths = try Self.pathsFromString(string: s)
   }
 
   /// Packs this `WKTFieldMask` into a `WKTStruct` representation.

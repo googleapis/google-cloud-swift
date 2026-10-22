@@ -45,6 +45,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DocumentSchema().with { $0.displayName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -146,6 +147,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EntityType().with { $0.enumValues = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -249,6 +251,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = EnumValues().with { $0.values = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -345,6 +348,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Property().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -757,6 +761,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Metadata().with { $0.documentSplitter = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

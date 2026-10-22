@@ -65,6 +65,7 @@ public struct GcsIngestWithDocAiProcessorsPipeline: Codable, Equatable, GoogleWK
   /// ```
   /// let value = GcsIngestWithDocAiProcessorsPipeline().with { $0.inputPath = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

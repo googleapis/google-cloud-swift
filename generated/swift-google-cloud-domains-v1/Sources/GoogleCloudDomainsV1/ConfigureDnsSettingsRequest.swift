@@ -54,6 +54,7 @@ public struct ConfigureDnsSettingsRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ConfigureDnsSettingsRequest().with { $0.registration = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

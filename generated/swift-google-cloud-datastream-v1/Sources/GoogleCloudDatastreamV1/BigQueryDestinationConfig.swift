@@ -33,6 +33,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// Target dataset(s) configuration.
   public var datasetConfig: DatasetConfigOneOf? = nil
 
+  /// Destination write mode.
   public var writeMode: WriteModeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -47,6 +48,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = BigQueryDestinationConfig().with { $0.singleTargetDataset = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -180,6 +182,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = SingleTargetDataset().with { $0.datasetId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -266,6 +269,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = SourceHierarchyDatasets().with { $0.datasetTemplate = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -343,6 +347,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       /// ```
       /// let value = DatasetTemplate().with { $0.location = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -473,6 +478,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = BlmtConfig().with { $0.bucket = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -798,6 +804,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = AppendOnly().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -867,6 +874,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = Merge().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -927,6 +935,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     indirect case sourceHierarchyDatasets(BigQueryDestinationConfig.SourceHierarchyDatasets)
   }
 
+  /// Destination write mode.
   public enum WriteModeOneOf: Codable, Equatable, Sendable {
     /// The standard mode
     indirect case merge(BigQueryDestinationConfig.Merge)

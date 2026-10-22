@@ -43,6 +43,7 @@ public struct TimeSeriesData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TimeSeriesData().with { $0.labelValues = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -113,6 +114,7 @@ public struct TimeSeriesData: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PointData().with { $0.values = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

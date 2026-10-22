@@ -48,6 +48,7 @@ public struct VertexRanker: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = VertexRanker().with { $0.textRecordSpec = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -143,6 +144,7 @@ public struct VertexRanker: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TextRecordSpec().with { $0.query = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

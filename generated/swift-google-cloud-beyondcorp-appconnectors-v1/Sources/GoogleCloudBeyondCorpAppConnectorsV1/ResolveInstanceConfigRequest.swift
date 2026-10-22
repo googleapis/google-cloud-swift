@@ -37,6 +37,7 @@ public struct ResolveInstanceConfigRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = ResolveInstanceConfigRequest().with { $0.appConnector = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

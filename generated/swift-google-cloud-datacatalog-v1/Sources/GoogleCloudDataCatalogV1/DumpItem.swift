@@ -35,6 +35,7 @@ public struct DumpItem: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DumpItem().with { $0.taggedEntry = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

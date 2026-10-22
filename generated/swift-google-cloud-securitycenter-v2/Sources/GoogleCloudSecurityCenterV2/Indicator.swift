@@ -50,6 +50,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Indicator().with { $0.ipAddresses = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -131,6 +132,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ProcessSignature().with { $0.memoryHashSignature = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -229,6 +231,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = MemoryHashSignature().with { $0.binaryFamily = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -299,6 +302,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Detection().with { $0.binary = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -410,6 +414,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = YaraRuleSignature().with { $0.yaraRule = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

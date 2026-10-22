@@ -47,6 +47,7 @@ public struct UpdateEntitlementRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = UpdateEntitlementRequest().with { $0.entitlement = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

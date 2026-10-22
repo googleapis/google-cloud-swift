@@ -36,6 +36,7 @@ public struct ExecutionIdentity: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ExecutionIdentity().with { $0.dataplexServiceAgent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -128,6 +129,7 @@ public struct ExecutionIdentity: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DataplexServiceAgent().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -196,6 +198,7 @@ public struct ExecutionIdentity: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UserCredential().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -271,6 +274,7 @@ public struct ExecutionIdentity: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ServiceAccount().with { $0.email = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -49,6 +49,7 @@ public struct NodeGroupAffinity: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NodeGroupAffinity().with { $0.nodeGroupUri = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

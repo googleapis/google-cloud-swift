@@ -40,6 +40,7 @@ public struct Dimension: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Dimension().with { $0.issueDimensionMetadata = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -159,6 +160,7 @@ public struct Dimension: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IssueDimensionMetadata().with { $0.issueId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -257,6 +259,7 @@ public struct Dimension: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AgentDimensionMetadata().with { $0.agentId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -355,6 +358,7 @@ public struct Dimension: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QaQuestionDimensionMetadata().with { $0.qaScorecardId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -458,6 +462,7 @@ public struct Dimension: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QaQuestionAnswerDimensionMetadata().with { $0.qaScorecardId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -36,6 +36,7 @@ public struct MultiTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MultiTarget().with { $0.targetIds = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

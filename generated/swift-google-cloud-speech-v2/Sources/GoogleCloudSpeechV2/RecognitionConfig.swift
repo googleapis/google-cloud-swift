@@ -82,6 +82,7 @@ public struct RecognitionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RecognitionConfig().with { $0.autoDecodingConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -48,6 +48,7 @@ public struct Criteria: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Criteria().with { $0.textArray = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

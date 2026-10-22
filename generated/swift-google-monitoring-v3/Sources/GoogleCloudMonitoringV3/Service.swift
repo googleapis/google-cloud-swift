@@ -65,6 +65,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Service().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -242,6 +243,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Custom().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -315,6 +317,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AppEngine().with { $0.moduleId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -396,6 +399,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CloudEndpoints().with { $0.service = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -492,6 +496,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ClusterIstio().with { $0.location = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -599,6 +604,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MeshIstio().with { $0.meshUid = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -705,6 +711,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IstioCanonicalService().with { $0.meshUid = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -805,6 +812,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CloudRun().with { $0.serviceName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -903,6 +911,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GkeNamespace().with { $0.projectId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1019,6 +1028,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GkeWorkload().with { $0.projectId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1151,6 +1161,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GkeService().with { $0.projectId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1265,6 +1276,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BasicService().with { $0.serviceType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1353,6 +1365,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Telemetry().with { $0.resourceName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

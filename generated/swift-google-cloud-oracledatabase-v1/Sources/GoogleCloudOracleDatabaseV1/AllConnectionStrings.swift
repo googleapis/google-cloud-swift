@@ -46,6 +46,7 @@ public struct AllConnectionStrings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AllConnectionStrings().with { $0.high = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

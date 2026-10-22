@@ -36,6 +36,7 @@ public struct FrameworkAuditDestination: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = FrameworkAuditDestination().with { $0.bucket = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

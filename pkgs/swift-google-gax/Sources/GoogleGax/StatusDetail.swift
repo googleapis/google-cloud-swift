@@ -80,8 +80,9 @@ public enum StatusDetail: Equatable, Sendable {
   case other(GoogleWKT.WKTAny)
 }
 
+@_spi(GoogleCloudInternal)
 extension StatusDetail {
-  init(from: GoogleWKT.WKTAny) {
+  public init(from: GoogleWKT.WKTAny) {
     if let v = try? GoogleRpc.BadRequest(fromAny: from) {
       self = .badRequest(v)
     } else if let v = try? GoogleRpc.DebugInfo(fromAny: from) {

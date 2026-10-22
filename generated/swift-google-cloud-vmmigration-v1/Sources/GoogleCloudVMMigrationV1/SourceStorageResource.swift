@@ -36,6 +36,7 @@ public struct SourceStorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SourceStorageResource().with { $0.awsDiskDetails = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

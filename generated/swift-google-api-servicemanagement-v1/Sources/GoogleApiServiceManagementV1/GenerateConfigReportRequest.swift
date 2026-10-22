@@ -55,6 +55,7 @@ public struct GenerateConfigReportRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = GenerateConfigReportRequest().with { $0.newConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

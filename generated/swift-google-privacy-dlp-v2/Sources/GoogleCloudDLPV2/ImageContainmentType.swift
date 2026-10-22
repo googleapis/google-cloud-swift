@@ -37,6 +37,7 @@ public struct ImageContainmentType: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ImageContainmentType().with { $0.encloses = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

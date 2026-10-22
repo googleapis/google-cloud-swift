@@ -76,6 +76,7 @@
     /// ```
     /// let value = UsableSubnetwork().with { $0.externalIpv6Prefix = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

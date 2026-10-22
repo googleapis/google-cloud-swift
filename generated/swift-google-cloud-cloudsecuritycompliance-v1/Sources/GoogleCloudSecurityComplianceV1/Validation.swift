@@ -36,6 +36,7 @@ public struct Validation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Validation().with { $0.allowedValues = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

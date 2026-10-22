@@ -39,6 +39,7 @@ public struct Accelerator: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Accelerator().with { $0.acceleratorType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

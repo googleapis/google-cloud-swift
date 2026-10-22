@@ -39,6 +39,7 @@ public struct AdditionalS3AccessKeySecretAuth: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = AdditionalS3AccessKeySecretAuth().with { $0.accessKeyId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

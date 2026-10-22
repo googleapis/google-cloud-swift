@@ -40,6 +40,7 @@ public struct EvaluateProcessorVersionResponse: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = EvaluateProcessorVersionResponse().with { $0.evaluation = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

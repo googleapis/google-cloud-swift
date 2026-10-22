@@ -39,6 +39,7 @@ public struct SpecDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SpecDetails().with { $0.openApiSpecDetails = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

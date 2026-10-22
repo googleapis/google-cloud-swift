@@ -40,6 +40,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = MaintenanceUpdatePolicy().with { $0.maintenanceWindows = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -111,6 +112,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = MaintenanceWindow().with { $0.day = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -211,6 +213,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = DenyMaintenancePeriod().with { $0.startDate = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -44,6 +44,7 @@ public struct BatchSearchLinkProcessesResponse: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = BatchSearchLinkProcessesResponse().with { $0.processLinks = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -42,6 +42,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PreprocessingConfig().with { $0.audio = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -115,6 +116,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Audio().with { $0.lufs = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -204,6 +206,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Crop().with { $0.topPixels = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -311,6 +314,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Pad().with { $0.topPixels = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

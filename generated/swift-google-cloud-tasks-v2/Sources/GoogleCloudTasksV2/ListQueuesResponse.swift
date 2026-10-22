@@ -54,6 +54,7 @@ public struct ListQueuesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListQueuesResponse().with { $0.queues = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

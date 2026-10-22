@@ -58,6 +58,7 @@ public struct AutoMlImageObjectDetectionInputs: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = AutoMlImageObjectDetectionInputs().with { $0.modelType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

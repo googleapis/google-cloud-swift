@@ -53,6 +53,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataSchemaDetails().with { $0.type = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -134,6 +135,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ProtoAnyConfig().with { $0.typeUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -213,6 +215,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ListConfig().with { $0.valueSchema = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -291,6 +294,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CustomizedStructConfig().with { $0.fieldSchemas = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -383,6 +387,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SearchStrategy().with { $0.searchStrategyType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -507,6 +512,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ConfidenceScoreIndexConfig().with { $0.fieldPath = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

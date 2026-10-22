@@ -86,6 +86,7 @@ public struct MethodSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MethodSettings().with { $0.selector = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -177,6 +178,7 @@ public struct MethodSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LongRunning().with { $0.initialPollDelay = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

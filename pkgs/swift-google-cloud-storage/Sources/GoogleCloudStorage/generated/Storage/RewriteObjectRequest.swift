@@ -160,6 +160,7 @@ public struct RewriteObjectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RewriteObjectRequest().with { $0.destinationName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

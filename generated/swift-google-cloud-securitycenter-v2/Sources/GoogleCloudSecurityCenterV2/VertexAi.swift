@@ -39,6 +39,7 @@ public struct VertexAi: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = VertexAi().with { $0.datasets = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -110,6 +111,7 @@ public struct VertexAi: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Dataset().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -205,6 +207,7 @@ public struct VertexAi: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Pipeline().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

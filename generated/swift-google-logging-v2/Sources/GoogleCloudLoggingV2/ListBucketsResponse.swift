@@ -42,6 +42,7 @@ public struct ListBucketsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListBucketsResponse().with { $0.buckets = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -40,6 +40,7 @@ public struct AddAuthTokenRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AddAuthTokenRequest().with { $0.tokenAuthUser = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -42,6 +42,7 @@ public struct ClusterMetrics: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ClusterMetrics().with { $0.hdfsMetrics = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

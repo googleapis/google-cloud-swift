@@ -36,6 +36,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = DataDocumentationResult().with { $0.datasetResult = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -129,6 +130,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = DatasetResult().with { $0.overview = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -236,6 +238,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = TableResult().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -350,6 +353,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = SchemaRelationship().with { $0.leftSchemaPaths = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -435,6 +439,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       /// ```
       /// let value = SchemaPaths().with { $0.tableFqn = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -783,6 +788,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = Query().with { $0.sql = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -868,6 +874,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = Schema().with { $0.fields = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -955,6 +962,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = Field().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

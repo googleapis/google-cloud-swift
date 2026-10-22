@@ -39,6 +39,7 @@ public struct SQSV2AwsIamRoleAuth: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SQSV2AwsIamRoleAuth().with { $0.awsIamRoleArn = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

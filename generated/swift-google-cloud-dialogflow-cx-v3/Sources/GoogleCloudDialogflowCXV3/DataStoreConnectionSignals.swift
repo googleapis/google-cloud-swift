@@ -68,6 +68,7 @@
     /// ```
     /// let value = DataStoreConnectionSignals().with { $0.rewriterModelCallSignals = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -186,6 +187,7 @@
       /// ```
       /// let value = RewriterModelCallSignals().with { $0.renderedPrompt = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -287,6 +289,7 @@
       /// ```
       /// let value = SearchSnippet().with { $0.documentTitle = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -390,6 +393,7 @@
       /// ```
       /// let value = AnswerGenerationModelCallSignals().with { $0.renderedPrompt = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -485,6 +489,7 @@
       /// ```
       /// let value = AnswerPart().with { $0.text = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -575,6 +580,7 @@
       /// ```
       /// let value = CitedSnippet().with { $0.searchSnippet = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -665,6 +671,7 @@
       /// ```
       /// let value = GroundingSignals().with { $0.decision = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1018,6 +1025,7 @@
       /// ```
       /// let value = SafetySignals().with { $0.decision = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -50,6 +50,7 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
   /// ```
   /// let value = AnalyzeOrgPolicyGovernedContainersResponse().with { $0.governedContainers = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -172,6 +173,7 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
     /// ```
     /// let value = GovernedContainer().with { $0.fullResourceName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

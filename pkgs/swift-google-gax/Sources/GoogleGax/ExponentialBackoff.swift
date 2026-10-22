@@ -47,32 +47,13 @@ extension ExponentialBackoffError: CustomDebugStringConvertible {
   public var debugDescription: String {
     switch self {
     case .invalidScalingFactor(let scaling):
-      return "ExponentialBackoffError.invalidScalingFactor(\(scaling))"
+      return "ExponentialBackoffError.invalidScalingFactor(\(scaling)): \(description)"
     case .invalidInitialDelay(let delay):
-      return "ExponentialBackoffError.invalidInitialDelay(\(delay))"
+      return "ExponentialBackoffError.invalidInitialDelay(\(delay)): \(description)"
     case .emptyRange(let initial, let maximum):
-      return "ExponentialBackoffError.emptyRange(initial: \(initial), maximum: \(maximum))"
+      return
+        "ExponentialBackoffError.emptyRange(initial: \(initial), maximum: \(maximum)): \(description)"
     }
-  }
-}
-
-/// Configuration for ``ExponentialBackoff``.
-public struct ExponentialBackoffConfig: Sendable, Equatable {
-  /// The initial delay before the first retry.
-  public var initialDelay: Duration = .seconds(1)
-  /// The maximum delay between retries.
-  public var maximumDelay: Duration = .seconds(60)
-  /// The scaling factor for each subsequent retry.
-  public var scaling: Double = 2.0
-
-  /// Create a new configuration with default values.
-  public init() {}
-
-  /// Override specific values using the `Then` idiom.
-  public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
-    var copy = self
-    try config(&copy)
-    return copy
   }
 }
 
@@ -87,36 +68,45 @@ public struct ExponentialBackoffConfig: Sendable, Equatable {
 ///
 /// [Exponential backoff]: https://en.wikipedia.org/wiki/Exponential_backoff
 public struct ExponentialBackoff: Sendable, Equatable {
+  /// The initial delay before the first retry.
   public let initialDelay: Duration
+  /// The maximum delay between retries.
   public let maximumDelay: Duration
+  /// The scaling factor for each subsequent retry.
   public let scaling: Double
 
-  /// Create a new exponential backoff policy with the default configuration.
+  /// Creates a new exponential backoff policy with the default configuration.
   public init() {
-    let d = try! ExponentialBackoff(config: ExponentialBackoffConfig())
-    self.initialDelay = d.initialDelay
-    self.maximumDelay = d.maximumDelay
-    self.scaling = d.scaling
+    self.initialDelay = .seconds(1)
+    self.maximumDelay = .seconds(60)
+    self.scaling = 2.0
   }
 
-  /// Create a new exponential backoff policy from a configuration.
+  /// Creates a new exponential backoff policy.
   ///
-  /// - Parameter config: The configuration to use.
+  /// - Parameters:
+  ///   - initialDelay: The initial delay before the first retry. Defaults to 1 second.
+  ///   - maximumDelay: The maximum delay between retries. Defaults to 60 seconds.
+  ///   - scaling: The scaling factor for each subsequent retry. Defaults to 2.0.
   /// - Throws: ``ExponentialBackoffError`` if the configuration is invalid.
-  public init(config: ExponentialBackoffConfig) throws {
-    if config.scaling < 1.0 {
-      throw ExponentialBackoffError.invalidScalingFactor(config.scaling)
+  public init(
+    initialDelay: Duration = .seconds(1),
+    maximumDelay: Duration = .seconds(60),
+    scaling: Double = 2.0
+  ) throws {
+    if scaling < 1.0 {
+      throw ExponentialBackoffError.invalidScalingFactor(scaling)
     }
-    if config.initialDelay <= .seconds(0) {
-      throw ExponentialBackoffError.invalidInitialDelay(config.initialDelay)
+    if initialDelay <= .seconds(0) {
+      throw ExponentialBackoffError.invalidInitialDelay(initialDelay)
     }
-    if config.maximumDelay < config.initialDelay {
+    if maximumDelay < initialDelay {
       throw ExponentialBackoffError.emptyRange(
-        initial: config.initialDelay, maximum: config.maximumDelay)
+        initial: initialDelay, maximum: maximumDelay)
     }
-    self.initialDelay = config.initialDelay
-    self.maximumDelay = config.maximumDelay
-    self.scaling = config.scaling
+    self.initialDelay = initialDelay
+    self.maximumDelay = maximumDelay
+    self.scaling = scaling
   }
 
   /// Creates a new exponential backoff policy clamping the ranges towards recommended values.
@@ -125,17 +115,24 @@ public struct ExponentialBackoff: Sendable, Equatable {
   /// initial delay is clamped to be between one millisecond and the maximum delay. The scaling
   /// factor is clamped to the `[1.0, 32.0]` range.
   ///
-  /// - Parameter config: The configuration to use.
-  public init(clamping config: ExponentialBackoffConfig) {
+  /// - Parameters:
+  ///   - initialDelay: The initial delay before the first retry.
+  ///   - maximumDelay: The maximum delay between retries. Defaults to 60 seconds.
+  ///   - scaling: The scaling factor for each subsequent retry. Defaults to 2.0.
+  public init(
+    clamping initialDelay: Duration,
+    maximumDelay: Duration = .seconds(60),
+    scaling: Double = 2.0
+  ) {
     let minScaling = 1.0
     let maxScaling = 32.0
     let minDelay: Duration = .seconds(1)
     let maxDelay: Duration = .seconds(60) * 60 * 24  // a full day is enough for everybody
     let minInitial: Duration = .milliseconds(1)
 
-    self.scaling = min(max(config.scaling, minScaling), maxScaling)
-    self.maximumDelay = min(max(config.maximumDelay, minDelay), maxDelay)
-    self.initialDelay = min(max(config.initialDelay, minInitial), self.maximumDelay)
+    self.scaling = min(max(scaling, minScaling), maxScaling)
+    self.maximumDelay = min(max(maximumDelay, minDelay), maxDelay)
+    self.initialDelay = min(max(initialDelay, minInitial), self.maximumDelay)
   }
 
   /// Internal method to calculate the delay without jitter for a 0-based attempt count.

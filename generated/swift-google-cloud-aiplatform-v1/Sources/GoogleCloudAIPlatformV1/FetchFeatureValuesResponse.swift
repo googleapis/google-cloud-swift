@@ -44,6 +44,7 @@
     /// ```
     /// let value = FetchFeatureValuesResponse().with { $0.keyValues = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -136,6 +137,7 @@
       /// ```
       /// let value = FeatureNameValuePairList().with { $0.features = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -198,6 +200,7 @@
         /// ```
         /// let value = FeatureNameValuePair().with { $0.value = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

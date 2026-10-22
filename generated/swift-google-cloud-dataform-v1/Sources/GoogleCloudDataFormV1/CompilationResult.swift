@@ -73,6 +73,7 @@ public struct CompilationResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CompilationResult().with { $0.gitCommitish = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -232,6 +233,7 @@ public struct CompilationResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CompilationError().with { $0.message = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

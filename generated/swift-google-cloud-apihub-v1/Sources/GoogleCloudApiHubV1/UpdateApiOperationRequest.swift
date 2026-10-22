@@ -47,6 +47,7 @@ public struct UpdateApiOperationRequest: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = UpdateApiOperationRequest().with { $0.apiOperation = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

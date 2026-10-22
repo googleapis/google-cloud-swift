@@ -50,6 +50,7 @@ public struct CertificateExtensionConstraints: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = CertificateExtensionConstraints().with { $0.knownExtensions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

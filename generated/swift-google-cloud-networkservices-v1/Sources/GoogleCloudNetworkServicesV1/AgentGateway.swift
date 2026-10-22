@@ -76,6 +76,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AgentGateway().with { $0.googleManaged = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -228,6 +229,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GoogleManaged().with { $0.governedAccessPath = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -433,6 +435,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SelfManaged().with { $0.resourceUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -523,6 +526,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NetworkConfig().with { $0.egress = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -587,6 +591,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Egress().with { $0.networkAttachment = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -651,6 +656,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = TrustConfig().with { $0.pemCertificates = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -767,6 +773,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = DnsPeeringConfig().with { $0.domains = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -887,6 +894,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AgentGatewayOutputCard().with { $0.mtlsEndpoint = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

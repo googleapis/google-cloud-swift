@@ -76,6 +76,7 @@ public struct Zone: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Zone().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -194,6 +195,7 @@ public struct Zone: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ResourceSpec().with { $0.locationType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -414,6 +416,7 @@ public struct Zone: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DiscoverySpec().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -529,6 +532,7 @@ public struct Zone: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CsvOptions().with { $0.headerRows = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -632,6 +636,7 @@ public struct Zone: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = JsonOptions().with { $0.encoding = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -42,6 +42,7 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Value().with { $0.integerValue = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -52,6 +52,7 @@ public struct Aspect: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Aspect().with { $0.aspectType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

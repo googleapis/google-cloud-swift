@@ -51,14 +51,26 @@ import Testing
   @Test(
     "BytesValue JSON Decoding",
     arguments: [
-      ("{\"value\":\"aGVsbG8=\"}", "hello"),
-      ("{\"value\":\"\"}", ""),
-    ])
-  func decodeJSON(_ args: (String, String)) throws {
+      ("{\"value\":\"aGVsbG8=\"}", Data("hello".utf8)),
+      ("{\"value\":\"aGVsbG8\"}", Data("hello".utf8)),
+      ("{\"value\":\"Pz8/Pw==\"}", Data("????".utf8)),
+      ("{\"value\":\"Pz8/Pw\"}", Data("????".utf8)),
+      ("{\"value\":\"Pz8_Pw==\"}", Data("????".utf8)),
+      ("{\"value\":\"Pz8_Pw\"}", Data("????".utf8)),
+      ("{\"value\":\"+/+/\"}", Data([251, 255, 191] as [UInt8])),
+      ("{\"value\":\"-_-_\"}", Data([251, 255, 191] as [UInt8])),
+      ("{\"value\":\"/w==\"}", Data([255] as [UInt8])),
+      ("{\"value\":\"/w\"}", Data([255] as [UInt8])),
+      ("{\"value\":\"_w==\"}", Data([255] as [UInt8])),
+      ("{\"value\":\"_w\"}", Data([255] as [UInt8])),
+      ("{\"value\":\" a G V s b G 8 \"}", Data("hello".utf8)),
+      ("{\"value\":\"\"}", Data()),
+    ] as [(String, Data)])
+  func decodeJSON(_ args: (String, Data)) throws {
     let data = Data(args.0.utf8)
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedBytesValueDecode.self, from: data)
-    #expect(wrapped.value == Data(args.1.utf8))
+    #expect(wrapped.value == args.1)
   }
 
   @Test("BytesValue JSON Decoding unset")
@@ -73,10 +85,20 @@ import Testing
     let content: GoogleWKT.WKTAny
   }
 
-  @Test("Unpack BytesValue from Any")
-  func bytesValueAnyUnpack() throws {
+  @Test(
+    "Unpack BytesValue from Any",
+    arguments: [
+      ("aGVsbG8=", Data("hello".utf8)),
+      ("aGVsbG8", Data("hello".utf8)),
+      ("Pz8_Pw==", Data("????".utf8)),
+      ("Pz8_Pw", Data("????".utf8)),
+      ("-_-_", Data([251, 255, 191] as [UInt8])),
+      ("_w", Data([255] as [UInt8])),
+      ("", Data()),
+    ] as [(String, Data)])
+  func bytesValueAnyUnpack(_ args: (String, Data)) throws {
     let jsonString =
-      #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"aGVsbG8="}}"#
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"\#(args.0)"}}"#
     let data = Data(jsonString.utf8)
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WKTBytesValueTests.WrappedAny.self, from: data)
@@ -84,8 +106,42 @@ import Testing
     #expect(any.typeURL == "type.googleapis.com/google.protobuf.BytesValue")
 
     let got = try WKTBytesValue(fromAny: any)
-    let want = Data("hello".utf8)
-    #expect(got == want)
+    #expect(got == args.1)
+  }
+
+  @Test(
+    "Unpack BytesValue invalid value field in Any",
+    arguments: [
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"a"}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"aGVsbG8=="}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"QUJD="}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"QQ=A"}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"-_+/"}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"!@#$"}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":123}}"#,
+    ])
+  func bytesValueAnyUnpackInvalidValue(_ jsonString: String) throws {
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTBytesValueTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    let error = #expect(throws: WKTAnyError.self) {
+      let _ = try WKTBytesValue(fromAny: any)
+    }
+    #expect(error == .invalidValueField)
+  }
+
+  @Test func bytesValueAnyUnpackMissingValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTBytesValueTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    let error = #expect(throws: WKTAnyError.self) {
+      let _ = try WKTBytesValue(fromAny: any)
+    }
+    #expect(error == .missingValueField)
   }
 
   @Test func bytesValueAnyUnpackMismatchedUrl() throws {
@@ -112,5 +168,117 @@ import Testing
     let want =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.BytesValue","value":"aGVsbG8="}}"#
     #expect(got == want)
+  }
+
+  @Test(
+    "Top-level BytesValue JSON Round-Trip",
+    arguments: [
+      ("hello", #""aGVsbG8=""#),
+      ("", #""""#),
+    ])
+  func topLevelRoundTrip(_ args: (String, String)) throws {
+    let value: WKTBytesValue = Data(args.0.utf8)
+    let encoder = _ProtoJSONEncoder()
+    let encoded = try encoder.encode(value)
+    let gotJSON = try #require(String(data: encoded, encoding: .utf8))
+    #expect(gotJSON == args.1)
+
+    let decoder = _ProtoJSONDecoder()
+    let decoded = try decoder.decode(WKTBytesValue.self, from: encoded)
+    #expect(decoded == value)
+  }
+
+  @Test("Top-level Optional BytesValue JSON Round-Trip")
+  func topLevelOptionalRoundTrip() throws {
+    let encoder = _ProtoJSONEncoder()
+    let decoder = _ProtoJSONDecoder()
+
+    let someValue: WKTBytesValue? = Data("hello".utf8)
+    let encodedSome = try encoder.encode(someValue)
+    #expect(String(data: encodedSome, encoding: .utf8) == #""aGVsbG8=""#)
+    let decodedSome = try decoder.decode(WKTBytesValue?.self, from: encodedSome)
+    #expect(decodedSome == someValue)
+
+    let nilValue: WKTBytesValue? = nil
+    let encodedNil = try encoder.encode(nilValue)
+    #expect(String(data: encodedNil, encoding: .utf8) == "null")
+    let decodedNil = try decoder.decode(WKTBytesValue?.self, from: encodedNil)
+    #expect(decodedNil == nil)
+  }
+
+  struct SingleValueBytesWrapper: Codable, Equatable {
+    let value: WKTBytesValue
+
+    init(_ value: WKTBytesValue) {
+      self.value = value
+    }
+
+    init(from decoder: any Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      self.value = try container.decode(WKTBytesValue.self)
+    }
+
+    func encode(to encoder: any Encoder) throws {
+      var container = encoder.singleValueContainer()
+      try container.encode(self.value)
+    }
+  }
+
+  @Test("SingleValueContainer BytesValue JSON Round-Trip")
+  func singleValueContainerRoundTrip() throws {
+    let wrapper = SingleValueBytesWrapper(Data("hello".utf8))
+    let encoder = _ProtoJSONEncoder()
+    let encoded = try encoder.encode(wrapper)
+    #expect(String(data: encoded, encoding: .utf8) == #""aGVsbG8=""#)
+
+    let decoder = _ProtoJSONDecoder()
+    let decoded = try decoder.decode(SingleValueBytesWrapper.self, from: encoded)
+    #expect(decoded == wrapper)
+  }
+
+  @Test(
+    "SingleValueContainer BytesValue URL-safe and unpadded JSON Decoding",
+    arguments: [
+      (#""aGVsbG8""#, Data("hello".utf8)),
+      (#""Pz8_Pw""#, Data("????".utf8)),
+      (#""Pz8_Pw==""#, Data("????".utf8)),
+      (#""-_-_""#, Data([251, 255, 191] as [UInt8])),
+    ] as [(String, Data)])
+  func singleValueContainerDecodeVariants(_ args: (String, Data)) throws {
+    let decoder = _ProtoJSONDecoder()
+    let decoded = try decoder.decode(SingleValueBytesWrapper.self, from: Data(args.0.utf8))
+    #expect(decoded.value == args.1)
+  }
+
+  @Test(
+    "SingleValueContainer BytesValue invalid Base64 throws dataCorrupted",
+    arguments: [
+      #""a""#,
+      #""aGVsbG8==""#,
+      #""QUJD=""#,
+      #""QQ=A""#,
+      #""-_+/""#,
+      #""!@#$""#,
+    ])
+  func singleValueContainerDecodeInvalid(_ json: String) throws {
+    let decoder = _ProtoJSONDecoder()
+    let error = #expect(throws: DecodingError.self) {
+      let _ = try decoder.decode(SingleValueBytesWrapper.self, from: Data(json.utf8))
+    }
+    #expect({ if case .dataCorrupted = error { true } else { false } }())
+  }
+
+  @Test("Collections of Optional BytesValue JSON Encoding")
+  func optionalBytesInCollections() throws {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+
+    let list: [WKTBytesValue?] = [Data("hello".utf8), nil, Data()]
+    let listData = try encoder.encode(list)
+    #expect(String(data: listData, encoding: .utf8) == #"["aGVsbG8=",null,""]"#)
+
+    let map: [String: WKTBytesValue?] = ["a": Data("hello".utf8), "b": nil]
+    let mapData = try encoder.encode(map)
+    #expect(String(data: mapData, encoding: .utf8) == #"{"a":"aGVsbG8=","b":null}"#)
   }
 }

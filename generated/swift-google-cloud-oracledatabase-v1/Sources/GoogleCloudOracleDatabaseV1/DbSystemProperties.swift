@@ -105,6 +105,7 @@ public struct DbSystemProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DbSystemProperties().with { $0.shape = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

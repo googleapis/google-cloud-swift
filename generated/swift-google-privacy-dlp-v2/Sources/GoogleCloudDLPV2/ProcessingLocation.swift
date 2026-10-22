@@ -41,6 +41,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ProcessingLocation().with { $0.imageFallbackLocation = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -100,6 +101,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MultiRegionProcessing().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -168,6 +170,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GlobalProcessing().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -245,6 +248,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ImageFallbackLocation().with { $0.multiRegionProcessing = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -334,6 +338,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DocumentFallbackLocation().with { $0.multiRegionProcessing = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

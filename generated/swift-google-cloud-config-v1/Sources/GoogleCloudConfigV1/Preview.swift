@@ -128,6 +128,7 @@ public struct Preview: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Preview().with { $0.terraformBlueprint = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

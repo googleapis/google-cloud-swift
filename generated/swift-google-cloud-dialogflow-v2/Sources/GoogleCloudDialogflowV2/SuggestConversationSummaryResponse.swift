@@ -58,6 +58,7 @@
     /// ```
     /// let value = SuggestConversationSummaryResponse().with { $0.summary = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -144,6 +145,7 @@
       /// ```
       /// let value = Summary().with { $0.text = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -235,6 +237,7 @@
         /// ```
         /// let value = SummarySection().with { $0.section = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

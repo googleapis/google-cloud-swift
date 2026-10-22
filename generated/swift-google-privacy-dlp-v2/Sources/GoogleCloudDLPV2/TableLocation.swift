@@ -41,6 +41,7 @@ public struct TableLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TableLocation().with { $0.rowIndex = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

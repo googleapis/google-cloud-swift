@@ -37,6 +37,7 @@ public struct GetJSONWebKeysResponse: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = GetJSONWebKeysResponse().with { $0.keys = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

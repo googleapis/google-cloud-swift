@@ -74,6 +74,7 @@
     /// ```
     /// let value = Tool().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -238,6 +239,7 @@
       /// ```
       /// let value = ExtensionTool().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -334,6 +336,7 @@
       /// ```
       /// let value = FunctionTool().with { $0.inputSchema = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -433,6 +436,7 @@
       /// ```
       /// let value = OpenApiTool().with { $0.textSchema = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -554,6 +558,7 @@
       /// ```
       /// let value = ConnectorTool().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -627,6 +632,7 @@
         /// ```
         /// let value = Action().with { $0.connectionActionId = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -729,6 +735,7 @@
           /// ```
           /// let value = EntityOperation().with { $0.entityId = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1008,6 +1015,7 @@
       /// ```
       /// let value = Authentication().with { $0.apiKeyConfig = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1127,6 +1135,7 @@
         /// ```
         /// let value = ApiKeyConfig().with { $0.keyName = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1250,6 +1259,7 @@
         /// ```
         /// let value = OAuthConfig().with { $0.oauthGrantType = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1483,6 +1493,7 @@
         /// ```
         /// let value = ServiceAgentAuthConfig().with { $0.serviceAgentAuth = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1703,6 +1714,7 @@
         /// ```
         /// let value = BearerTokenConfig().with { $0.token = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1945,6 +1957,7 @@
       /// ```
       /// let value = TLSConfig().with { $0.caCerts = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2018,6 +2031,7 @@
         /// ```
         /// let value = CACert().with { $0.displayName = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2130,6 +2144,7 @@
       /// ```
       /// let value = ServiceDirectoryConfig().with { $0.service = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

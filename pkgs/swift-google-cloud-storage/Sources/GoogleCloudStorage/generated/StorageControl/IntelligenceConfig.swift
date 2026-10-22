@@ -63,6 +63,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = IntelligenceConfig().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -153,6 +154,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Filter().with { $0.includedCloudStorageLocations = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -284,6 +286,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CloudStorageLocations().with { $0.locations = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -371,6 +374,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CloudStorageBuckets().with { $0.bucketIdRegexes = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -497,6 +501,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EffectiveIntelligenceConfig().with { $0.effectiveEdition = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -703,6 +708,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TrialConfig().with { $0.expireTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

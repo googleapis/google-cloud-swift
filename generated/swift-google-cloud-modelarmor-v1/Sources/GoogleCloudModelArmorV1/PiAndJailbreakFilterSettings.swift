@@ -45,6 +45,7 @@ public struct PiAndJailbreakFilterSettings: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = PiAndJailbreakFilterSettings().with { $0.filterEnforcement = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -58,6 +58,7 @@
     /// ```
     /// let value = StudySpec().with { $0.decayCurveStoppingSpec = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -206,6 +207,7 @@
       /// ```
       /// let value = MetricSpec().with { $0.metricId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -285,6 +287,7 @@
         /// ```
         /// let value = SafetyMetricConfig().with { $0.safetyThreshold = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -526,6 +529,7 @@
       /// ```
       /// let value = ParameterSpec().with { $0.doubleValueSpec = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -664,6 +668,7 @@
         /// ```
         /// let value = DoubleValueSpec().with { $0.minValue = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -766,6 +771,7 @@
         /// ```
         /// let value = IntegerValueSpec().with { $0.minValue = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -864,6 +870,7 @@
         /// ```
         /// let value = CategoricalValueSpec().with { $0.values = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -961,6 +968,7 @@
         /// ```
         /// let value = DiscreteValueSpec().with { $0.values = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1050,6 +1058,7 @@
         /// ```
         /// let value = ConditionalParameterSpec().with { $0.parentDiscreteValues = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1156,6 +1165,7 @@
           /// ```
           /// let value = DiscreteValueCondition().with { $0.values = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1237,6 +1247,7 @@
           /// ```
           /// let value = IntValueCondition().with { $0.values = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1319,6 +1330,7 @@
           /// ```
           /// let value = CategoricalValueCondition().with { $0.values = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1611,6 +1623,7 @@
       /// ```
       /// let value = DecayCurveAutomatedStoppingSpec().with { $0.useElapsedDuration = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1701,6 +1714,7 @@
       /// ```
       /// let value = MedianAutomatedStoppingSpec().with { $0.useElapsedDuration = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1832,6 +1846,7 @@
       /// ```
       /// let value = ConvexAutomatedStoppingSpec().with { $0.maxStepCount = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1994,6 +2009,7 @@
       /// ```
       /// let value = StudyStoppingConfig().with { $0.shouldStopAsap = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

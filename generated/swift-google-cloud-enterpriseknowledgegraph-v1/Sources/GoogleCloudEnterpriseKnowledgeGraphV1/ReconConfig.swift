@@ -42,6 +42,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ReconConfig().with { $0.connectedComponentsConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -143,6 +144,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Options().with { $0.enableGeocodingSeparation = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -229,6 +231,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ModelConfig().with { $0.modelName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -18,21 +18,22 @@ import Foundation
   import FoundationNetworking
 #endif
 
+/// Adapter registered with `CredentialParserRegistry` to construct `UserCredentials`
+/// from raw `"authorized_user"` ADC JSON `Data`.
 internal struct UserCredentialsParser: CredentialSourceParser {
   internal static let type = "authorized_user"
 
   internal init() {}
 
   internal func parse(
-    config: [String: Any],
+    data: Data,
     quotaProjectID: String?,
     universeDomain: String?,
     scopes: [String],
     environment: [String: String]
   ) throws -> any CredentialsProvider {
-    let keyJSON = try JSONSerialization.data(withJSONObject: config)
     return try UserCredentials(
-      keyJSON: keyJSON,
+      keyJSON: data,
       quotaProjectID: quotaProjectID,
       universeDomain: universeDomain,
       scopes: scopes
@@ -81,9 +82,9 @@ where C.Instant.Duration == Duration {
     }
     self.quotaProjectID = quotaProjectID ?? user.quotaProjectId
 
-    // Resolve Token URI
+    // Resolve Token URL
     guard
-      let resolvedUri = URL(
+      let resolvedURL = URL(
         string: user.tokenUri ?? "https://oauth2.googleapis.com/token"
       )
     else {
@@ -93,7 +94,7 @@ where C.Instant.Duration == Duration {
     let provider = UserAccountTokenProvider(
       user: user,
       scopes: scopes,
-      tokenUri: resolvedUri,
+      tokenURL: resolvedURL,
       retryConfiguration: retryConfiguration,
       httpClient: httpClient
     )
@@ -101,11 +102,9 @@ where C.Instant.Duration == Duration {
     self.cache = TokenCache(
       provider: provider,
       clock: clock,
-      isRetryable: { UserAccountTokenProvider.isRetryable($0) }
+      isRetryable: AuthHTTPError.isRetryable
     )
   }
-
-  // MARK: - CredentialsProvider
 
   func headers() async throws -> AuthHeaders {
     let token = try await cache.token()

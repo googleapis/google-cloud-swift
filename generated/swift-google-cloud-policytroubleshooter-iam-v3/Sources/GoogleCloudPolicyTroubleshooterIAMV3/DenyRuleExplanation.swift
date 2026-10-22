@@ -115,6 +115,7 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DenyRuleExplanation().with { $0.denyAccessState = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -252,6 +253,7 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AnnotatedPermissionMatching().with { $0.permissionMatchingState = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -347,6 +349,7 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AnnotatedDenyPrincipalMatching().with { $0.membership = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -58,6 +58,7 @@
     /// ```
     /// let value = FeaturestoreMonitoringConfig().with { $0.snapshotAnalysis = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -153,6 +154,7 @@
       /// ```
       /// let value = SnapshotAnalysis().with { $0.disabled = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -261,6 +263,7 @@
       /// ```
       /// let value = ImportFeaturesAnalysis().with { $0.state = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -618,6 +621,7 @@
       /// ```
       /// let value = ThresholdConfig().with { $0.value = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

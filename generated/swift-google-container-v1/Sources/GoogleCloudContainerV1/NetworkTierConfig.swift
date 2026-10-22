@@ -36,6 +36,7 @@ public struct NetworkTierConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NetworkTierConfig().with { $0.networkTier = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

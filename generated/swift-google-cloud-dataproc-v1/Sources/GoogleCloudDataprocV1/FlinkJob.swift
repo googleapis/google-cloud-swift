@@ -66,6 +66,7 @@ public struct FlinkJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FlinkJob().with { $0.mainJarFileUri = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

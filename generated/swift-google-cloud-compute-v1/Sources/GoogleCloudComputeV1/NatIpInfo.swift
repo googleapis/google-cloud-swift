@@ -40,6 +40,7 @@
     /// ```
     /// let value = NatIpInfo().with { $0.natIpInfoMappings = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

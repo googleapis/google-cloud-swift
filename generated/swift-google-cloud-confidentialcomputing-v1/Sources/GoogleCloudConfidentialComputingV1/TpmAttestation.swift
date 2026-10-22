@@ -55,6 +55,7 @@ public struct TpmAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TpmAttestation().with { $0.quotes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -146,6 +147,7 @@ public struct TpmAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Quote().with { $0.hashAlgo = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

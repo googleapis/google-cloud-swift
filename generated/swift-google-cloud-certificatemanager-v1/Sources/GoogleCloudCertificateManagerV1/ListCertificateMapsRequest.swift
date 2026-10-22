@@ -25,19 +25,19 @@ public struct ListCertificateMapsRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// be listed, specified in the format `projects/*/locations/*`.
   public var parent: Swift.String = Swift.String()
 
-  /// Maximum number of certificate maps to return per call.
+  /// Optional. Maximum number of certificate maps to return per call.
   public var pageSize: Swift.Int32 = Swift.Int32()
 
-  /// The value returned by the last `ListCertificateMapsResponse`. Indicates
-  /// that this is a continuation of a prior `ListCertificateMaps` call, and that
-  /// the system should return the next page of data.
+  /// Optional. The value returned by the last `ListCertificateMapsResponse`.
+  /// Indicates that this is a continuation of a prior `ListCertificateMaps`
+  /// call, and that the system should return the next page of data.
   public var pageToken: Swift.String = Swift.String()
 
-  /// Filter expression to restrict the Certificates Maps returned.
+  /// Optional. Filter expression to restrict the Certificates Maps returned.
   public var filter: Swift.String = Swift.String()
 
-  /// A list of Certificate Map field names used to specify the order of the
-  /// returned results. The default sorting order is ascending. To specify
+  /// Optional. A list of Certificate Map field names used to specify the order
+  /// of the returned results. The default sorting order is ascending. To specify
   /// descending order for a field, add a suffix `" desc"`.
   public var orderBy: Swift.String = Swift.String()
 
@@ -53,6 +53,7 @@ public struct ListCertificateMapsRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ListCertificateMapsRequest().with { $0.parent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

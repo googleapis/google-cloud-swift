@@ -159,6 +159,23 @@ import Testing
     #expect(wrapped.value.nanos == args.2)
   }
 
+  @Test(
+    "Duration detect invalid format",
+    arguments: [
+      "{\"value\":\"1.1234567890s\"}",
+      "{\"value\":\"1.1234567899s\"}",
+      "{\"value\":\"-0.1234567891s\"}",
+      "{\"value\":\"1.s\"}",
+      "{\"value\":\"-1.s\"}",
+    ])
+  func invalidFormat(_ json: String) throws {
+    let data = Data(json.utf8)
+    let decoder = _ProtoJSONDecoder()
+    #expect(throws: GoogleWKT.WKTDurationError.invalidFormat) {
+      try decoder.decode(WrappedDurationDecode.self, from: data)
+    }
+  }
+
   @Test("Unpack Duration from Any")
   func durationAnyUnpack() throws {
     let jsonString =
@@ -183,6 +200,30 @@ import Testing
     let any = wrapped.content
     let error = #expect(throws: WKTAnyError.self) { let _ = try WKTDuration(fromAny: any) }
     #expect(error == .mismatchedTypeURL)
+  }
+
+  @Test func durationAnyUnpackMissingValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Duration"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.missingValueField) {
+      let _ = try WKTDuration(fromAny: any)
+    }
+  }
+
+  @Test func durationAnyUnpackInvalidValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Duration","value":123}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.invalidValueField) {
+      let _ = try WKTDuration(fromAny: any)
+    }
   }
 
   @Test("Pack Duration into Any")

@@ -109,6 +109,7 @@ public struct InspectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = InspectConfig().with { $0.infoTypes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -224,6 +225,7 @@ public struct InspectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InfoTypeLikelihood().with { $0.infoType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -345,6 +347,7 @@ public struct InspectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FindingLimits().with { $0.maxFindingsPerItem = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -424,6 +427,7 @@ public struct InspectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = InfoTypeLimit().with { $0.infoType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

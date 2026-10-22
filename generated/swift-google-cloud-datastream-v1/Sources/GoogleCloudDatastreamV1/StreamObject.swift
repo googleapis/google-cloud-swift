@@ -42,6 +42,11 @@ public struct StreamObject: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The object identifier in the data source.
   public var sourceObject: SourceObjectIdentifier? = nil
 
+  /// Output only. The customization rules for the object. These rules are
+  /// derived from the parent Stream's `rule_sets` and represent the intended
+  /// configuration for the object.
+  public var customizationRules: [Stream.RuleSet.CustomizationRule] = []
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `StreamObject`.
@@ -54,6 +59,7 @@ public struct StreamObject: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = StreamObject().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -73,6 +79,7 @@ public struct StreamObject: Codable, Equatable, GoogleWKT._AnyPackable,
     static let errors = CodingKeys(stringValue: "errors")
     static let backfillJob = CodingKeys(stringValue: "backfillJob")
     static let sourceObject = CodingKeys(stringValue: "sourceObject")
+    static let customizationRules = CodingKeys(stringValue: "customizationRules")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -82,6 +89,7 @@ public struct StreamObject: Codable, Equatable, GoogleWKT._AnyPackable,
       "errors",
       "backfillJob",
       "sourceObject",
+      "customizationRules",
     ]
   }
 
@@ -103,6 +111,11 @@ public struct StreamObject: Codable, Equatable, GoogleWKT._AnyPackable,
     self.backfillJob = try container.decodeIfPresent(BackfillJob.self, forKey: .backfillJob)
     self.sourceObject = try container.decodeIfPresent(
       SourceObjectIdentifier.self, forKey: .sourceObject)
+    if let value = try container.decodeIfPresent(
+      [Stream.RuleSet.CustomizationRule].self, forKey: .customizationRules)
+    {
+      self.customizationRules = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -118,6 +131,7 @@ public struct StreamObject: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.errors, forKey: .errors)
     try container.encodeIfPresent(self.backfillJob, forKey: .backfillJob)
     try container.encodeIfPresent(self.sourceObject, forKey: .sourceObject)
+    try container.encode(self.customizationRules, forKey: .customizationRules)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

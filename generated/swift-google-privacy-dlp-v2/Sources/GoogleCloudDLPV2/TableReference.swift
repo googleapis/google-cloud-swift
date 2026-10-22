@@ -45,6 +45,7 @@ public struct TableReference: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TableReference().with { $0.datasetId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -94,6 +94,7 @@ public struct UpdateTransferConfigRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = UpdateTransferConfigRequest().with { $0.transferConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

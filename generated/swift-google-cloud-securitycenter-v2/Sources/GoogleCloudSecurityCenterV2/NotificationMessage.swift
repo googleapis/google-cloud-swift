@@ -27,6 +27,9 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The Cloud resource tied to this notification's Finding.
   public var resource: GoogleCloudSecurityCenterV2.Resource? = nil
 
+  /// Indicates whether the finding is deleted.
+  public var deletedFinding: Swift.Bool = Swift.Bool()
+
   /// Notification Event.
   public var event: EventOneOf? = nil
 
@@ -42,6 +45,7 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NotificationMessage().with { $0.notificationConfigName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -57,11 +61,13 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
     static let notificationConfigName = CodingKeys(stringValue: "notificationConfigName")
     static let finding = CodingKeys(stringValue: "finding")
     static let resource = CodingKeys(stringValue: "resource")
+    static let deletedFinding = CodingKeys(stringValue: "deletedFinding")
 
     static let _knownKeys: Set<Swift.String> = [
       "notificationConfigName",
       "finding",
       "resource",
+      "deletedFinding",
     ]
   }
 
@@ -73,6 +79,9 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.resource = try container.decodeIfPresent(
       GoogleCloudSecurityCenterV2.Resource.self, forKey: .resource)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .deletedFinding) {
+      self.deletedFinding = value
+    }
 
     var event: EventOneOf? = nil
     let eventCheckAndSet = {
@@ -98,6 +107,7 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.notificationConfigName, forKey: .notificationConfigName)
     try container.encodeIfPresent(self.resource, forKey: .resource)
+    try container.encode(self.deletedFinding, forKey: .deletedFinding)
 
     if let choice = self.event {
       switch choice {

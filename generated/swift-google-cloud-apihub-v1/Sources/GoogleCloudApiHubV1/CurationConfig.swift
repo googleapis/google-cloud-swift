@@ -39,6 +39,7 @@ public struct CurationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CurationConfig().with { $0.customCuration = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -124,6 +125,7 @@ public struct CurationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CustomCuration().with { $0.curation = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

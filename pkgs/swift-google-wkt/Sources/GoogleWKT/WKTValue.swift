@@ -24,7 +24,7 @@ import Foundation
 /// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
-public enum WKTValue: Codable, Equatable, Sendable {
+public enum WKTValue: Codable, Equatable, Hashable, Sendable {
   /// Represents a JSON `null`.
   case null(WKTNullValue)
 
@@ -170,10 +170,15 @@ extension WKTStruct: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
-    guard case let .object(v) = any.fields[WKTAny.valueField] else {
+    // Struct uses custom JSON encoding and is packed under the "value" field as a JSON object.
+    // Check for the presence of "value" first before validating that it is an object.
+    guard let v = any.fields[WKTAny.valueField] else {
+      throw WKTAnyError.missingValueField
+    }
+    guard case let .object(o) = v else {
       throw WKTAnyError.invalidValueField
     }
-    self = v
+    self = o
   }
 
   /// Packs this `WKTStruct` into a `WKTStruct` representation.
@@ -201,10 +206,15 @@ extension WKTListValue: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
-    guard case let .array(v) = any.fields[WKTAny.valueField] else {
+    // ListValue uses custom JSON encoding and is packed under the "value" field as a JSON array.
+    // Check for the presence of "value" first before validating that it is an array.
+    guard let v = any.fields[WKTAny.valueField] else {
+      throw WKTAnyError.missingValueField
+    }
+    guard case let .array(a) = v else {
       throw WKTAnyError.invalidValueField
     }
-    self = v
+    self = a
   }
 
   /// Packs this `WKTListValue` into a `WKTStruct` representation.
@@ -214,7 +224,7 @@ extension WKTListValue: _AnyPackable {
 }
 
 /// Represents a JSON null.
-public struct WKTNullValue: Codable, Equatable, Sendable {
+public struct WKTNullValue: Codable, Equatable, Hashable, Sendable {
   /// Default initializer.
   public init() {}
 

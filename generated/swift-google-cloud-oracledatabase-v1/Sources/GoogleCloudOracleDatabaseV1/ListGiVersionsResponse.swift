@@ -40,6 +40,7 @@ public struct ListGiVersionsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = ListGiVersionsResponse().with { $0.giVersions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

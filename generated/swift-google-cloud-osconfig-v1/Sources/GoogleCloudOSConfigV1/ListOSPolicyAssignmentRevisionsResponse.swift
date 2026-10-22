@@ -41,6 +41,7 @@ public struct ListOSPolicyAssignmentRevisionsResponse: Codable, Equatable, Googl
   /// ```
   /// let value = ListOSPolicyAssignmentRevisionsResponse().with { $0.osPolicyAssignments = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

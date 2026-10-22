@@ -48,9 +48,15 @@ import Testing
       ])
     ])
     let error: RequestError = .binding(bindingError)
+    let anyError: any Error = error
 
     #expect(error.description == "URL binding error: field 'name' needs to be set")
-    #expect(error.debugDescription.hasPrefix("RequestError.binding(BindingError(paths:"))
+    #expect(
+      error.debugDescription.hasPrefix(
+        "RequestError.binding(BindingError(\(String(reflecting: bindingError.description)), paths:"
+      )
+    )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func requestErrorIOCase() {
@@ -59,9 +65,11 @@ import Testing
     }
     let ioErr = CustomIOError()
     let error: RequestError = .io(ioErr)
+    let anyError: any Error = error
 
     #expect(error.description == "I/O error: connection reset by peer")
     #expect(error.debugDescription.hasPrefix("RequestError.io("))
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func requestErrorHTTPCase() {
@@ -71,9 +79,11 @@ import Testing
       payload: Data("Service Unavailable".utf8)
     )
     let error: RequestError = .http(details)
+    let anyError: any Error = error
 
     #expect(error.description == "HTTP error 503")
     #expect(error.debugDescription.contains("RequestError.http(HTTPDetails(statusCode: 503"))
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func requestErrorServiceCase() {
@@ -83,45 +93,57 @@ import Testing
       httpStatusCode: 403
     )
     let error: RequestError = .service(serviceError)
+    let anyError: any Error = error
 
     #expect(error.description == "PERMISSION_DENIED (HTTP 403): Access denied")
     #expect(error.debugDescription.hasPrefix("RequestError.service(ServiceError("))
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func requestErrorExhaustedCase() {
     let exhausted = PolicyExhaustedError.elapsedTime(
       maximumDuration: .seconds(30),
-      source: .badURL("http://example.com")
+      underlyingError: .badURL("http://example.com")
     )
     let error: RequestError = .exhausted(exhausted)
+    let anyError: any Error = error
 
     #expect(
       error.description
         == "policy exhausted: elapsed time limit of 30.0 seconds exceeded; last error: Invalid endpoint URL: http://example.com"
     )
     #expect(error.debugDescription.hasPrefix("RequestError.exhausted(PolicyExhaustedError."))
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func requestErrorUnimplementedCase() {
     let error: RequestError = .unimplemented
+    let anyError: any Error = error
 
     #expect(error.description == "Method unimplemented")
     #expect(error.debugDescription == "RequestError.unimplemented")
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func requestErrorMalformedResponseCase() {
     let error: RequestError = .malformedResponse("missing 'name' field")
+    let anyError: any Error = error
 
     #expect(error.description == "Malformed response: missing 'name' field")
-    #expect(error.debugDescription.contains("RequestError.malformedResponse("))
-    #expect(error.debugDescription.contains("missing 'name' field"))
+    #expect(
+      error.debugDescription
+        == "RequestError.malformedResponse(\(String(reflecting: "missing 'name' field")))"
+    )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func requestErrorBadURLCase() {
     let error: RequestError = .badURL("ht tp://bad url")
+    let anyError: any Error = error
 
     #expect(error.description == "Invalid endpoint URL: ht tp://bad url")
     #expect(error.debugDescription == "RequestError.badURL(\"ht tp://bad url\")")
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func policyExhaustedErrorConformances() {
@@ -136,17 +158,17 @@ import Testing
     )
 
     let timeExhaustedWithSource = PolicyExhaustedError.elapsedTime(
-      maximumDuration: .seconds(10), source: .unimplemented)
+      maximumDuration: .seconds(10), underlyingError: .unimplemented)
     #expect(
       timeExhaustedWithSource.debugDescription
         == "PolicyExhaustedError.elapsedTime("
-        + "maximumDuration: 10.0 seconds, source: RequestError.unimplemented)"
+        + "maximumDuration: 10.0 seconds, underlyingError: RequestError.unimplemented)"
     )
 
-    let timeExhaustedNoLimit = PolicyExhaustedError.elapsedTime(source: .unimplemented)
+    let timeExhaustedNoLimit = PolicyExhaustedError.elapsedTime(underlyingError: .unimplemented)
     #expect(
       timeExhaustedNoLimit.debugDescription
-        == "PolicyExhaustedError.elapsedTime(source: RequestError.unimplemented)"
+        == "PolicyExhaustedError.elapsedTime(underlyingError: RequestError.unimplemented)"
     )
 
     let timeExhaustedEmpty = PolicyExhaustedError.elapsedTime()
@@ -164,10 +186,10 @@ import Testing
     )
 
     let attemptExhaustedWithSource = PolicyExhaustedError.attemptCount(
-      maximumAttempts: 5, source: .unimplemented)
+      maximumAttempts: 5, underlyingError: .unimplemented)
     #expect(
       attemptExhaustedWithSource.debugDescription
-        == "PolicyExhaustedError.attemptCount(maximumAttempts: 5, source: RequestError.unimplemented)"
+        == "PolicyExhaustedError.attemptCount(maximumAttempts: 5, underlyingError: RequestError.unimplemented)"
     )
   }
 }

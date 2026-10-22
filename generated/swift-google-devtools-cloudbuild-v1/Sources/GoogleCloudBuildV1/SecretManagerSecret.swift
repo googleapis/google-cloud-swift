@@ -42,6 +42,7 @@ public struct SecretManagerSecret: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SecretManagerSecret().with { $0.versionName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

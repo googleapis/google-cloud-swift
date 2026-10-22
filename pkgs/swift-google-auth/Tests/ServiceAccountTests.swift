@@ -189,7 +189,7 @@ struct ServiceAccountTests {
 
     let mockKeyJSON = try ServiceAccountTests.generateMockKeyJSON()
 
-    let provider = ServiceAccountTokenProvider(
+    let provider = try ServiceAccountTokenProvider(
       key: try JSONDecoder().decode(ServiceAccountData.self, from: mockKeyJSON)
     )
     let cache = TokenCache(
@@ -212,8 +212,10 @@ struct ServiceAccountTests {
     #expect(token2.accessToken == token1.accessToken)
   }
 
-  @Test("Service Account JWS signing fails gracefully when given invalid private key PEM format")
-  func invalidKeySigningFailure() async throws {
+  @Test(
+    "Service Account credentials initialization fails fast when given invalid private key PEM format"
+  )
+  func invalidKeySigningFailure() throws {
     let badKeyJSON = Data(
       """
       {
@@ -226,12 +228,11 @@ struct ServiceAccountTests {
       }
       """.utf8)
 
-    let credentials = try ServiceAccountCredentials(keyJSON: badKeyJSON)
-    do {
-      let _ = try await credentials.headers()
-      Issue.record("Expected CredentialsError")
-    } catch is CredentialsError {
-      // Success
+    #expect {
+      _ = try ServiceAccountCredentials(keyJSON: badKeyJSON)
+    } throws: { error in
+      guard case CredentialsError.parseError = error else { return false }
+      return true
     }
   }
 
@@ -306,7 +307,7 @@ struct ServiceAccountTests {
     let mockKeyJSON = try ServiceAccountTests.generateMockKeyJSON()
     let key = try JSONDecoder().decode(ServiceAccountData.self, from: mockKeyJSON)
 
-    let provider = ServiceAccountTokenProvider(key: key, accessSpecifier: .scopes([]))
+    let provider = try ServiceAccountTokenProvider(key: key, accessSpecifier: .scopes([]))
     #expect(provider.scopes == ["https://www.googleapis.com/auth/cloud-platform"])
     #expect(provider.audience == nil)
   }
@@ -319,7 +320,7 @@ struct ServiceAccountTests {
     let mockDate = Date(timeIntervalSince1970: 1700000000)
     let timeSource = MockTimeSource(currentDate: mockDate)
 
-    let provider = ServiceAccountTokenProvider(key: key, timeSource: timeSource)
+    let provider = try ServiceAccountTokenProvider(key: key, timeSource: timeSource)
     let token = try await provider.fetchToken()
 
     // iat is now - 10s. exp is iat + 3600s.

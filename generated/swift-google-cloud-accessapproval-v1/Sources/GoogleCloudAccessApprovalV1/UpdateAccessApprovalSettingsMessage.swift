@@ -48,6 +48,7 @@ public struct UpdateAccessApprovalSettingsMessage: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = UpdateAccessApprovalSettingsMessage().with { $0.settings = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

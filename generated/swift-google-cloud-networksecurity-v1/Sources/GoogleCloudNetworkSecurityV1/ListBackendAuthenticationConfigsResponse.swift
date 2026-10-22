@@ -45,6 +45,7 @@ public struct ListBackendAuthenticationConfigsResponse: Codable, Equatable, Goog
   /// ```
   /// let value = ListBackendAuthenticationConfigsResponse().with { $0.backendAuthenticationConfigs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

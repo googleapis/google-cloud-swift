@@ -36,6 +36,7 @@ public struct GPUDirectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GPUDirectConfig().with { $0.gpuDirectStrategy = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

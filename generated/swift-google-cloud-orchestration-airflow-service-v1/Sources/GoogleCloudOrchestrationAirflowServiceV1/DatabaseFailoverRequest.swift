@@ -38,6 +38,7 @@ public struct DatabaseFailoverRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = DatabaseFailoverRequest().with { $0.environment = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

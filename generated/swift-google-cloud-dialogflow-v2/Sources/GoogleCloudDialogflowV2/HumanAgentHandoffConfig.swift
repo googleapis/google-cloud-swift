@@ -41,6 +41,7 @@
     /// ```
     /// let value = HumanAgentHandoffConfig().with { $0.livePersonConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -128,6 +129,7 @@
       /// ```
       /// let value = LivePersonConfig().with { $0.accountNumber = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -220,6 +222,7 @@
       /// ```
       /// let value = SalesforceLiveAgentConfig().with { $0.organizationId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

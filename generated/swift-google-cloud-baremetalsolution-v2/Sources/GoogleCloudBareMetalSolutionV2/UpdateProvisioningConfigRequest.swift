@@ -43,6 +43,7 @@ public struct UpdateProvisioningConfigRequest: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = UpdateProvisioningConfigRequest().with { $0.provisioningConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -62,6 +62,7 @@ public struct AppConnectionOperationMetadata: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = AppConnectionOperationMetadata().with { $0.createTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

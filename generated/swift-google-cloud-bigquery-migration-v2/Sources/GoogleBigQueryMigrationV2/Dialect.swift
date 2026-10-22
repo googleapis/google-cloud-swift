@@ -36,6 +36,7 @@ public struct Dialect: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Dialect().with { $0.bigqueryDialect = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

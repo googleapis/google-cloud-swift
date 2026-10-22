@@ -65,6 +65,7 @@
       /// ```
       /// let value = AddAssociationRequest().with { $0.replaceExistingAssociation = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -182,6 +183,7 @@
       /// ```
       /// let value = AddRuleRequest().with { $0.requestId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -290,6 +292,7 @@
       /// ```
       /// let value = CopyRulesRequest().with { $0.requestId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -396,6 +399,7 @@
       /// ```
       /// let value = DeleteRequest().with { $0.requestId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -482,6 +486,7 @@
       /// ```
       /// let value = GetRequest().with { $0.securityPolicy = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -566,6 +571,7 @@
       /// ```
       /// let value = GetAssociationRequest().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -655,6 +661,7 @@
       /// ```
       /// let value = GetRuleRequest().with { $0.priority = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -763,6 +770,7 @@
       /// ```
       /// let value = InsertRequest().with { $0.parentId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -936,6 +944,7 @@
       /// ```
       /// let value = ListRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1033,6 +1042,7 @@
       /// ```
       /// let value = ListAssociationsRequest().with { $0.targetResource = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1200,6 +1210,7 @@
       /// ```
       /// let value = ListPreconfiguredExpressionSetsRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1314,6 +1325,7 @@
       /// ```
       /// let value = MoveRequest().with { $0.parentId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1424,6 +1436,7 @@
       /// ```
       /// let value = PatchRequest().with { $0.requestId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1537,6 +1550,7 @@
       /// ```
       /// let value = PatchRuleRequest().with { $0.priority = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1649,6 +1663,7 @@
       /// ```
       /// let value = RemoveAssociationRequest().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1757,6 +1772,7 @@
       /// ```
       /// let value = RemoveRuleRequest().with { $0.priority = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

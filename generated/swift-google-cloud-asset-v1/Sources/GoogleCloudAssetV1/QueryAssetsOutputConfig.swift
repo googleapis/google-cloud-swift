@@ -36,6 +36,7 @@ public struct QueryAssetsOutputConfig: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = QueryAssetsOutputConfig().with { $0.bigqueryDestination = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -111,6 +112,7 @@ public struct QueryAssetsOutputConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = BigQueryDestination().with { $0.dataset = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

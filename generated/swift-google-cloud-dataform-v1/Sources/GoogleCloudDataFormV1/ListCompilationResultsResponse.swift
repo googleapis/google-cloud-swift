@@ -44,6 +44,7 @@ public struct ListCompilationResultsResponse: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = ListCompilationResultsResponse().with { $0.compilationResults = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

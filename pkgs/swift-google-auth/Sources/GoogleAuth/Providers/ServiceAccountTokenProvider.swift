@@ -42,6 +42,7 @@ struct ServiceAccountClaims: JWTPayload, Equatable, Sendable {
 /// containing either requested scopes or a target service audience.
 struct ServiceAccountTokenProvider: TokenProvider, Sendable {
   let key: ServiceAccountData
+  let privateKey: Insecure.RSA.PrivateKey
   let scopes: [String]?
   let audience: String?
   let timeSource: any TimeSource
@@ -55,7 +56,13 @@ struct ServiceAccountTokenProvider: TokenProvider, Sendable {
     key: ServiceAccountData,
     accessSpecifier: AccessSpecifier = .scopes([]),
     timeSource: any TimeSource = SystemTimeSource()
-  ) {
+  ) throws {
+    do {
+      self.privateKey = try Insecure.RSA.PrivateKey(pem: key.privateKey)
+    } catch {
+      throw CredentialsError.parseError(
+        "Failed to parse Service Account RSA Private Key: \(error.localizedDescription)")
+    }
     self.key = key
     self.timeSource = timeSource
 
@@ -87,14 +94,6 @@ struct ServiceAccountTokenProvider: TokenProvider, Sendable {
       iat: IssuedAtClaim(value: iatDate),
       exp: ExpirationClaim(value: expDate)
     )
-
-    let privateKey: Insecure.RSA.PrivateKey
-    do {
-      privateKey = try Insecure.RSA.PrivateKey(pem: key.privateKey)
-    } catch {
-      throw CredentialsError.parseError(
-        "Failed to parse Service Account RSA Private Key: \(error.localizedDescription)")
-    }
 
     let keys = JWTKeyCollection()
     let kid = JWKIdentifier(string: key.privateKeyID)

@@ -38,6 +38,7 @@ public struct ReplaceServicePerimetersResponse: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = ReplaceServicePerimetersResponse().with { $0.servicePerimeters = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

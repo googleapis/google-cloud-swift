@@ -54,6 +54,7 @@ public struct StreamingSynthesizeConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = StreamingSynthesizeConfig().with { $0.voice = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -42,6 +42,7 @@ public struct ListInterceptEndpointGroupsResponse: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = ListInterceptEndpointGroupsResponse().with { $0.interceptEndpointGroups = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

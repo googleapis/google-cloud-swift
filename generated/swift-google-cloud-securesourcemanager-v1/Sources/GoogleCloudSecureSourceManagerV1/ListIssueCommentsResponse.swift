@@ -40,6 +40,7 @@ public struct ListIssueCommentsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = ListIssueCommentsResponse().with { $0.issueComments = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

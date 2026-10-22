@@ -53,6 +53,30 @@ import Testing
     #expect(error == .mismatchedTypeURL)
   }
 
+  @Test func testDecodingAnyMissingValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Any"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.missingValueField) {
+      let _ = try WKTAny(fromAny: any)
+    }
+  }
+
+  @Test func testDecodingAnyInvalidValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Any","value":"not-an-object"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.invalidValueField) {
+      let _ = try WKTAny(fromAny: any)
+    }
+  }
+
   // Storing an Any into an Any is probably a bad idea, but that won't stop them.
   @Test("Encoding Any")
   func testEncodingAny() throws {

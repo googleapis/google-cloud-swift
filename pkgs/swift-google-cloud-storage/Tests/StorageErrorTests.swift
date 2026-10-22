@@ -55,6 +55,19 @@ import Testing
       error.debugDescription
         == "ReadObjectError.resumeFailed(bytesReceived: 1024, underlyingError: \(String(reflecting: underlying)))"
     )
+
+    if case .resumeFailed(let bytesReceived, _) = error,
+      let resumeRange = ReadObjectRange(fromOffset: bytesReceived)
+    {
+      let resumeOptions = ReadObjectOptions().with {
+        $0.range = resumeRange
+        $0.generation = 42
+      }
+      #expect(resumeOptions.range == ReadObjectRange(fromOffset: 1024))
+      #expect(resumeOptions.generation == 42)
+    } else {
+      Issue.record("Expected ReadObjectRange(fromOffset: bytesReceived) to succeed")
+    }
   }
 
   @Test func unexpectedServerResponse() {
@@ -75,22 +88,26 @@ import Testing
       )
     )
     let error = ReadObjectError.requestError(requestError)
+    let anyError: any Error = error
     #expect(error.description == "\(requestError)")
     #expect(
       error.debugDescription
         == "ReadObjectError.requestError(\(String(reflecting: requestError)))"
     )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 }
 
 @Suite struct WriteObjectErrorTests {
   @Test func unexpectedServerResponse() {
     let error = WriteObjectError.unexpectedServerResponse(statusCode: 500, message: "Server Error")
+    let anyError: any Error = error
     #expect(error.description == "Unexpected server response with status code 500: Server Error")
     #expect(
       error.debugDescription
         == "WriteObjectError.unexpectedServerResponse(statusCode: 500, message: \"Server Error\")"
     )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func internalError() {
@@ -153,34 +170,43 @@ import Testing
 @Suite struct CustomerEncryptionKeyErrorTests {
   @Test func invalidKeyLength() {
     let error = CustomerEncryptionKeyError.invalidKeyLength(actual: 16, expected: 32)
+    let anyError: any Error = error
     #expect(
       error.description
         == "Invalid customer encryption key length: got 16 bytes, expected 32 bytes."
     )
     #expect(
       error.debugDescription
-        == "CustomerEncryptionKeyError.invalidKeyLength(actual: 16, expected: 32)"
+        == "CustomerEncryptionKeyError.invalidKeyLength(actual: 16, expected: 32): Invalid customer encryption key length: got 16 bytes, expected 32 bytes."
     )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func invalidBase64Key() {
     let error = CustomerEncryptionKeyError.invalidBase64Key
+    let anyError: any Error = error
     #expect(
       error.description
         == "Customer encryption key is not a valid base64-encoded string."
     )
-    #expect(error.debugDescription == "CustomerEncryptionKeyError.invalidBase64Key")
+    #expect(
+      error.debugDescription
+        == "CustomerEncryptionKeyError.invalidBase64Key: Customer encryption key is not a valid base64-encoded string."
+    )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 }
 
 @Suite struct WriteObjectSourceErrorTests {
   @Test func offsetOutOfBounds() {
     let error = WriteObjectSourceError.offsetOutOfBounds(offset: 200, size: 100)
+    let anyError: any Error = error
     #expect(error.description == "Seek offset out of bounds: offset 200 exceeds size 100")
     #expect(
       error.debugDescription
         == "WriteObjectSourceError.offsetOutOfBounds(offset: 200, size: 100)"
     )
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 
   @Test func readFailed() {
@@ -188,6 +214,8 @@ import Testing
       var description: String { "disk read failure" }
     }
     let error = WriteObjectSourceError.readFailed(underlyingError: TestUnderlyingError())
+    let anyError: any Error = error
     #expect(error.description == "Read from source failed: disk read failure")
+    #expect(String(reflecting: anyError) == error.debugDescription)
   }
 }

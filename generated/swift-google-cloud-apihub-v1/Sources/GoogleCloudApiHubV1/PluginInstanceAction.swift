@@ -70,6 +70,7 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PluginInstanceAction().with { $0.hubInstanceAction = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -192,6 +193,7 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ResourceConfig().with { $0.actionType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

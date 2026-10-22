@@ -36,6 +36,7 @@ public struct InstanceAuthString: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = InstanceAuthString().with { $0.authString = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

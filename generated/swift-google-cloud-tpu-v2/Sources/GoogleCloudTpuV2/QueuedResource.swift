@@ -58,6 +58,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = QueuedResource().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -192,6 +193,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Tpu().with { $0.nodeSpec = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -259,6 +261,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = NodeSpec().with { $0.parent = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -364,6 +367,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = MultisliceParams().with { $0.nodeCount = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -502,6 +506,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Spot().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -575,6 +580,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Guaranteed().with { $0.minDuration = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -653,6 +659,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QueueingPolicy().with { $0.validUntilDuration = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

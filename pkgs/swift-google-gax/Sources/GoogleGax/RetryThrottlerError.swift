@@ -59,12 +59,13 @@ extension RetryThrottlerError: CustomDebugStringConvertible {
   public var debugDescription: String {
     switch self {
     case .factorOutOfRange(let factor):
-      return "RetryThrottlerError.factorOutOfRange(\(factor))"
+      return "RetryThrottlerError.factorOutOfRange(\(factor)): \(description)"
     case .tooFewMinTokens(let tokens, let minTokens):
-      return "RetryThrottlerError.tooFewMinTokens(tokens: \(tokens), minTokens: \(minTokens))"
+      return
+        "RetryThrottlerError.tooFewMinTokens(tokens: \(tokens), minTokens: \(minTokens)): \(description)"
     case .tokensOutOfRange(let tokens, let minTokens, let errorCost):
       return
-        "RetryThrottlerError.tokensOutOfRange(tokens: \(tokens), minTokens: \(minTokens), errorCost: \(errorCost))"
+        "RetryThrottlerError.tokensOutOfRange(tokens: \(tokens), minTokens: \(minTokens), errorCost: \(errorCost)): Token counts and error costs must be non-negative"
     }
   }
 }

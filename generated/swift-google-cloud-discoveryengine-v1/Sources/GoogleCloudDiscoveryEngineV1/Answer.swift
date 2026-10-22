@@ -79,6 +79,7 @@
     /// ```
     /// let value = Answer().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -224,6 +225,7 @@
       /// ```
       /// let value = Citation().with { $0.startIndex = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -316,6 +318,7 @@
       /// ```
       /// let value = CitationSource().with { $0.referenceId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -415,6 +418,7 @@
       /// ```
       /// let value = GroundingSupport().with { $0.startIndex = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -517,6 +521,7 @@
       /// ```
       /// let value = Reference().with { $0.unstructuredDocumentInfo = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -625,6 +630,7 @@
         /// ```
         /// let value = UnstructuredDocumentInfo().with { $0.document = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -717,6 +723,7 @@
           /// ```
           /// let value = ChunkContent().with { $0.content = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -845,6 +852,7 @@
         /// ```
         /// let value = ChunkInfo().with { $0.chunk = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -931,6 +939,7 @@
           /// ```
           /// let value = DocumentMetadata().with { $0.document = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1066,6 +1075,7 @@
         /// ```
         /// let value = StructuredDocumentInfo().with { $0.document = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1204,6 +1214,7 @@
       /// ```
       /// let value = Step().with { $0.state = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1282,6 +1293,7 @@
         /// ```
         /// let value = Action().with { $0.searchAction = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1364,6 +1376,7 @@
           /// ```
           /// let value = SearchAction().with { $0.query = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1445,6 +1458,7 @@
           /// ```
           /// let value = Observation().with { $0.searchResults = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1523,6 +1537,7 @@
             /// ```
             /// let value = SearchResult().with { $0.document = ... }
             /// ```
+            @inlinable
             public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
               var copy = self
               try config(&copy)
@@ -1617,6 +1632,7 @@
               /// ```
               /// let value = SnippetInfo().with { $0.snippet = ... }
               /// ```
+              @inlinable
               public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
                 var copy = self
                 try config(&copy)
@@ -1717,6 +1733,7 @@
               /// ```
               /// let value = ChunkInfo().with { $0.chunk = ... }
               /// ```
+              @inlinable
               public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
                 var copy = self
                 try config(&copy)
@@ -2030,6 +2047,7 @@
       /// ```
       /// let value = QueryUnderstandingInfo().with { $0.queryClassificationInfo = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2094,6 +2112,7 @@
         /// ```
         /// let value = QueryClassificationInfo().with { $0.type = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

@@ -52,6 +52,7 @@ public struct ListBackupCollectionsRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = ListBackupCollectionsRequest().with { $0.parent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

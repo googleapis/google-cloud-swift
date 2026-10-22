@@ -57,6 +57,7 @@ public struct GkeCluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GkeCluster().with { $0.cluster = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

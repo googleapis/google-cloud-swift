@@ -229,6 +229,7 @@ public struct ShipmentModel: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ShipmentModel().with { $0.shipments = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -404,6 +405,7 @@ public struct ShipmentModel: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DurationDistanceMatrix().with { $0.rows = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -477,6 +479,7 @@ public struct ShipmentModel: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Row().with { $0.durations = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -608,6 +611,7 @@ public struct ShipmentModel: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PrecedenceRule().with { $0.firstIndex = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -725,6 +729,7 @@ public struct ShipmentModel: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BreakRule().with { $0.breakRequests = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -802,6 +807,7 @@ public struct ShipmentModel: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BreakRequest().with { $0.earliestStartTime = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -929,6 +935,7 @@ public struct ShipmentModel: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = FrequencyConstraint().with { $0.minBreakDuration = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -78,7 +78,18 @@ extension ProtoJSONDecoderTest {
         #"{"fieldData":  {"a": "NDI="} }"#,
         MapPrimitives().with { $0.fieldData = ["a": Data(base64Encoded: "NDI=")!] }
       ),
-    ])
+      (
+        #"{"fieldData":  {"a": "NDI", "b": "-_-_", "c": "Pz8_Pw", "d": "Pz8_Pw=="} }"#,
+        MapPrimitives().with {
+          $0.fieldData = [
+            "a": Data("42".utf8),
+            "b": Data([251, 255, 191] as [UInt8]),
+            "c": Data("????".utf8),
+            "d": Data("????".utf8),
+          ]
+        }
+      ),
+    ] as [(String, MapPrimitives)])
   func decodeRepeated(input: String, want: MapPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(MapPrimitives.self, from: Data(input.utf8))
@@ -97,7 +108,12 @@ extension ProtoJSONDecoderTest {
       #"{"fieldUInt64": {"a": "bad"} }"#,
       #"{"fieldFloat":  {"a": "bad"} }"#,
       #"{"fieldDouble": {"a": "bad"} }"#,
-      #"{"fieldData":   {"a": "bad"} }"#,
+      #"{"fieldData":   {"a": "bad!"} }"#,
+      #"{"fieldData":   {"a": "a"} }"#,
+      #"{"fieldData":   {"a": "NDI=="} }"#,
+      #"{"fieldData":   {"a": "QUJD="} }"#,
+      #"{"fieldData":   {"a": "QQ=A"} }"#,
+      #"{"fieldData":   {"a": "-_+/"} }"#,
     ])
   func decodeMapBad(input: String) throws {
     let decoder = _ProtoJSONDecoder()

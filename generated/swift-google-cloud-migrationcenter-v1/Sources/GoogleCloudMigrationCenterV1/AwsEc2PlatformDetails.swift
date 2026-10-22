@@ -39,6 +39,7 @@ public struct AwsEc2PlatformDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AwsEc2PlatformDetails().with { $0.machineTypeLabel = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

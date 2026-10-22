@@ -17,14 +17,14 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// PostgreSQL data source configuration
+/// Configuration for syncing data from a PostgreSQL source.
 public struct PostgresqlSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// PostgreSQL objects to include in the stream.
+  /// The PostgreSQL objects to include in the stream.
   public var includeObjects: PostgresqlRdbms? = nil
 
-  /// PostgreSQL objects to exclude from the stream.
+  /// The PostgreSQL objects to exclude from the stream.
   public var excludeObjects: PostgresqlRdbms? = nil
 
   /// Required. Immutable. The name of the logical replication slot that's
@@ -52,6 +52,7 @@ public struct PostgresqlSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = PostgresqlSourceConfig().with { $0.includeObjects = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -40,6 +40,7 @@ public struct ContainerInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ContainerInfo().with { $0.image = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

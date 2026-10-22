@@ -78,6 +78,7 @@ public struct BacktestResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BacktestResult().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -197,6 +198,7 @@ public struct BacktestResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PerformanceTarget().with { $0.partyInvestigationsPerPeriodHint = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -43,6 +43,7 @@
     /// ```
     /// let value = TransitionRouteGroupCoverage().with { $0.coverages = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -115,6 +116,7 @@
       /// ```
       /// let value = Coverage().with { $0.routeGroup = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -189,6 +191,7 @@
         /// ```
         /// let value = Transition().with { $0.transitionRoute = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

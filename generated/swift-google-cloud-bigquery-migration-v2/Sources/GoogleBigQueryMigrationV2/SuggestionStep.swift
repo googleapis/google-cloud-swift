@@ -39,6 +39,7 @@ public struct SuggestionStep: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SuggestionStep().with { $0.suggestionType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

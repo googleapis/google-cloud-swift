@@ -36,6 +36,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = DataProfilePubSubCondition().with { $0.expressions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -92,6 +93,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = PubSubCondition().with { $0.minimumRiskScore = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -212,6 +214,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = PubSubExpressions().with { $0.logicalOperator = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

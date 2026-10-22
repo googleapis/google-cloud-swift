@@ -68,6 +68,7 @@ public struct ListQuotaPreferencesRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ListQuotaPreferencesRequest().with { $0.parent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

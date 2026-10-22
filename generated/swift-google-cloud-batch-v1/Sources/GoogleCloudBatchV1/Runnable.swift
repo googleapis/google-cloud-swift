@@ -83,6 +83,7 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Runnable().with { $0.container = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -300,6 +301,7 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Container().with { $0.imageUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -427,6 +429,7 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Script().with { $0.path = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -557,6 +560,7 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Barrier().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -38,6 +38,7 @@
     /// ```
     /// let value = StreamDirectRawPredictResponse().with { $0.output = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

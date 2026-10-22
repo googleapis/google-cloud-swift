@@ -53,6 +53,7 @@ public struct QaAnswer: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = QaAnswer().with { $0.qaQuestion = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -161,6 +162,7 @@ public struct QaAnswer: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AnswerValue().with { $0.strValue = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -316,6 +318,7 @@ public struct QaAnswer: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AnswerSource().with { $0.sourceType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

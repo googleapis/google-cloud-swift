@@ -150,6 +150,7 @@
     /// ```
     /// let value = ImportDocumentsRequest().with { $0.inlineSource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -342,6 +343,7 @@
       /// ```
       /// let value = InlineSource().with { $0.documents = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

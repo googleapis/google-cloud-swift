@@ -42,6 +42,7 @@ public struct OutdatedLibrary: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OutdatedLibrary().with { $0.libraryName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

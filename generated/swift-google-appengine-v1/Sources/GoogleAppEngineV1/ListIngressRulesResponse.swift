@@ -40,6 +40,7 @@ public struct ListIngressRulesResponse: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = ListIngressRulesResponse().with { $0.ingressRules = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

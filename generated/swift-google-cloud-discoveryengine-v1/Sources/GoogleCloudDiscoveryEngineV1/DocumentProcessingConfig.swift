@@ -73,6 +73,7 @@
     /// ```
     /// let value = DocumentProcessingConfig().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -148,6 +149,7 @@
       /// ```
       /// let value = ChunkingConfig().with { $0.layoutBasedChunkingConfig = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -235,6 +237,7 @@
         /// ```
         /// let value = LayoutBasedChunkingConfig().with { $0.chunkSize = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -353,6 +356,7 @@
       /// ```
       /// let value = ParsingConfig().with { $0.digitalParsingConfig = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -447,6 +451,7 @@
         /// ```
         /// let value = DigitalParsingConfig().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -525,6 +530,7 @@
         /// ```
         /// let value = OcrParsingConfig().with { $0.enhancedDocumentElements = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -639,6 +645,7 @@
         /// ```
         /// let value = LayoutParsingConfig().with { $0.enableTableAnnotation = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

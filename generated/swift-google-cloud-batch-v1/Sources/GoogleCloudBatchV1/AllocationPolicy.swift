@@ -84,6 +84,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AllocationPolicy().with { $0.location = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -200,6 +201,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LocationPolicy().with { $0.allowedLocations = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -318,6 +320,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Disk().with { $0.image = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -468,6 +471,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AttachedDisk().with { $0.newDisk = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -602,6 +606,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Accelerator().with { $0.type = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -736,6 +741,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InstancePolicy().with { $0.machineType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -892,6 +898,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InstancePolicyOrTemplate().with { $0.policy = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1060,6 +1067,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NetworkInterface().with { $0.network = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1280,6 +1288,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NetworkPolicy().with { $0.networkInterfaces = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1372,6 +1381,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PlacementPolicy().with { $0.collocation = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

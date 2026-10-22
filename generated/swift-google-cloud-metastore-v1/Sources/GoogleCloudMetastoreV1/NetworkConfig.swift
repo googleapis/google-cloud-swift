@@ -39,6 +39,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NetworkConfig().with { $0.consumers = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -106,6 +107,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Consumer().with { $0.subnetwork = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

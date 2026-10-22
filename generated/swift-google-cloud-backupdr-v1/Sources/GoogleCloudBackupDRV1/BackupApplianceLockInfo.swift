@@ -48,6 +48,7 @@ public struct BackupApplianceLockInfo: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = BackupApplianceLockInfo().with { $0.backupApplianceId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

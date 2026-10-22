@@ -52,6 +52,7 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BootDiskDefaults().with { $0.image = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -151,6 +152,7 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DiskImageDefaults().with { $0.sourceImage = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

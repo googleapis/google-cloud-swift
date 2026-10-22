@@ -41,6 +41,7 @@ public struct CELExpression: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CELExpression().with { $0.resourceTypesValues = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

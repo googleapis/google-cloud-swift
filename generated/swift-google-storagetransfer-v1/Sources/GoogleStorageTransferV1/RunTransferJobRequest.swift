@@ -40,6 +40,7 @@ public struct RunTransferJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RunTransferJobRequest().with { $0.jobName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

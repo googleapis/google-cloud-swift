@@ -48,6 +48,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UpgradeClusterStatus().with { $0.state = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -141,6 +142,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StageStatus().with { $0.readPoolInstancesUpgrade = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -251,6 +253,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = StageSchedule().with { $0.estimatedStartTime = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -374,6 +377,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ReadPoolInstancesUpgradeStageStatus().with { $0.upgradeStats = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -439,6 +443,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Stats().with { $0.notStarted = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

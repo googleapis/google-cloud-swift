@@ -56,6 +56,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = TuneQaScorecardRevisionMetadata().with { $0.createTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -158,6 +159,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = QaQuestionDatasetValidationResult().with { $0.question = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -260,6 +262,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = QaQuestionDatasetTuningMetrics().with { $0.question = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -324,6 +327,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
       /// ```
       /// let value = Metrics().with { $0.accuracy = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

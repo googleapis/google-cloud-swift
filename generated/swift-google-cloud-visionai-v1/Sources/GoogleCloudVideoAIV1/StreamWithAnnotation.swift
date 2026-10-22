@@ -50,6 +50,7 @@ public struct StreamWithAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = StreamWithAnnotation().with { $0.stream = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -126,6 +127,7 @@ public struct StreamWithAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NodeAnnotation().with { $0.node = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

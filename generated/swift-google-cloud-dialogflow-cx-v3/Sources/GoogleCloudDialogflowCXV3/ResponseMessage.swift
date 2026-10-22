@@ -64,6 +64,7 @@
     /// ```
     /// let value = ResponseMessage().with { $0.text = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -245,6 +246,7 @@
       /// ```
       /// let value = Text().with { $0.text = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -349,6 +351,7 @@
       /// ```
       /// let value = LiveAgentHandoff().with { $0.metadata = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -445,6 +448,7 @@
       /// ```
       /// let value = ConversationSuccess().with { $0.metadata = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -529,6 +533,7 @@
       /// ```
       /// let value = OutputAudioText().with { $0.text = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -649,6 +654,7 @@
       /// ```
       /// let value = EndInteraction().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -726,6 +732,7 @@
       /// ```
       /// let value = PlayAudio().with { $0.audioUri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -821,6 +828,7 @@
       /// ```
       /// let value = MixedAudio().with { $0.segments = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -885,6 +893,7 @@
         /// ```
         /// let value = Segment().with { $0.audio = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1032,6 +1041,7 @@
       /// ```
       /// let value = TelephonyTransferCall().with { $0.phoneNumber = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1139,6 +1149,7 @@
       /// ```
       /// let value = KnowledgeInfoCard().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

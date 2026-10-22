@@ -82,6 +82,7 @@
     /// ```
     /// let value = ExplanationMetadata().with { $0.inputs = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -265,6 +266,7 @@
       /// ```
       /// let value = InputMetadata().with { $0.inputBaselines = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -418,6 +420,7 @@
         /// ```
         /// let value = FeatureValueDomain().with { $0.minValue = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -563,6 +566,7 @@
         /// ```
         /// let value = Visualization().with { $0.type = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1446,6 +1450,7 @@
       /// ```
       /// let value = OutputMetadata().with { $0.indexDisplayNameMapping = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

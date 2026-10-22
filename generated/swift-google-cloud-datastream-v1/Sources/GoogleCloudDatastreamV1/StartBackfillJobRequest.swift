@@ -25,6 +25,11 @@ public struct StartBackfillJobRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// for.
   public var object: Swift.String = Swift.String()
 
+  /// Optional. Optional event filter. If not set, or empty, the backfill will be
+  /// performed on the entire object. This is currently used for partial backfill
+  /// and only supported for SQL sources.
+  public var eventFilter: EventFilter? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `StartBackfillJobRequest`.
@@ -37,6 +42,7 @@ public struct StartBackfillJobRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = StartBackfillJobRequest().with { $0.object = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -50,9 +56,11 @@ public struct StartBackfillJobRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     init?(intValue: Swift.Int) { nil }
 
     static let object = CodingKeys(stringValue: "object")
+    static let eventFilter = CodingKeys(stringValue: "eventFilter")
 
     static let _knownKeys: Set<Swift.String> = [
-      "object"
+      "object",
+      "eventFilter",
     ]
   }
 
@@ -61,6 +69,7 @@ public struct StartBackfillJobRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .object) {
       self.object = value
     }
+    self.eventFilter = try container.decodeIfPresent(EventFilter.self, forKey: .eventFilter)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -70,6 +79,7 @@ public struct StartBackfillJobRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.object, forKey: .object)
+    try container.encodeIfPresent(self.eventFilter, forKey: .eventFilter)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

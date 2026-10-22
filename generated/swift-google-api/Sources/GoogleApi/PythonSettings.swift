@@ -39,6 +39,7 @@ public struct PythonSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PythonSettings().with { $0.common = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -116,6 +117,7 @@ public struct PythonSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ExperimentalFeatures().with { $0.restAsyncIoEnabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

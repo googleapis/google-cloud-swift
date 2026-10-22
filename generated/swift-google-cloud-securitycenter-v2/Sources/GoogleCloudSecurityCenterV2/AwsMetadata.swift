@@ -44,6 +44,7 @@ public struct AwsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AwsMetadata().with { $0.organization = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -116,6 +117,7 @@ public struct AwsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AwsOrganization().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -204,6 +206,7 @@ public struct AwsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AwsOrganizationalUnit().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -292,6 +295,7 @@ public struct AwsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AwsAccount().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

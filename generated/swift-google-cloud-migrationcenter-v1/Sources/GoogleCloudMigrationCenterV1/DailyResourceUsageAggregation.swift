@@ -49,6 +49,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = DailyResourceUsageAggregation().with { $0.date = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -132,6 +133,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = Stats().with { $0.average = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -231,6 +233,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = CPU().with { $0.utilizationPercentage = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -309,6 +312,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = Memory().with { $0.utilizationPercentage = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -391,6 +395,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = Network().with { $0.ingressBps = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -475,6 +480,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = Disk().with { $0.iops = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

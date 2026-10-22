@@ -74,6 +74,7 @@
     /// ```
     /// let value = AdvancedSettings().with { $0.audioExportGcsDestination = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -161,6 +162,7 @@
       /// ```
       /// let value = SpeechSettings().with { $0.endpointerSensitivity = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -281,6 +283,7 @@
       /// ```
       /// let value = DtmfSettings().with { $0.enabled = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -393,6 +396,7 @@
       /// ```
       /// let value = LoggingSettings().with { $0.enableStackdriverLogging = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

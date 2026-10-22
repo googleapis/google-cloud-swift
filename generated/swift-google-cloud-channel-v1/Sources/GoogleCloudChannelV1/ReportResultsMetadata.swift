@@ -57,6 +57,7 @@ public struct ReportResultsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ReportResultsMetadata().with { $0.report = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -42,6 +42,7 @@ public struct ListBillingAccountsResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ListBillingAccountsResponse().with { $0.billingAccounts = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

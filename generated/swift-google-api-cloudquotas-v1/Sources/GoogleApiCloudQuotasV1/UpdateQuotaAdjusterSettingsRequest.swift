@@ -44,6 +44,7 @@ public struct UpdateQuotaAdjusterSettingsRequest: Codable, Equatable, GoogleWKT.
   /// ```
   /// let value = UpdateQuotaAdjusterSettingsRequest().with { $0.quotaAdjusterSettings = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

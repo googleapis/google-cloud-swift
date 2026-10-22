@@ -36,6 +36,7 @@ public struct ExecutionDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ExecutionDetails().with { $0.roundId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

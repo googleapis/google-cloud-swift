@@ -40,6 +40,7 @@ public struct DestinationDatasetReference: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = DestinationDatasetReference().with { $0.datasetId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

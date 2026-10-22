@@ -36,6 +36,7 @@ public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = OtherCloudSingleResourceReference().with { $0.amazonS3Bucket = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

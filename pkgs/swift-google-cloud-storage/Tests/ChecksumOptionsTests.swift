@@ -36,29 +36,60 @@ import Testing
     #expect(options.md5 == .value("md5_base64"))
   }
 
-  @Test func checksumValueAutoAndValue() {
-    let auto = ChecksumOptions.ChecksumValue.auto
-    let val = ChecksumOptions.ChecksumValue.value("test")
+  @Test func crc32cValueAutoAndValue() {
+    let auto = ChecksumOptions.CRC32CValue.auto
+    let val = ChecksumOptions.CRC32CValue.value("test")
 
     #expect(auto != val)
     #expect(val == .value("test"))
   }
 
-  @Test func checksumValueStringLiteral() {
-    let val: ChecksumOptions.ChecksumValue = "my_checksum"
+  @Test func crc32cValueStringLiteral() {
+    let val: ChecksumOptions.CRC32CValue = "my_checksum"
     #expect(val == .value("my_checksum"))
   }
 
-  @Test func checksumValueUInt32Init() {
+  @Test func crc32cValueUInt32Init() {
     let intVal: UInt32 = 0x1234_5678
-    let val = ChecksumOptions.ChecksumValue(intVal)
+    let val = ChecksumOptions.CRC32CValue(intVal)
     let expectedBase64 = Data([0x12, 0x34, 0x56, 0x78]).base64EncodedString()
     #expect(val == .value(expectedBase64))
   }
 
-  @Test func checksumValueIntegerLiteral() {
-    let val: ChecksumOptions.ChecksumValue = 0x1234_5678
+  @Test func crc32cValueIntegerLiteral() {
+    let val: ChecksumOptions.CRC32CValue = 0x1234_5678
     let expectedBase64 = Data([0x12, 0x34, 0x56, 0x78]).base64EncodedString()
     #expect(val == .value(expectedBase64))
+
+    // Verify full 32-bit unsigned integer range [0, UInt32.max] is preserved without truncation.
+    let zero: ChecksumOptions.CRC32CValue = 0
+    #expect(zero == .value(Data([0x00, 0x00, 0x00, 0x00]).base64EncodedString()))
+
+    let maxVal: ChecksumOptions.CRC32CValue = 0xFFFF_FFFF
+    #expect(maxVal == .value(Data([0xFF, 0xFF, 0xFF, 0xFF]).base64EncodedString()))
+  }
+
+  @Test func md5ValueAutoAndValue() {
+    let auto = ChecksumOptions.MD5Value.auto
+    let val = ChecksumOptions.MD5Value.value("test")
+
+    #expect(auto != val)
+    #expect(val == .value("test"))
+  }
+
+  @Test func md5ValueStringLiteral() {
+    let val: ChecksumOptions.MD5Value = "my_md5_checksum"
+    #expect(val == .value("my_md5_checksum"))
+  }
+
+  @Test func md5ValueDataInit() {
+    // Verify 16-byte raw MD5 digest (matching ObjectChecksums.md5Hash) is Base64-encoded.
+    let digest = Data((0..<16).map { UInt8($0) })
+    let val = ChecksumOptions.MD5Value(digest)
+    #expect(val == .value(digest.base64EncodedString()))
+
+    let options = ChecksumOptions(crc32c: .init(0x1234_5678), md5: .init(digest))
+    #expect(options.crc32c == .value(Data([0x12, 0x34, 0x56, 0x78]).base64EncodedString()))
+    #expect(options.md5 == .value(digest.base64EncodedString()))
   }
 }

@@ -94,6 +94,7 @@ public struct AzureBlobStorageData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AzureBlobStorageData().with { $0.storageAccount = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -193,6 +194,7 @@ public struct AzureBlobStorageData: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FederatedIdentityConfig().with { $0.clientId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

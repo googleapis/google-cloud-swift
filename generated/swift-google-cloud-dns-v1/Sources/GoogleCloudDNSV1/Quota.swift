@@ -115,6 +115,7 @@ public struct Quota: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Quota().with { $0.dnsKeysPerManagedZone = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

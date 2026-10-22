@@ -39,6 +39,7 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ApplicationConfigs().with { $0.nodes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -110,6 +111,7 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EventDeliveryConfig().with { $0.channel = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

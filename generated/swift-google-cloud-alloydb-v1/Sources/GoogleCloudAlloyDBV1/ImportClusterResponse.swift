@@ -36,6 +36,7 @@ public struct ImportClusterResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ImportClusterResponse().with { $0.bytesDownloaded = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

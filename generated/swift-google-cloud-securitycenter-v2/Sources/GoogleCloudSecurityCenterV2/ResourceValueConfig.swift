@@ -87,6 +87,7 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ResourceValueConfig().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -217,6 +218,7 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SensitiveDataProtectionMapping().with { $0.highSensitivityMapping = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

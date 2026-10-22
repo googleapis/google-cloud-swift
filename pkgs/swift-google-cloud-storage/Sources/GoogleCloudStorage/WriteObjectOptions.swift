@@ -44,9 +44,10 @@ public enum CustomerEncryptionKeyError: Error, Sendable, Equatable,
   public var debugDescription: String {
     switch self {
     case .invalidKeyLength(let actual, let expected):
-      return "CustomerEncryptionKeyError.invalidKeyLength(actual: \(actual), expected: \(expected))"
+      return
+        "CustomerEncryptionKeyError.invalidKeyLength(actual: \(actual), expected: \(expected)): \(description)"
     case .invalidBase64Key:
-      return "CustomerEncryptionKeyError.invalidBase64Key"
+      return "CustomerEncryptionKeyError.invalidBase64Key: \(description)"
     }
   }
 }
@@ -132,13 +133,6 @@ public struct CustomerEncryptionKeyOptions: Sendable, Equatable, CustomStringCon
     self.key = key
   }
 
-  /// Creates a `CustomerEncryptionKeyOptions` from Apple CryptoKit / Swift Crypto `SymmetricKey`.
-  public init(symmetricKey: SymmetricKey, algorithm: CustomerEncryptionAlgorithm = .aes256)
-    throws
-  {
-    try self.init(key: symmetricKey, algorithm: algorithm)
-  }
-
   /// Creates a `CustomerEncryptionKeyOptions` from raw key bytes (`Data`).
   ///
   /// For the default `.aes256` algorithm, the key must be exactly 32 bytes (256 bits).
@@ -169,7 +163,7 @@ public struct CustomerEncryptionKeyOptions: Sendable, Equatable, CustomStringCon
 }
 
 /// Preconditions for GCS operations.
-public struct StoragePreconditions: Sendable {
+public struct StoragePreconditions: Sendable, Hashable, Equatable {
   /// Makes the operation succeed only if the object's current generation matches this value.
   public var ifGenerationMatch: Int64?
 
@@ -184,6 +178,7 @@ public struct StoragePreconditions: Sendable {
 
   public init() {}
 
+  @inlinable
   public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -325,6 +320,7 @@ public struct WriteObjectMetadata: Sendable, Codable, Equatable {
 
   public init() {}
 
+  @inlinable
   public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -545,12 +541,13 @@ public struct WriteObjectOptions: Sendable {
   ///
   /// Set this property to `true` to force single-shot uploads without preconditions to be
   /// retried on transient errors, or `false` to suppress retries even when preconditions are present.
-  public var idempotency: Bool? = nil
+  public var idempotent: Bool? = nil
 
   public static var `default`: WriteObjectOptions { WriteObjectOptions() }
 
   public init() {}
 
+  @inlinable
   public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -574,7 +571,7 @@ extension WriteObjectOptions {
     copy.resumePolicy = self.resumePolicy ?? defaults.resumePolicy
     copy.backoffPolicy = self.backoffPolicy ?? defaults.backoffPolicy
     copy.quotaProject = self.quotaProject ?? defaults.quotaProject
-    copy.idempotency = self.idempotency ?? defaults.idempotency
+    copy.idempotent = self.idempotent ?? defaults.idempotent
     return copy
   }
 

@@ -70,6 +70,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = DatabaseConnectionStringProfile().with { $0.consumerGroup = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

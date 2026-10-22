@@ -43,6 +43,7 @@ public struct AnalysisDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AnalysisDefinition().with { $0.analyzers = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -36,6 +36,7 @@ public struct ListGenerativeQuestionConfigsResponse: Codable, Equatable, GoogleW
   /// ```
   /// let value = ListGenerativeQuestionConfigsResponse().with { $0.generativeQuestionConfigs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

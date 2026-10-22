@@ -44,6 +44,7 @@ public struct LifecyclePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = LifecyclePolicy().with { $0.action = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -109,6 +110,7 @@ public struct LifecyclePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ActionCondition().with { $0.exitCodes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

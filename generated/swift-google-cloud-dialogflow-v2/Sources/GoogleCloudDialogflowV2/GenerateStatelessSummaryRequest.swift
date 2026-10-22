@@ -57,6 +57,7 @@
     /// ```
     /// let value = GenerateStatelessSummaryRequest().with { $0.statelessConversation = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -139,6 +140,7 @@
       /// ```
       /// let value = MinimalConversation().with { $0.messages = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

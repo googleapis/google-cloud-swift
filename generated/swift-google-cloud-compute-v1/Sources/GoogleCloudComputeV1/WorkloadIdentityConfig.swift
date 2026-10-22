@@ -37,6 +37,7 @@
     /// ```
     /// let value = WorkloadIdentityConfig().with { $0.identity = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

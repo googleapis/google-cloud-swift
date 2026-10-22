@@ -36,6 +36,7 @@ public struct HttpsPushGoogleCloudPubSubSettings: Codable, Equatable, GoogleWKT.
   /// ```
   /// let value = HttpsPushGoogleCloudPubSubSettings().with { $0.splitDelimiter = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

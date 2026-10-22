@@ -60,6 +60,7 @@ public struct ListSecretVersionsResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ListSecretVersionsResponse().with { $0.versions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -45,6 +45,7 @@
     /// ```
     /// let value = BlueGreenDeploymentInfo().with { $0.deploymentId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -140,6 +141,7 @@
       /// ```
       /// let value = SourceRole().with { $0.targetId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -218,6 +220,7 @@
       /// ```
       /// let value = TargetRole().with { $0.sourceId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

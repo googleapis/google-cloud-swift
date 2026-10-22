@@ -37,6 +37,7 @@
     /// ```
     /// let value = GroundingChunk().with { $0.web = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -131,6 +132,7 @@
       /// ```
       /// let value = Web().with { $0.uri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -225,6 +227,7 @@
       /// ```
       /// let value = RetrievedContext().with { $0.ragChunk = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -365,6 +368,7 @@
       /// ```
       /// let value = Maps().with { $0.uri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -440,6 +444,7 @@
         /// ```
         /// let value = PlaceAnswerSources().with { $0.reviewSnippets = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -505,6 +510,7 @@
           /// ```
           /// let value = ReviewSnippet().with { $0.reviewId = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -628,6 +634,7 @@
         /// ```
         /// let value = Route().with { $0.distanceMeters = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

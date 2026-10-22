@@ -44,6 +44,7 @@ public struct ListCloudVmClustersResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ListCloudVmClustersResponse().with { $0.cloudVmClusters = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

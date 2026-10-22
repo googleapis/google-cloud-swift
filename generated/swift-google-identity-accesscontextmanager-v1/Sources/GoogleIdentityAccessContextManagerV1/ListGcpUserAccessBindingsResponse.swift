@@ -42,6 +42,7 @@ public struct ListGcpUserAccessBindingsResponse: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = ListGcpUserAccessBindingsResponse().with { $0.gcpUserAccessBindings = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -42,6 +42,7 @@ public struct RelationDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RelationDescriptor().with { $0.description = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -122,6 +123,7 @@ public struct RelationDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ColumnDescriptor().with { $0.path = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

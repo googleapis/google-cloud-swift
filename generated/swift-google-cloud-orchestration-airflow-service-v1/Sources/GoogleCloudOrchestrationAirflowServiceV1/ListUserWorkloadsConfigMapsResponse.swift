@@ -40,6 +40,7 @@ public struct ListUserWorkloadsConfigMapsResponse: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = ListUserWorkloadsConfigMapsResponse().with { $0.userWorkloadsConfigMaps = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

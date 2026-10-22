@@ -37,6 +37,7 @@ public struct SpotConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SpotConfig().with { $0.instanceTypes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -41,6 +41,7 @@ public struct AdaptationModifier: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AdaptationModifier().with { $0.modifier = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

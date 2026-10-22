@@ -64,6 +64,7 @@ public struct GitLabConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GitLabConfig().with { $0.hostUri = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

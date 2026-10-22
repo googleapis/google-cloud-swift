@@ -51,6 +51,7 @@ public struct ServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ServerConfig().with { $0.defaultClusterVersion = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -151,6 +152,7 @@ public struct ServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ReleaseChannelConfig().with { $0.channel = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -43,6 +43,7 @@
     /// ```
     /// let value = AgentCoachingSuggestion().with { $0.applicableInstructions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -119,6 +120,7 @@
       /// ```
       /// let value = Sources().with { $0.instructionIndexes = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -201,6 +203,7 @@
       /// ```
       /// let value = DuplicateCheckResult().with { $0.duplicateSuggestions = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -274,6 +277,7 @@
         /// ```
         /// let value = DuplicateSuggestion().with { $0.answerRecord = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -400,6 +404,7 @@
       /// ```
       /// let value = AgentActionSuggestion().with { $0.agentAction = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -497,6 +502,7 @@
       /// ```
       /// let value = SampleResponse().with { $0.responseText = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

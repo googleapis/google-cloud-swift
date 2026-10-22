@@ -57,6 +57,7 @@ public struct NewFilestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NewFilestoreConfig().with { $0.filestore = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

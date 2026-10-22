@@ -53,6 +53,7 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = AutonomousDatabaseStandbySummary().with { $0.lagTimeDuration = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

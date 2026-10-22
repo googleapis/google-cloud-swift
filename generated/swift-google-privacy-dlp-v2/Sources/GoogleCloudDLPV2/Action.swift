@@ -39,6 +39,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Action().with { $0.saveFindings = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -186,6 +187,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SaveFindings().with { $0.outputConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -271,6 +273,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PublishToPubSub().with { $0.topic = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -354,6 +357,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PublishSummaryToCscc().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -441,6 +445,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PublishFindingsToCloudDataCatalog().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -521,6 +526,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PublishFindingsToDataplexCatalog().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -675,6 +681,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Deidentify().with { $0.transformationConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -803,6 +810,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = JobNotificationEmails().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -874,6 +882,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PublishToStackdriver().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

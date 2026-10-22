@@ -55,6 +55,7 @@ public struct GkeNodePoolTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GkeNodePoolTarget().with { $0.nodePool = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

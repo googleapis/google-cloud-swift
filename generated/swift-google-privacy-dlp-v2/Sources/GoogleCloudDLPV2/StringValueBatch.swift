@@ -36,6 +36,7 @@ public struct StringValueBatch: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = StringValueBatch().with { $0.values = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

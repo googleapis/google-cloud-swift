@@ -72,6 +72,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Task().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -222,6 +223,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InfrastructureSpec().with { $0.batch = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -357,6 +359,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BatchComputeResources().with { $0.executorsCount = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -460,6 +463,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ContainerImageRuntime().with { $0.image = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -563,6 +567,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = VpcNetwork().with { $0.network = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -739,6 +744,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TriggerSpec().with { $0.type = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1019,6 +1025,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ExecutionSpec().with { $0.args = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1136,6 +1143,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SparkTaskConfig().with { $0.mainJarFileUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1327,6 +1335,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NotebookTaskConfig().with { $0.notebook = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1426,6 +1435,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ExecutionStatus().with { $0.updateTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

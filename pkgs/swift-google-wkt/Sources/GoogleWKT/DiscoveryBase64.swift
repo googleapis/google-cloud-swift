@@ -26,7 +26,7 @@ private import ExtrasBase64
   /// Encodes `input` into a base64url string.
   public static func encode(_ input: Data) -> String {
     return String(
-      base64Encoding: input.map { UInt8($0) }, options: [.base64UrlAlphabet, .omitPaddingCharacter])
+      base64Encoding: input, options: [.base64UrlAlphabet, .omitPaddingCharacter])
   }
 
   /// Decodes `input` returning `nil` if the decoding fails.

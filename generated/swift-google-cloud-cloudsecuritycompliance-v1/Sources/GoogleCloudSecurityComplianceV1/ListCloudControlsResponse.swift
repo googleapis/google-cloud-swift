@@ -41,6 +41,7 @@ public struct ListCloudControlsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = ListCloudControlsResponse().with { $0.cloudControls = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

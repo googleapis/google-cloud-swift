@@ -84,6 +84,7 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GoogleApiSource().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -240,6 +241,7 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ProjectSubscriptions().with { $0.list = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -319,6 +321,7 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = OrganizationSubscription().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -128,8 +128,7 @@ public struct WKTDuration: Codable, Comparable, Equatable, Hashable, Sendable {
 
     var nanos: Int32 = 0
     if parts.count == 2 {
-      let nanosStr = String(parts[1]).padding(toLength: 9, withPad: "0", startingAt: 0)
-      guard let pNanos = Int32(nanosStr) else {
+      guard let pNanos = parseNanos(from: parts[1]) else {
         throw WKTDurationError.invalidFormat
       }
       nanos = pNanos
@@ -156,6 +155,14 @@ func formatNanos(nanos: Int32) -> String {
   return result
 }
 
+func parseNanos(from frac: Substring) -> Int32? {
+  guard !frac.isEmpty && frac.count <= 9 else {
+    return nil
+  }
+  let padded = frac.padding(toLength: 9, withPad: "0", startingAt: 0)
+  return Int32(padded)
+}
+
 // Makes `WKTDuration` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `WKTAny`.
 extension WKTDuration: _AnyPackable {
   /// The type URL for `WKTDuration`: `"type.googleapis.com/google.protobuf.Duration"`.
@@ -172,10 +179,15 @@ extension WKTDuration: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
-    guard case let .string(v)? = any.fields[WKTAny.valueField] else {
+    // Duration uses custom JSON encoding and is packed under the "value" field as a JSON
+    // string. Check for the presence of "value" first before validating that it is a string.
+    guard let v = any.fields[WKTAny.valueField] else {
+      throw WKTAnyError.missingValueField
+    }
+    guard case let .string(s) = v else {
       throw WKTAnyError.invalidValueField
     }
-    self = try Self.fromString(string: v)
+    self = try Self.fromString(string: s)
   }
 
   /// Packs this `WKTDuration` into a `WKTStruct` representation.
@@ -213,11 +225,11 @@ public enum WKTDurationError: Error, Sendable, Equatable, CustomStringConvertibl
   public var debugDescription: String {
     switch self {
     case .mismatchedSigns:
-      return "WKTDurationError.mismatchedSigns"
+      return "WKTDurationError.mismatchedSigns: \(description)"
     case .outOfRange:
-      return "WKTDurationError.outOfRange"
+      return "WKTDurationError.outOfRange: \(description)"
     case .invalidFormat:
-      return "WKTDurationError.invalidFormat"
+      return "WKTDurationError.invalidFormat: \(description)"
     }
   }
 }

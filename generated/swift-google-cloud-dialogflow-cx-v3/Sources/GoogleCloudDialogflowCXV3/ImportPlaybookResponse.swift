@@ -47,6 +47,7 @@
     /// ```
     /// let value = ImportPlaybookResponse().with { $0.playbook = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -117,6 +118,7 @@
       /// ```
       /// let value = ConflictingResources().with { $0.mainPlaybookDisplayName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

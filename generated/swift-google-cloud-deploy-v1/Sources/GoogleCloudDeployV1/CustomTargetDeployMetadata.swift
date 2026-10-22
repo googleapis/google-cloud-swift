@@ -38,6 +38,7 @@ public struct CustomTargetDeployMetadata: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = CustomTargetDeployMetadata().with { $0.skipMessage = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

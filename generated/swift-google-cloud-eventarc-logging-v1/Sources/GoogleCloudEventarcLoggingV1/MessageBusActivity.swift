@@ -48,6 +48,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MessageBusActivity().with { $0.messageUid = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -148,6 +149,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Received().with { $0.details = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

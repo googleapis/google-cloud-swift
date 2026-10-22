@@ -25,7 +25,7 @@ import Testing
     #expect(policy.onError(state: state, error: tooManyRequests()) == .retry(tooManyRequests()))
     #expect(
       policy.onError(state: state, error: tooManyRequestsHttp()) == .retry(tooManyRequestsHttp()))
-    #expect(policy.onError(state: state, error: permanent()) == .exhausted(permanent()))
+    #expect(policy.onError(state: state, error: permanent()) == .permanent(permanent()))
   }
 
   @Test func testTooManyRequestsExt() {
@@ -35,7 +35,7 @@ import Testing
     #expect(policy.onError(state: state, error: tooManyRequests()) == .retry(tooManyRequests()))
     #expect(
       policy.onError(state: state, error: tooManyRequestsHttp()) == .retry(tooManyRequestsHttp()))
-    #expect(policy.onError(state: state, error: permanent()) == .exhausted(permanent()))
+    #expect(policy.onError(state: state, error: permanent()) == .permanent(permanent()))
   }
 
   @Test func testTooManyRequestsForwards() {

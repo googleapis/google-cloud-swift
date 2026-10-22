@@ -38,6 +38,7 @@
     /// ```
     /// let value = SqlInstancesRescheduleMaintenanceRequestBody().with { $0.reschedule = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -100,6 +101,7 @@
       /// ```
       /// let value = Reschedule().with { $0.rescheduleType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -81,6 +81,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AttributeContext().with { $0.origin = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -186,6 +187,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Peer().with { $0.ip = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -308,6 +310,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Api().with { $0.service = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -459,6 +462,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Auth().with { $0.principal = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -612,6 +616,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Request().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -780,6 +785,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Response().with { $0.code = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -957,6 +963,7 @@ public struct AttributeContext: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Resource().with { $0.service = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

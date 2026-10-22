@@ -37,6 +37,7 @@ public struct AnonymousAuthenticationConfig: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = AnonymousAuthenticationConfig().with { $0.mode = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

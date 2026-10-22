@@ -42,6 +42,7 @@ public struct ListAuthorizationPoliciesResponse: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = ListAuthorizationPoliciesResponse().with { $0.authorizationPolicies = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

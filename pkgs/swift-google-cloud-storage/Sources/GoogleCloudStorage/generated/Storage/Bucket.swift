@@ -192,6 +192,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Bucket().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -411,6 +412,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Billing().with { $0.requesterPays = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -512,6 +514,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Cors().with { $0.origin = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -631,6 +634,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Encryption().with { $0.defaultKmsKey = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -724,6 +728,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GoogleManagedEncryptionEnforcementConfig().with { $0.restrictionMode = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -817,6 +822,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CustomerManagedEncryptionEnforcementConfig().with { $0.restrictionMode = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -911,6 +917,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CustomerSuppliedEncryptionEnforcementConfig().with { $0.restrictionMode = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1021,6 +1028,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IamConfig().with { $0.uniformBucketLevelAccess = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1094,6 +1102,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = UniformBucketLevelAccess().with { $0.enabled = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1203,6 +1212,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Lifecycle().with { $0.rule = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1264,6 +1274,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Rule().with { $0.action = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1331,6 +1342,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Action().with { $0.type = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1468,6 +1480,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Condition().with { $0.ageDays = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1650,6 +1663,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Logging().with { $0.logBucket = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1736,6 +1750,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ObjectRetention().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1826,6 +1841,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RetentionPolicy().with { $0.effectiveTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1920,6 +1936,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SoftDeletePolicy().with { $0.retentionDuration = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2005,6 +2022,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Versioning().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2096,6 +2114,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Website().with { $0.mainPageSuffix = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2185,6 +2204,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CustomPlacementConfig().with { $0.dataLocations = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2279,6 +2299,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Autoclass().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2400,6 +2421,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IpFilter().with { $0.mode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2482,6 +2504,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = PublicNetworkSource().with { $0.allowedIpCidrRanges = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2573,6 +2596,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = VpcNetworkSource().with { $0.network = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2680,6 +2704,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = HierarchicalNamespace().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

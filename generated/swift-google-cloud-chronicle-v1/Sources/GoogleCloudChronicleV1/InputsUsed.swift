@@ -44,6 +44,7 @@ public struct InputsUsed: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = InputsUsed().with { $0.usesUdm = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

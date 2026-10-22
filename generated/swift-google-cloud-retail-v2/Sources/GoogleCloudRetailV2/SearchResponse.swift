@@ -117,6 +117,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SearchResponse().with { $0.results = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -367,6 +368,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SearchResult().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -494,6 +496,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Facet().with { $0.key = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -588,6 +591,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = FacetValue().with { $0.value = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -749,6 +753,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QueryExpansionInfo().with { $0.expandedQuery = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -875,6 +880,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ConversationalSearchResult().with { $0.conversationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -973,6 +979,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = SuggestedAnswer().with { $0.productAttributeValue = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1053,6 +1060,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AdditionalFilter().with { $0.productAttributeValue = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1156,6 +1164,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TileNavigationResult().with { $0.tiles = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

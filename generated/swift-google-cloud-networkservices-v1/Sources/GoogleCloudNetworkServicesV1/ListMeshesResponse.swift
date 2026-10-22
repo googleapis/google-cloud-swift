@@ -47,6 +47,7 @@ public struct ListMeshesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListMeshesResponse().with { $0.meshes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

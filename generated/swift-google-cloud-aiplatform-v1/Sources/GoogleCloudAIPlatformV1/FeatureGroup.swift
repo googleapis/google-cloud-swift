@@ -66,6 +66,7 @@
     /// ```
     /// let value = FeatureGroup().with { $0.bigQuery = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -209,6 +210,7 @@
       /// ```
       /// let value = BigQuery().with { $0.bigQuerySource = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -291,6 +293,7 @@
         /// ```
         /// let value = TimeSeries().with { $0.timestampColumn = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

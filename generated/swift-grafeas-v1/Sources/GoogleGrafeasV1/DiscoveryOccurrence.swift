@@ -74,6 +74,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DiscoveryOccurrence().with { $0.continuousAnalysis = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -195,6 +196,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AnalysisCompleted().with { $0.analysisType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -279,6 +281,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SBOMStatus().with { $0.sbomState = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -490,6 +493,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VulnerabilityAttestation().with { $0.lastAttemptTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -701,6 +705,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = File().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

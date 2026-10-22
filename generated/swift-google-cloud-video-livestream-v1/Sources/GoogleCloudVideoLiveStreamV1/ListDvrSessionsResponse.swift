@@ -43,6 +43,7 @@ public struct ListDvrSessionsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = ListDvrSessionsResponse().with { $0.dvrSessions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -55,6 +55,7 @@
     /// ```
     /// let value = GenerateContentResponse().with { $0.candidates = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -148,6 +149,7 @@
       /// ```
       /// let value = PromptFeedback().with { $0.blockReason = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -423,6 +425,7 @@
       /// ```
       /// let value = UsageMetadata().with { $0.promptTokenCount = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

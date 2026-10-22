@@ -88,6 +88,7 @@ public struct SignedTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SignedTransaction().with { $0.serializedClientTransaction = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

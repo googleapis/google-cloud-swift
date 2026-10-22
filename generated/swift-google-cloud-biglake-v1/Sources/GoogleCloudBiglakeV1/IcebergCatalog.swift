@@ -103,6 +103,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = IcebergCatalog().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -239,6 +240,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Replica().with { $0.region = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -459,6 +461,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RestrictedLocationsConfig().with { $0.restrictedLocations = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -567,6 +570,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FederatedCatalogOptions().with { $0.unityCatalogInfo = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -693,6 +697,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = UnityCatalogInfo().with { $0.instanceName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -800,6 +805,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GlueCatalogInfo().with { $0.warehouse = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -908,6 +914,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = SnowflakeCatalogInfo().with { $0.accountIdentifier = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1000,6 +1007,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RefreshSchedule().with { $0.refreshInterval = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1084,6 +1092,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RefreshScope().with { $0.namespaceFilters = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1169,6 +1178,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RefreshOptions().with { $0.refreshSchedule = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1262,6 +1272,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RefreshStatus().with { $0.startTime = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

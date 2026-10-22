@@ -45,6 +45,7 @@ public struct ListPluginInstancesResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ListPluginInstancesResponse().with { $0.pluginInstances = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

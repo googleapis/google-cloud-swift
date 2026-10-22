@@ -73,6 +73,7 @@ public struct OcrConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OcrConfig().with { $0.hints = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -185,6 +186,7 @@ public struct OcrConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Hints().with { $0.languageHints = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -271,6 +273,7 @@ public struct OcrConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PremiumFeatures().with { $0.enableSelectionMarkDetection = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

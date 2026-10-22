@@ -66,6 +66,7 @@
     /// ```
     /// let value = ModelEvaluationSlice().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -164,6 +165,7 @@
       /// ```
       /// let value = Slice().with { $0.dimension = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -235,6 +237,7 @@
         /// ```
         /// let value = SliceSpec().with { $0.configs = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -347,6 +350,7 @@
           /// ```
           /// let value = SliceConfig().with { $0.value = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -483,6 +487,7 @@
           /// ```
           /// let value = Range().with { $0.low = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -568,6 +573,7 @@
           /// ```
           /// let value = Value().with { $0.stringValue = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)

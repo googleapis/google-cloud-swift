@@ -36,6 +36,7 @@ public struct StartBackfillJobResponse: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = StartBackfillJobResponse().with { $0.object = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

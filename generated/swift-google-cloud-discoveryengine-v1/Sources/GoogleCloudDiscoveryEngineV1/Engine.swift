@@ -109,6 +109,7 @@
     /// ```
     /// let value = Engine().with { $0.chatEngineConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -296,6 +297,7 @@
       /// ```
       /// let value = SearchEngineConfig().with { $0.searchTier = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -434,6 +436,7 @@
       /// ```
       /// let value = MediaRecommendationEngineConfig().with { $0.type = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -525,6 +528,7 @@
         /// ```
         /// let value = OptimizationObjectiveConfig().with { $0.targetField = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -614,6 +618,7 @@
         /// ```
         /// let value = EngineFeaturesConfig().with { $0.recommendedForYouConfig = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -743,6 +748,7 @@
         /// ```
         /// let value = RecommendedForYouFeatureConfig().with { $0.contextEventType = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -828,6 +834,7 @@
         /// ```
         /// let value = MostPopularFeatureConfig().with { $0.timeWindowDays = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1098,6 +1105,7 @@
       /// ```
       /// let value = ChatEngineConfig().with { $0.agentCreationConfig = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1196,6 +1204,7 @@
         /// ```
         /// let value = AgentCreationConfig().with { $0.business = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1319,6 +1328,7 @@
       /// ```
       /// let value = CommonConfig().with { $0.companyName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1403,6 +1413,7 @@
       /// ```
       /// let value = ChatEngineMetadata().with { $0.dialogflowAgent = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

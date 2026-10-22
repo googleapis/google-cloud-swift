@@ -53,6 +53,7 @@ public struct UsageSignal: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UsageSignal().with { $0.updateTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

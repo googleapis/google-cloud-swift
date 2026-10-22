@@ -48,6 +48,7 @@ public struct CheckInstanceUpgradabilityResponse: Codable, Equatable, GoogleWKT.
   /// ```
   /// let value = CheckInstanceUpgradabilityResponse().with { $0.upgradeable = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

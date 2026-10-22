@@ -36,6 +36,7 @@ public struct TriggerAction: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TriggerAction().with { $0.respondImmediately = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -135,6 +136,7 @@ public struct TriggerAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Response().with { $0.text = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -221,6 +223,7 @@ public struct TriggerAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RespondImmediately().with { $0.responses = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -302,6 +305,7 @@ public struct TriggerAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GenerativeAnswer().with { $0.prompt = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -383,6 +387,7 @@ public struct TriggerAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TransferAgent().with { $0.agent = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -44,6 +44,7 @@ public struct InlineResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = InlineResult().with { $0.transcript = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

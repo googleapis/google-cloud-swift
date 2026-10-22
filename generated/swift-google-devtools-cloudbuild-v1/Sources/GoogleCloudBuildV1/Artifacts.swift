@@ -92,6 +92,7 @@ public struct Artifacts: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Artifacts().with { $0.images = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -194,6 +195,7 @@ public struct Artifacts: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ArtifactObjects().with { $0.location = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -308,6 +310,7 @@ public struct Artifacts: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MavenArtifact().with { $0.repository = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -439,6 +442,7 @@ public struct Artifacts: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GoModule().with { $0.repositoryName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -560,6 +564,7 @@ public struct Artifacts: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PythonPackage().with { $0.repository = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -656,6 +661,7 @@ public struct Artifacts: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NpmPackage().with { $0.repository = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -146,6 +146,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = LinuxNodeConfig().with { $0.sysctls = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -267,6 +268,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = HugepagesConfig().with { $0.hugepageSize2M = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -348,6 +350,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CustomNodeInit().with { $0.initScript = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -430,6 +433,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = InitScript().with { $0.gcsUri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -558,6 +562,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SwapConfig().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -663,6 +668,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = EncryptionConfig().with { $0.disabled = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -741,6 +747,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BootDiskProfile().with { $0.swapSizeGib = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -857,6 +864,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = EphemeralLocalSsdProfile().with { $0.swapSizeGib = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -973,6 +981,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = DedicatedLocalSsdProfile().with { $0.diskCount = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1087,6 +1096,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NodeKernelModuleLoading().with { $0.policy = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1299,6 +1309,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AccurateTimeConfig().with { $0.enablePtpKvmTimeSync = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1386,6 +1397,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NodeVfioConfig().with { $0.dmaEntryLimit = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -38,6 +38,7 @@
     /// ```
     /// let value = Handler().with { $0.eventHandler = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -133,6 +134,7 @@
       /// ```
       /// let value = EventHandler().with { $0.event = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -236,6 +238,7 @@
       /// ```
       /// let value = LifecycleHandler().with { $0.lifecycleStage = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -47,6 +47,7 @@
     /// ```
     /// let value = GlobalSetLabelsRequest().with { $0.labelFingerprint = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

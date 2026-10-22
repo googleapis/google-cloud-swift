@@ -43,6 +43,7 @@ public struct ListMessageBusEnrollmentsResponse: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = ListMessageBusEnrollmentsResponse().with { $0.enrollments = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -37,6 +37,7 @@ public struct UpdateCustomConstraintRequest: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = UpdateCustomConstraintRequest().with { $0.customConstraint = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

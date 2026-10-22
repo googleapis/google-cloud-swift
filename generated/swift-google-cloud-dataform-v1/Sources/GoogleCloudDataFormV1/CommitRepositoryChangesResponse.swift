@@ -36,6 +36,7 @@ public struct CommitRepositoryChangesResponse: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = CommitRepositoryChangesResponse().with { $0.commitSha = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

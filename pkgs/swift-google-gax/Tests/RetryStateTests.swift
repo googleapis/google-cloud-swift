@@ -34,6 +34,18 @@ import GoogleGax
     #expect(got.attemptCount == 0)
   }
 
+  @Test func parameterizedInit() {
+    let start = ContinuousClock.now - .seconds(30)
+    let got = RetryState(idempotent: true, start: start, attemptCount: 3)
+    #expect(got.idempotent == true)
+    #expect(got.start == start)
+    #expect(got.attemptCount == 3)
+
+    let partial = RetryState(attemptCount: 4)
+    #expect(partial.idempotent == false)
+    #expect(partial.attemptCount == 4)
+  }
+
   @Test func with() {
     let start = ContinuousClock.now - .seconds(60)
     let got = RetryState().with {
@@ -44,5 +56,22 @@ import GoogleGax
     #expect(got.idempotent == true)
     #expect(got.attemptCount == 5)
     #expect(got.start == start)
+  }
+
+  @Test func equatableAndHashable() {
+    let start = ContinuousClock.now - .seconds(60)
+    let state1 = RetryState(idempotent: true, start: start, attemptCount: 2)
+    let state2 = RetryState(idempotent: true, start: start, attemptCount: 2)
+    let state3 = RetryState(idempotent: false, start: start, attemptCount: 2)
+    let state4 = RetryState(idempotent: true, start: start, attemptCount: 3)
+    let state5 = RetryState(idempotent: true, start: start + .seconds(1), attemptCount: 2)
+
+    #expect(state1 == state2)
+    #expect(state1 != state3)
+    #expect(state1 != state4)
+    #expect(state1 != state5)
+
+    let set: Set<RetryState> = [state1, state2, state3, state4, state5]
+    #expect(set.count == 4)
   }
 }

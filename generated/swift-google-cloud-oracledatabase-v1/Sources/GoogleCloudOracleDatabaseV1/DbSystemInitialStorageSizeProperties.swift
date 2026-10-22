@@ -48,6 +48,7 @@ public struct DbSystemInitialStorageSizeProperties: Codable, Equatable, GoogleWK
   /// ```
   /// let value = DbSystemInitialStorageSizeProperties().with { $0.storageManagement = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

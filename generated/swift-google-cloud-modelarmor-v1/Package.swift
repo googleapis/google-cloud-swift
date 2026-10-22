@@ -40,6 +40,11 @@ let package = Package(
       from: "0.5.0"
     ),
     localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-type",
+      path: "generated/swift-google-type",
+      from: "0.5.0"
+    ),
+    localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
       from: "0.5.0"
@@ -53,6 +58,7 @@ let package = Package(
         .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudLocation", package: "swift-google-cloud-location"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
+        .product(name: "GoogleType", package: "swift-google-type"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
         .product(name: "Logging", package: "swift-log"),
       ],

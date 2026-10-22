@@ -36,6 +36,7 @@ public struct OracleScnPosition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OracleScnPosition().with { $0.scn = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

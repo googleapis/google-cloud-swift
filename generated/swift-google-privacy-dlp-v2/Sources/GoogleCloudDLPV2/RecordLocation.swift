@@ -42,6 +42,7 @@ public struct RecordLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RecordLocation().with { $0.recordKey = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

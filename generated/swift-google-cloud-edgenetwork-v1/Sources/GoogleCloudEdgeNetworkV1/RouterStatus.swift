@@ -40,6 +40,7 @@ public struct RouterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RouterStatus().with { $0.network = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -128,6 +129,7 @@ public struct RouterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BgpPeerStatus().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -382,6 +384,7 @@ public struct RouterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PrefixCounter().with { $0.advertised = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

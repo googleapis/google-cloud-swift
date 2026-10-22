@@ -40,6 +40,7 @@ public struct DatastoreOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DatastoreOptions().with { $0.partitionId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

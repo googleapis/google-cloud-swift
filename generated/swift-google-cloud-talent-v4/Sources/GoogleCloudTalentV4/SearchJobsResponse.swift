@@ -79,6 +79,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SearchJobsResponse().with { $0.matchingJobs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -215,6 +216,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MatchingJob().with { $0.job = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -321,6 +323,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CommuteInfo().with { $0.jobLocation = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

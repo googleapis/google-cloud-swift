@@ -36,6 +36,7 @@ public struct MysqlRdbms: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MysqlRdbms().with { $0.mysqlDatabases = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

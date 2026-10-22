@@ -51,6 +51,7 @@ public struct PredictResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PredictResponse().with { $0.results = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -138,6 +139,7 @@ public struct PredictResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PredictionResult().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

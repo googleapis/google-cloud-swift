@@ -60,6 +60,7 @@
     /// ```
     /// let value = VertexAISearch().with { $0.datastore = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -152,6 +153,7 @@
       /// ```
       /// let value = DataStoreSpec().with { $0.dataStore = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

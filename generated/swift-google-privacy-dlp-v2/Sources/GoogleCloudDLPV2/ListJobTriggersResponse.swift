@@ -41,6 +41,7 @@ public struct ListJobTriggersResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = ListJobTriggersResponse().with { $0.jobTriggers = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -48,6 +48,7 @@ public struct DiscoveryCloudStorageConditions: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = DiscoveryCloudStorageConditions().with { $0.includedObjectAttributes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

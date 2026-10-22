@@ -36,6 +36,7 @@ public struct MimecastMailV2Settings: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = MimecastMailV2Settings().with { $0.authCredentials = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

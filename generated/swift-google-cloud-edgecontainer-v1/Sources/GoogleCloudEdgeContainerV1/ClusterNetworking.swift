@@ -43,6 +43,7 @@ public struct ClusterNetworking: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ClusterNetworking().with { $0.clusterIpv4CidrBlocks = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

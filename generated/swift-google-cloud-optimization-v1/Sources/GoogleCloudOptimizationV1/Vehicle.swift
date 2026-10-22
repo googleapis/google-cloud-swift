@@ -280,6 +280,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Vehicle().with { $0.travelMode = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -540,6 +541,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LoadLimit().with { $0.maxLoad = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -637,6 +639,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Interval().with { $0.min = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -789,6 +792,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DurationLimit().with { $0.maxDuration = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

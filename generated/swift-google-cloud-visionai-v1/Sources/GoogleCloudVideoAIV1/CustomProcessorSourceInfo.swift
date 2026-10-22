@@ -51,6 +51,7 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = CustomProcessorSourceInfo().with { $0.vertexModel = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -162,6 +163,7 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = ProductRecognizerArtifact().with { $0.retailProductRecognitionIndex = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -262,6 +264,7 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = ModelSchema().with { $0.instancesSchema = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

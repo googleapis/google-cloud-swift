@@ -40,6 +40,7 @@ public struct ListSharedResourceSubscriptionsResponse: Codable, Equatable, Googl
   /// ```
   /// let value = ListSharedResourceSubscriptionsResponse().with { $0.sharedResourceSubscriptions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

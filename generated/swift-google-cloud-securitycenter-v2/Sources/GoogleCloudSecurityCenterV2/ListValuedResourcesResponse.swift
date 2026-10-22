@@ -44,6 +44,7 @@ public struct ListValuedResourcesResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ListValuedResourcesResponse().with { $0.valuedResources = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

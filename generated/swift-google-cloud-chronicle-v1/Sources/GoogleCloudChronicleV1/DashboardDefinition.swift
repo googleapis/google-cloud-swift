@@ -43,6 +43,7 @@ public struct DashboardDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DashboardDefinition().with { $0.filters = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -118,6 +119,7 @@ public struct DashboardDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ChartConfig().with { $0.dashboardChart = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -191,6 +193,7 @@ public struct DashboardDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ChartLayout().with { $0.startX = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

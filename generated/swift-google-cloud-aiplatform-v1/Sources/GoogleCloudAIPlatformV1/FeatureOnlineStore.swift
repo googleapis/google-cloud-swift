@@ -82,6 +82,7 @@
     /// ```
     /// let value = FeatureOnlineStore().with { $0.bigtable = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -238,6 +239,7 @@
       /// ```
       /// let value = Bigtable().with { $0.autoScaling = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -326,6 +328,7 @@
         /// ```
         /// let value = AutoScaling().with { $0.minNodeCount = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -427,6 +430,7 @@
         /// ```
         /// let value = BigtableMetadata().with { $0.tenantProjectId = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -539,6 +543,7 @@
       /// ```
       /// let value = Optimized().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -627,6 +632,7 @@
       /// ```
       /// let value = DedicatedServingEndpoint().with { $0.publicEndpointDomainName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

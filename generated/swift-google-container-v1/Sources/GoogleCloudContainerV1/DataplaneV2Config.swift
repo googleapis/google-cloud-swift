@@ -36,6 +36,7 @@ public struct DataplaneV2Config: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataplaneV2Config().with { $0.scalabilityMode = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -109,6 +109,13 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// If true, JSON-formatted logs are parsed as structured logs.
   public var enableStructuredLogging: Swift.Bool = Swift.Bool()
 
+  /// Optional. Option to specify which release or release channel
+  /// (rapid|regular|stable) to use to run this build.
+  public var workerRelease: Swift.String = Swift.String()
+
+  /// Output only. Worker release resolved from the release channel.
+  public var resolvedWorkerRelease: Swift.String = Swift.String()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `BuildOptions`.
@@ -121,6 +128,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BuildOptions().with { $0.sourceProvenanceHash = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -149,6 +157,8 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     static let volumes = CodingKeys(stringValue: "volumes")
     static let defaultLogsBucketBehavior = CodingKeys(stringValue: "defaultLogsBucketBehavior")
     static let enableStructuredLogging = CodingKeys(stringValue: "enableStructuredLogging")
+    static let workerRelease = CodingKeys(stringValue: "workerRelease")
+    static let resolvedWorkerRelease = CodingKeys(stringValue: "resolvedWorkerRelease")
 
     static let _knownKeys: Set<Swift.String> = [
       "sourceProvenanceHash",
@@ -167,6 +177,8 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       "volumes",
       "defaultLogsBucketBehavior",
       "enableStructuredLogging",
+      "workerRelease",
+      "resolvedWorkerRelease",
     ]
   }
 
@@ -234,6 +246,13 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.enableStructuredLogging = value
     }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workerRelease) {
+      self.workerRelease = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resolvedWorkerRelease)
+    {
+      self.resolvedWorkerRelease = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -261,6 +280,8 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.volumes, forKey: .volumes)
     try container.encode(self.defaultLogsBucketBehavior, forKey: .defaultLogsBucketBehavior)
     try container.encode(self.enableStructuredLogging, forKey: .enableStructuredLogging)
+    try container.encode(self.workerRelease, forKey: .workerRelease)
+    try container.encode(self.resolvedWorkerRelease, forKey: .resolvedWorkerRelease)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -281,6 +302,16 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Format projects/{project}/locations/{location}/workerPools/{workerPoolId}
     public var name: Swift.String = Swift.String()
 
+    /// Output only. OUTPUT_ONLY. The release or release channel used to run the
+    /// Build. This is set to the same value as
+    /// `PrivatePoolV1Config.WorkerConfig.worker_release` for the UI to easily
+    /// access.
+    public var workerRelease: Swift.String = Swift.String()
+
+    /// Output only. OUTPUT_ONLY. Worker release resolved from the release
+    /// channel.
+    public var resolvedWorkerRelease: Swift.String = Swift.String()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `PoolOption`.
@@ -293,6 +324,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PoolOption().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -306,9 +338,13 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       init?(intValue: Swift.Int) { nil }
 
       static let name = CodingKeys(stringValue: "name")
+      static let workerRelease = CodingKeys(stringValue: "workerRelease")
+      static let resolvedWorkerRelease = CodingKeys(stringValue: "resolvedWorkerRelease")
 
       static let _knownKeys: Set<Swift.String> = [
-        "name"
+        "name",
+        "workerRelease",
+        "resolvedWorkerRelease",
       ]
     }
 
@@ -316,6 +352,14 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workerRelease) {
+        self.workerRelease = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .resolvedWorkerRelease)
+      {
+        self.resolvedWorkerRelease = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -326,6 +370,8 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
+      try container.encode(self.workerRelease, forKey: .workerRelease)
+      try container.encode(self.resolvedWorkerRelease, forKey: .resolvedWorkerRelease)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

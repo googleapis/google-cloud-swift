@@ -45,6 +45,7 @@ public struct NFDeploySiteStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NFDeploySiteStatus().with { $0.site = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

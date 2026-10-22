@@ -52,7 +52,7 @@ import Foundation
     self.retryPolicy = options.retryPolicy ?? withDefault.retryPolicy ?? defaultRetryPolicy()
     self.backoffPolicy = options.backoffPolicy ?? withDefault.backoffPolicy
     self.retryThrottler = options.retryThrottler ?? withDefault.retryThrottler
-    self.idempotent = options.idempotency ?? idempotent
+    self.idempotent = options.idempotent ?? idempotent
     self.attemptTimeout = options.attemptTimeout ?? withDefault.attemptTimeout
   }
 
@@ -89,19 +89,22 @@ import Foundation
     var nextDelay: Duration = .zero
 
     while true {
-      var state = RetryState(idempotent: idempotent).with {
-        $0.start = loopStart
-        $0.attemptCount = attemptCount
-      }
+      var state = RetryState(
+        idempotent: idempotent,
+        start: loopStart,
+        attemptCount: attemptCount
+      )
       var remainingTime = retryPolicy.remainingTime(state: state)
 
       if let prevError = lastError {
         if let remaining = remainingTime, remaining < nextDelay {
-          throw RequestError.exhausted(.elapsedTime(source: prevError))
+          throw RequestError.exhausted(.elapsedTime(underlyingError: prevError))
         }
         try await sleep(nextDelay)
 
         if retryThrottler.throttleRetryAttempt() {
+          attemptCount += 1
+          state.attemptCount = attemptCount
           let throttleResult = retryPolicy.onThrottle(state: state, error: prevError)
           switch throttleResult {
           case .exhausted(let e):
@@ -115,7 +118,7 @@ import Foundation
 
         remainingTime = retryPolicy.remainingTime(state: state)
         if let remaining = remainingTime, remaining <= .zero {
-          throw RequestError.exhausted(.elapsedTime(source: prevError))
+          throw RequestError.exhausted(.elapsedTime(underlyingError: prevError))
         }
       }
 

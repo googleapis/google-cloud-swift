@@ -45,6 +45,7 @@ public struct OAuth2: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OAuth2().with { $0.clientId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -37,6 +37,7 @@
     /// ```
     /// let value = ApiAuth().with { $0.apiKeyConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -115,6 +116,7 @@
       /// ```
       /// let value = ApiKeyConfig().with { $0.apiKeySecretVersion = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

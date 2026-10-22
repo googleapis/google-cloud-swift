@@ -66,6 +66,7 @@
     /// ```
     /// let value = CompanionAgent().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -169,6 +170,7 @@
       /// ```
       /// let value = SkillConfig().with { $0.guidanceSkillConfig = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -424,6 +426,7 @@
       /// ```
       /// let value = GuidanceSkillConfig().with { $0.guidanceInstructions = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -515,6 +518,7 @@
       /// ```
       /// let value = KnowledgeSource().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -591,6 +595,7 @@
       /// ```
       /// let value = TranslationSkillConfig().with { $0.agentLanguageCode = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

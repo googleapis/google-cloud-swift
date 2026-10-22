@@ -36,6 +36,7 @@ public struct PrimitiveTransformation: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = PrimitiveTransformation().with { $0.replaceConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

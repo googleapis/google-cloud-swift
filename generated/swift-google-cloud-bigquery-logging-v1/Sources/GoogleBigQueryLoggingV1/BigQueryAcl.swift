@@ -36,6 +36,7 @@ public struct BigQueryAcl: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BigQueryAcl().with { $0.entries = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -109,6 +110,7 @@ public struct BigQueryAcl: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Entry().with { $0.role = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

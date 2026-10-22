@@ -17,7 +17,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// MongoDB profile.
+/// Profile for connecting to a MongoDB source.
 public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
@@ -47,6 +47,19 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. SSL configuration for the MongoDB connection.
   public var sslConfig: MongodbSslConfig? = nil
 
+  /// Optional. Specifies additional options for the MongoDB connection.
+  ///
+  /// The options should be sent as key-value pairs, for example:
+  /// `additional_options =
+  /// {"serverSelectionTimeoutMS": "10000", "directConnection": "true"}`.
+  ///
+  /// Keys are case-sensitive and should match the official MongoDB connection
+  /// string options:
+  /// https://www.mongodb.com/docs/manual/reference/connection-string-options/
+  ///
+  /// The server will not modify the values provided by the user.
+  public var additionalOptions: [Swift.String: Swift.String] = [:]
+
   /// MongoDB connection format.
   /// Must specify either srv_connection_format or standard_connection_format.
   public var mongodbConnectionFormat: MongodbConnectionFormatOneOf? = nil
@@ -63,6 +76,7 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MongodbProfile().with { $0.hostAddresses = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -83,6 +97,7 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     static let sslConfig = CodingKeys(stringValue: "sslConfig")
     static let srvConnectionFormat = CodingKeys(stringValue: "srvConnectionFormat")
     static let standardConnectionFormat = CodingKeys(stringValue: "standardConnectionFormat")
+    static let additionalOptions = CodingKeys(stringValue: "additionalOptions")
 
     static let _knownKeys: Set<Swift.String> = [
       "hostAddresses",
@@ -93,6 +108,7 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       "sslConfig",
       "srvConnectionFormat",
       "standardConnectionFormat",
+      "additionalOptions",
     ]
   }
 
@@ -116,6 +132,11 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       self.secretManagerStoredPassword = value
     }
     self.sslConfig = try container.decodeIfPresent(MongodbSslConfig.self, forKey: .sslConfig)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .additionalOptions)
+    {
+      self.additionalOptions = value
+    }
 
     var mongodbConnectionFormat: MongodbConnectionFormatOneOf? = nil
     let mongodbConnectionFormatCheckAndSet = {
@@ -152,6 +173,7 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.password, forKey: .password)
     try container.encode(self.secretManagerStoredPassword, forKey: .secretManagerStoredPassword)
     try container.encodeIfPresent(self.sslConfig, forKey: .sslConfig)
+    try container.encode(self.additionalOptions, forKey: .additionalOptions)
 
     if let choice = self.mongodbConnectionFormat {
       switch choice {

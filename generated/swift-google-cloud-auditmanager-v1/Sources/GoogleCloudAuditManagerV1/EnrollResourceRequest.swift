@@ -68,6 +68,7 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = EnrollResourceRequest().with { $0.scope = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -139,6 +140,7 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EligibleDestination().with { $0.eligibleGcsBucket = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -68,6 +68,7 @@ public struct ProofOfInclusion: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ProofOfInclusion().with { $0.transactionCertificate = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -142,6 +143,7 @@ public struct ProofOfInclusion: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MerkleTreeNode().with { $0.leftChildDigestHex = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

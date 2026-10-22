@@ -41,6 +41,7 @@ public struct CapacityConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CapacityConfig().with { $0.vcpuCount = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

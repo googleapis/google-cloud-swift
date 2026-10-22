@@ -128,6 +128,7 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Release().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -334,6 +335,7 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TargetRender().with { $0.renderingBuild = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -731,6 +733,7 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ReleaseReadyCondition().with { $0.status = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -822,6 +825,7 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SkaffoldSupportedCondition().with { $0.status = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -923,6 +927,7 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ReleaseCondition().with { $0.releaseReadyCondition = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

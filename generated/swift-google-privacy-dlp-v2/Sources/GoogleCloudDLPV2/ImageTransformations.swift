@@ -36,6 +36,7 @@ public struct ImageTransformations: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ImageTransformations().with { $0.transforms = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -99,6 +100,7 @@ public struct ImageTransformations: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ImageTransformation().with { $0.selectedInfoTypes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -199,6 +201,7 @@ public struct ImageTransformations: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = SelectedInfoTypes().with { $0.infoTypes = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -276,6 +279,7 @@ public struct ImageTransformations: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AllInfoTypes().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -345,6 +349,7 @@ public struct ImageTransformations: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AllText().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

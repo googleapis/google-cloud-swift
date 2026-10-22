@@ -70,6 +70,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
   /// ```
   /// let value = GoldengateKafkaSchemaRegistryConnectionProperties().with { $0.password = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -63,6 +63,7 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AdvancedFilterConfig().with { $0.token = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -161,6 +162,7 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ValueSource().with { $0.manualOptions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -279,6 +281,7 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ManualOptions().with { $0.options = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -369,6 +372,7 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QueryOptions().with { $0.query = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

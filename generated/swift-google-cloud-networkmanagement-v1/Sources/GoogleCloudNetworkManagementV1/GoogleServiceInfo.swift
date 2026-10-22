@@ -44,6 +44,7 @@ public struct GoogleServiceInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GoogleServiceInfo().with { $0.sourceIp = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

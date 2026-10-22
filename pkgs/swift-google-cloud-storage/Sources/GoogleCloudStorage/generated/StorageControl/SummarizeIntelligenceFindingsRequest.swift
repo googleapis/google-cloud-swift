@@ -74,6 +74,7 @@ public struct SummarizeIntelligenceFindingsRequest: Codable, Equatable, GoogleWK
   /// ```
   /// let value = SummarizeIntelligenceFindingsRequest().with { $0.parent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

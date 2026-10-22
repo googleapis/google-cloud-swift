@@ -36,6 +36,7 @@ public struct EnvelopeSignature: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = EnvelopeSignature().with { $0.sig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

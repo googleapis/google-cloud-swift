@@ -45,6 +45,7 @@ public struct IpOverrideData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = IpOverrideData().with { $0.ip = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

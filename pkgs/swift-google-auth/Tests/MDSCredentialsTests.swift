@@ -131,6 +131,87 @@ import Testing
     )
   }
 
+  @Test(arguments: [
+    ("http-metadata-proxy.internal:8080", "http://http-metadata-proxy.internal:8080"),
+    ("https-metadata-proxy.internal", "http://https-metadata-proxy.internal"),
+    ("http://127.0.0.1:8080", "http://127.0.0.1:8080"),
+    ("https://127.0.0.1:8443", "https://127.0.0.1:8443"),
+    ("HTTP://127.0.0.1:8080", "HTTP://127.0.0.1:8080"),
+    ("HTTPS://127.0.0.1:8443", "HTTPS://127.0.0.1:8443"),
+    ("[::1]:8080", "http://[::1]:8080"),
+  ])
+  func gceMetadataHostSchemeAndPrefixResolution(hostEnv: String, expectedBase: String)
+    async throws
+  {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let mockPayload = MockResponse(
+      accessToken: "mock-override-token", expiresIn: 3600, tokenType: "Bearer")
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedData = try encoder.encode(mockPayload)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        Self.checkRequest(request)
+        #expect(
+          request.url
+            == "\(expectedBase)/computeMetadata/v1/instance/service-accounts/default/token"
+        )
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData))
+        )
+      }
+    ])
+
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(
+      client: client, environment: ["GCE_METADATA_HOST": hostEnv])
+    let headers = try await provider.headers()
+
+    #expect(headers["Authorization"] == "Bearer mock-override-token")
+  }
+
+  @Test(arguments: [
+    "http://",
+    "https://",
+    "http://:8080",
+    "127.0.0.1:abc",
+    "::1",
+    "ftp://127.0.0.1:8080",
+    "http://invalid host with spaces",
+    "invalid host with spaces",
+    "://missing-scheme",
+  ])
+  func gceMetadataHostInvalidURLThrowsErrorWithoutCrash(invalidHost: String) async throws {
+    // Pass an empty MockHTTPClient: its `deinit` asserts that all queued responses were consumed,
+    // which verifies that invalid `GCE_METADATA_HOST` values fail before making any network calls.
+    let mock = MockHTTPClient([])
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(
+      client: client, environment: ["GCE_METADATA_HOST": invalidHost])
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    guard let error, case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected .cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    guard case .parseError = underlyingError as? CredentialsError else {
+      Issue.record(
+        "Expected CredentialsError.parseError as underlyingError, got \(underlyingError)")
+      return
+    }
+    #expect(AuthHTTPError.isRetryable(error) == false)
+  }
+
   @Test func adcNoMDS() async throws {
     let mock = MockHTTPClient([
       { (request: HTTPClientRequest) in
@@ -171,8 +252,8 @@ import Testing
       _ = try await provider.headers()
     }
     let error = #expect(throws: AuthHTTPError.self) {
-      if case let .cannotFetchToken(_, source) = credentialsError {
-        throw source
+      if case let .cannotFetchToken(_, underlyingError) = credentialsError {
+        throw underlyingError
       }
     }
     if case let .transportError(urlError) = error {
@@ -301,13 +382,102 @@ import Testing
     let error = await #expect(throws: CredentialsError.self) {
       _ = try await provider.headers()
     }
-    guard case let .cannotFetchToken(_, source) = error else {
+    guard case let .cannotFetchToken(_, underlyingError) = error else {
       Issue.record("expected a .cannotFetchToken error, got=\(error)")
       return
     }
-    #expect(source is AuthHTTPError, "expected AuthHTTPError as the source, got \(source)")
+    #expect(
+      underlyingError is AuthHTTPError,
+      "expected AuthHTTPError as the underlyingError, got \(underlyingError)")
     let count = attempts.getCount()
     #expect(count == 1, "Expected no retries on permanent HTTP 404 error, got \(count) calls")
+
+    // Subsequent calls must throw the cached permanent error without contacting MDS again.
+    await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    let secondCount = attempts.getCount()
+    #expect(
+      secondCount == 1,
+      "Expected TokenCache to cache permanent HTTP 404 error, got \(secondCount) calls")
+  }
+
+  @Test(arguments: [
+    (
+      AuthHTTPError.unsuccessfulResponse(
+        response: HTTPClientResponse(version: .http2, status: .notFound)),
+      false
+    ),
+    (
+      AuthHTTPError.unsuccessfulResponse(
+        response: HTTPClientResponse(version: .http2, status: .forbidden)),
+      false
+    ),
+    (
+      AuthHTTPError.unsuccessfulResponse(
+        response: HTTPClientResponse(version: .http2, status: .serviceUnavailable)),
+      true
+    ),
+    (
+      AuthHTTPError.transportError(URLError(.timedOut)),
+      true
+    ),
+    (
+      AuthHTTPError.decodingError(
+        error: DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "corrupted"))),
+      false
+    ),
+    (
+      AuthHTTPError.invalidUTF8Response,
+      false
+    ),
+  ])
+  func isRetryableUnwrapsCredentialsError(underlyingError: AuthHTTPError, expected: Bool) {
+    let wrapped = CredentialsError.cannotFetchToken(
+      message: "failed", underlyingError: underlyingError)
+    #expect(AuthHTTPError.isRetryable(wrapped) == expected)
+  }
+
+  @Test func doesNotRetryOnMalformedResponse() async throws {
+    let attempts = CallCounter()
+    let malformedData = Data("invalid-json".utf8)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        Self.checkRequest(request)
+        let _ = attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: malformedData))
+        )
+      }
+    ])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(retryConfiguration: retryConfig, client: client, environment: [:])
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    guard case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("expected a .cannotFetchToken error, got=\(error)")
+      return
+    }
+    guard case .decodingError = underlyingError as? AuthHTTPError else {
+      Issue.record(
+        "expected AuthHTTPError.decodingError as the underlyingError, got \(underlyingError)")
+      return
+    }
+    #expect(attempts.getCount() == 1, "Expected no retries on decoding error")
+
+    await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(attempts.getCount() == 1, "Expected TokenCache to cache permanent decoding error")
   }
 
   @Test func tokenCaching() async throws {

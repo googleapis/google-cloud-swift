@@ -49,6 +49,7 @@ public struct DisruptionBudget: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DisruptionBudget().with { $0.minorVersionDisruptionInterval = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

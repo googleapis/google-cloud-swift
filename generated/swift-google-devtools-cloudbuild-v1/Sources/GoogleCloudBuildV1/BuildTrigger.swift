@@ -109,6 +109,10 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   /// triggers.
   public var sourceToBuild: GitRepoSource? = nil
 
+  /// Configuration for manual approval to start a build invocation of this
+  /// BuildTrigger.
+  public var approvalConfig: ApprovalConfig? = nil
+
   /// The service account used for all user-controlled operations including
   /// UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild.
   /// If no service account is set and the legacy Cloud Build service account
@@ -137,6 +141,7 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BuildTrigger().with { $0.resourceName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -169,6 +174,7 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     static let includedFiles = CodingKeys(stringValue: "includedFiles")
     static let filter = CodingKeys(stringValue: "filter")
     static let sourceToBuild = CodingKeys(stringValue: "sourceToBuild")
+    static let approvalConfig = CodingKeys(stringValue: "approvalConfig")
     static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
     static let repositoryEventConfig = CodingKeys(stringValue: "repositoryEventConfig")
 
@@ -193,6 +199,7 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
       "includedFiles",
       "filter",
       "sourceToBuild",
+      "approvalConfig",
       "serviceAccount",
       "repositoryEventConfig",
     ]
@@ -239,6 +246,8 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
       self.filter = value
     }
     self.sourceToBuild = try container.decodeIfPresent(GitRepoSource.self, forKey: .sourceToBuild)
+    self.approvalConfig = try container.decodeIfPresent(
+      ApprovalConfig.self, forKey: .approvalConfig)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
       self.serviceAccount = value
     }
@@ -293,6 +302,7 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.includedFiles, forKey: .includedFiles)
     try container.encode(self.filter, forKey: .filter)
     try container.encodeIfPresent(self.sourceToBuild, forKey: .sourceToBuild)
+    try container.encodeIfPresent(self.approvalConfig, forKey: .approvalConfig)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encodeIfPresent(self.repositoryEventConfig, forKey: .repositoryEventConfig)
 

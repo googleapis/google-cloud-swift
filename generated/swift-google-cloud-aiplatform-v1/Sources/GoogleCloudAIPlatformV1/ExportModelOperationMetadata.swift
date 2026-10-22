@@ -45,6 +45,7 @@
     /// ```
     /// let value = ExportModelOperationMetadata().with { $0.genericMetadata = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -115,6 +116,7 @@
       /// ```
       /// let value = OutputInfo().with { $0.artifactOutputUri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

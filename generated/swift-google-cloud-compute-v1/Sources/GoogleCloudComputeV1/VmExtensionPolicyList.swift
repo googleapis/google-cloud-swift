@@ -68,6 +68,7 @@
     /// ```
     /// let value = VmExtensionPolicyList().with { $0.etag = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -173,6 +174,7 @@
       /// ```
       /// let value = Warning().with { $0.code = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -252,6 +254,7 @@
         /// ```
         /// let value = Data().with { $0.key = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

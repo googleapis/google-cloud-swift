@@ -43,6 +43,7 @@ public struct ListBucketOperationsResponse: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = ListBucketOperationsResponse().with { $0.bucketOperations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

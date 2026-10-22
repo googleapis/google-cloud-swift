@@ -43,6 +43,7 @@ extension ManagedZonesClient {
     /// ```
     /// let value = CreateRequest().with { $0.clientOperationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -137,6 +138,7 @@ extension ManagedZonesClient {
     /// ```
     /// let value = DeleteRequest().with { $0.clientOperationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -233,6 +235,7 @@ extension ManagedZonesClient {
     /// ```
     /// let value = GetRequest().with { $0.clientOperationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -326,6 +329,7 @@ extension ManagedZonesClient {
     /// ```
     /// let value = GetIamPolicyRequest().with { $0.resource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -418,6 +422,7 @@ extension ManagedZonesClient {
     /// ```
     /// let value = ListRequest().with { $0.dnsName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -518,6 +523,7 @@ extension ManagedZonesClient {
     /// ```
     /// let value = PatchRequest().with { $0.clientOperationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -615,6 +621,7 @@ extension ManagedZonesClient {
     /// ```
     /// let value = SetIamPolicyRequest().with { $0.resource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -701,6 +708,7 @@ extension ManagedZonesClient {
     /// ```
     /// let value = TestIamPermissionsRequest().with { $0.resource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -794,6 +802,7 @@ extension ManagedZonesClient {
     /// ```
     /// let value = UpdateRequest().with { $0.clientOperationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -55,6 +55,7 @@ public struct MonitoredResourceMetadata: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = MonitoredResourceMetadata().with { $0.systemLabels = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

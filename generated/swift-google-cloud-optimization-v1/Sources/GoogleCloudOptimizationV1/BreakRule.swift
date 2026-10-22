@@ -49,6 +49,7 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BreakRule().with { $0.breakRequests = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -126,6 +127,7 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BreakRequest().with { $0.earliestStartTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -252,6 +254,7 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FrequencyConstraint().with { $0.minBreakDuration = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

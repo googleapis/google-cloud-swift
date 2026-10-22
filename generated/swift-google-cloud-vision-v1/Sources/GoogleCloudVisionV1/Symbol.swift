@@ -59,6 +59,7 @@ public struct Symbol: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Symbol().with { $0.property = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

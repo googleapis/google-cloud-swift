@@ -49,6 +49,7 @@ public struct ListRestoreChannelsResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ListRestoreChannelsResponse().with { $0.restoreChannels = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

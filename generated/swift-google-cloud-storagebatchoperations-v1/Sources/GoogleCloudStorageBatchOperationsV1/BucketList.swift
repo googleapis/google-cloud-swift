@@ -38,6 +38,7 @@ public struct BucketList: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BucketList().with { $0.buckets = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -99,6 +100,7 @@ public struct BucketList: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Bucket().with { $0.bucket = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -124,6 +124,7 @@ public struct InternalRange: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = InternalRange().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -282,6 +283,7 @@ public struct InternalRange: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Migration().with { $0.source = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -376,6 +378,7 @@ public struct InternalRange: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AllocationOptions().with { $0.allocationStrategy = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -83,6 +83,7 @@ public struct DiskConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DiskConfig().with { $0.bootDiskType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

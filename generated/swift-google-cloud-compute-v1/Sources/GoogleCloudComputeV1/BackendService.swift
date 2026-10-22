@@ -558,6 +558,7 @@
     /// ```
     /// let value = BackendService().with { $0.affinityCookieTtlSec = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

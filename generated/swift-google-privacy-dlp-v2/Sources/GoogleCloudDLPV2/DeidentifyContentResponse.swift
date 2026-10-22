@@ -39,6 +39,7 @@ public struct DeidentifyContentResponse: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = DeidentifyContentResponse().with { $0.item = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

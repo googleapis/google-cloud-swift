@@ -39,6 +39,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PostgresqlSslConfig().with { $0.serverVerification = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -132,6 +133,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ServerVerification().with { $0.caCertificate = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -241,6 +243,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ServerAndClientVerification().with { $0.clientCertificate = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

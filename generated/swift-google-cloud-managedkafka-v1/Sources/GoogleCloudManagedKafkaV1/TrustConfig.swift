@@ -37,6 +37,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TrustConfig().with { $0.casConfigs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -100,6 +101,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CertificateAuthorityServiceConfig().with { $0.caPool = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

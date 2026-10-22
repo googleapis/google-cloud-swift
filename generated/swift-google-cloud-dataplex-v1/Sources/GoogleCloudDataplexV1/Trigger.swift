@@ -38,6 +38,7 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Trigger().with { $0.onDemand = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -130,6 +131,7 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = OnDemand().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -212,6 +214,7 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Schedule().with { $0.cron = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -295,6 +298,7 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = OneTime().with { $0.ttlAfterScanCompletion = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

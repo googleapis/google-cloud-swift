@@ -19,35 +19,37 @@ import Testing
 @Suite struct LimitedElapsedTimeTests {
   @Test func policyExhaustedError() {
     let limit = Duration.seconds(123) + .milliseconds(567)
-    let source = mockIOError()
-    let errWithSource = PolicyExhaustedError.elapsedTime(maximumDuration: limit, source: source)
-    #expect(errWithSource.source == source)
-    #expect(errWithSource.description.contains("123"))
-    #expect(errWithSource.description.contains("last error"))
+    let underlyingError = mockIOError()
+    let errWithUnderlying = PolicyExhaustedError.elapsedTime(
+      maximumDuration: limit, underlyingError: underlyingError)
+    #expect(errWithUnderlying.underlyingError == underlyingError)
+    #expect(errWithUnderlying.description.contains("123"))
+    #expect(errWithUnderlying.description.contains("last error"))
 
-    let errWithoutSource = PolicyExhaustedError.elapsedTime(maximumDuration: limit)
-    #expect(errWithoutSource.source == nil)
-    #expect(errWithoutSource.description.contains("123"))
+    let errWithoutUnderlying = PolicyExhaustedError.elapsedTime(maximumDuration: limit)
+    #expect(errWithoutUnderlying.underlyingError == nil)
+    #expect(errWithoutUnderlying.description.contains("123"))
 
-    let errNoLimitWithSource = PolicyExhaustedError.elapsedTime(source: source)
-    #expect(errNoLimitWithSource.source == source)
+    let errNoLimitWithUnderlying = PolicyExhaustedError.elapsedTime(
+      underlyingError: underlyingError)
+    #expect(errNoLimitWithUnderlying.underlyingError == underlyingError)
     #expect(
-      errNoLimitWithSource.description
-        == "policy exhausted: elapsed time limit exceeded; last error: \(source)")
+      errNoLimitWithUnderlying.description
+        == "policy exhausted: elapsed time limit exceeded; last error: \(underlyingError)")
 
-    let errNoLimitNoSource = PolicyExhaustedError.elapsedTime()
-    #expect(errNoLimitNoSource.source == nil)
-    #expect(errNoLimitNoSource.description == "policy exhausted: elapsed time limit exceeded")
+    let errNoLimitNoUnderlying = PolicyExhaustedError.elapsedTime()
+    #expect(errNoLimitNoUnderlying.underlyingError == nil)
+    #expect(errNoLimitNoUnderlying.description == "policy exhausted: elapsed time limit exceeded")
 
     let errAttempts = PolicyExhaustedError.attemptCount(maximumAttempts: 5)
-    #expect(errAttempts.source == nil)
+    #expect(errAttempts.underlyingError == nil)
     #expect(errAttempts.description.contains("5"))
 
-    let errAttemptsWithSource = PolicyExhaustedError.attemptCount(
-      maximumAttempts: 5, source: source)
-    #expect(errAttemptsWithSource.source == source)
-    #expect(errAttemptsWithSource.description.contains("5"))
-    #expect(errAttemptsWithSource.description.contains("last error"))
+    let errAttemptsWithUnderlying = PolicyExhaustedError.attemptCount(
+      maximumAttempts: 5, underlyingError: underlyingError)
+    #expect(errAttemptsWithUnderlying.underlyingError == underlyingError)
+    #expect(errAttemptsWithUnderlying.description.contains("5"))
+    #expect(errAttemptsWithUnderlying.description.contains("last error"))
   }
 
   @Test func testLimitedTimeForwards() {
@@ -84,7 +86,7 @@ import Testing
       $0.start = .now - .seconds(70)
     }
     let expectedError = RequestError.exhausted(
-      .elapsedTime(maximumDuration: limit, source: error))
+      .elapsedTime(maximumDuration: limit, underlyingError: error))
     #expect(policy.onThrottle(state: stateAfter, error: error) == .exhausted(expectedError))
   }
 

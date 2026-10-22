@@ -36,6 +36,7 @@ public struct FileTypeFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FileTypeFilter().with { $0.fileType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -149,6 +149,7 @@
     /// ```
     /// let value = PipelineJob().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -357,6 +358,7 @@
       /// ```
       /// let value = RuntimeConfig().with { $0.parameters = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -452,6 +454,7 @@
         /// ```
         /// let value = InputArtifact().with { $0.artifactId = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

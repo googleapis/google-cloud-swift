@@ -40,6 +40,7 @@ public struct DateTimeRange: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DateTimeRange().with { $0.start = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

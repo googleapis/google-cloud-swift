@@ -36,6 +36,9 @@ public struct BackfillJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Errors which caused the backfill job to fail.
   public var errors: [Error] = []
 
+  /// Output only. The filter for performing a partial backfill.
+  public var eventFilter: EventFilter? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `BackfillJob`.
@@ -48,6 +51,7 @@ public struct BackfillJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BackfillJob().with { $0.state = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -65,6 +69,7 @@ public struct BackfillJob: Codable, Equatable, GoogleWKT._AnyPackable,
     static let lastStartTime = CodingKeys(stringValue: "lastStartTime")
     static let lastEndTime = CodingKeys(stringValue: "lastEndTime")
     static let errors = CodingKeys(stringValue: "errors")
+    static let eventFilter = CodingKeys(stringValue: "eventFilter")
 
     static let _knownKeys: Set<Swift.String> = [
       "state",
@@ -72,6 +77,7 @@ public struct BackfillJob: Codable, Equatable, GoogleWKT._AnyPackable,
       "lastStartTime",
       "lastEndTime",
       "errors",
+      "eventFilter",
     ]
   }
 
@@ -90,6 +96,7 @@ public struct BackfillJob: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Error].self, forKey: .errors) {
       self.errors = value
     }
+    self.eventFilter = try container.decodeIfPresent(EventFilter.self, forKey: .eventFilter)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -103,6 +110,7 @@ public struct BackfillJob: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.lastStartTime, forKey: .lastStartTime)
     try container.encodeIfPresent(self.lastEndTime, forKey: .lastEndTime)
     try container.encode(self.errors, forKey: .errors)
+    try container.encodeIfPresent(self.eventFilter, forKey: .eventFilter)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

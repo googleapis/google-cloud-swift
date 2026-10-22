@@ -119,6 +119,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Cluster().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -318,6 +319,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ControlPlane().with { $0.remote = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -400,6 +402,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Remote().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -497,6 +500,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Local().with { $0.nodeLocation = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -764,6 +768,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SystemAddonsConfig().with { $0.ingress = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -830,6 +835,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Ingress().with { $0.disabled = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -916,6 +922,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = VMServiceConfig().with { $0.vmmEnabled = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1040,6 +1047,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ControlPlaneEncryption().with { $0.kmsKey = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1177,6 +1185,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MaintenanceEvent().with { $0.uuid = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1665,6 +1674,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SurvivabilityConfig().with { $0.offlineRebootTtl = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1747,6 +1757,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ConnectionState().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

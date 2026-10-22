@@ -43,6 +43,7 @@ public struct PluggableDatabaseNodeLevelDetails: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = PluggableDatabaseNodeLevelDetails().with { $0.nodeName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

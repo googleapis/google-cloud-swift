@@ -39,6 +39,7 @@ public struct AnalyzeSentimentRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = AnalyzeSentimentRequest().with { $0.document = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

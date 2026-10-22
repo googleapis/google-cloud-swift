@@ -101,6 +101,7 @@
     /// ```
     /// let value = FeatureView().with { $0.bigQuerySource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -276,6 +277,7 @@
       /// ```
       /// let value = BigQuerySource().with { $0.uri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -371,6 +373,7 @@
       /// ```
       /// let value = SyncConfig().with { $0.cron = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -488,6 +491,7 @@
       /// ```
       /// let value = IndexConfig().with { $0.treeAhConfig = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -602,6 +606,7 @@
         /// ```
         /// let value = BruteForceConfig().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -675,6 +680,7 @@
         /// ```
         /// let value = TreeAHConfig().with { $0.leafNodeEmbeddingCount = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -925,6 +931,7 @@
       /// ```
       /// let value = FeatureRegistrySource().with { $0.featureGroups = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -992,6 +999,7 @@
         /// ```
         /// let value = FeatureGroup().with { $0.featureGroupId = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1113,6 +1121,7 @@
       /// ```
       /// let value = VertexRagSource().with { $0.uri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1202,6 +1211,7 @@
       /// ```
       /// let value = OptimizedConfig().with { $0.automaticResources = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1281,6 +1291,7 @@
       /// ```
       /// let value = BigtableMetadata().with { $0.readAppProfile = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

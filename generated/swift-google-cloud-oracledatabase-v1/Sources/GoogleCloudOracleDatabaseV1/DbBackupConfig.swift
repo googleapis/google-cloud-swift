@@ -64,6 +64,7 @@ public struct DbBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DbBackupConfig().with { $0.autoBackupEnabled = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -167,6 +168,7 @@ public struct DbBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BackupDestinationDetails().with { $0.type = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -89,6 +89,7 @@ public struct ServerTlsPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ServerTlsPolicy().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -208,6 +209,7 @@ public struct ServerTlsPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MTLSPolicy().with { $0.clientValidationMode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

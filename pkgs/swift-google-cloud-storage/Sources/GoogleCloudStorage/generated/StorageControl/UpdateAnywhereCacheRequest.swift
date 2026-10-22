@@ -52,6 +52,7 @@ public struct UpdateAnywhereCacheRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = UpdateAnywhereCacheRequest().with { $0.anywhereCache = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -109,6 +109,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AuthzPolicy().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -238,6 +239,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Target().with { $0.loadBalancingScheme = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -334,6 +336,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AuthzRule().with { $0.from = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -403,6 +406,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = StringMatch().with { $0.exact = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -561,6 +565,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = IpBlock().with { $0.`prefix` = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -653,6 +658,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RequestResource().with { $0.tagValueIdSet = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -719,6 +725,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = TagValueIdSet().with { $0.ids = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -825,6 +832,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = HeaderMatch().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -919,6 +927,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Principal().with { $0.principalSelector = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1158,6 +1167,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = From().with { $0.sources = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1246,6 +1256,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = RequestSource().with { $0.principals = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1378,6 +1389,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = To().with { $0.operations = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1479,6 +1491,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = RequestOperation().with { $0.headerSet = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1575,6 +1588,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = HeaderSet().with { $0.headers = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1671,6 +1685,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = MCPMethod().with { $0.name = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1777,6 +1792,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = MCP().with { $0.baseProtocolMethodsOption = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -2065,6 +2081,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CustomProvider().with { $0.cloudIap = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2128,6 +2145,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CloudIap().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2203,6 +2221,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AuthzExtension().with { $0.resources = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

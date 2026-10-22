@@ -74,7 +74,7 @@ public struct BindingError: Sendable, Equatable, Error, CustomStringConvertible 
 
 extension BindingError: CustomDebugStringConvertible {
   public var debugDescription: String {
-    "BindingError(paths: \(String(reflecting: paths)))"
+    "BindingError(\(String(reflecting: description)), paths: \(String(reflecting: paths)))"
   }
 }
 

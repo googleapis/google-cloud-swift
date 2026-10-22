@@ -19,13 +19,13 @@
 ///
 /// Two collections are equal when they hold the same fields in the same order, comparing names
 /// and values exactly. Equality is case-sensitive even though HTTP field names are not, because
-/// the value carries the exact bytes received from the wire. Use ``subscript(_:)``,
+/// the value carries the exact bytes sent on or received from the wire. Use ``subscript(_:)``,
 /// ``values(for:)``, or ``contains(name:)`` to look a field up by name case-insensitively.
-public struct HTTPHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
+public struct HTTPHeaders: Sendable, Equatable {
   /// A single header field, as a name-value pair.
   public typealias Element = (name: String, value: String)
 
-  private let storage: [Element]
+  private var storage: [Element]
 
   /// The number of header fields in the collection.
   public var count: Int { self.storage.count }
@@ -45,19 +45,38 @@ public struct HTTPHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
     self.storage = headers
   }
 
-  /// Creates a collection from an array literal of header fields.
-  ///
-  /// - Parameter elements: The header fields, in wire order.
-  public init(arrayLiteral elements: Element...) {
-    self.storage = elements
-  }
-
   /// The value of the first field whose name matches `name`, ignoring case.
   ///
-  /// - Parameter name: The header field name to look up.
+  /// Setting a value replaces the first matching field in-place and removes any subsequent fields
+  /// with the same name (ignoring case), or appends a new field if no match exists. Setting `nil`
+  /// removes all matching fields.
+  ///
+  /// - Parameter name: The header field name to look up or set.
   /// - Returns: The matching value, or `nil` when no field has that name.
   public subscript(name: String) -> String? {
-    self.storage.first { Self.namesMatch($0.name, name) }?.value
+    get {
+      self.storage.first { Self.namesMatch($0.name, name) }?.value
+    }
+    set {
+      guard let newValue else {
+        self.storage.removeAll { Self.namesMatch($0.name, name) }
+        return
+      }
+      if let firstIndex = self.storage.firstIndex(where: { Self.namesMatch($0.name, name) }) {
+        self.storage[firstIndex] = (name: name, value: newValue)
+        var seenFirst = false
+        self.storage.removeAll { element in
+          guard Self.namesMatch(element.name, name) else { return false }
+          if !seenFirst {
+            seenFirst = true
+            return false
+          }
+          return true
+        }
+      } else {
+        self.storage.append((name: name, value: newValue))
+      }
+    }
   }
 
   /// The values of every field whose name matches `name`, ignoring case, in order.
@@ -81,7 +100,7 @@ public struct HTTPHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
   ///
   /// Folds ASCII case only. `lowercased()` and `caseInsensitiveCompare` apply Unicode case
   /// folding, which would match "İ" (U+0130) against "i".
-  private static func namesMatch(_ lhs: String, _ rhs: String) -> Bool {
+  static func namesMatch(_ lhs: String, _ rhs: String) -> Bool {
     guard lhs.utf8.count == rhs.utf8.count else { return false }
     return lhs.utf8.elementsEqual(rhs.utf8) { toASCIILower($0) == toASCIILower($1) }
   }
@@ -99,8 +118,41 @@ public struct HTTPHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
   }
 }
 
+extension HTTPHeaders: ExpressibleByArrayLiteral {
+  /// Creates a collection from an array literal of header fields.
+  ///
+  /// - Parameter elements: The header fields, in wire order.
+  public init(arrayLiteral elements: Element...) {
+    self.storage = elements
+  }
+}
+
+extension HTTPHeaders: ExpressibleByDictionaryLiteral {
+  /// Creates a collection from a dictionary literal of header fields.
+  ///
+  /// Repeated field names (including names that differ only in case) are preserved in wire order.
+  ///
+  /// - Parameter elements: The header fields, in wire order.
+  public init(dictionaryLiteral elements: (String, String)...) {
+    self.storage = elements.map { (name: $0.0, value: $0.1) }
+  }
+}
+
 extension HTTPHeaders: Sequence {
-  public func makeIterator() -> IndexingIterator<[Element]> {
-    self.storage.makeIterator()
+  /// An iterator over the header fields in the collection.
+  public struct Iterator: IteratorProtocol, Sendable {
+    private var base: [Element].Iterator
+
+    init(_ base: [Element].Iterator) {
+      self.base = base
+    }
+
+    public mutating func next() -> Element? {
+      self.base.next()
+    }
+  }
+
+  public func makeIterator() -> Iterator {
+    Iterator(self.storage.makeIterator())
   }
 }

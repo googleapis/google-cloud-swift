@@ -17,14 +17,14 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// SQLServer data source configuration
+/// Configuration for syncing data from a SQLServer source.
 public struct SqlServerSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// SQLServer objects to include in the stream.
+  /// The SQLServer objects to include in the stream.
   public var includeObjects: SqlServerRdbms? = nil
 
-  /// SQLServer objects to exclude from the stream.
+  /// The SQLServer objects to exclude from the stream.
   public var excludeObjects: SqlServerRdbms? = nil
 
   /// Max concurrent CDC tasks.
@@ -48,6 +48,7 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SqlServerSourceConfig().with { $0.includeObjects = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

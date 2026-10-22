@@ -66,6 +66,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = X509Parameters().with { $0.keyUsage = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -161,6 +162,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CaOptions().with { $0.isCa = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -292,6 +294,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NameConstraints().with { $0.critical = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

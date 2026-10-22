@@ -40,6 +40,7 @@ public struct ListSupportedDatabaseFlagsResponse: Codable, Equatable, GoogleWKT.
   /// ```
   /// let value = ListSupportedDatabaseFlagsResponse().with { $0.supportedDatabaseFlags = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

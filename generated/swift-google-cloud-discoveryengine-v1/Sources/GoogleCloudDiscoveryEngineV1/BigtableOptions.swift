@@ -44,6 +44,7 @@
     /// ```
     /// let value = BigtableOptions().with { $0.keyFieldName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -131,6 +132,7 @@
       /// ```
       /// let value = BigtableColumnFamily().with { $0.fieldName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -255,6 +257,7 @@
       /// ```
       /// let value = BigtableColumn().with { $0.qualifier = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -44,6 +44,7 @@ public struct ListRoutesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListRoutesResponse().with { $0.routes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

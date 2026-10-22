@@ -45,6 +45,7 @@ public struct ListDescendantEventThreatDetectionCustomModulesResponse: Codable, 
   /// ```
   /// let value = ListDescendantEventThreatDetectionCustomModulesResponse().with { $0.eventThreatDetectionCustomModules = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

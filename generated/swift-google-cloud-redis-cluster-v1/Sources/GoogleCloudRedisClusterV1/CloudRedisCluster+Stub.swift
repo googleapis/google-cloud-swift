@@ -27,21 +27,49 @@ extension Clients {
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRedisClusterV1.ListClustersResponse
 
+    func listAclPolicies(
+      request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.ListAclPoliciesResponse
+
     func getCluster(
       request: GetClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRedisClusterV1.Cluster
 
+    func getAclPolicy(
+      request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.AclPolicy
+
     func updateCluster(
       request: UpdateClusterRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func updateAclPolicy(
+      request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
     func deleteCluster(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func deleteAclPolicy(
+      request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getAclPolicyRevision(
+      request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.AclPolicyRevision
+
+    func listAclPolicyRevisions(
+      request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.ListAclPolicyRevisionsResponse
+
     func createCluster(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
+
+    func createAclPolicy(
+      request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.AclPolicy
 
     func getClusterCertificateAuthority(
       request: GetClusterCertificateAuthorityRequest, options: GoogleGax.RequestOptions
@@ -81,6 +109,38 @@ extension Clients {
 
     func backupCluster(
       request: BackupClusterRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func listTokenAuthUsers(
+      request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.ListTokenAuthUsersResponse
+
+    func getTokenAuthUser(
+      request: GetTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.TokenAuthUser
+
+    func listAuthTokens(
+      request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.ListAuthTokensResponse
+
+    func getAuthToken(
+      request: GetAuthTokenRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.AuthToken
+
+    func addTokenAuthUser(
+      request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func deleteTokenAuthUser(
+      request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func addAuthToken(
+      request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func deleteAuthToken(
+      request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
     func listLocations(

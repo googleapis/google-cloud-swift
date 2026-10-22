@@ -43,6 +43,7 @@ public struct ListActiveDirectoriesResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ListActiveDirectoriesResponse().with { $0.activeDirectories = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

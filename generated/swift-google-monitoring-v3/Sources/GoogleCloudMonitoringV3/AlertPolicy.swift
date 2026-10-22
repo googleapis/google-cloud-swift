@@ -146,6 +146,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AlertPolicy().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -302,6 +303,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Documentation().with { $0.content = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -387,6 +389,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Link().with { $0.displayName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -531,6 +534,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Condition().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -672,6 +676,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Trigger().with { $0.count = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -877,6 +882,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = MetricThreshold().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -995,6 +1001,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ForecastOptions().with { $0.forecastHorizon = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1138,6 +1145,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = MetricAbsence().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1250,6 +1258,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = LogMatch().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1364,6 +1373,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = MonitoringQueryLanguageCondition().with { $0.query = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1558,6 +1568,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = PrometheusQueryLanguageCondition().with { $0.query = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1697,6 +1708,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = SqlCondition().with { $0.query = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1835,6 +1847,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Minutes().with { $0.periodicity = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1922,6 +1935,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Hourly().with { $0.periodicity = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2012,6 +2026,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Daily().with { $0.periodicity = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2101,6 +2116,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = RowCountTest().with { $0.comparison = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2189,6 +2205,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = BooleanTest().with { $0.column = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2499,6 +2516,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AlertStrategy().with { $0.notificationRateLimit = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2578,6 +2596,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = NotificationRateLimit().with { $0.period = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2667,6 +2686,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = NotificationChannelStrategy().with { $0.notificationChannelNames = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

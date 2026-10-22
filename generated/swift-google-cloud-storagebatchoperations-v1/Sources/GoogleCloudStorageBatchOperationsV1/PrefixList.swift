@@ -40,6 +40,7 @@ public struct PrefixList: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PrefixList().with { $0.includedObjectPrefixes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

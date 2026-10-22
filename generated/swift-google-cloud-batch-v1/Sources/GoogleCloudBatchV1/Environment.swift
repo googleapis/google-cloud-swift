@@ -46,6 +46,7 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Environment().with { $0.variables = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -120,6 +121,7 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = KMSEnvMap().with { $0.keyName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -41,6 +41,7 @@ public struct QueryTransactionStateRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = QueryTransactionStateRequest().with { $0.endpoint = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

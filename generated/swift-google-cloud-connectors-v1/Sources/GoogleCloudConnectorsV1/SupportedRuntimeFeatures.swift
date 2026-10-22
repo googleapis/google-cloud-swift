@@ -45,6 +45,7 @@ public struct SupportedRuntimeFeatures: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = SupportedRuntimeFeatures().with { $0.entityApis = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

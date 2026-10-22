@@ -42,6 +42,7 @@ public struct ListViewsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListViewsResponse().with { $0.views = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

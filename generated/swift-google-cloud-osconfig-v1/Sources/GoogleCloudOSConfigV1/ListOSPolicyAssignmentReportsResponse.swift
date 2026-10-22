@@ -42,6 +42,7 @@ public struct ListOSPolicyAssignmentReportsResponse: Codable, Equatable, GoogleW
   /// ```
   /// let value = ListOSPolicyAssignmentReportsResponse().with { $0.osPolicyAssignmentReports = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

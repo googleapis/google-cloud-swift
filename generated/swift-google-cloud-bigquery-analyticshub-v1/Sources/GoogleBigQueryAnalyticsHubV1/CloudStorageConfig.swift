@@ -83,6 +83,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CloudStorageConfig().with { $0.textConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -216,6 +217,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TextConfig().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -298,6 +300,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AvroConfig().with { $0.writeMetadata = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

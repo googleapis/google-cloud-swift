@@ -57,6 +57,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Type_().with { $0.bytesType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -252,6 +253,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Bytes().with { $0.encoding = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -308,6 +310,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Encoding().with { $0.raw = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -386,6 +389,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Raw().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -508,6 +512,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = String().with { $0.encoding = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -564,6 +569,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Encoding().with { $0.utf8Raw = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -654,6 +660,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Utf8Raw().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -734,6 +741,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Utf8Bytes().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -859,6 +867,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Int64().with { $0.encoding = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -915,6 +924,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Encoding().with { $0.bigEndianBytes = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1014,6 +1024,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = BigEndianBytes().with { $0.bytesType = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1100,6 +1111,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = OrderedCodeBytes().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1222,6 +1234,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Bool().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1291,6 +1304,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Float32().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1360,6 +1374,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Float64().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1432,6 +1447,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Timestamp().with { $0.encoding = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1488,6 +1504,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Encoding().with { $0.unixMicrosInt64 = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1618,6 +1635,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Date().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1695,6 +1713,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Struct().with { $0.fields = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1763,6 +1782,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Field().with { $0.fieldName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1847,6 +1867,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Encoding().with { $0.singleton = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1942,6 +1963,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Singleton().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2029,6 +2051,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = DelimitedBytes().with { $0.delimiter = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2145,6 +2168,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = OrderedCodeBytes().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2278,6 +2302,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Proto().with { $0.schemaBundleId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2368,6 +2393,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Enum().with { $0.schemaBundleId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2454,6 +2480,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Array().with { $0.elementType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2542,6 +2569,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Map().with { $0.keyType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2639,6 +2667,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Aggregate().with { $0.inputType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2753,6 +2782,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Sum().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2823,6 +2853,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Max().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2893,6 +2924,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Min().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2967,6 +2999,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = HyperLogLogPlusPlusUniqueCount().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

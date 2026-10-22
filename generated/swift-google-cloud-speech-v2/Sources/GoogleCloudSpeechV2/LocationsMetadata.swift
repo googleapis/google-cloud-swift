@@ -41,6 +41,7 @@ public struct LocationsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = LocationsMetadata().with { $0.languages = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

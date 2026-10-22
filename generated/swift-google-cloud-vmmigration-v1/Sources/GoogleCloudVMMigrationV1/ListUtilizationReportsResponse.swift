@@ -44,6 +44,7 @@ public struct ListUtilizationReportsResponse: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = ListUtilizationReportsResponse().with { $0.utilizationReports = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

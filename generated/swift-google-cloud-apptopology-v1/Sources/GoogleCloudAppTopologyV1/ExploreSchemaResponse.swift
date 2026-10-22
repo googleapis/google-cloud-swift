@@ -54,6 +54,7 @@ public struct ExploreSchemaResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ExploreSchemaResponse().with { $0.nodeTypes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

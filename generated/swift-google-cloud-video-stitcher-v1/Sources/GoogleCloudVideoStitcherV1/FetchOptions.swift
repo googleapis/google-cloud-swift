@@ -39,6 +39,7 @@ public struct FetchOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FetchOptions().with { $0.headers = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

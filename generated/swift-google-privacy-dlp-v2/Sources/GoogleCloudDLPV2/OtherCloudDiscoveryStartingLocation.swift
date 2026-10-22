@@ -36,6 +36,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = OtherCloudDiscoveryStartingLocation().with { $0.awsLocation = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -113,6 +114,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
     /// ```
     /// let value = AwsDiscoveryStartingLocation().with { $0.accountId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

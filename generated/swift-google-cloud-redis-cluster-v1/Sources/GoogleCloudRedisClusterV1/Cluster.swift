@@ -138,6 +138,12 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. Input only. Rotate the server certificates.
   public var rotateServerCertificate: Swift.Bool? = nil
 
+  /// Optional. The ACL policy to be applied to the cluster.
+  public var aclPolicy: Swift.String = Swift.String()
+
+  /// Output only. Details of the applied ACL policy.
+  public var aclPolicyInfo: AclPolicyInfo? = nil
+
   /// The source to import from.
   public var importSources: ImportSourcesOneOf? = nil
 
@@ -153,6 +159,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Cluster().with { $0.gcsSource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -201,6 +208,8 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     static let serverCaMode = CodingKeys(stringValue: "serverCaMode")
     static let serverCaPool = CodingKeys(stringValue: "serverCaPool")
     static let rotateServerCertificate = CodingKeys(stringValue: "rotateServerCertificate")
+    static let aclPolicy = CodingKeys(stringValue: "aclPolicy")
+    static let aclPolicyInfo = CodingKeys(stringValue: "aclPolicyInfo")
 
     static let _knownKeys: Set<Swift.String> = [
       "gcsSource",
@@ -237,6 +246,8 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       "serverCaMode",
       "serverCaPool",
       "rotateServerCertificate",
+      "aclPolicy",
+      "aclPolicyInfo",
     ]
   }
 
@@ -320,6 +331,10 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     self.serverCaPool = try container.decodeIfPresent(Swift.String.self, forKey: .serverCaPool)
     self.rotateServerCertificate = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .rotateServerCertificate)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .aclPolicy) {
+      self.aclPolicy = value
+    }
+    self.aclPolicyInfo = try container.decodeIfPresent(AclPolicyInfo.self, forKey: .aclPolicyInfo)
 
     var importSources: ImportSourcesOneOf? = nil
     let importSourcesCheckAndSet = {
@@ -385,6 +400,8 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.serverCaMode, forKey: .serverCaMode)
     try container.encodeIfPresent(self.serverCaPool, forKey: .serverCaPool)
     try container.encodeIfPresent(self.rotateServerCertificate, forKey: .rotateServerCertificate)
+    try container.encode(self.aclPolicy, forKey: .aclPolicy)
+    try container.encodeIfPresent(self.aclPolicyInfo, forKey: .aclPolicyInfo)
 
     if let choice = self.importSources {
       switch choice {
@@ -417,6 +434,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StateInfo().with { $0.updateInfo = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -497,6 +515,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = UpdateInfo().with { $0.targetShardCount = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -609,6 +628,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GcsBackupSource().with { $0.uris = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -693,6 +713,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ManagedBackupSource().with { $0.backup = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

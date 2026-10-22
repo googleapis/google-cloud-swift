@@ -48,6 +48,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Rule().with { $0.boostAction = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -251,6 +252,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BoostAction().with { $0.boost = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -368,6 +370,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FilterAction().with { $0.filter = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -455,6 +458,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RedirectAction().with { $0.redirectUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -540,6 +544,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TwowaySynonymsAction().with { $0.synonyms = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -634,6 +639,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = OnewaySynonymsAction().with { $0.queryTerms = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -736,6 +742,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DoNotAssociateAction().with { $0.queryTerms = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -839,6 +846,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ReplacementAction().with { $0.queryTerms = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -931,6 +939,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IgnoreAction().with { $0.ignoreTerms = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1042,6 +1051,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ForceReturnFacetAction().with { $0.facetPositionAdjustments = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1109,6 +1119,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = FacetPositionAdjustment().with { $0.attributeName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1240,6 +1251,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RemoveFacetAction().with { $0.attributeNames = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1358,6 +1370,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PinAction().with { $0.pinMap = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

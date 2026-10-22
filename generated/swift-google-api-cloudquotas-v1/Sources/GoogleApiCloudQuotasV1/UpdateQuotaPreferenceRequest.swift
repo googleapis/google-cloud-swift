@@ -55,6 +55,7 @@ public struct UpdateQuotaPreferenceRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = UpdateQuotaPreferenceRequest().with { $0.updateMask = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

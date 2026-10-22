@@ -40,6 +40,7 @@ public struct ListApprovalRequestsResponse: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = ListApprovalRequestsResponse().with { $0.approvalRequests = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

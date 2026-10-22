@@ -43,6 +43,7 @@ public struct UpdateLogicalViewRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = UpdateLogicalViewRequest().with { $0.logicalView = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

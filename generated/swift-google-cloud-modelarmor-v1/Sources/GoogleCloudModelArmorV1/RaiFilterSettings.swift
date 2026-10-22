@@ -36,6 +36,7 @@ public struct RaiFilterSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RaiFilterSettings().with { $0.raiFilters = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -102,6 +103,7 @@ public struct RaiFilterSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RaiFilter().with { $0.filterType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

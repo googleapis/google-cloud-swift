@@ -42,6 +42,7 @@ public struct CustomerConstraints: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CustomerConstraints().with { $0.allowedRegions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

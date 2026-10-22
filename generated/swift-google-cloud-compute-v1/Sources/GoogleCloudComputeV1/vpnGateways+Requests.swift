@@ -138,6 +138,7 @@
       /// ```
       /// let value = AggregatedListRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -266,6 +267,7 @@
       /// ```
       /// let value = DeleteRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -369,6 +371,7 @@
       /// ```
       /// let value = GetRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -468,6 +471,7 @@
       /// ```
       /// let value = GetStatusRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -584,6 +588,7 @@
       /// ```
       /// let value = InsertRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -767,6 +772,7 @@
       /// ```
       /// let value = ListRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -896,6 +902,7 @@
       /// ```
       /// let value = SetLabelsRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1008,6 +1015,7 @@
       /// ```
       /// let value = TestIamPermissionsRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

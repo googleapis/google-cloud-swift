@@ -27,6 +27,7 @@ public struct RequestOptions: Sendable {
   /// ```
   /// let options = RequestOptions().with { $0.attemptTimeout = .seconds(3) }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -55,7 +56,7 @@ public struct RequestOptions: Sendable {
   /// idempotency depends on the request parameters. And in some services, `POST` or `DELETE`
   /// requests are idempotent though in general they might not be. Use this setting to override the
   /// default.
-  public var idempotency: Bool? = nil
+  public var idempotent: Bool? = nil
 
   /// Overrides the default retry policy.
   ///
@@ -114,5 +115,5 @@ public struct RequestOptions: Sendable {
   /// `x-goog-request-params`) and authentication headers (such as `authorization` and `x-goog-api-key`,
   /// or any header returned by the client's credentials) take precedence and cannot be overridden via
   /// `headers`.
-  public var headers: [String: String] = [:]
+  public var headers: HTTPHeaders = HTTPHeaders()
 }

@@ -87,6 +87,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Constraint().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -229,6 +230,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ListConstraint().with { $0.supportsIn = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -339,6 +341,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CustomConstraintDefinition().with { $0.resourceTypes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -445,6 +448,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Parameter().with { $0.type = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -529,6 +533,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Metadata().with { $0.description = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1049,6 +1054,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BooleanConstraint().with { $0.customConstraintDefinition = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

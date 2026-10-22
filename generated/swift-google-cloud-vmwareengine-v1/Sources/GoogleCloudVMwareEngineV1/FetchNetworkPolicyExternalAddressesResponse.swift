@@ -46,6 +46,7 @@ public struct FetchNetworkPolicyExternalAddressesResponse: Codable, Equatable, G
   /// ```
   /// let value = FetchNetworkPolicyExternalAddressesResponse().with { $0.externalAddresses = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

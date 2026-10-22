@@ -70,6 +70,7 @@ public struct Billing: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Billing().with { $0.consumerDestinations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -141,6 +142,7 @@ public struct Billing: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BillingDestination().with { $0.monitoredResource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

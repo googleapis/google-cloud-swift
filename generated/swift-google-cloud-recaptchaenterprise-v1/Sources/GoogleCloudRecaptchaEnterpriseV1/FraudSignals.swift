@@ -40,6 +40,7 @@ public struct FraudSignals: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FraudSignals().with { $0.userSignals = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -107,6 +108,7 @@ public struct FraudSignals: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UserSignals().with { $0.activeDaysLowerBound = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -193,6 +195,7 @@ public struct FraudSignals: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CardSignals().with { $0.cardLabels = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

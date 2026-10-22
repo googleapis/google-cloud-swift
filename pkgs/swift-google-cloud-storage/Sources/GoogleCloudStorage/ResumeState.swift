@@ -62,6 +62,7 @@ public struct ResumeState<Details: Sendable>: Sendable {
   }
 
   /// Mutates `self` using a builder closure and returns the modified state.
+  @inlinable
   public func with(_ mutate: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
     try mutate(&copy)

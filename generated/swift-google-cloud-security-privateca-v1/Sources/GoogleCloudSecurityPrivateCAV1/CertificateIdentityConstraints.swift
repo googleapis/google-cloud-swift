@@ -66,6 +66,7 @@ public struct CertificateIdentityConstraints: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = CertificateIdentityConstraints().with { $0.celExpression = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -45,6 +45,7 @@ public struct ListCertificateMapEntriesResponse: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = ListCertificateMapEntriesResponse().with { $0.certificateMapEntries = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

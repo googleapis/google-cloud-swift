@@ -24,22 +24,22 @@ public struct ListStreamsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The parent that owns the collection of streams.
   public var parent: Swift.String = Swift.String()
 
-  /// Maximum number of streams to return.
+  /// Optional. Maximum number of streams to return.
   /// If unspecified, at most 50 streams will  be returned. The maximum
   /// value is 1000; values above 1000 will be coerced to 1000.
   public var pageSize: Swift.Int32 = Swift.Int32()
 
-  /// Page token received from a previous `ListStreams` call.
+  /// Optional. Page token received from a previous `ListStreams` call.
   /// Provide this to retrieve the subsequent page.
   ///
   /// When paginating, all other parameters provided to `ListStreams`
   /// must match the call that provided the page token.
   public var pageToken: Swift.String = Swift.String()
 
-  /// Filter request.
+  /// Optional. Filter request.
   public var filter: Swift.String = Swift.String()
 
-  /// Order by fields for the result.
+  /// Optional. Order by fields for the result.
   public var orderBy: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -54,6 +54,7 @@ public struct ListStreamsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListStreamsRequest().with { $0.parent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

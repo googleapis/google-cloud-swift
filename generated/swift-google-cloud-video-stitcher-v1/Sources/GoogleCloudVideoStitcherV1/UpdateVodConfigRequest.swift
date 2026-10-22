@@ -42,6 +42,7 @@ public struct UpdateVodConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = UpdateVodConfigRequest().with { $0.vodConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

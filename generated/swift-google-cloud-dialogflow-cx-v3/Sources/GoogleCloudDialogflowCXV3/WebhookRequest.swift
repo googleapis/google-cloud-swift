@@ -87,6 +87,7 @@
     /// ```
     /// let value = WebhookRequest().with { $0.detectIntentResponseId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -252,6 +253,7 @@
       /// ```
       /// let value = FulfillmentInfo().with { $0.tag = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -352,6 +354,7 @@
       /// ```
       /// let value = IntentInfo().with { $0.lastMatchedIntent = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -434,6 +437,7 @@
         /// ```
         /// let value = IntentParameterValue().with { $0.originalValue = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -547,6 +551,7 @@
       /// ```
       /// let value = SentimentAnalysisResult().with { $0.score = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

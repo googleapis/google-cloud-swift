@@ -35,6 +35,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NotificationConfig().with { $0.pubsubNotification = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -112,6 +113,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CloudPubSubNotificationConfig().with { $0.pubsubSubscription = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -39,6 +39,7 @@ public struct BatchingConfigProto: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BatchingConfigProto().with { $0.thresholds = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

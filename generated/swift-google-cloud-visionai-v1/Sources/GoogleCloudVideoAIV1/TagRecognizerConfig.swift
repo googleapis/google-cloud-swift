@@ -40,6 +40,7 @@ public struct TagRecognizerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TagRecognizerConfig().with { $0.entityDetectionConfidenceThreshold = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

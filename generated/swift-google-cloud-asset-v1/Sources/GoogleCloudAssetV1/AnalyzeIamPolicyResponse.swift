@@ -56,6 +56,7 @@ public struct AnalyzeIamPolicyResponse: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = AnalyzeIamPolicyResponse().with { $0.mainAnalysis = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -146,6 +147,7 @@ public struct AnalyzeIamPolicyResponse: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = IamPolicyAnalysis().with { $0.analysisQuery = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

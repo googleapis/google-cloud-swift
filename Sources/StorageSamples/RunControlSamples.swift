@@ -16,24 +16,24 @@ import Foundation
 import GoogleCloudStorage
 
 public func runControlSamples(
-  client: StorageControlClient, projectId: String, zone: String, bucketNames: inout [String]
+  client: StorageControlClient, projectId: String, bucketNames: inout [String]
 ) async throws {
   let id = randomBucketId()
   let name = "projects/_/buckets/\(id)"
   bucketNames.append(name)
 
-  let _ = try await client.createBucket(
+  _ = try await client.createBucket(
     request: .init().with {
       $0.parent = "projects/_"
       $0.bucketId = id
-      $0.bucket = .init().with {
-        $0.project = "projects/\(projectId)"
-        $0.hierarchicalNamespace = .init().with {
-          $0.enabled = true
+      $0.bucket = .init().with { bucket in
+        bucket.project = "projects/\(projectId)"
+        bucket.hierarchicalNamespace = .init().with { hns in
+          hns.enabled = true
         }
-        $0.iamConfig = .init().with {
-          $0.uniformBucketLevelAccess = .init().with {
-            $0.enabled = true
+        bucket.iamConfig = .init().with { iamConfig in
+          iamConfig.uniformBucketLevelAccess = .init().with { ubla in
+            ubla.enabled = true
           }
         }
       }
@@ -50,6 +50,38 @@ public func runControlSamples(
   try await managedFolderList(client: client, bucketId: id)
   print("running managedFolderDelete() sample")
   try await managedFolderDelete(client: client, bucketId: id)
+}
+
+/// Runs Anywhere Cache control-plane samples.
+///
+/// Provisioning and updating an Anywhere Cache is a long-running operation that can take
+/// 15–60+ minutes and prevents bucket deletion for an hour after disablement, so these samples
+/// are separated from `runControlSamples`.
+public func runAnywhereCacheSamples(
+  client: StorageControlClient, projectId: String, zone: String, bucketNames: inout [String]
+) async throws {
+  let id = randomBucketId()
+  let name = "projects/_/buckets/\(id)"
+  bucketNames.append(name)
+
+  _ = try await client.createBucket(
+    request: .init().with {
+      $0.parent = "projects/_"
+      $0.bucketId = id
+      $0.bucket = .init().with { bucket in
+        bucket.project = "projects/\(projectId)"
+        bucket.hierarchicalNamespace = .init().with { hns in
+          hns.enabled = true
+        }
+        bucket.iamConfig = .init().with { iamConfig in
+          iamConfig.uniformBucketLevelAccess = .init().with { ubla in
+            ubla.enabled = true
+          }
+        }
+      }
+    }
+  )
+
   print("running listAnywhereCaches() sample")
   try await listAnywhereCaches(client: client, bucketId: id)
   print("running createAnywhereCache() sample")

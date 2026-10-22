@@ -49,6 +49,7 @@
     /// ```
     /// let value = SearchDataItemsResponse().with { $0.dataItemViews = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -50,6 +50,7 @@
     /// ```
     /// let value = KnowledgeAssistAnswer().with { $0.suggestedQuery = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -126,6 +127,7 @@
       /// ```
       /// let value = SuggestedQuery().with { $0.queryText = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -200,6 +202,7 @@
         /// ```
         /// let value = SearchContext().with { $0.key = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -313,6 +316,7 @@
       /// ```
       /// let value = AdditionalSuggestedQueryResult().with { $0.suggestedQuery = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -402,6 +406,7 @@
       /// ```
       /// let value = KnowledgeAnswer().with { $0.answerText = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -512,6 +517,7 @@
         /// ```
         /// let value = FaqSource().with { $0.question = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -593,6 +599,7 @@
         /// ```
         /// let value = GenerativeSource().with { $0.snippets = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -661,6 +668,7 @@
           /// ```
           /// let value = Snippet().with { $0.uri = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -784,6 +792,7 @@
         /// ```
         /// let value = EventSource().with { $0.event = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

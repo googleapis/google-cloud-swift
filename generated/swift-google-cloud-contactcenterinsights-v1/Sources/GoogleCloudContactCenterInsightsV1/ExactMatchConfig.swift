@@ -36,6 +36,7 @@ public struct ExactMatchConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ExactMatchConfig().with { $0.caseSensitive = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

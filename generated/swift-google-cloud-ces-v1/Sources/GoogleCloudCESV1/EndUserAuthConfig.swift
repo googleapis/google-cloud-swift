@@ -38,6 +38,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = EndUserAuthConfig().with { $0.oauth2AuthCodeConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -125,6 +126,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Oauth2AuthCodeConfig().with { $0.oauthToken = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -213,6 +215,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Oauth2JwtBearerConfig().with { $0.issuer = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

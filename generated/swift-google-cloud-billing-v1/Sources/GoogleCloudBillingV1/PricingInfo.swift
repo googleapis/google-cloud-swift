@@ -59,6 +59,7 @@ public struct PricingInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PricingInfo().with { $0.effectiveTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

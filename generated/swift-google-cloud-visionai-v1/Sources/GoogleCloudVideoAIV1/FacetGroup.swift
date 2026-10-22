@@ -54,6 +54,7 @@ public struct FacetGroup: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FacetGroup().with { $0.facetId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

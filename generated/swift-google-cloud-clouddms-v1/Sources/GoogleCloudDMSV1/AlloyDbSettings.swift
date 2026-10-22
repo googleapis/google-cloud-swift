@@ -57,6 +57,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AlloyDbSettings().with { $0.initialUser = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -143,6 +144,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UserPassword().with { $0.user = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -252,6 +254,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PrimaryInstanceSettings().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -336,6 +339,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = MachineConfig().with { $0.cpuCount = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -441,6 +445,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EncryptionConfig().with { $0.kmsKeyName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

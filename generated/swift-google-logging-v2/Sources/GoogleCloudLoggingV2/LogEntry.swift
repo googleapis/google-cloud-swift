@@ -188,6 +188,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = LogEntry().with { $0.logName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

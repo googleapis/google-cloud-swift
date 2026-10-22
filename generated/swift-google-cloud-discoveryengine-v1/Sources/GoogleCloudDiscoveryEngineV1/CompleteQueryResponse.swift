@@ -48,6 +48,7 @@
     /// ```
     /// let value = CompleteQueryResponse().with { $0.querySuggestions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -119,6 +120,7 @@
       /// ```
       /// let value = QuerySuggestion().with { $0.suggestion = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

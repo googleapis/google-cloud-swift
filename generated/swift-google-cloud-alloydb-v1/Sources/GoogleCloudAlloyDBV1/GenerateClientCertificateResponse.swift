@@ -40,6 +40,7 @@ public struct GenerateClientCertificateResponse: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = GenerateClientCertificateResponse().with { $0.pemCertificateChain = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

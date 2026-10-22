@@ -75,6 +75,7 @@ public struct SecurityBulletinEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SecurityBulletinEvent().with { $0.resourceTypeAffected = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

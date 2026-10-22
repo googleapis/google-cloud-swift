@@ -58,6 +58,7 @@ public struct ArticleSuggestionData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ArticleSuggestionData().with { $0.title = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

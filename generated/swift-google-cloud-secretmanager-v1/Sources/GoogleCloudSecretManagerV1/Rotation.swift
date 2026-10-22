@@ -77,6 +77,7 @@ public struct Rotation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Rotation().with { $0.nextRotationTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -152,6 +153,7 @@ public struct Rotation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ManagedRotationStatus().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -76,6 +76,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Repository().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -193,6 +194,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = URIs().with { $0.html = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -417,6 +419,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InitialConfig().with { $0.defaultBranch = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -514,6 +517,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ScanConfig().with { $0.secretScanConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -573,6 +577,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = SecretScanConfig().with { $0.enabled = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

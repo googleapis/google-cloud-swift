@@ -45,6 +45,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = InstanceFlexibilityPolicy().with { $0.provisioningModelMix = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -133,6 +134,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = ProvisioningModelMix().with { $0.standardCapacityBase = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -232,6 +234,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = InstanceSelection().with { $0.machineTypes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -326,6 +329,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = InstanceSelectionResult().with { $0.machineType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

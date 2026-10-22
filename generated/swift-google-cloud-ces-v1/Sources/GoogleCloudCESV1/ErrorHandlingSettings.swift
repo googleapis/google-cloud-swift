@@ -44,6 +44,7 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ErrorHandlingSettings().with { $0.errorHandlingStrategy = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -121,6 +122,7 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FallbackResponseConfig().with { $0.customFallbackMessages = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -217,6 +219,7 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EndSessionConfig().with { $0.escalateSession = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

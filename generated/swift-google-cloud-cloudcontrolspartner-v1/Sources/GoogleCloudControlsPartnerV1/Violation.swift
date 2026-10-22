@@ -71,6 +71,7 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Violation().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -189,6 +190,7 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Remediation().with { $0.instructions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -262,6 +264,7 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Instructions().with { $0.gcloudInstructions = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -329,6 +332,7 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Gcloud().with { $0.gcloudCommands = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -430,6 +434,7 @@ public struct Violation: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Console().with { $0.consoleUris = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

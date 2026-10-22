@@ -75,6 +75,7 @@ public struct TcpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TcpRoute().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -186,6 +187,7 @@ public struct TcpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RouteRule().with { $0.matches = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -281,6 +283,7 @@ public struct TcpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RouteMatch().with { $0.address = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -380,6 +383,7 @@ public struct TcpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RouteAction().with { $0.destinations = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -488,6 +492,7 @@ public struct TcpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RouteDestination().with { $0.serviceName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

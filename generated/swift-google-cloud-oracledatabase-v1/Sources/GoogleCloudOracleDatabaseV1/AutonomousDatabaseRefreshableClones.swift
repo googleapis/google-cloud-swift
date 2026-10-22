@@ -36,6 +36,7 @@ public struct AutonomousDatabaseRefreshableClones: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = AutonomousDatabaseRefreshableClones().with { $0.autonomousDatabaseRefreshableClones = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

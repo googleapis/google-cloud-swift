@@ -41,6 +41,7 @@ public struct JobGetQueryResultsResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = JobGetQueryResultsResponse().with { $0.totalResults = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

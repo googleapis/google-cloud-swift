@@ -45,6 +45,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Manifest().with { $0.manifestLocation = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

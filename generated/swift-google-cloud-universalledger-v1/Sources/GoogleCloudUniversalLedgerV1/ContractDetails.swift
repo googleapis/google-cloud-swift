@@ -46,6 +46,7 @@ public struct ContractDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ContractDetails().with { $0.ownerId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

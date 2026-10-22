@@ -36,6 +36,7 @@ public struct DataMaskingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataMaskingPolicy().with { $0.predefinedExpression = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

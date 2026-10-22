@@ -43,6 +43,7 @@ public struct FaceAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FaceAnnotation().with { $0.thumbnail = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

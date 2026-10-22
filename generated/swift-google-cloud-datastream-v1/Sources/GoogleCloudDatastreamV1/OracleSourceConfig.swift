@@ -17,14 +17,14 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// Oracle data source configuration
+/// Configuration for syncing data from an Oracle source.
 public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Oracle objects to include in the stream.
+  /// The Oracle objects to include in the stream.
   public var includeObjects: OracleRdbms? = nil
 
-  /// Oracle objects to exclude from the stream.
+  /// The Oracle objects to exclude from the stream.
   public var excludeObjects: OracleRdbms? = nil
 
   /// Maximum number of concurrent CDC tasks. The number should be non-negative.
@@ -53,6 +53,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OracleSourceConfig().with { $0.includeObjects = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -193,6 +194,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DropLargeObjects().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -261,6 +263,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StreamLargeObjects().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -329,6 +332,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LogMiner().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -400,6 +404,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BinaryLogParser().with { $0.oracleAsmLogFileAccess = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -484,6 +489,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = OracleAsmLogFileAccess().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -559,6 +565,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = LogFileDirectories().with { $0.onlineLogDirectory = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

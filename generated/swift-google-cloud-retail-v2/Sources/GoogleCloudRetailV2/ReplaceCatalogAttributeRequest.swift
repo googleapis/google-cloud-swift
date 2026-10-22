@@ -59,6 +59,7 @@ public struct ReplaceCatalogAttributeRequest: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = ReplaceCatalogAttributeRequest().with { $0.attributesConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

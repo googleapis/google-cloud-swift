@@ -339,9 +339,10 @@ public struct ReadObjectOptions: Sendable {
   public init() {}
 
   /// Builder pattern helper to modify configuration in place.
-  public func with(_ config: (inout Self) -> Void) -> Self {
+  @inlinable
+  public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
-    config(&copy)
+    try config(&copy)
     return copy
   }
 }

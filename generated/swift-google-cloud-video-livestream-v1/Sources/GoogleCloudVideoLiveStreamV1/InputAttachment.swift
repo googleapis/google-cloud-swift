@@ -45,6 +45,7 @@ public struct InputAttachment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = InputAttachment().with { $0.key = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -118,6 +119,7 @@ public struct InputAttachment: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AutomaticFailover().with { $0.inputKeys = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

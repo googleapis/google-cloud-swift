@@ -40,6 +40,7 @@ public struct ImportError: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ImportError().with { $0.errorDetails = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

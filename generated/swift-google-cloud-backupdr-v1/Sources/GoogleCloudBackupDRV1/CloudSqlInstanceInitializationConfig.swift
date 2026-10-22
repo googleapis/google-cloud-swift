@@ -38,6 +38,7 @@ public struct CloudSqlInstanceInitializationConfig: Codable, Equatable, GoogleWK
   /// ```
   /// let value = CloudSqlInstanceInitializationConfig().with { $0.edition = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

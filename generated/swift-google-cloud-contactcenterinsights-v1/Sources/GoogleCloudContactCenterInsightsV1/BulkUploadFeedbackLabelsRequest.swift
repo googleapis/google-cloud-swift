@@ -45,6 +45,7 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = BulkUploadFeedbackLabelsRequest().with { $0.gcsSource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -139,6 +140,7 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = GcsSource().with { $0.format = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

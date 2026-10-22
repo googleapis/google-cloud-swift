@@ -36,6 +36,7 @@ public struct FetchFileDiffResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FetchFileDiffResponse().with { $0.formattedDiff = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

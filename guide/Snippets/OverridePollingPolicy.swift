@@ -38,11 +38,10 @@ func sample(projectId: String, location: String, workflowId: String) async throw
         .withTimeLimit(.seconds(5 * 60))
         .withAttemptLimit(20)
       $0.pollingBackoffPolicy = ExponentialBackoff(
-        clamping: ExponentialBackoffConfig().with {
-          $0.initialDelay = .milliseconds(500)
-          $0.maximumDelay = .seconds(10)
-          $0.scaling = 1.5
-        })
+        clamping: .milliseconds(500),
+        maximumDelay: .seconds(10),
+        scaling: 1.5
+      )
     })
   try await fasterClient.deleteWorkflowPollingUntilDone(
     name: "projects/\(projectId)/locations/\(location)/workflows/\(workflowId)"
@@ -52,10 +51,9 @@ func sample(projectId: String, location: String, workflowId: String) async throw
   let options = RequestOptions().with {
     $0.pollingErrorPolicy = BasePollingErrorPolicy.unbounded().withTimeLimit(.seconds(60))
     $0.pollingBackoffPolicy = ExponentialBackoff(
-      clamping: ExponentialBackoffConfig().with {
-        $0.initialDelay = .milliseconds(250)
-        $0.maximumDelay = .seconds(5)
-      })
+      clamping: .milliseconds(250),
+      maximumDelay: .seconds(5)
+    )
   }
   try await client.deleteWorkflowPollingUntilDone(
     request: DeleteWorkflowRequest().with {

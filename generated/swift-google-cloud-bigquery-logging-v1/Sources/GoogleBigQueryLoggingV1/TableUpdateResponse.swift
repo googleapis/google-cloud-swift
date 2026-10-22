@@ -36,6 +36,7 @@ public struct TableUpdateResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TableUpdateResponse().with { $0.resource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

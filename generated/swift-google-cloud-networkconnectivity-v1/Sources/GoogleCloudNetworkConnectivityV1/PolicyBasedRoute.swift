@@ -85,6 +85,7 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PolicyBasedRoute().with { $0.virtualMachine = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -270,6 +271,7 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VirtualMachine().with { $0.tags = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -351,6 +353,7 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InterconnectAttachment().with { $0.region = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -446,6 +449,7 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Filter().with { $0.ipProtocol = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -666,6 +670,7 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Warnings().with { $0.code = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

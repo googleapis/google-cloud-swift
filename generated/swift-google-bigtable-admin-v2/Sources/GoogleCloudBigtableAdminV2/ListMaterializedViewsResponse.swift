@@ -41,6 +41,7 @@ public struct ListMaterializedViewsResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ListMaterializedViewsResponse().with { $0.materializedViews = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

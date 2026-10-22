@@ -68,6 +68,7 @@ public struct ExternalProtectionLevelOptions: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = ExternalProtectionLevelOptions().with { $0.externalKeyUri = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

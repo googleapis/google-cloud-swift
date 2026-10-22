@@ -38,6 +38,7 @@ public struct LocationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = LocationMetadata().with { $0.supportedHiveMetastoreVersions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -103,6 +104,7 @@ public struct LocationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = HiveMetastoreVersion().with { $0.version = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

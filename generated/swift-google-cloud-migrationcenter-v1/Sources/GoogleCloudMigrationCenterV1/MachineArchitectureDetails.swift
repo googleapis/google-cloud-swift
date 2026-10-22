@@ -59,6 +59,7 @@ public struct MachineArchitectureDetails: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = MachineArchitectureDetails().with { $0.cpuArchitecture = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

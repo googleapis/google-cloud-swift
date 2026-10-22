@@ -88,6 +88,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FleetPackage().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -200,6 +201,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ResourceBundleSelector().with { $0.resourceBundle = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -324,6 +326,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ResourceBundleTag().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -428,6 +431,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CloudBuildRepository().with { $0.variantsPattern = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -559,6 +563,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Target().with { $0.fleet = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -663,6 +668,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VariantSelector().with { $0.variantNameTemplate = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

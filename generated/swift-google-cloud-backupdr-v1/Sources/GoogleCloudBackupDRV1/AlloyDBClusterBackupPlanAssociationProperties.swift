@@ -37,6 +37,7 @@ public struct AlloyDBClusterBackupPlanAssociationProperties: Codable, Equatable,
   /// ```
   /// let value = AlloyDBClusterBackupPlanAssociationProperties().with { $0.clusterUid = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

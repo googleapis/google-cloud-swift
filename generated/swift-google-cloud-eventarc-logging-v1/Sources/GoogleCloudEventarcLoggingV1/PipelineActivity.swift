@@ -47,6 +47,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PipelineActivity().with { $0.messageUid = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -187,6 +188,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MessageReceived().with { $0.details = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -282,6 +284,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MessageTransformed().with { $0.details = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -377,6 +380,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MessageConverted().with { $0.details = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -485,6 +489,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MessageRequestDispatched().with { $0.details = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -592,6 +597,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MessageResponseReceived().with { $0.details = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

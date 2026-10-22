@@ -61,6 +61,7 @@ public struct CreateRapidCacheMetadata: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = CreateRapidCacheMetadata().with { $0.commonMetadata = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

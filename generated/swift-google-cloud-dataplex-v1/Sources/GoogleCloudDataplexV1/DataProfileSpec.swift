@@ -70,6 +70,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataProfileSpec().with { $0.samplingPercent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -162,6 +163,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PostScanActions().with { $0.bigqueryExport = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -220,6 +222,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BigQueryExport().with { $0.resultsTable = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -328,6 +331,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SelectedFields().with { $0.fieldNames = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

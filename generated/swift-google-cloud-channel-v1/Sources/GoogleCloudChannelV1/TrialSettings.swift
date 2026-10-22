@@ -44,6 +44,7 @@ public struct TrialSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TrialSettings().with { $0.trial = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

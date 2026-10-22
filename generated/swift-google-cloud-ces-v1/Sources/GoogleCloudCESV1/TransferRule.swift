@@ -44,6 +44,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TransferRule().with { $0.deterministicTransfer = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -143,6 +144,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DeterministicTransfer().with { $0.expressionCondition = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -262,6 +264,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DisablePlannerTransfer().with { $0.expressionCondition = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

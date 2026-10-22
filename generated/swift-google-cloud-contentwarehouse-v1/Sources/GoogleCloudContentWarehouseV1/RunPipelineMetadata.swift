@@ -49,6 +49,7 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RunPipelineMetadata().with { $0.totalFileCount = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -172,6 +173,7 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GcsIngestPipelineMetadata().with { $0.inputPath = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -258,6 +260,7 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ExportToCdwPipelineMetadata().with { $0.documents = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -354,6 +357,7 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ProcessWithDocAiPipelineMetadata().with { $0.documents = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -441,6 +445,7 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IndividualDocumentStatus().with { $0.documentId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -104,6 +104,7 @@ public struct Workstation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Workstation().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -267,6 +268,7 @@ public struct Workstation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WorkstationPersistentDirectory().with { $0.mountPath = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -353,6 +355,7 @@ public struct Workstation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RuntimeHost().with { $0.gceInstanceHost = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -436,6 +439,7 @@ public struct Workstation: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GceInstanceHost().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

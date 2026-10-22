@@ -48,6 +48,7 @@ public struct ImportMappingRulesRequest: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = ImportMappingRulesRequest().with { $0.parent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -130,6 +131,7 @@ public struct ImportMappingRulesRequest: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = RulesFile().with { $0.rulesSourceFilename = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -21,7 +21,7 @@ import Foundation
 public struct MysqlDatabase: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Database name.
+  /// The database name.
   public var database: Swift.String = Swift.String()
 
   /// Tables in the database.
@@ -39,6 +39,7 @@ public struct MysqlDatabase: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MysqlDatabase().with { $0.database = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

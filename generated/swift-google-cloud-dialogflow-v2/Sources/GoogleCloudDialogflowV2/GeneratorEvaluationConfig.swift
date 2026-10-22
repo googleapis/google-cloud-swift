@@ -46,6 +46,7 @@
     /// ```
     /// let value = GeneratorEvaluationConfig().with { $0.inputDataConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -141,6 +142,7 @@
       /// ```
       /// let value = AgentAssistInputDataConfig().with { $0.startTime = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -226,6 +228,7 @@
       /// ```
       /// let value = DatasetInputDataConfig().with { $0.dataset = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -333,6 +336,7 @@
       /// ```
       /// let value = InputDataConfig().with { $0.inputDataSourceType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -644,6 +648,7 @@
       /// ```
       /// let value = SummarizationConfig().with { $0.enableAccuracyEvaluation = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

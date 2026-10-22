@@ -36,6 +36,7 @@ public struct ComputeEngineMigrationTarget: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = ComputeEngineMigrationTarget().with { $0.shape = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

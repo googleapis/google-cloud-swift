@@ -61,6 +61,7 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ConnectionProfile().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -88,6 +89,12 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     static let sqlServerProfile = CodingKeys(stringValue: "sqlServerProfile")
     static let salesforceProfile = CodingKeys(stringValue: "salesforceProfile")
     static let mongodbProfile = CodingKeys(stringValue: "mongodbProfile")
+    static let spannerProfile = CodingKeys(stringValue: "spannerProfile")
+    static let dataverseProfile = CodingKeys(stringValue: "dataverseProfile")
+    static let salesforceMarketingCloudProfile = CodingKeys(
+      stringValue: "salesforceMarketingCloudProfile")
+    static let serviceNowProfile = CodingKeys(stringValue: "serviceNowProfile")
+    static let workdayProfile = CodingKeys(stringValue: "workdayProfile")
     static let staticServiceIpConnectivity = CodingKeys(stringValue: "staticServiceIpConnectivity")
     static let forwardSshConnectivity = CodingKeys(stringValue: "forwardSshConnectivity")
     static let privateConnectivity = CodingKeys(stringValue: "privateConnectivity")
@@ -108,6 +115,11 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       "sqlServerProfile",
       "salesforceProfile",
       "mongodbProfile",
+      "spannerProfile",
+      "dataverseProfile",
+      "salesforceMarketingCloudProfile",
+      "serviceNowProfile",
+      "workdayProfile",
       "staticServiceIpConnectivity",
       "forwardSshConnectivity",
       "privateConnectivity",
@@ -178,6 +190,31 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try profileCheckAndSet(.mongodbProfile(mongodbProfile))
     }
+    if let spannerProfile = try container.decodeIfPresent(
+      SpannerProfile.self, forKey: .spannerProfile)
+    {
+      try profileCheckAndSet(.spannerProfile(spannerProfile))
+    }
+    if let dataverseProfile = try container.decodeIfPresent(
+      DataverseProfile.self, forKey: .dataverseProfile)
+    {
+      try profileCheckAndSet(.dataverseProfile(dataverseProfile))
+    }
+    if let salesforceMarketingCloudProfile = try container.decodeIfPresent(
+      SalesforceMarketingCloudProfile.self, forKey: .salesforceMarketingCloudProfile)
+    {
+      try profileCheckAndSet(.salesforceMarketingCloudProfile(salesforceMarketingCloudProfile))
+    }
+    if let serviceNowProfile = try container.decodeIfPresent(
+      ServiceNowProfile.self, forKey: .serviceNowProfile)
+    {
+      try profileCheckAndSet(.serviceNowProfile(serviceNowProfile))
+    }
+    if let workdayProfile = try container.decodeIfPresent(
+      WorkdayProfile.self, forKey: .workdayProfile)
+    {
+      try profileCheckAndSet(.workdayProfile(workdayProfile))
+    }
     self.profile = profile
 
     var connectivity: ConnectivityOneOf? = nil
@@ -240,6 +277,16 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(value, forKey: .salesforceProfile)
       case .mongodbProfile(let value):
         try container.encode(value, forKey: .mongodbProfile)
+      case .spannerProfile(let value):
+        try container.encode(value, forKey: .spannerProfile)
+      case .dataverseProfile(let value):
+        try container.encode(value, forKey: .dataverseProfile)
+      case .salesforceMarketingCloudProfile(let value):
+        try container.encode(value, forKey: .salesforceMarketingCloudProfile)
+      case .serviceNowProfile(let value):
+        try container.encode(value, forKey: .serviceNowProfile)
+      case .workdayProfile(let value):
+        try container.encode(value, forKey: .workdayProfile)
       }
     }
 
@@ -260,22 +307,32 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Connection configuration for the ConnectionProfile.
   public enum ProfileOneOf: Codable, Equatable, Sendable {
-    /// Oracle ConnectionProfile configuration.
+    /// Profile for connecting to an Oracle source.
     indirect case oracleProfile(OracleProfile)
-    /// Cloud Storage ConnectionProfile configuration.
+    /// Profile for connecting to a Cloud Storage destination.
     indirect case gcsProfile(GcsProfile)
-    /// MySQL ConnectionProfile configuration.
+    /// Profile for connecting to a MySQL source.
     indirect case mysqlProfile(MysqlProfile)
-    /// BigQuery Connection Profile configuration.
+    /// Profile for connecting to a BigQuery destination.
     indirect case bigqueryProfile(BigQueryProfile)
-    /// PostgreSQL Connection Profile configuration.
+    /// Profile for connecting to a PostgreSQL source.
     indirect case postgresqlProfile(PostgresqlProfile)
-    /// SQLServer Connection Profile configuration.
+    /// Profile for connecting to a SQLServer source.
     indirect case sqlServerProfile(SqlServerProfile)
-    /// Salesforce Connection Profile configuration.
+    /// Profile for connecting to a Salesforce source.
     indirect case salesforceProfile(SalesforceProfile)
-    /// MongoDB Connection Profile configuration.
+    /// Profile for connecting to a MongoDB source.
     indirect case mongodbProfile(MongodbProfile)
+    /// Profile for connecting to a Spanner source.
+    indirect case spannerProfile(SpannerProfile)
+    /// Profile for connecting to a Dataverse source.
+    indirect case dataverseProfile(DataverseProfile)
+    /// Profile for connecting to a Salesforce Marketing Cloud source.
+    indirect case salesforceMarketingCloudProfile(SalesforceMarketingCloudProfile)
+    /// Profile for connecting to a ServiceNow source.
+    indirect case serviceNowProfile(ServiceNowProfile)
+    /// Optional. Profile for connecting to a Workday source.
+    indirect case workdayProfile(WorkdayProfile)
   }
 
   /// Connectivity options used to establish a connection to the profile.

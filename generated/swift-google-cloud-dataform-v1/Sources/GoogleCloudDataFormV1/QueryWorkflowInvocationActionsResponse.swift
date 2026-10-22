@@ -41,6 +41,7 @@ public struct QueryWorkflowInvocationActionsResponse: Codable, Equatable, Google
   /// ```
   /// let value = QueryWorkflowInvocationActionsResponse().with { $0.workflowInvocationActions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -48,13 +48,27 @@ import Testing
 
   @Test(.enabled(if: Self.enabled())) func runControlSamples() async throws {
     let projectId = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]!
+    let client = try Self.makeClient()
+    var bucketNames: [String] = []
+    do {
+      try await StorageSamples.runControlSamples(
+        client: client, projectId: projectId, bucketNames: &bucketNames)
+      await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)
+    } catch {
+      await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)
+      throw error
+    }
+  }
+
+  @Test(.enabled(if: Self.anywhereCacheEnabled())) func runAnywhereCacheSamples() async throws {
+    let projectId = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]!
     let zone =
       ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_ZONE"]
       ?? "us-central1-f"
     let client = try Self.makeClient()
     var bucketNames: [String] = []
     do {
-      try await StorageSamples.runControlSamples(
+      try await StorageSamples.runAnywhereCacheSamples(
         client: client, projectId: projectId, zone: zone, bucketNames: &bucketNames)
       await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)
     } catch {
@@ -96,8 +110,11 @@ import Testing
   static func makeClient() throws -> StorageControlClient {
     try StorageControlClient(
       .init().with {
-        $0.backoffPolicy = ExponentialBackoff(
-          clamping: .init().with { $0.initialDelay = .seconds(2) })
+        // Cloud Storage enforces a project-wide CreateBucket rate limit of 1 bucket per 2 seconds
+        // and a per-bucket metadata update rate limit of 1 update per second. Extend the retry
+        // window so concurrent sample suites can back off without exhausting the default 60s limit.
+        $0.retryPolicy = StorageBaseRetryPolicy.unbounded().withTimeLimit(.seconds(300))
+        $0.backoffPolicy = ExponentialBackoff(clamping: .seconds(2))
       })
   }
 
@@ -108,5 +125,13 @@ import Testing
   static func enabled() -> Bool {
     ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil
       && ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_ENABLE_FLAKES"] == "true"
+  }
+
+  static func anywhereCacheEnabled() -> Bool {
+    // Anywhere Cache LROs take 15-60+ minutes to complete and prevent bucket cleanup for an hour,
+    // so they are gated behind an explicit opt-in environment variable.
+    Self.enabled()
+      && ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_ENABLE_ANYWHERE_CACHE"]
+        == "true"
   }
 }

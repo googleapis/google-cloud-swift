@@ -73,6 +73,7 @@
     /// ```
     /// let value = TargetSite().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -184,6 +185,7 @@
       /// ```
       /// let value = FailureReason().with { $0.quotaFailure = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -262,6 +264,7 @@
         /// ```
         /// let value = QuotaFailure().with { $0.totalRequiredQuota = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

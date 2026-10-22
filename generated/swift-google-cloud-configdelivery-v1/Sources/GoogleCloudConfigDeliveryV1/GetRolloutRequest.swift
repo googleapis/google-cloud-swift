@@ -36,6 +36,7 @@ public struct GetRolloutRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GetRolloutRequest().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

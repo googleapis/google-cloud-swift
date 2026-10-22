@@ -52,6 +52,7 @@ public struct JobNotification: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = JobNotification().with { $0.pubsubTopic = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -125,6 +126,7 @@ public struct JobNotification: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Message().with { $0.type = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

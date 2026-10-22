@@ -59,6 +59,30 @@ extension ProtoJSONDecoderTest {
           $0.fieldData = Data(base64Encoded: "NDI=")!
         }
       ),
+      (
+        #"{"fieldData":   "NDI" }"#,
+        RequiredPrimitives().with {
+          $0.fieldData = Data("42".utf8)
+        }
+      ),
+      (
+        #"{"fieldData":   "-_-_" }"#,
+        RequiredPrimitives().with {
+          $0.fieldData = Data([251, 255, 191] as [UInt8])
+        }
+      ),
+      (
+        #"{"fieldData":   "Pz8_Pw" }"#,
+        RequiredPrimitives().with {
+          $0.fieldData = Data("????".utf8)
+        }
+      ),
+      (
+        #"{"fieldData":   "Pz8_Pw==" }"#,
+        RequiredPrimitives().with {
+          $0.fieldData = Data("????".utf8)
+        }
+      ),
       (#"{"fieldBool":   "true" }"#, RequiredPrimitives().with { $0.fieldBool = true }),
       (#"{"fieldInt":    "42"   }"#, RequiredPrimitives().with { $0.fieldInt = 42 }),
       (#"{"fieldInt32":  "42"   }"#, RequiredPrimitives().with { $0.fieldInt32 = 42 }),
@@ -68,7 +92,7 @@ extension ProtoJSONDecoderTest {
       (#"{"fieldUInt64": "42"   }"#, RequiredPrimitives().with { $0.fieldUInt64 = 42 }),
       (#"{"fieldFloat":  "42"   }"#, RequiredPrimitives().with { $0.fieldFloat = 42 }),
       (#"{"fieldDouble": "42"   }"#, RequiredPrimitives().with { $0.fieldDouble = 42 }),
-    ])
+    ] as [(String, RequiredPrimitives)])
   func decodeRequired(input: String, want: RequiredPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(RequiredPrimitives.self, from: Data(input.utf8))
@@ -88,7 +112,12 @@ extension ProtoJSONDecoderTest {
       #"{"fieldFloat":  "bad" }"#,
       #"{"fieldDouble": "bad" }"#,
       // #"{"fieldString": 42 }"#, Returns a different error
-      #"{"fieldData":   "bad" }"#,
+      #"{"fieldData":   "bad!" }"#,
+      #"{"fieldData":   "a" }"#,
+      #"{"fieldData":   "NDI==" }"#,
+      #"{"fieldData":   "QUJD=" }"#,
+      #"{"fieldData":   "QQ=A" }"#,
+      #"{"fieldData":   "-_+/" }"#,
     ])
   func decodeRequiredBad(input: String) throws {
     let decoder = _ProtoJSONDecoder()

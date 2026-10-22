@@ -36,6 +36,7 @@
     /// ```
     /// let value = ZoneResourceStatus().with { $0.upcomingMaintenances = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

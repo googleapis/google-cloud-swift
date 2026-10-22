@@ -64,6 +64,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = WorkflowInvocationAction().with { $0.bigqueryAction = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -195,6 +196,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = BigQueryAction().with { $0.sqlScript = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -289,6 +291,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = NotebookAction().with { $0.contents = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -388,6 +391,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = DataPreparationAction().with { $0.contentsYaml = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -493,6 +497,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       /// ```
       /// let value = ActionSqlDefinition().with { $0.query = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -588,6 +593,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       /// ```
       /// let value = ActionErrorTable().with { $0.target = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -672,6 +678,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       /// ```
       /// let value = ActionLoadConfig().with { $0.replace = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -814,6 +821,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       /// ```
       /// let value = ActionSimpleLoadMode().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -886,6 +894,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       /// ```
       /// let value = ActionIncrementalLoadMode().with { $0.column = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

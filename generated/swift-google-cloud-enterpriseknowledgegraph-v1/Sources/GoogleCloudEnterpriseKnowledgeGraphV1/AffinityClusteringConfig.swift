@@ -36,6 +36,7 @@ public struct AffinityClusteringConfig: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = AffinityClusteringConfig().with { $0.compressionRoundCount = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

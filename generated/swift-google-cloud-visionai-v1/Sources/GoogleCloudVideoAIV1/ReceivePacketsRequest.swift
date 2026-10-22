@@ -36,6 +36,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ReceivePacketsRequest().with { $0.setupRequest = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -145,6 +146,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SetupRequest().with { $0.eagerReceiveMode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

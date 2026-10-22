@@ -126,6 +126,7 @@ public struct RouteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RouteInfo().with { $0.routeType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

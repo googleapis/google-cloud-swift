@@ -105,6 +105,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = SingleTenantHsmInstanceProposal().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -376,6 +377,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = QuorumParameters().with { $0.requiredApproverCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -492,6 +494,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = RequiredActionQuorumParameters().with { $0.requiredChallenges = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -616,6 +619,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = RegisterTwoFactorAuthKeys().with { $0.requiredApproverCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -710,6 +714,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = DisableSingleTenantHsmInstance().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -787,6 +792,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = EnableSingleTenantHsmInstance().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -872,6 +878,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = DeleteSingleTenantHsmInstance().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -957,6 +964,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = AddQuorumMember().with { $0.twoFactorPublicKeyPem = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1052,6 +1060,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = RemoveQuorumMember().with { $0.twoFactorPublicKeyPem = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1145,6 +1154,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = RefreshSingleTenantHsmInstance().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1228,6 +1238,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = UpgradeKeyTrust().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

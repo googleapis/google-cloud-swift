@@ -73,6 +73,7 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RuntimeConfig().with { $0.locationId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

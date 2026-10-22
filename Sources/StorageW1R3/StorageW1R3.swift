@@ -194,9 +194,75 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
 
   @Option(
     name: .customLong("resumable-mode"),
-    help: "Resumable upload mode: streaming (single PUT), chunked (fixed 32MiB chunks), or random."
+    help:
+      "Resumable upload mode: streaming (single PUT), chunked (fixed or randomized chunks), or random."
   )
   var resumableMode: ResumableModeOption = .streaming
+
+  @Option(
+    name: .customLong("min-chunk-size"),
+    help: "The minimum chunk size for resumable uploads (e.g. 256KiB, 8MiB, 32MiB).",
+    transform: SizeParser.parse
+  )
+  var minChunkSize: Int = 8 * 1024 * 1024
+
+  @Option(
+    name: .customLong("max-chunk-size"),
+    help: "The maximum chunk size for resumable uploads (e.g. 8MiB, 32MiB, 64MiB).",
+    transform: SizeParser.parse
+  )
+  var maxChunkSize: Int = 32 * 1024 * 1024
+
+  @Option(
+    name: .customLong("chunk-size-interval"),
+    help: "The alignment interval for chunk sizes (default 256KiB, must be a multiple of 256KiB).",
+    transform: SizeParser.parse
+  )
+  var chunkSizeInterval: Int = 256 * 1024
+
+  @Option(
+    name: .customLong("chunk-sizes"),
+    help: "A comma-separated list of candidate chunk sizes (e.g. 8MiB,16MiB,32MiB).",
+    transform: StorageW1R3.parseChunkSizes
+  )
+  var chunkSizes: [Int] = []
+
+  @Option(
+    name: .customLong("chunk-size"),
+    help: "A fixed chunk size override for resumable uploads (e.g. 32MiB).",
+    transform: SizeParser.parse
+  )
+  var chunkSize: Int?
+
+  static let resumableChunkAlignment: Int = 256 * 1024
+
+  static func parseChunkSizes(_ input: String) throws -> [Int] {
+    let components = input.split(separator: ",", omittingEmptySubsequences: false)
+    guard !components.isEmpty else {
+      throw ValidationError("chunk-sizes cannot be empty")
+    }
+    return try components.map { component in
+      let trimmed = component.trimmingCharacters(in: .whitespacesAndNewlines)
+      guard !trimmed.isEmpty else {
+        throw ValidationError("Invalid chunk size in list: empty component in '\(input)'")
+      }
+      return try SizeParser.parse(trimmed)
+    }
+  }
+
+  func pickChunkSize() -> Int {
+    if let chunkSize {
+      return chunkSize
+    }
+    if !chunkSizes.isEmpty {
+      return chunkSizes.randomElement()!
+    }
+    let interval = chunkSizeInterval
+    let minSteps = minChunkSize / interval
+    let maxSteps = maxChunkSize / interval
+    let selectedSteps = Int.random(in: minSteps...maxSteps)
+    return selectedSteps * interval
+  }
 
   func pickCrc32c() -> Bool {
     switch self.crc32c {
@@ -212,7 +278,7 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
   func pickResumableMode() -> Bool {
     switch self.resumableMode {
     case .streaming:
-      return true
+      return chunkSize == nil && chunkSizes.isEmpty
     case .chunked:
       return false
     case .random:
@@ -243,6 +309,58 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
     }
     guard controlClientCount >= 1 else {
       throw ValidationError("control-client-count must be at least 1")
+    }
+    guard chunkSizeInterval > 0 else {
+      throw ValidationError("chunk-size-interval must be positive")
+    }
+    guard chunkSizeInterval % Self.resumableChunkAlignment == 0 else {
+      throw ValidationError(
+        "chunk-size-interval (\(chunkSizeInterval)) must be a multiple of 256KiB (\(Self.resumableChunkAlignment))"
+      )
+    }
+    if let chunkSize {
+      guard chunkSizes.isEmpty else {
+        throw ValidationError("Cannot specify both --chunk-size and --chunk-sizes")
+      }
+      guard chunkSize > 0 else {
+        throw ValidationError("chunk-size must be positive")
+      }
+      guard chunkSize % Self.resumableChunkAlignment == 0 else {
+        throw ValidationError(
+          "chunk-size (\(chunkSize)) must be a multiple of 256KiB (\(Self.resumableChunkAlignment))"
+        )
+      }
+    }
+    if !chunkSizes.isEmpty {
+      for size in chunkSizes {
+        guard size > 0 else {
+          throw ValidationError("All chunk sizes in --chunk-sizes must be positive: \(size)")
+        }
+        guard size % Self.resumableChunkAlignment == 0 else {
+          throw ValidationError(
+            "Chunk size \(size) in --chunk-sizes must be a multiple of 256KiB (\(Self.resumableChunkAlignment))"
+          )
+        }
+      }
+    }
+    if chunkSize == nil && chunkSizes.isEmpty {
+      guard minChunkSize > 0 else {
+        throw ValidationError("min-chunk-size must be positive")
+      }
+      guard minChunkSize <= maxChunkSize else {
+        throw ValidationError(
+          "Invalid chunk size range: min (\(minChunkSize)) > max (\(maxChunkSize))")
+      }
+      guard minChunkSize % chunkSizeInterval == 0 else {
+        throw ValidationError(
+          "min-chunk-size (\(minChunkSize)) must be a multiple of chunk-size-interval (\(chunkSizeInterval))"
+        )
+      }
+      guard maxChunkSize % chunkSizeInterval == 0 else {
+        throw ValidationError(
+          "max-chunk-size (\(maxChunkSize)) must be a multiple of chunk-size-interval (\(chunkSizeInterval))"
+        )
+      }
     }
   }
 }

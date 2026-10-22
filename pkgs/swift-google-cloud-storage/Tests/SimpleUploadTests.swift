@@ -85,7 +85,10 @@ import Testing
     let objectName = "test-object"
     let data = Data(repeating: 1, count: 1 * 1024 * 1024)
     struct DummyError: Error {}
-    let source = MockUploadSource(data: data, readError: DummyError())
+    let source = MockUploadSource(
+      totalSize: UInt64(data.count),
+      read: [{ _ in throw DummyError() }]
+    )
 
     let client = try makeClient(registry: registry)
 
@@ -98,6 +101,7 @@ import Testing
       Issue.record(
         "Expected WriteObjectError.sourceError(DummyError), got \(String(describing: error))")
     }
+    #expect(source.isExhausted)
   }
 
   /// Tests handling of network failure (URLError) during a simple upload.
@@ -192,7 +196,17 @@ import Testing
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
-    let source = MockUploadSource(data: Data(), totalSize: 1024)
+    let source = MockUploadSource(
+      totalSize: 1024,
+      read: [
+        { _ in nil },
+        { _ in nil },
+      ],
+      seek: [
+        { offset in #expect(offset == 0) },
+        { offset in #expect(offset == 0) },
+      ]
+    )
 
     let client = try makeClient(registry: registry)
 
@@ -202,6 +216,7 @@ import Testing
     if case .internalError(let message) = error {
       #expect(message == "Failed to read data from source")
     }
+    #expect(source.isExhausted)
   }
 
   @Test func simpleUploadWithCSEKHeaders() async throws {
@@ -285,7 +300,7 @@ import Testing
       for: simpleUploadUrl)
 
     let client = try makeClient(registry: registry)
-    let options = WriteObjectOptions().with { $0.idempotency = true }
+    let options = WriteObjectOptions().with { $0.idempotent = true }
     let object = try await client.writeObject(source, to: bucket, as: objectName, options: options)
 
     #expect(object.name == objectName)
@@ -330,7 +345,7 @@ import Testing
       for: simpleUploadUrl)
 
     let client = try makeClient(registry: registry)
-    let options = WriteObjectOptions().with { $0.idempotency = true }
+    let options = WriteObjectOptions().with { $0.idempotent = true }
     let object = try await client.writeObject(source, to: bucket, as: objectName, options: options)
 
     #expect(object.name == objectName)
@@ -395,7 +410,7 @@ import Testing
       for: simpleUploadUrl)
 
     let client = try makeClient(registry: registry)
-    let options = WriteObjectOptions().with { $0.idempotency = true }
+    let options = WriteObjectOptions().with { $0.idempotent = true }
     let object = try await client.writeObject(source, to: bucket, as: objectName, options: options)
 
     #expect(object.name == objectName)
@@ -515,8 +530,8 @@ import Testing
     #expect(requests.count == 2)
   }
 
-  /// Tests that a single-shot upload with `options.idempotency = true` retries without preconditions.
-  @Test func simpleUploadExplicitIdempotencyTrueRetriesWithoutPreconditions() async throws {
+  /// Tests that a single-shot upload with `options.idempotent = true` retries without preconditions.
+  @Test func simpleUploadExplicitIdempotentTrueRetriesWithoutPreconditions() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-override-idempotency-true"
@@ -539,7 +554,7 @@ import Testing
       for: simpleUploadUrl)
 
     let client = try makeClient(registry: registry)
-    let options = WriteObjectOptions().with { $0.idempotency = true }
+    let options = WriteObjectOptions().with { $0.idempotent = true }
     let object = try await client.writeObject(source, to: bucket, as: objectName, options: options)
 
     #expect(object.name == objectName)
@@ -547,8 +562,8 @@ import Testing
     #expect(requests.count == 2)
   }
 
-  /// Tests that a single-shot upload with preconditions but `options.idempotency = false` fails immediately without retry.
-  @Test func simpleUploadExplicitIdempotencyFalseSuppressesRetryWithPreconditions() async throws {
+  /// Tests that a single-shot upload with preconditions but `options.idempotent = false` fails immediately without retry.
+  @Test func simpleUploadExplicitIdempotentFalseSuppressesRetryWithPreconditions() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-override-idempotency-false"
@@ -568,7 +583,7 @@ import Testing
     let client = try makeClient(registry: registry)
     let options = WriteObjectOptions().with {
       $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 0 }
-      $0.idempotency = false
+      $0.idempotent = false
     }
 
     let error = await expectError(WriteObjectError.self) {
@@ -603,7 +618,7 @@ import Testing
 
     let client = try makeClient(
       registry: registry, uploadResumePolicy: NeverResume<WriteObjectDetails>())
-    let options = WriteObjectOptions().with { $0.idempotency = true }
+    let options = WriteObjectOptions().with { $0.idempotent = true }
 
     let error = await expectError(WriteObjectError.self) {
       try await client.writeObject(source, to: bucket, as: objectName, options: options)
@@ -632,7 +647,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let uploadOptions = WriteObjectOptions().with {
-      $0.idempotency = true
+      $0.idempotent = true
       $0.resumePolicy = NeverResume()
     }
 
@@ -952,13 +967,9 @@ import Testing
       for: uploadUrl)
 
     let client = try makeClient(registry: registry)
-    let backoff = try ExponentialBackoff(
-      config: ExponentialBackoffConfig().with {
-        $0.initialDelay = .seconds(10)
-        $0.maximumDelay = .seconds(30)
-      })
+    let backoff = try ExponentialBackoff(initialDelay: .seconds(10), maximumDelay: .seconds(30))
     let options = WriteObjectOptions().with {
-      $0.idempotency = true
+      $0.idempotent = true
       $0.backoffPolicy = backoff
     }
 

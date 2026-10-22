@@ -49,6 +49,7 @@ public struct RawDocument: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RawDocument().with { $0.content = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

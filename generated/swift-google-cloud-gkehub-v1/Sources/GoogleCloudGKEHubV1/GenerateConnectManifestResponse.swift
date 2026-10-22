@@ -38,6 +38,7 @@ public struct GenerateConnectManifestResponse: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = GenerateConnectManifestResponse().with { $0.manifest = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

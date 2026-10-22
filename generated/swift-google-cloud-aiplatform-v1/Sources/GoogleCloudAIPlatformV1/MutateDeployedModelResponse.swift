@@ -40,6 +40,7 @@
     /// ```
     /// let value = MutateDeployedModelResponse().with { $0.deployedModel = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

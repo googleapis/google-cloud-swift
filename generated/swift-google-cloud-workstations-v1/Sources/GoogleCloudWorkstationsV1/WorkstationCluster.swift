@@ -135,6 +135,7 @@ public struct WorkstationCluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WorkstationCluster().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -330,6 +331,7 @@ public struct WorkstationCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PrivateClusterConfig().with { $0.enablePrivateEndpoint = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -430,6 +432,7 @@ public struct WorkstationCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DomainConfig().with { $0.domain = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -510,6 +513,7 @@ public struct WorkstationCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GatewayConfig().with { $0.http2Enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

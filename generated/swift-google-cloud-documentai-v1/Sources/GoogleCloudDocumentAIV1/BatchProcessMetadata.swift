@@ -53,6 +53,7 @@ public struct BatchProcessMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BatchProcessMetadata().with { $0.state = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -151,6 +152,7 @@ public struct BatchProcessMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IndividualProcessStatus().with { $0.inputGcsSource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

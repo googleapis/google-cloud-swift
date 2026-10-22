@@ -106,6 +106,7 @@ public struct Plugin: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Plugin().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -238,6 +239,7 @@ public struct Plugin: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = HostingService().with { $0.serviceUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -321,6 +323,7 @@ public struct Plugin: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ConfigTemplate().with { $0.authConfigTemplate = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -399,6 +402,7 @@ public struct Plugin: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AuthConfigTemplate().with { $0.supportedAuthTypes = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

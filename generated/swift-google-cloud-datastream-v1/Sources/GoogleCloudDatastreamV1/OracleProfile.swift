@@ -17,7 +17,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// Oracle database profile.
+/// Profile for connecting to an Oracle source.
 public struct OracleProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
@@ -62,6 +62,7 @@ public struct OracleProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OracleProfile().with { $0.hostname = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

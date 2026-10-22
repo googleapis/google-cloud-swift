@@ -63,6 +63,7 @@ public struct ThresholdRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ThresholdRule().with { $0.thresholdPercent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

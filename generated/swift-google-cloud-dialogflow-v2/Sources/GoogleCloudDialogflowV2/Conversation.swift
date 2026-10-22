@@ -97,6 +97,7 @@
     /// ```
     /// let value = Conversation().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -230,6 +231,7 @@
       /// ```
       /// let value = TelephonyConnectionInfo().with { $0.dialedNumber = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -312,6 +314,7 @@
         /// ```
         /// let value = SipHeader().with { $0.name = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -401,6 +404,7 @@
         /// ```
         /// let value = MimeContent().with { $0.mimeType = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -520,6 +524,7 @@
       /// ```
       /// let value = ContextReference().with { $0.contextContents = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -611,6 +616,7 @@
         /// ```
         /// let value = ContextContent().with { $0.content = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -967,6 +973,7 @@
       /// ```
       /// let value = GeneratorContext().with { $0.generatorType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

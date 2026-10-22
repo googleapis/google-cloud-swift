@@ -66,6 +66,7 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RBACRoleBinding().with { $0.user = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -195,6 +196,7 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Role().with { $0.predefinedRole = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

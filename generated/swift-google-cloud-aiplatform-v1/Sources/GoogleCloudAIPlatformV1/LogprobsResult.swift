@@ -41,6 +41,7 @@
     /// ```
     /// let value = LogprobsResult().with { $0.topCandidates = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -114,6 +115,7 @@
       /// ```
       /// let value = Candidate().with { $0.token = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -200,6 +202,7 @@
       /// ```
       /// let value = TopCandidates().with { $0.candidates = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -107,6 +107,7 @@ public struct Entity: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Entity().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -262,6 +263,7 @@ public struct Entity: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CompatibilityStatus().with { $0.hiveMetastore = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -328,6 +330,7 @@ public struct Entity: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Compatibility().with { $0.compatible = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

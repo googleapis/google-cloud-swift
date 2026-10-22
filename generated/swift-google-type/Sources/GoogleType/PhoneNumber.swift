@@ -74,6 +74,7 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PhoneNumber().with { $0.e164Number = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -180,6 +181,7 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ShortCode().with { $0.regionCode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

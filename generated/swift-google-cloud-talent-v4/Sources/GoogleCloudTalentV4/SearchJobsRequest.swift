@@ -373,6 +373,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SearchJobsRequest().with { $0.parent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -567,6 +568,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CustomRankingInfo().with { $0.importanceLevel = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

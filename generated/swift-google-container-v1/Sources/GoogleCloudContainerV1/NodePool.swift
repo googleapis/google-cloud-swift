@@ -138,6 +138,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NodePool().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -379,6 +380,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UpgradeSettings().with { $0.maxSurge = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -474,6 +476,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UpdateInfo().with { $0.blueGreenInfo = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -548,6 +551,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BlueGreenInfo().with { $0.phase = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -842,6 +846,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PlacementPolicy().with { $0.type = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1049,6 +1054,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QueuedProvisioning().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1135,6 +1141,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NodeDrainConfig().with { $0.pdbTimeoutDuration = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1236,6 +1243,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ExclusionUntilEndOfSupport().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1324,6 +1332,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NodePoolMaintenancePolicy().with { $0.exclusionUntilEndOfSupport = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1406,6 +1415,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = KubeletCertInfo().with { $0.tpmBootstrapCertExpireTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

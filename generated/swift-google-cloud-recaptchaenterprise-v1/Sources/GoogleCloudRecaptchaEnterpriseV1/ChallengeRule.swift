@@ -54,6 +54,7 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ChallengeRule().with { $0.condition = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -144,6 +145,7 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NoChallengeOutcome().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -219,6 +221,7 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ChallengeOutcome().with { $0.difficulty = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

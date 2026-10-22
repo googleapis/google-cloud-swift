@@ -43,6 +43,7 @@ public struct ListMulticloudDataTransferConfigsResponse: Codable, Equatable, Goo
   /// ```
   /// let value = ListMulticloudDataTransferConfigsResponse().with { $0.multicloudDataTransferConfigs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

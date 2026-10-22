@@ -313,7 +313,7 @@ private func updateSecret(
     _ = try await client.destroySecretVersion(
       request: .init().with { $0.name = version.name },
       options: .init().with {
-        $0.idempotency = true
+        $0.idempotent = true
         $0.attemptTimeout = .seconds(5)
         $0.retryPolicy = makeRetryPolicy(
           methodName: "destroySecretVersion",
@@ -332,7 +332,7 @@ private func updateSecret(
       }
     },
     options: .init().with {
-      $0.idempotency = true
+      $0.idempotent = true
       $0.attemptTimeout = .seconds(5)
       $0.retryPolicy = makeRetryPolicy(
         methodName: "addSecretVersion",

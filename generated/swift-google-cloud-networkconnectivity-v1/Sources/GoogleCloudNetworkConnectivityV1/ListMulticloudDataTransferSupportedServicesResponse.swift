@@ -42,6 +42,7 @@ public struct ListMulticloudDataTransferSupportedServicesResponse: Codable, Equa
   /// ```
   /// let value = ListMulticloudDataTransferSupportedServicesResponse().with { $0.multicloudDataTransferSupportedServices = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

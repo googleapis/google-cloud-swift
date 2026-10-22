@@ -44,6 +44,7 @@ public struct AnswerFeedback: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AnswerFeedback().with { $0.correctnessLevel = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

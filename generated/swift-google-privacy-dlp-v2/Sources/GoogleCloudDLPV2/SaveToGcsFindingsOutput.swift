@@ -38,6 +38,7 @@ public struct SaveToGcsFindingsOutput: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = SaveToGcsFindingsOutput().with { $0.findings = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

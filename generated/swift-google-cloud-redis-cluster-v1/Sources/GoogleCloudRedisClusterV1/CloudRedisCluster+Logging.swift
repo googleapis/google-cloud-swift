@@ -74,6 +74,21 @@ extension Clients {
         })
     }
 
+    public func listAclPolicies(
+      request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.ListAclPoliciesResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "listAclPolicies",
+        action: {
+          (r: ListAclPoliciesRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudRedisClusterV1.ListAclPoliciesResponse
+          in
+          return try await self.inner.listAclPolicies(request: r, options: o)
+        })
+    }
+
     public func getCluster(
       request: GetClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRedisClusterV1.Cluster {
@@ -86,6 +101,21 @@ extension Clients {
             -> GoogleCloudRedisClusterV1.Cluster
           in
           return try await self.inner.getCluster(request: r, options: o)
+        })
+    }
+
+    public func getAclPolicy(
+      request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.AclPolicy {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "getAclPolicy",
+        action: {
+          (r: GetAclPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudRedisClusterV1.AclPolicy
+          in
+          return try await self.inner.getAclPolicy(request: r, options: o)
         })
     }
 
@@ -104,6 +134,21 @@ extension Clients {
         })
     }
 
+    public func updateAclPolicy(
+      request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "updateAclPolicy",
+        action: {
+          (r: UpdateAclPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.updateAclPolicy(request: r, options: o)
+        })
+    }
+
     public func deleteCluster(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -119,6 +164,51 @@ extension Clients {
         })
     }
 
+    public func deleteAclPolicy(
+      request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "deleteAclPolicy",
+        action: {
+          (r: DeleteAclPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.deleteAclPolicy(request: r, options: o)
+        })
+    }
+
+    public func getAclPolicyRevision(
+      request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.AclPolicyRevision {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "getAclPolicyRevision",
+        action: {
+          (r: GetAclPolicyRevisionRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudRedisClusterV1.AclPolicyRevision
+          in
+          return try await self.inner.getAclPolicyRevision(request: r, options: o)
+        })
+    }
+
+    public func listAclPolicyRevisions(
+      request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.ListAclPolicyRevisionsResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "listAclPolicyRevisions",
+        action: {
+          (r: ListAclPolicyRevisionsRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudRedisClusterV1.ListAclPolicyRevisionsResponse
+          in
+          return try await self.inner.listAclPolicyRevisions(request: r, options: o)
+        })
+    }
+
     public func createCluster(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -131,6 +221,21 @@ extension Clients {
             -> GoogleLongRunning.Operation
           in
           return try await self.inner.createCluster(request: r, options: o)
+        })
+    }
+
+    public func createAclPolicy(
+      request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.AclPolicy {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "createAclPolicy",
+        action: {
+          (r: CreateAclPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudRedisClusterV1.AclPolicy
+          in
+          return try await self.inner.createAclPolicy(request: r, options: o)
         })
     }
 
@@ -281,6 +386,126 @@ extension Clients {
             -> GoogleLongRunning.Operation
           in
           return try await self.inner.backupCluster(request: r, options: o)
+        })
+    }
+
+    public func listTokenAuthUsers(
+      request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.ListTokenAuthUsersResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "listTokenAuthUsers",
+        action: {
+          (r: ListTokenAuthUsersRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudRedisClusterV1.ListTokenAuthUsersResponse
+          in
+          return try await self.inner.listTokenAuthUsers(request: r, options: o)
+        })
+    }
+
+    public func getTokenAuthUser(
+      request: GetTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.TokenAuthUser {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "getTokenAuthUser",
+        action: {
+          (r: GetTokenAuthUserRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudRedisClusterV1.TokenAuthUser
+          in
+          return try await self.inner.getTokenAuthUser(request: r, options: o)
+        })
+    }
+
+    public func listAuthTokens(
+      request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.ListAuthTokensResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "listAuthTokens",
+        action: {
+          (r: ListAuthTokensRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudRedisClusterV1.ListAuthTokensResponse
+          in
+          return try await self.inner.listAuthTokens(request: r, options: o)
+        })
+    }
+
+    public func getAuthToken(
+      request: GetAuthTokenRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.AuthToken {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "getAuthToken",
+        action: {
+          (r: GetAuthTokenRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudRedisClusterV1.AuthToken
+          in
+          return try await self.inner.getAuthToken(request: r, options: o)
+        })
+    }
+
+    public func addTokenAuthUser(
+      request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "addTokenAuthUser",
+        action: {
+          (r: AddTokenAuthUserRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.addTokenAuthUser(request: r, options: o)
+        })
+    }
+
+    public func deleteTokenAuthUser(
+      request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "deleteTokenAuthUser",
+        action: {
+          (r: DeleteTokenAuthUserRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.deleteTokenAuthUser(request: r, options: o)
+        })
+    }
+
+    public func addAuthToken(
+      request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "addAuthToken",
+        action: {
+          (r: AddAuthTokenRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.addAuthToken(request: r, options: o)
+        })
+    }
+
+    public func deleteAuthToken(
+      request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "deleteAuthToken",
+        action: {
+          (r: DeleteAuthTokenRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.deleteAuthToken(request: r, options: o)
         })
     }
 

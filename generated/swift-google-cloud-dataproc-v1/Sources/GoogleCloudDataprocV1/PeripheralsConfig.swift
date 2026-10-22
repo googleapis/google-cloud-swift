@@ -43,6 +43,7 @@ public struct PeripheralsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PeripheralsConfig().with { $0.metastoreService = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

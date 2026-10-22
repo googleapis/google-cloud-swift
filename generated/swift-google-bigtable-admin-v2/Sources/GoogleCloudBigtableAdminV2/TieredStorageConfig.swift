@@ -41,6 +41,7 @@ public struct TieredStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TieredStorageConfig().with { $0.infrequentAccess = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

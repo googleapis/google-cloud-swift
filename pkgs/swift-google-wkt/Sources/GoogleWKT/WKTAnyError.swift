@@ -79,13 +79,13 @@ public enum WKTAnyError: Error, Sendable, Equatable, CustomStringConvertible,
   public var debugDescription: String {
     switch self {
     case .mismatchedTypeURL:
-      return "WKTAnyError.mismatchedTypeURL"
+      return "WKTAnyError.mismatchedTypeURL: \(description)"
     case .invalidNestedAnyType:
-      return "WKTAnyError.invalidNestedAnyType"
+      return "WKTAnyError.invalidNestedAnyType: \(description)"
     case .missingValueField:
-      return "WKTAnyError.missingValueField"
+      return "WKTAnyError.missingValueField: \(description)"
     case .invalidValueField:
-      return "WKTAnyError.invalidValueField"
+      return "WKTAnyError.invalidValueField: \(description)"
     }
   }
 }

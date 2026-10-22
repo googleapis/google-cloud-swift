@@ -37,6 +37,7 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AggregationResult().with { $0.field = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -142,6 +143,7 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Count().with { $0.value = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -220,6 +222,7 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Sum().with { $0.value = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -303,6 +306,7 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Histogram().with { $0.buckets = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -371,6 +375,7 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Bucket().with { $0.lowerBound = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -484,6 +489,7 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Frequency().with { $0.values = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

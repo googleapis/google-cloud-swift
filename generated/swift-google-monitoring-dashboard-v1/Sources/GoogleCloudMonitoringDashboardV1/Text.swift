@@ -42,6 +42,7 @@ public struct Text: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Text().with { $0.content = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -130,6 +131,7 @@ public struct Text: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TextStyle().with { $0.backgroundColor = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -58,6 +58,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Inventory().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -157,6 +158,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = OsInfo().with { $0.hostname = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -296,6 +298,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Item().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -672,6 +675,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SoftwarePackage().with { $0.yumPackage = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -887,6 +891,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VersionedPackage().with { $0.packageName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -987,6 +992,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ZypperPatch().with { $0.patchName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1116,6 +1122,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WindowsUpdatePackage().with { $0.title = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1227,6 +1234,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = WindowsUpdateCategory().with { $0.id = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1347,6 +1355,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WindowsQuickFixEngineeringPackage().with { $0.caption = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1460,6 +1469,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WindowsApplication().with { $0.displayName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

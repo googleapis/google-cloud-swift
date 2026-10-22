@@ -42,6 +42,7 @@ public struct AutoTranscriptionConfig: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = AutoTranscriptionConfig().with { $0.displayTiming = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

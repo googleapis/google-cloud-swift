@@ -56,6 +56,7 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = AdaptiveMtTranslateRequest().with { $0.parent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -144,6 +145,7 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = ReferenceSentencePair().with { $0.sourceSentence = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -230,6 +232,7 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = ReferenceSentencePairList().with { $0.referenceSentencePairs = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -322,6 +325,7 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = ReferenceSentenceConfig().with { $0.referenceSentencePairLists = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -432,6 +436,7 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = GlossaryConfig().with { $0.glossary = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -63,6 +63,7 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = VerifyConfidentialSpaceRequest().with { $0.tdCcel = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -195,6 +196,7 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
     /// ```
     /// let value = ConfidentialSpaceOptions().with { $0.awsPrincipalTagsOptions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

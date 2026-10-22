@@ -84,6 +84,7 @@ public struct MuxStream: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MuxStream().with { $0.key = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -200,6 +201,7 @@ public struct MuxStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Fmp4Config().with { $0.codecTag = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

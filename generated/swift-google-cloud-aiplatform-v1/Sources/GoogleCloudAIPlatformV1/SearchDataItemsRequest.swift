@@ -116,6 +116,7 @@
     /// ```
     /// let value = SearchDataItemsRequest().with { $0.orderByDataItem = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -280,6 +281,7 @@
       /// ```
       /// let value = OrderByAnnotation().with { $0.savedQuery = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

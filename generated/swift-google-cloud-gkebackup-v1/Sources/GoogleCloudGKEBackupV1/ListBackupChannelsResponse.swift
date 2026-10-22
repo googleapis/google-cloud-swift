@@ -49,6 +49,7 @@ public struct ListBackupChannelsResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ListBackupChannelsResponse().with { $0.backupChannels = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

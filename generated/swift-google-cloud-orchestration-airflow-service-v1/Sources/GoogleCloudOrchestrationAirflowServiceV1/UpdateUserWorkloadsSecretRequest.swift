@@ -36,6 +36,7 @@ public struct UpdateUserWorkloadsSecretRequest: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = UpdateUserWorkloadsSecretRequest().with { $0.userWorkloadsSecret = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

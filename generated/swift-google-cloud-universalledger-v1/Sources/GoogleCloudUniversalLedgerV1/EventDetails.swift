@@ -36,6 +36,7 @@ public struct EventDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = EventDetails().with { $0.executionDetails = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

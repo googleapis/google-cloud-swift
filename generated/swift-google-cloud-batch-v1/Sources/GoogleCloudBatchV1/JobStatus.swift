@@ -46,6 +46,7 @@ public struct JobStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = JobStatus().with { $0.state = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -132,6 +133,7 @@ public struct JobStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InstanceStatus().with { $0.machineType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -233,6 +235,7 @@ public struct JobStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TaskGroupStatus().with { $0.counts = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -210,6 +210,7 @@ public struct SearchAllResourcesRequest: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = SearchAllResourcesRequest().with { $0.scope = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

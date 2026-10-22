@@ -72,6 +72,7 @@ public struct ExplainedDenyPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ExplainedDenyPolicy().with { $0.denyAccessState = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

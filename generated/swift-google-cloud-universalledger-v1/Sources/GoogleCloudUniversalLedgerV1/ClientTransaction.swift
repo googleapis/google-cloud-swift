@@ -65,6 +65,7 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ClientTransaction().with { $0.operational = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

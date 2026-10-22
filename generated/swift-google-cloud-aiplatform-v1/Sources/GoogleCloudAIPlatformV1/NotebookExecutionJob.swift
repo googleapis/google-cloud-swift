@@ -104,6 +104,7 @@
     /// ```
     /// let value = NotebookExecutionJob().with { $0.dataformRepositorySource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -390,6 +391,7 @@
       /// ```
       /// let value = DataformRepositorySource().with { $0.dataformRepositoryResourceName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -486,6 +488,7 @@
       /// ```
       /// let value = GcsNotebookSource().with { $0.uri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -572,6 +575,7 @@
       /// ```
       /// let value = DirectNotebookSource().with { $0.content = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -658,6 +662,7 @@
       /// ```
       /// let value = CustomEnvironmentSpec().with { $0.machineSpec = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -742,6 +747,7 @@
       /// ```
       /// let value = WorkbenchRuntime().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -40,6 +40,7 @@ public struct ListDbSystemShapesResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ListDbSystemShapesResponse().with { $0.dbSystemShapes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

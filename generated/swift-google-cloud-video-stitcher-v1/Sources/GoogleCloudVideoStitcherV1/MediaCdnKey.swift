@@ -43,6 +43,7 @@ public struct MediaCdnKey: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MediaCdnKey().with { $0.privateKey = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -118,6 +119,7 @@ public struct MediaCdnKey: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TokenConfig().with { $0.queryParameter = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

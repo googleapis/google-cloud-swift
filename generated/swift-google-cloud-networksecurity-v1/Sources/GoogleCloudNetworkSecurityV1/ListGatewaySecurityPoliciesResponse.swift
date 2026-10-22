@@ -45,6 +45,7 @@ public struct ListGatewaySecurityPoliciesResponse: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = ListGatewaySecurityPoliciesResponse().with { $0.gatewaySecurityPolicies = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

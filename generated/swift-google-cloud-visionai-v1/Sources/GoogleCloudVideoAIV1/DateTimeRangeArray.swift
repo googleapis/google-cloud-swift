@@ -36,6 +36,7 @@ public struct DateTimeRangeArray: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DateTimeRangeArray().with { $0.dateTimeRanges = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

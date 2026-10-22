@@ -75,6 +75,7 @@
     /// ```
     /// let value = ImportFeatureValuesRequest().with { $0.avroSource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -246,6 +247,7 @@
       /// ```
       /// let value = FeatureSpec().with { $0.id = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -48,6 +48,7 @@ public struct FetchStorageInventoryResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = FetchStorageInventoryResponse().with { $0.resources = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

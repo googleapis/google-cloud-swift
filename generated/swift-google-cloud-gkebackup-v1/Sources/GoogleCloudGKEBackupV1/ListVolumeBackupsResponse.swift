@@ -46,6 +46,7 @@ public struct ListVolumeBackupsResponse: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = ListVolumeBackupsResponse().with { $0.volumeBackups = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

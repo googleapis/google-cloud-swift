@@ -43,17 +43,18 @@ public enum _HeaderNames {
 /// provided by `authHeaders`.
 @_spi(GoogleCloudInternal)
 public func _sanitizeCustomHeaders(
-  _ headers: [String: String],
+  _ headers: HTTPHeaders,
   excluding authHeaders: GoogleAuth.AuthHeaders? = nil
-) -> [String: String] {
-  headers.filter { key, _ in
-    let lower = key.lowercased()
-    if _HeaderNames.reservedCustomHeaders.contains(lower) {
-      return false
+) -> HTTPHeaders {
+  HTTPHeaders(
+    headers.filter { name, _ in
+      if _HeaderNames.reservedCustomHeaders.contains(where: { HTTPHeaders.namesMatch($0, name) }) {
+        return false
+      }
+      if let authHeaders, authHeaders.contains(name: name) {
+        return false
+      }
+      return true
     }
-    if let authHeaders, authHeaders.contains(name: key) {
-      return false
-    }
-    return true
-  }
+  )
 }

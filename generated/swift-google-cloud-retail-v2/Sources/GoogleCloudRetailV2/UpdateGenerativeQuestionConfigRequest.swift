@@ -48,6 +48,7 @@ public struct UpdateGenerativeQuestionConfigRequest: Codable, Equatable, GoogleW
   /// ```
   /// let value = UpdateGenerativeQuestionConfigRequest().with { $0.generativeQuestionConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

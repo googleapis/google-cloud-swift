@@ -71,6 +71,7 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PushConfig().with { $0.oidcToken = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -210,6 +211,7 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = OidcToken().with { $0.serviceAccountEmail = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -295,6 +297,7 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PubsubWrapper().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -368,6 +371,7 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NoWrapper().with { $0.writeMetadata = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

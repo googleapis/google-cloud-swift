@@ -62,6 +62,7 @@
     /// ```
     /// let value = KnowledgeAssistDebugInfo().with { $0.queryGenerationFailureReason = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -225,6 +226,7 @@
       /// ```
       /// let value = KnowledgeAssistBehavior().with { $0.answerGenerationRewriterOn = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -466,6 +468,7 @@
       /// ```
       /// let value = QueryGenerationDebugInfo().with { $0.promptTokenCount = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

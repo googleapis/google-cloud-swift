@@ -385,6 +385,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SearchRequest().with { $0.placement = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -674,6 +675,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FacetSpec().with { $0.facetKey = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -917,6 +919,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = FacetKey().with { $0.key = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1072,6 +1075,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DynamicFacetSpec().with { $0.mode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1283,6 +1287,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BoostSpec().with { $0.conditionBoostSpecs = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1379,6 +1384,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ConditionBoostSpec().with { $0.condition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1498,6 +1504,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QueryExpansionSpec().with { $0.condition = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1714,6 +1721,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PersonalizationSpec().with { $0.mode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1921,6 +1929,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SpellCorrectionSpec().with { $0.mode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2144,6 +2153,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ConversationalSearchSpec().with { $0.followupConversationRequested = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2218,6 +2228,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = UserAnswer().with { $0.textAnswer = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2309,6 +2320,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = SelectedAnswer().with { $0.productAttributeValues = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2473,6 +2485,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TileNavigationSpec().with { $0.tileNavigationRequested = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

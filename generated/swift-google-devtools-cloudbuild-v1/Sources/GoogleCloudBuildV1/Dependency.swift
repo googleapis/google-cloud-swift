@@ -37,6 +37,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Dependency().with { $0.empty = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -140,6 +141,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GitSourceDependency().with { $0.repository = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -248,6 +250,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GitSourceRepository().with { $0.url = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

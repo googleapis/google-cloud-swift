@@ -38,6 +38,7 @@ public struct DesiredAdditionalIPRangesConfig: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = DesiredAdditionalIPRangesConfig().with { $0.additionalIpRangesConfigs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

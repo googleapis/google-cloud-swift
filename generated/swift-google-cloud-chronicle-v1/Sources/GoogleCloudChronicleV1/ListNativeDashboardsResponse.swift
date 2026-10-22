@@ -41,6 +41,7 @@ public struct ListNativeDashboardsResponse: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = ListNativeDashboardsResponse().with { $0.nativeDashboards = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -45,6 +45,7 @@ public struct ContainerHealthDetails: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = ContainerHealthDetails().with { $0.expectedConfigVersion = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

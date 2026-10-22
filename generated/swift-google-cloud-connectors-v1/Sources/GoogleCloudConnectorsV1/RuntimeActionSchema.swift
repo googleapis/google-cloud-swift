@@ -42,6 +42,7 @@ public struct RuntimeActionSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RuntimeActionSchema().with { $0.action = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -128,6 +129,7 @@ public struct RuntimeActionSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InputParameter().with { $0.parameter = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -236,6 +238,7 @@ public struct RuntimeActionSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ResultMetadata().with { $0.field = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

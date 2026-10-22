@@ -52,6 +52,7 @@
     /// ```
     /// let value = SafetySettings().with { $0.defaultBannedPhraseMatchStrategy = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -139,6 +140,7 @@
       /// ```
       /// let value = Phrase().with { $0.text = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -224,6 +226,7 @@
       /// ```
       /// let value = RaiSettings().with { $0.categoryFilters = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -288,6 +291,7 @@
         /// ```
         /// let value = CategoryFilter().with { $0.category = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -662,6 +666,7 @@
       /// ```
       /// let value = PromptSecuritySettings().with { $0.enablePromptSecurity = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

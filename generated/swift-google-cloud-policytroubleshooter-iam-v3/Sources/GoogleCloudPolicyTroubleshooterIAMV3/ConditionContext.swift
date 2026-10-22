@@ -51,6 +51,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ConditionContext().with { $0.resource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -145,6 +146,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Resource().with { $0.service = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -243,6 +245,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Peer().with { $0.ip = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -331,6 +334,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Request().with { $0.receiveTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -440,6 +444,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EffectiveTag().with { $0.tagValue = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

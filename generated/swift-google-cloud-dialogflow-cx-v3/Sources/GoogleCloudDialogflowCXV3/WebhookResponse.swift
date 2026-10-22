@@ -57,6 +57,7 @@
     /// ```
     /// let value = WebhookResponse().with { $0.fulfillmentResponse = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -160,6 +161,7 @@
       /// ```
       /// let value = FulfillmentResponse().with { $0.messages = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

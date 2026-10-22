@@ -110,4 +110,108 @@ import Testing
       Issue.record("Expected WriteObjectSourceError.readFailed, got \(String(describing: err))")
     }
   }
+
+  /// Tests that CancellationError thrown by the underlying sequence is rethrown directly without wrapping.
+  @Test func cancellationErrorIsRethrownDirectly() async throws {
+    let stream = AsyncThrowingStream<Data, any Error> { continuation in
+      continuation.finish(throwing: CancellationError())
+    }
+
+    var source = StreamSource(sequence: stream)
+    await #expect(throws: CancellationError.self) {
+      _ = try await source.read(maxBytes: 10)
+    }
+  }
+
+  /// Tests that copying a StreamSource shares buffered unread bytes as well as the underlying iterator.
+  @Test func copySharesBufferedState() async throws {
+    let stream = AsyncStream<ByteChunk> { continuation in
+      continuation.yield(ByteChunk([1, 2, 3, 4]))
+      continuation.yield(ByteChunk([5, 6]))
+      continuation.finish()
+    }
+
+    var sourceA = StreamSource(sequence: stream)
+    let first = try await sourceA.read(maxBytes: 2)
+    #expect(first == [1, 2])
+
+    // Copy after sourceA has buffered [3, 4].
+    var sourceB = sourceA
+    let second = try await sourceB.read(maxBytes: 3)
+    #expect(second == [3, 4, 5])
+
+    let third = try await sourceA.read(maxBytes: 10)
+    #expect(third == [6])
+
+    let fourth = try await sourceB.read(maxBytes: 10)
+    #expect(fourth == nil)
+  }
+
+  /// Tests that overlapping concurrent reads on copies of a StreamSource are rejected while preserving the active read.
+  @Test func concurrentReadThrowsErrorAndPreservesActiveRead() async throws {
+    let (enteredStream, enteredContinuation) = AsyncStream<Void>.makeStream()
+    let (dataStream, dataContinuation) = AsyncStream<ByteChunk>.makeStream()
+
+    struct SignalingSequence: AsyncSequence, Sendable {
+      typealias Element = ByteChunk
+      let enteredContinuation: AsyncStream<Void>.Continuation
+      let dataStream: AsyncStream<ByteChunk>
+
+      struct AsyncIterator: AsyncIteratorProtocol {
+        var enteredContinuation: AsyncStream<Void>.Continuation?
+        var inner: AsyncStream<ByteChunk>.AsyncIterator
+
+        @concurrent mutating func next() async -> ByteChunk? {
+          enteredContinuation?.yield()
+          enteredContinuation?.finish()
+          enteredContinuation = nil
+          return await inner.next()
+        }
+      }
+
+      func makeAsyncIterator() -> AsyncIterator {
+        AsyncIterator(
+          enteredContinuation: enteredContinuation,
+          inner: dataStream.makeAsyncIterator()
+        )
+      }
+    }
+
+    let source = StreamSource(
+      sequence: SignalingSequence(
+        enteredContinuation: enteredContinuation,
+        dataStream: dataStream
+      )
+    )
+
+    // Start first read and wait until it is deterministically suspended inside `next()`.
+    let firstTask = Task {
+      var s = source
+      return try await s.read(maxBytes: 4)
+    }
+    var enteredIter = enteredStream.makeAsyncIterator()
+    _ = await enteredIter.next()
+
+    // A second concurrent read while `firstTask` is in flight should fail immediately.
+    var secondCopy = source
+    let err = await expectError(WriteObjectSourceError.self) {
+      _ = try await secondCopy.read(maxBytes: 4)
+    }
+    if case .readFailed(let underlying) = err {
+      #expect(underlying is StreamSourceConcurrentReadError)
+    } else {
+      Issue.record("Expected WriteObjectSourceError.readFailed, got \(String(describing: err))")
+    }
+
+    // Now yield 8 bytes and finish `dataStream`.
+    dataContinuation.yield(ByteChunk([1, 2, 3, 4, 5, 6, 7, 8]))
+    dataContinuation.finish()
+
+    let chunk1 = try await firstTask.value
+    #expect(chunk1 == [1, 2, 3, 4])
+
+    // Subsequent sequential read should still receive the remaining [5, 6, 7, 8].
+    let chunk2 = try await secondCopy.read(maxBytes: 4)
+    #expect(chunk2 == [5, 6, 7, 8])
+  }
 }

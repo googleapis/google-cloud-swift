@@ -46,6 +46,7 @@ public struct PostdeployJobRun: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PostdeployJobRun().with { $0.build = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

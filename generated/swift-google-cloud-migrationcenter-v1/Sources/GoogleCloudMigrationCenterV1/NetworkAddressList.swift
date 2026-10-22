@@ -36,6 +36,7 @@ public struct NetworkAddressList: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NetworkAddressList().with { $0.entries = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

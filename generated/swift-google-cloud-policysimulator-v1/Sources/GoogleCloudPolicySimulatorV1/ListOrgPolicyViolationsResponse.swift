@@ -44,6 +44,7 @@ public struct ListOrgPolicyViolationsResponse: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = ListOrgPolicyViolationsResponse().with { $0.orgPolicyViolations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

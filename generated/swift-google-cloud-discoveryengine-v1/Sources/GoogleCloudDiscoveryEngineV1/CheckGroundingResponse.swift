@@ -54,6 +54,7 @@
     /// ```
     /// let value = CheckGroundingResponse().with { $0.supportScore = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -131,6 +132,7 @@
       /// ```
       /// let value = CheckGroundingFactChunk().with { $0.chunkText = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -252,6 +254,7 @@
       /// ```
       /// let value = Claim().with { $0.startPos = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

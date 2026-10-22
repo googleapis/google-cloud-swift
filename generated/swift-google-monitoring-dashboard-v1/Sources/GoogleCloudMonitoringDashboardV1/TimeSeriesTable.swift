@@ -43,6 +43,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TimeSeriesTable().with { $0.dataSets = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -136,6 +137,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TableDataSet().with { $0.timeSeriesQuery = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -233,6 +235,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ColumnSettings().with { $0.column = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

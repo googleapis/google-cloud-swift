@@ -37,6 +37,7 @@
     /// ```
     /// let value = OutputInfo().with { $0.gcsOutputDirectory = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

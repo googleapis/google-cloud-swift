@@ -63,6 +63,7 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = StorageFormat().with { $0.format = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -187,6 +188,7 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CsvOptions().with { $0.encoding = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -285,6 +287,7 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = JsonOptions().with { $0.encoding = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -365,6 +368,7 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IcebergOptions().with { $0.metadataLocation = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

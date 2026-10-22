@@ -51,6 +51,7 @@ public struct RedactionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RedactionConfig().with { $0.enableRedaction = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

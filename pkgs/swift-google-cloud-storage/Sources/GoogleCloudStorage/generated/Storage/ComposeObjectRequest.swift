@@ -73,6 +73,7 @@ public struct ComposeObjectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ComposeObjectRequest().with { $0.destination = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -183,6 +184,7 @@ public struct ComposeObjectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SourceObject().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -253,6 +255,7 @@ public struct ComposeObjectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ObjectPreconditions().with { $0.ifGenerationMatch = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

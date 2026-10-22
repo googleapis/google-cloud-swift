@@ -36,6 +36,7 @@ public struct UpdateNodeset: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UpdateNodeset().with { $0.nodesets = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -43,6 +43,7 @@ public struct ListSACAttachmentsResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ListSACAttachmentsResponse().with { $0.sacAttachments = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

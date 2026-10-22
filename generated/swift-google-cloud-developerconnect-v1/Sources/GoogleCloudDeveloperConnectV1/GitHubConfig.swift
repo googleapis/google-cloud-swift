@@ -49,6 +49,7 @@ public struct GitHubConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GitHubConfig().with { $0.githubApp = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

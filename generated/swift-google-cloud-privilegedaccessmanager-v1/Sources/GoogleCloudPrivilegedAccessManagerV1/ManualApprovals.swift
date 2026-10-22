@@ -55,6 +55,7 @@ public struct ManualApprovals: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ManualApprovals().with { $0.requireApproverJustification = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -131,6 +132,7 @@ public struct ManualApprovals: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Step().with { $0.approvers = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

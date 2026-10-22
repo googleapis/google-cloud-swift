@@ -77,6 +77,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MaintenanceSummary().with { $0.maintenanceName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -199,6 +200,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Stats().with { $0.groupBy = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -291,6 +293,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Aggregate().with { $0.group = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

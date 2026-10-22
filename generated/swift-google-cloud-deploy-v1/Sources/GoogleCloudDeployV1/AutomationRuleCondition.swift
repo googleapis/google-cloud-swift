@@ -40,6 +40,7 @@ public struct AutomationRuleCondition: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = AutomationRuleCondition().with { $0.targetsPresentCondition = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -36,6 +36,7 @@ public struct MongodbCluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MongodbCluster().with { $0.databases = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

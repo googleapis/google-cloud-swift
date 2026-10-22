@@ -20,30 +20,39 @@ import Testing
 @Suite struct ExponentialBackoffTests {
   @Test func defaults() throws {
     let backoff = ExponentialBackoff()
-    #expect(backoff.initialDelay > .seconds(0))
-    #expect(backoff.maximumDelay <= .seconds(60) * 60 * 24)
+    #expect(backoff.initialDelay == .seconds(1))
+    #expect(backoff.maximumDelay == .seconds(60))
     #expect(backoff.scaling == 2.0)
+
+    let defaultedInit = try ExponentialBackoff(initialDelay: .seconds(1))
+    #expect(defaultedInit == backoff)
+
+    let defaultedClamping = ExponentialBackoff(clamping: .seconds(1))
+    #expect(defaultedClamping == backoff)
+
+    let customMaxOnly = try ExponentialBackoff(maximumDelay: .seconds(30))
+    #expect(customMaxOnly.initialDelay == .seconds(1))
+    #expect(customMaxOnly.maximumDelay == .seconds(30))
+    #expect(customMaxOnly.scaling == 2.0)
   }
 
-  @Test func configWith() throws {
-    let config = ExponentialBackoffConfig().with {
-      $0.initialDelay = .milliseconds(500)
-      $0.maximumDelay = .seconds(10)
-      $0.scaling = 1.5
-    }
-    let backoff = try ExponentialBackoff(config: config)
+  @Test func customParameters() throws {
+    let backoff = try ExponentialBackoff(
+      initialDelay: .milliseconds(500),
+      maximumDelay: .seconds(10),
+      scaling: 1.5
+    )
     #expect(backoff.initialDelay == .milliseconds(500))
     #expect(backoff.maximumDelay == .seconds(10))
     #expect(backoff.scaling == 1.5)
   }
 
   @Test func delayCalculations() throws {
-    let config = ExponentialBackoffConfig().with {
-      $0.initialDelay = .seconds(1)
-      $0.maximumDelay = .seconds(10)
-      $0.scaling = 2.0
-    }
-    let backoff = try ExponentialBackoff(config: config)
+    let backoff = try ExponentialBackoff(
+      initialDelay: .seconds(1),
+      maximumDelay: .seconds(10),
+      scaling: 2.0
+    )
 
     #expect(backoff.delay(attemptCount: -1) == .seconds(1))
     #expect(backoff.delay(attemptCount: 0) == .seconds(1))
@@ -55,12 +64,11 @@ import Testing
   }
 
   @Test func pollingBackoffDelay() throws {
-    let config = ExponentialBackoffConfig().with {
-      $0.initialDelay = .seconds(1)
-      $0.maximumDelay = .seconds(10)
-      $0.scaling = 2.0
-    }
-    let backoff: any PollingBackoffPolicy = try ExponentialBackoff(config: config)
+    let backoff: any PollingBackoffPolicy = try ExponentialBackoff(
+      initialDelay: .seconds(1),
+      maximumDelay: .seconds(10),
+      scaling: 2.0
+    )
 
     #expect(backoff.backoffDelay(for: PollingState().with { $0.attemptCount = 0 }) == .seconds(1))
     #expect(backoff.backoffDelay(for: PollingState().with { $0.attemptCount = 1 }) == .seconds(2))
@@ -71,39 +79,32 @@ import Testing
 
   @Test func invalidConfigs() {
     #expect(throws: ExponentialBackoffError.invalidScalingFactor(0.5)) {
-      try ExponentialBackoff(config: ExponentialBackoffConfig().with { $0.scaling = 0.5 })
+      try ExponentialBackoff(scaling: 0.5)
     }
     #expect(throws: ExponentialBackoffError.invalidInitialDelay(.seconds(0))) {
-      try ExponentialBackoff(
-        config: ExponentialBackoffConfig().with { $0.initialDelay = .seconds(0) })
+      try ExponentialBackoff(initialDelay: .seconds(0))
     }
     #expect(throws: ExponentialBackoffError.emptyRange(initial: .seconds(10), maximum: .seconds(5)))
     {
-      try ExponentialBackoff(
-        config: ExponentialBackoffConfig().with {
-          $0.initialDelay = .seconds(10)
-          $0.maximumDelay = .seconds(5)
-        })
+      try ExponentialBackoff(initialDelay: .seconds(10), maximumDelay: .seconds(5))
     }
   }
 
   @Test func clamping() {
-    let config = ExponentialBackoffConfig().with {
-      $0.initialDelay = .microseconds(100)
-      $0.maximumDelay = .milliseconds(500)
-      $0.scaling = 0.5
-    }
-    let backoff = ExponentialBackoff(clamping: config)
+    let backoff = ExponentialBackoff(
+      clamping: .microseconds(100),
+      maximumDelay: .milliseconds(500),
+      scaling: 0.5
+    )
     #expect(backoff.scaling == 1.0)
     #expect(backoff.maximumDelay == .seconds(1))
     #expect(backoff.initialDelay == .milliseconds(1))
 
-    let config2 = ExponentialBackoffConfig().with {
-      $0.initialDelay = .seconds(100_000_000)
-      $0.maximumDelay = .seconds(100_000_000)
-      $0.scaling = 100.0
-    }
-    let backoff2 = ExponentialBackoff(clamping: config2)
+    let backoff2 = ExponentialBackoff(
+      clamping: .seconds(100_000_000),
+      maximumDelay: .seconds(100_000_000),
+      scaling: 100.0
+    )
     #expect(backoff2.scaling == 32.0)
     #expect(backoff2.maximumDelay == .seconds(60) * 60 * 24)
     #expect(backoff2.initialDelay == .seconds(60) * 60 * 24)
@@ -126,37 +127,42 @@ import Testing
     let b = ExponentialBackoff()
     #expect(a == b)
 
-    let configA = ExponentialBackoffConfig()
-    let configB = ExponentialBackoffConfig()
-    #expect(configA == configB)
-
-    let custom = try ExponentialBackoff(
-      config: ExponentialBackoffConfig().with { $0.scaling = 3.0 })
+    let custom = try ExponentialBackoff(scaling: 3.0)
     #expect(a != custom)
   }
 
   @Test func exponentialBackoffErrorConformances() {
     let scalingErr = ExponentialBackoffError.invalidScalingFactor(0.5)
+    let anyScalingErr: any Error = scalingErr
     #expect(scalingErr.description == "Invalid scaling factor: 0.5 (must be >= 1.0)")
-    #expect(scalingErr.debugDescription == "ExponentialBackoffError.invalidScalingFactor(0.5)")
+    #expect(
+      scalingErr.debugDescription
+        == "ExponentialBackoffError.invalidScalingFactor(0.5): Invalid scaling factor: 0.5 (must be >= 1.0)"
+    )
+    #expect(String(reflecting: anyScalingErr) == scalingErr.debugDescription)
 
     let delayErr = ExponentialBackoffError.invalidInitialDelay(.seconds(0))
+    let anyDelayErr: any Error = delayErr
     #expect(delayErr.description == "Invalid initial delay: 0.0 seconds (must be > 0)")
     #expect(
-      delayErr.debugDescription == "ExponentialBackoffError.invalidInitialDelay(0.0 seconds)"
+      delayErr.debugDescription
+        == "ExponentialBackoffError.invalidInitialDelay(0.0 seconds): Invalid initial delay: 0.0 seconds (must be > 0)"
     )
+    #expect(String(reflecting: anyDelayErr) == delayErr.debugDescription)
 
     let rangeErr = ExponentialBackoffError.emptyRange(
       initial: .seconds(10), maximum: .seconds(5)
     )
+    let anyRangeErr: any Error = rangeErr
     #expect(
       rangeErr.description
         == "Invalid delay range: initial delay 10.0 seconds must be <= maximum delay 5.0 seconds"
     )
     #expect(
       rangeErr.debugDescription
-        == "ExponentialBackoffError.emptyRange(initial: 10.0 seconds, maximum: 5.0 seconds)"
+        == "ExponentialBackoffError.emptyRange(initial: 10.0 seconds, maximum: 5.0 seconds): Invalid delay range: initial delay 10.0 seconds must be <= maximum delay 5.0 seconds"
     )
+    #expect(String(reflecting: anyRangeErr) == rangeErr.debugDescription)
 
     let identical = ExponentialBackoffError.invalidScalingFactor(0.5)
     #expect(scalingErr == identical)

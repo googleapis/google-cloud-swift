@@ -40,6 +40,7 @@ public struct EvaluateProcessorVersionMetadata: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = EvaluateProcessorVersionMetadata().with { $0.commonMetadata = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

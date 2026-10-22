@@ -69,6 +69,7 @@ public struct FrameworkComplianceReport: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = FrameworkComplianceReport().with { $0.framework = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

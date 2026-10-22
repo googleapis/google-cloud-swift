@@ -45,6 +45,7 @@ public struct FetchDatabasePropertiesResponse: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = FetchDatabasePropertiesResponse().with { $0.primaryGceZone = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

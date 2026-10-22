@@ -78,6 +78,7 @@
     /// ```
     /// let value = GenerateGroundedContentRequest().with { $0.location = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -191,6 +192,7 @@
       /// ```
       /// let value = GenerationSpec().with { $0.modelId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -310,6 +312,7 @@
       /// ```
       /// let value = DynamicRetrievalConfiguration().with { $0.predictor = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -374,6 +377,7 @@
         /// ```
         /// let value = DynamicRetrievalPredictor().with { $0.version = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -594,6 +598,7 @@
       /// ```
       /// let value = GroundingSource().with { $0.inlineSource = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -707,6 +712,7 @@
         /// ```
         /// let value = InlineSource().with { $0.groundingFacts = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -816,6 +822,7 @@
         /// ```
         /// let value = SearchSource().with { $0.servingConfig = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -916,6 +923,7 @@
         /// ```
         /// let value = GoogleSearchSource().with { $0.dynamicRetrievalConfig = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -994,6 +1002,7 @@
         /// ```
         /// let value = EnterpriseWebRetrievalSource().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1103,6 +1112,7 @@
       /// ```
       /// let value = GroundingSpec().with { $0.groundingSources = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

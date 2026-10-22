@@ -40,6 +40,7 @@ public struct ListRuntimeActionSchemasResponse: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = ListRuntimeActionSchemasResponse().with { $0.runtimeActionSchemas = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

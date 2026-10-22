@@ -21,7 +21,7 @@ import Foundation
 public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// A user-defined name of the certificate issuance config.
+  /// Identifier. A user-defined name of the certificate issuance config.
   /// CertificateIssuanceConfig names must be unique globally and match pattern
   /// `projects/*/locations/*/certificateIssuanceConfigs/*`.
   public var name: Swift.String = Swift.String()
@@ -32,10 +32,11 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// Output only. The last update timestamp of a CertificateIssuanceConfig.
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
-  /// Set of labels associated with a CertificateIssuanceConfig.
+  /// Optional. Set of labels associated with a CertificateIssuanceConfig.
   public var labels: [Swift.String: Swift.String] = [:]
 
-  /// One or more paragraphs of text description of a CertificateIssuanceConfig.
+  /// Optional. One or more paragraphs of text description of a
+  /// CertificateIssuanceConfig.
   public var description: Swift.String = Swift.String()
 
   /// Required. The CA that issues the workload certificate. It includes the CA
@@ -54,6 +55,12 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
   public var keyAlgorithm: CertificateIssuanceConfig.KeyAlgorithm =
     CertificateIssuanceConfig.KeyAlgorithm()
 
+  /// Optional. Input only. Immutable. Tag keys/values directly bound to this
+  /// resource. For example:
+  ///   "123/environment": "production",
+  ///   "123/costCenter": "marketing"
+  public var tags: [Swift.String: Swift.String] = [:]
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `CertificateIssuanceConfig`.
@@ -66,6 +73,7 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = CertificateIssuanceConfig().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -87,6 +95,7 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
     static let lifetime = CodingKeys(stringValue: "lifetime")
     static let rotationWindowPercentage = CodingKeys(stringValue: "rotationWindowPercentage")
     static let keyAlgorithm = CodingKeys(stringValue: "keyAlgorithm")
+    static let tags = CodingKeys(stringValue: "tags")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -98,6 +107,7 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
       "lifetime",
       "rotationWindowPercentage",
       "keyAlgorithm",
+      "tags",
     ]
   }
 
@@ -131,6 +141,9 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
     {
       self.keyAlgorithm = value
     }
+    if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags) {
+      self.tags = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -149,6 +162,7 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
     try container.encodeIfPresent(self.lifetime, forKey: .lifetime)
     try container.encode(self.rotationWindowPercentage, forKey: .rotationWindowPercentage)
     try container.encode(self.keyAlgorithm, forKey: .keyAlgorithm)
+    try container.encode(self.tags, forKey: .tags)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -159,6 +173,7 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
   public struct CertificateAuthorityConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
+    /// The kind of CA config.
     public var kind: KindOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -173,6 +188,7 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = CertificateAuthorityConfig().with { $0.certificateAuthorityServiceConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -254,6 +270,7 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
       /// ```
       /// let value = CertificateAuthorityServiceConfig().with { $0.caPool = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -315,6 +332,7 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The kind of CA config.
     public enum KindOneOf: Codable, Equatable, Sendable {
       /// Defines a CertificateAuthorityServiceConfig.
       indirect case certificateAuthorityServiceConfig(

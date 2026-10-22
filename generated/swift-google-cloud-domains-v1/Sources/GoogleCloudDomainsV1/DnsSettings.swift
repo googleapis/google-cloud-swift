@@ -40,6 +40,7 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DnsSettings().with { $0.customDns = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -140,6 +141,7 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CustomDns().with { $0.nameServers = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -241,6 +243,7 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GoogleDomainsDns().with { $0.nameServers = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -344,6 +347,7 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DsRecord().with { $0.keyTag = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -815,6 +819,7 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GlueRecord().with { $0.hostName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

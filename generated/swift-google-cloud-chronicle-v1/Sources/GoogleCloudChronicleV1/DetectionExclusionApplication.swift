@@ -55,6 +55,7 @@ public struct DetectionExclusionApplication: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = DetectionExclusionApplication().with { $0.curatedRuleSets = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

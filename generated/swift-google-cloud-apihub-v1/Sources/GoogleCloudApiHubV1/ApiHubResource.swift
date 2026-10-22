@@ -36,6 +36,7 @@ public struct ApiHubResource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ApiHubResource().with { $0.api = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -37,6 +37,7 @@ public struct CustomPromptConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CustomPromptConfig().with { $0.customPrompt = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

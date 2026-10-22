@@ -37,6 +37,7 @@ public struct AutoMlVideoActionRecognition: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = AutoMlVideoActionRecognition().with { $0.inputs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

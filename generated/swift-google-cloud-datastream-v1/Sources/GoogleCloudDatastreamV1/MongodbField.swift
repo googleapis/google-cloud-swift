@@ -21,7 +21,7 @@ import Foundation
 public struct MongodbField: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Field name.
+  /// The field name.
   public var field: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -36,6 +36,7 @@ public struct MongodbField: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MongodbField().with { $0.field = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -71,8 +71,138 @@ import GoogleWKT
     } catch RequestError.service(let serviceError) {
       #expect(serviceError.code == .unknown)
       #expect(serviceError.httpStatusCode == nil)
-      #expect(serviceError.message == "Operation failed")
+      #expect(serviceError.message == "fail")
       #expect(!serviceError.details.isEmpty)
+    } catch {
+      Issue.record("Unexpected error: \(error)")
+    }
+  }
+
+  @Test func throwErrorsOperationErrorMessageFallbacks() throws {
+    let opCodeAndMessage = GoogleCloudComputeV1.Operation().with {
+      $0.error = GoogleCloudComputeV1.Operation.Error().with {
+        $0.errors = [
+          GoogleCloudComputeV1.Operation.Error.Errors().with {
+            $0.code = "QUOTA_EXCEEDED"
+            $0.message = "Quota 'CPUS' exceeded."
+          },
+          GoogleCloudComputeV1.Operation.Error.Errors().with {
+            $0.code = "RESOURCE_NOT_READY"
+          },
+        ]
+      }
+    }
+    do {
+      try opCodeAndMessage._detectErrors()
+      Issue.record("Expected RequestError.service to be thrown")
+    } catch RequestError.service(let serviceError) {
+      #expect(serviceError.message == "QUOTA_EXCEEDED: Quota 'CPUS' exceeded.\nRESOURCE_NOT_READY")
+    } catch {
+      Issue.record("Unexpected error: \(error)")
+    }
+
+    let opEmptyErrors = GoogleCloudComputeV1.Operation().with {
+      $0.httpErrorMessage = ""
+      $0.error = GoogleCloudComputeV1.Operation.Error().with {
+        $0.errors = [GoogleCloudComputeV1.Operation.Error.Errors()]
+      }
+    }
+    do {
+      try opEmptyErrors._detectErrors()
+      Issue.record("Expected RequestError.service to be thrown")
+    } catch RequestError.service(let serviceError) {
+      #expect(serviceError.message == "Operation failed")
+    } catch {
+      Issue.record("Unexpected error: \(error)")
+    }
+  }
+
+  @Test func throwErrorsMapsStructuredErrorDetails() throws {
+    let quotaExceeded = GoogleCloudComputeV1.QuotaExceededInfo().with {
+      $0.metricName = "compute.googleapis.com/cpus"
+      $0.limitName = "CPUS-per-project"
+      $0.limit = 24.0
+      $0.dimensions = ["region": "us-central1"]
+    }
+    let errorEntry = GoogleCloudComputeV1.Operation.Error.Errors().with {
+      $0.code = "QUOTA_EXCEEDED"
+      $0.location = "resources.disks"
+      $0.message = "Quota 'CPUS' exceeded. Limit: 24.0 in region us-central1."
+      $0.errorDetails = [
+        GoogleCloudComputeV1.Operation.Error.Errors.ErrorDetails().with {
+          $0.errorInfo = GoogleCloudComputeV1.ErrorInfo().with {
+            $0.reason = "QUOTA_EXCEEDED"
+            $0.domain = "compute.googleapis.com"
+            $0.metadatas = ["metric": "cpus"]
+          }
+          $0.help = GoogleCloudComputeV1.Help().with {
+            $0.links = [
+              GoogleCloudComputeV1.HelpLink().with {
+                $0.description = "Request more quota"
+                $0.url = "https://cloud.google.com/compute/quotas"
+              }
+            ]
+          }
+          $0.localizedMessage = GoogleCloudComputeV1.LocalizedMessage().with {
+            $0.locale = "en-US"
+            $0.message = "CPU quota exceeded in us-central1."
+          }
+          $0.quotaInfo = quotaExceeded
+        }
+      ]
+    }
+    let operation = GoogleCloudComputeV1.Operation().with {
+      $0.httpErrorStatusCode = 403
+      $0.httpErrorMessage = "FORBIDDEN"
+      $0.error = GoogleCloudComputeV1.Operation.Error().with {
+        $0.errors = [errorEntry]
+      }
+    }
+
+    do {
+      try operation._detectErrors()
+      Issue.record("Expected RequestError.service to be thrown")
+    } catch RequestError.service(let serviceError) {
+      #expect(serviceError.code == .permissionDenied)
+      #expect(serviceError.httpStatusCode == 403)
+      #expect(serviceError.message == "FORBIDDEN")
+      #expect(serviceError.details.count == 5)
+
+      let expectedErrorInfo = GoogleRpc.ErrorInfo().with {
+        $0.reason = "QUOTA_EXCEEDED"
+        $0.domain = "compute.googleapis.com"
+        $0.metadata = ["metric": "cpus"]
+      }
+      let expectedHelp = GoogleRpc.Help().with {
+        $0.links = [
+          GoogleRpc.Help.Link().with {
+            $0.description = "Request more quota"
+            $0.url = "https://cloud.google.com/compute/quotas"
+          }
+        ]
+      }
+      let expectedLocalized = GoogleRpc.LocalizedMessage().with {
+        $0.locale = "en-US"
+        $0.message = "CPU quota exceeded in us-central1."
+      }
+
+      #expect(serviceError.details[0] == .errorInfo(expectedErrorInfo))
+      #expect(serviceError.details[1] == .help(expectedHelp))
+      #expect(serviceError.details[2] == .localizedMessage(expectedLocalized))
+
+      if case .other(let anyQuota) = serviceError.details[3] {
+        let unpackedQuota = try GoogleCloudComputeV1.QuotaExceededInfo(fromAny: anyQuota)
+        #expect(unpackedQuota == quotaExceeded)
+      } else {
+        Issue.record("Expected 4th detail to be .other(QuotaExceededInfo)")
+      }
+
+      if case .other(let anyEntry) = serviceError.details[4] {
+        let unpackedEntry = try GoogleCloudComputeV1.Operation.Error.Errors(fromAny: anyEntry)
+        #expect(unpackedEntry == errorEntry)
+      } else {
+        Issue.record("Expected 5th detail to be .other(Operation.Error.Errors)")
+      }
     } catch {
       Issue.record("Unexpected error: \(error)")
     }

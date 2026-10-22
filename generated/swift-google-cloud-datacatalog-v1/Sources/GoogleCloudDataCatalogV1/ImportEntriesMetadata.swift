@@ -48,6 +48,7 @@ public struct ImportEntriesMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ImportEntriesMetadata().with { $0.state = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

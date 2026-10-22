@@ -57,6 +57,7 @@ public struct WorkdayAuth: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WorkdayAuth().with { $0.user = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

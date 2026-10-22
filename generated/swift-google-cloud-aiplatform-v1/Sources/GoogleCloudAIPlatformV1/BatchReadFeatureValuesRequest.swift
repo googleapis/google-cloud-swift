@@ -65,6 +65,7 @@
     /// ```
     /// let value = BatchReadFeatureValuesRequest().with { $0.csvReadInstances = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -187,6 +188,7 @@
       /// ```
       /// let value = PassThroughField().with { $0.fieldName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -280,6 +282,7 @@
       /// ```
       /// let value = EntityTypeSpec().with { $0.entityTypeId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

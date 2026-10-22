@@ -83,6 +83,7 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CompleteQueryResponse().with { $0.completionResults = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -183,6 +184,7 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CompletionResult().with { $0.suggestion = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -271,6 +273,7 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RecentSearchResult().with { $0.recentSearch = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -350,6 +353,7 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AttributeResult().with { $0.suggestions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

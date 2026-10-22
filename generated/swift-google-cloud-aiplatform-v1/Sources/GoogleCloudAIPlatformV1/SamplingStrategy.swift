@@ -38,6 +38,7 @@
     /// ```
     /// let value = SamplingStrategy().with { $0.randomSampleConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -94,6 +95,7 @@
       /// ```
       /// let value = RandomSampleConfig().with { $0.sampleRate = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

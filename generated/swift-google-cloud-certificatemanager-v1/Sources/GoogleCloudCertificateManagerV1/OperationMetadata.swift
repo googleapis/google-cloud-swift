@@ -38,9 +38,13 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Identifies whether the user has requested cancellation
   /// of the operation. Operations that have successfully been cancelled
-  /// have [Operation.error][] value with a
-  /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-  /// `Code.CANCELLED`.
+  /// have
+  /// [google.longrunning.Operation.error][google.longrunning.Operation.error]
+  /// value with a [google.rpc.Status.code][google.rpc.Status.code] of `1`,
+  /// corresponding to `Code.CANCELLED`.
+  ///
+  /// [google.longrunning.Operation.error]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/error(_:)
+  /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
   public var requestedCancellation: Swift.Bool = Swift.Bool()
 
   /// API version used to start the operation.
@@ -58,6 +62,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OperationMetadata().with { $0.createTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

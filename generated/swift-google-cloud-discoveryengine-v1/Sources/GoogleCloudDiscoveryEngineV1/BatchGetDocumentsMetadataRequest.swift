@@ -48,6 +48,7 @@
     /// ```
     /// let value = BatchGetDocumentsMetadataRequest().with { $0.parent = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -113,6 +114,7 @@
       /// ```
       /// let value = UrisMatcher().with { $0.uris = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -198,6 +200,7 @@
       /// ```
       /// let value = FhirMatcher().with { $0.fhirResources = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -283,6 +286,7 @@
       /// ```
       /// let value = Matcher().with { $0.urisMatcher = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

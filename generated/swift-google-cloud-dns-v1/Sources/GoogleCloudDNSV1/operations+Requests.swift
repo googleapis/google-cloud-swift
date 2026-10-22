@@ -37,6 +37,7 @@ extension OperationsClient {
     /// ```
     /// let value = CancelRequest().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -116,6 +117,7 @@ extension OperationsClient {
     /// ```
     /// let value = DeleteRequest().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -195,6 +197,7 @@ extension OperationsClient {
     /// ```
     /// let value = GetRequest().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -286,6 +289,7 @@ extension OperationsClient {
     /// ```
     /// let value = ListRequest().with { $0.filter = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

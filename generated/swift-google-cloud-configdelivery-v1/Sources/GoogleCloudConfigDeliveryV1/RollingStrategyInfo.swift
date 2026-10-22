@@ -38,6 +38,7 @@ public struct RollingStrategyInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RollingStrategyInfo().with { $0.clusters = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -50,6 +50,7 @@ public struct ComputeInstanceSlurmNodeSet: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ComputeInstanceSlurmNodeSet().with { $0.startupScript = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

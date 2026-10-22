@@ -42,6 +42,7 @@ public struct SearchRelatedAccountGroupMembershipsResponse: Codable, Equatable, 
   /// ```
   /// let value = SearchRelatedAccountGroupMembershipsResponse().with { $0.relatedAccountGroupMemberships = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

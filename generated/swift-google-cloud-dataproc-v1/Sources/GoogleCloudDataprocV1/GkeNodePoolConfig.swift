@@ -54,6 +54,7 @@ public struct GkeNodePoolConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GkeNodePoolConfig().with { $0.config = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -174,6 +175,7 @@ public struct GkeNodePoolConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GkeNodeConfig().with { $0.machineType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -300,6 +302,7 @@ public struct GkeNodePoolConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GkeNodePoolAcceleratorConfig().with { $0.acceleratorCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -399,6 +402,7 @@ public struct GkeNodePoolConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GkeNodePoolAutoscalingConfig().with { $0.minNodeCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

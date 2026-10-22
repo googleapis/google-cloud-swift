@@ -36,6 +36,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = SourceObjectIdentifier().with { $0.oracleIdentifier = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -54,6 +55,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     static let sqlServerIdentifier = CodingKeys(stringValue: "sqlServerIdentifier")
     static let salesforceIdentifier = CodingKeys(stringValue: "salesforceIdentifier")
     static let mongodbIdentifier = CodingKeys(stringValue: "mongodbIdentifier")
+    static let spannerIdentifier = CodingKeys(stringValue: "spannerIdentifier")
 
     static let _knownKeys: Set<Swift.String> = [
       "oracleIdentifier",
@@ -62,6 +64,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
       "sqlServerIdentifier",
       "salesforceIdentifier",
       "mongodbIdentifier",
+      "spannerIdentifier",
     ]
   }
 
@@ -108,6 +111,11 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     {
       try sourceIdentifierCheckAndSet(.mongodbIdentifier(mongodbIdentifier))
     }
+    if let spannerIdentifier = try container.decodeIfPresent(
+      SourceObjectIdentifier.SpannerObjectIdentifier.self, forKey: .spannerIdentifier)
+    {
+      try sourceIdentifierCheckAndSet(.spannerIdentifier(spannerIdentifier))
+    }
     self.sourceIdentifier = sourceIdentifier
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -132,6 +140,8 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
         try container.encode(value, forKey: .salesforceIdentifier)
       case .mongodbIdentifier(let value):
         try container.encode(value, forKey: .mongodbIdentifier)
+      case .spannerIdentifier(let value):
+        try container.encode(value, forKey: .spannerIdentifier)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -161,6 +171,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = OracleObjectIdentifier().with { $0.schema = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -250,6 +261,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = PostgresqlObjectIdentifier().with { $0.schema = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -339,6 +351,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = MysqlObjectIdentifier().with { $0.database = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -428,6 +441,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = SqlServerObjectIdentifier().with { $0.schema = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -514,6 +528,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = SalesforceObjectIdentifier().with { $0.objectName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -597,6 +612,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = MongodbObjectIdentifier().with { $0.database = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -664,6 +680,96 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// Spanner data source object identifier.
+  public struct SpannerObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Optional. The schema name.
+    public var schema: Swift.String = Swift.String()
+
+    /// Required. The table name.
+    public var table: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `SpannerObjectIdentifier`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = SpannerObjectIdentifier().with { $0.schema = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let schema = CodingKeys(stringValue: "schema")
+      static let table = CodingKeys(stringValue: "table")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "schema",
+        "table",
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .schema) {
+        self.schema = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .table) {
+        self.table = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.schema, forKey: .schema)
+      try container.encode(self.table, forKey: .table)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// The type URL for `SpannerObjectIdentifier`: `"type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.SpannerObjectIdentifier"`.
+    public static var _anyTypeUrl: Swift.String {
+      return
+        "type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.SpannerObjectIdentifier"
+    }
+
+    /// Initialize an instance of `SpannerObjectIdentifier` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.SpannerObjectIdentifier"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `SpannerObjectIdentifier` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._slowAnySerialize(message: self)
+    }
+  }
+
   /// The identifier for an object in the data source.
   public enum SourceIdentifierOneOf: Codable, Equatable, Sendable {
     /// Oracle data source object identifier.
@@ -678,6 +784,8 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     indirect case salesforceIdentifier(SourceObjectIdentifier.SalesforceObjectIdentifier)
     /// MongoDB data source object identifier.
     indirect case mongodbIdentifier(SourceObjectIdentifier.MongodbObjectIdentifier)
+    /// Spanner data source object identifier.
+    indirect case spannerIdentifier(SourceObjectIdentifier.SpannerObjectIdentifier)
   }
 
   /// The type URL for `SourceObjectIdentifier`: `"type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier"`.

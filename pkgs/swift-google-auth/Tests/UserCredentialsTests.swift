@@ -294,9 +294,14 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       clock: TestClock()
     )
 
-    await #expect(throws: AuthHTTPError.self) {
+    let error = await #expect(throws: CredentialsError.self) {
       _ = try await source.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    #expect(underlyingError is AuthHTTPError)
   }
 
   @Test func tokenProviderNonretryableError() async throws {
@@ -326,17 +331,24 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       clock: TestClock()
     )
 
-    await #expect(throws: AuthHTTPError.self) {
+    let error = await #expect(throws: CredentialsError.self) {
       _ = try await source.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    #expect(underlyingError is AuthHTTPError)
   }
 
   @Test func tokenProviderMalformedResponseIsNonretryable() async throws {
+    let attempts = CallCounter()
     let malformedPayload = "invalid-json"
     let encodedData = Data(malformedPayload.utf8)
 
     let mock = MockHTTPClient([
       { (request: HTTPClientRequest) in
+        attempts.increment()
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
@@ -353,16 +365,39 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       refreshToken: "test-refresh-token"
     )
 
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3,
+      initialDelay: .milliseconds(1),
+      multiplier: 1.0,
+      maxDelay: .milliseconds(1)
+    )
+
     let source = try UserCredentials(
       user: data,
       httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
+      retryConfiguration: retryConfig,
       clock: TestClock()
     )
 
-    await #expect(throws: AuthHTTPError.self) {
+    let error1 = await #expect(throws: CredentialsError.self) {
       _ = try await source.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError1) = error1 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error1))")
+      return
+    }
+    #expect(underlyingError1 is AuthHTTPError)
+    #expect(attempts.getCount() == 1)
+
+    let error2 = await #expect(throws: CredentialsError.self) {
+      _ = try await source.headers()
+    }
+    guard case let .cannotFetchToken(_, underlyingError2) = error2 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error2))")
+      return
+    }
+    #expect(underlyingError2 is AuthHTTPError)
+    #expect(attempts.getCount() == 1)
   }
 
   @Test func builderMalformedAuthorizedJsonNonretryable() async throws {
@@ -496,9 +531,14 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       clock: clock
     )
 
-    await #expect(throws: AuthHTTPError.self) {
+    let error = await #expect(throws: CredentialsError.self) {
       _ = try await source.headers()
     }
+    guard case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    #expect(underlyingError is AuthHTTPError)
 
     // Give the background task a moment to run and either sleep or terminate.
     try? await Task.sleep(for: .milliseconds(100))

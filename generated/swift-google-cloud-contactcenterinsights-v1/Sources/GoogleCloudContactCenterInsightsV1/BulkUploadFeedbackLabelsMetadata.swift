@@ -50,6 +50,7 @@ public struct BulkUploadFeedbackLabelsMetadata: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = BulkUploadFeedbackLabelsMetadata().with { $0.createTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -132,6 +133,7 @@ public struct BulkUploadFeedbackLabelsMetadata: Codable, Equatable, GoogleWKT._A
     /// ```
     /// let value = UploadStats().with { $0.processedObjectCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -36,6 +36,7 @@ public struct ScannedData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ScannedData().with { $0.incrementalField = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -120,6 +121,7 @@ public struct ScannedData: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IncrementalField().with { $0.field = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

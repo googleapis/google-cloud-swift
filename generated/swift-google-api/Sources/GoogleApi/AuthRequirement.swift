@@ -65,6 +65,7 @@ public struct AuthRequirement: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AuthRequirement().with { $0.providerId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

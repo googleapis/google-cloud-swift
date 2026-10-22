@@ -52,6 +52,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = CompilationResultAction().with { $0.relation = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -259,6 +260,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = Relation().with { $0.dependencyTargets = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -453,6 +455,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       /// ```
       /// let value = IncrementalTableConfig().with { $0.incrementalSelectQuery = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -961,6 +964,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = Operations().with { $0.dependencyTargets = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1088,6 +1092,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = Assertion().with { $0.dependencyTargets = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1196,6 +1201,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = Declaration().with { $0.relationDescriptor = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1283,6 +1289,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = Notebook().with { $0.dependencyTargets = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1389,6 +1396,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = DataPreparation().with { $0.contentsYaml = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1499,6 +1507,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       /// ```
       /// let value = SqlDefinition().with { $0.query = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1594,6 +1603,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       /// ```
       /// let value = ErrorTable().with { $0.target = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1709,6 +1719,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = LoadConfig().with { $0.replace = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1846,6 +1857,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = SimpleLoadMode().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1917,6 +1929,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = IncrementalLoadMode().with { $0.column = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
