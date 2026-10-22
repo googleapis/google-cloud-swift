@@ -30,6 +30,9 @@ struct StorageRetryErrors: RetryPolicy, Sendable, Equatable {
     return .permanent(error)
   }
 
+  /// Returns `true` if `error` represents a transient HTTP (`408`, `429`, `500...599`) or
+  /// gRPC/service (`unavailable`, `resourceExhausted`, `deadlineExceeded`, `internal`) status
+  /// code that can be retried or resumed in Google Cloud Storage.
   static func isRetryable(_ error: RequestError) -> Bool {
     switch error {
     case .http(let details):

@@ -52,13 +52,13 @@ public struct StorageResumePolicy<Details: Sendable>: ResumePolicy, Sendable, Eq
     guard state.idempotent else {
       return .permanent(error)
     }
-    if isResumable(error) {
+    if Self.isResumable(error) {
       return .resume(error)
     }
     return .permanent(error)
   }
 
-  private func isResumable(_ error: RequestError) -> Bool {
+  private static func isResumable(_ error: RequestError) -> Bool {
     if case .io = error {
       return true
     }
