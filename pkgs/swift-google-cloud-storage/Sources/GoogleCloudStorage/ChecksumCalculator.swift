@@ -148,7 +148,16 @@ func crc32cBase64(_ value: UInt32) -> String {
   ]).base64EncodedString()
 }
 
-/// Decodes a Base64-encoded 4-byte big-endian CRC32C checksum into a 32-bit unsigned integer.
+/// Decodes a Base64-encoded 4-byte big-endian CRC32C checksum into a 32-bit unsigned integer,
+/// matching the representation used by Google Cloud Storage in `x-goog-hash` headers,
+/// `x-goog-running-hash` headers, and object metadata.
+///
+/// Returns `nil` if `base64` is not a valid Base64-encoded string or if the decoded payload
+/// is not exactly 4 bytes.
+///
+/// Like `crc32cBase64(_:)`, this helper reconstructs the 32-bit value via bitwise shifts rather
+/// than `withUnsafeBytes` and `loadUnaligned(as:)` to avoid raw pointer operations under
+/// `-strict-memory-safety` (SE-0458).
 func crc32cFromBase64(_ base64: String) -> UInt32? {
   guard let data = Data(base64Encoded: base64), data.count == 4 else {
     return nil
