@@ -55,7 +55,7 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The scope of the completion. The defaults is
   /// [CompletionScope.PUBLIC][google.cloud.talent.v4.CompleteQueryRequest.CompletionScope.PUBLIC].
   ///
-  /// [google.cloud.talent.v4.CompleteQueryRequest.CompletionScope.PUBLIC]: <doc:CompleteQueryRequest/CompletionScope/`public`>
+  /// [google.cloud.talent.v4.CompleteQueryRequest.CompletionScope.PUBLIC]: <doc:CompleteQueryRequest/CompletionScope/public>
   public var scope: CompleteQueryRequest.CompletionScope = CompleteQueryRequest.CompletionScope()
 
   /// The completion topic. The default is

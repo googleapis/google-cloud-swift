@@ -346,7 +346,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.nodeTemplates.get] method.
     ///
-    /// [google.cloud.compute.v1.nodeTemplates.get]: <doc:NodeTemplatesClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.nodeTemplates.get]: <doc:NodeTemplatesClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

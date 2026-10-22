@@ -21,7 +21,7 @@
   extension HostsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.hosts.get] method.
     ///
-    /// [google.cloud.compute.v1.hosts.get]: <doc:HostsClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.hosts.get]: <doc:HostsClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

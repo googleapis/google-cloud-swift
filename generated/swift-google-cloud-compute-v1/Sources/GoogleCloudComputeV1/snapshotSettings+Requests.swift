@@ -21,7 +21,7 @@
   extension SnapshotSettingsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.snapshotSettings.get] method.
     ///
-    /// [google.cloud.compute.v1.snapshotSettings.get]: <doc:SnapshotSettingsClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.snapshotSettings.get]: <doc:SnapshotSettingsClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

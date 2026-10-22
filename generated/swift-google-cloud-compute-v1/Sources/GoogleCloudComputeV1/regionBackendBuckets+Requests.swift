@@ -141,7 +141,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionBackendBuckets.get] method.
     ///
-    /// [google.cloud.compute.v1.regionBackendBuckets.get]: <doc:RegionBackendBucketsClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.regionBackendBuckets.get]: <doc:RegionBackendBucketsClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

@@ -21,7 +21,7 @@
   extension RegionSnapshotSettingsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionSnapshotSettings.get] method.
     ///
-    /// [google.cloud.compute.v1.regionSnapshotSettings.get]: <doc:RegionSnapshotSettingsClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.regionSnapshotSettings.get]: <doc:RegionSnapshotSettingsClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

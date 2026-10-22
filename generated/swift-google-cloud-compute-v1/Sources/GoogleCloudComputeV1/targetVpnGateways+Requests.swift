@@ -346,7 +346,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.targetVpnGateways.get] method.
     ///
-    /// [google.cloud.compute.v1.targetVpnGateways.get]: <doc:TargetVpnGatewaysClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.targetVpnGateways.get]: <doc:TargetVpnGatewaysClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

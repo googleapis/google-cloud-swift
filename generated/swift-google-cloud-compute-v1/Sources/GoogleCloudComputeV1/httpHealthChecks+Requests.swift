@@ -131,7 +131,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.httpHealthChecks.get] method.
     ///
-    /// [google.cloud.compute.v1.httpHealthChecks.get]: <doc:HttpHealthChecksClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.httpHealthChecks.get]: <doc:HttpHealthChecksClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

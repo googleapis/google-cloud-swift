@@ -567,7 +567,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionNetworkFirewallPolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.get]: <doc:RegionNetworkFirewallPoliciesClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.get]: <doc:RegionNetworkFirewallPoliciesClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

@@ -21,7 +21,7 @@
   extension GlobalFrontendSettingsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.globalFrontendSettings.get] method.
     ///
-    /// [google.cloud.compute.v1.globalFrontendSettings.get]: <doc:GlobalFrontendSettingsClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.globalFrontendSettings.get]: <doc:GlobalFrontendSettingsClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

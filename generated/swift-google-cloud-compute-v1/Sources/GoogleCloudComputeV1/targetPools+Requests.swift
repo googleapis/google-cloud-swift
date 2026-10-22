@@ -603,7 +603,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.targetPools.get] method.
     ///
-    /// [google.cloud.compute.v1.targetPools.get]: <doc:TargetPoolsClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.targetPools.get]: <doc:TargetPoolsClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

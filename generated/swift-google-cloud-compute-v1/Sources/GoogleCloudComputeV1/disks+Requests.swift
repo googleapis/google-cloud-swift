@@ -856,7 +856,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.disks.get] method.
     ///
-    /// [google.cloud.compute.v1.disks.get]: <doc:DisksClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.disks.get]: <doc:DisksClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

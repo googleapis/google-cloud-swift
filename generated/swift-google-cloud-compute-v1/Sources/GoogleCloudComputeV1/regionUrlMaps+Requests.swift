@@ -129,7 +129,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionUrlMaps.get] method.
     ///
-    /// [google.cloud.compute.v1.regionUrlMaps.get]: <doc:RegionUrlMapsClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.regionUrlMaps.get]: <doc:RegionUrlMapsClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
