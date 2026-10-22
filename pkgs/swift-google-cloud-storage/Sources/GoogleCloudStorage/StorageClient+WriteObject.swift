@@ -478,6 +478,8 @@ extension StorageClient {
     let effectiveTotalSize: UInt64?
   }
 
+  /// Returns the existing resumable upload session URI, or starts a new session through
+  /// `resumeLoop` and records its URI in `currentUploadId`.
   fileprivate static func ensureUploadSession(
     currentUploadId: inout String?,
     httpClient: GoogleGax._HTTPClient,
@@ -508,6 +510,13 @@ extension StorageClient {
     return location
   }
 
+  /// Queries the server for the current progress of a resumable upload and validates the
+  /// reported committed byte offset against `maxBytesSent` and `lastCommittedBytes`.
+  ///
+  /// When recovering an externally resumed session (`isResumedSession == true`), the server's
+  /// first reported offset initializes `maxBytesSent` and `lastCommittedBytes`. On subsequent
+  /// status queries, throws `.unexpectedServerResponse` if the server reports an offset ahead
+  /// of `maxBytesSent` or behind `lastCommittedBytes`.
   fileprivate static func recoverUploadStatus(
     httpClient: GoogleGax._HTTPClient,
     uploadId: String,
@@ -544,6 +553,8 @@ extension StorageClient {
     return queryResult
   }
 
+  /// Advances `resumeState.details.bytesWritten` and notifies `resumeLoop` when the server
+  /// acknowledges newly committed bytes.
   fileprivate static func recordUploadProgress(
     committedBytes: UInt64,
     resumeLoop: _ResumeLoop<WriteObjectDetails>,
@@ -583,6 +594,9 @@ extension StorageClient {
       isResumedSession = true
     }
     var maxBytesSent = initialBytes
+    // Track the highest committed offset (`pendingChunk?.chunkStartOffset ?? sourceBytesRead`)
+    // so `recoverUploadStatus` can reject server-reported offset rewinds consistently across
+    // seekable and non-seekable uploads.
     var lastCommittedBytes = initialBytes
     var resumeState = ResumeState(
       details: WriteObjectDetails(
@@ -999,6 +1013,8 @@ struct ResumableUploadQueryStatus: Sendable {
 }
 
 extension StorageClient {
+  /// Builds the common URL query items for object upload initiation requests (`media`,
+  /// `multipart`, and `resumable`), including `kmsKeyName`, `predefinedAcl`, and preconditions.
   fileprivate static func buildUploadQueryItems(
     uploadType: String,
     objectName: String,
@@ -1137,6 +1153,11 @@ extension StorageClient {
     return request
   }
 
+  /// Parses the next expected upload byte offset and optional running CRC32C seed from a `308
+  /// Resume Incomplete` response's `Range` and `x-goog-running-hash` headers.
+  ///
+  /// Uses `defaultOffset` when the `Range` header is absent (e.g., `0` when no bytes have been
+  /// committed yet, or the chunk's starting offset during chunk upload recovery).
   internal static func parseResumableUploadQueryStatus(
     from headers: NIOHTTP1.HTTPHeaders,
     defaultOffset: UInt64 = 0
