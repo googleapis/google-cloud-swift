@@ -82,9 +82,9 @@ where C.Instant.Duration == Duration {
     }
     self.quotaProjectID = quotaProjectID ?? user.quotaProjectId
 
-    // Resolve Token URI
+    // Resolve Token URL
     guard
-      let resolvedUri = URL(
+      let resolvedURL = URL(
         string: user.tokenUri ?? "https://oauth2.googleapis.com/token"
       )
     else {
@@ -94,7 +94,7 @@ where C.Instant.Duration == Duration {
     let provider = UserAccountTokenProvider(
       user: user,
       scopes: scopes,
-      tokenUri: resolvedUri,
+      tokenURL: resolvedURL,
       retryConfiguration: retryConfiguration,
       httpClient: httpClient
     )
@@ -105,8 +105,6 @@ where C.Instant.Duration == Duration {
       isRetryable: AuthHTTPError.isRetryable
     )
   }
-
-  // MARK: - CredentialsProvider
 
   func headers() async throws -> AuthHeaders {
     let token = try await cache.token()

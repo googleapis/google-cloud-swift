@@ -21,7 +21,7 @@ import Foundation
 /// A `TokenProvider` implementation that exchanges an OAuth 2.0 refresh token for an access token.
 ///
 /// Implements the standard [OAuth 2.0 Refreshing an Access Token](https://datatracker.ietf.org/doc/html/rfc6749#section-6)
-/// flow. Requests are sent as `POST` requests to `tokenUri` with `grant_type=refresh_token`.
+/// flow. Requests are sent as `POST` requests to `tokenURL` with `grant_type=refresh_token`.
 ///
 /// - SeeAlso: [RFC 6749: OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749)
 struct UserAccountTokenProvider: TokenProvider {
@@ -32,7 +32,7 @@ struct UserAccountTokenProvider: TokenProvider {
   let scopes: [String]
 
   /// The OAuth 2.0 token endpoint URL.
-  let tokenUri: URL
+  let tokenURL: URL
 
   /// The retry configuration controlling backoff and attempt limits for token refresh requests.
   let retryConfiguration: RetryConfiguration
@@ -64,7 +64,7 @@ struct UserAccountTokenProvider: TokenProvider {
         isRetryable: AuthHTTPError.isRetryable
       ) {
         return try await httpClient.post(
-          url: tokenUri,
+          url: tokenURL,
           body: requestBody
         )
       }
@@ -72,7 +72,7 @@ struct UserAccountTokenProvider: TokenProvider {
       throw CancellationError()
     } catch {
       throw CredentialsError.cannotFetchToken(
-        message: "Could not refresh user access token from \(tokenUri.absoluteString).",
+        message: "Could not refresh user access token.",
         underlyingError: error
       )
     }

@@ -133,8 +133,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
       throw CancellationError()
     } catch {
       throw CredentialsError.cannotFetchToken(
-        message:
-          "Could not exchange subject token for an access token at \(tokenURL.absoluteString).",
+        message: "Could not exchange subject token for an access token.",
         underlyingError: error
       )
     }
