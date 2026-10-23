@@ -51,6 +51,21 @@ extension Clients {
       return try await loop.run(attempt: attempt)
     }
 
+    public func listAclPolicies(
+      request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.ListAclPoliciesResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListAclPoliciesRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudMemoryStoreV1.ListAclPoliciesResponse
+          in
+          return try await self.inner.listAclPolicies(request: r, options: o)
+        })
+    }
+
     public func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse {
@@ -63,6 +78,21 @@ extension Clients {
             -> GoogleCloudMemoryStoreV1.ListInstancesResponse
           in
           return try await self.inner.listInstances(request: r, options: o)
+        })
+    }
+
+    public func getAclPolicy(
+      request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetAclPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudMemoryStoreV1.AclPolicy
+          in
+          return try await self.inner.getAclPolicy(request: r, options: o)
         })
     }
 
@@ -81,6 +111,21 @@ extension Clients {
         })
     }
 
+    public func createAclPolicy(
+      request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateAclPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudMemoryStoreV1.AclPolicy
+          in
+          return try await self.inner.createAclPolicy(request: r, options: o)
+        })
+    }
+
     public func createInstance(
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -96,6 +141,21 @@ extension Clients {
         })
     }
 
+    public func updateAclPolicy(
+      request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateAclPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.updateAclPolicy(request: r, options: o)
+        })
+    }
+
     public func updateInstance(
       request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -108,6 +168,51 @@ extension Clients {
             -> GoogleLongRunning.Operation
           in
           return try await self.inner.updateInstance(request: r, options: o)
+        })
+    }
+
+    public func deleteAclPolicy(
+      request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DeleteAclPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.deleteAclPolicy(request: r, options: o)
+        })
+    }
+
+    public func getAclPolicyRevision(
+      request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.AclPolicyRevision {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetAclPolicyRevisionRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudMemoryStoreV1.AclPolicyRevision
+          in
+          return try await self.inner.getAclPolicyRevision(request: r, options: o)
+        })
+    }
+
+    public func listAclPolicyRevisions(
+      request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.ListAclPolicyRevisionsResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListAclPolicyRevisionsRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudMemoryStoreV1.ListAclPolicyRevisionsResponse
+          in
+          return try await self.inner.listAclPolicyRevisions(request: r, options: o)
         })
     }
 

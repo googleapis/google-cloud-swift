@@ -5,7 +5,7 @@ Creates and runs virtual machines on Google Cloud Platform.
 
 ## Overview
 
-This client library was generated from the "20261007" revision of the API.
+This client library was generated from the "20261016" revision of the API.
 
 The following types provide methods to make RPCs. They are a good starting point
 to learn about this library.
