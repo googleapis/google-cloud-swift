@@ -1158,7 +1158,7 @@ extension StorageClient {
   ///
   /// Uses `defaultOffset` when the `Range` header is absent (e.g., `0` when no bytes have been
   /// committed yet, or the chunk's starting offset during chunk upload recovery).
-  internal static func parseResumableUploadQueryStatus(
+  static func parseResumableUploadQueryStatus(
     from headers: NIOHTTP1.HTTPHeaders,
     defaultOffset: UInt64 = 0
   ) throws
@@ -1179,7 +1179,7 @@ extension StorageClient {
     return ResumableUploadQueryStatus(nextOffset: nextOffset, crc32cSeed: crc32cSeed)
   }
 
-  internal static func parseCRC32CFromRunningHash(_ headerValue: String) -> UInt32? {
+  static func parseCRC32CFromRunningHash(_ headerValue: String) -> UInt32? {
     let parts = headerValue.split(separator: ",")
     for part in parts {
       let trimmed = part.trimmingCharacters(in: .whitespaces)

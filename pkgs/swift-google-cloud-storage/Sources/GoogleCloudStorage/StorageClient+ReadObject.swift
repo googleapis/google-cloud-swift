@@ -58,7 +58,7 @@ extension StorageClient {
     return ReadObjectHandle(coordinator: coordinator)
   }
 
-  internal static func parseReadObjectMetadata(
+  static func parseReadObjectMetadata(
     from headers: NIOHTTP1.HTTPHeaders,
     bucket: String,
     object: String
@@ -128,7 +128,7 @@ extension StorageClient {
     return metadata
   }
 
-  internal static func extractExpectedChecksums(
+  static func extractExpectedChecksums(
     from headers: NIOHTTP1.HTTPHeaders
   ) -> (crc32c: String?, md5: String?) {
     var crc32c: String?

@@ -556,7 +556,7 @@ public struct WriteObjectOptions: Sendable {
 }
 
 extension WriteObjectOptions {
-  internal func withDefaults(_ defaults: Self) -> Self {
+  func withDefaults(_ defaults: Self) -> Self {
     var copy = self
     copy.chunkSize = self.chunkSize ?? defaults.chunkSize
     copy.resumableUploadThreshold =
@@ -575,7 +575,7 @@ extension WriteObjectOptions {
     return copy
   }
 
-  internal var requestOptions: RequestOptions {
+  var requestOptions: RequestOptions {
     RequestOptions().with { $0.quotaProject = self.quotaProject }
   }
 }

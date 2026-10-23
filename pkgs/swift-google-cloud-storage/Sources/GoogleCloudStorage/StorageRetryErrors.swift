@@ -23,7 +23,7 @@ import GoogleRpc
 struct StorageRetryErrors: RetryPolicy, Sendable, Equatable {
   init() {}
 
-  public func onError(state: RetryState, error: RequestError) -> RetryResult {
+  func onError(state: RetryState, error: RequestError) -> RetryResult {
     if Self.isRetryable(error) {
       return .retry(error)
     }

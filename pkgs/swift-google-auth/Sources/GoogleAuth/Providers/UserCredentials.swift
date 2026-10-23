@@ -20,12 +20,12 @@ import Foundation
 
 /// Adapter registered with `CredentialParserRegistry` to construct `UserCredentials`
 /// from raw `"authorized_user"` ADC JSON `Data`.
-internal struct UserCredentialsParser: CredentialSourceParser {
-  internal static let type = "authorized_user"
+struct UserCredentialsParser: CredentialSourceParser {
+  static let type = "authorized_user"
 
-  internal init() {}
+  init() {}
 
-  internal func parse(
+  func parse(
     data: Data,
     quotaProjectID: String?,
     universeDomain: String?,

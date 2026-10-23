@@ -138,7 +138,7 @@ public struct StreamSource: WriteObjectSource {
     self.reader = SequenceReader(sequence: sequence) { ByteChunk($0).byteBuffer }
   }
 
-  internal init<S: AsyncSequence & Sendable>(
+  init<S: AsyncSequence & Sendable>(
     sequence: S,
     totalSize: UInt64? = nil
   ) where S.Element == NIOCore.ByteBuffer {

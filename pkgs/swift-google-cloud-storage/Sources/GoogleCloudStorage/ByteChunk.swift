@@ -19,12 +19,12 @@ import NIOFoundationCompat
 /// A container representing a sequence of bytes backed either by `Foundation.Data`
 /// or an internal network buffer without unnecessary memory copying.
 public struct ByteChunk: Sendable, ContiguousBytes {
-  internal enum Storage: Sendable {
+  enum Storage: Sendable {
     case data(Data)
     case byteBuffer(NIOCore.ByteBuffer)
   }
 
-  internal let storage: Storage
+  let storage: Storage
 
   // MARK: - Initializers
 
@@ -34,7 +34,7 @@ public struct ByteChunk: Sendable, ContiguousBytes {
   }
 
   /// Creates a byte chunk wrapping a `NIOCore.ByteBuffer` instance (zero-copy).
-  internal init(_ buffer: NIOCore.ByteBuffer) {
+  init(_ buffer: NIOCore.ByteBuffer) {
     self.storage = .byteBuffer(buffer)
   }
 
@@ -127,7 +127,7 @@ extension ByteChunk {
   ///
   /// - Returns: The original `NIOCore.ByteBuffer` with zero copies if backed by `NIOCore.ByteBuffer`,
   ///   or copies the bytes into a new `NIOCore.ByteBuffer` instance if backed by `Data`.
-  internal var byteBuffer: NIOCore.ByteBuffer {
+  var byteBuffer: NIOCore.ByteBuffer {
     switch storage {
     case .byteBuffer(let buffer):
       return buffer

@@ -69,17 +69,17 @@ extension InternalDecoder: Decoder {
   var codingPath: [any CodingKey] { self.impl.codingPath }
   var userInfo: [CodingUserInfoKey: Any] { self.impl.userInfo }
 
-  public func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key>
+  func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key>
   where Key: CodingKey {
     let impl = try self.impl.container(keyedBy: type)
     return KeyedDecodingContainer(InternalKeyedContainer(impl))
   }
 
-  public func singleValueContainer() throws -> any SingleValueDecodingContainer {
+  func singleValueContainer() throws -> any SingleValueDecodingContainer {
     return InternalSingleValueContainer(try self.impl.singleValueContainer())
   }
 
-  public func unkeyedContainer() throws -> any UnkeyedDecodingContainer {
+  func unkeyedContainer() throws -> any UnkeyedDecodingContainer {
     let impl = try self.impl.unkeyedContainer()
     return InternalUnkeyedDecodingContainer(impl)
   }

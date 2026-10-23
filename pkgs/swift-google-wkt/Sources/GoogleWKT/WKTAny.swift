@@ -104,5 +104,5 @@ extension WKTAny: _AnyPackable {
   // The JSON field used to store an Any's typeURL.
   static private let typeURLField = "@type"
   // The JSON field used to store types with custom encoding.
-  static internal let valueField = "value"
+  static let valueField = "value"
 }
