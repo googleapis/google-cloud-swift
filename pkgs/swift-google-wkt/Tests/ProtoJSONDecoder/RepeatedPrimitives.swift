@@ -19,7 +19,9 @@ import Testing
 extension ProtoJSONDecoderTest {
   // Only test the types that appear in sidekick messages
   // `Int` and `UInt` may be used with enums.
-  struct RepeatedPrimitives: Decodable, Equatable {
+  struct RepeatedPrimitives: Codable, Equatable, _AnyPackable, Sendable {
+    static var _anyTypeUrl: String { "type.googleapis.com/test.RepeatedPrimitives" }
+
     func with(_ config: (inout Self) -> Void) -> Self {
       var copy = self
       config(&copy)
@@ -36,85 +38,95 @@ extension ProtoJSONDecoderTest {
     var fieldDouble: [Double] = []
     var fieldString: [String] = []
     var fieldData: [Data] = []
+
+    init() {}
+
+    init(fromAny any: WKTAny) throws {
+      self = try _anyDeserialize(Self.self, from: any)
+    }
+
+    func _pack() throws -> WKTStruct {
+      return try _anySerialize(message: self)
+    }
   }
 
-  @Test(
-    "decode repeated primitives",
-    arguments: [
-      (#"{}"#, RepeatedPrimitives()),
-      (#"{"fieldBool":   []       }"#, RepeatedPrimitives()),
-      (#"{"fieldInt":    []       }"#, RepeatedPrimitives()),
-      (#"{"fieldInt32":  []       }"#, RepeatedPrimitives()),
-      (#"{"fieldInt64":  []       }"#, RepeatedPrimitives()),
-      (#"{"fieldUInt":   []       }"#, RepeatedPrimitives()),
-      (#"{"fieldUInt32": []       }"#, RepeatedPrimitives()),
-      (#"{"fieldUInt64": []       }"#, RepeatedPrimitives()),
-      (#"{"fieldFloat":  []       }"#, RepeatedPrimitives()),
-      (#"{"fieldDouble": []       }"#, RepeatedPrimitives()),
-      (#"{"fieldString": []       }"#, RepeatedPrimitives()),
-      (#"{"fieldData":   []       }"#, RepeatedPrimitives()),
-      (#"{"fieldBool":   [true]   }"#, RepeatedPrimitives().with { $0.fieldBool = [true] }),
-      (#"{"fieldInt":    [42]     }"#, RepeatedPrimitives().with { $0.fieldInt = [42] }),
-      (#"{"fieldInt32":  [42]     }"#, RepeatedPrimitives().with { $0.fieldInt32 = [42] }),
-      (#"{"fieldInt64":  [42]     }"#, RepeatedPrimitives().with { $0.fieldInt64 = [42] }),
-      (#"{"fieldUInt":   [42]     }"#, RepeatedPrimitives().with { $0.fieldUInt = [42] }),
-      (#"{"fieldUInt32": [42]     }"#, RepeatedPrimitives().with { $0.fieldUInt32 = [42] }),
-      (#"{"fieldUInt64": [42]     }"#, RepeatedPrimitives().with { $0.fieldUInt64 = [42] }),
-      (#"{"fieldFloat":  [42]     }"#, RepeatedPrimitives().with { $0.fieldFloat = [42] }),
-      (#"{"fieldDouble": [42]     }"#, RepeatedPrimitives().with { $0.fieldDouble = [42] }),
-      (#"{"fieldString": [""]     }"#, RepeatedPrimitives().with { $0.fieldString = [""] }),
-      (#"{"fieldData":   [""]     }"#, RepeatedPrimitives().with { $0.fieldData = [Data()] }),
-      (#"{"fieldBool":   ["true"] }"#, RepeatedPrimitives().with { $0.fieldBool = [true] }),
-      (#"{"fieldInt":    ["42"]   }"#, RepeatedPrimitives().with { $0.fieldInt = [42] }),
-      (#"{"fieldInt32":  ["42"]   }"#, RepeatedPrimitives().with { $0.fieldInt32 = [42] }),
-      (#"{"fieldInt64":  ["42"]   }"#, RepeatedPrimitives().with { $0.fieldInt64 = [42] }),
-      (#"{"fieldUInt":   ["42"]   }"#, RepeatedPrimitives().with { $0.fieldUInt = [42] }),
-      (#"{"fieldUInt32": ["42"]   }"#, RepeatedPrimitives().with { $0.fieldUInt32 = [42] }),
-      (#"{"fieldUInt64": ["42"]   }"#, RepeatedPrimitives().with { $0.fieldUInt64 = [42] }),
-      (#"{"fieldFloat":  ["42"]   }"#, RepeatedPrimitives().with { $0.fieldFloat = [42] }),
-      (#"{"fieldDouble": ["42"]   }"#, RepeatedPrimitives().with { $0.fieldDouble = [42] }),
-      (#"{"fieldString": ["42"]   }"#, RepeatedPrimitives().with { $0.fieldString = ["42"] }),
-      (
-        #"{"fieldData":   ["NDI="] }"#,
-        RepeatedPrimitives().with { $0.fieldData = [Data(base64Encoded: "NDI=")!] }
-      ),
-      (
-        #"{"fieldData":   ["NDI", "-_-_", "Pz8_Pw", "Pz8_Pw=="] }"#,
-        RepeatedPrimitives().with {
-          $0.fieldData = [
-            Data("42".utf8),
-            Data([251, 255, 191] as [UInt8]),
-            Data("????".utf8),
-            Data("????".utf8),
-          ]
-        }
-      ),
-    ] as [(String, RepeatedPrimitives)])
+  static let repeatedInputs: [(String, RepeatedPrimitives)] = [
+    (#"{}"#, RepeatedPrimitives()),
+    (#"{"fieldBool":   []       }"#, RepeatedPrimitives()),
+    (#"{"fieldInt":    []       }"#, RepeatedPrimitives()),
+    (#"{"fieldInt32":  []       }"#, RepeatedPrimitives()),
+    (#"{"fieldInt64":  []       }"#, RepeatedPrimitives()),
+    (#"{"fieldUInt":   []       }"#, RepeatedPrimitives()),
+    (#"{"fieldUInt32": []       }"#, RepeatedPrimitives()),
+    (#"{"fieldUInt64": []       }"#, RepeatedPrimitives()),
+    (#"{"fieldFloat":  []       }"#, RepeatedPrimitives()),
+    (#"{"fieldDouble": []       }"#, RepeatedPrimitives()),
+    (#"{"fieldString": []       }"#, RepeatedPrimitives()),
+    (#"{"fieldData":   []       }"#, RepeatedPrimitives()),
+    (#"{"fieldBool":   [true]   }"#, RepeatedPrimitives().with { $0.fieldBool = [true] }),
+    (#"{"fieldInt":    [42]     }"#, RepeatedPrimitives().with { $0.fieldInt = [42] }),
+    (#"{"fieldInt32":  [42]     }"#, RepeatedPrimitives().with { $0.fieldInt32 = [42] }),
+    (#"{"fieldInt64":  [42]     }"#, RepeatedPrimitives().with { $0.fieldInt64 = [42] }),
+    (#"{"fieldUInt":   [42]     }"#, RepeatedPrimitives().with { $0.fieldUInt = [42] }),
+    (#"{"fieldUInt32": [42]     }"#, RepeatedPrimitives().with { $0.fieldUInt32 = [42] }),
+    (#"{"fieldUInt64": [42]     }"#, RepeatedPrimitives().with { $0.fieldUInt64 = [42] }),
+    (#"{"fieldFloat":  [42]     }"#, RepeatedPrimitives().with { $0.fieldFloat = [42] }),
+    (#"{"fieldDouble": [42]     }"#, RepeatedPrimitives().with { $0.fieldDouble = [42] }),
+    (#"{"fieldString": [""]     }"#, RepeatedPrimitives().with { $0.fieldString = [""] }),
+    (#"{"fieldData":   [""]     }"#, RepeatedPrimitives().with { $0.fieldData = [Data()] }),
+    (#"{"fieldBool":   ["true"] }"#, RepeatedPrimitives().with { $0.fieldBool = [true] }),
+    (#"{"fieldInt":    ["42"]   }"#, RepeatedPrimitives().with { $0.fieldInt = [42] }),
+    (#"{"fieldInt32":  ["42"]   }"#, RepeatedPrimitives().with { $0.fieldInt32 = [42] }),
+    (#"{"fieldInt64":  ["42"]   }"#, RepeatedPrimitives().with { $0.fieldInt64 = [42] }),
+    (#"{"fieldUInt":   ["42"]   }"#, RepeatedPrimitives().with { $0.fieldUInt = [42] }),
+    (#"{"fieldUInt32": ["42"]   }"#, RepeatedPrimitives().with { $0.fieldUInt32 = [42] }),
+    (#"{"fieldUInt64": ["42"]   }"#, RepeatedPrimitives().with { $0.fieldUInt64 = [42] }),
+    (#"{"fieldFloat":  ["42"]   }"#, RepeatedPrimitives().with { $0.fieldFloat = [42] }),
+    (#"{"fieldDouble": ["42"]   }"#, RepeatedPrimitives().with { $0.fieldDouble = [42] }),
+    (#"{"fieldString": ["42"]   }"#, RepeatedPrimitives().with { $0.fieldString = ["42"] }),
+    (
+      #"{"fieldData":   ["NDI="] }"#,
+      RepeatedPrimitives().with { $0.fieldData = [Data(base64Encoded: "NDI=")!] }
+    ),
+    (
+      #"{"fieldData":   ["NDI", "-_-_", "Pz8_Pw", "Pz8_Pw=="] }"#,
+      RepeatedPrimitives().with {
+        $0.fieldData = [
+          Data("42".utf8),
+          Data([251, 255, 191] as [UInt8]),
+          Data("????".utf8),
+          Data("????".utf8),
+        ]
+      }
+    ),
+  ]
+
+  static let repeatedBadInputs: [String] = [
+    #"{"fieldBool":   ["bad"] }"#,
+    #"{"fieldInt":    ["bad"] }"#,
+    #"{"fieldInt32":  ["bad"] }"#,
+    #"{"fieldInt64":  ["bad"] }"#,
+    #"{"fieldUInt":   ["bad"] }"#,
+    #"{"fieldUInt32": ["bad"] }"#,
+    #"{"fieldUInt64": ["bad"] }"#,
+    #"{"fieldFloat":  ["bad"] }"#,
+    #"{"fieldDouble": ["bad"] }"#,
+    #"{"fieldData":   ["bad!"] }"#,
+    #"{"fieldData":   ["a"] }"#,
+    #"{"fieldData":   ["NDI=="] }"#,
+    #"{"fieldData":   ["QUJD="] }"#,
+    #"{"fieldData":   ["QQ=A"] }"#,
+    #"{"fieldData":   ["-_+/"] }"#,
+  ]
+
+  @Test("decode repeated primitives", arguments: repeatedInputs)
   func decodeRepeated(input: String, want: RepeatedPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(RepeatedPrimitives.self, from: Data(input.utf8))
     #expect(got == want)
   }
 
-  @Test(
-    "decode repeated bad inputs",
-    arguments: [
-      #"{"fieldBool":   ["bad"] }"#,
-      #"{"fieldInt":    ["bad"] }"#,
-      #"{"fieldInt32":  ["bad"] }"#,
-      #"{"fieldInt64":  ["bad"] }"#,
-      #"{"fieldUInt":   ["bad"] }"#,
-      #"{"fieldUInt32": ["bad"] }"#,
-      #"{"fieldUInt64": ["bad"] }"#,
-      #"{"fieldFloat":  ["bad"] }"#,
-      #"{"fieldDouble": ["bad"] }"#,
-      #"{"fieldData":   ["bad!"] }"#,
-      #"{"fieldData":   ["a"] }"#,
-      #"{"fieldData":   ["NDI=="] }"#,
-      #"{"fieldData":   ["QUJD="] }"#,
-      #"{"fieldData":   ["QQ=A"] }"#,
-      #"{"fieldData":   ["-_+/"] }"#,
-    ])
+  @Test("decode repeated bad inputs", arguments: repeatedBadInputs)
   func decodeRepeatedBad(input: String) throws {
     let decoder = _ProtoJSONDecoder()
     let error = #expect(throws: DecodingError.self) {

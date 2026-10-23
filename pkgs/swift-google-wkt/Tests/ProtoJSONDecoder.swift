@@ -33,10 +33,32 @@ import Testing
     #expect(got == want)
   }
 
-  struct MessageWithRepeated: Decodable, Equatable {
+  struct MessageWithRepeated: Codable, Equatable, _AnyPackable, Sendable {
+    static var _anyTypeUrl: String { "type.googleapis.com/test.MessageWithRepeated" }
+
     var repeatedMessage: [MapPrimitives] = []
     var repeatedString: [String] = []
     var repeatedData: [Data] = []
     var repeatedNested: [RequiredPrimitives] = []
+
+    init(
+      repeatedMessage: [MapPrimitives] = [],
+      repeatedString: [String] = [],
+      repeatedData: [Data] = [],
+      repeatedNested: [RequiredPrimitives] = []
+    ) {
+      self.repeatedMessage = repeatedMessage
+      self.repeatedString = repeatedString
+      self.repeatedData = repeatedData
+      self.repeatedNested = repeatedNested
+    }
+
+    init(fromAny any: WKTAny) throws {
+      self = try _anyDeserialize(Self.self, from: any)
+    }
+
+    func _pack() throws -> WKTStruct {
+      return try _anySerialize(message: self)
+    }
   }
 }

@@ -18,7 +18,9 @@ import Testing
 
 @Suite struct UnknownFieldsTests {
   /// A sample message struct mirroring generated message structure with `_UnknownFields`.
-  struct SampleMessage: Codable, Equatable, Sendable {
+  struct SampleMessage: Codable, Equatable, _AnyPackable, Sendable {
+    static var _anyTypeUrl: String { "type.googleapis.com/test.SampleMessage" }
+
     var name: String = ""
     var displayName: String = ""
     var _unknownFields = _UnknownFields()
@@ -65,10 +67,20 @@ import Testing
         }
       }
     }
+
+    init(fromAny any: WKTAny) throws {
+      self = try _anyDeserialize(Self.self, from: any)
+    }
+
+    func _pack() throws -> WKTStruct {
+      return try _anySerialize(message: self)
+    }
   }
 
   /// A wrapper struct to test missing nested messages with `DecodeToDefault`.
-  struct WrapperMessage: Codable, Equatable, Sendable {
+  struct WrapperMessage: Codable, Equatable, _AnyPackable, Sendable {
+    static var _anyTypeUrl: String { "type.googleapis.com/test.WrapperMessage" }
+
     var nested: SampleMessage = SampleMessage()
 
     private enum CodingKeys: String, CodingKey {
@@ -80,6 +92,14 @@ import Testing
     init(from decoder: any Swift.Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.nested = try container.decode(SampleMessage.self, forKey: .nested)
+    }
+
+    init(fromAny any: WKTAny) throws {
+      self = try _anyDeserialize(Self.self, from: any)
+    }
+
+    func _pack() throws -> WKTStruct {
+      return try _anySerialize(message: self)
     }
   }
 
@@ -156,6 +176,15 @@ import Testing
     #expect(roundTripped == message)
     #expect(roundTripped.displayName == "Updated")
     #expect(roundTripped._unknownFields == message._unknownFields)
+
+    // Verify _slowAnySerialize/_slowAnyDeserialize and _anySerialize/_anyDeserialize
+    for mode in AnyCodingMode.allCases {
+      let any = try mode.pack(message)
+      let unpacked = try mode.deserialize(SampleMessage.self, from: any)
+      #expect(unpacked == message)
+      #expect(unpacked.displayName == "Updated")
+      #expect(unpacked._unknownFields == message._unknownFields)
+    }
   }
 
   @Test("JSON decoding and encoding preserves unknown non-finite float fields")
@@ -190,6 +219,13 @@ import Testing
     let roundTripped = try decoder.decode(SampleMessage.self, from: encodedData)
     #expect(roundTripped == message)
     #expect(roundTripped._unknownFields == message._unknownFields)
+
+    for mode in AnyCodingMode.allCases {
+      let any = try mode.pack(message)
+      let unpacked = try mode.deserialize(SampleMessage.self, from: any)
+      #expect(unpacked == message)
+      #expect(unpacked._unknownFields == message._unknownFields)
+    }
   }
 
   @Test("Missing nested message decodes to default with empty unknown fields")
@@ -199,5 +235,13 @@ import Testing
     #expect(wrapper.nested == SampleMessage())
     #expect(wrapper.nested._unknownFields.json.isEmpty)
     #expect(wrapper.nested._unknownFields.proto.isEmpty)
+
+    let emptyAny = try AnyCodingMode.makeAny(for: WrapperMessage.self, fields: [:])
+    for mode in AnyCodingMode.allCases {
+      let decoded = try mode.deserialize(WrapperMessage.self, from: emptyAny)
+      #expect(decoded == WrapperMessage())
+      #expect(decoded.nested._unknownFields.json.isEmpty)
+      #expect(decoded.nested._unknownFields.proto.isEmpty)
+    }
   }
 }

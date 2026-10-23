@@ -94,7 +94,7 @@ fileprivate struct OmitNode {
 /// Type-erased protocol used to detect and unwrap `Optional` values passed through generic
 /// `encode(_:)` or `encodeIfPresent(_:forKey:)` overloads where the static type `T` is only known
 /// to conform to `Encodable` (including nested optionals like `U??`).
-fileprivate protocol _OptionalProtocol {
+protocol _OptionalProtocol {
   /// Returns the innermost wrapped value if non-nil at every optional layer, or `nil` if any layer
   /// is `.none`.
   var _unwrappedEncodable: (any Encodable)? { get }
@@ -227,7 +227,7 @@ fileprivate struct _KeyedSink<K: CodingKey>: _EncodingSink {
   }
 }
 
-fileprivate protocol _EmptyCollectionProtocol {
+protocol _EmptyCollectionProtocol {
   var _isEmptyCollection: Bool { get }
 }
 

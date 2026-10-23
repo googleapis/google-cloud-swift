@@ -205,13 +205,25 @@ import Testing
     #expect(data == expected)
   }
 
-  struct CollectionModel: Codable, Equatable {
+  struct CollectionModel: Codable, Equatable, _AnyPackable, Sendable {
+    static var _anyTypeUrl: String { "type.googleapis.com/test.CollectionModel" }
+
     var name: String = "test"
     var emptyList: [String] = []
     var populatedList: [String] = ["a", "b"]
     var emptyMap: [String: String] = [:]
     var populatedMap: [String: String] = ["k": "v"]
     var matrix: [[Int]] = [[], [1, 2]]
+
+    init() {}
+
+    init(fromAny any: WKTAny) throws {
+      self = try _anyDeserialize(Self.self, from: any)
+    }
+
+    func _pack() throws -> WKTStruct {
+      return try _anySerialize(message: self)
+    }
   }
 
   @Test func encodeOmitEmptyCollectionsByDefault() throws {
@@ -318,13 +330,28 @@ import Testing
     )
   }
 
-  struct DoubleOptionalModel: Encodable {
+  struct DoubleOptionalModel: Encodable, _AnyPackable, Sendable {
+    static var _anyTypeUrl: String { "type.googleapis.com/test.DoubleOptionalModel" }
+
     var int64Val: Int64??
     var child: OmitChild??
 
     enum CodingKeys: String, CodingKey {
       case int64Val
       case child
+    }
+
+    init(int64Val: Int64?? = nil, child: OmitChild?? = nil) {
+      self.int64Val = int64Val
+      self.child = child
+    }
+
+    init(fromAny any: WKTAny) throws {
+      throw WKTAnyError.mismatchedTypeURL
+    }
+
+    func _pack() throws -> WKTStruct {
+      return try _anySerialize(message: self)
     }
 
     func encode(to encoder: any Encoder) throws {
@@ -342,6 +369,8 @@ import Testing
     let innerNil = DoubleOptionalModel(int64Val: .some(nil), child: .some(nil))
     let nilData = try encoder.encode(innerNil)
     #expect(try #require(String(data: nilData, encoding: .utf8)) == "{}")
+    #expect(try _anySerialize(message: innerNil) == [:])
+    #expect(try _slowAnySerialize(message: innerNil) == [:])
 
     // `.some(.some(value))` should unwrap both optional layers, applying `Int64` string conversion
     // and nested field omission.
@@ -354,5 +383,8 @@ import Testing
       try #require(String(data: presentData, encoding: .utf8))
         == #"{"child":{"value":9},"int64Val":"42"}"#
     )
+    let fastPresent = try _anySerialize(message: present)
+    let slowPresent = try _slowAnySerialize(message: present)
+    #expect(fastPresent == slowPresent)
   }
 }

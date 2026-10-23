@@ -19,7 +19,9 @@ import Testing
 extension ProtoJSONDecoderTest {
   // Only test the types that appear in sidekick messages
   // `Int` and `UInt` may be used with enums.
-  struct MapPrimitives: Decodable, Equatable {
+  struct MapPrimitives: Codable, Equatable, _AnyPackable, Sendable {
+    static var _anyTypeUrl: String { "type.googleapis.com/test.MapPrimitives" }
+
     func with(_ config: (inout Self) -> Void) -> Self {
       var copy = self
       config(&copy)
@@ -36,85 +38,95 @@ extension ProtoJSONDecoderTest {
     var fieldDouble: [String: Double] = [:]
     var fieldString: [String: String] = [:]
     var fieldData: [String: Data] = [:]
+
+    init() {}
+
+    init(fromAny any: WKTAny) throws {
+      self = try _anyDeserialize(Self.self, from: any)
+    }
+
+    func _pack() throws -> WKTStruct {
+      return try _anySerialize(message: self)
+    }
   }
 
-  @Test(
-    "decode map primitives",
-    arguments: [
-      (#"{}"#, MapPrimitives()),
-      (#"{"fieldBool":   {}       }"#, MapPrimitives()),
-      (#"{"fieldInt":    {}       }"#, MapPrimitives()),
-      (#"{"fieldInt32":  {}       }"#, MapPrimitives()),
-      (#"{"fieldInt64":  {}       }"#, MapPrimitives()),
-      (#"{"fieldUInt":   {}       }"#, MapPrimitives()),
-      (#"{"fieldUInt32": {}       }"#, MapPrimitives()),
-      (#"{"fieldUInt64": {}       }"#, MapPrimitives()),
-      (#"{"fieldFloat":  {}       }"#, MapPrimitives()),
-      (#"{"fieldDouble": {}       }"#, MapPrimitives()),
-      (#"{"fieldString": {}       }"#, MapPrimitives()),
-      (#"{"fieldData":   {}       }"#, MapPrimitives()),
-      (#"{"fieldBool":   {"a": true}   }"#, MapPrimitives().with { $0.fieldBool = ["a": true] }),
-      (#"{"fieldInt":    {"a": 42}     }"#, MapPrimitives().with { $0.fieldInt = ["a": 42] }),
-      (#"{"fieldInt32":  {"a": 42}     }"#, MapPrimitives().with { $0.fieldInt32 = ["a": 42] }),
-      (#"{"fieldInt64":  {"a": 42}     }"#, MapPrimitives().with { $0.fieldInt64 = ["a": 42] }),
-      (#"{"fieldUInt":   {"a": 42}     }"#, MapPrimitives().with { $0.fieldUInt = ["a": 42] }),
-      (#"{"fieldUInt32": {"a": 42}     }"#, MapPrimitives().with { $0.fieldUInt32 = ["a": 42] }),
-      (#"{"fieldUInt64": {"a": 42}     }"#, MapPrimitives().with { $0.fieldUInt64 = ["a": 42] }),
-      (#"{"fieldFloat":  {"a": 42}     }"#, MapPrimitives().with { $0.fieldFloat = ["a": 42] }),
-      (#"{"fieldDouble": {"a": 42}     }"#, MapPrimitives().with { $0.fieldDouble = ["a": 42] }),
-      (#"{"fieldString": {"a": ""}     }"#, MapPrimitives().with { $0.fieldString = ["a": ""] }),
-      (#"{"fieldData":   {"a": ""}     }"#, MapPrimitives().with { $0.fieldData = ["a": Data()] }),
-      (#"{"fieldBool":   {"a": "true"} }"#, MapPrimitives().with { $0.fieldBool = ["a": true] }),
-      (#"{"fieldInt":    {"a": "42"}   }"#, MapPrimitives().with { $0.fieldInt = ["a": 42] }),
-      (#"{"fieldInt32":  {"a": "42"}   }"#, MapPrimitives().with { $0.fieldInt32 = ["a": 42] }),
-      (#"{"fieldInt64":  {"a": "42"}   }"#, MapPrimitives().with { $0.fieldInt64 = ["a": 42] }),
-      (#"{"fieldUInt":   {"a": "42"}   }"#, MapPrimitives().with { $0.fieldUInt = ["a": 42] }),
-      (#"{"fieldUInt32": {"a": "42"}   }"#, MapPrimitives().with { $0.fieldUInt32 = ["a": 42] }),
-      (#"{"fieldUInt64": {"a": "42"}   }"#, MapPrimitives().with { $0.fieldUInt64 = ["a": 42] }),
-      (#"{"fieldFloat":  {"a": "42"}   }"#, MapPrimitives().with { $0.fieldFloat = ["a": 42] }),
-      (#"{"fieldDouble": {"a": "42"}   }"#, MapPrimitives().with { $0.fieldDouble = ["a": 42] }),
-      (#"{"fieldString": {"a": "42"}   }"#, MapPrimitives().with { $0.fieldString = ["a": "42"] }),
-      (
-        #"{"fieldData":  {"a": "NDI="} }"#,
-        MapPrimitives().with { $0.fieldData = ["a": Data(base64Encoded: "NDI=")!] }
-      ),
-      (
-        #"{"fieldData":  {"a": "NDI", "b": "-_-_", "c": "Pz8_Pw", "d": "Pz8_Pw=="} }"#,
-        MapPrimitives().with {
-          $0.fieldData = [
-            "a": Data("42".utf8),
-            "b": Data([251, 255, 191] as [UInt8]),
-            "c": Data("????".utf8),
-            "d": Data("????".utf8),
-          ]
-        }
-      ),
-    ] as [(String, MapPrimitives)])
+  static let mapInputs: [(String, MapPrimitives)] = [
+    (#"{}"#, MapPrimitives()),
+    (#"{"fieldBool":   {}       }"#, MapPrimitives()),
+    (#"{"fieldInt":    {}       }"#, MapPrimitives()),
+    (#"{"fieldInt32":  {}       }"#, MapPrimitives()),
+    (#"{"fieldInt64":  {}       }"#, MapPrimitives()),
+    (#"{"fieldUInt":   {}       }"#, MapPrimitives()),
+    (#"{"fieldUInt32": {}       }"#, MapPrimitives()),
+    (#"{"fieldUInt64": {}       }"#, MapPrimitives()),
+    (#"{"fieldFloat":  {}       }"#, MapPrimitives()),
+    (#"{"fieldDouble": {}       }"#, MapPrimitives()),
+    (#"{"fieldString": {}       }"#, MapPrimitives()),
+    (#"{"fieldData":   {}       }"#, MapPrimitives()),
+    (#"{"fieldBool":   {"a": true}   }"#, MapPrimitives().with { $0.fieldBool = ["a": true] }),
+    (#"{"fieldInt":    {"a": 42}     }"#, MapPrimitives().with { $0.fieldInt = ["a": 42] }),
+    (#"{"fieldInt32":  {"a": 42}     }"#, MapPrimitives().with { $0.fieldInt32 = ["a": 42] }),
+    (#"{"fieldInt64":  {"a": 42}     }"#, MapPrimitives().with { $0.fieldInt64 = ["a": 42] }),
+    (#"{"fieldUInt":   {"a": 42}     }"#, MapPrimitives().with { $0.fieldUInt = ["a": 42] }),
+    (#"{"fieldUInt32": {"a": 42}     }"#, MapPrimitives().with { $0.fieldUInt32 = ["a": 42] }),
+    (#"{"fieldUInt64": {"a": 42}     }"#, MapPrimitives().with { $0.fieldUInt64 = ["a": 42] }),
+    (#"{"fieldFloat":  {"a": 42}     }"#, MapPrimitives().with { $0.fieldFloat = ["a": 42] }),
+    (#"{"fieldDouble": {"a": 42}     }"#, MapPrimitives().with { $0.fieldDouble = ["a": 42] }),
+    (#"{"fieldString": {"a": ""}     }"#, MapPrimitives().with { $0.fieldString = ["a": ""] }),
+    (#"{"fieldData":   {"a": ""}     }"#, MapPrimitives().with { $0.fieldData = ["a": Data()] }),
+    (#"{"fieldBool":   {"a": "true"} }"#, MapPrimitives().with { $0.fieldBool = ["a": true] }),
+    (#"{"fieldInt":    {"a": "42"}   }"#, MapPrimitives().with { $0.fieldInt = ["a": 42] }),
+    (#"{"fieldInt32":  {"a": "42"}   }"#, MapPrimitives().with { $0.fieldInt32 = ["a": 42] }),
+    (#"{"fieldInt64":  {"a": "42"}   }"#, MapPrimitives().with { $0.fieldInt64 = ["a": 42] }),
+    (#"{"fieldUInt":   {"a": "42"}   }"#, MapPrimitives().with { $0.fieldUInt = ["a": 42] }),
+    (#"{"fieldUInt32": {"a": "42"}   }"#, MapPrimitives().with { $0.fieldUInt32 = ["a": 42] }),
+    (#"{"fieldUInt64": {"a": "42"}   }"#, MapPrimitives().with { $0.fieldUInt64 = ["a": 42] }),
+    (#"{"fieldFloat":  {"a": "42"}   }"#, MapPrimitives().with { $0.fieldFloat = ["a": 42] }),
+    (#"{"fieldDouble": {"a": "42"}   }"#, MapPrimitives().with { $0.fieldDouble = ["a": 42] }),
+    (#"{"fieldString": {"a": "42"}   }"#, MapPrimitives().with { $0.fieldString = ["a": "42"] }),
+    (
+      #"{"fieldData":  {"a": "NDI="} }"#,
+      MapPrimitives().with { $0.fieldData = ["a": Data(base64Encoded: "NDI=")!] }
+    ),
+    (
+      #"{"fieldData":  {"a": "NDI", "b": "-_-_", "c": "Pz8_Pw", "d": "Pz8_Pw=="} }"#,
+      MapPrimitives().with {
+        $0.fieldData = [
+          "a": Data("42".utf8),
+          "b": Data([251, 255, 191] as [UInt8]),
+          "c": Data("????".utf8),
+          "d": Data("????".utf8),
+        ]
+      }
+    ),
+  ]
+
+  static let mapBadInputs: [String] = [
+    #"{"fieldBool":   {"a": "bad"} }"#,
+    #"{"fieldInt":    {"a": "bad"} }"#,
+    #"{"fieldInt32":  {"a": "bad"} }"#,
+    #"{"fieldInt64":  {"a": "bad"} }"#,
+    #"{"fieldUInt":   {"a": "bad"} }"#,
+    #"{"fieldUInt32": {"a": "bad"} }"#,
+    #"{"fieldUInt64": {"a": "bad"} }"#,
+    #"{"fieldFloat":  {"a": "bad"} }"#,
+    #"{"fieldDouble": {"a": "bad"} }"#,
+    #"{"fieldData":   {"a": "bad!"} }"#,
+    #"{"fieldData":   {"a": "a"} }"#,
+    #"{"fieldData":   {"a": "NDI=="} }"#,
+    #"{"fieldData":   {"a": "QUJD="} }"#,
+    #"{"fieldData":   {"a": "QQ=A"} }"#,
+    #"{"fieldData":   {"a": "-_+/"} }"#,
+  ]
+
+  @Test("decode map primitives", arguments: mapInputs)
   func decodeRepeated(input: String, want: MapPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(MapPrimitives.self, from: Data(input.utf8))
     #expect(got == want)
   }
 
-  @Test(
-    "decode map bad inputs",
-    arguments: [
-      #"{"fieldBool":   {"a": "bad"} }"#,
-      #"{"fieldInt":    {"a": "bad"} }"#,
-      #"{"fieldInt32":  {"a": "bad"} }"#,
-      #"{"fieldInt64":  {"a": "bad"} }"#,
-      #"{"fieldUInt":   {"a": "bad"} }"#,
-      #"{"fieldUInt32": {"a": "bad"} }"#,
-      #"{"fieldUInt64": {"a": "bad"} }"#,
-      #"{"fieldFloat":  {"a": "bad"} }"#,
-      #"{"fieldDouble": {"a": "bad"} }"#,
-      #"{"fieldData":   {"a": "bad!"} }"#,
-      #"{"fieldData":   {"a": "a"} }"#,
-      #"{"fieldData":   {"a": "NDI=="} }"#,
-      #"{"fieldData":   {"a": "QUJD="} }"#,
-      #"{"fieldData":   {"a": "QQ=A"} }"#,
-      #"{"fieldData":   {"a": "-_+/"} }"#,
-    ])
+  @Test("decode map bad inputs", arguments: mapBadInputs)
   func decodeMapBad(input: String) throws {
     let decoder = _ProtoJSONDecoder()
     let error = #expect(throws: DecodingError.self) {
