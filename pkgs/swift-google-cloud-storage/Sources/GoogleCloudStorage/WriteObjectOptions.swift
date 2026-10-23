@@ -52,13 +52,6 @@ public enum CustomerEncryptionKeyError: Error, Sendable, Equatable,
   }
 }
 
-/// Options for [Customer-Supplied Encryption Keys] (CSEK).
-///
-/// As an additional layer on top of [standard Cloud Storage encryption], you can choose to provide
-/// your own AES-256 encryption key, encoded in [standard Base64]. This key is known as a
-/// customer-supplied encryption key. If you provide a customer-supplied encryption key,
-/// Cloud Storage does not permanently store your key in its servers or otherwise manage your key.
-///
 /// Encryption algorithm used for Customer-Supplied Encryption Keys (CSEK).
 ///
 /// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
