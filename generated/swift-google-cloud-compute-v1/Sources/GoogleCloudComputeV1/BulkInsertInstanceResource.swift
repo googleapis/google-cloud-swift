@@ -27,7 +27,12 @@
     /// The maximum number of instances to create.
     public var count: Swift.Int64? = nil
 
-    /// A flexible specification of machine type of instances to create.
+    /// A specification of alternative machine types to use when creating
+    /// instances. A single bulkInsert request can create instances with multiple
+    /// different machine types based on capacity and quota availability. This
+    /// field is supported only for regional bulkInsert requests. For more
+    /// information, see About
+    /// instance flexibility for VMs created in bulk.
     public var instanceFlexibilityPolicy: InstanceFlexibilityPolicy? = nil
 
     /// The instance properties defining the VM instances to be created. Required

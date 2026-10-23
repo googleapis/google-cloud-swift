@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudMemoryStoreV1.MemorystoreClient()
-  let items = client.listInstancesByItems(
-    request: ListInstancesRequest()
+  let items = client.listAclPoliciesByItems(
+    request: ListAclPoliciesRequest()
   .with {
     $0.parent = "projects/\(projectId)/locations/\(locationId)"
   }

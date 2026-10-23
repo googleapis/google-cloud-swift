@@ -553,6 +553,10 @@
       case memoryOptimized
       case memoryOptimizedM3
       case memoryOptimizedM4
+      /// CUD bucket for M4N machines with less than 6TB of memory.
+      case memoryOptimizedM4N
+      /// CUD bucket for M4N machines with 6TB of memory.
+      case memoryOptimizedM4N6Tb
       case memoryOptimizedM46Tb
       /// CUD bucket for X4 machine with 1440 vCPUs and 24TB of memory.
       case memoryOptimizedX4144024T
@@ -632,6 +636,8 @@
         case .memoryOptimized: return "MEMORY_OPTIMIZED"
         case .memoryOptimizedM3: return "MEMORY_OPTIMIZED_M3"
         case .memoryOptimizedM4: return "MEMORY_OPTIMIZED_M4"
+        case .memoryOptimizedM4N: return "MEMORY_OPTIMIZED_M4N"
+        case .memoryOptimizedM4N6Tb: return "MEMORY_OPTIMIZED_M4N_6TB"
         case .memoryOptimizedM46Tb: return "MEMORY_OPTIMIZED_M4_6TB"
         case .memoryOptimizedX4144024T: return "MEMORY_OPTIMIZED_X4_1440_24T"
         case .memoryOptimizedX416Tb: return "MEMORY_OPTIMIZED_X4_16TB"
@@ -690,6 +696,8 @@
         case "MEMORY_OPTIMIZED": self = .memoryOptimized
         case "MEMORY_OPTIMIZED_M3": self = .memoryOptimizedM3
         case "MEMORY_OPTIMIZED_M4": self = .memoryOptimizedM4
+        case "MEMORY_OPTIMIZED_M4N": self = .memoryOptimizedM4N
+        case "MEMORY_OPTIMIZED_M4N_6TB": self = .memoryOptimizedM4N6Tb
         case "MEMORY_OPTIMIZED_M4_6TB": self = .memoryOptimizedM46Tb
         case "MEMORY_OPTIMIZED_X4_1440_24T": self = .memoryOptimizedX4144024T
         case "MEMORY_OPTIMIZED_X4_16TB": self = .memoryOptimizedX416Tb
@@ -754,6 +762,8 @@
         case .memoryOptimized: return try container.encode("MEMORY_OPTIMIZED")
         case .memoryOptimizedM3: return try container.encode("MEMORY_OPTIMIZED_M3")
         case .memoryOptimizedM4: return try container.encode("MEMORY_OPTIMIZED_M4")
+        case .memoryOptimizedM4N: return try container.encode("MEMORY_OPTIMIZED_M4N")
+        case .memoryOptimizedM4N6Tb: return try container.encode("MEMORY_OPTIMIZED_M4N_6TB")
         case .memoryOptimizedM46Tb: return try container.encode("MEMORY_OPTIMIZED_M4_6TB")
         case .memoryOptimizedX4144024T: return try container.encode("MEMORY_OPTIMIZED_X4_1440_24T")
         case .memoryOptimizedX416Tb: return try container.encode("MEMORY_OPTIMIZED_X4_16TB")
