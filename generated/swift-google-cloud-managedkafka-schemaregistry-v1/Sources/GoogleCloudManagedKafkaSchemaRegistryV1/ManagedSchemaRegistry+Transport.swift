@@ -333,9 +333,11 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -515,9 +517,11 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -608,9 +612,11 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -693,9 +699,11 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -786,9 +794,11 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -879,9 +889,11 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -970,9 +982,11 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -1246,9 +1260,11 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -1337,9 +1353,11 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -1521,9 +1539,11 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -1610,9 +1630,11 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent

@@ -28,6 +28,7 @@ public final class CaptureServer: Sendable {
   public struct CapturedRequest: Sendable {
     public let method: HTTPMethod
     public let uri: String
+    public let headers: HTTPHeaders
     public let body: Data
 
     /// The request body parsed as a JSON object.
@@ -53,8 +54,11 @@ public final class CaptureServer: Sendable {
   /// The requests received so far.
   public var requests: [CapturedRequest] { self.recorded.withLockedValue { $0 } }
 
-  /// Starts a server replying with `response` to every request.
-  public init(responding response: Data = Data("{}".utf8)) async throws {
+  /// Starts a server replying with `response` and `contentType` to every request.
+  public init(
+    responding response: Data = Data("{}".utf8),
+    contentType: String = "application/json"
+  ) async throws {
     let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
     let recorded = NIOLockedValueBox<[CapturedRequest]>([])
     let bootstrap = ServerBootstrap(group: group)
@@ -66,7 +70,7 @@ public final class CaptureServer: Sendable {
           try channel.pipeline.syncOperations.addHandler(
             NIOHTTPServerRequestAggregator(maxContentLength: 1 << 20))
           try channel.pipeline.syncOperations.addHandler(
-            CaptureHandler(recorded: recorded, response: response))
+            CaptureHandler(recorded: recorded, response: response, contentType: contentType))
         }
       }
     do {
@@ -88,9 +92,10 @@ public final class CaptureServer: Sendable {
   /// Runs `body` against a running server, stopping the server on the way out.
   public static func withServer(
     responding response: Data = Data("{}".utf8),
+    contentType: String = "application/json",
     _ body: (CaptureServer) async throws -> Void
   ) async throws {
-    let server = try await CaptureServer(responding: response)
+    let server = try await CaptureServer(responding: response, contentType: contentType)
     do {
       try await body(server)
     } catch {
@@ -114,10 +119,16 @@ private final class CaptureHandler: ChannelInboundHandler {
 
   private let recorded: NIOLockedValueBox<[CaptureServer.CapturedRequest]>
   private let response: Data
+  private let contentType: String
 
-  init(recorded: NIOLockedValueBox<[CaptureServer.CapturedRequest]>, response: Data) {
+  init(
+    recorded: NIOLockedValueBox<[CaptureServer.CapturedRequest]>,
+    response: Data,
+    contentType: String
+  ) {
     self.recorded = recorded
     self.response = response
+    self.contentType = contentType
   }
 
   func channelRead(context: ChannelHandlerContext, data: NIOAny) {
@@ -125,11 +136,15 @@ private final class CaptureHandler: ChannelInboundHandler {
     let body = request.body.map { Data($0.readableBytesView) } ?? Data()
     self.recorded.withLockedValue {
       $0.append(
-        .init(method: request.head.method, uri: request.head.uri, body: body))
+        .init(
+          method: request.head.method,
+          uri: request.head.uri,
+          headers: request.head.headers,
+          body: body))
     }
 
     var headers = HTTPHeaders()
-    headers.add(name: "Content-Type", value: "application/json")
+    headers.add(name: "Content-Type", value: self.contentType)
     headers.add(name: "Content-Length", value: "\(self.response.count)")
     let head = HTTPResponseHead(version: request.head.version, status: .ok, headers: headers)
     context.write(self.wrapOutboundOut(.head(head)), promise: nil)

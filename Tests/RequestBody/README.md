@@ -13,4 +13,7 @@ dependencies to the development build:
 
 - `secretmanager-v1`: methods using `body: "*"` with a single path parameter
   (`addSecretVersion`, `setIamPolicy`) and a method using a named body (`createSecret`).
-- `cloudbuild-v1`: `cancelBuild` interpolates two fields (`projectId` and `id`) into the path.
+- `cloudbuild-v1`: `cancelBuild` interpolates two fields (`projectId` and `id`) into the path, and
+  `receiveTriggerWebhook` sends a raw `google.api.HttpBody` payload.
+- `biglake-v1`: `createIcebergTable`, `getIcebergTable`, and `reportIcebergTableMetrics` send and
+  receive raw `google.api.HttpBody` payloads.

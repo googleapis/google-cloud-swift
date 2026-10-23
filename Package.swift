@@ -298,6 +298,7 @@ let package = Package(
         .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
         .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
+        .product(name: "GoogleCloudBiglakeV1", package: "swift-google-cloud-biglake-v1"),
         .product(
           name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
         .product(name: "GoogleCloudBuildV1", package: "swift-google-devtools-cloudbuild-v1"),
@@ -424,6 +425,7 @@ func selectGeneratedPackages() -> SelectedPackages {
 /// resolution fail. Including them here guarantees they always appear as path dependencies.
 func generatedPackagesStatic() -> [Generated] {
   return [
+    .init(name: "swift-google-cloud-biglake-v1", module: "GoogleCloudBiglakeV1"),
     .init(name: "swift-google-cloud-location", module: "GoogleCloudLocation"),
     .init(name: "swift-google-cloud-secretmanager-v1", module: "GoogleCloudSecretManagerV1"),
     .init(name: "swift-google-cloud-security-publicca-v1", module: "GoogleCloudSecurityPublicCAV1"),

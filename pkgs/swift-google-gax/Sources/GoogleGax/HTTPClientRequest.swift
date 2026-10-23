@@ -90,7 +90,9 @@ enum _RequestBody: Sendable {
 
   public mutating func setBody(data: Data, ofContentType: String) {
     self.setBody(data: data)
-    self.setHeader(name: "Content-Type", value: ofContentType)
+    if !ofContentType.isEmpty {
+      self.setHeader(name: "Content-Type", value: ofContentType)
+    }
   }
 
   public mutating func setBody<T: Encodable>(
@@ -205,6 +207,29 @@ enum _RequestBody: Sendable {
         return .failure(await response.decodeError())
       }
       return try await response.decode(type)
+    } catch let e as RequestError {
+      return .failure(e)
+    } catch let e {
+      return .failure(.io(e))
+    }
+  }
+
+  /// Executes the request and returns the raw response body bytes and `Content-Type` header.
+  ///
+  /// Generated REST transports call this method for RPCs whose response type is
+  /// `google.api.HttpBody`, where the HTTP response body is the raw payload rather than a
+  /// JSON-encoded protobuf message. Returns a tuple instead of `GoogleApi.HttpBody` directly so
+  /// `GoogleGax` does not depend on the generated `GoogleApi` package.
+  @concurrent
+  public consuming func rpcRaw(timeout: Duration? = nil) async
+    -> Result<(data: Data, contentType: String), RequestError>
+  {
+    do {
+      let response = try await self.execute(timeout: timeout ?? Self.defaultTimeout)
+      if response.isError() {
+        return .failure(await response.decodeError())
+      }
+      return await response.decodeRaw()
     } catch let e as RequestError {
       return .failure(e)
     } catch let e {

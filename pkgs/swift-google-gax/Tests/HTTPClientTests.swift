@@ -1109,6 +1109,99 @@ import NIOHTTP1
     #expect(header?.contains("gl-swift/") == true)
   }
 
+  @Test func rpcRawSuccess() async throws {
+    let rawPayload = Data([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])
+    let mock = MockHTTPClient { (request, timeout) in
+      #expect(timeout == .seconds(5))
+      #expect(request.method == .POST)
+      #expect(request.headers["Content-Type"] == ["image/png"])
+      let body = try #require(request.body)
+      let collected = try await body.collect(upTo: 1024)
+      #expect(Data(buffer: collected) == rawPayload)
+
+      return HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        headers: .init([("content-type", "text/csv; charset=utf-8")]),
+        body: .bytes(.init(string: "col1,col2\n1,2\n"))
+      )
+    }
+
+    let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
+    var request = try await client.newRequest(
+      path: "/v1/projects/my-project/locations/us-central1/endpoints/123:rawPredict",
+      query: [URLQueryItem(name: "$alt", value: "json;enum-encoding=int")]
+    )
+    request.setMethod(.POST)
+    request.setBody(data: rawPayload, ofContentType: "image/png")
+
+    let result = try await request.rpcRaw(timeout: .seconds(5)).get()
+    #expect(result.data == Data("col1,col2\n1,2\n".utf8))
+    #expect(result.contentType == "text/csv; charset=utf-8")
+  }
+
+  @Test func rpcRawMissingContentType() async throws {
+    let mock = MockHTTPClient { (request, timeout) in
+      #expect(timeout == _HTTPClientRequest.defaultTimeout)
+      #expect(request.headers["Content-Type"].isEmpty)
+      return HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        body: .bytes(.init(string: #"{"predictions": [1, 2, 3]}"#))
+      )
+    }
+
+    let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
+    var request = try await client.newRequest(path: "/v1/raw", query: [])
+    request.setMethod(.POST)
+    request.setBody(data: Data("raw".utf8), ofContentType: "")
+
+    let result = try await request.rpcRaw().get()
+    #expect(result.data == Data(#"{"predictions": [1, 2, 3]}"#.utf8))
+    #expect(result.contentType == "")
+  }
+
+  @Test func rpcRawError() async throws {
+    let mock = MockHTTPClient { (_, _) in
+      HTTPClientResponse(
+        version: .http1_1,
+        status: .forbidden,
+        headers: .init([("Content-Type", "application/json; charset=UTF-8")]),
+        body: .bytes(.init(string: errorResponseWithDetails))
+      )
+    }
+
+    let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
+    let request = try await client.newRequest(path: "/v1/raw", query: [])
+    let response = await request.rpcRaw(timeout: .seconds(1))
+    guard case let .failure(.service(serviceError)) = response else {
+      Issue.record("expected a service error response, got=\(response)")
+      return
+    }
+    #expect(serviceError.code == Code.permissionDenied)
+  }
+
+  @Test func rpcRawNonJSONHTTPError() async throws {
+    let mock = MockHTTPClient { (_, _) in
+      HTTPClientResponse(
+        version: .http1_1,
+        status: .badGateway,
+        headers: .init([("Content-Type", "text/html")]),
+        body: .bytes(.init(string: "<html>502 Bad Gateway</html>"))
+      )
+    }
+
+    let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
+    let request = try await client.newRequest(path: "/v1/raw", query: [])
+    let response = await request.rpcRaw(timeout: .seconds(1))
+    guard case let .failure(.http(details)) = response else {
+      Issue.record("expected an HTTP error response, got=\(response)")
+      return
+    }
+    #expect(details.statusCode == 502)
+    #expect(details.payload == Data("<html>502 Bad Gateway</html>".utf8))
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String

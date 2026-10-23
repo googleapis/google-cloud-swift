@@ -18,6 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
+import GoogleApi
 import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT

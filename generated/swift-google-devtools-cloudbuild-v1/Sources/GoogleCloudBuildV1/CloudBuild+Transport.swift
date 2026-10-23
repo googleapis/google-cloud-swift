@@ -18,6 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
+import GoogleApi
 import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
@@ -1217,7 +1218,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       if let body = request.body {
-        try req.setBody(json: body)
+        req.setBody(data: body.data, ofContentType: body.contentType)
       }
       return try await req.rpc(
         GoogleCloudBuildV1.ReceiveTriggerWebhookResponse.self, timeout: options.attemptTimeout

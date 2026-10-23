@@ -15,6 +15,7 @@
 // limitations under the License.
 
 import Foundation
+import GoogleApi
 import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT

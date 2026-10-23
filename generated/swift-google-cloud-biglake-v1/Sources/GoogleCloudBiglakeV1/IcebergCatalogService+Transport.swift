@@ -454,11 +454,13 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       if let body = request.httpBody {
-        try req.setBody(json: body)
+        req.setBody(data: body.data, ofContentType: body.contentType)
       }
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -561,9 +563,11 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -665,11 +669,13 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       if let body = request.httpBody {
-        try req.setBody(json: body)
+        req.setBody(data: body.data, ofContentType: body.contentType)
       }
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -720,9 +726,11 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       try req.setBody(json: request, omitting: omitted)
-      return try await req.rpc(
-        GoogleApi.HttpBody.self, timeout: options.attemptTimeout
-      ).get()
+      let raw = try await req.rpcRaw(timeout: options.attemptTimeout).get()
+      return GoogleApi.HttpBody().with {
+        $0.data = raw.data
+        $0.contentType = raw.contentType
+      }
     }
 
     @concurrent
@@ -771,7 +779,7 @@ extension Clients {
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
       if let body = request.httpBody {
-        try req.setBody(json: body)
+        req.setBody(data: body.data, ofContentType: body.contentType)
       }
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
