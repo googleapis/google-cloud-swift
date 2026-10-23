@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 extension LimitedAttemptCount: RetryPolicy where P: RetryPolicy & Sendable {
   public func onError(state: RetryState, error: RequestError) -> RetryResult {
     switch inner.onError(state: state, error: error) {

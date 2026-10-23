@@ -13,15 +13,8 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-import GoogleGax
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import struct GoogleGax._CRC32C
-import Crypto
 @_spi(GoogleCloudInternal) import GoogleGax
-import NIOCore
+@_spi(GoogleCloudInternal) import GoogleWKT
 import NIOHTTP1
 
 package enum ResumableUploadStatus: Sendable {

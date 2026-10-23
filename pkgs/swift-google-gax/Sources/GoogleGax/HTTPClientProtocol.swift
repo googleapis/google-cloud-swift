@@ -13,7 +13,6 @@
 // limitations under the License.
 
 @_spi(GoogleCloudInternal) public import AsyncHTTPClient
-import struct Logging.Logger
 
 /// A protocol to mock `AsyncHTTPClient.HTTPClient`.
 ///

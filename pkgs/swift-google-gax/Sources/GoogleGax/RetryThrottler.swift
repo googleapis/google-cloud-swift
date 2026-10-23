@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// Implementations of this protocol prevent a client from sending too many retries.
 ///
 /// The client libraries can be configured to automatically retry RPCs. Most often retries are only

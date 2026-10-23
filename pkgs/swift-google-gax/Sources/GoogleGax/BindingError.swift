@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// A failure to bind a request to an HTTP URI path template.
 public struct BindingError: Sendable, Equatable, Error, CustomStringConvertible {
   /// All candidate paths considered, and why the binding failed for each.

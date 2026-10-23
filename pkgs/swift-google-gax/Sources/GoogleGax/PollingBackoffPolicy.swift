@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// Defines the protocol implemented by all LRO polling backoff strategies.
 ///
 /// The client libraries can automatically poll long-running operations (LROs) until completion.

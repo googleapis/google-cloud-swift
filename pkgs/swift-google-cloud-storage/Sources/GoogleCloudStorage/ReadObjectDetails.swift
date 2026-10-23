@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// Progress and size details for an ongoing read object operation.
 public struct ReadObjectDetails: Sendable, Equatable {
   /// The total number of bytes successfully read so far.

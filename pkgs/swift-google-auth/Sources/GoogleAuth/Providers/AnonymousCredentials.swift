@@ -12,12 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-
 /// An unauthenticated credentials source that provides no authentication headers.
 ///
 /// Anonymous credentials do not supply any token or API key to the request. They are useful

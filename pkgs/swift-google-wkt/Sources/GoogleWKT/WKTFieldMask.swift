@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// A field mask represents a set of symbolic field paths, for example:
 ///
 ///     paths: ["user.display_name", "photo"]

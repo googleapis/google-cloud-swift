@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// The input into a retry policy query.
 ///
 /// On a request error, the client library queries the retry policy as to whether it should make a

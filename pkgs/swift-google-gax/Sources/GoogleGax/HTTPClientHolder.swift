@@ -15,7 +15,6 @@
 import class AsyncHTTPClient.HTTPClient
 import struct AsyncHTTPClient.HTTPClientRequest
 import struct AsyncHTTPClient.HTTPClientResponse
-import struct Logging.Logger
 import struct NIOCore.TimeAmount
 
 /// Automatically call shutdown() on a HTTPClient.

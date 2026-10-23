@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// Represents an error while trying to initialize a client.
 ///
 /// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this

@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// An authentication provider backed by a Google Cloud API key.
 ///
 /// An [API Key](https://cloud.google.com/docs/authentication/api-keys-use) is an encrypted string used

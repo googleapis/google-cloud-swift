@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// Errors that can occur when building a retry throttler.
 ///
 /// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this

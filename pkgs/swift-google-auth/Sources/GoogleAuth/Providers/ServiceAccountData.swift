@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// Represents the parsed contents of a Google Cloud Service Account JSON key file.
 ///
 /// A [Service Account](https://cloud.google.com/iam/docs/service-account-overview) key file contains

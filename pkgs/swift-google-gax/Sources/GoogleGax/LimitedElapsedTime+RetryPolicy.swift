@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 extension LimitedElapsedTime: RetryPolicy where P: RetryPolicy {
   public func onError(state: RetryState, error: RequestError) -> RetryResult {
     switch inner.onError(state: state, error: error) {
