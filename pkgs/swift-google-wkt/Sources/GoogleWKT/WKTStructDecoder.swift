@@ -17,11 +17,11 @@ import Foundation
 /// Decodes `Decodable` messages directly from a `WKTStruct` (`[String: WKTValue]`) in memory,
 /// applying ProtoJSON rules without intermediate UTF-8 JSON serialization.
 ///
-/// `WKTAny` stores packed messages in memory as a `WKTStruct` dictionary. Previously, unpacking a
-/// message from `WKTAny` encoded `from.fields` to UTF-8 JSON `Data` via `_ProtoJSONEncoder` and
-/// then decoded the target message from that `Data` via `_ProtoJSONDecoder`. `WKTStructDecoder`
-/// eliminates that intermediate JSON round-trip by walking the in-memory `WKTValue` tree directly
-/// while enforcing identical ProtoJSON decoding semantics:
+/// `WKTAny` stores packed messages in memory as a `WKTStruct` dictionary. Alternatively, we could
+/// encode `from.fields` into UTF-8 JSON `Data` via `_ProtoJSONEncoder` and decode the target
+/// message from that `Data` via `_ProtoJSONDecoder`, but that is too slow. `WKTStructDecoder`
+/// walks the in-memory `WKTValue` tree directly while enforcing identical ProtoJSON decoding
+/// semantics:
 /// - Numbers and booleans may be decoded from either `.number` / `.bool` or `.string` values
 ///   (including `"NaN"`, `"Infinity"`, and `"-Infinity"` for floating-point types).
 /// - Integer decoding from `.number(Double)` uses `T(exactly:)` so non-integral or out-of-bounds
@@ -161,8 +161,6 @@ fileprivate struct InternalSingleValueStructDecodingContainer: SingleValueDecodi
   func decode(_ type: UInt32.Type) throws -> UInt32 { try decodeInteger(type) }
   func decode(_ type: Int64.Type) throws -> Int64 { try decodeInteger(type) }
   func decode(_ type: UInt64.Type) throws -> UInt64 { try decodeInteger(type) }
-  func decode(_ type: Int128.Type) throws -> Int128 { try decodeInteger(type) }
-  func decode(_ type: UInt128.Type) throws -> UInt128 { try decodeInteger(type) }
 
   private func decodeInteger<T: FixedWidthInteger & LosslessStringConvertible>(
     _ type: T.Type
@@ -204,18 +202,14 @@ fileprivate struct InternalSingleValueStructDecodingContainer: SingleValueDecodi
     if type == String.self { return try self.decode(String.self) as! T }
     if type == Double.self { return try self.decode(Double.self) as! T }
     if type == Float.self { return try self.decode(Float.self) as! T }
-    if type == Int.self { return try self.decode(Int.self) as! T }
-    if type == UInt.self { return try self.decode(UInt.self) as! T }
-    if type == Int8.self { return try self.decode(Int8.self) as! T }
-    if type == UInt8.self { return try self.decode(UInt8.self) as! T }
-    if type == Int16.self { return try self.decode(Int16.self) as! T }
-    if type == UInt16.self { return try self.decode(UInt16.self) as! T }
     if type == Int32.self { return try self.decode(Int32.self) as! T }
     if type == UInt32.self { return try self.decode(UInt32.self) as! T }
     if type == Int64.self { return try self.decode(Int64.self) as! T }
     if type == UInt64.self { return try self.decode(UInt64.self) as! T }
-    if type == Int128.self { return try self.decode(Int128.self) as! T }
-    if type == UInt128.self { return try self.decode(UInt128.self) as! T }
+    // Generated messages only use 32-bit and 64-bit integer fields (`Int32`, `UInt32`, `Int64`,
+    // `UInt64`), though `Int` and `UInt` may appear in enum representations or tests.
+    if type == Int.self { return try self.decode(Int.self) as! T }
+    if type == UInt.self { return try self.decode(UInt.self) as! T }
     return try T(from: InternalValueDecoder(value: self.value, codingPath: self.codingPath))
   }
 }

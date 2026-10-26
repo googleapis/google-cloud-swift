@@ -28,13 +28,9 @@ import Testing
   struct AllPrimitivesMessage: Codable, Equatable, _AnyPackable, Sendable {
     var boolVal: Bool = false
     var intVal: Int = 0
-    var int8Val: Int8 = 0
-    var int16Val: Int16 = 0
     var int32Val: Int32 = 0
     var int64Val: Int64 = 0
     var uintVal: UInt = 0
-    var uint8Val: UInt8 = 0
-    var uint16Val: UInt16 = 0
     var uint32Val: UInt32 = 0
     var uint64Val: UInt64 = 0
     var floatVal: Float = 0
@@ -47,13 +43,9 @@ import Testing
     init(
       boolVal: Bool = false,
       intVal: Int = 0,
-      int8Val: Int8 = 0,
-      int16Val: Int16 = 0,
       int32Val: Int32 = 0,
       int64Val: Int64 = 0,
       uintVal: UInt = 0,
-      uint8Val: UInt8 = 0,
-      uint16Val: UInt16 = 0,
       uint32Val: UInt32 = 0,
       uint64Val: UInt64 = 0,
       floatVal: Float = 0,
@@ -63,13 +55,9 @@ import Testing
     ) {
       self.boolVal = boolVal
       self.intVal = intVal
-      self.int8Val = int8Val
-      self.int16Val = int16Val
       self.int32Val = int32Val
       self.int64Val = int64Val
       self.uintVal = uintVal
-      self.uint8Val = uint8Val
-      self.uint16Val = uint16Val
       self.uint32Val = uint32Val
       self.uint64Val = uint64Val
       self.floatVal = floatVal
@@ -92,13 +80,9 @@ import Testing
     let original = AllPrimitivesMessage(
       boolVal: true,
       intVal: -42,
-      int8Val: -8,
-      int16Val: -16,
       int32Val: -32,
       int64Val: Int64.min,
       uintVal: 42,
-      uint8Val: 8,
-      uint16Val: 16,
       uint32Val: 32,
       uint64Val: UInt64.max,
       floatVal: 3.14,
@@ -110,13 +94,9 @@ import Testing
     let packed = try mode.serialize(original)
     #expect(packed["boolVal"] == .bool(true))
     #expect(packed["intVal"] == .number(-42))
-    #expect(packed["int8Val"] == .number(-8))
-    #expect(packed["int16Val"] == .number(-16))
     #expect(packed["int32Val"] == .number(-32))
     #expect(packed["int64Val"] == .string(String(Int64.min)))
     #expect(packed["uintVal"] == .number(42))
-    #expect(packed["uint8Val"] == .number(8))
-    #expect(packed["uint16Val"] == .number(16))
     #expect(packed["uint32Val"] == .number(32))
     #expect(packed["uint64Val"] == .string(String(UInt64.max)))
     #expect(packed["doubleVal"] == .number(2.718281828))
@@ -155,13 +135,9 @@ import Testing
     let fields: WKTStruct = [
       "boolVal": .string("true"),
       "intVal": .string("-42"),
-      "int8Val": .string("-8"),
-      "int16Val": .string("-16"),
       "int32Val": .string("-32"),
       "int64Val": .number(64),
       "uintVal": .string("42"),
-      "uint8Val": .string("8"),
-      "uint16Val": .string("16"),
       "uint32Val": .string("32"),
       "uint64Val": .number(128),
       "floatVal": .string("1.5"),
@@ -173,13 +149,9 @@ import Testing
     let decoded = try mode.deserialize(AllPrimitivesMessage.self, from: any)
     #expect(decoded.boolVal == true)
     #expect(decoded.intVal == -42)
-    #expect(decoded.int8Val == -8)
-    #expect(decoded.int16Val == -16)
     #expect(decoded.int32Val == -32)
     #expect(decoded.int64Val == 64)
     #expect(decoded.uintVal == 42)
-    #expect(decoded.uint8Val == 8)
-    #expect(decoded.uint16Val == 16)
     #expect(decoded.uint32Val == 32)
     #expect(decoded.uint64Val == 128)
     #expect(decoded.floatVal == 1.5)

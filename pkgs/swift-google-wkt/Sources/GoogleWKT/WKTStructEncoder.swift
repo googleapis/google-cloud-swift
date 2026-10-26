@@ -17,13 +17,12 @@ import Foundation
 /// Encodes `Encodable` messages directly into a `WKTStruct` (`[String: WKTValue]`) in memory,
 /// applying ProtoJSON rules without intermediate UTF-8 JSON serialization.
 ///
-/// `WKTAny` stores packed messages in memory as a `WKTStruct` dictionary. Previously, packing a
-/// message into `WKTAny` encoded the message to UTF-8 JSON `Data` via `_ProtoJSONEncoder` and then
-/// parsed that JSON `Data` back into a `WKTStruct` via `_ProtoJSONDecoder`. `WKTStructEncoder`
-/// eliminates that intermediate JSON serialization/parsing step by constructing the `WKTValue`
-/// tree directly while enforcing identical ProtoJSON rules:
-/// - 64-bit and 128-bit integers (`Int64`, `UInt64`, `Int128`, `UInt128`) are encoded as strings
-///   to avoid IEEE-754 `Double` precision loss.
+/// `WKTAny` stores packed messages in memory as a `WKTStruct` dictionary. Alternatively, we could
+/// encode the message into UTF-8 JSON `Data` via `_ProtoJSONEncoder` and parse that JSON `Data`
+/// back into a `WKTStruct` via `_ProtoJSONDecoder`, but that is too slow. `WKTStructEncoder`
+/// constructs the `WKTValue` tree directly while enforcing identical ProtoJSON rules:
+/// - 64-bit integers (`Int64`, `UInt64`) are encoded as strings to avoid IEEE-754 `Double`
+///   precision loss.
 /// - Non-finite floating-point numbers (`NaN`, `Infinity`, `-Infinity`) are encoded as their
 ///   ProtoJSON string representations.
 /// - `Data` values are encoded as base64 strings.
@@ -80,13 +79,9 @@ struct WKTStructEncoder {
       try validateWKTValue(.array(v), codingPath: codingPath)
       return .array(v)
     } else if let v = value as? Int64 {
-      // ProtoJSON represents 64-bit and 128-bit integers as strings.
+      // ProtoJSON represents 64-bit integers as strings.
       return .string(String(v))
     } else if let v = value as? UInt64 {
-      return .string(String(v))
-    } else if let v = value as? Int128 {
-      return .string(String(v))
-    } else if let v = value as? UInt128 {
       return .string(String(v))
     } else if let v = value as? String {
       return .string(v)
@@ -96,21 +91,15 @@ struct WKTStructEncoder {
       return encodeDouble(v)
     } else if let v = value as? Float {
       return encodeFloat(v)
-    } else if let v = value as? Int {
-      return .number(Double(v))
-    } else if let v = value as? Int8 {
-      return .number(Double(v))
-    } else if let v = value as? Int16 {
-      return .number(Double(v))
     } else if let v = value as? Int32 {
       return .number(Double(v))
-    } else if let v = value as? UInt {
-      return .number(Double(v))
-    } else if let v = value as? UInt8 {
-      return .number(Double(v))
-    } else if let v = value as? UInt16 {
-      return .number(Double(v))
     } else if let v = value as? UInt32 {
+      return .number(Double(v))
+    } else if let v = value as? Int {
+      // Generated messages only use 32-bit and 64-bit integer fields (`Int32`, `UInt32`, `Int64`,
+      // `UInt64`), though `Int` and `UInt` may appear in enum representations or tests.
+      return .number(Double(v))
+    } else if let v = value as? UInt {
       return .number(Double(v))
     } else if let v = value as? Data {
       // ProtoJSON represents `bytes` fields as standard base64-encoded strings.
@@ -382,10 +371,6 @@ fileprivate struct InternalKeyedStructEncodingContainer<K: CodingKey>:
     self.node.setObjectEntry(.value(.string(String(value))), forKey: key.stringValue)
   }
 
-  mutating func encode(_ value: Int128, forKey key: K) throws {
-    self.node.setObjectEntry(.value(.string(String(value))), forKey: key.stringValue)
-  }
-
   mutating func encode(_ value: UInt, forKey key: K) throws {
     self.node.setObjectEntry(.value(.number(Double(value))), forKey: key.stringValue)
   }
@@ -403,10 +388,6 @@ fileprivate struct InternalKeyedStructEncodingContainer<K: CodingKey>:
   }
 
   mutating func encode(_ value: UInt64, forKey key: K) throws {
-    self.node.setObjectEntry(.value(.string(String(value))), forKey: key.stringValue)
-  }
-
-  mutating func encode(_ value: UInt128, forKey key: K) throws {
     self.node.setObjectEntry(.value(.string(String(value))), forKey: key.stringValue)
   }
 
@@ -540,10 +521,6 @@ fileprivate struct InternalUnkeyedStructEncodingContainer: UnkeyedEncodingContai
     self.node.appendArrayEntry(.value(.string(String(value))))
   }
 
-  mutating func encode(_ value: Int128) throws {
-    self.node.appendArrayEntry(.value(.string(String(value))))
-  }
-
   mutating func encode(_ value: UInt) throws {
     self.node.appendArrayEntry(.value(.number(Double(value))))
   }
@@ -561,10 +538,6 @@ fileprivate struct InternalUnkeyedStructEncodingContainer: UnkeyedEncodingContai
   }
 
   mutating func encode(_ value: UInt64) throws {
-    self.node.appendArrayEntry(.value(.string(String(value))))
-  }
-
-  mutating func encode(_ value: UInt128) throws {
     self.node.appendArrayEntry(.value(.string(String(value))))
   }
 
@@ -661,10 +634,6 @@ fileprivate struct InternalSingleValueStructEncodingContainer: SingleValueEncodi
     self.node.storage = .singleValue(.string(String(value)))
   }
 
-  mutating func encode(_ value: Int128) throws {
-    self.node.storage = .singleValue(.string(String(value)))
-  }
-
   mutating func encode(_ value: UInt) throws {
     self.node.storage = .singleValue(.number(Double(value)))
   }
@@ -682,10 +651,6 @@ fileprivate struct InternalSingleValueStructEncodingContainer: SingleValueEncodi
   }
 
   mutating func encode(_ value: UInt64) throws {
-    self.node.storage = .singleValue(.string(String(value)))
-  }
-
-  mutating func encode(_ value: UInt128) throws {
     self.node.storage = .singleValue(.string(String(value)))
   }
 
