@@ -162,13 +162,27 @@ public enum CredentialsConfiguration: Sendable {
   ///
   /// - Parameter config: The configuration specifying optional quota project, universe domain, and scope overrides.
   case mds(MDSConfig = MDSConfig())
+
+  /// Credentials backed by a static OAuth 2.0 ``AccessToken`` or a custom asynchronous ``AccessTokenProvider``.
+  ///
+  /// Useful when an access token has already been acquired out-of-band (for example, forwarded by an
+  /// API gateway or obtained via `gcloud auth print-access-token` in a CI pipeline) or when integrating
+  /// a custom token acquisition source.
+  ///
+  /// - Parameter config: The configuration specifying the access token source and optional overrides.
+  case accessToken(AccessTokenConfig)
 }
 
-/// A type that can provide authentication headers for Google Cloud API requests.
+/// A type that can provide authentication headers and access tokens for Google Cloud API requests.
 ///
 /// Internal protocol implemented by concrete credential backends (e.g. Service Accounts, User Accounts,
-/// MDS, API Keys, External Accounts). Conforming types are thread-safe and can be mocked for unit testing.
+/// MDS, API Keys, External Accounts, Static/Custom Access Tokens). Conforming types are thread-safe and can be mocked for unit testing.
 protocol CredentialsProvider: Sendable {
+  /// Asynchronously retrieves the current access token.
+  ///
+  /// - Returns: The current ``AccessToken``.
+  func accessToken() async throws -> AccessToken
+
   /// Asynchronously retrieves the request headers required to authenticate a request.
   ///
   /// - Returns: The HTTP header fields to apply to the request.
@@ -275,6 +289,18 @@ public struct Credentials: Sendable {
     )
   }
 
+  /// Asynchronously retrieves the current OAuth 2.0 access token.
+  ///
+  /// Returns a cached token if valid, or awaits an active refresh if the token is missing or expired.
+  ///
+  /// - Returns: The current ``AccessToken`` containing the raw token string and optional expiration date.
+  /// - Throws: ``CredentialsError/notSupported(_:)`` if the credential type does not use access tokens
+  ///   (such as ``CredentialsConfiguration/anonymous`` or ``CredentialsConfiguration/apiKey(_:)``),
+  ///   or ``CredentialsError/cannotFetchToken(message:underlyingError:)`` if token resolution fails.
+  public func accessToken() async throws -> AccessToken {
+    return try await self.credentialsProvider.accessToken()
+  }
+
   /// Asynchronously retrieves the request headers required to authenticate a request.
   ///
   /// Returns cached headers if valid, or waits for an active refresh if the token is missing or expired.
@@ -375,6 +401,8 @@ public struct Credentials: Sendable {
         fromADC: false,
         environment: environment
       )
+    case let .accessToken(config):
+      return AccessTokenCredentials(config: config)
     }
   }
 }

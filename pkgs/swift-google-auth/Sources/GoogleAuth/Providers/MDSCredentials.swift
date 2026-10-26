@@ -146,6 +146,10 @@ struct MDSCredentials: CredentialsProvider, Sendable {
 
   // MARK: - CredentialsProvider
 
+  func accessToken() async throws -> AccessToken {
+    return try await self.cache.token().asAccessToken
+  }
+
   /// Resolves the universe domain for these credentials.
   ///
   /// Returns the explicit `universeDomain` override if one was configured, or queries and caches

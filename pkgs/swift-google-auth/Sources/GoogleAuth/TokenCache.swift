@@ -16,7 +16,7 @@ import Foundation
 import Synchronization
 
 /// Represents an access token used to authenticate requests.
-struct Token: Sendable, Hashable {
+struct Token: Sendable, Hashable, CustomStringConvertible, CustomDebugStringConvertible {
   /// The raw token string (e.g. access token).
   let accessToken: String
   /// The token type (e.g. "Bearer").
@@ -34,6 +34,19 @@ struct Token: Sendable, Hashable {
     self.accessToken = accessToken
     self.tokenType = tokenType
     self.expirationDate = expirationDate
+  }
+
+  /// Converts this internal token representation into a public ``AccessToken``.
+  var asAccessToken: AccessToken {
+    AccessToken(token: accessToken, expirationDate: expirationDate)
+  }
+
+  var description: String {
+    debugDescription
+  }
+
+  var debugDescription: String {
+    "Token(accessToken: \"[redacted]\", tokenType: \(String(reflecting: tokenType)), expirationDate: \(String(describing: expirationDate)))"
   }
 }
 

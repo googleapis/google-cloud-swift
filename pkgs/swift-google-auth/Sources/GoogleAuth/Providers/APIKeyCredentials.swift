@@ -36,6 +36,10 @@ struct APIKeyCredentials: CredentialsProvider, Sendable, CustomDebugStringConver
 
   // MARK: - CredentialsProvider
 
+  func accessToken() async throws -> AccessToken {
+    throw CredentialsError.notSupported("API key credentials do not produce an access token.")
+  }
+
   func headers() async throws -> AuthHeaders {
     return [("x-goog-api-key", self.apiKey)]
   }
