@@ -55,15 +55,15 @@ internal final class CredentialParserRegistry: Sendable {
     scopes: [String],
     environment: [String: String]
   ) throws -> (any CredentialsProvider)? {
-    return try parsers.withLock { parsers in
-      guard let parserType = parsers[type] else { return nil }
-      return try parserType.init().parse(
-        data: data,
-        quotaProjectID: quotaProjectID,
-        universeDomain: universeDomain,
-        scopes: scopes,
-        environment: environment
-      )
+    guard let parserType = parsers.withLock({ $0[type] }) else {
+      return nil
     }
+    return try parserType.init().parse(
+      data: data,
+      quotaProjectID: quotaProjectID,
+      universeDomain: universeDomain,
+      scopes: scopes,
+      environment: environment
+    )
   }
 }

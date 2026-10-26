@@ -202,6 +202,75 @@ public enum CredentialsConfiguration: Sendable {
   ///
   /// - Parameter apiKey: The API key string.
   case apiKey(String)
+
+  /// Impersonates a target Google Cloud service account using a base source credential.
+  ///
+  /// [Service Account Impersonation](https://cloud.google.com/iam/docs/service-account-impersonation) allows an
+  /// authenticated principal (such as a user account or another service account) with the
+  /// `roles/iam.serviceAccountTokenCreator` role to obtain short-lived access tokens acting as a target service account
+  /// via the IAM Credentials API (`projects/-/serviceAccounts/{principal}:generateAccessToken`).
+  ///
+  /// - Parameter config: The configuration specifying the source credentials, target service account, and optional delegation chain.
+  case impersonatedServiceAccount(ImpersonatedServiceAccountConfig)
+}
+
+/// Configuration options for Service Account Impersonation credentials.
+///
+/// Under [AIP-4110](https://google.aip.dev/auth/4110), service account impersonation uses a base
+/// `sourceCredentials` instance to request short-lived access tokens for `targetPrincipal` via the
+/// Google Cloud IAM Service Account Credentials API (`:generateAccessToken`).
+///
+/// See [Service Account Impersonation](https://cloud.google.com/iam/docs/service-account-impersonation).
+public struct ImpersonatedServiceAccountConfig: Sendable {
+  /// The default scope requested for impersonated service account access tokens.
+  public static let defaultScope = "https://www.googleapis.com/auth/cloud-platform"
+
+  /// The base credentials used to authenticate requests to the IAM Credentials API.
+  public let sourceCredentials: Credentials
+
+  /// The email address or resource name (`projects/-/serviceAccounts/{email_or_unique_id}`) of the target service account to impersonate.
+  public let targetPrincipal: String
+
+  /// Optional ordered sequence of service account email addresses or resource names in a delegation chain.
+  ///
+  /// Each service account in the chain must be granted `roles/iam.serviceAccountTokenCreator` on the next
+  /// service account in the chain, with the final delegate granted token creator access on `targetPrincipal`.
+  public var delegates: [String] = []
+
+  /// Scopes requested for the impersonated access token. Defaults to `[defaultScope]`.
+  public var scopes: [String] = [defaultScope]
+
+  /// Desired lifetime duration of the impersonated access token (defaults to 3600 seconds / 1 hour).
+  public var lifetime: Duration = .seconds(3600)
+
+  /// Optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
+  public var quotaProjectID: String? = nil
+
+  /// Optional target Google Cloud universe domain override (defaults to `googleapis.com`).
+  public var universeDomain: String? = nil
+
+  /// Initializes a new instance of `ImpersonatedServiceAccountConfig`.
+  ///
+  /// - Parameters:
+  ///   - sourceCredentials: The base credentials used to authenticate the impersonation request.
+  ///   - targetPrincipal: The email address or resource name of the target service account to impersonate.
+  public init(
+    sourceCredentials: Credentials,
+    targetPrincipal: String
+  ) {
+    self.sourceCredentials = sourceCredentials
+    self.targetPrincipal = targetPrincipal
+  }
+
+  /// Configures optional properties of `ImpersonatedServiceAccountConfig` using a fluent closure.
+  @inlinable
+  public func with(_ configure: (inout ImpersonatedServiceAccountConfig) throws -> Void) rethrows
+    -> ImpersonatedServiceAccountConfig
+  {
+    var copy = self
+    try configure(&copy)
+    return copy
+  }
 }
 
 /// Represents OAuth 2.0 client credentials used for client authentication via HTTP Basic Auth.
@@ -507,6 +576,16 @@ public struct Credentials: Sendable {
       )
     case let .apiKey(apiKey):
       return ApiKeyCredentials(apiKey: apiKey)
+    case let .impersonatedServiceAccount(config):
+      return try ImpersonatedCredentials(
+        sourceCredentials: config.sourceCredentials.credentialsProvider,
+        targetPrincipal: config.targetPrincipal,
+        delegates: config.delegates,
+        scopes: config.scopes,
+        lifetime: config.lifetime,
+        quotaProjectID: config.quotaProjectID,
+        universeDomain: config.universeDomain
+      )
     }
   }
 }

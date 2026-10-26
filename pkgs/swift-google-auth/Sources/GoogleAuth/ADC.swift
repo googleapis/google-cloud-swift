@@ -26,6 +26,7 @@ enum ADC: Sendable {
   private static let isInitialized: Bool = {
     CredentialParserRegistry.shared.register(parser: ServiceAccountParser.self)
     CredentialParserRegistry.shared.register(parser: UserCredentialsParser.self)
+    CredentialParserRegistry.shared.register(parser: ImpersonatedServiceAccountParser.self)
     return true
   }()
 

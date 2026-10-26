@@ -23,8 +23,8 @@ public enum CredentialsError: Error, Sendable {
   /// Indicates that the requested operation or credential type is not supported by the current backend.
   ///
   /// Examples include attempting to use Authorized User credentials in a custom universe domain
-  /// (user accounts are only supported in the default `googleapis.com` universe), requesting unsupported
-  /// external credential source types, or attempting to use service account impersonation before backend support is enabled.
+  /// (user accounts are only supported in the default `googleapis.com` universe) or requesting unsupported
+  /// external credential source types.
   case notSupported(String)
 
   /// Indicates a failure while parsing, decoding, or validating configuration data.

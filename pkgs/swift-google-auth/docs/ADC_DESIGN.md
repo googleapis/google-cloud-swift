@@ -6,8 +6,6 @@ environment.
 
 **Out of scope:**
 
--   Impersonated Credentials (`impersonated_service_account`)
--   External Account Credentials (`external_account`)
 -   GDCH Service Account Credentials (`gdch_service_account`)
 -   Extracting or generating custom JWTs beyond standard Auth header needs.
 

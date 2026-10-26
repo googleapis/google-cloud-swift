@@ -239,4 +239,14 @@ import Testing
     let headers = try await credentials.headers()
     #expect(headers == [("x-goog-api-key", "test-key")])
   }
+
+  @Test func resolveProviderForImpersonatedServiceAccount() throws {
+    let source = try Credentials(configuration: .apiKey("source-key"))
+    let config = ImpersonatedServiceAccountConfig(
+      sourceCredentials: source,
+      targetPrincipal: "target@project.iam.gserviceaccount.com"
+    )
+    let credentials = try Credentials(configuration: .impersonatedServiceAccount(config))
+    #expect(credentials.credentialsProvider is ImpersonatedCredentials)
+  }
 }

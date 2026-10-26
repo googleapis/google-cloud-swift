@@ -5,8 +5,8 @@ Design a native Swift authentication library (`GoogleAuth`) inside
 thread-safe entry point for all outgoing authenticated requests in a
 Swift-idiomatic way.
 
-***Out of scope:** - Impersonated credentials, Workload Identity Federation
-(Amazon Web Services [AWS], OpenID Connect [OIDC]), API Keys, ID Token
+***Out of scope:** - Workload Identity Federation
+(Amazon Web Services [AWS], OpenID Connect [OIDC]), ID Token
 verification, and signing arbitrary payloads. These are deferred to a future
 phase.
 
@@ -54,9 +54,9 @@ when building Google Cloud applications on Apple platforms and Linux.
 
 ## Non-Requirements (Deferred)
 
--   Impersonated credentials, Workload Identity Federation (AWS, OIDC), API
-    Keys, ID Token verification, and signing arbitrary payloads. These features
-    are explicitly out of scope and deferred to a future phase.
+-   Workload Identity Federation (AWS, OIDC), ID Token verification, and signing
+    arbitrary payloads. These features are explicitly out of scope and deferred
+    to a future phase.
 
 # Overview
 
