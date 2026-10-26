@@ -471,7 +471,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.publicDelegatedPrefixes.get] method.
     ///
-    /// [google.cloud.compute.v1.publicDelegatedPrefixes.get]: <doc:PublicDelegatedPrefixesClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.publicDelegatedPrefixes.get]: <doc:PublicDelegatedPrefixesClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

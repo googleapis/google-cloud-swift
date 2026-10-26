@@ -227,7 +227,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.acceleratorTypes.get] method.
     ///
-    /// [google.cloud.compute.v1.acceleratorTypes.get]: <doc:AcceleratorTypesClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.acceleratorTypes.get]: <doc:AcceleratorTypesClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

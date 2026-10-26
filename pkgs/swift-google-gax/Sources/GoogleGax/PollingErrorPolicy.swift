@@ -12,9 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-import GoogleRpc
-
 /// Determines how errors are handled in the LRO polling loop.
 ///
 /// The client libraries automatically poll long-running operations (LROs) until the operation
@@ -44,11 +41,26 @@ public protocol PollingErrorPolicy: Sendable {
   ///   - state: The current state of the polling loop.
   /// - Returns: The result of the in-progress polling decision.
   func onInProgress(state: PollingState) -> InProgressResult
+
+  /// The remaining time in the polling policy.
+  ///
+  /// For policies based on time, this returns the remaining time in the
+  /// policy. The polling loop can use this value to avoid sleeping past the
+  /// policy's deadline. For policies that are not time based this returns `nil`.
+  ///
+  /// - Parameter state: The current state of the polling loop.
+  /// - Returns: The remaining time, or `nil` if the policy is not time-based.
+  func remainingTime(state: PollingState) -> Duration?
 }
 
 extension PollingErrorPolicy {
   /// By default, this method continues polling.
   public func onInProgress(state: PollingState) -> InProgressResult {
     .keepPolling
+  }
+
+  /// By default, policies are not time-based and return `nil`.
+  public func remainingTime(state: PollingState) -> Duration? {
+    nil
   }
 }

@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// Determines how errors are handled in the retry loop.
 ///
 /// The client libraries automatically retry RPCs when it is safe, that is when:

@@ -346,7 +346,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.resourcePolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.resourcePolicies.get]: <doc:ResourcePoliciesClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.resourcePolicies.get]: <doc:ResourcePoliciesClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

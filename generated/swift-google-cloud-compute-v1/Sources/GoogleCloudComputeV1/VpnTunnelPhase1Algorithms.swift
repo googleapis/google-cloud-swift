@@ -21,12 +21,16 @@
   public struct VpnTunnelPhase1Algorithms: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
+    /// Diffie-Hellman groups for IKE phase 1.
     public var dh: [Swift.String] = []
 
+    /// Encryption algorithms for IKE phase 1.
     public var encryption: [Swift.String] = []
 
+    /// Integrity algorithms for IKE phase 1.
     public var integrity: [Swift.String] = []
 
+    /// Pseudo-random functions (PRF) for IKE phase 1.
     public var prf: [Swift.String] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

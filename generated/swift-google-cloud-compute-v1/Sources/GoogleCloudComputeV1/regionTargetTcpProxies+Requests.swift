@@ -140,7 +140,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionTargetTcpProxies.get] method.
     ///
-    /// [google.cloud.compute.v1.regionTargetTcpProxies.get]: <doc:RegionTargetTcpProxiesClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.regionTargetTcpProxies.get]: <doc:RegionTargetTcpProxiesClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

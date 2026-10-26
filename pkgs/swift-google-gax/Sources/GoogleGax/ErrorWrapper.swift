@@ -13,10 +13,6 @@
 // limitations under the License.
 
 public import Foundation
-import struct AsyncHTTPClient.HTTPClientResponse
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 @_spi(GoogleCloudInternal) import GoogleWKT
 import GoogleRpc
 

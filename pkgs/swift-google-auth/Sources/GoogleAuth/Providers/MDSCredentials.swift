@@ -14,10 +14,6 @@
 
 import Foundation
 
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-
 /// Credentials backed by the Google Cloud Metadata Service (MDS).
 ///
 /// In Google Cloud environments such as [Google Compute Engine (GCE)](https://cloud.google.com/compute),

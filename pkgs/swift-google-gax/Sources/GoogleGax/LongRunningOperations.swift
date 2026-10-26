@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// A protocol that represents a long-running operation (LRO) which can be polled.
 ///
 /// Long-running operations are operations that take a significant amount of time to complete.
@@ -113,10 +111,14 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
   /// - Returns: The final deserialized response of type `ResponseType`.
   /// - Throws:
   ///   - The underlying operation error if the operation failed.
+  ///   - `RequestError.exhausted` if the polling policy's attempt or elapsed time limits are exceeded.
   ///   - `RequestError.malformedResponse` if the operation completed successfully but returned no result.
   public func wait() async throws -> ResponseType {
     var state = self.initialState
     var pollingState = PollingState()
+    // Tracks the most recent transient error from `pollOp()` so it can be attached as the
+    // `underlyingError` if a time-based policy expires before the next successful poll.
+    var lastError: RequestError? = nil
     while !state.done {
       switch pollingPolicy.onInProgress(state: pollingState) {
       case .keepPolling:
@@ -125,16 +127,28 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
         throw error
       }
       let delay = backoffPolicy.backoffDelay(for: pollingState)
+      // Avoid sleeping if the next backoff delay would exceed the policy's remaining time budget.
+      if let remaining = pollingPolicy.remainingTime(state: pollingState), remaining < delay {
+        throw RequestError.exhausted(.elapsedTime(underlyingError: lastError))
+      }
       try await sleep(delay)
+      // Re-check after waking up in case the deadline expired during `sleep(delay)`, preventing an
+      // extra post-deadline `getOperation` RPC.
+      if let remaining = pollingPolicy.remainingTime(state: pollingState), remaining <= .zero {
+        throw RequestError.exhausted(.elapsedTime(underlyingError: lastError))
+      }
       pollingState.attemptCount += 1
       do {
         state = try await pollOp()
+        // Clear any prior transient error once a poll succeeds (even if `done == false`).
+        lastError = nil
       } catch let requestError as RequestError {
         let flow = pollingPolicy.onError(state: pollingState, error: requestError)
         switch flow {
         case .permanent(let e), .exhausted(let e):
           throw e
-        case .retry:
+        case .retry(let e):
+          lastError = e
           continue
         }
       } catch {

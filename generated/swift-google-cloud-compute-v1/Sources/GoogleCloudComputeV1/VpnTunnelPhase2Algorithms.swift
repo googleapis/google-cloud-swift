@@ -21,10 +21,13 @@
   public struct VpnTunnelPhase2Algorithms: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
+    /// Encryption algorithms for IKE phase 2.
     public var encryption: [Swift.String] = []
 
+    /// Integrity algorithms for IKE phase 2.
     public var integrity: [Swift.String] = []
 
+    /// Perfect Forward Secrecy (PFS) groups for IKE phase 2.
     public var pfs: [Swift.String] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

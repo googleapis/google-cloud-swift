@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 extension ExponentialBackoff: BackoffPolicy {
   public func backoffDelay(for state: RetryState) -> Duration {
     let count = state.attemptCount <= 1 ? 0 : state.attemptCount - 1

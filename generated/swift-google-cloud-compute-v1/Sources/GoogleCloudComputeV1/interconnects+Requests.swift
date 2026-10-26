@@ -131,7 +131,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.interconnects.get] method.
     ///
-    /// [google.cloud.compute.v1.interconnects.get]: <doc:InterconnectsClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.interconnects.get]: <doc:InterconnectsClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

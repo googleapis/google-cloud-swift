@@ -999,7 +999,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.instanceGroupManagers.get] method.
     ///
-    /// [google.cloud.compute.v1.instanceGroupManagers.get]: <doc:InstanceGroupManagersClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.instanceGroupManagers.get]: <doc:InstanceGroupManagersClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

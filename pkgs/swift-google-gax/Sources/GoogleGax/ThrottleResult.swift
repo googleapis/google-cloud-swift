@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// The result of a retry throttling control decision.
 ///
 /// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this

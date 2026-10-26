@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// A policy decorator that limits the number of attempts.
 ///
 /// This policy decorates an inner policy and limits the total number of attempts, including both

@@ -16,12 +16,12 @@ import Foundation
 
 /// Adapter registered with `CredentialParserRegistry` to construct `ServiceAccountCredentials`
 /// from raw `"service_account"` ADC JSON `Data`.
-internal struct ServiceAccountParser: CredentialSourceParser {
-  internal static let type = "service_account"
+struct ServiceAccountParser: CredentialSourceParser {
+  static let type = "service_account"
 
-  internal init() {}
+  init() {}
 
-  internal func parse(
+  func parse(
     data: Data,
     quotaProjectID: String?,
     universeDomain: String?,

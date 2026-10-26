@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// A builder and container for Google Cloud `x-goog-api-client` telemetry headers.
 ///
 /// Google Cloud APIs use the `x-goog-api-client` header to collect client library

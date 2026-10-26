@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// The result of an in-progress polling loop control decision.
 ///
 /// Application developers only need to use this type when implementing their own polling policies.

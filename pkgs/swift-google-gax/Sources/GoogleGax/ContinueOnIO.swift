@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// A retry policy decorator that continues on I/O errors.
 ///
 /// This policy returns [.retry](``RetryResult.retry(_:)``) on [.io](``RequestError/io(_:)``)

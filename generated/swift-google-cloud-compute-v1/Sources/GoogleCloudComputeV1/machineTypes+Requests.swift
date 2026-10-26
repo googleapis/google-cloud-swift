@@ -227,7 +227,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.machineTypes.get] method.
     ///
-    /// [google.cloud.compute.v1.machineTypes.get]: <doc:MachineTypesClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.machineTypes.get]: <doc:MachineTypesClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

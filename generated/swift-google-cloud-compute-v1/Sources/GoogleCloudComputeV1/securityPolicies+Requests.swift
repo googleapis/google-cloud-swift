@@ -444,7 +444,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.securityPolicies.get] method.
     ///
-    /// [google.cloud.compute.v1.securityPolicies.get]: <doc:SecurityPoliciesClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.securityPolicies.get]: <doc:SecurityPoliciesClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

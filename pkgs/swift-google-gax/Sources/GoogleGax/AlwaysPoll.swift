@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// A polling policy that continues polling on all errors.
 ///
 /// Use ``unbounded()`` decorated with ``PollingErrorPolicy/withTimeLimit(_:)``

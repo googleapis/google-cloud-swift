@@ -131,3 +131,40 @@ extension ChecksumOptions {
     return calculators
   }
 }
+
+/// Encodes a 32-bit CRC32C checksum as a Base64 string of its 4 big-endian bytes, matching the
+/// representation used by Google Cloud Storage in `x-goog-hash` headers and object metadata.
+///
+/// This helper constructs the 4-byte array via bitwise shifts rather than `withUnsafeBytes(of:)`
+/// to avoid raw pointer operations under `-strict-memory-safety` (SE-0458) and to remain
+/// compatible across Swift 6.2/6.3 (where `withUnsafeBytes(of:)` is `@unsafe`) and Swift 6.4+
+/// (where `withUnsafeBytes(of:)` is `@safe` and rejects `unsafe` with `[#UnnecessaryUnsafe]`).
+func crc32cBase64(_ value: UInt32) -> String {
+  Data([
+    UInt8((value >> 24) & 0xFF),
+    UInt8((value >> 16) & 0xFF),
+    UInt8((value >> 8) & 0xFF),
+    UInt8(value & 0xFF),
+  ]).base64EncodedString()
+}
+
+/// Decodes a Base64-encoded 4-byte big-endian CRC32C checksum into a 32-bit unsigned integer,
+/// matching the representation used by Google Cloud Storage in `x-goog-hash` headers,
+/// `x-goog-running-hash` headers, and object metadata.
+///
+/// Returns `nil` if `base64` is not a valid Base64-encoded string or if the decoded payload
+/// is not exactly 4 bytes.
+///
+/// Like `crc32cBase64(_:)`, this helper reconstructs the 32-bit value via bitwise shifts rather
+/// than `withUnsafeBytes` and `loadUnaligned(as:)` to avoid raw pointer operations under
+/// `-strict-memory-safety` (SE-0458).
+func crc32cFromBase64(_ base64: String) -> UInt32? {
+  guard let data = Data(base64Encoded: base64), data.count == 4 else {
+    return nil
+  }
+  let idx = data.startIndex
+  return (UInt32(data[idx]) << 24)
+    | (UInt32(data[idx + 1]) << 16)
+    | (UInt32(data[idx + 2]) << 8)
+    | UInt32(data[idx + 3])
+}

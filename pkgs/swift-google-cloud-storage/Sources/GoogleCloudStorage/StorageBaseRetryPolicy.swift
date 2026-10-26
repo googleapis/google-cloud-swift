@@ -12,9 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
 public import GoogleGax
-import GoogleRpc
 
 /// A base retry policy for Google Cloud Storage that retries transient errors on idempotent requests.
 ///

@@ -21,7 +21,7 @@
   extension ReliabilityRisksClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.reliabilityRisks.get] method.
     ///
-    /// [google.cloud.compute.v1.reliabilityRisks.get]: <doc:ReliabilityRisksClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.reliabilityRisks.get]: <doc:ReliabilityRisksClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

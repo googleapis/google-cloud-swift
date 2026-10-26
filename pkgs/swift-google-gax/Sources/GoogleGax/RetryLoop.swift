@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// Runs a retry loop for a given function.
 ///
 /// This struct calls an inner function as long as (1) the retry policy has not expired, (2) the

@@ -13,9 +13,6 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 
 /// Encapsulates the request parameters required for exchanging an external token
 /// with Google Cloud's Secure Token Service (STS) according to [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693)

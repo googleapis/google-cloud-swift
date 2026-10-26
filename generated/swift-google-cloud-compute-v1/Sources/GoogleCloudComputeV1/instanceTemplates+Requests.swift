@@ -337,7 +337,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.instanceTemplates.get] method.
     ///
-    /// [google.cloud.compute.v1.instanceTemplates.get]: <doc:InstanceTemplatesClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.instanceTemplates.get]: <doc:InstanceTemplatesClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

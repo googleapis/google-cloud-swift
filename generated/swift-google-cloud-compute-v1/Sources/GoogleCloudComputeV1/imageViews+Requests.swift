@@ -21,7 +21,7 @@
   extension ImageViewsClient {
     /// Synthetic request message for the [get()][google.cloud.compute.v1.imageViews.get] method.
     ///
-    /// [google.cloud.compute.v1.imageViews.get]: <doc:ImageViewsClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.imageViews.get]: <doc:ImageViewsClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

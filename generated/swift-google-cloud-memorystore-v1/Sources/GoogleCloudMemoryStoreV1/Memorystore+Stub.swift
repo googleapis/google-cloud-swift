@@ -23,21 +23,49 @@ import GoogleGax
 
 extension Clients {
   protocol MemorystoreStub: Sendable {
+    func listAclPolicies(
+      request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.ListAclPoliciesResponse
+
     func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse
+
+    func getAclPolicy(
+      request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy
 
     func getInstance(
       request: GetInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.Instance
 
+    func createAclPolicy(
+      request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy
+
     func createInstance(
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func updateAclPolicy(
+      request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
     func updateInstance(
       request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
+
+    func deleteAclPolicy(
+      request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getAclPolicyRevision(
+      request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.AclPolicyRevision
+
+    func listAclPolicyRevisions(
+      request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.ListAclPolicyRevisionsResponse
 
     func deleteInstance(
       request: DeleteInstanceRequest, options: GoogleGax.RequestOptions

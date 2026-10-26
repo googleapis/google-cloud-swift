@@ -13,15 +13,8 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-import GoogleGax
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import struct GoogleGax._CRC32C
-import Crypto
 @_spi(GoogleCloudInternal) import GoogleGax
-import NIOCore
+@_spi(GoogleCloudInternal) import GoogleWKT
 import NIOHTTP1
 
 package enum ResumableUploadStatus: Sendable {
@@ -183,18 +176,11 @@ extension StorageClient {
     totalSize: UInt64,
     resumeLoop: _ResumeLoop<WriteObjectDetails>
   ) async throws -> Object {
-    var queryItems = [URLQueryItem(name: "uploadType", value: "multipart")]
-    queryItems.append(URLQueryItem(name: "name", value: objectName))
-
-    if let kmsKeyName = options.kmsKeyName {
-      queryItems.append(URLQueryItem(name: "kmsKeyName", value: kmsKeyName))
-    }
-    if let predefinedAcl = options.predefinedAcl {
-      queryItems.append(URLQueryItem(name: "predefinedAcl", value: predefinedAcl.rawValue))
-    }
-    if let preconditions = options.preconditions {
-      queryItems.append(contentsOf: preconditions.queryItems)
-    }
+    let queryItems = buildUploadQueryItems(
+      uploadType: "multipart",
+      objectName: objectName,
+      options: options
+    )
 
     let bucketId = BucketName.extractBucketName(bucket)
     let boundary = "Boundary-\(UUID().uuidString)"
@@ -246,9 +232,6 @@ extension StorageClient {
           throw reqError
         }
         throw RequestError.io(error)
-      }
-      if response.isError() {
-        throw await response.decodeError()
       }
       return try await handleObjectResponse(response: response)
     }
@@ -363,28 +346,22 @@ extension StorageClient {
       return (.done(object), nil)
     } else if statusCode == 308 {
       let chunkEnd = offset + UInt64(data.count)
-      let nextOffset: UInt64
-      if let rangeHeader = uploadResponse.headers.first(name: "Range") {
-        nextOffset = try HttpRange.parseNextRangeStart(rangeHeader)
-      } else {
-        nextOffset = chunkEnd
-      }
-      guard nextOffset >= offset && nextOffset <= chunkEnd else {
+      let queryStatus = try parseResumableUploadQueryStatus(
+        from: uploadResponse.headers,
+        defaultOffset: chunkEnd
+      )
+      guard queryStatus.nextOffset >= offset && queryStatus.nextOffset <= chunkEnd else {
         await uploadResponse.drain()
         throw WriteObjectError.unexpectedServerResponse(
           statusCode: statusCode,
           message:
-            "Server reported committed offset \(nextOffset) outside chunk range [\(offset), \(chunkEnd)]"
+            "Server reported committed offset \(queryStatus.nextOffset) outside chunk range [\(offset), \(chunkEnd)]"
         )
-      }
-      var crc32cSeed: UInt32? = nil
-      if let runningHashHeader = uploadResponse.headers.first(name: "x-goog-running-hash") {
-        crc32cSeed = parseCRC32CFromRunningHash(runningHashHeader)
       }
       // We need to drain the data in the response to release the underlying resources. We can ignore
       // any errors because the the information we wanted is already captured.
       await uploadResponse.drain()
-      return (.inprogress(nextOffset), crc32cSeed)
+      return (.inprogress(queryStatus.nextOffset), queryStatus.crc32cSeed)
     } else if uploadResponse.isError() {
       throw await uploadResponse.decodeError()
     } else {
@@ -494,6 +471,94 @@ extension StorageClient {
     let effectiveTotalSize: UInt64?
   }
 
+  /// Returns the existing resumable upload session URI, or starts a new session through
+  /// `resumeLoop` and records its URI in `currentUploadId`.
+  fileprivate static func ensureUploadSession(
+    currentUploadId: inout String?,
+    httpClient: GoogleGax._HTTPClient,
+    bucket: String?,
+    objectName: String?,
+    metadata: WriteObjectMetadata?,
+    options: WriteObjectOptions,
+    resumeLoop: _ResumeLoop<WriteObjectDetails>,
+    resumeState: inout ResumeState<WriteObjectDetails>
+  ) async throws -> String {
+    if let id = currentUploadId {
+      return id
+    }
+    guard let bucket = bucket, let objectName = objectName else {
+      throw WriteObjectError.internalError(
+        "Missing bucket or object name to start resumable upload")
+    }
+    let location = try await resumeLoop.run(state: &resumeState) { _ in
+      try await startResumableSession(
+        httpClient: httpClient,
+        bucket: bucket,
+        objectName: objectName,
+        metadata: metadata,
+        options: options
+      )
+    }
+    currentUploadId = location
+    return location
+  }
+
+  /// Queries the server for the current progress of a resumable upload and validates the
+  /// reported committed byte offset against `maxBytesSent` and `lastCommittedBytes`.
+  ///
+  /// When recovering an externally resumed session (`isResumedSession == true`), the server's
+  /// first reported offset initializes `maxBytesSent` and `lastCommittedBytes`. On subsequent
+  /// status queries, throws `.unexpectedServerResponse` if the server reports an offset ahead
+  /// of `maxBytesSent` or behind `lastCommittedBytes`.
+  fileprivate static func recoverUploadStatus(
+    httpClient: GoogleGax._HTTPClient,
+    uploadId: String,
+    options: WriteObjectOptions,
+    isResumedSession: inout Bool,
+    maxBytesSent: inout UInt64,
+    lastCommittedBytes: inout UInt64
+  ) async throws -> (status: ResumableUploadStatus, crc32cSeed: UInt32?) {
+    let queryResult = try await queryUploadStatus(
+      httpClient: httpClient, uploadId: uploadId, options: options)
+    if case .inprogress(let committedBytes) = queryResult.status {
+      if isResumedSession {
+        maxBytesSent = committedBytes
+        lastCommittedBytes = committedBytes
+        isResumedSession = false
+      } else {
+        guard committedBytes <= maxBytesSent else {
+          throw WriteObjectError.unexpectedServerResponse(
+            statusCode: 308,
+            message:
+              "Server reported committed offset \(committedBytes) exceeding bytes sent (\(maxBytesSent))"
+          )
+        }
+        guard committedBytes >= lastCommittedBytes else {
+          throw WriteObjectError.unexpectedServerResponse(
+            statusCode: 308,
+            message:
+              "Server reported committed offset \(committedBytes) prior to last committed offset (\(lastCommittedBytes))"
+          )
+        }
+        lastCommittedBytes = committedBytes
+      }
+    }
+    return queryResult
+  }
+
+  /// Advances `resumeState.details.bytesWritten` and notifies `resumeLoop` when the server
+  /// acknowledges newly committed bytes.
+  fileprivate static func recordUploadProgress(
+    committedBytes: UInt64,
+    resumeLoop: _ResumeLoop<WriteObjectDetails>,
+    resumeState: inout ResumeState<WriteObjectDetails>
+  ) {
+    if committedBytes > resumeState.details.bytesWritten {
+      resumeState.details.bytesWritten = committedBytes
+      resumeLoop.onProgress(state: &resumeState)
+    }
+  }
+
   fileprivate static func continueStreamingUpload<S: WriteObjectSource>(
     httpClient: GoogleGax._HTTPClient,
     source: inout S,
@@ -507,10 +572,12 @@ extension StorageClient {
     options: WriteObjectOptions,
     resumeLoop: _ResumeLoop<WriteObjectDetails>
   ) async throws -> Object {
-    var options = options
     var uploadStatus = initialStatus
     var currentUploadId = uploadId
-    var checksummedSource: ChecksummedSource<S>? = nil
+    // Non-seekable streaming uploads always read sequentially from byte 0, so checksum
+    // calculators can be initialized upfront and fed every chunk in order.
+    var checksummedSource = ChecksummedSource(
+      source: source, options: options.checksums ?? .default)
     var pendingChunk: PendingChunk? = nil
     var sourceBytesRead: UInt64 = 0
     let initialBytes: UInt64
@@ -522,6 +589,10 @@ extension StorageClient {
       isResumedSession = true
     }
     var maxBytesSent = initialBytes
+    // Track the highest committed offset (`pendingChunk?.chunkStartOffset ?? sourceBytesRead`)
+    // so `recoverUploadStatus` can reject server-reported offset rewinds consistently across
+    // seekable and non-seekable uploads.
+    var lastCommittedBytes = initialBytes
     var resumeState = ResumeState(
       details: WriteObjectDetails(
         bytesWritten: initialBytes,
@@ -530,46 +601,28 @@ extension StorageClient {
     )
 
     while true {
-      let activeUploadId: String
-      if let id = currentUploadId {
-        activeUploadId = id
-      } else {
-        guard let bucket = bucket, let objectName = objectName else {
-          throw WriteObjectError.internalError(
-            "Missing bucket or object name to start resumable upload")
-        }
-        let location = try await resumeLoop.run(state: &resumeState) { _ in
-          try await startResumableSession(
-            httpClient: httpClient,
-            bucket: bucket,
-            objectName: objectName,
-            metadata: metadata,
-            options: options
-          )
-        }
-        currentUploadId = location
-        activeUploadId = location
-      }
+      let activeUploadId = try await ensureUploadSession(
+        currentUploadId: &currentUploadId,
+        httpClient: httpClient,
+        bucket: bucket,
+        objectName: objectName,
+        metadata: metadata,
+        options: options,
+        resumeLoop: resumeLoop,
+        resumeState: &resumeState
+      )
 
       if case .unknown = uploadStatus {
         do {
-          let queryResult = try await queryUploadStatus(
-            httpClient: httpClient, uploadId: activeUploadId, options: options)
+          let queryResult = try await recoverUploadStatus(
+            httpClient: httpClient,
+            uploadId: activeUploadId,
+            options: options,
+            isResumedSession: &isResumedSession,
+            maxBytesSent: &maxBytesSent,
+            lastCommittedBytes: &lastCommittedBytes
+          )
           uploadStatus = queryResult.status
-          if case .inprogress(let committedBytes) = uploadStatus {
-            if isResumedSession {
-              maxBytesSent = committedBytes
-              isResumedSession = false
-            } else {
-              guard committedBytes <= maxBytesSent else {
-                throw WriteObjectError.unexpectedServerResponse(
-                  statusCode: 308,
-                  message:
-                    "Server reported committed offset \(committedBytes) exceeding bytes sent (\(maxBytesSent))"
-                )
-              }
-            }
-          }
         } catch {
           try await resumeLoop.handleError(state: &resumeState, error: error)
           continue
@@ -586,20 +639,11 @@ extension StorageClient {
           throw WriteObjectError.sourceError(
             WriteObjectSourceError.offsetOutOfBounds(offset: committedBytes, size: total))
         }
-        if committedBytes > 0 && options.checksums?.md5 == .auto {
-          options.checksums?.md5 = nil
-        }
 
-        if checksummedSource == nil {
-          if committedBytes > 0 {
-            throw WriteObjectError.internalError(
-              "Cannot resume non-seekable source at offset \(committedBytes)"
-            )
-          }
-          checksummedSource = ChecksummedSource(
-            source: source, options: options.checksums ?? .default)
-        }
-
+        // Reconcile the server's committed offset with the buffered in-flight chunk (if any)
+        // or the current stream read position. Because `source` is not seekable, we can only
+        // resume from offsets still buffered in `pendingChunk` or equal to `sourceBytesRead`
+        // (which is 0 on the initial iteration, rejecting any non-zero initial offset).
         if var pending = pendingChunk {
           let chunkStart = pending.chunkStartOffset
           let chunkEnd = chunkStart + UInt64(pending.data.count)
@@ -630,13 +674,20 @@ extension StorageClient {
           )
         }
 
-        if committedBytes > resumeState.details.bytesWritten {
-          resumeState.details.bytesWritten = committedBytes
-          resumeLoop.onProgress(state: &resumeState)
-        }
+        recordUploadProgress(
+          committedBytes: committedBytes,
+          resumeLoop: resumeLoop,
+          resumeState: &resumeState
+        )
 
-        if pendingChunk == nil {
-          let chunkInfo = try await checksummedSource!.readChunk(maxBytes: chunkSize)
+        // Reuse the buffered chunk when retrying an uncommitted or partially committed send;
+        // otherwise read the next chunk from `checksummedSource` and retain it in `pendingChunk`
+        // until the server acknowledges all of its bytes.
+        let chunkToSend: PendingChunk
+        if let existingChunk = pendingChunk {
+          chunkToSend = existingChunk
+        } else {
+          let chunkInfo = try await checksummedSource.readChunk(maxBytes: chunkSize)
           let chunk: ByteChunk
           let isLast: Bool
           let checksum: String?
@@ -652,21 +703,19 @@ extension StorageClient {
             chunk = ByteChunk()
             isLast = true
             effectiveTotalSize = totalSize ?? sourceBytesRead
-            checksum = checksummedSource!.finalizeChecksum()
+            checksum = checksummedSource.finalizeChecksum()
           }
 
-          pendingChunk = PendingChunk(
+          let newChunk = PendingChunk(
             data: chunk,
             isLast: isLast,
             checksum: checksum,
             chunkStartOffset: sourceBytesRead,
             effectiveTotalSize: effectiveTotalSize
           )
+          pendingChunk = newChunk
+          chunkToSend = newChunk
           sourceBytesRead += UInt64(chunk.count)
-        }
-
-        guard let chunkToSend = pendingChunk else {
-          fatalError("pendingChunk must not be nil")
         }
 
         let chunkEnd = chunkToSend.chunkStartOffset + UInt64(chunkToSend.data.count)
@@ -694,6 +743,7 @@ extension StorageClient {
         }
         uploadStatus = chunkResult.status
         if case .inprogress(let nextBytes) = chunkResult.status {
+          lastCommittedBytes = nextBytes
           let chunkStart = chunkToSend.chunkStartOffset
           let chunkEnd = chunkStart + UInt64(chunkToSend.data.count)
 
@@ -709,10 +759,11 @@ extension StorageClient {
             pendingChunk = pending
           }
 
-          if nextBytes > resumeState.details.bytesWritten {
-            resumeState.details.bytesWritten = nextBytes
-            resumeLoop.onProgress(state: &resumeState)
-          }
+          recordUploadProgress(
+            committedBytes: nextBytes,
+            resumeLoop: resumeLoop,
+            resumeState: &resumeState
+          )
         }
       }
     }
@@ -773,59 +824,35 @@ extension StorageClient {
     )
 
     while true {
-      let activeUploadId: String
-      if let id = currentUploadId {
-        activeUploadId = id
-      } else {
-        guard let bucket = bucket, let objectName = objectName else {
-          throw WriteObjectError.internalError(
-            "Missing bucket or object name to start resumable upload")
-        }
-        let location = try await resumeLoop.run(state: &resumeState) { _ in
-          try await startResumableSession(
-            httpClient: httpClient,
-            bucket: bucket,
-            objectName: objectName,
-            metadata: metadata,
-            options: options
-          )
-        }
-        currentUploadId = location
-        activeUploadId = location
-      }
+      let activeUploadId = try await ensureUploadSession(
+        currentUploadId: &currentUploadId,
+        httpClient: httpClient,
+        bucket: bucket,
+        objectName: objectName,
+        metadata: metadata,
+        options: options,
+        resumeLoop: resumeLoop,
+        resumeState: &resumeState
+      )
 
       if case .unknown = uploadStatus {
         do {
-          let queryResult = try await queryUploadStatus(
-            httpClient: httpClient, uploadId: activeUploadId, options: options)
+          let queryResult = try await recoverUploadStatus(
+            httpClient: httpClient,
+            uploadId: activeUploadId,
+            options: options,
+            isResumedSession: &isResumedSession,
+            maxBytesSent: &maxBytesSent,
+            lastCommittedBytes: &lastCommittedBytes
+          )
           uploadStatus = queryResult.status
           crc32cSeed = queryResult.crc32cSeed
           if case .inprogress(let committedBytes) = uploadStatus {
-            if isResumedSession {
-              maxBytesSent = committedBytes
-              lastCommittedBytes = committedBytes
-              isResumedSession = false
-            } else {
-              guard committedBytes <= maxBytesSent else {
-                throw WriteObjectError.unexpectedServerResponse(
-                  statusCode: 308,
-                  message:
-                    "Server reported committed offset \(committedBytes) exceeding bytes sent (\(maxBytesSent))"
-                )
-              }
-              guard committedBytes >= lastCommittedBytes else {
-                throw WriteObjectError.unexpectedServerResponse(
-                  statusCode: 308,
-                  message:
-                    "Server reported committed offset \(committedBytes) prior to last committed offset (\(lastCommittedBytes))"
-                )
-              }
-              lastCommittedBytes = committedBytes
-            }
-            if committedBytes > resumeState.details.bytesWritten {
-              resumeState.details.bytesWritten = committedBytes
-              resumeLoop.onProgress(state: &resumeState)
-            }
+            recordUploadProgress(
+              committedBytes: committedBytes,
+              resumeLoop: resumeLoop,
+              resumeState: &resumeState
+            )
           }
         } catch {
           try await resumeLoop.handleError(state: &resumeState, error: error)
@@ -904,10 +931,11 @@ extension StorageClient {
         uploadStatus = uploadResult.status
         if case .inprogress(let nextBytes) = uploadResult.status {
           lastCommittedBytes = nextBytes
-          if nextBytes > resumeState.details.bytesWritten {
-            resumeState.details.bytesWritten = nextBytes
-            resumeLoop.onProgress(state: &resumeState)
-          }
+          recordUploadProgress(
+            committedBytes: nextBytes,
+            resumeLoop: resumeLoop,
+            resumeState: &resumeState
+          )
         }
         crc32cSeed = uploadResult.crc32cSeed
       }
@@ -975,16 +1003,17 @@ struct ResumableUploadQueryStatus: Sendable {
 }
 
 extension StorageClient {
-  fileprivate static func buildStartResumableUploadRequest(
-    httpClient: GoogleGax._HTTPClient,
-    bucket: String,
+  /// Builds the common URL query items for object upload initiation requests (`media`,
+  /// `multipart`, and `resumable`), including `kmsKeyName`, `predefinedAcl`, and preconditions.
+  fileprivate static func buildUploadQueryItems(
+    uploadType: String,
     objectName: String,
-    metadata: WriteObjectMetadata?,
     options: WriteObjectOptions
-  ) async throws -> GoogleGax._HTTPClientRequest {
-    var queryItems = [URLQueryItem(name: "uploadType", value: "resumable")]
-    queryItems.append(URLQueryItem(name: "name", value: objectName))
-
+  ) -> [URLQueryItem] {
+    var queryItems = [
+      URLQueryItem(name: "uploadType", value: uploadType),
+      URLQueryItem(name: "name", value: objectName),
+    ]
     if let kmsKeyName = options.kmsKeyName {
       queryItems.append(URLQueryItem(name: "kmsKeyName", value: kmsKeyName))
     }
@@ -994,6 +1023,21 @@ extension StorageClient {
     if let preconditions = options.preconditions {
       queryItems.append(contentsOf: preconditions.queryItems)
     }
+    return queryItems
+  }
+
+  fileprivate static func buildStartResumableUploadRequest(
+    httpClient: GoogleGax._HTTPClient,
+    bucket: String,
+    objectName: String,
+    metadata: WriteObjectMetadata?,
+    options: WriteObjectOptions
+  ) async throws -> GoogleGax._HTTPClientRequest {
+    let queryItems = buildUploadQueryItems(
+      uploadType: "resumable",
+      objectName: objectName,
+      options: options
+    )
 
     let bucketId = BucketName.extractBucketName(bucket)
     var request = try await httpClient.newRequest(
@@ -1099,12 +1143,22 @@ extension StorageClient {
     return request
   }
 
-  internal static func parseResumableUploadQueryStatus(from headers: NIOHTTP1.HTTPHeaders) throws
+  /// Parses the next expected upload byte offset and optional running CRC32C seed from a `308
+  /// Resume Incomplete` response's `Range` and `x-goog-running-hash` headers.
+  ///
+  /// Uses `defaultOffset` when the `Range` header is absent (e.g., `0` when no bytes have been
+  /// committed yet, or the chunk's starting offset during chunk upload recovery).
+  static func parseResumableUploadQueryStatus(
+    from headers: NIOHTTP1.HTTPHeaders,
+    defaultOffset: UInt64 = 0
+  ) throws
     -> ResumableUploadQueryStatus
   {
-    var nextOffset: UInt64 = 0
+    let nextOffset: UInt64
     if let rangeHeader = headers.first(name: "Range") {
       nextOffset = try HttpRange.parseNextRangeStart(rangeHeader)
+    } else {
+      nextOffset = defaultOffset
     }
 
     var crc32cSeed: UInt32? = nil
@@ -1115,17 +1169,13 @@ extension StorageClient {
     return ResumableUploadQueryStatus(nextOffset: nextOffset, crc32cSeed: crc32cSeed)
   }
 
-  internal static func parseCRC32CFromRunningHash(_ headerValue: String) -> UInt32? {
+  static func parseCRC32CFromRunningHash(_ headerValue: String) -> UInt32? {
     let parts = headerValue.split(separator: ",")
     for part in parts {
       let trimmed = part.trimmingCharacters(in: .whitespaces)
       if trimmed.hasPrefix("crc32c=") {
         let b64 = String(trimmed.dropFirst("crc32c=".count))
-        guard let data = Data(base64Encoded: b64), data.count == 4 else { return nil }
-        // SAFETY: `data.count == 4` matches `MemoryLayout<UInt32>.size`, and `loadUnaligned`
-        // avoids alignment requirements on `Data`'s backing buffer.
-        let bigEndian = unsafe data.withUnsafeBytes { unsafe $0.loadUnaligned(as: UInt32.self) }
-        return UInt32(bigEndian: bigEndian)
+        return crc32cFromBase64(b64)
       }
     }
     return nil

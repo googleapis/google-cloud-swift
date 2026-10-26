@@ -117,17 +117,9 @@ package struct ObjectV1Response: Decodable, Sendable {
 
     var checksums = ObjectChecksums()
     var hasChecksums = false
-    if let crc32c = crc32c {
-      if let val = UInt32(crc32c) {
-        checksums.crc32C = val
-        hasChecksums = true
-      } else if let data = Data(base64Encoded: crc32c), data.count == 4 {
-        // SAFETY: `data.count == 4` matches `MemoryLayout<UInt32>.size`, and `loadUnaligned`
-        // avoids alignment requirements on `Data`'s backing buffer.
-        let val = unsafe data.withUnsafeBytes { unsafe $0.loadUnaligned(as: UInt32.self).bigEndian }
-        checksums.crc32C = val
-        hasChecksums = true
-      }
+    if let crc32c = crc32c, let val = UInt32(crc32c) ?? crc32cFromBase64(crc32c) {
+      checksums.crc32C = val
+      hasChecksums = true
     }
     if let md5Hash = md5Hash {
       if let data = Data(base64Encoded: md5Hash) {

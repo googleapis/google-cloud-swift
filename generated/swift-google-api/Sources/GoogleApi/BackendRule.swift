@@ -50,7 +50,7 @@ public struct BackendRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// For HTTP backends, use [protocol][google.api.BackendRule.protocol]
   /// to specify the protocol version.
   ///
-  /// [google.api.BackendRule.protocol]: <doc:BackendRule/`protocol`>
+  /// [google.api.BackendRule.protocol]: <doc:BackendRule/protocol>
   public var address: Swift.String = Swift.String()
 
   /// The number of seconds to wait for a response from a request. The default

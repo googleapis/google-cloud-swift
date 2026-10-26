@@ -346,7 +346,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.instantSnapshots.get] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshots.get]: <doc:InstantSnapshotsClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.instantSnapshots.get]: <doc:InstantSnapshotsClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

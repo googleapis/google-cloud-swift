@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 extension LimitedAttemptCount: PollingErrorPolicy where P: PollingErrorPolicy & Sendable {
   public func onError(state: PollingState, error: RequestError) -> PollingResult {
     switch inner.onError(state: state, error: error) {
@@ -39,6 +37,10 @@ extension LimitedAttemptCount: PollingErrorPolicy where P: PollingErrorPolicy & 
       }
       return .keepPolling
     }
+  }
+
+  public func remainingTime(state: PollingState) -> Duration? {
+    inner.remainingTime(state: state)
   }
 }
 

@@ -785,7 +785,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionInstanceGroupManagers.get] method.
     ///
-    /// [google.cloud.compute.v1.regionInstanceGroupManagers.get]: <doc:RegionInstanceGroupManagersClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.regionInstanceGroupManagers.get]: <doc:RegionInstanceGroupManagersClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

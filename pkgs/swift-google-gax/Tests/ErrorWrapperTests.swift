@@ -13,9 +13,6 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 import Testing
 @_spi(GoogleCloudInternal) import GoogleGax
 import GoogleRpc

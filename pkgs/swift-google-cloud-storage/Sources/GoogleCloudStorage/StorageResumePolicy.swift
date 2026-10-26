@@ -12,9 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
 public import GoogleGax
-import GoogleRpc
 
 /// Evaluates whether an error is considered resumable in Google Cloud Storage.
 ///
@@ -53,27 +51,16 @@ public struct StorageResumePolicy<Details: Sendable>: ResumePolicy, Sendable, Eq
     guard state.idempotent else {
       return .permanent(error)
     }
-    if isResumable(error) {
+    if Self.isResumable(error) {
       return .resume(error)
     }
     return .permanent(error)
   }
 
-  private func isResumable(_ error: RequestError) -> Bool {
-    switch error {
-    case .io:
+  private static func isResumable(_ error: RequestError) -> Bool {
+    if case .io = error {
       return true
-    case .http(let details):
-      let code = details.statusCode
-      return code == 408 || code == 429 || (500...599).contains(code)
-    case .service(let details):
-      let code = details.code
-      return code == .unavailable || code == .resourceExhausted || code == .deadlineExceeded
-        || code == .`internal`
-    case .binding, .exhausted, .unimplemented, .malformedResponse, .badURL:
-      return false
-    @unknown default:
-      return false
     }
+    return StorageRetryErrors.isRetryable(error)
   }
 }

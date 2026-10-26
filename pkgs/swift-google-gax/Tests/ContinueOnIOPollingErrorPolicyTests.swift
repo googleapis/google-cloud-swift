@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
 import GoogleGax
 import Synchronization
 import Testing
@@ -39,6 +38,14 @@ import Testing
 
     #expect(policy.onInProgress(state: PollingState()) == .keepPolling)
     #expect(called.withLock { $0 })
+  }
+
+  @Test func continueIORemainingTimeForwards() {
+    let mockNone = MockPollingPolicy(remainingTime: { _ in nil })
+    #expect(mockNone.continueOnIO().remainingTime(state: PollingState()) == nil)
+
+    let mockSome = MockPollingPolicy(remainingTime: { _ in .seconds(42) })
+    #expect(mockSome.continueOnIO().remainingTime(state: PollingState()) == .seconds(42))
   }
 
   @Test func equatable() {

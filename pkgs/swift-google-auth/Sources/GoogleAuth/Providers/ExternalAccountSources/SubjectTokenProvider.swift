@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// A type that provides third-party subject tokens for Workload and Workforce Identity Federation.
 ///
 /// A **subject token** is a security credential (such as an OpenID Connect (OIDC) JSON Web Token (JWT)

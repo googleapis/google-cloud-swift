@@ -1,0 +1,15 @@
+{
+    "api_description": "Design and share deployable application architectures.",
+    "api_id": "designcenter.googleapis.com",
+    "api_shortname": "designcenter",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-designcenter-v1/0.6.0/documentation",
+    "distribution_name": "swift-google-cloud-designcenter-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1638064",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "designcenter",
+    "name_pretty": "Design Center",
+    "product_documentation": "https://cloud.google.com/application-design-center/docs",
+    "release_level": "preview",
+    "repo": "googleapis/swift-google-cloud-designcenter-v1"
+}

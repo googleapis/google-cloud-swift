@@ -58,7 +58,7 @@ extension StorageClient {
     return ReadObjectHandle(coordinator: coordinator)
   }
 
-  internal static func parseReadObjectMetadata(
+  static func parseReadObjectMetadata(
     from headers: NIOHTTP1.HTTPHeaders,
     bucket: String,
     object: String
@@ -106,13 +106,7 @@ extension StorageClient {
     let (rawCrc, rawMd5) = extractExpectedChecksums(from: headers)
     var checksums = ObjectChecksums()
     var hasChecksums = false
-    if let rawCrc, let data = Data(base64Encoded: rawCrc), data.count == 4 {
-      let idx = data.startIndex
-      let val =
-        (UInt32(data[idx]) << 24)
-        | (UInt32(data[idx + 1]) << 16)
-        | (UInt32(data[idx + 2]) << 8)
-        | UInt32(data[idx + 3])
+    if let rawCrc, let val = crc32cFromBase64(rawCrc) {
       checksums.crc32C = val
       hasChecksums = true
     }
@@ -134,7 +128,7 @@ extension StorageClient {
     return metadata
   }
 
-  internal static func extractExpectedChecksums(
+  static func extractExpectedChecksums(
     from headers: NIOHTTP1.HTTPHeaders
   ) -> (crc32c: String?, md5: String?) {
     var crc32c: String?

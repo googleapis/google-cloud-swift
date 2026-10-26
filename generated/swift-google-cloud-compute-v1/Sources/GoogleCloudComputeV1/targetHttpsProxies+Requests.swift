@@ -338,7 +338,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.targetHttpsProxies.get] method.
     ///
-    /// [google.cloud.compute.v1.targetHttpsProxies.get]: <doc:TargetHttpsProxiesClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.targetHttpsProxies.get]: <doc:TargetHttpsProxiesClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

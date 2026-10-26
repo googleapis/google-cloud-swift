@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// State tracked across attempts during a resumable transfer operation.
 public struct ResumeState<Details: Sendable>: Sendable {
   /// The consecutive number of errors encountered without making forward progress.

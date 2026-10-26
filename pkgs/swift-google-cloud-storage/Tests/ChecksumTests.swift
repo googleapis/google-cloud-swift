@@ -309,6 +309,20 @@ import Testing
     #expect(calculator.finalize() == "TVUQaA==")
   }
 
+  @Test func testCRC32CBase64RoundTripAndInvalidInputs() {
+    let values: [UInt32] = [0, 1, 0x1234_5678, 0x4D55_1068, UInt32.max]
+    for value in values {
+      let encoded = crc32cBase64(value)
+      #expect(crc32cFromBase64(encoded) == value)
+    }
+    #expect(crc32cFromBase64("TVUQaA==") == 0x4D55_1068)
+    #expect(crc32cFromBase64("") == nil)
+    #expect(crc32cFromBase64("not-valid-base64!!!") == nil)
+    // 3 bytes ("abc") and 5 bytes ("abcde") should fail the 4-byte check
+    #expect(crc32cFromBase64(Data([1, 2, 3]).base64EncodedString()) == nil)
+    #expect(crc32cFromBase64(Data([1, 2, 3, 4, 5]).base64EncodedString()) == nil)
+  }
+
   @Test func testCRC32CCalculatorSeeded() {
     let part1 = Data("Hello, ".utf8)
     let part2 = Data("World!".utf8)

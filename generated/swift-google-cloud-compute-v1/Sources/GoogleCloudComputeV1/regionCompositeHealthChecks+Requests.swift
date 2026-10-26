@@ -350,7 +350,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionCompositeHealthChecks.get] method.
     ///
-    /// [google.cloud.compute.v1.regionCompositeHealthChecks.get]: <doc:RegionCompositeHealthChecksClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.regionCompositeHealthChecks.get]: <doc:RegionCompositeHealthChecksClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {

@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 extension LimitedElapsedTime: PollingErrorPolicy where P: PollingErrorPolicy {
   public func onError(state: PollingState, error: RequestError) -> PollingResult {
     switch inner.onError(state: state, error: error) {
@@ -39,6 +37,16 @@ extension LimitedElapsedTime: PollingErrorPolicy where P: PollingErrorPolicy {
       }
       return .keepPolling
     }
+  }
+
+  public func remainingTime(state: PollingState) -> Duration? {
+    let deadline = state.start + maximumDuration
+    let now = ContinuousClock.now
+    let remaining = now < deadline ? (deadline - now) : .zero
+    if let innerRemaining = inner.remainingTime(state: state) {
+      return min(remaining, innerRemaining)
+    }
+    return remaining
   }
 }
 

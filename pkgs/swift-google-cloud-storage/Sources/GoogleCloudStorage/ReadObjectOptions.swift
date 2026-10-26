@@ -348,7 +348,7 @@ public struct ReadObjectOptions: Sendable {
 }
 
 extension ReadObjectOptions {
-  internal func withDefaults(_ defaults: Self) -> Self {
+  func withDefaults(_ defaults: Self) -> Self {
     var copy = self
     copy.generation = self.generation ?? defaults.generation
     copy.preconditions = self.preconditions ?? defaults.preconditions
@@ -363,7 +363,7 @@ extension ReadObjectOptions {
     return copy
   }
 
-  internal var requestOptions: RequestOptions {
+  var requestOptions: RequestOptions {
     RequestOptions().with { $0.quotaProject = self.quotaProject }
   }
 }

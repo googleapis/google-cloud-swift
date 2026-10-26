@@ -142,7 +142,7 @@
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.instantSnapshotGroups.get] method.
     ///
-    /// [google.cloud.compute.v1.instantSnapshotGroups.get]: <doc:InstantSnapshotGroupsClient/`get`(request:options:)>
+    /// [google.cloud.compute.v1.instantSnapshotGroups.get]: <doc:InstantSnapshotGroupsClient/get(request:options:)>
     public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
