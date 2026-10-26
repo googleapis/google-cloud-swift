@@ -49,9 +49,12 @@ struct ServiceAccountTests {
     let mockKeyJSON = try ServiceAccountTests.generateMockKeyJSON()
     let credentials = try ServiceAccountCredentials(keyJSON: mockKeyJSON)
     let headers = try await credentials.headers()
+    let accessToken = try await credentials.accessToken()
 
     #expect(headers.count == 1)
-    #expect(headers["Authorization"]?.hasPrefix("Bearer ") == true)
+    #expect(headers["Authorization"] == "Bearer \(accessToken.token)")
+    #expect(!accessToken.token.isEmpty)
+    #expect(accessToken.expirationDate != nil)
   }
 
   @Test("Service Account Credentials injects custom billing quota project header")

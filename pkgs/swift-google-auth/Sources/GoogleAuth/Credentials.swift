@@ -208,6 +208,62 @@ public enum CredentialsConfiguration: Sendable {
   ///
   /// - Parameter config: The configuration specifying the source credentials, target service account, and optional delegation chain.
   case impersonatedServiceAccount(ImpersonatedServiceAccountConfig)
+
+  /// Credentials backed by a static, pre-obtained OAuth 2.0 access token.
+  ///
+  /// Useful when an access token has already been acquired out-of-band (for example, forwarded by an
+  /// API gateway or obtained via `gcloud auth print-access-token` in a CI pipeline).
+  ///
+  /// Static access tokens cannot be refreshed automatically. If `token.expirationDate` is set and
+  /// has passed, calls to ``Credentials/headers()`` or ``Credentials/accessToken()`` fail with
+  /// ``CredentialsError/cannotFetchToken(message:underlyingError:)``.
+  ///
+  /// - Parameters:
+  ///   - token: The pre-obtained ``AccessToken`` containing the raw token string and optional expiration date.
+  ///   - quotaProjectID: An optional project ID used for billing and quota attribution (`x-goog-user-project`).
+  ///   - universeDomain: Target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override (defaults to `googleapis.com`).
+  case accessToken(
+    AccessToken,
+    quotaProjectID: String? = nil,
+    universeDomain: String? = nil
+  )
+
+  /// Credentials backed by a custom asynchronous ``AccessTokenProvider``.
+  ///
+  /// Allows applications to integrate custom authentication sources while benefiting from
+  /// ``Credentials`` in-memory token caching, singleflight request coalescing, and proactive
+  /// background refresh before token expiration.
+  ///
+  /// - Parameters:
+  ///   - provider: The custom provider supplying ``AccessToken`` instances.
+  ///   - quotaProjectID: An optional project ID used for billing and quota attribution (`x-goog-user-project`).
+  ///   - universeDomain: Target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override (defaults to `googleapis.com`).
+  case accessTokenProvider(
+    any AccessTokenProvider,
+    quotaProjectID: String? = nil,
+    universeDomain: String? = nil
+  )
+
+  /// Creates a static access token configuration from a raw token string and optional expiration date.
+  ///
+  /// - Parameters:
+  ///   - token: The raw OAuth 2.0 access token string.
+  ///   - expirationDate: The date and time when the token expires, or `nil` if the token does not expire.
+  ///   - quotaProjectID: An optional project ID used for billing and quota attribution (`x-goog-user-project`).
+  ///   - universeDomain: Target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override (defaults to `googleapis.com`).
+  /// - Returns: A ``CredentialsConfiguration`` configured with the static access token.
+  public static func accessToken(
+    _ token: String,
+    expirationDate: Date? = nil,
+    quotaProjectID: String? = nil,
+    universeDomain: String? = nil
+  ) -> CredentialsConfiguration {
+    .accessToken(
+      AccessToken(token: token, expirationDate: expirationDate),
+      quotaProjectID: quotaProjectID,
+      universeDomain: universeDomain
+    )
+  }
 }
 
 /// Configuration options for Service Account Impersonation credentials.
@@ -440,11 +496,16 @@ extension ExternalAccountConfig.SubjectTokenType {
   public static let jwt: Self = "urn:ietf:params:oauth:token-type:jwt"
 }
 
-/// A type that can provide authentication headers for Google Cloud API requests.
+/// A type that can provide authentication headers and access tokens for Google Cloud API requests.
 ///
 /// Internal protocol implemented by concrete credential backends (e.g. Service Accounts, User Accounts,
-/// MDS, API Keys, External Accounts). Conforming types are thread-safe and can be mocked for unit testing.
+/// MDS, API Keys, External Accounts, Static/Custom Access Tokens). Conforming types are thread-safe and can be mocked for unit testing.
 protocol CredentialsProvider: Sendable {
+  /// Asynchronously retrieves the current access token.
+  ///
+  /// - Returns: The current ``AccessToken``.
+  func accessToken() async throws -> AccessToken
+
   /// Asynchronously retrieves the request headers required to authenticate a request.
   ///
   /// - Returns: The HTTP header fields to apply to the request.
@@ -519,6 +580,18 @@ public struct Credentials: Sendable {
     )
   }
 
+  /// Asynchronously retrieves the current OAuth 2.0 access token.
+  ///
+  /// Returns a cached token if valid, or awaits an active refresh if the token is missing or expired.
+  ///
+  /// - Returns: The current ``AccessToken`` containing the raw token string and optional expiration date.
+  /// - Throws: ``CredentialsError/notSupported(_:)`` if the credential type does not use access tokens
+  ///   (such as ``CredentialsConfiguration/anonymous`` or ``CredentialsConfiguration/apiKey(_:)``),
+  ///   or ``CredentialsError/cannotFetchToken(message:underlyingError:)`` if token resolution fails.
+  public func accessToken() async throws -> AccessToken {
+    return try await self.credentialsProvider.accessToken()
+  }
+
   /// Asynchronously retrieves the request headers required to authenticate a request.
   ///
   /// Returns cached headers if valid, or waits for an active refresh if the token is missing or expired.
@@ -581,6 +654,18 @@ public struct Credentials: Sendable {
         lifetime: config.lifetime,
         quotaProjectID: config.quotaProjectID,
         universeDomain: config.universeDomain
+      )
+    case let .accessToken(token, quotaProjectID, universeDomain):
+      return StaticAccessTokenCredentials(
+        token: token,
+        quotaProjectID: quotaProjectID,
+        universeDomain: universeDomain
+      )
+    case let .accessTokenProvider(provider, quotaProjectID, universeDomain):
+      return AccessTokenProviderCredentials(
+        provider: provider,
+        quotaProjectID: quotaProjectID,
+        universeDomain: universeDomain
       )
     }
   }

@@ -25,6 +25,10 @@ import Testing
 private struct StaticSourceCredentials: CredentialsProvider {
   let authHeaders: AuthHeaders
 
+  func accessToken() async throws -> AccessToken {
+    AccessToken(token: "source-access-token")
+  }
+
   func headers() async throws -> AuthHeaders {
     authHeaders
   }
@@ -32,6 +36,10 @@ private struct StaticSourceCredentials: CredentialsProvider {
 
 private struct FailingSourceCredentials: CredentialsProvider {
   struct SourceError: Error {}
+
+  func accessToken() async throws -> AccessToken {
+    throw SourceError()
+  }
 
   func headers() async throws -> AuthHeaders {
     throw SourceError()
