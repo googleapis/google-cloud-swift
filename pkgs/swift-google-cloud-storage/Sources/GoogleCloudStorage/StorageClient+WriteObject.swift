@@ -13,15 +13,8 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-import GoogleGax
-@_spi(GoogleCloudInternal) import GoogleWKT
-@_spi(GoogleCloudInternal) import struct GoogleGax._CRC32C
-import Crypto
 @_spi(GoogleCloudInternal) import GoogleGax
-import NIOCore
+@_spi(GoogleCloudInternal) import GoogleWKT
 import NIOHTTP1
 
 package enum ResumableUploadStatus: Sendable {
@@ -579,10 +572,12 @@ extension StorageClient {
     options: WriteObjectOptions,
     resumeLoop: _ResumeLoop<WriteObjectDetails>
   ) async throws -> Object {
-    var options = options
     var uploadStatus = initialStatus
     var currentUploadId = uploadId
-    var checksummedSource: ChecksummedSource<S>? = nil
+    // Non-seekable streaming uploads always read sequentially from byte 0, so checksum
+    // calculators can be initialized upfront and fed every chunk in order.
+    var checksummedSource = ChecksummedSource(
+      source: source, options: options.checksums ?? .default)
     var pendingChunk: PendingChunk? = nil
     var sourceBytesRead: UInt64 = 0
     let initialBytes: UInt64
@@ -644,20 +639,11 @@ extension StorageClient {
           throw WriteObjectError.sourceError(
             WriteObjectSourceError.offsetOutOfBounds(offset: committedBytes, size: total))
         }
-        if committedBytes > 0 && options.checksums?.md5 == .auto {
-          options.checksums?.md5 = nil
-        }
 
-        if checksummedSource == nil {
-          if committedBytes > 0 {
-            throw WriteObjectError.internalError(
-              "Cannot resume non-seekable source at offset \(committedBytes)"
-            )
-          }
-          checksummedSource = ChecksummedSource(
-            source: source, options: options.checksums ?? .default)
-        }
-
+        // Reconcile the server's committed offset with the buffered in-flight chunk (if any)
+        // or the current stream read position. Because `source` is not seekable, we can only
+        // resume from offsets still buffered in `pendingChunk` or equal to `sourceBytesRead`
+        // (which is 0 on the initial iteration, rejecting any non-zero initial offset).
         if var pending = pendingChunk {
           let chunkStart = pending.chunkStartOffset
           let chunkEnd = chunkStart + UInt64(pending.data.count)
@@ -694,8 +680,14 @@ extension StorageClient {
           resumeState: &resumeState
         )
 
-        if pendingChunk == nil {
-          let chunkInfo = try await checksummedSource!.readChunk(maxBytes: chunkSize)
+        // Reuse the buffered chunk when retrying an uncommitted or partially committed send;
+        // otherwise read the next chunk from `checksummedSource` and retain it in `pendingChunk`
+        // until the server acknowledges all of its bytes.
+        let chunkToSend: PendingChunk
+        if let existingChunk = pendingChunk {
+          chunkToSend = existingChunk
+        } else {
+          let chunkInfo = try await checksummedSource.readChunk(maxBytes: chunkSize)
           let chunk: ByteChunk
           let isLast: Bool
           let checksum: String?
@@ -711,21 +703,19 @@ extension StorageClient {
             chunk = ByteChunk()
             isLast = true
             effectiveTotalSize = totalSize ?? sourceBytesRead
-            checksum = checksummedSource!.finalizeChecksum()
+            checksum = checksummedSource.finalizeChecksum()
           }
 
-          pendingChunk = PendingChunk(
+          let newChunk = PendingChunk(
             data: chunk,
             isLast: isLast,
             checksum: checksum,
             chunkStartOffset: sourceBytesRead,
             effectiveTotalSize: effectiveTotalSize
           )
+          pendingChunk = newChunk
+          chunkToSend = newChunk
           sourceBytesRead += UInt64(chunk.count)
-        }
-
-        guard let chunkToSend = pendingChunk else {
-          fatalError("pendingChunk must not be nil")
         }
 
         let chunkEnd = chunkToSend.chunkStartOffset + UInt64(chunkToSend.data.count)
@@ -1158,7 +1148,7 @@ extension StorageClient {
   ///
   /// Uses `defaultOffset` when the `Range` header is absent (e.g., `0` when no bytes have been
   /// committed yet, or the chunk's starting offset during chunk upload recovery).
-  internal static func parseResumableUploadQueryStatus(
+  static func parseResumableUploadQueryStatus(
     from headers: NIOHTTP1.HTTPHeaders,
     defaultOffset: UInt64 = 0
   ) throws
@@ -1179,7 +1169,7 @@ extension StorageClient {
     return ResumableUploadQueryStatus(nextOffset: nextOffset, crc32cSeed: crc32cSeed)
   }
 
-  internal static func parseCRC32CFromRunningHash(_ headerValue: String) -> UInt32? {
+  static func parseCRC32CFromRunningHash(_ headerValue: String) -> UInt32? {
     let parts = headerValue.split(separator: ",")
     for part in parts {
       let trimmed = part.trimmingCharacters(in: .whitespaces)

@@ -17,7 +17,6 @@ import AsyncHTTPClient
 import NIOFoundationCompat
 import struct Logging.Logger
 import struct NIOCore.ByteBufferAllocator
-import struct NIOCore.TimeAmount
 import NIOHTTP1
 
 /// Internal protocol abstracting an HTTP client to support testing and mocking.
@@ -92,7 +91,7 @@ struct AuthHTTPClient: Sendable {
   let inner: any HTTPClientProtocol
 
   /// Initializes the client with the default asynchronous HTTP client configuration.
-  public init() {
+  init() {
     self.inner = HTTPClientHolder()
   }
 

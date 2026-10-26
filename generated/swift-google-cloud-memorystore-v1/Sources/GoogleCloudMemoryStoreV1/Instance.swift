@@ -176,6 +176,13 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Migration config for the instance.
   public var migrationConfig: MigrationConfig? = nil
 
+  /// Optional. The ACL policy for the instance.
+  /// Format: projects/{project}/locations/{location}/aclPolicies/{acl_policy}
+  public var aclPolicy: Swift.String? = nil
+
+  /// Output only. Details of the applied ACL policy.
+  public var aclPolicyInfo: AclPolicyInfo? = nil
+
   /// The source to import from.
   public var importSources: ImportSourcesOneOf? = nil
 
@@ -252,6 +259,8 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     static let serverCaPool = CodingKeys(stringValue: "serverCaPool")
     static let rotateServerCertificate = CodingKeys(stringValue: "rotateServerCertificate")
     static let migrationConfig = CodingKeys(stringValue: "migrationConfig")
+    static let aclPolicy = CodingKeys(stringValue: "aclPolicy")
+    static let aclPolicyInfo = CodingKeys(stringValue: "aclPolicyInfo")
 
     static let _knownKeys: Set<Swift.String> = [
       "gcsSource",
@@ -299,6 +308,8 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       "serverCaPool",
       "rotateServerCertificate",
       "migrationConfig",
+      "aclPolicy",
+      "aclPolicyInfo",
     ]
   }
 
@@ -422,6 +433,8 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       Swift.Bool.self, forKey: .rotateServerCertificate)
     self.migrationConfig = try container.decodeIfPresent(
       MigrationConfig.self, forKey: .migrationConfig)
+    self.aclPolicy = try container.decodeIfPresent(Swift.String.self, forKey: .aclPolicy)
+    self.aclPolicyInfo = try container.decodeIfPresent(AclPolicyInfo.self, forKey: .aclPolicyInfo)
 
     var importSources: ImportSourcesOneOf? = nil
     let importSourcesCheckAndSet = {
@@ -502,6 +515,8 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.serverCaPool, forKey: .serverCaPool)
     try container.encodeIfPresent(self.rotateServerCertificate, forKey: .rotateServerCertificate)
     try container.encodeIfPresent(self.migrationConfig, forKey: .migrationConfig)
+    try container.encodeIfPresent(self.aclPolicy, forKey: .aclPolicy)
+    try container.encodeIfPresent(self.aclPolicyInfo, forKey: .aclPolicyInfo)
 
     if let choice = self.importSources {
       switch choice {

@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 extension LimitedElapsedTime: PollingErrorPolicy where P: PollingErrorPolicy {
   public func onError(state: PollingState, error: RequestError) -> PollingResult {
     switch inner.onError(state: state, error: error) {

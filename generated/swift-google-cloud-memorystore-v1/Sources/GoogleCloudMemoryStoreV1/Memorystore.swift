@@ -43,6 +43,23 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
     self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
+  /// Lists all ACL policies owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "Memorystore_ListAclPolicies")
+  public func listAclPolicies(
+    request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudMemoryStoreV1.ListAclPoliciesResponse {
+    try await self.inner.listAclPolicies(request: request, options: options)
+  }
+
   /// Lists Instances in a given project and location.
   ///
   /// @Snippet(path: "Memorystore_ListInstances")
@@ -52,6 +69,15 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
     try await self.inner.listInstances(request: request, options: options)
   }
 
+  /// Gets the details of a specific Memorystore ACL policy.
+  ///
+  /// @Snippet(path: "Memorystore_GetAclPolicy")
+  public func getAclPolicy(
+    request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
+    try await self.inner.getAclPolicy(request: request, options: options)
+  }
+
   /// Gets details of a single Instance.
   ///
   /// @Snippet(path: "Memorystore_GetInstance")
@@ -59,6 +85,17 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.Instance {
     try await self.inner.getInstance(request: request, options: options)
+  }
+
+  /// Creates an ACL policy.
+  /// The creation is executed synchronously and the policy is available for use
+  /// immediately after the RPC returns.
+  ///
+  /// @Snippet(path: "Memorystore_CreateAclPolicy")
+  public func createAclPolicy(
+    request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
+    try await self.inner.createAclPolicy(request: request, options: options)
   }
 
   /// Creates a new Instance in a given project and location.
@@ -84,6 +121,60 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
     let rawOp = try await self.createInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Updates the ACL policy.
+  ///
+  /// The operation will apply the updated ACL policy to all the linked
+  /// instances. The operation will return success if it successfully applied the
+  /// policy to all the instances. If the operation completed with a failure, the
+  /// service will continue to apply the policy via reconciliation for the failed
+  /// instances even after operation completion to ensure eventual consistency.
+  ///
+  /// Completed longrunning.Operation will contain the new ACL policy object
+  /// in the response field.
+  ///
+  /// @Snippet(path: "Memorystore_UpdateAclPolicy")
+  public func updateAclPolicy(
+    request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateAclPolicy(request: request, options: options)
+  }
+
+  /// Updates the ACL policy.
+  ///
+  /// The operation will apply the updated ACL policy to all the linked
+  /// instances. The operation will return success if it successfully applied the
+  /// policy to all the instances. If the operation completed with a failure, the
+  /// service will continue to apply the policy via reconciliation for the failed
+  /// instances even after operation completion to ensure eventual consistency.
+  ///
+  /// Completed longrunning.Operation will contain the new ACL policy object
+  /// in the response field.
+  ///
+  /// @Snippet(path: "Memorystore_UpdateAclPolicy")
+  public func updateAclPolicyPollingUntilDone(
+    request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AclPolicy {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AclPolicy>.State in
+      return try op._extractStatus(AclPolicy.self)
+    }
+    let rawOp = try await self.updateAclPolicy(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AclPolicy>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -131,6 +222,64 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
       poll: poll,
     )
     return try await poller.wait()
+  }
+
+  /// Deletes a specific ACL policy. This action will delete the ACL policy and
+  /// all the rules associated with it. An ACL policy cannot be deleted if it is
+  /// attached to an instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteAclPolicy")
+  public func deleteAclPolicy(
+    request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteAclPolicy(request: request, options: options)
+  }
+
+  /// Deletes a specific ACL policy. This action will delete the ACL policy and
+  /// all the rules associated with it. An ACL policy cannot be deleted if it is
+  /// attached to an instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteAclPolicy")
+  public func deleteAclPolicyPollingUntilDone(
+    request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteAclPolicy(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
+  /// Gets details of a specific ACL policy revision.
+  ///
+  /// @Snippet(path: "Memorystore_GetAclPolicyRevision")
+  public func getAclPolicyRevision(
+    request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudMemoryStoreV1.AclPolicyRevision {
+    try await self.inner.getAclPolicyRevision(request: request, options: options)
+  }
+
+  /// Lists all ACL policy revisions in a given ACL policy.
+  ///
+  /// @Snippet(path: "Memorystore_ListAclPolicyRevisions")
+  public func listAclPolicyRevisions(
+    request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudMemoryStoreV1.ListAclPolicyRevisionsResponse {
+    try await self.inner.listAclPolicyRevisions(request: request, options: options)
   }
 
   /// Deletes a single Instance.
@@ -758,15 +907,30 @@ extension Clients {
   /// `some MemorystoreProtocol` or `any MemorystoreProtocol`
   /// and pass a mock implementation in your tests.
   public protocol MemorystoreProtocol: Sendable {
+    /// See `MemorystoreClient.listAclPolicies`.
+    func listAclPolicies(
+      request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.ListAclPoliciesResponse
+
     /// See `MemorystoreClient.listInstances`.
     func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse
 
+    /// See `MemorystoreClient.getAclPolicy`.
+    func getAclPolicy(
+      request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy
+
     /// See `MemorystoreClient.getInstance`.
     func getInstance(
       request: GetInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.Instance
+
+    /// See `MemorystoreClient.createAclPolicy`.
+    func createAclPolicy(
+      request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy
 
     /// See `MemorystoreClient.createInstance`.
     func createInstance(
@@ -778,6 +942,16 @@ extension Clients {
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> Instance
 
+    /// See `MemorystoreClient.updateAclPolicy`.
+    func updateAclPolicy(
+      request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `MemorystoreClient.updateAclPolicy`.
+    func updateAclPolicyPollingUntilDone(
+      request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> AclPolicy
+
     /// See `MemorystoreClient.updateInstance`.
     func updateInstance(
       request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
@@ -787,6 +961,26 @@ extension Clients {
     func updateInstancePollingUntilDone(
       request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> Instance
+
+    /// See `MemorystoreClient.deleteAclPolicy`.
+    func deleteAclPolicy(
+      request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `MemorystoreClient.deleteAclPolicy`.
+    func deleteAclPolicyPollingUntilDone(
+      request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `MemorystoreClient.getAclPolicyRevision`.
+    func getAclPolicyRevision(
+      request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.AclPolicyRevision
+
+    /// See `MemorystoreClient.listAclPolicyRevisions`.
+    func listAclPolicyRevisions(
+      request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudMemoryStoreV1.ListAclPolicyRevisionsResponse
 
     /// See `MemorystoreClient.deleteInstance`.
     func deleteInstance(
@@ -977,6 +1171,58 @@ extension Clients {
 
 // Default implementations
 extension Clients.MemorystoreProtocol {
+  public func listAclPolicies(request: ListAclPoliciesRequest) async throws
+    -> GoogleCloudMemoryStoreV1.ListAclPoliciesResponse
+  {
+    try await self.listAclPolicies(request: request, options: .init())
+  }
+
+  public func listAclPolicies(
+    request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudMemoryStoreV1.ListAclPoliciesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listAclPoliciesByItems(
+    request: ListAclPoliciesRequest
+  ) -> some AsyncSequence<AclPolicy, any Swift.Error> & Sendable {
+    self.listAclPoliciesByItems(request: request, options: .init())
+  }
+
+  /// Lists all ACL policies owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "Memorystore_ListAclPolicies")
+  public func listAclPoliciesByItems(
+    request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<AclPolicy, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudMemoryStoreV1.ListAclPoliciesResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listAclPolicies(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listAclPoliciesByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<AclPolicy, any Swift.Error> & Sendable {
+    let request = ListAclPoliciesRequest().with {
+      $0.parent = parent
+    }
+    return self.listAclPoliciesByItems(request: request)
+  }
+
   public func listInstances(request: ListInstancesRequest) async throws
     -> GoogleCloudMemoryStoreV1.ListInstancesResponse
   {
@@ -1021,6 +1267,27 @@ extension Clients.MemorystoreProtocol {
     return self.listInstancesByItems(request: request)
   }
 
+  public func getAclPolicy(request: GetAclPolicyRequest) async throws
+    -> GoogleCloudMemoryStoreV1.AclPolicy
+  {
+    try await self.getAclPolicy(request: request, options: .init())
+  }
+
+  public func getAclPolicy(
+    request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getAclPolicy(
+    name: Swift.String,
+  ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
+    let request = GetAclPolicyRequest().with {
+      $0.name = name
+    }
+    return try await self.getAclPolicy(request: request)
+  }
+
   public func getInstance(request: GetInstanceRequest) async throws
     -> GoogleCloudMemoryStoreV1.Instance
   {
@@ -1040,6 +1307,31 @@ extension Clients.MemorystoreProtocol {
       $0.name = name
     }
     return try await self.getInstance(request: request)
+  }
+
+  public func createAclPolicy(request: CreateAclPolicyRequest) async throws
+    -> GoogleCloudMemoryStoreV1.AclPolicy
+  {
+    try await self.createAclPolicy(request: request, options: .init())
+  }
+
+  public func createAclPolicy(
+    request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAclPolicy(
+    parent: Swift.String,
+    aclPolicy: AclPolicy?,
+    aclPolicyId: Swift.String,
+  ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
+    let request = CreateAclPolicyRequest().with {
+      $0.parent = parent
+      $0.aclPolicy = aclPolicy
+      $0.aclPolicyId = aclPolicyId
+    }
+    return try await self.createAclPolicy(request: request)
   }
 
   public func createInstance(request: CreateInstanceRequest) async throws
@@ -1079,6 +1371,41 @@ extension Clients.MemorystoreProtocol {
     return try await self.createInstancePollingUntilDone(request: request)
   }
 
+  public func updateAclPolicy(request: UpdateAclPolicyRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateAclPolicy(request: request, options: .init())
+  }
+
+  public func updateAclPolicy(
+    request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateAclPolicyPollingUntilDone(request: UpdateAclPolicyRequest) async throws
+    -> AclPolicy
+  {
+    return try await self.updateAclPolicyPollingUntilDone(request: request, options: .init())
+  }
+
+  public func updateAclPolicyPollingUntilDone(
+    request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AclPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateAclPolicyPollingUntilDone(
+    aclPolicy: AclPolicy?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> AclPolicy {
+    let request = UpdateAclPolicyRequest().with {
+      $0.aclPolicy = aclPolicy
+      $0.updateMask = updateMask
+    }
+    return try await self.updateAclPolicyPollingUntilDone(request: request)
+  }
+
   public func updateInstance(request: UpdateInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1112,6 +1439,102 @@ extension Clients.MemorystoreProtocol {
       $0.updateMask = updateMask
     }
     return try await self.updateInstancePollingUntilDone(request: request)
+  }
+
+  public func deleteAclPolicy(request: DeleteAclPolicyRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.deleteAclPolicy(request: request, options: .init())
+  }
+
+  public func deleteAclPolicy(
+    request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteAclPolicyPollingUntilDone(request: DeleteAclPolicyRequest) async throws {
+    try await self.deleteAclPolicyPollingUntilDone(request: request, options: .init())
+  }
+
+  public func deleteAclPolicyPollingUntilDone(
+    request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteAclPolicyPollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteAclPolicyRequest().with {
+      $0.name = name
+    }
+    try await self.deleteAclPolicyPollingUntilDone(request: request)
+  }
+
+  public func getAclPolicyRevision(request: GetAclPolicyRevisionRequest) async throws
+    -> GoogleCloudMemoryStoreV1.AclPolicyRevision
+  {
+    try await self.getAclPolicyRevision(request: request, options: .init())
+  }
+
+  public func getAclPolicyRevision(
+    request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudMemoryStoreV1.AclPolicyRevision {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getAclPolicyRevision(
+    name: Swift.String,
+  ) async throws -> GoogleCloudMemoryStoreV1.AclPolicyRevision {
+    let request = GetAclPolicyRevisionRequest().with {
+      $0.name = name
+    }
+    return try await self.getAclPolicyRevision(request: request)
+  }
+
+  public func listAclPolicyRevisions(request: ListAclPolicyRevisionsRequest) async throws
+    -> GoogleCloudMemoryStoreV1.ListAclPolicyRevisionsResponse
+  {
+    try await self.listAclPolicyRevisions(request: request, options: .init())
+  }
+
+  public func listAclPolicyRevisions(
+    request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudMemoryStoreV1.ListAclPolicyRevisionsResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listAclPolicyRevisionsByItems(
+    request: ListAclPolicyRevisionsRequest
+  ) -> some AsyncSequence<AclPolicyRevision, any Swift.Error> & Sendable {
+    self.listAclPolicyRevisionsByItems(request: request, options: .init())
+  }
+
+  /// Lists all ACL policy revisions in a given ACL policy.
+  ///
+  /// @Snippet(path: "Memorystore_ListAclPolicyRevisions")
+  public func listAclPolicyRevisionsByItems(
+    request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<AclPolicyRevision, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudMemoryStoreV1.ListAclPolicyRevisionsResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listAclPolicyRevisions(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listAclPolicyRevisionsByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<AclPolicyRevision, any Swift.Error> & Sendable {
+    let request = ListAclPolicyRevisionsRequest().with {
+      $0.parent = parent
+    }
+    return self.listAclPolicyRevisionsByItems(request: request)
   }
 
   public func deleteInstance(request: DeleteInstanceRequest) async throws

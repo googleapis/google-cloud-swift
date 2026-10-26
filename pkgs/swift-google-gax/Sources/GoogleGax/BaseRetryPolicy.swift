@@ -12,9 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-import GoogleRpc
-
 /// A combination of retry policies that works for most services.
 ///
 /// Use ``defaultPolicy`` for the standard bounded configuration (60-second time limit and

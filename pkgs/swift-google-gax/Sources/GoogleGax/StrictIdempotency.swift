@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// A retry policy decorator that is very conservative with respect to [idempotency].
 ///
 /// This policy returns [.permanent](``ResultResult.permanent(_:)``) if the request is not

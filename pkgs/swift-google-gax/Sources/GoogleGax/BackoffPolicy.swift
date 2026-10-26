@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// Defines the protocol implemented by all retry backoff strategies.
 ///
 /// The client libraries automatically retry RPCs based on the ``RetryPolicy`` configured for the

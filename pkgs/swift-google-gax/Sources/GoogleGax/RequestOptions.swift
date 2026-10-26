@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// The configuration for a request.
 ///
 /// Use this type to override the client configuration during a single request.

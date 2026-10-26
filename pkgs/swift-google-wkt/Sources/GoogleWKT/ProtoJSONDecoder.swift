@@ -69,17 +69,17 @@ extension InternalDecoder: Decoder {
   var codingPath: [any CodingKey] { self.impl.codingPath }
   var userInfo: [CodingUserInfoKey: Any] { self.impl.userInfo }
 
-  public func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key>
+  func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key>
   where Key: CodingKey {
     let impl = try self.impl.container(keyedBy: type)
     return KeyedDecodingContainer(InternalKeyedContainer(impl))
   }
 
-  public func singleValueContainer() throws -> any SingleValueDecodingContainer {
+  func singleValueContainer() throws -> any SingleValueDecodingContainer {
     return InternalSingleValueContainer(try self.impl.singleValueContainer())
   }
 
-  public func unkeyedContainer() throws -> any UnkeyedDecodingContainer {
+  func unkeyedContainer() throws -> any UnkeyedDecodingContainer {
     let impl = try self.impl.unkeyedContainer()
     return InternalUnkeyedDecodingContainer(impl)
   }
@@ -148,7 +148,7 @@ extension InternalSingleValueContainer: SingleValueDecodingContainer {
   func decode<T: Decodable>(_ type: T.Type) throws -> T {
     // Data is encoded as a base64 string. It seems odd, but this is how one specializes
     // the decoding of an specific type. For an example see:
-    //    https://github.com/swiftlang/swift-foundation/blob/3ab2e47da6a290dbdaefd07429b7a9645c5e592f/Sources/FoundationEssentials/JSON/JSONDecoder.swift#L644-L646    let string = try self.decode(String.self)
+    //    https://github.com/swiftlang/swift-foundation/blob/3ab2e47da6a290dbdaefd07429b7a9645c5e592f/Sources/FoundationEssentials/JSON/JSONDecoder.swift#L644-L646
     if type == Data.self { return try self.decodeData() as! T }
     return try impl.decode(type)
   }
@@ -167,7 +167,7 @@ fileprivate struct InternalKeyedContainer<K: CodingKey> {
     if type == Data.self {
       // Data is encoded as a base64 string. It seems odd, but this is how one specializes
       // the decoding of an specific type. For an example see:
-      //    https://github.com/swiftlang/swift-foundation/blob/3ab2e47da6a290dbdaefd07429b7a9645c5e592f/Sources/FoundationEssentials/JSON/JSONDecoder.swift#L644-L646    let string = try self.decode(String.self)
+      //    https://github.com/swiftlang/swift-foundation/blob/3ab2e47da6a290dbdaefd07429b7a9645c5e592f/Sources/FoundationEssentials/JSON/JSONDecoder.swift#L644-L646
       return try decodeData(forKey: key) as! T
     }
     return try self.impl.decode(Interceptor<T>.self, forKey: key).inner

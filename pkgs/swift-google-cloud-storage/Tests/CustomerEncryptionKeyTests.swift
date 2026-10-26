@@ -14,10 +14,6 @@
 
 import Crypto
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-import GoogleGax
 @testable import GoogleCloudStorage
 import Testing
 

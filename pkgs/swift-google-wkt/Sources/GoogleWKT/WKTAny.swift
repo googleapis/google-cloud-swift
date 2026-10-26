@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// `WKTAny` contains an arbitrary message along with a URL that describes the type
 /// of the message.
 ///
@@ -104,5 +102,5 @@ extension WKTAny: _AnyPackable {
   // The JSON field used to store an Any's typeURL.
   static private let typeURLField = "@type"
   // The JSON field used to store types with custom encoding.
-  static internal let valueField = "value"
+  static let valueField = "value"
 }

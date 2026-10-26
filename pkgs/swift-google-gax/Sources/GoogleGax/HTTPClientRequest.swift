@@ -15,7 +15,6 @@
 public import Foundation
 @_spi(GoogleCloudInternal) import class GoogleWKT._ProtoJSONEncoder
 import struct AsyncHTTPClient.HTTPClientRequest
-import struct Logging.Logger
 @_spi(GoogleCloudInternal) public import NIOCore
 import NIOFoundationCompat
 import NIOHTTP1

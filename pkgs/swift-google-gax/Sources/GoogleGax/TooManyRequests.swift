@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
 import GoogleRpc
 
 /// A retry policy decorator that continues on `ResourceExhausted` or `TOO_MANY_REQUESTS`.

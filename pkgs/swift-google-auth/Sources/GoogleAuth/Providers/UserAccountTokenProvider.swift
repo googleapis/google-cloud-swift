@@ -14,10 +14,6 @@
 
 import Foundation
 
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-
 /// A `TokenProvider` implementation that exchanges an OAuth 2.0 refresh token for an access token.
 ///
 /// Implements the standard [OAuth 2.0 Refreshing an Access Token](https://datatracker.ietf.org/doc/html/rfc6749#section-6)

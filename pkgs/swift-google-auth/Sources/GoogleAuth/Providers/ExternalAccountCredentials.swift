@@ -13,9 +13,6 @@
 // limitations under the License.
 
 import Foundation
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
 
 /// Coordinates the asynchronous resolution of a raw subject token and its subsequent STS token exchange.
 ///

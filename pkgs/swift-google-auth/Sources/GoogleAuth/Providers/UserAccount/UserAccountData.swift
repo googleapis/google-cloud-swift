@@ -12,12 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-
 /// Represents the raw `authorized_user` JSON credential file format.
 ///
 /// An `authorized_user` credential represents a human developer or administrator who authenticated

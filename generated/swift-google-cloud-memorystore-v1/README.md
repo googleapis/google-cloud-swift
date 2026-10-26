@@ -25,8 +25,8 @@ import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudMemoryStoreV1.MemorystoreClient()
-  let items = client.listInstancesByItems(
-    request: ListInstancesRequest()
+  let items = client.listAclPoliciesByItems(
+    request: ListAclPoliciesRequest()
   .with {
     $0.parent = "projects/\(projectId)/locations/\(locationId)"
   }
@@ -48,7 +48,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-memorystore-v1` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-memorystore-v1.git --from 0.5.0
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-memorystore-v1.git --from 0.6.0
 ```
 
 Then add `GoogleCloudMemoryStoreV1` to your target's dependencies:

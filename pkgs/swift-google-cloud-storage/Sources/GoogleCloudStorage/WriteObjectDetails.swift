@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// Progress and size details for an ongoing write object operation.
 public struct WriteObjectDetails: Sendable, Equatable {
   /// The total number of bytes successfully written or committed so far.

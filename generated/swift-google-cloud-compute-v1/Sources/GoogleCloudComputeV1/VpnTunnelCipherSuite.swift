@@ -21,8 +21,10 @@
   public struct VpnTunnelCipherSuite: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
+    /// Cipher algorithms for IKE phase 1.
     public var phase1: VpnTunnelPhase1Algorithms? = nil
 
+    /// Cipher algorithms for IKE phase 2.
     public var phase2: VpnTunnelPhase2Algorithms? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

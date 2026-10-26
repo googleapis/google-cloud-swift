@@ -14,10 +14,6 @@
 
 public import Foundation
 
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-
 /// The default Google Cloud universe domain (`googleapis.com`).
 ///
 /// A "universe" is an isolated Google Cloud environment, such as the standard universe

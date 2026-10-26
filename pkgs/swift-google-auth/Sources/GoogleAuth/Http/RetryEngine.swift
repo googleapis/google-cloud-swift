@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// Parameters controlling exponential backoff retry behaviors.
 ///
 /// Configures the maximum number of attempts, initial delay, progressive exponential scaling multiplier,

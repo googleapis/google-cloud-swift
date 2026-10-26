@@ -12,9 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-import GoogleRpc
-
 /// Determines how errors are handled in the LRO polling loop.
 ///
 /// The client libraries automatically poll long-running operations (LROs) until the operation

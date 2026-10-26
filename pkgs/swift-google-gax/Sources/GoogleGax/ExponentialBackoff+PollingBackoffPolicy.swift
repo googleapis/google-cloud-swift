@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 extension ExponentialBackoff: PollingBackoffPolicy {
   public func backoffDelay(for state: PollingState) -> Duration {
     delay(attemptCount: state.attemptCount)

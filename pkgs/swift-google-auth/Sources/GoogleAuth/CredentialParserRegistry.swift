@@ -19,7 +19,7 @@ import Synchronization
 ///
 /// Conforming parsers receive the raw JSON `Data` read from the ADC file and decode their own
 /// strongly-typed `Decodable` configuration models directly.
-internal protocol CredentialSourceParser: Sendable {
+protocol CredentialSourceParser: Sendable {
   /// The `"type"` discriminator value in the credential JSON file (e.g., `"service_account"`).
   static var type: String { get }
   init()
@@ -34,20 +34,20 @@ internal protocol CredentialSourceParser: Sendable {
 }
 
 /// A thread-safe registry mapping credential `"type"` identifiers to their `CredentialSourceParser` implementations.
-internal final class CredentialParserRegistry: Sendable {
-  internal static let shared = CredentialParserRegistry()
+final class CredentialParserRegistry: Sendable {
+  static let shared = CredentialParserRegistry()
 
   private let parsers = Mutex<[String: any CredentialSourceParser.Type]>([:])
 
   private init() {}
 
-  internal func register(parser: any CredentialSourceParser.Type) {
+  func register(parser: any CredentialSourceParser.Type) {
     parsers.withLock { $0[parser.type] = parser }
   }
 
   /// Dispatches the raw credential JSON `Data` to the parser registered for `type`,
   /// or returns `nil` if no parser is registered for that type.
-  internal func parse(
+  func parse(
     type: String,
     data: Data,
     quotaProjectID: String?,

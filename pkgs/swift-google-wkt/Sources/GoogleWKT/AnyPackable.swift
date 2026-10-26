@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// A type conforming to the `_AnyPackable` protocol can be packed into and unpacked from ``WKTAny``.
 ///
 /// This protocol is an implementation detail of the Google Cloud client libraries for Swift.

@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// A retry policy decorator that limits the total time in the retry loop.
 ///
 /// If the time elapsed in the retry loop, including any backoff, is larger than the prescribed

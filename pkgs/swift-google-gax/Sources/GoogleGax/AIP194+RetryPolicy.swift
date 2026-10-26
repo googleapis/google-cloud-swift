@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 extension AIP194: RetryPolicy {
   public func onError(state: RetryState, error: RequestError) -> RetryResult {
     if isRetryable(error) {

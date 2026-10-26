@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-
 /// A protocol that represents a long-running operation (LRO) which can be polled.
 ///
 /// Long-running operations are operations that take a significant amount of time to complete.

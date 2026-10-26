@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
 import Synchronization
 
 /// This implementation was inspired by the `ManualClock` in Apple's `swift-async-algorithms` project.
