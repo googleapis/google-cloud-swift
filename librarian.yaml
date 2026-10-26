@@ -74,9 +74,15 @@ default:
       - name: GoogleAuth
         url: https://github.com/googleapis/swift-google-auth
         required_by_services: true
+      - name: GoogleCloudAppHubV1
+        url: https://github.com/googleapis/swift-google-cloud-apphub-v1
+        api_package: google.cloud.apphub.v1
       - name: GoogleCloudCommon
         url: https://github.com/googleapis/swift-google-cloud-common
         api_package: google.cloud.common
+      - name: GoogleCloudConfigV1
+        url: https://github.com/googleapis/swift-google-cloud-config-v1
+        api_package: google.cloud.config.v1
       - name: GoogleCloudDatastreamV1
         url: https://github.com/googleapis/swift-google-cloud-datastream-v1
         api_package: google.cloud.datastream.v1
@@ -572,6 +578,11 @@ libraries:
   - name: google-cloud-deploy-v1
     version: 0.6.0
     copyright_year: "2026"
+  - name: google-cloud-designcenter-v1
+    version: 0.3.0
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudDesignCenterV1
   - name: google-cloud-developerconnect-v1
     version: 0.6.0
     copyright_year: "2026"

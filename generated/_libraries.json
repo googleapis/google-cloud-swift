@@ -647,6 +647,15 @@
       "Product": "Cloud Deploy API"
     }
   ],
+  "swift-google-cloud-designcenter-v1": [
+    {
+      "PkgName": "swift-google-cloud-designcenter-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-designcenter-v1/0.3.0/documentation",
+      "APIShortname": "designcenter",
+      "Product": "Design Center API"
+    }
+  ],
   "swift-google-cloud-developerconnect-v1": [
     {
       "PkgName": "swift-google-cloud-developerconnect-v1",
