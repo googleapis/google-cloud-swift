@@ -14,10 +14,6 @@
 
 import Foundation
 
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-
 /// Adapter registered with `CredentialParserRegistry` to construct `ImpersonatedCredentials`
 /// from raw `"impersonated_service_account"` ADC JSON `Data`.
 struct ImpersonatedServiceAccountParser: CredentialSourceParser {

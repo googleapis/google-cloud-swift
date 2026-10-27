@@ -14,10 +14,6 @@
 
 import Foundation
 
-#if canImport(FoundationNetworking)
-  import FoundationNetworking
-#endif
-
 /// A `TokenProvider` that exchanges a source credential's authentication headers for a short-lived
 /// OAuth 2.0 access token impersonating a target Google Cloud service account.
 ///
