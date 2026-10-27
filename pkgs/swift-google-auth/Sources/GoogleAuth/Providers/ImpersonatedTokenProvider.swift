@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import GoogleWKT
 
 /// A `TokenProvider` that exchanges a source credential's authentication headers for a short-lived
 /// OAuth 2.0 access token impersonating a target Google Cloud service account.
@@ -35,8 +36,8 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
   /// Normalized service account resource names (`projects/-/serviceAccounts/{email}`) in the delegation chain.
   let delegates: [String]
 
-  /// Desired lifetime of the impersonated access token formatted as a ProtoJSON duration string (e.g. `"3600s"`).
-  let lifetime: String
+  /// Desired lifetime of the impersonated access token.
+  let lifetime: WKTDuration
 
   /// Retry policy configuration for transient IAM API errors.
   let retryConfiguration: RetryConfiguration
@@ -91,27 +92,10 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
       )
     }
 
-    guard let expirationDate = Self.parseRFC3339Date(response.expireTime) else {
-      throw CredentialsError.cannotFetchToken(
-        message: "Could not generate impersonated service account access token.",
-        underlyingError: AuthHTTPError.decodingError(
-          error: CredentialsError.parseError(
-            "Invalid expireTime RFC 3339 timestamp in IAM generateAccessToken response: '\(response.expireTime)'"
-          )
-        )
-      )
-    }
-
     return Token(
       accessToken: response.accessToken,
       tokenType: "Bearer",
-      expirationDate: expirationDate
+      expirationDate: response.expireTime.date
     )
-  }
-
-  /// Parses an RFC 3339 timestamp string (with or without fractional seconds) into a `Date`.
-  static func parseRFC3339Date(_ string: String) -> Date? {
-    (try? Date.ISO8601FormatStyle(includingFractionalSeconds: true).parse(string))
-      ?? (try? Date.ISO8601FormatStyle(includingFractionalSeconds: false).parse(string))
   }
 }

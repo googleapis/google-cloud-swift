@@ -14,6 +14,7 @@
 
 import AsyncHTTPClient
 import Foundation
+import GoogleWKT
 import NIOCore
 import NIOFoundationCompat
 import NIOHTTP1
@@ -50,7 +51,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
       "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken"
     let responsePayload = IAMGenerateAccessTokenResponse(
       accessToken: "mock-impersonated-token",
-      expireTime: "2099-01-01T01:00:00Z"
+      expireTime: try #require(WKTTimestamp(rfc3339: "2099-01-01T01:00:00Z"))
     )
     let encoder = JSONEncoder()
     encoder.keyEncodingStrategy = .convertToSnakeCase
@@ -78,7 +79,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
             "projects/-/serviceAccounts/delegate2@project.iam.gserviceaccount.com",
           ]
         )
-        #expect(decodedBody.lifetime == "3600s")
+        #expect(decodedBody.lifetime == (try WKTDuration(seconds: 3600)))
 
         return HTTPClientResponse(
           version: .http2,
@@ -114,7 +115,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
       "https://iamcredentials.my-universe.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken"
     let responsePayload = IAMGenerateAccessTokenResponse(
       accessToken: "mock-custom-universe-token",
-      expireTime: "2099-05-15T12:30:45.123456789Z"
+      expireTime: try #require(WKTTimestamp(rfc3339: "2099-05-15T12:30:45.123456789Z"))
     )
     let encoder = JSONEncoder()
     encoder.keyEncodingStrategy = .convertToSnakeCase
@@ -132,7 +133,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
           IAMGenerateAccessTokenRequest.self, from: bodyData)
         #expect(decodedBody.scope == ["scope1", "scope2"])
         #expect(decodedBody.delegates == nil)
-        #expect(decodedBody.lifetime == "1800s")
+        #expect(decodedBody.lifetime == (try WKTDuration(seconds: 1800)))
 
         return HTTPClientResponse(
           version: .http2,
@@ -163,7 +164,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
     )
     let responsePayload = IAMGenerateAccessTokenResponse(
       accessToken: "mock-cached-token",
-      expireTime: "2099-01-01T01:00:00Z"
+      expireTime: try #require(WKTTimestamp(rfc3339: "2099-01-01T01:00:00Z"))
     )
     let encoder = JSONEncoder()
     encoder.keyEncodingStrategy = .convertToSnakeCase
@@ -202,7 +203,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
     )
     let responsePayload = IAMGenerateAccessTokenResponse(
       accessToken: "mock-recovered-token",
-      expireTime: "2099-01-01T01:00:00Z"
+      expireTime: try #require(WKTTimestamp(rfc3339: "2099-01-01T01:00:00Z"))
     )
     let encoder = JSONEncoder()
     encoder.keyEncodingStrategy = .convertToSnakeCase
@@ -308,13 +309,9 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let source = StaticSourceCredentials(
       authHeaders: [("Authorization", "Bearer source-token")]
     )
-    let responsePayload = IAMGenerateAccessTokenResponse(
-      accessToken: "mock-bad-expiry",
-      expireTime: "not-a-timestamp"
+    let responseData = Data(
+      #"{"access_token":"mock-bad-expiry","expire_time":"not-a-timestamp"}"#.utf8
     )
-    let encoder = JSONEncoder()
-    encoder.keyEncodingStrategy = .convertToSnakeCase
-    let responseData = try encoder.encode(responsePayload)
     let attempts = CallCounter()
 
     let mock = MockHTTPClient([
@@ -472,19 +469,6 @@ private struct FailingSourceCredentials: CredentialsProvider {
     }
   }
 
-  @Test(arguments: [
-    ("2026-10-26T20:00:00Z", 1_793_044_800 as TimeInterval?),
-    ("2026-10-26T20:00:00.5Z", 1_793_044_800.5),
-    ("2026-10-26T22:00:00+02:00", 1_793_044_800),
-    ("2026-10-26T20:00:00.500000000Z", 1_793_044_800.5),
-    ("invalid", nil),
-    ("2026-13-01T00:00:00Z", nil),
-  ])
-  func parsesRFC3339Timestamps(input: String, expected: TimeInterval?) {
-    let date = ImpersonatedTokenProvider.parseRFC3339Date(input)
-    #expect(date?.timeIntervalSince1970 == expected)
-  }
-
   @Test func programmaticConfigurationConstructsImpersonatedCredentials() throws {
     let sourceCreds = try Credentials(configuration: .apiKey("source-key"))
     let config = ImpersonatedServiceAccountConfig(
@@ -517,6 +501,6 @@ private struct FailingSourceCredentials: CredentialsProvider {
     )
     #expect(
       impersonated.provider.scopes == ["https://www.googleapis.com/auth/devstorage.read_only"])
-    #expect(impersonated.provider.lifetime == "1800s")
+    #expect(impersonated.provider.lifetime == (try WKTDuration(seconds: 1800)))
   }
 }

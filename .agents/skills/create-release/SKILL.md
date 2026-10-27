@@ -81,6 +81,7 @@ go run github.com/googleapis/librarian/cmd/librarian@${V} bump --all
 
 If any core or shared packages were bumped in `librarian.yaml`, update their `from:` version constraints in the handwritten `Package.swift` files:
 - [`Package.swift`](../../../Package.swift) (root manifest)
+- [`pkgs/swift-google-auth/Package.swift`](../../../pkgs/swift-google-auth/Package.swift)
 - [`pkgs/swift-google-gax/Package.swift`](../../../pkgs/swift-google-gax/Package.swift)
 - [`pkgs/swift-google-gax-grpc/Package.swift`](../../../pkgs/swift-google-gax-grpc/Package.swift)
 - [`pkgs/swift-google-wkt-convert/Package.swift`](../../../pkgs/swift-google-wkt-convert/Package.swift)
@@ -160,6 +161,7 @@ Update dependency version constraints in all handwritten `Package.swift` manifes
 ```bash
 sed -i -E "s/from: \"0\.[01]\.0-preview\"/from: \"${TARGET_VERSION}\"/g" \
   Package.swift \
+  pkgs/swift-google-auth/Package.swift \
   pkgs/swift-google-gax/Package.swift \
   pkgs/swift-google-gax-grpc/Package.swift \
   pkgs/swift-google-wkt-convert/Package.swift \

@@ -83,6 +83,7 @@ If any core or shared packages (such as `swift-google-auth`, `swift-google-gax`,
 constraints in the handwritten `Package.swift` manifests:
 
 - [`Package.swift`](../../Package.swift) (root repository manifest)
+- [`pkgs/swift-google-auth/Package.swift`](../../pkgs/swift-google-auth/Package.swift)
 - [`pkgs/swift-google-gax/Package.swift`](../../pkgs/swift-google-gax/Package.swift)
 - [`pkgs/swift-google-gax-grpc/Package.swift`](../../pkgs/swift-google-gax-grpc/Package.swift)
 - [`pkgs/swift-google-wkt-convert/Package.swift`](../../pkgs/swift-google-wkt-convert/Package.swift)
@@ -159,6 +160,7 @@ files to match the synchronized version:
 ```bash
 sed -i -E 's/from: "0\.[01]\.0-preview"/from: "0.2.0"/g' \
   Package.swift \
+  pkgs/swift-google-auth/Package.swift \
   pkgs/swift-google-gax/Package.swift \
   pkgs/swift-google-gax-grpc/Package.swift \
   pkgs/swift-google-wkt-convert/Package.swift \

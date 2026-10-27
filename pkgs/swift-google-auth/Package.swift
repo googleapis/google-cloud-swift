@@ -33,6 +33,11 @@ let package = Package(
     .library(name: "GoogleAuth", targets: ["GoogleAuth"])
   ],
   dependencies: [
+    localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-wkt",
+      path: "pkgs/swift-google-wkt",
+      from: "0.6.0"
+    ),
     .package(url: "https://github.com/apple/swift-system.git", from: "1.0.0"),
     .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
     .package(url: "https://github.com/apple/swift-collections", from: "1.6.0"),
@@ -46,6 +51,7 @@ let package = Package(
       name: "GoogleAuth",
       dependencies: [
         .product(name: "AsyncHTTPClient", package: "async-http-client"),
+        .product(name: "GoogleWKT", package: "swift-google-wkt"),
         .product(name: "JWTKit", package: "jwt-kit"),
         .product(name: "SystemPackage", package: "swift-system"),
         .product(name: "Logging", package: "swift-log"),
@@ -60,6 +66,7 @@ let package = Package(
       dependencies: [
         "GoogleAuth",
         .product(name: "DequeModule", package: "swift-collections"),
+        .product(name: "GoogleWKT", package: "swift-google-wkt"),
         .product(name: "JWTKit", package: "jwt-kit"),
         .product(name: "NIOCore", package: "swift-nio"),
         .product(name: "NIOFoundationCompat", package: "swift-nio"),
@@ -70,3 +77,11 @@ let package = Package(
     ),
   ]
 )
+
+func localOrRemotePackage(url: String, path: String, from version: Version) -> Package.Dependency {
+  if let env = Context.environment["GOOGLE_CLOUD_SWIFT_LOCAL_DEPS"], !env.isEmpty {
+    let root = (env == "1" || env == "true") ? "\(Context.packageDirectory)/../.." : env
+    return .package(path: "\(root)/\(path)")
+  }
+  return .package(url: url, from: version)
+}

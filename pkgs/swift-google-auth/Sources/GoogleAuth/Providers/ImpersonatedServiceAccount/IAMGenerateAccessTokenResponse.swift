@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import GoogleWKT
+
 /// The JSON response body returned by the IAM Service Account Credentials `:generateAccessToken` endpoint.
 ///
 /// - SeeAlso: [Method: projects.serviceAccounts.generateAccessToken](https://cloud.google.com/iam/docs/reference/credentials/rest/v1/projects.serviceAccounts/generateAccessToken)
@@ -19,6 +21,6 @@ struct IAMGenerateAccessTokenResponse: Codable, Sendable, Equatable {
   /// The generated OAuth 2.0 access token.
   let accessToken: String
 
-  /// Token expiration time in RFC 3339 format (e.g. `"2026-10-26T20:00:00Z"`).
-  let expireTime: String
+  /// Token expiration time.
+  let expireTime: WKTTimestamp
 }

@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import GoogleWKT
+
 /// The JSON request body sent to the IAM Service Account Credentials `:generateAccessToken` endpoint.
 ///
 /// - SeeAlso: [Method: projects.serviceAccounts.generateAccessToken](https://cloud.google.com/iam/docs/reference/credentials/rest/v1/projects.serviceAccounts/generateAccessToken)
@@ -22,6 +24,6 @@ struct IAMGenerateAccessTokenRequest: Codable, Sendable, Equatable {
   /// The ordered sequence of service accounts in a delegation chain.
   let delegates: [String]?
 
-  /// Desired lifetime duration of the access token in seconds, formatted with an `"s"` suffix (e.g. `"3600s"`).
-  let lifetime: String
+  /// Desired lifetime duration of the access token.
+  let lifetime: WKTDuration
 }

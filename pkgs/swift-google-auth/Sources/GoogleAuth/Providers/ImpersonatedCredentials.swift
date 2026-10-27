@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import GoogleWKT
 
 /// Adapter registered with `CredentialParserRegistry` to construct `ImpersonatedCredentials`
 /// from raw `"impersonated_service_account"` ADC JSON `Data`.
@@ -37,17 +38,9 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
       )
     }
 
-    // Ensure `source_credentials` is a JSON dictionary representing an embedded credential object
-    // (such as `authorized_user`, `service_account`, or `external_account`).
-    guard case let .object(sourceDict) = payload.sourceCredentials else {
-      throw CredentialsError.parseError(
-        "Impersonated Service Account source_credentials must be a JSON object"
-      )
-    }
-
     // Extract the embedded credential's `"type"` discriminator so we can route it to the
     // appropriate registered `CredentialSourceParser`.
-    guard case let .string(sourceType)? = sourceDict["type"] else {
+    guard case let .string(sourceType)? = payload.sourceCredentials["type"] else {
       throw CredentialsError.parseError(
         "Missing or invalid 'type' in Impersonated Service Account source_credentials"
       )
@@ -196,6 +189,7 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
         "Impersonated token lifetime must be between 1 and 43200 seconds"
       )
     }
+    let lifetimeDuration = try WKTDuration(seconds: lifetimeSeconds)
 
     let effectiveUniverse =
       universeDomain.flatMap { $0.isEmpty ? nil : $0 } ?? defaultUniverseDomain
@@ -213,7 +207,7 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
       iamEndpointURL: resolvedURL,
       scopes: effectiveScopes,
       delegates: normalizedDelegates,
-      lifetime: "\(lifetimeSeconds)s",
+      lifetime: lifetimeDuration,
       retryConfiguration: retryConfiguration,
       httpClient: httpClient
     )
