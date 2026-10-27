@@ -161,14 +161,14 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.video.transcoder.v1.Overlay.NormalizedCoordinate"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `NormalizedCoordinate` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -263,14 +263,14 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.video.transcoder.v1.Overlay.Image"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Image` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -353,14 +353,14 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.video.transcoder.v1.Overlay.AnimationStatic"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `AnimationStatic` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -461,14 +461,14 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.video.transcoder.v1.Overlay.AnimationFade"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `AnimationFade` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -542,14 +542,14 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.video.transcoder.v1.Overlay.AnimationEnd"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `AnimationEnd` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -670,14 +670,14 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.video.transcoder.v1.Overlay.Animation"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Animation` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -809,13 +809,13 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.video.transcoder.v1.Overlay"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `Overlay` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

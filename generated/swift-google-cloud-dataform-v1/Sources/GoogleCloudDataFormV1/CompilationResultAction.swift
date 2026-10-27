@@ -544,14 +544,14 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.Relation.IncrementalTableConfig"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `IncrementalTableConfig` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -917,14 +917,14 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.Relation"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Relation` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1043,14 +1043,14 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.Operations"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Operations` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1169,14 +1169,14 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.Assertion"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Assertion` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1250,14 +1250,14 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.Declaration"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Declaration` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1357,14 +1357,14 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.Notebook"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Notebook` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1568,14 +1568,14 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.DataPreparation.SqlDefinition"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `SqlDefinition` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1658,14 +1658,14 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.DataPreparation.ErrorTable"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `ErrorTable` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1689,14 +1689,14 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.DataPreparation"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `DataPreparation` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1830,14 +1830,14 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.LoadConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `LoadConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1899,14 +1899,14 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.SimpleLoadMode"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `SimpleLoadMode` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1980,14 +1980,14 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.IncrementalLoadMode"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `IncrementalLoadMode` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -2018,13 +2018,13 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `CompilationResultAction` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

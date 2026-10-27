@@ -318,14 +318,14 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterStatus.StageStatus.StageSchedule"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `StageSchedule` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -347,14 +347,14 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterStatus.StageStatus"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `StageStatus` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -512,14 +512,14 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus.Stats"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Stats` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -535,14 +535,14 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `ReadPoolInstancesUpgradeStageStatus` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -557,13 +557,13 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterStatus"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `UpgradeClusterStatus` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

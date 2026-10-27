@@ -323,14 +323,14 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent.DataProfileResult"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `DataProfileResult` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -470,14 +470,14 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent.DataQualityResult"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `DataQualityResult` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -572,14 +572,14 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent.DataProfileAppliedConfigs"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `DataProfileAppliedConfigs` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -664,14 +664,14 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent.DataQualityAppliedConfigs"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `DataQualityAppliedConfigs` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -940,14 +940,14 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent.PostScanActionsResult.BigQueryExportResult"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `BigQueryExportResult` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -962,14 +962,14 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent.PostScanActionsResult"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `PostScanActionsResult` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1503,13 +1503,13 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `DataScanEvent` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

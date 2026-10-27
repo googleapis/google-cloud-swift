@@ -228,14 +228,14 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.OracleObjectIdentifier"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `OracleObjectIdentifier` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -318,14 +318,14 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.PostgresqlObjectIdentifier"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `PostgresqlObjectIdentifier` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -408,14 +408,14 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.MysqlObjectIdentifier"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `MysqlObjectIdentifier` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -498,14 +498,14 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.SqlServerObjectIdentifier"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `SqlServerObjectIdentifier` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -579,14 +579,14 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.SalesforceObjectIdentifier"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `SalesforceObjectIdentifier` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -669,14 +669,14 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.MongodbObjectIdentifier"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `MongodbObjectIdentifier` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -759,14 +759,14 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.SpannerObjectIdentifier"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `SpannerObjectIdentifier` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -799,13 +799,13 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `SourceObjectIdentifier` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

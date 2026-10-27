@@ -490,14 +490,14 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.assuredworkloads.v1.Workload.ResourceInfo"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `ResourceInfo` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -584,14 +584,14 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.assuredworkloads.v1.Workload.KMSSettings"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `KMSSettings` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -693,14 +693,14 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.assuredworkloads.v1.Workload.ResourceSettings"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `ResourceSettings` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1036,14 +1036,14 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.assuredworkloads.v1.Workload.SaaEnrollmentResponse"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `SaaEnrollmentResponse` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1475,13 +1475,13 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.assuredworkloads.v1.Workload"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `Workload` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

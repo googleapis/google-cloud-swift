@@ -195,14 +195,14 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.OmnichannelIntegrationConfig.ChannelConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `ChannelConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -329,14 +329,14 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.OmnichannelIntegrationConfig.WhatsappConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `WhatsappConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -435,14 +435,14 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.OmnichannelIntegrationConfig.SubscriberConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `SubscriberConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -516,14 +516,14 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.OmnichannelIntegrationConfig.CesAppConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `CesAppConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -596,14 +596,14 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.OmnichannelIntegrationConfig.RoutingConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `RoutingConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -618,13 +618,13 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.OmnichannelIntegrationConfig"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `OmnichannelIntegrationConfig` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

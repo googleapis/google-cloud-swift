@@ -182,14 +182,14 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountTakeoverVerdict"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `AccountTakeoverVerdict` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -408,14 +408,14 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountRiskReason"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `AccountRiskReason` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -629,14 +629,14 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountTrustReason"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `AccountTrustReason` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -787,13 +787,13 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `AccountDefenderAssessment` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

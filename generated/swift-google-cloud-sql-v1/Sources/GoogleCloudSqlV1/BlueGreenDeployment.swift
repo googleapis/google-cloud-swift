@@ -245,14 +245,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.BlueGreenDeployment.RequestedConfig"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `RequestedConfig` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -328,14 +328,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.BlueGreenDeployment.DeploymentTasks"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `DeploymentTasks` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -521,14 +521,14 @@
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.BlueGreenDeployment.SourceTargetPairedNode.ConfigDiff"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `ConfigDiff` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -630,14 +630,14 @@
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.BlueGreenDeployment.SourceTargetPairedNode.NodeInfo"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `NodeInfo` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -1029,14 +1029,14 @@
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.BlueGreenDeployment.SourceTargetPairedNode.DeploymentTask"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `DeploymentTask` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -1218,14 +1218,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.BlueGreenDeployment.SourceTargetPairedNode"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `SourceTargetPairedNode` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1385,14 +1385,14 @@
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.BlueGreenDeployment"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `BlueGreenDeployment` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 #endif

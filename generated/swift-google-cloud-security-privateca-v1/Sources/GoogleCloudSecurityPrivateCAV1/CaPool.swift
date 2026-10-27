@@ -412,14 +412,14 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CaPool.PublishingOptions"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `PublishingOptions` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -819,14 +819,14 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType.RsaKeyType"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `RsaKeyType` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -1044,14 +1044,14 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType.EcKeyType"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `EcKeyType` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -1074,14 +1074,14 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `AllowedKeyType` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1185,14 +1185,14 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `IssuanceModes` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1207,14 +1207,14 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CaPool.IssuancePolicy"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `IssuancePolicy` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1349,13 +1349,13 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CaPool"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `CaPool` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

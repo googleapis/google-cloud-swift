@@ -346,14 +346,14 @@
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.MetricSpec.SafetyMetricConfig"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `SafetyMetricConfig` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -485,14 +485,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.MetricSpec"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `MetricSpec` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -730,14 +730,14 @@
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.DoubleValueSpec"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `DoubleValueSpec` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -832,14 +832,14 @@
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.IntegerValueSpec"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `IntegerValueSpec` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -926,14 +926,14 @@
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.CategoricalValueSpec"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `CategoricalValueSpec` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -1024,14 +1024,14 @@
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.DiscreteValueSpec"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `DiscreteValueSpec` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -1216,14 +1216,14 @@
           /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec.DiscreteValueCondition"`,
           ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
-            self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+            self = try GoogleWKT._anyDeserialize(Self.self, from: any)
           }
 
           /// Packs this `DiscreteValueCondition` into a `GoogleWKT.WKTStruct` representation.
           ///
           /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
-            return try GoogleWKT._slowAnySerialize(message: self)
+            return try GoogleWKT._anySerialize(message: self)
           }
         }
 
@@ -1298,14 +1298,14 @@
           /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec.IntValueCondition"`,
           ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
-            self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+            self = try GoogleWKT._anyDeserialize(Self.self, from: any)
           }
 
           /// Packs this `IntValueCondition` into a `GoogleWKT.WKTStruct` representation.
           ///
           /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
-            return try GoogleWKT._slowAnySerialize(message: self)
+            return try GoogleWKT._anySerialize(message: self)
           }
         }
 
@@ -1381,14 +1381,14 @@
           /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec.CategoricalValueCondition"`,
           ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
-            self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+            self = try GoogleWKT._anyDeserialize(Self.self, from: any)
           }
 
           /// Packs this `CategoricalValueCondition` into a `GoogleWKT.WKTStruct` representation.
           ///
           /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
-            return try GoogleWKT._slowAnySerialize(message: self)
+            return try GoogleWKT._anySerialize(message: self)
           }
         }
 
@@ -1421,14 +1421,14 @@
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `ConditionalParameterSpec` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -1582,14 +1582,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `ParameterSpec` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1674,14 +1674,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.DecayCurveAutomatedStoppingSpec"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `DecayCurveAutomatedStoppingSpec` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1765,14 +1765,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.MedianAutomatedStoppingSpec"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `MedianAutomatedStoppingSpec` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1929,14 +1929,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ConvexAutomatedStoppingSpec"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `ConvexAutomatedStoppingSpec` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -2090,14 +2090,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.StudyStoppingConfig"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `StudyStoppingConfig` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -2493,14 +2493,14 @@
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.StudySpec"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `StudySpec` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 #endif

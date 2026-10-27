@@ -383,14 +383,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.ShardInfo"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `ShardInfo` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -597,14 +597,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Style.FontSize"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `FontSize` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -619,14 +619,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Style"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Style` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -950,14 +950,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Dimension"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Dimension` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1059,14 +1059,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Image"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Image` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1170,14 +1170,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Matrix"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Matrix` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1425,14 +1425,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Layout"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Layout` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1534,14 +1534,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Block"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Block` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1642,14 +1642,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Paragraph"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Paragraph` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1751,14 +1751,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Line"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Line` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -2066,14 +2066,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Token.DetectedBreak"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `DetectedBreak` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -2278,14 +2278,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Token.StyleInfo"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `StyleInfo` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -2300,14 +2300,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Token"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Token` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -2393,14 +2393,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Symbol"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Symbol` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -2499,14 +2499,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.VisualElement"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `VisualElement` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -2689,14 +2689,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Table.TableRow"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `TableRow` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -2800,14 +2800,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Table.TableCell"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `TableCell` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -2822,14 +2822,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.Table"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Table` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -2985,14 +2985,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.FormField"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `FormField` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -3077,14 +3077,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.DetectedBarcode"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `DetectedBarcode` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -3168,14 +3168,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.DetectedLanguage"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `DetectedLanguage` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -3337,14 +3337,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.ImageQualityScores.DetectedDefect"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `DetectedDefect` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -3359,14 +3359,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page.ImageQualityScores"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `ImageQualityScores` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -3381,14 +3381,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Page"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Page` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -3753,14 +3753,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Entity.NormalizedValue"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `NormalizedValue` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -3894,14 +3894,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Entity"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Entity` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -3995,14 +3995,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.EntityRelation"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `EntityRelation` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -4178,14 +4178,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.TextAnchor.TextSegment"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `TextSegment` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -4200,14 +4200,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.TextAnchor"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `TextAnchor` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -4583,14 +4583,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.PageAnchor.PageRef"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `PageRef` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -4605,14 +4605,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.PageAnchor"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `PageAnchor` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -4811,14 +4811,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Provenance.Parent"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Parent` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -5000,14 +5000,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Provenance"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Provenance` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -5229,14 +5229,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Revision.HumanReview"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `HumanReview` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -5261,14 +5261,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Revision"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Revision` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -5372,14 +5372,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.TextChange"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `TextChange` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -5452,14 +5452,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.Annotations"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Annotations` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -5732,14 +5732,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutPageSpan"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `LayoutPageSpan` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -5844,14 +5844,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTextBlock"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `LayoutTextBlock` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -5955,14 +5955,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTableBlock"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `LayoutTableBlock` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -6038,14 +6038,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTableRow"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `LayoutTableRow` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -6140,14 +6140,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTableCell"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `LayoutTableCell` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -6233,14 +6233,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutListBlock"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `LayoutListBlock` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -6317,14 +6317,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutListEntry"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `LayoutListEntry` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -6475,14 +6475,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `LayoutImageBlock` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -6509,14 +6509,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `DocumentLayoutBlock` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -6531,14 +6531,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `DocumentLayout` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -6798,14 +6798,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageSpan"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `ChunkPageSpan` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -6887,14 +6887,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageHeader"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `ChunkPageHeader` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -6976,14 +6976,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageFooter"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `ChunkPageFooter` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -7114,14 +7114,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ImageChunkField"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `ImageChunkField` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -7194,14 +7194,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.TableChunkField"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `TableChunkField` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -7313,14 +7313,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkField"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `ChunkField` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -7335,14 +7335,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Chunk` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -7357,14 +7357,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `ChunkedDocument` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -7459,14 +7459,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.BlobAsset"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `BlobAsset` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -7775,14 +7775,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.EntityValidationOutput.ValidationResult"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `ValidationResult` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -7797,14 +7797,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.EntityValidationOutput"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `EntityValidationOutput` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -7894,14 +7894,14 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document.EntitiesRevision"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `EntitiesRevision` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -7929,13 +7929,13 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.Document"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `Document` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

@@ -207,14 +207,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.ResponseMessage.Text"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `Text` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -297,14 +297,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.ResponseMessage.LiveAgentHandoff"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `LiveAgentHandoff` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -366,14 +366,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.ResponseMessage.EndInteraction"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `EndInteraction` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -557,14 +557,14 @@
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.ResponseMessage.MixedAudio.Segment"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `Segment` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -579,14 +579,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.ResponseMessage.MixedAudio"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `MixedAudio` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -696,14 +696,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.ResponseMessage.TelephonyTransferCall"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `TelephonyTransferCall` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -737,14 +737,14 @@
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.ResponseMessage"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `ResponseMessage` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 #endif

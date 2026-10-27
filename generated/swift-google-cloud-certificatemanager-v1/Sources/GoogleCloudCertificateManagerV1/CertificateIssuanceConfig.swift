@@ -321,14 +321,14 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.certificatemanager.v1.CertificateIssuanceConfig.CertificateAuthorityConfig.CertificateAuthorityServiceConfig"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `CertificateAuthorityServiceConfig` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -351,14 +351,14 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.certificatemanager.v1.CertificateIssuanceConfig.CertificateAuthorityConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `CertificateAuthorityConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -490,13 +490,13 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.certificatemanager.v1.CertificateIssuanceConfig"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `CertificateIssuanceConfig` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

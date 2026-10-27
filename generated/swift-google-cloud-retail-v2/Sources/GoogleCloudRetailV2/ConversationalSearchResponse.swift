@@ -305,14 +305,14 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchResponse.FollowupQuestion.SuggestedAnswer"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `SuggestedAnswer` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -328,14 +328,14 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchResponse.FollowupQuestion"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `FollowupQuestion` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -410,14 +410,14 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchResponse.RefinedSearch"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `RefinedSearch` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -563,14 +563,14 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchResponse.ConversationalFilteringResult.AdditionalFilter"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `AdditionalFilter` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -586,14 +586,14 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchResponse.ConversationalFilteringResult"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `ConversationalFilteringResult` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -725,13 +725,13 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchResponse"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `ConversationalSearchResponse` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

@@ -340,14 +340,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.UpstreamCredentials.UsernamePasswordCredentials"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `UsernamePasswordCredentials` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -369,14 +369,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.UpstreamCredentials"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `UpstreamCredentials` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -538,14 +538,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.DockerRepository.CustomRepository"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `CustomRepository` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -681,14 +681,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.DockerRepository"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `DockerRepository` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -850,14 +850,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.MavenRepository.CustomRepository"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `CustomRepository` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -993,14 +993,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.MavenRepository"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `MavenRepository` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1162,14 +1162,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.NpmRepository.CustomRepository"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `CustomRepository` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1304,14 +1304,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.NpmRepository"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `NpmRepository` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1473,14 +1473,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.PythonRepository.CustomRepository"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `CustomRepository` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1615,14 +1615,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.PythonRepository"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `PythonRepository` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1922,14 +1922,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.AptRepository.PublicRepository"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `PublicRepository` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -2004,14 +2004,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.AptRepository.CustomRepository"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `CustomRepository` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -2036,14 +2036,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.AptRepository"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `AptRepository` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -2364,14 +2364,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.YumRepository.PublicRepository"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `PublicRepository` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -2446,14 +2446,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.YumRepository.CustomRepository"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `CustomRepository` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -2478,14 +2478,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.YumRepository"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `YumRepository` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -2559,14 +2559,14 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.CommonRemoteRepository"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `CommonRemoteRepository` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -2600,13 +2600,13 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `RemoteRepositoryConfig` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

@@ -291,14 +291,14 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleWKT._AnyPacka
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateRevocationList.RevokedCertificate"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `RevokedCertificate` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -442,13 +442,13 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleWKT._AnyPacka
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateRevocationList"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `CertificateRevocationList` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

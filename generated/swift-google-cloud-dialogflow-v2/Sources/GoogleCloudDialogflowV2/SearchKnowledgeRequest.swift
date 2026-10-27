@@ -726,14 +726,14 @@
                 /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec.ControlPoint"`,
                 ///   or if deserialization fails.
                 public init(fromAny any: GoogleWKT.WKTAny) throws {
-                  self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+                  self = try GoogleWKT._anyDeserialize(Self.self, from: any)
                 }
 
                 /// Packs this `ControlPoint` into a `GoogleWKT.WKTStruct` representation.
                 ///
                 /// - Throws: An error if serialization fails.
                 public func _pack() throws -> GoogleWKT.WKTStruct {
-                  return try GoogleWKT._slowAnySerialize(message: self)
+                  return try GoogleWKT._anySerialize(message: self)
                 }
               }
 
@@ -989,14 +989,14 @@
               /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec"`,
               ///   or if deserialization fails.
               public init(fromAny any: GoogleWKT.WKTAny) throws {
-                self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+                self = try GoogleWKT._anyDeserialize(Self.self, from: any)
               }
 
               /// Packs this `BoostControlSpec` into a `GoogleWKT.WKTStruct` representation.
               ///
               /// - Throws: An error if serialization fails.
               public func _pack() throws -> GoogleWKT.WKTStruct {
-                return try GoogleWKT._slowAnySerialize(message: self)
+                return try GoogleWKT._anySerialize(message: self)
               }
             }
 
@@ -1012,14 +1012,14 @@
             /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec"`,
             ///   or if deserialization fails.
             public init(fromAny any: GoogleWKT.WKTAny) throws {
-              self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+              self = try GoogleWKT._anyDeserialize(Self.self, from: any)
             }
 
             /// Packs this `ConditionBoostSpec` into a `GoogleWKT.WKTStruct` representation.
             ///
             /// - Throws: An error if serialization fails.
             public func _pack() throws -> GoogleWKT.WKTStruct {
-              return try GoogleWKT._slowAnySerialize(message: self)
+              return try GoogleWKT._anySerialize(message: self)
             }
           }
 
@@ -1035,14 +1035,14 @@
           /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec"`,
           ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
-            self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+            self = try GoogleWKT._anyDeserialize(Self.self, from: any)
           }
 
           /// Packs this `BoostSpec` into a `GoogleWKT.WKTStruct` representation.
           ///
           /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
-            return try GoogleWKT._slowAnySerialize(message: self)
+            return try GoogleWKT._anySerialize(message: self)
           }
         }
 
@@ -1058,14 +1058,14 @@
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `BoostSpecs` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -1153,14 +1153,14 @@
         /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.FilterSpecs"`,
         ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
-          self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
         }
 
         /// Packs this `FilterSpecs` into a `GoogleWKT.WKTStruct` representation.
         ///
         /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
-          return try GoogleWKT._slowAnySerialize(message: self)
+          return try GoogleWKT._anySerialize(message: self)
         }
       }
 
@@ -1175,14 +1175,14 @@
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `SearchConfig` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -1323,14 +1323,14 @@
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `SearchKnowledgeRequest` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 #endif

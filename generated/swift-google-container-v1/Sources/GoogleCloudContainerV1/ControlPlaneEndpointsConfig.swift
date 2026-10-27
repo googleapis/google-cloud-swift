@@ -182,14 +182,14 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig.DNSEndpointConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `DNSEndpointConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -332,14 +332,14 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `IPEndpointsConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -354,13 +354,13 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `ControlPlaneEndpointsConfig` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

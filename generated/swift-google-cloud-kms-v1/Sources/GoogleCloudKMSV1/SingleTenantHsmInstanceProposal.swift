@@ -445,14 +445,14 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.QuorumParameters"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `QuorumParameters` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -568,14 +568,14 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.RequiredActionQuorumParameters"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `RequiredActionQuorumParameters` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -679,14 +679,14 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.RegisterTwoFactorAuthKeys"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `RegisterTwoFactorAuthKeys` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -757,14 +757,14 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.DisableSingleTenantHsmInstance"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `DisableSingleTenantHsmInstance` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -835,14 +835,14 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.EnableSingleTenantHsmInstance"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `EnableSingleTenantHsmInstance` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -921,14 +921,14 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.DeleteSingleTenantHsmInstance"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `DeleteSingleTenantHsmInstance` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1017,14 +1017,14 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.AddQuorumMember"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `AddQuorumMember` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1113,14 +1113,14 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.RemoveQuorumMember"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `RemoveQuorumMember` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1197,14 +1197,14 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.RefreshSingleTenantHsmInstance"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `RefreshSingleTenantHsmInstance` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1297,14 +1297,14 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.UpgradeKeyTrust"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `UpgradeKeyTrust` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -1657,13 +1657,13 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `SingleTenantHsmInstanceProposal` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

@@ -307,14 +307,14 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.redis.cluster.v1.ClusterPersistenceConfig.RDBConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `RDBConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -517,14 +517,14 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.redis.cluster.v1.ClusterPersistenceConfig.AOFConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `AOFConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -663,13 +663,13 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.redis.cluster.v1.ClusterPersistenceConfig"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `ClusterPersistenceConfig` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

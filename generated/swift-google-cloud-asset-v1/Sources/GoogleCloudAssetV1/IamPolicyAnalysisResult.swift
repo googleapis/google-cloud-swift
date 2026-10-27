@@ -211,14 +211,14 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisResult.Resource"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Resource` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -330,14 +330,14 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisResult.Access"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Access` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -428,14 +428,14 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisResult.Identity"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Identity` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -519,14 +519,14 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisResult.Edge"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `Edge` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -659,14 +659,14 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisResult.AccessControlList"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `AccessControlList` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -768,14 +768,14 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisResult.IdentityList"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `IdentityList` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -790,13 +790,13 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisResult"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `IamPolicyAnalysisResult` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

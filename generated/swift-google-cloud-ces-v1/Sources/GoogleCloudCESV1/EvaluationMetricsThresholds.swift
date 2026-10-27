@@ -431,14 +431,14 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.TurnLevelMetricsThresholds"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `TurnLevelMetricsThresholds` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -515,14 +515,14 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.ExpectationLevelMetricsThresholds"`,
       ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
-        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
       }
 
       /// Packs this `ExpectationLevelMetricsThresholds` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
-        return try GoogleWKT._slowAnySerialize(message: self)
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 
@@ -538,14 +538,14 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `GoldenEvaluationMetricsThresholds` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -744,14 +744,14 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.ToolMatchingSettings"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `ToolMatchingSettings` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -885,13 +885,13 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `EvaluationMetricsThresholds` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

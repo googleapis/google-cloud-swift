@@ -202,14 +202,14 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePair"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `ReferenceSentencePair` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -285,14 +285,14 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePairList"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `ReferenceSentencePairList` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -391,14 +391,14 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentenceConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `ReferenceSentenceConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -502,14 +502,14 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.GlossaryConfig"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `GlossaryConfig` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -524,13 +524,13 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `AdaptiveMtTranslateRequest` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }

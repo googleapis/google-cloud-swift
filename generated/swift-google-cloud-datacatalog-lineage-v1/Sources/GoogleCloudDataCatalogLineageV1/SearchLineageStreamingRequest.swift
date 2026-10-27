@@ -216,14 +216,14 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.SearchFilters"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `SearchFilters` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -321,14 +321,14 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.SearchLimits"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `SearchLimits` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -430,14 +430,14 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.RootCriteria"`,
     ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
     }
 
     /// Packs this `RootCriteria` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._slowAnySerialize(message: self)
+      return try GoogleWKT._anySerialize(message: self)
     }
   }
 
@@ -680,13 +680,13 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
   /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest"`,
   ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
-    self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    self = try GoogleWKT._anyDeserialize(Self.self, from: any)
   }
 
   /// Packs this `SearchLineageStreamingRequest` into a `GoogleWKT.WKTStruct` representation.
   ///
   /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
-    return try GoogleWKT._slowAnySerialize(message: self)
+    return try GoogleWKT._anySerialize(message: self)
   }
 }
