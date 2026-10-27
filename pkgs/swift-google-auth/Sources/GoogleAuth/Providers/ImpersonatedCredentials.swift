@@ -183,13 +183,12 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
       )
     }
 
-    let (lifetimeSeconds, attoseconds) = lifetime.components
-    guard lifetimeSeconds > 0, lifetimeSeconds <= 43_200, attoseconds >= 0 else {
+    guard lifetime >= .seconds(1), lifetime <= .seconds(43_200) else {
       throw CredentialsError.parseError(
         "Impersonated token lifetime must be between 1 and 43200 seconds"
       )
     }
-    let lifetimeDuration = try WKTDuration(seconds: lifetimeSeconds)
+    let lifetimeDuration = try WKTDuration(seconds: lifetime.components.seconds)
 
     let effectiveUniverse =
       universeDomain.flatMap { $0.isEmpty ? nil : $0 } ?? defaultUniverseDomain

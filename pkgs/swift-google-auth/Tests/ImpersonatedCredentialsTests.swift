@@ -446,6 +446,14 @@ private struct FailingSourceCredentials: CredentialsProvider {
     #expect(throws: CredentialsError.self) {
       _ = try ImpersonatedCredentials(
         sourceCredentials: source,
+        targetPrincipal: "target@project.iam.gserviceaccount.com",
+        lifetime: .seconds(43_200) + .milliseconds(500)
+      )
+    }
+
+    #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: source,
         impersonationURLString: "not-a-valid-url"
       )
     }
