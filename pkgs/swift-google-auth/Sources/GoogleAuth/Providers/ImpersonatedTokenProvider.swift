@@ -230,26 +230,3 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
     return result
   }
 }
-
-/// The JSON request body sent to the IAM Service Account Credentials `:generateAccessToken` endpoint.
-///
-/// - SeeAlso: [Method: projects.serviceAccounts.generateAccessToken](https://cloud.google.com/iam/docs/reference/credentials/rest/v1/projects.serviceAccounts/generateAccessToken)
-struct IAMGenerateAccessTokenRequest: Codable, Sendable, Equatable {
-  /// The OAuth 2.0 scopes to include in the generated access token.
-  let scope: [String]
-
-  /// The ordered sequence of service accounts in a delegation chain.
-  let delegates: [String]?
-
-  /// Desired lifetime duration of the access token in seconds, formatted with an `"s"` suffix (e.g. `"3600s"`).
-  let lifetime: String
-}
-
-/// The JSON response body returned by the IAM Service Account Credentials `:generateAccessToken` endpoint.
-struct IAMGenerateAccessTokenResponse: Codable, Sendable, Equatable {
-  /// The generated OAuth 2.0 access token.
-  let accessToken: String
-
-  /// Token expiration time in RFC 3339 format (e.g. `"2026-10-26T20:00:00Z"`).
-  let expireTime: String
-}

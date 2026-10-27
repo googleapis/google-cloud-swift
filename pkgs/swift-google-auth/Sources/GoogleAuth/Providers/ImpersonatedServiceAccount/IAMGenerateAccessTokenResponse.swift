@@ -1,0 +1,22 @@
+// Copyright 2026 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/// The JSON response body returned by the IAM Service Account Credentials `:generateAccessToken` endpoint.
+struct IAMGenerateAccessTokenResponse: Codable, Sendable, Equatable {
+  /// The generated OAuth 2.0 access token.
+  let accessToken: String
+
+  /// Token expiration time in RFC 3339 format (e.g. `"2026-10-26T20:00:00Z"`).
+  let expireTime: String
+}
