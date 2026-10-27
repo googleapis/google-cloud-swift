@@ -509,6 +509,10 @@ private struct FailingSourceCredentials: CredentialsProvider {
     #expect(d3 != nil)
     #expect(d3?.timeIntervalSince1970 == 1_793_044_800)
 
+    let d4 = ImpersonatedTokenProvider.parseRFC3339Date("2026-10-26T20:00:00.500000000999Z")
+    #expect(d4 != nil)
+    #expect(d4?.timeIntervalSince1970 == 1_793_044_800.5)
+
     #expect(ImpersonatedTokenProvider.parseRFC3339Date("invalid") == nil)
     #expect(ImpersonatedTokenProvider.parseRFC3339Date("0000-01-01T00:00:00Z") == nil)
     #expect(ImpersonatedTokenProvider.parseRFC3339Date("1969-12-31T23:59:59Z") == nil)

@@ -217,7 +217,7 @@ where C.Instant.Duration == Duration {
     clock: C
   ) throws {
     let effectiveUniverse =
-      (universeDomain?.isEmpty == false) ? universeDomain! : defaultUniverseDomain
+      universeDomain.flatMap { $0.isEmpty ? nil : $0 } ?? defaultUniverseDomain
     try Self.validateUniverseDomain(effectiveUniverse)
     let resourceName = try Self.normalizeServiceAccountResourceName(targetPrincipal)
     let urlString =
@@ -279,7 +279,7 @@ where C.Instant.Duration == Duration {
     }
 
     let effectiveUniverse =
-      (universeDomain?.isEmpty == false) ? universeDomain! : defaultUniverseDomain
+      universeDomain.flatMap { $0.isEmpty ? nil : $0 } ?? defaultUniverseDomain
     try Self.validateUniverseDomain(effectiveUniverse)
 
     let effectiveScopes =

@@ -162,12 +162,13 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
         idx += 1
       }
       let fracCount = idx - fracStart
-      guard fracCount >= 1 && fracCount <= 9 else {
+      guard fracCount >= 1 else {
         return nil
       }
       var fracValue: Int64 = 0
       var divisor: Double = 1
-      for i in fracStart..<idx {
+      let parseEnd = min(idx, fracStart + 9)
+      for i in fracStart..<parseEnd {
         fracValue = fracValue * 10 + Int64(bytes[i] - UInt8(ascii: "0"))
         divisor *= 10
       }
