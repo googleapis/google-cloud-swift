@@ -393,6 +393,27 @@ private struct FailingSourceCredentials: CredentialsProvider {
     #expect(throws: CredentialsError.self) {
       _ = try ImpersonatedCredentials(
         sourceCredentials: source,
+        targetPrincipal: "."
+      )
+    }
+
+    #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: source,
+        targetPrincipal: "projects/./serviceAccounts/target@project.iam.gserviceaccount.com"
+      )
+    }
+
+    #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: source,
+        targetPrincipal: "projects/-/serviceAccounts/."
+      )
+    }
+
+    #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: source,
         targetPrincipal: "target@project.iam.gserviceaccount.com",
         delegates: [""]
       )

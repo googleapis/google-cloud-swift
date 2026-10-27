@@ -367,4 +367,81 @@ import Testing
     }
     #expect(message.contains("unknown_source_type"))
   }
+
+  @Test func rejectsMissingOrInvalidTypeInImpersonatedSourceCredentials() throws {
+    let json = """
+      {
+        "type": "impersonated_service_account",
+        "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "source_credentials": {
+          "client_id": "test-client-id"
+        }
+      }
+      """
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try Data(json.utf8).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
+    }
+    guard case let .parseError(message) = error else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("Missing or invalid 'type'"))
+  }
+
+  @Test func rejectsMalformedImpersonatedServiceAccountJSON() throws {
+    let json = """
+      {
+        "type": "impersonated_service_account",
+        "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "source_credentials": "not-an-object"
+      }
+      """
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try Data(json.utf8).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
+    }
+    guard case let .parseError(message) = error else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("Failed to parse Impersonated Service Account key JSON"))
+  }
+
+  @Test func rejectsAuthorizedUserSourceCredentialsInCustomUniverseDomain() throws {
+    let json = """
+      {
+        "type": "impersonated_service_account",
+        "service_account_impersonation_url": "https://iamcredentials.my-universe.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "universe_domain": "my-universe.com",
+        "source_credentials": {
+          "type": "authorized_user",
+          "client_id": "test-client-id",
+          "client_secret": "test-client-secret",
+          "refresh_token": "test-refresh-token"
+        }
+      }
+      """
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try Data(json.utf8).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
+    }
+    guard case let .notSupported(message) = error else {
+      Issue.record("Expected CredentialsError.notSupported, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("my-universe.com"))
+  }
 }
