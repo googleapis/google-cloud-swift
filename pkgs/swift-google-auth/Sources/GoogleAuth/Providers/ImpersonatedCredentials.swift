@@ -37,19 +37,24 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
       )
     }
 
+    // Ensure `source_credentials` is a JSON dictionary representing an embedded credential object
+    // (such as `authorized_user`, `service_account`, or `external_account`).
     guard case let .object(sourceDict) = payload.sourceCredentials else {
       throw CredentialsError.parseError(
         "Impersonated Service Account source_credentials must be a JSON object"
       )
     }
 
+    // Extract the embedded credential's `"type"` discriminator so we can route it to the
+    // appropriate registered `CredentialSourceParser`.
     guard case let .string(sourceType)? = sourceDict["type"] else {
       throw CredentialsError.parseError(
         "Missing or invalid 'type' in Impersonated Service Account source_credentials"
       )
     }
 
-    // Prevent unbounded recursion when source_credentials is itself an impersonated_service_account.
+    // Prevent unbounded recursion when `source_credentials` is itself an `impersonated_service_account`.
+    // Chained service account impersonation is represented via the `delegates` array instead.
     guard sourceType != Self.type else {
       throw CredentialsError.parseError(
         "Nested impersonated_service_account in source_credentials is not allowed"
@@ -70,6 +75,11 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
     let effectiveQuotaProjectID =
       Self.nonEmpty(quotaProjectID) ?? Self.nonEmpty(payload.quotaProjectId)
 
+    // Resolve the underlying source credential provider via the registry:
+    // - Pass `quotaProjectID: nil` so the outer quota project applies to the impersonated
+    //   credentials rather than overriding the source credential's own quota project.
+    // - Pass `scopes: []` so `authorized_user` refresh token exchanges use their bound scopes
+    //   while `service_account` and `external_account` providers default to `cloud-platform`.
     guard
       let sourceProvider = try CredentialParserRegistry.shared.parse(
         type: sourceType,
