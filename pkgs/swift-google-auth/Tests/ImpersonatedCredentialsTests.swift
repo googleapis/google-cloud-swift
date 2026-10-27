@@ -89,7 +89,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
       }
     ])
 
-    let creds = try ImpersonatedCredentialsGeneric(
+    let creds = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
       delegates: [
@@ -97,8 +97,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
         "projects/-/serviceAccounts/delegate2@project.iam.gserviceaccount.com",
       ],
       quotaProjectID: "impersonated-quota-project",
-      httpClient: AuthHTTPClient(mock: mock),
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let headers = try await creds.headers()
@@ -144,14 +143,13 @@ private struct FailingSourceCredentials: CredentialsProvider {
       }
     ])
 
-    let creds = try ImpersonatedCredentialsGeneric(
+    let creds = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "projects/-/serviceAccounts/target@project.iam.gserviceaccount.com",
       scopes: ["scope1", "scope2"],
       lifetime: .seconds(1800),
       universeDomain: "my-universe.com",
-      httpClient: AuthHTTPClient(mock: mock),
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let headers = try await creds.headers()
@@ -184,16 +182,13 @@ private struct FailingSourceCredentials: CredentialsProvider {
       }
     ])
 
-    let clock = TestClock()
-    let creds = try ImpersonatedCredentialsGeneric(
+    let creds = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
-      httpClient: AuthHTTPClient(mock: mock),
-      clock: clock
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let headers1 = try await creds.headers()
-    await clock.sleeperWaiting()
     let headers2 = try await creds.headers()
 
     #expect(headers1["Authorization"] == "Bearer mock-cached-token")
@@ -237,12 +232,11 @@ private struct FailingSourceCredentials: CredentialsProvider {
       maxDelay: .milliseconds(1)
     )
 
-    let creds = try ImpersonatedCredentialsGeneric(
+    let creds = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
       httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: retryConfig,
-      clock: TestClock()
+      retryConfiguration: retryConfig
     )
 
     let headers = try await creds.headers()
@@ -263,11 +257,10 @@ private struct FailingSourceCredentials: CredentialsProvider {
       }
     ])
 
-    let creds = try ImpersonatedCredentialsGeneric(
+    let creds = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
-      httpClient: AuthHTTPClient(mock: mock),
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let error1 = await #expect(throws: CredentialsError.self) {
@@ -294,11 +287,10 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let source = FailingSourceCredentials()
     let mock = MockHTTPClient([])
 
-    let creds = try ImpersonatedCredentialsGeneric(
+    let creds = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
-      httpClient: AuthHTTPClient(mock: mock),
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let error = await #expect(throws: CredentialsError.self) {
@@ -337,11 +329,10 @@ private struct FailingSourceCredentials: CredentialsProvider {
       }
     ])
 
-    let creds = try ImpersonatedCredentialsGeneric(
+    let creds = try ImpersonatedCredentials(
       sourceCredentials: source,
       targetPrincipal: "target@project.iam.gserviceaccount.com",
-      httpClient: AuthHTTPClient(mock: mock),
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let error1 = await #expect(throws: CredentialsError.self) {
@@ -367,131 +358,116 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let source = StaticSourceCredentials(authHeaders: [])
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
-        targetPrincipal: "",
-        clock: TestClock()
+        targetPrincipal: ""
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
-        targetPrincipal: "../../other/path",
-        clock: TestClock()
+        targetPrincipal: "../../other/path"
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
-        targetPrincipal: "target@project.iam.gserviceaccount.com?alt=media",
-        clock: TestClock()
+        targetPrincipal: "target@project.iam.gserviceaccount.com?alt=media"
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
         targetPrincipal:
-          "projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:signBlob",
-        clock: TestClock()
+          "projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:signBlob"
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
-        targetPrincipal: "projects//serviceAccounts/target@project.iam.gserviceaccount.com",
-        clock: TestClock()
+        targetPrincipal: "projects//serviceAccounts/target@project.iam.gserviceaccount.com"
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
         targetPrincipal: "target@project.iam.gserviceaccount.com",
-        delegates: [""],
-        clock: TestClock()
+        delegates: [""]
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
         targetPrincipal: "target@project.iam.gserviceaccount.com",
-        universeDomain: "attacker.com/path#",
-        clock: TestClock()
+        universeDomain: "attacker.com/path#"
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
         targetPrincipal: "target@project.iam.gserviceaccount.com",
-        lifetime: .seconds(0),
-        clock: TestClock()
+        lifetime: .seconds(0)
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
         targetPrincipal: "target@project.iam.gserviceaccount.com",
-        lifetime: .seconds(43_201),
-        clock: TestClock()
+        lifetime: .seconds(43_201)
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
-        impersonationURLString: "not-a-valid-url",
-        clock: TestClock()
+        impersonationURLString: "not-a-valid-url"
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
         impersonationURLString:
-          "http://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
-        clock: TestClock()
+          "http://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken"
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
         impersonationURLString:
-          "https://user:pass@iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
-        clock: TestClock()
+          "https://user:pass@iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken"
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
         impersonationURLString:
-          "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken?alt=media",
-        clock: TestClock()
+          "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken?alt=media"
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
         impersonationURLString:
-          "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken#frag",
-        clock: TestClock()
+          "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken#frag"
       )
     }
 
     #expect(throws: CredentialsError.self) {
-      _ = try ImpersonatedCredentialsGeneric(
+      _ = try ImpersonatedCredentials(
         sourceCredentials: source,
-        impersonationURLString: "https://iamcredentials.googleapis.com/",
-        clock: TestClock()
+        impersonationURLString: "https://iamcredentials.googleapis.com/"
       )
     }
   }

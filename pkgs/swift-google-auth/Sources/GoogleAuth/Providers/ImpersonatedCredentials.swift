@@ -192,17 +192,13 @@ enum RawJSONValue: Sendable, Codable, Equatable {
 ///
 /// - SeeAlso: [AIP-4110: Application Default Credentials](https://google.aip.dev/auth/4110)
 /// - SeeAlso: [Service Account Impersonation](https://cloud.google.com/iam/docs/service-account-impersonation)
-typealias ImpersonatedCredentials = ImpersonatedCredentialsGeneric<ContinuousClock>
-
-/// Generic implementation of service account impersonation credentials parameterized by clock type.
-struct ImpersonatedCredentialsGeneric<C: Clock>: CredentialsProvider, Sendable
-where C.Instant.Duration == Duration {
-  private let cache: TokenCache<C>
+struct ImpersonatedCredentials: CredentialsProvider, Sendable {
+  private let cache: TokenCache<ContinuousClock>
   let provider: ImpersonatedTokenProvider
   let quotaProjectID: String?
   let universeDomain: String
 
-  /// Initializes `ImpersonatedCredentialsGeneric` for a target service account principal.
+  /// Initializes `ImpersonatedCredentials` for a target service account principal.
   init(
     sourceCredentials: any CredentialsProvider,
     targetPrincipal: String,
@@ -212,9 +208,7 @@ where C.Instant.Duration == Duration {
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
     httpClient: AuthHTTPClient = AuthHTTPClient(),
-    retryConfiguration: RetryConfiguration = .defaultConfiguration,
-    timeSource: any TimeSource = SystemTimeSource(),
-    clock: C
+    retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
     let effectiveUniverse =
       universeDomain.flatMap { $0.isEmpty ? nil : $0 } ?? defaultUniverseDomain
@@ -232,13 +226,11 @@ where C.Instant.Duration == Duration {
       quotaProjectID: quotaProjectID,
       universeDomain: effectiveUniverse,
       httpClient: httpClient,
-      retryConfiguration: retryConfiguration,
-      timeSource: timeSource,
-      clock: clock
+      retryConfiguration: retryConfiguration
     )
   }
 
-  /// Initializes `ImpersonatedCredentialsGeneric` using an explicit `service_account_impersonation_url`.
+  /// Initializes `ImpersonatedCredentials` using an explicit `service_account_impersonation_url`.
   init(
     sourceCredentials: any CredentialsProvider,
     impersonationURLString: String,
@@ -248,9 +240,7 @@ where C.Instant.Duration == Duration {
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
     httpClient: AuthHTTPClient = AuthHTTPClient(),
-    retryConfiguration: RetryConfiguration = .defaultConfiguration,
-    timeSource: any TimeSource = SystemTimeSource(),
-    clock: C
+    retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
     guard
       !impersonationURLString.isEmpty,
@@ -302,8 +292,6 @@ where C.Instant.Duration == Duration {
 
     self.cache = TokenCache(
       provider: provider,
-      clock: clock,
-      timeSource: timeSource,
       isRetryable: AuthHTTPError.isRetryable
     )
   }
@@ -370,63 +358,5 @@ where C.Instant.Duration == Duration {
         "Invalid universe_domain: '\(domain)'"
       )
     }
-  }
-}
-
-extension ImpersonatedCredentialsGeneric where C == ContinuousClock {
-  /// Initializes `ImpersonatedCredentials` from a target service account principal using `ContinuousClock`.
-  init(
-    sourceCredentials: any CredentialsProvider,
-    targetPrincipal: String,
-    delegates: [String] = [],
-    scopes: [String] = [],
-    lifetime: Duration = .seconds(3600),
-    quotaProjectID: String? = nil,
-    universeDomain: String? = nil,
-    httpClient: AuthHTTPClient = AuthHTTPClient(),
-    retryConfiguration: RetryConfiguration = .defaultConfiguration,
-    timeSource: any TimeSource = SystemTimeSource()
-  ) throws {
-    try self.init(
-      sourceCredentials: sourceCredentials,
-      targetPrincipal: targetPrincipal,
-      delegates: delegates,
-      scopes: scopes,
-      lifetime: lifetime,
-      quotaProjectID: quotaProjectID,
-      universeDomain: universeDomain,
-      httpClient: httpClient,
-      retryConfiguration: retryConfiguration,
-      timeSource: timeSource,
-      clock: ContinuousClock()
-    )
-  }
-
-  /// Initializes `ImpersonatedCredentials` from an explicit `service_account_impersonation_url` using `ContinuousClock`.
-  init(
-    sourceCredentials: any CredentialsProvider,
-    impersonationURLString: String,
-    delegates: [String] = [],
-    scopes: [String] = [],
-    lifetime: Duration = .seconds(3600),
-    quotaProjectID: String? = nil,
-    universeDomain: String? = nil,
-    httpClient: AuthHTTPClient = AuthHTTPClient(),
-    retryConfiguration: RetryConfiguration = .defaultConfiguration,
-    timeSource: any TimeSource = SystemTimeSource()
-  ) throws {
-    try self.init(
-      sourceCredentials: sourceCredentials,
-      impersonationURLString: impersonationURLString,
-      delegates: delegates,
-      scopes: scopes,
-      lifetime: lifetime,
-      quotaProjectID: quotaProjectID,
-      universeDomain: universeDomain,
-      httpClient: httpClient,
-      retryConfiguration: retryConfiguration,
-      timeSource: timeSource,
-      clock: ContinuousClock()
-    )
   }
 }
