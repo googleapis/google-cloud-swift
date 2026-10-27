@@ -13,6 +13,8 @@
 // limitations under the License.
 
 /// The JSON response body returned by the IAM Service Account Credentials `:generateAccessToken` endpoint.
+///
+/// - SeeAlso: [Method: projects.serviceAccounts.generateAccessToken](https://cloud.google.com/iam/docs/reference/credentials/rest/v1/projects.serviceAccounts/generateAccessToken)
 struct IAMGenerateAccessTokenResponse: Codable, Sendable, Equatable {
   /// The generated OAuth 2.0 access token.
   let accessToken: String
