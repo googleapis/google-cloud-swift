@@ -496,28 +496,20 @@ private struct FailingSourceCredentials: CredentialsProvider {
     }
   }
 
-  @Test func parsesRFC3339TimestampsCorrectly() {
-    let d1 = ImpersonatedTokenProvider.parseRFC3339Date("2026-10-26T20:00:00Z")
-    #expect(d1 != nil)
-    #expect(d1?.timeIntervalSince1970 == 1_793_044_800)
-
-    let d2 = ImpersonatedTokenProvider.parseRFC3339Date("2026-10-26T20:00:00.5Z")
-    #expect(d2 != nil)
-    #expect(d2?.timeIntervalSince1970 == 1_793_044_800.5)
-
-    let d3 = ImpersonatedTokenProvider.parseRFC3339Date("2026-10-26T22:00:00+02:00")
-    #expect(d3 != nil)
-    #expect(d3?.timeIntervalSince1970 == 1_793_044_800)
-
-    let d4 = ImpersonatedTokenProvider.parseRFC3339Date("2026-10-26T20:00:00.500000000999Z")
-    #expect(d4 != nil)
-    #expect(d4?.timeIntervalSince1970 == 1_793_044_800.5)
-
-    #expect(ImpersonatedTokenProvider.parseRFC3339Date("invalid") == nil)
-    #expect(ImpersonatedTokenProvider.parseRFC3339Date("0000-01-01T00:00:00Z") == nil)
-    #expect(ImpersonatedTokenProvider.parseRFC3339Date("1969-12-31T23:59:59Z") == nil)
-    #expect(ImpersonatedTokenProvider.parseRFC3339Date("2026-13-01T00:00:00Z") == nil)
-    #expect(ImpersonatedTokenProvider.parseRFC3339Date("2026-02-29T00:00:00Z") == nil)
+  @Test(arguments: [
+    ("2026-10-26T20:00:00Z", 1_793_044_800 as TimeInterval?),
+    ("2026-10-26T20:00:00.5Z", 1_793_044_800.5),
+    ("2026-10-26T22:00:00+02:00", 1_793_044_800),
+    ("2026-10-26T20:00:00.500000000999Z", 1_793_044_800.5),
+    ("invalid", nil),
+    ("0000-01-01T00:00:00Z", nil),
+    ("1969-12-31T23:59:59Z", nil),
+    ("2026-13-01T00:00:00Z", nil),
+    ("2026-02-29T00:00:00Z", nil),
+  ])
+  func parsesRFC3339Timestamps(input: String, expected: TimeInterval?) {
+    let date = ImpersonatedTokenProvider.parseRFC3339Date(input)
+    #expect(date?.timeIntervalSince1970 == expected)
   }
 
   @Test func programmaticConfigurationConstructsImpersonatedCredentials() throws {
