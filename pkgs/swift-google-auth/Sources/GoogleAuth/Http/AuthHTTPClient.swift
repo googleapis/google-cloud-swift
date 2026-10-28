@@ -150,6 +150,8 @@ struct AuthHTTPClient: Sendable {
       request.method = .GET
       request.headers = .init(headers.map { ($0.key, $0.value) })
       let response = try await self.performRequest(request)
+      // Collect the body before validating status so non-2xx responses retain their error payload
+      // and `buffer` is captured before `readUTF8ValidatedString` advances its reader index.
       var buffer = try await response.body.collect(upTo: Self.maxResponseSize)
       try self.ensureSuccess(response, buffer: buffer)
 
@@ -272,6 +274,12 @@ struct AuthHTTPClient: Sendable {
     return encoder
   }
 
+  /// Validates that the HTTP status code is in the 200–299 range.
+  ///
+  /// Callers collect `response.body` into `buffer` prior to calling this method so that non-2xx
+  /// responses (such as OAuth 2.0 `invalid_grant` or STS error payloads) are preserved on
+  /// `AuthHTTPError.unsuccessfulResponse` and the response stream is drained for connection reuse.
+  /// `Data(buffer: buffer)` is only materialized on the error path to avoid copying on 2xx responses.
   private func ensureSuccess(_ response: HTTPClientResponse, buffer: ByteBuffer) throws {
     let statusCode = response.status.code
     guard (200...299).contains(statusCode) else {

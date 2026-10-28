@@ -22,6 +22,9 @@ import NIOHTTP1
 /// encountered when communicating with Google Cloud token servers, STS, or the Compute Engine metadata server.
 enum AuthHTTPError: Error, Sendable {
   /// The server returned an HTTP status code outside the 200–299 range (e.g. 400, 401, 403, 429, 500, 503).
+  ///
+  /// Because `HTTPClientResponse.body` is a single-pass async stream that is consumed before status
+  /// validation, the collected error response payload bytes are stored alongside `response` in `data`.
   case unsuccessfulResponse(response: HTTPClientResponse, data: Data = Data())
 
   /// A transport-level or network I/O error occurred (e.g., DNS resolution failure, connection timeout, connection reset).
@@ -59,6 +62,8 @@ extension AuthHTTPError {
   }
 
   /// The raw response body as a UTF-8 string if this is an unsuccessful response (`.unsuccessfulResponse`), or `nil` otherwise.
+  ///
+  /// Returns `nil` if the error is not `.unsuccessfulResponse` or if the response payload bytes are not valid UTF-8.
   var body: String? {
     switch self {
     case .unsuccessfulResponse(_, let data):
