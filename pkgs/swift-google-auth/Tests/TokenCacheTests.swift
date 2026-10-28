@@ -757,6 +757,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(debugDescription.contains("TokenCache"))
   }
 
+  /// Verifies that initializing `TokenCache` does not eagerly invoke `provider.fetchToken()` or
+  /// schedule a background refresh sleep until `token()` is called.
   @Test func initDoesNotTriggerFetchBeforeTokenIsCalled() async throws {
     let provider = MockTokenProvider()
     let clock = TestClock()
@@ -785,6 +787,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     _ = cache  // Keep it alive!
   }
 
+  /// Verifies that when the first `token()` call fails with a retryable transient error,
+  /// `TokenCache` lazily starts the background refresh loop to retry after `shortRefreshSlack`.
   @Test func initialTransientFailureStartsBackgroundRetryLoop() async throws {
     let provider = MockTokenProvider()
     let clock = TestClock()
@@ -826,6 +830,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(token.accessToken == "recovered-token")
   }
 
+  /// Verifies that a `CancellationError` thrown during `token()` is not recorded as a
+  /// `permanentError` even when `isRetryable` returns `false`.
   @Test func cancellationErrorDoesNotPoisonPermanentError() async throws {
     let provider = MockTokenProvider()
     let clock = TestClock()

@@ -131,6 +131,9 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
 
   /// Initializes the token cache with a provider, a scheduler clock, and refresh configurations.
   ///
+  /// Initialization is purely synchronous and side-effect-free: no network requests or background
+  /// tasks are spawned until `token()` is called.
+  ///
   /// - Parameters:
   ///   - provider: The underlying `TokenProvider` that fetches fresh tokens.
   ///   - clock: The scheduler clock conforming to `Clock` with `Duration` intervals.
@@ -182,14 +185,21 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
 
     do {
       let token = try await task.value
+      // Multiple concurrent callers (or the background loop) may await the same `task`.
+      // Because actor execution is reentrant across `await`, only the first waiter to resume
+      // while `self.activeRefreshTask == task` should update state and start the background loop.
       if self.activeRefreshTask == task {
         self.updateCache(with: token)
         self.startBackgroundRefreshIfNeeded(initialSleep: self.refreshSleepDuration(for: token))
       }
       return token
     } catch {
+      // Guard on `self.activeRefreshTask == task` so a later-resuming waiter from a failed attempt
+      // does not clear a newer `activeRefreshTask` started after the first waiter resumed.
       if self.activeRefreshTask == task {
         self.clearActiveTask()
+        // Exclude `CancellationError` before checking `isRetryable` so providers with
+        // `isRetryable: { _ in false }` do not permanently poison `permanentError` on cancellation.
         if !(error is CancellationError) {
           if !self.isRetryable(error) {
             self.permanentError = error
@@ -204,6 +214,10 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
 
   // MARK: - Private Helpers
 
+  /// Lazily spawns the proactive background refresh loop if it is not already running.
+  ///
+  /// - Parameter initialSleep: The sleep duration before the first background refresh check,
+  ///   passed as an `@autoclosure` so jitter is only evaluated when the task is first created.
   private func startBackgroundRefreshIfNeeded(initialSleep: @autoclosure () -> Duration) {
     guard self.backgroundTask.withLock({ $0 == nil }) else {
       return
@@ -213,6 +227,10 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     let clock = self.clock
 
     let task = Task { [weak self] in
+      // Sleep for the initial token's refresh window (or transient error backoff) before entering
+      // the loop. Because `token()` just completed the initial fetch, sleeping first prevents an
+      // immediate duplicate fetch if the initial token already had a short lifetime (`<= normalRefreshSlack`),
+      // and avoids holding a strong reference to `self` while suspended on the clock.
       try? await clock.sleep(for: initialSleepDuration)
 
       while !Task.isCancelled {

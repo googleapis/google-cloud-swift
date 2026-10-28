@@ -23,6 +23,8 @@ import Testing
 typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
 @Suite struct UserCredentialsTest {
+  /// Verifies that initializing `UserCredentials` does not eagerly make a token refresh
+  /// network request or schedule a background refresh sleep before `headers()` is called.
   @Test func userProviderInitializationDoesNotMakeNetworkRequests() async throws {
     let targetURL = URL(string: "https://mock.example.com")!
     let mock = MockHTTPClient([])
