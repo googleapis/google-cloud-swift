@@ -103,14 +103,14 @@ import Testing
   func exchangeTokenErr() async throws {
     let targetURL = try #require(URL(string: "https://sts.googleapis.com/v1/token"))
 
+    let errorPayload = """
+      {
+        "error": "invalid_grant",
+        "error_description": "Invalid subject token"
+      }
+      """
     let mock = MockHTTPClient([
       { (request: HTTPClientRequest) in
-        let errorPayload = """
-          {
-            "error": "invalid_grant",
-            "error_description": "Invalid subject token"
-          }
-          """
         return
           HTTPClientResponse(
             version: .http2,
@@ -129,9 +129,12 @@ import Testing
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token"
     )
 
-    await #expect(throws: AuthHTTPError.self) {
+    let error = await #expect(throws: AuthHTTPError.self) {
       _ = try await handler.exchangeToken(request: request, url: targetURL)
     }
+    #expect(error?.statusCode == 400)
+    #expect(error?.body == errorPayload)
+    #expect(error?.bodyData == Data(errorPayload.utf8))
   }
 
   @Test("Supports JSON payload encoding and custom grant type parameter overrides")

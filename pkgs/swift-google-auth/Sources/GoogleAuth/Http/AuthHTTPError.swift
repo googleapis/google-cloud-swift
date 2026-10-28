@@ -22,7 +22,7 @@ import NIOHTTP1
 /// encountered when communicating with Google Cloud token servers, STS, or the Compute Engine metadata server.
 enum AuthHTTPError: Error, Sendable {
   /// The server returned an HTTP status code outside the 200–299 range (e.g. 400, 401, 403, 429, 500, 503).
-  case unsuccessfulResponse(response: HTTPClientResponse)
+  case unsuccessfulResponse(response: HTTPClientResponse, data: Data = Data())
 
   /// A transport-level or network I/O error occurred (e.g., DNS resolution failure, connection timeout, connection reset).
   case transportError(URLError)
@@ -51,34 +51,28 @@ extension AuthHTTPError {
   /// The HTTP status code integer if this is an unsuccessful response (`.unsuccessfulResponse`), or `nil` otherwise.
   var statusCode: UInt? {
     switch self {
-    case .unsuccessfulResponse(let response):
+    case .unsuccessfulResponse(let response, _):
       return response.status.code
     default:
       return nil
     }
   }
 
-  /// The raw response body as a UTF-8 string if this is an unsuccessful response or a decoding error.
+  /// The raw response body as a UTF-8 string if this is an unsuccessful response (`.unsuccessfulResponse`), or `nil` otherwise.
   var body: String? {
     switch self {
-    case .unsuccessfulResponse(_):
-      // TODO(#81) - return the body
-      return nil
-    case .decodingError(_):
-      return nil
+    case .unsuccessfulResponse(_, let data):
+      return String(data: data, encoding: .utf8)
     default:
       return nil
     }
   }
 
-  /// The raw response body data if this is an unsuccessful response or a decoding error.
+  /// The raw response body data if this is an unsuccessful response (`.unsuccessfulResponse`), or `nil` otherwise.
   var bodyData: Data? {
     switch self {
-    case .unsuccessfulResponse(_):
-      // TODO(#81) - return the data, if any.
-      return nil
-    case .decodingError(_):
-      return nil
+    case .unsuccessfulResponse(_, let data):
+      return data
     default:
       return nil
     }
@@ -87,7 +81,7 @@ extension AuthHTTPError {
   /// The HTTP response headers as a string map if this is an unsuccessful response (`.unsuccessfulResponse`), or `nil` otherwise.
   var headers: [String: String]? {
     switch self {
-    case .unsuccessfulResponse(let response):
+    case .unsuccessfulResponse(let response, _):
       var result: [String: String] = [:]
       for (key, value) in response.headers {
         result[key] = value
@@ -105,7 +99,7 @@ extension AuthHTTPError {
   /// (other 4xx statuses) and payload decoding errors are considered permanent.
   var isRetryable: Bool {
     switch self {
-    case .unsuccessfulResponse(let response):
+    case .unsuccessfulResponse(let response, _):
       let status = response.status.code
       return status >= 500 || status == 429 || status == 408
     case .decodingError, .invalidUTF8Response:

@@ -150,19 +150,74 @@ import Testing
 
   @Test func clientThrowsHTTPStatusCodeError() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/invalid")!
+    let errorPayload =
+      #"{"error": "invalid_grant", "error_description": "Token has been expired or revoked."}"#
+    let errorData = Data(errorPayload.utf8)
     let mock = MockHTTPClient([
       { (request: HTTPClientRequest) in
         return HTTPClientResponse(
           version: .http2,
           status: .serviceUnavailable,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: errorData)),
         )
       }
     ])
 
     let client = AuthHTTPClient(mock: mock)
-    await #expect(throws: AuthHTTPError.self) {
+    let error = await #expect(throws: AuthHTTPError.self) {
       let _: MockTokenResponse = try await client.get(url: targetURL)
     }
+    #expect(error?.statusCode == 503)
+    #expect(error?.body == errorPayload)
+    #expect(error?.bodyData == errorData)
+  }
+
+  @Test func clientPopulatesErrorBodyAcrossMethods() async throws {
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    let errorPayload =
+      #"{"error": "invalid_grant", "error_description": "Token has been expired or revoked."}"#
+    let errorData = Data(errorPayload.utf8)
+    let makeErrorResponse: MockHTTPClient.Closure = { _ in
+      HTTPClientResponse(
+        version: .http2,
+        status: .badRequest,
+        headers: .init([("Content-Type", "application/json")]),
+        body: .bytes(.init(data: errorData)),
+      )
+    }
+
+    let client = AuthHTTPClient(
+      mock: MockHTTPClient([makeErrorResponse, makeErrorResponse, makeErrorResponse])
+    )
+
+    let getStringError = await #expect(throws: AuthHTTPError.self) {
+      _ = try await client.getString(url: targetURL)
+    }
+    #expect(getStringError?.statusCode == 400)
+    #expect(getStringError?.body == errorPayload)
+    #expect(getStringError?.bodyData == errorData)
+
+    let postError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.post(
+        url: targetURL,
+        body: ["grant_type": "refresh_token"]
+      )
+    }
+    #expect(postError?.statusCode == 400)
+    #expect(postError?.body == errorPayload)
+    #expect(postError?.bodyData == errorData)
+
+    let postDataError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.postData(
+        url: targetURL,
+        bodyData: Data("grant_type=refresh_token".utf8),
+        contentType: "application/x-www-form-urlencoded"
+      )
+    }
+    #expect(postDataError?.statusCode == 400)
+    #expect(postDataError?.body == errorPayload)
+    #expect(postDataError?.bodyData == errorData)
   }
 
   @Test func clientPerformsGetAndReturnsPlainTextString() async throws {

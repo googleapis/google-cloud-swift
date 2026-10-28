@@ -16,6 +16,7 @@ import Foundation
 import AsyncHTTPClient
 import NIOFoundationCompat
 import struct Logging.Logger
+import struct NIOCore.ByteBuffer
 import struct NIOCore.ByteBufferAllocator
 import NIOHTTP1
 
@@ -119,7 +120,7 @@ struct AuthHTTPClient: Sendable {
       request.headers = .init(headers.map { ($0.key, $0.value) })
       let response = try await self.performRequest(request)
       let buffer = try await response.body.collect(upTo: Self.maxResponseSize)
-      try self.ensureSuccess(response)
+      try self.ensureSuccess(response, buffer: buffer)
 
       do {
         return try self.makeDecoder().decode(T.self, from: Data(buffer: buffer))
@@ -149,8 +150,8 @@ struct AuthHTTPClient: Sendable {
       request.method = .GET
       request.headers = .init(headers.map { ($0.key, $0.value) })
       let response = try await self.performRequest(request)
-      try self.ensureSuccess(response)
       var buffer = try await response.body.collect(upTo: Self.maxResponseSize)
+      try self.ensureSuccess(response, buffer: buffer)
 
       do {
         guard let plainText = try buffer.readUTF8ValidatedString(length: buffer.readableBytes)
@@ -191,8 +192,8 @@ struct AuthHTTPClient: Sendable {
       request.body = .bytes(buffer)
 
       let response = try await self.performRequest(request)
-      try self.ensureSuccess(response)
       let recvBuffer = try await response.body.collect(upTo: Self.maxResponseSize)
+      try self.ensureSuccess(response, buffer: recvBuffer)
 
       do {
         return try self.makeDecoder().decode(Response.self, from: recvBuffer)
@@ -228,8 +229,8 @@ struct AuthHTTPClient: Sendable {
       request.body = .bytes(bodyData)
 
       let response = try await self.performRequest(request)
-      try self.ensureSuccess(response)
       let buffer = try await response.body.collect(upTo: Self.maxResponseSize)
+      try self.ensureSuccess(response, buffer: buffer)
 
       do {
         return try self.makeDecoder().decode(Response.self, from: Data(buffer: buffer))
@@ -271,10 +272,10 @@ struct AuthHTTPClient: Sendable {
     return encoder
   }
 
-  private func ensureSuccess(_ response: HTTPClientResponse) throws {
+  private func ensureSuccess(_ response: HTTPClientResponse, buffer: ByteBuffer) throws {
     let statusCode = response.status.code
     guard (200...299).contains(statusCode) else {
-      throw AuthHTTPError.unsuccessfulResponse(response: response)
+      throw AuthHTTPError.unsuccessfulResponse(response: response, data: Data(buffer: buffer))
     }
   }
 }

@@ -25,17 +25,34 @@ import Testing
 
   @Test func unsuccessfulResponseAccessors() {
     let bodyString = "Forbidden Access"
+    let bodyData = Data(bodyString.utf8)
     let response = HTTPClientResponse(
       version: .http2,
       status: .forbidden,
       headers: .init([("X-Custom-Header", "CustomValue")]),
-      body: .bytes(.init(data: Data(bodyString.utf8))),
+      body: .bytes(.init(data: bodyData)),
     )
-    let error = AuthHTTPError.unsuccessfulResponse(response: response)
+    let error = AuthHTTPError.unsuccessfulResponse(response: response, data: bodyData)
 
     #expect(error.statusCode == 403)
+    #expect(error.body == bodyString)
+    #expect(error.bodyData == bodyData)
     #expect(error.headers?["X-Custom-Header"] == "CustomValue")
     #expect(error.urlError == nil)
+  }
+
+  @Test func unsuccessfulResponseInvalidUTF8Body() {
+    let invalidUTF8Data = Data([0xFF, 0xFE, 0xFD])
+    let response = HTTPClientResponse(
+      version: .http2,
+      status: .badRequest,
+      body: .bytes(.init(data: invalidUTF8Data)),
+    )
+    let error = AuthHTTPError.unsuccessfulResponse(response: response, data: invalidUTF8Data)
+
+    #expect(error.statusCode == 400)
+    #expect(error.body == nil)
+    #expect(error.bodyData == invalidUTF8Data)
   }
 
   @Test func transportErrorAccessors() {
