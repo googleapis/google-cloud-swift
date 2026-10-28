@@ -47,7 +47,7 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
     }
 
     // Prevent unbounded recursion when `source_credentials` is itself an `impersonated_service_account`.
-    // Chained service account impersonation is represented via the `delegates` array instead.
+    // Chained service account impersonation should be represented via the `delegates` array instead.
     guard sourceType != Self.type else {
       throw CredentialsError.parseError(
         "Nested impersonated_service_account in source_credentials is not allowed"
