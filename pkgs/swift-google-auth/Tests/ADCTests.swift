@@ -311,7 +311,7 @@ import Testing
     #expect(impersonated.universeDomain == "googleapis.com")
   }
 
-  @Test func rejectsNestedImpersonatedServiceAccountInSourceCredentials() throws {
+  @Test func resolvesNestedImpersonatedServiceAccountInSourceCredentials() throws {
     let json = """
       {
         "type": "impersonated_service_account",
@@ -333,14 +333,18 @@ import Testing
     try Data(json.utf8).write(to: tempFile)
     defer { try? FileManager.default.removeItem(at: tempFile) }
 
-    let error = #expect(throws: CredentialsError.self) {
-      _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
-    }
-    guard case let .parseError(message) = error else {
-      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+    let provider = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
+    guard let outer = provider as? ImpersonatedCredentials else {
+      Issue.record("Expected outer ImpersonatedCredentials, got \(type(of: provider))")
       return
     }
-    #expect(message.contains("Nested impersonated_service_account"))
+    guard let inner = outer.provider.sourceCredentials as? ImpersonatedCredentials else {
+      Issue.record(
+        "Expected inner ImpersonatedCredentials, got \(type(of: outer.provider.sourceCredentials))"
+      )
+      return
+    }
+    #expect(inner.provider.sourceCredentials is GoogleAuth.UserCredentials)
   }
 
   @Test func rejectsUnsupportedSourceCredentialsTypeInImpersonatedADC() throws {
