@@ -266,7 +266,9 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       isRetryable: { _ in true }  // Transient errors
     )
 
-    // Wait for the background loop to fetch the initial token
+    // Trigger initial lazy token fetch and wait for background loop to enter sleep
+    let initial = try await cache.token()
+    #expect(initial.accessToken == "valid")
     await clock.sleeperWaiting()
 
     // Configure a transient error
@@ -304,7 +306,9 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       isRetryable: { _ in false }  // Treat all errors as permanent
     )
 
-    // Wait for the background loop to fetch the initial token and sleep
+    // Trigger initial lazy token fetch and wait for background loop to sleep
+    let initial = try await cache.token()
+    #expect(initial.accessToken == "valid")
     await clock.sleeperWaiting()
 
     // Configure a permanent error for the refresh
@@ -351,6 +355,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       isRetryable: { _ in false }
     )
 
+    _ = try await cache.token()
     await clock.sleeperWaiting()
 
     await provider.configure(token: nil, error: URLError(.badServerResponse))
@@ -405,11 +410,11 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       shortRefreshSlack: .seconds(1)  // Poll every 1s if stale!
     )
 
-    // Wait for the first fetch to complete and loop to sleep
-    await clock.sleeperWaiting()
-
     let token1 = try await cache.token()
     #expect(token1.accessToken == "stale-token")
+
+    // Wait for the background loop to enter sleep
+    await clock.sleeperWaiting()
 
     let freshToken = Token(
       accessToken: "fresh-token", expirationDate: timeSource.now.addingTimeInterval(1000))
@@ -446,12 +451,12 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       shortRefreshSlack: .milliseconds(100)
     )
 
-    // Wait for the first fetch to complete and loop to sleep (1.0s - 0.5s = 0.5s)
-    await clock.sleeperWaiting()
-    #expect(await provider.count == 1)
-
     let token1 = try await cache.token()
     #expect(token1.accessToken == "initial-token")
+
+    // Wait for the background loop to sleep (1.0s - 0.5s = 0.5s)
+    await clock.sleeperWaiting()
+    #expect(await provider.count == 1)
 
     let freshToken = Token(
       accessToken: "fresh-token", expirationDate: timeSource.now.addingTimeInterval(1000))
@@ -752,7 +757,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(debugDescription.contains("TokenCache"))
   }
 
-  @Test func backgroundLoopTriggersFetchOnStartup() async throws {
+  @Test func initDoesNotTriggerFetchBeforeTokenIsCalled() async throws {
     let provider = MockTokenProvider()
     let clock = TestClock()
     let expectedToken = Token(
@@ -765,10 +770,87 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       shortRefreshSlack: .seconds(1)
     )
 
-    // Wait for the first fetch to start deterministically!
-    await provider.fetcherWaiting()
+    // Give any potential unstructured task an opportunity to run
+    await Task.yield()
+
+    // Verify no fetch or background sleep occurs until token() is called
+    #expect(await provider.count == 0)
+    #expect(!clock.hasSleepers)
+
+    let token = try await cache.token()
+    #expect(token.accessToken == "token-1")
     #expect(await provider.count == 1)
+    await clock.sleeperWaiting()
+    #expect(clock.hasSleepers)
     _ = cache  // Keep it alive!
+  }
+
+  @Test func initialTransientFailureStartsBackgroundRetryLoop() async throws {
+    let provider = MockTokenProvider()
+    let clock = TestClock()
+    let now = Date()
+    let timeSource = MockTimeSource(currentDate: now)
+
+    await provider.configure(token: nil, error: URLError(.timedOut))
+
+    let cache = TokenCache(
+      provider: provider,
+      clock: clock,
+      timeSource: timeSource,
+      normalRefreshSlack: .seconds(2),
+      shortRefreshSlack: .seconds(1),
+      isRetryable: { _ in true }
+    )
+
+    await #expect(throws: URLError.self) {
+      try await cache.token()
+    }
+    #expect(await provider.count == 1)
+
+    // Wait for the background loop to sleep for shortRefreshSlack (1s)
+    await clock.sleeperWaiting()
+    #expect(clock.hasSleepers)
+
+    let recoveredToken = Token(
+      accessToken: "recovered-token", expirationDate: now.addingTimeInterval(1000))
+    await provider.configure(token: recoveredToken, error: nil)
+
+    // Advance clock to wake the background retry
+    timeSource.advance(by: 1.0)
+    clock.advance(by: .seconds(1))
+
+    await clock.sleeperWaiting()
+    #expect(await provider.count == 2)
+
+    let token = try await cache.token()
+    #expect(token.accessToken == "recovered-token")
+  }
+
+  @Test func cancellationErrorDoesNotPoisonPermanentError() async throws {
+    let provider = MockTokenProvider()
+    let clock = TestClock()
+    await provider.configure(token: nil, error: CancellationError())
+
+    let cache = TokenCache(
+      provider: provider,
+      clock: clock,
+      isRetryable: { _ in false }
+    )
+
+    await #expect(throws: CancellationError.self) {
+      try await cache.token()
+    }
+    #expect(await provider.count == 1)
+    #expect(!clock.hasSleepers)
+
+    // Subsequent call after CancellationError should retry rather than throwing a cached permanent error
+    let validToken = Token(
+      accessToken: "valid-after-cancel", expirationDate: Date().addingTimeInterval(1000))
+    await provider.configure(token: validToken, error: nil)
+
+    let token = try await cache.token()
+    #expect(token.accessToken == "valid-after-cancel")
+    #expect(await provider.count == 2)
   }
 
   @Test func tokenThrowsPermanentError() async throws {
@@ -785,12 +867,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       isRetryable: { _ in false }  // Treat all errors as permanent
     )
 
-    // Wait for the background loop to start the fetch deterministically
-    await provider.fetcherWaiting()
-
-    // The fetch should fail immediately, setting permanentError and terminating loop.
-
-    // Calling token() should throw the permanent error
+    // Calling token() triggers the first fetch, which fails permanently
     await #expect {
       try await cache.token()
     } throws: { error in
@@ -798,7 +875,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       return urlError.code == .userAuthenticationRequired
     }
 
-    // Verify count is exactly 1 (the background loop's startup fetch)
+    // Verify count is exactly 1
     #expect(await provider.count == 1)
 
     // Call it again, should still throw the SAME error without calling provider
@@ -830,7 +907,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       shortRefreshSlack: .seconds(1)
     )
 
-    // Wait for the first fetch to complete and loop to sleep
+    // Trigger initial lazy token fetch and wait for loop to sleep
+    _ = try await cache.token()
     await clock.sleeperWaiting()
 
     // Now background loop should calculate sleep: 5.0 - 2.0 = 3.0 seconds
@@ -876,7 +954,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       shortRefreshSlack: .seconds(0.5)
     )
 
-    // Wait for the first fetch to complete and loop to sleep
+    // Trigger initial lazy token fetch and wait for loop to sleep
+    _ = try await cache.token()
     await clock.sleeperWaiting()
 
     // Advance clock by 7.9 seconds. Token is still valid and NOT stale (expires in 2.1s).
@@ -909,7 +988,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       isRetryable: { _ in false }  // Treat all errors as permanent
     )
 
-    // 2. Wait for the first fetch to complete and background task to enter sleep (sleep duration: 8s)
+    // 2. Trigger initial lazy token fetch and wait for background task to enter sleep (sleep duration: 8s)
+    _ = try await cache.token()
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
 
@@ -967,9 +1047,10 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       timeSource: timeSource
     )
 
-    // Wait for the initial fetch to complete and the background refresh loop to enter sleep.
-    // At this point the inner closure in the loop has released its strong reference to `self`,
+    // Trigger initial lazy token fetch and wait for the background refresh loop to enter sleep.
+    // At this point the loop is suspended in `clock.sleep` without a strong reference to `self`,
     // so `cache` is the only remaining strong reference.
+    _ = try await cache?.token()
     await clock.sleeperWaiting()
     #expect(clock.hasSleepers)
     #expect(cache != nil)

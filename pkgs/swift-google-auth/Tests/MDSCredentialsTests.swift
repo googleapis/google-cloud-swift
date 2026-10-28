@@ -761,6 +761,15 @@ import Testing
     )
   }
 
+  @Test func mdsCredentialsInitDoesNotMakeNetworkRequests() async throws {
+    let mock = MockHTTPClient([])
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(client: client, environment: [:])
+
+    await Task.yield()
+    _ = provider
+  }
+
   static func checkRequest(
     _ request: HTTPClientRequest, sourceLocation: SourceLocation = #_sourceLocation
   ) {

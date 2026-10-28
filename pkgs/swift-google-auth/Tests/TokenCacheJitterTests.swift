@@ -145,7 +145,8 @@ private actor JitterMockTokenProvider: TokenProvider {
       jitter: { range in range.upperBound }
     )
 
-    // Wait for initial fetch to finish and background loop to sleep
+    // Trigger initial lazy fetch and wait for background loop to sleep
+    _ = try await cache.token()
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
 
@@ -193,6 +194,7 @@ private actor JitterMockTokenProvider: TokenProvider {
       jitter: { range in range.lowerBound }
     )
 
+    _ = try await cache.token()
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
 
@@ -232,6 +234,7 @@ private actor JitterMockTokenProvider: TokenProvider {
       jitter: { _ in .seconds(100) }
     )
 
+    _ = try await cache.token()
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
 
@@ -275,6 +278,7 @@ private actor JitterMockTokenProvider: TokenProvider {
       jitter: TokenCache<TestClock>.defaultJitter
     )
 
+    _ = try await cache.token()
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
 
@@ -325,6 +329,7 @@ private actor JitterMockTokenProvider: TokenProvider {
       }
     )
 
+    _ = try await cache.token()
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
     let ranges = recordedRanges.withLock { $0 }
@@ -360,6 +365,7 @@ private actor JitterMockTokenProvider: TokenProvider {
       }
     )
 
+    _ = try await cache.token()
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
     let ranges = recordedRanges.withLock { $0 }
@@ -396,6 +402,7 @@ private actor JitterMockTokenProvider: TokenProvider {
       isRetryable: { _ in true }
     )
 
+    _ = try await cache.token()
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
 
@@ -437,6 +444,7 @@ private actor JitterMockTokenProvider: TokenProvider {
       jitter: nil  // Explicit nil jitter
     )
 
+    _ = try await cache.token()
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
 

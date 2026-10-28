@@ -268,9 +268,9 @@ conforming to `TokenProvider`.
 To align with the Rust implementation, the `TokenCache` uses a **proactive
 background-refresh model**:
 
--   **Background Refresh Loop**: Upon initialization, the cache spawns a
-    persistent background `Task` that runs an infinite loop to actively maintain
-    token validity.
+-   **Background Refresh Loop**: Upon the first `token()` call, the cache
+    lazily spawns a persistent background `Task` that runs an infinite loop to
+    actively maintain token validity.
 -   **Refresh Logic**:
     -   If the token has an expiration and it is **more than 4 minutes** in the
         future, the background task sleeps until 4 minutes before expiration

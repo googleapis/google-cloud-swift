@@ -23,19 +23,9 @@ import Testing
 typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
 @Suite struct UserCredentialsTest {
-  @Test func userProviderInitialization() async throws {
+  @Test func userProviderInitializationDoesNotMakeNetworkRequests() async throws {
     let targetURL = URL(string: "https://mock.example.com")!
-    let mock = MockHTTPClient([
-      { (request: HTTPClientRequest) in
-        #expect(request.url == targetURL.absoluteString)
-        return HTTPClientResponse(
-          version: .http2,
-          status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
-          body: .bytes(.init(data: Data("{}".utf8))),
-        )
-      }
-    ])
+    let mock = MockHTTPClient([])
 
     let mockData = UserAccountData(
       type: "authorized_user",
@@ -46,16 +36,18 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       quotaProjectId: "mock-project"
     )
 
+    let clock = TestClock()
     let provider = try UserCredentials(
       user: mockData,
       universeDomain: defaultUniverseDomain,
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: .defaultConfiguration,
-      clock: TestClock()
+      clock: clock
     )
 
-    // Trigger headers to ensure background task is resolved or handled
-    _ = try? await provider.headers()
+    await Task.yield()
+    #expect(!clock.hasSleepers)
+    _ = provider
   }
 
   @Test func credentialProviderWithTokenUri() async throws {
@@ -630,23 +622,13 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       clock: clock
     )
 
-    // Give the background task a moment to run and fail (1st attempt)
-    try? await Task.sleep(for: .milliseconds(100))
-
-    // If it is retryable, it should have registered a sleeper.
-    #expect(clock.hasSleepers == true)
-
-    if clock.hasSleepers {
-      // Advance clock to trigger retry (2nd attempt, should succeed)
-      clock.advance(by: .seconds(11))
-      // Wait for the async retry attempt to complete and update cache
-      try? await Task.sleep(for: .milliseconds(100))
-    }
-
-    // Now headers() should succeed using the cached token
+    // Calling headers() triggers the lazy token fetch, which retries the transient timeout and succeeds
     let headers = try await source.headers()
     #expect(headers["Authorization"] == "Bearer recovered-timeout-token")
     #expect(attempts.getCount() == 2)
+
+    await clock.sleeperWaiting()
+    #expect(clock.hasSleepers == true)
   }
 
   @Test func headersIncludesQuotaProjectFromUserAccountData() async throws {
