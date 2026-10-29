@@ -31,6 +31,10 @@ enum AuthHTTPError: Error, Sendable {
   case transportError(URLError)
 
   /// A decoding error occurred while parsing the response payload into the expected data model.
+  ///
+  /// Thrown after HTTP 200–299 status validation succeeds. Raw response bytes are intentionally omitted
+  /// from this case so partially-malformed 2xx token responses cannot expose live `access_token` or
+  /// `id_token` values in error messages.
   case decodingError(error: any Error & Sendable)
 
   /// An unexpected or uncategorized error occurred during request execution.
@@ -137,18 +141,46 @@ extension AuthHTTPError {
   }
 }
 
+// MARK: - Error Formatting
+
+// `AuthHTTPError` is `internal` to `GoogleAuth`, but token providers wrap it as `underlyingError`
+// inside `public enum CredentialsError.cannotFetchToken(message:underlyingError:)`. External callers
+// cannot downcast `underlyingError`, so `CredentialsError.description` and `debugDescription` rely on
+// these conformances instead of Swift's default enum reflection (which formats `Data` as `"<N> bytes"`
+// and dumps `HTTPClientResponse` internals).
+//
+// Security note: Neither `description` nor `debugDescription` includes HTTP response headers or raw
+// response bodies, which could carry session cookies, auth headers, or credentials echoed by proxies
+// or misconfigured endpoints. Instead, `.unsuccessfulResponse` decodes only allowlisted fields from
+// standard OAuth 2.0 / STS and Google Cloud `google.rpc.Status` JSON error responses, ignoring all
+// other fields and non-JSON payloads.
 extension AuthHTTPError: CustomStringConvertible {
-  /// Maximum number of response body bytes formatted in error descriptions.
-  static let maxBodyPreviewBytes = 1024
+  /// Maximum UTF-8 byte length of a decoded error code or message included in formatted errors.
+  static let maxErrorMessageBytes = 1024
+
+  /// Upper bound on payload size considered when attempting structured JSON error extraction.
+  ///
+  /// Standard OAuth 2.0 and Google RPC error payloads are well under a few kilobytes; skipping larger
+  /// payloads avoids unnecessary JSON parsing work on large HTML error pages.
+  static let maxStructuredErrorPayloadBytes = 16 * 1024
 
   var description: String {
     switch self {
     case .unsuccessfulResponse(let response, let data):
-      if data.isEmpty {
-        return "HTTP status \(response.status.code)"
+      let statusCode = response.status.code
+      guard let detail = Self.structuredErrorDetail(from: data) else {
+        return "HTTP status \(statusCode)"
       }
-      let snippet = String(decoding: data.prefix(Self.maxBodyPreviewBytes), as: UTF8.self)
-      return "HTTP status \(response.status.code): \(snippet)"
+      switch (detail.code, detail.message) {
+      case (let code?, let message?):
+        return "HTTP status \(statusCode) (\(code)): \(message)"
+      case (let code?, nil):
+        return "HTTP status \(statusCode) (\(code))"
+      case (nil, let message?):
+        return "HTTP status \(statusCode): \(message)"
+      case (nil, nil):
+        return "HTTP status \(statusCode)"
+      }
     case .transportError(let error):
       return "Transport error: \(error)"
     case .decodingError(let error):
@@ -165,11 +197,14 @@ extension AuthHTTPError: CustomDebugStringConvertible {
   var debugDescription: String {
     switch self {
     case .unsuccessfulResponse(let response, let data):
-      var desc =
-        "AuthHTTPError.unsuccessfulResponse(statusCode: \(response.status.code), headers: \(response.headers)"
-      if !data.isEmpty {
-        let snippet = String(decoding: data.prefix(Self.maxBodyPreviewBytes), as: UTF8.self)
-        desc += ", body: \(String(reflecting: snippet))"
+      var desc = "AuthHTTPError.unsuccessfulResponse(statusCode: \(response.status.code)"
+      if let detail = Self.structuredErrorDetail(from: data) {
+        if let code = detail.code {
+          desc += ", error: \(String(reflecting: code))"
+        }
+        if let message = detail.message {
+          desc += ", message: \(String(reflecting: message))"
+        }
       }
       desc += ")"
       return desc
@@ -182,5 +217,93 @@ extension AuthHTTPError: CustomDebugStringConvertible {
     case .invalidUTF8Response:
       return "AuthHTTPError.invalidUTF8Response: \(description)"
     }
+  }
+}
+
+extension AuthHTTPError {
+  /// Allowlisted diagnostic fields extracted from a structured JSON error payload.
+  private struct StructuredErrorDetail {
+    let code: String?
+    let message: String?
+  }
+
+  /// RFC 6749 §5.2 OAuth 2.0 and RFC 8693 §2.2.2 STS error response schema
+  /// (returned by `oauth2.googleapis.com/token` and `sts.googleapis.com/v1/token`).
+  private struct OAuthErrorPayload: Decodable {
+    let error: String?
+    let errorDescription: String?
+
+    enum CodingKeys: String, CodingKey {
+      case error
+      case errorDescription = "error_description"
+    }
+  }
+
+  /// Google Cloud REST error envelope (`google.rpc.Status`, returned by IAM Credentials and Google APIs).
+  private struct GoogleRPCErrorEnvelope: Decodable {
+    struct StatusBody: Decodable {
+      let status: String?
+      let message: String?
+    }
+
+    let error: StatusBody
+  }
+
+  /// Attempts to extract allowlisted error code and message strings from known Google auth JSON
+  /// error schemas, returning `nil` for empty, oversized, non-JSON, or unrecognized payloads.
+  private static func structuredErrorDetail(from data: Data) -> StructuredErrorDetail? {
+    guard !data.isEmpty, data.count <= Self.maxStructuredErrorPayloadBytes else {
+      return nil
+    }
+
+    let decoder = JSONDecoder()
+
+    if let oauth = try? decoder.decode(OAuthErrorPayload.self, from: data) {
+      let code = Self.normalizedErrorField(oauth.error)
+      let message = Self.normalizedErrorField(oauth.errorDescription)
+      if code != nil || message != nil {
+        return StructuredErrorDetail(code: code, message: message)
+      }
+    }
+
+    if let rpc = try? decoder.decode(GoogleRPCErrorEnvelope.self, from: data) {
+      let code = Self.normalizedErrorField(rpc.error.status)
+      let message = Self.normalizedErrorField(rpc.error.message)
+      if code != nil || message != nil {
+        return StructuredErrorDetail(code: code, message: message)
+      }
+    }
+
+    return nil
+  }
+
+  /// Trims surrounding whitespace and bounds `value` to `maxErrorMessageBytes` UTF-8 bytes,
+  /// returning `nil` if the trimmed string is empty.
+  private static func normalizedErrorField(_ value: String?) -> String? {
+    guard let trimmed = value?.trimmingCharacters(in: .whitespacesAndNewlines), !trimmed.isEmpty
+    else {
+      return nil
+    }
+    return Self.truncateUTF8(trimmed, maxBytes: Self.maxErrorMessageBytes)
+  }
+
+  /// Truncates `string` to at most `maxBytes` UTF-8 bytes without splitting multi-byte `Character`
+  /// clusters.
+  private static func truncateUTF8(_ string: String, maxBytes: Int) -> String {
+    if string.utf8.count <= maxBytes {
+      return string
+    }
+    var endIndex = string.startIndex
+    var byteCount = 0
+    for index in string.indices {
+      let nextIndex = string.index(after: index)
+      let charBytes = string.utf8.distance(from: index, to: nextIndex)
+      if byteCount + charBytes > maxBytes {
+        break
+      }
+      byteCount += charBytes
+      endIndex = nextIndex
+    }
+    return String(string[..<endIndex])
   }
 }
