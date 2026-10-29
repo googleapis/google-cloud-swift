@@ -75,13 +75,13 @@ where C.Instant.Duration == Duration {
     if let ud = universeDomain {
       if ud != defaultUniverseDomain {
         throw CredentialsError.notSupported(
-          "User accounts are not supported in custom universes: \(ud)")
+          "User accounts are only supported in the default (googleapis.com) universe: \(ud)")
       }
     }
     if let userUD = nonEmpty(user.universeDomain) {
       if userUD != defaultUniverseDomain {
         throw CredentialsError.notSupported(
-          "User accounts are not supported in custom universes: \(userUD)")
+          "User accounts are only supported in the default (googleapis.com) universe: \(userUD)")
       }
     }
     self.quotaProjectID = quotaProjectID ?? user.quotaProjectId

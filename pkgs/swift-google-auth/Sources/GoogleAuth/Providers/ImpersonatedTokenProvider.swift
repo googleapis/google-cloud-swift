@@ -76,7 +76,7 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
       )
     }
 
-    let endpointURL: URL
+    let iamEndpointURL: URL
     if universeDomainOverride == nil,
       let targetResourceName,
       targetUniverse != defaultUniverseDomain
@@ -98,9 +98,9 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
           )
         )
       }
-      endpointURL = resolvedURL
+      iamEndpointURL = resolvedURL
     } else {
-      endpointURL = iamEndpointURL
+      iamEndpointURL = self.iamEndpointURL
     }
 
     let sourceAuthHeaders: AuthHeaders
@@ -134,7 +134,7 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
         isRetryable: AuthHTTPError.isRetryable
       ) {
         try await httpClient.post(
-          url: endpointURL,
+          url: iamEndpointURL,
           body: requestBody,
           headers: requestHeaders
         )

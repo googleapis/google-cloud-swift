@@ -568,7 +568,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     } throws: { error in
       guard let credError = error as? CredentialsError else { return false }
       if case let .notSupported(message) = credError {
-        return message.contains("custom universes: custom.com")
+        return message.contains("default (googleapis.com) universe: custom.com")
       }
       return false
     }

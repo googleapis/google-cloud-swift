@@ -193,7 +193,7 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
     let effectiveUniverse = universeDomain ?? defaultUniverseDomain
     if effectiveUniverse != defaultUniverseDomain && sourceCredentials is UserCredentials {
       throw CredentialsError.notSupported(
-        "User accounts are not supported in custom universes: \(effectiveUniverse)"
+        "User accounts are only supported in the default (googleapis.com) universe: \(effectiveUniverse)"
       )
     }
     let lowerHost = host.lowercased()
