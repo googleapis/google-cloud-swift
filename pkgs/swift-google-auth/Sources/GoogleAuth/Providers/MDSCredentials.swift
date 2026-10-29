@@ -152,7 +152,6 @@ struct MDSCredentials: CredentialsProvider, Sendable {
   /// `/computeMetadata/v1/universe/universe-domain` on the metadata server.
   func universeDomain() async throws -> String {
     if let override = self.universeDomainOverride {
-      try validateUniverseDomain(override)
       return override
     }
     return try await self.universeDomainCache.get(using: self.provider)

@@ -70,12 +70,8 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
       throw CredentialsError.parseError(
         "Failed to parse Service Account key JSON: \(error.localizedDescription)")
     }
-    if let universeDomain {
-      try validateUniverseDomain(universeDomain)
-    }
     let effectiveUniverse =
       universeDomain ?? nonEmpty(key.universeDomain) ?? defaultUniverseDomain
-    try validateUniverseDomain(effectiveUniverse)
     let provider = try ServiceAccountTokenProvider(key: key, accessSpecifier: accessSpecifier)
 
     self.tokenProvider = TokenCache(

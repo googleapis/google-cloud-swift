@@ -73,14 +73,12 @@ where C.Instant.Duration == Duration {
     clock: C
   ) throws {
     if let ud = universeDomain {
-      try validateUniverseDomain(ud)
       if ud != defaultUniverseDomain {
         throw CredentialsError.notSupported(
           "User accounts are not supported in custom universes: \(ud)")
       }
     }
     if let userUD = nonEmpty(user.universeDomain) {
-      try validateUniverseDomain(userUD)
       if userUD != defaultUniverseDomain {
         throw CredentialsError.notSupported(
           "User accounts are not supported in custom universes: \(userUD)")

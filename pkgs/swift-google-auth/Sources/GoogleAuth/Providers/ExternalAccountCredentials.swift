@@ -236,11 +236,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     }
 
     let effectiveScopes = scopes.isEmpty ? [ExternalAccountConfig.defaultScope] : scopes
-    if let universeDomain {
-      try validateUniverseDomain(universeDomain)
-    }
     let effectiveUniverse = universeDomain ?? defaultUniverseDomain
-    try validateUniverseDomain(effectiveUniverse)
 
     self.subjectTokenProvider = subjectTokenProvider
     self.audience = audience

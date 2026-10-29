@@ -55,13 +55,7 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
       )
     }
 
-    if let universeDomain {
-      try validateUniverseDomain(universeDomain)
-    }
     let payloadUniverse = nonEmpty(payload.universeDomain)
-    if let payloadUniverse {
-      try validateUniverseDomain(payloadUniverse)
-    }
     if let universeDomain, let payloadUniverse, universeDomain != payloadUniverse {
       throw CredentialsError.parseError(
         "The configured universe_domain (\(universeDomain)) does not match the impersonated_service_account universe_domain (\(payloadUniverse))."
@@ -72,7 +66,6 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
     if case let .string(sourceUniverse)? = payload.sourceCredentials["universe_domain"],
       let nonEmptySourceUniverse = nonEmpty(sourceUniverse)
     {
-      try validateUniverseDomain(nonEmptySourceUniverse)
       if nonEmptySourceUniverse != effectiveUniverseDomain {
         throw CredentialsError.parseError(
           "The universe_domain in source_credentials (\(nonEmptySourceUniverse)) does not match the impersonated_service_account universe_domain (\(effectiveUniverseDomain))."
@@ -139,9 +132,6 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
     httpClient: AuthHTTPClient = AuthHTTPClient(),
     retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
-    if let universeDomain {
-      try validateUniverseDomain(universeDomain)
-    }
     let effectiveUniverse = universeDomain ?? defaultUniverseDomain
     let resourceName = try Self.normalizeServiceAccountResourceName(targetPrincipal)
     let urlString =
@@ -200,9 +190,6 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
     }
     let lifetimeDuration = try WKTDuration(seconds: lifetime.components.seconds)
 
-    if let universeDomain {
-      try validateUniverseDomain(universeDomain)
-    }
     let effectiveUniverse = universeDomain ?? defaultUniverseDomain
     if effectiveUniverse != defaultUniverseDomain && sourceCredentials is UserCredentials {
       throw CredentialsError.notSupported(
@@ -210,7 +197,7 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
       )
     }
     let lowerHost = host.lowercased()
-    if targetResourceName == nil, lowerHost.hasPrefix("iamcredentials.") {
+    if lowerHost.hasPrefix("iamcredentials.") {
       let urlUniverse = String(host.dropFirst("iamcredentials.".count))
       if urlUniverse != effectiveUniverse {
         throw CredentialsError.parseError(

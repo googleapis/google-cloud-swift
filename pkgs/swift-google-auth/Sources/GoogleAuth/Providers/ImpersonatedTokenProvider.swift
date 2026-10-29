@@ -81,19 +81,15 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
       let targetResourceName,
       targetUniverse != defaultUniverseDomain
     {
-      do {
-        try validateUniverseDomain(targetUniverse)
-      } catch {
-        throw CredentialsError.cannotFetchToken(
-          message: "Invalid universe domain '\(targetUniverse)' for service account impersonation.",
-          underlyingError: error
-        )
-      }
+      let urlString =
+        "https://iamcredentials.\(targetUniverse)/v1/\(targetResourceName):generateAccessToken"
       guard
-        let resolvedURL = URL(
-          string:
-            "https://iamcredentials.\(targetUniverse)/v1/\(targetResourceName):generateAccessToken"
-        )
+        let resolvedURL = URL(string: urlString),
+        resolvedURL.host == "iamcredentials.\(targetUniverse)",
+        resolvedURL.user == nil,
+        resolvedURL.password == nil,
+        resolvedURL.query == nil,
+        resolvedURL.fragment == nil
       else {
         throw CredentialsError.cannotFetchToken(
           message: "Invalid IAM endpoint URL for universe domain '\(targetUniverse)'.",

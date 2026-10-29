@@ -59,9 +59,6 @@ enum ADC: Sendable {
     _ = isInitialized
     let quotaProject = environment["GOOGLE_CLOUD_QUOTA_PROJECT"] ?? quotaProjectID
     let resolvedUniverseDomain = nonEmpty(universeDomain)
-    if let resolvedUniverseDomain {
-      try validateUniverseDomain(resolvedUniverseDomain)
-    }
 
     let contents = try loadADC(environment: environment)
     switch contents {

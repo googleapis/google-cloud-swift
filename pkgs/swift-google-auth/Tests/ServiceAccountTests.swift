@@ -321,23 +321,5 @@ struct ServiceAccountTests {
       """.utf8)
     let credsDefault = try ServiceAccountCredentials(keyJSON: keyWithoutUniverse)
     #expect(try await credsDefault.universeDomain() == "googleapis.com")
-
-    for invalid in [
-      "",
-      "   ",
-      ".",
-      "..",
-      ".googleapis.com",
-      "googleapis.com.",
-      "-googleapis.com",
-      "googleapis-.com",
-      "invalid/domain",
-      "evil.com%23",
-    ] {
-      #expect(throws: CredentialsError.self) {
-        _ = try ServiceAccountCredentials(
-          keyJSON: keyWithUniverse, universeDomain: invalid)
-      }
-    }
   }
 }

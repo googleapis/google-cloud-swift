@@ -23,43 +23,6 @@ public import Foundation
 /// See [Google Cloud Universes](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones).
 let defaultUniverseDomain = "googleapis.com"
 
-/// Validates that a universe domain string is a well-formed RFC 1123 hostname and does not contain
-/// path, query, fragment, port, userinfo, whitespace, or control characters.
-func validateUniverseDomain(_ domain: String) throws {
-  guard isValidUniverseDomainHostname(domain) else {
-    throw CredentialsError.parseError(
-      "Invalid universe_domain: '\(domain)'"
-    )
-  }
-}
-
-private func isValidUniverseDomainHostname(_ domain: String) -> Bool {
-  guard !domain.isEmpty, domain.utf8.count <= 253 else {
-    return false
-  }
-  let labels = domain.split(separator: ".", omittingEmptySubsequences: false)
-  for label in labels {
-    guard
-      !label.isEmpty,
-      label.utf8.count <= 63,
-      label.first != "-",
-      label.last != "-"
-    else {
-      return false
-    }
-    for byte in label.utf8 {
-      let isAlphaNumeric =
-        (byte >= UInt8(ascii: "a") && byte <= UInt8(ascii: "z"))
-        || (byte >= UInt8(ascii: "A") && byte <= UInt8(ascii: "Z"))
-        || (byte >= UInt8(ascii: "0") && byte <= UInt8(ascii: "9"))
-      if !isAlphaNumeric && byte != UInt8(ascii: "-") {
-        return false
-      }
-    }
-  }
-  return true
-}
-
 func nonEmpty(_ value: String?) -> String? {
   guard let value = value, !value.isEmpty else {
     return nil

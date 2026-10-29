@@ -286,7 +286,6 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
         if trimmed.isEmpty {
           return defaultUniverseDomain
         }
-        try validateUniverseDomain(trimmed)
         return trimmed
       } catch let error as AuthHTTPError where error.statusCode == 404 {
         return defaultUniverseDomain

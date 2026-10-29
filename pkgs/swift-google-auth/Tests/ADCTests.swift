@@ -491,17 +491,13 @@ import Testing
     #expect(message.contains("my-universe.com"))
   }
 
-  @Test func propagatesAndValidatesUniverseDomainToMDS() async throws {
+  @Test func propagatesUniverseDomainToMDS() async throws {
     let provider = try ADC.resolve(universeDomain: "custom.universe.com", environment: [:])
     guard let mdsCreds = provider as? MDSCredentials else {
       Issue.record("Expected MDSCredentials")
       return
     }
     #expect(try await mdsCreds.universeDomain() == "custom.universe.com")
-
-    #expect(throws: CredentialsError.self) {
-      _ = try ADC.resolve(universeDomain: "invalid/domain", environment: [:])
-    }
   }
 
   @Test func rejectsConflictingSourceUniverseDomainInImpersonatedADC() throws {
