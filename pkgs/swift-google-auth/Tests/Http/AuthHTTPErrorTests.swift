@@ -361,10 +361,12 @@ import Testing
     )
     #expect(String(reflecting: transportError as any Error) == transportError.debugDescription)
 
+    // Match the `any Error & Sendable` existential stored by `.decodingError` and `.unknown` so
+    // Darwin `NSError` bridging formats `URLError` identically on macOS and Linux.
     struct SampleDecodeError: Error, Sendable, CustomStringConvertible {
       var description: String { "missing access_token" }
     }
-    let sampleDecodeError = SampleDecodeError()
+    let sampleDecodeError: any Error & Sendable = SampleDecodeError()
     let decodingError = AuthHTTPError.decodingError(error: sampleDecodeError)
     #expect(decodingError.description == "Response decoding error: missing access_token")
     #expect(
@@ -373,7 +375,7 @@ import Testing
     )
     #expect(String(reflecting: decodingError as any Error) == decodingError.debugDescription)
 
-    let unknownUnderlying = URLError(.unknown)
+    let unknownUnderlying: any Error & Sendable = URLError(.unknown)
     let unknownError = AuthHTTPError.unknown(unknownUnderlying)
     #expect(unknownError.description == "Unexpected HTTP error: \(unknownUnderlying)")
     #expect(
