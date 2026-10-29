@@ -273,8 +273,8 @@ import Testing
     )
   }
 
-  @Test func unsuccessfulResponseOmitsRawBodyHeadersAndEchoedCredentials() {
-    // 1. Structured JSON error that also echoes sensitive credential fields alongside headers:
+  @Test func unsuccessfulResponseOmitsEchoedJSONCredentialsAndHeaders() {
+    // Structured JSON error that also echoes sensitive credential fields alongside headers:
     // only allowlisted `error` and `error_description` fields may appear.
     let fakeAccessToken = "ya29" + ".a0FakeAccessTokenForTesting"
     let fakeRefreshToken = "1//" + "0gFakeRefreshTokenForTesting"
@@ -310,28 +310,26 @@ import Testing
       #expect(!formatted.contains("session-cookie-secret"))
       #expect(!formatted.contains("header-bearer-secret"))
     }
+  }
 
-    // 2. Non-JSON, binary, unrecognized JSON, and oversized payloads fall back to HTTP status only.
-    let oversizedDescription = String(
-      repeating: "x", count: AuthHTTPError.maxStructuredErrorPayloadBytes)
-    let nonStandardPayloads: [Data] = [
-      Data("<html><body>Proxy error echoing subject_token=secret-123</body></html>".utf8),
-      Data("grant_type=token-exchange&client_secret=form-secret-456".utf8),
-      Data(#"{"unexpected_field":"unrecognized-json-secret-789"}"#.utf8),
-      Data([0xFF, 0xFE, 0xFD]),
-      Data(#"{"error":"invalid_request","error_description":"\#(oversizedDescription)"}"#.utf8),
-    ]
-
-    for payload in nonStandardPayloads {
-      let response = HTTPClientResponse(
-        version: .http2,
-        status: .badGateway,
-        body: .bytes(.init(data: payload)),
-      )
-      let error = AuthHTTPError.unsuccessfulResponse(response: response, data: payload)
-      #expect(error.description == "HTTP status 502")
-      #expect(error.debugDescription == "AuthHTTPError.unsuccessfulResponse(statusCode: 502)")
-    }
+  @Test(arguments: [
+    Data("<html><body>Proxy error echoing subject_token=secret-123</body></html>".utf8),
+    Data("grant_type=token-exchange&client_secret=form-secret-456".utf8),
+    Data(#"{"unexpected_field":"unrecognized-json-secret-789"}"#.utf8),
+    Data([0xFF, 0xFE, 0xFD]),
+    Data(
+      #"{"error":"invalid_request","error_description":"\#(String(repeating: "x", count: AuthHTTPError.maxStructuredErrorPayloadBytes))"}"#
+        .utf8),
+  ])
+  func unsuccessfulResponseOmitsNonStandardPayloads(payload: Data) {
+    let response = HTTPClientResponse(
+      version: .http2,
+      status: .badGateway,
+      body: .bytes(.init(data: payload)),
+    )
+    let error = AuthHTTPError.unsuccessfulResponse(response: response, data: payload)
+    #expect(error.description == "HTTP status 502")
+    #expect(error.debugDescription == "AuthHTTPError.unsuccessfulResponse(statusCode: 502)")
   }
 
   @Test func unsuccessfulResponseTruncatesLongStructuredErrorMessageCleanly() {
