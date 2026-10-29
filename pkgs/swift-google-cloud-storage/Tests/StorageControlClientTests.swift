@@ -85,6 +85,13 @@ import Testing
       $0.endpoint = "https://private.googleapis.com"
     }
     let _ = try StorageControlClient(oddEndpointOptions)
+
+    // With custom universe domain
+    let customUniverseOptions = ClientOptions().with {
+      $0.credentials = credentials
+      $0.universeDomain = "my-universe.com"
+    }
+    let _ = try StorageControlClient(customUniverseOptions)
   }
 
   @Test(arguments: [
