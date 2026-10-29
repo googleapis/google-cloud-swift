@@ -47,7 +47,7 @@ public import Foundation
     clientHeader: _ApiClientHeader = .init(),
     environment: [String: String]
   ) throws {
-    let universeDomain = try _Host.resolveUniverseDomain(options: from, environment: environment)
+    let universeDomain = _Host.resolveUniverseDomain(options: from, environment: environment)
     self.universeDomain = universeDomain
     self.credentials = try from.credentials ?? GoogleAuth.Credentials()
     self.logger = from.logger
@@ -79,7 +79,6 @@ public import Foundation
     universeDomain: String = _Host.defaultUniverseDomain,
     clientHeader: _ApiClientHeader = .init()
   ) throws {
-    try _Host.validateUniverseDomain(universeDomain)
     self.universeDomain = universeDomain
     self.baseURL = try Self.validateEndpoint(endpoint)
     self.credentials = try credentials ?? GoogleAuth.Credentials(configuration: .anonymous)

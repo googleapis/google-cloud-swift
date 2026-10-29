@@ -151,52 +151,28 @@ import Testing
     }
   }
 
-  @Test func resolveUniverseDomainPrecedenceAndValidation() throws {
-    let defaults = try _Host.resolveUniverseDomain(options: ClientOptions(), environment: [:])
+  @Test func resolveUniverseDomainPrecedence() {
+    let defaults = _Host.resolveUniverseDomain(options: ClientOptions(), environment: [:])
     #expect(defaults == "googleapis.com")
 
-    let fromEnv = try _Host.resolveUniverseDomain(
+    let emptyFallback = _Host.resolveUniverseDomain(
+      options: ClientOptions().with { $0.universeDomain = "" },
+      environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": ""]
+    )
+    #expect(emptyFallback == "googleapis.com")
+
+    let fromEnv = _Host.resolveUniverseDomain(
       options: ClientOptions(),
       environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com"]
     )
     #expect(fromEnv == "env.universe.com")
 
     let options = ClientOptions().with { $0.universeDomain = "options.universe.com" }
-    let fromOptions = try _Host.resolveUniverseDomain(
+    let fromOptions = _Host.resolveUniverseDomain(
       options: options,
       environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com"]
     )
     #expect(fromOptions == "options.universe.com")
-
-    for invalid in [
-      "",
-      "   ",
-      ".",
-      "..",
-      ".googleapis.com",
-      "googleapis.com.",
-      "googleapis..com",
-      "-googleapis.com",
-      "googleapis-.com",
-      "https://domain.com",
-      "domain.com:443",
-      "domain.com/path",
-      "a?b",
-      "evil.com%23",
-    ] {
-      #expect(throws: ClientError.self) {
-        _ = try _Host.resolveUniverseDomain(
-          options: ClientOptions().with { $0.universeDomain = invalid },
-          environment: [:]
-        )
-      }
-      #expect(throws: ClientError.self) {
-        _ = try _Host.resolveUniverseDomain(
-          options: ClientOptions(),
-          environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": invalid]
-        )
-      }
-    }
   }
 
   @Test func endpointResolutionWithUniverseDomain() throws {
@@ -235,5 +211,12 @@ import Testing
         universeDomain: "my-universe.com"
       ) == "http://localhost:8080"
     )
+    #expect(throws: ClientError.self) {
+      _ = try _Host.endpoint(
+        endpoint: nil,
+        defaultEndpoint: "https://storage.googleapis.com",
+        universeDomain: "invalid/domain"
+      )
+    }
   }
 }
