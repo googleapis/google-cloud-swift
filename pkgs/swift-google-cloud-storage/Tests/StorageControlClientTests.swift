@@ -109,6 +109,17 @@ import Testing
     }
   }
 
+  @Test func badUniverseDomain() throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with {
+      $0.credentials = credentials
+      $0.universeDomain = "invalid/domain"
+    }
+    #expect(throws: ClientError.self) {
+      _ = try StorageControlClient(options)
+    }
+  }
+
   @Test func defaultInitializationUsesStorageBaseRetryPolicy() throws {
     let credentials = try Credentials(configuration: .anonymous)
     let options = ClientOptions().with {

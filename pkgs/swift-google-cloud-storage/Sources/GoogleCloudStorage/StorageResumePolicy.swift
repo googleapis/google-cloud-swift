@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleAuth
 public import GoogleGax
 
 /// Evaluates whether an error is considered resumable in Google Cloud Storage.
@@ -59,8 +58,8 @@ public struct StorageResumePolicy<Details: Sendable>: ResumePolicy, Sendable, Eq
   }
 
   private static func isResumable(_ error: RequestError) -> Bool {
-    if case .io(let underlying) = error {
-      return !(underlying is CredentialsError) && !(underlying is CancellationError)
+    if case .io = error {
+      return true
     }
     return StorageRetryErrors.isRetryable(error)
   }
