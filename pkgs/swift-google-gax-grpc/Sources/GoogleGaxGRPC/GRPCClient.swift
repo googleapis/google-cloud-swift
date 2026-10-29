@@ -67,7 +67,7 @@ public final class _GRPCClient: Sendable {
     clientHeader: _ApiClientHeader = .init(),
     environment: [String: String]
   ) throws {
-    let universeDomain = try _Host.resolveUniverseDomain(options: options, environment: environment)
+    let universeDomain = _Host.resolveUniverseDomain(options: options, environment: environment)
     self.universeDomain = universeDomain
     self.credentials = try options.credentials ?? GoogleAuth.Credentials()
     self.quotaProject = options.quotaProject
