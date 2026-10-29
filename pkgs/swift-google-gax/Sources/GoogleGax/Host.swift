@@ -20,6 +20,84 @@ public enum _Host {
   public static let defaultUniverseDomain = "googleapis.com"
   private static let defaultSuffix = ".\(defaultUniverseDomain)"
 
+  /// Resolves the universe domain from `ClientOptions` or `GOOGLE_CLOUD_UNIVERSE_DOMAIN`.
+  ///
+  /// Precedence:
+  /// 1. `options.universeDomain` (if non-empty)
+  /// 2. `environment["GOOGLE_CLOUD_UNIVERSE_DOMAIN"]` (if non-empty)
+  /// 3. `defaultUniverseDomain` (`"googleapis.com"`)
+  public static func resolveUniverseDomain(options: ClientOptions) -> String {
+    resolveUniverseDomain(
+      options: options,
+      environment: ProcessInfo.processInfo.environment
+    )
+  }
+
+  public static func resolveUniverseDomain(
+    options: ClientOptions,
+    environment: [String: String]
+  ) -> String {
+    if let configured = options.universeDomain, !configured.isEmpty {
+      return configured
+    }
+    if let envDomain = environment["GOOGLE_CLOUD_UNIVERSE_DOMAIN"], !envDomain.isEmpty {
+      return envDomain
+    }
+    return defaultUniverseDomain
+  }
+
+  /// Resolves the effective endpoint string given an optional custom `endpoint`, the service's
+  /// `defaultEndpoint`, and the resolved `universeDomain`.
+  ///
+  /// When `endpoint` is `nil` and `universeDomain` differs from `googleapis.com`, replaces
+  /// `.googleapis.com` in the host of `defaultEndpoint` with `.\(universeDomain)`.
+  public static func endpoint(
+    endpoint: String?,
+    defaultEndpoint: String,
+    universeDomain: String = defaultUniverseDomain
+  ) throws -> String {
+    if let endpoint {
+      return endpoint
+    }
+    if universeDomain == defaultUniverseDomain {
+      return defaultEndpoint
+    }
+    if defaultEndpoint.hasPrefix("/") {
+      throw ClientError.invalidEndpoint(defaultEndpoint)
+    }
+    let hasScheme = defaultEndpoint.contains("://")
+    guard
+      var components = URLComponents(string: normalizeEndpoint(defaultEndpoint)),
+      let defaultHost = components.host,
+      !defaultHost.isEmpty
+    else {
+      throw ClientError.invalidEndpoint(defaultEndpoint)
+    }
+    guard defaultHost.hasSuffix(defaultSuffix) else {
+      return defaultEndpoint
+    }
+    let service = String(defaultHost.dropLast(defaultSuffix.count))
+    guard !service.isEmpty else {
+      return defaultEndpoint
+    }
+    let targetHost = "\(service).\(universeDomain)"
+    components.host = targetHost
+    guard
+      let resolved = components.string,
+      let parsed = URLComponents(string: normalizeEndpoint(resolved)),
+      parsed.host == targetHost
+    else {
+      throw ClientError.invalidEndpoint(defaultEndpoint)
+    }
+    if !hasScheme, let scheme = components.scheme {
+      let prefix = "\(scheme)://"
+      if resolved.hasPrefix(prefix) {
+        return String(resolved.dropFirst(prefix.count))
+      }
+    }
+    return resolved
+  }
+
   /// Calculate the HTTP `Host` header given the custom endpoint, default endpoint, and universe domain.
   ///
   /// Regional and locational endpoints matching the service are detected and used as the host.

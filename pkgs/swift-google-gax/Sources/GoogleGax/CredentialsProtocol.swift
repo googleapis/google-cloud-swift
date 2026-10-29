@@ -19,6 +19,18 @@
 /// Allow testing `_HTTPClient` with mock credentials.
 @_spi(GoogleCloudInternal) public protocol _CredentialsProtocol: Sendable {
   func headers() async throws -> GoogleAuth.AuthHeaders
+  func universeDomain() async throws -> String
+  var _isAnonymous: Bool { get }
+}
+
+extension _CredentialsProtocol {
+  public func universeDomain() async throws -> String {
+    GoogleAuth.Credentials.defaultUniverseDomain
+  }
+
+  public var _isAnonymous: Bool {
+    false
+  }
 }
 
 @_spi(GoogleCloudInternal) extension GoogleAuth.Credentials: _CredentialsProtocol {}

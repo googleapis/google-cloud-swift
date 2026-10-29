@@ -21,7 +21,14 @@ public import Foundation
 /// is used to construct base URLs for Google Cloud service endpoints.
 ///
 /// See [Google Cloud Universes](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones).
-package let defaultUniverseDomain = "googleapis.com"
+let defaultUniverseDomain = "googleapis.com"
+
+func nonEmpty(_ value: String?) -> String? {
+  guard let value = value, !value.isEmpty else {
+    return nil
+  }
+  return value
+}
 
 /// Represents the access specifier for a service account based token,
 /// specifying either OAuth 2.0 scopes or a JWT audience.
@@ -242,7 +249,9 @@ public struct ImpersonatedServiceAccountConfig: Sendable {
   /// Optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
   public var quotaProjectID: String? = nil
 
-  /// Optional target Google Cloud universe domain override (defaults to `googleapis.com`).
+  /// Optional target Google Cloud universe domain override.
+  ///
+  /// When `nil`, defaults to the universe domain of `sourceCredentials`.
   public var universeDomain: String? = nil
 
   /// Initializes a new instance of `ImpersonatedServiceAccountConfig`.
@@ -449,6 +458,24 @@ protocol CredentialsProvider: Sendable {
   ///
   /// - Returns: The HTTP header fields to apply to the request.
   func headers() async throws -> AuthHeaders
+
+  /// Asynchronously retrieves the Google Cloud universe domain associated with these credentials.
+  ///
+  /// - Returns: The universe domain string (defaults to `"googleapis.com"`).
+  func universeDomain() async throws -> String
+
+  /// Indicates whether these credentials represent unauthenticated (`.anonymous`) access.
+  var isAnonymous: Bool { get }
+}
+
+extension CredentialsProvider {
+  func universeDomain() async throws -> String {
+    return defaultUniverseDomain
+  }
+
+  var isAnonymous: Bool {
+    return false
+  }
 }
 
 /// The public entry point to authenticate Google Cloud API requests.
@@ -490,6 +517,9 @@ protocol CredentialsProvider: Sendable {
 /// )
 /// ```
 public struct Credentials: Sendable {
+  /// The default Google Cloud universe domain (`"googleapis.com"`).
+  public static let defaultUniverseDomain = GoogleAuth.defaultUniverseDomain
+
   let credentialsProvider: any CredentialsProvider
 
   /// Initializes credentials using a specific configuration (defaults to automatic ADC resolution).
@@ -527,6 +557,29 @@ public struct Credentials: Sendable {
   /// - Throws: A `CredentialsError` if token resolution fails.
   public func headers() async throws -> AuthHeaders {
     return try await self.credentialsProvider.headers()
+  }
+
+  /// Asynchronously retrieves the Google Cloud universe domain associated with these credentials.
+  ///
+  /// A "universe" is an isolated Google Cloud environment, such as the default universe
+  /// (`googleapis.com`) or a sovereign/air-gapped deployment. Client libraries compare the
+  /// credentials' universe domain with the client's configured universe domain before sending
+  /// requests.
+  ///
+  /// For most credential types, this returns the configured universe domain (or `"googleapis.com"`
+  /// by default) immediately. For Metadata Server (MDS) credentials without an explicit universe
+  /// domain override, this queries `/computeMetadata/v1/universe/universe-domain` on the metadata
+  /// server and caches the result.
+  ///
+  /// - Returns: The universe domain string (e.g., `"googleapis.com"`).
+  /// - Throws: A ``CredentialsError`` if resolving the universe domain from the metadata server fails.
+  public func universeDomain() async throws -> String {
+    return try await self.credentialsProvider.universeDomain()
+  }
+
+  /// Internal SPI property indicating whether these credentials are unauthenticated (`.anonymous`).
+  @_spi(GoogleCloudInternal) public var _isAnonymous: Bool {
+    return self.credentialsProvider.isAnonymous
   }
 
   private static func resolveCredentialsProvider(
