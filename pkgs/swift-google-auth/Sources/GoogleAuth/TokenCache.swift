@@ -16,24 +16,37 @@ import Foundation
 import Synchronization
 
 /// Represents an access token used to authenticate requests.
-struct Token: Sendable, Hashable {
+struct Token: Sendable, Hashable, CustomStringConvertible, CustomDebugStringConvertible {
   /// The raw token string (e.g. access token).
   let accessToken: String
   /// The token type (e.g. "Bearer").
   let tokenType: String
-  /// The date/time when the token will expire.
-  let expirationDate: Date
+  /// The date/time when the token will expire, or `nil` if the token does not expire.
+  let expirationDate: Date?
 
-  /// Initializes a token with an access string, token type, and expiration.
+  /// Initializes a token with an access string, token type, and optional expiration.
   ///
   /// - Parameters:
   ///   - accessToken: The raw token string.
   ///   - tokenType: The type of the token (defaults to "Bearer").
-  ///   - expirationDate: The date/time when the token expires.
-  init(accessToken: String, tokenType: String = "Bearer", expirationDate: Date) {
+  ///   - expirationDate: The date/time when the token expires (defaults to `nil`).
+  init(accessToken: String, tokenType: String = "Bearer", expirationDate: Date? = nil) {
     self.accessToken = accessToken
     self.tokenType = tokenType
     self.expirationDate = expirationDate
+  }
+
+  /// Converts this internal token representation into a public ``AccessToken``.
+  var asAccessToken: AccessToken {
+    AccessToken(token: accessToken, expirationDate: expirationDate)
+  }
+
+  var description: String {
+    debugDescription
+  }
+
+  var debugDescription: String {
+    "Token(accessToken: \"[redacted]\", tokenType: \(String(reflecting: tokenType)), expirationDate: \(String(describing: expirationDate)))"
   }
 }
 
@@ -190,7 +203,14 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
       // while `self.activeRefreshTask == task` should update state and start the background loop.
       if self.activeRefreshTask == task {
         self.updateCache(with: token)
-        self.startBackgroundRefreshIfNeeded(initialSleep: self.refreshSleepDuration(for: token))
+        // Non-expiring tokens (`expirationDate == nil`, such as static-lifetime tokens from a custom
+        // `AccessTokenProvider`) never become stale, so only start the background loop when an
+        // `expirationDate` is present.
+        if let expirationDate = token.expirationDate {
+          self.startBackgroundRefreshIfNeeded(
+            initialSleep: self.refreshSleepDuration(for: expirationDate)
+          )
+        }
       }
       return token
     } catch {
@@ -199,7 +219,8 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
       if self.activeRefreshTask == task {
         self.clearActiveTask()
         // Exclude `CancellationError` before checking `isRetryable` so providers with
-        // `isRetryable: { _ in false }` do not permanently poison `permanentError` on cancellation.
+        // `isRetryable: { _ in false }` or a cancelled custom provider task do not permanently
+        // poison `permanentError`.
         if !(error is CancellationError) {
           if !self.isRetryable(error) {
             self.permanentError = error
@@ -255,11 +276,17 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
   }
 
   private func isExpired(_ token: Token) -> Bool {
-    return token.expirationDate <= timeSource.now
+    guard let expirationDate = token.expirationDate else {
+      return false
+    }
+    return expirationDate <= timeSource.now
   }
 
   private func isStale(_ token: Token) -> Bool {
-    let timeUntilExpiry = token.expirationDate.timeIntervalSince(timeSource.now)
+    guard let expirationDate = token.expirationDate else {
+      return false
+    }
+    let timeUntilExpiry = expirationDate.timeIntervalSince(timeSource.now)
     return Duration.seconds(timeUntilExpiry) <= self.normalRefreshSlack
   }
 
@@ -284,8 +311,8 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     self.activeRefreshTask = nil
   }
 
-  private func refreshSleepDuration(for token: Token) -> Duration {
-    let timeUntilExpiry = token.expirationDate.timeIntervalSince(timeSource.now)
+  private func refreshSleepDuration(for expirationDate: Date) -> Duration {
+    let timeUntilExpiry = expirationDate.timeIntervalSince(timeSource.now)
     let duration = Duration.seconds(timeUntilExpiry)
 
     if duration > self.normalRefreshSlack {
@@ -329,9 +356,12 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
       return .terminate
     }
 
-    // If we already have a valid, non-stale token, sleep until scheduled refresh
+    // If we already have a valid, non-stale token, sleep until scheduled refresh (or terminate if non-expiring)
     if let cached = self.cachedToken, !self.isStale(cached) {
-      let sleepDuration = self.refreshSleepDuration(for: cached)
+      guard let expirationDate = cached.expirationDate else {
+        return .terminate
+      }
+      let sleepDuration = self.refreshSleepDuration(for: expirationDate)
       if sleepDuration > .zero {
         return .sleep(sleepDuration)
       }
@@ -345,17 +375,24 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
         self.updateCache(with: token)
       }
 
-      return .sleep(self.refreshSleepDuration(for: token))
+      // Non-expiring tokens (`expirationDate == nil`, such as static-lifetime tokens from a custom
+      // `AccessTokenProvider`) never become stale, so terminate the background refresh loop.
+      guard let expirationDate = token.expirationDate else {
+        return .terminate
+      }
+      return .sleep(self.refreshSleepDuration(for: expirationDate))
     } catch {
+      // Always clear `activeRefreshTask` before checking cancellation so a `CancellationError`
+      // thrown inside a custom provider does not leave a failed task cached in `activeRefreshTask`.
       if self.activeRefreshTask == task {
         self.clearActiveTask()
       }
-      if error is CancellationError {
+      if Task.isCancelled {
         return .terminate
       }
 
-      // On permanent errors, break the loop to prevent endless polling.
-      if !self.isRetryable(error) {
+      // On permanent errors (excluding `CancellationError`), break the loop to prevent endless polling.
+      if !(error is CancellationError) && !self.isRetryable(error) {
         self.permanentError = error
         return .terminate
       }

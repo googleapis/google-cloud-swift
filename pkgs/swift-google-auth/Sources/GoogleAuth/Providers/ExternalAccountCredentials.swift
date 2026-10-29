@@ -265,6 +265,10 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     )
   }
 
+  func accessToken() async throws -> AccessToken {
+    return try await cache.token().asAccessToken
+  }
+
   /// Returns authorization headers containing the federated access token.
   ///
   /// Includes `Authorization: <token_type> <access_token>` and, if configured,

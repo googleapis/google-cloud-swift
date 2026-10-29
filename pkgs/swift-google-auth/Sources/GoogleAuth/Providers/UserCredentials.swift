@@ -102,6 +102,10 @@ where C.Instant.Duration == Duration {
     )
   }
 
+  func accessToken() async throws -> AccessToken {
+    return try await cache.token().asAccessToken
+  }
+
   func headers() async throws -> AuthHeaders {
     let token = try await cache.token()
     var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]

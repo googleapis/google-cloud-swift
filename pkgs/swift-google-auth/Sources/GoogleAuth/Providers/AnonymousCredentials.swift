@@ -19,6 +19,10 @@
 /// public Cloud Storage buckets or public BigQuery datasets), or when connecting to local
 /// service emulators that do not enforce authentication.
 struct AnonymousCredentials: CredentialsProvider {
+  func accessToken() async throws -> AccessToken {
+    throw CredentialsError.notSupported("Anonymous credentials do not produce an access token.")
+  }
+
   func headers() async throws -> AuthHeaders {
     return []
   }

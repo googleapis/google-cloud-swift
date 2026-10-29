@@ -91,6 +91,10 @@ struct MDSCredentials: CredentialsProvider, Sendable {
 
   // MARK: - CredentialsProvider
 
+  func accessToken() async throws -> AccessToken {
+    return try await self.cache.token().asAccessToken
+  }
+
   /// Returns authorization headers containing a fresh access token obtained from the metadata server.
   ///
   /// Includes `Authorization: Bearer <token>` and, if configured, `x-goog-user-project: <quotaProjectID>`.
