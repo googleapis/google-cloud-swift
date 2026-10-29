@@ -16,7 +16,7 @@ import Foundation
 import GRPCCore
 import GRPCNIOTransportHTTP2Posix
 import GRPCProtobuf
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 @_spi(GoogleCloudInternal) public import GoogleGax
 @_spi(GoogleCloudInternal) public import SwiftProtobuf
 
@@ -42,13 +42,33 @@ public final class _GRPCClient: Sendable {
   let connectionTask: Task<Void, any Error>
   let credentials: GoogleAuth.Credentials
   let quotaProject: String?
+  let universeDomain: String
+  let targetHost: String
+  let targetPort: Int
+  let authority: String
   public let clientHeader: _ApiClientHeader
 
-  public init(
+  public convenience init(
     from options: ClientOptions,
     withDefaultEndpoint defaultEndpoint: String,
     clientHeader: _ApiClientHeader = .init()
   ) throws {
+    try self.init(
+      from: options,
+      withDefaultEndpoint: defaultEndpoint,
+      clientHeader: clientHeader,
+      environment: ProcessInfo.processInfo.environment
+    )
+  }
+
+  init(
+    from options: ClientOptions,
+    withDefaultEndpoint defaultEndpoint: String,
+    clientHeader: _ApiClientHeader = .init(),
+    environment: [String: String]
+  ) throws {
+    let universeDomain = try _Host.resolveUniverseDomain(options: options, environment: environment)
+    self.universeDomain = universeDomain
     self.credentials = try options.credentials ?? GoogleAuth.Credentials()
     self.quotaProject = options.quotaProject
     var header = clientHeader
@@ -56,7 +76,11 @@ public final class _GRPCClient: Sendable {
     header.setToken(.protobuf, version: SwiftProtobuf.Version.versionString)
     self.clientHeader = header
 
-    let rawEndpoint = options.endpoint ?? defaultEndpoint
+    let rawEndpoint = try _Host.endpoint(
+      endpoint: options.endpoint,
+      defaultEndpoint: defaultEndpoint,
+      universeDomain: universeDomain
+    )
     let endpointWithScheme = rawEndpoint.contains("://") ? rawEndpoint : "https://\(rawEndpoint)"
     guard let components = URLComponents(string: endpointWithScheme),
       let scheme = components.scheme?.lowercased(), scheme == "http" || scheme == "https",
@@ -72,8 +96,12 @@ public final class _GRPCClient: Sendable {
 
     let authority = try _Host.authority(
       endpoint: options.endpoint,
-      defaultEndpoint: defaultEndpoint
+      defaultEndpoint: defaultEndpoint,
+      universeDomain: universeDomain
     )
+    self.targetHost = host
+    self.targetPort = port
+    self.authority = authority
 
     let transport = try HTTP2ClientTransport.Posix(
       target: .dns(host: host, port: port),
@@ -124,7 +152,31 @@ public final class _GRPCClient: Sendable {
 
     let effectiveQuotaProject = options.quotaProject ?? self.quotaProject
     var metadata = Metadata()
-    let authHeaders = try await self.credentials.headers()
+    if !self.credentials._isAnonymous {
+      let credUniverse: String
+      do {
+        credUniverse = try await self.credentials.universeDomain()
+      } catch is CancellationError {
+        throw CancellationError()
+      } catch {
+        throw RequestError.io(error)
+      }
+      guard credUniverse == self.universeDomain else {
+        throw RequestError.io(
+          CredentialsError.parseError(
+            "The configured universe domain (\(self.universeDomain)) does not match the universe domain found in the credentials (\(credUniverse))."
+          )
+        )
+      }
+    }
+    let authHeaders: AuthHeaders
+    do {
+      authHeaders = try await self.credentials.headers()
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch {
+      throw RequestError.io(error)
+    }
     let customHeaders = _sanitizeCustomHeaders(options.headers, excluding: authHeaders)
     for (key, value) in customHeaders {
       metadata.addString(value, forKey: key)
