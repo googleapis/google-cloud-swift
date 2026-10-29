@@ -175,4 +175,146 @@ import Testing
     // Non-AuthHTTPError errors default to retryable
     #expect(AuthHTTPError.isRetryable(URLError(.cannotConnectToHost)) == true)
   }
+
+  @Test func unsuccessfulResponseStringFormattingEmptyBody() {
+    let response = HTTPClientResponse(
+      version: .http2,
+      status: .forbidden,
+      headers: .init([("X-Custom-Header", "CustomValue")]),
+    )
+    let error = AuthHTTPError.unsuccessfulResponse(response: response)
+    let anyError: any Error = error
+
+    #expect(error.description == "HTTP status 403")
+    #expect(String(describing: anyError) == "HTTP status 403")
+    #expect(
+      error.debugDescription.hasPrefix(
+        "AuthHTTPError.unsuccessfulResponse(statusCode: 403, headers:"))
+    #expect(error.debugDescription.contains("X-Custom-Header"))
+    #expect(!error.debugDescription.contains("body:"))
+    #expect(String(reflecting: anyError) == error.debugDescription)
+  }
+
+  @Test func unsuccessfulResponseStringFormattingWithJSONBody() {
+    let oauthErrorJSON =
+      #"{"error":"invalid_grant","error_description":"Token has been expired or revoked."}"#
+    let bodyData = Data(oauthErrorJSON.utf8)
+    let response = HTTPClientResponse(
+      version: .http2,
+      status: .badRequest,
+      headers: .init([("Content-Type", "application/json")]),
+      body: .bytes(.init(data: bodyData)),
+    )
+    let error = AuthHTTPError.unsuccessfulResponse(response: response, data: bodyData)
+    let anyError: any Error = error
+
+    #expect(error.description == "HTTP status 400: \(oauthErrorJSON)")
+    #expect(String(describing: anyError) == error.description)
+    #expect(error.debugDescription.contains("statusCode: 400"))
+    #expect(error.debugDescription.contains("Content-Type"))
+    #expect(error.debugDescription.contains("body: \(String(reflecting: oauthErrorJSON))"))
+    #expect(!error.description.contains("bytes"))
+    #expect(!error.debugDescription.contains("bytes"))
+    #expect(String(reflecting: anyError) == error.debugDescription)
+  }
+
+  @Test func unsuccessfulResponseStringFormattingTruncatesLargeBody() {
+    let prefixPart = String(repeating: "a", count: AuthHTTPError.maxBodyPreviewBytes)
+    let suffixPart = "SHOULD_BE_TRUNCATED"
+    let bodyData = Data((prefixPart + suffixPart).utf8)
+    let response = HTTPClientResponse(
+      version: .http2,
+      status: .internalServerError,
+      body: .bytes(.init(data: bodyData)),
+    )
+    let error = AuthHTTPError.unsuccessfulResponse(response: response, data: bodyData)
+
+    #expect(error.description == "HTTP status 500: \(prefixPart)")
+    #expect(!error.description.contains(suffixPart))
+    #expect(error.debugDescription.contains("body: \(String(reflecting: prefixPart))"))
+    #expect(!error.debugDescription.contains(suffixPart))
+  }
+
+  @Test func unsuccessfulResponseStringFormattingInvalidUTF8Body() {
+    let invalidUTF8Data = Data([0xFF, 0xFE, 0xFD])
+    let response = HTTPClientResponse(
+      version: .http2,
+      status: .badRequest,
+      body: .bytes(.init(data: invalidUTF8Data)),
+    )
+    let error = AuthHTTPError.unsuccessfulResponse(response: response, data: invalidUTF8Data)
+
+    #expect(error.description.hasPrefix("HTTP status 400: "))
+    #expect(error.description.contains("\u{FFFD}"))
+    #expect(!error.description.contains("bytes"))
+    #expect(error.debugDescription.contains("\u{FFFD}"))
+    #expect(!error.debugDescription.contains("bytes"))
+  }
+
+  @Test func otherCasesStringFormatting() {
+    let urlError = URLError(.timedOut)
+    let transportError = AuthHTTPError.transportError(urlError)
+    #expect(transportError.description == "Transport error: \(urlError)")
+    #expect(
+      transportError.debugDescription
+        == "AuthHTTPError.transportError(\(String(reflecting: urlError)))"
+    )
+    #expect(String(reflecting: transportError as any Error) == transportError.debugDescription)
+
+    struct SampleDecodeError: Error, Sendable, CustomStringConvertible {
+      var description: String { "missing access_token" }
+    }
+    let sampleDecodeError = SampleDecodeError()
+    let decodingError = AuthHTTPError.decodingError(error: sampleDecodeError)
+    #expect(decodingError.description == "Response decoding error: missing access_token")
+    #expect(
+      decodingError.debugDescription
+        == "AuthHTTPError.decodingError(\(String(reflecting: sampleDecodeError)))"
+    )
+    #expect(String(reflecting: decodingError as any Error) == decodingError.debugDescription)
+
+    let unknownUnderlying = URLError(.unknown)
+    let unknownError = AuthHTTPError.unknown(unknownUnderlying)
+    #expect(unknownError.description == "Unexpected HTTP error: \(unknownUnderlying)")
+    #expect(
+      unknownError.debugDescription
+        == "AuthHTTPError.unknown(\(String(reflecting: unknownUnderlying)))"
+    )
+    #expect(String(reflecting: unknownError as any Error) == unknownError.debugDescription)
+
+    let invalidUTF8 = AuthHTTPError.invalidUTF8Response
+    #expect(invalidUTF8.description == "Response body is not valid UTF-8")
+    #expect(
+      invalidUTF8.debugDescription
+        == "AuthHTTPError.invalidUTF8Response: Response body is not valid UTF-8"
+    )
+    #expect(String(reflecting: invalidUTF8 as any Error) == invalidUTF8.debugDescription)
+  }
+
+  @Test func credentialsErrorSurfacesUnsuccessfulResponseBody() {
+    let stsErrorJSON =
+      #"{"error":"invalid_target","error_description":"The target service indicated by the \"audience\" parameters is invalid."}"#
+    let bodyData = Data(stsErrorJSON.utf8)
+    let response = HTTPClientResponse(
+      version: .http2,
+      status: .badRequest,
+      headers: .init([("Content-Type", "application/json")]),
+      body: .bytes(.init(data: bodyData)),
+    )
+    let underlying = AuthHTTPError.unsuccessfulResponse(response: response, data: bodyData)
+    let credentialsError: any Error = CredentialsError.cannotFetchToken(
+      message: "STS token exchange failed",
+      underlyingError: underlying
+    )
+
+    let described = String(describing: credentialsError)
+    let reflected = String(reflecting: credentialsError)
+
+    #expect(described == "STS token exchange failed: HTTP status 400: \(stsErrorJSON)")
+    #expect(!described.contains("bytes"))
+    #expect(reflected.contains("CredentialsError.cannotFetchToken: STS token exchange failed"))
+    #expect(reflected.contains("statusCode: 400"))
+    #expect(reflected.contains("invalid_target"))
+    #expect(!reflected.contains("bytes"))
+  }
 }

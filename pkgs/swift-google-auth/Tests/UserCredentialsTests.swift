@@ -713,4 +713,56 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let headers = try await source.headers()
     #expect(headers.values(for: "x-goog-user-project") == ["override-quota-proj"])
   }
+
+  @Test func tokenProviderSurfacesOAuthErrorBodyInCredentialsError() async throws {
+    let oauthErrorJSON =
+      #"{"error":"invalid_grant","error_description":"Token has been expired or revoked."}"#
+    let bodyData = Data(oauthErrorJSON.utf8)
+
+    let mock = MockHTTPClient([
+      { _ in
+        HTTPClientResponse(
+          version: .http2,
+          status: .badRequest,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: bodyData))
+        )
+      }
+    ])
+
+    let data = UserAccountData(
+      type: "authorized_user",
+      clientId: "test-client-id",
+      clientSecret: "test-client-secret",
+      refreshToken: "expired-refresh-token"
+    )
+
+    let source = try UserCredentials(
+      user: data,
+      httpClient: AuthHTTPClient(mock: mock),
+      retryConfiguration: .defaultConfiguration,
+      clock: TestClock()
+    )
+
+    let error = try #require(
+      await #expect(throws: CredentialsError.self) {
+        _ = try await source.headers()
+      }
+    )
+    let anyError: any Error = error
+
+    let described = String(describing: anyError)
+    let reflected = String(reflecting: anyError)
+
+    #expect(described.contains("HTTP status 400"))
+    #expect(described.contains("invalid_grant"))
+    #expect(described.contains("Token has been expired or revoked."))
+    #expect(!described.contains("bytes"))
+
+    #expect(reflected.contains("CredentialsError.cannotFetchToken"))
+    #expect(reflected.contains("statusCode: 400"))
+    #expect(reflected.contains("invalid_grant"))
+    #expect(reflected.contains("Token has been expired or revoked."))
+    #expect(!reflected.contains("bytes"))
+  }
 }

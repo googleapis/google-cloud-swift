@@ -136,3 +136,51 @@ extension AuthHTTPError {
     return true
   }
 }
+
+extension AuthHTTPError: CustomStringConvertible {
+  /// Maximum number of response body bytes formatted in error descriptions.
+  static let maxBodyPreviewBytes = 1024
+
+  var description: String {
+    switch self {
+    case .unsuccessfulResponse(let response, let data):
+      if data.isEmpty {
+        return "HTTP status \(response.status.code)"
+      }
+      let snippet = String(decoding: data.prefix(Self.maxBodyPreviewBytes), as: UTF8.self)
+      return "HTTP status \(response.status.code): \(snippet)"
+    case .transportError(let error):
+      return "Transport error: \(error)"
+    case .decodingError(let error):
+      return "Response decoding error: \(error)"
+    case .unknown(let error):
+      return "Unexpected HTTP error: \(error)"
+    case .invalidUTF8Response:
+      return "Response body is not valid UTF-8"
+    }
+  }
+}
+
+extension AuthHTTPError: CustomDebugStringConvertible {
+  var debugDescription: String {
+    switch self {
+    case .unsuccessfulResponse(let response, let data):
+      var desc =
+        "AuthHTTPError.unsuccessfulResponse(statusCode: \(response.status.code), headers: \(response.headers)"
+      if !data.isEmpty {
+        let snippet = String(decoding: data.prefix(Self.maxBodyPreviewBytes), as: UTF8.self)
+        desc += ", body: \(String(reflecting: snippet))"
+      }
+      desc += ")"
+      return desc
+    case .transportError(let error):
+      return "AuthHTTPError.transportError(\(String(reflecting: error)))"
+    case .decodingError(let error):
+      return "AuthHTTPError.decodingError(\(String(reflecting: error)))"
+    case .unknown(let error):
+      return "AuthHTTPError.unknown(\(String(reflecting: error)))"
+    case .invalidUTF8Response:
+      return "AuthHTTPError.invalidUTF8Response: \(description)"
+    }
+  }
+}
