@@ -13,10 +13,14 @@
 // limitations under the License.
 
 import Foundation
+import GoogleAuth
 
 extension ContinueOnIO: PollingErrorPolicy where P: PollingErrorPolicy & Sendable {
   public func onError(state: PollingState, error: RequestError) -> PollingResult {
-    if case .io = error {
+    if case .io(let underlying) = error,
+      !(underlying is CredentialsError),
+      !(underlying is CancellationError)
+    {
       return .retry(error)
     }
     return inner.onError(state: state, error: error)

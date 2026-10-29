@@ -13,7 +13,7 @@
 // limitations under the License.
 
 public import Foundation
-import struct GoogleAuth.Credentials
+@_spi(GoogleCloudInternal) import GoogleAuth
 @_spi(GoogleCloudInternal) public import Logging
 
 /// Implements a HTTP-only client for the Swift SDK client libraries.
@@ -24,6 +24,7 @@ import struct GoogleAuth.Credentials
   let quotaProject: String?
   let inner: any _HTTPClientProtocol
   let hostHeader: String
+  let universeDomain: String
   public let clientHeader: _ApiClientHeader
 
   // Creates a new client.
@@ -32,14 +33,35 @@ import struct GoogleAuth.Credentials
     withDefaultEndpoint: String,
     clientHeader: _ApiClientHeader = .init()
   ) throws {
+    try self.init(
+      from: from,
+      withDefaultEndpoint: withDefaultEndpoint,
+      clientHeader: clientHeader,
+      environment: ProcessInfo.processInfo.environment
+    )
+  }
+
+  init(
+    from: ClientOptions,
+    withDefaultEndpoint: String,
+    clientHeader: _ApiClientHeader = .init(),
+    environment: [String: String]
+  ) throws {
+    let universeDomain = try _Host.resolveUniverseDomain(options: from, environment: environment)
+    self.universeDomain = universeDomain
     self.credentials = try from.credentials ?? GoogleAuth.Credentials()
     self.logger = from.logger
     self.quotaProject = from.quotaProject
-    let endpoint = from.endpoint ?? withDefaultEndpoint
+    let endpoint = try _Host.endpoint(
+      endpoint: from.endpoint,
+      defaultEndpoint: withDefaultEndpoint,
+      universeDomain: universeDomain
+    )
     self.baseURL = try Self.validateEndpoint(endpoint)
     self.hostHeader = try _Host.header(
       endpoint: from.endpoint,
-      defaultEndpoint: withDefaultEndpoint
+      defaultEndpoint: withDefaultEndpoint,
+      universeDomain: universeDomain
     )
     self.inner = HTTPClientHolder()
     var header = clientHeader
@@ -54,8 +76,11 @@ import struct GoogleAuth.Credentials
     logger: Logging.Logger? = nil,
     quotaProject: String? = nil,
     defaultEndpoint: String? = nil,
+    universeDomain: String = _Host.defaultUniverseDomain,
     clientHeader: _ApiClientHeader = .init()
   ) throws {
+    try _Host.validateUniverseDomain(universeDomain)
+    self.universeDomain = universeDomain
     self.baseURL = try Self.validateEndpoint(endpoint)
     self.credentials = try credentials ?? GoogleAuth.Credentials(configuration: .anonymous)
     self.logger = logger
@@ -63,7 +88,8 @@ import struct GoogleAuth.Credentials
     self.inner = inner
     self.hostHeader = try _Host.header(
       endpoint: endpoint,
-      defaultEndpoint: defaultEndpoint ?? endpoint
+      defaultEndpoint: defaultEndpoint ?? endpoint,
+      universeDomain: universeDomain
     )
     var header = clientHeader
     header.setToken(.rest, version: gaxVersion())
@@ -91,6 +117,23 @@ import struct GoogleAuth.Credentials
     on request: inout _HTTPClientRequest,
     options: RequestOptions
   ) async throws {
+    if !self.credentials._isAnonymous {
+      let credUniverse: String
+      do {
+        credUniverse = try await self.credentials.universeDomain()
+      } catch is CancellationError {
+        throw CancellationError()
+      } catch {
+        throw RequestError.io(error)
+      }
+      guard credUniverse == self.universeDomain else {
+        throw RequestError.io(
+          CredentialsError.parseError(
+            "The configured universe domain (\(self.universeDomain)) does not match the universe domain found in the credentials (\(credUniverse))."
+          )
+        )
+      }
+    }
     let authHeaders = try await self.credentials.headers()
     let customHeaders = _sanitizeCustomHeaders(options.headers, excluding: authHeaders)
     for (key, value) in customHeaders {

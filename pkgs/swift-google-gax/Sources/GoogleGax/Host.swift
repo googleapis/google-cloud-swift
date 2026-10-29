@@ -20,6 +20,116 @@ public enum _Host {
   public static let defaultUniverseDomain = "googleapis.com"
   private static let defaultSuffix = ".\(defaultUniverseDomain)"
 
+  /// Resolves and validates the universe domain from `ClientOptions` or `GOOGLE_CLOUD_UNIVERSE_DOMAIN`.
+  ///
+  /// Precedence:
+  /// 1. `options.universeDomain` (if non-nil; must be a valid non-empty hostname)
+  /// 2. `environment["GOOGLE_CLOUD_UNIVERSE_DOMAIN"]` (if set; must be a valid non-empty hostname)
+  /// 3. `defaultUniverseDomain` (`"googleapis.com"`)
+  public static func resolveUniverseDomain(options: ClientOptions) throws -> String {
+    try resolveUniverseDomain(
+      options: options,
+      environment: ProcessInfo.processInfo.environment
+    )
+  }
+
+  public static func resolveUniverseDomain(
+    options: ClientOptions,
+    environment: [String: String]
+  ) throws -> String {
+    if let configured = options.universeDomain {
+      try validateUniverseDomain(configured)
+      return configured
+    }
+    if let envDomain = environment["GOOGLE_CLOUD_UNIVERSE_DOMAIN"] {
+      try validateUniverseDomain(envDomain)
+      return envDomain
+    }
+    return defaultUniverseDomain
+  }
+
+  /// Validates that a universe domain string is a non-empty RFC 1123 hostname without scheme, port, path, or query.
+  public static func validateUniverseDomain(_ domain: String) throws {
+    guard isValidUniverseDomainHostname(domain) else {
+      throw ClientError.invalidEndpoint(domain)
+    }
+  }
+
+  private static func isValidUniverseDomainHostname(_ domain: String) -> Bool {
+    guard !domain.isEmpty, domain.utf8.count <= 253 else {
+      return false
+    }
+    let labels = domain.split(separator: ".", omittingEmptySubsequences: false)
+    for label in labels {
+      guard
+        !label.isEmpty,
+        label.utf8.count <= 63,
+        label.first != "-",
+        label.last != "-"
+      else {
+        return false
+      }
+      for byte in label.utf8 {
+        let isAlphaNumeric =
+          (byte >= UInt8(ascii: "a") && byte <= UInt8(ascii: "z"))
+          || (byte >= UInt8(ascii: "A") && byte <= UInt8(ascii: "Z"))
+          || (byte >= UInt8(ascii: "0") && byte <= UInt8(ascii: "9"))
+        if !isAlphaNumeric && byte != UInt8(ascii: "-") {
+          return false
+        }
+      }
+    }
+    return true
+  }
+
+  /// Resolves the effective endpoint string given an optional custom `endpoint`, the service's
+  /// `defaultEndpoint`, and the resolved `universeDomain`.
+  ///
+  /// When `endpoint` is `nil` and `universeDomain` differs from `googleapis.com`, replaces
+  /// `.googleapis.com` in the host of `defaultEndpoint` with `.\(universeDomain)`.
+  public static func endpoint(
+    endpoint: String?,
+    defaultEndpoint: String,
+    universeDomain: String = defaultUniverseDomain
+  ) throws -> String {
+    try validateUniverseDomain(universeDomain)
+    if let endpoint {
+      return endpoint
+    }
+    if universeDomain == defaultUniverseDomain {
+      return defaultEndpoint
+    }
+    if defaultEndpoint.hasPrefix("/") {
+      throw ClientError.invalidEndpoint(defaultEndpoint)
+    }
+    let hasScheme = defaultEndpoint.contains("://")
+    guard
+      var components = URLComponents(string: normalizeEndpoint(defaultEndpoint)),
+      let defaultHost = components.host,
+      !defaultHost.isEmpty
+    else {
+      throw ClientError.invalidEndpoint(defaultEndpoint)
+    }
+    guard defaultHost.hasSuffix(defaultSuffix) else {
+      return defaultEndpoint
+    }
+    let service = String(defaultHost.dropLast(defaultSuffix.count))
+    guard !service.isEmpty else {
+      return defaultEndpoint
+    }
+    components.host = "\(service).\(universeDomain)"
+    guard let resolved = components.string else {
+      throw ClientError.invalidEndpoint(defaultEndpoint)
+    }
+    if !hasScheme, let scheme = components.scheme {
+      let prefix = "\(scheme)://"
+      if resolved.hasPrefix(prefix) {
+        return String(resolved.dropFirst(prefix.count))
+      }
+    }
+    return resolved
+  }
+
   /// Calculate the HTTP `Host` header given the custom endpoint, default endpoint, and universe domain.
   ///
   /// Regional and locational endpoints matching the service are detected and used as the host.
@@ -58,6 +168,7 @@ public enum _Host {
     defaultEndpoint: String,
     universeDomain: String
   ) throws -> (authority: String, header: String) {
+    try validateUniverseDomain(universeDomain)
     if defaultEndpoint.hasPrefix("/") {
       throw ClientError.invalidEndpoint(defaultEndpoint)
     }
