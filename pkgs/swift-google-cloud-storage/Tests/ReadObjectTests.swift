@@ -17,6 +17,7 @@ import Foundation
 import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleGax
 import GoogleWKT
+import NIOHTTP1
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
@@ -2132,5 +2133,139 @@ import Testing
           bytesRead: UInt64(fullPayload.count), totalBytes: UInt64(fullPayload.count)),
       ]
     )
+  }
+
+  @Test(
+    "parseHTTPDate parses RFC 9110 HTTP-date and RFC 3339 strings",
+    arguments: [
+      // RFC 9110 HTTP-date variants (GMT, UTC, single-digit day, and numeric offsets).
+      ("Thu, 01 Jan 1970 00:00:00 GMT", Int64(0), Int32(0)),
+      ("Sun, 06 Nov 1994 08:49:37 GMT", Int64(784_111_777), Int32(0)),
+      ("Fri, 07 Aug 2026 01:00:00 GMT", Int64(1_786_064_400), Int32(0)),
+      ("Fri, 7 Aug 2026 01:00:00 GMT", Int64(1_786_064_400), Int32(0)),
+      ("Fri, 07 Aug 2026 01:00:00 UTC", Int64(1_786_064_400), Int32(0)),
+      ("Fri, 07 Aug 2026 03:00:00 +0200", Int64(1_786_064_400), Int32(0)),
+      ("Thu, 06 Aug 2026 18:00:00 -0700", Int64(1_786_064_400), Int32(0)),
+      // RFC 3339 fallback variants, including sub-millisecond nanosecond precision.
+      ("2026-08-07T01:00:00Z", Int64(1_786_064_400), Int32(0)),
+      ("2026-08-07T03:00:00+02:00", Int64(1_786_064_400), Int32(0)),
+      ("2026-08-07T01:00:00.5Z", Int64(1_786_064_400), Int32(500_000_000)),
+      ("2026-08-07T01:00:00.123456789Z", Int64(1_786_064_400), Int32(123_456_789)),
+    ]
+  )
+  func parseHTTPDateValidInputs(input: String, expectedSeconds: Int64, expectedNanos: Int32) throws
+  {
+    let expected = try GoogleWKT.WKTTimestamp(seconds: expectedSeconds, nanos: expectedNanos)
+    #expect(StorageClient.parseHTTPDate(input) == expected)
+  }
+
+  @Test(
+    "parseHTTPDate returns nil for malformed or out-of-range strings",
+    arguments: [
+      "",
+      "not-a-date",
+      "Fri, 32 Aug 2026 01:00:00 GMT",
+      "Fri, 07 Aug 2026 25:00:00 GMT",
+      // Out-of-range >4-digit HTTP-date years must return nil rather than clamp.
+      "Fri, 07 Aug 10000 01:00:00 GMT",
+      // Trailing characters after a valid date must be rejected rather than prefix-matched.
+      "Fri, 07 Aug 2026 01:00:00 GMT trailing",
+      "2026-08-07T01:00:00Z trailing",
+      "2026-13-07T01:00:00Z",
+      "10000-01-01T00:00:00Z",
+      "2026-08-07 01:00:00Z",
+    ]
+  )
+  func parseHTTPDateInvalidInputs(input: String) {
+    #expect(StorageClient.parseHTTPDate(input) == nil)
+  }
+
+  // Verifies header fallback order: Last-Modified -> Date -> x-goog-date -> nil.
+  @Test func parseReadObjectMetadataUpdateTimeHeaderPrecedence() throws {
+    let lastModifiedOnly = try StorageClient.parseReadObjectMetadata(
+      from: NIOHTTP1.HTTPHeaders([
+        ("Last-Modified", "Fri, 07 Aug 2026 01:00:00 GMT"),
+        ("Date", "Thu, 01 Jan 1970 00:00:00 GMT"),
+        ("x-goog-date", "Sun, 06 Nov 1994 08:49:37 GMT"),
+      ]),
+      bucket: "test-bucket",
+      object: "obj"
+    )
+    #expect(
+      lastModifiedOnly.updateTime
+        == (try GoogleWKT.WKTTimestamp(seconds: 1_786_064_400, nanos: 0))
+    )
+
+    let dateFallback = try StorageClient.parseReadObjectMetadata(
+      from: NIOHTTP1.HTTPHeaders([
+        ("Date", "Sun, 06 Nov 1994 08:49:37 GMT"),
+        ("x-goog-date", "Thu, 01 Jan 1970 00:00:00 GMT"),
+      ]),
+      bucket: "test-bucket",
+      object: "obj"
+    )
+    #expect(
+      dateFallback.updateTime == (try GoogleWKT.WKTTimestamp(seconds: 784_111_777, nanos: 0))
+    )
+
+    let googDateFallback = try StorageClient.parseReadObjectMetadata(
+      from: NIOHTTP1.HTTPHeaders([
+        ("x-goog-date", "2026-08-07T01:00:00.5Z")
+      ]),
+      bucket: "test-bucket",
+      object: "obj"
+    )
+    #expect(
+      googDateFallback.updateTime
+        == (try GoogleWKT.WKTTimestamp(seconds: 1_786_064_400, nanos: 500_000_000))
+    )
+
+    let noDateHeaders = try StorageClient.parseReadObjectMetadata(
+      from: NIOHTTP1.HTTPHeaders(),
+      bucket: "test-bucket",
+      object: "obj"
+    )
+    #expect(noDateHeaders.updateTime == nil)
+  }
+
+  // Exercises concurrent access (interleaving valid and invalid inputs) against the shared
+  // Mutex-protected DateFormatter.
+  @Test func parseHTTPDateConcurrentAccess() async throws {
+    let cases: [(String, GoogleWKT.WKTTimestamp?)] = [
+      (
+        "Fri, 07 Aug 2026 01:00:00 GMT",
+        try GoogleWKT.WKTTimestamp(seconds: 1_786_064_400, nanos: 0)
+      ),
+      ("not-a-date", nil),
+      (
+        "Sun, 06 Nov 1994 08:49:37 GMT",
+        try GoogleWKT.WKTTimestamp(seconds: 784_111_777, nanos: 0)
+      ),
+      (
+        "2026-08-07T01:00:00.123456789Z",
+        try GoogleWKT.WKTTimestamp(seconds: 1_786_064_400, nanos: 123_456_789)
+      ),
+      (
+        "Thu, 01 Jan 1970 00:00:00 GMT",
+        try GoogleWKT.WKTTimestamp(seconds: 0, nanos: 0)
+      ),
+    ]
+
+    await withTaskGroup(of: Bool.self) { group in
+      for worker in 0..<8 {
+        group.addTask {
+          for i in 0..<100 {
+            let (input, expected) = cases[(worker + i) % cases.count]
+            if StorageClient.parseHTTPDate(input) != expected {
+              return false
+            }
+          }
+          return true
+        }
+      }
+      for await passed in group {
+        #expect(passed)
+      }
+    }
   }
 }

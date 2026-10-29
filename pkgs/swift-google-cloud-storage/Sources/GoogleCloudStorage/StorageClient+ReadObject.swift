@@ -16,6 +16,7 @@ import Foundation
 @_spi(GoogleCloudInternal) package import GoogleGax
 import GoogleWKT
 import NIOHTTP1
+import Synchronization
 
 extension StorageClient {
   /// Starts an object download from Cloud Storage.
@@ -157,35 +158,40 @@ extension StorageClient {
     return (crc32c, md5)
   }
 
-  fileprivate static func parseHTTPDate(_ string: String) -> GoogleWKT.WKTTimestamp? {
-    let date: Date?
+  // Reuse a single DateFormatter for RFC 9110 IMF-fixdate headers (e.g.
+  // "Fri, 07 Aug 2026 01:00:00 GMT") to avoid expensive per-call initialization. Wrapped in a
+  // Mutex because Formatter's Sendable conformance is unavailable on Apple platforms and to
+  // guarantee thread-safe parsing across platforms under .strictMemorySafety() without unsafe
+  // annotations.
+  private static let httpDateFormatter: Mutex<DateFormatter> = {
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.calendar = Calendar(identifier: .iso8601)
     formatter.timeZone = TimeZone(secondsFromGMT: 0)
     formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
-    if let parsed = formatter.date(from: string) {
-      date = parsed
-    } else {
-      let isoFormatter = ISO8601DateFormatter()
-      isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-      if let parsed = isoFormatter.date(from: string) {
-        date = parsed
-      } else {
-        isoFormatter.formatOptions = [.withInternetDateTime]
-        date = isoFormatter.date(from: string)
-      }
-    }
+    return Mutex(formatter)
+  }()
 
-    guard let date else { return nil }
-    let interval = date.timeIntervalSince1970
-    let wholeSeconds = floor(interval)
-    var seconds = Int64(wholeSeconds)
-    var nanos = Int32(((interval - wholeSeconds) * 1_000_000_000).rounded())
-    if nanos >= 1_000_000_000 {
-      seconds += 1
-      nanos -= 1_000_000_000
+  private static let validHTTPDateRange: Range<TimeInterval> = {
+    let lower = TimeInterval(GoogleWKT.WKTTimestamp.minSeconds)
+    let upper = TimeInterval(GoogleWKT.WKTTimestamp.maxSeconds) + 1.0
+    return lower..<upper
+  }()
+
+  /// Parses an HTTP date header value into a ``GoogleWKT/WKTTimestamp``.
+  ///
+  /// Attempts RFC 9110 IMF-fixdate parsing first (rejecting dates outside the valid
+  /// ``GoogleWKT/WKTTimestamp`` range rather than clamping), then falls back to
+  /// ``GoogleWKT/WKTTimestamp/init(rfc3339:)`` for ISO 8601 / RFC 3339 strings without allocating
+  /// an `ISO8601DateFormatter` or losing sub-millisecond precision.
+  static func parseHTTPDate(_ string: String) -> GoogleWKT.WKTTimestamp? {
+    if let date = httpDateFormatter.withLock({ $0.date(from: string) }) {
+      guard validHTTPDateRange.contains(date.timeIntervalSince1970) else {
+        return nil
+      }
+      return GoogleWKT.WKTTimestamp(date)
     }
-    return try? GoogleWKT.WKTTimestamp(seconds: seconds, nanos: nanos)
+    return GoogleWKT.WKTTimestamp(rfc3339: string)
   }
 }
 
