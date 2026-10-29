@@ -85,12 +85,6 @@ public struct CustomerEncryptionKeyOptions: Sendable, Equatable, CustomStringCon
   /// The raw symmetric key material.
   public let key: SymmetricKey
 
-  public static func == (lhs: CustomerEncryptionKeyOptions, rhs: CustomerEncryptionKeyOptions)
-    -> Bool
-  {
-    lhs.algorithm == rhs.algorithm && lhs.key == rhs.key
-  }
-
   /// The Base64-encoded string representation of the encryption key.
   public var keyBase64: String {
     // SAFETY: `SymmetricKey.withUnsafeBytes` and `Data.init(_: UnsafeRawBufferPointer)` are
