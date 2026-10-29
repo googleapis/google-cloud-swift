@@ -172,6 +172,12 @@ import Testing
     #expect(isPermanent(policy.onError(state: state, error: rpcPermissionDenied)))
     #expect(isPermanent(policy.onError(state: state, error: rpcNotFound)))
     #expect(isPermanent(policy.onError(state: state, error: rpcInvalidArgument)))
+
+    // Permanent I/O errors (CredentialsError and CancellationError)
+    let errCredentialsIO = RequestError.io(CredentialsError.parseError("universe domain mismatch"))
+    let errCancelledIO = RequestError.io(CancellationError())
+    #expect(isPermanent(policy.onError(state: state, error: errCredentialsIO)))
+    #expect(isPermanent(policy.onError(state: state, error: errCancelledIO)))
   }
 
   @Test func storageResumePolicyNonIdempotent() {
