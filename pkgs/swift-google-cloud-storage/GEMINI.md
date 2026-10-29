@@ -90,7 +90,7 @@ When implementing or updating `resolveIdempotency(options:)` for a request type,
 
 ## Implementation Pattern
 
-Idempotency resolution is centralized through the internal helper function in `Sources/GoogleCloudStorage/StorageIdempotency.swift`:
+Idempotency resolution is centralized through the internal helper functions in `Sources/GoogleCloudStorage/StorageIdempotency.swift`:
 
 ```swift
 package let idempotencyToken = "x-goog-gcs-idempotency-token"
@@ -104,17 +104,24 @@ func resolveStorageIdempotency(
   let effectiveIdempotency = options.idempotent ?? isIdempotent
   options.idempotent = effectiveIdempotency
   if isMutating && effectiveIdempotency {
-    if options.headers[idempotencyToken] == nil {
-      options.headers[idempotencyToken] = UUID().uuidString
-    }
+    return addIdempotencyToken(options)
   }
+  return options
+}
+
+func addIdempotencyToken(_ options: GoogleGax.RequestOptions) -> GoogleGax.RequestOptions {
+  if options.headers[idempotencyToken] != nil {
+    return options
+  }
+  var options = options
+  options.headers[idempotencyToken] = UUID().uuidString
   return options
 }
 ```
 
 Key behaviors:
 - **Caller Overrides**: If the caller explicitly sets `options.idempotent`, that choice takes precedence over the default rule.
-- **Token Injection**: Mutating requests that evaluate to idempotent automatically receive a unique idempotency token header (`x-goog-gcs-idempotency-token`) if not already present. This ensures the Storage service can join retries to the original request across network attempts.
+- **Token Injection**: Mutating requests that evaluate to idempotent (including single-shot uploads with `ifGenerationMatch` or `WriteObjectOptions.idempotent == true`) automatically receive a unique idempotency token header (`x-goog-gcs-idempotency-token`) once before retry execution if not already present. Resumable uploads are always treated as idempotent, so session creation calls `addIdempotencyToken` once before its retry loop while data and status `PUT` requests carry no token.
 
 ---
 

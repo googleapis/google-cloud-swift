@@ -454,9 +454,10 @@ import Testing
 
     let requests = registry.recordedRequests()
     #expect(requests.count == 1)
+    #expect(requests[0].value(forHTTPHeaderField: idempotencyToken) == nil)
   }
 
-  /// Tests that a single-shot upload with `ifGenerationMatch` precondition is idempotent and retries transient 503 failures.
+  /// Tests that a single-shot upload with `ifGenerationMatch` precondition is idempotent, stamps `x-goog-gcs-idempotency-token`, and reuses the same token across retries.
   @Test func simpleUploadWithIfGenerationMatchPreconditionRetriesAndSucceeds() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
@@ -483,21 +484,28 @@ import Testing
       for: simpleUploadUrl)
 
     let client = try makeClient(registry: registry)
+    let fastBackoff = try ExponentialBackoff(
+      initialDelay: .milliseconds(1), maximumDelay: .milliseconds(2))
     let options = WriteObjectOptions().with {
       $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 0 }
+      $0.backoffPolicy = fastBackoff
     }
     let object = try await client.writeObject(source, to: bucket, as: objectName, options: options)
 
     #expect(object.name == objectName)
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
+    let firstToken = requests[0].value(forHTTPHeaderField: idempotencyToken)
+    let secondToken = requests[1].value(forHTTPHeaderField: idempotencyToken)
+    #expect(firstToken != nil)
+    #expect(firstToken == secondToken)
   }
 
-  /// Tests that a single-shot upload with `ifMetagenerationMatch` precondition is idempotent and retries transient 503 failures.
-  @Test func simpleUploadWithIfMetagenerationMatchPreconditionRetriesAndSucceeds() async throws {
+  /// Tests that a single-shot upload with only `ifMetagenerationMatch` is non-idempotent, omits `x-goog-gcs-idempotency-token`, and does not retry transient 503 failures.
+  @Test func simpleUploadWithIfMetagenerationMatchAloneDoesNotRetry() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
-    let objectName = "test-if-metageneration-match-retry"
+    let objectName = "test-if-metageneration-match-no-retry"
     let data = Data(repeating: 0x42, count: 1024)
     let source = BytesSource(data: data)
 
@@ -505,17 +513,9 @@ import Testing
       "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)&ifMetagenerationMatch=1"
     )
 
-    // First attempt fails with 503 Service Unavailable
     registry.register(
       response: .success(
         statusCode: 503, data: Data("Service Unavailable".utf8),
-        headers: nil),
-      for: simpleUploadUrl)
-
-    // Retry attempt succeeds with 200 OK
-    registry.register(
-      response: .success(
-        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
         headers: nil),
       for: simpleUploadUrl)
 
@@ -523,14 +523,22 @@ import Testing
     let options = WriteObjectOptions().with {
       $0.preconditions = StoragePreconditions().with { $0.ifMetagenerationMatch = 1 }
     }
-    let object = try await client.writeObject(source, to: bucket, as: objectName, options: options)
 
-    #expect(object.name == objectName)
+    let error = await expectError(WriteObjectError.self) {
+      try await client.writeObject(source, to: bucket, as: objectName, options: options)
+    }
+    if case .requestError(.http(let details)) = error {
+      #expect(details.statusCode == 503)
+    } else {
+      Issue.record("Expected .requestError(.http 503), got \(String(describing: error))")
+    }
+
     let requests = registry.recordedRequests()
-    #expect(requests.count == 2)
+    #expect(requests.count == 1)
+    #expect(requests[0].value(forHTTPHeaderField: idempotencyToken) == nil)
   }
 
-  /// Tests that a single-shot upload with `options.idempotent = true` retries without preconditions.
+  /// Tests that a single-shot upload with `options.idempotent = true` stamps and reuses `x-goog-gcs-idempotency-token` across retries without preconditions.
   @Test func simpleUploadExplicitIdempotentTrueRetriesWithoutPreconditions() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
@@ -554,15 +562,78 @@ import Testing
       for: simpleUploadUrl)
 
     let client = try makeClient(registry: registry)
-    let options = WriteObjectOptions().with { $0.idempotent = true }
+    let fastBackoff = try ExponentialBackoff(
+      initialDelay: .milliseconds(1), maximumDelay: .milliseconds(2))
+    let options = WriteObjectOptions().with {
+      $0.idempotent = true
+      $0.backoffPolicy = fastBackoff
+    }
     let object = try await client.writeObject(source, to: bucket, as: objectName, options: options)
 
     #expect(object.name == objectName)
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
+    let firstToken = requests[0].value(forHTTPHeaderField: idempotencyToken)
+    let secondToken = requests[1].value(forHTTPHeaderField: idempotencyToken)
+    #expect(firstToken != nil)
+    #expect(firstToken == secondToken)
   }
 
-  /// Tests that a single-shot upload with preconditions but `options.idempotent = false` fails immediately without retry.
+  /// Tests that a non-seekable `WriteObjectSource` single-shot upload with `options.idempotent = true` stamps and reuses `x-goog-gcs-idempotency-token`.
+  @Test func simpleUploadNonSeekableSourceReusesIdempotencyToken() async throws {
+    struct FixedNonSeekableSource: WriteObjectSource {
+      let data: Data
+      private var didRead = false
+      var totalSize: UInt64? { UInt64(data.count) }
+
+      init(data: Data) { self.data = data }
+
+      mutating func read(maxBytes: Int) async throws -> ByteChunk? {
+        guard !didRead else { return nil }
+        didRead = true
+        return ByteChunk(data)
+      }
+    }
+
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-non-seekable-simple-token"
+    let data = Data("hello non-seekable".utf8)
+    let source = FixedNonSeekableSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: simpleUploadUrl)
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry)
+    let fastBackoff = try ExponentialBackoff(
+      initialDelay: .milliseconds(1), maximumDelay: .milliseconds(2))
+    let options = WriteObjectOptions().with {
+      $0.idempotent = true
+      $0.backoffPolicy = fastBackoff
+    }
+    let object = try await client.writeObject(source, to: bucket, as: objectName, options: options)
+
+    #expect(object.name == objectName)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    let firstToken = requests[0].value(forHTTPHeaderField: idempotencyToken)
+    let secondToken = requests[1].value(forHTTPHeaderField: idempotencyToken)
+    #expect(firstToken != nil)
+    #expect(firstToken == secondToken)
+  }
+
+  /// Tests that a single-shot upload with preconditions but `options.idempotent = false` omits `x-goog-gcs-idempotency-token` and fails immediately without retry.
   @Test func simpleUploadExplicitIdempotentFalseSuppressesRetryWithPreconditions() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
@@ -597,6 +668,7 @@ import Testing
 
     let requests = registry.recordedRequests()
     #expect(requests.count == 1)
+    #expect(requests[0].value(forHTTPHeaderField: idempotencyToken) == nil)
   }
 
   /// Tests that a 503 error with NeverResume policy throws immediately without retrying.

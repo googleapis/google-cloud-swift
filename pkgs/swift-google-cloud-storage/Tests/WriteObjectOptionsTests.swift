@@ -109,6 +109,7 @@ import Testing
     #expect(resolved.backoffPolicy is ExponentialBackoff)
     #expect(resolved.quotaProject == "default-upload-quota")
     #expect(resolved.requestOptions.quotaProject == "default-upload-quota")
+    #expect(resolved.requestOptions.idempotent == nil)
     #expect(resolved.idempotent == true)
   }
 
@@ -157,7 +158,40 @@ import Testing
     #expect(resolved.backoffPolicy is ExponentialBackoff)
     #expect(resolved.quotaProject == "override-upload-quota")
     #expect(resolved.requestOptions.quotaProject == "override-upload-quota")
+    #expect(resolved.requestOptions.idempotent == nil)
     #expect(resolved.idempotent == false)
+  }
+
+  @Test func writeObjectOptionsConditionalIdempotency() {
+    #expect(WriteObjectOptions().isConditionallyIdempotent == false)
+
+    let withGenerationMatch = WriteObjectOptions().with {
+      $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 0 }
+    }
+    #expect(withGenerationMatch.isConditionallyIdempotent == true)
+
+    let withGenerationAndMetagenerationMatch = WriteObjectOptions().with {
+      $0.preconditions = StoragePreconditions().with {
+        $0.ifGenerationMatch = 42
+        $0.ifMetagenerationMatch = 1
+      }
+    }
+    #expect(withGenerationAndMetagenerationMatch.isConditionallyIdempotent == true)
+
+    let withGenerationNotMatch = WriteObjectOptions().with {
+      $0.preconditions = StoragePreconditions().with { $0.ifGenerationNotMatch = 0 }
+    }
+    #expect(withGenerationNotMatch.isConditionallyIdempotent == false)
+
+    let withMetagenerationMatchAlone = WriteObjectOptions().with {
+      $0.preconditions = StoragePreconditions().with { $0.ifMetagenerationMatch = 1 }
+    }
+    #expect(withMetagenerationMatchAlone.isConditionallyIdempotent == false)
+
+    let withMetagenerationNotMatch = WriteObjectOptions().with {
+      $0.preconditions = StoragePreconditions().with { $0.ifMetagenerationNotMatch = 1 }
+    }
+    #expect(withMetagenerationNotMatch.isConditionallyIdempotent == false)
   }
 }
 

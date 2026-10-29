@@ -28,10 +28,22 @@ func resolveStorageIdempotency(
   let effectiveIdempotency = options.idempotent ?? isIdempotent
   options.idempotent = effectiveIdempotency
   if isMutating && effectiveIdempotency {
-    if options.headers[idempotencyToken] == nil {
-      options.headers[idempotencyToken] = UUID().uuidString
-    }
+    return addIdempotencyToken(options)
   }
+  return options
+}
+
+/// Stamps a deduplication token onto `options` if one is not already present.
+///
+/// Resumable uploads are always treated as idempotent (regardless of preconditions or
+/// `WriteObjectOptions.idempotent`), so session creation calls this directly once before its
+/// retry loop to ensure every attempt carries the same deduplication token.
+func addIdempotencyToken(_ options: GoogleGax.RequestOptions) -> GoogleGax.RequestOptions {
+  if options.headers[idempotencyToken] != nil {
+    return options
+  }
+  var options = options
+  options.headers[idempotencyToken] = UUID().uuidString
   return options
 }
 

@@ -198,20 +198,21 @@ extension StorageClient {
     var stream = prepared.stream
     let checksum = prepared.checksum
 
-    let isIdempotent =
-      options.idempotent
-      ?? (options.preconditions?.ifGenerationMatch != nil
-        || options.preconditions?.ifMetagenerationMatch != nil)
+    let requestOptions = resolveStorageIdempotency(
+      isIdempotent: options.isConditionallyIdempotent,
+      isMutating: true,
+      options: options.requestOptions.with { $0.idempotent = options.idempotent }
+    )
     let resumeState = ResumeState(
       details: WriteObjectDetails(bytesWritten: 0, totalBytes: totalSize),
-      idempotent: isIdempotent
+      idempotent: requestOptions.idempotent ?? false
     )
     return try await resumeLoop.run(state: resumeState) { _ in
       try await stream.rewind()
 
       var request = try await httpClient.newRequest(
         path: "/upload/storage/v1/b/\(bucketId)/o", query: queryItems,
-        options: options.requestOptions)
+        options: requestOptions)
       request.setMethod(.POST)
       if let checksum = checksum {
         request.setHeader(name: "x-goog-hash", value: checksum)
@@ -242,11 +243,12 @@ extension StorageClient {
     bucket: String,
     objectName: String,
     metadata: WriteObjectMetadata?,
-    options: WriteObjectOptions
+    options: WriteObjectOptions,
+    requestOptions: RequestOptions
   ) async throws -> String {
     let startRequest = try await buildStartResumableUploadRequest(
       httpClient: httpClient, bucket: bucket, objectName: objectName, metadata: metadata,
-      options: options)
+      options: options, requestOptions: requestOptions)
     let startResponse: _HTTPClientResponse
     do {
       startResponse = try await startRequest.execute()
@@ -490,13 +492,18 @@ extension StorageClient {
       throw WriteObjectError.internalError(
         "Missing bucket or object name to start resumable upload")
     }
+    // Resumable uploads are always treated as idempotent (regardless of preconditions or
+    // `options.idempotent`), so stamp the deduplication token once before the retry loop to
+    // ensure every attempt at creating the session reuses the same `x-goog-gcs-idempotency-token`.
+    let requestOptions = addIdempotencyToken(options.requestOptions)
     let location = try await resumeLoop.run(state: &resumeState) { _ in
       try await startResumableSession(
         httpClient: httpClient,
         bucket: bucket,
         objectName: objectName,
         metadata: metadata,
-        options: options
+        options: options,
+        requestOptions: requestOptions
       )
     }
     currentUploadId = location
@@ -1031,7 +1038,8 @@ extension StorageClient {
     bucket: String,
     objectName: String,
     metadata: WriteObjectMetadata?,
-    options: WriteObjectOptions
+    options: WriteObjectOptions,
+    requestOptions: RequestOptions
   ) async throws -> GoogleGax._HTTPClientRequest {
     let queryItems = buildUploadQueryItems(
       uploadType: "resumable",
@@ -1041,7 +1049,7 @@ extension StorageClient {
 
     let bucketId = BucketName.extractBucketName(bucket)
     var request = try await httpClient.newRequest(
-      path: "/upload/storage/v1/b/\(bucketId)/o", query: queryItems, options: options.requestOptions
+      path: "/upload/storage/v1/b/\(bucketId)/o", query: queryItems, options: requestOptions
     )
     request.setMethod(.POST)
     request.setHeader(name: "Content-Type", value: "application/json; charset=UTF-8")

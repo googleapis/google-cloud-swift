@@ -2305,8 +2305,11 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
+    let fastBackoff = try ExponentialBackoff(
+      initialDelay: .milliseconds(1), maximumDelay: .milliseconds(2))
     let options = WriteObjectOptions().with {
       $0.idempotent = false
+      $0.backoffPolicy = fastBackoff
     }
     let object = try await client.writeObject(source, to: bucket, as: objectName, options: options)
 
@@ -2314,6 +2317,11 @@ import Testing
     let requests = registry.recordedRequests()
     // 2 start requests (1 failure + 1 retry) + 1 chunk attempt = 3 requests
     #expect(requests.count == 3)
+    let startToken1 = requests[0].value(forHTTPHeaderField: idempotencyToken)
+    let startToken2 = requests[1].value(forHTTPHeaderField: idempotencyToken)
+    #expect(startToken1 != nil)
+    #expect(startToken1 == startToken2)
+    #expect(requests[2].value(forHTTPHeaderField: idempotencyToken) == nil)
   }
 
   /// Tests that a transient error on an uncommitted chunk from a non-seekable stream
@@ -3472,6 +3480,192 @@ import Testing
     }
     await #expect(throws: WriteObjectError.self) {
       try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
+    }
+  }
+
+  /// Tests that seekable resumable uploads stamp and reuse `x-goog-gcs-idempotency-token` across session initiation retries (both unconditioned and with `ifGenerationMatch`), while omitting it on status query and data `PUT` requests.
+  @Test(arguments: [nil, Int64(0)])
+  func resumableSeekableSessionInitiationReusesIdempotencyToken(ifGenerationMatch: Int64?)
+    async throws
+  {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "seekable-idempotency-token"
+    let data = Data(repeating: 0x2A, count: 1024)
+    let source = BytesSource(data: data)
+
+    let querySuffix = ifGenerationMatch.map { "&ifGenerationMatch=\($0)" } ?? ""
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)\(querySuffix)")
+    let sessionUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=seekable-token-id")
+
+    // 1. First session start fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: startUrl)
+    // 2. Retried session start succeeds
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+    // 3. First data PUT fails transiently with 503 to also exercise status query PUT
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: sessionUrl)
+    // 4. Status query PUT returns 308 (0 bytes committed)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: [:]),
+      for: sessionUrl)
+    // 5. Retried data PUT succeeds with 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: ["Content-Type": "application/json"]),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry, uploadThreshold: 0)
+    let fastBackoff = try ExponentialBackoff(
+      initialDelay: .milliseconds(1), maximumDelay: .milliseconds(2))
+    let options = WriteObjectOptions().with {
+      $0.backoffPolicy = fastBackoff
+      if let ifGenerationMatch {
+        $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = ifGenerationMatch }
+      }
+    }
+
+    let object = try await client.writeObject(source, to: bucket, as: objectName, options: options)
+    #expect(object.name == objectName)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 5)
+    let token1 = requests[0].value(forHTTPHeaderField: idempotencyToken)
+    let token2 = requests[1].value(forHTTPHeaderField: idempotencyToken)
+    #expect(token1 != nil)
+    #expect(token1 == token2)
+    // Data PUTs and status query PUT must not carry an idempotency token
+    #expect(requests[2].value(forHTTPHeaderField: idempotencyToken) == nil)
+    #expect(requests[3].value(forHTTPHeaderField: idempotencyToken) == nil)
+    #expect(requests[4].value(forHTTPHeaderField: idempotencyToken) == nil)
+  }
+
+  /// Tests that non-seekable streaming resumable uploads stamp and reuse `x-goog-gcs-idempotency-token` across session initiation retries (unconditioned, conditioned, and `idempotent = false`), while omitting it on chunk `PUT` requests.
+  @Test(arguments: [
+    (ifGenerationMatch: nil as Int64?, idempotent: nil as Bool?),
+    (ifGenerationMatch: 0, idempotent: nil),
+    (ifGenerationMatch: 0, idempotent: false),
+  ])
+  func resumableNonSeekableSessionInitiationReusesIdempotencyToken(
+    config: (ifGenerationMatch: Int64?, idempotent: Bool?)
+  ) async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "streaming-idempotency-token"
+    let chunkSize = 256 * 1024
+    let source = DynamicComputationSource(
+      chunkSize: chunkSize, totalChunks: 1, totalSize: UInt64(chunkSize))
+
+    let querySuffix = config.ifGenerationMatch.map { "&ifGenerationMatch=\($0)" } ?? ""
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)\(querySuffix)")
+    let sessionUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=streaming-token-id")
+
+    // 1. First session start fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: startUrl)
+    // 2. Retried session start succeeds
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+    // 3. Chunk PUT succeeds
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: chunkSize),
+        headers: ["Content-Type": "application/json"]),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry, uploadThreshold: 0)
+    let fastBackoff = try ExponentialBackoff(
+      initialDelay: .milliseconds(1), maximumDelay: .milliseconds(2))
+    let options = WriteObjectOptions().with {
+      $0.chunkSize = chunkSize
+      $0.backoffPolicy = fastBackoff
+      $0.idempotent = config.idempotent
+      if let gen = config.ifGenerationMatch {
+        $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = gen }
+      }
+    }
+
+    let object = try await client.writeObject(source, to: bucket, as: objectName, options: options)
+    #expect(object.name == objectName)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 3)
+    let token1 = requests[0].value(forHTTPHeaderField: idempotencyToken)
+    let token2 = requests[1].value(forHTTPHeaderField: idempotencyToken)
+    #expect(token1 != nil)
+    #expect(token1 == token2)
+    #expect(requests[2].value(forHTTPHeaderField: idempotencyToken) == nil)
+  }
+
+  /// Tests that resuming an existing upload session via `resumeWriteObject(uploadId:)` omits `x-goog-gcs-idempotency-token` on status query and data `PUT` requests even when `idempotent = true` and `ifGenerationMatch` are set.
+  @Test func resumeWriteObjectOmitsIdempotencyToken() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "resumed-without-token"
+    let data = Data(repeating: 0x5A, count: 8192)
+    let source = BytesSource(data: data)
+
+    let sessionUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=existing-session-id")
+
+    // 1. Initial status query fails transiently with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: sessionUrl)
+    // 2. Retried status query reports bytes 0-4095 committed
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-4095"]),
+      for: sessionUrl)
+    // 3. Remaining data PUT completes the upload
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: ["Content-Type": "application/json"]),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry)
+    let fastBackoff = try ExponentialBackoff(
+      initialDelay: .milliseconds(1), maximumDelay: .milliseconds(2))
+    let options = WriteObjectOptions().with {
+      $0.idempotent = true
+      $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 0 }
+      $0.backoffPolicy = fastBackoff
+    }
+
+    let object = try await client.resumeWriteObject(
+      source, uploadId: sessionUrl.absoluteString, options: options)
+    #expect(object.name == objectName)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 3)
+    for request in requests {
+      #expect(request.httpMethod == "PUT")
+      #expect(request.value(forHTTPHeaderField: idempotencyToken) == nil)
     }
   }
 }

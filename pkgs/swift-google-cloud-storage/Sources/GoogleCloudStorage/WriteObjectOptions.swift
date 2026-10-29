@@ -524,16 +524,17 @@ public struct WriteObjectOptions: Sendable {
 
   /// Overrides whether the upload operation is treated as idempotent.
   ///
-  /// Resumable uploads are always idempotent (they can succeed at most once), and therefore
-  /// ignore this setting.
+  /// Resumable uploads are always treated as idempotent (they can succeed at most once), and
+  /// therefore ignore this setting.
   ///
-  /// Single-shot (multipart) uploads are idempotent by default only if preconditions are provided
-  /// (`ifGenerationMatch` or `ifMetagenerationMatch`). Without preconditions, single-shot
+  /// Single-shot (multipart) uploads are treated as idempotent by default only when an
+  /// `ifGenerationMatch` precondition is provided. Without `ifGenerationMatch`, single-shot
   /// uploads are non-idempotent by default to prevent unintended overwrites or version
   /// duplication on retried transient errors.
   ///
   /// Set this property to `true` to force single-shot uploads without preconditions to be
-  /// retried on transient errors, or `false` to suppress retries even when preconditions are present.
+  /// retried on transient errors with an idempotency token, or `false` to suppress retries even
+  /// when `ifGenerationMatch` is present.
   public var idempotent: Bool? = nil
 
   public static var `default`: WriteObjectOptions { WriteObjectOptions() }
@@ -568,8 +569,15 @@ extension WriteObjectOptions {
     return copy
   }
 
+  /// Returns `true` if the upload is protected by an `ifGenerationMatch` precondition.
+  var isConditionallyIdempotent: Bool {
+    self.preconditions?.ifGenerationMatch != nil
+  }
+
   var requestOptions: RequestOptions {
-    RequestOptions().with { $0.quotaProject = self.quotaProject }
+    RequestOptions().with {
+      $0.quotaProject = self.quotaProject
+    }
   }
 }
 
