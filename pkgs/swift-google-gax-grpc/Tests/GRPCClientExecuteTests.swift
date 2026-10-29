@@ -658,4 +658,172 @@ import Testing
       }
     }
   }
+
+  @Test func executeUniverseDomainValidation() async throws {
+    actor CallCounter {
+      var count = 0
+      func increment() { count += 1 }
+    }
+    let counter = CallCounter()
+
+    struct CountingEchoService: RegistrableRPCService {
+      let counter: CallCounter
+      func registerMethods<Transport: ServerTransport>(with router: inout RPCRouter<Transport>) {
+        router.registerHandler(
+          forMethod: MethodDescriptor(
+            service: ServiceDescriptor(package: "test", service: "Echo"),
+            method: "Echo"
+          ),
+          deserializer: ProtobufDeserializer<Google_Protobuf_Empty>(),
+          serializer: ProtobufSerializer<Google_Protobuf_Empty>()
+        ) { _, _ in
+          await counter.increment()
+          return StreamingServerResponse(metadata: [:]) { writer in
+            try await writer.write(Google_Protobuf_Empty())
+            return [:]
+          }
+        }
+      }
+    }
+
+    let server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv4(host: "127.0.0.1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [CountingEchoService(counter: counter)]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await server.serve()
+      }
+
+      let listeningAddress = try await server.listeningAddress?.ipv4
+      guard let port = listeningAddress?.port else {
+        Issue.record("Failed to get listening port")
+        server.beginGracefulShutdown()
+        return
+      }
+
+      let endpoint = "http://127.0.0.1:\(port)"
+      let apiKeyCreds = try Credentials(configuration: .apiKey("test-api-key"))
+
+      // Mismatching universe domain should fail with RequestError.io before hitting the server
+      var mismatchOptions = ClientOptions()
+      mismatchOptions.endpoint = endpoint
+      mismatchOptions.universeDomain = "my-custom-universe.com"
+      mismatchOptions.credentials = apiKeyCreds
+
+      let mismatchClient = try _GRPCClient(
+        from: mismatchOptions,
+        withDefaultEndpoint: endpoint,
+        environment: [:]
+      )
+      defer {
+        mismatchClient.close()
+        server.beginGracefulShutdown()
+      }
+
+      let error = await #expect(throws: RequestError.self) {
+        let _: Google_Protobuf_Empty = try await mismatchClient.execute(
+          path: "/test.Echo/Echo",
+          request: Google_Protobuf_Empty(),
+          options: RequestOptions()
+        )
+      }
+      guard case let .io(underlying) = error else {
+        Issue.record("Expected RequestError.io, got \(String(describing: error))")
+        return
+      }
+      #expect(underlying is CredentialsError)
+      #expect(String(describing: underlying).contains("my-custom-universe.com"))
+      #expect(String(describing: underlying).contains("googleapis.com"))
+      #expect(await counter.count == 0)
+
+      // Anonymous credentials should succeed against a custom universe domain
+      var anonOptions = ClientOptions()
+      anonOptions.endpoint = endpoint
+      anonOptions.universeDomain = "my-custom-universe.com"
+      anonOptions.credentials = try Credentials(configuration: .anonymous)
+
+      let anonClient = try _GRPCClient(
+        from: anonOptions,
+        withDefaultEndpoint: endpoint,
+        environment: [:]
+      )
+      defer { anonClient.close() }
+      let _: Google_Protobuf_Empty = try await anonClient.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+      #expect(await counter.count == 1)
+
+      // Matching non-anonymous credentials should succeed against a custom universe domain
+      let validPKCS8PEM = """
+        -----BEGIN PRIVATE KEY-----
+        MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCcPLcw48+yRt5f
+        CXKKIHnvNZHuiriD1nrP17OQpHDTkWTq5+ynEDusFXkauFCbUJHrSOTokXDFHZlu
+        3HRWM2tRxg8IZODpExgKtqYhS5peJ5iY8Q6Ur1+WvhBln4M5VMtjW2YiN+zrkiCY
+        p04KygGo1UZ92ocBpiSOSkqqXoQj+AqBHRGLK3GPmCLqxgzMk2VGGmpTU1mTLN6O
+        2CtFkqPmcadypG0vlEbkUYunQud/MhyDb6ArhwrJQa6X6iOvbar7yxaOy0xix/Xk
+        s/hcMyVySrjv2/K/LbaVuEOhhseL/gcI0bP8qvn0dZ8c5l9KcdX/fr6aFcrTcqlu
+        u4wdNMv5AgMBAAECggEAMTB2dqiK2DSyx1Yony9ZZIRHtUQskqmA0hY13SjAswOY
+        M9MgMXsNZoD+N3jnO/cScfLpywUbbZwDliFHaWpX9A945Sopm4gc7iaSSHJOoC00
+        QJbIgexzGnktnWkqve6h+F6q2cQkzggcRiOKkSAHhLndLzuRfOXrpXbjah9G2DG9
+        5CIWjY/VdZQrwWrmzkY2WJVoW52Cfj5TBmCbpNk0Rdbv5q1957TGscQKELxp3wt9
+        ash4KGg2NlAP/fjRLs+X+9/dSxV8RHnovxPnXVy5XDcGisSX8rHjsjV3rZTs2Nls
+        ug1kJcAgg9i51wgsvE8Fu3lzLC3ewYmpilI5O8XA9wKBgQDafd7Hu7LMP9UisX4y
+        FTuxLZUoeN7erutAWzO8deyTFM/BW1blzQBHCAUA1cMPftdFaFPfgBaz6CkikhMv
+        0ySPjyyKsVDVObKCKo0XxISrdiuqE1K62Yn/gfyh8ZdEv+qkJvz1XaBb8DrlbpqK
+        EAXeLsckPV6lUqcv7BhojdeTmwKBgQC3Duy9rw8yxWpvfRubsuT7CQ7p6YTM1KAx
+        egNiKBGx6sj3KWGVcJPCPZkaD1+XJO6zhOqyL5/syviFTDuyEIWYBaY0odJwb7Vg
+        KVXdBa5UwI6DYmsZAAAOP1wywwQrYuqwuVhy3+09iKPkGOJ4I32Kw5HYvJ79qL19
+        sRE0/e3p+wKBgFG/8MAYuaB0bcHKWWZRzYDQhlObTgBRwFHXDfeAw+CQU9+L1mqr
+        FmR9WqniUVaV5ePhUih424W64tE9iJJHVRGlx0upZo4xRVowo5P2ApHI6DN9gWHK
+        DTkdoLHTG/8sM5XxxInl2x8rNk4r4QSxVBC6veYQVD5VO5rRopxUHgnrAoGAeHZq
+        1hw4PSnqc7l5jIk54/S/CrDwAja9wDFRvqstkc42N2fU3pl5sq4EbUDGn9je9+W0
+        6FMsw4+B4X4cHn5+216EVEhVCkaIreIlrc/KO92HKvB+F7KHVtjdHE53FPIADRG7
+        IcU4AnFDoJu7lGGOgN1Xwa/GVJhRMkBuWVfs0zcCgYEAlP9KCxjRXtcJEnB81uHx
+        sjUYPwyP5KbyYnl9LRbqfvZPIMgV2BIl+wOLUhSFYpxsDK3Otf/SyKm3qkifT4E2
+        TEsACTOH4L3aH53EIDbugMPAyMbsTZfR4EK2zGi1QOl0hjZ+kUSNcPlDAUK9vXfF
+        1ARUsyX+ffQ++dMyCItdcEg=
+        -----END PRIVATE KEY-----
+        """.replacingOccurrences(of: "\n", with: "\\n")
+      let saKeyJSON = Data(
+        """
+        {
+          "type": "service_account",
+          "project_id": "test-project-id",
+          "private_key_id": "test-private-key-id",
+          "private_key": "\(validPKCS8PEM)",
+          "client_email": "test-client-email@gserviceaccount.com"
+        }
+        """.utf8
+      )
+      var matchingOptions = ClientOptions()
+      matchingOptions.endpoint = endpoint
+      matchingOptions.universeDomain = "my-custom-universe.com"
+      matchingOptions.credentials = try Credentials(
+        configuration: .serviceAccount(
+          keyJSON: saKeyJSON,
+          universeDomain: "my-custom-universe.com"
+        )
+      )
+
+      let matchingClient = try _GRPCClient(
+        from: matchingOptions,
+        withDefaultEndpoint: endpoint,
+        environment: [:]
+      )
+      defer { matchingClient.close() }
+      let _: Google_Protobuf_Empty = try await matchingClient.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+      #expect(await counter.count == 2)
+    }
+  }
 }

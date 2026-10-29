@@ -765,4 +765,42 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     #expect(reflected.contains("Token has been expired or revoked."))
     #expect(!reflected.contains("bytes"))
   }
+
+  @Test func initializerValidatesUserAccountDataUniverseDomain() async throws {
+    let mock = MockHTTPClient([])
+
+    let defaultUniverseData = UserAccountData(
+      type: "authorized_user",
+      clientId: "mock-id",
+      clientSecret: "mock-secret",
+      refreshToken: "mock-token",
+      universeDomain: "googleapis.com"
+    )
+    let creds = try UserCredentials(
+      user: defaultUniverseData,
+      httpClient: AuthHTTPClient(mock: mock),
+      retryConfiguration: .defaultConfiguration,
+      clock: TestClock()
+    )
+    #expect(try await creds.universeDomain() == "googleapis.com")
+
+    let customUniverseData = UserAccountData(
+      type: "authorized_user",
+      clientId: "mock-id",
+      clientSecret: "mock-secret",
+      refreshToken: "mock-token",
+      universeDomain: "custom.com"
+    )
+    #expect {
+      _ = try UserCredentials(
+        user: customUniverseData,
+        httpClient: AuthHTTPClient(mock: mock),
+        retryConfiguration: .defaultConfiguration,
+        clock: TestClock()
+      )
+    } throws: { error in
+      guard case let CredentialsError.notSupported(message) = error else { return false }
+      return message.contains("custom.com")
+    }
+  }
 }

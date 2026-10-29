@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import GoogleAuth
 import GoogleGax
 import Testing
 
@@ -24,6 +25,25 @@ import Testing
     #expect(p.onError(state: nonIdempotentState(), error: ioError) == .retry(ioError))
     #expect(p.onThrottle(state: idempotentState(), error: ioError) == .exhausted(ioError))
     #expect(p.onThrottle(state: nonIdempotentState(), error: ioError) == .exhausted(ioError))
+
+    let credentialsError = RequestError.io(CredentialsError.parseError("invalid universe domain"))
+    #expect(
+      p.onError(state: idempotentState(), error: credentialsError) == .permanent(credentialsError)
+    )
+    #expect(
+      p.onError(state: nonIdempotentState(), error: credentialsError)
+        == .permanent(credentialsError)
+    )
+
+    let cancellationError = RequestError.io(CancellationError())
+    #expect(
+      p.onError(state: idempotentState(), error: cancellationError)
+        == .permanent(cancellationError)
+    )
+    #expect(
+      p.onError(state: nonIdempotentState(), error: cancellationError)
+        == .permanent(cancellationError)
+    )
 
     let otherError = RequestError.binding(BindingError())
     #expect(p.onError(state: idempotentState(), error: otherError) == .permanent(otherError))

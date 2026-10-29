@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import GoogleAuth
 import GoogleGax
 import Synchronization
 import Testing
@@ -23,6 +24,18 @@ import Testing
 
     let ioError = mockIOError()
     #expect(policy.onError(state: PollingState(), error: ioError) == .retry(ioError))
+
+    let credentialsError = RequestError.io(CredentialsError.parseError("invalid universe domain"))
+    #expect(
+      policy.onError(state: PollingState(), error: credentialsError)
+        == .permanent(credentialsError)
+    )
+
+    let cancellationError = RequestError.io(CancellationError())
+    #expect(
+      policy.onError(state: PollingState(), error: cancellationError)
+        == .permanent(cancellationError)
+    )
 
     let otherError = RequestError.binding(BindingError())
     #expect(policy.onError(state: PollingState(), error: otherError) == .permanent(otherError))
