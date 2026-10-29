@@ -2229,7 +2229,7 @@ import Testing
   }
 
   // Exercises concurrent access (interleaving valid and invalid inputs) against the shared
-  // Mutex-protected DateFormatter.
+  // DateFormatter.
   @Test func parseHTTPDateConcurrentAccess() async throws {
     let cases: [(String, GoogleWKT.WKTTimestamp?)] = [
       (

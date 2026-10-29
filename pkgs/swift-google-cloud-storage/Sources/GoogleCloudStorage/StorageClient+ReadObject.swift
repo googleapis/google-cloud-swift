@@ -16,7 +16,6 @@ import Foundation
 @_spi(GoogleCloudInternal) package import GoogleGax
 import GoogleWKT
 import NIOHTTP1
-import Synchronization
 
 extension StorageClient {
   /// Starts an object download from Cloud Storage.
@@ -159,17 +158,15 @@ extension StorageClient {
   }
 
   // Reuse a single DateFormatter for RFC 9110 IMF-fixdate headers (e.g.
-  // "Fri, 07 Aug 2026 01:00:00 GMT") to avoid expensive per-call initialization. Wrapped in a
-  // Mutex because Formatter's Sendable conformance is unavailable on Apple platforms and to
-  // guarantee thread-safe parsing across platforms under .strictMemorySafety() without unsafe
-  // annotations.
-  private static let httpDateFormatter: Mutex<DateFormatter> = {
+  // "Fri, 07 Aug 2026 01:00:00 GMT") to avoid expensive per-call initialization. DateFormatter
+  // conforms to Sendable and is internally synchronized once configured.
+  private static let httpDateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: "en_US_POSIX")
     formatter.calendar = Calendar(identifier: .iso8601)
     formatter.timeZone = TimeZone(secondsFromGMT: 0)
     formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
-    return Mutex(formatter)
+    return formatter
   }()
 
   private static let validHTTPDateRange: Range<TimeInterval> = {
@@ -185,7 +182,7 @@ extension StorageClient {
   /// ``GoogleWKT/WKTTimestamp/init(rfc3339:)`` for ISO 8601 / RFC 3339 strings without allocating
   /// an `ISO8601DateFormatter` or losing sub-millisecond precision.
   static func parseHTTPDate(_ string: String) -> GoogleWKT.WKTTimestamp? {
-    if let date = httpDateFormatter.withLock({ $0.date(from: string) }) {
+    if let date = httpDateFormatter.date(from: string) {
       guard validHTTPDateRange.contains(date.timeIntervalSince1970) else {
         return nil
       }
