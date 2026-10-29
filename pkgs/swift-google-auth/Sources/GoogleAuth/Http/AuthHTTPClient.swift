@@ -119,8 +119,7 @@ struct AuthHTTPClient: Sendable {
       request.method = .GET
       request.headers = .init(headers.map { ($0.key, $0.value) })
       let response = try await self.performRequest(request)
-      let buffer = try await response.body.collect(upTo: Self.maxResponseSize)
-      try self.ensureSuccess(response, buffer: buffer)
+      let buffer = try await self.collectBody(response)
 
       do {
         return try self.makeDecoder().decode(T.self, from: Data(buffer: buffer))
@@ -150,10 +149,7 @@ struct AuthHTTPClient: Sendable {
       request.method = .GET
       request.headers = .init(headers.map { ($0.key, $0.value) })
       let response = try await self.performRequest(request)
-      // Collect the body before validating status so non-2xx responses retain their error payload
-      // and `buffer` is captured before `readUTF8ValidatedString` advances its reader index.
-      var buffer = try await response.body.collect(upTo: Self.maxResponseSize)
-      try self.ensureSuccess(response, buffer: buffer)
+      var buffer = try await self.collectBody(response)
 
       do {
         guard let plainText = try buffer.readUTF8ValidatedString(length: buffer.readableBytes)
@@ -194,8 +190,7 @@ struct AuthHTTPClient: Sendable {
       request.body = .bytes(buffer)
 
       let response = try await self.performRequest(request)
-      let recvBuffer = try await response.body.collect(upTo: Self.maxResponseSize)
-      try self.ensureSuccess(response, buffer: recvBuffer)
+      let recvBuffer = try await self.collectBody(response)
 
       do {
         return try self.makeDecoder().decode(Response.self, from: recvBuffer)
@@ -231,8 +226,7 @@ struct AuthHTTPClient: Sendable {
       request.body = .bytes(bodyData)
 
       let response = try await self.performRequest(request)
-      let buffer = try await response.body.collect(upTo: Self.maxResponseSize)
-      try self.ensureSuccess(response, buffer: buffer)
+      let buffer = try await self.collectBody(response)
 
       do {
         return try self.makeDecoder().decode(Response.self, from: Data(buffer: buffer))
@@ -250,6 +244,10 @@ struct AuthHTTPClient: Sendable {
       return try await operation()
     } catch let error as AuthHTTPError {
       throw error
+    } catch let error as CancellationError {
+      throw error
+    } catch  where Task.isCancelled {
+      throw CancellationError()
     } catch let error as URLError {
       throw AuthHTTPError.transportError(error)
     } catch {
@@ -274,16 +272,40 @@ struct AuthHTTPClient: Sendable {
     return encoder
   }
 
-  /// Validates that the HTTP status code is in the 200–299 range.
+  /// Validates that the HTTP status code is in the 200–299 range and collects the response body.
   ///
-  /// Callers collect `response.body` into `buffer` prior to calling this method so that non-2xx
-  /// responses (such as OAuth 2.0 `invalid_grant` or STS error payloads) are preserved on
-  /// `AuthHTTPError.unsuccessfulResponse` and the response stream is drained for connection reuse.
-  /// `Data(buffer: buffer)` is only materialized on the error path to avoid copying on 2xx responses.
-  private func ensureSuccess(_ response: HTTPClientResponse, buffer: ByteBuffer) throws {
-    let statusCode = response.status.code
-    guard (200...299).contains(statusCode) else {
-      throw AuthHTTPError.unsuccessfulResponse(response: response, data: Data(buffer: buffer))
+  /// For 2xx responses, collects `response.body` up to `Self.maxResponseSize` without copying into
+  /// `Data`. For non-2xx responses, attempts to collect `response.body` on a best-effort basis so
+  /// structured error payloads are preserved on `AuthHTTPError.unsuccessfulResponse` and small
+  /// error bodies are drained for connection reuse; if collecting the error body fails (for
+  /// example, `NIOTooManyBytesError` on an oversized error page or a mid-stream read error),
+  /// `AuthHTTPError.unsuccessfulResponse` is still thrown with empty `Data` so the HTTP status code
+  /// and retryability classification are preserved. `CancellationError` is rethrown directly, and
+  /// any error thrown after task cancellation is propagated as `CancellationError` without wrapping.
+  ///
+  /// Only response metadata (`version`, `status`, `headers`) is retained on the thrown error so
+  /// `response.body` (and any underlying `AsyncHTTPClient` stream/transaction or request history)
+  /// is released immediately upon unwinding.
+  private func collectBody(_ response: HTTPClientResponse) async throws -> ByteBuffer {
+    guard (200...299).contains(response.status.code) else {
+      let data: Data
+      do {
+        let buffer = try await response.body.collect(upTo: Self.maxResponseSize)
+        data = Data(buffer: buffer)
+      } catch let error as CancellationError {
+        throw error
+      } catch  where Task.isCancelled {
+        throw CancellationError()
+      } catch {
+        data = Data()
+      }
+      let metadataResponse = HTTPClientResponse(
+        version: response.version,
+        status: response.status,
+        headers: response.headers
+      )
+      throw AuthHTTPError.unsuccessfulResponse(response: metadataResponse, data: data)
     }
+    return try await response.body.collect(upTo: Self.maxResponseSize)
   }
 }

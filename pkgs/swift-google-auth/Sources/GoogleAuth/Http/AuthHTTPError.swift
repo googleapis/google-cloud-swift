@@ -23,8 +23,9 @@ import NIOHTTP1
 enum AuthHTTPError: Error, Sendable {
   /// The server returned an HTTP status code outside the 200–299 range (e.g. 400, 401, 403, 429, 500, 503).
   ///
-  /// Because `HTTPClientResponse.body` is a single-pass async stream that is consumed before status
-  /// validation, the collected error response payload bytes are stored alongside `response` in `data`.
+  /// Because `HTTPClientResponse.body` is a single-pass async stream, any collected error response
+  /// payload bytes are stored alongside `response` in `data`. If collecting the error response body
+  /// fails or exceeds `AuthHTTPClient.maxResponseSize`, `data` is empty (`Data()`).
   case unsuccessfulResponse(response: HTTPClientResponse, data: Data = Data())
 
   /// A transport-level or network I/O error occurred (e.g., DNS resolution failure, connection timeout, connection reset).
