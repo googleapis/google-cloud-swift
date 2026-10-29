@@ -51,6 +51,9 @@ struct UserAccountData: Sendable, Codable {
   /// - SeeAlso: [Google Cloud Quota Project](https://cloud.google.com/docs/quotas/quota-project)
   let quotaProjectId: String?
 
+  /// The optional universe domain configured in the credentials file.
+  let universeDomain: String?
+
   /// Initializes a new `UserAccountData` instance with the specified parameters.
   ///
   /// - Parameters:
@@ -60,13 +63,15 @@ struct UserAccountData: Sendable, Codable {
   ///   - refreshToken: OAuth 2.0 refresh token.
   ///   - tokenUri: Optional token endpoint URI.
   ///   - quotaProjectId: Optional quota project ID.
+  ///   - universeDomain: Optional universe domain.
   init(
     type: String,
     clientId: String,
     clientSecret: String,
     refreshToken: String,
     tokenUri: String? = nil,
-    quotaProjectId: String? = nil
+    quotaProjectId: String? = nil,
+    universeDomain: String? = nil
   ) {
     self.type = type
     self.clientId = clientId
@@ -74,5 +79,6 @@ struct UserAccountData: Sendable, Codable {
     self.refreshToken = refreshToken
     self.tokenUri = tokenUri
     self.quotaProjectId = quotaProjectId
+    self.universeDomain = universeDomain
   }
 }

@@ -55,10 +55,32 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
       )
     }
 
+    if let universeDomain {
+      try validateUniverseDomain(universeDomain)
+    }
+    let payloadUniverse = nonEmpty(payload.universeDomain)
+    if let payloadUniverse {
+      try validateUniverseDomain(payloadUniverse)
+    }
+    if let universeDomain, let payloadUniverse, universeDomain != payloadUniverse {
+      throw CredentialsError.parseError(
+        "The configured universe_domain (\(universeDomain)) does not match the impersonated_service_account universe_domain (\(payloadUniverse))."
+      )
+    }
     let effectiveUniverseDomain =
-      Self.nonEmpty(universeDomain) ?? Self.nonEmpty(payload.universeDomain)
+      universeDomain ?? payloadUniverse ?? defaultUniverseDomain
+    if case let .string(sourceUniverse)? = payload.sourceCredentials["universe_domain"],
+      let nonEmptySourceUniverse = nonEmpty(sourceUniverse)
+    {
+      try validateUniverseDomain(nonEmptySourceUniverse)
+      if nonEmptySourceUniverse != effectiveUniverseDomain {
+        throw CredentialsError.parseError(
+          "The universe_domain in source_credentials (\(nonEmptySourceUniverse)) does not match the impersonated_service_account universe_domain (\(effectiveUniverseDomain))."
+        )
+      }
+    }
     let effectiveQuotaProjectID =
-      Self.nonEmpty(quotaProjectID) ?? Self.nonEmpty(payload.quotaProjectId)
+      nonEmpty(quotaProjectID) ?? nonEmpty(payload.quotaProjectId)
 
     // Resolve the underlying source credential provider via the registry:
     // - Pass `quotaProjectID: nil` so the outer quota project applies to the impersonated
@@ -90,13 +112,6 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
       universeDomain: effectiveUniverseDomain
     )
   }
-
-  private static func nonEmpty(_ value: String?) -> String? {
-    guard let value = value, !value.isEmpty else {
-      return nil
-    }
-    return value
-  }
 }
 
 /// An authentication provider that impersonates a Google Cloud service account via the IAM Credentials API.
@@ -110,7 +125,7 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
   private let cache: TokenCache<ContinuousClock>
   let provider: ImpersonatedTokenProvider
   let quotaProjectID: String?
-  let universeDomain: String
+  private let universeDomainOverride: String?
 
   /// Initializes `ImpersonatedCredentials` for a target service account principal.
   init(
@@ -124,9 +139,10 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
     httpClient: AuthHTTPClient = AuthHTTPClient(),
     retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
-    let effectiveUniverse =
-      universeDomain.flatMap { $0.isEmpty ? nil : $0 } ?? defaultUniverseDomain
-    try Self.validateUniverseDomain(effectiveUniverse)
+    if let universeDomain {
+      try validateUniverseDomain(universeDomain)
+    }
+    let effectiveUniverse = universeDomain ?? defaultUniverseDomain
     let resourceName = try Self.normalizeServiceAccountResourceName(targetPrincipal)
     let urlString =
       "https://iamcredentials.\(effectiveUniverse)/v1/\(resourceName):generateAccessToken"
@@ -134,11 +150,12 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
     try self.init(
       sourceCredentials: sourceCredentials,
       impersonationURLString: urlString,
+      targetResourceName: resourceName,
       delegates: delegates,
       scopes: scopes,
       lifetime: lifetime,
       quotaProjectID: quotaProjectID,
-      universeDomain: effectiveUniverse,
+      universeDomain: universeDomain,
       httpClient: httpClient,
       retryConfiguration: retryConfiguration
     )
@@ -148,6 +165,7 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
   init(
     sourceCredentials: any CredentialsProvider,
     impersonationURLString: String,
+    targetResourceName: String? = nil,
     delegates: [String] = [],
     scopes: [String] = [],
     lifetime: Duration = .seconds(3600),
@@ -182,20 +200,38 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
     }
     let lifetimeDuration = try WKTDuration(seconds: lifetime.components.seconds)
 
-    let effectiveUniverse =
-      universeDomain.flatMap { $0.isEmpty ? nil : $0 } ?? defaultUniverseDomain
-    try Self.validateUniverseDomain(effectiveUniverse)
+    if let universeDomain {
+      try validateUniverseDomain(universeDomain)
+    }
+    let effectiveUniverse = universeDomain ?? defaultUniverseDomain
+    if effectiveUniverse != defaultUniverseDomain && sourceCredentials is UserCredentials {
+      throw CredentialsError.notSupported(
+        "User accounts are not supported in custom universes: \(effectiveUniverse)"
+      )
+    }
+    let lowerHost = host.lowercased()
+    if targetResourceName == nil, lowerHost.hasPrefix("iamcredentials.") {
+      let urlUniverse = String(host.dropFirst("iamcredentials.".count))
+      if urlUniverse != effectiveUniverse {
+        throw CredentialsError.parseError(
+          "The service_account_impersonation_url host (\(host)) does not match universe_domain (\(effectiveUniverse))."
+        )
+      }
+    }
 
     let effectiveScopes =
       scopes.isEmpty ? [ImpersonatedServiceAccountConfig.defaultScope] : scopes
     let normalizedDelegates = try delegates.map(Self.normalizeServiceAccountResourceName)
+    let resolvedOverride = targetResourceName == nil ? effectiveUniverse : universeDomain
 
     self.quotaProjectID = (quotaProjectID?.isEmpty == false) ? quotaProjectID : nil
-    self.universeDomain = effectiveUniverse
+    self.universeDomainOverride = resolvedOverride
 
     let provider = ImpersonatedTokenProvider(
       sourceCredentials: sourceCredentials,
       iamEndpointURL: resolvedURL,
+      targetResourceName: targetResourceName,
+      universeDomainOverride: resolvedOverride,
       scopes: effectiveScopes,
       delegates: normalizedDelegates,
       lifetime: lifetimeDuration,
@@ -217,6 +253,13 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
       headers.append(name: "x-goog-user-project", value: quotaProjectID)
     }
     return headers
+  }
+
+  func universeDomain() async throws -> String {
+    if let override = self.universeDomainOverride {
+      return override
+    }
+    return try await self.provider.sourceCredentials.universeDomain()
   }
 
   /// Normalizes and validates a service account email or resource name into
@@ -258,19 +301,5 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
       )
     }
     return "projects/-/serviceAccounts/\(principal)"
-  }
-
-  private static func validateUniverseDomain(_ domain: String) throws {
-    guard
-      !domain.isEmpty,
-      !domain.contains(".."),
-      !domain.unicodeScalars.contains(where: {
-        $0.properties.isWhitespace || $0 == "/" || $0 == "?" || $0 == "#" || $0 == "@" || $0 == ":"
-      })
-    else {
-      throw CredentialsError.parseError(
-        "Invalid universe_domain: '\(domain)'"
-      )
-    }
   }
 }

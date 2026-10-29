@@ -24,9 +24,14 @@ import Testing
 
 private struct StaticSourceCredentials: CredentialsProvider {
   let authHeaders: AuthHeaders
+  var customUniverseDomain: String = defaultUniverseDomain
 
   func headers() async throws -> AuthHeaders {
     authHeaders
+  }
+
+  func universeDomain() async throws -> String {
+    customUniverseDomain
   }
 }
 
@@ -108,7 +113,8 @@ private struct FailingSourceCredentials: CredentialsProvider {
 
   @Test func customUniverseDomainScopesLifetimeAndResourceName() async throws {
     let source = StaticSourceCredentials(
-      authHeaders: [("Authorization", "Bearer source-token")]
+      authHeaders: [("Authorization", "Bearer source-token")],
+      customUniverseDomain: "my-universe.com"
     )
 
     let expectedURL =
@@ -498,7 +504,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
     }
   }
 
-  @Test func programmaticConfigurationConstructsImpersonatedCredentials() throws {
+  @Test func programmaticConfigurationConstructsImpersonatedCredentials() async throws {
     let sourceCreds = try Credentials(configuration: .apiKey("source-key"))
     let config = ImpersonatedServiceAccountConfig(
       sourceCredentials: sourceCreds,
@@ -518,7 +524,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
     }
 
     #expect(impersonated.quotaProjectID == "billing-proj")
-    #expect(impersonated.universeDomain == "custom.universe.com")
+    #expect(try await impersonated.universeDomain() == "custom.universe.com")
     #expect(
       impersonated.provider.iamEndpointURL.absoluteString
         == "https://iamcredentials.custom.universe.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken"
@@ -531,5 +537,145 @@ private struct FailingSourceCredentials: CredentialsProvider {
     #expect(
       impersonated.provider.scopes == ["https://www.googleapis.com/auth/devstorage.read_only"])
     #expect(impersonated.provider.lifetime == (try WKTDuration(seconds: 1800)))
+  }
+
+  @Test func universeDomainDelegatesToSourceWhenNoOverride() async throws {
+    let source = StaticSourceCredentials(
+      authHeaders: [("Authorization", "Bearer source-token")],
+      customUniverseDomain: "source.universe.com"
+    )
+    let expectedURL =
+      "https://iamcredentials.source.universe.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken"
+    let responsePayload = IAMGenerateAccessTokenResponse(
+      accessToken: "mock-source-universe-token",
+      expireTime: try #require(WKTTimestamp(rfc3339: "2099-01-01T01:00:00Z"))
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let responseData = try encoder.encode(responsePayload)
+    let mock = MockHTTPClient([
+      { request in
+        #expect(request.url == expectedURL)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData))
+        )
+      }
+    ])
+
+    let withoutOverride = try ImpersonatedCredentials(
+      sourceCredentials: source,
+      targetPrincipal: "target@project.iam.gserviceaccount.com",
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+    #expect(try await withoutOverride.universeDomain() == "source.universe.com")
+    let headers = try await withoutOverride.headers()
+    #expect(headers["Authorization"] == "Bearer mock-source-universe-token")
+
+    let withOverride = try ImpersonatedCredentials(
+      sourceCredentials: source,
+      targetPrincipal: "target@project.iam.gserviceaccount.com",
+      universeDomain: "override.universe.com"
+    )
+    #expect(try await withOverride.universeDomain() == "override.universe.com")
+  }
+
+  @Test func sourceUniverseDomainMismatchFailsBeforeFetchingSourceToken() async throws {
+    struct SpySourceCredentials: CredentialsProvider {
+      func universeDomain() async throws -> String {
+        "googleapis.com"
+      }
+      func headers() async throws -> AuthHeaders {
+        Issue.record("sourceCredentials.headers() must not be called on universe domain mismatch")
+        return [("Authorization", "Bearer secret-source-token")]
+      }
+    }
+
+    let mock = MockHTTPClient([])
+    let creds = try ImpersonatedCredentials(
+      sourceCredentials: SpySourceCredentials(),
+      targetPrincipal: "target@project.iam.gserviceaccount.com",
+      universeDomain: "custom.universe.com",
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    guard let error, case let .cannotFetchToken(_, underlyingError) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    #expect(underlyingError is CredentialsError)
+    #expect(!AuthHTTPError.isRetryable(error))
+  }
+
+  @Test func uppercaseIamCredentialsHostMismatchIsRejected() throws {
+    #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: StaticSourceCredentials(authHeaders: []),
+        impersonationURLString:
+          "https://IAMCREDENTIALS.other-universe.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken"
+      )
+    }
+  }
+
+  @Test func userCredentialsAsSourceInCustomUniverseThrowsNotSupported() throws {
+    let userJSON = Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token"
+      }
+      """.utf8
+    )
+    let userCreds = try GoogleAuth.UserCredentials(keyJSON: userJSON)
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try ImpersonatedCredentials(
+        sourceCredentials: userCreds,
+        targetPrincipal: "target@project.iam.gserviceaccount.com",
+        universeDomain: "custom.universe.com"
+      )
+    }
+    guard let error, case .notSupported = error else {
+      Issue.record("Expected CredentialsError.notSupported, got \(String(describing: error))")
+      return
+    }
+  }
+
+  @Test func anonymousSourceCredentialsAllowedInCustomUniverse() async throws {
+    let responsePayload = IAMGenerateAccessTokenResponse(
+      accessToken: "mock-anon-impersonated-token",
+      expireTime: try #require(WKTTimestamp(rfc3339: "2099-01-01T01:00:00Z"))
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let responseData = try encoder.encode(responsePayload)
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        #expect(
+          request.url
+            == "https://iamcredentials.custom.universe.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken"
+        )
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData))
+        )
+      }
+    ])
+    let creds = try ImpersonatedCredentials(
+      sourceCredentials: AnonymousCredentials(),
+      targetPrincipal: "target@project.iam.gserviceaccount.com",
+      universeDomain: "custom.universe.com",
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+    let headers = try await creds.headers()
+    #expect(headers["Authorization"] == "Bearer mock-anon-impersonated-token")
   }
 }

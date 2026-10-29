@@ -55,6 +55,7 @@ struct ServiceAccountParser: CredentialSourceParser {
 struct ServiceAccountCredentials: CredentialsProvider, Sendable {
   private let tokenProvider: TokenCache<ContinuousClock>
   private let quotaProjectID: String?
+  let universeDomain: String
 
   init(
     keyJSON: Data,
@@ -69,6 +70,12 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
       throw CredentialsError.parseError(
         "Failed to parse Service Account key JSON: \(error.localizedDescription)")
     }
+    if let universeDomain {
+      try validateUniverseDomain(universeDomain)
+    }
+    let effectiveUniverse =
+      universeDomain ?? nonEmpty(key.universeDomain) ?? defaultUniverseDomain
+    try validateUniverseDomain(effectiveUniverse)
     let provider = try ServiceAccountTokenProvider(key: key, accessSpecifier: accessSpecifier)
 
     self.tokenProvider = TokenCache(
@@ -76,7 +83,7 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
       isRetryable: { _ in false }
     )
     self.quotaProjectID = quotaProjectID
-    _ = universeDomain
+    self.universeDomain = effectiveUniverse
   }
 
   func headers() async throws -> AuthHeaders {
@@ -86,5 +93,9 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
       headers.append(name: "x-goog-user-project", value: quotaProjectID)
     }
     return headers
+  }
+
+  func universeDomain() async throws -> String {
+    return self.universeDomain
   }
 }

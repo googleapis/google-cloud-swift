@@ -30,6 +30,12 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
   /// The full IAM Credentials `:generateAccessToken` endpoint URL.
   let iamEndpointURL: URL
 
+  /// Normalized target service account resource name when constructed from `targetPrincipal`.
+  let targetResourceName: String?
+
+  /// Explicit universe domain override when configured on `ImpersonatedCredentials`.
+  let universeDomainOverride: String?
+
   /// The OAuth 2.0 scopes requested for the impersonated access token.
   let scopes: [String]
 
@@ -47,6 +53,60 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
 
   @concurrent
   func fetchToken() async throws -> Token {
+    let sourceUniverse: String
+    do {
+      sourceUniverse = try await sourceCredentials.universeDomain()
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch {
+      throw CredentialsError.cannotFetchToken(
+        message:
+          "Could not resolve source credentials universe domain for service account impersonation.",
+        underlyingError: error
+      )
+    }
+
+    let targetUniverse = universeDomainOverride ?? sourceUniverse
+    if !sourceCredentials.isAnonymous && sourceUniverse != targetUniverse {
+      throw CredentialsError.cannotFetchToken(
+        message: "Could not obtain source credentials token for service account impersonation.",
+        underlyingError: CredentialsError.parseError(
+          "The configured universe domain (\(targetUniverse)) does not match the universe domain found in the source credentials (\(sourceUniverse))."
+        )
+      )
+    }
+
+    let endpointURL: URL
+    if universeDomainOverride == nil,
+      let targetResourceName,
+      targetUniverse != defaultUniverseDomain
+    {
+      do {
+        try validateUniverseDomain(targetUniverse)
+      } catch {
+        throw CredentialsError.cannotFetchToken(
+          message: "Invalid universe domain '\(targetUniverse)' for service account impersonation.",
+          underlyingError: error
+        )
+      }
+      guard
+        let resolvedURL = URL(
+          string:
+            "https://iamcredentials.\(targetUniverse)/v1/\(targetResourceName):generateAccessToken"
+        )
+      else {
+        throw CredentialsError.cannotFetchToken(
+          message: "Invalid IAM endpoint URL for universe domain '\(targetUniverse)'.",
+          underlyingError: CredentialsError.parseError(
+            "Invalid universe_domain: '\(targetUniverse)'"
+          )
+        )
+      }
+      endpointURL = resolvedURL
+    } else {
+      endpointURL = iamEndpointURL
+    }
+
     let sourceAuthHeaders: AuthHeaders
     do {
       sourceAuthHeaders = try await sourceCredentials.headers()
@@ -78,7 +138,7 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
         isRetryable: AuthHTTPError.isRetryable
       ) {
         try await httpClient.post(
-          url: iamEndpointURL,
+          url: endpointURL,
           body: requestBody,
           headers: requestHeaders
         )

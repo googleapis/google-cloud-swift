@@ -800,5 +800,31 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     )
 
     _ = try await creds.headers()
+    #expect(try await creds.universeDomain() == "googleapis.com")
+  }
+
+  @Test("ExternalAccountCredentials validates and returns universeDomain")
+  func universeDomainValidationAndResolution() async throws {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+
+    let creds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL,
+      universeDomain: "custom.universe.com"
+    )
+    #expect(try await creds.universeDomain() == "custom.universe.com")
+
+    #expect(throws: CredentialsError.self) {
+      _ = try ExternalAccountCredentials(
+        credentialSource: .programmatic(subjectTokenProvider: provider),
+        audience: "aud",
+        subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+        tokenURL: targetURL,
+        universeDomain: "invalid/domain"
+      )
+    }
   }
 }

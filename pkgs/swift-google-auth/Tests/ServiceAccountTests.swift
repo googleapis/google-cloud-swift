@@ -298,4 +298,46 @@ struct ServiceAccountTests {
       token.expirationDate == expectedExpiry,
       "Expected expiration date \(expectedExpiry), got \(token.expirationDate)")
   }
+
+  @Test("Service Account Credentials resolves universe domain from JSON or override")
+  func universeDomainResolution() async throws {
+    let keyWithUniverse = try ServiceAccountTests.generateMockKeyJSON()
+    let credsFromKey = try ServiceAccountCredentials(keyJSON: keyWithUniverse)
+    #expect(try await credsFromKey.universeDomain() == "test-universe-domain")
+
+    let credsWithOverride = try ServiceAccountCredentials(
+      keyJSON: keyWithUniverse, universeDomain: "override.universe.com")
+    #expect(try await credsWithOverride.universeDomain() == "override.universe.com")
+
+    let keyWithoutUniverse = Data(
+      """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "\(TestKeys.escapedPKCS8PEM)",
+        "client_email": "test-client-email@gserviceaccount.com"
+      }
+      """.utf8)
+    let credsDefault = try ServiceAccountCredentials(keyJSON: keyWithoutUniverse)
+    #expect(try await credsDefault.universeDomain() == "googleapis.com")
+
+    for invalid in [
+      "",
+      "   ",
+      ".",
+      "..",
+      ".googleapis.com",
+      "googleapis.com.",
+      "-googleapis.com",
+      "googleapis-.com",
+      "invalid/domain",
+      "evil.com%23",
+    ] {
+      #expect(throws: CredentialsError.self) {
+        _ = try ServiceAccountCredentials(
+          keyJSON: keyWithUniverse, universeDomain: invalid)
+      }
+    }
+  }
 }
