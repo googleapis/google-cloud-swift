@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
 import GoogleGax
-import GoogleCloudStorage
 import Testing
+@testable import GoogleCloudStorage
 
 @Suite struct StopOnConsecutiveErrorsTests {
+  /// Verifies the default consecutive error threshold (3) and `remainingTime` delegation.
   @Test func defaultsAndDelegation() {
     let mock = MockResumePolicy<Void>(onError: { _, e in .resume(e) })
-    let policy = mock.stopOnConsecutiveErrors(3)
+    let policy = mock.stopOnConsecutiveErrors()
     #expect(policy.maxConsecutiveErrors == 3)
     #expect(policy.remainingTime(state: ResumeState()) == nil)
   }
@@ -51,9 +51,15 @@ import Testing
     let permanentError = RequestError.http(HTTPDetails(statusCode: 400, headers: []))
     let mock = MockResumePolicy<Void>(onError: { _, e in .permanent(e) })
     let policy = mock.stopOnConsecutiveErrors(5)
-    let state = ResumeState()
 
-    #expect(policy.onError(state: state, error: permanentError) == .permanent(permanentError))
+    #expect(
+      policy.onError(state: ResumeState(), error: permanentError) == .permanent(permanentError))
+    #expect(
+      policy.onError(
+        state: ResumeState(consecutiveErrorCount: 5),
+        error: permanentError
+      ) == .permanent(permanentError)
+    )
   }
 
   @Test func innerExhaustedPassesThrough() {
@@ -103,5 +109,31 @@ import Testing
 
     #expect(policyZero.onError(state: state, error: error) == .exhausted(error))
     #expect(policyNegative.onError(state: state, error: error) == .exhausted(error))
+  }
+
+  @Test func equatable() {
+    let a = AlwaysResume<Void>.unbounded().stopOnConsecutiveErrors(3)
+    let b = AlwaysResume<Void>.unbounded().stopOnConsecutiveErrors()
+    #expect(a == b)
+
+    let c = AlwaysResume<Void>.unbounded().stopOnConsecutiveErrors(5)
+    #expect(a != c)
+  }
+
+  /// Verifies `Details` associated-type forwarding for non-`Void` transfer details.
+  @Test func forwardsNonVoidDetailsType() {
+    let mock = MockResumePolicy<WriteObjectDetails>(
+      onError: { state, e in
+        state.details.bytesWritten > 0 ? .resume(e) : .permanent(e)
+      }
+    )
+    let policy: any ResumePolicy<WriteObjectDetails> = mock.stopOnConsecutiveErrors(2)
+    let error = RequestError.http(HTTPDetails(statusCode: 503, headers: []))
+
+    let progressedState = ResumeState(
+      details: WriteObjectDetails(bytesWritten: 512, totalBytes: 1024),
+      consecutiveErrorCount: 1
+    )
+    #expect(policy.onError(state: progressedState, error: error) == .resume(error))
   }
 }

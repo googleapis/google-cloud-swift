@@ -16,27 +16,38 @@ public import GoogleGax
 
 /// A ``ResumePolicy`` decorator that permits resumes as long as forward progress
 /// is made, halting when consecutive errors reach a maximum threshold.
-public struct StopOnConsecutiveErrors<P: Sendable>: Sendable {
+///
+/// The decorator passes through ``ResumeResult/permanent(_:)`` and ``ResumeResult/exhausted(_:)``
+/// decisions from the inner policy unchanged, and replaces ``ResumeResult/resume(_:)`` with
+/// ``ResumeResult/exhausted(_:)`` once ``ResumeState/consecutiveErrorCount`` reaches the
+/// configured threshold. Because the resume loop increments ``ResumeState/consecutiveErrorCount``
+/// before consulting ``onError(state:error:)``, setting the threshold to `0` or `1` halts on the
+/// first error without resuming. Forward progress reported via ``onProgress(state:)`` is forwarded
+/// to the inner policy so consecutive error counts reset when bytes advance.
+///
+/// Construct this decorator using ``ResumePolicy/stopOnConsecutiveErrors(_:)``.
+public struct StopOnConsecutiveErrors<P: ResumePolicy>: ResumePolicy {
+  public typealias Details = P.Details
+
   /// The inner resume policy being decorated.
-  public let inner: P
+  let inner: P
 
   /// The maximum number of consecutive errors permitted before the transfer is abandoned.
-  public let maxConsecutiveErrors: Int
+  let maxConsecutiveErrors: Int
 
-  /// Creates a new `StopOnConsecutiveErrors` instance.
+  /// Creates a new `StopOnConsecutiveErrors` decorator.
+  ///
+  /// Kept `internal` so callers construct decorated policies exclusively via the fluent
+  /// ``ResumePolicy/stopOnConsecutiveErrors(_:)`` method.
   ///
   /// - Parameters:
   ///   - inner: The underlying resume policy.
   ///   - maxConsecutiveErrors: The maximum number of consecutive errors without forward progress.
   ///     Clamped to be non-negative (`max(0, maxConsecutiveErrors)`). Defaults to 3.
-  public init(inner: P, maxConsecutiveErrors: Int = 3) {
+  init(_ inner: P, maxConsecutiveErrors: Int = 3) {
     self.inner = inner
     self.maxConsecutiveErrors = max(0, maxConsecutiveErrors)
   }
-}
-
-extension StopOnConsecutiveErrors: ResumePolicy where P: ResumePolicy & Sendable {
-  public typealias Details = P.Details
 
   public func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult {
     switch inner.onError(state: state, error: error) {
@@ -45,6 +56,8 @@ extension StopOnConsecutiveErrors: ResumePolicy where P: ResumePolicy & Sendable
     case .exhausted(let e):
       return .exhausted(e)
     case .resume(let e):
+      // `_ResumeLoop` increments `state.consecutiveErrorCount` before consulting `onError`, so
+      // `>=` halts as soon as the consecutive error count reaches `maxConsecutiveErrors`.
       if state.consecutiveErrorCount >= maxConsecutiveErrors {
         return .exhausted(e)
       }
@@ -53,6 +66,8 @@ extension StopOnConsecutiveErrors: ResumePolicy where P: ResumePolicy & Sendable
   }
 
   public func onProgress(state: inout ResumeState<Details>) {
+    // Forward progress to the inner chain (whose base `ResumePolicy.onProgress` implementation
+    // resets `state.consecutiveErrorCount` to 0).
     inner.onProgress(state: &state)
   }
 
@@ -64,7 +79,7 @@ extension StopOnConsecutiveErrors: ResumePolicy where P: ResumePolicy & Sendable
 extension StopOnConsecutiveErrors: Equatable where P: Equatable {}
 
 extension ResumePolicy {
-  /// Decorates a `ResumePolicy` to halt when consecutive errors exceed a threshold without forward progress.
+  /// Decorates a ``ResumePolicy`` to halt when consecutive errors reach a threshold without forward progress.
   ///
   /// - Parameter maxConsecutiveErrors: The maximum consecutive error threshold.
   ///   Clamped to be non-negative (`max(0, maxConsecutiveErrors)`). Defaults to 3.
@@ -72,6 +87,6 @@ extension ResumePolicy {
   public func stopOnConsecutiveErrors(_ maxConsecutiveErrors: Int = 3)
     -> StopOnConsecutiveErrors<Self>
   {
-    StopOnConsecutiveErrors(inner: self, maxConsecutiveErrors: maxConsecutiveErrors)
+    StopOnConsecutiveErrors(self, maxConsecutiveErrors: maxConsecutiveErrors)
   }
 }
