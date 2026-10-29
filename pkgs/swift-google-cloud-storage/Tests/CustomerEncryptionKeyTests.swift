@@ -104,6 +104,8 @@ import Testing
     let sample = sampleKey()
     let key1 = try CustomerEncryptionKeyOptions(key: sample.data)
     let key2 = try CustomerEncryptionKeyOptions(keyBase64: sample.keyBase64)
+    let differentKey = try CustomerEncryptionKeyOptions(key: Data(repeating: 0x99, count: 32))
     #expect(key1 == key2)
+    #expect(key1 != differentKey)
   }
 }
