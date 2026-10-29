@@ -272,20 +272,10 @@ public struct ImpersonatedServiceAccountConfig: Sendable {
 /// Represents OAuth 2.0 client credentials used for client authentication via HTTP Basic Auth.
 public struct ClientAuthentication: Sendable, Equatable, Hashable {
   /// The OAuth client ID.
-  public let id: String
+  public let clientID: String
 
   /// The optional OAuth client secret.
-  public let secret: String?
-
-  /// Initializes client authentication credentials.
-  ///
-  /// - Parameters:
-  ///   - id: The OAuth client ID.
-  ///   - secret: The optional OAuth client secret.
-  public init(id: String, secret: String? = nil) {
-    self.id = id
-    self.secret = secret
-  }
+  public let clientSecret: String?
 
   /// Initializes client authentication credentials.
   ///
@@ -293,14 +283,9 @@ public struct ClientAuthentication: Sendable, Equatable, Hashable {
   ///   - clientID: The OAuth client ID.
   ///   - clientSecret: The optional OAuth client secret.
   public init(clientID: String, clientSecret: String? = nil) {
-    self.init(id: clientID, secret: clientSecret)
+    self.clientID = clientID
+    self.clientSecret = clientSecret
   }
-
-  /// The OAuth client ID.
-  public var clientID: String { id }
-
-  /// The optional OAuth client secret.
-  public var clientSecret: String? { secret }
 }
 
 /// Configuration options for Workload and Workforce Identity Federation credentials.

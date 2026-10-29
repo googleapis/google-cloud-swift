@@ -138,7 +138,7 @@ struct STSHandler: Sendable {
 
     // Handle Client Authentication (Basic Auth if credentials exist)
     if let clientAuth = request.clientAuthentication {
-      let credentialsString = "\(clientAuth.id):\(clientAuth.secret ?? "")"
+      let credentialsString = "\(clientAuth.clientID):\(clientAuth.clientSecret ?? "")"
       if let credentialsData = credentialsString.data(using: .utf8) {
         let base64Credentials = credentialsData.base64EncodedString()
         headers["Authorization"] = "Basic \(base64Credentials)"
