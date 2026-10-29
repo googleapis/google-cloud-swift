@@ -113,8 +113,10 @@ extension AuthHTTPError {
       return status >= 500 || status == 429 || status == 408
     case .decodingError, .invalidUTF8Response:
       return false
-    case .transportError, .unknown:
+    case .transportError:
       return true
+    case .unknown(let error):
+      return !(error is CancellationError)
     }
   }
 
@@ -126,6 +128,9 @@ extension AuthHTTPError {
   /// - Parameter error: The error to evaluate.
   /// - Returns: `true` if the error is transient and should be retried; `false` if it is permanent.
   static func isRetryable(_ error: any Error) -> Bool {
+    if error is CancellationError {
+      return false
+    }
     if let credentialsError = error as? CredentialsError {
       switch credentialsError {
       case .cannotFetchToken(_, let underlyingError):

@@ -12,9 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
+import GoogleAuth
+
 extension ContinueOnIO: RetryPolicy where P: RetryPolicy & Sendable {
   public func onError(state: RetryState, error: RequestError) -> RetryResult {
-    if case .io = error {
+    if case .io(let underlying) = error,
+      !(underlying is CredentialsError),
+      !(underlying is CancellationError)
+    {
       return .retry(error)
     }
     return inner.onError(state: state, error: error)

@@ -129,7 +129,7 @@ import Testing
     #expect(message.contains("unknown_credential_type"))
   }
 
-  @Test func resolvesImpersonatedServiceAccountWithAuthorizedUserSourceFromFile() throws {
+  @Test func resolvesImpersonatedServiceAccountWithAuthorizedUserSourceFromFile() async throws {
     let json = """
       {
         "type": "impersonated_service_account",
@@ -161,7 +161,7 @@ import Testing
       return
     }
     #expect(impersonated.quotaProjectID == "json-quota-project")
-    #expect(impersonated.universeDomain == "googleapis.com")
+    #expect(try await impersonated.universeDomain() == "googleapis.com")
     #expect(
       impersonated.provider.iamEndpointURL.absoluteString
         == "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken"
@@ -210,13 +210,13 @@ import Testing
       return
     }
     #expect(impersonated.quotaProjectID == "env-quota-proj")
-    #expect(impersonated.universeDomain == "my-universe.com")
+    #expect(try await impersonated.universeDomain() == "my-universe.com")
     #expect(impersonated.provider.sourceCredentials is ServiceAccountCredentials)
     let sourceHeaders = try await impersonated.provider.sourceCredentials.headers()
     #expect(sourceHeaders["Authorization"]?.hasPrefix("Bearer ") == true)
   }
 
-  @Test func normalizesEmptyUniverseDomainAndQuotaProjectInImpersonatedADC() throws {
+  @Test func normalizesEmptyUniverseDomainAndQuotaProjectInImpersonatedADC() async throws {
     let json = """
       {
         "type": "impersonated_service_account",
@@ -246,7 +246,7 @@ import Testing
       return
     }
     #expect(impersonated.quotaProjectID == nil)
-    #expect(impersonated.universeDomain == "googleapis.com")
+    #expect(try await impersonated.universeDomain() == "googleapis.com")
   }
 
   @Test func resolvesNestedImpersonatedServiceAccountInSourceCredentials() throws {
@@ -385,5 +385,85 @@ import Testing
       return
     }
     #expect(message.contains("my-universe.com"))
+  }
+
+  @Test func propagatesUniverseDomainToMDS() async throws {
+    let provider = try ADC.resolve(universeDomain: "custom.universe.com", environment: [:])
+    guard let mdsCreds = provider as? MDSCredentials else {
+      Issue.record("Expected MDSCredentials")
+      return
+    }
+    #expect(try await mdsCreds.universeDomain() == "custom.universe.com")
+  }
+
+  @Test func rejectsConflictingSourceUniverseDomainInImpersonatedADC() throws {
+    let json = """
+      {
+        "type": "impersonated_service_account",
+        "service_account_impersonation_url": "https://iamcredentials.universe-b.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "universe_domain": "universe-b.com",
+        "source_credentials": {
+          "type": "service_account",
+          "project_id": "test-project-id",
+          "private_key_id": "test-private-key-id",
+          "private_key": "\(TestKeys.escapedPKCS8PEM)",
+          "client_email": "source@gserviceaccount.com",
+          "universe_domain": "universe-a.com"
+        }
+      }
+      """
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try Data(json.utf8).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
+    }
+    guard case let .parseError(message) = error else {
+      Issue.record("Expected CredentialsError.parseError, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("universe-a.com"))
+    #expect(message.contains("universe-b.com"))
+
+    let omittedOuterJSON = """
+      {
+        "type": "impersonated_service_account",
+        "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "source_credentials": {
+          "type": "service_account",
+          "project_id": "test-project-id",
+          "private_key_id": "test-private-key-id",
+          "private_key": "\(TestKeys.escapedPKCS8PEM)",
+          "client_email": "source@gserviceaccount.com",
+          "universe_domain": "universe-a.com"
+        }
+      }
+      """
+    try Data(omittedOuterJSON.utf8).write(to: tempFile)
+    #expect(throws: CredentialsError.self) {
+      _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
+    }
+
+    let mismatchedURLHostJSON = """
+      {
+        "type": "impersonated_service_account",
+        "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "universe_domain": "universe-a.com",
+        "source_credentials": {
+          "type": "service_account",
+          "project_id": "test-project-id",
+          "private_key_id": "test-private-key-id",
+          "private_key": "\(TestKeys.escapedPKCS8PEM)",
+          "client_email": "source@gserviceaccount.com",
+          "universe_domain": "universe-a.com"
+        }
+      }
+      """
+    try Data(mismatchedURLHostJSON.utf8).write(to: tempFile)
+    #expect(throws: CredentialsError.self) {
+      _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
+    }
   }
 }
