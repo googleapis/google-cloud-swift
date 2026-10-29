@@ -48,7 +48,7 @@ public final class StorageClient: StorageProtocol, Sendable {
     _ options: StorageClientOptions = .init(),
     mock: any _HTTPClientProtocol
   ) throws {
-    let universeDomain = try GoogleGax._Host.resolveUniverseDomain(options: options.client)
+    let universeDomain = GoogleGax._Host.resolveUniverseDomain(options: options.client)
     let endpoint = try GoogleGax._Host.endpoint(
       endpoint: options.client.endpoint,
       defaultEndpoint: Self.defaultEndpoint,
