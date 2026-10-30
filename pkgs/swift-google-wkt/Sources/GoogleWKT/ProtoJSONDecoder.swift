@@ -140,8 +140,6 @@ extension InternalSingleValueContainer: SingleValueDecodingContainer {
   func decode(_ type: UInt32.Type) throws -> UInt32 { try decodeGeneric(type) }
   func decode(_ type: Int64.Type) throws -> Int64 { try decodeGeneric(type) }
   func decode(_ type: UInt64.Type) throws -> UInt64 { try decodeGeneric(type) }
-  func decode(_ type: Int128.Type) throws -> Int128 { try decodeGeneric(type) }
-  func decode(_ type: UInt128.Type) throws -> UInt128 { try decodeGeneric(type) }
   func decode(_ type: Float.Type) throws -> Float { try decodeGeneric(type) }
   func decode(_ type: Double.Type) throws -> Double { try decodeGeneric(type) }
 
