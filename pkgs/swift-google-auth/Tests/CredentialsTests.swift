@@ -15,7 +15,7 @@
 import Foundation
 import Testing
 
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 @Suite(.serialized) struct CredentialsTest {
   @Test func resolveProviderForAnonymous() async throws {
@@ -209,7 +209,7 @@ import Testing
     #expect(headers == [("x-goog-api-key", "test-key")])
   }
 
-  @Test func resolveProviderForImpersonatedServiceAccount() throws {
+  @Test func resolveProviderForImpersonatedServiceAccount() async throws {
     let source = try Credentials(configuration: .apiKey("source-key"))
     let config = ImpersonatedServiceAccountConfig(
       sourceCredentials: source,
@@ -217,5 +217,19 @@ import Testing
     )
     let credentials = try Credentials(configuration: .impersonatedServiceAccount(config))
     #expect(credentials.credentialsProvider is ImpersonatedCredentials)
+    #expect(try await credentials.universeDomain() == Credentials.defaultUniverseDomain)
+    #expect(!credentials._isAnonymous)
+  }
+
+  @Test func defaultUniverseDomainAndAnonymousFlags() async throws {
+    #expect(Credentials.defaultUniverseDomain == "googleapis.com")
+
+    let anon = try Credentials(configuration: .anonymous)
+    #expect(anon._isAnonymous)
+    #expect(try await anon.universeDomain() == "googleapis.com")
+
+    let apiKey = try Credentials(configuration: .apiKey("test-api-key"))
+    #expect(!apiKey._isAnonymous)
+    #expect(try await apiKey.universeDomain() == "googleapis.com")
   }
 }
