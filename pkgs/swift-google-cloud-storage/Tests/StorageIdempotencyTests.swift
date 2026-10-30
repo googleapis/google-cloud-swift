@@ -206,6 +206,22 @@ import Testing
     #expect(mixedCaseRes.headers.values(for: idempotencyToken) == [existingToken])
   }
 
+  @Test func addIdempotencyTokenStampsAndPreservesExistingToken() {
+    let stamped = addIdempotencyToken(RequestOptions())
+    #expect(stamped.headers[idempotencyToken] != nil)
+
+    let existingToken = "existing-session-token"
+    let preserved = addIdempotencyToken(
+      RequestOptions().with { $0.headers[idempotencyToken] = existingToken }
+    )
+    #expect(preserved.headers[idempotencyToken] == existingToken)
+
+    let mixedCasePreserved = addIdempotencyToken(
+      RequestOptions().with { $0.headers["X-Goog-GCS-Idempotency-Token"] = existingToken }
+    )
+    #expect(mixedCasePreserved.headers.values(for: idempotencyToken) == [existingToken])
+  }
+
   @Test func retryStubSharesSameTokenAcrossRetries() async throws {
     actor CallTracker {
       var tokens: [String?] = []

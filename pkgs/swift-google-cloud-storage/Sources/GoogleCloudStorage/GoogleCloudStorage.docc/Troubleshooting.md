@@ -222,7 +222,7 @@ During a resumable upload, if a network error interrupts a chunk transfer, the c
 By default, uploads with a known `totalSize` strictly less than ``WriteObjectOptions/resumableUploadThreshold`` (8 MB) use a single-shot multipart upload request, while larger uploads (or streams with `totalSize == nil`) use a multi-chunk resumable upload session:
 
 - **Resumable uploads** are always idempotent because the session URI guarantees the object is created at most once. Transient network and 5xx errors are automatically resumed according to ``WriteObjectOptions/resumePolicy``.
-- **Single-shot uploads** are only treated as idempotent by default when ``WriteObjectOptions/preconditions`` specifies `ifGenerationMatch` or `ifMetagenerationMatch`. Without preconditions, a retried single-shot upload could overwrite a concurrent update or create duplicate object versions, so transient errors immediately fail with ``WriteObjectError/requestError(_:)``.
+- **Single-shot uploads** are only treated as idempotent by default when ``WriteObjectOptions/preconditions`` specifies `ifGenerationMatch`. Without an `ifGenerationMatch` precondition, a retried single-shot upload could overwrite a concurrent update or create duplicate object versions, so transient errors immediately fail with ``WriteObjectError/requestError(_:)``.
 
 To make single-shot uploads safe to retry automatically:
 
