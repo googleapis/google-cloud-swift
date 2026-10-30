@@ -45,7 +45,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     let provider = MockSubjectTokenProvider(token: "mock-provider-token")
     let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
 
-    let clientAuth = ClientAuthentication(id: "client-id", secret: "client-secret")
+    let clientAuth = ClientAuthentication(clientID: "client-id", clientSecret: "client-secret")
     let creds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience:
@@ -611,7 +611,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
       clientAuthentication: ClientAuthentication(
-        id: "test-client-id", secret: "test-client-secret"),
+        clientID: "test-client-id", clientSecret: "test-client-secret"),
       workforcePoolUserProject: "quota-project",
       httpClient: httpClient
     )
@@ -711,32 +711,31 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     #expect(decoded == .idToken)
   }
 
-  @Test("ClientAuthentication properties and initializers")
+  @Test("ClientAuthentication properties, equality, and hashing")
   func clientAuthenticationProperties() {
-    let authWithSecret = ClientAuthentication(id: "my-id", secret: "my-secret")
-    #expect(authWithSecret.id == "my-id")
+    let authWithSecret = ClientAuthentication(clientID: "my-id", clientSecret: "my-secret")
     #expect(authWithSecret.clientID == "my-id")
-    #expect(authWithSecret.secret == "my-secret")
     #expect(authWithSecret.clientSecret == "my-secret")
 
-    let authNoSecret = ClientAuthentication(id: "my-id")
-    #expect(authNoSecret.id == "my-id")
+    let authNoSecret = ClientAuthentication(clientID: "my-id")
     #expect(authNoSecret.clientID == "my-id")
-    #expect(authNoSecret.secret == nil)
     #expect(authNoSecret.clientSecret == nil)
-
-    let authAlternativeInit = ClientAuthentication(clientID: "alt-id", clientSecret: "alt-secret")
-    #expect(authAlternativeInit.id == "alt-id")
-    #expect(authAlternativeInit.secret == "alt-secret")
 
     #expect(authWithSecret == ClientAuthentication(clientID: "my-id", clientSecret: "my-secret"))
     #expect(authWithSecret != authNoSecret)
+    #expect(
+      authWithSecret != ClientAuthentication(clientID: "other-id", clientSecret: "my-secret")
+    )
+    #expect(
+      Set([authWithSecret, ClientAuthentication(clientID: "my-id", clientSecret: "my-secret")])
+        .count == 1
+    )
   }
 
   @Test("ExternalAccountConfig configures client authentication")
   func configWithClientAuthentication() throws {
     let provider = MockSubjectTokenProvider(token: "mock-token")
-    let clientAuth = ClientAuthentication(id: "pool-client", secret: "pool-secret")
+    let clientAuth = ClientAuthentication(clientID: "pool-client", clientSecret: "pool-secret")
 
     let config = ExternalAccountConfig(
       credentialSource: .programmatic(subjectTokenProvider: provider),
@@ -796,7 +795,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "//iam.googleapis.com/locations/global/workforcePools/wpool/providers/wprov",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
-      clientAuthentication: ClientAuthentication(id: "test-client-id"),
+      clientAuthentication: ClientAuthentication(clientID: "test-client-id"),
       httpClient: httpClient
     )
 

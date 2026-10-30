@@ -88,7 +88,7 @@ import Testing
       audience: "test-audience",
       scopes: ["scope1", "scope2"],
       workforcePoolUserProject: "test-quota-project",
-      clientAuthentication: ClientAuthentication(id: clientID, secret: clientSecret)
+      clientAuthentication: ClientAuthentication(clientID: clientID, clientSecret: clientSecret)
     )
 
     let response = try await handler.exchangeToken(
