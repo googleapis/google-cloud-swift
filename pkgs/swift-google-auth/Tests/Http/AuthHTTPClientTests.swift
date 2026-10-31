@@ -375,6 +375,375 @@ import Testing
 
     #expect(response == mockPayload)
   }
+
+  @Test func clientPreservesUnsuccessfulResponseOnOversizedErrorBody() async throws {
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    let oversizedData = Data(repeating: 0x41, count: AuthHTTPClient.maxResponseSize + 1)
+
+    let makeResponse: @Sendable (HTTPResponseStatus) -> MockHTTPClient.Closure = { status in
+      { _ in
+        HTTPClientResponse(
+          version: .http2,
+          status: status,
+          headers: .init([("X-Debug-Header", "OversizedError")]),
+          body: .bytes(.init(data: oversizedData)),
+        )
+      }
+    }
+
+    let client = AuthHTTPClient(
+      mock: MockHTTPClient([
+        makeResponse(.badRequest),
+        makeResponse(.forbidden),
+        makeResponse(.badRequest),
+        makeResponse(.forbidden),
+        makeResponse(.tooManyRequests),
+        makeResponse(.serviceUnavailable),
+      ])
+    )
+
+    let getError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.get(url: targetURL)
+    }
+    #expect(getError?.statusCode == 400)
+    #expect(getError?.isRetryable == false)
+    #expect(getError?.bodyData == Data())
+    #expect(getError?.body == "")
+    #expect(getError?.description == "HTTP status 400")
+    #expect(getError?.headers?["X-Debug-Header"] == "OversizedError")
+
+    let getStringError = await #expect(throws: AuthHTTPError.self) {
+      _ = try await client.getString(url: targetURL)
+    }
+    #expect(getStringError?.statusCode == 403)
+    #expect(getStringError?.isRetryable == false)
+    #expect(getStringError?.bodyData == Data())
+    #expect(getStringError?.body == "")
+    #expect(getStringError?.headers?["X-Debug-Header"] == "OversizedError")
+
+    let postError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.post(
+        url: targetURL,
+        body: ["grant_type": "refresh_token"]
+      )
+    }
+    #expect(postError?.statusCode == 400)
+    #expect(postError?.isRetryable == false)
+    #expect(postError?.bodyData == Data())
+    #expect(postError?.body == "")
+
+    let postDataError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.postData(
+        url: targetURL,
+        bodyData: Data("grant_type=refresh_token".utf8),
+        contentType: "application/x-www-form-urlencoded"
+      )
+    }
+    #expect(postDataError?.statusCode == 403)
+    #expect(postDataError?.isRetryable == false)
+    #expect(postDataError?.bodyData == Data())
+    #expect(postDataError?.body == "")
+
+    let rateLimitedError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.get(url: targetURL)
+    }
+    #expect(rateLimitedError?.statusCode == 429)
+    #expect(rateLimitedError?.isRetryable == true)
+    #expect(rateLimitedError?.bodyData == Data())
+
+    let serverError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.get(url: targetURL)
+    }
+    #expect(serverError?.statusCode == 503)
+    #expect(serverError?.isRetryable == true)
+    #expect(serverError?.bodyData == Data())
+  }
+
+  @Test func clientPreservesUnsuccessfulResponseOnFailingErrorBodyStream() async throws {
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    let makeFailingStreamResponse: MockHTTPClient.Closure = { _ in
+      let stream = AsyncThrowingStream<ByteBuffer, any Error> { continuation in
+        continuation.yield(ByteBuffer(string: #"{"error":"partial"#))
+        continuation.finish(throwing: URLError(.networkConnectionLost))
+      }
+      return HTTPClientResponse(
+        version: .http2,
+        status: .forbidden,
+        headers: .init([("X-Error-Source", "IAM")]),
+        body: .stream(stream)
+      )
+    }
+
+    let client = AuthHTTPClient(
+      mock: MockHTTPClient([
+        makeFailingStreamResponse,
+        makeFailingStreamResponse,
+        makeFailingStreamResponse,
+        makeFailingStreamResponse,
+      ])
+    )
+
+    let getError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.get(url: targetURL)
+    }
+    #expect(getError?.statusCode == 403)
+    #expect(getError?.isRetryable == false)
+    #expect(getError?.urlError == nil)
+    #expect(getError?.bodyData == Data())
+    #expect(getError?.headers?["X-Error-Source"] == "IAM")
+
+    let getStringError = await #expect(throws: AuthHTTPError.self) {
+      _ = try await client.getString(url: targetURL)
+    }
+    #expect(getStringError?.statusCode == 403)
+    #expect(getStringError?.isRetryable == false)
+    #expect(getStringError?.urlError == nil)
+    #expect(getStringError?.bodyData == Data())
+
+    let postError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.post(
+        url: targetURL,
+        body: ["grant_type": "refresh_token"]
+      )
+    }
+    #expect(postError?.statusCode == 403)
+    #expect(postError?.isRetryable == false)
+    #expect(postError?.urlError == nil)
+    #expect(postError?.bodyData == Data())
+
+    let postDataError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.postData(
+        url: targetURL,
+        bodyData: Data("grant_type=refresh_token".utf8),
+        contentType: "application/x-www-form-urlencoded"
+      )
+    }
+    #expect(postDataError?.statusCode == 403)
+    #expect(postDataError?.isRetryable == false)
+    #expect(postDataError?.urlError == nil)
+    #expect(postDataError?.bodyData == Data())
+  }
+
+  @Test func clientReleasesResponseBodyAndHistoryOnUnsuccessfulResponse() async throws {
+    final class TrackedOversizedSequence: AsyncSequence, Sendable {
+      typealias Element = ByteBuffer
+
+      struct AsyncIterator: AsyncIteratorProtocol {
+        var remainingChunks = 2
+        mutating func next() async throws -> ByteBuffer? {
+          guard remainingChunks > 0 else { return nil }
+          remainingChunks -= 1
+          return ByteBuffer(repeating: 0x41, count: AuthHTTPClient.maxResponseSize)
+        }
+      }
+
+      func makeAsyncIterator() -> AsyncIterator {
+        AsyncIterator()
+      }
+    }
+
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    weak var weakSequence: TrackedOversizedSequence?
+
+    let client: AuthHTTPClient = {
+      let sequence = TrackedOversizedSequence()
+      weakSequence = sequence
+      var echoedRequest = HTTPClientRequest(url: targetURL.absoluteString)
+      echoedRequest.headers.add(name: "Authorization", value: "Bearer secret-request-token")
+      let historyEntry = HTTPClientRequestResponse(
+        request: echoedRequest,
+        responseHead: .init(version: .http2, status: .forbidden)
+      )
+      let response = HTTPClientResponse(
+        version: .http2,
+        status: .forbidden,
+        headers: .init([("X-Debug-Header", "Detached")]),
+        body: .stream(sequence),
+        history: [historyEntry]
+      )
+      return AuthHTTPClient(mock: MockHTTPClient([{ _ in response }]))
+    }()
+
+    let caughtError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.get(url: targetURL)
+    }
+
+    // Even while the caller (or `TokenCache.permanentError`) retains `caughtError`, the live
+    // response body sequence and request/redirect history must already be released.
+    withExtendedLifetime(caughtError) {
+      #expect(weakSequence == nil)
+      guard case .unsuccessfulResponse(let storedResponse, _) = caughtError else {
+        Issue.record("Expected unsuccessfulResponse, got \(String(describing: caughtError))")
+        return
+      }
+      #expect(storedResponse.status == .forbidden)
+      #expect(storedResponse.headers["X-Debug-Header"] == ["Detached"])
+      #expect(storedResponse.history.isEmpty)
+    }
+  }
+
+  @Test func clientThrowsOnOversizedSuccessBody() async throws {
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    let oversizedData = Data(repeating: 0x41, count: AuthHTTPClient.maxResponseSize + 1)
+    let makeOversizedOK: MockHTTPClient.Closure = { _ in
+      HTTPClientResponse(
+        version: .http2,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json")]),
+        body: .bytes(.init(data: oversizedData)),
+      )
+    }
+
+    let client = AuthHTTPClient(
+      mock: MockHTTPClient([makeOversizedOK, makeOversizedOK, makeOversizedOK, makeOversizedOK])
+    )
+
+    let getError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.get(url: targetURL)
+    }
+    guard case .unknown(let getUnderlying) = getError else {
+      Issue.record("Expected AuthHTTPError.unknown, got \(String(describing: getError))")
+      return
+    }
+    #expect(getUnderlying is NIOTooManyBytesError)
+    #expect(getError?.statusCode == nil)
+    #expect(getError?.isRetryable == true)
+
+    let getStringError = await #expect(throws: AuthHTTPError.self) {
+      _ = try await client.getString(url: targetURL)
+    }
+    guard case .unknown(let getStringUnderlying) = getStringError else {
+      Issue.record("Expected AuthHTTPError.unknown, got \(String(describing: getStringError))")
+      return
+    }
+    #expect(getStringUnderlying is NIOTooManyBytesError)
+    #expect(getStringError?.statusCode == nil)
+    #expect(getStringError?.isRetryable == true)
+
+    let postError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.post(
+        url: targetURL,
+        body: ["grant_type": "refresh_token"]
+      )
+    }
+    guard case .unknown(let postUnderlying) = postError else {
+      Issue.record("Expected AuthHTTPError.unknown, got \(String(describing: postError))")
+      return
+    }
+    #expect(postUnderlying is NIOTooManyBytesError)
+    #expect(postError?.statusCode == nil)
+    #expect(postError?.isRetryable == true)
+
+    let postDataError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.postData(
+        url: targetURL,
+        bodyData: Data("grant_type=refresh_token".utf8),
+        contentType: "application/x-www-form-urlencoded"
+      )
+    }
+    guard case .unknown(let postDataUnderlying) = postDataError else {
+      Issue.record("Expected AuthHTTPError.unknown, got \(String(describing: postDataError))")
+      return
+    }
+    #expect(postDataUnderlying is NIOTooManyBytesError)
+    #expect(postDataError?.statusCode == nil)
+    #expect(postDataError?.isRetryable == true)
+  }
+
+  @Test func clientPropagatesCancellationAcrossRequestAndBodyStages() async throws {
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    let (reqStarted, reqStartedCont) = AsyncStream<Void>.makeStream()
+    let (reqCancelled, reqCancelledCont) = AsyncStream<Void>.makeStream()
+    let (okBodyStarted, okBodyStartedCont) = AsyncStream<Void>.makeStream()
+    let (okBodyCancelled, okBodyCancelledCont) = AsyncStream<Void>.makeStream()
+    let (errBodyStarted, errBodyStartedCont) = AsyncStream<Void>.makeStream()
+    let (errBodyCancelled, errBodyCancelledCont) = AsyncStream<Void>.makeStream()
+
+    let mock = MockHTTPClient([
+      // 1. Direct CancellationError during `performRequest`
+      { _ in
+        throw CancellationError()
+      },
+      // 2. Direct CancellationError during 2xx response body collection
+      { _ in
+        let stream = AsyncThrowingStream<ByteBuffer, any Error> { continuation in
+          continuation.finish(throwing: CancellationError())
+        }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          body: .stream(stream)
+        )
+      },
+      // 3. Direct CancellationError during non-2xx error body collection
+      { _ in
+        let stream = AsyncThrowingStream<ByteBuffer, any Error> { continuation in
+          continuation.finish(throwing: CancellationError())
+        }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .badRequest,
+          body: .stream(stream)
+        )
+      },
+      // 4. Transport teardown error after task cancellation during `performRequest`
+      { _ in
+        reqStartedCont.finish()
+        for await _ in reqCancelled {}
+        throw URLError(.cancelled)
+      },
+      // 5. Transport teardown error after task cancellation during 2xx body collection
+      { _ in
+        okBodyStartedCont.finish()
+        for await _ in okBodyCancelled {}
+        let stream = AsyncThrowingStream<ByteBuffer, any Error> { continuation in
+          continuation.finish(throwing: URLError(.cancelled))
+        }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          body: .stream(stream)
+        )
+      },
+      // 6. Transport teardown error after task cancellation during non-2xx error body collection
+      { _ in
+        errBodyStartedCont.finish()
+        for await _ in errBodyCancelled {}
+        let stream = AsyncThrowingStream<ByteBuffer, any Error> { continuation in
+          continuation.finish(throwing: URLError(.cancelled))
+        }
+        return HTTPClientResponse(
+          version: .http2,
+          status: .badRequest,
+          body: .stream(stream)
+        )
+      },
+    ])
+
+    let client = AuthHTTPClient(mock: mock)
+
+    for _ in 0..<3 {
+      await #expect(throws: CancellationError.self) {
+        let _: MockTokenResponse = try await client.get(url: targetURL)
+      }
+    }
+
+    for (started, cancelledCont) in [
+      (reqStarted, reqCancelledCont),
+      (okBodyStarted, okBodyCancelledCont),
+      (errBodyStarted, errBodyCancelledCont),
+    ] {
+      let task = Task {
+        let _: MockTokenResponse = try await client.get(url: targetURL)
+      }
+      for await _ in started {}
+      task.cancel()
+      cancelledCont.finish()
+      await #expect(throws: CancellationError.self) {
+        try await task.value
+      }
+    }
+  }
 }
 
 private struct MockTokenResponse: Codable, Sendable, Equatable {
