@@ -26,6 +26,11 @@ final class MockHTTPClient: HTTPClientProtocol {
   }
 
   let responses: Mutex<Deque<Closure>>
+  private let timeouts = Mutex<[Duration]>([])
+
+  var recordedTimeouts: [Duration] {
+    timeouts.withLock { $0 }
+  }
 
   init(_ responses: [Closure]) {
     self.responses = Mutex(Deque(responses))
@@ -38,6 +43,7 @@ final class MockHTTPClient: HTTPClientProtocol {
   public func execute(request: HTTPClientRequest, timeout: Duration, logger: Logger?) async throws
     -> HTTPClientResponse
   {
+    self.timeouts.withLock { $0.append(timeout) }
     guard let closure = self.responses.withLock({ $0.popFirst() }) else {
       throw MockError.empty
     }

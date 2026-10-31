@@ -374,6 +374,153 @@ import Testing
     )
 
     #expect(response == mockPayload)
+    #expect(mock.recordedTimeouts == [AuthHTTPClient.defaultTimeout])
+  }
+
+  @Test func clientForwardsTimeoutOverrideAcrossMethods() async throws {
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    let mockPayload = MockTokenResponse(accessToken: "fake-token", expiresIn: 3600)
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedJSON = try encoder.encode(mockPayload)
+    let plainTextData = Data("plain-text-response".utf8)
+
+    let makeJSONResponse: MockHTTPClient.Closure = { _ in
+      HTTPClientResponse(
+        version: .http2,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json")]),
+        body: .bytes(.init(data: encodedJSON)),
+      )
+    }
+    let makeStringResponse: MockHTTPClient.Closure = { _ in
+      HTTPClientResponse(
+        version: .http2,
+        status: .ok,
+        body: .bytes(.init(data: plainTextData)),
+      )
+    }
+
+    let mock = MockHTTPClient([
+      makeJSONResponse,
+      makeJSONResponse,
+      makeStringResponse,
+      makeJSONResponse,
+      makeJSONResponse,
+    ])
+    let client = AuthHTTPClient(mock: mock)
+
+    let _: MockTokenResponse = try await client.get(url: targetURL)
+    let _: MockTokenResponse = try await client.get(url: targetURL, timeout: .seconds(2))
+    let _ = try await client.getString(url: targetURL, timeout: .seconds(3))
+    let _: MockTokenResponse = try await client.post(
+      url: targetURL,
+      body: ["grant_type": "refresh_token"],
+      timeout: .seconds(5)
+    )
+    let _: MockTokenResponse = try await client.postData(
+      url: targetURL,
+      bodyData: Data("grant_type=refresh_token".utf8),
+      contentType: "application/x-www-form-urlencoded",
+      timeout: .milliseconds(750)
+    )
+
+    #expect(
+      mock.recordedTimeouts == [
+        .seconds(30),
+        .seconds(2),
+        .seconds(3),
+        .seconds(5),
+        .milliseconds(750),
+      ]
+    )
+  }
+
+  @Test func clientPropagatesCancellationErrorUnwrapped() async throws {
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    let mock = MockHTTPClient([
+      { _ in
+        throw CancellationError()
+      }
+    ])
+    let client = AuthHTTPClient(mock: mock)
+
+    await #expect(throws: CancellationError.self) {
+      let _: MockTokenResponse = try await client.get(url: targetURL)
+    }
+  }
+
+  @Test func clientCancellingStalledBodyPropagatesCancellationError() async throws {
+    let targetURL = URL(string: "http://metadata.google.internal/token")!
+    let started = AsyncStream<Void>.makeStream()
+    let mock = MockHTTPClient([
+      { _ in
+        started.continuation.yield()
+        let stalledStream = AsyncStream<ByteBuffer> { _ in }
+        return HTTPClientResponse(
+          version: .http1_1,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .stream(stalledStream)
+        )
+      }
+    ])
+    let client = AuthHTTPClient(mock: mock)
+
+    let requestTask = Task {
+      let _: MockTokenResponse = try await client.get(url: targetURL, timeout: .seconds(10))
+    }
+
+    var iterator = started.stream.makeAsyncIterator()
+    _ = await iterator.next()
+    requestTask.cancel()
+
+    await #expect(throws: CancellationError.self) {
+      try await requestTask.value
+    }
+  }
+
+  @Test func clientEnforcesTimeoutAcrossStalledResponseBody() async throws {
+    let targetURL = URL(string: "http://metadata.google.internal/token")!
+    let mock = MockHTTPClient([
+      { _ in
+        let stalledStream = AsyncStream<ByteBuffer> { _ in }
+        return HTTPClientResponse(
+          version: .http1_1,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .stream(stalledStream)
+        )
+      },
+      { _ in
+        let stalledStream = AsyncStream<ByteBuffer> { _ in }
+        return HTTPClientResponse(
+          version: .http1_1,
+          status: .serviceUnavailable,
+          headers: .init([("Metadata-Flavor", "Google")]),
+          body: .stream(stalledStream)
+        )
+      },
+    ])
+    let client = AuthHTTPClient(mock: mock)
+
+    let okError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.get(
+        url: targetURL,
+        timeout: .milliseconds(40)
+      )
+    }
+    #expect(okError?.urlError?.code == .timedOut)
+
+    let non2xxError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.get(
+        url: targetURL,
+        timeout: .milliseconds(40)
+      )
+    }
+    #expect(non2xxError?.statusCode == 503)
+    #expect(non2xxError?.headers?["Metadata-Flavor"] == "Google")
+    #expect(non2xxError?.bodyData == Data())
   }
 
   @Test func clientPreservesUnsuccessfulResponseOnOversizedErrorBody() async throws {

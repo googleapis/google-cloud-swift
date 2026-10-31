@@ -131,7 +131,7 @@ extension AuthHTTPError {
       switch credentialsError {
       case .cannotFetchToken(_, let underlyingError):
         return isRetryable(underlyingError)
-      case .parseError, .notSupported, .cannotLoadFile:
+      case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
         return false
       }
     }
