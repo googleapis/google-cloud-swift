@@ -103,8 +103,6 @@ extension DecodeToDefault: SingleValueDecodingContainer {
   func decode(_ type: UInt32.Type) throws -> UInt32 { return UInt32() }
   func decode(_ type: Int64.Type) throws -> Int64 { return Int64() }
   func decode(_ type: UInt64.Type) throws -> UInt64 { return UInt64() }
-  func decode(_ type: Int128.Type) throws -> Int128 { return Int128() }
-  func decode(_ type: UInt128.Type) throws -> UInt128 { return UInt128() }
   func decode(_ type: Float.Type) throws -> Float { return Float() }
   func decode(_ type: Double.Type) throws -> Double { return Double() }
 }
