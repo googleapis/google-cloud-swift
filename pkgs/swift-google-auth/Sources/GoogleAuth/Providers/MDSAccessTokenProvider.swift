@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import Synchronization
 
 /// A `TokenProvider` that fetches short-lived OAuth 2.0 access tokens from the Google Cloud Metadata Service.
 ///
@@ -24,6 +25,22 @@ import Foundation
 ///
 /// - SeeAlso: [AIP-4115: Metadata Server](https://google.aip.dev/auth/4115)
 struct MDSAccessTokenProvider: TokenProvider, Sendable {
+  /// Tracks whether the metadata server has been confirmed reachable in the current runtime.
+  ///
+  /// Shared by reference across copies of `MDSAccessTokenProvider` so both `MDSCredentials` and
+  /// `TokenCache` observe confirmation once an initial ADC fallback probe reaches a real MDS.
+  private final class ProbeState: Sendable {
+    private let confirmed = Mutex(false)
+
+    var isConfirmed: Bool {
+      confirmed.withLock { $0 }
+    }
+
+    func confirm() {
+      confirmed.withLock { $0 = true }
+    }
+  }
+
   /// The base URL of the metadata server endpoint, or `nil` to resolve via environment/default.
   let endpoint: URL?
 
@@ -45,8 +62,28 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   /// The system environment variables dictionary, inspected for `GCE_METADATA_HOST`.
   let environment: [String: String]
 
+  /// Shared probe state tracking whether a real metadata server has responded.
+  private let probeState = ProbeState()
+
   /// The canonical base endpoint URL for the Google Cloud Compute Engine metadata server.
   static let defaultEndpoint = "http://metadata.google.internal"
+
+  /// Short HTTP request timeout used when ADC falls back to probing the default metadata server,
+  /// avoiding a 30-second hang on non-GCP networks that silently drop packets to `169.254.169.254`.
+  static let adcFallbackTimeout: Duration = .seconds(3)
+
+  /// Whether this provider targets the default metadata server via implicit ADC fallback
+  /// (no custom `endpoint` and no non-empty `GCE_METADATA_HOST` override).
+  private var isImplicitADCFallback: Bool {
+    let hostEnv = self.environment["GCE_METADATA_HOST"]
+    return self.fromADC && self.endpoint == nil && (hostEnv == nil || hostEnv?.isEmpty == true)
+  }
+
+  /// Whether this provider reached the default metadata server via implicit ADC fallback and has
+  /// not yet observed a confirmed metadata server response.
+  var isUnconfirmedADCFallback: Bool {
+    self.isImplicitADCFallback && !self.probeState.isConfirmed
+  }
 
   /// Initializes a new instance of `MDSAccessTokenProvider`.
   ///
@@ -144,6 +181,33 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       """
   }
 
+  /// Evaluates whether an error from `fetchToken()` is transient and eligible for retry.
+  ///
+  /// While an implicit ADC fallback probe has not yet confirmed that a metadata server is present,
+  /// failures are treated as permanent so `RetryEngine` and `TokenCache` neither retry in the
+  /// background nor stall subsequent `headers()` calls outside Google Cloud. Once MDS reachability
+  /// is confirmed, standard `AuthHTTPError.isRetryable(_:)` semantics apply for token refreshes.
+  func isRetryable(_ error: any Error) -> Bool {
+    if self.isUnconfirmedADCFallback {
+      return false
+    }
+    return AuthHTTPError.isRetryable(error)
+  }
+
+  /// Returns `true` when `error` is an HTTP response carrying the `Metadata-Flavor: Google` header,
+  /// confirming that a Google Cloud metadata server responded (for example with a transient 503
+  /// during VM or pod startup).
+  private static func hasMetadataFlavorGoogle(_ error: any Error) -> Bool {
+    guard let headers = (error as? AuthHTTPError)?.headers else {
+      return false
+    }
+    return headers.contains { key, value in
+      key.caseInsensitiveCompare("Metadata-Flavor") == .orderedSame
+        && value.trimmingCharacters(in: .whitespaces).caseInsensitiveCompare("Google")
+          == .orderedSame
+    }
+  }
+
   /// Fetches a fresh OAuth 2.0 access token from the metadata server.
   ///
   /// Resolves the base URL using `endpoint`, `GCE_METADATA_HOST`, or `defaultEndpoint`, Appends the token path
@@ -155,8 +219,6 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   func fetchToken() async throws -> Token {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
     let baseEndpoint = try self.resolveBaseEndpoint(hostEnv: hostEnv)
-    let isADCFallback =
-      self.fromADC && self.endpoint == nil && (hostEnv == nil || hostEnv?.isEmpty == true)
 
     guard
       var urlComponents = URLComponents(url: baseEndpoint, resolvingAgainstBaseURL: false),
@@ -164,7 +226,8 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       !host.isEmpty
     else {
       throw CredentialsError.cannotFetchToken(
-        message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
+        message: Self.errorMessage(
+          isADCFallback: self.isUnconfirmedADCFallback, endpoint: baseEndpoint),
         underlyingError: CredentialsError.parseError(
           "Invalid metadata server endpoint URL: '\(baseEndpoint.absoluteString)'")
       )
@@ -179,7 +242,8 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
 
     guard let url = urlComponents.url else {
       throw CredentialsError.cannotFetchToken(
-        message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
+        message: Self.errorMessage(
+          isADCFallback: self.isUnconfirmedADCFallback, endpoint: baseEndpoint),
         underlyingError: CredentialsError.parseError(
           "Invalid metadata server endpoint URL: '\(baseEndpoint.absoluteString)'")
       )
@@ -194,28 +258,37 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     }
 
     let fetchOperation: @Sendable () async throws -> Token = {
-      let response: TokenResponse = try await self.client.get(url: url, headers: headers)
-      let expiration = Date().addingTimeInterval(TimeInterval(response.expiresIn))
-      return Token(accessToken: response.accessToken, expirationDate: expiration)
+      let timeout: Duration? = self.isUnconfirmedADCFallback ? Self.adcFallbackTimeout : nil
+      do {
+        let response: TokenResponse = try await self.client.get(
+          url: url, headers: headers, timeout: timeout)
+        self.probeState.confirm()
+        let expiration = Date().addingTimeInterval(TimeInterval(response.expiresIn))
+        return Token(accessToken: response.accessToken, expirationDate: expiration)
+      } catch {
+        if Self.hasMetadataFlavorGoogle(error) {
+          self.probeState.confirm()
+        }
+        throw error
+      }
     }
 
     // ADC falls back to the metadata server when it finds no other credentials. Outside Google
-    // Cloud that fallback cannot succeed, so fail fast instead of retrying.
+    // Cloud that unconfirmed probe fails fast via `adcFallbackTimeout` and `self.isRetryable`
+    // returning `false`; once MDS reachability is confirmed, subsequent refreshes use standard
+    // timeouts and retry behavior.
     do {
-      if isADCFallback {
-        return try await fetchOperation()
-      } else {
-        return try await RetryEngine.retry(
-          configuration: self.retryConfiguration ?? .defaultConfiguration,
-          isRetryable: AuthHTTPError.isRetryable,
-          operation: fetchOperation
-        )
-      }
+      return try await RetryEngine.retry(
+        configuration: self.retryConfiguration ?? .defaultConfiguration,
+        isRetryable: { error in self.isRetryable(error) },
+        operation: fetchOperation
+      )
     } catch is CancellationError {
       throw CancellationError()
     } catch {
       throw CredentialsError.cannotFetchToken(
-        message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
+        message: Self.errorMessage(
+          isADCFallback: self.isUnconfirmedADCFallback, endpoint: baseEndpoint),
         underlyingError: error
       )
     }
