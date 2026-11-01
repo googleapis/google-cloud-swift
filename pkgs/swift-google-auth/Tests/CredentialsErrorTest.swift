@@ -67,4 +67,15 @@ import GoogleAuth
       "\(got):\n\(got.debugDescription)")
     #expect(String(reflecting: anyError) == got.debugDescription)
   }
+
+  @Test func credentialsNotFound() {
+    let got = CredentialsError.credentialsNotFound("-- details here --")
+    let anyError: any Error = got
+    #expect(got.description == "Credentials not found: -- details here --")
+    #expect(
+      got.debugDescription
+        == "CredentialsError.credentialsNotFound(\"-- details here --\"): Credentials not found: -- details here --"
+    )
+    #expect(String(reflecting: anyError) == got.debugDescription)
+  }
 }

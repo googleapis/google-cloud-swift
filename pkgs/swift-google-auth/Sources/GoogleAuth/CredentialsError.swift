@@ -68,6 +68,24 @@ public enum CredentialsError: Error, Sendable {
   /// - Important: The `message` wording is intended for humans and may change between releases.
   ///   Do not parse it or branch on its contents.
   case cannotFetchToken(message: String, underlyingError: any Error)
+
+  /// Application Default Credentials could not locate any credentials in the environment.
+  ///
+  /// ## Troubleshooting
+  ///
+  /// This error occurs during Application Default Credentials (ADC) discovery when neither the
+  /// `GOOGLE_APPLICATION_CREDENTIALS` environment variable nor the well-known `gcloud` credentials
+  /// file is present, and probing the Compute Engine metadata server is disabled via the
+  /// `NO_GCE_CHECK` environment variable.
+  ///
+  /// To set up local credentials, run `gcloud auth application-default login` or set
+  /// `GOOGLE_APPLICATION_CREDENTIALS` to the path of a credential file. More information on how
+  /// to authenticate client libraries can be found at
+  /// https://cloud.google.com/docs/authentication/client-libraries
+  ///
+  /// - Important: The associated detail string is intended for humans and may change between
+  ///   releases. Do not parse it or branch on its contents.
+  case credentialsNotFound(String)
 }
 
 extension CredentialsError: CustomDebugStringConvertible {
@@ -89,6 +107,8 @@ extension CredentialsError: CustomDebugStringConvertible {
         CredentialsError.cannotFetchToken: \(message)
         Underlying error: \(String(reflecting: underlyingError))
         """
+    case .credentialsNotFound(let detail):
+      return "CredentialsError.credentialsNotFound(\(String(reflecting: detail))): \(description)"
     }
   }
 }
@@ -104,6 +124,8 @@ extension CredentialsError: CustomStringConvertible {
       return "\(message): \(underlyingError)"
     case .cannotFetchToken(let message, let underlyingError):
       return "\(message): \(underlyingError)"
+    case .credentialsNotFound(let detail):
+      return "Credentials not found: \(detail)"
     }
   }
 }

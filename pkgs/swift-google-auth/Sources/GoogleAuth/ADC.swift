@@ -36,7 +36,8 @@ enum ADC: Sendable {
   /// 1. Inspects the `GOOGLE_APPLICATION_CREDENTIALS` environment variable. If defined, attempts to read and parse the referenced file.
   /// 2. Inspects the well-known user credentials file (created via `gcloud auth application-default login`).
   /// 3. Falls back to the link-local [Metadata Server](https://cloud.google.com/compute/docs/metadata/overview) (MDS)
-  ///    found in Google Cloud runtime environments (GCE, GKE, Cloud Run).
+  ///    found in Google Cloud runtime environments (GCE, GKE, Cloud Run), unless `NO_GCE_CHECK` is set to `"true"` or `"1"`
+  ///    (case-insensitive) without an explicit `GCE_METADATA_HOST` override.
   ///
   /// **Quota Project Precedence**: If the `GOOGLE_CLOUD_QUOTA_PROJECT` environment variable is set in `environment`,
   /// its value takes precedence over any passed `quotaProjectID`.
@@ -47,7 +48,8 @@ enum ADC: Sendable {
   ///   - scopes: Scopes requested for the issued token.
   ///   - environment: The environment variable dictionary used for discovery (defaults to `ProcessInfo.processInfo.environment`).
   /// - Returns: A configured `CredentialsProvider` ready to furnish authentication headers.
-  /// - Throws: A `CredentialsError` if loading or parsing fails, or if an unsupported credential type is encountered.
+  /// - Throws: A `CredentialsError` if loading or parsing fails, if an unsupported credential type is encountered,
+  ///   or if no local credentials are found when `NO_GCE_CHECK` disables metadata server fallback.
   static func resolve(
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
@@ -60,6 +62,19 @@ enum ADC: Sendable {
     let contents = try loadADC(environment: environment)
     switch contents {
     case .fallbackToMds:
+      let hasExplicitMetadataHost = !(environment["GCE_METADATA_HOST"] ?? "").isEmpty
+      if !hasExplicitMetadataHost && Self.isNoGCECheckEnabled(environment: environment) {
+        throw CredentialsError.credentialsNotFound(
+          """
+          Application Default Credentials (ADC) could not find local credentials and skipped \
+          probing the Compute Engine metadata server because NO_GCE_CHECK is enabled. To set up \
+          local credentials, run `gcloud auth application-default login` or set the \
+          GOOGLE_APPLICATION_CREDENTIALS environment variable. More information on how to \
+          authenticate client libraries can be found at \
+          https://cloud.google.com/docs/authentication/client-libraries
+          """
+        )
+      }
       return MDSCredentials(
         quotaProjectID: quotaProject,
         scopes: scopes,
@@ -91,5 +106,17 @@ enum ADC: Sendable {
       throw CredentialsError.notSupported(
         "Unsupported Application Default Credentials type: \(header.type)")
     }
+  }
+
+  /// Returns `true` when `NO_GCE_CHECK` is set to `"true"` or `"1"` (case-insensitive, trimmed).
+  private static func isNoGCECheckEnabled(environment: [String: String]) -> Bool {
+    guard
+      let raw = environment["NO_GCE_CHECK"]?
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+        .lowercased()
+    else {
+      return false
+    }
+    return raw == "true" || raw == "1"
   }
 }

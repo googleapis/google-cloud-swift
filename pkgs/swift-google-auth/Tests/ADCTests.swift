@@ -22,6 +22,103 @@ import Testing
     #expect(provider is MDSCredentials)
   }
 
+  @Test(arguments: ["true", "TRUE", "True", "1", " true ", "\tTRUE\n"])
+  func noGCECheckSkipsMDSFallbackAndThrowsCredentialsNotFound(value: String) throws {
+    let tempHome = FileManager.default.temporaryDirectory
+      .appendingPathComponent(UUID().uuidString, isDirectory: true)
+    try FileManager.default.createDirectory(at: tempHome, withIntermediateDirectories: true)
+    defer { try? FileManager.default.removeItem(at: tempHome) }
+
+    for environment in [
+      ["NO_GCE_CHECK": value],
+      ["NO_GCE_CHECK": value, "HOME": tempHome.path, "APPDATA": tempHome.path],
+      ["NO_GCE_CHECK": value, "GCE_METADATA_HOST": ""],
+    ] {
+      let error = #expect(throws: CredentialsError.self) {
+        _ = try ADC.resolve(environment: environment)
+      }
+      guard case let .credentialsNotFound(message) = error else {
+        Issue.record(
+          "Expected CredentialsError.credentialsNotFound, got \(String(describing: error))")
+        return
+      }
+      #expect(message.contains("NO_GCE_CHECK"))
+      #expect(message.contains("gcloud auth application-default login"))
+      #expect(message.contains("GOOGLE_APPLICATION_CREDENTIALS"))
+    }
+  }
+
+  @Test(arguments: ["false", "FALSE", "0", "", "no", "2"])
+  func falsyNoGCECheckStillFallsBackToMDS(value: String) throws {
+    let provider = try ADC.resolve(environment: ["NO_GCE_CHECK": value])
+    #expect(provider is MDSCredentials)
+  }
+
+  @Test func noGCECheckWithExplicitMetadataHostStillResolvesMDS() throws {
+    let provider = try ADC.resolve(
+      environment: [
+        "NO_GCE_CHECK": "true",
+        "GCE_METADATA_HOST": "127.0.0.1:8080",
+      ]
+    )
+    #expect(provider is MDSCredentials)
+  }
+
+  @Test func noGCECheckDoesNotAffectExplicitCredentialsFile() throws {
+    let json = """
+      {
+        "type": "authorized_user",
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token"
+      }
+      """
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try Data(json.utf8).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let provider = try ADC.resolve(
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "NO_GCE_CHECK": "true",
+      ]
+    )
+    #expect(provider is GoogleAuth.UserCredentials)
+  }
+
+  @Test func noGCECheckDoesNotAffectWellKnownCredentialsFile() throws {
+    let json = """
+      {
+        "type": "authorized_user",
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token"
+      }
+      """
+    let tempHome = FileManager.default.temporaryDirectory
+      .appendingPathComponent(UUID().uuidString, isDirectory: true)
+    defer { try? FileManager.default.removeItem(at: tempHome) }
+
+    let posixDir = tempHome.appendingPathComponent(".config/gcloud", isDirectory: true)
+    let windowsDir = tempHome.appendingPathComponent("gcloud", isDirectory: true)
+    try FileManager.default.createDirectory(at: posixDir, withIntermediateDirectories: true)
+    try FileManager.default.createDirectory(at: windowsDir, withIntermediateDirectories: true)
+    try Data(json.utf8).write(
+      to: posixDir.appendingPathComponent("application_default_credentials.json"))
+    try Data(json.utf8).write(
+      to: windowsDir.appendingPathComponent("application_default_credentials.json"))
+
+    let provider = try ADC.resolve(
+      environment: [
+        "HOME": tempHome.path,
+        "APPDATA": tempHome.path,
+        "NO_GCE_CHECK": "true",
+      ]
+    )
+    #expect(provider is GoogleAuth.UserCredentials)
+  }
+
   @Test func propagatesEnvironmentToMDS() async throws {
     let customHost = "custom-metadata.local"
     let environment = ["GCE_METADATA_HOST": customHost]

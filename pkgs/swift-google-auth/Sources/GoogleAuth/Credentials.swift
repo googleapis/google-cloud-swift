@@ -83,7 +83,10 @@ public enum CredentialsConfiguration: Sendable {
   /// 1. The file pointed to by the `GOOGLE_APPLICATION_CREDENTIALS` environment variable (service account or user key).
   /// 2. Well-known user credentials file created by `gcloud auth application-default login` on developer workstations.
   /// 3. The link-local [Metadata Server](https://cloud.google.com/compute/docs/metadata/overview) (MDS) on
-  ///    Google Cloud runtime environments (Google Compute Engine, GKE, Cloud Run).
+  ///    Google Cloud runtime environments (Google Compute Engine, GKE, Cloud Run). Setting `NO_GCE_CHECK` to
+  ///    `"true"` or `"1"` (case-insensitive) skips probing the default metadata server (unless
+  ///    `GCE_METADATA_HOST` is explicitly set) and throws ``CredentialsError/credentialsNotFound(_:)``
+  ///    immediately if no local credentials were found.
   ///
   /// When resolving `.adc()`, ``Credentials/init(configuration:)`` performs synchronous filesystem I/O to read and parse
   /// local credential files (assuming small JSON configuration files). Avoid resolving `.adc()` repeatedly on the
@@ -486,7 +489,9 @@ public struct Credentials: Sendable {
   /// this initializer repeatedly inside asynchronous request handlers.
   ///
   /// - Parameter configuration: The configuration describing the credential source and parameters.
-  /// - Throws: A `CredentialsError` if the credentials cannot be loaded, parsed, or if the configuration is unsupported.
+  /// - Throws: A `CredentialsError` if the credentials cannot be loaded or parsed, if the configuration is
+  ///   unsupported, or ``CredentialsError/credentialsNotFound(_:)`` when `.adc()` finds no local credentials and
+  ///   `NO_GCE_CHECK` disables probing the default metadata server.
   public init(configuration: CredentialsConfiguration = .adc()) throws {
     try self.init(
       configuration: configuration,

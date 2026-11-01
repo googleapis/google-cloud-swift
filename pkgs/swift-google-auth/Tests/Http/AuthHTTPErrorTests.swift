@@ -171,6 +171,7 @@ import Testing
     )
     #expect(AuthHTTPError.isRetryable(CredentialsError.parseError("invalid")) == false)
     #expect(AuthHTTPError.isRetryable(CredentialsError.notSupported("unsupported")) == false)
+    #expect(AuthHTTPError.isRetryable(CredentialsError.credentialsNotFound("missing")) == false)
 
     // Non-AuthHTTPError errors default to retryable
     #expect(AuthHTTPError.isRetryable(URLError(.cannotConnectToHost)) == true)
