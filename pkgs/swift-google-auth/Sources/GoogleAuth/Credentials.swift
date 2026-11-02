@@ -490,7 +490,7 @@ public struct Credentials: Sendable {
   /// - Parameter configuration: The configuration describing the credential source and parameters.
   /// - Throws: A `CredentialsError` if the credentials cannot be loaded or parsed, if the configuration is
   ///   unsupported, or ``CredentialsError/credentialsNotFound(_:)`` when `.adc()` finds no local credentials and
-  ///   `NO_GCE_CHECK` disables probing the default metadata server.
+  ///   `NO_GCE_CHECK` disables probing the metadata server.
   public init(configuration: CredentialsConfiguration = .adc()) throws {
     try self.init(
       configuration: configuration,
