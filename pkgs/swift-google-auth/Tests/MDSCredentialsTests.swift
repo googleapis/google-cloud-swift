@@ -220,7 +220,14 @@ import Testing
       }
     ])
     let client = AuthHTTPClient(mock: mock)
-    let provider = MDSCredentials(client: client, fromADC: true, environment: [:])
+    // Use zero jitter so any unintended background retry loop in `TokenCache` would fire
+    // immediately and fail `MockHTTPClient` with an unqueued request.
+    let provider = MDSCredentials(
+      client: client,
+      fromADC: true,
+      environment: [:],
+      jitter: { _ in .zero }
+    )
     let error = await #expect(throws: CredentialsError.self) { _ = try await provider.headers() }
 
     guard case let .cannotFetchToken(got, _) = error else {
@@ -236,6 +243,264 @@ import Testing
     #expect(
       got.contains("gcloud auth application-default login"),
       "expected local credentials setup instructions, got:\n\(got)")
+    #expect(mock.recordedTimeouts == [MDSAccessTokenProvider.adcFallbackTimeout])
+
+    // Allow any background task opportunity to run; unconfirmed ADC fallback failure must be
+    // treated as permanent so `TokenCache` neither polls in the background nor re-probes MDS.
+    try await ContinuousClock().sleep(for: .milliseconds(20))
+    await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(mock.recordedTimeouts == [MDSAccessTokenProvider.adcFallbackTimeout])
+  }
+
+  @Test func adcFallbackConfirmedOnSuccessUsesNormalTimeoutAndRetriesOnRefresh() async throws {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    // `expiresIn: -1` returns a token on the first `headers()` call that is already expired when
+    // the second `headers()` call checks `TokenCache`, deterministically forcing a refresh.
+    let initialData = try encoder.encode(
+      MockResponse(accessToken: "initial-gcp-token", expiresIn: -1, tokenType: "Bearer")
+    )
+    let refreshedData = try encoder.encode(
+      MockResponse(accessToken: "refreshed-gcp-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: initialData))
+        )
+      },
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(version: .http2, status: .serviceUnavailable)
+      },
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: refreshedData))
+        )
+      },
+    ])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 2,
+      initialDelay: .milliseconds(1),
+      multiplier: 1.0,
+      maxDelay: .milliseconds(1)
+    )
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      fromADC: true,
+      environment: [:],
+      jitter: { _ in .seconds(3600) }
+    )
+
+    let firstHeaders = try await provider.headers()
+    #expect(firstHeaders["Authorization"] == "Bearer initial-gcp-token")
+
+    let secondHeaders = try await provider.headers()
+    #expect(secondHeaders["Authorization"] == "Bearer refreshed-gcp-token")
+    #expect(
+      mock.recordedTimeouts == [
+        MDSAccessTokenProvider.adcFallbackTimeout,
+        AuthHTTPClient.defaultTimeout,
+        AuthHTTPClient.defaultTimeout,
+      ]
+    )
+  }
+
+  @Test func adcFallbackTransientErrorWithMetadataFlavorHeaderConfirmsMDSAndRetries() async throws {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let recoveredData = try encoder.encode(
+      MockResponse(accessToken: "boot-recovered-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .serviceUnavailable,
+          headers: .init([("Metadata-Flavor", "Google")])
+        )
+      },
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
+          body: .bytes(.init(data: recoveredData))
+        )
+      },
+    ])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 2,
+      initialDelay: .milliseconds(1),
+      multiplier: 1.0,
+      maxDelay: .milliseconds(1)
+    )
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      fromADC: true,
+      environment: [:]
+    )
+
+    let headers = try await provider.headers()
+    #expect(headers["Authorization"] == "Bearer boot-recovered-token")
+    #expect(
+      mock.recordedTimeouts == [
+        MDSAccessTokenProvider.adcFallbackTimeout,
+        AuthHTTPClient.defaultTimeout,
+      ]
+    )
+  }
+
+  @Test func adcFallbackCancellationDoesNotPoisonTokenCache() async throws {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedData = try encoder.encode(
+      MockResponse(accessToken: "post-cancel-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        throw CancellationError()
+      },
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData))
+        )
+      },
+    ])
+
+    let provider = MDSCredentials(
+      client: AuthHTTPClient(mock: mock),
+      fromADC: true,
+      environment: [:]
+    )
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await provider.headers()
+    }
+
+    let headers = try await provider.headers()
+    #expect(headers["Authorization"] == "Bearer post-cancel-token")
+    #expect(
+      mock.recordedTimeouts == [
+        MDSAccessTokenProvider.adcFallbackTimeout,
+        MDSAccessTokenProvider.adcFallbackTimeout,
+      ]
+    )
+  }
+
+  @Test func adcFallbackAndExplicitTimeoutSelection() async throws {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedData = try encoder.encode(
+      MockResponse(accessToken: "mock-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+    let makeSuccess: MockHTTPClient.Closure = { request in
+      Self.checkRequest(request)
+      return HTTPClientResponse(
+        version: .http2,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json")]),
+        body: .bytes(.init(data: encodedData))
+      )
+    }
+
+    // 1. Implicit ADC fallback (`fromADC: true`, no custom endpoint, no `GCE_METADATA_HOST`) -> 3s
+    let adcFallbackMock = MockHTTPClient([makeSuccess])
+    let adcFallbackProvider = MDSCredentials(
+      client: AuthHTTPClient(mock: adcFallbackMock),
+      fromADC: true,
+      environment: [:]
+    )
+    _ = try await adcFallbackProvider.headers()
+    #expect(adcFallbackMock.recordedTimeouts == [.seconds(3)])
+
+    // 2. Implicit ADC fallback with empty `GCE_METADATA_HOST` -> 3s
+    let emptyHostMock = MockHTTPClient([makeSuccess])
+    let emptyHostProvider = MDSCredentials(
+      client: AuthHTTPClient(mock: emptyHostMock),
+      fromADC: true,
+      environment: ["GCE_METADATA_HOST": ""]
+    )
+    _ = try await emptyHostProvider.headers()
+    #expect(emptyHostMock.recordedTimeouts == [.seconds(3)])
+
+    // 3. Explicit `fromADC: false` -> default 30s
+    let nonADCMock = MockHTTPClient([makeSuccess])
+    let nonADCProvider = MDSCredentials(
+      client: AuthHTTPClient(mock: nonADCMock),
+      fromADC: false,
+      environment: [:]
+    )
+    _ = try await nonADCProvider.headers()
+    #expect(nonADCMock.recordedTimeouts == [.seconds(30)])
+
+    // 4. `fromADC: true` with explicit `GCE_METADATA_HOST` -> default 30s
+    let hostOverrideMock = MockHTTPClient([makeSuccess])
+    let hostOverrideProvider = MDSCredentials(
+      client: AuthHTTPClient(mock: hostOverrideMock),
+      fromADC: true,
+      environment: ["GCE_METADATA_HOST": "127.0.0.1:8080"]
+    )
+    _ = try await hostOverrideProvider.headers()
+    #expect(hostOverrideMock.recordedTimeouts == [.seconds(30)])
+
+    // 5. `fromADC: true` with explicit `endpoint` -> default 30s
+    let endpointOverrideMock = MockHTTPClient([makeSuccess])
+    let endpointOverrideProvider = MDSCredentials(
+      endpoint: URL(string: "http://127.0.0.1:8080")!,
+      client: AuthHTTPClient(mock: endpointOverrideMock),
+      fromADC: true,
+      environment: [:]
+    )
+    _ = try await endpointOverrideProvider.headers()
+    #expect(endpointOverrideMock.recordedTimeouts == [.seconds(30)])
   }
 
   @Test func adcOverriddenMDS() async throws {
