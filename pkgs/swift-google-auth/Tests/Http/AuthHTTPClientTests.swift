@@ -891,6 +891,56 @@ import Testing
       }
     }
   }
+
+  @Test func clientTimesOutWhenHeadersArriveAfterDeadline() async throws {
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    let okBody = Data(#"{"access_token": "tok", "expires_in": 3600}"#.utf8)
+    let errBody = Data(#"{"error": "server_error"}"#.utf8)
+    let mock = MockHTTPClient([
+      { _ in
+        try await Task.sleep(for: .milliseconds(30))
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: okBody))
+        )
+      },
+      { _ in
+        try await Task.sleep(for: .milliseconds(30))
+        return HTTPClientResponse(
+          version: .http2,
+          status: .serviceUnavailable,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: errBody))
+        )
+      },
+    ])
+
+    let client = AuthHTTPClient(mock: mock)
+
+    let okTimeoutError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.get(
+        url: targetURL,
+        timeout: .milliseconds(10)
+      )
+    }
+    guard case let .transportError(urlError) = okTimeoutError else {
+      Issue.record(
+        "Expected AuthHTTPError.transportError, got \(String(describing: okTimeoutError))")
+      return
+    }
+    #expect(urlError.code == .timedOut)
+
+    let errTimeoutError = await #expect(throws: AuthHTTPError.self) {
+      let _: MockTokenResponse = try await client.get(
+        url: targetURL,
+        timeout: .milliseconds(10)
+      )
+    }
+    #expect(errTimeoutError?.statusCode == 503)
+    #expect(errTimeoutError?.bodyData == Data())
+  }
 }
 
 private struct MockTokenResponse: Codable, Sendable, Equatable {

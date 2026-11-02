@@ -297,6 +297,9 @@ struct AuthHTTPClient: Sendable {
     deadline: ContinuousClock.Instant
   ) async throws -> ByteBuffer {
     try Task.checkCancellation()
+    if ContinuousClock.now >= deadline {
+      throw URLError(.timedOut)
+    }
     return try await withThrowingTaskGroup(of: ByteBuffer.self) { group in
       group.addTask {
         let buffer = try await response.body.collect(upTo: Self.maxResponseSize)
