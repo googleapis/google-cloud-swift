@@ -85,7 +85,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
     self.cache = TokenCache(
       provider: provider,
       jitter: jitter,
-      isRetryable: { error in provider.isRetryable(error) }
+      isRetryable: provider.isRetryable
     )
   }
 

@@ -76,7 +76,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   /// (no custom `endpoint` and no non-empty `GCE_METADATA_HOST` override).
   private var isImplicitADCFallback: Bool {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
-    return self.fromADC && self.endpoint == nil && (hostEnv == nil || hostEnv?.isEmpty == true)
+    return self.fromADC && self.endpoint == nil && (hostEnv?.isEmpty ?? true)
   }
 
   /// Whether this provider reached the default metadata server via implicit ADC fallback and has
@@ -280,7 +280,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     do {
       return try await RetryEngine.retry(
         configuration: self.retryConfiguration ?? .defaultConfiguration,
-        isRetryable: { error in self.isRetryable(error) },
+        isRetryable: self.isRetryable,
         operation: fetchOperation
       )
     } catch is CancellationError {
