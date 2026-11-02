@@ -226,12 +226,10 @@ import Testing
     #expect(credentials.credentialsProvider is ExternalAccountCredentials)
   }
 
-  @Test func resolveProviderForApiKey() async throws {
+  @Test func resolveProviderForAPIKey() async throws {
     let credentials = try Credentials(configuration: .apiKey("test-api-key"))
 
-    #expect(
-      String(describing: type(of: credentials.credentialsProvider)).contains("ApiKeyCredentials")
-    )
+    #expect(credentials.credentialsProvider is APIKeyCredentials)
 
     let headers = try await credentials.headers()
     #expect(headers == [("x-goog-api-key", "test-api-key")])

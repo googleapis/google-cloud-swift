@@ -560,7 +560,7 @@ public struct Credentials: Sendable {
         universeDomain: config.universeDomain
       )
     case let .apiKey(apiKey):
-      return ApiKeyCredentials(apiKey: apiKey)
+      return APIKeyCredentials(apiKey: apiKey)
     case let .impersonatedServiceAccount(config):
       return try ImpersonatedCredentials(
         sourceCredentials: config.sourceCredentials.credentialsProvider,

@@ -15,17 +15,17 @@
 import Testing
 @testable import GoogleAuth
 
-@Suite struct ApiKeyCredentialsTests {
-  @Test func debugDescriptionRedactsApiKey() {
-    let credentials = ApiKeyCredentials(apiKey: "super-secret-api-key")
+@Suite struct APIKeyCredentialsTests {
+  @Test func debugDescriptionRedactsAPIKey() {
+    let credentials = APIKeyCredentials(apiKey: "super-secret-api-key")
     let description = String(reflecting: credentials)
 
     #expect(!description.contains("super-secret-api-key"))
-    #expect(description.contains("[redacted]"))
+    #expect(description == "APIKeyCredentials(apiKey: \"[redacted]\")")
   }
 
-  @Test func headersProducesExpectedApiKeyHeader() async throws {
-    let credentials = ApiKeyCredentials(apiKey: "test-api-key")
+  @Test func headersProducesExpectedAPIKeyHeader() async throws {
+    let credentials = APIKeyCredentials(apiKey: "test-api-key")
     let headers = try await credentials.headers()
 
     #expect(headers == [("x-goog-api-key", "test-api-key")])
