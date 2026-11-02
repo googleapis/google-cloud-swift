@@ -84,9 +84,8 @@ public enum CredentialsConfiguration: Sendable {
   /// 2. Well-known user credentials file created by `gcloud auth application-default login` on developer workstations.
   /// 3. The link-local [Metadata Server](https://cloud.google.com/compute/docs/metadata/overview) (MDS) on
   ///    Google Cloud runtime environments (Google Compute Engine, GKE, Cloud Run). Setting `NO_GCE_CHECK` to
-  ///    `"true"` or `"1"` (case-insensitive) skips probing the default metadata server (unless
-  ///    `GCE_METADATA_HOST` is explicitly set) and throws ``CredentialsError/credentialsNotFound(_:)``
-  ///    immediately if no local credentials were found.
+  ///    `"true"` or `"1"` (case-insensitive) skips probing the metadata server and throws
+  ///    ``CredentialsError/credentialsNotFound(_:)`` immediately if no local credentials were found.
   ///
   /// When resolving `.adc()`, ``Credentials/init(configuration:)`` performs synchronous filesystem I/O to read and parse
   /// local credential files (assuming small JSON configuration files). Avoid resolving `.adc()` repeatedly on the

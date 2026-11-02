@@ -54,14 +54,21 @@ import Testing
     #expect(provider is MDSCredentials)
   }
 
-  @Test func noGCECheckWithExplicitMetadataHostStillResolvesMDS() throws {
-    let provider = try ADC.resolve(
-      environment: [
-        "NO_GCE_CHECK": "true",
-        "GCE_METADATA_HOST": "127.0.0.1:8080",
-      ]
-    )
-    #expect(provider is MDSCredentials)
+  @Test func noGCECheckTakesPrecedenceOverExplicitMetadataHost() throws {
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try ADC.resolve(
+        environment: [
+          "NO_GCE_CHECK": "true",
+          "GCE_METADATA_HOST": "127.0.0.1:8080",
+        ]
+      )
+    }
+    guard case let .credentialsNotFound(message) = error else {
+      Issue.record(
+        "Expected CredentialsError.credentialsNotFound, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("NO_GCE_CHECK"))
   }
 
   @Test func noGCECheckDoesNotAffectExplicitCredentialsFile() throws {

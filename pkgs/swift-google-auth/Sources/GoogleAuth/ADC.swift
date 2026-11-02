@@ -37,7 +37,7 @@ enum ADC: Sendable {
   /// 2. Inspects the well-known user credentials file (created via `gcloud auth application-default login`).
   /// 3. Falls back to the link-local [Metadata Server](https://cloud.google.com/compute/docs/metadata/overview) (MDS)
   ///    found in Google Cloud runtime environments (GCE, GKE, Cloud Run), unless `NO_GCE_CHECK` is set to `"true"` or `"1"`
-  ///    (case-insensitive) without an explicit `GCE_METADATA_HOST` override.
+  ///    (case-insensitive).
   ///
   /// **Quota Project Precedence**: If the `GOOGLE_CLOUD_QUOTA_PROJECT` environment variable is set in `environment`,
   /// its value takes precedence over any passed `quotaProjectID`.
@@ -62,8 +62,7 @@ enum ADC: Sendable {
     let contents = try loadADC(environment: environment)
     switch contents {
     case .fallbackToMds:
-      let hasExplicitMetadataHost = !(environment["GCE_METADATA_HOST"] ?? "").isEmpty
-      if !hasExplicitMetadataHost && Self.isNoGCECheckEnabled(environment: environment) {
+      if Self.isNoGCECheckEnabled(environment: environment) {
         throw CredentialsError.credentialsNotFound(
           """
           Application Default Credentials (ADC) could not find local credentials and skipped \
