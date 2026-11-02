@@ -38,6 +38,40 @@ import Testing
     )
   }
 
+  @Test func resolveProviderForADCWithNoGCECheckThrowsCredentialsNotFound() throws {
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try Credentials(
+        configuration: .adc(),
+        environment: ["NO_GCE_CHECK": "true"]
+      )
+    }
+    guard case let .credentialsNotFound(message) = error else {
+      Issue.record(
+        "Expected CredentialsError.credentialsNotFound, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("NO_GCE_CHECK"))
+    #expect(message.contains("gcloud auth application-default login"))
+  }
+
+  @Test func resolveProviderForADCWithNoGCECheckThrowsEvenWithMetadataHost() throws {
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try Credentials(
+        configuration: .adc(),
+        environment: [
+          "NO_GCE_CHECK": "true",
+          "GCE_METADATA_HOST": "127.0.0.1:8080",
+        ]
+      )
+    }
+    guard case let .credentialsNotFound(message) = error else {
+      Issue.record(
+        "Expected CredentialsError.credentialsNotFound, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("NO_GCE_CHECK"))
+  }
+
   @Test func resolveProviderForADCMissingFileThrowsCannotLoadFile() throws {
     let error = #expect(throws: CredentialsError.self) {
       _ = try Credentials(
