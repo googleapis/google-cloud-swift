@@ -296,26 +296,31 @@ struct AuthHTTPClient: Sendable {
     _ response: HTTPClientResponse,
     deadline: ContinuousClock.Instant
   ) async throws -> ByteBuffer {
+    // Check cancellation before `deadline` so a cancelled caller always sees
+    // `CancellationError` rather than `URLError(.timedOut)`.
     try Task.checkCancellation()
     if ContinuousClock.now >= deadline {
       throw URLError(.timedOut)
     }
+
+    // Race body collection against `deadline`: the first child task to finish wins,
+    // and `cancelAll()` (or unwinding on throw) cancels the loser.
     return try await withThrowingTaskGroup(of: ByteBuffer.self) { group in
       group.addTask {
-        let buffer = try await response.body.collect(upTo: Self.maxResponseSize)
-        try Task.checkCancellation()
-        return buffer
+        try await response.body.collect(upTo: Self.maxResponseSize)
       }
       group.addTask {
         try await ContinuousClock().sleep(until: deadline)
-        try Task.checkCancellation()
         throw URLError(.timedOut)
       }
 
-      guard let buffer = try await group.next() else {
-        throw CancellationError()
-      }
+      // `group.next()` only returns `nil` on an empty group; two tasks were added above.
+      let buffer = try await group.next()!
       group.cancelAll()
+
+      // Non-throwing `AsyncStream`-backed bodies finish cleanly (`nil`) instead of
+      // throwing when cancelled, so verify the caller task wasn't cancelled before
+      // returning potentially truncated bytes.
       try Task.checkCancellation()
       return buffer
     }
