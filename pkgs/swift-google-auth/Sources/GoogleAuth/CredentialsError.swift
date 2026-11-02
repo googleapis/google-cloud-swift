@@ -71,12 +71,16 @@ public enum CredentialsError: Error, Sendable {
 
   /// Application Default Credentials could not locate any credentials in the environment.
   ///
+  /// Unlike ``cannotLoadFile(message:underlyingError:)``, which reports a filesystem failure when
+  /// reading an explicitly configured credential file (such as `GOOGLE_APPLICATION_CREDENTIALS`),
+  /// `credentialsNotFound` indicates that no credential source was configured or discovered at all.
+  ///
   /// ## Troubleshooting
   ///
-  /// This error occurs during Application Default Credentials (ADC) discovery when neither the
-  /// `GOOGLE_APPLICATION_CREDENTIALS` environment variable nor the well-known `gcloud` credentials
-  /// file is present, and probing the Compute Engine metadata server is disabled via the
-  /// `NO_GCE_CHECK` environment variable.
+  /// This error occurs during Application Default Credentials (ADC) discovery when
+  /// `GOOGLE_APPLICATION_CREDENTIALS` is not set, no well-known `gcloud` credentials file is
+  /// present, and probing the Compute Engine metadata server is disabled via the `NO_GCE_CHECK`
+  /// environment variable.
   ///
   /// To set up local credentials, run `gcloud auth application-default login` or set
   /// `GOOGLE_APPLICATION_CREDENTIALS` to the path of a credential file. More information on how
