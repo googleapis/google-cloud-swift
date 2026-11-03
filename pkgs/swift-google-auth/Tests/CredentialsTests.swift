@@ -38,6 +38,40 @@ import Testing
     )
   }
 
+  @Test func resolveProviderForADCWithNoGCECheckThrowsCredentialsNotFound() throws {
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try Credentials(
+        configuration: .adc(),
+        environment: ["NO_GCE_CHECK": "true"]
+      )
+    }
+    guard case let .credentialsNotFound(message) = error else {
+      Issue.record(
+        "Expected CredentialsError.credentialsNotFound, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("NO_GCE_CHECK"))
+    #expect(message.contains("gcloud auth application-default login"))
+  }
+
+  @Test func resolveProviderForADCWithNoGCECheckThrowsEvenWithMetadataHost() throws {
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try Credentials(
+        configuration: .adc(),
+        environment: [
+          "NO_GCE_CHECK": "true",
+          "GCE_METADATA_HOST": "127.0.0.1:8080",
+        ]
+      )
+    }
+    guard case let .credentialsNotFound(message) = error else {
+      Issue.record(
+        "Expected CredentialsError.credentialsNotFound, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("NO_GCE_CHECK"))
+  }
+
   @Test func resolveProviderForADCMissingFileThrowsCannotLoadFile() throws {
     let error = #expect(throws: CredentialsError.self) {
       _ = try Credentials(
@@ -192,12 +226,10 @@ import Testing
     #expect(credentials.credentialsProvider is ExternalAccountCredentials)
   }
 
-  @Test func resolveProviderForApiKey() async throws {
+  @Test func resolveProviderForAPIKey() async throws {
     let credentials = try Credentials(configuration: .apiKey("test-api-key"))
 
-    #expect(
-      String(describing: type(of: credentials.credentialsProvider)).contains("ApiKeyCredentials")
-    )
+    #expect(credentials.credentialsProvider is APIKeyCredentials)
 
     let headers = try await credentials.headers()
     #expect(headers == [("x-goog-api-key", "test-api-key")])

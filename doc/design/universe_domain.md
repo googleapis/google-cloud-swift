@@ -26,7 +26,7 @@ For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(quota
 
 ### Provider Behavior
 
-- **Anonymous and API Key Credentials**: `AnonymousCredentials` defaults to `Credentials.defaultUniverseDomain` and sets `isAnonymous` to `true` so transport clients skip universe domain mismatch checks when anonymous credentials are used. `ApiKeyCredentials` always returns `Credentials.defaultUniverseDomain` via the default `CredentialsProvider` extension.
+- **Anonymous and API Key Credentials**: `AnonymousCredentials` defaults to `Credentials.defaultUniverseDomain` and sets `isAnonymous` to `true` so transport clients skip universe domain mismatch checks when anonymous credentials are used. `APIKeyCredentials` always returns `Credentials.defaultUniverseDomain` via the default `CredentialsProvider` extension.
 - **Service Account and External Account Credentials**: `ServiceAccountCredentials` parses the optional `"universe_domain"` field from its JSON key (`ServiceAccountData`) and resolves `universeDomain ?? nonEmpty(key.universeDomain) ?? defaultUniverseDomain`. `ExternalAccountCredentials` stores the `universeDomain` property on `ExternalAccountConfig` (defaulting to `Credentials.defaultUniverseDomain`) and returns it from `universeDomain()`.
 - **User Account Credentials**: `UserCredentials` parses `"universe_domain"` from JSON and accepts an optional `universeDomain` parameter. In accordance with AIP-4116, if the resolved universe domain is anything other than `"googleapis.com"`, initialization fails immediately with `CredentialsError.notSupported`.
 - **Impersonated Service Account Credentials**:
