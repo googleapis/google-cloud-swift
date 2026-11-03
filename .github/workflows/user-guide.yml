@@ -24,6 +24,8 @@ jobs:
   guide:
     if: github.repository == 'googleapis/google-cloud-swift'
     runs-on: ubuntu-26.04
+    outputs:
+      is_latest: ${{ steps.check-latest.outputs.is_latest }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # ratchet:actions/checkout@v7.0.1
         with:
@@ -81,9 +83,32 @@ jobs:
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # ratchet:actions/upload-pages-artifact@v5
         with:
           path: .render
+      - name: Check if commit is latest on branch
+        if: github.event_name == 'push'
+        id: check-latest
+        run: |
+          set -euo pipefail
+          output=$(
+            git ls-remote origin "${GITHUB_REF}" ||
+            (sleep 5 && git ls-remote origin "${GITHUB_REF}") ||
+            (sleep 10 && git ls-remote origin "${GITHUB_REF}")
+          )
+          remote_sha="${output%%[[:space:]]*}"
+          if [[ "${remote_sha}" == "${GITHUB_SHA}" ]]; then
+            echo "is_latest=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "Skipping deploy: ${GITHUB_REF} is at ${remote_sha:-<deleted>}, current commit is ${GITHUB_SHA}"
+            echo "is_latest=false" >> "${GITHUB_OUTPUT}"
+          fi
   deploy:
-    if: github.repository == 'googleapis/google-cloud-swift' && github.event_name == 'push'
+    if: |
+      github.repository == 'googleapis/google-cloud-swift' &&
+      github.event_name == 'push' &&
+      needs.guide.outputs.is_latest == 'true'
     runs-on: ubuntu-26.04
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     permissions:
       # to deploy to Pages
       pages: write
