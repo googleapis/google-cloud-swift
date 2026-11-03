@@ -58,6 +58,78 @@
         }
       }
 
+      public func createAssistant(
+        request: CreateAssistantRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "createAssistant",
+          action: {
+            (r: CreateAssistantRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudDiscoveryEngineV1.Assistant
+            in
+            return try await self.inner.createAssistant(request: r, options: o)
+          })
+      }
+
+      public func deleteAssistant(
+        request: DeleteAssistantRequest, options: GoogleGax.RequestOptions
+      ) async throws {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "deleteAssistant",
+          action: { (r: DeleteAssistantRequest, o: GoogleGax.RequestOptions) async throws -> Void in
+            return try await self.inner.deleteAssistant(request: r, options: o)
+          })
+      }
+
+      public func updateAssistant(
+        request: UpdateAssistantRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "updateAssistant",
+          action: {
+            (r: UpdateAssistantRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudDiscoveryEngineV1.Assistant
+            in
+            return try await self.inner.updateAssistant(request: r, options: o)
+          })
+      }
+
+      public func getAssistant(
+        request: GetAssistantRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "getAssistant",
+          action: {
+            (r: GetAssistantRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudDiscoveryEngineV1.Assistant
+            in
+            return try await self.inner.getAssistant(request: r, options: o)
+          })
+      }
+
+      public func listAssistants(
+        request: ListAssistantsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ListAssistantsResponse {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "listAssistants",
+          action: {
+            (r: ListAssistantsRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudDiscoveryEngineV1.ListAssistantsResponse
+            in
+            return try await self.inner.listAssistants(request: r, options: o)
+          })
+      }
+
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {

@@ -20,6 +20,7 @@
     import FoundationNetworking
   #endif
   @_spi(GoogleCloudInternal) public import GoogleLongRunning
+  @_spi(GoogleCloudInternal) public import GoogleWKT
   @_spi(GoogleCloudInternal) public import GoogleGax
 
   /// Service for managing Assistant configuration and assisting users.
@@ -36,6 +37,63 @@
         inner = Clients.AssistantServiceLogging(inner, logger: logger)
       }
       self.inner = inner
+    }
+
+    /// Creates an [Assistant][google.cloud.discoveryengine.v1.Assistant].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    ///
+    /// @Snippet(path: "AssistantService_CreateAssistant")
+    public func createAssistant(
+      request: CreateAssistantRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
+      try await self.inner.createAssistant(request: request, options: options)
+    }
+
+    /// Deletes an [Assistant][google.cloud.discoveryengine.v1.Assistant].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    ///
+    /// @Snippet(path: "AssistantService_DeleteAssistant")
+    public func deleteAssistant(
+      request: DeleteAssistantRequest, options: GoogleGax.RequestOptions
+    ) async throws {
+      try await self.inner.deleteAssistant(request: request, options: options)
+    }
+
+    /// Updates an [Assistant][google.cloud.discoveryengine.v1.Assistant]
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    ///
+    /// @Snippet(path: "AssistantService_UpdateAssistant")
+    public func updateAssistant(
+      request: UpdateAssistantRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
+      try await self.inner.updateAssistant(request: request, options: options)
+    }
+
+    /// Gets an [Assistant][google.cloud.discoveryengine.v1.Assistant].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    ///
+    /// @Snippet(path: "AssistantService_GetAssistant")
+    public func getAssistant(
+      request: GetAssistantRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
+      try await self.inner.getAssistant(request: request, options: options)
+    }
+
+    /// Lists all [Assistant][google.cloud.discoveryengine.v1.Assistant]s under an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "AssistantService_ListAssistants")
+    public func listAssistants(
+      request: ListAssistantsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ListAssistantsResponse {
+      try await self.inner.listAssistants(request: request, options: options)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -79,6 +137,31 @@
     /// `some AssistantServiceProtocol` or `any AssistantServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol AssistantServiceProtocol: Sendable {
+      /// See `AssistantServiceClient.createAssistant`.
+      func createAssistant(
+        request: CreateAssistantRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant
+
+      /// See `AssistantServiceClient.deleteAssistant`.
+      func deleteAssistant(
+        request: DeleteAssistantRequest, options: GoogleGax.RequestOptions
+      ) async throws
+
+      /// See `AssistantServiceClient.updateAssistant`.
+      func updateAssistant(
+        request: UpdateAssistantRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant
+
+      /// See `AssistantServiceClient.getAssistant`.
+      func getAssistant(
+        request: GetAssistantRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant
+
+      /// See `AssistantServiceClient.listAssistants`.
+      func listAssistants(
+        request: ListAssistantsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ListAssistantsResponse
+
       /// See `AssistantServiceClient.listOperations`.
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
@@ -93,6 +176,129 @@
 
   // Default implementations
   extension Clients.AssistantServiceProtocol {
+    public func createAssistant(request: CreateAssistantRequest) async throws
+      -> GoogleCloudDiscoveryEngineV1.Assistant
+    {
+      try await self.createAssistant(request: request, options: .init())
+    }
+
+    public func createAssistant(
+      request: CreateAssistantRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func deleteAssistant(request: DeleteAssistantRequest) async throws {
+      try await self.deleteAssistant(request: request, options: .init())
+    }
+
+    public func deleteAssistant(
+      request: DeleteAssistantRequest, options: GoogleGax.RequestOptions
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func deleteAssistant(
+      name: Swift.String,
+    ) async throws {
+      let request = DeleteAssistantRequest().with {
+        $0.name = name
+      }
+      try await self.deleteAssistant(request: request)
+    }
+
+    public func updateAssistant(request: UpdateAssistantRequest) async throws
+      -> GoogleCloudDiscoveryEngineV1.Assistant
+    {
+      try await self.updateAssistant(request: request, options: .init())
+    }
+
+    public func updateAssistant(
+      request: UpdateAssistantRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func updateAssistant(
+      assistant: Assistant?,
+      updateMask: GoogleWKT.WKTFieldMask?,
+    ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
+      let request = UpdateAssistantRequest().with {
+        $0.assistant = assistant
+        $0.updateMask = updateMask
+      }
+      return try await self.updateAssistant(request: request)
+    }
+
+    public func getAssistant(request: GetAssistantRequest) async throws
+      -> GoogleCloudDiscoveryEngineV1.Assistant
+    {
+      try await self.getAssistant(request: request, options: .init())
+    }
+
+    public func getAssistant(
+      request: GetAssistantRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func getAssistant(
+      name: Swift.String,
+    ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
+      let request = GetAssistantRequest().with {
+        $0.name = name
+      }
+      return try await self.getAssistant(request: request)
+    }
+
+    public func listAssistants(request: ListAssistantsRequest) async throws
+      -> GoogleCloudDiscoveryEngineV1.ListAssistantsResponse
+    {
+      try await self.listAssistants(request: request, options: .init())
+    }
+
+    public func listAssistants(
+      request: ListAssistantsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ListAssistantsResponse {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func listAssistantsByItems(
+      request: ListAssistantsRequest
+    ) -> some AsyncSequence<Assistant, any Swift.Error> & Sendable {
+      self.listAssistantsByItems(request: request, options: .init())
+    }
+
+    /// Lists all [Assistant][google.cloud.discoveryengine.v1.Assistant]s under an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "AssistantService_ListAssistants")
+    public func listAssistantsByItems(
+      request: ListAssistantsRequest, options: GoogleGax.RequestOptions
+    ) -> some AsyncSequence<Assistant, any Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudDiscoveryEngineV1.ListAssistantsResponse in
+        var request = request
+        request.pageToken = token
+        return try await self.listAssistants(request: request, options: options)
+      }
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
+    }
+
+    public func listAssistantsByItems(
+      parent: Swift.String,
+    ) -> some AsyncSequence<Assistant, any Swift.Error> & Sendable {
+      let request = ListAssistantsRequest().with {
+        $0.parent = parent
+      }
+      return self.listAssistantsByItems(request: request)
+    }
+
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {

@@ -55,6 +55,12 @@
     /// on the top of the session list.
     public var isPinned: Swift.Bool = Swift.Bool()
 
+    /// Output only. Full resource name of an in-progress AsyncAssist operation for
+    /// this session, e.g.
+    /// `projects/*/locations/*/collections/*/engines/*/sessions/*/operations/*`.
+    /// Set when the operation starts and cleared when it finishes.
+    public var pendingAsyncAssistOperationId: Swift.String = Swift.String()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Session`.
@@ -89,6 +95,8 @@
       static let startTime = CodingKeys(stringValue: "startTime")
       static let endTime = CodingKeys(stringValue: "endTime")
       static let isPinned = CodingKeys(stringValue: "isPinned")
+      static let pendingAsyncAssistOperationId = CodingKeys(
+        stringValue: "pendingAsyncAssistOperationId")
 
       static let _knownKeys: Set<Swift.String> = [
         "name",
@@ -100,6 +108,7 @@
         "startTime",
         "endTime",
         "isPinned",
+        "pendingAsyncAssistOperationId",
       ]
     }
 
@@ -129,6 +138,11 @@
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isPinned) {
         self.isPinned = value
       }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .pendingAsyncAssistOperationId)
+      {
+        self.pendingAsyncAssistOperationId = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -146,6 +160,8 @@
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)
       try container.encode(self.isPinned, forKey: .isPinned)
+      try container.encode(
+        self.pendingAsyncAssistOperationId, forKey: .pendingAsyncAssistOperationId)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -194,6 +210,9 @@
       /// functionality.
       public var queryConfig: [Swift.String: Swift.String] = [:]
 
+      /// Optional. Indicates whether this turn is a live turn.
+      public var live: Swift.Bool = Swift.Bool()
+
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Turn`.
@@ -224,6 +243,7 @@
         static let detailedAnswer = CodingKeys(stringValue: "detailedAnswer")
         static let detailedAssistAnswer = CodingKeys(stringValue: "detailedAssistAnswer")
         static let queryConfig = CodingKeys(stringValue: "queryConfig")
+        static let live = CodingKeys(stringValue: "live")
 
         static let _knownKeys: Set<Swift.String> = [
           "query",
@@ -231,6 +251,7 @@
           "detailedAnswer",
           "detailedAssistAnswer",
           "queryConfig",
+          "live",
         ]
       }
 
@@ -248,6 +269,9 @@
         {
           self.queryConfig = value
         }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .live) {
+          self.live = value
+        }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
@@ -261,6 +285,7 @@
         try container.encodeIfPresent(self.detailedAnswer, forKey: .detailedAnswer)
         try container.encodeIfPresent(self.detailedAssistAnswer, forKey: .detailedAssistAnswer)
         try container.encode(self.queryConfig, forKey: .queryConfig)
+        try container.encode(self.live, forKey: .live)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

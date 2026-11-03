@@ -216,6 +216,21 @@ extension Clients {
         })
     }
 
+    public func openGitRepositoryLinkPullRequest(
+      request: OpenGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: OpenGitRepositoryLinkPullRequestRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudDeveloperConnectV1.PullRequest
+          in
+          return try await self.inner.openGitRepositoryLinkPullRequest(request: r, options: o)
+        })
+    }
+
     public func fetchLinkableGitRepositories(
       request: FetchLinkableGitRepositoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.FetchLinkableGitRepositoriesResponse {
@@ -258,6 +273,144 @@ extension Clients {
             -> GoogleCloudDeveloperConnectV1.FetchGitRefsResponse
           in
           return try await self.inner.fetchGitRefs(request: r, options: o)
+        })
+    }
+
+    public func diffGitRepositoryLinkCommit(
+      request: DiffGitRepositoryLinkCommitRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.DiffGitRepositoryLinkCommitResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: DiffGitRepositoryLinkCommitRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudDeveloperConnectV1.DiffGitRepositoryLinkCommitResponse
+          in
+          return try await self.inner.diffGitRepositoryLinkCommit(request: r, options: o)
+        })
+    }
+
+    public func fetchGitRepositoryLinkCommit(
+      request: FetchGitRepositoryLinkCommitRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: FetchGitRepositoryLinkCommitRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitResponse
+          in
+          return try await self.inner.fetchGitRepositoryLinkCommit(request: r, options: o)
+        })
+    }
+
+    public func fetchGitRepositoryLinkCommitList(
+      request: FetchGitRepositoryLinkCommitListRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitListResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: FetchGitRepositoryLinkCommitListRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitListResponse
+          in
+          return try await self.inner.fetchGitRepositoryLinkCommitList(request: r, options: o)
+        })
+    }
+
+    public func fetchGitRepositoryLinkFileBlame(
+      request: FetchGitRepositoryLinkFileBlameRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkFileBlameResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: FetchGitRepositoryLinkFileBlameRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkFileBlameResponse
+          in
+          return try await self.inner.fetchGitRepositoryLinkFileBlame(request: r, options: o)
+        })
+    }
+
+    public func fetchGitRepositoryLinkPullRequest(
+      request: FetchGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: FetchGitRepositoryLinkPullRequestRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudDeveloperConnectV1.PullRequest
+          in
+          return try await self.inner.fetchGitRepositoryLinkPullRequest(request: r, options: o)
+        })
+    }
+
+    public func addGitRepositoryLinkPullRequestComment(
+      request: AddGitRepositoryLinkPullRequestCommentRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestComment {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: AddGitRepositoryLinkPullRequestCommentRequest, o: GoogleGax.RequestOptions)
+            async throws -> GoogleCloudDeveloperConnectV1.PullRequestComment
+          in
+          return try await self.inner.addGitRepositoryLinkPullRequestComment(request: r, options: o)
+        })
+    }
+
+    public func addGitRepositoryLinkPullRequestReviewComment(
+      request: AddGitRepositoryLinkPullRequestReviewCommentRequest,
+      options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestReviewComment {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: AddGitRepositoryLinkPullRequestReviewCommentRequest, o: GoogleGax.RequestOptions)
+            async throws -> GoogleCloudDeveloperConnectV1.PullRequestReviewComment
+          in
+          return try await self.inner.addGitRepositoryLinkPullRequestReviewComment(
+            request: r, options: o)
+        })
+    }
+
+    public func modifyGitRepositoryLinkPullRequest(
+      request: ModifyGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: ModifyGitRepositoryLinkPullRequestRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudDeveloperConnectV1.PullRequest
+          in
+          return try await self.inner.modifyGitRepositoryLinkPullRequest(request: r, options: o)
+        })
+    }
+
+    public func fetchGitRepositoryLinkPullRequestList(
+      request: FetchGitRepositoryLinkPullRequestListRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkPullRequestListResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: FetchGitRepositoryLinkPullRequestListRequest, o: GoogleGax.RequestOptions)
+            async throws
+            -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkPullRequestListResponse
+          in
+          return try await self.inner.fetchGitRepositoryLinkPullRequestList(request: r, options: o)
         })
     }
 

@@ -23,7 +23,7 @@
   public struct CompletionInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    /// End user selected
+    /// Optional. End user selected
     /// [CompleteQueryResponse.QuerySuggestion.suggestion][google.cloud.discoveryengine.v1.CompleteQueryResponse.QuerySuggestion.suggestion].
     ///
     /// [google.cloud.discoveryengine.v1.CompleteQueryResponse.QuerySuggestion.suggestion]: <doc:CompleteQueryResponse/QuerySuggestion/suggestion>

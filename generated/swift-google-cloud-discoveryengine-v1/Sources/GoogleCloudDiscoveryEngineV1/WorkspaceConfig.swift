@@ -25,7 +25,9 @@
     /// The Google Workspace data source.
     public var type: WorkspaceConfig.Type_ = WorkspaceConfig.Type_()
 
-    /// Obfuscated Dasher customer ID.
+    /// Output only. Obfuscated Dasher customer ID. Derived by the server from
+    /// the project's GCP organization at data store creation time; any value
+    /// supplied in the request payload is ignored.
     public var dasherCustomerId: Swift.String = Swift.String()
 
     /// Optional. The super admin service account for the workspace that will be
@@ -137,6 +139,8 @@
       case googleKeep
       /// Workspace Data Store contains People data
       case googlePeople
+      /// Workspace Data Store contains all Workspace apps data
+      case googleWorkspace
       /// Encodes an unknown integer value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -174,6 +178,7 @@
         case .googleGroups: return 6
         case .googleKeep: return 7
         case .googlePeople: return 8
+        case .googleWorkspace: return 9
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -193,6 +198,7 @@
         case .googleGroups: return "GOOGLE_GROUPS"
         case .googleKeep: return "GOOGLE_KEEP"
         case .googlePeople: return "GOOGLE_PEOPLE"
+        case .googleWorkspace: return "GOOGLE_WORKSPACE"
         case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
@@ -212,6 +218,7 @@
         case "GOOGLE_GROUPS": self = .googleGroups
         case "GOOGLE_KEEP": self = .googleKeep
         case "GOOGLE_PEOPLE": self = .googlePeople
+        case "GOOGLE_WORKSPACE": self = .googleWorkspace
         default: self = .unknownStringValue(stringValue)
         }
       }
@@ -230,6 +237,7 @@
         case 6: self = .googleGroups
         case 7: self = .googleKeep
         case 8: self = .googlePeople
+        case 9: self = .googleWorkspace
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -264,6 +272,7 @@
         case .googleGroups: return try container.encode("GOOGLE_GROUPS")
         case .googleKeep: return try container.encode("GOOGLE_KEEP")
         case .googlePeople: return try container.encode("GOOGLE_PEOPLE")
+        case .googleWorkspace: return try container.encode("GOOGLE_WORKSPACE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

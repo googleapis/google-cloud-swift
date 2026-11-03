@@ -618,6 +618,9 @@
         /// during parsing.
         public var enableImageAnnotation: Swift.Bool = Swift.Bool()
 
+        /// Optional. If true, the pdf layout will be refined using an LLM.
+        public var enableLlmLayoutParsing: Swift.Bool = Swift.Bool()
+
         /// Optional. Contains the required structure types to extract from the
         /// document. Supported values:
         ///
@@ -632,6 +635,10 @@
 
         /// Optional. List of HTML ids to exclude from the parsed content.
         public var excludeHtmlIds: [Swift.String] = []
+
+        /// Optional. If true, the processed document will be made available for
+        /// the GetProcessedDocument API.
+        public var enableGetProcessedDocument: Swift.Bool = Swift.Bool()
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -660,18 +667,23 @@
 
           static let enableTableAnnotation = CodingKeys(stringValue: "enableTableAnnotation")
           static let enableImageAnnotation = CodingKeys(stringValue: "enableImageAnnotation")
+          static let enableLlmLayoutParsing = CodingKeys(stringValue: "enableLlmLayoutParsing")
           static let structuredContentTypes = CodingKeys(stringValue: "structuredContentTypes")
           static let excludeHtmlElements = CodingKeys(stringValue: "excludeHtmlElements")
           static let excludeHtmlClasses = CodingKeys(stringValue: "excludeHtmlClasses")
           static let excludeHtmlIds = CodingKeys(stringValue: "excludeHtmlIds")
+          static let enableGetProcessedDocument = CodingKeys(
+            stringValue: "enableGetProcessedDocument")
 
           static let _knownKeys: Set<Swift.String> = [
             "enableTableAnnotation",
             "enableImageAnnotation",
+            "enableLlmLayoutParsing",
             "structuredContentTypes",
             "excludeHtmlElements",
             "excludeHtmlClasses",
             "excludeHtmlIds",
+            "enableGetProcessedDocument",
           ]
         }
 
@@ -686,6 +698,11 @@
             Swift.Bool.self, forKey: .enableImageAnnotation)
           {
             self.enableImageAnnotation = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .enableLlmLayoutParsing)
+          {
+            self.enableLlmLayoutParsing = value
           }
           if let value = try container.decodeIfPresent(
             [Swift.String].self, forKey: .structuredContentTypes)
@@ -706,6 +723,11 @@
           {
             self.excludeHtmlIds = value
           }
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .enableGetProcessedDocument)
+          {
+            self.enableGetProcessedDocument = value
+          }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
               GoogleWKT.WKTValue.self, forKey: key)
@@ -716,10 +738,12 @@
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.enableTableAnnotation, forKey: .enableTableAnnotation)
           try container.encode(self.enableImageAnnotation, forKey: .enableImageAnnotation)
+          try container.encode(self.enableLlmLayoutParsing, forKey: .enableLlmLayoutParsing)
           try container.encode(self.structuredContentTypes, forKey: .structuredContentTypes)
           try container.encode(self.excludeHtmlElements, forKey: .excludeHtmlElements)
           try container.encode(self.excludeHtmlClasses, forKey: .excludeHtmlClasses)
           try container.encode(self.excludeHtmlIds, forKey: .excludeHtmlIds)
+          try container.encode(self.enableGetProcessedDocument, forKey: .enableGetProcessedDocument)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }

@@ -28,19 +28,19 @@ import Foundation
 public enum FilterVersionAlias: Codable, Equatable, Hashable, Sendable {
   /// The default value. If used, it will resolve to the `STABLE` alias.
   case unspecified
-  /// The `STABLE` alias points to the most recent stable model version.
+  /// `STABLE` alias points to the most recent stable model version.
   /// Using this alias means no code changes are required when a new model
   /// becomes the stable version.
   case stable
-  /// The `LATEST` alias points to the newest model version available.
+  /// `LATEST` alias points to the newest model version available.
   /// This version is subject to frequent revisions and offers SLO guarantees
   /// but does not assure stability, providing the most current security
   /// protections.
   case latest
-  /// The `LEGACY` alias could be used for sanitization operations for a
+  /// `LEGACY` alias could be used for sanitization operations for a
   /// transition period. New templates cannot be created with this version.
   case legacy
-  /// The `RETIRED` alias could be used for versions that are no longer available
+  /// `RETIRED` alias could be used for versions that are no longer available
   /// to be used. While new templates cannot be created with this alias, any
   /// existing template or request using `RETIRED` version will fall back to
   /// the current `STABLE` version for sanitization operations.

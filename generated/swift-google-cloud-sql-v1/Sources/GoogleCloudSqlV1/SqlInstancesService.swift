@@ -21,6 +21,7 @@
   #endif
   @_spi(GoogleCloudInternal) public import GoogleGax
 
+  /// Service to manage Cloud SQL instances.
   ///
   /// @Snippet(path: "SqlInstancesServiceQuickstart")
   public final class SqlInstancesServiceClient: Clients.SqlInstancesServiceProtocol, Sendable {

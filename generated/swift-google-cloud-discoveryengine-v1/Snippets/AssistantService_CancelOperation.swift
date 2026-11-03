@@ -20,6 +20,7 @@
   import Foundation
   import GoogleCloudDiscoveryEngineV1
   import GoogleLongRunning
+  import GoogleWKT
 
   func sample(client: AssistantServiceClient) async throws {
     try await client.cancelOperation(

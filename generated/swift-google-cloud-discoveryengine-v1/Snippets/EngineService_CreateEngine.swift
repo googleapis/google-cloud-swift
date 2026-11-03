@@ -19,14 +19,17 @@
   // snippet.show
   import Foundation
   import GoogleCloudDiscoveryEngineV1
+  import GoogleIAMV1
   import GoogleLongRunning
   import GoogleWKT
 
-  func sample(client: EngineServiceClient, parent: String) async throws {
+  func sample(
+    client: EngineServiceClient, projectId: String, locationId: String, collectionId: String
+  ) async throws {
     let response = try await client.createEnginePollingUntilDone(
       request: CreateEngineRequest()
         .with {
-          $0.parent = "\(parent)"
+          $0.parent = "projects/\(projectId)/locations/\(locationId)/collections/\(collectionId)"
           $0.engineId = "[replace with a valid ID]"
           $0.engine = Engine() /* .with { ... } */
         }
@@ -40,7 +43,9 @@
     static func main() async throws {
       do {
         let client = try GoogleCloudDiscoveryEngineV1.EngineServiceClient()
-        try await sample(client: client, parent: "[placeholder]")
+        try await sample(
+          client: client, projectId: "[placeholder]", locationId: "[placeholder]",
+          collectionId: "[placeholder]")
       } catch {
         print("Error: \(error)")
       }

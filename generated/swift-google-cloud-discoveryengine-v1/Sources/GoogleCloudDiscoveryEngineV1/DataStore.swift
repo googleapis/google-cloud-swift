@@ -156,6 +156,9 @@
     /// Optional. Configuration for `HEALTHCARE_FHIR` vertical.
     public var healthcareFhirConfig: HealthcareFhirConfig? = nil
 
+    /// Optional. Stores serving config at DataStore level.
+    public var servingConfigDataStore: DataStore.ServingConfigDataStore? = nil
+
     /// Immutable. The fully qualified resource name of the associated
     /// [IdentityMappingStore][google.cloud.discoveryengine.v1.IdentityMappingStore].
     /// This field can only be set for acl_enabled DataStores with `THIRD_PARTY` or
@@ -164,6 +167,23 @@
     ///
     /// [google.cloud.discoveryengine.v1.IdentityMappingStore]: <doc:IdentityMappingStore>
     public var identityMappingStore: Swift.String = Swift.String()
+
+    /// Optional. If set, this DataStore is an Infobot FAQ DataStore.
+    public var isInfobotFaqDataStore: Swift.Bool = Swift.Bool()
+
+    /// Optional. If set, this DataStore is a federated search DataStore.
+    public var federatedSearchConfig: DataStore.FederatedSearchConfig? = nil
+
+    /// Optional. Configuration for configurable billing approach. See
+    public var configurableBillingApproach: DataStore.ConfigurableBillingApproach =
+      DataStore.ConfigurableBillingApproach()
+
+    /// Output only. The timestamp when configurable_billing_approach was last
+    /// updated.
+    public var configurableBillingApproachUpdateTime: GoogleWKT.WKTTimestamp? = nil
+
+    /// Optional. Specifies the data protection policy for the data store.
+    public var dataProtectionPolicy: GoogleCloudDiscoveryEngineV1.DataProtectionPolicy? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -208,7 +228,15 @@
       static let documentProcessingConfig = CodingKeys(stringValue: "documentProcessingConfig")
       static let startingSchema = CodingKeys(stringValue: "startingSchema")
       static let healthcareFhirConfig = CodingKeys(stringValue: "healthcareFhirConfig")
+      static let servingConfigDataStore = CodingKeys(stringValue: "servingConfigDataStore")
       static let identityMappingStore = CodingKeys(stringValue: "identityMappingStore")
+      static let isInfobotFaqDataStore = CodingKeys(stringValue: "isInfobotFaqDataStore")
+      static let federatedSearchConfig = CodingKeys(stringValue: "federatedSearchConfig")
+      static let configurableBillingApproach = CodingKeys(
+        stringValue: "configurableBillingApproach")
+      static let configurableBillingApproachUpdateTime = CodingKeys(
+        stringValue: "configurableBillingApproachUpdateTime")
+      static let dataProtectionPolicy = CodingKeys(stringValue: "dataProtectionPolicy")
 
       static let _knownKeys: Set<Swift.String> = [
         "name",
@@ -228,7 +256,13 @@
         "documentProcessingConfig",
         "startingSchema",
         "healthcareFhirConfig",
+        "servingConfigDataStore",
         "identityMappingStore",
+        "isInfobotFaqDataStore",
+        "federatedSearchConfig",
+        "configurableBillingApproach",
+        "configurableBillingApproachUpdateTime",
+        "dataProtectionPolicy",
       ]
     }
 
@@ -278,10 +312,27 @@
       self.startingSchema = try container.decodeIfPresent(Schema.self, forKey: .startingSchema)
       self.healthcareFhirConfig = try container.decodeIfPresent(
         HealthcareFhirConfig.self, forKey: .healthcareFhirConfig)
+      self.servingConfigDataStore = try container.decodeIfPresent(
+        DataStore.ServingConfigDataStore.self, forKey: .servingConfigDataStore)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .identityMappingStore)
       {
         self.identityMappingStore = value
       }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isInfobotFaqDataStore)
+      {
+        self.isInfobotFaqDataStore = value
+      }
+      self.federatedSearchConfig = try container.decodeIfPresent(
+        DataStore.FederatedSearchConfig.self, forKey: .federatedSearchConfig)
+      if let value = try container.decodeIfPresent(
+        DataStore.ConfigurableBillingApproach.self, forKey: .configurableBillingApproach)
+      {
+        self.configurableBillingApproach = value
+      }
+      self.configurableBillingApproachUpdateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .configurableBillingApproachUpdateTime)
+      self.dataProtectionPolicy = try container.decodeIfPresent(
+        GoogleCloudDiscoveryEngineV1.DataProtectionPolicy.self, forKey: .dataProtectionPolicy)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -311,7 +362,14 @@
         self.documentProcessingConfig, forKey: .documentProcessingConfig)
       try container.encodeIfPresent(self.startingSchema, forKey: .startingSchema)
       try container.encodeIfPresent(self.healthcareFhirConfig, forKey: .healthcareFhirConfig)
+      try container.encodeIfPresent(self.servingConfigDataStore, forKey: .servingConfigDataStore)
       try container.encode(self.identityMappingStore, forKey: .identityMappingStore)
+      try container.encode(self.isInfobotFaqDataStore, forKey: .isInfobotFaqDataStore)
+      try container.encodeIfPresent(self.federatedSearchConfig, forKey: .federatedSearchConfig)
+      try container.encode(self.configurableBillingApproach, forKey: .configurableBillingApproach)
+      try container.encodeIfPresent(
+        self.configurableBillingApproachUpdateTime, forKey: .configurableBillingApproachUpdateTime)
+      try container.encodeIfPresent(self.dataProtectionPolicy, forKey: .dataProtectionPolicy)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -438,6 +496,853 @@
       }
 
       /// Packs this `BillingEstimation` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// Stores information regarding the serving configurations at DataStore level.
+    public struct ServingConfigDataStore: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Optional. If set true, the DataStore will not be available for serving
+      /// search requests.
+      public var disabledForServing: Swift.Bool = Swift.Bool()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `ServingConfigDataStore`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = ServingConfigDataStore().with { $0.disabledForServing = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let disabledForServing = CodingKeys(stringValue: "disabledForServing")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "disabledForServing"
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabledForServing) {
+          self.disabledForServing = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.disabledForServing, forKey: .disabledForServing)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// The type URL for `ServingConfigDataStore`: `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.ServingConfigDataStore"`.
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.ServingConfigDataStore"
+      }
+
+      /// Initialize an instance of `ServingConfigDataStore` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.ServingConfigDataStore"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `ServingConfigDataStore` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// Stores information for federated search.
+    public struct FederatedSearchConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Configuration for the data source this data store is connected to.
+      public var dataSourceConfig: DataSourceConfigOneOf? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `FederatedSearchConfig`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = FederatedSearchConfig().with { $0.alloyDbConfig = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let alloyDbConfig = CodingKeys(stringValue: "alloyDbConfig")
+        static let thirdPartyOauthConfig = CodingKeys(stringValue: "thirdPartyOauthConfig")
+        static let notebooklmConfig = CodingKeys(stringValue: "notebooklmConfig")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "alloyDbConfig",
+          "thirdPartyOauthConfig",
+          "notebooklmConfig",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        var dataSourceConfig: DataSourceConfigOneOf? = nil
+        let dataSourceConfigCheckAndSet = {
+          if dataSourceConfig != nil {
+            throw DecodingError.dataCorrupted(
+              DecodingError.Context(
+                codingPath: decoder.codingPath,
+                debugDescription: "Multiple values set for oneof 'dataSourceConfig'"))
+          }
+          dataSourceConfig = $0
+        }
+        if let alloyDbConfig = try container.decodeIfPresent(
+          DataStore.FederatedSearchConfig.AlloyDbConfig.self, forKey: .alloyDbConfig)
+        {
+          try dataSourceConfigCheckAndSet(.alloyDbConfig(alloyDbConfig))
+        }
+        if let thirdPartyOauthConfig = try container.decodeIfPresent(
+          DataStore.FederatedSearchConfig.ThirdPartyOauthConfig.self, forKey: .thirdPartyOauthConfig
+        ) {
+          try dataSourceConfigCheckAndSet(.thirdPartyOauthConfig(thirdPartyOauthConfig))
+        }
+        if let notebooklmConfig = try container.decodeIfPresent(
+          DataStore.FederatedSearchConfig.NotebooklmConfig.self, forKey: .notebooklmConfig)
+        {
+          try dataSourceConfigCheckAndSet(.notebooklmConfig(notebooklmConfig))
+        }
+        self.dataSourceConfig = dataSourceConfig
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        if let choice = self.dataSourceConfig {
+          switch choice {
+          case .alloyDbConfig(let value):
+            try container.encode(value, forKey: .alloyDbConfig)
+          case .thirdPartyOauthConfig(let value):
+            try container.encode(value, forKey: .thirdPartyOauthConfig)
+          case .notebooklmConfig(let value):
+            try container.encode(value, forKey: .notebooklmConfig)
+          }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// Stores information for connecting to AlloyDB.
+      public struct AlloyDbConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Required. Configuration for connecting to AlloyDB.
+        public var alloydbConnectionConfig:
+          DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbConnectionConfig? = nil
+
+        /// Optional. Configuration for Magic.
+        public var alloydbAiNlConfig:
+          DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbAiNaturalLanguageConfig? = nil
+
+        /// Optional. Fields to be returned in the search results. If empty, all
+        /// fields will be returned.
+        public var returnedFields: [Swift.String] = []
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `AlloyDbConfig`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = AlloyDbConfig().with { $0.alloydbConnectionConfig = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let alloydbConnectionConfig = CodingKeys(stringValue: "alloydbConnectionConfig")
+          static let alloydbAiNlConfig = CodingKeys(stringValue: "alloydbAiNlConfig")
+          static let returnedFields = CodingKeys(stringValue: "returnedFields")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "alloydbConnectionConfig",
+            "alloydbAiNlConfig",
+            "returnedFields",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.alloydbConnectionConfig = try container.decodeIfPresent(
+            DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbConnectionConfig.self,
+            forKey: .alloydbConnectionConfig)
+          self.alloydbAiNlConfig = try container.decodeIfPresent(
+            DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbAiNaturalLanguageConfig.self,
+            forKey: .alloydbAiNlConfig)
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .returnedFields)
+          {
+            self.returnedFields = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(
+            self.alloydbConnectionConfig, forKey: .alloydbConnectionConfig)
+          try container.encodeIfPresent(self.alloydbAiNlConfig, forKey: .alloydbAiNlConfig)
+          try container.encode(self.returnedFields, forKey: .returnedFields)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// Configuration for connecting to AlloyDB.
+        public struct AlloyDbConnectionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+          Sendable
+        {
+          /// Required. The AlloyDB instance to connect to.
+          public var instance: Swift.String = Swift.String()
+
+          /// Required. The AlloyDB database to connect to.
+          public var database: Swift.String = Swift.String()
+
+          /// Required. Database user.
+          ///
+          /// If auth_mode = END_USER_ACCOUNT, it can be unset. In that case,
+          /// the user will be inferred on the AlloyDB side, based on the
+          /// authenticated user.
+          public var user: Swift.String = Swift.String()
+
+          /// Required. Database password.
+          ///
+          /// If auth_mode = END_USER_ACCOUNT, it can be unset. In that case,
+          /// the password will be inferred on the AlloyDB side, based on the
+          /// authenticated user.
+          public var password: Swift.String = Swift.String()
+
+          /// Optional. Auth mode.
+          public var authMode:
+            DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbConnectionConfig.AuthMode =
+              DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbConnectionConfig.AuthMode()
+
+          /// Optional. If true, enable PSVS for AlloyDB.
+          public var enablePsvs: Swift.Bool = Swift.Bool()
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+          /// Initialize a new instance of `AlloyDbConnectionConfig`.
+          public init() {}
+
+          /// Use `config` to return a new instance of this object, with some fields updated.
+          ///
+          /// Commonly used to initialize the value, for example:
+          ///
+          /// ```
+          /// let value = AlloyDbConnectionConfig().with { $0.instance = ... }
+          /// ```
+          @inlinable
+          public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+            var copy = self
+            try config(&copy)
+            return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let instance = CodingKeys(stringValue: "instance")
+            static let database = CodingKeys(stringValue: "database")
+            static let user = CodingKeys(stringValue: "user")
+            static let password = CodingKeys(stringValue: "password")
+            static let authMode = CodingKeys(stringValue: "authMode")
+            static let enablePsvs = CodingKeys(stringValue: "enablePsvs")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "instance",
+              "database",
+              "user",
+              "password",
+              "authMode",
+              "enablePsvs",
+            ]
+          }
+
+          public init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
+              self.instance = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
+              self.database = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .user) {
+              self.user = value
+            }
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
+              self.password = value
+            }
+            if let value = try container.decodeIfPresent(
+              DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbConnectionConfig.AuthMode.self,
+              forKey: .authMode)
+            {
+              self.authMode = value
+            }
+            if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePsvs) {
+              self.enablePsvs = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleWKT.WKTValue.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.instance, forKey: .instance)
+            try container.encode(self.database, forKey: .database)
+            try container.encode(self.user, forKey: .user)
+            try container.encode(self.password, forKey: .password)
+            try container.encode(self.authMode, forKey: .authMode)
+            try container.encode(self.enablePsvs, forKey: .enablePsvs)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
+          }
+
+          /// Auth mode.
+          ///
+          /// - Note: Adding cases to this enumeration is not considered a breaking change.
+          ///   Always include an `@unknown default:` case when switching over this type.
+          ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+          ///   expecting specific values to remain unparsed; future releases may promote
+          ///   them to named cases.
+          public enum AuthMode: Codable, Equatable, Hashable, Sendable {
+            case unspecified
+            /// Uses P4SA when VAIS talks to AlloyDB.
+            case serviceAccount
+            /// Uses EUC when VAIS talks to AlloyDB.
+            case endUserAccount
+            /// Encodes an unknown integer value.
+            ///
+            /// The most common cause for an unknown value is for the service to send
+            /// a value unknown to the library. We recommend you update your library to
+            /// the latest version.
+            ///
+            /// - Warning: Do not pattern-match specific integer values in this case;
+            ///   future releases may promote them to named enum cases.
+            case unknownIntValue(Int)
+            /// Encodes an unknown string value.
+            ///
+            /// The most common cause for an unknown value is for the service to send
+            /// a value unknown to the library. We recommend you update your library to
+            /// the latest version.
+            ///
+            /// - Warning: Do not pattern-match specific string literals in this case;
+            ///   future releases may promote them to named enum cases.
+            case unknownStringValue(String)
+
+            public init() {
+              self = .unspecified
+            }
+
+            /// Returns the integer value associated with the enumeration.
+            ///
+            /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+            public var intValue: Int? {
+              switch self {
+              case .unspecified: return 0
+              case .serviceAccount: return 1
+              case .endUserAccount: return 2
+              case .unknownIntValue(let v): return v
+              case .unknownStringValue: return nil
+              }
+            }
+
+            /// Returns the string value (or name) associated with the enumeration.
+            ///
+            /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+            public var stringValue: Swift.String? {
+              switch self {
+              case .unspecified: return "AUTH_MODE_UNSPECIFIED"
+              case .serviceAccount: return "AUTH_MODE_SERVICE_ACCOUNT"
+              case .endUserAccount: return "AUTH_MODE_END_USER_ACCOUNT"
+              case .unknownIntValue: return nil
+              case .unknownStringValue(let v): return v
+              }
+            }
+
+            /// Initialize from a string value.
+            ///
+            /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AuthMode/unknownStringValue(_:)).
+            public init(stringValue: Swift.String) {
+              switch stringValue {
+              case "AUTH_MODE_UNSPECIFIED": self = .unspecified
+              case "AUTH_MODE_SERVICE_ACCOUNT": self = .serviceAccount
+              case "AUTH_MODE_END_USER_ACCOUNT": self = .endUserAccount
+              default: self = .unknownStringValue(stringValue)
+              }
+            }
+
+            /// Initialize from an integer value.
+            ///
+            /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AuthMode/unknownIntValue(_:)).
+            public init(intValue: Int) {
+              switch intValue {
+              case 0: self = .unspecified
+              case 1: self = .serviceAccount
+              case 2: self = .endUserAccount
+              default: self = .unknownIntValue(intValue)
+              }
+            }
+
+            public init(from decoder: any Decoder) throws {
+              let container = try decoder.singleValueContainer()
+              if let v = try? container.decode(Int.self) {
+                self.init(intValue: v)
+                return
+              }
+              if let s = try? container.decode(String.self) {
+                if let v = Int(s) {
+                  self.init(intValue: v)
+                } else {
+                  self.init(stringValue: s)
+                }
+                return
+              }
+              throw DecodingError.dataCorruptedError(
+                in: container, debugDescription: "Expected enum value, must be integer or string.")
+            }
+
+            public func encode(to encoder: any Encoder) throws {
+              var container = encoder.singleValueContainer()
+              switch self {
+              case .unspecified: return try container.encode("AUTH_MODE_UNSPECIFIED")
+              case .serviceAccount: return try container.encode("AUTH_MODE_SERVICE_ACCOUNT")
+              case .endUserAccount: return try container.encode("AUTH_MODE_END_USER_ACCOUNT")
+              case .unknownIntValue(let v): return try container.encode(v)
+              case .unknownStringValue(let v): return try container.encode(v)
+              }
+            }
+          }
+
+          /// The type URL for `AlloyDbConnectionConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbConnectionConfig"`.
+          public static var _anyTypeUrl: Swift.String {
+            return
+              "type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbConnectionConfig"
+          }
+
+          /// Initialize an instance of `AlloyDbConnectionConfig` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbConnectionConfig"`,
+          ///   or if deserialization fails.
+          public init(fromAny any: GoogleWKT.WKTAny) throws {
+            self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+          }
+
+          /// Packs this `AlloyDbConnectionConfig` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
+          public func _pack() throws -> GoogleWKT.WKTStruct {
+            return try GoogleWKT._anySerialize(message: self)
+          }
+        }
+
+        /// Configuration for AlloyDB AI Natural Language.
+        public struct AlloyDbAiNaturalLanguageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+          Sendable
+        {
+          /// Optional. AlloyDb AI NL config id, i.e. the value that was used for
+          /// calling `SELECT alloydb_ai_nl.g_create_configuration(...)`. Can be
+          /// empty.
+          public var nlConfigId: Swift.String = Swift.String()
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+          /// Initialize a new instance of `AlloyDbAiNaturalLanguageConfig`.
+          public init() {}
+
+          /// Use `config` to return a new instance of this object, with some fields updated.
+          ///
+          /// Commonly used to initialize the value, for example:
+          ///
+          /// ```
+          /// let value = AlloyDbAiNaturalLanguageConfig().with { $0.nlConfigId = ... }
+          /// ```
+          @inlinable
+          public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+            var copy = self
+            try config(&copy)
+            return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let nlConfigId = CodingKeys(stringValue: "nlConfigId")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "nlConfigId"
+            ]
+          }
+
+          public init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nlConfigId) {
+              self.nlConfigId = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleWKT.WKTValue.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.nlConfigId, forKey: .nlConfigId)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
+          }
+
+          /// The type URL for `AlloyDbAiNaturalLanguageConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbAiNaturalLanguageConfig"`.
+          public static var _anyTypeUrl: Swift.String {
+            return
+              "type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbAiNaturalLanguageConfig"
+          }
+
+          /// Initialize an instance of `AlloyDbAiNaturalLanguageConfig` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.AlloyDbConfig.AlloyDbAiNaturalLanguageConfig"`,
+          ///   or if deserialization fails.
+          public init(fromAny any: GoogleWKT.WKTAny) throws {
+            self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+          }
+
+          /// Packs this `AlloyDbAiNaturalLanguageConfig` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
+          public func _pack() throws -> GoogleWKT.WKTStruct {
+            return try GoogleWKT._anySerialize(message: self)
+          }
+        }
+
+        /// The type URL for `AlloyDbConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.AlloyDbConfig"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.AlloyDbConfig"
+        }
+
+        /// Initialize an instance of `AlloyDbConfig` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.AlloyDbConfig"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `AlloyDbConfig` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// Stores information for third party applicationOAuth.
+      public struct ThirdPartyOauthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Optional. The type of the application. E.g., "jira", "box", etc.
+        public var appName: Swift.String = Swift.String()
+
+        /// Optional. The instance name identifying the 3P app, e.g.,
+        /// "<tenant>-my". This is different from the instance_uri which is the
+        /// full URL of the 3P app e.g., "https://<tenant>-my.sharepoint.com".
+        public var instanceName: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `ThirdPartyOauthConfig`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = ThirdPartyOauthConfig().with { $0.appName = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let appName = CodingKeys(stringValue: "appName")
+          static let instanceName = CodingKeys(stringValue: "instanceName")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "appName",
+            "instanceName",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appName) {
+            self.appName = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceName) {
+            self.instanceName = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.appName, forKey: .appName)
+          try container.encode(self.instanceName, forKey: .instanceName)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// The type URL for `ThirdPartyOauthConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.ThirdPartyOauthConfig"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.ThirdPartyOauthConfig"
+        }
+
+        /// Initialize an instance of `ThirdPartyOauthConfig` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.ThirdPartyOauthConfig"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `ThirdPartyOauthConfig` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// Config for connecting to NotebookLM Enterprise.
+      public struct NotebooklmConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Required. Search config name.
+        ///
+        /// Format: projects/*/locations/global/notebookLmSearchConfigs/*
+        public var searchConfig: Swift.String = Swift.String()
+
+        /// Optional. Restricts this data store to the given notebooks. When empty,
+        /// the data store covers every notebook the querying user can access,
+        /// which is the existing behaviour.
+        ///
+        /// Each entry is a full notebook resource name, such as
+        /// `projects/*/locations/*/notebooks/*`.
+        ///
+        /// Scoping is enforced on results as well as requested upstream, so a
+        /// notebook outside this list cannot appear in a search response through
+        /// this data store even if the backend returns one.
+        public var notebooks: [Swift.String] = []
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `NotebooklmConfig`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = NotebooklmConfig().with { $0.searchConfig = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let searchConfig = CodingKeys(stringValue: "searchConfig")
+          static let notebooks = CodingKeys(stringValue: "notebooks")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "searchConfig",
+            "notebooks",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .searchConfig) {
+            self.searchConfig = value
+          }
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .notebooks) {
+            self.notebooks = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.searchConfig, forKey: .searchConfig)
+          try container.encode(self.notebooks, forKey: .notebooks)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// The type URL for `NotebooklmConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.NotebooklmConfig"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.NotebooklmConfig"
+        }
+
+        /// Initialize an instance of `NotebooklmConfig` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig.NotebooklmConfig"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `NotebooklmConfig` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// Configuration for the data source this data store is connected to.
+      public enum DataSourceConfigOneOf: Codable, Equatable, Sendable {
+        /// AlloyDB config. If set, this DataStore is connected to AlloyDB.
+        indirect case alloyDbConfig(DataStore.FederatedSearchConfig.AlloyDbConfig)
+        /// Third Party OAuth config. If set, this DataStore is connected to a
+        /// third party application.
+        indirect case thirdPartyOauthConfig(DataStore.FederatedSearchConfig.ThirdPartyOauthConfig)
+        /// NotebookLM config. If set, this DataStore is connected to
+        /// NotebookLM Enterprise.
+        indirect case notebooklmConfig(DataStore.FederatedSearchConfig.NotebooklmConfig)
+      }
+
+      /// The type URL for `FederatedSearchConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig"
+      }
+
+      /// Initialize an instance of `FederatedSearchConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.FederatedSearchConfig"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `FederatedSearchConfig` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
@@ -580,6 +1485,126 @@
         case .contentRequired: return try container.encode("CONTENT_REQUIRED")
         case .publicWebsite: return try container.encode("PUBLIC_WEBSITE")
         case .googleWorkspace: return try container.encode("GOOGLE_WORKSPACE")
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    /// Configuration for configurable billing approach.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum ConfigurableBillingApproach: Codable, Equatable, Hashable, Sendable {
+      /// Default value. For Spark and non-Spark non-configurable billing approach.
+      case unspecified
+      /// Use the subscription base + overage billing for indexing core for non
+      /// embedding storage.
+      case configurableSubscriptionIndexingCore
+      /// Use the consumption pay-as-you-go billing for embedding storage add-on.
+      case configurableConsumptionEmbedding
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .unspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .unspecified: return 0
+        case .configurableSubscriptionIndexingCore: return 1
+        case .configurableConsumptionEmbedding: return 2
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .unspecified: return "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED"
+        case .configurableSubscriptionIndexingCore: return "CONFIGURABLE_SUBSCRIPTION_INDEXING_CORE"
+        case .configurableConsumptionEmbedding: return "CONFIGURABLE_CONSUMPTION_EMBEDDING"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ConfigurableBillingApproach/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED": self = .unspecified
+        case "CONFIGURABLE_SUBSCRIPTION_INDEXING_CORE": self = .configurableSubscriptionIndexingCore
+        case "CONFIGURABLE_CONSUMPTION_EMBEDDING": self = .configurableConsumptionEmbedding
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ConfigurableBillingApproach/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .unspecified
+        case 1: self = .configurableSubscriptionIndexingCore
+        case 2: self = .configurableConsumptionEmbedding
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .unspecified: return try container.encode("CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED")
+        case .configurableSubscriptionIndexingCore:
+          return try container.encode("CONFIGURABLE_SUBSCRIPTION_INDEXING_CORE")
+        case .configurableConsumptionEmbedding:
+          return try container.encode("CONFIGURABLE_CONSUMPTION_EMBEDDING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

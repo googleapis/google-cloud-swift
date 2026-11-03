@@ -22,6 +22,7 @@
   @_spi(GoogleCloudInternal) public import GoogleWKT
   @_spi(GoogleCloudInternal) public import GoogleGax
 
+  /// Service for managing database backups for Cloud SQL instances.
   ///
   /// @Snippet(path: "SqlBackupsServiceQuickstart")
   public final class SqlBackupsServiceClient: Clients.SqlBackupsServiceProtocol, Sendable {

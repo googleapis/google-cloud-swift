@@ -172,6 +172,50 @@ extension Clients {
       request: InitializeServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func createAutoProtectionPolicy(
+      request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func listAutoProtectionPolicies(
+      request: ListAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse
+
+    func getAutoProtectionPolicy(
+      request: GetAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicy
+
+    func updateAutoProtectionPolicy(
+      request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func deleteAutoProtectionPolicy(
+      request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func createAutoProtectionPolicyBinding(
+      request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getAutoProtectionPolicyBinding(
+      request: GetAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding
+
+    func listAutoProtectionPolicyBindings(
+      request: ListAutoProtectionPolicyBindingsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse
+
+    func listAppliedAutoProtectionPolicies(
+      request: ListAppliedAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse
+
+    func initiateDeleteAutoProtectionPolicyBinding(
+      request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func listBindingMatchingResources(
+      request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse
+
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse

@@ -43,6 +43,37 @@
       self.inner = inner
     }
 
+    /// Creates a ServingConfig.
+    ///
+    /// Note: The Google Cloud console works only with the default serving config.
+    /// Additional ServingConfigs can be created and managed only via the API.
+    ///
+    /// A maximum of 100
+    /// [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]s are allowed
+    /// in an [Engine][google.cloud.discoveryengine.v1.Engine], otherwise a
+    /// RESOURCE_EXHAUSTED error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    /// [google.cloud.discoveryengine.v1.ServingConfig]: <doc:ServingConfig>
+    ///
+    /// @Snippet(path: "ServingConfigService_CreateServingConfig")
+    public func createServingConfig(
+      request: CreateServingConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
+      try await self.inner.createServingConfig(request: request, options: options)
+    }
+
+    /// Deletes a ServingConfig.
+    ///
+    /// Returns a NOT_FOUND error if the ServingConfig does not exist.
+    ///
+    /// @Snippet(path: "ServingConfigService_DeleteServingConfig")
+    public func deleteServingConfig(
+      request: DeleteServingConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws {
+      try await self.inner.deleteServingConfig(request: request, options: options)
+    }
+
     /// Updates a ServingConfig.
     ///
     /// Returns a NOT_FOUND error if the ServingConfig does not exist.
@@ -52,6 +83,26 @@
       request: UpdateServingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
       try await self.inner.updateServingConfig(request: request, options: options)
+    }
+
+    /// Gets a ServingConfig.
+    ///
+    /// Returns a NotFound error if the ServingConfig does not exist.
+    ///
+    /// @Snippet(path: "ServingConfigService_GetServingConfig")
+    public func getServingConfig(
+      request: GetServingConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
+      try await self.inner.getServingConfig(request: request, options: options)
+    }
+
+    /// Lists all ServingConfigs linked to this dataStore.
+    ///
+    /// @Snippet(path: "ServingConfigService_ListServingConfigs")
+    public func listServingConfigs(
+      request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ListServingConfigsResponse {
+      try await self.inner.listServingConfigs(request: request, options: options)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -95,10 +146,30 @@
     /// `some ServingConfigServiceProtocol` or `any ServingConfigServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol ServingConfigServiceProtocol: Sendable {
+      /// See `ServingConfigServiceClient.createServingConfig`.
+      func createServingConfig(
+        request: CreateServingConfigRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig
+
+      /// See `ServingConfigServiceClient.deleteServingConfig`.
+      func deleteServingConfig(
+        request: DeleteServingConfigRequest, options: GoogleGax.RequestOptions
+      ) async throws
+
       /// See `ServingConfigServiceClient.updateServingConfig`.
       func updateServingConfig(
         request: UpdateServingConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig
+
+      /// See `ServingConfigServiceClient.getServingConfig`.
+      func getServingConfig(
+        request: GetServingConfigRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig
+
+      /// See `ServingConfigServiceClient.listServingConfigs`.
+      func listServingConfigs(
+        request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ListServingConfigsResponse
 
       /// See `ServingConfigServiceClient.listOperations`.
       func listOperations(
@@ -114,6 +185,50 @@
 
   // Default implementations
   extension Clients.ServingConfigServiceProtocol {
+    public func createServingConfig(request: CreateServingConfigRequest) async throws
+      -> GoogleCloudDiscoveryEngineV1.ServingConfig
+    {
+      try await self.createServingConfig(request: request, options: .init())
+    }
+
+    public func createServingConfig(
+      request: CreateServingConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func createServingConfig(
+      parent: Swift.String,
+      servingConfig: ServingConfig?,
+      servingConfigId: Swift.String,
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
+      let request = CreateServingConfigRequest().with {
+        $0.parent = parent
+        $0.servingConfig = servingConfig
+        $0.servingConfigId = servingConfigId
+      }
+      return try await self.createServingConfig(request: request)
+    }
+
+    public func deleteServingConfig(request: DeleteServingConfigRequest) async throws {
+      try await self.deleteServingConfig(request: request, options: .init())
+    }
+
+    public func deleteServingConfig(
+      request: DeleteServingConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func deleteServingConfig(
+      name: Swift.String,
+    ) async throws {
+      let request = DeleteServingConfigRequest().with {
+        $0.name = name
+      }
+      try await self.deleteServingConfig(request: request)
+    }
+
     public func updateServingConfig(request: UpdateServingConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ServingConfig
     {
@@ -135,6 +250,71 @@
         $0.updateMask = updateMask
       }
       return try await self.updateServingConfig(request: request)
+    }
+
+    public func getServingConfig(request: GetServingConfigRequest) async throws
+      -> GoogleCloudDiscoveryEngineV1.ServingConfig
+    {
+      try await self.getServingConfig(request: request, options: .init())
+    }
+
+    public func getServingConfig(
+      request: GetServingConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func getServingConfig(
+      name: Swift.String,
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
+      let request = GetServingConfigRequest().with {
+        $0.name = name
+      }
+      return try await self.getServingConfig(request: request)
+    }
+
+    public func listServingConfigs(request: ListServingConfigsRequest) async throws
+      -> GoogleCloudDiscoveryEngineV1.ListServingConfigsResponse
+    {
+      try await self.listServingConfigs(request: request, options: .init())
+    }
+
+    public func listServingConfigs(
+      request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ListServingConfigsResponse {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func listServingConfigsByItems(
+      request: ListServingConfigsRequest
+    ) -> some AsyncSequence<ServingConfig, any Swift.Error> & Sendable {
+      self.listServingConfigsByItems(request: request, options: .init())
+    }
+
+    /// Lists all ServingConfigs linked to this dataStore.
+    ///
+    /// @Snippet(path: "ServingConfigService_ListServingConfigs")
+    public func listServingConfigsByItems(
+      request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
+    ) -> some AsyncSequence<ServingConfig, any Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudDiscoveryEngineV1.ListServingConfigsResponse in
+        var request = request
+        request.pageToken = token
+        return try await self.listServingConfigs(request: request, options: options)
+      }
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
+    }
+
+    public func listServingConfigsByItems(
+      parent: Swift.String,
+    ) -> some AsyncSequence<ServingConfig, any Swift.Error> & Sendable {
+      let request = ListServingConfigsRequest().with {
+        $0.parent = parent
+      }
+      return self.listServingConfigsByItems(request: request)
     }
 
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

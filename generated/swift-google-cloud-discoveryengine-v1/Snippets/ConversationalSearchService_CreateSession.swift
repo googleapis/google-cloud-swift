@@ -30,6 +30,7 @@
       request: CreateSessionRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)"
+          $0.sessionId = "[replace with a valid ID]"
           $0.session = Session() /* .with { ... } */
         }
     )

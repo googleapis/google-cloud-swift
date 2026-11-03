@@ -641,6 +641,61 @@ extension Clients {
     }
 
     @concurrent
+    public func openGitRepositoryLinkPullRequest(
+      request: OpenGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+      let (path, query, configure, omitted) = try {
+        () throws -> (
+          Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void, [Swift.String]
+        ) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+                .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):openPullRequest"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+              .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/connections/*/gitRepositoryLinks/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      try req.setBody(json: request, omitting: omitted)
+      return try await req.rpc(
+        GoogleCloudDeveloperConnectV1.PullRequest.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
     public func fetchLinkableGitRepositories(
       request: FetchLinkableGitRepositoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.FetchLinkableGitRepositoriesResponse {
@@ -798,6 +853,514 @@ extension Clients {
       configure(&req)
       return try await req.rpc(
         GoogleCloudDeveloperConnectV1.FetchGitRefsResponse.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func diffGitRepositoryLinkCommit(
+      request: DiffGitRepositoryLinkCommitRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.DiffGitRepositoryLinkCommitResponse {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+                .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):diffCommit"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.baseSha, prefix: "baseSha"))
+          query.append(contentsOf: try encoder.encode(request.headSha, prefix: "headSha"))
+          query.append(contentsOf: try encoder.encode(request.pathFilters, prefix: "pathFilters"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+              .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/connections/*/gitRepositoryLinks/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      return try await req.rpc(
+        GoogleCloudDeveloperConnectV1.DiffGitRepositoryLinkCommitResponse.self,
+        timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func fetchGitRepositoryLinkCommit(
+      request: FetchGitRepositoryLinkCommitRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitResponse {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+                .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):fetchCommit"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.commitSha, prefix: "commitSha"))
+          query.append(contentsOf: try encoder.encode(request.view, prefix: "view"))
+          query.append(contentsOf: try encoder.encode(request.pathFilters, prefix: "pathFilters"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+              .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/connections/*/gitRepositoryLinks/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      return try await req.rpc(
+        GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitResponse.self,
+        timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func fetchGitRepositoryLinkCommitList(
+      request: FetchGitRepositoryLinkCommitListRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitListResponse {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+                .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):fetchCommitList"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.ref, prefix: "ref"))
+          query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
+          query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+          query.append(contentsOf: try encoder.encode(request.view, prefix: "view"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+              .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/connections/*/gitRepositoryLinks/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      return try await req.rpc(
+        GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitListResponse.self,
+        timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func fetchGitRepositoryLinkFileBlame(
+      request: FetchGitRepositoryLinkFileBlameRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkFileBlameResponse {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+                .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):fetchFileBlame"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.ref, prefix: "ref"))
+          query.append(contentsOf: try encoder.encode(request.path, prefix: "path"))
+          query.append(contentsOf: try encoder.encode(request.firstLine, prefix: "firstLine"))
+          query.append(contentsOf: try encoder.encode(request.lastLine, prefix: "lastLine"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+              .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/connections/*/gitRepositoryLinks/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      return try await req.rpc(
+        GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkFileBlameResponse.self,
+        timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func fetchGitRepositoryLinkPullRequest(
+      request: FetchGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+                .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):fetchPullRequest"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleGax._QueryParameterEncoder()
+          query.append(
+            contentsOf: try encoder.encode(request.pullRequestId, prefix: "pullRequestId"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+              .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/connections/*/gitRepositoryLinks/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      return try await req.rpc(
+        GoogleCloudDeveloperConnectV1.PullRequest.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func addGitRepositoryLinkPullRequestComment(
+      request: AddGitRepositoryLinkPullRequestCommentRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestComment {
+      let (path, query, configure, omitted) = try {
+        () throws -> (
+          Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void, [Swift.String]
+        ) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+                .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):addPullRequestComment"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+              .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/connections/*/gitRepositoryLinks/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      try req.setBody(json: request, omitting: omitted)
+      return try await req.rpc(
+        GoogleCloudDeveloperConnectV1.PullRequestComment.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func addGitRepositoryLinkPullRequestReviewComment(
+      request: AddGitRepositoryLinkPullRequestReviewCommentRequest,
+      options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestReviewComment {
+      let (path, query, configure, omitted) = try {
+        () throws -> (
+          Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void, [Swift.String]
+        ) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+                .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):addPullRequestReviewComment"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+              .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/connections/*/gitRepositoryLinks/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      try req.setBody(json: request, omitting: omitted)
+      return try await req.rpc(
+        GoogleCloudDeveloperConnectV1.PullRequestReviewComment.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func modifyGitRepositoryLinkPullRequest(
+      request: ModifyGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+      let (path, query, configure, omitted) = try {
+        () throws -> (
+          Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void, [Swift.String]
+        ) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+                .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):modifyPullRequest"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+              .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/connections/*/gitRepositoryLinks/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      try req.setBody(json: request, omitting: omitted)
+      return try await req.rpc(
+        GoogleCloudDeveloperConnectV1.PullRequest.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func fetchGitRepositoryLinkPullRequestList(
+      request: FetchGitRepositoryLinkPullRequestListRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkPullRequestListResponse {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+                .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):fetchPullRequestList"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
+          query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
+          query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/connections/"), .singleWildcard, .literal("/gitRepositoryLinks/"),
+              .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/connections/*/gitRepositoryLinks/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      return try await req.rpc(
+        GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkPullRequestListResponse.self,
+        timeout: options.attemptTimeout
       ).get()
     }
 

@@ -22,7 +22,7 @@
   public struct SearchInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    /// The user's search query.
+    /// Optional. The user's search query.
     ///
     /// See
     /// [SearchRequest.query][google.cloud.discoveryengine.v1.SearchRequest.query]

@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if ConversationalSearchService || DocumentService || RecommendationService || SearchService
+#if CompletionService || ConversationalSearchService || DocumentService || RecommendationService || SearchService
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 

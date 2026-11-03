@@ -26,8 +26,11 @@
   public struct BatchUpdateUserLicensesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    /// Required. The parent [UserStore][] resource name, format:
+    /// Required. The parent [UserStore][google.cloud.discoveryengine.v1.UserStore]
+    /// resource name, format:
     /// `projects/{project}/locations/{location}/userStores/{user_store_id}`.
+    ///
+    /// [google.cloud.discoveryengine.v1.UserStore]: <doc:UserStore>
     public var parent: Swift.String = Swift.String()
 
     /// Optional. If true, if user licenses removed associated license config, the
@@ -220,7 +223,7 @@
 
     /// Required. The source of the input.
     public enum SourceOneOf: Codable, Equatable, Sendable {
-      /// The inline source for the input content for document embeddings.
+      /// The inline source for the input content for license assignment.
       indirect case inlineSource(BatchUpdateUserLicensesRequest.InlineSource)
     }
 

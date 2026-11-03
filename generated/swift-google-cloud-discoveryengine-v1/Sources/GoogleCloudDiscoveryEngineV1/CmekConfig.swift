@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if CmekConfigService || DataStoreService || IdentityMappingStoreService
+#if CmekConfigService || DataStoreService || EngineService || IdentityMappingStoreService
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
@@ -31,7 +31,8 @@
     /// `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.
     public var kmsKey: Swift.String = Swift.String()
 
-    /// KMS key version resource name which will be used to encrypt resources
+    /// Output only. KMS key version resource name which will be used to encrypt
+    /// resources
     /// `<kms_key>/cryptoKeyVersions/{keyVersion}`.
     public var kmsKeyVersion: Swift.String = Swift.String()
 
@@ -178,6 +179,9 @@
       /// The KMS key is soft deleted. Some cleanup policy will eventually be
       /// applied.
       case deleted
+      /// The KMS key is expired, meaning the key has been disabled for 30+ days.
+      /// The customer can call DeleteCmekConfig to change the state to DELETED.
+      case expired
       /// Encodes an unknown integer value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -215,6 +219,7 @@
         case .activeRotating: return 6
         case .deleteFailed: return 7
         case .deleted: return 8
+        case .expired: return 9
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -234,6 +239,7 @@
         case .activeRotating: return "ACTIVE_ROTATING"
         case .deleteFailed: return "DELETE_FAILED"
         case .deleted: return "DELETED"
+        case .expired: return "EXPIRED"
         case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
@@ -253,6 +259,7 @@
         case "UNUSABLE": self = .unusable
         case "ACTIVE_ROTATING": self = .activeRotating
         case "DELETED": self = .deleted
+        case "EXPIRED": self = .expired
         default: self = .unknownStringValue(stringValue)
         }
       }
@@ -271,6 +278,7 @@
         case 6: self = .activeRotating
         case 7: self = .deleteFailed
         case 8: self = .deleted
+        case 9: self = .expired
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -305,6 +313,7 @@
         case .activeRotating: return try container.encode("ACTIVE_ROTATING")
         case .deleteFailed: return try container.encode("DELETE_FAILED")
         case .deleted: return try container.encode("DELETED")
+        case .expired: return try container.encode("EXPIRED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

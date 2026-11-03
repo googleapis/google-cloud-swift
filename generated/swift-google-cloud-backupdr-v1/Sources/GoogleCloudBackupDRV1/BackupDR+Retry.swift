@@ -609,6 +609,172 @@ extension Clients {
         })
     }
 
+    public func createAutoProtectionPolicy(
+      request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateAutoProtectionPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.createAutoProtectionPolicy(request: r, options: o)
+        })
+    }
+
+    public func listAutoProtectionPolicies(
+      request: ListAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListAutoProtectionPoliciesRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse
+          in
+          return try await self.inner.listAutoProtectionPolicies(request: r, options: o)
+        })
+    }
+
+    public func getAutoProtectionPolicy(
+      request: GetAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicy {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetAutoProtectionPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBackupDRV1.AutoProtectionPolicy
+          in
+          return try await self.inner.getAutoProtectionPolicy(request: r, options: o)
+        })
+    }
+
+    public func updateAutoProtectionPolicy(
+      request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateAutoProtectionPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.updateAutoProtectionPolicy(request: r, options: o)
+        })
+    }
+
+    public func deleteAutoProtectionPolicy(
+      request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DeleteAutoProtectionPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.deleteAutoProtectionPolicy(request: r, options: o)
+        })
+    }
+
+    public func createAutoProtectionPolicyBinding(
+      request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateAutoProtectionPolicyBindingRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.createAutoProtectionPolicyBinding(request: r, options: o)
+        })
+    }
+
+    public func getAutoProtectionPolicyBinding(
+      request: GetAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetAutoProtectionPolicyBindingRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding
+          in
+          return try await self.inner.getAutoProtectionPolicyBinding(request: r, options: o)
+        })
+    }
+
+    public func listAutoProtectionPolicyBindings(
+      request: ListAutoProtectionPolicyBindingsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListAutoProtectionPolicyBindingsRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse
+          in
+          return try await self.inner.listAutoProtectionPolicyBindings(request: r, options: o)
+        })
+    }
+
+    public func listAppliedAutoProtectionPolicies(
+      request: ListAppliedAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListAppliedAutoProtectionPoliciesRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse
+          in
+          return try await self.inner.listAppliedAutoProtectionPolicies(request: r, options: o)
+        })
+    }
+
+    public func initiateDeleteAutoProtectionPolicyBinding(
+      request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: InitiateDeleteAutoProtectionPolicyBindingRequest, o: GoogleGax.RequestOptions)
+            async throws -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.initiateDeleteAutoProtectionPolicyBinding(
+            request: r, options: o)
+        })
+    }
+
+    public func listBindingMatchingResources(
+      request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListBindingMatchingResourcesRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse
+          in
+          return try await self.inner.listBindingMatchingResources(request: r, options: o)
+        })
+    }
+
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {

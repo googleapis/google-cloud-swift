@@ -49,8 +49,8 @@
     public var content: Swift.String = Swift.String()
 
     /// The score of this record based on the given query and selected model.
-    /// The score will be rounded to 2 decimal places. If the score is close to 0,
-    /// it will be rounded to 0.0001 to avoid returning unset.
+    /// The score will be rounded to 4 decimal places. If the score is close to 0,
+    /// it will be rounded to 0.00001 to avoid returning unset.
     public var score: Swift.Float = Swift.Float()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

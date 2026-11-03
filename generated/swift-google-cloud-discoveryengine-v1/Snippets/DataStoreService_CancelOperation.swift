@@ -19,6 +19,7 @@
   // snippet.show
   import Foundation
   import GoogleCloudDiscoveryEngineV1
+  import GoogleIAMV1
   import GoogleLongRunning
   import GoogleWKT
 

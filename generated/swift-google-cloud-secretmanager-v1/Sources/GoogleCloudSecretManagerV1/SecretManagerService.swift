@@ -769,11 +769,11 @@ extension Clients.SecretManagerServiceProtocol {
 
   public func enableManagedRotation(
     parent: Swift.String,
-    cloudSqlSingleUserCredentials: EnableManagedRotationRequest.CloudSQLSingleUserCredentials,
+    cloudSqlSingleUserCredentials: CloudSqlSingleUserCredentials,
   ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
     let request = EnableManagedRotationRequest().with {
       $0.parent = parent
-      $0.credentials = .cloudSqlSingleUserCredentials(cloudSqlSingleUserCredentials)
+      $0.credential = .cloudSqlSingleUserCredentials(cloudSqlSingleUserCredentials)
     }
     return try await self.enableManagedRotation(request: request)
   }

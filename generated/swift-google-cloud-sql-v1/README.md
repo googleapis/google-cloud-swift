@@ -14,7 +14,7 @@ to learn about this library.
 
 - `SqlAvailableDatabaseVersionsServiceClient`: Service that exposes Cloud SQL database versions information. (enabled by the `SqlAvailableDatabaseVersionsService` trait)
 - `SqlBackupRunsServiceClient`: Service for managing database backups. (enabled by the `SqlBackupRunsService` trait)
-- `SqlBackupsServiceClient`: Client for the SqlBackupsService. (enabled by the `SqlBackupsService` trait)
+- `SqlBackupsServiceClient`: Service for managing database backups for Cloud SQL instances. (enabled by the `SqlBackupsService` trait)
 - `BlueGreenDeploymentsServiceClient`: Service for managing blue-green deployments. (enabled by the `BlueGreenDeploymentsService` trait)
 - `SqlConnectServiceClient`: Cloud SQL connect service. (enabled by the `SqlConnectService` trait)
 - `SqlDatabasesServiceClient`: Service to manage databases. (enabled by the `SqlDatabasesService` trait)
@@ -23,7 +23,7 @@ to learn about this library.
 - `SqlFlagsServiceClient`: Service to manage database flags for Cloud SQL instances. (enabled by the `SqlFlagsService` trait)
 - `SqlIamPoliciesServiceClient`: Service for providing IAM Meta APIs for Cloud SQL. (enabled by the `SqlIamPoliciesService` trait)
 - `SqlInstanceNamesServiceClient`: Cloud SQL instance names service. (enabled by the `SqlInstanceNamesService` trait)
-- `SqlInstancesServiceClient`: Client for the SqlInstancesService. (enabled by the `SqlInstancesService` trait)
+- `SqlInstancesServiceClient`: Service to manage Cloud SQL instances. (enabled by the `SqlInstancesService` trait)
 - `SqlOperationsServiceClient`: Service to fetch operations for database instances. (enabled by the `SqlOperationsService` trait)
 - `SqlRegionsServiceClient`: Service that exposes Cloud SQL region information. (enabled by the `SqlRegionsService` trait)
 - `SqlSslCertsServiceClient`: Service to manage SSL certs for Cloud SQL instances. (enabled by the `SqlSslCertsService` trait)

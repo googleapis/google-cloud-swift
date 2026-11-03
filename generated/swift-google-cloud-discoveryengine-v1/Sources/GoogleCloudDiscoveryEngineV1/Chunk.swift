@@ -192,6 +192,10 @@
       /// Title of the document.
       public var title: Swift.String = Swift.String()
 
+      /// The mime type of the document.
+      /// https://www.iana.org/assignments/media-types/media-types.xhtml.
+      public var mimeType: Swift.String = Swift.String()
+
       /// Data representation.
       /// The structured JSON data for the document. It should conform to the
       /// registered [Schema][google.cloud.discoveryengine.v1.Schema] or an
@@ -227,11 +231,13 @@
 
         static let uri = CodingKeys(stringValue: "uri")
         static let title = CodingKeys(stringValue: "title")
+        static let mimeType = CodingKeys(stringValue: "mimeType")
         static let structData = CodingKeys(stringValue: "structData")
 
         static let _knownKeys: Set<Swift.String> = [
           "uri",
           "title",
+          "mimeType",
           "structData",
         ]
       }
@@ -243,6 +249,9 @@
         }
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
           self.title = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
+          self.mimeType = value
         }
         self.structData = try container.decodeIfPresent(
           GoogleWKT.WKTStruct.self, forKey: .structData)
@@ -256,6 +265,7 @@
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.uri, forKey: .uri)
         try container.encode(self.title, forKey: .title)
+        try container.encode(self.mimeType, forKey: .mimeType)
         try container.encodeIfPresent(self.structData, forKey: .structData)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

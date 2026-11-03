@@ -6,9 +6,7 @@
 [![Platform Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-cloud-video-transcoder-v1%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/googleapis/swift-google-cloud-video-transcoder-v1)
 
 This API converts video files into formats suitable for consumer
-distribution. For more information, see the <a
-href="https://cloud.google.com/transcoder/docs/concepts/overview">Transcoder
-API overview</a>.
+distribution.
 
 ## Overview
 

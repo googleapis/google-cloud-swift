@@ -19,6 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
+  import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
   import GoogleWKT
@@ -509,6 +510,185 @@
         }
         return try await req.rpc(
           GoogleCloudDiscoveryEngineV1.DataStore.self, timeout: options.attemptTimeout
+        ).get()
+      }
+
+      @concurrent
+      public func getIamPolicy(
+        request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy {
+        let (path, query, configure) = try {
+          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
+          in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.resource as Swift.String?,
+                matching: [
+                  .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                  .literal("/collections/"), .singleWildcard, .literal("/dataStores/"),
+                  .singleWildcard,
+                ],
+                fieldName: "resource")
+            else {
+              return nil
+            }
+            let path = "/v1/\(pathVariable0):getIamPolicy"
+            var query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.options, prefix: "options"))
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+          }
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.resource as Swift.String?,
+                matching: [
+                  .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                  .literal("/dataStores/"), .singleWildcard,
+                ],
+                fieldName: "resource")
+            else {
+              return nil
+            }
+            let path = "/v1/\(pathVariable0):getIamPolicy"
+            var query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.options, prefix: "options"))
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+          }
+          var paths: [GoogleGax.PathMismatch] = []
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.resource as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/collections/"), .singleWildcard, .literal("/dataStores/"),
+                .singleWildcard,
+              ],
+              fieldName: "resource",
+              expecting: "projects/*/locations/*/collections/*/dataStores/*"
+            )
+            paths.append(builder.build())
+          }
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.resource as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/dataStores/"), .singleWildcard,
+              ],
+              fieldName: "resource",
+              expecting: "projects/*/locations/*/dataStores/*"
+            )
+            paths.append(builder.build())
+          }
+          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+        }()
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
+        configure(&req)
+        return try await req.rpc(
+          GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
+        ).get()
+      }
+
+      @concurrent
+      public func setIamPolicy(
+        request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy {
+        let (path, query, configure, omitted) = try {
+          () throws -> (
+            Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void,
+            [Swift.String]
+          ) in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.resource as Swift.String?,
+                matching: [
+                  .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                  .literal("/collections/"), .singleWildcard, .literal("/dataStores/"),
+                  .singleWildcard,
+                ],
+                fieldName: "resource")
+            else {
+              return nil
+            }
+            let path = "/v1/\(pathVariable0):setIamPolicy"
+            let query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
+          }
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.resource as Swift.String?,
+                matching: [
+                  .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                  .literal("/dataStores/"), .singleWildcard,
+                ],
+                fieldName: "resource")
+            else {
+              return nil
+            }
+            let path = "/v1/\(pathVariable0):setIamPolicy"
+            let query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["resource"])
+          }
+          var paths: [GoogleGax.PathMismatch] = []
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.resource as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/collections/"), .singleWildcard, .literal("/dataStores/"),
+                .singleWildcard,
+              ],
+              fieldName: "resource",
+              expecting: "projects/*/locations/*/collections/*/dataStores/*"
+            )
+            paths.append(builder.build())
+          }
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.resource as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/dataStores/"), .singleWildcard,
+              ],
+              fieldName: "resource",
+              expecting: "projects/*/locations/*/dataStores/*"
+            )
+            paths.append(builder.build())
+          }
+          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+        }()
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
+        configure(&req)
+        try req.setBody(json: request, omitting: omitted)
+        return try await req.rpc(
+          GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
         ).get()
       }
 
@@ -1355,6 +1535,28 @@
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/collections/"), .singleWildcard, .literal("/engines/"),
+                  .singleWildcard, .literal("/assistants/"), .singleWildcard, .literal("/agents/"),
+                  .singleWildcard, .literal("/operations/"), .singleWildcard,
+                ],
+                fieldName: "name")
+            else {
+              return nil
+            }
+            let path = "/v1/\(pathVariable0)"
+            let query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+          }
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.name as Swift.String?,
+                matching: [
+                  .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                  .literal("/collections/"), .singleWildcard, .literal("/engines/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
                 ],
                 fieldName: "name")
@@ -1627,6 +1829,22 @@
               fieldName: "name",
               expecting:
                 "projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine/targetSites/operations/*"
+            )
+            paths.append(builder.build())
+          }
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/collections/"), .singleWildcard, .literal("/engines/"), .singleWildcard,
+                .literal("/assistants/"), .singleWildcard, .literal("/agents/"), .singleWildcard,
+                .literal("/operations/"), .singleWildcard,
+              ],
+              fieldName: "name",
+              expecting:
+                "projects/*/locations/*/collections/*/engines/*/assistants/*/agents/*/operations/*"
             )
             paths.append(builder.build())
           }

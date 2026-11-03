@@ -12,16 +12,20 @@ Discovery Engine API.
 The following types provide methods to make RPCs. They are a good starting point
 to learn about this library.
 
+- `AclConfigServiceClient`: Service for managing Acl Configuration. (enabled by the `AclConfigService` trait)
 - `AssistantServiceClient`: Service for managing Assistant configuration and assisting users. (enabled by the `AssistantService` trait)
 - `CmekConfigServiceClient`: Service for managing CMEK related tasks. (enabled by the `CmekConfigService` trait)
+- `CollectionServiceClient`: Service for managing Collections. (enabled by the `CollectionService` trait)
 - `CompletionServiceClient`: Service for Auto-Completion. (enabled by the `CompletionService` trait)
 - `ControlServiceClient`: Service for performing CRUD operations on Controls. (enabled by the `ControlService` trait)
 - `ConversationalSearchServiceClient`: Service for conversational search. (enabled by the `ConversationalSearchService` trait)
+- `DataConnectorServiceClient`: Service for data connector management. (enabled by the `DataConnectorService` trait)
 - `DataStoreServiceClient`: Service for managing DataStore configuration. (enabled by the `DataStoreService` trait)
 - `DocumentServiceClient`: Service for ingesting Document information of the customer's website. (enabled by the `DocumentService` trait)
 - `EngineServiceClient`: Service for managing Engine configuration. (enabled by the `EngineService` trait)
 - `GroundedGenerationServiceClient`: Service for grounded generation. (enabled by the `GroundedGenerationService` trait)
 - `IdentityMappingStoreServiceClient`: Service for managing Identity Mapping Stores. (enabled by the `IdentityMappingStoreService` trait)
+- `LicenseConfigServiceClient`: Service for managing license config related resources. (enabled by the `LicenseConfigService` trait)
 - `ProjectServiceClient`: Service for operations on the Project. (enabled by the `ProjectService` trait)
 - `RankServiceClient`: Service for ranking text records. (enabled by the `RankService` trait)
 - `RecommendationServiceClient`: Service for making recommendations. (enabled by the `RecommendationService` trait)
@@ -33,10 +37,12 @@ to learn about this library.
 - `SiteSearchEngineServiceClient`: Service for managing site search related resources. (enabled by the `SiteSearchEngineService` trait)
 - `UserEventServiceClient`: Service for ingesting end user actions on a website to Discovery Engine API. (enabled by the `UserEventService` trait)
 - `UserLicenseServiceClient`: Service for managing User Licenses. (enabled by the `UserLicenseService` trait)
+- `UserStoreServiceClient`: Service for managing User Stores. (enabled by the `UserStoreService` trait)
+- `WidgetConfigServiceClient`: Service for managing WidgetConfig configuration. (enabled by the `WidgetConfigService` trait)
 
 ## Quickstart
 
-The following example demonstrates using `CmekConfigServiceClient`:
+The following example demonstrates using `AclConfigServiceClient`:
 
 ```swift
 import Foundation
@@ -44,11 +50,11 @@ import GoogleCloudDiscoveryEngineV1
 import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudDiscoveryEngineV1.CmekConfigServiceClient()
-  let response = try await client.getCmekConfig(
-    request: GetCmekConfigRequest()
+  let client = try GoogleCloudDiscoveryEngineV1.AclConfigServiceClient()
+  let response = try await client.getAclConfig(
+    request: GetAclConfigRequest()
   .with {
-    $0.name = "projects/\(projectId)/locations/\(locationId)/cmekConfig"
+    $0.name = "projects/\(projectId)/locations/\(locationId)/aclConfig"
   }
 )
   print("Success: \(response)")
@@ -93,16 +99,20 @@ To enable additional traits alongside the defaults, specify them in `Package.swi
 
 | Trait | Default | Enabled Client |
 |---|:---:|---|
+| `AclConfigService` | No | `AclConfigServiceClient` |
 | `AssistantService` | No | `AssistantServiceClient` |
 | `CmekConfigService` | No | `CmekConfigServiceClient` |
+| `CollectionService` | No | `CollectionServiceClient` |
 | `CompletionService` | No | `CompletionServiceClient` |
 | `ControlService` | No | `ControlServiceClient` |
 | `ConversationalSearchService` | No | `ConversationalSearchServiceClient` |
+| `DataConnectorService` | No | `DataConnectorServiceClient` |
 | `DataStoreService` | No | `DataStoreServiceClient` |
 | `DocumentService` | No | `DocumentServiceClient` |
 | `EngineService` | No | `EngineServiceClient` |
 | `GroundedGenerationService` | No | `GroundedGenerationServiceClient` |
 | `IdentityMappingStoreService` | No | `IdentityMappingStoreServiceClient` |
+| `LicenseConfigService` | No | `LicenseConfigServiceClient` |
 | `ProjectService` | No | `ProjectServiceClient` |
 | `RankService` | No | `RankServiceClient` |
 | `RecommendationService` | Yes | `RecommendationServiceClient` |
@@ -114,6 +124,8 @@ To enable additional traits alongside the defaults, specify them in `Package.swi
 | `SiteSearchEngineService` | No | `SiteSearchEngineServiceClient` |
 | `UserEventService` | No | `UserEventServiceClient` |
 | `UserLicenseService` | No | `UserLicenseServiceClient` |
+| `UserStoreService` | No | `UserStoreServiceClient` |
+| `WidgetConfigService` | No | `WidgetConfigServiceClient` |
 
 ## Troubleshooting
 

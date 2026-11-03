@@ -26,8 +26,8 @@
     /// Operation create time.
     public var createTime: GoogleWKT.WKTTimestamp? = nil
 
-    /// Operation last update time. If the operation is done, this is also the
-    /// finish time.
+    /// Output only. Operation last update time. If the operation is done, this is
+    /// also the finish time.
     public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Count of entries that were processed successfully.

@@ -19,14 +19,17 @@
   // snippet.show
   import Foundation
   import GoogleCloudDiscoveryEngineV1
+  import GoogleIAMV1
   import GoogleLongRunning
   import GoogleWKT
 
-  func sample(client: DataStoreServiceClient, parent: String) async throws {
+  func sample(
+    client: DataStoreServiceClient, projectId: String, locationId: String, collectionId: String
+  ) async throws {
     let response = try await client.createDataStorePollingUntilDone(
       request: CreateDataStoreRequest()
         .with {
-          $0.parent = "\(parent)"
+          $0.parent = "projects/\(projectId)/locations/\(locationId)/collections/\(collectionId)"
           $0.dataStore = DataStore() /* .with { ... } */
         }
     )
@@ -39,7 +42,9 @@
     static func main() async throws {
       do {
         let client = try GoogleCloudDiscoveryEngineV1.DataStoreServiceClient()
-        try await sample(client: client, parent: "[placeholder]")
+        try await sample(
+          client: client, projectId: "[placeholder]", locationId: "[placeholder]",
+          collectionId: "[placeholder]")
       } catch {
         print("Error: \(error)")
       }

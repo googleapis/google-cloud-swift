@@ -45,6 +45,9 @@
     /// Acceptable version is `2022-11-23`, and this may change over time.
     public var dataUseTermsVersion: Swift.String = Swift.String()
 
+    /// Optional. Parameters for Agentspace.
+    public var saasParams: ProvisionProjectRequest.SaasParams? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `ProvisionProjectRequest`.
@@ -73,11 +76,13 @@
       static let name = CodingKeys(stringValue: "name")
       static let acceptDataUseTerms = CodingKeys(stringValue: "acceptDataUseTerms")
       static let dataUseTermsVersion = CodingKeys(stringValue: "dataUseTermsVersion")
+      static let saasParams = CodingKeys(stringValue: "saasParams")
 
       static let _knownKeys: Set<Swift.String> = [
         "name",
         "acceptDataUseTerms",
         "dataUseTermsVersion",
+        "saasParams",
       ]
     }
 
@@ -93,6 +98,8 @@
       {
         self.dataUseTermsVersion = value
       }
+      self.saasParams = try container.decodeIfPresent(
+        ProvisionProjectRequest.SaasParams.self, forKey: .saasParams)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -104,8 +111,102 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.acceptDataUseTerms, forKey: .acceptDataUseTerms)
       try container.encode(self.dataUseTermsVersion, forKey: .dataUseTermsVersion)
+      try container.encodeIfPresent(self.saasParams, forKey: .saasParams)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// Parameters for Agentspace.
+    public struct SaasParams: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Optional. Set to `true` to specify that caller has read and would like to
+      /// give consent to the [Terms for Agent Space quality of service].
+      public var acceptBizQos: Swift.Bool = Swift.Bool()
+
+      /// Optional. Indicates if the current request is for Biz edition (= true) or
+      /// not
+      /// (= false).
+      public var isBiz: Swift.Bool = Swift.Bool()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `SaasParams`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = SaasParams().with { $0.acceptBizQos = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let acceptBizQos = CodingKeys(stringValue: "acceptBizQos")
+        static let isBiz = CodingKeys(stringValue: "isBiz")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "acceptBizQos",
+          "isBiz",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .acceptBizQos) {
+          self.acceptBizQos = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isBiz) {
+          self.isBiz = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.acceptBizQos, forKey: .acceptBizQos)
+        try container.encode(self.isBiz, forKey: .isBiz)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// The type URL for `SaasParams`: `"type.googleapis.com/google.cloud.discoveryengine.v1.ProvisionProjectRequest.SaasParams"`.
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.cloud.discoveryengine.v1.ProvisionProjectRequest.SaasParams"
+      }
+
+      /// Initialize an instance of `SaasParams` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.ProvisionProjectRequest.SaasParams"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `SaasParams` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 

@@ -27,6 +27,9 @@
     /// The length limit of external identity will be of 100 characters.
     public var externalIdentity: Swift.String = Swift.String()
 
+    /// Optional. The name of the external identity.
+    public var externalIdentityName: Swift.String = Swift.String()
+
     /// Union field identity_provider_id. Identity Provider id can be a user or a
     /// group.
     public var identityProviderId: IdentityProviderIdOneOf? = nil
@@ -59,11 +62,13 @@
       static let userId = CodingKeys(stringValue: "userId")
       static let groupId = CodingKeys(stringValue: "groupId")
       static let externalIdentity = CodingKeys(stringValue: "externalIdentity")
+      static let externalIdentityName = CodingKeys(stringValue: "externalIdentityName")
 
       static let _knownKeys: Set<Swift.String> = [
         "userId",
         "groupId",
         "externalIdentity",
+        "externalIdentityName",
       ]
     }
 
@@ -71,6 +76,10 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .externalIdentity) {
         self.externalIdentity = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .externalIdentityName)
+      {
+        self.externalIdentityName = value
       }
 
       var identityProviderId: IdentityProviderIdOneOf? = nil
@@ -99,6 +108,7 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.externalIdentity, forKey: .externalIdentity)
+      try container.encode(self.externalIdentityName, forKey: .externalIdentityName)
 
       if let choice = self.identityProviderId {
         switch choice {

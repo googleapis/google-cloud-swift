@@ -847,6 +847,252 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
     return try await poller.wait()
   }
 
+  /// Creates a new AutoProtectionPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicy")
+  public func createAutoProtectionPolicy(
+    request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createAutoProtectionPolicy(request: request, options: options)
+  }
+
+  /// Creates a new AutoProtectionPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicy")
+  public func createAutoProtectionPolicyPollingUntilDone(
+    request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicy {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AutoProtectionPolicy>.State in
+      return try op._extractStatus(AutoProtectionPolicy.self)
+    }
+    let rawOp = try await self.createAutoProtectionPolicy(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutoProtectionPolicy>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Lists AutoProtectionPolicies for a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicies")
+  public func listAutoProtectionPolicies(
+    request: ListAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse {
+    try await self.inner.listAutoProtectionPolicies(request: request, options: options)
+  }
+
+  /// Gets details of a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_GetAutoProtectionPolicy")
+  public func getAutoProtectionPolicy(
+    request: GetAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicy {
+    try await self.inner.getAutoProtectionPolicy(request: request, options: options)
+  }
+
+  /// Updates the parameters of a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateAutoProtectionPolicy")
+  public func updateAutoProtectionPolicy(
+    request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateAutoProtectionPolicy(request: request, options: options)
+  }
+
+  /// Updates the parameters of a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateAutoProtectionPolicy")
+  public func updateAutoProtectionPolicyPollingUntilDone(
+    request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicy {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AutoProtectionPolicy>.State in
+      return try op._extractStatus(AutoProtectionPolicy.self)
+    }
+    let rawOp = try await self.updateAutoProtectionPolicy(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutoProtectionPolicy>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Deletes a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteAutoProtectionPolicy")
+  public func deleteAutoProtectionPolicy(
+    request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteAutoProtectionPolicy(request: request, options: options)
+  }
+
+  /// Deletes a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteAutoProtectionPolicy")
+  public func deleteAutoProtectionPolicyPollingUntilDone(
+    request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteAutoProtectionPolicy(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
+  /// Creates a new AutoProtectionPolicyBinding in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicyBinding")
+  public func createAutoProtectionPolicyBinding(
+    request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createAutoProtectionPolicyBinding(request: request, options: options)
+  }
+
+  /// Creates a new AutoProtectionPolicyBinding in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicyBinding")
+  public func createAutoProtectionPolicyBindingPollingUntilDone(
+    request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicyBinding {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AutoProtectionPolicyBinding>.State in
+      return try op._extractStatus(AutoProtectionPolicyBinding.self)
+    }
+    let rawOp = try await self.createAutoProtectionPolicyBinding(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AutoProtectionPolicyBinding>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Returns the auto protection policy binding read from the CCFE tables.
+  ///
+  /// @Snippet(path: "BackupDR_GetAutoProtectionPolicyBinding")
+  public func getAutoProtectionPolicyBinding(
+    request: GetAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding {
+    try await self.inner.getAutoProtectionPolicyBinding(request: request, options: options)
+  }
+
+  /// Returns the auto protection policy bindings read from the CCFE tables.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicyBindings")
+  public func listAutoProtectionPolicyBindings(
+    request: ListAutoProtectionPolicyBindingsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse {
+    try await self.inner.listAutoProtectionPolicyBindings(request: request, options: options)
+  }
+
+  /// Lists AppliedAutoProtectionPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAppliedAutoProtectionPolicies")
+  public func listAppliedAutoProtectionPolicies(
+    request: ListAppliedAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse {
+    try await self.inner.listAppliedAutoProtectionPolicies(request: request, options: options)
+  }
+
+  /// InitiateDeleteAutoProtectionPolicyBinding initiates delete for
+  /// AutoProtectionPolicy Binding
+  ///
+  /// @Snippet(path: "BackupDR_InitiateDeleteAutoProtectionPolicyBinding")
+  public func initiateDeleteAutoProtectionPolicyBinding(
+    request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.initiateDeleteAutoProtectionPolicyBinding(
+      request: request, options: options)
+  }
+
+  /// InitiateDeleteAutoProtectionPolicyBinding initiates delete for
+  /// AutoProtectionPolicy Binding
+  ///
+  /// @Snippet(path: "BackupDR_InitiateDeleteAutoProtectionPolicyBinding")
+  public func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+    request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicyBinding {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AutoProtectionPolicyBinding>.State in
+      return try op._extractStatus(AutoProtectionPolicyBinding.self)
+    }
+    let rawOp = try await self.initiateDeleteAutoProtectionPolicyBinding(
+      request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AutoProtectionPolicyBinding>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Lists Binding Matching Resources for a given AutoProtectionPolicyBinding.
+  ///
+  /// @Snippet(path: "BackupDR_ListBindingMatchingResources")
+  public func listBindingMatchingResources(
+    request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse {
+    try await self.inner.listBindingMatchingResources(request: request, options: options)
+  }
+
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "BackupDR_ListLocations")
@@ -1224,6 +1470,86 @@ extension Clients {
     func initializeServicePollingUntilDone(
       request: InitializeServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> InitializeServiceResponse
+
+    /// See `BackupDRClient.createAutoProtectionPolicy`.
+    func createAutoProtectionPolicy(
+      request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.createAutoProtectionPolicy`.
+    func createAutoProtectionPolicyPollingUntilDone(
+      request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> AutoProtectionPolicy
+
+    /// See `BackupDRClient.listAutoProtectionPolicies`.
+    func listAutoProtectionPolicies(
+      request: ListAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse
+
+    /// See `BackupDRClient.getAutoProtectionPolicy`.
+    func getAutoProtectionPolicy(
+      request: GetAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicy
+
+    /// See `BackupDRClient.updateAutoProtectionPolicy`.
+    func updateAutoProtectionPolicy(
+      request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.updateAutoProtectionPolicy`.
+    func updateAutoProtectionPolicyPollingUntilDone(
+      request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> AutoProtectionPolicy
+
+    /// See `BackupDRClient.deleteAutoProtectionPolicy`.
+    func deleteAutoProtectionPolicy(
+      request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.deleteAutoProtectionPolicy`.
+    func deleteAutoProtectionPolicyPollingUntilDone(
+      request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `BackupDRClient.createAutoProtectionPolicyBinding`.
+    func createAutoProtectionPolicyBinding(
+      request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.createAutoProtectionPolicyBinding`.
+    func createAutoProtectionPolicyBindingPollingUntilDone(
+      request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> AutoProtectionPolicyBinding
+
+    /// See `BackupDRClient.getAutoProtectionPolicyBinding`.
+    func getAutoProtectionPolicyBinding(
+      request: GetAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding
+
+    /// See `BackupDRClient.listAutoProtectionPolicyBindings`.
+    func listAutoProtectionPolicyBindings(
+      request: ListAutoProtectionPolicyBindingsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse
+
+    /// See `BackupDRClient.listAppliedAutoProtectionPolicies`.
+    func listAppliedAutoProtectionPolicies(
+      request: ListAppliedAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse
+
+    /// See `BackupDRClient.initiateDeleteAutoProtectionPolicyBinding`.
+    func initiateDeleteAutoProtectionPolicyBinding(
+      request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.initiateDeleteAutoProtectionPolicyBinding`.
+    func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+      request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> AutoProtectionPolicyBinding
+
+    /// See `BackupDRClient.listBindingMatchingResources`.
+    func listBindingMatchingResources(
+      request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse
 
     /// See `BackupDRClient.listLocations`.
     func listLocations(
@@ -2542,6 +2868,404 @@ extension Clients.BackupDRProtocol {
     request: InitializeServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> InitializeServiceResponse {
     throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAutoProtectionPolicy(request: CreateAutoProtectionPolicyRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.createAutoProtectionPolicy(request: request, options: .init())
+  }
+
+  public func createAutoProtectionPolicy(
+    request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAutoProtectionPolicyPollingUntilDone(request: CreateAutoProtectionPolicyRequest)
+    async throws -> AutoProtectionPolicy
+  {
+    return try await self.createAutoProtectionPolicyPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func createAutoProtectionPolicyPollingUntilDone(
+    request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAutoProtectionPolicyPollingUntilDone(
+    parent: Swift.String,
+    autoProtectionPolicy: AutoProtectionPolicy?,
+    autoProtectionPolicyId: Swift.String,
+  ) async throws -> AutoProtectionPolicy {
+    let request = CreateAutoProtectionPolicyRequest().with {
+      $0.parent = parent
+      $0.autoProtectionPolicy = autoProtectionPolicy
+      $0.autoProtectionPolicyId = autoProtectionPolicyId
+    }
+    return try await self.createAutoProtectionPolicyPollingUntilDone(request: request)
+  }
+
+  public func listAutoProtectionPolicies(request: ListAutoProtectionPoliciesRequest) async throws
+    -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse
+  {
+    try await self.listAutoProtectionPolicies(request: request, options: .init())
+  }
+
+  public func listAutoProtectionPolicies(
+    request: ListAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listAutoProtectionPoliciesByItems(
+    request: ListAutoProtectionPoliciesRequest
+  ) -> some AsyncSequence<AutoProtectionPolicy, any Swift.Error> & Sendable {
+    self.listAutoProtectionPoliciesByItems(request: request, options: .init())
+  }
+
+  /// Lists AutoProtectionPolicies for a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicies")
+  public func listAutoProtectionPoliciesByItems(
+    request: ListAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<AutoProtectionPolicy, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listAutoProtectionPolicies(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listAutoProtectionPoliciesByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<AutoProtectionPolicy, any Swift.Error> & Sendable {
+    let request = ListAutoProtectionPoliciesRequest().with {
+      $0.parent = parent
+    }
+    return self.listAutoProtectionPoliciesByItems(request: request)
+  }
+
+  public func getAutoProtectionPolicy(request: GetAutoProtectionPolicyRequest) async throws
+    -> GoogleCloudBackupDRV1.AutoProtectionPolicy
+  {
+    try await self.getAutoProtectionPolicy(request: request, options: .init())
+  }
+
+  public func getAutoProtectionPolicy(
+    request: GetAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getAutoProtectionPolicy(
+    name: Swift.String,
+  ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicy {
+    let request = GetAutoProtectionPolicyRequest().with {
+      $0.name = name
+    }
+    return try await self.getAutoProtectionPolicy(request: request)
+  }
+
+  public func updateAutoProtectionPolicy(request: UpdateAutoProtectionPolicyRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateAutoProtectionPolicy(request: request, options: .init())
+  }
+
+  public func updateAutoProtectionPolicy(
+    request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateAutoProtectionPolicyPollingUntilDone(request: UpdateAutoProtectionPolicyRequest)
+    async throws -> AutoProtectionPolicy
+  {
+    return try await self.updateAutoProtectionPolicyPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func updateAutoProtectionPolicyPollingUntilDone(
+    request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateAutoProtectionPolicyPollingUntilDone(
+    autoProtectionPolicy: AutoProtectionPolicy?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> AutoProtectionPolicy {
+    let request = UpdateAutoProtectionPolicyRequest().with {
+      $0.autoProtectionPolicy = autoProtectionPolicy
+      $0.updateMask = updateMask
+    }
+    return try await self.updateAutoProtectionPolicyPollingUntilDone(request: request)
+  }
+
+  public func deleteAutoProtectionPolicy(request: DeleteAutoProtectionPolicyRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.deleteAutoProtectionPolicy(request: request, options: .init())
+  }
+
+  public func deleteAutoProtectionPolicy(
+    request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteAutoProtectionPolicyPollingUntilDone(request: DeleteAutoProtectionPolicyRequest)
+    async throws
+  {
+    try await self.deleteAutoProtectionPolicyPollingUntilDone(request: request, options: .init())
+  }
+
+  public func deleteAutoProtectionPolicyPollingUntilDone(
+    request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteAutoProtectionPolicyPollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteAutoProtectionPolicyRequest().with {
+      $0.name = name
+    }
+    try await self.deleteAutoProtectionPolicyPollingUntilDone(request: request)
+  }
+
+  public func createAutoProtectionPolicyBinding(request: CreateAutoProtectionPolicyBindingRequest)
+    async throws -> GoogleLongRunning.Operation
+  {
+    try await self.createAutoProtectionPolicyBinding(request: request, options: .init())
+  }
+
+  public func createAutoProtectionPolicyBinding(
+    request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAutoProtectionPolicyBindingPollingUntilDone(
+    request: CreateAutoProtectionPolicyBindingRequest
+  ) async throws -> AutoProtectionPolicyBinding {
+    return try await self.createAutoProtectionPolicyBindingPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func createAutoProtectionPolicyBindingPollingUntilDone(
+    request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicyBinding {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAutoProtectionPolicyBindingPollingUntilDone(
+    parent: Swift.String,
+    autoProtectionPolicyBinding: AutoProtectionPolicyBinding?,
+    autoProtectionPolicyBindingId: Swift.String,
+  ) async throws -> AutoProtectionPolicyBinding {
+    let request = CreateAutoProtectionPolicyBindingRequest().with {
+      $0.parent = parent
+      $0.autoProtectionPolicyBinding = autoProtectionPolicyBinding
+      $0.autoProtectionPolicyBindingId = autoProtectionPolicyBindingId
+    }
+    return try await self.createAutoProtectionPolicyBindingPollingUntilDone(request: request)
+  }
+
+  public func getAutoProtectionPolicyBinding(request: GetAutoProtectionPolicyBindingRequest)
+    async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding
+  {
+    try await self.getAutoProtectionPolicyBinding(request: request, options: .init())
+  }
+
+  public func getAutoProtectionPolicyBinding(
+    request: GetAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getAutoProtectionPolicyBinding(
+    name: Swift.String,
+  ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding {
+    let request = GetAutoProtectionPolicyBindingRequest().with {
+      $0.name = name
+    }
+    return try await self.getAutoProtectionPolicyBinding(request: request)
+  }
+
+  public func listAutoProtectionPolicyBindings(request: ListAutoProtectionPolicyBindingsRequest)
+    async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse
+  {
+    try await self.listAutoProtectionPolicyBindings(request: request, options: .init())
+  }
+
+  public func listAutoProtectionPolicyBindings(
+    request: ListAutoProtectionPolicyBindingsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listAutoProtectionPolicyBindingsByItems(
+    request: ListAutoProtectionPolicyBindingsRequest
+  ) -> some AsyncSequence<AutoProtectionPolicyBinding, any Swift.Error> & Sendable {
+    self.listAutoProtectionPolicyBindingsByItems(request: request, options: .init())
+  }
+
+  /// Returns the auto protection policy bindings read from the CCFE tables.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicyBindings")
+  public func listAutoProtectionPolicyBindingsByItems(
+    request: ListAutoProtectionPolicyBindingsRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<AutoProtectionPolicyBinding, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listAutoProtectionPolicyBindings(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listAutoProtectionPolicyBindingsByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<AutoProtectionPolicyBinding, any Swift.Error> & Sendable {
+    let request = ListAutoProtectionPolicyBindingsRequest().with {
+      $0.parent = parent
+    }
+    return self.listAutoProtectionPolicyBindingsByItems(request: request)
+  }
+
+  public func listAppliedAutoProtectionPolicies(request: ListAppliedAutoProtectionPoliciesRequest)
+    async throws -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse
+  {
+    try await self.listAppliedAutoProtectionPolicies(request: request, options: .init())
+  }
+
+  public func listAppliedAutoProtectionPolicies(
+    request: ListAppliedAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listAppliedAutoProtectionPoliciesByItems(
+    request: ListAppliedAutoProtectionPoliciesRequest
+  ) -> some AsyncSequence<AppliedAutoProtectionPolicy, any Swift.Error> & Sendable {
+    self.listAppliedAutoProtectionPoliciesByItems(request: request, options: .init())
+  }
+
+  /// Lists AppliedAutoProtectionPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAppliedAutoProtectionPolicies")
+  public func listAppliedAutoProtectionPoliciesByItems(
+    request: ListAppliedAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<AppliedAutoProtectionPolicy, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listAppliedAutoProtectionPolicies(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listAppliedAutoProtectionPoliciesByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<AppliedAutoProtectionPolicy, any Swift.Error> & Sendable {
+    let request = ListAppliedAutoProtectionPoliciesRequest().with {
+      $0.parent = parent
+    }
+    return self.listAppliedAutoProtectionPoliciesByItems(request: request)
+  }
+
+  public func initiateDeleteAutoProtectionPolicyBinding(
+    request: InitiateDeleteAutoProtectionPolicyBindingRequest
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.initiateDeleteAutoProtectionPolicyBinding(request: request, options: .init())
+  }
+
+  public func initiateDeleteAutoProtectionPolicyBinding(
+    request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+    request: InitiateDeleteAutoProtectionPolicyBindingRequest
+  ) async throws -> AutoProtectionPolicyBinding {
+    return try await self.initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+    request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicyBinding {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+    name: Swift.String,
+  ) async throws -> AutoProtectionPolicyBinding {
+    let request = InitiateDeleteAutoProtectionPolicyBindingRequest().with {
+      $0.name = name
+    }
+    return try await self.initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+      request: request)
+  }
+
+  public func listBindingMatchingResources(request: ListBindingMatchingResourcesRequest)
+    async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse
+  {
+    try await self.listBindingMatchingResources(request: request, options: .init())
+  }
+
+  public func listBindingMatchingResources(
+    request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listBindingMatchingResourcesByItems(
+    request: ListBindingMatchingResourcesRequest
+  ) -> some AsyncSequence<BindingMatchingResource, any Swift.Error> & Sendable {
+    self.listBindingMatchingResourcesByItems(request: request, options: .init())
+  }
+
+  /// Lists Binding Matching Resources for a given AutoProtectionPolicyBinding.
+  ///
+  /// @Snippet(path: "BackupDR_ListBindingMatchingResources")
+  public func listBindingMatchingResourcesByItems(
+    request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<BindingMatchingResource, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listBindingMatchingResources(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listBindingMatchingResourcesByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<BindingMatchingResource, any Swift.Error> & Sendable {
+    let request = ListBindingMatchingResourcesRequest().with {
+      $0.parent = parent
+    }
+    return self.listBindingMatchingResourcesByItems(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

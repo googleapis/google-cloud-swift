@@ -109,6 +109,7 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
     static let serverlessNeg = CodingKeys(stringValue: "serverlessNeg")
     static let ngfwPacketInspection = CodingKeys(stringValue: "ngfwPacketInspection")
     static let dmsPrivateConnection = CodingKeys(stringValue: "dmsPrivateConnection")
+    static let datastreamPrivateConnection = CodingKeys(stringValue: "datastreamPrivateConnection")
 
     static let _knownKeys: Set<Swift.String> = [
       "description",
@@ -153,6 +154,7 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
       "serverlessNeg",
       "ngfwPacketInspection",
       "dmsPrivateConnection",
+      "datastreamPrivateConnection",
     ]
   }
 
@@ -344,6 +346,11 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try stepInfoCheckAndSet(.dmsPrivateConnection(dmsPrivateConnection))
     }
+    if let datastreamPrivateConnection = try container.decodeIfPresent(
+      PrivateConnectionInfo.self, forKey: .datastreamPrivateConnection)
+    {
+      try stepInfoCheckAndSet(.datastreamPrivateConnection(datastreamPrivateConnection))
+    }
     self.stepInfo = stepInfo
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -439,6 +446,8 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(value, forKey: .ngfwPacketInspection)
       case .dmsPrivateConnection(let value):
         try container.encode(value, forKey: .dmsPrivateConnection)
+      case .datastreamPrivateConnection(let value):
+        try container.encode(value, forKey: .datastreamPrivateConnection)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -582,6 +591,8 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
     case ngfwPacketInspection
     /// Initial state: packet originating from a DMS Private Connection.
     case startFromDmsPrivateConnection
+    /// Initial state: packet originating from a Datastream Private Connection.
+    case startFromDatastreamPrivateConnection
     /// Initial state: packet originating from a Cloud Run Job.
     /// A CloudRunJobInfo is populated with starting Job information.
     case startFromCloudRunJob
@@ -660,6 +671,7 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
       case .applyEgressGkeNetworkPolicy: return 46
       case .ngfwPacketInspection: return 47
       case .startFromDmsPrivateConnection: return 48
+      case .startFromDatastreamPrivateConnection: return 49
       case .startFromCloudRunJob: return 50
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
@@ -718,6 +730,7 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
       case .applyEgressGkeNetworkPolicy: return "APPLY_EGRESS_GKE_NETWORK_POLICY"
       case .ngfwPacketInspection: return "NGFW_PACKET_INSPECTION"
       case .startFromDmsPrivateConnection: return "START_FROM_DMS_PRIVATE_CONNECTION"
+      case .startFromDatastreamPrivateConnection: return "START_FROM_DATASTREAM_PRIVATE_CONNECTION"
       case .startFromCloudRunJob: return "START_FROM_CLOUD_RUN_JOB"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
@@ -750,6 +763,7 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
       case "START_FROM_PSC_PUBLISHED_SERVICE": self = .startFromPscPublishedService
       case "START_FROM_SERVERLESS_NEG": self = .startFromServerlessNeg
       case "START_FROM_DMS_PRIVATE_CONNECTION": self = .startFromDmsPrivateConnection
+      case "START_FROM_DATASTREAM_PRIVATE_CONNECTION": self = .startFromDatastreamPrivateConnection
       case "APPLY_INGRESS_FIREWALL_RULE": self = .applyIngressFirewallRule
       case "APPLY_EGRESS_FIREWALL_RULE": self = .applyEgressFirewallRule
       case "APPLY_ROUTE": self = .applyRoute
@@ -839,6 +853,7 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
       case 46: self = .applyEgressGkeNetworkPolicy
       case 47: self = .ngfwPacketInspection
       case 48: self = .startFromDmsPrivateConnection
+      case 49: self = .startFromDatastreamPrivateConnection
       case 50: self = .startFromCloudRunJob
       default: self = .unknownIntValue(intValue)
       }
@@ -922,6 +937,8 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
       case .ngfwPacketInspection: return try container.encode("NGFW_PACKET_INSPECTION")
       case .startFromDmsPrivateConnection:
         return try container.encode("START_FROM_DMS_PRIVATE_CONNECTION")
+      case .startFromDatastreamPrivateConnection:
+        return try container.encode("START_FROM_DATASTREAM_PRIVATE_CONNECTION")
       case .startFromCloudRunJob: return try container.encode("START_FROM_CLOUD_RUN_JOB")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
@@ -1019,6 +1036,8 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case ngfwPacketInspection(NgfwPacketInspectionInfo)
     /// Display information of a DMS Private Connection.
     indirect case dmsPrivateConnection(PrivateConnectionInfo)
+    /// Display information of a Datastream Private Connection.
+    indirect case datastreamPrivateConnection(PrivateConnectionInfo)
   }
 
   /// The type URL for `Step`: `"type.googleapis.com/google.cloud.networkmanagement.v1.Step"`.

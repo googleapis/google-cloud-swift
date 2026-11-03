@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if ConversationalSearchService || DocumentService || RecommendationService || SearchService
+#if CompletionService || ConversationalSearchService || DocumentService || RecommendationService || SearchService
   public import Foundation
   public import GoogleRpc
   @_spi(GoogleCloudInternal) public import GoogleWKT
@@ -59,11 +59,14 @@
     /// Access control information for the document.
     public var aclInfo: Document.AclInfo? = nil
 
-    /// Output only. The last time the document was indexed. If this field is set,
-    /// the document could be returned in search results.
+    /// Output only. The time when the document was last indexed.
     ///
-    /// This field is OUTPUT_ONLY. If this field is not populated, it means the
-    /// document has never been indexed.
+    /// If this field is populated, it means the document has been indexed.
+    /// While documents typically become searchable within seconds of indexing,
+    /// it can sometimes take up to a few hours.
+    ///
+    /// If this field is not populated, it means the document has never been
+    /// indexed.
     public var indexTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Output only. The index status of the document.
@@ -598,6 +601,8 @@
     {
       /// The time when the document was indexed.
       /// If this field is populated, it means the document has been indexed.
+      /// While documents typically become searchable within seconds of indexing,
+      /// it can sometimes take up to a few hours.
       public var indexTime: GoogleWKT.WKTTimestamp? = nil
 
       /// A sample of errors encountered while indexing the document.

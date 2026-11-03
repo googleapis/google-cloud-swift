@@ -81,6 +81,12 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   /// projects/{project}/locations/{location}/privateConnections/{privateConnection}.
   public var dmsPrivateConnection: Swift.String = Swift.String()
 
+  /// A [Datastream Private
+  /// Connection](https://docs.cloud.google.com/datastream/docs/reference/rest/v1/projects.locations.privateConnections)
+  /// name format:
+  /// projects/{project}/locations/{location}/privateConnections/{privateConnection}.
+  public var datastreamPrivateConnection: Swift.String = Swift.String()
+
   /// A [Cloud Function](https://cloud.google.com/functions). Applicable only to
   /// source endpoint.
   public var cloudFunction: Endpoint.CloudFunctionEndpoint? = nil
@@ -155,6 +161,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     static let redisCluster = CodingKeys(stringValue: "redisCluster")
     static let gkePod = CodingKeys(stringValue: "gkePod")
     static let dmsPrivateConnection = CodingKeys(stringValue: "dmsPrivateConnection")
+    static let datastreamPrivateConnection = CodingKeys(stringValue: "datastreamPrivateConnection")
     static let cloudFunction = CodingKeys(stringValue: "cloudFunction")
     static let appEngineVersion = CodingKeys(stringValue: "appEngineVersion")
     static let cloudRunRevision = CodingKeys(stringValue: "cloudRunRevision")
@@ -178,6 +185,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
       "redisCluster",
       "gkePod",
       "dmsPrivateConnection",
+      "datastreamPrivateConnection",
       "cloudFunction",
       "appEngineVersion",
       "cloudRunRevision",
@@ -228,6 +236,11 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dmsPrivateConnection) {
       self.dmsPrivateConnection = value
     }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .datastreamPrivateConnection)
+    {
+      self.datastreamPrivateConnection = value
+    }
     self.cloudFunction = try container.decodeIfPresent(
       Endpoint.CloudFunctionEndpoint.self, forKey: .cloudFunction)
     self.appEngineVersion = try container.decodeIfPresent(
@@ -268,6 +281,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.redisCluster, forKey: .redisCluster)
     try container.encode(self.gkePod, forKey: .gkePod)
     try container.encode(self.dmsPrivateConnection, forKey: .dmsPrivateConnection)
+    try container.encode(self.datastreamPrivateConnection, forKey: .datastreamPrivateConnection)
     try container.encodeIfPresent(self.cloudFunction, forKey: .cloudFunction)
     try container.encodeIfPresent(self.appEngineVersion, forKey: .appEngineVersion)
     try container.encodeIfPresent(self.cloudRunRevision, forKey: .cloudRunRevision)

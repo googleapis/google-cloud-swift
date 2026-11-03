@@ -32,7 +32,6 @@
     /// * `view-item-list`: View of a panel or ordered list of Documents.
     /// * `view-home-page`: View of the home page.
     /// * `view-category-page`: View of a category page, e.g. Home > Men > Jeans
-    /// * `add-feedback`: Add a user feedback.
     ///
     /// Retail-related values:
     ///
@@ -184,8 +183,9 @@
     /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
     public var attributionToken: Swift.String = Swift.String()
 
-    /// The filter syntax consists of an expression language for constructing a
-    /// predicate from one or more fields of the documents being filtered.
+    /// Optional. The filter syntax consists of an expression language for
+    /// constructing a predicate from one or more fields of the documents being
+    /// filtered.
     ///
     /// One example is for `search` events, the associated
     /// [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] may contain
@@ -263,7 +263,7 @@
     /// Currently, this field is restricted to at most one ID.
     public var promotionIds: [Swift.String] = []
 
-    /// Extra user event features to include in the recommendation model.
+    /// Optional. Extra user event features to include in the recommendation model.
     /// These attributes must NOT contain data that needs to be parsed or processed
     /// further, e.g. JSON or other encodings.
     ///
@@ -297,6 +297,16 @@
     /// Optional. List of panels associated with this event.
     /// Used for page-level impression data.
     public var panels: [PanelInfo] = []
+
+    /// Optional. This field is optional except for the `add-feedback` event types.
+    public var feedback: Feedback? = nil
+
+    /// Optional. Represents the entity for customers that may run multiple
+    /// different entities, domains, sites or regions, for example, `Google US`,
+    /// `Google Ads`, `Waymo`, `google.com`, `youtube.com`, etc. We recommend that
+    /// you set `entity` to get better per-entity search, completion, and
+    /// prediction results.
+    public var entity: Swift.String = Swift.String()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -345,6 +355,8 @@
       static let attributes = CodingKeys(stringValue: "attributes")
       static let mediaInfo = CodingKeys(stringValue: "mediaInfo")
       static let panels = CodingKeys(stringValue: "panels")
+      static let feedback = CodingKeys(stringValue: "feedback")
+      static let entity = CodingKeys(stringValue: "entity")
 
       static let _knownKeys: Set<Swift.String> = [
         "eventType",
@@ -369,6 +381,8 @@
         "attributes",
         "mediaInfo",
         "panels",
+        "feedback",
+        "entity",
       ]
     }
 
@@ -429,6 +443,10 @@
       if let value = try container.decodeIfPresent([PanelInfo].self, forKey: .panels) {
         self.panels = value
       }
+      self.feedback = try container.decodeIfPresent(Feedback.self, forKey: .feedback)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entity) {
+        self.entity = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -459,6 +477,8 @@
       try container.encode(self.attributes, forKey: .attributes)
       try container.encodeIfPresent(self.mediaInfo, forKey: .mediaInfo)
       try container.encode(self.panels, forKey: .panels)
+      try container.encodeIfPresent(self.feedback, forKey: .feedback)
+      try container.encode(self.entity, forKey: .entity)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

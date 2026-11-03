@@ -248,6 +248,10 @@ extension Clients {
       request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CompilationResult
 
+    func createCompilationResultLongRunning(
+      request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func queryCompilationResultActions(
       request: QueryCompilationResultActionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryCompilationResultActionsResponse
