@@ -1277,6 +1277,15 @@
       "Product": "Cloud Run Admin API"
     }
   ],
+  "swift-google-cloud-saasplatform-saasservicemgmt-v1": [
+    {
+      "PkgName": "swift-google-cloud-saasplatform-saasservicemgmt-v1",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-saasplatform-saasservicemgmt-v1/0.6.0/documentation",
+      "APIShortname": "saasservicemgmt",
+      "Product": "App Lifecycle Manager API"
+    }
+  ],
   "swift-google-cloud-scheduler-v1": [
     {
       "PkgName": "swift-google-cloud-scheduler-v1",

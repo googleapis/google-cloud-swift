@@ -1,0 +1,15 @@
+{
+    "api_description": "Model, deploy, and operate your SaaS at scale.",
+    "api_id": "saasservicemgmt.googleapis.com",
+    "api_shortname": "saasservicemgmt",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-saasplatform-saasservicemgmt-v1/0.6.0/documentation",
+    "distribution_name": "swift-google-cloud-saasplatform-saasservicemgmt-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=1863319",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "saasservicemgmt",
+    "name_pretty": "App Lifecycle Manager",
+    "product_documentation": "https://docs.cloud.google.com/app-lifecycle-manager",
+    "release_level": "preview",
+    "repo": "googleapis/swift-google-cloud-saasplatform-saasservicemgmt-v1"
+}

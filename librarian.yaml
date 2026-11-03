@@ -952,6 +952,11 @@ libraries:
   - name: google-cloud-run-v2
     version: 0.6.0
     copyright_year: "2026"
+  - name: google-cloud-saasplatform-saasservicemgmt-v1
+    version: 0.6.0
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudSaasPlatformSaasServiceMgmtV1
   - name: google-cloud-scheduler-v1
     version: 0.6.0
     copyright_year: "2026"
