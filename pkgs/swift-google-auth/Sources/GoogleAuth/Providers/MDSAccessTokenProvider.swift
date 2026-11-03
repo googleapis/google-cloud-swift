@@ -81,7 +81,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
 
   /// Whether this provider reached the default metadata server via implicit ADC fallback and has
   /// not yet observed a confirmed metadata server response.
-  var isUnconfirmedADCFallback: Bool {
+  private var isUnconfirmedADCFallback: Bool {
     self.isImplicitADCFallback && !self.probeState.isConfirmed
   }
 
@@ -194,18 +194,17 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     return AuthHTTPError.isRetryable(error)
   }
 
-  /// Returns `true` when `error` is an HTTP response carrying the `Metadata-Flavor: Google` header,
-  /// confirming that a Google Cloud metadata server responded (for example with a transient 503
-  /// during VM or pod startup).
+  /// Returns `true` when `error` is an HTTP response carrying a single `Metadata-Flavor: Google`
+  /// header, confirming that a Google Cloud metadata server responded (for example with a
+  /// transient 503 during VM or pod startup).
   private static func hasMetadataFlavorGoogle(_ error: any Error) -> Bool {
-    guard let headers = (error as? AuthHTTPError)?.headers else {
+    guard let values = (error as? AuthHTTPError)?.headerValues(named: "Metadata-Flavor"),
+      values.count == 1
+    else {
       return false
     }
-    return headers.contains { key, value in
-      key.caseInsensitiveCompare("Metadata-Flavor") == .orderedSame
-        && value.trimmingCharacters(in: .whitespaces).caseInsensitiveCompare("Google")
-          == .orderedSame
-    }
+    return values[0].trimmingCharacters(in: .whitespaces)
+      .caseInsensitiveCompare("Google") == .orderedSame
   }
 
   /// Fetches a fresh OAuth 2.0 access token from the metadata server.

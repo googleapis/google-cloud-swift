@@ -307,7 +307,7 @@ import Testing
       client: AuthHTTPClient(mock: mock),
       fromADC: true,
       environment: [:],
-      jitter: { _ in .seconds(3600) }
+      jitter: { $0.upperBound }
     )
 
     let firstHeaders = try await provider.headers()
@@ -324,7 +324,14 @@ import Testing
     )
   }
 
-  @Test func adcFallbackTransientErrorWithMetadataFlavorHeaderConfirmsMDSAndRetries() async throws {
+  @Test(arguments: [
+    ("Metadata-Flavor", "Google"),
+    ("metadata-flavor", " google "),
+  ])
+  func adcFallbackTransientErrorWithMetadataFlavorHeaderConfirmsMDSAndRetries(
+    headerName: String,
+    headerValue: String
+  ) async throws {
     struct MockResponse: Encodable {
       let accessToken: String
       let expiresIn: Int
@@ -342,7 +349,7 @@ import Testing
         return HTTPClientResponse(
           version: .http2,
           status: .serviceUnavailable,
-          headers: .init([("Metadata-Flavor", "Google")])
+          headers: .init([(headerName, headerValue)])
         )
       },
       { request in
@@ -380,6 +387,97 @@ import Testing
         AuthHTTPClient.defaultTimeout,
       ]
     )
+  }
+
+  @Test func adcFallbackTransientErrorWithoutValidMetadataFlavorDoesNotConfirmOrRetry()
+    async throws
+  {
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3,
+      initialDelay: .milliseconds(1),
+      multiplier: 1.0,
+      maxDelay: .milliseconds(1)
+    )
+
+    for responseHeaders in [
+      [("Server", "proxy")],
+      [("Metadata-Flavor", "Other")],
+      [("Metadata-Flavor", "Other"), ("metadata-flavor", "Google")],
+    ] {
+      let mock = MockHTTPClient([
+        { request in
+          Self.checkRequest(request)
+          return HTTPClientResponse(
+            version: .http2,
+            status: .serviceUnavailable,
+            headers: .init(responseHeaders)
+          )
+        }
+      ])
+
+      let provider = MDSCredentials(
+        retryConfiguration: retryConfig,
+        client: AuthHTTPClient(mock: mock),
+        fromADC: true,
+        environment: [:],
+        jitter: nil
+      )
+
+      let firstError = await #expect(throws: CredentialsError.self) {
+        _ = try await provider.headers()
+      }
+      guard case let .cannotFetchToken(message, _) = firstError else {
+        Issue.record(
+          "Expected CredentialsError.cannotFetchToken, got \(String(describing: firstError))")
+        return
+      }
+      #expect(message.contains("gcloud auth application-default login"))
+      #expect(mock.recordedTimeouts == [MDSAccessTokenProvider.adcFallbackTimeout])
+
+      // TokenCache must cache the unconfirmed failure as permanent without re-probing.
+      _ = await #expect(throws: CredentialsError.self) {
+        _ = try await provider.headers()
+      }
+      #expect(mock.recordedTimeouts == [MDSAccessTokenProvider.adcFallbackTimeout])
+    }
+  }
+
+  @Test func adcFallbackPermanentErrorWithMetadataFlavorConfirmsMDSWithoutRetrying() async throws {
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3,
+      initialDelay: .milliseconds(1),
+      multiplier: 1.0,
+      maxDelay: .milliseconds(1)
+    )
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .notFound,
+          headers: .init([("Metadata-Flavor", "Google")])
+        )
+      }
+    ])
+
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      fromADC: true,
+      environment: [:],
+      jitter: nil
+    )
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    guard case let .cannotFetchToken(message, _) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    #expect(!message.contains("gcloud auth application-default login"))
+    #expect(message.contains("Verify that a metadata server is running"))
+    #expect(mock.recordedTimeouts == [MDSAccessTokenProvider.adcFallbackTimeout])
   }
 
   @Test func adcFallbackCancellationDoesNotPoisonTokenCache() async throws {
