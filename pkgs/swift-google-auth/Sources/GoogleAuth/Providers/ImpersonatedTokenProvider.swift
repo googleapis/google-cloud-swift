@@ -53,27 +53,46 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
 
   @concurrent
   func fetchToken() async throws -> Token {
-    let sourceUniverse: String
-    do {
-      sourceUniverse = try await sourceCredentials.universeDomain()
-    } catch is CancellationError {
-      throw CancellationError()
-    } catch {
-      throw CredentialsError.cannotFetchToken(
-        message:
-          "Could not resolve source credentials universe domain for service account impersonation.",
-        underlyingError: error
-      )
-    }
-
-    let targetUniverse = universeDomainOverride ?? sourceUniverse
-    if !sourceCredentials.isAnonymous && sourceUniverse != targetUniverse {
-      throw CredentialsError.cannotFetchToken(
-        message: "Could not obtain source credentials token for service account impersonation.",
-        underlyingError: CredentialsError.parseError(
-          "The configured universe domain (\(targetUniverse)) does not match the universe domain found in the source credentials (\(sourceUniverse))."
+    let targetUniverse: String
+    if let universeDomainOverride {
+      targetUniverse = universeDomainOverride
+      do {
+        try await sourceCredentials.validateUniverseDomain(targetUniverse)
+      } catch is CancellationError {
+        throw CancellationError()
+      } catch let error as CredentialsError {
+        switch error {
+        case .parseError:
+          throw CredentialsError.cannotFetchToken(
+            message: "Could not obtain source credentials token for service account impersonation.",
+            underlyingError: error
+          )
+        default:
+          throw CredentialsError.cannotFetchToken(
+            message:
+              "Could not resolve source credentials universe domain for service account impersonation.",
+            underlyingError: error
+          )
+        }
+      } catch {
+        throw CredentialsError.cannotFetchToken(
+          message:
+            "Could not resolve source credentials universe domain for service account impersonation.",
+          underlyingError: error
         )
-      )
+      }
+    } else {
+      do {
+        targetUniverse = try await sourceCredentials.universeDomain()
+      } catch is CancellationError {
+        throw CancellationError()
+      } catch {
+        throw CredentialsError.cannotFetchToken(
+          message:
+            "Could not resolve source credentials universe domain for service account impersonation.",
+          underlyingError: error
+        )
+      }
     }
 
     let iamEndpointURL: URL

@@ -451,8 +451,11 @@ protocol CredentialsProvider: Sendable {
   /// - Returns: The universe domain string (defaults to `"googleapis.com"`).
   func universeDomain() async throws -> String
 
-  /// Indicates whether these credentials represent unauthenticated (`.anonymous`) access.
-  var isAnonymous: Bool { get }
+  /// Validates that the universe domain of these credentials matches `expectedUniverseDomain`.
+  ///
+  /// - Parameter expectedUniverseDomain: The universe domain expected by the caller.
+  /// - Throws: A ``CredentialsError`` if the universe domain cannot be resolved or does not match `expectedUniverseDomain`.
+  func validateUniverseDomain(_ expectedUniverseDomain: String) async throws
 }
 
 extension CredentialsProvider {
@@ -460,8 +463,13 @@ extension CredentialsProvider {
     return defaultUniverseDomain
   }
 
-  var isAnonymous: Bool {
-    return false
+  func validateUniverseDomain(_ expectedUniverseDomain: String) async throws {
+    let credUniverse = try await self.universeDomain()
+    guard credUniverse == expectedUniverseDomain else {
+      throw CredentialsError.parseError(
+        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse))."
+      )
+    }
   }
 }
 
@@ -566,9 +574,15 @@ public struct Credentials: Sendable {
     return try await self.credentialsProvider.universeDomain()
   }
 
-  /// Internal SPI property indicating whether these credentials are unauthenticated (`.anonymous`).
-  @_spi(GoogleCloudInternal) public var _isAnonymous: Bool {
-    return self.credentialsProvider.isAnonymous
+  /// Validates that the universe domain associated with these credentials matches `expectedUniverseDomain`.
+  ///
+  /// For `.anonymous` credentials, this method succeeds without performing a comparison so
+  /// unauthenticated callers can access public resources in any universe domain.
+  ///
+  /// - Parameter expectedUniverseDomain: The universe domain expected by the caller (e.g., the client's configured universe domain).
+  /// - Throws: A ``CredentialsError`` if resolving the universe domain fails or if the resolved universe domain does not match `expectedUniverseDomain`.
+  public func validateUniverseDomain(_ expectedUniverseDomain: String) async throws {
+    try await self.credentialsProvider.validateUniverseDomain(expectedUniverseDomain)
   }
 
   private static func resolveCredentialsProvider(

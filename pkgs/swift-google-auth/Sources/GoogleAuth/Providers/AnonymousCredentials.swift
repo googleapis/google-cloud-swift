@@ -19,9 +19,9 @@
 /// public Cloud Storage buckets or public BigQuery datasets), or when connecting to local
 /// service emulators that do not enforce authentication.
 struct AnonymousCredentials: CredentialsProvider {
-  var isAnonymous: Bool { true }
-
   func headers() async throws -> AuthHeaders {
     return []
   }
+
+  func validateUniverseDomain(_ expectedUniverseDomain: String) async throws {}
 }

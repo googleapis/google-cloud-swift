@@ -250,18 +250,22 @@ import Testing
     let credentials = try Credentials(configuration: .impersonatedServiceAccount(config))
     #expect(credentials.credentialsProvider is ImpersonatedCredentials)
     #expect(try await credentials.universeDomain() == Credentials.defaultUniverseDomain)
-    #expect(!credentials._isAnonymous)
+    try await credentials.validateUniverseDomain(Credentials.defaultUniverseDomain)
   }
 
-  @Test func defaultUniverseDomainAndAnonymousFlags() async throws {
+  @Test func defaultUniverseDomainAndValidation() async throws {
     #expect(Credentials.defaultUniverseDomain == "googleapis.com")
 
     let anon = try Credentials(configuration: .anonymous)
-    #expect(anon._isAnonymous)
     #expect(try await anon.universeDomain() == "googleapis.com")
+    try await anon.validateUniverseDomain("googleapis.com")
+    try await anon.validateUniverseDomain("custom.universe.com")
 
     let apiKey = try Credentials(configuration: .apiKey("test-api-key"))
-    #expect(!apiKey._isAnonymous)
     #expect(try await apiKey.universeDomain() == "googleapis.com")
+    try await apiKey.validateUniverseDomain("googleapis.com")
+    await #expect(throws: CredentialsError.self) {
+      try await apiKey.validateUniverseDomain("custom.universe.com")
+    }
   }
 }
