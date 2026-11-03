@@ -14,7 +14,7 @@ best-practices to retry transient RPC errors.
 ## Discover
 
 - <doc:overview>
-- <doc:supported-versions>
+- [Supported Swift versions](https://docs.cloud.google.com/swift/supported-versions)
 
 ## Get started
 
