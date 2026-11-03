@@ -25,8 +25,6 @@
 
     public var identityCertificateEnabled: Swift.Bool? = nil
 
-    public var identityType: WorkloadIdentityConfig.IdentityType? = nil
-
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `WorkloadIdentityConfig`.
@@ -54,12 +52,10 @@
 
       static let identity = CodingKeys(stringValue: "identity")
       static let identityCertificateEnabled = CodingKeys(stringValue: "identityCertificateEnabled")
-      static let identityType = CodingKeys(stringValue: "identityType")
 
       static let _knownKeys: Set<Swift.String> = [
         "identity",
         "identityCertificateEnabled",
-        "identityType",
       ]
     }
 
@@ -68,8 +64,6 @@
       self.identity = try container.decodeIfPresent(Swift.String.self, forKey: .identity)
       self.identityCertificateEnabled = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .identityCertificateEnabled)
-      self.identityType = try container.decodeIfPresent(
-        WorkloadIdentityConfig.IdentityType.self, forKey: .identityType)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -81,71 +75,8 @@
       try container.encodeIfPresent(self.identity, forKey: .identity)
       try container.encodeIfPresent(
         self.identityCertificateEnabled, forKey: .identityCertificateEnabled)
-      try container.encodeIfPresent(self.identityType, forKey: .identityType)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
-      }
-    }
-
-    /// The enumerated type for the [identityType][google.cloud.compute.v1.WorkloadIdentityConfig.identityType] field.
-    ///
-    /// [google.cloud.compute.v1.WorkloadIdentityConfig.identityType]: <doc:WorkloadIdentityConfig/IdentityType>
-    ///
-    /// - Note: Adding cases to this enumeration is not considered a breaking change.
-    ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue`
-    ///   expecting specific values to remain unparsed; future releases may promote
-    ///   them to named cases.
-    public enum IdentityType: Codable, Equatable, Hashable, Sendable {
-      case agentIdentity
-      case unspecified
-      case serviceAccount
-      /// Encodes an unknown string value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific string literals in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownStringValue(Swift.String)
-
-      /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String {
-        switch self {
-        case .agentIdentity: return "AGENT_IDENTITY"
-        case .unspecified: return "IDENTITY_TYPE_UNSPECIFIED"
-        case .serviceAccount: return "SERVICE_ACCOUNT"
-        case .unknownStringValue(let v): return v
-        }
-      }
-
-      /// Initialize from a string value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:IdentityType/unknownStringValue(_:)).
-      public init(stringValue: Swift.String) {
-        switch stringValue {
-        case "AGENT_IDENTITY": self = .agentIdentity
-        case "IDENTITY_TYPE_UNSPECIFIED": self = .unspecified
-        case "SERVICE_ACCOUNT": self = .serviceAccount
-        default: self = .unknownStringValue(stringValue)
-        }
-      }
-
-      public init(from decoder: any Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let s = try container.decode(Swift.String.self)
-        self.init(stringValue: s)
-      }
-
-      public func encode(to encoder: any Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .agentIdentity: return try container.encode("AGENT_IDENTITY")
-        case .unspecified: return try container.encode("IDENTITY_TYPE_UNSPECIFIED")
-        case .serviceAccount: return try container.encode("SERVICE_ACCOUNT")
-        case .unknownStringValue(let v): return try container.encode(v)
-        }
       }
     }
 

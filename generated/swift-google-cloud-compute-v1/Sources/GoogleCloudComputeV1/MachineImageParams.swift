@@ -22,14 +22,6 @@
   public struct MachineImageParams: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    /// Input only. Specifies the list of disk device names that must be excluded from the
-    /// new machine image.
-    public var excludedDisks: [Swift.String] = []
-
-    /// Input only. Specifies the list of disk device names that must be included with the
-    /// new machine image.
-    public var includedDisks: [Swift.String] = []
-
     /// Input only. Resource manager tags to be bound to the machine image. Tag keys and values
     /// have the same definition as resource
     /// manager tags. Keys and values can be either in numeric format,
@@ -49,7 +41,7 @@
     /// Commonly used to initialize the value, for example:
     ///
     /// ```
-    /// let value = MachineImageParams().with { $0.excludedDisks = ... }
+    /// let value = MachineImageParams().with { $0.resourceManagerTags = ... }
     /// ```
     @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
@@ -64,25 +56,15 @@
       init(stringValue: Swift.String) { self.stringValue = stringValue }
       init?(intValue: Swift.Int) { nil }
 
-      static let excludedDisks = CodingKeys(stringValue: "excludedDisks")
-      static let includedDisks = CodingKeys(stringValue: "includedDisks")
       static let resourceManagerTags = CodingKeys(stringValue: "resourceManagerTags")
 
       static let _knownKeys: Set<Swift.String> = [
-        "excludedDisks",
-        "includedDisks",
-        "resourceManagerTags",
+        "resourceManagerTags"
       ]
     }
 
     public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludedDisks) {
-        self.excludedDisks = value
-      }
-      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includedDisks) {
-        self.includedDisks = value
-      }
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .resourceManagerTags)
       {
@@ -96,8 +78,6 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.excludedDisks, forKey: .excludedDisks)
-      try container.encode(self.includedDisks, forKey: .includedDisks)
       try container.encode(self.resourceManagerTags, forKey: .resourceManagerTags)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

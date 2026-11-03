@@ -35,23 +35,6 @@
     /// external IPv6 range.
     public var externalIpv6PrefixLength: Swift.Int32? = nil
 
-    /// Reference to the source of external IPv4 addresses,
-    /// like a PublicDelegatedPrefix (PDP) for BYOIP.
-    /// The PDP must support enhanced IPv4 allocations.
-    ///
-    /// Use one of the following formats to specify a PDP when allocating an
-    /// external IPv4 address using BYOIP.
-    ///
-    ///    -
-    ///    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
-    ///    -
-    ///    Partial URL, as in
-    ///
-    ///
-    ///           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
-    ///           - regions/region/publicDelegatedPrefixes/pdp-name
-    public var ipCollection: Swift.String? = nil
-
     /// Output only. [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
     public var kind: Swift.String? = nil
 
@@ -128,7 +111,6 @@
 
       static let externalIpv6 = CodingKeys(stringValue: "externalIpv6")
       static let externalIpv6PrefixLength = CodingKeys(stringValue: "externalIpv6PrefixLength")
-      static let ipCollection = CodingKeys(stringValue: "ipCollection")
       static let kind = CodingKeys(stringValue: "kind")
       static let name = CodingKeys(stringValue: "name")
       static let natIp = CodingKeys(stringValue: "natIP")
@@ -141,7 +123,6 @@
       static let _knownKeys: Set<Swift.String> = [
         "externalIpv6",
         "externalIpv6PrefixLength",
-        "ipCollection",
         "kind",
         "name",
         "natIP",
@@ -158,7 +139,6 @@
       self.externalIpv6 = try container.decodeIfPresent(Swift.String.self, forKey: .externalIpv6)
       self.externalIpv6PrefixLength = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .externalIpv6PrefixLength)
-      self.ipCollection = try container.decodeIfPresent(Swift.String.self, forKey: .ipCollection)
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.natIp = try container.decodeIfPresent(Swift.String.self, forKey: .natIp)
@@ -181,7 +161,6 @@
       try container.encodeIfPresent(self.externalIpv6, forKey: .externalIpv6)
       try container.encodeIfPresent(
         self.externalIpv6PrefixLength, forKey: .externalIpv6PrefixLength)
-      try container.encodeIfPresent(self.ipCollection, forKey: .ipCollection)
       try container.encodeIfPresent(self.kind, forKey: .kind)
       try container.encodeIfPresent(self.name, forKey: .name)
       try container.encodeIfPresent(self.natIp, forKey: .natIp)

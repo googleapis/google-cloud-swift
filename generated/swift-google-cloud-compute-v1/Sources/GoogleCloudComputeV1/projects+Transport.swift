@@ -52,7 +52,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/disableXpnHost"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -100,7 +100,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/disableXpnResource"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -151,7 +151,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/enableXpnHost"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -199,7 +199,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/enableXpnResource"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -250,7 +250,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)"
             let query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             return (path, query)
           }() {
@@ -296,7 +296,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/getXpnHost"
             let query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             return (path, query)
           }() {
@@ -342,7 +342,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/getXpnResources"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -393,7 +393,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/listXpnHosts"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -450,7 +450,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/moveDisk"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -504,7 +504,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/moveInstance"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -555,7 +555,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/setCloudArmorTier"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -606,7 +606,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/setCommonInstanceMetadata"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -657,7 +657,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/setDefaultNetworkTier"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -708,7 +708,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/setUsageExportBucket"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))

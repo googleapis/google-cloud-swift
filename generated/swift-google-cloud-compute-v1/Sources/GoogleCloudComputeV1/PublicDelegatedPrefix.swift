@@ -94,32 +94,6 @@
     /// delegated prefix.
     public var publicDelegatedSubPrefixs: [PublicDelegatedPrefixPublicDelegatedSubPrefix] = []
 
-    /// Immutable. The purpose of the public delegated prefix.
-    ///
-    /// This field can only be set for the top-level global public delegated
-    /// prefix. It is an output-only field for the sub-delegates that inherit the
-    /// value from the top-level global public delegated prefix. Once the value is
-    /// set, it cannot be changed.
-    ///
-    /// The field cannot be set for regional public delegated prefixes.
-    ///
-    /// The supported values are:
-    ///
-    ///
-    ///      - APPLICATION_AND_PROXY_LOAD_BALANCERS: The global public
-    ///      delegated prefix can only be used by Global External Application and
-    ///      Proxy Load Balancers to allocate addresses for forwarding rules. This is
-    ///      the default value.
-    ///      - PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0: The
-    ///      global public delegated prefix can only be used by Global External
-    ///      Passthrough Network Load Balancers to allocate Availability Group 0
-    ///      addresses for forwarding rules.
-    ///      - PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1: The
-    ///      global public delegated prefix can only be used by Global External
-    ///      Passthrough Network Load Balancers to allocate Availability Group 1
-    ///      addresses for forwarding rules.
-    public var purpose: PublicDelegatedPrefix.Purpose? = nil
-
     /// Output only. [Output Only] URL of the region where the public delegated prefix resides.
     /// This field applies only to the region resource. You must specify this
     /// field as part of the HTTP request URL. It is not settable as a field in
@@ -184,7 +158,6 @@
       static let name = CodingKeys(stringValue: "name")
       static let parentPrefix = CodingKeys(stringValue: "parentPrefix")
       static let publicDelegatedSubPrefixs = CodingKeys(stringValue: "publicDelegatedSubPrefixs")
-      static let purpose = CodingKeys(stringValue: "purpose")
       static let region = CodingKeys(stringValue: "region")
       static let selfLink = CodingKeys(stringValue: "selfLink")
       static let status = CodingKeys(stringValue: "status")
@@ -205,7 +178,6 @@
         "name",
         "parentPrefix",
         "publicDelegatedSubPrefixs",
-        "purpose",
         "region",
         "selfLink",
         "status",
@@ -247,8 +219,6 @@
       {
         self.publicDelegatedSubPrefixs = value
       }
-      self.purpose = try container.decodeIfPresent(
-        PublicDelegatedPrefix.Purpose.self, forKey: .purpose)
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.status = try container.decodeIfPresent(
@@ -281,7 +251,6 @@
       try container.encodeIfPresent(self.name, forKey: .name)
       try container.encodeIfPresent(self.parentPrefix, forKey: .parentPrefix)
       try container.encode(self.publicDelegatedSubPrefixs, forKey: .publicDelegatedSubPrefixs)
-      try container.encodeIfPresent(self.purpose, forKey: .purpose)
       try container.encodeIfPresent(self.region, forKey: .region)
       try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
       try container.encodeIfPresent(self.status, forKey: .status)
@@ -493,84 +462,6 @@
           return try container.encode("EXTERNAL_IPV6_SUBNETWORK_CREATION")
         case .internalIpv6SubnetworkCreation:
           return try container.encode("INTERNAL_IPV6_SUBNETWORK_CREATION")
-        case .unknownStringValue(let v): return try container.encode(v)
-        }
-      }
-    }
-
-    /// The enumerated type for the [purpose][google.cloud.compute.v1.PublicDelegatedPrefix.purpose] field.
-    ///
-    /// [google.cloud.compute.v1.PublicDelegatedPrefix.purpose]: <doc:PublicDelegatedPrefix/Purpose>
-    ///
-    /// - Note: Adding cases to this enumeration is not considered a breaking change.
-    ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue`
-    ///   expecting specific values to remain unparsed; future releases may promote
-    ///   them to named cases.
-    public enum Purpose: Codable, Equatable, Hashable, Sendable {
-      /// The global public delegated prefix can only be used by Global External
-      /// Application and Proxy Load Balancers to allocate addresses for forwarding
-      /// rules. This is the default value.
-      case applicationAndProxyLoadBalancers
-      /// The global public delegated prefix can only be used by Global External
-      /// Passthrough Network Load Balancers to allocate Availability Group 0
-      /// addresses for forwarding rules.
-      case passthroughLoadBalancerAvailabilityGroup0
-      /// The global public delegated prefix can only be used by Global External
-      /// Passthrough Network Load Balancers to allocate Availability Group 1
-      /// addresses for forwarding rules.
-      case passthroughLoadBalancerAvailabilityGroup1
-      /// Encodes an unknown string value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific string literals in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownStringValue(Swift.String)
-
-      /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String {
-        switch self {
-        case .applicationAndProxyLoadBalancers: return "APPLICATION_AND_PROXY_LOAD_BALANCERS"
-        case .passthroughLoadBalancerAvailabilityGroup0:
-          return "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0"
-        case .passthroughLoadBalancerAvailabilityGroup1:
-          return "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1"
-        case .unknownStringValue(let v): return v
-        }
-      }
-
-      /// Initialize from a string value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Purpose/unknownStringValue(_:)).
-      public init(stringValue: Swift.String) {
-        switch stringValue {
-        case "APPLICATION_AND_PROXY_LOAD_BALANCERS": self = .applicationAndProxyLoadBalancers
-        case "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0":
-          self = .passthroughLoadBalancerAvailabilityGroup0
-        case "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1":
-          self = .passthroughLoadBalancerAvailabilityGroup1
-        default: self = .unknownStringValue(stringValue)
-        }
-      }
-
-      public init(from decoder: any Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let s = try container.decode(Swift.String.self)
-        self.init(stringValue: s)
-      }
-
-      public func encode(to encoder: any Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .applicationAndProxyLoadBalancers:
-          return try container.encode("APPLICATION_AND_PROXY_LOAD_BALANCERS")
-        case .passthroughLoadBalancerAvailabilityGroup0:
-          return try container.encode("PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0")
-        case .passthroughLoadBalancerAvailabilityGroup1:
-          return try container.encode("PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1")
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }

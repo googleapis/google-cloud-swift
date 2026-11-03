@@ -573,16 +573,6 @@
       case memoryOptimizedX496012T
       /// CUD bucket for X4 machine with 960 vCPUs and 16TB of memory.
       case memoryOptimizedX496016T
-      /// CUD bucket for X5 machine with 1376 vCPUs and 24TB of memory.
-      case memoryOptimizedX5137624T
-      /// CUD bucket for X5 machine with 1376 vCPUs and 32TB of memory.
-      case memoryOptimizedX5137632T
-      /// CUD bucket for X5 machine with 2064 vCPUs and 48TB of memory.
-      case memoryOptimizedX5206448T
-      /// CUD bucket for X5 machine with 688 vCPUs and 12TB of memory.
-      case memoryOptimizedX568812T
-      /// CUD bucket for X5 machine with 688 vCPUs and 16TB of memory.
-      case memoryOptimizedX568816T
       /// CUD bucket for C4N (dual Diorite) machines.
       case networkOptimizedC4N
       /// CUD bucket for NETWORK_OPTIMIZED_U4C machines.
@@ -658,11 +648,6 @@
         case .memoryOptimizedX44808T: return "MEMORY_OPTIMIZED_X4_480_8T"
         case .memoryOptimizedX496012T: return "MEMORY_OPTIMIZED_X4_960_12T"
         case .memoryOptimizedX496016T: return "MEMORY_OPTIMIZED_X4_960_16T"
-        case .memoryOptimizedX5137624T: return "MEMORY_OPTIMIZED_X5_1376_24T"
-        case .memoryOptimizedX5137632T: return "MEMORY_OPTIMIZED_X5_1376_32T"
-        case .memoryOptimizedX5206448T: return "MEMORY_OPTIMIZED_X5_2064_48T"
-        case .memoryOptimizedX568812T: return "MEMORY_OPTIMIZED_X5_688_12T"
-        case .memoryOptimizedX568816T: return "MEMORY_OPTIMIZED_X5_688_16T"
         case .networkOptimizedC4N: return "NETWORK_OPTIMIZED_C4N"
         case .networkOptimizedU4C: return "NETWORK_OPTIMIZED_U4C"
         case .networkOptimizedU4P: return "NETWORK_OPTIMIZED_U4P"
@@ -723,11 +708,6 @@
         case "MEMORY_OPTIMIZED_X4_480_8T": self = .memoryOptimizedX44808T
         case "MEMORY_OPTIMIZED_X4_960_12T": self = .memoryOptimizedX496012T
         case "MEMORY_OPTIMIZED_X4_960_16T": self = .memoryOptimizedX496016T
-        case "MEMORY_OPTIMIZED_X5_1376_24T": self = .memoryOptimizedX5137624T
-        case "MEMORY_OPTIMIZED_X5_1376_32T": self = .memoryOptimizedX5137632T
-        case "MEMORY_OPTIMIZED_X5_2064_48T": self = .memoryOptimizedX5206448T
-        case "MEMORY_OPTIMIZED_X5_688_12T": self = .memoryOptimizedX568812T
-        case "MEMORY_OPTIMIZED_X5_688_16T": self = .memoryOptimizedX568816T
         case "NETWORK_OPTIMIZED_C4N": self = .networkOptimizedC4N
         case "NETWORK_OPTIMIZED_U4C": self = .networkOptimizedU4C
         case "NETWORK_OPTIMIZED_U4P": self = .networkOptimizedU4P
@@ -794,11 +774,6 @@
         case .memoryOptimizedX44808T: return try container.encode("MEMORY_OPTIMIZED_X4_480_8T")
         case .memoryOptimizedX496012T: return try container.encode("MEMORY_OPTIMIZED_X4_960_12T")
         case .memoryOptimizedX496016T: return try container.encode("MEMORY_OPTIMIZED_X4_960_16T")
-        case .memoryOptimizedX5137624T: return try container.encode("MEMORY_OPTIMIZED_X5_1376_24T")
-        case .memoryOptimizedX5137632T: return try container.encode("MEMORY_OPTIMIZED_X5_1376_32T")
-        case .memoryOptimizedX5206448T: return try container.encode("MEMORY_OPTIMIZED_X5_2064_48T")
-        case .memoryOptimizedX568812T: return try container.encode("MEMORY_OPTIMIZED_X5_688_12T")
-        case .memoryOptimizedX568816T: return try container.encode("MEMORY_OPTIMIZED_X5_688_16T")
         case .networkOptimizedC4N: return try container.encode("NETWORK_OPTIMIZED_C4N")
         case .networkOptimizedU4C: return try container.encode("NETWORK_OPTIMIZED_U4C")
         case .networkOptimizedU4P: return try container.encode("NETWORK_OPTIMIZED_U4P")

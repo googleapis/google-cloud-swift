@@ -45,9 +45,6 @@
     ///    pseudowires.
     public var faultResponse: WireProperties.FaultResponse? = nil
 
-    /// The flow management configuration for the wire.
-    public var flowManagement: WireProperties.FlowManagement? = nil
-
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `WireProperties`.
@@ -76,13 +73,11 @@
       static let bandwidthAllocation = CodingKeys(stringValue: "bandwidthAllocation")
       static let bandwidthUnmetered = CodingKeys(stringValue: "bandwidthUnmetered")
       static let faultResponse = CodingKeys(stringValue: "faultResponse")
-      static let flowManagement = CodingKeys(stringValue: "flowManagement")
 
       static let _knownKeys: Set<Swift.String> = [
         "bandwidthAllocation",
         "bandwidthUnmetered",
         "faultResponse",
-        "flowManagement",
       ]
     }
 
@@ -94,8 +89,6 @@
         Swift.Int64.self, forKey: .bandwidthUnmetered)
       self.faultResponse = try container.decodeIfPresent(
         WireProperties.FaultResponse.self, forKey: .faultResponse)
-      self.flowManagement = try container.decodeIfPresent(
-        WireProperties.FlowManagement.self, forKey: .flowManagement)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -107,7 +100,6 @@
       try container.encodeIfPresent(self.bandwidthAllocation, forKey: .bandwidthAllocation)
       try container.encodeIfPresent(self.bandwidthUnmetered, forKey: .bandwidthUnmetered)
       try container.encodeIfPresent(self.faultResponse, forKey: .faultResponse)
-      try container.encodeIfPresent(self.flowManagement, forKey: .flowManagement)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -234,66 +226,6 @@
         switch self {
         case .disablePort: return try container.encode("DISABLE_PORT")
         case .`none`: return try container.encode("NONE")
-        case .unknownStringValue(let v): return try container.encode(v)
-        }
-      }
-    }
-
-    /// The enumerated type for the [flowManagement][google.cloud.compute.v1.WireProperties.flowManagement] field.
-    ///
-    /// [google.cloud.compute.v1.WireProperties.flowManagement]: <doc:WireProperties/FlowManagement>
-    ///
-    /// - Note: Adding cases to this enumeration is not considered a breaking change.
-    ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue`
-    ///   expecting specific values to remain unparsed; future releases may promote
-    ///   them to named cases.
-    public enum FlowManagement: Codable, Equatable, Hashable, Sendable {
-      /// The wire uses dynamic paths.
-      case dynamicPath
-      /// The wire uses fixed paths.
-      case fixedPath
-      /// Encodes an unknown string value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific string literals in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownStringValue(Swift.String)
-
-      /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String {
-        switch self {
-        case .dynamicPath: return "DYNAMIC_PATH"
-        case .fixedPath: return "FIXED_PATH"
-        case .unknownStringValue(let v): return v
-        }
-      }
-
-      /// Initialize from a string value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:FlowManagement/unknownStringValue(_:)).
-      public init(stringValue: Swift.String) {
-        switch stringValue {
-        case "DYNAMIC_PATH": self = .dynamicPath
-        case "FIXED_PATH": self = .fixedPath
-        default: self = .unknownStringValue(stringValue)
-        }
-      }
-
-      public init(from decoder: any Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let s = try container.decode(Swift.String.self)
-        self.init(stringValue: s)
-      }
-
-      public func encode(to encoder: any Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .dynamicPath: return try container.encode("DYNAMIC_PATH")
-        case .fixedPath: return try container.encode("FIXED_PATH")
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }

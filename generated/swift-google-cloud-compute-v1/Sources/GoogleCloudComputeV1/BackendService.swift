@@ -111,11 +111,6 @@
     /// create the resource.
     public var description: Swift.String? = nil
 
-    /// Dynamic forwarding configuration. This field is used to configure the
-    /// backend service with dynamic forwarding feature which together with Service
-    /// Extension allows customized and complex routing logic.
-    public var dynamicForwarding: BackendServiceDynamicForwarding? = nil
-
     /// [Output Only] The resource URL for the edge security policy associated with
     /// this backend service.
     public var edgeSecurityPolicy: Swift.String? = nil
@@ -589,7 +584,6 @@
       static let customRequestHeaders = CodingKeys(stringValue: "customRequestHeaders")
       static let customResponseHeaders = CodingKeys(stringValue: "customResponseHeaders")
       static let description = CodingKeys(stringValue: "description")
-      static let dynamicForwarding = CodingKeys(stringValue: "dynamicForwarding")
       static let edgeSecurityPolicy = CodingKeys(stringValue: "edgeSecurityPolicy")
       static let enableCdn = CodingKeys(stringValue: "enableCDN")
       static let externalManagedMigrationState = CodingKeys(
@@ -648,7 +642,6 @@
         "customRequestHeaders",
         "customResponseHeaders",
         "description",
-        "dynamicForwarding",
         "edgeSecurityPolicy",
         "enableCDN",
         "externalManagedMigrationState",
@@ -731,8 +724,6 @@
         self.customResponseHeaders = value
       }
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
-      self.dynamicForwarding = try container.decodeIfPresent(
-        BackendServiceDynamicForwarding.self, forKey: .dynamicForwarding)
       self.edgeSecurityPolicy = try container.decodeIfPresent(
         Swift.String.self, forKey: .edgeSecurityPolicy)
       self.enableCdn = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableCdn)
@@ -839,7 +830,6 @@
       try container.encode(self.customRequestHeaders, forKey: .customRequestHeaders)
       try container.encode(self.customResponseHeaders, forKey: .customResponseHeaders)
       try container.encodeIfPresent(self.description, forKey: .description)
-      try container.encodeIfPresent(self.dynamicForwarding, forKey: .dynamicForwarding)
       try container.encodeIfPresent(self.edgeSecurityPolicy, forKey: .edgeSecurityPolicy)
       try container.encodeIfPresent(self.enableCdn, forKey: .enableCdn)
       try container.encodeIfPresent(
@@ -1114,9 +1104,6 @@
       /// Balancers, regional external Application Load Balancers, or regional
       /// external proxy Network Load Balancers.
       case externalManaged
-      /// Signifies that this will be used for global external passthrough Network
-      /// Load Balancers.
-      case externalPassthrough
       /// Signifies that this will be used for internal passthrough Network Load
       /// Balancers.
       case `internal`
@@ -1140,7 +1127,6 @@
         switch self {
         case .external: return "EXTERNAL"
         case .externalManaged: return "EXTERNAL_MANAGED"
-        case .externalPassthrough: return "EXTERNAL_PASSTHROUGH"
         case .`internal`: return "INTERNAL"
         case .internalManaged: return "INTERNAL_MANAGED"
         case .internalSelfManaged: return "INTERNAL_SELF_MANAGED"
@@ -1156,7 +1142,6 @@
         switch stringValue {
         case "EXTERNAL": self = .external
         case "EXTERNAL_MANAGED": self = .externalManaged
-        case "EXTERNAL_PASSTHROUGH": self = .externalPassthrough
         case "INTERNAL": self = .`internal`
         case "INTERNAL_MANAGED": self = .internalManaged
         case "INTERNAL_SELF_MANAGED": self = .internalSelfManaged
@@ -1176,7 +1161,6 @@
         switch self {
         case .external: return try container.encode("EXTERNAL")
         case .externalManaged: return try container.encode("EXTERNAL_MANAGED")
-        case .externalPassthrough: return try container.encode("EXTERNAL_PASSTHROUGH")
         case .`internal`: return try container.encode("INTERNAL")
         case .internalManaged: return try container.encode("INTERNAL_MANAGED")
         case .internalSelfManaged: return try container.encode("INTERNAL_SELF_MANAGED")

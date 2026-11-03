@@ -161,8 +161,7 @@
     /// of snapshot group feature is restricted.
     public var snapshotGroupName: Swift.String? = nil
 
-    /// Indicates the type of the snapshot. Valid values are ARCHIVE
-    /// or STANDARD. The default is STANDARD.
+    /// Indicates the type of the snapshot.
     public var snapshotType: Snapshot.SnapshotType? = nil
 
     /// The source disk used to create this snapshot.
@@ -567,11 +566,7 @@
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum SnapshotType: Codable, Equatable, Hashable, Sendable {
-      /// Indicates an archive snapshot, which is recommended for long-term
-      /// retention and compliance.
       case archive
-      /// Indicates a standard snapshot, which is recommended for frequent
-      /// restores.
       case standard
       /// Encodes an unknown string value.
       ///

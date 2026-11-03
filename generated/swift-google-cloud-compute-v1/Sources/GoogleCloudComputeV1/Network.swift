@@ -32,9 +32,6 @@
     @available(*, deprecated)
     public var ipv4Range: Swift.String? = nil
 
-    /// Output only. [Output Only] Additional tags for this resource.
-    public var additionalTags: [Swift.String] = []
-
     /// Must be set to create a VPC network. If not set, a legacy network is
     /// created.
     ///
@@ -162,7 +159,6 @@
       init?(intValue: Swift.Int) { nil }
 
       static let ipv4Range = CodingKeys(stringValue: "IPv4Range")
-      static let additionalTags = CodingKeys(stringValue: "additionalTags")
       static let autoCreateSubnetworks = CodingKeys(stringValue: "autoCreateSubnetworks")
       static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
       static let description = CodingKeys(stringValue: "description")
@@ -186,7 +182,6 @@
 
       static let _knownKeys: Set<Swift.String> = [
         "IPv4Range",
-        "additionalTags",
         "autoCreateSubnetworks",
         "creationTimestamp",
         "description",
@@ -215,9 +210,6 @@
     public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.ipv4Range = try container.decodeIfPresent(Swift.String.self, forKey: .ipv4Range)
-      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .additionalTags) {
-        self.additionalTags = value
-      }
       self.autoCreateSubnetworks = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .autoCreateSubnetworks)
       self.creationTimestamp = try container.decodeIfPresent(
@@ -263,7 +255,6 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.ipv4Range, forKey: .ipv4Range)
-      try container.encode(self.additionalTags, forKey: .additionalTags)
       try container.encodeIfPresent(self.autoCreateSubnetworks, forKey: .autoCreateSubnetworks)
       try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
       try container.encodeIfPresent(self.description, forKey: .description)

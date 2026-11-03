@@ -28,10 +28,6 @@
         request: RegionSslPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SslPolicy
 
-      func getIamPolicy(
-        request: RegionSslPoliciesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.Policy
-
       func insert(
         request: RegionSslPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -48,15 +44,6 @@
       func patch(
         request: RegionSslPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
-
-      func setIamPolicy(
-        request: RegionSslPoliciesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.Policy
-
-      func testIamPermissions(
-        request: RegionSslPoliciesClient.TestIamPermissionsRequest,
-        options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
 
       func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions

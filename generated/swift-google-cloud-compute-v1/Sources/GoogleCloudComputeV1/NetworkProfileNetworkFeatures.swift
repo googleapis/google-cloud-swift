@@ -440,14 +440,6 @@
       case ipsecInterconnect
       /// External IP automatically reserved for Cloud NAT.
       case natAuto
-      /// The global external address can only be assigned to Global External
-      /// Passthrough Network Load Balancer forwarding rules, as an Availability
-      /// Group 0 address.
-      case passthroughLoadBalancerAvailabilityGroup0
-      /// The global external address can only be assigned to Global External
-      /// Passthrough Network Load Balancer forwarding rules, as an Availability
-      /// Group 1 address.
-      case passthroughLoadBalancerAvailabilityGroup1
       /// A private network IP address that can be used to configure Private
       /// Service Connect. This purpose can be specified only forGLOBAL addresses of Type INTERNAL
       case privateServiceConnect
@@ -475,10 +467,6 @@
         case .gceEndpoint: return "GCE_ENDPOINT"
         case .ipsecInterconnect: return "IPSEC_INTERCONNECT"
         case .natAuto: return "NAT_AUTO"
-        case .passthroughLoadBalancerAvailabilityGroup0:
-          return "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0"
-        case .passthroughLoadBalancerAvailabilityGroup1:
-          return "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1"
         case .privateServiceConnect: return "PRIVATE_SERVICE_CONNECT"
         case .serverless: return "SERVERLESS"
         case .sharedLoadbalancerVip: return "SHARED_LOADBALANCER_VIP"
@@ -496,10 +484,6 @@
         case "GCE_ENDPOINT": self = .gceEndpoint
         case "IPSEC_INTERCONNECT": self = .ipsecInterconnect
         case "NAT_AUTO": self = .natAuto
-        case "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0":
-          self = .passthroughLoadBalancerAvailabilityGroup0
-        case "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1":
-          self = .passthroughLoadBalancerAvailabilityGroup1
         case "PRIVATE_SERVICE_CONNECT": self = .privateServiceConnect
         case "SERVERLESS": self = .serverless
         case "SHARED_LOADBALANCER_VIP": self = .sharedLoadbalancerVip
@@ -521,10 +505,6 @@
         case .gceEndpoint: return try container.encode("GCE_ENDPOINT")
         case .ipsecInterconnect: return try container.encode("IPSEC_INTERCONNECT")
         case .natAuto: return try container.encode("NAT_AUTO")
-        case .passthroughLoadBalancerAvailabilityGroup0:
-          return try container.encode("PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0")
-        case .passthroughLoadBalancerAvailabilityGroup1:
-          return try container.encode("PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1")
         case .privateServiceConnect: return try container.encode("PRIVATE_SERVICE_CONNECT")
         case .serverless: return try container.encode("SERVERLESS")
         case .sharedLoadbalancerVip: return try container.encode("SHARED_LOADBALANCER_VIP")

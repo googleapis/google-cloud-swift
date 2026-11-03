@@ -60,7 +60,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/projectViews"
             let query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             return (path, query)
           }() {

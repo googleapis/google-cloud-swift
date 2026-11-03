@@ -28,9 +28,6 @@
     /// If false, 'loadErrors' indicates the reasons.
     public var loadSucceeded: Swift.Bool? = nil
 
-    /// Output only. Summary of quota usage for given UrlMap.
-    public var quotaUsage: UrlMapQuotaUsage? = nil
-
     public var testFailures: [TestFailure] = []
 
     /// If successfully loaded, this field indicates whether the test passed.
@@ -64,14 +61,12 @@
 
       static let loadErrors = CodingKeys(stringValue: "loadErrors")
       static let loadSucceeded = CodingKeys(stringValue: "loadSucceeded")
-      static let quotaUsage = CodingKeys(stringValue: "quotaUsage")
       static let testFailures = CodingKeys(stringValue: "testFailures")
       static let testPassed = CodingKeys(stringValue: "testPassed")
 
       static let _knownKeys: Set<Swift.String> = [
         "loadErrors",
         "loadSucceeded",
-        "quotaUsage",
         "testFailures",
         "testPassed",
       ]
@@ -83,7 +78,6 @@
         self.loadErrors = value
       }
       self.loadSucceeded = try container.decodeIfPresent(Swift.Bool.self, forKey: .loadSucceeded)
-      self.quotaUsage = try container.decodeIfPresent(UrlMapQuotaUsage.self, forKey: .quotaUsage)
       if let value = try container.decodeIfPresent([TestFailure].self, forKey: .testFailures) {
         self.testFailures = value
       }
@@ -98,7 +92,6 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.loadErrors, forKey: .loadErrors)
       try container.encodeIfPresent(self.loadSucceeded, forKey: .loadSucceeded)
-      try container.encodeIfPresent(self.quotaUsage, forKey: .quotaUsage)
       try container.encode(self.testFailures, forKey: .testFailures)
       try container.encodeIfPresent(self.testPassed, forKey: .testPassed)
       for (key, value) in self._unknownFields.json {

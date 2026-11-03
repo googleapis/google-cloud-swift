@@ -122,11 +122,6 @@
     /// only be used with INTERNAL type with theVPC_PEERING purpose.
     public var network: Swift.String? = nil
 
-    /// Optional. The URL of the network attachment that this address comes from in the
-    /// following format:
-    /// projects/{project}/regions/{region_name}/networkAttachments/{network_attachment_name}.
-    public var networkAttachment: Swift.String? = nil
-
     /// This signifies the networking tier used for configuring this address and
     /// can only take the following values: PREMIUM orSTANDARD. Internal IP addresses are always Premium Tier;
     /// global external IP addresses are always Premium Tier; regional external IP
@@ -179,11 +174,6 @@
 
     /// [Output Only] Server-defined URL for the resource.
     public var selfLink: Swift.String? = nil
-
-    /// Optional. Producer Service's Service class ID for the region of this address. Can
-    /// only be used with network_attachment. It is not possible to use on its own;
-    /// however, network_attachment can be used without service_class_id.
-    public var serviceClassId: Swift.String? = nil
 
     /// Output only. [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
     /// An address that is RESERVING is currently in the process of
@@ -238,13 +228,11 @@
       static let labels = CodingKeys(stringValue: "labels")
       static let name = CodingKeys(stringValue: "name")
       static let network = CodingKeys(stringValue: "network")
-      static let networkAttachment = CodingKeys(stringValue: "networkAttachment")
       static let networkTier = CodingKeys(stringValue: "networkTier")
       static let prefixLength = CodingKeys(stringValue: "prefixLength")
       static let purpose = CodingKeys(stringValue: "purpose")
       static let region = CodingKeys(stringValue: "region")
       static let selfLink = CodingKeys(stringValue: "selfLink")
-      static let serviceClassId = CodingKeys(stringValue: "serviceClassId")
       static let status = CodingKeys(stringValue: "status")
       static let subnetwork = CodingKeys(stringValue: "subnetwork")
       static let users = CodingKeys(stringValue: "users")
@@ -263,13 +251,11 @@
         "labels",
         "name",
         "network",
-        "networkAttachment",
         "networkTier",
         "prefixLength",
         "purpose",
         "region",
         "selfLink",
-        "serviceClassId",
         "status",
         "subnetwork",
         "users",
@@ -306,16 +292,12 @@
       }
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
-      self.networkAttachment = try container.decodeIfPresent(
-        Swift.String.self, forKey: .networkAttachment)
       self.networkTier = try container.decodeIfPresent(
         Address.NetworkTier.self, forKey: .networkTier)
       self.prefixLength = try container.decodeIfPresent(Swift.Int32.self, forKey: .prefixLength)
       self.purpose = try container.decodeIfPresent(Address.Purpose.self, forKey: .purpose)
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
-      self.serviceClassId = try container.decodeIfPresent(
-        Swift.String.self, forKey: .serviceClassId)
       self.status = try container.decodeIfPresent(Address.Status.self, forKey: .status)
       self.subnetwork = try container.decodeIfPresent(Swift.String.self, forKey: .subnetwork)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .users) {
@@ -346,13 +328,11 @@
       try container.encode(self.labels, forKey: .labels)
       try container.encodeIfPresent(self.name, forKey: .name)
       try container.encodeIfPresent(self.network, forKey: .network)
-      try container.encodeIfPresent(self.networkAttachment, forKey: .networkAttachment)
       try container.encodeIfPresent(self.networkTier, forKey: .networkTier)
       try container.encodeIfPresent(self.prefixLength, forKey: .prefixLength)
       try container.encodeIfPresent(self.purpose, forKey: .purpose)
       try container.encodeIfPresent(self.region, forKey: .region)
       try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
-      try container.encodeIfPresent(self.serviceClassId, forKey: .serviceClassId)
       try container.encodeIfPresent(self.status, forKey: .status)
       try container.encodeIfPresent(self.subnetwork, forKey: .subnetwork)
       try container.encode(self.users, forKey: .users)
@@ -646,14 +626,6 @@
       case ipsecInterconnect
       /// External IP automatically reserved for Cloud NAT.
       case natAuto
-      /// The global external address can only be assigned to Global External
-      /// Passthrough Network Load Balancer forwarding rules, as an Availability
-      /// Group 0 address.
-      case passthroughLoadBalancerAvailabilityGroup0
-      /// The global external address can only be assigned to Global External
-      /// Passthrough Network Load Balancer forwarding rules, as an Availability
-      /// Group 1 address.
-      case passthroughLoadBalancerAvailabilityGroup1
       /// A private network IP address that can be used to configure Private
       /// Service Connect. This purpose can be specified only forGLOBAL addresses of Type INTERNAL
       case privateServiceConnect
@@ -681,10 +653,6 @@
         case .gceEndpoint: return "GCE_ENDPOINT"
         case .ipsecInterconnect: return "IPSEC_INTERCONNECT"
         case .natAuto: return "NAT_AUTO"
-        case .passthroughLoadBalancerAvailabilityGroup0:
-          return "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0"
-        case .passthroughLoadBalancerAvailabilityGroup1:
-          return "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1"
         case .privateServiceConnect: return "PRIVATE_SERVICE_CONNECT"
         case .serverless: return "SERVERLESS"
         case .sharedLoadbalancerVip: return "SHARED_LOADBALANCER_VIP"
@@ -702,10 +670,6 @@
         case "GCE_ENDPOINT": self = .gceEndpoint
         case "IPSEC_INTERCONNECT": self = .ipsecInterconnect
         case "NAT_AUTO": self = .natAuto
-        case "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0":
-          self = .passthroughLoadBalancerAvailabilityGroup0
-        case "PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1":
-          self = .passthroughLoadBalancerAvailabilityGroup1
         case "PRIVATE_SERVICE_CONNECT": self = .privateServiceConnect
         case "SERVERLESS": self = .serverless
         case "SHARED_LOADBALANCER_VIP": self = .sharedLoadbalancerVip
@@ -727,10 +691,6 @@
         case .gceEndpoint: return try container.encode("GCE_ENDPOINT")
         case .ipsecInterconnect: return try container.encode("IPSEC_INTERCONNECT")
         case .natAuto: return try container.encode("NAT_AUTO")
-        case .passthroughLoadBalancerAvailabilityGroup0:
-          return try container.encode("PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0")
-        case .passthroughLoadBalancerAvailabilityGroup1:
-          return try container.encode("PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1")
         case .privateServiceConnect: return try container.encode("PRIVATE_SERVICE_CONNECT")
         case .serverless: return try container.encode("SERVERLESS")
         case .sharedLoadbalancerVip: return try container.encode("SHARED_LOADBALANCER_VIP")

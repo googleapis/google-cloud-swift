@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if BackendBuckets || BackendServices || Disks || FirewallPolicies || Images || InstanceTemplates || Instances || InstantSnapshotGroups || InstantSnapshots || InterconnectAttachmentGroups || InterconnectGroups || LicenseCodes || Licenses || MachineImages || NetworkAttachments || NetworkFirewallPolicies || NodeGroups || NodeTemplates || OrganizationSecurityPolicies || RegionBackendBuckets || RegionBackendServices || RegionDisks || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkFirewallPolicies || RegionSecurityPolicies || RegionSnapshots || RegionSslPolicies || ReservationBlocks || ReservationSubBlocks || Reservations || ResourcePolicies || Routers || SecurityPolicies || ServiceAttachments || Snapshots || SslPolicies || StoragePools || Subnetworks
+#if BackendBuckets || BackendServices || Disks || FirewallPolicies || Images || InstanceTemplates || Instances || InstantSnapshotGroups || InstantSnapshots || InterconnectAttachmentGroups || InterconnectGroups || LicenseCodes || Licenses || MachineImages || NetworkAttachments || NetworkFirewallPolicies || NodeGroups || NodeTemplates || OrganizationSecurityPolicies || RegionBackendBuckets || RegionBackendServices || RegionDisks || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkFirewallPolicies || RegionSecurityPolicies || RegionSnapshots || ReservationBlocks || ReservationSubBlocks || Reservations || ResourcePolicies || Routers || SecurityPolicies || ServiceAttachments || Snapshots || StoragePools || Subnetworks
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 

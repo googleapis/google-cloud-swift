@@ -52,7 +52,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/aggregated/sslPolicies"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -116,7 +116,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/global/sslPolicies/\(pathVariable1)"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -178,7 +178,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/global/sslPolicies/\(pathVariable1)"
             let query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             return (path, query)
           }() {
@@ -212,71 +212,6 @@
       }
 
       @concurrent
-      public func getIamPolicy(
-        request: SslPoliciesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.Policy {
-        let (path, query, configure) = try {
-          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
-          in
-          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
-            guard
-              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
-                request.project as Swift.String?,
-                matching: [.singleWildcard],
-                fieldName: "project")
-            else {
-              return nil
-            }
-            guard
-              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
-                request.resource as Swift.String?,
-                matching: [.singleWildcard],
-                fieldName: "resource")
-            else {
-              return nil
-            }
-            let path =
-              "/compute/v1/projects/\(pathVariable0)/global/sslPolicies/\(pathVariable1)/getIamPolicy"
-            var query = [
-              URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
-            ]
-            let encoder = GoogleGax._QueryParameterEncoder()
-            query.append(
-              contentsOf: try encoder.encode(
-                request.optionsRequestedPolicyVersion, prefix: "optionsRequestedPolicyVersion"))
-            return (path, query)
-          }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.GET) })
-          }
-          var paths: [GoogleGax.PathMismatch] = []
-          do {
-            var builder = GoogleGax._PathMismatchBuilder()
-            builder.maybeAdd(
-              request.project as Swift.String?,
-              matching: [.singleWildcard],
-              fieldName: "project",
-              expecting: "*"
-            )
-            builder.maybeAdd(
-              request.resource as Swift.String?,
-              matching: [.singleWildcard],
-              fieldName: "resource",
-              expecting: "*"
-            )
-            paths.append(builder.build())
-          }
-          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
-        }()
-        var req = try await self.inner.newRequest(
-          percentEncodedPath: path, query: query, options: options)
-        configure(&req)
-        return try await req.rpc(
-          GoogleCloudComputeV1.Policy.self, timeout: options.attemptTimeout
-        ).get()
-      }
-
-      @concurrent
       public func insert(
         request: SslPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -295,7 +230,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/global/sslPolicies"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -346,7 +281,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/global/sslPolicies"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -398,7 +333,7 @@
               "/compute/v1/projects/\(pathVariable0)/global/sslPolicies/listAvailableFeatures"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -458,7 +393,7 @@
             let path = "/compute/v1/projects/\(pathVariable0)/global/sslPolicies/\(pathVariable1)"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -493,134 +428,6 @@
         }
         return try await req.rpc(
           GoogleCloudComputeV1.Operation.self, timeout: options.attemptTimeout
-        ).get()
-      }
-
-      @concurrent
-      public func setIamPolicy(
-        request: SslPoliciesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.Policy {
-        let (path, query, configure) = try {
-          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
-          in
-          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
-            guard
-              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
-                request.project as Swift.String?,
-                matching: [.singleWildcard],
-                fieldName: "project")
-            else {
-              return nil
-            }
-            guard
-              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
-                request.resource as Swift.String?,
-                matching: [.singleWildcard],
-                fieldName: "resource")
-            else {
-              return nil
-            }
-            let path =
-              "/compute/v1/projects/\(pathVariable0)/global/sslPolicies/\(pathVariable1)/setIamPolicy"
-            let query = [
-              URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
-            ]
-            return (path, query)
-          }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
-          }
-          var paths: [GoogleGax.PathMismatch] = []
-          do {
-            var builder = GoogleGax._PathMismatchBuilder()
-            builder.maybeAdd(
-              request.project as Swift.String?,
-              matching: [.singleWildcard],
-              fieldName: "project",
-              expecting: "*"
-            )
-            builder.maybeAdd(
-              request.resource as Swift.String?,
-              matching: [.singleWildcard],
-              fieldName: "resource",
-              expecting: "*"
-            )
-            paths.append(builder.build())
-          }
-          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
-        }()
-        var req = try await self.inner.newRequest(
-          percentEncodedPath: path, query: query, options: options)
-        configure(&req)
-        if let body = request.body {
-          try req.setBody(json: body)
-        }
-        return try await req.rpc(
-          GoogleCloudComputeV1.Policy.self, timeout: options.attemptTimeout
-        ).get()
-      }
-
-      @concurrent
-      public func testIamPermissions(
-        request: SslPoliciesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
-        let (path, query, configure) = try {
-          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
-          in
-          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
-            guard
-              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
-                request.project as Swift.String?,
-                matching: [.singleWildcard],
-                fieldName: "project")
-            else {
-              return nil
-            }
-            guard
-              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
-                request.resource as Swift.String?,
-                matching: [.singleWildcard],
-                fieldName: "resource")
-            else {
-              return nil
-            }
-            let path =
-              "/compute/v1/projects/\(pathVariable0)/global/sslPolicies/\(pathVariable1)/testIamPermissions"
-            let query = [
-              URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
-            ]
-            return (path, query)
-          }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
-          }
-          var paths: [GoogleGax.PathMismatch] = []
-          do {
-            var builder = GoogleGax._PathMismatchBuilder()
-            builder.maybeAdd(
-              request.project as Swift.String?,
-              matching: [.singleWildcard],
-              fieldName: "project",
-              expecting: "*"
-            )
-            builder.maybeAdd(
-              request.resource as Swift.String?,
-              matching: [.singleWildcard],
-              fieldName: "resource",
-              expecting: "*"
-            )
-            paths.append(builder.build())
-          }
-          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
-        }()
-        var req = try await self.inner.newRequest(
-          percentEncodedPath: path, query: query, options: options)
-        configure(&req)
-        if let body = request.body {
-          try req.setBody(json: body)
-        }
-        return try await req.rpc(
-          GoogleCloudComputeV1.TestPermissionsResponse.self, timeout: options.attemptTimeout
         ).get()
       }
 

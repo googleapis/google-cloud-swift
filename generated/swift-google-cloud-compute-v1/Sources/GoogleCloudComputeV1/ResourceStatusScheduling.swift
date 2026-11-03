@@ -30,11 +30,6 @@
     /// process, in RFC3339 text format.
     public var gracefulShutdownTimestamp: Swift.String? = nil
 
-    /// Output only. Protection tier for the workload which specifies the workload
-    /// expectations in the event of infrastructure failures at data center
-    /// (e.g. power and/or cooling failures).
-    public var protectionTier: ResourceStatusScheduling.ProtectionTier? = nil
-
     /// Time in future when the instance will be terminated inRFC3339 text format.
     public var terminationTimestamp: Swift.String? = nil
 
@@ -65,13 +60,11 @@
 
       static let availabilityDomain = CodingKeys(stringValue: "availabilityDomain")
       static let gracefulShutdownTimestamp = CodingKeys(stringValue: "gracefulShutdownTimestamp")
-      static let protectionTier = CodingKeys(stringValue: "protectionTier")
       static let terminationTimestamp = CodingKeys(stringValue: "terminationTimestamp")
 
       static let _knownKeys: Set<Swift.String> = [
         "availabilityDomain",
         "gracefulShutdownTimestamp",
-        "protectionTier",
         "terminationTimestamp",
       ]
     }
@@ -82,8 +75,6 @@
         Swift.Int32.self, forKey: .availabilityDomain)
       self.gracefulShutdownTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .gracefulShutdownTimestamp)
-      self.protectionTier = try container.decodeIfPresent(
-        ResourceStatusScheduling.ProtectionTier.self, forKey: .protectionTier)
       self.terminationTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .terminationTimestamp)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -97,83 +88,9 @@
       try container.encodeIfPresent(self.availabilityDomain, forKey: .availabilityDomain)
       try container.encodeIfPresent(
         self.gracefulShutdownTimestamp, forKey: .gracefulShutdownTimestamp)
-      try container.encodeIfPresent(self.protectionTier, forKey: .protectionTier)
       try container.encodeIfPresent(self.terminationTimestamp, forKey: .terminationTimestamp)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
-      }
-    }
-
-    /// The enumerated type for the [protectionTier][google.cloud.compute.v1.ResourceStatusScheduling.protectionTier] field.
-    ///
-    /// [google.cloud.compute.v1.ResourceStatusScheduling.protectionTier]: <doc:ResourceStatusScheduling/ProtectionTier>
-    ///
-    /// - Note: Adding cases to this enumeration is not considered a breaking change.
-    ///   Always include an `@unknown default:` case when switching over this type.
-    ///   Do not pattern-match against `unknownStringValue`
-    ///   expecting specific values to remain unparsed; future releases may promote
-    ///   them to named cases.
-    public enum ProtectionTier: Codable, Equatable, Hashable, Sendable {
-      /// CAPACITY_OPTIMIZED capacity leverages redundancies (e.g. power,
-      /// cooling) at the data center during normal operating conditions. In the
-      /// event of infrastructure failures at data center (e.g. power and/or
-      /// cooling failures), this workload may be disrupted. As a consequence, it
-      /// has a weaker availability SLO than STANDARD.
-      case capacityOptimized
-      /// STANDARD protection for workload that should be protected by
-      /// redundancies (e.g. power, cooling) at the data center level. In the
-      /// event of infrastructure failures at data center (e.g. power and/or
-      /// cooling failures), this workload is expected to continue as normal
-      /// using the redundancies.
-      case standard
-      /// Unspecified protection tier.
-      case unspecified
-      /// Encodes an unknown string value.
-      ///
-      /// The most common cause for an unknown value is for the service to send
-      /// a value unknown to the library. We recommend you update your library to
-      /// the latest version.
-      ///
-      /// - Warning: Do not pattern-match specific string literals in this case;
-      ///   future releases may promote them to named enum cases.
-      case unknownStringValue(Swift.String)
-
-      /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String {
-        switch self {
-        case .capacityOptimized: return "PROTECTION_TIER_CAPACITY_OPTIMIZED"
-        case .standard: return "PROTECTION_TIER_STANDARD"
-        case .unspecified: return "PROTECTION_TIER_UNSPECIFIED"
-        case .unknownStringValue(let v): return v
-        }
-      }
-
-      /// Initialize from a string value.
-      ///
-      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ProtectionTier/unknownStringValue(_:)).
-      public init(stringValue: Swift.String) {
-        switch stringValue {
-        case "PROTECTION_TIER_CAPACITY_OPTIMIZED": self = .capacityOptimized
-        case "PROTECTION_TIER_STANDARD": self = .standard
-        case "PROTECTION_TIER_UNSPECIFIED": self = .unspecified
-        default: self = .unknownStringValue(stringValue)
-        }
-      }
-
-      public init(from decoder: any Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let s = try container.decode(Swift.String.self)
-        self.init(stringValue: s)
-      }
-
-      public func encode(to encoder: any Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .capacityOptimized: return try container.encode("PROTECTION_TIER_CAPACITY_OPTIMIZED")
-        case .standard: return try container.encode("PROTECTION_TIER_STANDARD")
-        case .unspecified: return try container.encode("PROTECTION_TIER_UNSPECIFIED")
-        case .unknownStringValue(let v): return try container.encode(v)
-        }
       }
     }
 

@@ -35,10 +35,6 @@
     /// Not supported when the URL map is bound to a target gRPC proxy.
     public var corsPolicy: CorsPolicy? = nil
 
-    /// Dynamic compression policy for this URL Map's route. Available only for
-    /// Global EXTERNAL_MANAGED load balancer schemes.
-    public var dynamicCompressionPolicy: DynamicCompressionPolicy? = nil
-
     /// The specification for fault injection introduced into traffic to test
     /// the resiliency of clients to backend service failure. As part of fault
     /// injection, when clients send requests to a backend service, delays can be
@@ -53,12 +49,6 @@
     /// see Load
     /// balancing: Routing and traffic management features.
     public var faultInjectionPolicy: HttpFaultInjection? = nil
-
-    /// Image optimization policy for this URL Map's route. Available only for
-    /// Global EXTERNAL_MANAGED load balancer schemes.
-    /// Either Cloud CDN must be enabled on the backend service or backend bucket
-    /// serving the route, or cache policy must be configured on the same route
-    public var imageOptimizationPolicy: ImageOptimizationPolicy? = nil
 
     /// Specifies the maximum duration (timeout) for streams on the selected route.
     /// Unlike the timeout field where the timeout duration starts
@@ -147,9 +137,7 @@
 
       static let cachePolicy = CodingKeys(stringValue: "cachePolicy")
       static let corsPolicy = CodingKeys(stringValue: "corsPolicy")
-      static let dynamicCompressionPolicy = CodingKeys(stringValue: "dynamicCompressionPolicy")
       static let faultInjectionPolicy = CodingKeys(stringValue: "faultInjectionPolicy")
-      static let imageOptimizationPolicy = CodingKeys(stringValue: "imageOptimizationPolicy")
       static let maxStreamDuration = CodingKeys(stringValue: "maxStreamDuration")
       static let requestMirrorPolicy = CodingKeys(stringValue: "requestMirrorPolicy")
       static let retryPolicy = CodingKeys(stringValue: "retryPolicy")
@@ -160,9 +148,7 @@
       static let _knownKeys: Set<Swift.String> = [
         "cachePolicy",
         "corsPolicy",
-        "dynamicCompressionPolicy",
         "faultInjectionPolicy",
-        "imageOptimizationPolicy",
         "maxStreamDuration",
         "requestMirrorPolicy",
         "retryPolicy",
@@ -176,12 +162,8 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.cachePolicy = try container.decodeIfPresent(CachePolicy.self, forKey: .cachePolicy)
       self.corsPolicy = try container.decodeIfPresent(CorsPolicy.self, forKey: .corsPolicy)
-      self.dynamicCompressionPolicy = try container.decodeIfPresent(
-        DynamicCompressionPolicy.self, forKey: .dynamicCompressionPolicy)
       self.faultInjectionPolicy = try container.decodeIfPresent(
         HttpFaultInjection.self, forKey: .faultInjectionPolicy)
-      self.imageOptimizationPolicy = try container.decodeIfPresent(
-        ImageOptimizationPolicy.self, forKey: .imageOptimizationPolicy)
       self.maxStreamDuration = try container.decodeIfPresent(
         GoogleCloudComputeV1.Duration.self, forKey: .maxStreamDuration)
       self.requestMirrorPolicy = try container.decodeIfPresent(
@@ -205,10 +187,7 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.cachePolicy, forKey: .cachePolicy)
       try container.encodeIfPresent(self.corsPolicy, forKey: .corsPolicy)
-      try container.encodeIfPresent(
-        self.dynamicCompressionPolicy, forKey: .dynamicCompressionPolicy)
       try container.encodeIfPresent(self.faultInjectionPolicy, forKey: .faultInjectionPolicy)
-      try container.encodeIfPresent(self.imageOptimizationPolicy, forKey: .imageOptimizationPolicy)
       try container.encodeIfPresent(self.maxStreamDuration, forKey: .maxStreamDuration)
       try container.encodeIfPresent(self.requestMirrorPolicy, forKey: .requestMirrorPolicy)
       try container.encodeIfPresent(self.retryPolicy, forKey: .retryPolicy)
