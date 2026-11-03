@@ -16,7 +16,7 @@ import Foundation
 import GRPCCore
 import GRPCNIOTransportHTTP2Posix
 import GRPCProtobuf
-@_spi(GoogleCloudInternal) import GoogleAuth
+import GoogleAuth
 @_spi(GoogleCloudInternal) public import GoogleGax
 @_spi(GoogleCloudInternal) public import SwiftProtobuf
 
@@ -152,25 +152,9 @@ public final class _GRPCClient: Sendable {
 
     let effectiveQuotaProject = options.quotaProject ?? self.quotaProject
     var metadata = Metadata()
-    if !self.credentials._isAnonymous {
-      let credUniverse: String
-      do {
-        credUniverse = try await self.credentials.universeDomain()
-      } catch is CancellationError {
-        throw CancellationError()
-      } catch {
-        throw RequestError.io(error)
-      }
-      guard credUniverse == self.universeDomain else {
-        throw RequestError.io(
-          CredentialsError.parseError(
-            "The configured universe domain (\(self.universeDomain)) does not match the universe domain found in the credentials (\(credUniverse))."
-          )
-        )
-      }
-    }
     let authHeaders: AuthHeaders
     do {
+      try await self.credentials.validateUniverseDomain(self.universeDomain)
       authHeaders = try await self.credentials.headers()
     } catch is CancellationError {
       throw CancellationError()
