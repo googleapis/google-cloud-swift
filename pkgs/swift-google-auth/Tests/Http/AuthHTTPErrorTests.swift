@@ -75,6 +75,8 @@ import Testing
 
     #expect(error.urlError == nil)
     #expect(error.statusCode == nil)
+    #expect(error.body == nil)
+    #expect(error.bodyData == nil)
     #expect(error.headers == nil)
   }
 
