@@ -55,8 +55,8 @@ For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(quota
 ### HTTP Client Universe Validation and Retry Policies
 
 - `_HTTPClient` stores the client's resolved `universeDomain` (defaulting to `_Host.defaultUniverseDomain`).
-- Before `_HTTPClient` calls `credentials.headers()` on a request, it checks `credentials._isAnonymous`. For non-anonymous credentials, it awaits `credentials.universeDomain()` and verifies that it equals the client's `universeDomain`. On mismatch, it throws `CredentialsError.parseError` wrapped in `RequestError.io`.
-- If `Task` cancellation (`CancellationError`) occurs while resolving the universe domain or authentication headers, `_HTTPClient` rethrows `CancellationError` directly rather than wrapping it in `RequestError.io`.
+- Before `_HTTPClient` calls `credentials.headers()` on a request, it calls `credentials.validateUniverseDomain(self.universeDomain)`. For non-anonymous credentials, `validateUniverseDomain(_:)` awaits `universeDomain()` and verifies that it equals the client's `universeDomain`, throwing `CredentialsError.parseError` on mismatch (which `_HTTPClient` wraps in `RequestError.io`).
+- If `Task` cancellation (`CancellationError`) occurs while validating the universe domain or resolving authentication headers, `_HTTPClient` rethrows `CancellationError` directly rather than wrapping it in `RequestError.io`.
 - `ContinueOnIO` (for both `RetryPolicy` and `PollingErrorPolicy`) inspects `RequestError.io(let underlying)` and returns `.permanent` when `underlying` is `CredentialsError` or `CancellationError`, ensuring credential and universe domain errors fail immediately on idempotent RPCs.
 
 ## 3. gRPC Transport

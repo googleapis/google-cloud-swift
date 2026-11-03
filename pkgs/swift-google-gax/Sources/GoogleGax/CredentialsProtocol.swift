@@ -20,7 +20,7 @@
 @_spi(GoogleCloudInternal) public protocol _CredentialsProtocol: Sendable {
   func headers() async throws -> GoogleAuth.AuthHeaders
   func universeDomain() async throws -> String
-  var _isAnonymous: Bool { get }
+  func validateUniverseDomain(_ expectedUniverseDomain: String) async throws
 }
 
 extension _CredentialsProtocol {
@@ -28,8 +28,13 @@ extension _CredentialsProtocol {
     GoogleAuth.Credentials.defaultUniverseDomain
   }
 
-  public var _isAnonymous: Bool {
-    false
+  public func validateUniverseDomain(_ expectedUniverseDomain: String) async throws {
+    let credUniverse = try await self.universeDomain()
+    guard credUniverse == expectedUniverseDomain else {
+      throw CredentialsError.parseError(
+        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse))."
+      )
+    }
   }
 }
 

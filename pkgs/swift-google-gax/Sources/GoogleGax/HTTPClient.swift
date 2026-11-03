@@ -13,7 +13,7 @@
 // limitations under the License.
 
 public import Foundation
-@_spi(GoogleCloudInternal) import GoogleAuth
+import GoogleAuth
 @_spi(GoogleCloudInternal) public import Logging
 
 /// Implements a HTTP-only client for the Swift SDK client libraries.
@@ -116,22 +116,12 @@ public import Foundation
     on request: inout _HTTPClientRequest,
     options: RequestOptions
   ) async throws {
-    if !self.credentials._isAnonymous {
-      let credUniverse: String
-      do {
-        credUniverse = try await self.credentials.universeDomain()
-      } catch is CancellationError {
-        throw CancellationError()
-      } catch {
-        throw RequestError.io(error)
-      }
-      guard credUniverse == self.universeDomain else {
-        throw RequestError.io(
-          CredentialsError.parseError(
-            "The configured universe domain (\(self.universeDomain)) does not match the universe domain found in the credentials (\(credUniverse))."
-          )
-        )
-      }
+    do {
+      try await self.credentials.validateUniverseDomain(self.universeDomain)
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch {
+      throw RequestError.io(error)
     }
     let authHeaders = try await self.credentials.headers()
     let customHeaders = _sanitizeCustomHeaders(options.headers, excluding: authHeaders)
