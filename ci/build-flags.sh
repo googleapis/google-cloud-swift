@@ -17,6 +17,9 @@
 _BUILD_FLAGS_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="${REPO_ROOT:-$(cd "${_BUILD_FLAGS_SCRIPT_DIR}/.." && pwd)}"
 
+# Use the native build system rather than Swift 6.4's default Swift Build
+# engine, which intermittently crashes during parallel build planning on Linux
+# (#1015).
 build_flags=(
     --build-system native
     -Xswiftc -warnings-as-errors

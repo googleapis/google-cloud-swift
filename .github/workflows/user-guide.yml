@@ -53,6 +53,7 @@ jobs:
           for target in "${!targets[@]}"; do
             dir="${target[${target}]}"
             swift package \
+              --build-system native \
               --allow-writing-to-directory .render/${dir} \
               generate-documentation "${args[@]}" \
               --target ${target} \
