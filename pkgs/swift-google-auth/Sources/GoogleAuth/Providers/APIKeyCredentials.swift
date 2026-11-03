@@ -24,7 +24,7 @@
 /// - The key is sent to the service using the `x-goog-api-key` HTTP request header.
 /// - Note that only select Google Cloud APIs support API keys; many require full OAuth 2.0 credentials.
 ///   Consult the documentation for the specific API before using API keys.
-struct ApiKeyCredentials: CredentialsProvider, Sendable, CustomDebugStringConvertible {
+struct APIKeyCredentials: CredentialsProvider, Sendable, CustomDebugStringConvertible {
   private let apiKey: String
 
   /// Initializes credentials with the provided API key.
@@ -43,6 +43,6 @@ struct ApiKeyCredentials: CredentialsProvider, Sendable, CustomDebugStringConver
   // MARK: - CustomDebugStringConvertible
 
   var debugDescription: String {
-    return "ApiKeyCredentials(apiKey: \"[redacted]\")"
+    return "APIKeyCredentials(apiKey: \"[redacted]\")"
   }
 }
