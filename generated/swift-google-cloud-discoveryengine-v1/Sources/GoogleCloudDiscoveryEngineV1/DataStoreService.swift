@@ -19,6 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
+  @_spi(GoogleCloudInternal) public import GoogleIAMV1
   @_spi(GoogleCloudInternal) public import GoogleLongRunning
   @_spi(GoogleCloudInternal) public import GoogleWKT
   @_spi(GoogleCloudInternal) public import GoogleGax
@@ -177,6 +178,43 @@
       try await self.inner.updateDataStore(request: request, options: options)
     }
 
+    /// Gets the IAM access control policy for a
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore]. A `NOT_FOUND` error
+    /// is returned if the resource does not exist. An empty policy is returned if
+    /// the resource exists but does not have a policy set on it.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_GetIamPolicy")
+    public func getIamPolicy(
+      request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      try await self.inner.getIamPolicy(request: request, options: options)
+    }
+
+    /// Sets the IAM access control policy for a
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore]. A `NOT_FOUND` error
+    /// is returned if the resource does not exist.
+    ///
+    /// **Important:** When setting a policy directly on a DataStore resource,
+    /// the only recommended roles in the bindings are:
+    /// `roles/discoveryengine.admin`
+    /// `roles/discoveryengine.agentspaceAdmin`
+    /// `roles/discoveryengine.viewer`
+    /// `roles/discoveryengine.agentspaceViewer`
+    /// `roles/discoveryengine.user`
+    /// `roles/discoveryengine.agentspaceUser`
+    /// Attempting to grant any other role will result in a warning in logging.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_SetIamPolicy")
+    public func setIamPolicy(
+      request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      try await self.inner.setIamPolicy(request: request, options: options)
+    }
+
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -252,6 +290,16 @@
       func updateDataStore(
         request: UpdateDataStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore
+
+      /// See `DataStoreServiceClient.getIamPolicy`.
+      func getIamPolicy(
+        request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy
+
+      /// See `DataStoreServiceClient.setIamPolicy`.
+      func setIamPolicy(
+        request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy
 
       /// See `DataStoreServiceClient.listOperations`.
       func listOperations(
@@ -424,6 +472,50 @@
         $0.updateMask = updateMask
       }
       return try await self.updateDataStore(request: request)
+    }
+
+    public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
+      -> GoogleIAMV1.Policy
+    {
+      try await self.getIamPolicy(request: request, options: .init())
+    }
+
+    public func getIamPolicy(
+      request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func getIamPolicy(
+      resource: Swift.String,
+    ) async throws -> GoogleIAMV1.Policy {
+      let request = GoogleIAMV1.GetIamPolicyRequest().with {
+        $0.resource = resource
+      }
+      return try await self.getIamPolicy(request: request)
+    }
+
+    public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
+      -> GoogleIAMV1.Policy
+    {
+      try await self.setIamPolicy(request: request, options: .init())
+    }
+
+    public func setIamPolicy(
+      request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func setIamPolicy(
+      resource: Swift.String,
+      policy: GoogleIAMV1.Policy?,
+    ) async throws -> GoogleIAMV1.Policy {
+      let request = GoogleIAMV1.SetIamPolicyRequest().with {
+        $0.resource = resource
+        $0.policy = policy
+      }
+      return try await self.setIamPolicy(request: request)
     }
 
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

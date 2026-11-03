@@ -75,6 +75,11 @@ public struct CloudVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
   public var backupOdbSubnet: Swift.String = Swift.String()
 
+  /// Optional. Immutable. The name of the OdbDnsZone for using custom domain
+  /// name for the VM Cluster. Format:
+  /// projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}
+  public var odbDnsZone: Swift.String = Swift.String()
+
   /// Output only. The identity connector details which will allow OCI to
   /// securely access the resources in the customer project.
   public var identityConnector: IdentityConnector? = nil
@@ -122,6 +127,7 @@ public struct CloudVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     static let odbNetwork = CodingKeys(stringValue: "odbNetwork")
     static let odbSubnet = CodingKeys(stringValue: "odbSubnet")
     static let backupOdbSubnet = CodingKeys(stringValue: "backupOdbSubnet")
+    static let odbDnsZone = CodingKeys(stringValue: "odbDnsZone")
     static let identityConnector = CodingKeys(stringValue: "identityConnector")
     static let exascaleDbStorageVault = CodingKeys(stringValue: "exascaleDbStorageVault")
 
@@ -139,6 +145,7 @@ public struct CloudVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
       "odbNetwork",
       "odbSubnet",
       "backupOdbSubnet",
+      "odbDnsZone",
       "identityConnector",
       "exascaleDbStorageVault",
     ]
@@ -185,6 +192,9 @@ public struct CloudVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupOdbSubnet) {
       self.backupOdbSubnet = value
     }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .odbDnsZone) {
+      self.odbDnsZone = value
+    }
     self.identityConnector = try container.decodeIfPresent(
       IdentityConnector.self, forKey: .identityConnector)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .exascaleDbStorageVault)
@@ -212,6 +222,7 @@ public struct CloudVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.odbNetwork, forKey: .odbNetwork)
     try container.encode(self.odbSubnet, forKey: .odbSubnet)
     try container.encode(self.backupOdbSubnet, forKey: .backupOdbSubnet)
+    try container.encode(self.odbDnsZone, forKey: .odbDnsZone)
     try container.encodeIfPresent(self.identityConnector, forKey: .identityConnector)
     try container.encode(self.exascaleDbStorageVault, forKey: .exascaleDbStorageVault)
     for (key, value) in self._unknownFields.json {

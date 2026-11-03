@@ -180,6 +180,11 @@
       /// If specified, custom value for max output tokens will be used.
       public var maxOutputTokens: Swift.Int32? = nil
 
+      /// Optional. Setting for provisioned throughput.
+      public var provisionedThroughputSetting:
+        GenerateGroundedContentRequest.GenerationSpec.ProvisionedThroughputSetting =
+          GenerateGroundedContentRequest.GenerationSpec.ProvisionedThroughputSetting()
+
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `GenerationSpec`.
@@ -214,6 +219,8 @@
         static let seed = CodingKeys(stringValue: "seed")
         static let presencePenalty = CodingKeys(stringValue: "presencePenalty")
         static let maxOutputTokens = CodingKeys(stringValue: "maxOutputTokens")
+        static let provisionedThroughputSetting = CodingKeys(
+          stringValue: "provisionedThroughputSetting")
 
         static let _knownKeys: Set<Swift.String> = [
           "modelId",
@@ -225,6 +232,7 @@
           "seed",
           "presencePenalty",
           "maxOutputTokens",
+          "provisionedThroughputSetting",
         ]
       }
 
@@ -246,6 +254,12 @@
           Swift.Float.self, forKey: .presencePenalty)
         self.maxOutputTokens = try container.decodeIfPresent(
           Swift.Int32.self, forKey: .maxOutputTokens)
+        if let value = try container.decodeIfPresent(
+          GenerateGroundedContentRequest.GenerationSpec.ProvisionedThroughputSetting.self,
+          forKey: .provisionedThroughputSetting)
+        {
+          self.provisionedThroughputSetting = value
+        }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
@@ -263,8 +277,132 @@
         try container.encodeIfPresent(self.seed, forKey: .seed)
         try container.encodeIfPresent(self.presencePenalty, forKey: .presencePenalty)
         try container.encodeIfPresent(self.maxOutputTokens, forKey: .maxOutputTokens)
+        try container.encode(
+          self.provisionedThroughputSetting, forKey: .provisionedThroughputSetting)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// Setting for provisioned throughput.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
+      public enum ProvisionedThroughputSetting: Codable, Equatable, Hashable, Sendable {
+        /// Default value. If the user has remaining provisioned throughput,
+        /// provisioned throughput will be used. Otherwise, pay as you go will be
+        /// used.
+        case unspecified
+        /// Only use provisioned throughput. If the user has no remaining
+        /// provisioned throughput, an error will be returned.
+        case provisionedThroughputOnly
+        /// Disables provisioned throughput.
+        case payAsYouGoOnly
+        /// Encodes an unknown integer value.
+        ///
+        /// The most common cause for an unknown value is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
+        case unknownIntValue(Int)
+        /// Encodes an unknown string value.
+        ///
+        /// The most common cause for an unknown value is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
+        case unknownStringValue(String)
+
+        public init() {
+          self = .unspecified
+        }
+
+        /// Returns the integer value associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+        public var intValue: Int? {
+          switch self {
+          case .unspecified: return 0
+          case .provisionedThroughputOnly: return 1
+          case .payAsYouGoOnly: return 2
+          case .unknownIntValue(let v): return v
+          case .unknownStringValue: return nil
+          }
+        }
+
+        /// Returns the string value (or name) associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+        public var stringValue: Swift.String? {
+          switch self {
+          case .unspecified: return "PROVISIONED_THROUGHPUT_SETTING_UNSPECIFIED"
+          case .provisionedThroughputOnly: return "PROVISIONED_THROUGHPUT_ONLY"
+          case .payAsYouGoOnly: return "PAY_AS_YOU_GO_ONLY"
+          case .unknownIntValue: return nil
+          case .unknownStringValue(let v): return v
+          }
+        }
+
+        /// Initialize from a string value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ProvisionedThroughputSetting/unknownStringValue(_:)).
+        public init(stringValue: Swift.String) {
+          switch stringValue {
+          case "PROVISIONED_THROUGHPUT_SETTING_UNSPECIFIED": self = .unspecified
+          case "PROVISIONED_THROUGHPUT_ONLY": self = .provisionedThroughputOnly
+          case "PAY_AS_YOU_GO_ONLY": self = .payAsYouGoOnly
+          default: self = .unknownStringValue(stringValue)
+          }
+        }
+
+        /// Initialize from an integer value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ProvisionedThroughputSetting/unknownIntValue(_:)).
+        public init(intValue: Int) {
+          switch intValue {
+          case 0: self = .unspecified
+          case 1: self = .provisionedThroughputOnly
+          case 2: self = .payAsYouGoOnly
+          default: self = .unknownIntValue(intValue)
+          }
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.singleValueContainer()
+          if let v = try? container.decode(Int.self) {
+            self.init(intValue: v)
+            return
+          }
+          if let s = try? container.decode(String.self) {
+            if let v = Int(s) {
+              self.init(intValue: v)
+            } else {
+              self.init(stringValue: s)
+            }
+            return
+          }
+          throw DecodingError.dataCorruptedError(
+            in: container, debugDescription: "Expected enum value, must be integer or string.")
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.singleValueContainer()
+          switch self {
+          case .unspecified:
+            return try container.encode("PROVISIONED_THROUGHPUT_SETTING_UNSPECIFIED")
+          case .provisionedThroughputOnly:
+            return try container.encode("PROVISIONED_THROUGHPUT_ONLY")
+          case .payAsYouGoOnly: return try container.encode("PAY_AS_YOU_GO_ONLY")
+          case .unknownIntValue(let v): return try container.encode(v)
+          case .unknownStringValue(let v): return try container.encode(v)
+          }
         }
       }
 
@@ -911,6 +1049,14 @@
         public var dynamicRetrievalConfig:
           GenerateGroundedContentRequest.DynamicRetrievalConfiguration? = nil
 
+        /// Optional. List of domains to be excluded from the search results.
+        public var excludeDomains: [Swift.String] = []
+
+        /// Optional. Sites with confidence level chosen & above this value will be
+        /// blocked from the search results.
+        public var blockingConfidence: GoogleCloudDiscoveryEngineV1.Citation.PhishBlockThreshold =
+          GoogleCloudDiscoveryEngineV1.Citation.PhishBlockThreshold()
+
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
         /// Initialize a new instance of `GoogleSearchSource`.
@@ -937,9 +1083,13 @@
           init?(intValue: Swift.Int) { nil }
 
           static let dynamicRetrievalConfig = CodingKeys(stringValue: "dynamicRetrievalConfig")
+          static let excludeDomains = CodingKeys(stringValue: "excludeDomains")
+          static let blockingConfidence = CodingKeys(stringValue: "blockingConfidence")
 
           static let _knownKeys: Set<Swift.String> = [
-            "dynamicRetrievalConfig"
+            "dynamicRetrievalConfig",
+            "excludeDomains",
+            "blockingConfidence",
           ]
         }
 
@@ -948,6 +1098,16 @@
           self.dynamicRetrievalConfig = try container.decodeIfPresent(
             GenerateGroundedContentRequest.DynamicRetrievalConfiguration.self,
             forKey: .dynamicRetrievalConfig)
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludeDomains)
+          {
+            self.excludeDomains = value
+          }
+          if let value = try container.decodeIfPresent(
+            GoogleCloudDiscoveryEngineV1.Citation.PhishBlockThreshold.self,
+            forKey: .blockingConfidence)
+          {
+            self.blockingConfidence = value
+          }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
               GoogleWKT.WKTValue.self, forKey: key)
@@ -958,6 +1118,8 @@
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(
             self.dynamicRetrievalConfig, forKey: .dynamicRetrievalConfig)
+          try container.encode(self.excludeDomains, forKey: .excludeDomains)
+          try container.encode(self.blockingConfidence, forKey: .blockingConfidence)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
@@ -990,6 +1152,14 @@
       public struct EnterpriseWebRetrievalSource: Codable, Equatable, GoogleWKT._AnyPackable,
         Sendable
       {
+        /// Optional. List of domains to be excluded from the search results.
+        public var excludeDomains: [Swift.String] = []
+
+        /// Optional. Sites with confidence level chosen & above this value will be
+        /// blocked from the search results.
+        public var blockingConfidence: GoogleCloudDiscoveryEngineV1.Citation.PhishBlockThreshold =
+          GoogleCloudDiscoveryEngineV1.Citation.PhishBlockThreshold()
+
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
         /// Initialize a new instance of `EnterpriseWebRetrievalSource`.
@@ -1000,7 +1170,7 @@
         /// Commonly used to initialize the value, for example:
         ///
         /// ```
-        /// let value = EnterpriseWebRetrievalSource().with { $0.<placeholder> = ... }
+        /// let value = EnterpriseWebRetrievalSource().with { $0.excludeDomains = ... }
         /// ```
         @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
@@ -1015,11 +1185,27 @@
           init(stringValue: Swift.String) { self.stringValue = stringValue }
           init?(intValue: Swift.Int) { nil }
 
-          static let _knownKeys: Set<Swift.String> = []
+          static let excludeDomains = CodingKeys(stringValue: "excludeDomains")
+          static let blockingConfidence = CodingKeys(stringValue: "blockingConfidence")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "excludeDomains",
+            "blockingConfidence",
+          ]
         }
 
         public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .excludeDomains)
+          {
+            self.excludeDomains = value
+          }
+          if let value = try container.decodeIfPresent(
+            GoogleCloudDiscoveryEngineV1.Citation.PhishBlockThreshold.self,
+            forKey: .blockingConfidence)
+          {
+            self.blockingConfidence = value
+          }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
               GoogleWKT.WKTValue.self, forKey: key)
@@ -1028,6 +1214,8 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.excludeDomains, forKey: .excludeDomains)
+          try container.encode(self.blockingConfidence, forKey: .blockingConfidence)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }

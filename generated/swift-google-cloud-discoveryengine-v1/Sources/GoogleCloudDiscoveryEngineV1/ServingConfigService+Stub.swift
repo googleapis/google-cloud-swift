@@ -22,9 +22,25 @@
 
   extension Clients {
     protocol ServingConfigServiceStub: Sendable {
+      func createServingConfig(
+        request: CreateServingConfigRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig
+
+      func deleteServingConfig(
+        request: DeleteServingConfigRequest, options: GoogleGax.RequestOptions
+      ) async throws
+
       func updateServingConfig(
         request: UpdateServingConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig
+
+      func getServingConfig(
+        request: GetServingConfigRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig
+
+      func listServingConfigs(
+        request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ListServingConfigsResponse
 
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions

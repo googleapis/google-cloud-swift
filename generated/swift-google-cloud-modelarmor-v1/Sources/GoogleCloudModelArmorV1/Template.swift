@@ -160,7 +160,7 @@ public struct Template: Codable, Equatable, GoogleWKT._AnyPackable,
     public var filterVersionSelector: FilterVersionSelector? = nil
 
     /// Optional. Specifies the modalities to scan.
-    /// If empty, only text modality will be scanned.
+    /// If not specified or empty, only text modality will be scanned.
     public var modalities: [Modality] = []
 
     /// Optional. Indicates whether the template is subject to data residency

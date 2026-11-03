@@ -886,6 +886,21 @@ extension Clients {
         })
     }
 
+    public func createCompilationResultLongRunning(
+      request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "createCompilationResultLongRunning",
+        action: {
+          (r: CreateCompilationResultRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.createCompilationResultLongRunning(request: r, options: o)
+        })
+    }
+
     public func queryCompilationResultActions(
       request: QueryCompilationResultActionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryCompilationResultActionsResponse {

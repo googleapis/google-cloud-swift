@@ -939,6 +939,96 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     try await poller.wait()
   }
 
+  /// Lists all the ODB DNS Zones in a given ODB Network.
+  ///
+  /// @Snippet(path: "OracleDatabase_ListOdbDnsZones")
+  public func listOdbDnsZones(
+    request: ListOdbDnsZonesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.ListOdbDnsZonesResponse {
+    try await self.inner.listOdbDnsZones(request: request, options: options)
+  }
+
+  /// Gets details of a single ODB DNS Zone.
+  ///
+  /// @Snippet(path: "OracleDatabase_GetOdbDnsZone")
+  public func getOdbDnsZone(
+    request: GetOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.OdbDnsZone {
+    try await self.inner.getOdbDnsZone(request: request, options: options)
+  }
+
+  /// Creates a new ODB DNS Zone in a given ODB Network.
+  ///
+  /// @Snippet(path: "OracleDatabase_CreateOdbDnsZone")
+  public func createOdbDnsZone(
+    request: CreateOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createOdbDnsZone(request: request, options: options)
+  }
+
+  /// Creates a new ODB DNS Zone in a given ODB Network.
+  ///
+  /// @Snippet(path: "OracleDatabase_CreateOdbDnsZone")
+  public func createOdbDnsZonePollingUntilDone(
+    request: CreateOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+  ) async throws -> OdbDnsZone {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<OdbDnsZone>.State in
+      return try op._extractStatus(OdbDnsZone.self)
+    }
+    let rawOp = try await self.createOdbDnsZone(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<OdbDnsZone>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Deletes a single ODB DNS Zone.
+  ///
+  /// @Snippet(path: "OracleDatabase_DeleteOdbDnsZone")
+  public func deleteOdbDnsZone(
+    request: DeleteOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteOdbDnsZone(request: request, options: options)
+  }
+
+  /// Deletes a single ODB DNS Zone.
+  ///
+  /// @Snippet(path: "OracleDatabase_DeleteOdbDnsZone")
+  public func deleteOdbDnsZonePollingUntilDone(
+    request: DeleteOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteOdbDnsZone(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
   /// Lists all the Exadb (Exascale) VM Clusters for the given project and
   /// location.
   ///
@@ -2132,6 +2222,36 @@ extension Clients {
     /// See `OracleDatabaseClient.deleteOdbSubnet`.
     func deleteOdbSubnetPollingUntilDone(
       request: DeleteOdbSubnetRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `OracleDatabaseClient.listOdbDnsZones`.
+    func listOdbDnsZones(
+      request: ListOdbDnsZonesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.ListOdbDnsZonesResponse
+
+    /// See `OracleDatabaseClient.getOdbDnsZone`.
+    func getOdbDnsZone(
+      request: GetOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.OdbDnsZone
+
+    /// See `OracleDatabaseClient.createOdbDnsZone`.
+    func createOdbDnsZone(
+      request: CreateOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.createOdbDnsZone`.
+    func createOdbDnsZonePollingUntilDone(
+      request: CreateOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+    ) async throws -> OdbDnsZone
+
+    /// See `OracleDatabaseClient.deleteOdbDnsZone`.
+    func deleteOdbDnsZone(
+      request: DeleteOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.deleteOdbDnsZone`.
+    func deleteOdbDnsZonePollingUntilDone(
+      request: DeleteOdbDnsZoneRequest, options: GoogleGax.RequestOptions
     ) async throws
 
     /// See `OracleDatabaseClient.listExadbVmClusters`.
@@ -3880,6 +4000,139 @@ extension Clients.OracleDatabaseProtocol {
       $0.name = name
     }
     try await self.deleteOdbSubnetPollingUntilDone(request: request)
+  }
+
+  public func listOdbDnsZones(request: ListOdbDnsZonesRequest) async throws
+    -> GoogleCloudOracleDatabaseV1.ListOdbDnsZonesResponse
+  {
+    try await self.listOdbDnsZones(request: request, options: .init())
+  }
+
+  public func listOdbDnsZones(
+    request: ListOdbDnsZonesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.ListOdbDnsZonesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listOdbDnsZonesByItems(
+    request: ListOdbDnsZonesRequest
+  ) -> some AsyncSequence<OdbDnsZone, any Swift.Error> & Sendable {
+    self.listOdbDnsZonesByItems(request: request, options: .init())
+  }
+
+  /// Lists all the ODB DNS Zones in a given ODB Network.
+  ///
+  /// @Snippet(path: "OracleDatabase_ListOdbDnsZones")
+  public func listOdbDnsZonesByItems(
+    request: ListOdbDnsZonesRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<OdbDnsZone, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudOracleDatabaseV1.ListOdbDnsZonesResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listOdbDnsZones(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listOdbDnsZonesByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<OdbDnsZone, any Swift.Error> & Sendable {
+    let request = ListOdbDnsZonesRequest().with {
+      $0.parent = parent
+    }
+    return self.listOdbDnsZonesByItems(request: request)
+  }
+
+  public func getOdbDnsZone(request: GetOdbDnsZoneRequest) async throws
+    -> GoogleCloudOracleDatabaseV1.OdbDnsZone
+  {
+    try await self.getOdbDnsZone(request: request, options: .init())
+  }
+
+  public func getOdbDnsZone(
+    request: GetOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.OdbDnsZone {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getOdbDnsZone(
+    name: Swift.String,
+  ) async throws -> GoogleCloudOracleDatabaseV1.OdbDnsZone {
+    let request = GetOdbDnsZoneRequest().with {
+      $0.name = name
+    }
+    return try await self.getOdbDnsZone(request: request)
+  }
+
+  public func createOdbDnsZone(request: CreateOdbDnsZoneRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.createOdbDnsZone(request: request, options: .init())
+  }
+
+  public func createOdbDnsZone(
+    request: CreateOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createOdbDnsZonePollingUntilDone(request: CreateOdbDnsZoneRequest) async throws
+    -> OdbDnsZone
+  {
+    return try await self.createOdbDnsZonePollingUntilDone(request: request, options: .init())
+  }
+
+  public func createOdbDnsZonePollingUntilDone(
+    request: CreateOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+  ) async throws -> OdbDnsZone {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createOdbDnsZonePollingUntilDone(
+    parent: Swift.String,
+    odbDnsZone: OdbDnsZone?,
+    odbDnsZoneId: Swift.String,
+  ) async throws -> OdbDnsZone {
+    let request = CreateOdbDnsZoneRequest().with {
+      $0.parent = parent
+      $0.odbDnsZone = odbDnsZone
+      $0.odbDnsZoneId = odbDnsZoneId
+    }
+    return try await self.createOdbDnsZonePollingUntilDone(request: request)
+  }
+
+  public func deleteOdbDnsZone(request: DeleteOdbDnsZoneRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.deleteOdbDnsZone(request: request, options: .init())
+  }
+
+  public func deleteOdbDnsZone(
+    request: DeleteOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteOdbDnsZonePollingUntilDone(request: DeleteOdbDnsZoneRequest) async throws {
+    try await self.deleteOdbDnsZonePollingUntilDone(request: request, options: .init())
+  }
+
+  public func deleteOdbDnsZonePollingUntilDone(
+    request: DeleteOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteOdbDnsZonePollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteOdbDnsZoneRequest().with {
+      $0.name = name
+    }
+    try await self.deleteOdbDnsZonePollingUntilDone(request: request)
   }
 
   public func listExadbVmClusters(request: ListExadbVmClustersRequest) async throws

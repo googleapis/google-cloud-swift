@@ -682,6 +682,46 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
     try await self.inner.createCompilationResult(request: request, options: options)
   }
 
+  /// Creates a new CompilationResult in a given project and location
+  /// asynchronously.
+  ///
+  /// @Snippet(path: "Dataform_CreateCompilationResultLongRunning")
+  public func createCompilationResultLongRunning(
+    request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createCompilationResultLongRunning(request: request, options: options)
+  }
+
+  /// Creates a new CompilationResult in a given project and location
+  /// asynchronously.
+  ///
+  /// @Snippet(path: "Dataform_CreateCompilationResultLongRunning")
+  public func createCompilationResultLongRunningPollingUntilDone(
+    request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
+  ) async throws -> CompilationResult {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<CompilationResult>.State in
+      return try op._extractStatus(CompilationResult.self)
+    }
+    let rawOp = try await self.createCompilationResultLongRunning(
+      request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CompilationResult>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Returns CompilationResultActions in a given CompilationResult.
   ///
   /// @Snippet(path: "Dataform_QueryCompilationResultActions")
@@ -1242,6 +1282,16 @@ extension Clients {
     func createCompilationResult(
       request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CompilationResult
+
+    /// See `DataformClient.createCompilationResultLongRunning`.
+    func createCompilationResultLongRunning(
+      request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `DataformClient.createCompilationResultLongRunning`.
+    func createCompilationResultLongRunningPollingUntilDone(
+      request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
+    ) async throws -> CompilationResult
 
     /// See `DataformClient.queryCompilationResultActions`.
     func queryCompilationResultActions(
@@ -2682,6 +2732,42 @@ extension Clients.DataformProtocol {
       $0.compilationResult = compilationResult
     }
     return try await self.createCompilationResult(request: request)
+  }
+
+  public func createCompilationResultLongRunning(request: CreateCompilationResultRequest)
+    async throws -> GoogleLongRunning.Operation
+  {
+    try await self.createCompilationResultLongRunning(request: request, options: .init())
+  }
+
+  public func createCompilationResultLongRunning(
+    request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createCompilationResultLongRunningPollingUntilDone(
+    request: CreateCompilationResultRequest
+  ) async throws -> CompilationResult {
+    return try await self.createCompilationResultLongRunningPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func createCompilationResultLongRunningPollingUntilDone(
+    request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
+  ) async throws -> CompilationResult {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createCompilationResultLongRunningPollingUntilDone(
+    parent: Swift.String,
+    compilationResult: CompilationResult?,
+  ) async throws -> CompilationResult {
+    let request = CreateCompilationResultRequest().with {
+      $0.parent = parent
+      $0.compilationResult = compilationResult
+    }
+    return try await self.createCompilationResultLongRunningPollingUntilDone(request: request)
   }
 
   public func queryCompilationResultActions(request: QueryCompilationResultActionsRequest)

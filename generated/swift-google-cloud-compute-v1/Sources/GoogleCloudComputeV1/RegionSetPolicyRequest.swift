@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if NetworkAttachments || NodeTemplates || RegionBackendBuckets || RegionBackendServices || RegionDisks || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkFirewallPolicies || RegionSnapshots || ResourcePolicies || ServiceAttachments || Subnetworks
+#if NetworkAttachments || NodeTemplates || RegionBackendBuckets || RegionBackendServices || RegionDisks || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkFirewallPolicies || RegionSnapshots || RegionSslPolicies || ResourcePolicies || ServiceAttachments || Subnetworks
   public import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 

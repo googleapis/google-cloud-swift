@@ -652,6 +652,66 @@ extension Clients {
         })
     }
 
+    public func listOdbDnsZones(
+      request: ListOdbDnsZonesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.ListOdbDnsZonesResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListOdbDnsZonesRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudOracleDatabaseV1.ListOdbDnsZonesResponse
+          in
+          return try await self.inner.listOdbDnsZones(request: r, options: o)
+        })
+    }
+
+    public func getOdbDnsZone(
+      request: GetOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.OdbDnsZone {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetOdbDnsZoneRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudOracleDatabaseV1.OdbDnsZone
+          in
+          return try await self.inner.getOdbDnsZone(request: r, options: o)
+        })
+    }
+
+    public func createOdbDnsZone(
+      request: CreateOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateOdbDnsZoneRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.createOdbDnsZone(request: r, options: o)
+        })
+    }
+
+    public func deleteOdbDnsZone(
+      request: DeleteOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DeleteOdbDnsZoneRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.deleteOdbDnsZone(request: r, options: o)
+        })
+    }
+
     public func listExadbVmClusters(
       request: ListExadbVmClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOracleDatabaseV1.ListExadbVmClustersResponse {

@@ -183,6 +183,22 @@ extension Clients {
       request: DeleteOdbSubnetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func listOdbDnsZones(
+      request: ListOdbDnsZonesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.ListOdbDnsZonesResponse
+
+    func getOdbDnsZone(
+      request: GetOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.OdbDnsZone
+
+    func createOdbDnsZone(
+      request: CreateOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func deleteOdbDnsZone(
+      request: DeleteOdbDnsZoneRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func listExadbVmClusters(
       request: ListExadbVmClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOracleDatabaseV1.ListExadbVmClustersResponse

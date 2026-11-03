@@ -33,9 +33,9 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
   public var parent: Swift.String = Swift.String()
 
-  /// The credentials required for Managed Rotation.
+  /// The credential required for Managed Rotation.
   /// Right now, only Cloud SQL Single User credentials are supported.
-  public var credentials: CredentialsOneOf? = nil
+  public var credential: CredentialOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -78,23 +78,22 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleWKT._AnyPa
       self.parent = value
     }
 
-    var credentials: CredentialsOneOf? = nil
-    let credentialsCheckAndSet = {
-      if credentials != nil {
+    var credential: CredentialOneOf? = nil
+    let credentialCheckAndSet = {
+      if credential != nil {
         throw DecodingError.dataCorrupted(
           DecodingError.Context(
             codingPath: decoder.codingPath,
-            debugDescription: "Multiple values set for oneof 'credentials'"))
+            debugDescription: "Multiple values set for oneof 'credential'"))
       }
-      credentials = $0
+      credential = $0
     }
     if let cloudSqlSingleUserCredentials = try container.decodeIfPresent(
-      EnableManagedRotationRequest.CloudSQLSingleUserCredentials.self,
-      forKey: .cloudSqlSingleUserCredentials)
+      CloudSqlSingleUserCredentials.self, forKey: .cloudSqlSingleUserCredentials)
     {
-      try credentialsCheckAndSet(.cloudSqlSingleUserCredentials(cloudSqlSingleUserCredentials))
+      try credentialCheckAndSet(.cloudSqlSingleUserCredentials(cloudSqlSingleUserCredentials))
     }
-    self.credentials = credentials
+    self.credential = credential
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -105,7 +104,7 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleWKT._AnyPa
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
 
-    if let choice = self.credentials {
+    if let choice = self.credential {
       switch choice {
       case .cloudSqlSingleUserCredentials(let value):
         try container.encode(value, forKey: .cloudSqlSingleUserCredentials)
@@ -116,113 +115,11 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  /// These are the credentials required for Cloud SQL DB for Single user
-  /// Managed Rotation.
-  public struct CloudSQLSingleUserCredentials: Codable, Equatable, GoogleWKT._AnyPackable,
-    Sendable
-  {
-    /// Required. Instance ID of the Cloud SQL instance.
-    public var instanceId: Swift.String = Swift.String()
-
-    /// Required. Username of the Cloud SQL instance.
-    public var username: Swift.String = Swift.String()
-
-    /// Optional. Password of the Cloud SQL instance. If this is not provided,
-    /// a random password will be generated.
-    public var password: Swift.String = Swift.String()
-
-    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
-
-    /// Initialize a new instance of `CloudSQLSingleUserCredentials`.
-    public init() {}
-
-    /// Use `config` to return a new instance of this object, with some fields updated.
-    ///
-    /// Commonly used to initialize the value, for example:
-    ///
-    /// ```
-    /// let value = CloudSQLSingleUserCredentials().with { $0.instanceId = ... }
-    /// ```
-    @inlinable
-    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
-      var copy = self
-      try config(&copy)
-      return copy
-    }
-
-    private struct CodingKeys: CodingKey {
-      var stringValue: Swift.String
-      var intValue: Swift.Int? { nil }
-      init(stringValue: Swift.String) { self.stringValue = stringValue }
-      init?(intValue: Swift.Int) { nil }
-
-      static let instanceId = CodingKeys(stringValue: "instanceId")
-      static let username = CodingKeys(stringValue: "username")
-      static let password = CodingKeys(stringValue: "password")
-
-      static let _knownKeys: Set<Swift.String> = [
-        "instanceId",
-        "username",
-        "password",
-      ]
-    }
-
-    public init(from decoder: any Decoder) throws {
-      let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instanceId) {
-        self.instanceId = value
-      }
-      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
-        self.username = value
-      }
-      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .password) {
-        self.password = value
-      }
-      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
-        self._unknownFields.json[key.stringValue] = try container.decode(
-          GoogleWKT.WKTValue.self, forKey: key)
-      }
-    }
-
-    public func encode(to encoder: any Encoder) throws {
-      var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.instanceId, forKey: .instanceId)
-      try container.encode(self.username, forKey: .username)
-      try container.encode(self.password, forKey: .password)
-      for (key, value) in self._unknownFields.json {
-        try container.encode(value, forKey: CodingKeys(stringValue: key))
-      }
-    }
-
-    /// The type URL for `CloudSQLSingleUserCredentials`: `"type.googleapis.com/google.cloud.secretmanager.v1.EnableManagedRotationRequest.CloudSQLSingleUserCredentials"`.
-    public static var _anyTypeUrl: Swift.String {
-      return
-        "type.googleapis.com/google.cloud.secretmanager.v1.EnableManagedRotationRequest.CloudSQLSingleUserCredentials"
-    }
-
-    /// Initialize an instance of `CloudSQLSingleUserCredentials` by unpacking from a `GoogleWKT.WKTAny`.
-    ///
-    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
-    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.secretmanager.v1.EnableManagedRotationRequest.CloudSQLSingleUserCredentials"`,
-    ///   or if deserialization fails.
-    public init(fromAny any: GoogleWKT.WKTAny) throws {
-      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
-    }
-
-    /// Packs this `CloudSQLSingleUserCredentials` into a `GoogleWKT.WKTStruct` representation.
-    ///
-    /// - Throws: An error if serialization fails.
-    public func _pack() throws -> GoogleWKT.WKTStruct {
-      return try GoogleWKT._anySerialize(message: self)
-    }
-  }
-
-  /// The credentials required for Managed Rotation.
+  /// The credential required for Managed Rotation.
   /// Right now, only Cloud SQL Single User credentials are supported.
-  public enum CredentialsOneOf: Codable, Equatable, Sendable {
+  public enum CredentialOneOf: Codable, Equatable, Sendable {
     /// Credentials required for Cloud SQL DB for Single user Managed Rotation.
-    indirect case cloudSqlSingleUserCredentials(
-      EnableManagedRotationRequest.CloudSQLSingleUserCredentials)
+    indirect case cloudSqlSingleUserCredentials(CloudSqlSingleUserCredentials)
   }
 
   /// The type URL for `EnableManagedRotationRequest`: `"type.googleapis.com/google.cloud.secretmanager.v1.EnableManagedRotationRequest"`.

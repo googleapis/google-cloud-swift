@@ -19,6 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
+  @_spi(GoogleCloudInternal) public import GoogleIAMV1
   @_spi(GoogleCloudInternal) public import GoogleLongRunning
   @_spi(GoogleCloudInternal) public import GoogleWKT
   @_spi(GoogleCloudInternal) public import GoogleGax
@@ -46,7 +47,7 @@
       self.pollingBackoffPolicy = options.pollingBackoffPolicy
     }
 
-    /// Creates a [Engine][google.cloud.discoveryengine.v1.Engine].
+    /// Creates an [Engine][google.cloud.discoveryengine.v1.Engine].
     ///
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
@@ -57,7 +58,7 @@
       try await self.inner.createEngine(request: request, options: options)
     }
 
-    /// Creates a [Engine][google.cloud.discoveryengine.v1.Engine].
+    /// Creates an [Engine][google.cloud.discoveryengine.v1.Engine].
     ///
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
@@ -86,7 +87,7 @@
       return try await poller.wait()
     }
 
-    /// Deletes a [Engine][google.cloud.discoveryengine.v1.Engine].
+    /// Deletes an [Engine][google.cloud.discoveryengine.v1.Engine].
     ///
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
@@ -97,7 +98,7 @@
       try await self.inner.deleteEngine(request: request, options: options)
     }
 
-    /// Deletes a [Engine][google.cloud.discoveryengine.v1.Engine].
+    /// Deletes an [Engine][google.cloud.discoveryengine.v1.Engine].
     ///
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
@@ -138,7 +139,7 @@
       try await self.inner.updateEngine(request: request, options: options)
     }
 
-    /// Gets a [Engine][google.cloud.discoveryengine.v1.Engine].
+    /// Gets an [Engine][google.cloud.discoveryengine.v1.Engine].
     ///
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
@@ -159,6 +160,43 @@
       request: ListEnginesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListEnginesResponse {
       try await self.inner.listEngines(request: request, options: options)
+    }
+
+    /// Gets the IAM access control policy for an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine]. A `NOT_FOUND` error is
+    /// returned if the resource does not exist. An empty policy is returned if the
+    /// resource exists but does not have a policy set on it.
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_GetIamPolicy")
+    public func getIamPolicy(
+      request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      try await self.inner.getIamPolicy(request: request, options: options)
+    }
+
+    /// Sets the IAM access control policy for an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine]. A `NOT_FOUND` error is
+    /// returned if the resource does not exist.
+    ///
+    /// **Important:** When setting a policy directly on an Engine resource,
+    /// the only recommended roles in the bindings are:
+    /// `roles/discoveryengine.admin`,
+    /// `roles/discoveryengine.agentspaceAdmin`,
+    /// `roles/discoveryengine.user`,
+    /// `roles/discoveryengine.agentspaceUser`,
+    /// `roles/discoveryengine.viewer`,
+    /// `roles/discoveryengine.agentspaceViewer`.
+    /// Attempting to grant any other role will result in a warning in logging.
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_SetIamPolicy")
+    public func setIamPolicy(
+      request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      try await self.inner.setIamPolicy(request: request, options: options)
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -236,6 +274,16 @@
       func listEngines(
         request: ListEnginesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListEnginesResponse
+
+      /// See `EngineServiceClient.getIamPolicy`.
+      func getIamPolicy(
+        request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy
+
+      /// See `EngineServiceClient.setIamPolicy`.
+      func setIamPolicy(
+        request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy
 
       /// See `EngineServiceClient.listOperations`.
       func listOperations(
@@ -406,6 +454,50 @@
         $0.parent = parent
       }
       return self.listEnginesByItems(request: request)
+    }
+
+    public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
+      -> GoogleIAMV1.Policy
+    {
+      try await self.getIamPolicy(request: request, options: .init())
+    }
+
+    public func getIamPolicy(
+      request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func getIamPolicy(
+      resource: Swift.String,
+    ) async throws -> GoogleIAMV1.Policy {
+      let request = GoogleIAMV1.GetIamPolicyRequest().with {
+        $0.resource = resource
+      }
+      return try await self.getIamPolicy(request: request)
+    }
+
+    public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
+      -> GoogleIAMV1.Policy
+    {
+      try await self.setIamPolicy(request: request, options: .init())
+    }
+
+    public func setIamPolicy(
+      request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func setIamPolicy(
+      resource: Swift.String,
+      policy: GoogleIAMV1.Policy?,
+    ) async throws -> GoogleIAMV1.Policy {
+      let request = GoogleIAMV1.SetIamPolicyRequest().with {
+        $0.resource = resource
+        $0.policy = policy
+      }
+      return try await self.setIamPolicy(request: request)
     }
 
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

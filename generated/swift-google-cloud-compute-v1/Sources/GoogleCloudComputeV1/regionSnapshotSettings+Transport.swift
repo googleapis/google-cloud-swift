@@ -61,7 +61,7 @@
               "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/snapshotSettings"
             let query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
             ]
             return (path, query)
           }() {
@@ -122,7 +122,7 @@
               "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/snapshotSettings"
             var query = [
               URLQueryItem(name: "$alt", value: "json"),
-              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
+              URLQueryItem(name: "$apiVersion", value: "2026-11-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))

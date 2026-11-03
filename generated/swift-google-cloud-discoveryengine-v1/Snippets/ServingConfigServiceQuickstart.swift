@@ -22,21 +22,17 @@
   import GoogleLongRunning
   import GoogleWKT
 
-  func sample(projectId: String, locationId: String, dataStoreId: String, servingConfigId: String, )
-    async throws
-  {
+  func sample(projectId: String, locationId: String, dataStoreId: String, ) async throws {
     let client = try GoogleCloudDiscoveryEngineV1.ServingConfigServiceClient()
-    let response = try await client.updateServingConfig(
-      request: UpdateServingConfigRequest()
+    let items = client.listServingConfigsByItems(
+      request: ListServingConfigsRequest()
         .with {
-          $0.servingConfig = ServingConfig().with {
-            $0.name =
-              "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)/servingConfigs/\(servingConfigId)"
-          }
-          $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
+          $0.parent = "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)"
         }
     )
-    print("Success: \(response)")
+    for try await item in items {
+      print("  \(item)")
+    }
   }
   // snippet.hide
 
@@ -45,8 +41,7 @@
     static func main() async throws {
       do {
         try await sample(
-          projectId: "[placeholder]", locationId: "[placeholder]", dataStoreId: "[placeholder]",
-          servingConfigId: "[placeholder]", )
+          projectId: "[placeholder]", locationId: "[placeholder]", dataStoreId: "[placeholder]", )
       } catch {
         print("Error: \(error)")
       }

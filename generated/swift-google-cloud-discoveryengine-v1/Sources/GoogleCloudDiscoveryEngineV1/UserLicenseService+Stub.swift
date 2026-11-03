@@ -27,6 +27,10 @@
         request: ListUserLicensesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListUserLicensesResponse
 
+      func listLicenseConfigsUsageStats(
+        request: ListLicenseConfigsUsageStatsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsUsageStatsResponse
+
       func batchUpdateUserLicenses(
         request: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

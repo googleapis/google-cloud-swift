@@ -24,12 +24,14 @@ public import Foundation
 /// [TransactionCertificate][google.cloud.universalledger.v1.TransactionCertificate]
 /// of the finalized transaction.
 ///
-/// This transaction must introduce a new currency into the system. If the
-/// specified currency already exists, this transaction will fail.
-/// If the currency operator has to be replaced, the TransferCurrencyOperator
+/// This transaction can introduce a new currency into the system or create an
+/// additional currency operator for an existing currency. If an existing
+/// currency operator has to be replaced, the
+/// [TransferCurrencyOperator][google.cloud.universalledger.v1.TransferCurrencyOperator]
 /// transaction should be sent instead.
 ///
 /// [google.cloud.universalledger.v1.TransactionCertificate]: <doc:TransactionCertificate>
+/// [google.cloud.universalledger.v1.TransferCurrencyOperator]: <doc:TransferCurrencyOperator>
 public struct CreateCurrencyOperator: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {

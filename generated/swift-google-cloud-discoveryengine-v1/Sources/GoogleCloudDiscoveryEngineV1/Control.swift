@@ -68,9 +68,6 @@
     /// Otherwise an INVALID ARGUMENT error is thrown.
     public var conditions: [GoogleCloudDiscoveryEngineV1.Condition] = []
 
-    /// Actions are restricted by Vertical and Solution
-    ///
-    /// Required.
     public var action: ActionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -1203,9 +1200,6 @@
       }
     }
 
-    /// Actions are restricted by Vertical and Solution
-    ///
-    /// Required.
     public enum ActionOneOf: Codable, Equatable, Sendable {
       /// Defines a boost-type control
       indirect case boostAction(Control.BoostAction)

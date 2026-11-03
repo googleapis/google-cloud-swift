@@ -288,6 +288,16 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
     try await self.inner.fetchReadToken(request: request, options: options)
   }
 
+  /// Opens a Pull Request in the remote SCM repository associated with a
+  /// GitRepositoryLink.
+  ///
+  /// @Snippet(path: "DeveloperConnect_OpenGitRepositoryLinkPullRequest")
+  public func openGitRepositoryLinkPullRequest(
+    request: OpenGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+    try await self.inner.openGitRepositoryLinkPullRequest(request: request, options: options)
+  }
+
   /// FetchLinkableGitRepositories returns a list of git repositories from an SCM
   /// that are available to be added to a Connection.
   ///
@@ -317,6 +327,89 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
     request: FetchGitRefsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRefsResponse {
     try await self.inner.fetchGitRefs(request: request, options: options)
+  }
+
+  /// Diff commits for a GitRepositoryLink.
+  ///
+  /// @Snippet(path: "DeveloperConnect_DiffGitRepositoryLinkCommit")
+  public func diffGitRepositoryLinkCommit(
+    request: DiffGitRepositoryLinkCommitRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.DiffGitRepositoryLinkCommitResponse {
+    try await self.inner.diffGitRepositoryLinkCommit(request: request, options: options)
+  }
+
+  /// Fetch Commit details from a Git repository link.
+  ///
+  /// @Snippet(path: "DeveloperConnect_FetchGitRepositoryLinkCommit")
+  public func fetchGitRepositoryLinkCommit(
+    request: FetchGitRepositoryLinkCommitRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitResponse {
+    try await self.inner.fetchGitRepositoryLinkCommit(request: request, options: options)
+  }
+
+  /// Fetch a list of Commits from a Git repository link.
+  ///
+  /// @Snippet(path: "DeveloperConnect_FetchGitRepositoryLinkCommitList")
+  public func fetchGitRepositoryLinkCommitList(
+    request: FetchGitRepositoryLinkCommitListRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitListResponse {
+    try await self.inner.fetchGitRepositoryLinkCommitList(request: request, options: options)
+  }
+
+  /// Fetches blame information for a file or line range in a file.
+  ///
+  /// @Snippet(path: "DeveloperConnect_FetchGitRepositoryLinkFileBlame")
+  public func fetchGitRepositoryLinkFileBlame(
+    request: FetchGitRepositoryLinkFileBlameRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkFileBlameResponse {
+    try await self.inner.fetchGitRepositoryLinkFileBlame(request: request, options: options)
+  }
+
+  /// Fetch Pull Request details from a Git repository link.
+  ///
+  /// @Snippet(path: "DeveloperConnect_FetchGitRepositoryLinkPullRequest")
+  public func fetchGitRepositoryLinkPullRequest(
+    request: FetchGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+    try await self.inner.fetchGitRepositoryLinkPullRequest(request: request, options: options)
+  }
+
+  /// Add a comment to a Pull Request.
+  ///
+  /// @Snippet(path: "DeveloperConnect_AddGitRepositoryLinkPullRequestComment")
+  public func addGitRepositoryLinkPullRequestComment(
+    request: AddGitRepositoryLinkPullRequestCommentRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestComment {
+    try await self.inner.addGitRepositoryLinkPullRequestComment(request: request, options: options)
+  }
+
+  /// Add a review comment (inline on diff) to a Pull Request.
+  ///
+  /// @Snippet(path: "DeveloperConnect_AddGitRepositoryLinkPullRequestReviewComment")
+  public func addGitRepositoryLinkPullRequestReviewComment(
+    request: AddGitRepositoryLinkPullRequestReviewCommentRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestReviewComment {
+    try await self.inner.addGitRepositoryLinkPullRequestReviewComment(
+      request: request, options: options)
+  }
+
+  /// Modifies a Pull Request in the remote SCM repository associated with a
+  /// GitRepositoryLink.
+  ///
+  /// @Snippet(path: "DeveloperConnect_ModifyGitRepositoryLinkPullRequest")
+  public func modifyGitRepositoryLinkPullRequest(
+    request: ModifyGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+    try await self.inner.modifyGitRepositoryLinkPullRequest(request: request, options: options)
+  }
+
+  /// Fetches a list of Pull Requests from the remote repository.
+  ///
+  /// @Snippet(path: "DeveloperConnect_FetchGitRepositoryLinkPullRequestList")
+  public func fetchGitRepositoryLinkPullRequestList(
+    request: FetchGitRepositoryLinkPullRequestListRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkPullRequestListResponse {
+    try await self.inner.fetchGitRepositoryLinkPullRequestList(request: request, options: options)
   }
 
   /// Lists AccountConnectors in a given project and location.
@@ -721,6 +814,11 @@ extension Clients {
       request: FetchReadTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.FetchReadTokenResponse
 
+    /// See `DeveloperConnectClient.openGitRepositoryLinkPullRequest`.
+    func openGitRepositoryLinkPullRequest(
+      request: OpenGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest
+
     /// See `DeveloperConnectClient.fetchLinkableGitRepositories`.
     func fetchLinkableGitRepositories(
       request: FetchLinkableGitRepositoriesRequest, options: GoogleGax.RequestOptions
@@ -735,6 +833,52 @@ extension Clients {
     func fetchGitRefs(
       request: FetchGitRefsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRefsResponse
+
+    /// See `DeveloperConnectClient.diffGitRepositoryLinkCommit`.
+    func diffGitRepositoryLinkCommit(
+      request: DiffGitRepositoryLinkCommitRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.DiffGitRepositoryLinkCommitResponse
+
+    /// See `DeveloperConnectClient.fetchGitRepositoryLinkCommit`.
+    func fetchGitRepositoryLinkCommit(
+      request: FetchGitRepositoryLinkCommitRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitResponse
+
+    /// See `DeveloperConnectClient.fetchGitRepositoryLinkCommitList`.
+    func fetchGitRepositoryLinkCommitList(
+      request: FetchGitRepositoryLinkCommitListRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitListResponse
+
+    /// See `DeveloperConnectClient.fetchGitRepositoryLinkFileBlame`.
+    func fetchGitRepositoryLinkFileBlame(
+      request: FetchGitRepositoryLinkFileBlameRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkFileBlameResponse
+
+    /// See `DeveloperConnectClient.fetchGitRepositoryLinkPullRequest`.
+    func fetchGitRepositoryLinkPullRequest(
+      request: FetchGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest
+
+    /// See `DeveloperConnectClient.addGitRepositoryLinkPullRequestComment`.
+    func addGitRepositoryLinkPullRequestComment(
+      request: AddGitRepositoryLinkPullRequestCommentRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestComment
+
+    /// See `DeveloperConnectClient.addGitRepositoryLinkPullRequestReviewComment`.
+    func addGitRepositoryLinkPullRequestReviewComment(
+      request: AddGitRepositoryLinkPullRequestReviewCommentRequest,
+      options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestReviewComment
+
+    /// See `DeveloperConnectClient.modifyGitRepositoryLinkPullRequest`.
+    func modifyGitRepositoryLinkPullRequest(
+      request: ModifyGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest
+
+    /// See `DeveloperConnectClient.fetchGitRepositoryLinkPullRequestList`.
+    func fetchGitRepositoryLinkPullRequestList(
+      request: FetchGitRepositoryLinkPullRequestListRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkPullRequestListResponse
 
     /// See `DeveloperConnectClient.listAccountConnectors`.
     func listAccountConnectors(
@@ -1196,6 +1340,29 @@ extension Clients.DeveloperConnectProtocol {
     return try await self.fetchReadToken(request: request)
   }
 
+  public func openGitRepositoryLinkPullRequest(request: OpenGitRepositoryLinkPullRequestRequest)
+    async throws -> GoogleCloudDeveloperConnectV1.PullRequest
+  {
+    try await self.openGitRepositoryLinkPullRequest(request: request, options: .init())
+  }
+
+  public func openGitRepositoryLinkPullRequest(
+    request: OpenGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func openGitRepositoryLinkPullRequest(
+    name: Swift.String,
+    pullRequest: PullRequest?,
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+    let request = OpenGitRepositoryLinkPullRequestRequest().with {
+      $0.name = name
+      $0.pullRequest = pullRequest
+    }
+    return try await self.openGitRepositoryLinkPullRequest(request: request)
+  }
+
   public func fetchLinkableGitRepositories(request: FetchLinkableGitRepositoriesRequest)
     async throws -> GoogleCloudDeveloperConnectV1.FetchLinkableGitRepositoriesResponse
   {
@@ -1283,6 +1450,266 @@ extension Clients.DeveloperConnectProtocol {
       $0.refType = refType
     }
     return try await self.fetchGitRefs(request: request)
+  }
+
+  public func diffGitRepositoryLinkCommit(request: DiffGitRepositoryLinkCommitRequest) async throws
+    -> GoogleCloudDeveloperConnectV1.DiffGitRepositoryLinkCommitResponse
+  {
+    try await self.diffGitRepositoryLinkCommit(request: request, options: .init())
+  }
+
+  public func diffGitRepositoryLinkCommit(
+    request: DiffGitRepositoryLinkCommitRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.DiffGitRepositoryLinkCommitResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func diffGitRepositoryLinkCommit(
+    name: Swift.String,
+    baseSha: Swift.String,
+    headSha: Swift.String,
+  ) async throws -> GoogleCloudDeveloperConnectV1.DiffGitRepositoryLinkCommitResponse {
+    let request = DiffGitRepositoryLinkCommitRequest().with {
+      $0.name = name
+      $0.baseSha = baseSha
+      $0.headSha = headSha
+    }
+    return try await self.diffGitRepositoryLinkCommit(request: request)
+  }
+
+  public func fetchGitRepositoryLinkCommit(request: FetchGitRepositoryLinkCommitRequest)
+    async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitResponse
+  {
+    try await self.fetchGitRepositoryLinkCommit(request: request, options: .init())
+  }
+
+  public func fetchGitRepositoryLinkCommit(
+    request: FetchGitRepositoryLinkCommitRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func fetchGitRepositoryLinkCommit(
+    name: Swift.String,
+    commitSha: Swift.String,
+  ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitResponse {
+    let request = FetchGitRepositoryLinkCommitRequest().with {
+      $0.name = name
+      $0.commitSha = commitSha
+    }
+    return try await self.fetchGitRepositoryLinkCommit(request: request)
+  }
+
+  public func fetchGitRepositoryLinkCommitList(request: FetchGitRepositoryLinkCommitListRequest)
+    async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitListResponse
+  {
+    try await self.fetchGitRepositoryLinkCommitList(request: request, options: .init())
+  }
+
+  public func fetchGitRepositoryLinkCommitList(
+    request: FetchGitRepositoryLinkCommitListRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitListResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func fetchGitRepositoryLinkCommitListByItems(
+    request: FetchGitRepositoryLinkCommitListRequest
+  ) -> some AsyncSequence<SCMCommit, any Swift.Error> & Sendable {
+    self.fetchGitRepositoryLinkCommitListByItems(request: request, options: .init())
+  }
+
+  /// Fetch a list of Commits from a Git repository link.
+  ///
+  /// @Snippet(path: "DeveloperConnect_FetchGitRepositoryLinkCommitList")
+  public func fetchGitRepositoryLinkCommitListByItems(
+    request: FetchGitRepositoryLinkCommitListRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<SCMCommit, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitListResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.fetchGitRepositoryLinkCommitList(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func fetchGitRepositoryLinkCommitListByItems(
+    name: Swift.String,
+    ref: Swift.String,
+  ) -> some AsyncSequence<SCMCommit, any Swift.Error> & Sendable {
+    let request = FetchGitRepositoryLinkCommitListRequest().with {
+      $0.name = name
+      $0.ref = ref
+    }
+    return self.fetchGitRepositoryLinkCommitListByItems(request: request)
+  }
+
+  public func fetchGitRepositoryLinkFileBlame(request: FetchGitRepositoryLinkFileBlameRequest)
+    async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkFileBlameResponse
+  {
+    try await self.fetchGitRepositoryLinkFileBlame(request: request, options: .init())
+  }
+
+  public func fetchGitRepositoryLinkFileBlame(
+    request: FetchGitRepositoryLinkFileBlameRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkFileBlameResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func fetchGitRepositoryLinkFileBlame(
+    name: Swift.String,
+    ref: Swift.String,
+    path: Swift.String,
+  ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkFileBlameResponse {
+    let request = FetchGitRepositoryLinkFileBlameRequest().with {
+      $0.name = name
+      $0.ref = ref
+      $0.path = path
+    }
+    return try await self.fetchGitRepositoryLinkFileBlame(request: request)
+  }
+
+  public func fetchGitRepositoryLinkPullRequest(request: FetchGitRepositoryLinkPullRequestRequest)
+    async throws -> GoogleCloudDeveloperConnectV1.PullRequest
+  {
+    try await self.fetchGitRepositoryLinkPullRequest(request: request, options: .init())
+  }
+
+  public func fetchGitRepositoryLinkPullRequest(
+    request: FetchGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func fetchGitRepositoryLinkPullRequest(
+    name: Swift.String,
+    pullRequestId: Swift.String,
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+    let request = FetchGitRepositoryLinkPullRequestRequest().with {
+      $0.name = name
+      $0.pullRequestId = pullRequestId
+    }
+    return try await self.fetchGitRepositoryLinkPullRequest(request: request)
+  }
+
+  public func addGitRepositoryLinkPullRequestComment(
+    request: AddGitRepositoryLinkPullRequestCommentRequest
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestComment {
+    try await self.addGitRepositoryLinkPullRequestComment(request: request, options: .init())
+  }
+
+  public func addGitRepositoryLinkPullRequestComment(
+    request: AddGitRepositoryLinkPullRequestCommentRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestComment {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func addGitRepositoryLinkPullRequestComment(
+    name: Swift.String,
+    pullRequestId: Swift.String,
+    comment: PullRequestComment?,
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestComment {
+    let request = AddGitRepositoryLinkPullRequestCommentRequest().with {
+      $0.name = name
+      $0.pullRequestId = pullRequestId
+      $0.comment = comment
+    }
+    return try await self.addGitRepositoryLinkPullRequestComment(request: request)
+  }
+
+  public func addGitRepositoryLinkPullRequestReviewComment(
+    request: AddGitRepositoryLinkPullRequestReviewCommentRequest
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestReviewComment {
+    try await self.addGitRepositoryLinkPullRequestReviewComment(request: request, options: .init())
+  }
+
+  public func addGitRepositoryLinkPullRequestReviewComment(
+    request: AddGitRepositoryLinkPullRequestReviewCommentRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestReviewComment {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func addGitRepositoryLinkPullRequestReviewComment(
+    name: Swift.String,
+    pullRequestId: Swift.String,
+    comment: PullRequestReviewComment?,
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestReviewComment {
+    let request = AddGitRepositoryLinkPullRequestReviewCommentRequest().with {
+      $0.name = name
+      $0.pullRequestId = pullRequestId
+      $0.comment = comment
+    }
+    return try await self.addGitRepositoryLinkPullRequestReviewComment(request: request)
+  }
+
+  public func modifyGitRepositoryLinkPullRequest(request: ModifyGitRepositoryLinkPullRequestRequest)
+    async throws -> GoogleCloudDeveloperConnectV1.PullRequest
+  {
+    try await self.modifyGitRepositoryLinkPullRequest(request: request, options: .init())
+  }
+
+  public func modifyGitRepositoryLinkPullRequest(
+    request: ModifyGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func modifyGitRepositoryLinkPullRequest(
+    name: Swift.String,
+    pullRequestId: Swift.String,
+  ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
+    let request = ModifyGitRepositoryLinkPullRequestRequest().with {
+      $0.name = name
+      $0.pullRequestId = pullRequestId
+    }
+    return try await self.modifyGitRepositoryLinkPullRequest(request: request)
+  }
+
+  public func fetchGitRepositoryLinkPullRequestList(
+    request: FetchGitRepositoryLinkPullRequestListRequest
+  ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkPullRequestListResponse {
+    try await self.fetchGitRepositoryLinkPullRequestList(request: request, options: .init())
+  }
+
+  public func fetchGitRepositoryLinkPullRequestList(
+    request: FetchGitRepositoryLinkPullRequestListRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkPullRequestListResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func fetchGitRepositoryLinkPullRequestListByItems(
+    request: FetchGitRepositoryLinkPullRequestListRequest
+  ) -> some AsyncSequence<PullRequest, any Swift.Error> & Sendable {
+    self.fetchGitRepositoryLinkPullRequestListByItems(request: request, options: .init())
+  }
+
+  /// Fetches a list of Pull Requests from the remote repository.
+  ///
+  /// @Snippet(path: "DeveloperConnect_FetchGitRepositoryLinkPullRequestList")
+  public func fetchGitRepositoryLinkPullRequestListByItems(
+    request: FetchGitRepositoryLinkPullRequestListRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<PullRequest, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkPullRequestListResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.fetchGitRepositoryLinkPullRequestList(
+        request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func fetchGitRepositoryLinkPullRequestListByItems(
+    name: Swift.String,
+  ) -> some AsyncSequence<PullRequest, any Swift.Error> & Sendable {
+    let request = FetchGitRepositoryLinkPullRequestListRequest().with {
+      $0.name = name
+    }
+    return self.fetchGitRepositoryLinkPullRequestListByItems(request: request)
   }
 
   public func listAccountConnectors(request: ListAccountConnectorsRequest) async throws

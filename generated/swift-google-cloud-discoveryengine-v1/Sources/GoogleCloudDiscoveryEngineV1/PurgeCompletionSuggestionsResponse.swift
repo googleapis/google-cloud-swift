@@ -21,7 +21,8 @@
 
   /// Response message for
   /// [CompletionService.PurgeCompletionSuggestions][google.cloud.discoveryengine.v1.CompletionService.PurgeCompletionSuggestions]
-  /// method.
+  /// method. If the long running operation is successfully done, then this
+  /// message is returned by the google.longrunning.Operations.response field.
   ///
   /// [google.cloud.discoveryengine.v1.CompletionService.PurgeCompletionSuggestions]: <doc:CompletionServiceClient/purgeCompletionSuggestions(request:options:)>
   public struct PurgeCompletionSuggestionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,

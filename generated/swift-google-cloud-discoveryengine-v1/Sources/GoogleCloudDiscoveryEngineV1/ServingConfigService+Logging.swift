@@ -58,6 +58,34 @@
         }
       }
 
+      public func createServingConfig(
+        request: CreateServingConfigRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "createServingConfig",
+          action: {
+            (r: CreateServingConfigRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudDiscoveryEngineV1.ServingConfig
+            in
+            return try await self.inner.createServingConfig(request: r, options: o)
+          })
+      }
+
+      public func deleteServingConfig(
+        request: DeleteServingConfigRequest, options: GoogleGax.RequestOptions
+      ) async throws {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "deleteServingConfig",
+          action: {
+            (r: DeleteServingConfigRequest, o: GoogleGax.RequestOptions) async throws -> Void in
+            return try await self.inner.deleteServingConfig(request: r, options: o)
+          })
+      }
+
       public func updateServingConfig(
         request: UpdateServingConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
@@ -70,6 +98,36 @@
               -> GoogleCloudDiscoveryEngineV1.ServingConfig
             in
             return try await self.inner.updateServingConfig(request: r, options: o)
+          })
+      }
+
+      public func getServingConfig(
+        request: GetServingConfigRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "getServingConfig",
+          action: {
+            (r: GetServingConfigRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudDiscoveryEngineV1.ServingConfig
+            in
+            return try await self.inner.getServingConfig(request: r, options: o)
+          })
+      }
+
+      public func listServingConfigs(
+        request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ListServingConfigsResponse {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "listServingConfigs",
+          action: {
+            (r: ListServingConfigsRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudDiscoveryEngineV1.ListServingConfigsResponse
+            in
+            return try await self.inner.listServingConfigs(request: r, options: o)
           })
       }
 

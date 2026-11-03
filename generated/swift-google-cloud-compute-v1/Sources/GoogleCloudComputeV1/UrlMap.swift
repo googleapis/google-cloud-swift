@@ -194,6 +194,9 @@
     /// [Output Only] Server-defined URL for the resource.
     public var selfLink: Swift.String? = nil
 
+    /// Output only. [Output Only] The status of the URL map.
+    public var status: UrlMapStatus? = nil
+
     /// The list of expected URL mapping tests. Request to update theUrlMap succeeds only if all test cases pass. You can specify a
     /// maximum of 100 tests per UrlMap.
     ///
@@ -242,6 +245,7 @@
       static let pathMatchers = CodingKeys(stringValue: "pathMatchers")
       static let region = CodingKeys(stringValue: "region")
       static let selfLink = CodingKeys(stringValue: "selfLink")
+      static let status = CodingKeys(stringValue: "status")
       static let tests = CodingKeys(stringValue: "tests")
 
       static let _knownKeys: Set<Swift.String> = [
@@ -260,6 +264,7 @@
         "pathMatchers",
         "region",
         "selfLink",
+        "status",
         "tests",
       ]
     }
@@ -299,6 +304,7 @@
       }
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.status = try container.decodeIfPresent(UrlMapStatus.self, forKey: .status)
       if let value = try container.decodeIfPresent([UrlMapTest].self, forKey: .tests) {
         self.tests = value
       }
@@ -330,6 +336,7 @@
       try container.encode(self.pathMatchers, forKey: .pathMatchers)
       try container.encodeIfPresent(self.region, forKey: .region)
       try container.encodeIfPresent(self.selfLink, forKey: .selfLink)
+      try container.encodeIfPresent(self.status, forKey: .status)
       try container.encode(self.tests, forKey: .tests)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

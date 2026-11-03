@@ -52,6 +52,19 @@
       try await self.inner.listUserLicenses(request: request, options: options)
     }
 
+    /// Lists all the
+    /// [LicenseConfigUsageStats][google.cloud.discoveryengine.v1.LicenseConfigUsageStats]s
+    /// associated with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfigUsageStats]: <doc:LicenseConfigUsageStats>
+    ///
+    /// @Snippet(path: "UserLicenseService_ListLicenseConfigsUsageStats")
+    public func listLicenseConfigsUsageStats(
+      request: ListLicenseConfigsUsageStatsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsUsageStatsResponse {
+      try await self.inner.listLicenseConfigsUsageStats(request: request, options: options)
+    }
+
     /// Updates the User License.
     /// This method is used for batch assign/unassign licenses to users.
     ///
@@ -138,6 +151,11 @@
         request: ListUserLicensesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListUserLicensesResponse
 
+      /// See `UserLicenseServiceClient.listLicenseConfigsUsageStats`.
+      func listLicenseConfigsUsageStats(
+        request: ListLicenseConfigsUsageStatsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsUsageStatsResponse
+
       /// See `UserLicenseServiceClient.batchUpdateUserLicenses`.
       func batchUpdateUserLicenses(
         request: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
@@ -204,6 +222,27 @@
         $0.parent = parent
       }
       return self.listUserLicensesByItems(request: request)
+    }
+
+    public func listLicenseConfigsUsageStats(request: ListLicenseConfigsUsageStatsRequest)
+      async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsUsageStatsResponse
+    {
+      try await self.listLicenseConfigsUsageStats(request: request, options: .init())
+    }
+
+    public func listLicenseConfigsUsageStats(
+      request: ListLicenseConfigsUsageStatsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsUsageStatsResponse {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func listLicenseConfigsUsageStats(
+      parent: Swift.String,
+    ) async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsUsageStatsResponse {
+      let request = ListLicenseConfigsUsageStatsRequest().with {
+        $0.parent = parent
+      }
+      return try await self.listLicenseConfigsUsageStats(request: request)
     }
 
     public func batchUpdateUserLicenses(request: BatchUpdateUserLicensesRequest) async throws
