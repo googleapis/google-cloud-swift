@@ -13,12 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// snippet.show
-// snippet.imports
+// snippet.show [START swift_long_running_operations_full]
+// snippet.imports [START swift_long_running_operations_imports]
 import Foundation
 import GoogleGax
 import GoogleCloudWorkflowsV1
-// snippet.end
+// snippet.end [END swift_long_running_operations_imports]
 
 // snippet.function [START swift_long_running_operations_function]
 func sample(projectId: String, location: String, workflowId: String) async throws {
@@ -47,7 +47,7 @@ func sample(projectId: String, location: String, workflowId: String) async throw
   // snippet.end [END swift_long_running_operations_call]
 }
 
-// snippet.hide
+// snippet.hide [END swift_long_running_operations_full]
 @main struct SnippetRunner {
   static func main() async throws {
     try await sample(

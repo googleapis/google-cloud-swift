@@ -13,13 +13,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// snippet.show
-// snippet.imports
+// snippet.show [START swift_override_credentials_full]
+// snippet.imports [START swift_override_credentials_imports]
 import Foundation
 import GoogleAuth
 import GoogleGax
 import GoogleCloudLanguageV2
-// snippet.end
+// snippet.end [END swift_override_credentials_imports]
 
 // snippet.function [START swift_override_credentials_function]
 func sample(apiKey: String) async throws {
@@ -41,7 +41,7 @@ func sample(apiKey: String) async throws {
   // snippet.end [END swift_override_credentials_call]
 }
 
-// snippet.hide
+// snippet.hide [END swift_override_credentials_full]
 @main struct SnippetRunner {
   static func main() async throws {
     try await sample(apiKey: "[placeholder]")
