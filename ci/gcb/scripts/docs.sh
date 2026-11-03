@@ -42,6 +42,15 @@ if (( shard_index >= shard_count )); then
 fi
 
 
+# Use the native build system to avoid Swift 6.4's intermittent Swift Build
+# planning crash on Linux (#1015) when `swift-docc-plugin` extracts symbol
+# graphs across targets.
+flags=(
+    --build-system native
+)
+source "${REPO_ROOT}/ci/glinux-flags.sh"
+add_glinux_flags
+
 clean_flags=(
     --warnings-as-errors
 )
@@ -145,7 +154,7 @@ if [[ "${run_clean_targets}" == true ]]; then
         built_targets["${target}"]=1
 
         echo; echo "================ Building ${target} ================"
-        if swift package generate-documentation "${clean_flags[@]}" --target "${target}" >"${target}.docs.log" 2>&1; then
+        if swift package "${flags[@]}" generate-documentation "${clean_flags[@]}" --target "${target}" >"${target}.docs.log" 2>&1; then
             echo "✓ ${target} built successfully"
         else
             echo; echo "✗ ${target} failed to build"
@@ -163,7 +172,7 @@ for target in "${targets[@]}"; do
     fi
     count=$((count + 1))
     echo; echo "================ Building ${target} ================"
-    if swift package generate-documentation --target "${target}" >"${target}.docs.log" 2>&1; then
+    if swift package "${flags[@]}" generate-documentation --target "${target}" >"${target}.docs.log" 2>&1; then
         echo "✓ ${target} documentation built successfully"
     else
         echo; echo "✗ ${target} documentation failed to build"
