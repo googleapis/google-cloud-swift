@@ -1011,7 +1011,12 @@ import Testing
     try? await serverChannel?.close().get()
     switch result {
     case .success:
-      try await customHTTPClient.shutdown()
+      do {
+        try await customHTTPClient.shutdown()
+      } catch {
+        try? await group.shutdownGracefully()
+        throw error
+      }
       try await group.shutdownGracefully()
     case .failure(let error):
       try? await customHTTPClient.shutdown()
