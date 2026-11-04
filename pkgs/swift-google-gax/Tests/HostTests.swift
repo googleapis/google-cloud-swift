@@ -211,12 +211,17 @@ import Testing
         universeDomain: "my-universe.com"
       ) == "http://localhost:8080"
     )
-    #expect(throws: ClientError.self) {
+    let error = #expect(throws: ClientError.self) {
       _ = try _Host.endpoint(
         endpoint: nil,
         defaultEndpoint: "https://storage.googleapis.com",
         universeDomain: "invalid/domain"
       )
     }
+    guard case .invalidEndpoint(let msg) = error else {
+      Issue.record("Expected ClientError.invalidEndpoint, got \(String(describing: error))")
+      return
+    }
+    #expect(msg == "storage.invalid/domain")
   }
 }

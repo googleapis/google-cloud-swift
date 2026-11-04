@@ -116,14 +116,15 @@ import GoogleAuth
     on request: inout _HTTPClientRequest,
     options: RequestOptions
   ) async throws {
+    let authHeaders: AuthHeaders
     do {
       try await self.credentials.validateUniverseDomain(self.universeDomain)
+      authHeaders = try await self.credentials.headers()
     } catch is CancellationError {
       throw CancellationError()
     } catch {
       throw RequestError.io(error)
     }
-    let authHeaders = try await self.credentials.headers()
     let customHeaders = _sanitizeCustomHeaders(options.headers, excluding: authHeaders)
     for (key, value) in customHeaders {
       request.addHeader(name: key, value: value)

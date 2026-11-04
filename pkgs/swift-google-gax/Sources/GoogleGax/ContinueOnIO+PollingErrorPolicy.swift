@@ -17,10 +17,10 @@ import GoogleAuth
 
 extension ContinueOnIO: PollingErrorPolicy where P: PollingErrorPolicy & Sendable {
   public func onError(state: PollingState, error: RequestError) -> PollingResult {
-    if case .io(let underlying) = error,
-      !(underlying is CredentialsError),
-      !(underlying is CancellationError)
-    {
+    if case .io(let underlying) = error {
+      if underlying is CredentialsError || underlying is CancellationError {
+        return .permanent(error)
+      }
       return .retry(error)
     }
     return inner.onError(state: state, error: error)
@@ -39,7 +39,8 @@ extension PollingErrorPolicy {
   /// Decorate a ``PollingErrorPolicy`` to continue on I/O errors.
   ///
   /// This policy decorates an inner policy. It continues polling if the polling request failed with
-  /// an I/O error, otherwise it delegates to the inner policy.
+  /// an I/O error, except when the underlying error is a `CredentialsError` or
+  /// `CancellationError`, which are treated as permanent.
   ///
   /// For other errors it returns the same value as the inner policy.
   public func continueOnIO() -> ContinueOnIO<Self> {

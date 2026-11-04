@@ -41,6 +41,28 @@ import Testing
     #expect(policy.onError(state: PollingState(), error: otherError) == .permanent(otherError))
   }
 
+  @Test func credentialsAndCancellationErrorsArePermanentWithAlwaysPoll() {
+    let policy = AlwaysPoll.unbounded().continueOnIO()
+
+    let ioError = mockIOError()
+    #expect(policy.onError(state: PollingState(), error: ioError) == .retry(ioError))
+
+    let credentialsError = RequestError.io(CredentialsError.parseError("invalid universe domain"))
+    #expect(
+      policy.onError(state: PollingState(), error: credentialsError)
+        == .permanent(credentialsError)
+    )
+
+    let cancellationError = RequestError.io(CancellationError())
+    #expect(
+      policy.onError(state: PollingState(), error: cancellationError)
+        == .permanent(cancellationError)
+    )
+
+    let otherError = RequestError.binding(BindingError())
+    #expect(policy.onError(state: PollingState(), error: otherError) == .retry(otherError))
+  }
+
   @Test func continueIOOnInProgress() {
     let called = Mutex(false)
     let mock = MockPollingPolicy(onInProgress: { _ in

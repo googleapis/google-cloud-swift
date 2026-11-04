@@ -55,6 +55,35 @@ import Testing
     #expect(p.remainingTime(state: nonIdempotentState()) == nil)
   }
 
+  @Test func credentialsAndCancellationErrorsArePermanentWithAlwaysRetry() {
+    let p = AlwaysRetry.unbounded().retryOnIO()
+
+    let ioError = mockIOError()
+    #expect(p.onError(state: idempotentState(), error: ioError) == .retry(ioError))
+
+    let credentialsError = RequestError.io(CredentialsError.parseError("invalid universe domain"))
+    #expect(
+      p.onError(state: idempotentState(), error: credentialsError) == .permanent(credentialsError)
+    )
+    #expect(
+      p.onError(state: nonIdempotentState(), error: credentialsError)
+        == .permanent(credentialsError)
+    )
+
+    let cancellationError = RequestError.io(CancellationError())
+    #expect(
+      p.onError(state: idempotentState(), error: cancellationError)
+        == .permanent(cancellationError)
+    )
+    #expect(
+      p.onError(state: nonIdempotentState(), error: cancellationError)
+        == .permanent(cancellationError)
+    )
+
+    let otherError = RequestError.binding(BindingError())
+    #expect(p.onError(state: idempotentState(), error: otherError) == .retry(otherError))
+  }
+
   @Test func equatable() {
     let a = NeverRetry().retryOnIO()
     let b = NeverRetry().retryOnIO()

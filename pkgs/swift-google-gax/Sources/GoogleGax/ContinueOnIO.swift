@@ -15,7 +15,8 @@
 /// A retry policy decorator that continues on I/O errors.
 ///
 /// This policy returns [.retry](``RetryResult.retry(_:)``) on [.io](``RequestError/io(_:)``)
-/// errors. Otherwise it returns the result from the inner retry policy.
+/// errors, except when the underlying error is a `CredentialsError` or `CancellationError`, which
+/// are treated as permanent. Otherwise it returns the result from the inner retry policy.
 public struct ContinueOnIO<P: Sendable>: Sendable {
   let inner: P
 

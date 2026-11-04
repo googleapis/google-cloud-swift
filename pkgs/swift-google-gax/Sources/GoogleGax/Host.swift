@@ -87,7 +87,7 @@ public enum _Host {
       let parsed = URLComponents(string: normalizeEndpoint(resolved)),
       parsed.host == targetHost
     else {
-      throw ClientError.invalidEndpoint(defaultEndpoint)
+      throw ClientError.invalidEndpoint(targetHost)
     }
     if !hasScheme, let scheme = components.scheme {
       let prefix = "\(scheme)://"

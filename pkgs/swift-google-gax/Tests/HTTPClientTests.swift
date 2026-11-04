@@ -1380,6 +1380,72 @@ import NIOHTTP1
     }
   }
 
+  @Test func invalidUniverseDomainThrowsInvalidEndpoint() throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with {
+      $0.credentials = credentials
+      $0.universeDomain = "invalid/domain"
+    }
+    let error = #expect(throws: ClientError.self) {
+      _ = try _HTTPClient(
+        from: options,
+        withDefaultEndpoint: "https://secretmanager.googleapis.com",
+        environment: [:]
+      )
+    }
+    guard case .invalidEndpoint(let msg) = error else {
+      Issue.record("Expected ClientError.invalidEndpoint, got \(String(describing: error))")
+      return
+    }
+    #expect(msg == "secretmanager.invalid/domain")
+  }
+
+  @Test func credentialsHeadersErrorWrappedInIOAndNotRetriedByRetryLoop() async throws {
+    struct FailingHeaderCredentials: _CredentialsProtocol {
+      func universeDomain() async throws -> String {
+        "googleapis.com"
+      }
+      func headers() async throws -> AuthHeaders {
+        throw CredentialsError.cannotFetchToken(
+          message: "source credentials universe mismatch",
+          underlyingError: CredentialsError.parseError("universe domain mismatch")
+        )
+      }
+    }
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent when credentials.headers() fails")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://secretmanager.googleapis.com",
+      credentials: FailingHeaderCredentials()
+    )
+    let retryLoop = _RetryLoop(
+      options: RequestOptions(),
+      withDefault: ClientOptions(),
+      idempotent: true
+    )
+    var attempts = 0
+    let error = await #expect(throws: RequestError.self) {
+      try await retryLoop.run(
+        inner: { _ in
+          attempts += 1
+          _ = try await client.newRequest(path: "/v1/test", query: [])
+        },
+        sleep: { _ in
+          Issue.record("RetryLoop must not sleep or retry on CredentialsError from headers()")
+        }
+      )
+    }
+    #expect(attempts == 1)
+    guard case .io(let underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String
