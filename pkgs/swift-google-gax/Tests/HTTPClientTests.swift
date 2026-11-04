@@ -1210,8 +1210,68 @@ import NIOPosix
     let client2 = try _HTTPClient(from: options, withDefaultEndpoint: "http://localhost:5678")
     let shared1 = try #require(client1.inner as? SharedHTTPClient)
     let shared2 = try #require(client2.inner as? SharedHTTPClient)
-    #expect(shared1.inner === HTTPClient.shared)
-    #expect(shared2.inner === HTTPClient.shared)
+    #expect(shared1.inner === SharedHTTPClient.defaultClient)
+    #expect(shared2.inner === SharedHTTPClient.defaultClient)
+    #expect(shared1.inner !== HTTPClient.shared)
+  }
+
+  @Test func sharedHTTPClientPreservesRawGzipWithoutAutoDecompression() async throws {
+    // Valid gzip stream compressing "hello gzip" (30 bytes compressed).
+    let compressedGzip = Data([
+      0x1F, 0x8B, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03,
+      0xCB, 0x48, 0xCD, 0xC9, 0xC9, 0x57, 0x48, 0xAF, 0xCA, 0x2C,
+      0x00, 0x00, 0x6E, 0x5A, 0xAD, 0x62, 0x0A, 0x00, 0x00, 0x00,
+    ])
+
+    let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
+    let bootstrap = ServerBootstrap(group: group)
+      .serverChannelOption(.backlog, value: 4)
+      .serverChannelOption(.socketOption(.so_reuseaddr), value: 1)
+      .childChannelInitializer { channel in
+        channel.eventLoop.makeCompletedFuture {
+          try channel.pipeline.syncOperations.configureHTTPServerPipeline()
+          try channel.pipeline.syncOperations.addHandler(
+            NIOHTTPServerRequestAggregator(maxContentLength: 1 << 16))
+          try channel.pipeline.syncOperations.addHandler(
+            RawGzipServerHandler(compressedPayload: compressedGzip))
+        }
+      }
+
+    var serverChannel: (any Channel)? = nil
+    let result: Result<Void, any Error>
+    do {
+      let channel = try await bootstrap.bind(host: "127.0.0.1", port: 0).get()
+      serverChannel = channel
+      let port = try #require(channel.localAddress?.port)
+      let endpoint = "http://127.0.0.1:\(port)"
+      let credentials = try Credentials(configuration: .anonymous)
+      let options = ClientOptions().with { $0.credentials = credentials }
+
+      let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
+      let request = try await client.newRequest(path: "/gzip", query: [])
+      let response = try await request.execute(timeout: .seconds(10))
+      #expect(response.status == .ok)
+      #expect(response.headers["X-Echo-Accept-Encoding"].first == "<none>")
+      #expect(response.headers["Content-Encoding"].first == "gzip")
+
+      var received = Data()
+      for try await chunk in response.body {
+        received.append(Data(buffer: chunk))
+      }
+      #expect(received == compressedGzip)
+      result = .success(())
+    } catch {
+      result = .failure(error)
+    }
+
+    try? await serverChannel?.close().get()
+    switch result {
+    case .success:
+      try await group.shutdownGracefully()
+    case .failure(let error):
+      try? await group.shutdownGracefully()
+      throw error
+    }
   }
 
   @Test func streamingResponseSurvivesClientRelease() async throws {
@@ -1321,6 +1381,36 @@ private final class TwoChunkStreamingHandler: ChannelInboundHandler {
       ctx.write(NIOAny(HTTPServerResponsePart.body(.byteBuffer(second))), promise: nil)
       ctx.writeAndFlush(NIOAny(HTTPServerResponsePart.end(nil)), promise: nil)
     }
+  }
+}
+
+private final class RawGzipServerHandler: ChannelInboundHandler {
+  typealias InboundIn = NIOHTTPServerRequestFull
+  typealias OutboundOut = HTTPServerResponsePart
+
+  private let compressedPayload: Data
+
+  init(compressedPayload: Data) {
+    self.compressedPayload = compressedPayload
+  }
+
+  func channelRead(context: ChannelHandlerContext, data: NIOAny) {
+    let request = self.unwrapInboundIn(data)
+    let acceptEncoding = request.head.headers["Accept-Encoding"].joined(separator: ", ")
+    var headers = NIOHTTP1.HTTPHeaders()
+    headers.add(
+      name: "X-Echo-Accept-Encoding",
+      value: acceptEncoding.isEmpty ? "<none>" : acceptEncoding
+    )
+    headers.add(name: "Content-Type", value: "text/plain")
+    headers.add(name: "Content-Encoding", value: "gzip")
+    headers.add(name: "Content-Length", value: "\(self.compressedPayload.count)")
+    let head = HTTPResponseHead(version: request.head.version, status: .ok, headers: headers)
+    context.write(self.wrapOutboundOut(.head(head)), promise: nil)
+
+    let body = context.channel.allocator.buffer(data: self.compressedPayload)
+    context.write(self.wrapOutboundOut(.body(.byteBuffer(body))), promise: nil)
+    context.writeAndFlush(self.wrapOutboundOut(.end(nil)), promise: nil)
   }
 }
 

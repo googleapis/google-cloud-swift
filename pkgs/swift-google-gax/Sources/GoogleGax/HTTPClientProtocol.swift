@@ -25,9 +25,17 @@ import struct NIOCore.TimeAmount
 
 /// Adapts a shared `AsyncHTTPClient.HTTPClient` to `_HTTPClientProtocol`.
 struct SharedHTTPClient: _HTTPClientProtocol {
+  /// Process-wide shared `HTTPClient` using default configuration (`decompression: .disabled`).
+  ///
+  /// Unlike `HTTPClient.shared` (`.singletonConfiguration`), keeping automatic decompression
+  /// disabled avoids injecting `Accept-Encoding: deflate, gzip` on outbound requests and prevents
+  /// `NIOHTTPResponseDecompressor` from decompressing `Content-Encoding: gzip` streams behind
+  /// callers that verify wire checksums or preserve compressed bytes (such as `GoogleCloudStorage`).
+  static let defaultClient = AsyncHTTPClient.HTTPClient()
+
   let inner: AsyncHTTPClient.HTTPClient
 
-  init(_ inner: AsyncHTTPClient.HTTPClient = .shared) {
+  init(_ inner: AsyncHTTPClient.HTTPClient = SharedHTTPClient.defaultClient) {
     self.inner = inner
   }
 

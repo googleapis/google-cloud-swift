@@ -319,13 +319,15 @@ transport layer.
 ### Hidden HTTP client
 
 The HTTP transport in `GoogleGax` uses `AsyncHTTPClient` (from the Swift on
-Server ecosystem) internally via `AsyncHTTPClient.HTTPClient.shared`. However,
-this dependency is entirely encapsulated and never exposed in public APIs:
+Server ecosystem) internally via a shared process-wide `HTTPClient` instance.
+However, this dependency is entirely encapsulated and never exposed in public
+APIs:
 
-- REST clients share the process-wide `HTTPClient.shared` connection pool rather
-  than allocating per-client pools or running background shutdown tasks on
-  deallocation, ensuring streaming responses remain active even if the caller
-  drops its client reference.
+- REST clients share a single process-wide `HTTPClient` connection pool (with
+  automatic transport decompression disabled so raw wire bytes and checksums are
+  preserved) rather than allocating per-client pools or running background
+  shutdown tasks on deallocation, ensuring streaming responses remain active
+  even if the caller drops its client reference.
 - Applications do not configure or interact directly with `AsyncHTTPClient` types.
 - Encapsulating the transport allows the SDK to optimize, update, or replace the
   underlying HTTP engine in the future without breaking user code.
