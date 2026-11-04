@@ -580,12 +580,20 @@ private struct FailingSourceCredentials: CredentialsProvider {
       universeDomain: "override.universe.com"
     )
     #expect(try await withOverride.universeDomain() == "override.universe.com")
+
+    let withEmptyOverride = try ImpersonatedCredentials(
+      sourceCredentials: source,
+      targetPrincipal: "target@project.iam.gserviceaccount.com",
+      universeDomain: ""
+    )
+    #expect(try await withEmptyOverride.universeDomain() == "source.universe.com")
   }
 
   @Test func sourceUniverseDomainMismatchFailsBeforeFetchingSourceToken() async throws {
     struct SpySourceCredentials: CredentialsProvider {
+      var resolvedDomain = "googleapis.com"
       func universeDomain() async throws -> String {
-        "googleapis.com"
+        resolvedDomain
       }
       func headers() async throws -> AuthHeaders {
         Issue.record("sourceCredentials.headers() must not be called on universe domain mismatch")
@@ -604,12 +612,22 @@ private struct FailingSourceCredentials: CredentialsProvider {
     let error = await #expect(throws: CredentialsError.self) {
       _ = try await creds.headers()
     }
-    guard let error, case let .cannotFetchToken(_, underlyingError) = error else {
+    guard let error, case let .cannotFetchToken(message, underlyingError) = error else {
       Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
       return
     }
+    #expect(message.contains("universe domain"))
     #expect(underlyingError is CredentialsError)
     #expect(!AuthHTTPError.isRetryable(error))
+
+    let emptySourceCreds = try ImpersonatedCredentials(
+      sourceCredentials: SpySourceCredentials(resolvedDomain: ""),
+      targetPrincipal: "target@project.iam.gserviceaccount.com",
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+    await #expect(throws: CredentialsError.self) {
+      _ = try await emptySourceCreds.headers()
+    }
   }
 
   @Test func uppercaseIamCredentialsHostMismatchIsRejected() throws {

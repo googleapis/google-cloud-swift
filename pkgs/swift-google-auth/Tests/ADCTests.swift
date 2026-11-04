@@ -569,5 +569,35 @@ import Testing
     #expect(throws: CredentialsError.self) {
       _ = try ADC.resolve(environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path])
     }
+
+    let validOuterJSON = """
+      {
+        "type": "impersonated_service_account",
+        "service_account_impersonation_url": "https://iamcredentials.universe-a.com/v1/projects/-/serviceAccounts/target@project.iam.gserviceaccount.com:generateAccessToken",
+        "universe_domain": "universe-a.com",
+        "source_credentials": {
+          "type": "service_account",
+          "project_id": "test-project-id",
+          "private_key_id": "test-private-key-id",
+          "private_key": "\(TestKeys.escapedPKCS8PEM)",
+          "client_email": "source@gserviceaccount.com",
+          "universe_domain": "universe-a.com"
+        }
+      }
+      """
+    try Data(validOuterJSON.utf8).write(to: tempFile)
+    let overrideConflict = #expect(throws: CredentialsError.self) {
+      _ = try ADC.resolve(
+        universeDomain: "override-universe.com",
+        environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path]
+      )
+    }
+    guard case let .parseError(overrideMessage) = overrideConflict else {
+      Issue.record(
+        "Expected CredentialsError.parseError, got \(String(describing: overrideConflict))")
+      return
+    }
+    #expect(overrideMessage.contains("override-universe.com"))
+    #expect(overrideMessage.contains("universe-a.com"))
   }
 }

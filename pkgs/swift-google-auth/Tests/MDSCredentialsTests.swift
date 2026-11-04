@@ -916,6 +916,45 @@ import Testing
     #expect(attempts.getCount() == 3)
   }
 
+  @Test func universeDomainEmptyOverrideQueriesMetadataServer() async throws {
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          body: .bytes(.init(data: Data("mds.universe.com\n".utf8)))
+        )
+      }
+    ])
+    let provider = MDSCredentials(
+      universeDomain: "",
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+    #expect(try await provider.universeDomain() == "mds.universe.com")
+  }
+
+  @Test func universeDomainPreCancelledTaskSkipsNetworkProbe() async throws {
+    let mock = MockHTTPClient([])
+    let provider = MDSCredentials(
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+    let (stream, continuation) = AsyncStream<Void>.makeStream()
+    let task = Task<String, any Error> {
+      var iterator = stream.makeAsyncIterator()
+      _ = await iterator.next()
+      return try await provider.universeDomain()
+    }
+    task.cancel()
+    continuation.finish()
+    await #expect(throws: CancellationError.self) {
+      _ = try await task.value
+    }
+  }
+
   static func checkRequest(
     _ request: HTTPClientRequest, sourceLocation: SourceLocation = #_sourceLocation
   ) {

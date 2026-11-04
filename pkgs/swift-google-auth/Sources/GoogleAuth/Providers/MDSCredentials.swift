@@ -31,6 +31,7 @@ actor MDSUniverseDomainCache {
     if let error = self.permanentError {
       throw error
     }
+    try Task.checkCancellation()
     let task: Task<String, any Error>
     if let existing = self.activeTask {
       task = existing
@@ -135,7 +136,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
       environment: environment
     )
     self.provider = provider
-    self.universeDomainOverride = universeDomain
+    self.universeDomainOverride = nonEmpty(universeDomain)
 
     self.cache = TokenCache(
       provider: provider,

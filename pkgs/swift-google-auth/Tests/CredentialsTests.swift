@@ -15,7 +15,7 @@
 import Foundation
 import Testing
 
-@_spi(GoogleCloudInternal) @testable import GoogleAuth
+@testable import GoogleAuth
 
 @Suite(.serialized) struct CredentialsTest {
   @Test func resolveProviderForAnonymous() async throws {
