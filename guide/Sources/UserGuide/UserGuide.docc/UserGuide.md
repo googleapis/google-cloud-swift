@@ -15,6 +15,7 @@ best-practices to retry transient RPC errors.
 
 - <doc:overview>
 - [Supported Swift versions](https://docs.cloud.google.com/swift/supported-versions)
+- [Post-quantum cryptography (PQC) support](https://docs.cloud.google.com/swift/post-quantum-cryptography)
 
 ## Get started
 
@@ -35,4 +36,3 @@ best-practices to retry transient RPC errors.
 - <doc:generate-text-using-the-vertex-ai-gemini-api>
 - <doc:deploy-to-cloud-run>
 - <doc:deploy-to-gke>
-- <doc:post-quantum-cryptography>
