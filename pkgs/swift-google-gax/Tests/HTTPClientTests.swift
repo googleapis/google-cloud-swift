@@ -1238,17 +1238,12 @@ import NIOPosix
         }
       }
 
-    let serverChannel: any Channel
+    var serverChannel: (any Channel)? = nil
+    let result: Result<Void, any Error>
     do {
-      serverChannel = try await bootstrap.bind(host: "127.0.0.1", port: 0).get()
-    } catch {
-      releaseOnce()
-      try? await group.shutdownGracefully()
-      throw error
-    }
-
-    do {
-      let port = try #require(serverChannel.localAddress?.port)
+      let channel = try await bootstrap.bind(host: "127.0.0.1", port: 0).get()
+      serverChannel = channel
+      let port = try #require(channel.localAddress?.port)
       let endpoint = "http://127.0.0.1:\(port)"
       let credentials = try Credentials(configuration: .anonymous)
       let options = ClientOptions().with { $0.credentials = credentials }
@@ -1272,16 +1267,20 @@ import NIOPosix
         received.append(Data(buffer: chunk))
       }
       #expect(String(decoding: received, as: UTF8.self) == "part1-part2")
+      result = .success(())
     } catch {
-      releaseOnce()
-      try? await serverChannel.close().get()
-      try? await group.shutdownGracefully()
-      throw error
+      result = .failure(error)
     }
 
     releaseOnce()
-    try? await serverChannel.close().get()
-    try await group.shutdownGracefully()
+    try? await serverChannel?.close().get()
+    switch result {
+    case .success:
+      try await group.shutdownGracefully()
+    case .failure(let error):
+      try? await group.shutdownGracefully()
+      throw error
+    }
   }
 
   /// A test response type.
