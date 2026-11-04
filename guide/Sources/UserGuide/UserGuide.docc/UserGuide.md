@@ -32,7 +32,7 @@ best-practices to retry transient RPC errors.
 - <doc:pagination>
 - <doc:update-resource>
 - <doc:optimistic-concurrency-control-iam>
-- <doc:package-traits>
+- [Package traits](https://docs.cloud.google.com/swift/package-traits)
 - <doc:generate-text-using-the-vertex-ai-gemini-api>
 - <doc:deploy-to-cloud-run>
 - <doc:deploy-to-gke>
