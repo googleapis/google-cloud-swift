@@ -23,6 +23,7 @@ import AsyncHTTPClient
 import NIOCore
 import NIOFoundationCompat
 import NIOHTTP1
+import NIOPosix
 
 @Suite struct HTTPClientTests {
   @Test(arguments: [
@@ -1202,10 +1203,125 @@ import NIOHTTP1
     #expect(details.payload == Data("<html>502 Bad Gateway</html>".utf8))
   }
 
+  @Test func sharedHTTPClientPool() throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with { $0.credentials = credentials }
+    let client1 = try _HTTPClient(from: options, withDefaultEndpoint: "http://localhost:1234")
+    let client2 = try _HTTPClient(from: options, withDefaultEndpoint: "http://localhost:5678")
+    let shared1 = try #require(client1.inner as? SharedHTTPClient)
+    let shared2 = try #require(client2.inner as? SharedHTTPClient)
+    #expect(shared1.inner === HTTPClient.shared)
+    #expect(shared2.inner === HTTPClient.shared)
+  }
+
+  @Test func streamingResponseSurvivesClientRelease() async throws {
+    let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
+    let releaseSecondChunk = group.next().makePromise(of: Void.self)
+    var didRelease = false
+    let releaseOnce = {
+      if !didRelease {
+        didRelease = true
+        releaseSecondChunk.succeed(())
+      }
+    }
+
+    let bootstrap = ServerBootstrap(group: group)
+      .serverChannelOption(.backlog, value: 4)
+      .serverChannelOption(.socketOption(.so_reuseaddr), value: 1)
+      .childChannelInitializer { channel in
+        channel.eventLoop.makeCompletedFuture {
+          try channel.pipeline.syncOperations.configureHTTPServerPipeline()
+          try channel.pipeline.syncOperations.addHandler(
+            NIOHTTPServerRequestAggregator(maxContentLength: 1 << 16))
+          try channel.pipeline.syncOperations.addHandler(
+            TwoChunkStreamingHandler(releaseSecondChunk: releaseSecondChunk.futureResult))
+        }
+      }
+
+    let serverChannel: any Channel
+    do {
+      serverChannel = try await bootstrap.bind(host: "127.0.0.1", port: 0).get()
+    } catch {
+      releaseOnce()
+      try? await group.shutdownGracefully()
+      throw error
+    }
+
+    do {
+      let port = try #require(serverChannel.localAddress?.port)
+      let endpoint = "http://127.0.0.1:\(port)"
+      let credentials = try Credentials(configuration: .anonymous)
+      let options = ClientOptions().with { $0.credentials = credentials }
+
+      var client: _HTTPClient? = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
+      let request = try await client!.newRequest(path: "/download", query: [])
+      let response = try await request.execute(timeout: .seconds(10))
+      #expect(response.status == .ok)
+
+      var iterator = response.body.makeAsyncIterator()
+      let firstChunk = try #require(try await iterator.next())
+      var received = Data(buffer: firstChunk)
+      #expect(String(decoding: received, as: UTF8.self) == "part1-")
+
+      // Drop the client reference while the response stream is still active.
+      client = nil
+      await Task.yield()
+      releaseOnce()
+
+      while let chunk = try await iterator.next() {
+        received.append(Data(buffer: chunk))
+      }
+      #expect(String(decoding: received, as: UTF8.self) == "part1-part2")
+    } catch {
+      releaseOnce()
+      try? await serverChannel.close().get()
+      try? await group.shutdownGracefully()
+      throw error
+    }
+
+    releaseOnce()
+    try? await serverChannel.close().get()
+    try await group.shutdownGracefully()
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String
     public let value: String
+  }
+}
+
+private final class TwoChunkStreamingHandler: ChannelInboundHandler {
+  typealias InboundIn = NIOHTTPServerRequestFull
+  typealias OutboundOut = HTTPServerResponsePart
+
+  private let releaseSecondChunk: EventLoopFuture<Void>
+
+  init(releaseSecondChunk: EventLoopFuture<Void>) {
+    self.releaseSecondChunk = releaseSecondChunk
+  }
+
+  func channelRead(context: ChannelHandlerContext, data: NIOAny) {
+    let request = self.unwrapInboundIn(data)
+    var headers = NIOHTTP1.HTTPHeaders()
+    headers.add(name: "Content-Type", value: "application/octet-stream")
+    headers.add(name: "Transfer-Encoding", value: "chunked")
+    let head = HTTPResponseHead(version: request.head.version, status: .ok, headers: headers)
+    context.write(self.wrapOutboundOut(.head(head)), promise: nil)
+
+    var first = context.channel.allocator.buffer(capacity: 6)
+    first.writeString("part1-")
+    context.writeAndFlush(self.wrapOutboundOut(.body(.byteBuffer(first))), promise: nil)
+
+    let loopBoundContext = NIOLoopBound(context, eventLoop: context.eventLoop)
+    self.releaseSecondChunk.hop(to: context.eventLoop).whenComplete { _ in
+      let ctx = loopBoundContext.value
+      guard ctx.channel.isActive else { return }
+      var second = ctx.channel.allocator.buffer(capacity: 5)
+      second.writeString("part2")
+      ctx.write(NIOAny(HTTPServerResponsePart.body(.byteBuffer(second))), promise: nil)
+      ctx.writeAndFlush(NIOAny(HTTPServerResponsePart.end(nil)), promise: nil)
+    }
   }
 }
 

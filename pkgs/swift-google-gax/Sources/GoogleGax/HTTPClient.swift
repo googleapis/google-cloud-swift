@@ -41,7 +41,7 @@ import struct GoogleAuth.Credentials
       endpoint: from.endpoint,
       defaultEndpoint: withDefaultEndpoint
     )
-    self.inner = HTTPClientHolder()
+    self.inner = SharedHTTPClient()
     var header = clientHeader
     header.setToken(.rest, version: gaxVersion())
     self.clientHeader = header

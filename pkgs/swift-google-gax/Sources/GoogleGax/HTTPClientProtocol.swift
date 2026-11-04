@@ -13,6 +13,7 @@
 // limitations under the License.
 
 @_spi(GoogleCloudInternal) public import AsyncHTTPClient
+import struct NIOCore.TimeAmount
 
 /// A protocol to mock `AsyncHTTPClient.HTTPClient`.
 ///
@@ -20,4 +21,18 @@
 @_spi(GoogleCloudInternal) public protocol _HTTPClientProtocol: Sendable {
   @concurrent
   func execute(request: HTTPClientRequest, timeout: Duration) async throws -> HTTPClientResponse
+}
+
+/// Adapts a shared `AsyncHTTPClient.HTTPClient` to `_HTTPClientProtocol`.
+struct SharedHTTPClient: _HTTPClientProtocol {
+  let inner: AsyncHTTPClient.HTTPClient
+
+  init(_ inner: AsyncHTTPClient.HTTPClient = .shared) {
+    self.inner = inner
+  }
+
+  @concurrent
+  func execute(request: HTTPClientRequest, timeout: Duration) async throws -> HTTPClientResponse {
+    try await self.inner.execute(request, timeout: .init(timeout), logger: nil)
+  }
 }

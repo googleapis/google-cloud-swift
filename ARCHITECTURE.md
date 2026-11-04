@@ -114,9 +114,9 @@ to be initialized at application startup and reused across requests:
   thread pool during asynchronous request handling.
 - **Amortized caching and transport state:** Each client and `Credentials`
   instance owns an in-memory `TokenCache` actor (with a proactive background
-  refresh `Task`), transport connection pools (`HTTPClientHolder` or
-  `_GRPCClient`), and adaptive retry throttling state (`AdaptiveThrottler`).
-  Creating a new client per request discards these caches and connections.
+  refresh `Task`), gRPC transport connection state (`_GRPCClient`) where
+  applicable, and adaptive retry throttling state (`AdaptiveThrottler`).
+  Creating a new client per request discards these caches and state.
 
 ## Request configuration and the `.with` idiom
 
@@ -319,11 +319,13 @@ transport layer.
 ### Hidden HTTP client
 
 The HTTP transport in `GoogleGax` uses `AsyncHTTPClient` (from the Swift on
-Server ecosystem) internally via `HTTPClientHolder`. However, this dependency
-is entirely encapsulated and never exposed in public APIs:
+Server ecosystem) internally via `AsyncHTTPClient.HTTPClient.shared`. However,
+this dependency is entirely encapsulated and never exposed in public APIs:
 
-- The client manages connection lifecycle and background shutdown automatically
-  in `deinit`.
+- REST clients share the process-wide `HTTPClient.shared` connection pool rather
+  than allocating per-client pools or running background shutdown tasks on
+  deallocation, ensuring streaming responses remain active even if the caller
+  drops its client reference.
 - Applications do not configure or interact directly with `AsyncHTTPClient` types.
 - Encapsulating the transport allows the SDK to optimize, update, or replace the
   underlying HTTP engine in the future without breaking user code.
