@@ -13,13 +13,13 @@
 // limitations under the License.
 
 public import Foundation
-@_spi(GoogleCloudInternal) public import GoogleAuth
+import GoogleAuth
 @_spi(GoogleCloudInternal) public import Logging
 
 /// Implements a HTTP-only client for the Swift SDK client libraries.
 @_spi(GoogleCloudInternal) public struct _HTTPClient: Sendable {
   let baseURL: URLComponents
-  let credentials: any CredentialsProtocol
+  let credentials: any _CredentialsProtocol
   let logger: Logger?
   let quotaProject: String?
   let inner: any _HTTPClientProtocol
@@ -72,29 +72,7 @@ public import Foundation
   // Creates a new testing client.
   @_spi(GoogleCloudInternal) public init(
     _ inner: any _HTTPClientProtocol, endpoint: String,
-    credentials: GoogleAuth.Credentials? = nil,
-    logger: Logging.Logger? = nil,
-    quotaProject: String? = nil,
-    defaultEndpoint: String? = nil,
-    universeDomain: String = _Host.defaultUniverseDomain,
-    clientHeader: _ApiClientHeader = .init()
-  ) throws {
-    let resolvedCredentials = try credentials ?? GoogleAuth.Credentials(configuration: .anonymous)
-    try self.init(
-      inner,
-      endpoint: endpoint,
-      credentials: resolvedCredentials as any CredentialsProtocol,
-      logger: logger,
-      quotaProject: quotaProject,
-      defaultEndpoint: defaultEndpoint,
-      universeDomain: universeDomain,
-      clientHeader: clientHeader
-    )
-  }
-
-  init(
-    _ inner: any _HTTPClientProtocol, endpoint: String,
-    credentials: any CredentialsProtocol,
+    credentials: (any _CredentialsProtocol)? = nil,
     logger: Logging.Logger? = nil,
     quotaProject: String? = nil,
     defaultEndpoint: String? = nil,
@@ -103,7 +81,7 @@ public import Foundation
   ) throws {
     self.universeDomain = universeDomain
     self.baseURL = try Self.validateEndpoint(endpoint)
-    self.credentials = credentials
+    self.credentials = try credentials ?? GoogleAuth.Credentials(configuration: .anonymous)
     self.logger = logger
     self.quotaProject = quotaProject
     self.inner = inner

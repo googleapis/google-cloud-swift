@@ -17,11 +17,8 @@ import GoogleAuth
 
 extension ContinueOnIO: RetryPolicy where P: RetryPolicy & Sendable {
   public func onError(state: RetryState, error: RequestError) -> RetryResult {
-    if case .io(let underlying) = error {
-      if underlying is CredentialsError || underlying is CancellationError {
-        return .permanent(error)
-      }
-      return .retry(error)
+    if case .io = error {
+      return error.isPermanentIOError ? .permanent(error) : .retry(error)
     }
     return inner.onError(state: state, error: error)
   }

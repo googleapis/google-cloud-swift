@@ -174,7 +174,7 @@ import NIOHTTP1
   }
 
   @Test func requestOptionsHeadersAuthPrecedence() async throws {
-    struct MockAuthCredentials: CredentialsProtocol {
+    struct MockAuthCredentials: _CredentialsProtocol {
       let authHeaders: AuthHeaders
       func headers() async throws -> AuthHeaders {
         self.authHeaders
@@ -1240,7 +1240,7 @@ import NIOHTTP1
   }
 
   @Test func universeDomainMismatchThrowsErrorBeforeFetchingAuthHeaders() async throws {
-    struct CustomUniverseCredentials: CredentialsProtocol {
+    struct CustomUniverseCredentials: _CredentialsProtocol {
       let domain: String
       func universeDomain() async throws -> String { domain }
       func headers() async throws -> AuthHeaders {
@@ -1273,7 +1273,7 @@ import NIOHTTP1
   }
 
   @Test func universeDomainMatchSucceeds() async throws {
-    struct CustomUniverseCredentials: CredentialsProtocol {
+    struct CustomUniverseCredentials: _CredentialsProtocol {
       let domain: String
       func universeDomain() async throws -> String { domain }
       func headers() async throws -> AuthHeaders {
@@ -1298,7 +1298,7 @@ import NIOHTTP1
   }
 
   @Test func universeDomainMismatchIsNotRetriedByRetryLoop() async throws {
-    struct CustomUniverseCredentials: CredentialsProtocol {
+    struct CustomUniverseCredentials: _CredentialsProtocol {
       let domain: String
       func universeDomain() async throws -> String { domain }
       func headers() async throws -> AuthHeaders {
@@ -1341,7 +1341,7 @@ import NIOHTTP1
   }
 
   @Test func cancellationErrorFromCredentialsIsRethrownDirectly() async throws {
-    struct CancellingUniverseCredentials: CredentialsProtocol {
+    struct CancellingUniverseCredentials: _CredentialsProtocol {
       func universeDomain() async throws -> String {
         throw CancellationError()
       }
@@ -1349,7 +1349,7 @@ import NIOHTTP1
         [("authorization", "Bearer secret-token")]
       }
     }
-    struct CancellingHeaderCredentials: CredentialsProtocol {
+    struct CancellingHeaderCredentials: _CredentialsProtocol {
       func universeDomain() async throws -> String {
         "googleapis.com"
       }
@@ -1401,7 +1401,7 @@ import NIOHTTP1
   }
 
   @Test func credentialsHeadersErrorWrappedInIOAndNotRetriedByRetryLoop() async throws {
-    struct FailingHeaderCredentials: CredentialsProtocol {
+    struct FailingHeaderCredentials: _CredentialsProtocol {
       func universeDomain() async throws -> String {
         "googleapis.com"
       }
