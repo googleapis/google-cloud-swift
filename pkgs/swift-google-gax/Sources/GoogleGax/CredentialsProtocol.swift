@@ -14,15 +14,30 @@
 
 import GoogleAuth
 
-/// Dependency injection for `_HTTPClient`.
+/// Internal dependency-injection seam for unit-testing `_HTTPClient`.
 ///
-/// Allow testing `_HTTPClient` with mock credentials.
+/// `GoogleAuth` intentionally exposes concrete `GoogleAuth.Credentials` rather than a public
+/// protocol. Keep this protocol `internal` to `GoogleGax`:
+/// - Production code and cross-package `@_spi(GoogleCloudInternal)` callers always pass concrete
+///   `GoogleAuth.Credentials` (via `ClientOptions.credentials` or `_HTTPClient`'s SPI initializer).
+/// - Unit tests in `GoogleGaxTests` (`@testable import GoogleGax`) conform lightweight mock types
+///   to `CredentialsProtocol` and inject them via `_HTTPClient`'s `internal` initializer to test
+///   header precedence, universe domain mismatches, token-fetch failures, and task cancellation
+///   without network or filesystem I/O.
 protocol CredentialsProtocol: Sendable {
+  /// Returns the authentication headers to attach to an outgoing HTTP request.
   func headers() async throws -> GoogleAuth.AuthHeaders
+
+  /// Returns the universe domain associated with these credentials.
   func universeDomain() async throws -> String
+
+  /// Verifies that these credentials belong to `expectedUniverseDomain` before attaching headers.
   func validateUniverseDomain(_ expectedUniverseDomain: String) async throws
 }
 
+// Default implementations for test mocks in `GoogleGaxTests` that only need to stub `headers()`.
+// Note that `GoogleAuth.Credentials` provides its own concrete implementations of both methods
+// (including treating `.anonymous` credentials as valid in any universe domain).
 extension CredentialsProtocol {
   func universeDomain() async throws -> String {
     GoogleAuth.Credentials.defaultUniverseDomain
