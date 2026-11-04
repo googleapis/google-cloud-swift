@@ -784,15 +784,6 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     )
     #expect(try await creds.universeDomain() == "googleapis.com")
 
-    let emptyOverrideCreds = try UserCredentials(
-      user: defaultUniverseData,
-      universeDomain: "",
-      httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
-      clock: TestClock()
-    )
-    #expect(try await emptyOverrideCreds.universeDomain() == "googleapis.com")
-
     let customUniverseData = UserAccountData(
       type: "authorized_user",
       clientId: "mock-id",

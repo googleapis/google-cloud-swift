@@ -236,7 +236,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   /// Standard Google Default Universe (`googleapis.com`) metadata servers may return HTTP 404
   /// or an empty body for this endpoint; both are treated as `googleapis.com`.
   ///
-  /// - Returns: The resolved universe domain string.
+  /// - Returns: The resolved and validated universe domain string.
   /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server is unreachable or returns an unexpected error.
   @concurrent
   func fetchUniverseDomain() async throws -> String {

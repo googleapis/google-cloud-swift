@@ -22,12 +22,12 @@ This design defines end-to-end support for Google Cloud universe domains across 
 
 ### Resolution Precedence
 
-For Application Default Credentials (`ADC`) and programmatic credential configurations, optional `universeDomain` overrides treat empty strings (`""`) as unset (`nil`). When `universeDomain` is non-empty, `ADC` passes it as an override to the resolved credential provider.
+For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(quotaProjectID:universeDomain:scopes:)` (and `ADC.resolve`) accepts an optional `universeDomain` override. When `universeDomain` is non-empty, `ADC` passes it as an override to the resolved credential provider.
 
 ### Provider Behavior
 
 - **Anonymous and API Key Credentials**: `AnonymousCredentials` defaults to `Credentials.defaultUniverseDomain` and overrides `validateUniverseDomain(_:)` as a no-op so transport clients and impersonated credentials skip universe domain mismatch checks when anonymous credentials are used. `APIKeyCredentials` always returns `Credentials.defaultUniverseDomain` via the default `CredentialsProvider` extension.
-- **Service Account and External Account Credentials**: `ServiceAccountCredentials` parses the optional `"universe_domain"` field from its JSON key (`ServiceAccountData`) and resolves `nonEmpty(universeDomain) ?? nonEmpty(key.universeDomain) ?? defaultUniverseDomain`. `ExternalAccountCredentials` resolves `nonEmpty(universeDomain) ?? defaultUniverseDomain` from `ExternalAccountConfig` and returns it from `universeDomain()`.
+- **Service Account and External Account Credentials**: `ServiceAccountCredentials` parses the optional `"universe_domain"` field from its JSON key (`ServiceAccountData`) and resolves `universeDomain ?? nonEmpty(key.universeDomain) ?? defaultUniverseDomain`. `ExternalAccountCredentials` stores the `universeDomain` property on `ExternalAccountConfig` (defaulting to `Credentials.defaultUniverseDomain`) and returns it from `universeDomain()`.
 - **User Account Credentials**: `UserCredentials` parses `"universe_domain"` from JSON and accepts an optional `universeDomain` parameter. In accordance with AIP-4116, if the resolved universe domain is anything other than `"googleapis.com"`, initialization fails immediately with `CredentialsError.notSupported`.
 - **Impersonated Service Account Credentials**:
   - When initialized with a `targetPrincipal`, the IAM Credentials endpoint defaults to `https://iamcredentials.<universe>/v1/projects/-/serviceAccounts/<principal>:generateAccessToken`. When no explicit `universeDomain` override is set on `ImpersonatedCredentials`, `universeDomain()` delegates dynamically to `sourceCredentials.universeDomain()`, and `ImpersonatedTokenProvider` dynamically constructs the IAM Credentials endpoint from the source credential's resolved universe domain.

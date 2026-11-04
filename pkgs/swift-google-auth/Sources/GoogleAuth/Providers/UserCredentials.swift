@@ -72,7 +72,7 @@ where C.Instant.Duration == Duration {
     retryConfiguration: RetryConfiguration,
     clock: C
   ) throws {
-    if let ud = nonEmpty(universeDomain) {
+    if let ud = universeDomain {
       if ud != defaultUniverseDomain {
         throw CredentialsError.notSupported(
           "User accounts are only supported in the default (googleapis.com) universe: \(ud)")

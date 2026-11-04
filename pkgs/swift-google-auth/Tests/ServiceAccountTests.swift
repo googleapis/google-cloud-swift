@@ -309,10 +309,6 @@ struct ServiceAccountTests {
       keyJSON: keyWithUniverse, universeDomain: "override.universe.com")
     #expect(try await credsWithOverride.universeDomain() == "override.universe.com")
 
-    let credsWithEmptyOverride = try ServiceAccountCredentials(
-      keyJSON: keyWithUniverse, universeDomain: "")
-    #expect(try await credsWithEmptyOverride.universeDomain() == "test-universe-domain")
-
     let keyWithoutUniverse = Data(
       """
       {
@@ -325,9 +321,5 @@ struct ServiceAccountTests {
       """.utf8)
     let credsDefault = try ServiceAccountCredentials(keyJSON: keyWithoutUniverse)
     #expect(try await credsDefault.universeDomain() == "googleapis.com")
-
-    let credsEmptyDefault = try ServiceAccountCredentials(
-      keyJSON: keyWithoutUniverse, universeDomain: "")
-    #expect(try await credsEmptyDefault.universeDomain() == "googleapis.com")
   }
 }

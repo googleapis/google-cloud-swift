@@ -816,14 +816,5 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       universeDomain: "custom.universe.com"
     )
     #expect(try await creds.universeDomain() == "custom.universe.com")
-
-    let emptyOverrideCreds = try ExternalAccountCredentials(
-      credentialSource: .programmatic(subjectTokenProvider: provider),
-      audience: "aud",
-      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
-      tokenURL: targetURL,
-      universeDomain: ""
-    )
-    #expect(try await emptyOverrideCreds.universeDomain() == "googleapis.com")
   }
 }

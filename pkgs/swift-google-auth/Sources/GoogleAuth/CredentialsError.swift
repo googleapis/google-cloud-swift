@@ -28,8 +28,7 @@ public enum CredentialsError: Error, Sendable {
   /// Indicates a failure while parsing, decoding, or validating configuration data.
   ///
   /// Examples include malformed Service Account or Authorized User JSON key files, missing required fields
-  /// (such as `client_email` or `private_key`), invalid RSA private key PEM formatting, invalid STS response payloads,
-  /// or universe domain mismatches.
+  /// (such as `client_email` or `private_key`), invalid RSA private key PEM formatting, or invalid STS response payloads.
   case parseError(String)
 
   /// The credentials file could not be loaded or read from disk.

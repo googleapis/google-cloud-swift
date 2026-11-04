@@ -64,8 +64,7 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
         switch error {
         case .parseError:
           throw CredentialsError.cannotFetchToken(
-            message:
-              "Source credentials universe domain does not match target universe domain for service account impersonation.",
+            message: "Could not obtain source credentials token for service account impersonation.",
             underlyingError: error
           )
         default:
@@ -104,7 +103,6 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
       let urlString =
         "https://iamcredentials.\(targetUniverse)/v1/\(targetResourceName):generateAccessToken"
       guard
-        !targetUniverse.isEmpty,
         let resolvedURL = URL(string: urlString),
         resolvedURL.host == "iamcredentials.\(targetUniverse)",
         resolvedURL.user == nil,
