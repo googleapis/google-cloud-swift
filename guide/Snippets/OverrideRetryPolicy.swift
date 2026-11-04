@@ -13,12 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// snippet.show
-// snippet.imports
+// snippet.show [START swift_override_retry_policy_full]
+// snippet.imports [START swift_override_retry_policy_imports]
 import Foundation
 import GoogleGax
 import GoogleCloudSecretManagerV1
-// snippet.end
+// snippet.end [END swift_override_retry_policy_imports]
 
 // snippet.function [START swift_override_retry_policy_function]
 func sample(projectId: String) async throws {
@@ -63,7 +63,7 @@ func sample(projectId: String) async throws {
   // snippet.end [END swift_override_retry_policy_idempotency]
 }
 
-// snippet.hide
+// snippet.hide [END swift_override_retry_policy_full]
 @main struct SnippetRunner {
   static func main() async throws {
     try await sample(projectId: "[placeholder]")

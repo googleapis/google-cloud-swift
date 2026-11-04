@@ -14,11 +14,11 @@
 // limitations under the License.
 
 // snippet.show [START swift_override_polling_policy_full]
-// snippet.imports
+// snippet.imports [START swift_override_polling_policy_imports]
 import Foundation
 import GoogleGax
 import GoogleCloudWorkflowsV1
-// snippet.end
+// snippet.end [END swift_override_polling_policy_imports]
 
 // snippet.function [START swift_override_polling_policy_function]
 func sample(projectId: String, location: String, workflowId: String) async throws {
