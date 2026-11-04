@@ -72,9 +72,17 @@ where C.Instant.Duration == Duration {
     retryConfiguration: RetryConfiguration,
     clock: C
   ) throws {
-    if let universeDomain = universeDomain, universeDomain != defaultUniverseDomain {
-      throw CredentialsError.notSupported(
-        "User accounts are not supported in custom universes: \(universeDomain)")
+    if let ud = universeDomain {
+      if ud != defaultUniverseDomain {
+        throw CredentialsError.notSupported(
+          "User accounts are only supported in the default (googleapis.com) universe: \(ud)")
+      }
+    }
+    if let userUD = nonEmpty(user.universeDomain) {
+      if userUD != defaultUniverseDomain {
+        throw CredentialsError.notSupported(
+          "User accounts are only supported in the default (googleapis.com) universe: \(userUD)")
+      }
     }
     self.quotaProjectID = quotaProjectID ?? user.quotaProjectId
 

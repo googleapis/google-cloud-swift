@@ -187,7 +187,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
   let scopes: [String]
 
   /// The target Google Cloud universe domain.
-  let universeDomain: String?
+  let universeDomain: String
 
   /// Initializes a new instance of `ExternalAccountCredentials`.
   ///
@@ -236,6 +236,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     }
 
     let effectiveScopes = scopes.isEmpty ? [ExternalAccountConfig.defaultScope] : scopes
+    let effectiveUniverse = universeDomain ?? defaultUniverseDomain
 
     self.subjectTokenProvider = subjectTokenProvider
     self.audience = audience
@@ -244,7 +245,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     self.clientAuthentication = clientAuthentication
     self.workforcePoolUserProject = workforcePoolUserProject
     self.scopes = effectiveScopes
-    self.universeDomain = universeDomain
+    self.universeDomain = effectiveUniverse
 
     let provider = ExternalAccountTokenProvider(
       subjectTokenProvider: subjectTokenProvider,
@@ -279,6 +280,10 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
       headers.append(name: "x-goog-user-project", value: project)
     }
     return headers
+  }
+
+  func universeDomain() async throws -> String {
+    return self.universeDomain
   }
 }
 
