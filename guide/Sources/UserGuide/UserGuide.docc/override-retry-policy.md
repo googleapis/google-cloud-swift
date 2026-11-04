@@ -98,5 +98,5 @@ library the request is safe to retry:
 * [Update IAM policies using optimistic concurrency control](<doc:optimistic-concurrency-control-iam>)
   describes how to write an application-level retry loop for read-modify-write
   operations guarded by an `etag`.
-* [Enable logging](<doc:enable-logging>) describes how to enable debug logging
+* [Enable logging](https://docs.cloud.google.com/swift/enable-logging) describes how to enable debug logging
   to troubleshoot requests and responses.
