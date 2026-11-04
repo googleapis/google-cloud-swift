@@ -17,6 +17,7 @@ import Foundation
 import NIOCore
 import NIOFoundationCompat
 import NIOHTTP1
+import NIOPosix
 import Testing
 @testable import GoogleAuth
 
@@ -940,6 +941,111 @@ import Testing
     }
     #expect(errTimeoutError?.statusCode == 503)
     #expect(errTimeoutError?.bodyData == Data())
+  }
+
+  @Test func defaultInitializerSharesProcessWidePool() throws {
+    let client1 = AuthHTTPClient()
+    let client2 = AuthHTTPClient()
+    let mdsProvider = MDSAccessTokenProvider()
+
+    let shared1 = try #require(client1.inner as? SharedHTTPClient)
+    let shared2 = try #require(client2.inner as? SharedHTTPClient)
+    let mdsShared = try #require(mdsProvider.client.inner as? SharedHTTPClient)
+
+    #expect(shared1.inner === SharedHTTPClient.defaultClient)
+    #expect(shared2.inner === SharedHTTPClient.defaultClient)
+    #expect(mdsShared.inner === SharedHTTPClient.defaultClient)
+    #expect(shared1.inner !== HTTPClient.shared)
+  }
+
+  @Test func customHTTPClientInjectionAndLoopbackExecution() async throws {
+    let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
+    let bootstrap = ServerBootstrap(group: group)
+      .serverChannelOption(.backlog, value: 4)
+      .serverChannelOption(.socketOption(.so_reuseaddr), value: 1)
+      .childChannelInitializer { channel in
+        channel.eventLoop.makeCompletedFuture {
+          try channel.pipeline.syncOperations.configureHTTPServerPipeline()
+          try channel.pipeline.syncOperations.addHandler(
+            NIOHTTPServerRequestAggregator(maxContentLength: 1 << 16))
+          try channel.pipeline.syncOperations.addHandler(LoopbackTokenServerHandler())
+        }
+      }
+
+    let customHTTPClient = HTTPClient(eventLoopGroup: group)
+    var serverChannel: (any Channel)? = nil
+    let result: Result<Void, any Error>
+    do {
+      let channel = try await bootstrap.bind(host: "127.0.0.1", port: 0).get()
+      serverChannel = channel
+      let port = try #require(channel.localAddress?.port)
+      let tokenURL = try #require(URL(string: "http://127.0.0.1:\(port)/token"))
+      let mdsURL = try #require(URL(string: "http://127.0.0.1:\(port)/mds"))
+
+      // 1. Default AuthHTTPClient() executes via SharedHTTPClient.defaultClient without injecting Accept-Encoding.
+      let defaultAuthClient = AuthHTTPClient()
+      let echoAcceptEncoding = try await defaultAuthClient.getString(
+        url: mdsURL,
+        headers: ["Metadata-Flavor": "Google"],
+        timeout: .seconds(10)
+      )
+      #expect(echoAcceptEncoding == "<none>")
+
+      // 2. Custom HTTPClient injection executes via the supplied HTTPClient instance.
+      let injectedAuthClient = AuthHTTPClient(customHTTPClient)
+      let injectedShared = try #require(injectedAuthClient.inner as? SharedHTTPClient)
+      #expect(injectedShared.inner === customHTTPClient)
+      #expect(injectedShared.inner !== SharedHTTPClient.defaultClient)
+
+      let tokenResponse: MockTokenResponse = try await injectedAuthClient.post(
+        url: tokenURL,
+        body: ["grant_type": "refresh_token"],
+        timeout: .seconds(10)
+      )
+      #expect(tokenResponse == MockTokenResponse(accessToken: "loopback-token", expiresIn: 3600))
+      result = .success(())
+    } catch {
+      result = .failure(error)
+    }
+
+    try? await serverChannel?.close().get()
+    switch result {
+    case .success:
+      try await customHTTPClient.shutdown()
+      try await group.shutdownGracefully()
+    case .failure(let error):
+      try? await customHTTPClient.shutdown()
+      try? await group.shutdownGracefully()
+      throw error
+    }
+  }
+}
+
+private final class LoopbackTokenServerHandler: ChannelInboundHandler {
+  typealias InboundIn = NIOHTTPServerRequestFull
+  typealias OutboundOut = HTTPServerResponsePart
+
+  func channelRead(context: ChannelHandlerContext, data: NIOAny) {
+    let request = self.unwrapInboundIn(data)
+    var headers = HTTPHeaders()
+    let payload: Data
+
+    if request.head.uri == "/mds" {
+      let acceptEncoding = request.head.headers["Accept-Encoding"].joined(separator: ", ")
+      payload = Data((acceptEncoding.isEmpty ? "<none>" : acceptEncoding).utf8)
+      headers.add(name: "Content-Type", value: "text/plain; charset=utf-8")
+    } else {
+      payload = Data(#"{"access_token": "loopback-token", "expires_in": 3600}"#.utf8)
+      headers.add(name: "Content-Type", value: "application/json")
+    }
+
+    headers.add(name: "Content-Length", value: "\(payload.count)")
+    let head = HTTPResponseHead(version: request.head.version, status: .ok, headers: headers)
+    context.write(self.wrapOutboundOut(.head(head)), promise: nil)
+
+    let body = context.channel.allocator.buffer(data: payload)
+    context.write(self.wrapOutboundOut(.body(.byteBuffer(body))), promise: nil)
+    context.writeAndFlush(self.wrapOutboundOut(.end(nil)), promise: nil)
   }
 }
 
