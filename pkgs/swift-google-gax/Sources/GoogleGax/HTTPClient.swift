@@ -13,13 +13,13 @@
 // limitations under the License.
 
 public import Foundation
-import GoogleAuth
+@_spi(GoogleCloudInternal) public import GoogleAuth
 @_spi(GoogleCloudInternal) public import Logging
 
 /// Implements a HTTP-only client for the Swift SDK client libraries.
 @_spi(GoogleCloudInternal) public struct _HTTPClient: Sendable {
   let baseURL: URLComponents
-  let credentials: any _CredentialsProtocol
+  let credentials: any CredentialsProtocol
   let logger: Logger?
   let quotaProject: String?
   let inner: any _HTTPClientProtocol
@@ -72,7 +72,29 @@ import GoogleAuth
   // Creates a new testing client.
   @_spi(GoogleCloudInternal) public init(
     _ inner: any _HTTPClientProtocol, endpoint: String,
-    credentials: (any _CredentialsProtocol)? = nil,
+    credentials: GoogleAuth.Credentials? = nil,
+    logger: Logging.Logger? = nil,
+    quotaProject: String? = nil,
+    defaultEndpoint: String? = nil,
+    universeDomain: String = _Host.defaultUniverseDomain,
+    clientHeader: _ApiClientHeader = .init()
+  ) throws {
+    let resolvedCredentials = try credentials ?? GoogleAuth.Credentials(configuration: .anonymous)
+    try self.init(
+      inner,
+      endpoint: endpoint,
+      credentials: resolvedCredentials as any CredentialsProtocol,
+      logger: logger,
+      quotaProject: quotaProject,
+      defaultEndpoint: defaultEndpoint,
+      universeDomain: universeDomain,
+      clientHeader: clientHeader
+    )
+  }
+
+  init(
+    _ inner: any _HTTPClientProtocol, endpoint: String,
+    credentials: any CredentialsProtocol,
     logger: Logging.Logger? = nil,
     quotaProject: String? = nil,
     defaultEndpoint: String? = nil,
@@ -81,7 +103,7 @@ import GoogleAuth
   ) throws {
     self.universeDomain = universeDomain
     self.baseURL = try Self.validateEndpoint(endpoint)
-    self.credentials = try credentials ?? GoogleAuth.Credentials(configuration: .anonymous)
+    self.credentials = credentials
     self.logger = logger
     self.quotaProject = quotaProject
     self.inner = inner

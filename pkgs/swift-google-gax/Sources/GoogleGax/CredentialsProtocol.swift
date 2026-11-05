@@ -12,23 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@_spi(GoogleCloudInternal) public import GoogleAuth
+import GoogleAuth
 
 /// Dependency injection for `_HTTPClient`.
 ///
 /// Allow testing `_HTTPClient` with mock credentials.
-@_spi(GoogleCloudInternal) public protocol _CredentialsProtocol: Sendable {
+protocol CredentialsProtocol: Sendable {
   func headers() async throws -> GoogleAuth.AuthHeaders
   func universeDomain() async throws -> String
   func validateUniverseDomain(_ expectedUniverseDomain: String) async throws
 }
 
-extension _CredentialsProtocol {
-  public func universeDomain() async throws -> String {
+extension CredentialsProtocol {
+  func universeDomain() async throws -> String {
     GoogleAuth.Credentials.defaultUniverseDomain
   }
 
-  public func validateUniverseDomain(_ expectedUniverseDomain: String) async throws {
+  func validateUniverseDomain(_ expectedUniverseDomain: String) async throws {
     let credUniverse = try await self.universeDomain()
     guard credUniverse == expectedUniverseDomain else {
       throw CredentialsError.parseError(
@@ -38,4 +38,4 @@ extension _CredentialsProtocol {
   }
 }
 
-@_spi(GoogleCloudInternal) extension GoogleAuth.Credentials: _CredentialsProtocol {}
+extension GoogleAuth.Credentials: CredentialsProtocol {}
