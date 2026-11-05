@@ -23,9 +23,11 @@ import GoogleGax
   @Test func then() {
     let got = ClientOptions().with {
       $0.endpoint = "test-only"
+      $0.universeDomain = "my-universe.com"
       $0.quotaProject = "my-quota-project"
     }
     #expect(got.endpoint == "test-only")
+    #expect(got.universeDomain == "my-universe.com")
     #expect(got.quotaProject == "my-quota-project")
     #expect(got.credentials == nil)
   }
@@ -85,6 +87,7 @@ import GoogleGax
   @Test func defaults() {
     let got = ClientOptions()
     #expect(got.endpoint == nil)
+    #expect(got.universeDomain == nil)
     #expect(got.quotaProject == nil)
     #expect(got.credentials == nil)
     #expect(got.retryPolicy == nil)

@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import GoogleAuth
+
 /// A retry policy decorator that continues on I/O errors.
 ///
 /// This policy returns [.retry](``RetryResult.retry(_:)``) on [.io](``RequestError/io(_:)``)
-/// errors. Otherwise it returns the result from the inner retry policy.
+/// errors, except when the underlying error is a `CredentialsError` or `CancellationError`, which
+/// are treated as permanent. Otherwise it returns the result from the inner retry policy.
 public struct ContinueOnIO<P: Sendable>: Sendable {
   let inner: P
 
@@ -25,3 +28,12 @@ public struct ContinueOnIO<P: Sendable>: Sendable {
 }
 
 extension ContinueOnIO: Equatable where P: Equatable {}
+
+extension RequestError {
+  var isPermanentIOError: Bool {
+    if case .io(let underlying) = self {
+      return underlying is CredentialsError || underlying is CancellationError
+    }
+    return false
+  }
+}
