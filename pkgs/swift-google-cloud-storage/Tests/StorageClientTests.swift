@@ -231,7 +231,7 @@ import Testing
 
     let options = StorageClientOptions().with {
       $0.client = .init().with {
-        $0.endpoint = "https://storage.my-universe.com"
+        $0.universeDomain = "my-universe.com"
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
@@ -239,6 +239,49 @@ import Testing
     let task = client.readObject(from: "test-bucket", object: "test-obj")
     _ = try await task.metadata
 
+    let request = registry.lastRequest(for: requestUrl)
+    #expect(request?.value(forHTTPHeaderField: "Host") == "storage.my-universe.com")
+  }
+
+  @Test func universeDomainCredentialsValidationInStorageClient() async throws {
+    let registry = MockRegistry.create()
+    let requestUrl =
+      "https://private.my-universe.com/storage/v1/b/test-bucket/o/test-obj?alt=media"
+    registry.register(
+      response: .success(statusCode: 200, data: Data("data".utf8)),
+      for: requestUrl
+    )
+
+    let mismatchOptions = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = "https://private.my-universe.com"
+        $0.universeDomain = "my-universe.com"
+        $0.credentials = try! Credentials(configuration: .apiKey("test-api-key"))
+      }
+    }
+    let mismatchClient = try StorageClient(mismatchOptions, mock: registry)
+    let mismatchTask = mismatchClient.readObject(from: "test-bucket", object: "test-obj")
+    let error = await #expect(throws: ReadObjectError.self) {
+      _ = try await mismatchTask.metadata
+    }
+    guard case .requestError(.io(let underlying)) = error else {
+      Issue.record(
+        "Expected ReadObjectError.requestError(.io), got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
+    #expect(registry.lastRequest(for: requestUrl) == nil)
+
+    let matchingOptions = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.endpoint = "https://private.my-universe.com"
+        $0.universeDomain = "my-universe.com"
+        $0.credentials = try! Credentials(configuration: .anonymous)
+      }
+    }
+    let matchingClient = try StorageClient(matchingOptions, mock: registry)
+    let matchingTask = matchingClient.readObject(from: "test-bucket", object: "test-obj")
+    _ = try await matchingTask.metadata
     let request = registry.lastRequest(for: requestUrl)
     #expect(request?.value(forHTTPHeaderField: "Host") == "storage.my-universe.com")
   }
