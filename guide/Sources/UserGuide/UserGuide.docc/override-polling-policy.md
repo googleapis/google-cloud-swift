@@ -101,7 +101,7 @@ client configuration.
 
 ## Next steps
 
-* [Override the default endpoint](<doc:override-endpoint>) describes how to change
+* [Override the default endpoint](https://docs.cloud.google.com/swift/override-endpoint) describes how to change
   the default endpoint used by the Swift client libraries.
 * [Override the default credentials](<doc:override-credentials>) describes how to
   change the default credentials used by the Swift client libraries.

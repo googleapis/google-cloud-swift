@@ -50,7 +50,7 @@ services that support them.
 
 ## Next steps
 
-* [Override the default endpoint](<doc:override-endpoint>) describes how to change
+* [Override the default endpoint](https://docs.cloud.google.com/swift/override-endpoint) describes how to change
   the default endpoint used by the Swift client libraries.
 * [Long-running operations](<doc:long-running-operations>) describes how to make
   API requests that use long-running operations.
