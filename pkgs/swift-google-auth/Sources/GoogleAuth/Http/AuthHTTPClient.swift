@@ -37,36 +37,23 @@ protocol HTTPClientProtocol: Sendable {
   ) async throws -> HTTPClientResponse
 }
 
-/// Automatically calls `shutdown()` on `AsyncHTTPClient.HTTPClient` during deinitialization.
-///
-/// `HTTPClient` requires an asynchronous call to `shutdown()` to release NIO event loops and
-/// connection pools without leaking system resources. This wrapper ensures proper shutdown
-/// via a background task when the holder is deinited.
-///
-/// SAFETY: calling `shutdown()` requires all requests to be finished. In the AuthHTTPClient struct
-/// each HTTP request is executed within a function, therefore the object is live while the HTTP
-/// request is in progress. By the time deinit starts, all starting a call requires having a
-/// reference to the object, so shutdown
-final class HTTPClientHolder: HTTPClientProtocol {
-  let inner = HTTPClient(
+/// Adapts a shared `AsyncHTTPClient.HTTPClient` to `HTTPClientProtocol`.
+struct SharedHTTPClient: HTTPClientProtocol {
+  /// Process-wide shared `HTTPClient` for authentication requests.
+  ///
+  /// Uses `HTTPClient.defaultEventLoopGroup` with explicit connect (`10s`) and read (`30s`)
+  /// timeouts and `decompression: .disabled` (unlike `HTTPClient.shared`, which injects
+  /// `Accept-Encoding: deflate, gzip` via `.singletonConfiguration`).
+  static let defaultClient = HTTPClient(
     configuration: .init(
       timeout: .init(connect: .seconds(10), read: .seconds(30))
     )
   )
-  deinit {
-    // Use a background task to shutdown the inner client. In most cases, the application will
-    // continue running and the HTTPClient is shutdown "eventually". Except for (maybe) some false
-    // positives in leak detectors, there is no harm if the application terminates before this gets
-    // to run.
-    let copy = inner
-    Task {
-      // Note how we make a copy of `inner` to avoid capturing `self`.
-      do {
-        try await copy.shutdown()
-      } catch {
-        // Ignore any exceptions. If `shutdown()` failed there is nothing the application can do.
-      }
-    }
+
+  let inner: HTTPClient
+
+  init(_ inner: HTTPClient = SharedHTTPClient.defaultClient) {
+    self.inner = inner
   }
 
   @concurrent
@@ -98,9 +85,12 @@ struct AuthHTTPClient: Sendable {
   /// The underlying HTTP execution engine conforming to `HTTPClientProtocol`.
   let inner: any HTTPClientProtocol
 
-  /// Initializes the client with the default asynchronous HTTP client configuration.
-  init() {
-    self.inner = HTTPClientHolder()
+  /// Initializes the client with an `AsyncHTTPClient.HTTPClient` (defaulting to the shared pool).
+  ///
+  /// - Parameter httpClient: The underlying `HTTPClient` used to execute requests. When a custom
+  ///   instance is supplied, the caller remains responsible for calling `shutdown()` on it.
+  init(_ httpClient: HTTPClient = SharedHTTPClient.defaultClient) {
+    self.inner = SharedHTTPClient(httpClient)
   }
 
   /// Initializes the client with a custom or mock `HTTPClientProtocol` implementation.
