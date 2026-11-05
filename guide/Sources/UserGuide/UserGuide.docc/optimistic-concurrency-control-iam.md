@@ -116,5 +116,5 @@ newly updated policy.
   perform partial resource updates using field masks and `etag` values.
 * [Override the default authentication credentials](<doc:override-credentials>)
   describes how to configure custom credentials.
-* [Enable logging](<doc:enable-logging>) describes how to enable debug logging
+* [Enable logging](https://docs.cloud.google.com/swift/enable-logging) describes how to enable debug logging
   to troubleshoot requests and responses.
