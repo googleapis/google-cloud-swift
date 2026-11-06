@@ -64,7 +64,7 @@ For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(quota
 `GoogleGaxGRPC._GRPCClient` applies the same universe domain resolution and credential validation rules as `_HTTPClient`:
 
 - `_GRPCClient.init` resolves `universeDomain` via `_Host.resolveUniverseDomain`, derives the target endpoint and TLS/channel authority via `_Host.endpoint` and `_Host.authority`, and stores the effective `universeDomain`.
-- In `_GRPCClient.execute`, before calling `credentials.headers()`, non-anonymous credentials are checked via `credentials.universeDomain()`. A mismatch throws `RequestError.io(CredentialsError.parseError(...))` before any RPC metadata is sent.
+- In `_GRPCClient.execute`, before calling `credentials.headers()`, it calls `credentials.validateUniverseDomain(self.universeDomain)`. A mismatch throws `RequestError.io(CredentialsError.parseError(...))` before any RPC metadata is sent.
 
 ## 4. Cloud Storage Client
 

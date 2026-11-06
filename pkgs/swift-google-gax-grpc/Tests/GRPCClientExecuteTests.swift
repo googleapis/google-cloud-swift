@@ -658,4 +658,108 @@ import Testing
       }
     }
   }
+
+  @Test(arguments: [
+    (
+      optionUniverse: "my-custom-universe.com" as String?,
+      environment: [:] as [String: String],
+      expectedUniverse: "my-custom-universe.com"
+    ),
+    (
+      optionUniverse: nil,
+      environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com"],
+      expectedUniverse: "env.universe.com"
+    ),
+  ])
+  func executeUniverseDomainMismatch(
+    optionUniverse: String?,
+    environment: [String: String],
+    expectedUniverse: String
+  ) async throws {
+    let endpoint = "http://127.0.0.1:1"
+    var options = ClientOptions()
+    options.endpoint = endpoint
+    options.universeDomain = optionUniverse
+    options.credentials = try Credentials(configuration: .apiKey("test-api-key"))
+
+    let client = try _GRPCClient(
+      from: options,
+      withDefaultEndpoint: endpoint,
+      environment: environment
+    )
+    defer { client.close() }
+
+    let error = await #expect(throws: RequestError.self) {
+      let _: Google_Protobuf_Empty = try await client.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+    }
+    guard case let .io(underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
+    #expect(String(describing: underlying).contains(expectedUniverse))
+    #expect(String(describing: underlying).contains("googleapis.com"))
+  }
+
+  @Test(arguments: [
+    (
+      universeDomain: "googleapis.com",
+      credentials: CredentialsConfiguration.apiKey("test-api-key")
+    ),
+    (
+      universeDomain: "my-custom-universe.com",
+      credentials: .anonymous
+    ),
+  ])
+  func executeUniverseDomainSuccess(
+    universeDomain: String,
+    credentials: CredentialsConfiguration
+  ) async throws {
+    let server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv4(host: "127.0.0.1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [EchoService()]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await server.serve()
+      }
+
+      let listeningAddress = try await server.listeningAddress?.ipv4
+      guard let port = listeningAddress?.port else {
+        Issue.record("Failed to get listening port")
+        server.beginGracefulShutdown()
+        return
+      }
+
+      let endpoint = "http://127.0.0.1:\(port)"
+      var options = ClientOptions()
+      options.endpoint = endpoint
+      options.universeDomain = universeDomain
+      options.credentials = try Credentials(configuration: credentials)
+
+      let client = try _GRPCClient(
+        from: options,
+        withDefaultEndpoint: endpoint,
+        environment: [:]
+      )
+      defer {
+        client.close()
+        server.beginGracefulShutdown()
+      }
+
+      let _: Google_Protobuf_Empty = try await client.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+    }
+  }
 }
