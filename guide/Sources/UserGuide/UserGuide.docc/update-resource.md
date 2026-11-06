@@ -105,7 +105,7 @@ leave the field set to its default value on the provided resource.
 
 * [Override the default authentication credentials](<doc:override-credentials>)
   describes how to configure custom credentials such as API keys.
-* [Override the default endpoint](<doc:override-endpoint>) describes how to change
+* [Override the default endpoint](https://docs.cloud.google.com/swift/override-endpoint) describes how to change
   the default endpoint used by the Swift client libraries.
 * [Long-running operations](<doc:long-running-operations>) describes how to make
   API requests that use long-running operations.
