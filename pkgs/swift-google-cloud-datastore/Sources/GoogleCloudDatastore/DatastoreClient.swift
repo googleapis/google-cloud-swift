@@ -98,47 +98,6 @@ public final class DatastoreClient: DatastoreProtocol, Sendable {
     return opts
   }
 
-  @discardableResult
-  public func insert(
-    _ entity: Entity, options: GoogleGax.RequestOptions? = nil
-  ) async throws -> Key {
-    fatalError("unimplemented")
-  }
-
-  public func insert(
-    _ entity: IncompleteEntity, options: GoogleGax.RequestOptions? = nil
-  ) async throws -> Key {
-    fatalError("unimplemented")
-  }
-
-  @discardableResult
-  public func upsert(
-    _ entity: Entity, options: GoogleGax.RequestOptions? = nil
-  ) async throws -> Key {
-    fatalError("unimplemented")
-  }
-
-  public func upsert(
-    _ entity: IncompleteEntity, options: GoogleGax.RequestOptions? = nil
-  ) async throws -> Key {
-    fatalError("unimplemented")
-  }
-
-  public func update(_ entity: Entity, options: GoogleGax.RequestOptions? = nil) async throws {
-    fatalError("unimplemented")
-  }
-
-  public func delete(_ key: Key, options: GoogleGax.RequestOptions? = nil) async throws {
-    fatalError("unimplemented")
-  }
-
-  @discardableResult
-  public func mutate(
-    _ mutations: [Mutation], options: GoogleGax.RequestOptions? = nil
-  ) async throws -> [MutationResult] {
-    fatalError("unimplemented")
-  }
-
   // MARK: - Key ID Allocation & Reservation
 
   public func allocateIds(
