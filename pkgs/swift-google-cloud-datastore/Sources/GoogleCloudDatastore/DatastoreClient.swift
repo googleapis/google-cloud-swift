@@ -16,6 +16,7 @@ import DatastoreV1Stub
 public import Foundation
 import GoogleAuth
 public import GoogleGax
+import GoogleRpc
 
 /// High-level client for interacting with Google Cloud Datastore (`google.datastore.v1.Datastore`).
 public final class DatastoreClient: DatastoreProtocol, Sendable {
@@ -183,7 +184,114 @@ public final class DatastoreClient: DatastoreProtocol, Sendable {
     options: TransactionOptions = .readWrite,
     _ body: @Sendable (Transaction) async throws -> T
   ) async throws -> (result: T, commitResult: CommitResult) {
-    fatalError("unimplemented")
+    let maxAttempts = max(1, options.maxAttempts ?? self.options.maxTransactionAttempts)
+    let startInstant = ContinuousClock.now
+    var previousTransaction: Data? = nil
+
+    for attempt in 1...maxAttempts {
+      let tx = Transaction(
+        client: self,
+        options: options,
+        previousTransaction: previousTransaction
+      )
+      let bodyResult: T
+      do {
+        bodyResult = try await body(tx)
+      } catch {
+        let acquiredTxId = tx.acquiredTransactionId
+        if let txId = acquiredTxId {
+          if isRetryableTransactionError(error, duringCommit: false) {
+            previousTransaction = txId
+          }
+          let rollbackReq = DatastoreV1Stub.RollbackRequest().with {
+            $0.projectId = projectId
+            $0.databaseId = databaseId
+            $0.transaction = txId
+          }
+          _ = try? await stub.rollback(
+            request: rollbackReq,
+            options: effectiveRequestOptions(options.requestOptions)
+          )
+        }
+        if attempt < maxAttempts && isRetryableTransactionError(error, duringCommit: false) {
+          let delay = self.options.transactionBackoffPolicy.backoffDelay(
+            for: RetryState(idempotent: true, start: startInstant, attemptCount: attempt)
+          )
+          try await ContinuousClock().sleep(for: delay)
+          continue
+        }
+        throw error
+      }
+
+      let (acquiredTxId, bufferedMutations) = tx.takeSnapshot()
+      if let txId = acquiredTxId {
+        previousTransaction = txId
+      }
+
+      switch options.mode {
+      case .readOnly:
+        return (bodyResult, CommitResult())
+      case .readWrite:
+        if acquiredTxId == nil && bufferedMutations.isEmpty {
+          return (bodyResult, CommitResult())
+        }
+        let selector: DatastoreV1Stub.CommitRequest.TransactionSelectorOneOf
+        if let txId = acquiredTxId {
+          selector = .transaction(txId)
+        } else {
+          selector = .singleUseTransaction(tx.wireTransactionOptions())
+        }
+        do {
+          let commitResult = try await executeCommit(
+            mutations: bufferedMutations,
+            mode: .transactional,
+            transactionSelector: selector,
+            options: options.requestOptions
+          )
+          return (bodyResult, commitResult)
+        } catch {
+          if attempt < maxAttempts && isRetryableTransactionError(error, duringCommit: true) {
+            let delay = self.options.transactionBackoffPolicy.backoffDelay(
+              for: RetryState(idempotent: true, start: startInstant, attemptCount: attempt)
+            )
+            try await ContinuousClock().sleep(for: delay)
+            continue
+          }
+          throw error
+        }
+      }
+    }
+    preconditionFailure("Unreachable: loop ranging 1...maxAttempts always returns or throws")
+  }
+
+  private func isRetryableTransactionError(_ error: any Error, duringCommit: Bool) -> Bool {
+    if let requestError = error as? GoogleGax.RequestError {
+      switch requestError {
+      case .service(let serviceError):
+        return isRetryableServiceCode(serviceError.code, duringCommit: duringCommit)
+      case .exhausted(let exhaustedError):
+        if let underlying = exhaustedError.underlyingError {
+          return isRetryableTransactionError(underlying, duringCommit: duringCommit)
+        }
+        return false
+      default:
+        return false
+      }
+    }
+    if let serviceError = error as? GoogleGax.ServiceError {
+      return isRetryableServiceCode(serviceError.code, duringCommit: duringCommit)
+    }
+    return false
+  }
+
+  private func isRetryableServiceCode(_ code: GoogleRpc.Code, duringCommit: Bool) -> Bool {
+    if code == .aborted {
+      return true
+    }
+    if !duringCommit && code == .unavailable {
+      return true
+    }
+    return false
   }
 
   public func runQuery(

@@ -12,8 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import DatastoreV1Stub
+import Foundation
 public import GoogleGax
 public import GoogleWKT
+import Synchronization
 
 /// Options configuring a Datastore transaction.
 public struct TransactionOptions: Sendable {
@@ -45,18 +48,138 @@ public struct TransactionOptions: Sendable {
 
 /// An active transaction context passed to the `runInTransaction` closure.
 public final class Transaction: Sendable {
-  let options: TransactionOptions
-
-  init(options: TransactionOptions) {
-    self.options = options
+  private struct State: Sendable {
+    var transactionId: Data? = nil
+    var isInitiating: Bool = false
+    var initiationWaiters: [CheckedContinuation<Void, Never>] = []
+    var mutations: [Mutation] = []
   }
 
+  let client: DatastoreClient
+  let options: TransactionOptions
+  let previousTransaction: Data?
+  private let state: Mutex<State>
+
+  init(
+    client: DatastoreClient,
+    options: TransactionOptions,
+    previousTransaction: Data? = nil
+  ) {
+    self.client = client
+    self.options = options
+    self.previousTransaction = previousTransaction
+    self.state = Mutex(State())
+  }
+
+  var acquiredTransactionId: Data? {
+    state.withLock { $0.transactionId }
+  }
+
+  func takeSnapshot() -> (transactionId: Data?, mutations: [Mutation]) {
+    state.withLock { ($0.transactionId, $0.mutations) }
+  }
+
+  func wireTransactionOptions() -> DatastoreV1Stub.TransactionOptions {
+    DatastoreV1Stub.TransactionOptions().with { proto in
+      switch options.mode {
+      case .readWrite:
+        proto.mode = .readWrite(
+          DatastoreV1Stub.TransactionOptions.ReadWrite().with { rw in
+            if let prev = previousTransaction, !prev.isEmpty {
+              rw.previousTransaction = prev
+            }
+          }
+        )
+      case .readOnly(let readTime):
+        proto.mode = .readOnly(
+          DatastoreV1Stub.TransactionOptions.ReadOnly().with { ro in
+            ro.readTime = readTime
+          }
+        )
+      }
+    }
+  }
+
+  /// Acquires the `ReadOptions` for a transactional read RPC.
+  ///
+  /// The first read in the transaction populates `new_transaction` and gates any concurrent
+  /// reads until the server returns the `transaction` identifier. Subsequent reads reuse the
+  /// established `transaction` identifier.
+  func prepareTransactionalRead() async -> DatastoreV1Stub.ReadOptions {
+    while true {
+      let existingOrClaimed: DatastoreV1Stub.ReadOptions? = state.withLock { state in
+        if let txId = state.transactionId {
+          return DatastoreV1Stub.ReadOptions().with {
+            $0.consistencyType = .transaction(txId)
+          }
+        }
+        if !state.isInitiating {
+          state.isInitiating = true
+          return DatastoreV1Stub.ReadOptions().with {
+            $0.consistencyType = .newTransaction(wireTransactionOptions())
+          }
+        }
+        return nil
+      }
+      if let readOpts = existingOrClaimed {
+        return readOpts
+      }
+      await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
+        let shouldResumeImmediately = state.withLock { state -> Bool in
+          if state.transactionId != nil || !state.isInitiating {
+            return true
+          }
+          state.initiationWaiters.append(continuation)
+          return false
+        }
+        if shouldResumeImmediately {
+          continuation.resume()
+        }
+      }
+    }
+  }
+
+  func completeInitiation(transactionId: Data?) {
+    let waiters = state.withLock { state -> [CheckedContinuation<Void, Never>] in
+      if let txId = transactionId, !txId.isEmpty {
+        state.transactionId = txId
+      }
+      state.isInitiating = false
+      let pending = state.initiationWaiters
+      state.initiationWaiters.removeAll()
+      return pending
+    }
+    for waiter in waiters {
+      waiter.resume()
+    }
+  }
+
+  // MARK: - Transactional Reads
+
   public func get(_ key: Key, propertyMask: [String]? = nil) async throws -> Entity? {
-    fatalError("unimplemented")
+    let results = try await getMulti([key], propertyMask: propertyMask)
+    return results.first ?? nil
   }
 
   public func getMulti(_ keys: [Key], propertyMask: [String]? = nil) async throws -> [Entity?] {
-    fatalError("unimplemented")
+    guard !keys.isEmpty else { return [] }
+    let readOpts = await prepareTransactionalRead()
+    do {
+      let result = try await client.lookupInternal(
+        keys: keys,
+        wireReadOptions: readOpts,
+        propertyMask: propertyMask,
+        requestOptions: options.requestOptions,
+        onFirstResponse: { [self] txId in
+          self.completeInitiation(transactionId: txId)
+        }
+      )
+      completeInitiation(transactionId: nil)
+      return result
+    } catch {
+      completeInitiation(transactionId: nil)
+      throw error
+    }
   }
 
   public func runQuery(_ query: Query) -> AsyncThrowingStream<Entity, any Error> {
@@ -79,14 +202,28 @@ public final class Transaction: Sendable {
     fatalError("unimplemented")
   }
 
+  // MARK: - Buffered Transactional Writes
+
+  private func ensureReadWrite() throws {
+    guard case .readWrite = options.mode else {
+      throw DatastoreError.readOnlyTransaction
+    }
+  }
+
   public func insert(_ entity: Entity, transforms: [PropertyTransform] = []) throws {
-    fatalError("unimplemented")
+    try mutate([.insert(entity, transforms: transforms)])
   }
 
   public func insert(
     _ entity: IncompleteEntity, transforms: [PropertyTransform] = []
   ) throws -> PendingKey {
-    fatalError("unimplemented")
+    try ensureReadWrite()
+    let idx = state.withLock { state -> Int in
+      let index = state.mutations.count
+      state.mutations.append(.insert(entity, transforms: transforms))
+      return index
+    }
+    return PendingKey(mutationIndex: idx, incompleteKey: entity.key)
   }
 
   public func upsert(
@@ -95,13 +232,26 @@ public final class Transaction: Sendable {
     propertyMask: [String]? = nil,
     transforms: [PropertyTransform] = []
   ) throws {
-    fatalError("unimplemented")
+    try mutate([
+      .upsert(
+        entity,
+        baseVersion: baseVersion,
+        propertyMask: propertyMask,
+        transforms: transforms
+      )
+    ])
   }
 
   public func upsert(
     _ entity: IncompleteEntity, transforms: [PropertyTransform] = []
   ) throws -> PendingKey {
-    fatalError("unimplemented")
+    try ensureReadWrite()
+    let idx = state.withLock { state -> Int in
+      let index = state.mutations.count
+      state.mutations.append(.upsert(entity, transforms: transforms))
+      return index
+    }
+    return PendingKey(mutationIndex: idx, incompleteKey: entity.key)
   }
 
   public func update(
@@ -110,14 +260,24 @@ public final class Transaction: Sendable {
     propertyMask: [String]? = nil,
     transforms: [PropertyTransform] = []
   ) throws {
-    fatalError("unimplemented")
+    try mutate([
+      .update(
+        entity,
+        baseVersion: baseVersion,
+        propertyMask: propertyMask,
+        transforms: transforms
+      )
+    ])
   }
 
   public func delete(_ key: Key, baseVersion: Int64? = nil) throws {
-    fatalError("unimplemented")
+    try mutate([.delete(key, baseVersion: baseVersion)])
   }
 
   public func mutate(_ mutations: [Mutation]) throws {
-    fatalError("unimplemented")
+    try ensureReadWrite()
+    state.withLock { state in
+      state.mutations.append(contentsOf: mutations)
+    }
   }
 }
