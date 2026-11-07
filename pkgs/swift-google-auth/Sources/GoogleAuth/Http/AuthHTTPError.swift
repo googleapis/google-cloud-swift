@@ -102,6 +102,17 @@ extension AuthHTTPError {
     }
   }
 
+  /// Returns all HTTP response header values matching `name` (case-insensitively) if this is an
+  /// unsuccessful response (`.unsuccessfulResponse`), or `nil` otherwise.
+  func headerValues(named name: String) -> [String]? {
+    switch self {
+    case .unsuccessfulResponse(let response, _):
+      return response.headers[name]
+    default:
+      return nil
+    }
+  }
+
   /// Indicates whether this HTTP error is transient and eligible for retry.
   ///
   /// Server errors (HTTP status >= 500), rate limiting (HTTP 429), request timeouts (HTTP 408),
