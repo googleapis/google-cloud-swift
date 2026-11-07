@@ -12,23 +12,151 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/// Client for Google Cloud Datastore data-plane operations (`google.datastore.v1`).
-public final class DatastoreClient: DatastoreProtocol, Sendable {
-  /// The default service endpoint for Cloud Datastore.
-  public static let defaultEndpoint = "https://datastore.googleapis.com"
+import Foundation
+public import GoogleGax
 
-  /// The configuration options used to initialize this client.
+/// High-level client for interacting with Google Cloud Datastore (`google.datastore.v1.Datastore`).
+public final class DatastoreClient: DatastoreProtocol, Sendable {
+  public let projectId: String
+  public let databaseId: String
+  public let namespaceId: String
   public let options: DatastoreClientOptions
 
-  public var projectId: String { options.projectId }
-  public var databaseId: String { options.databaseId }
-  public var namespaceId: String { options.namespaceId }
-
-  /// Creates a new ``DatastoreClient`` with the given options.
   public init(_ options: DatastoreClientOptions) throws {
-    if options.projectId.isEmpty {
+    let trimmedProject = options.projectId.trimmingCharacters(in: .whitespacesAndNewlines)
+    guard !trimmedProject.isEmpty else {
       throw DatastoreError.invalidArgument("projectId must not be empty")
     }
+    self.projectId = trimmedProject
+    self.databaseId = options.databaseId
+    self.namespaceId = options.namespaceId
     self.options = options
+  }
+
+  public func get(_ key: Key, options: ReadOptions? = nil) async throws -> Entity? {
+    fatalError("unimplemented")
+  }
+
+  public func getMulti(_ keys: [Key], options: ReadOptions? = nil) async throws -> [Entity?] {
+    fatalError("unimplemented")
+  }
+
+  @discardableResult
+  public func insert(
+    _ entity: Entity, options: GoogleGax.RequestOptions? = nil
+  ) async throws -> Key {
+    fatalError("unimplemented")
+  }
+
+  public func insert(
+    _ entity: IncompleteEntity, options: GoogleGax.RequestOptions? = nil
+  ) async throws -> Key {
+    fatalError("unimplemented")
+  }
+
+  @discardableResult
+  public func upsert(
+    _ entity: Entity, options: GoogleGax.RequestOptions? = nil
+  ) async throws -> Key {
+    fatalError("unimplemented")
+  }
+
+  public func upsert(
+    _ entity: IncompleteEntity, options: GoogleGax.RequestOptions? = nil
+  ) async throws -> Key {
+    fatalError("unimplemented")
+  }
+
+  public func update(_ entity: Entity, options: GoogleGax.RequestOptions? = nil) async throws {
+    fatalError("unimplemented")
+  }
+
+  public func delete(_ key: Key, options: GoogleGax.RequestOptions? = nil) async throws {
+    fatalError("unimplemented")
+  }
+
+  @discardableResult
+  public func mutate(
+    _ mutations: [Mutation], options: GoogleGax.RequestOptions? = nil
+  ) async throws -> [MutationResult] {
+    fatalError("unimplemented")
+  }
+
+  public func allocateIds(
+    _ keys: [IncompleteKey], options: GoogleGax.RequestOptions? = nil
+  ) async throws -> [Key] {
+    fatalError("unimplemented")
+  }
+
+  public func allocateId(
+    _ key: IncompleteKey, options: GoogleGax.RequestOptions? = nil
+  ) async throws -> Key {
+    fatalError("unimplemented")
+  }
+
+  public func reserveIds(_ keys: [Key], options: GoogleGax.RequestOptions? = nil) async throws {
+    fatalError("unimplemented")
+  }
+
+  public func reserveIdsSequential(
+    startingAt key: Key, count: Int, options: GoogleGax.RequestOptions? = nil
+  ) async throws {
+    fatalError("unimplemented")
+  }
+
+  @discardableResult
+  public func runInTransaction<T: Sendable>(
+    options: TransactionOptions = .readWrite,
+    _ body: @Sendable (Transaction) async throws -> T
+  ) async throws -> (result: T, commitResult: CommitResult) {
+    fatalError("unimplemented")
+  }
+
+  public func runQuery(
+    _ query: Query, options: ReadOptions? = nil
+  ) -> AsyncThrowingStream<Entity, any Error> {
+    fatalError("unimplemented")
+  }
+
+  public func runQuery(
+    _ query: GqlQuery, options: ReadOptions? = nil
+  ) -> AsyncThrowingStream<Entity, any Error> {
+    fatalError("unimplemented")
+  }
+
+  public func runQueryBatches(
+    _ query: Query, options: ReadOptions? = nil
+  ) -> AsyncThrowingStream<QueryBatch, any Error> {
+    fatalError("unimplemented")
+  }
+
+  public func runQueryBatches(
+    _ query: GqlQuery, options: ReadOptions? = nil
+  ) -> AsyncThrowingStream<QueryBatch, any Error> {
+    fatalError("unimplemented")
+  }
+
+  public func runAggregationQuery(
+    _ query: AggregationQuery, options: ReadOptions? = nil
+  ) async throws -> AggregationResults {
+    fatalError("unimplemented")
+  }
+
+  public func explainQuery(
+    _ query: Query, analyze: Bool = false, options: ReadOptions? = nil
+  ) async throws -> QueryExplainResult {
+    fatalError("unimplemented")
+  }
+
+  public func explainQuery(
+    _ query: GqlQuery, analyze: Bool = false, options: ReadOptions? = nil
+  ) async throws -> QueryExplainResult {
+    fatalError("unimplemented")
+  }
+
+  public func explainAggregationQuery(
+    _ query: AggregationQuery, analyze: Bool = false, options: ReadOptions? = nil
+  ) async throws -> AggregationExplainResult {
+    fatalError("unimplemented")
   }
 }
