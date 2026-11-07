@@ -98,14 +98,6 @@ public final class DatastoreClient: DatastoreProtocol, Sendable {
     return opts
   }
 
-  public func get(_ key: Key, options: ReadOptions? = nil) async throws -> Entity? {
-    fatalError("unimplemented")
-  }
-
-  public func getMulti(_ keys: [Key], options: ReadOptions? = nil) async throws -> [Entity?] {
-    fatalError("unimplemented")
-  }
-
   @discardableResult
   public func insert(
     _ entity: Entity, options: GoogleGax.RequestOptions? = nil
