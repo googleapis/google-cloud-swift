@@ -629,6 +629,15 @@
       "Product": "Cloud Dataproc API"
     }
   ],
+  "swift-google-cloud-datastore": [
+    {
+      "PkgName": "swift-google-cloud-datastore",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-datastore/0.6.0/documentation",
+      "APIShortname": "datastore",
+      "Product": "Cloud Datastore API"
+    }
+  ],
   "swift-google-cloud-datastream-v1": [
     {
       "PkgName": "swift-google-cloud-datastream-v1",

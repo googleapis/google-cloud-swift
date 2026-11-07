@@ -62,8 +62,22 @@ let package = Package(
   ],
   targets: [
     .target(
+      name: "DatastoreV1Stub",
+      dependencies: [
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
+        .product(name: "GoogleGax", package: "swift-google-gax"),
+        .product(name: "GoogleRpc", package: "swift-google-rpc"),
+        .product(name: "GoogleType", package: "swift-google-type"),
+        .product(name: "GoogleWKT", package: "swift-google-wkt"),
+        .product(name: "Logging", package: "swift-log"),
+      ],
+      path: "Sources/DatastoreV1Stub",
+      swiftSettings: swiftSettings
+    ),
+    .target(
       name: "GoogleCloudDatastore",
       dependencies: [
+        "DatastoreV1Stub",
         .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),
@@ -77,6 +91,7 @@ let package = Package(
     .testTarget(
       name: "GoogleCloudDatastoreTests",
       dependencies: [
+        "DatastoreV1Stub",
         "GoogleCloudDatastore",
         .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
