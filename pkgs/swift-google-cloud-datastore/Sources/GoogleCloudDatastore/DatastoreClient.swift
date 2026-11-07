@@ -297,48 +297,64 @@ public final class DatastoreClient: DatastoreProtocol, Sendable {
   public func runQuery(
     _ query: Query, options: ReadOptions? = nil
   ) -> AsyncThrowingStream<Entity, any Error> {
-    fatalError("unimplemented")
+    runQueryInternal(source: .structured(query), options: options, transaction: nil)
   }
 
   public func runQuery(
     _ query: GqlQuery, options: ReadOptions? = nil
   ) -> AsyncThrowingStream<Entity, any Error> {
-    fatalError("unimplemented")
+    runQueryInternal(source: .gql(query), options: options, transaction: nil)
   }
 
   public func runQueryBatches(
     _ query: Query, options: ReadOptions? = nil
   ) -> AsyncThrowingStream<QueryBatch, any Error> {
-    fatalError("unimplemented")
+    runQueryBatchesInternal(source: .structured(query), options: options, transaction: nil)
   }
 
   public func runQueryBatches(
     _ query: GqlQuery, options: ReadOptions? = nil
   ) -> AsyncThrowingStream<QueryBatch, any Error> {
-    fatalError("unimplemented")
+    runQueryBatchesInternal(source: .gql(query), options: options, transaction: nil)
   }
 
   public func runAggregationQuery(
     _ query: AggregationQuery, options: ReadOptions? = nil
   ) async throws -> AggregationResults {
-    fatalError("unimplemented")
+    let (results, _) = try await executeAggregationQuery(
+      query: query,
+      wireReadOptions: options?.toWireReadOptions(),
+      explainOptions: nil,
+      requestOptions: options?.requestOptions
+    )
+    return results
   }
 
   public func explainQuery(
     _ query: Query, analyze: Bool = false, options: ReadOptions? = nil
   ) async throws -> QueryExplainResult {
-    fatalError("unimplemented")
+    try await explainQueryInternal(source: .structured(query), analyze: analyze, options: options)
   }
 
   public func explainQuery(
     _ query: GqlQuery, analyze: Bool = false, options: ReadOptions? = nil
   ) async throws -> QueryExplainResult {
-    fatalError("unimplemented")
+    try await explainQueryInternal(source: .gql(query), analyze: analyze, options: options)
   }
 
   public func explainAggregationQuery(
     _ query: AggregationQuery, analyze: Bool = false, options: ReadOptions? = nil
   ) async throws -> AggregationExplainResult {
-    fatalError("unimplemented")
+    let explainOpts = DatastoreV1Stub.ExplainOptions().with { $0.analyze = analyze }
+    let (results, metrics) = try await executeAggregationQuery(
+      query: query,
+      wireReadOptions: options?.toWireReadOptions(),
+      explainOptions: explainOpts,
+      requestOptions: options?.requestOptions
+    )
+    return AggregationExplainResult(
+      results: analyze ? results : nil,
+      metrics: metrics ?? ExplainMetrics()
+    )
   }
 }

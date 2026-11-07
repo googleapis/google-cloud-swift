@@ -183,23 +183,39 @@ public final class Transaction: Sendable {
   }
 
   public func runQuery(_ query: Query) -> AsyncThrowingStream<Entity, any Error> {
-    fatalError("unimplemented")
+    client.runQueryInternal(source: .structured(query), options: nil, transaction: self)
   }
 
   public func runQuery(_ query: GqlQuery) -> AsyncThrowingStream<Entity, any Error> {
-    fatalError("unimplemented")
+    client.runQueryInternal(source: .gql(query), options: nil, transaction: self)
   }
 
   public func runQueryBatches(_ query: Query) -> AsyncThrowingStream<QueryBatch, any Error> {
-    fatalError("unimplemented")
+    client.runQueryBatchesInternal(source: .structured(query), options: nil, transaction: self)
   }
 
   public func runQueryBatches(_ query: GqlQuery) -> AsyncThrowingStream<QueryBatch, any Error> {
-    fatalError("unimplemented")
+    client.runQueryBatchesInternal(source: .gql(query), options: nil, transaction: self)
   }
 
   public func runAggregationQuery(_ query: AggregationQuery) async throws -> AggregationResults {
-    fatalError("unimplemented")
+    let readOpts = await prepareTransactionalRead()
+    do {
+      let (results, _) = try await client.executeAggregationQuery(
+        query: query,
+        wireReadOptions: readOpts,
+        explainOptions: nil,
+        requestOptions: options.requestOptions,
+        onFirstResponse: { [self] txId in
+          self.completeInitiation(transactionId: txId)
+        }
+      )
+      completeInitiation(transactionId: nil)
+      return results
+    } catch {
+      completeInitiation(transactionId: nil)
+      throw error
+    }
   }
 
   // MARK: - Buffered Transactional Writes
