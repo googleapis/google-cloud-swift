@@ -89,7 +89,7 @@ library the request is safe to retry:
 
 * [Override the default endpoint](https://docs.cloud.google.com/swift/override-endpoint) describes how to change
   the default endpoint used by the Swift client libraries.
-* [Override the default credentials](<doc:override-credentials>) describes how to
+* [Override the default credentials](https://docs.cloud.google.com/swift/override-credentials) describes how to
   change the default credentials used by the Swift client libraries.
 * [Long-running operations](<doc:long-running-operations>) describes how to make
   API requests that use long-running operations.
