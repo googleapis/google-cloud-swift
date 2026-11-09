@@ -7,7 +7,7 @@
 -->
 [Getting Started with Swift]: <doc:quickstart>
 [Long-running operations]: <doc:long-running-operations>
-[Override the default retry policies]: <doc:override-retry-policy>
+[Override the default retry policies]: https://docs.cloud.google.com/swift/override-retry-policy
 [AIP-151]: https://google.aip.dev/151
 [AIP-194]: https://google.aip.dev/194
 [Workflows API]: https://cloud.google.com/workflows
@@ -107,7 +107,7 @@ client configuration.
   change the default credentials used by the Swift client libraries.
 * [Long-running operations](<doc:long-running-operations>) describes how to make
   API requests that use long-running operations.
-* [Override the default retry policies](<doc:override-retry-policy>) describes how
+* [Override the default retry policies] describes how
   to change how the Swift client libraries retry failed requests.
 * [Enable logging](https://docs.cloud.google.com/swift/enable-logging) describes how to enable debug logging
   to troubleshoot requests and responses.

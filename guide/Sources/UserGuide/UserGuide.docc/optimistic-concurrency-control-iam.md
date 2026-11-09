@@ -10,7 +10,7 @@
 [service quickstart]: https://cloud.google.com/secret-manager/docs/quickstart
 [IAM Conditions]: https://cloud.google.com/iam/docs/conditions-overview
 [IAM etag]: https://cloud.google.com/iam/docs/policies#etag
-[Override the default retry policies]: <doc:override-retry-policy>
+[Override the default retry policies]: https://docs.cloud.google.com/swift/override-retry-policy
 [exponential backoff]: https://en.wikipedia.org/wiki/Exponential_backoff
 [optimistic concurrency control]: https://en.wikipedia.org/wiki/Optimistic_concurrency_control
 [swift-google-iam-v1]: https://github.com/googleapis/swift-google-iam-v1
@@ -110,7 +110,7 @@ newly updated policy.
 
 ## Next steps
 
-* [Override the default retry policies](<doc:override-retry-policy>) describes
+* [Override the default retry policies] describes
   how to change how the Swift client libraries retry failed RPC requests.
 * [Update a resource using a field mask](<doc:update-resource>) describes how to
   perform partial resource updates using field masks and `etag` values.
