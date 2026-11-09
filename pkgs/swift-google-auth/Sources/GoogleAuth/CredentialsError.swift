@@ -55,11 +55,13 @@ public enum CredentialsError: Error, Sendable {
   /// `underlyingError` value is the underlying failure, such as a transport error or an unsuccessful
   /// response from the token endpoint.
   ///
-  /// Credentials may be configured to use a metadata server implicitly: Application Default
-  /// Credentials fall back to the metadata server when no other credentials are found. In most
-  /// Google Cloud environments (GCE, GKE, Cloud Run) the metadata server is always available and
-  /// issues the access tokens that authenticate the workload. Outside those environments, the
-  /// fallback fails.
+  /// Credentials may be configured to use a metadata server explicitly via
+  /// ``CredentialsConfiguration/mds(quotaProjectID:universeDomain:scopes:)`` or implicitly when
+  /// Application Default Credentials fall back to the metadata server after finding no local
+  /// credentials. In most Google Cloud environments (GCE, GKE, Cloud Run) the metadata server is
+  /// always available and issues the access tokens that authenticate the workload. Outside those
+  /// environments, contacting the metadata server fails unless `GCE_METADATA_HOST` points to a
+  /// reachable metadata server or emulator.
   ///
   /// To set up local credentials, run `gcloud auth application-default login`. More information
   /// on how to authenticate client libraries can be found at

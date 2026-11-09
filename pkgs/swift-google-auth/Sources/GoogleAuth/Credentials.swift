@@ -217,6 +217,35 @@ public enum CredentialsConfiguration: Sendable {
   ///
   /// - Parameter config: The configuration specifying the source credentials, target service account, and optional delegation chain.
   case impersonatedServiceAccount(ImpersonatedServiceAccountConfig)
+
+  /// Explicitly queries the Google Cloud Metadata Server (MDS) for the runtime's attached service account.
+  ///
+  /// In Google Cloud environments such as [Google Compute Engine (GCE)](https://cloud.google.com/compute),
+  /// [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine), and
+  /// [Cloud Run](https://cloud.google.com/run), workloads run with an attached service account accessible
+  /// via the link-local [Metadata Server](https://cloud.google.com/compute/docs/metadata/overview)
+  /// (`http://metadata.google.internal`, or overridden via the `GCE_METADATA_HOST` environment variable)
+  /// according to [AIP-4115](https://google.aip.dev/auth/4115).
+  ///
+  /// Unlike ``adc(quotaProjectID:universeDomain:scopes:)``, `.mds` skips local credential file discovery
+  /// (`GOOGLE_APPLICATION_CREDENTIALS` and well-known `gcloud` files), ignores `NO_GCE_CHECK`, and applies
+  /// standard exponential backoff retries on transient metadata server errors.
+  ///
+  /// To act as a different service account than the one attached to the compute instance, pass
+  /// `Credentials(configuration: .mds())` as the `sourceCredentials` of ``ImpersonatedServiceAccountConfig``
+  /// via ``impersonatedServiceAccount(_:)``.
+  ///
+  /// - Parameters:
+  ///   - quotaProjectID: An optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
+  ///   - universeDomain: An optional [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
+  ///     When `nil`, the universe domain is queried lazily from `/computeMetadata/v1/universe/universe-domain` on the metadata server.
+  ///   - scopes: Scopes requested for the minted access token. When empty, the metadata server issues a token with all
+  ///     scopes configured for the attached service account.
+  case mds(
+    quotaProjectID: String? = nil,
+    universeDomain: String? = nil,
+    scopes: [String] = []
+  )
 }
 
 /// Configuration options for Service Account Impersonation credentials.
@@ -637,6 +666,14 @@ public struct Credentials: Sendable {
         lifetime: config.lifetime,
         quotaProjectID: config.quotaProjectID,
         universeDomain: config.universeDomain
+      )
+    case let .mds(quotaProjectID, universeDomain, scopes):
+      return MDSCredentials(
+        quotaProjectID: nonEmpty(quotaProjectID),
+        universeDomain: nonEmpty(universeDomain),
+        scopes: scopes,
+        fromADC: false,
+        environment: environment
       )
     }
   }

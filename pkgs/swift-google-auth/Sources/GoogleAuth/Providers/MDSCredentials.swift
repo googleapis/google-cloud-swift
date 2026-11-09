@@ -127,7 +127,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
   ) {
     let provider = MDSAccessTokenProvider(
       endpoint: endpoint,
-      quotaProjectID: quotaProjectID,
+      quotaProjectID: nonEmpty(quotaProjectID),
       scopes: scopes,
       retryConfiguration: retryConfiguration,
       client: client,
@@ -135,7 +135,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
       environment: environment
     )
     self.provider = provider
-    self.universeDomainOverride = universeDomain
+    self.universeDomainOverride = nonEmpty(universeDomain)
 
     self.cache = TokenCache(
       provider: provider,
