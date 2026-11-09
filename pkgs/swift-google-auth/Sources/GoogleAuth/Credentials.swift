@@ -235,17 +235,43 @@ public enum CredentialsConfiguration: Sendable {
   /// `Credentials(configuration: .mds())` as the `sourceCredentials` of ``ImpersonatedServiceAccountConfig``
   /// via ``impersonatedServiceAccount(_:)``.
   ///
-  /// - Parameters:
-  ///   - quotaProjectID: An optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
-  ///   - universeDomain: An optional [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
-  ///     When `nil`, the universe domain is queried lazily from `/computeMetadata/v1/universe/universe-domain` on the metadata server.
-  ///   - scopes: Scopes requested for the minted access token. When empty, the metadata server issues a token with all
-  ///     scopes configured for the attached service account.
-  case mds(
-    quotaProjectID: String? = nil,
-    universeDomain: String? = nil,
-    scopes: [String] = []
-  )
+  /// - Parameter config: The configuration specifying optional quota project, universe domain, and scope overrides.
+  case mds(MDSConfig = MDSConfig())
+}
+
+/// Configuration options for Google Cloud Metadata Server (MDS) credentials.
+///
+/// Under [AIP-4115](https://google.aip.dev/auth/4115), MDS credentials fetch short-lived access tokens
+/// for a compute runtime's attached service account from the link-local metadata server
+/// (`http://metadata.google.internal`).
+///
+/// See [Metadata Server Overview](https://cloud.google.com/compute/docs/metadata/overview).
+public struct MDSConfig: Sendable {
+  /// Optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
+  public var quotaProjectID: String? = nil
+
+  /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
+  ///
+  /// When `nil`, the universe domain is queried lazily from `/computeMetadata/v1/universe/universe-domain`
+  /// on the metadata server.
+  public var universeDomain: String? = nil
+
+  /// Scopes requested for the minted access token.
+  ///
+  /// When empty, the metadata server issues a token with all scopes configured for the attached
+  /// service account.
+  public var scopes: [String] = []
+
+  /// Initializes a new instance of `MDSConfig` without any overrides.
+  public init() {}
+
+  /// Configures optional properties of `MDSConfig` using a fluent closure.
+  @inlinable
+  public func with(_ configure: (inout MDSConfig) throws -> Void) rethrows -> MDSConfig {
+    var copy = self
+    try configure(&copy)
+    return copy
+  }
 }
 
 /// Configuration options for Service Account Impersonation credentials.
@@ -667,11 +693,11 @@ public struct Credentials: Sendable {
         quotaProjectID: config.quotaProjectID,
         universeDomain: config.universeDomain
       )
-    case let .mds(quotaProjectID, universeDomain, scopes):
+    case let .mds(config):
       return MDSCredentials(
-        quotaProjectID: quotaProjectID,
-        universeDomain: universeDomain,
-        scopes: scopes,
+        quotaProjectID: config.quotaProjectID,
+        universeDomain: config.universeDomain,
+        scopes: config.scopes,
         fromADC: false,
         environment: environment
       )

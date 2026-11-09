@@ -265,12 +265,13 @@ import Testing
   }
 
   @Test func resolveProviderForMDSCustomOptions() async throws {
+    let config = MDSConfig().with {
+      $0.quotaProjectID = "my-quota-project"
+      $0.universeDomain = "custom.universe.com"
+      $0.scopes = ["scope-a", "scope-b"]
+    }
     let credentials = try Credentials(
-      configuration: .mds(
-        quotaProjectID: "my-quota-project",
-        universeDomain: "custom.universe.com",
-        scopes: ["scope-a", "scope-b"]
-      ),
+      configuration: .mds(config),
       environment: [
         "GCE_METADATA_HOST": "127.0.0.1:8080",
         "GOOGLE_CLOUD_QUOTA_PROJECT": "ignored-env-quota",
@@ -298,8 +299,12 @@ import Testing
   }
 
   @Test func resolveProviderForMDSNormalizesEmptyStrings() throws {
+    let config = MDSConfig().with {
+      $0.quotaProjectID = ""
+      $0.universeDomain = ""
+    }
     let credentials = try Credentials(
-      configuration: .mds(quotaProjectID: "", universeDomain: ""),
+      configuration: .mds(config),
       environment: [:]
     )
     let mds = try #require(credentials.credentialsProvider as? MDSCredentials)

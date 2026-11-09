@@ -165,12 +165,14 @@ credential files:
 ```swift
 import GoogleAuth
 
-let credentials = try Credentials(
-    configuration: .mds(
-        quotaProjectID: "my-quota-project-id",
-        scopes: ["https://www.googleapis.com/auth/cloud-platform"]
-    )
-)
+let credentials = try Credentials(configuration: .mds())
+
+// Or customize quota project, universe domain, or scopes via MDSConfig:
+let customConfig = MDSConfig().with {
+    $0.quotaProjectID = "my-quota-project-id"
+    $0.scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+}
+let customCredentials = try Credentials(configuration: .mds(customConfig))
 ```
 
 ### Using with Google Cloud Client Libraries

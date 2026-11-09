@@ -56,8 +56,8 @@ public enum CredentialsError: Error, Sendable {
   /// response from the token endpoint.
   ///
   /// Credentials may be configured to use a metadata server explicitly via
-  /// ``CredentialsConfiguration/mds(quotaProjectID:universeDomain:scopes:)`` or implicitly when
-  /// Application Default Credentials fall back to the metadata server after finding no local
+  /// ``CredentialsConfiguration/mds(_:)`` or implicitly when Application Default
+  /// Credentials fall back to the metadata server after finding no local
   /// credentials. In most Google Cloud environments (GCE, GKE, Cloud Run) the metadata server is
   /// always available and issues the access tokens that authenticate the workload. Outside those
   /// environments, contacting the metadata server fails unless `GCE_METADATA_HOST` points to a
