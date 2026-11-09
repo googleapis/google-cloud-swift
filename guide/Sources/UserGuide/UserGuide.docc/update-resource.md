@@ -111,7 +111,7 @@ leave the field set to its default value on the provided resource.
   API requests that use long-running operations.
 * [Paginated operations](<doc:pagination>) describes how to iterate over
   paginated API responses.
-* [Override the default retry policies](<doc:override-retry-policy>) describes how
+* [Override the default retry policies](https://docs.cloud.google.com/swift/override-retry-policy) describes how
   to change how the Swift client libraries retry failed requests.
 * [Update IAM policies using optimistic concurrency control](<doc:optimistic-concurrency-control-iam>)
   describes how to handle concurrent modification conflicts in a

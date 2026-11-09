@@ -74,7 +74,7 @@ completes:
   describes how to configure custom credentials such as API keys.
 * [Override the default endpoint](https://docs.cloud.google.com/swift/override-endpoint) describes how to change
   the default endpoint used by the Swift client libraries.
-* [Override the default retry policies](<doc:override-retry-policy>) describes how
+* [Override the default retry policies](https://docs.cloud.google.com/swift/override-retry-policy) describes how
   to change how the Swift client libraries retry failed requests.
 * [Override the default polling policies](<doc:override-polling-policy>) describes
   how to change how the Swift client libraries poll long-running operations.
