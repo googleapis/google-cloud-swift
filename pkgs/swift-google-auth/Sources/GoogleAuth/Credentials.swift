@@ -224,12 +224,12 @@ public enum CredentialsConfiguration: Sendable {
   /// [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine), and
   /// [Cloud Run](https://cloud.google.com/run), workloads run with an attached service account accessible
   /// via the link-local [Metadata Server](https://cloud.google.com/compute/docs/metadata/overview)
-  /// (`http://metadata.google.internal`, or overridden via the `GCE_METADATA_HOST` environment variable)
-  /// according to [AIP-4115](https://google.aip.dev/auth/4115).
+  /// (`http://metadata.google.internal`) according to [AIP-4115](https://google.aip.dev/auth/4115).
   ///
   /// Unlike ``adc(quotaProjectID:universeDomain:scopes:)``, `.mds` skips local credential file discovery
-  /// (`GOOGLE_APPLICATION_CREDENTIALS` and well-known `gcloud` files), ignores `NO_GCE_CHECK`, and applies
-  /// standard exponential backoff retries on transient metadata server errors.
+  /// (`GOOGLE_APPLICATION_CREDENTIALS` and well-known `gcloud` files) and ignores `NO_GCE_CHECK`.
+  /// The default metadata server endpoint can be overridden via the `GCE_METADATA_HOST` environment
+  /// variable during local testing or emulation.
   ///
   /// To act as a different service account than the one attached to the compute instance, pass
   /// `Credentials(configuration: .mds())` as the `sourceCredentials` of ``ImpersonatedServiceAccountConfig``
