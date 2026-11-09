@@ -110,7 +110,7 @@ newly updated policy.
 
 ## Next steps
 
-* [Override the default retry policies](https://docs.cloud.google.com/swift/override-retry-policy) describes
+* [Override the default retry policies] describes
   how to change how the Swift client libraries retry failed RPC requests.
 * [Update a resource using a field mask](<doc:update-resource>) describes how to
   perform partial resource updates using field masks and `etag` values.
