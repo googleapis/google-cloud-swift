@@ -4,7 +4,8 @@ This document defines conventions, design principles, and guidelines for maintai
 
 ## Development Guidelines
 
-- **Adherence to Repository Standards**: All development in this package must strictly adhere to the top-level repository guidelines in [`../../GEMINI.md`](../../GEMINI.md), including style conventions (`swift-format` precedence), import rules, access control, and testing practices (`import Testing`, `@Suite struct`).
+- **Adherence to Repository Standards**: All development in this package must strictly adhere to the top-level repository guidelines in [`../../AGENTS.md`](../../AGENTS.md), including style conventions (`swift-format` precedence), import rules, access control, and testing practices (`import Testing`, `@Suite struct`).
+- **New Public APIs**: New public APIs in this package must follow [`howto-guide-handwritten-client-api.md`](../../doc/contributor/howto-guide-handwritten-client-api.md). Existing APIs predate it; do not change them only to conform.
 - **Local Dependencies**: Always set `GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true` during local development so dependencies resolve to local working packages rather than remote release tags.
 - **Compilation, Testing, and Linting Commands**:
   - **Compile**:

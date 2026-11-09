@@ -99,6 +99,15 @@ user mocks, each service protocol provides default extension implementations
 that throw `RequestError.unimplemented`. Applications can mock only the RPC
 methods required for their test cases.
 
+Because applications implement these protocols, every requirement signature is
+frozen once released: changing a parameter, the return type, `throws`, `async`,
+or the attributes of a closure parameter breaks existing mocks, even when the
+change would be source-compatible for callers. Default implementations that do
+more than throw `RequestError.unimplemented` must have the same semantics as
+the real client. These rules apply to the protocols in hand-written packages
+too; see
+[howto-guide-handwritten-client-api.md](doc/contributor/howto-guide-handwritten-client-api.md).
+
 ### Client and credential lifecycle
 
 Clients and `Credentials` instances are thread-safe (`Sendable`) and are designed
@@ -428,6 +437,11 @@ hand-written packages:
   (`Clients.StorageControlServiceClient` and `Clients.StorageServiceClient`) to
   minimize handwritten code maintenance.
 
+New public APIs in hand-written packages follow the rules in
+[howto-guide-handwritten-client-api.md](doc/contributor/howto-guide-handwritten-client-api.md),
+which cover evolving with the service, mocking, observability, idioms, required
+tests, and documentation.
+
 ### Custom ProtoJSON serialization
 
 Instead of relying solely on `Foundation.JSONDecoder` and `Foundation.JSONEncoder`,
@@ -552,6 +566,13 @@ Keeping execution options (timeouts, retry policies, backoff parameters, quota
 project IDs) distinct from request fields prevents naming collisions when
 services introduce new fields with names like `timeout` or `options`.
 
+The rule applies to hand-written packages too. Data sent to the service belongs
+in request, query, or mutation types, while settings that change how the client
+library behaves (retries, timeouts, idempotency, logging) belong in the
+operation's options struct, which contains a single `RequestOptions` field. Do
+not nest an options type inside a field with the same name (for example,
+`options.request.request`).
+
 ### Casing and naming conventions in generated code
 
 The vast majority of types, methods, and properties in `google-cloud-swift` are
@@ -650,6 +671,13 @@ Client-side validation cannot replace server-side checks in distributed systems:
   methods retain `Optional` message types (e.g. `secret: Secret?`) rather than
   enforcing non-nullability locally, relying on server validation for semantic
   correctness.
+
+This applies to hand-written packages as well, including service limits such as
+the number of keys or mutations in a batch, the number of values in a filter, or
+the length of a string. These limits are service policies and they change. If
+the documentation mentions a limit, quote the proto comments and describe it as
+a current service limit. Data decoded from the service is never validated
+against such limits.
 
 ### Localize error messages
 

@@ -264,7 +264,7 @@ When this passes, clean up the code.
   ```
 - Run `ci/format.sh` (or `swift-format format -i -r ...`).
 - Verify linting passes with `swift-format lint -s ...` (or `./ci/lint.sh pr`).
-- Look over other things from `GEMINI.md`.
+- Look over other things from `AGENTS.md`.
 
 If you make any changes, test the code again.
 
