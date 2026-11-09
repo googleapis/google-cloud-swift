@@ -669,8 +669,8 @@ public struct Credentials: Sendable {
       )
     case let .mds(quotaProjectID, universeDomain, scopes):
       return MDSCredentials(
-        quotaProjectID: nonEmpty(quotaProjectID),
-        universeDomain: nonEmpty(universeDomain),
+        quotaProjectID: quotaProjectID,
+        universeDomain: universeDomain,
         scopes: scopes,
         fromADC: false,
         environment: environment
