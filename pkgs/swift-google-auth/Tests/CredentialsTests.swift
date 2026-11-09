@@ -253,6 +253,64 @@ import Testing
     try await credentials.validateUniverseDomain(Credentials.defaultUniverseDomain)
   }
 
+  @Test func resolveProviderForMDSDefaults() throws {
+    let credentials = try Credentials(
+      configuration: .mds(),
+      environment: ["GOOGLE_CLOUD_QUOTA_PROJECT": "adc-only-quota-project"]
+    )
+    let mds = try #require(credentials.credentialsProvider as? MDSCredentials)
+    #expect(mds.provider.fromADC == false)
+    #expect(mds.quotaProjectID == nil)
+    #expect(mds.provider.scopes.isEmpty)
+  }
+
+  @Test func resolveProviderForMDSCustomOptions() async throws {
+    let config = MDSConfig().with {
+      $0.quotaProjectID = "my-quota-project"
+      $0.universeDomain = "custom.universe.com"
+      $0.scopes = ["scope-a", "scope-b"]
+    }
+    let credentials = try Credentials(
+      configuration: .mds(config),
+      environment: [
+        "GCE_METADATA_HOST": "127.0.0.1:8080",
+        "GOOGLE_CLOUD_QUOTA_PROJECT": "ignored-env-quota",
+      ]
+    )
+    let mds = try #require(credentials.credentialsProvider as? MDSCredentials)
+    #expect(mds.provider.fromADC == false)
+    #expect(mds.quotaProjectID == "my-quota-project")
+    #expect(mds.provider.scopes == ["scope-a", "scope-b"])
+    #expect(mds.provider.environment["GCE_METADATA_HOST"] == "127.0.0.1:8080")
+    #expect(try await credentials.universeDomain() == "custom.universe.com")
+    try await credentials.validateUniverseDomain("custom.universe.com")
+  }
+
+  @Test func resolveProviderForMDSIgnoresADCEnvironmentVariables() throws {
+    let credentials = try Credentials(
+      configuration: .mds(),
+      environment: [
+        "NO_GCE_CHECK": "true",
+        "GOOGLE_APPLICATION_CREDENTIALS": "/nonexistent/path/to/creds.json",
+      ]
+    )
+    let mds = try #require(credentials.credentialsProvider as? MDSCredentials)
+    #expect(mds.provider.fromADC == false)
+  }
+
+  @Test func resolveProviderForMDSNormalizesEmptyStrings() throws {
+    let config = MDSConfig().with {
+      $0.quotaProjectID = ""
+      $0.universeDomain = ""
+    }
+    let credentials = try Credentials(
+      configuration: .mds(config),
+      environment: [:]
+    )
+    let mds = try #require(credentials.credentialsProvider as? MDSCredentials)
+    #expect(mds.quotaProjectID == nil)
+  }
+
   @Test func defaultUniverseDomainAndValidation() async throws {
     #expect(Credentials.defaultUniverseDomain == "googleapis.com")
 

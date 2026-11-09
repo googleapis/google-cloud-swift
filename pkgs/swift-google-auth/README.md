@@ -55,6 +55,9 @@ The primary entry point is the `Credentials` struct. A default-initialized
   Run, Cloud Functions) or from local development environments configured via
   `gcloud auth application-default login` or the `GOOGLE_APPLICATION_CREDENTIALS`
   environment variable.
+- **Metadata Server (MDS) Credentials**: Explicitly query the Google Cloud
+  Metadata Server (`http://metadata.google.internal`) on GCE, GKE, or Cloud Run
+  without probing local ADC files ([AIP-4115](https://google.aip.dev/auth/4115)).
 - **Service Account Credentials**: Authenticate with service account private key
   JSON files, supporting both OAuth 2.0 scopes and self-signed JWT assertions
   with custom audiences ([AIP-4111](https://google.aip.dev/auth/4111)).
@@ -151,6 +154,25 @@ let credentials = try Credentials(
         scopes: ["https://www.googleapis.com/auth/cloud-platform"]
     )
 )
+```
+
+### Explicit Metadata Server (MDS) Credentials
+
+On Compute Engine, Google Kubernetes Engine, or Cloud Run, you can configure
+credentials to query the Metadata Server directly without probing local ADC
+credential files:
+
+```swift
+import GoogleAuth
+
+let credentials = try Credentials(configuration: .mds())
+
+// Or customize quota project, universe domain, or scopes via MDSConfig:
+let customConfig = MDSConfig().with {
+    $0.quotaProjectID = "my-quota-project-id"
+    $0.scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+}
+let customCredentials = try Credentials(configuration: .mds(customConfig))
 ```
 
 ### Using with Google Cloud Client Libraries

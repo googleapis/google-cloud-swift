@@ -916,6 +916,88 @@ import Testing
     #expect(attempts.getCount() == 3)
   }
 
+  @Test func explicitMDSRetriesAndFormatsNonADCErrorMessage() async throws {
+    let attempts = CallCounter()
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        attempts.increment()
+        throw URLError(.cannotConnectToHost)
+      },
+      { request in
+        Self.checkRequest(request)
+        attempts.increment()
+        throw URLError(.cannotConnectToHost)
+      },
+    ])
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 2, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      fromADC: false,
+      environment: [:]
+    )
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(attempts.getCount() == 2)
+
+    guard case let .cannotFetchToken(got, _) = error else {
+      Issue.record("Unexpected error type: \(String(describing: error))")
+      return
+    }
+    #expect(got.contains(MDSAccessTokenProvider.defaultEndpoint))
+    #expect(!got.contains("Application Default Credentials"))
+    #expect(!got.contains("gcloud auth application-default login"))
+  }
+
+  @Test func emptyQuotaProjectAndUniverseDomainAreNormalized() async throws {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedData = try encoder.encode(
+      MockResponse(accessToken: "mock-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData))
+        )
+      },
+      { request in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          body: .bytes(.init(data: Data("queried.universe.com\n".utf8)))
+        )
+      },
+    ])
+
+    let provider = MDSCredentials(
+      quotaProjectID: "",
+      universeDomain: "",
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+    let headers = try await provider.headers()
+    #expect(headers["Authorization"] == "Bearer mock-token")
+    #expect(headers["x-goog-user-project"] == nil)
+    #expect(try await provider.universeDomain() == "queried.universe.com")
+  }
+
   static func checkRequest(
     _ request: HTTPClientRequest, sourceLocation: SourceLocation = #_sourceLocation
   ) {
