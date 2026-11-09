@@ -24,7 +24,7 @@ best-practices to retry transient RPC errors.
 ## Develop
 
 - [Override the default endpoint](https://docs.cloud.google.com/swift/override-endpoint)
-- <doc:override-credentials>
+- [Override the default authentication credentials](https://docs.cloud.google.com/swift/override-credentials)
 - [Enable logging](https://docs.cloud.google.com/swift/enable-logging)
 - <doc:override-retry-policy>
 - <doc:override-polling-policy>

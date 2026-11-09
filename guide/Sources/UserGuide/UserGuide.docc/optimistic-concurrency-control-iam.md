@@ -114,7 +114,7 @@ newly updated policy.
   how to change how the Swift client libraries retry failed RPC requests.
 * [Update a resource using a field mask](<doc:update-resource>) describes how to
   perform partial resource updates using field masks and `etag` values.
-* [Override the default authentication credentials](<doc:override-credentials>)
+* [Override the default authentication credentials](https://docs.cloud.google.com/swift/override-credentials)
   describes how to configure custom credentials.
 * [Enable logging](https://docs.cloud.google.com/swift/enable-logging) describes how to enable debug logging
   to troubleshoot requests and responses.

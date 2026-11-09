@@ -70,7 +70,7 @@ completes:
 
 ## Next steps
 
-* [Override the default authentication credentials](<doc:override-credentials>)
+* [Override the default authentication credentials](https://docs.cloud.google.com/swift/override-credentials)
   describes how to configure custom credentials such as API keys.
 * [Override the default endpoint](https://docs.cloud.google.com/swift/override-endpoint) describes how to change
   the default endpoint used by the Swift client libraries.
