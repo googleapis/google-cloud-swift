@@ -53,6 +53,11 @@ public struct TransactionResult<T> {
   public var value: T
   public var commit: CommitResult
 }
+func runInTransaction<T>(
+  options: TransactionOptions,
+  _ body: (any TransactionProtocol) async throws -> T
+) async throws -> TransactionResult<T>
+
 func insert(_ entity: Entity, options: InsertOptions) async throws -> MutationResult
 func delete(_ key: Key, options: DeleteOptions) async throws -> MutationResult
 ```
