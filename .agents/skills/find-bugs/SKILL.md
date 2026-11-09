@@ -28,7 +28,7 @@ This skill guides the agent through reviews of the code with the intent of ident
 
 ## Prerequisites and Environment Verification
 
-1. Before starting, ensure the code compiles and passes baseline checks. Refer to [GEMINI.md](../../GEMINI.md) for package build and test instructions:
+1. Before starting, ensure the code compiles and passes baseline checks. Refer to [AGENTS.md](../../../AGENTS.md) for package build and test instructions:
    ```bash
    swift test --package-path pkgs/<package_name>
    ```

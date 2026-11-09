@@ -170,7 +170,7 @@ Updating sources to newer commit SHAs may introduce new protos, messages, or cro
      in `pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/Storage/Storage+Retry.swift`.
    - *Context*: `librarian.yaml` specifies `idempotency_hook: resolveIdempotency` for the `google-cloud-storage` package. If the updated `googleapis` SHA introduces new RPC methods to `google/storage/v2`, the generated retry client invokes `request.resolveIdempotency(options: options)`, which requires an extension implemented in handwritten code.
    - *Resolution Options*:
-     - **Option A (Fix in the same PR)**: Implement the missing `resolveIdempotency(options:)` extension in `pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/StorageIdempotency.swift` and add corresponding unit tests in `pkgs/swift-google-cloud-storage/Tests/StorageIdempotencyTests.swift`, following the rules in [`pkgs/swift-google-cloud-storage/GEMINI.md`](../../../pkgs/swift-google-cloud-storage/GEMINI.md).
+     - **Option A (Fix in the same PR)**: Implement the missing `resolveIdempotency(options:)` extension in `pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/StorageIdempotency.swift` and add corresponding unit tests in `pkgs/swift-google-cloud-storage/Tests/StorageIdempotencyTests.swift`, following the rules in [`pkgs/swift-google-cloud-storage/AGENTS.md`](../../../pkgs/swift-google-cloud-storage/AGENTS.md).
      - **Option B (Fix in a separate PR)**: Add `skip_release: true` to the `google-cloud-storage` entry in [`librarian.yaml`](../../../librarian.yaml), run `go run github.com/googleapis/librarian/cmd/librarian@${V} tidy`, and offer to create a GitHub issue to track fixing the hook in a follow-up PR.
 
 ### Step 6: Validate the Changes
@@ -201,7 +201,7 @@ Updating sources to newer commit SHAs may introduce new protos, messages, or cro
 
    - **If compilation fails due to a missing idempotency hook**:
      Prompt the user to ask how they wish to proceed:
-     - **Choice 1**: Fix the problem in the same PR, implementing the hook and unit test using the rules in [`pkgs/swift-google-cloud-storage/GEMINI.md`](../../../pkgs/swift-google-cloud-storage/GEMINI.md).
+     - **Choice 1**: Fix the problem in the same PR, implementing the hook and unit test using the rules in [`pkgs/swift-google-cloud-storage/AGENTS.md`](../../../pkgs/swift-google-cloud-storage/AGENTS.md).
      - **Choice 2**: Add `skip_release: true` to `google-cloud-storage` in [`librarian.yaml`](../../../librarian.yaml), and fix the problem in a separate PR.
      - **If the user chooses Choice 2**: Offer to create a GitHub tracking issue for them using `gh issue create`.
 
