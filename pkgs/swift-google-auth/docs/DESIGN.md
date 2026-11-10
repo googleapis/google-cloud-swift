@@ -70,50 +70,13 @@ operations to a concrete credentials source resolved at initialization.
 /// Defines the configurations for authenticating Google Cloud API requests.
 public enum CredentialsConfiguration: Sendable {
   /// Automatically resolves credentials using Application Default Credentials (ADC) with optional overrides.
-  ///
-  /// - Parameters:
-  ///   - quotaProjectID: A custom project ID used for billing and quota management.
-  ///   - scopes: Optional OAuth2 scopes to request for the access token.
-  ///   - universeDomain: Optional universe domain override.
-  case adc(
-    quotaProjectID: String? = nil,
-    scopes: [String]? = nil,
-    universeDomain: String? = nil
-  )
-
-  /// Explicitly refreshes User OAuth2 tokens using a local JSON credentials file located at the specified URL.
-  case userKeyFile(URL)
+  case adc(ADCConfig = ADCConfig())
 
   /// Explicitly refreshes User OAuth2 tokens using raw JSON credentials data in memory, with optional overrides.
-  ///
-  /// - Parameters:
-  ///   - keyJSON: The raw User credentials JSON key data.
-  ///   - tokenURI: The OAuth2 token refresh endpoint URI override.
-  ///   - scopes: Optional scopes requested for the access token.
-  ///   - quotaProjectID: Optional project ID used for billing and quota.
-  case user(
-    keyJSON: Data,
-    tokenURI: URL? = nil,
-    scopes: [String]? = nil,
-    quotaProjectID: String? = nil
-  )
-
+  case user(UserConfig)
 
   /// Explicitly signs tokens locally using a Service Account JSON key in memory, with optional overrides.
-  ///
-  /// - Parameters:
-  ///   - keyJSON: The raw Service Account JSON key data.
-  ///   - quotaProjectID: A custom project ID used for billing and quota.
-  ///   - universeDomain: Google Cloud universe domain override.
-  ///   - scopes: Optional scopes requested (exchanged locally via JWT claims).
-  ///   - audience: Optional custom target audience override.
-  case serviceAccount(
-    keyJSON: Data,
-    quotaProjectID: String? = nil,
-    universeDomain: String? = nil,
-    scopes: [String]? = nil,
-    audience: String? = nil
-  )
+  case serviceAccount(ServiceAccountConfig)
 
   /// Returns a stub credential that provides no headers (unauthenticated).
   case anonymous

@@ -133,12 +133,10 @@ import Foundation
 import GoogleAuth
 
 let keyData = try Data(contentsOf: URL(fileURLWithPath: "/path/to/service-account.json"))
-let credentials = try Credentials(
-    configuration: .serviceAccount(
-        keyJSON: keyData,
-        accessSpecifier: .scopes(["https://www.googleapis.com/auth/cloud-platform"])
-    )
-)
+let config = ServiceAccountConfig(keyJSON: keyData).with {
+    $0.accessSpecifier = .scopes(["https://www.googleapis.com/auth/cloud-platform"])
+}
+let credentials = try Credentials(configuration: .serviceAccount(config))
 ```
 
 ### Customizing Application Default Credentials
@@ -148,12 +146,11 @@ You can customize ADC settings such as billing/quota project ID or scopes:
 ```swift
 import GoogleAuth
 
-let credentials = try Credentials(
-    configuration: .adc(
-        quotaProjectID: "my-quota-project-id",
-        scopes: ["https://www.googleapis.com/auth/cloud-platform"]
-    )
-)
+let config = ADCConfig().with {
+    $0.quotaProjectID = "my-quota-project-id"
+    $0.scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+}
+let credentials = try Credentials(configuration: .adc(config))
 ```
 
 ### Explicit Metadata Server (MDS) Credentials

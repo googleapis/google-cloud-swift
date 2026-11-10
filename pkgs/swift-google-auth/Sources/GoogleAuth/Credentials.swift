@@ -99,19 +99,8 @@ public enum CredentialsConfiguration: Sendable {
   /// hot path inside asynchronous request handlers; instead, initialize ``Credentials`` (or your service client) once
   /// at application startup and reuse the instance across requests.
   ///
-  /// - Parameters:
-  ///   - quotaProjectID: The Google Cloud project ID to bill and charge quota against (sent via `x-goog-user-project`).
-  ///     Requires `serviceusage.services.use` permission on the project.
-  ///     **Important Precedence**: If the `GOOGLE_CLOUD_QUOTA_PROJECT` environment variable is set,
-  ///     its value takes precedence over this parameter.
-  ///   - universeDomain: Target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) (defaults to `googleapis.com`).
-  ///     Override this if your application is operating in a custom sovereign or air-gapped cloud.
-  ///   - scopes: Scopes requested for the access token, further restricting what the token can be used for.
-  case adc(
-    quotaProjectID: String? = nil,
-    universeDomain: String? = nil,
-    scopes: [String] = []
-  )
+  /// - Parameter config: The configuration specifying optional quota project, universe domain, and scope overrides.
+  case adc(ADCConfig = ADCConfig())
 
   /// Returns a stub credential that provides no headers (unauthenticated).
   ///
@@ -136,17 +125,8 @@ public enum CredentialsConfiguration: Sendable {
   /// > in source code or check them into version control. Treat service account key files with the
   /// > same security precautions as passwords.
   ///
-  /// - Parameters:
-  ///   - keyJSON: The raw Service Account JSON key file contents.
-  ///   - quotaProjectID: A custom project ID used for billing and quota attribution.
-  ///   - universeDomain: [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
-  ///   - accessSpecifier: Access specifier (either OAuth 2.0 scopes or JWT audience). Defaults to `.scopes([])`.
-  case serviceAccount(
-    keyJSON: Data,
-    quotaProjectID: String? = nil,
-    universeDomain: String? = nil,
-    accessSpecifier: AccessSpecifier = .scopes([])
-  )
+  /// - Parameter config: The configuration specifying the Service Account JSON key and optional overrides.
+  case serviceAccount(ServiceAccountConfig)
 
   /// Credentials using Authorized User key files created from user authentication.
   ///
@@ -160,23 +140,14 @@ public enum CredentialsConfiguration: Sendable {
   ///
   /// **Universe Domain Constraint**: User accounts are only supported in the default Google [universe](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones)
   /// (`googleapis.com`). Initializing user credentials with a custom universe domain will fail with
-  /// `CredentialsError.notSupported`.
+  /// ``CredentialsError/notSupported(_:)``.
   ///
   /// > Warning: authorized user key files must be kept secure. Do not hardcode their value directly
   /// > in source code or check them into version control. Treat authorized user key files with the
   /// > same security precautions as passwords.
   ///
-  /// - Parameters:
-  ///   - keyJSON: The raw Authorized User JSON file contents.
-  ///   - quotaProjectID: An optional project ID used for billing and quota attribution (`x-goog-user-project`).
-  ///   - universeDomain: An optional universe domain (must be `googleapis.com` or nil).
-  ///   - scopes: Scopes requested for the access token.
-  case user(
-    keyJSON: Data,
-    quotaProjectID: String? = nil,
-    universeDomain: String? = nil,
-    scopes: [String] = []
-  )
+  /// - Parameter config: The configuration specifying the Authorized User JSON key and optional overrides.
+  case user(UserConfig)
 
   /// External account credentials configuration for Workload and Workforce Identity Federation.
   ///
@@ -226,7 +197,7 @@ public enum CredentialsConfiguration: Sendable {
   /// via the link-local [Metadata Server](https://cloud.google.com/compute/docs/metadata/overview)
   /// (`http://metadata.google.internal`) according to [AIP-4115](https://google.aip.dev/auth/4115).
   ///
-  /// Unlike ``adc(quotaProjectID:universeDomain:scopes:)``, `.mds` skips local credential file discovery
+  /// Unlike ``adc(_:)``, `.mds` skips local credential file discovery
   /// (`GOOGLE_APPLICATION_CREDENTIALS` and well-known `gcloud` files) and ignores `NO_GCE_CHECK`.
   /// The default metadata server endpoint can be overridden via the `GCE_METADATA_HOST` environment
   /// variable during local testing or emulation.
@@ -237,6 +208,158 @@ public enum CredentialsConfiguration: Sendable {
   ///
   /// - Parameter config: The configuration specifying optional quota project, universe domain, and scope overrides.
   case mds(MDSConfig = MDSConfig())
+}
+
+/// Configuration options for Application Default Credentials (ADC).
+///
+/// Under [AIP-4110](https://google.aip.dev/auth/4110), ADC automatically discovers credentials from
+/// `GOOGLE_APPLICATION_CREDENTIALS`, well-known `gcloud` user credentials files, or the link-local
+/// Compute Engine Metadata Server (MDS).
+///
+/// ### Usage Example
+/// ```swift
+/// let config = ADCConfig().with {
+///   $0.quotaProjectID = "my-billing-project"
+///   $0.scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+/// }
+/// let credentials = try Credentials(configuration: .adc(config))
+/// ```
+///
+/// See [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials).
+public struct ADCConfig: Sendable {
+  /// Optional Google Cloud project ID to bill and charge quota against (`x-goog-user-project`).
+  ///
+  /// Requires `serviceusage.services.use` permission on the project.
+  ///
+  /// **Important Precedence**: If the `GOOGLE_CLOUD_QUOTA_PROJECT` environment variable is set,
+  /// its value takes precedence over this property.
+  public var quotaProjectID: String? = nil
+
+  /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override (defaults to `googleapis.com`).
+  ///
+  /// Override this if your application is operating in a custom sovereign or air-gapped cloud.
+  public var universeDomain: String? = nil
+
+  /// Scopes requested for the access token, further restricting what the token can be used for.
+  public var scopes: [String] = []
+
+  /// Initializes a new instance of `ADCConfig` without any overrides.
+  public init() {}
+
+  /// Configures optional properties of `ADCConfig` using a fluent closure.
+  @inlinable
+  public func with(_ configure: (inout ADCConfig) throws -> Void) rethrows -> ADCConfig {
+    var copy = self
+    try configure(&copy)
+    return copy
+  }
+}
+
+/// Configuration options for Service Account JSON key credentials.
+///
+/// Under [AIP-4111](https://google.aip.dev/auth/4111), service account credentials sign a local
+/// JSON Web Signature (JWS) assertion in memory using RS256 without requiring an initial network
+/// round-trip to an authorization server.
+///
+/// > Warning: service account key files must be kept secure. Do not hardcode their value directly
+/// > in source code or check them into version control. Treat service account key files with the
+/// > same security precautions as passwords.
+///
+/// ### Usage Example
+/// ```swift
+/// let keyData = try Data(contentsOf: URL(fileURLWithPath: "/path/to/service-account.json"))
+/// let config = ServiceAccountConfig(keyJSON: keyData).with {
+///   $0.accessSpecifier = .scopes(["https://www.googleapis.com/auth/cloud-platform"])
+/// }
+/// let credentials = try Credentials(configuration: .serviceAccount(config))
+/// ```
+///
+/// See [Service Account Overview](https://cloud.google.com/iam/docs/service-account-overview).
+public struct ServiceAccountConfig: Sendable {
+  /// The raw Service Account JSON key file contents.
+  public let keyJSON: Data
+
+  /// Optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
+  public var quotaProjectID: String? = nil
+
+  /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
+  ///
+  /// When `nil`, defaults to the `"universe_domain"` field in `keyJSON` if non-empty, or `googleapis.com`.
+  public var universeDomain: String? = nil
+
+  /// Access specifier (either OAuth 2.0 scopes or JWT audience). Defaults to `.scopes([])`.
+  public var accessSpecifier: AccessSpecifier = .scopes([])
+
+  /// Initializes a new instance of `ServiceAccountConfig` with the specified JSON key data.
+  ///
+  /// - Parameter keyJSON: The raw Service Account JSON key file contents.
+  public init(keyJSON: Data) {
+    self.keyJSON = keyJSON
+  }
+
+  /// Configures optional properties of `ServiceAccountConfig` using a fluent closure.
+  @inlinable
+  public func with(_ configure: (inout ServiceAccountConfig) throws -> Void) rethrows
+    -> ServiceAccountConfig
+  {
+    var copy = self
+    try configure(&copy)
+    return copy
+  }
+}
+
+/// Configuration options for Authorized User OAuth 2.0 credentials.
+///
+/// [User Accounts](https://cloud.google.com/docs/authentication#user-accounts) utilize an OAuth 2.0
+/// refresh token obtained through the Authorization Code grant
+/// ([RFC 6749 Section 4.1](https://datatracker.ietf.org/doc/html/rfc6749#section-4.1)), typically
+/// generated by `gcloud auth application-default login`.
+///
+/// **Universe Domain Constraint**: User accounts are only supported in the default Google
+/// [universe](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) (`googleapis.com`).
+/// Initializing user credentials with a custom universe domain fails with ``CredentialsError/notSupported(_:)``.
+///
+/// > Warning: authorized user key files must be kept secure. Do not hardcode their value directly
+/// > in source code or check them into version control. Treat authorized user key files with the
+/// > same security precautions as passwords.
+///
+/// ### Usage Example
+/// ```swift
+/// let keyData = try Data(contentsOf: URL(fileURLWithPath: "/path/to/authorized-user.json"))
+/// let config = UserConfig(keyJSON: keyData).with {
+///   $0.quotaProjectID = "my-billing-project"
+/// }
+/// let credentials = try Credentials(configuration: .user(config))
+/// ```
+public struct UserConfig: Sendable {
+  /// The raw Authorized User JSON file contents.
+  public let keyJSON: Data
+
+  /// Optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
+  ///
+  /// When `nil`, falls back to the `"quota_project_id"` field in `keyJSON` if present.
+  public var quotaProjectID: String? = nil
+
+  /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) (must be `googleapis.com` or `nil`).
+  public var universeDomain: String? = nil
+
+  /// Scopes requested for the access token.
+  public var scopes: [String] = []
+
+  /// Initializes a new instance of `UserConfig` with the specified JSON key data.
+  ///
+  /// - Parameter keyJSON: The raw Authorized User JSON key file contents.
+  public init(keyJSON: Data) {
+    self.keyJSON = keyJSON
+  }
+
+  /// Configures optional properties of `UserConfig` using a fluent closure.
+  @inlinable
+  public func with(_ configure: (inout UserConfig) throws -> Void) rethrows -> UserConfig {
+    var copy = self
+    try configure(&copy)
+    return copy
+  }
 }
 
 /// Configuration options for Google Cloud Metadata Server (MDS) credentials.
@@ -562,9 +685,10 @@ extension CredentialsProvider {
 /// let headers = try await credentials.headers()
 ///
 /// // Or use explicit configuration with a custom quota project:
-/// let customCredentials = try Credentials(
-///   configuration: .adc(quotaProjectID: "my-billing-project")
-/// )
+/// let config = ADCConfig().with {
+///   $0.quotaProjectID = "my-billing-project"
+/// }
+/// let customCredentials = try Credentials(configuration: .adc(config))
 /// ```
 public struct Credentials: Sendable {
   /// The default Google Cloud universe domain (`"googleapis.com"`).
@@ -647,28 +771,28 @@ public struct Credentials: Sendable {
     -> any CredentialsProvider
   {
     switch configuration {
-    case let .adc(quotaProjectID, universeDomain, scopes):
+    case let .adc(config):
       return try ADC.resolve(
-        quotaProjectID: quotaProjectID,
-        universeDomain: universeDomain,
-        scopes: scopes,
+        quotaProjectID: config.quotaProjectID,
+        universeDomain: config.universeDomain,
+        scopes: config.scopes,
         environment: environment
       )
     case .anonymous:
       return AnonymousCredentials()
-    case let .serviceAccount(keyJSON, quotaProjectID, universeDomain, accessSpecifier):
+    case let .serviceAccount(config):
       return try ServiceAccountCredentials(
-        keyJSON: keyJSON,
-        quotaProjectID: quotaProjectID,
-        universeDomain: universeDomain,
-        accessSpecifier: accessSpecifier
+        keyJSON: config.keyJSON,
+        quotaProjectID: config.quotaProjectID,
+        universeDomain: config.universeDomain,
+        accessSpecifier: config.accessSpecifier
       )
-    case let .user(keyJSON, quotaProjectID, universeDomain, scopes):
+    case let .user(config):
       return try UserCredentials(
-        keyJSON: keyJSON,
-        quotaProjectID: quotaProjectID,
-        universeDomain: universeDomain,
-        scopes: scopes
+        keyJSON: config.keyJSON,
+        quotaProjectID: config.quotaProjectID,
+        universeDomain: config.universeDomain,
+        scopes: config.scopes
       )
     case let .externalAccount(config):
       return try ExternalAccountCredentials(

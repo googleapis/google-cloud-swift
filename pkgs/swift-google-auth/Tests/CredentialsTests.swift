@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import JWTKit
 import Testing
 
 @_spi(GoogleCloudInternal) @testable import GoogleAuth
@@ -33,9 +34,33 @@ import Testing
   @Test func resolveProviderForADC() async throws {
     let credentials = try Credentials(configuration: .adc(), environment: [:])
 
-    #expect(
-      String(describing: type(of: credentials.credentialsProvider)).contains("MDSCredentials")
+    let mds = try #require(credentials.credentialsProvider as? MDSCredentials)
+    #expect(mds.provider.fromADC == true)
+    #expect(mds.quotaProjectID == nil)
+    #expect(mds.provider.scopes.isEmpty)
+  }
+
+  @Test func resolveProviderForADCCustomOptions() async throws {
+    let config = ADCConfig().with {
+      $0.quotaProjectID = "my-adc-quota-project"
+      $0.universeDomain = "custom.universe.com"
+      $0.scopes = ["scope-a", "scope-b"]
+    }
+    let credentials = try Credentials(configuration: .adc(config), environment: [:])
+
+    let mds = try #require(credentials.credentialsProvider as? MDSCredentials)
+    #expect(mds.provider.fromADC == true)
+    #expect(mds.quotaProjectID == "my-adc-quota-project")
+    #expect(mds.provider.scopes == ["scope-a", "scope-b"])
+    #expect(try await credentials.universeDomain() == "custom.universe.com")
+    try await credentials.validateUniverseDomain("custom.universe.com")
+
+    let envPrecedenceCredentials = try Credentials(
+      configuration: .adc(config),
+      environment: ["GOOGLE_CLOUD_QUOTA_PROJECT": "env-quota-project"]
     )
+    let envMDS = try #require(envPrecedenceCredentials.credentialsProvider as? MDSCredentials)
+    #expect(envMDS.quotaProjectID == "env-quota-project")
   }
 
   @Test func resolveProviderForADCWithNoGCECheckThrowsCredentialsNotFound() throws {
@@ -160,11 +185,59 @@ import Testing
         "client_email": "test@gserviceaccount.com"
       }
       """
-    let credentials = try Credentials(
-      configuration: .serviceAccount(keyJSON: Data(mockJSON.utf8))
-    )
+    let config = ServiceAccountConfig(keyJSON: Data(mockJSON.utf8))
+    let credentials = try Credentials(configuration: .serviceAccount(config))
 
     #expect(credentials.credentialsProvider is ServiceAccountCredentials)
+    let headers = try await credentials.headers()
+    #expect(headers["Authorization"]?.hasPrefix("Bearer ") == true)
+    #expect(headers["x-goog-user-project"] == nil)
+    #expect(try await credentials.universeDomain() == "googleapis.com")
+  }
+
+  @Test func resolveProviderForServiceAccountCustomOptions() async throws {
+    let mockJSON = """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "\(TestKeys.escapedPKCS8PEM)",
+        "client_email": "test@gserviceaccount.com"
+      }
+      """
+    let keyData = Data(mockJSON.utf8)
+    let audienceConfig = ServiceAccountConfig(keyJSON: keyData).with {
+      $0.quotaProjectID = "sa-quota-project"
+      $0.universeDomain = "custom.universe.com"
+      $0.accessSpecifier = .audience("https://pubsub.googleapis.com/")
+    }
+    let audienceCredentials = try Credentials(configuration: .serviceAccount(audienceConfig))
+    let audienceHeaders = try await audienceCredentials.headers()
+    #expect(audienceHeaders["x-goog-user-project"] == "sa-quota-project")
+    #expect(try await audienceCredentials.universeDomain() == "custom.universe.com")
+
+    let token = try #require(
+      audienceHeaders["Authorization"]?.replacingOccurrences(of: "Bearer ", with: "")
+    )
+    let key = try JSONDecoder().decode(ServiceAccountData.self, from: keyData)
+    let privateKey = try Insecure.RSA.PrivateKey(pem: key.privateKey)
+    let keys = JWTKeyCollection()
+    await keys.add(rsa: privateKey, digestAlgorithm: .sha256)
+    let decodedAudienceClaims = try await keys.verify(token, as: ServiceAccountClaims.self)
+    #expect(decodedAudienceClaims.aud?.value.first == "https://pubsub.googleapis.com/")
+    #expect(decodedAudienceClaims.scope == nil)
+
+    let scopesConfig = ServiceAccountConfig(keyJSON: keyData).with {
+      $0.accessSpecifier = .scopes(["scope-a", "scope-b"])
+    }
+    let scopesCredentials = try Credentials(configuration: .serviceAccount(scopesConfig))
+    let scopesHeaders = try await scopesCredentials.headers()
+    let scopesToken = try #require(
+      scopesHeaders["Authorization"]?.replacingOccurrences(of: "Bearer ", with: "")
+    )
+    let decodedScopesClaims = try await keys.verify(scopesToken, as: ServiceAccountClaims.self)
+    #expect(decodedScopesClaims.scope == "scope-a scope-b")
+    #expect(decodedScopesClaims.aud == nil)
   }
 
   @Test func resolveProviderForServiceAccountInvalidPEMThrows() throws {
@@ -177,10 +250,9 @@ import Testing
         "client_email": "test@gserviceaccount.com"
       }
       """
+    let config = ServiceAccountConfig(keyJSON: Data(mockJSON.utf8))
     #expect {
-      _ = try Credentials(
-        configuration: .serviceAccount(keyJSON: Data(mockJSON.utf8))
-      )
+      _ = try Credentials(configuration: .serviceAccount(config))
     } throws: { error in
       guard case CredentialsError.parseError = error else { return false }
       return true
@@ -196,13 +268,52 @@ import Testing
         "type": "authorized_user"
       }
       """
-    let dataData = Data(mockJSON.utf8)
+    let keyData = Data(mockJSON.utf8)
 
-    let credentials = try Credentials(configuration: .user(keyJSON: dataData))
+    let credentials = try Credentials(configuration: .user(UserConfig(keyJSON: keyData)))
 
-    #expect(
-      String(describing: type(of: credentials.credentialsProvider)).contains("UserCredentials")
+    let userCreds = try #require(
+      credentials.credentialsProvider as? UserCredentialsGeneric<ContinuousClock>
     )
+    #expect(userCreds.quotaProjectID == nil)
+    #expect(userCreds.provider.scopes.isEmpty)
+    #expect(try await credentials.universeDomain() == "googleapis.com")
+  }
+
+  @Test func resolveProviderForUserCredentialsCustomOptions() async throws {
+    let mockJSON = """
+      {
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token",
+        "type": "authorized_user"
+      }
+      """
+    let keyData = Data(mockJSON.utf8)
+    let config = UserConfig(keyJSON: keyData).with {
+      $0.quotaProjectID = "user-quota-project"
+      $0.universeDomain = "googleapis.com"
+      $0.scopes = ["scope-a", "scope-b"]
+    }
+    let credentials = try Credentials(configuration: .user(config))
+
+    let userCreds = try #require(
+      credentials.credentialsProvider as? UserCredentialsGeneric<ContinuousClock>
+    )
+    #expect(userCreds.quotaProjectID == "user-quota-project")
+    #expect(userCreds.provider.scopes == ["scope-a", "scope-b"])
+    #expect(try await credentials.universeDomain() == "googleapis.com")
+
+    let customUniverseConfig = UserConfig(keyJSON: keyData).with {
+      $0.universeDomain = "custom.universe.com"
+    }
+    let error = #expect(throws: CredentialsError.self) {
+      _ = try Credentials(configuration: .user(customUniverseConfig))
+    }
+    guard case .notSupported = error else {
+      Issue.record("Expected CredentialsError.notSupported, got \(String(describing: error))")
+      return
+    }
   }
 
   @Test func resolveProviderForExternalAccount() async throws {
