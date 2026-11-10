@@ -116,5 +116,5 @@ leave the field set to its default value on the provided resource.
 * [Update IAM policies using optimistic concurrency control](<doc:optimistic-concurrency-control-iam>)
   describes how to handle concurrent modification conflicts in a
   read-modify-write loop.
-* [Override the default polling policies](<doc:override-polling-policy>) describes
+* [Override the default polling policies](https://docs.cloud.google.com/swift/override-polling-policy) describes
   how to change how the Swift client libraries poll long-running operations.

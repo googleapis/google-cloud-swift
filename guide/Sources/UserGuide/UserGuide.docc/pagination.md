@@ -69,5 +69,5 @@ yourself.
   API requests that use long-running operations.
 * [Override the default retry policies](https://docs.cloud.google.com/swift/override-retry-policy) describes how
   to change how the Swift client libraries retry failed requests.
-* [Override the default polling policies](<doc:override-polling-policy>) describes
+* [Override the default polling policies](https://docs.cloud.google.com/swift/override-polling-policy) describes
   how to change how the Swift client libraries poll long-running operations.
