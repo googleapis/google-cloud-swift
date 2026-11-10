@@ -65,7 +65,7 @@ yourself.
   describes how to configure custom credentials such as API keys.
 * [Override the default endpoint](https://docs.cloud.google.com/swift/override-endpoint) describes how to change
   the default endpoint used by the Swift client libraries.
-* [Long-running operations](<doc:long-running-operations>) describes how to make
+* [Long-running operations](https://docs.cloud.google.com/swift/long-running-operations) describes how to make
   API requests that use long-running operations.
 * [Override the default retry policies](https://docs.cloud.google.com/swift/override-retry-policy) describes how
   to change how the Swift client libraries retry failed requests.
