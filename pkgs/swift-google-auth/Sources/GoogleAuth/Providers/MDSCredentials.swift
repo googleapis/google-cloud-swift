@@ -146,6 +146,10 @@ struct MDSCredentials: CredentialsProvider, Sendable {
 
   // MARK: - CredentialsProvider
 
+  var credentialType: CredentialTypeMetrics? {
+    .mds
+  }
+
   /// Resolves the universe domain for these credentials.
   ///
   /// Returns the explicit `universeDomain` override if one was configured, or queries and caches

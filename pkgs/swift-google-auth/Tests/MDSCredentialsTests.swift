@@ -794,6 +794,7 @@ import Testing
         let url = URL(string: request.url)!
         #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
         #expect(request.headers["Metadata-Flavor"] == ["Google"])
+        #expect(request.headers["x-goog-api-client"].isEmpty)
         return HTTPClientResponse(
           version: .http2,
           status: .ok,
@@ -1007,5 +1008,10 @@ import Testing
       url.path == "/computeMetadata/v1/instance/service-accounts/default/token",
       sourceLocation: sourceLocation)
     #expect(request.headers["Metadata-Flavor"] == ["Google"], sourceLocation: sourceLocation)
+    #expect(
+      request.headers["x-goog-api-client"]
+        == [AuthMetrics.tokenRequestHeader(requestType: .accessToken, credentialType: .mds)],
+      sourceLocation: sourceLocation
+    )
   }
 }

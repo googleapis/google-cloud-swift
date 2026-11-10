@@ -655,7 +655,41 @@ import Testing
         #expect(header.contains("grpc/"))
         #expect(header.contains("pb/"))
         #expect(!header.contains("rest/"))
+        #expect(!header.contains("cred-type/"))
       }
+
+      let saJSON = Data(
+        """
+        {
+          "type": "service_account",
+          "project_id": "test-project-id",
+          "private_key_id": "test-private-key-id",
+          "private_key": "-----BEGIN PRIVATE KEY-----\\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCcPLcw48+yRt5f\\nCXKKIHnvNZHuiriD1nrP17OQpHDTkWTq5+ynEDusFXkauFCbUJHrSOTokXDFHZlu\\n3HRWM2tRxg8IZODpExgKtqYhS5peJ5iY8Q6Ur1+WvhBln4M5VMtjW2YiN+zrkiCY\\np04KygGo1UZ92ocBpiSOSkqqXoQj+AqBHRGLK3GPmCLqxgzMk2VGGmpTU1mTLN6O\\n2CtFkqPmcadypG0vlEbkUYunQud/MhyDb6ArhwrJQa6X6iOvbar7yxaOy0xix/Xk\\ns/hcMyVySrjv2/K/LbaVuEOhhseL/gcI0bP8qvn0dZ8c5l9KcdX/fr6aFcrTcqlu\\nu4wdNMv5AgMBAAECggEAMTB2dqiK2DSyx1Yony9ZZIRHtUQskqmA0hY13SjAswOY\\nM9MgMXsNZoD+N3jnO/cScfLpywUbbZwDliFHaWpX9A945Sopm4gc7iaSSHJOoC00\\nQJbIgexzGnktnWkqve6h+F6q2cQkzggcRiOKkSAHhLndLzuRfOXrpXbjah9G2DG9\\n5CIWjY/VdZQrwWrmzkY2WJVoW52Cfj5TBmCbpNk0Rdbv5q1957TGscQKELxp3wt9\\nash4KGg2NlAP/fjRLs+X+9/dSxV8RHnovxPnXVy5XDcGisSX8rHjsjV3rZTs2Nls\\nug1kJcAgg9i51wgsvE8Fu3lzLC3ewYmpilI5O8XA9wKBgQDafd7Hu7LMP9UisX4y\\nFTuxLZUoeN7erutAWzO8deyTFM/BW1blzQBHCAUA1cMPftdFaFPfgBaz6CkikhMv\\n0ySPjyyKsVDVObKCKo0XxISrdiuqE1K62Yn/gfyh8ZdEv+qkJvz1XaBb8DrlbpqK\\nEAXeLsckPV6lUqcv7BhojdeTmwKBgQC3Duy9rw8yxWpvfRubsuT7CQ7p6YTM1KAx\\negNiKBGx6sj3KWGVcJPCPZkaD1+XJO6zhOqyL5/syviFTDuyEIWYBaY0odJwb7Vg\\nKVXdBa5UwI6DYmsZAAAOP1wywwQrYuqwuVhy3+09iKPkGOJ4I32Kw5HYvJ79qL19\\nsRE0/e3p+wKBgFG/8MAYuaB0bcHKWWZRzYDQhlObTgBRwFHXDfeAw+CQU9+L1mqr\\nFmR9WqniUVaV5ePhUih424W64tE9iJJHVRGlx0upZo4xRVowo5P2ApHI6DN9gWHK\\nDTkdoLHTG/8sM5XxxInl2x8rNk4r4QSxVBC6veYQVD5VO5rRopxUHgnrAoGAeHZq\\n1hw4PSnqc7l5jIk54/S/CrDwAja9wDFRvqstkc42N2fU3pl5sq4EbUDGn9je9+W0\\n6FMsw4+B4X4cHn5+216EVEhVCkaIreIlrc/KO92HKvB+F7KHVtjdHE53FPIADRG7\\nIcU4AnFDoJu7lGGOgN1Xwa/GVJhRMkBuWVfs0zcCgYEAlP9KCxjRXtcJEnB81uHx\\nsjUYPwyP5KbyYnl9LRbqfvZPIMgV2BIl+wOLUhSFYpxsDK3Otf/SyKm3qkifT4E2\\nTEsACTOH4L3aH53EIDbugMPAyMbsTZfR4EK2zGi1QOl0hjZ+kUSNcPlDAUK9vXfF\\n1ARUsyX+ffQ++dMyCItdcEg=\\n-----END PRIVATE KEY-----",
+          "client_email": "test@project.iam.gserviceaccount.com"
+        }
+        """.utf8
+      )
+      var saOptions = ClientOptions()
+      saOptions.endpoint = endpoint
+      saOptions.credentials = try Credentials(configuration: .serviceAccount(keyJSON: saJSON))
+      let saClient = try _GRPCClient(
+        from: saOptions,
+        withDefaultEndpoint: endpoint,
+        clientHeader: .gapic(packageVersion: "2.3.4")
+      )
+      defer { saClient.close() }
+
+      let _: Google_Protobuf_Empty = try await saClient.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+      let saRecorded = await collector.apiClients
+      #expect(saRecorded.count == 1)
+      let saHeader = try #require(saRecorded.first)
+      let saTokens = saHeader.split(separator: " ")
+      #expect(saTokens.contains("gapic/2.3.4"))
+      #expect(saTokens.contains("cred-type/jwt"))
     }
   }
 

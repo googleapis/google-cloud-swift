@@ -69,6 +69,13 @@ private struct FailingSourceCredentials: CredentialsProvider {
         #expect(request.headers["Authorization"] == ["Bearer source-access-token"])
         #expect(request.headers["x-goog-user-project"] == ["source-quota-project"])
         #expect(request.headers["Content-Type"] == ["application/json"])
+        #expect(
+          request.headers["x-goog-api-client"]
+            == [
+              AuthMetrics.tokenRequestHeader(
+                requestType: .accessToken, credentialType: .impersonated)
+            ]
+        )
 
         guard let bodyBuffer = try await request.body?.collect(upTo: 1024 * 1024) else {
           Issue.record("Expected HTTP request body")
@@ -677,5 +684,44 @@ private struct FailingSourceCredentials: CredentialsProvider {
     )
     let headers = try await creds.headers()
     #expect(headers["Authorization"] == "Bearer mock-anon-impersonated-token")
+  }
+
+  @Test func replacesSourceApiClientHeaderWithImpersonatedMetrics() async throws {
+    let source = StaticSourceCredentials(
+      authHeaders: [
+        ("Authorization", "Bearer source-access-token"),
+        ("X-Goog-Api-Client", "gl-swift/6.0.0 auth/0.1.0 cred-type/u"),
+      ]
+    )
+    let responsePayload = IAMGenerateAccessTokenResponse(
+      accessToken: "mock-impersonated-token",
+      expireTime: try #require(WKTTimestamp(rfc3339: "2099-01-01T01:00:00Z"))
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let responseData = try encoder.encode(responsePayload)
+    let mock = MockHTTPClient([
+      { request in
+        #expect(
+          request.headers["x-goog-api-client"]
+            == [
+              AuthMetrics.tokenRequestHeader(
+                requestType: .accessToken, credentialType: .impersonated)
+            ]
+        )
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData))
+        )
+      }
+    ])
+    let creds = try ImpersonatedCredentials(
+      sourceCredentials: source,
+      targetPrincipal: "target@project.iam.gserviceaccount.com",
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+    _ = try await creds.headers()
   }
 }

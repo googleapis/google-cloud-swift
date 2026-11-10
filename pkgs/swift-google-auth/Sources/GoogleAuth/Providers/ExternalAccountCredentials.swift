@@ -50,6 +50,9 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   /// Optional client credentials for authenticating with confidential workforce identity pools.
   private let clientAuthentication: ClientAuthentication?
 
+  /// The BYOID credential source type reported in STS `x-goog-api-client` metrics headers.
+  private let sourceType: BYOIDSource
+
   /// The retry configuration controlling backoff and attempt limits for token exchange requests.
   private let retryConfiguration: RetryConfiguration?
 
@@ -57,6 +60,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   ///
   /// - Parameters:
   ///   - subjectTokenProvider: Supplier providing third-party subject tokens.
+  ///   - sourceType: BYOID credential source identifier for telemetry headers.
   ///   - tokenURL: Security Token Service endpoint URL.
   ///   - subjectTokenType: STS token type identifier URI.
   ///   - audience: STS audience resource name.
@@ -67,6 +71,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   ///   - httpClient: HTTP client instance.
   init(
     subjectTokenProvider: any SubjectTokenProvider,
+    sourceType: BYOIDSource = .programmatic,
     tokenURL: URL,
     subjectTokenType: ExternalAccountConfig.SubjectTokenType,
     audience: String,
@@ -77,6 +82,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
     httpClient: AuthHTTPClient = AuthHTTPClient()
   ) {
     self.subjectTokenProvider = subjectTokenProvider
+    self.sourceType = sourceType
     self.tokenURL = tokenURL
     self.subjectTokenType = subjectTokenType
     self.audience = audience
@@ -114,6 +120,12 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
       clientAuthentication: clientAuthentication
     )
 
+    let metricsHeader = AuthMetrics.byoidHeader(
+      source: sourceType,
+      saImpersonation: false,
+      configLifetime: false
+    )
+
     let response: TokenResponse
     do {
       response = try await RetryEngine.retry(
@@ -123,7 +135,8 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
         try await stsHandler.exchangeToken(
           request: request,
           url: tokenURL,
-          encoding: .urlEncoded
+          encoding: .urlEncoded,
+          metricsHeader: metricsHeader
         )
       }
     } catch is CancellationError {
@@ -249,6 +262,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
 
     let provider = ExternalAccountTokenProvider(
       subjectTokenProvider: subjectTokenProvider,
+      sourceType: BYOIDSource(credentialSource),
       tokenURL: tokenURL,
       subjectTokenType: subjectTokenType,
       audience: audience,

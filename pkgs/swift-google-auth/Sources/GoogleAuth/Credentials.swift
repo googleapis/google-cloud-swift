@@ -501,6 +501,10 @@ protocol CredentialsProvider: Sendable {
   /// - Returns: The HTTP header fields to apply to the request.
   func headers() async throws -> AuthHeaders
 
+  /// The telemetry credential type identifier reported in `x-goog-api-client` service RPC headers,
+  /// or `nil` when omitted.
+  var credentialType: CredentialTypeMetrics? { get }
+
   /// Asynchronously retrieves the Google Cloud universe domain associated with these credentials.
   ///
   /// - Returns: The universe domain string (defaults to `"googleapis.com"`).
@@ -514,6 +518,10 @@ protocol CredentialsProvider: Sendable {
 }
 
 extension CredentialsProvider {
+  var credentialType: CredentialTypeMetrics? {
+    nil
+  }
+
   func universeDomain() async throws -> String {
     return defaultUniverseDomain
   }
@@ -609,6 +617,13 @@ public struct Credentials: Sendable {
   /// - Throws: A `CredentialsError` if token resolution fails.
   public func headers() async throws -> AuthHeaders {
     return try await self.credentialsProvider.headers()
+  }
+
+  /// Internal credential type identifier (`"u"`, `"sa"`, `"jwt"`, `"mds"`, `"imp"`) reported in
+  /// `x-goog-api-client` service RPC telemetry headers, or `nil` when omitted.
+  @_spi(GoogleCloudInternal)
+  public var _credentialType: String? {
+    self.credentialsProvider.credentialType?.rawValue
   }
 
   /// Asynchronously retrieves the Google Cloud universe domain associated with these credentials.

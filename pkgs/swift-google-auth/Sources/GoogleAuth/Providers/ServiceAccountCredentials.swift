@@ -82,6 +82,10 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
     self.universeDomain = effectiveUniverse
   }
 
+  var credentialType: CredentialTypeMetrics? {
+    .serviceAccountJWT
+  }
+
   func headers() async throws -> AuthHeaders {
     let token = try await tokenProvider.token()
     var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]

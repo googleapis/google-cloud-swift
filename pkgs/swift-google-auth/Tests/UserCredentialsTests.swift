@@ -68,6 +68,10 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
         #expect(request.url == targetURL.absoluteString)
         #expect(request.method == .POST)
         #expect(request.headers["Content-Type"] == ["application/json"])
+        #expect(
+          request.headers["x-goog-api-client"]
+            == [AuthMetrics.tokenRequestHeader(requestType: nil, credentialType: .user)]
+        )
 
         return HTTPClientResponse(
           version: .http2,

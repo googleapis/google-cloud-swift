@@ -66,6 +66,9 @@ public import Foundation
     self.inner = HTTPClientHolder()
     var header = clientHeader
     header.setToken(.rest, version: gaxVersion())
+    if let credType = self.credentials._credentialType {
+      header.setToken(.credentialType, version: credType)
+    }
     self.clientHeader = header
   }
 
@@ -114,6 +117,9 @@ public import Foundation
     )
     var header = clientHeader
     header.setToken(.rest, version: gaxVersion())
+    if let credType = credentials._credentialType {
+      header.setToken(.credentialType, version: credType)
+    }
     self.clientHeader = header
   }
 

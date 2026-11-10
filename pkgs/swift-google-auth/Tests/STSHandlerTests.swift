@@ -39,11 +39,18 @@ import Testing
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let encodedResponse = try encoder.encode(expectedResponse)
 
+    let expectedMetricsHeader = AuthMetrics.byoidHeader(
+      source: .programmatic,
+      saImpersonation: false,
+      configLifetime: false
+    )
+
     let mock = MockHTTPClient([
       { (request: HTTPClientRequest) async throws in
         #expect(request.url == targetURL.absoluteString)
         #expect(request.method == .POST)
         #expect(request.headers["Content-Type"] == ["application/x-www-form-urlencoded"])
+        #expect(request.headers["x-goog-api-client"] == [expectedMetricsHeader])
 
         // HTTP Basic Authentication verifies client credentials formatted as "clientID:clientSecret" encoded in Base64.
         let expectedAuth = "Basic \(Data("\(clientID):\(clientSecret)".utf8).base64EncodedString())"
@@ -92,7 +99,11 @@ import Testing
     )
 
     let response = try await handler.exchangeToken(
-      request: request, url: targetURL, encoding: .urlEncoded)
+      request: request,
+      url: targetURL,
+      encoding: .urlEncoded,
+      metricsHeader: expectedMetricsHeader
+    )
     #expect(response.accessToken == expectedResponse.accessToken)
     #expect(response.tokenType == expectedResponse.tokenType)
     #expect(response.expiresIn == expectedResponse.expiresIn)

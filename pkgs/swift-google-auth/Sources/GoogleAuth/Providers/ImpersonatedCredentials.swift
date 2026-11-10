@@ -233,6 +233,10 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
     )
   }
 
+  var credentialType: CredentialTypeMetrics? {
+    .impersonated
+  }
+
   func headers() async throws -> AuthHeaders {
     let token = try await cache.token()
     var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]

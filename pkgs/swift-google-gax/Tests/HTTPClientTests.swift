@@ -1092,6 +1092,7 @@ import NIOHTTP1
     #expect(header?.contains("gax/") == true)
     #expect(header?.contains("rest/") == true)
     #expect(header?.contains("grpc/") == false)
+    #expect(header?.contains("cred-type/") == false)
   }
 
   @Test func clientHeaderCustom() async throws {
@@ -1107,6 +1108,149 @@ import NIOHTTP1
     #expect(header?.contains("gapic/1.2.3") == true)
     #expect(header?.contains("rest/") == true)
     #expect(header?.contains("gl-swift/") == true)
+    #expect(header?.contains("cred-type/") == false)
+  }
+
+  @Test(arguments: ["u", "sa", "jwt", "mds", "imp"])
+  func clientHeaderPropagatesCredentialType(credType: String) async throws {
+    struct TypedMockCredentials: CredentialsProtocol {
+      let _credentialType: String?
+      func headers() async throws -> AuthHeaders {
+        [("Authorization", "Bearer mock-token")]
+      }
+    }
+    struct DummyHTTPClient: _HTTPClientProtocol {
+      func execute(request: HTTPClientRequest, timeout: Duration) async throws -> HTTPClientResponse
+      {
+        fatalError("Not called during newRequest")
+      }
+    }
+
+    let client = try _HTTPClient(
+      DummyHTTPClient(),
+      endpoint: "http://localhost:1234",
+      credentials: TypedMockCredentials(_credentialType: credType),
+      clientHeader: .gapic(packageVersion: "1.2.3")
+    )
+    let request = try await client.newRequest(path: "/test", query: [])
+    let header = try #require(request.headers[_HeaderNames.apiClient].first)
+    let tokens = header.split(separator: " ")
+    #expect(tokens.contains("gapic/1.2.3"))
+    #expect(tokens.contains(where: { $0.hasPrefix("rest/") }))
+    #expect(tokens.contains("cred-type/\(credType)"))
+  }
+
+  @Test func clientHeaderOmitsCredentialTypeForAPIKey() async throws {
+    let endpoint = "http://localhost:1234"
+    let credentials = try Credentials(configuration: .apiKey("test-api-key"))
+    let options = ClientOptions().with { $0.credentials = credentials }
+    let client = try _HTTPClient(
+      from: options,
+      withDefaultEndpoint: endpoint,
+      clientHeader: .gapic(packageVersion: "1.2.3")
+    )
+    let request = try await client.newRequest(path: "/test", query: [])
+    let header = try #require(request.headers[_HeaderNames.apiClient].first)
+    #expect(!header.contains("cred-type/"))
+  }
+
+  @Test func clientHeaderFromRealCredentials() throws {
+    struct DummySubjectTokenProvider: SubjectTokenProvider {
+      func subjectToken() async throws -> String { "subject-token" }
+    }
+
+    let endpoint = "http://localhost:1234"
+    let saJSON = Data(
+      """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "-----BEGIN PRIVATE KEY-----\\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCcPLcw48+yRt5f\\nCXKKIHnvNZHuiriD1nrP17OQpHDTkWTq5+ynEDusFXkauFCbUJHrSOTokXDFHZlu\\n3HRWM2tRxg8IZODpExgKtqYhS5peJ5iY8Q6Ur1+WvhBln4M5VMtjW2YiN+zrkiCY\\np04KygGo1UZ92ocBpiSOSkqqXoQj+AqBHRGLK3GPmCLqxgzMk2VGGmpTU1mTLN6O\\n2CtFkqPmcadypG0vlEbkUYunQud/MhyDb6ArhwrJQa6X6iOvbar7yxaOy0xix/Xk\\ns/hcMyVySrjv2/K/LbaVuEOhhseL/gcI0bP8qvn0dZ8c5l9KcdX/fr6aFcrTcqlu\\nu4wdNMv5AgMBAAECggEAMTB2dqiK2DSyx1Yony9ZZIRHtUQskqmA0hY13SjAswOY\\nM9MgMXsNZoD+N3jnO/cScfLpywUbbZwDliFHaWpX9A945Sopm4gc7iaSSHJOoC00\\nQJbIgexzGnktnWkqve6h+F6q2cQkzggcRiOKkSAHhLndLzuRfOXrpXbjah9G2DG9\\n5CIWjY/VdZQrwWrmzkY2WJVoW52Cfj5TBmCbpNk0Rdbv5q1957TGscQKELxp3wt9\\nash4KGg2NlAP/fjRLs+X+9/dSxV8RHnovxPnXVy5XDcGisSX8rHjsjV3rZTs2Nls\\nug1kJcAgg9i51wgsvE8Fu3lzLC3ewYmpilI5O8XA9wKBgQDafd7Hu7LMP9UisX4y\\nFTuxLZUoeN7erutAWzO8deyTFM/BW1blzQBHCAUA1cMPftdFaFPfgBaz6CkikhMv\\n0ySPjyyKsVDVObKCKo0XxISrdiuqE1K62Yn/gfyh8ZdEv+qkJvz1XaBb8DrlbpqK\\nEAXeLsckPV6lUqcv7BhojdeTmwKBgQC3Duy9rw8yxWpvfRubsuT7CQ7p6YTM1KAx\\negNiKBGx6sj3KWGVcJPCPZkaD1+XJO6zhOqyL5/syviFTDuyEIWYBaY0odJwb7Vg\\nKVXdBa5UwI6DYmsZAAAOP1wywwQrYuqwuVhy3+09iKPkGOJ4I32Kw5HYvJ79qL19\\nsRE0/e3p+wKBgFG/8MAYuaB0bcHKWWZRzYDQhlObTgBRwFHXDfeAw+CQU9+L1mqr\\nFmR9WqniUVaV5ePhUih424W64tE9iJJHVRGlx0upZo4xRVowo5P2ApHI6DN9gWHK\\nDTkdoLHTG/8sM5XxxInl2x8rNk4r4QSxVBC6veYQVD5VO5rRopxUHgnrAoGAeHZq\\n1hw4PSnqc7l5jIk54/S/CrDwAja9wDFRvqstkc42N2fU3pl5sq4EbUDGn9je9+W0\\n6FMsw4+B4X4cHn5+216EVEhVCkaIreIlrc/KO92HKvB+F7KHVtjdHE53FPIADRG7\\nIcU4AnFDoJu7lGGOgN1Xwa/GVJhRMkBuWVfs0zcCgYEAlP9KCxjRXtcJEnB81uHx\\nsjUYPwyP5KbyYnl9LRbqfvZPIMgV2BIl+wOLUhSFYpxsDK3Otf/SyKm3qkifT4E2\\nTEsACTOH4L3aH53EIDbugMPAyMbsTZfR4EK2zGi1QOl0hjZ+kUSNcPlDAUK9vXfF\\n1ARUsyX+ffQ++dMyCItdcEg=\\n-----END PRIVATE KEY-----",
+        "client_email": "test@project.iam.gserviceaccount.com"
+      }
+      """.utf8
+    )
+    let userJSON = Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token"
+      }
+      """.utf8
+    )
+
+    let saOptions = try ClientOptions().with {
+      $0.credentials = try Credentials(configuration: .serviceAccount(keyJSON: saJSON))
+    }
+    let saClient = try _HTTPClient(
+      from: saOptions,
+      withDefaultEndpoint: endpoint,
+      clientHeader: .gapic(packageVersion: "1.2.3"),
+      environment: [:]
+    )
+    #expect(saClient.clientHeader.build().split(separator: " ").contains("cred-type/jwt"))
+
+    let userOptions = try ClientOptions().with {
+      $0.credentials = try Credentials(configuration: .user(keyJSON: userJSON))
+    }
+    let userClient = try _HTTPClient(
+      from: userOptions,
+      withDefaultEndpoint: endpoint,
+      clientHeader: .gapic(packageVersion: "1.2.3"),
+      environment: [:]
+    )
+    #expect(userClient.clientHeader.build().split(separator: " ").contains("cred-type/u"))
+
+    let mdsOptions = try ClientOptions().with {
+      $0.credentials = try Credentials(configuration: .mds())
+    }
+    let mdsClient = try _HTTPClient(
+      from: mdsOptions,
+      withDefaultEndpoint: endpoint,
+      clientHeader: .gapic(packageVersion: "1.2.3"),
+      environment: [:]
+    )
+    #expect(mdsClient.clientHeader.build().split(separator: " ").contains("cred-type/mds"))
+
+    let impOptions = try ClientOptions().with {
+      let source = try Credentials(configuration: .user(keyJSON: userJSON))
+      $0.credentials = try Credentials(
+        configuration: .impersonatedServiceAccount(
+          ImpersonatedServiceAccountConfig(
+            sourceCredentials: source,
+            targetPrincipal: "target@project.iam.gserviceaccount.com"
+          )
+        )
+      )
+    }
+    let impClient = try _HTTPClient(
+      from: impOptions,
+      withDefaultEndpoint: endpoint,
+      clientHeader: .gapic(packageVersion: "1.2.3"),
+      environment: [:]
+    )
+    #expect(impClient.clientHeader.build().split(separator: " ").contains("cred-type/imp"))
+
+    let extConfig = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: DummySubjectTokenProvider()),
+      audience:
+        "//iam.googleapis.com/projects/123/locations/global/workloadIdentityPools/p/providers/prov",
+      subjectTokenType: .idToken,
+      tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
+    )
+    let extOptions = try ClientOptions().with {
+      $0.credentials = try Credentials(configuration: .externalAccount(extConfig))
+    }
+    let extClient = try _HTTPClient(
+      from: extOptions,
+      withDefaultEndpoint: endpoint,
+      clientHeader: .gapic(packageVersion: "1.2.3"),
+      environment: [:]
+    )
+    #expect(!extClient.clientHeader.build().contains("cred-type/"))
   }
 
   @Test func rpcRawSuccess() async throws {

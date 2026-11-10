@@ -220,4 +220,95 @@ import GoogleAuth
       c.close()
     }
   }
+
+  @Test func clientHeaderCredentialType() throws {
+    struct DummySubjectTokenProvider: SubjectTokenProvider {
+      func subjectToken() async throws -> String { "subject-token" }
+    }
+
+    let userJSON = Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token"
+      }
+      """.utf8
+    )
+    let userCredentials = try Credentials(configuration: .user(keyJSON: userJSON))
+    let userOptions = ClientOptions().with {
+      $0.credentials = userCredentials
+    }
+    let userClient = try _GRPCClient(
+      from: userOptions,
+      withDefaultEndpoint: "https://storage.googleapis.com",
+      clientHeader: .gapic(packageVersion: "1.2.3"),
+      environment: [:]
+    )
+    defer { userClient.close() }
+    #expect(userClient.clientHeader.build().split(separator: " ").contains("cred-type/u"))
+
+    let mdsOptions = try ClientOptions().with {
+      $0.credentials = try Credentials(configuration: .mds())
+    }
+    let mdsClient = try _GRPCClient(
+      from: mdsOptions,
+      withDefaultEndpoint: "https://storage.googleapis.com",
+      clientHeader: .gapic(packageVersion: "1.2.3"),
+      environment: [:]
+    )
+    defer { mdsClient.close() }
+    #expect(mdsClient.clientHeader.build().split(separator: " ").contains("cred-type/mds"))
+
+    let impOptions = try ClientOptions().with {
+      $0.credentials = try Credentials(
+        configuration: .impersonatedServiceAccount(
+          ImpersonatedServiceAccountConfig(
+            sourceCredentials: userCredentials,
+            targetPrincipal: "target@project.iam.gserviceaccount.com"
+          )
+        )
+      )
+    }
+    let impClient = try _GRPCClient(
+      from: impOptions,
+      withDefaultEndpoint: "https://storage.googleapis.com",
+      clientHeader: .gapic(packageVersion: "1.2.3"),
+      environment: [:]
+    )
+    defer { impClient.close() }
+    #expect(impClient.clientHeader.build().split(separator: " ").contains("cred-type/imp"))
+
+    let extConfig = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: DummySubjectTokenProvider()),
+      audience:
+        "//iam.googleapis.com/projects/123/locations/global/workloadIdentityPools/p/providers/prov",
+      subjectTokenType: .idToken,
+      tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
+    )
+    let extOptions = try ClientOptions().with {
+      $0.credentials = try Credentials(configuration: .externalAccount(extConfig))
+    }
+    let extClient = try _GRPCClient(
+      from: extOptions,
+      withDefaultEndpoint: "https://storage.googleapis.com",
+      clientHeader: .gapic(packageVersion: "1.2.3"),
+      environment: [:]
+    )
+    defer { extClient.close() }
+    #expect(!extClient.clientHeader.build().contains("cred-type/"))
+
+    let apiKeyOptions = try ClientOptions().with {
+      $0.credentials = try Credentials(configuration: .apiKey("test-api-key"))
+    }
+    let apiKeyClient = try _GRPCClient(
+      from: apiKeyOptions,
+      withDefaultEndpoint: "https://storage.googleapis.com",
+      clientHeader: .gapic(packageVersion: "1.2.3"),
+      environment: [:]
+    )
+    defer { apiKeyClient.close() }
+    #expect(!apiKeyClient.clientHeader.build().contains("cred-type/"))
+  }
 }
