@@ -22,7 +22,7 @@ This design defines end-to-end support for Google Cloud universe domains across 
 
 ### Resolution Precedence
 
-For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(quotaProjectID:universeDomain:scopes:)` (and `ADC.resolve`) accepts an optional `universeDomain` override. When `universeDomain` is non-empty, `ADC` passes it as an override to the resolved credential provider.
+For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(_:)` via `ADCConfig` (and `ADC.resolve`) accepts an optional `universeDomain` override. When `universeDomain` is non-empty, `ADC` passes it as an override to the resolved credential provider.
 
 ### Provider Behavior
 

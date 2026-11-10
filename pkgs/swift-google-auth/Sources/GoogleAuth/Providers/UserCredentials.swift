@@ -60,7 +60,8 @@ typealias UserCredentials = UserCredentialsGeneric<ContinuousClock>
 struct UserCredentialsGeneric<C: Clock>: CredentialsProvider, Sendable
 where C.Instant.Duration == Duration {
   private let cache: TokenCache<C>
-  private let quotaProjectID: String?
+  let provider: UserAccountTokenProvider
+  let quotaProjectID: String?
 
   /// Dependency injection for tests
   init(
@@ -102,6 +103,7 @@ where C.Instant.Duration == Duration {
       retryConfiguration: retryConfiguration,
       httpClient: httpClient
     )
+    self.provider = provider
 
     self.cache = TokenCache(
       provider: provider,
