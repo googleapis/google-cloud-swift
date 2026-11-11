@@ -21,19 +21,7 @@ public import Foundation
 /// `gcloud auth print-access-token`) or a custom asynchronous ``AccessTokenProvider``.
 ///
 /// ### Usage Example
-/// ```swift
-/// // Static access token with a quota project override:
-/// let staticConfig = AccessTokenConfig(token: "my-access-token").with {
-///   $0.quotaProjectID = "my-billing-project"
-/// }
-/// let staticCredentials = try Credentials(configuration: .accessToken(staticConfig))
-///
-/// // Custom asynchronous AccessTokenProvider:
-/// let providerConfig = AccessTokenConfig(provider: myTokenProvider).with {
-///   $0.quotaProjectID = "my-billing-project"
-/// }
-/// let providerCredentials = try Credentials(configuration: .accessToken(providerConfig))
-/// ```
+/// @Snippet(path: "AccessTokenConfigSample")
 public struct AccessTokenConfig: Sendable, CustomStringConvertible, CustomDebugStringConvertible {
   /// The provider supplying the access token.
   public let provider: any AccessTokenProvider
