@@ -113,12 +113,14 @@ struct STSHandler: Sendable {
   ///   - request: The exchange request parameters.
   ///   - url: The STS endpoint URL (typically `https://sts.googleapis.com/v1/token`).
   ///   - encoding: The request body serialization format (default `.urlEncoded`).
+  ///   - metricsHeader: Optional `x-goog-api-client` telemetry header value to attach to the request.
   /// - Returns: A `TokenResponse` containing the exchanged access token.
   @concurrent
   func exchangeToken(
     request: ExchangeTokenRequest,
     url: URL,
-    encoding: STSBodyEncoding = .urlEncoded
+    encoding: STSBodyEncoding = .urlEncoded,
+    metricsHeader: String? = nil
   ) async throws -> TokenResponse {
     var params = [
       "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
@@ -135,6 +137,9 @@ struct STSHandler: Sendable {
     }
 
     var headers: [String: String] = [:]
+    if let metricsHeader {
+      headers[AuthMetrics.headerName] = metricsHeader
+    }
 
     // Handle Client Authentication (Basic Auth if credentials exist)
     if let clientAuth = request.clientAuthentication {

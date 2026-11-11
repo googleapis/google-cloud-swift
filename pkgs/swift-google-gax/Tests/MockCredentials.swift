@@ -18,6 +18,12 @@ import struct DequeModule.Deque
 import GoogleAuth
 @_spi(GoogleCloudInternal) @testable import GoogleGax
 
+extension GoogleGax.CredentialsProtocol {
+  var _credentialType: String? {
+    nil
+  }
+}
+
 final class MockCredentials: GoogleGax.CredentialsProtocol, @unchecked Sendable {
   typealias Handler = @Sendable () async throws -> GoogleAuth.AuthHeaders
   enum MockError: Error, Sendable {

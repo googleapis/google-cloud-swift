@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 
 /// Dependency injection for `_HTTPClient`.
 ///
 /// Allow testing `_HTTPClient` with mock credentials.
 protocol CredentialsProtocol: Sendable {
+  var _credentialType: String? { get }
   func headers() async throws -> GoogleAuth.AuthHeaders
   func universeDomain() async throws -> String
   func validateUniverseDomain(_ expectedUniverseDomain: String) async throws

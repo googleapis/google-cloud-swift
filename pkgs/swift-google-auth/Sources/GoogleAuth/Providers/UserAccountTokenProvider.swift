@@ -52,6 +52,13 @@ struct UserAccountTokenProvider: TokenProvider {
       scopes: scopesStr
     )
 
+    let requestHeaders = [
+      AuthMetrics.headerName: AuthMetrics.tokenRequestHeader(
+        requestType: nil,
+        credentialType: .user
+      )
+    ]
+
     // Wrap active POST request in exponential backoff retry loop
     let response: Oauth2RefreshResponse
     do {
@@ -61,7 +68,8 @@ struct UserAccountTokenProvider: TokenProvider {
       ) {
         return try await httpClient.post(
           url: tokenURL,
-          body: requestBody
+          body: requestBody,
+          headers: requestHeaders
         )
       }
     } catch is CancellationError {

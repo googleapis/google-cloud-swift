@@ -91,13 +91,16 @@ import Testing
     header.setToken(.custom("gax"), version: "9.9.9")
     header.setToken(.custom("rest"), version: "1.0.0")
     header.setToken(.custom("pb"), version: "1.28.2")
+    header.setToken(.custom("cred-type"), version: "sa")
+    header.setToken(.credentialType, version: "jwt")
     let built = header.build()
     let tokens = built.split(separator: " ")
-    #expect(tokens.count == 4)
+    #expect(tokens.count == 5)
     #expect(built.contains("gl-swift/6.3.0"))
     #expect(built.contains("gax/9.9.9"))
     #expect(built.contains("rest/1.0.0"))
     #expect(built.contains("pb/1.28.2"))
+    #expect(built.contains("cred-type/jwt"))
   }
 
   @Test func equality() {
@@ -116,6 +119,7 @@ import Testing
     var header = _ApiClientHeader()
     header.setToken(.custom("custom"), version: "1.0.0")
     header.setToken(.custom("auth"), version: "0.5.0")
+    header.setToken(.credentialType, version: "jwt")
     header.setToken(.protobuf, version: "1.28.2")
     header.setToken(.rest, version: "0.5.0")
     header.setToken(.grpc, version: "1.60.0")
@@ -133,6 +137,7 @@ import Testing
         "grpc",
         "rest",
         "pb",
+        "cred-type",
         "auth",
         "custom",
       ])

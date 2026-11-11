@@ -136,8 +136,15 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
 
     var headersDict: [String: String] = [:]
     for (name, value) in sourceAuthHeaders {
+      if AuthHeaders.namesMatch(name, AuthMetrics.headerName) {
+        continue
+      }
       headersDict[name] = value
     }
+    headersDict[AuthMetrics.headerName] = AuthMetrics.tokenRequestHeader(
+      requestType: .accessToken,
+      credentialType: .impersonated
+    )
     let requestHeaders = headersDict
 
     let requestBody = IAMGenerateAccessTokenRequest(

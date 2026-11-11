@@ -216,6 +216,16 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
         #expect(request.url == targetURL.absoluteString)
         #expect(request.method == .POST)
         #expect(request.headers["Content-Type"] == ["application/x-www-form-urlencoded"])
+        #expect(
+          request.headers["x-goog-api-client"]
+            == [
+              AuthMetrics.byoidHeader(
+                source: .programmatic,
+                saImpersonation: false,
+                configLifetime: false
+              )
+            ]
+        )
 
         return HTTPClientResponse(
           version: .http2,

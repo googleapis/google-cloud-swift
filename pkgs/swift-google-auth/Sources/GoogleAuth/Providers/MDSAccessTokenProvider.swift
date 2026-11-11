@@ -192,7 +192,13 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       )
     }
 
-    let headers = ["Metadata-Flavor": "Google"]
+    let headers = [
+      "Metadata-Flavor": "Google",
+      AuthMetrics.headerName: AuthMetrics.tokenRequestHeader(
+        requestType: .accessToken,
+        credentialType: .mds
+      ),
+    ]
 
     struct TokenResponse: Decodable {
       let accessToken: String

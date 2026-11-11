@@ -26,6 +26,7 @@
 /// - `grpc`: gRPC transport version.
 /// - `rest`: REST/HTTP transport version.
 /// - `pb`: Swift Protobuf runtime version.
+/// - `cred-type`: Authentication credential type identifier.
 ///
 /// See [System Parameters](https://docs.cloud.google.com/apis/docs/system-parameters).
 @_spi(GoogleCloudInternal)
@@ -38,6 +39,7 @@ public struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
     case grpc
     case rest
     case protobuf
+    case credentialType
     case custom(String)
 
     public var name: String {
@@ -49,6 +51,7 @@ public struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
       case .grpc: return "grpc"
       case .rest: return "rest"
       case .protobuf: return "pb"
+      case .credentialType: return "cred-type"
       case .custom(let name): return name
       }
     }
@@ -63,6 +66,7 @@ public struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
       case "grpc": return .grpc
       case "rest": return .rest
       case "pb": return .protobuf
+      case "cred-type": return .credentialType
       default: return self
       }
     }
@@ -75,6 +79,7 @@ public struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
       case .gax: return 3
       case .grpc, .rest: return 4
       case .protobuf: return 5
+      case .credentialType: return 6
       case .custom: return 10
       }
     }

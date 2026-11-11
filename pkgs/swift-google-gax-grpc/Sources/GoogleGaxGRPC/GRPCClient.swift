@@ -16,7 +16,7 @@ import Foundation
 import GRPCCore
 import GRPCNIOTransportHTTP2Posix
 import GRPCProtobuf
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 @_spi(GoogleCloudInternal) public import GoogleGax
 @_spi(GoogleCloudInternal) public import SwiftProtobuf
 
@@ -74,6 +74,9 @@ public final class _GRPCClient: Sendable {
     var header = clientHeader
     header.setToken(.grpc, version: PackageVersion.version)
     header.setToken(.protobuf, version: SwiftProtobuf.Version.versionString)
+    if let credType = self.credentials._credentialType {
+      header.setToken(.credentialType, version: credType)
+    }
     self.clientHeader = header
 
     let rawEndpoint = try _Host.endpoint(
