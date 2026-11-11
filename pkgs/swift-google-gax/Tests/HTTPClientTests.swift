@@ -83,7 +83,7 @@ import NIOHTTP1
   }
 
   @Test func requestFromURI() async throws {
-    let endpoint = "http://localhost:1234"
+    let endpoint = "https://storage.googleapis.com"
     let credentials = try Credentials(configuration: .anonymous)
     let options = ClientOptions().with { $0.credentials = credentials }
     let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
@@ -1477,6 +1477,111 @@ import NIOHTTP1
     let req = try await client.newRequest(path: "/v1/test", query: [])
     let got = try await req.rpc(ResponseType.self).get()
     #expect(got == ResponseType(name: "from-custom", value: "ok"))
+  }
+
+  @Test(arguments: [
+    "http://storage.googleapis.com/upload?upload_id=1",
+    "https://storage.other-universe.com/upload?upload_id=1",
+    "https://evil.example.com/upload?upload_id=1",
+    "/upload?upload_id=1",
+  ])
+  func newRequestURIFailsBeforeFetchingCredentials(badURI: String) async throws {
+    struct GuardedCredentials: CredentialsProtocol {
+      func universeDomain() async throws -> String {
+        Issue.record("universeDomain() must not be called when URI validation fails")
+        return "googleapis.com"
+      }
+      func headers() async throws -> AuthHeaders {
+        Issue.record("headers() must not be called when URI validation fails")
+        return [("authorization", "Bearer secret-token")]
+      }
+    }
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent when URI validation fails")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://storage.googleapis.com",
+      credentials: GuardedCredentials(),
+      defaultEndpoint: "https://storage.googleapis.com",
+      universeDomain: "googleapis.com"
+    )
+    let error = await #expect(throws: RequestError.self) {
+      _ = try await client.newRequest(uri: badURI)
+    }
+    guard case .badURL(let rejected) = error else {
+      Issue.record("Expected RequestError.badURL, got \(String(describing: error))")
+      return
+    }
+    #expect(rejected == badURI)
+  }
+
+  @Test func newRequestURIResolvesRegionalHostAndVPCSCRouting() async throws {
+    let mock = MockHTTPClient { (_, _) in
+      HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+
+    // Default client sets regional Host header when session URI targets a regional upload host.
+    let defaultClient = try _HTTPClient(
+      mock,
+      endpoint: "https://storage.googleapis.com",
+      defaultEndpoint: "https://storage.googleapis.com",
+      universeDomain: "googleapis.com"
+    )
+    let regionalURI =
+      "https://storage.us-central1.rep.googleapis.com/upload/storage/v1/b/bkt/o?upload_id=1"
+    let regionalReq = try await defaultClient.newRequest(uri: regionalURI)
+    #expect(regionalReq.components.url?.absoluteString == regionalURI)
+    #expect(regionalReq.headers["Host"] == ["storage.us-central1.rep.googleapis.com"])
+
+    // VPC-SC client routes connection through private.<universe> while setting service Host header.
+    let vpcClient = try _HTTPClient(
+      mock,
+      endpoint: "https://private.my-universe.com",
+      defaultEndpoint: "https://storage.googleapis.com",
+      universeDomain: "my-universe.com"
+    )
+    let sessionURI = "https://storage.my-universe.com/upload/storage/v1/b/bkt/o?upload_id=2"
+    let vpcReq = try await vpcClient.newRequest(uri: sessionURI)
+    #expect(
+      vpcReq.components.url?.absoluteString
+        == "https://private.my-universe.com/upload/storage/v1/b/bkt/o?upload_id=2"
+    )
+    #expect(vpcReq.headers["Host"] == ["storage.my-universe.com"])
+  }
+
+  @Test func newRequestURIWithValidURIButMismatchedCredentialsUniverseFailsBeforeHeaders()
+    async throws
+  {
+    struct MismatchedCredentials: CredentialsProtocol {
+      func universeDomain() async throws -> String { "other-universe.com" }
+      func headers() async throws -> AuthHeaders {
+        Issue.record("headers() must not be called when credential universe mismatches")
+        return [("authorization", "Bearer secret-token")]
+      }
+    }
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent when credential universe mismatches")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://storage.my-universe.com",
+      credentials: MismatchedCredentials(),
+      defaultEndpoint: "https://storage.googleapis.com",
+      universeDomain: "my-universe.com"
+    )
+    let error = await #expect(throws: RequestError.self) {
+      _ = try await client.newRequest(
+        uri: "https://storage.my-universe.com/upload/storage/v1/b/bkt/o?upload_id=1"
+      )
+    }
+    guard case .io(let underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
   }
 
   /// A test response type.

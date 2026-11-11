@@ -506,6 +506,7 @@ extension StorageClient {
         requestOptions: requestOptions
       )
     }
+    try httpClient.validateRequestURI(location)
     currentUploadId = location
     return location
   }
@@ -973,6 +974,7 @@ extension StorageClient {
     let totalSize = source.totalSize
 
     do {
+      try httpClient.validateRequestURI(uploadId)
       return try await Self.continueResumableSeekableUpload(
         httpClient: httpClient,
         source: &source,

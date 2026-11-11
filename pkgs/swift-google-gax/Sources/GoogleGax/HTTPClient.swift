@@ -23,6 +23,7 @@ public import Foundation
   let logger: Logger?
   let quotaProject: String?
   let inner: any _HTTPClientProtocol
+  let defaultEndpoint: String
   let hostHeader: String
   let universeDomain: String
   public let clientHeader: _ApiClientHeader
@@ -49,6 +50,7 @@ public import Foundation
   ) throws {
     let universeDomain = _Host.resolveUniverseDomain(options: from, environment: environment)
     self.universeDomain = universeDomain
+    self.defaultEndpoint = withDefaultEndpoint
     self.credentials = try from.credentials ?? GoogleAuth.Credentials()
     self.logger = from.logger
     self.quotaProject = from.quotaProject
@@ -101,7 +103,9 @@ public import Foundation
     universeDomain: String = _Host.defaultUniverseDomain,
     clientHeader: _ApiClientHeader = .init()
   ) throws {
+    let effectiveDefaultEndpoint = defaultEndpoint ?? endpoint
     self.universeDomain = universeDomain
+    self.defaultEndpoint = effectiveDefaultEndpoint
     self.baseURL = try Self.validateEndpoint(endpoint)
     self.credentials = credentials
     self.logger = logger
@@ -109,7 +113,7 @@ public import Foundation
     self.inner = inner
     self.hostHeader = try _Host.header(
       endpoint: endpoint,
-      defaultEndpoint: defaultEndpoint ?? endpoint,
+      defaultEndpoint: effectiveDefaultEndpoint,
       universeDomain: universeDomain
     )
     var header = clientHeader
@@ -136,7 +140,8 @@ public import Foundation
 
   private func configureHeaders(
     on request: inout _HTTPClientRequest,
-    options: RequestOptions
+    options: RequestOptions,
+    hostHeader: String? = nil
   ) async throws {
     let authHeaders: AuthHeaders
     do {
@@ -157,8 +162,18 @@ public import Foundation
     if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
       request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
     }
-    request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
+    request.setHeader(name: _HeaderNames.host, value: hostHeader ?? self.hostHeader)
     request.setHeader(name: _HeaderNames.apiClient, value: self.clientHeader.build())
+  }
+
+  public func validateRequestURI(_ uri: String) throws {
+    _ = try _Host.resolveRequestURI(
+      uri,
+      baseURL: self.baseURL,
+      defaultEndpoint: self.defaultEndpoint,
+      universeDomain: self.universeDomain,
+      defaultHostHeader: self.hostHeader
+    )
   }
 
   public func newRequest(
@@ -193,14 +208,19 @@ public import Foundation
     uri: String,
     options: RequestOptions = .init()
   ) async throws -> _HTTPClientRequest {
-    guard var components = URLComponents(string: uri) else {
-      throw RequestError.badURL(uri)
-    }
-    if let encoded = components.percentEncodedQuery {
-      components.percentEncodedQuery = encoded.replacingOccurrences(of: ";", with: "%3B")
-    }
-    var request = _HTTPClientRequest(self.inner, url: components)
-    try await self.configureHeaders(on: &request, options: options)
+    let resolved = try _Host.resolveRequestURI(
+      uri,
+      baseURL: self.baseURL,
+      defaultEndpoint: self.defaultEndpoint,
+      universeDomain: self.universeDomain,
+      defaultHostHeader: self.hostHeader
+    )
+    var request = _HTTPClientRequest(self.inner, url: resolved.components)
+    try await self.configureHeaders(
+      on: &request,
+      options: options,
+      hostHeader: resolved.hostHeader
+    )
     return request
   }
 }
