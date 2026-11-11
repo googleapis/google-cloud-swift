@@ -173,16 +173,11 @@ public enum CredentialsConfiguration: Sendable {
   case accessToken(AccessTokenConfig)
 }
 
-/// A type that can provide authentication headers and access tokens for Google Cloud API requests.
+/// A type that can provide authentication headers for Google Cloud API requests.
 ///
 /// Internal protocol implemented by concrete credential backends (e.g. Service Accounts, User Accounts,
-/// MDS, API Keys, External Accounts, Static/Custom Access Tokens). Conforming types are thread-safe and can be mocked for unit testing.
+/// MDS, API Keys, External Accounts). Conforming types are thread-safe and can be mocked for unit testing.
 protocol CredentialsProvider: Sendable {
-  /// Asynchronously retrieves the current access token.
-  ///
-  /// - Returns: The current ``AccessToken``.
-  func accessToken() async throws -> AccessToken
-
   /// Asynchronously retrieves the request headers required to authenticate a request.
   ///
   /// - Returns: The HTTP header fields to apply to the request.
@@ -298,7 +293,12 @@ public struct Credentials: Sendable {
   ///   (such as ``CredentialsConfiguration/anonymous`` or ``CredentialsConfiguration/apiKey(_:)``),
   ///   or ``CredentialsError/cannotFetchToken(message:underlyingError:)`` if token resolution fails.
   public func accessToken() async throws -> AccessToken {
-    return try await self.credentialsProvider.accessToken()
+    guard let tokenProvider = self.credentialsProvider as? any AccessTokenProvider else {
+      throw CredentialsError.notSupported(
+        "This credential type does not produce OAuth 2.0 access tokens; use headers() instead."
+      )
+    }
+    return try await tokenProvider.accessToken()
   }
 
   /// Asynchronously retrieves the request headers required to authenticate a request.

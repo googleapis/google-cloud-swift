@@ -57,7 +57,7 @@ struct UserCredentialsParser: CredentialSourceParser {
 typealias UserCredentials = UserCredentialsGeneric<ContinuousClock>
 
 /// Generic implementation of authorized user credentials parameterized by clock type.
-struct UserCredentialsGeneric<C: Clock>: CredentialsProvider, Sendable
+struct UserCredentialsGeneric<C: Clock>: CredentialsProvider, AccessTokenProvider, Sendable
 where C.Instant.Duration == Duration {
   private let cache: TokenCache<C>
   let provider: UserAccountTokenProvider

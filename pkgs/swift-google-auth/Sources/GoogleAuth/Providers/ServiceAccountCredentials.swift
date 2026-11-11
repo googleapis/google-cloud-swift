@@ -52,7 +52,7 @@ struct ServiceAccountParser: CredentialSourceParser {
 ///
 /// See [Best Practices for Managing Service Account Keys](https://cloud.google.com/iam/docs/best-practices-for-managing-service-account-keys)
 /// and [AIP-4111: Self-Signed JWTs](https://google.aip.dev/auth/4111).
-struct ServiceAccountCredentials: CredentialsProvider, Sendable {
+struct ServiceAccountCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   private let tokenProvider: TokenCache<ContinuousClock>
   private let quotaProjectID: String?
   let universeDomain: String

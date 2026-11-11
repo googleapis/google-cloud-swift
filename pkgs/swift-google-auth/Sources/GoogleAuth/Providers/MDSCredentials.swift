@@ -84,7 +84,7 @@ actor MDSUniverseDomainCache {
 ///
 /// - SeeAlso: [Google Cloud Metadata Server Documentation](https://cloud.google.com/compute/docs/metadata/overview)
 /// - SeeAlso: [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials)
-struct MDSCredentials: CredentialsProvider, Sendable {
+struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   /// The underlying token provider responsible for querying the metadata server endpoint.
   let provider: MDSAccessTokenProvider
 

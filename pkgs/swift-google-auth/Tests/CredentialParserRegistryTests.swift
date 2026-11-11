@@ -19,10 +19,6 @@ import Testing
 @testable import GoogleAuth
 
 struct MockCredentialsProvider: CredentialsProvider {
-  func accessToken() async throws -> AccessToken {
-    return AccessToken(token: "mock")
-  }
-
   func headers() async throws -> AuthHeaders {
     return [("Authorization", "Bearer mock")]
   }

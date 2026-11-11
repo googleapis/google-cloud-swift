@@ -161,7 +161,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
 ///
 /// - SeeAlso: [Workforce Identity Federation Documentation](https://cloud.google.com/iam/docs/workforce-identity-federation)
 /// - SeeAlso: [AIP-4117: Workforce and Workload Identity Federation](https://google.aip.dev/auth/4117)
-struct ExternalAccountCredentials: CredentialsProvider, Sendable {
+struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   /// The token cache handling proactive refresh and jittered expiration management.
   private let cache: TokenCache<ContinuousClock>
 

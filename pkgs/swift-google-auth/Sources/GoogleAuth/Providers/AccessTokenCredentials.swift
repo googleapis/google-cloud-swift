@@ -15,7 +15,8 @@
 import Foundation
 
 /// An authentication provider backed by either a static ``AccessToken`` or a custom ``AccessTokenProvider``.
-struct AccessTokenCredentials: CredentialsProvider, Sendable, CustomStringConvertible,
+struct AccessTokenCredentials: CredentialsProvider, AccessTokenProvider, Sendable,
+  CustomStringConvertible,
   CustomDebugStringConvertible
 {
   /// Error thrown as the underlying error when a static access token has expired.

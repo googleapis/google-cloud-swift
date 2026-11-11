@@ -26,10 +26,6 @@ private struct StaticSourceCredentials: CredentialsProvider {
   let authHeaders: AuthHeaders
   var customUniverseDomain: String = defaultUniverseDomain
 
-  func accessToken() async throws -> AccessToken {
-    AccessToken(token: "source-access-token")
-  }
-
   func headers() async throws -> AuthHeaders {
     authHeaders
   }
@@ -41,10 +37,6 @@ private struct StaticSourceCredentials: CredentialsProvider {
 
 private struct FailingSourceCredentials: CredentialsProvider {
   struct SourceError: Error {}
-
-  func accessToken() async throws -> AccessToken {
-    throw SourceError()
-  }
 
   func headers() async throws -> AuthHeaders {
     throw SourceError()
@@ -594,11 +586,6 @@ private struct FailingSourceCredentials: CredentialsProvider {
     struct SpySourceCredentials: CredentialsProvider {
       func universeDomain() async throws -> String {
         "googleapis.com"
-      }
-      func accessToken() async throws -> AccessToken {
-        Issue.record(
-          "sourceCredentials.accessToken() must not be called on universe domain mismatch")
-        return AccessToken(token: "secret-source-token")
       }
       func headers() async throws -> AuthHeaders {
         Issue.record("sourceCredentials.headers() must not be called on universe domain mismatch")

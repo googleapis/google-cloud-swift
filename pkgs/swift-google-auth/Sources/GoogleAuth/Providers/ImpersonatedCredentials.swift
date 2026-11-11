@@ -114,7 +114,7 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
 ///
 /// - SeeAlso: [AIP-4110: Application Default Credentials](https://google.aip.dev/auth/4110)
 /// - SeeAlso: [Service Account Impersonation](https://cloud.google.com/iam/docs/service-account-impersonation)
-struct ImpersonatedCredentials: CredentialsProvider, Sendable {
+struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   private let cache: TokenCache<ContinuousClock>
   let provider: ImpersonatedTokenProvider
   let quotaProjectID: String?
