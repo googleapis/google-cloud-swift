@@ -140,7 +140,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
     self.cache = TokenCache(
       provider: provider,
       jitter: jitter,
-      isRetryable: AuthHTTPError.isRetryable
+      isRetryable: provider.isRetryable
     )
   }
 

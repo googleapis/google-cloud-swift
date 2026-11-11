@@ -29,7 +29,11 @@ import Testing
     let response = HTTPClientResponse(
       version: .http2,
       status: .forbidden,
-      headers: .init([("X-Custom-Header", "CustomValue")]),
+      headers: .init([
+        ("X-Custom-Header", "CustomValue"),
+        ("X-Multi-Header", "First"),
+        ("x-multi-header", "Second"),
+      ]),
       body: .bytes(.init(data: bodyData)),
     )
     let error = AuthHTTPError.unsuccessfulResponse(response: response, data: bodyData)
@@ -38,6 +42,9 @@ import Testing
     #expect(error.body == bodyString)
     #expect(error.bodyData == bodyData)
     #expect(error.headers?["X-Custom-Header"] == "CustomValue")
+    #expect(error.headerValues(named: "x-custom-header") == ["CustomValue"])
+    #expect(error.headerValues(named: "X-Multi-Header") == ["First", "Second"])
+    #expect(error.headerValues(named: "Missing-Header") == [])
     #expect(error.urlError == nil)
   }
 
@@ -64,6 +71,7 @@ import Testing
     #expect(error.body == nil)
     #expect(error.bodyData == nil)
     #expect(error.headers == nil)
+    #expect(error.headerValues(named: "X-Custom-Header") == nil)
   }
 
   @Test func decodingErrorAccessors() {
