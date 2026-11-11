@@ -109,7 +109,7 @@ leave the field set to its default value on the provided resource.
   the default endpoint used by the Swift client libraries.
 * [Long-running operations](https://docs.cloud.google.com/swift/long-running-operations) describes how to make
   API requests that use long-running operations.
-* [Paginated operations](<doc:pagination>) describes how to iterate over
+* [Paginated operations](https://docs.cloud.google.com/swift/pagination) describes how to iterate over
   paginated API responses.
 * [Override the default retry policies](https://docs.cloud.google.com/swift/override-retry-policy) describes how
   to change how the Swift client libraries retry failed requests.
