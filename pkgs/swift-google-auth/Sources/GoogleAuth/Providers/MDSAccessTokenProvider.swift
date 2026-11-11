@@ -156,10 +156,10 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   /// Resolves the base URL using `endpoint`, `GCE_METADATA_HOST`, or `defaultEndpoint`, Appends the token path
   /// `/computeMetadata/v1/instance/service-accounts/default/token`, and includes the required `Metadata-Flavor: Google` header.
   ///
-  /// - Returns: A valid `Token` containing the access token string and expiration date.
+  /// - Returns: A valid `AccessToken` containing the access token string and expiration date.
   /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server is unreachable or returns an error.
   @concurrent
-  func fetchToken() async throws -> Token {
+  func fetchToken() async throws -> AccessToken {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
     let baseEndpoint = try self.resolveBaseEndpoint(hostEnv: hostEnv)
     let isADCFallback =
@@ -200,10 +200,10 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       let tokenType: String
     }
 
-    let fetchOperation: @Sendable () async throws -> Token = {
+    let fetchOperation: @Sendable () async throws -> AccessToken = {
       let response: TokenResponse = try await self.client.get(url: url, headers: headers)
       let expiration = Date().addingTimeInterval(TimeInterval(response.expiresIn))
-      return Token(accessToken: response.accessToken, expirationDate: expiration)
+      return AccessToken(token: response.accessToken, expirationDate: expiration)
     }
 
     // ADC falls back to the metadata server when it finds no other credentials. Outside Google

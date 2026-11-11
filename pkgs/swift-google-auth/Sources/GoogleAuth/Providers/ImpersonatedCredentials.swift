@@ -234,12 +234,12 @@ struct ImpersonatedCredentials: CredentialsProvider, Sendable {
   }
 
   func accessToken() async throws -> AccessToken {
-    return try await cache.token().asAccessToken
+    return try await cache.token()
   }
 
   func headers() async throws -> AuthHeaders {
     let token = try await cache.token()
-    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]
+    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.token)")]
     if let quotaProjectID = quotaProjectID, !quotaProjectID.isEmpty {
       headers.append(name: "x-goog-user-project", value: quotaProjectID)
     }

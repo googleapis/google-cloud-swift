@@ -21,17 +21,17 @@ import Testing
 
 private actor MockTokenProvider: TokenProvider {
   private var fetchCount = 0
-  private var nextToken: Token?
+  private var nextToken: AccessToken?
   private var nextError: (any Error)?
   private var fetchContinuations: [CheckedContinuation<Void, Never>] = []
   private var fetchIsStarted = false
 
-  func configure(token: Token?, error: (any Error)? = nil) {
+  func configure(token: AccessToken?, error: (any Error)? = nil) {
     self.nextToken = token
     self.nextError = error
   }
 
-  func fetchToken() async throws -> Token {
+  func fetchToken() async throws -> AccessToken {
     self.fetchCount += 1
 
     let continuationsToResume = self.fetchContinuations
@@ -85,13 +85,13 @@ private actor MockTokenProvider: TokenProvider {
 }
 
 private final class IteratorWrapper: @unchecked Sendable {
-  private var iterator: AsyncStream<Result<Token, any Error>>.AsyncIterator
+  private var iterator: AsyncStream<Result<AccessToken, any Error>>.AsyncIterator
 
-  init(_ stream: AsyncStream<Result<Token, any Error>>) {
+  init(_ stream: AsyncStream<Result<AccessToken, any Error>>) {
     self.iterator = stream.makeAsyncIterator()
   }
 
-  func next() async -> Result<Token, any Error>? {
+  func next() async -> Result<AccessToken, any Error>? {
     await iterator.next()
   }
 }
@@ -102,11 +102,11 @@ private actor WaitingTokenProvider: TokenProvider {
   private var fetchContinuations: [CheckedContinuation<Void, Never>] = []
   private var fetchIsStarted = false
 
-  init(values: AsyncStream<Result<Token, any Error>>) {
+  init(values: AsyncStream<Result<AccessToken, any Error>>) {
     self.wrapper = IteratorWrapper(values)
   }
 
-  func fetchToken() async throws -> Token {
+  func fetchToken() async throws -> AccessToken {
     self.fetchCount += 1
 
     let continuationsToResume = self.fetchContinuations
@@ -167,13 +167,13 @@ private actor WaitingTokenProvider: TokenProvider {
 
 private actor DelayedTokenProvider: TokenProvider {
   private var fetchCount = 0
-  private let token: Token
+  private let token: AccessToken
 
-  init(token: Token) {
+  init(token: AccessToken) {
     self.token = token
   }
 
-  func fetchToken() async throws -> Token {
+  func fetchToken() async throws -> AccessToken {
     self.fetchCount += 1
     try await Task.sleep(for: .milliseconds(50))
     return self.token
@@ -192,7 +192,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     self.error = error
   }
 
-  func fetchToken() async throws -> Token {
+  func fetchToken() async throws -> AccessToken {
     self.fetchCount += 1
     try await Task.sleep(for: .milliseconds(50))
     throw self.error
@@ -209,8 +209,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
   @Test func cacheFetchesTokenWhenEmpty() async throws {
     let provider = MockTokenProvider()
     let clock = TestClock()
-    let expectedToken = Token(
-      accessToken: "token-1", expirationDate: Date().addingTimeInterval(1000))
+    let expectedToken = AccessToken(
+      token: "token-1", expirationDate: Date().addingTimeInterval(1000))
     await provider.configure(token: expectedToken)
 
     let cache = TokenCache(
@@ -220,15 +220,15 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     )
 
     let token = try await cache.token()
-    #expect(token.accessToken == "token-1")
+    #expect(token.token == "token-1")
     #expect(await provider.count == 1)
   }
 
   @Test func cacheReturnsCachedTokenWhenValid() async throws {
     let provider = MockTokenProvider()
     let clock = TestClock()
-    let expectedToken = Token(
-      accessToken: "token-1", expirationDate: Date().addingTimeInterval(1000))
+    let expectedToken = AccessToken(
+      token: "token-1", expirationDate: Date().addingTimeInterval(1000))
     await provider.configure(token: expectedToken)
 
     let cache = TokenCache(
@@ -239,22 +239,22 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     // First call fetches from provider
     let token1 = try await cache.token()
-    #expect(token1.accessToken == "token-1")
+    #expect(token1.token == "token-1")
 
     // Second call returns cached value instantly
     let token2 = try await cache.token()
-    #expect(token2.accessToken == "token-1")
+    #expect(token2.token == "token-1")
     #expect(await provider.count == 1)  // Count remains 1
   }
 
-  @Test func refreshTransientFailurePreservesValidToken() async throws {
+  @Test func refreshTransientFailurePreservesValidAccessToken() async throws {
     let provider = MockTokenProvider()
     let clock = TestClock()
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
 
     // Initial token expires in 10 seconds
-    let initialToken = Token(accessToken: "valid", expirationDate: now.addingTimeInterval(10))
+    let initialToken = AccessToken(token: "valid", expirationDate: now.addingTimeInterval(10))
     await provider.configure(token: initialToken, error: nil)
 
     let cache = TokenCache(
@@ -268,7 +268,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     // Trigger initial lazy token fetch and wait for background loop to enter sleep
     let initial = try await cache.token()
-    #expect(initial.accessToken == "valid")
+    #expect(initial.token == "valid")
     await clock.sleeperWaiting()
 
     // Configure a transient error
@@ -283,18 +283,18 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     // The token is still valid for 1 more second. Should return cached.
     let stillValid = try await cache.token()
-    #expect(stillValid.accessToken == "valid")
+    #expect(stillValid.token == "valid")
     #expect(await provider.count == 2)
   }
 
-  @Test func refreshPermanentFailurePreservesValidToken() async throws {
+  @Test func refreshPermanentFailurePreservesValidAccessToken() async throws {
     let provider = MockTokenProvider()
     let clock = TestClock()
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
 
     // Initial token expires in 10 seconds
-    let initialToken = Token(accessToken: "valid", expirationDate: now.addingTimeInterval(10))
+    let initialToken = AccessToken(token: "valid", expirationDate: now.addingTimeInterval(10))
     await provider.configure(token: initialToken, error: nil)
 
     let cache = TokenCache(
@@ -308,7 +308,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     // Trigger initial lazy token fetch and wait for background loop to sleep
     let initial = try await cache.token()
-    #expect(initial.accessToken == "valid")
+    #expect(initial.token == "valid")
     await clock.sleeperWaiting()
 
     // Configure a permanent error for the refresh
@@ -326,7 +326,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     // The token is still valid for 1 more second! It should NOT throw yet.
     let stillValid = try await cache.token()
-    #expect(stillValid.accessToken == "valid")
+    #expect(stillValid.token == "valid")
 
     // Advance past expiration
     timeSource.advance(by: 2)
@@ -343,7 +343,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
 
-    let initialToken = Token(accessToken: "valid", expirationDate: now.addingTimeInterval(10))
+    let initialToken = AccessToken(token: "valid", expirationDate: now.addingTimeInterval(10))
     await provider.configure(token: initialToken, error: nil)
 
     let cache = TokenCache(
@@ -371,7 +371,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     // Call token() before expiration. Should return cached token and NOT trigger another refresh.
     let stillValid = try await cache.token()
-    #expect(stillValid.accessToken == "valid")
+    #expect(stillValid.token == "valid")
     #expect(await provider.count == 2)
 
     // Call token() again before expiration. Should still NOT trigger another refresh.
@@ -397,8 +397,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
 
-    let staleToken = Token(
-      accessToken: "stale-token", expirationDate: timeSource.now.addingTimeInterval(1.5))
+    let staleToken = AccessToken(
+      token: "stale-token", expirationDate: timeSource.now.addingTimeInterval(1.5))
     await provider.configure(token: staleToken)
 
     // Use very short slack values for testing!
@@ -411,13 +411,13 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     )
 
     let token1 = try await cache.token()
-    #expect(token1.accessToken == "stale-token")
+    #expect(token1.token == "stale-token")
 
     // Wait for the background loop to enter sleep
     await clock.sleeperWaiting()
 
-    let freshToken = Token(
-      accessToken: "fresh-token", expirationDate: timeSource.now.addingTimeInterval(1000))
+    let freshToken = AccessToken(
+      token: "fresh-token", expirationDate: timeSource.now.addingTimeInterval(1000))
     await provider.configure(token: freshToken)
 
     // Advance time source FIRST, then clock!
@@ -429,7 +429,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     // Second call should return the fresh token!
     let token2 = try await cache.token()
-    #expect(token2.accessToken == "fresh-token")
+    #expect(token2.token == "fresh-token")
     #expect(await provider.count == 2)
   }
 
@@ -439,8 +439,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
 
-    let initialToken = Token(
-      accessToken: "initial-token", expirationDate: timeSource.now.addingTimeInterval(1.0))
+    let initialToken = AccessToken(
+      token: "initial-token", expirationDate: timeSource.now.addingTimeInterval(1.0))
     await provider.configure(token: initialToken)
 
     let cache = TokenCache(
@@ -452,14 +452,14 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     )
 
     let token1 = try await cache.token()
-    #expect(token1.accessToken == "initial-token")
+    #expect(token1.token == "initial-token")
 
     // Wait for the background loop to sleep (1.0s - 0.5s = 0.5s)
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
 
-    let freshToken = Token(
-      accessToken: "fresh-token", expirationDate: timeSource.now.addingTimeInterval(1000))
+    let freshToken = AccessToken(
+      token: "fresh-token", expirationDate: timeSource.now.addingTimeInterval(1000))
     await provider.configure(token: freshToken)
 
     // Advance by 0.5s to reach the sub-second staleness threshold
@@ -471,14 +471,14 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
 
     let token2 = try await cache.token()
-    #expect(token2.accessToken == "fresh-token")
+    #expect(token2.token == "fresh-token")
   }
 
   @Test func concurrentCallsShareActiveTaskPreventingThunderingHerds() async throws {
     let provider = MockTokenProvider()
     let clock = TestClock()
-    let expectedToken = Token(
-      accessToken: "shared-token", expirationDate: Date().addingTimeInterval(1000))
+    let expectedToken = AccessToken(
+      token: "shared-token", expirationDate: Date().addingTimeInterval(1000))
     await provider.configure(token: expectedToken)
 
     let cache = TokenCache(
@@ -488,14 +488,14 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     )
 
     // Spawn 5 concurrent requests to token() simultaneously
-    let results = try await withThrowingTaskGroup(of: Token.self) { group in
+    let results = try await withThrowingTaskGroup(of: AccessToken.self) { group in
       for _ in 1...5 {
         group.addTask {
           try await cache.token()
         }
       }
 
-      var tokens: [Token] = []
+      var tokens: [AccessToken] = []
       for try await token in group {
         tokens.append(token)
       }
@@ -505,7 +505,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     // Verify all 5 concurrent callers received the same token
     #expect(results.count == 5)
     for token in results {
-      #expect(token.accessToken == "shared-token")
+      #expect(token.token == "shared-token")
     }
 
     // Verify only ONE fetch operation was executed on the backend!
@@ -513,7 +513,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
   }
 
   @Test func cachePropagatesErrorAndAllowsRetries() async throws {
-    let (valuesStream, valuesContinuation) = AsyncStream<Result<Token, any Error>>.makeStream()
+    let (valuesStream, valuesContinuation) = AsyncStream<Result<AccessToken, any Error>>
+      .makeStream()
 
     let provider = WaitingTokenProvider(values: valuesStream)
     let clock = TestClock()
@@ -543,8 +544,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     }
 
     // Re-configure provider to succeed with a fresh token
-    let freshToken = Token(
-      accessToken: "fresh-token", expirationDate: Date().addingTimeInterval(1000))
+    let freshToken = AccessToken(
+      token: "fresh-token", expirationDate: Date().addingTimeInterval(1000))
 
     // Second call to token() should trigger a new fetch
     let task2 = Task {
@@ -559,7 +560,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     valuesContinuation.yield(.success(freshToken))
 
     let token = try await task2.value
-    #expect(token.accessToken == "fresh-token")
+    #expect(token.token == "fresh-token")
   }
 
   @Test func cacheAbortsRefreshLoopOnPermanentError() async throws {
@@ -594,8 +595,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
 
-    let initialToken = Token(
-      accessToken: "initial-token", expirationDate: now.addingTimeInterval(1.0))
+    let initialToken = AccessToken(
+      token: "initial-token", expirationDate: now.addingTimeInterval(1.0))
     await provider.configure(token: initialToken)
 
     let cache = TokenCache(
@@ -607,7 +608,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     )
 
     let token1 = try await cache.token()
-    #expect(token1.accessToken == "initial-token")
+    #expect(token1.token == "initial-token")
 
     // Wait for the background loop to enter sleep deterministically
     await clock.sleeperWaiting()
@@ -628,8 +629,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
 
-    let expiredToken = Token(
-      accessToken: "expired-token", expirationDate: now.addingTimeInterval(-10))
+    let expiredToken = AccessToken(
+      token: "expired-token", expirationDate: now.addingTimeInterval(-10))
     await provider.configure(token: expiredToken)
 
     let cache = TokenCache(
@@ -641,25 +642,25 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     )
 
     let token1 = try await cache.token()
-    #expect(token1.accessToken == "expired-token")
+    #expect(token1.token == "expired-token")
 
     // Wait for the background loop to enter sleep deterministically
     await clock.sleeperWaiting()
 
-    let freshToken = Token(
-      accessToken: "fresh-token", expirationDate: now.addingTimeInterval(1000))
+    let freshToken = AccessToken(
+      token: "fresh-token", expirationDate: now.addingTimeInterval(1000))
     await provider.configure(token: freshToken)
 
     timeSource.advance(by: 1.2)
     clock.advance(by: .seconds(1.2))
 
     let token2 = try await cache.token()
-    #expect(token2.accessToken == "fresh-token")
+    #expect(token2.token == "fresh-token")
   }
 
   @Test func noInitialTokenThunderingHerdSuccess() async throws {
-    let expectedToken = Token(
-      accessToken: "shared-token", expirationDate: Date().addingTimeInterval(1000))
+    let expectedToken = AccessToken(
+      token: "shared-token", expirationDate: Date().addingTimeInterval(1000))
     let delayedProvider = DelayedTokenProvider(token: expectedToken)
     let clock = TestClock()
 
@@ -670,14 +671,14 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     )
 
     // Spawn 5 concurrent requests to token() simultaneously when empty
-    let results = try await withThrowingTaskGroup(of: Token.self) { group in
+    let results = try await withThrowingTaskGroup(of: AccessToken.self) { group in
       for _ in 1...5 {
         group.addTask {
           try await cache.token()
         }
       }
 
-      var tokens: [Token] = []
+      var tokens: [AccessToken] = []
       for try await token in group {
         tokens.append(token)
       }
@@ -687,7 +688,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     // Verify all 5 concurrent callers received the same token
     #expect(results.count == 5)
     for token in results {
-      #expect(token.accessToken == "shared-token")
+      #expect(token.token == "shared-token")
     }
 
     // Verify only ONE fetch operation was executed on the backend!
@@ -706,7 +707,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     )
 
     // Spawn 5 concurrent requests to token() simultaneously when empty and fails
-    let errors = await withTaskGroup(of: Result<Token, any Error>.self) { group in
+    let errors = await withTaskGroup(of: Result<AccessToken, any Error>.self) { group in
       for _ in 1...5 {
         group.addTask {
           do {
@@ -718,7 +719,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
         }
       }
 
-      var results: [Result<Token, any Error>] = []
+      var results: [Result<AccessToken, any Error>] = []
       for await res in group {
         results.append(res)
       }
@@ -762,8 +763,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
   @Test func initDoesNotTriggerFetchBeforeTokenIsCalled() async throws {
     let provider = MockTokenProvider()
     let clock = TestClock()
-    let expectedToken = Token(
-      accessToken: "token-1", expirationDate: Date().addingTimeInterval(1000))
+    let expectedToken = AccessToken(
+      token: "token-1", expirationDate: Date().addingTimeInterval(1000))
     await provider.configure(token: expectedToken)
 
     let cache = TokenCache(
@@ -780,7 +781,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(!clock.hasSleepers)
 
     let token = try await cache.token()
-    #expect(token.accessToken == "token-1")
+    #expect(token.token == "token-1")
     #expect(await provider.count == 1)
     await clock.sleeperWaiting()
     #expect(clock.hasSleepers)
@@ -815,8 +816,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     await clock.sleeperWaiting()
     #expect(clock.hasSleepers)
 
-    let recoveredToken = Token(
-      accessToken: "recovered-token", expirationDate: now.addingTimeInterval(1000))
+    let recoveredToken = AccessToken(
+      token: "recovered-token", expirationDate: now.addingTimeInterval(1000))
     await provider.configure(token: recoveredToken, error: nil)
 
     // Advance clock to wake the background retry
@@ -827,7 +828,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
 
     let token = try await cache.token()
-    #expect(token.accessToken == "recovered-token")
+    #expect(token.token == "recovered-token")
   }
 
   /// Verifies that a `CancellationError` thrown during `token()` is not recorded as a
@@ -850,12 +851,12 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(!clock.hasSleepers)
 
     // Subsequent call after CancellationError should retry rather than throwing a cached permanent error
-    let validToken = Token(
-      accessToken: "valid-after-cancel", expirationDate: Date().addingTimeInterval(1000))
+    let validToken = AccessToken(
+      token: "valid-after-cancel", expirationDate: Date().addingTimeInterval(1000))
     await provider.configure(token: validToken, error: nil)
 
     let token = try await cache.token()
-    #expect(token.accessToken == "valid-after-cancel")
+    #expect(token.token == "valid-after-cancel")
     #expect(await provider.count == 2)
   }
 
@@ -901,8 +902,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
 
-    let token = Token(
-      accessToken: "token-1", expirationDate: timeSource.now.addingTimeInterval(5.0))
+    let token = AccessToken(
+      token: "token-1", expirationDate: timeSource.now.addingTimeInterval(5.0))
     await provider.configure(token: token)
 
     let cache = TokenCache(
@@ -920,8 +921,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     // Now background loop should calculate sleep: 5.0 - 2.0 = 3.0 seconds
 
     // Re-configure provider to return a new token on next fetch
-    let nextToken = Token(
-      accessToken: "token-2", expirationDate: timeSource.now.addingTimeInterval(1000))
+    let nextToken = AccessToken(
+      token: "token-2", expirationDate: timeSource.now.addingTimeInterval(1000))
     await provider.configure(token: nextToken)
 
     // Advance clock by 1.0 seconds (less than 3.0s sleep). Should NOT have fetched again!
@@ -938,7 +939,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
 
     let fetchedToken = try await cache.token()
-    #expect(fetchedToken.accessToken == "token-2")
+    #expect(fetchedToken.token == "token-2")
   }
 
   @Test func refreshLoopSleepsUntilStaleWhenValid() async throws {
@@ -948,8 +949,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     let timeSource = MockTimeSource(currentDate: now)
 
     // Token expires in 10 seconds
-    let token = Token(
-      accessToken: "token-1", expirationDate: timeSource.now.addingTimeInterval(10.0))
+    let token = AccessToken(
+      token: "token-1", expirationDate: timeSource.now.addingTimeInterval(10.0))
     await provider.configure(token: token)
 
     let cache = TokenCache(
@@ -981,8 +982,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     let timeSource = MockTimeSource(currentDate: now)
 
     // 1. Configure provider to return a token that expires in 10 seconds
-    let initialToken = Token(
-      accessToken: "initial-token", expirationDate: now.addingTimeInterval(10.0))
+    let initialToken = AccessToken(
+      token: "initial-token", expirationDate: now.addingTimeInterval(10.0))
     await provider.configure(token: initialToken)
 
     let cache = TokenCache(
@@ -1043,8 +1044,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
 
-    let token = Token(
-      accessToken: "token-1", expirationDate: timeSource.now.addingTimeInterval(3600.0))
+    let token = AccessToken(
+      token: "token-1", expirationDate: timeSource.now.addingTimeInterval(3600.0))
     await provider.configure(token: token)
 
     var cache: TokenCache<TestClock>? = TokenCache(
@@ -1066,6 +1067,71 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     // `TokenCache.deinit` cancels `backgroundTask`, which synchronously triggers `TestClock.sleep`'s
     // `onCancel` handler and removes the sleeper from the clock's queue.
+    #expect(!clock.hasSleepers)
+  }
+
+  @Test func nonExpiringTokenIsCachedWithoutBackgroundRefresh() async throws {
+    let provider = MockTokenProvider()
+    let clock = TestClock()
+    let now = Date()
+    let timeSource = MockTimeSource(currentDate: now)
+
+    let nonExpiringToken = AccessToken(token: "non-expiring", expirationDate: nil)
+    await provider.configure(token: nonExpiringToken)
+
+    let cache = TokenCache(
+      provider: provider,
+      clock: clock,
+      timeSource: timeSource
+    )
+
+    let token1 = try await cache.token()
+    #expect(token1 == nonExpiringToken)
+    #expect(await provider.count == 1)
+
+    await Task.yield()
+    #expect(!clock.hasSleepers)
+
+    // Advance wall-clock time arbitrarily far into the future; token remains valid without refresh.
+    timeSource.advance(by: 86_400)
+    let token2 = try await cache.token()
+    #expect(token2 == nonExpiringToken)
+    #expect(await provider.count == 1)
+    #expect(!clock.hasSleepers)
+  }
+
+  @Test func backgroundRetryTerminatesAfterFetchingNonExpiringToken() async throws {
+    let provider = MockTokenProvider()
+    let clock = TestClock()
+    let now = Date()
+    let timeSource = MockTimeSource(currentDate: now)
+
+    await provider.configure(token: nil, error: URLError(.timedOut))
+
+    let cache = TokenCache(
+      provider: provider,
+      clock: clock,
+      timeSource: timeSource,
+      shortRefreshSlack: .seconds(1)
+    )
+
+    // Initial call fails transiently and starts background retry loop.
+    await #expect(throws: URLError.self) {
+      _ = try await cache.token()
+    }
+    await clock.sleeperWaiting()
+    #expect(clock.hasSleepers)
+
+    // Configure non-expiring token for the background retry.
+    let recoveredToken = AccessToken(token: "recovered-non-expiring", expirationDate: nil)
+    await provider.configure(token: recoveredToken, error: nil)
+
+    clock.advance(by: .seconds(1.1))
+    await Task.yield()
+
+    let cached = try await cache.token()
+    #expect(cached == recoveredToken)
+    #expect(await provider.count == 2)
     #expect(!clock.hasSleepers)
   }
 }

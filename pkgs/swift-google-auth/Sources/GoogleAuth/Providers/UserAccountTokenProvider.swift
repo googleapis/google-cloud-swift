@@ -38,10 +38,10 @@ struct UserAccountTokenProvider: TokenProvider {
 
   /// Fetches a fresh OAuth 2.0 access token by executing the refresh token grant.
   ///
-  /// - Returns: A valid `Token` containing the access token string and expiration date.
+  /// - Returns: A valid `AccessToken` containing the access token string and expiration date.
   /// - Throws: `CredentialsError.cannotFetchToken` if the token endpoint cannot be reached or rejects the request.
   @concurrent
-  func fetchToken() async throws -> Token {
+  func fetchToken() async throws -> AccessToken {
     let scopesStr = scopes.isEmpty ? nil : scopes.joined(separator: " ")
 
     let requestBody = Oauth2RefreshRequest(
@@ -75,8 +75,8 @@ struct UserAccountTokenProvider: TokenProvider {
 
     let expirationDate = Date().addingTimeInterval(Double(response.expiresIn ?? 3600))
 
-    return Token(
-      accessToken: response.accessToken,
+    return AccessToken(
+      token: response.accessToken,
       tokenType: response.tokenType,
       expirationDate: expirationDate
     )

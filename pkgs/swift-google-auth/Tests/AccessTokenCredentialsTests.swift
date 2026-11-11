@@ -72,6 +72,15 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     set.insert(tokenWithExpiry)
     set.insert(tokenWithoutExpiry)
     #expect(set.count == 2)
+
+    let customTypeToken = AccessToken(
+      token: "mock-token.test-token",
+      tokenType: "Custom",
+      expirationDate: expiry
+    )
+    #expect(customTypeToken.tokenType == "Custom")
+    #expect(customTypeToken == tokenWithExpiry)
+    #expect(customTypeToken.hashValue == tokenWithExpiry.hashValue)
   }
 
   @Test func accessTokenDebugAndStringDescriptionsRedactToken() {
@@ -95,8 +104,8 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     #expect(!String(reflecting: configuration).contains("mock-token.super-secret-access-token"))
     #expect(!String(describing: configuration).contains("mock-token.super-secret-access-token"))
 
-    let internalToken = Token(
-      accessToken: "mock-token.internal-secret",
+    let internalToken = AccessToken(
+      token: "mock-token.internal-secret",
       tokenType: "Bearer",
       expirationDate: expiry
     )

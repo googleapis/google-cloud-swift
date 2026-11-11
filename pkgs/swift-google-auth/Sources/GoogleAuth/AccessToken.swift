@@ -26,6 +26,9 @@ public struct AccessToken: Sendable, Hashable, CustomStringConvertible, CustomDe
   /// The raw access token string.
   public let token: String
 
+  /// The OAuth 2.0 token type (e.g. `"Bearer"`), used internally when formatting `Authorization` headers.
+  let tokenType: String
+
   /// The date and time when the token expires, or `nil` if the token does not have a known expiration.
   public let expirationDate: Date?
 
@@ -35,8 +38,23 @@ public struct AccessToken: Sendable, Hashable, CustomStringConvertible, CustomDe
   ///   - token: The raw access token string.
   ///   - expirationDate: The date and time when the token expires (defaults to `nil`).
   public init(token: String, expirationDate: Date? = nil) {
+    self.init(token: token, tokenType: "Bearer", expirationDate: expirationDate)
+  }
+
+  /// Initializes an access token with a raw token string, token type, and optional expiration date.
+  init(token: String, tokenType: String, expirationDate: Date? = nil) {
     self.token = token
+    self.tokenType = tokenType
     self.expirationDate = expirationDate
+  }
+
+  public static func == (lhs: AccessToken, rhs: AccessToken) -> Bool {
+    lhs.token == rhs.token && lhs.expirationDate == rhs.expirationDate
+  }
+
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(token)
+    hasher.combine(expirationDate)
   }
 
   /// A textual representation of the access token with the secret value redacted.

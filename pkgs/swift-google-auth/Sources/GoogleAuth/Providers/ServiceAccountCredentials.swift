@@ -83,12 +83,12 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
   }
 
   func accessToken() async throws -> AccessToken {
-    return try await tokenProvider.token().asAccessToken
+    return try await tokenProvider.token()
   }
 
   func headers() async throws -> AuthHeaders {
     let token = try await tokenProvider.token()
-    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]
+    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.token)")]
     if let quotaProjectID = quotaProjectID {
       headers.append(name: "x-goog-user-project", value: quotaProjectID)
     }
