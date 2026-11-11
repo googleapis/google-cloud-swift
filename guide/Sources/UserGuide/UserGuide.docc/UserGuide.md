@@ -30,7 +30,7 @@ best-practices to retry transient RPC errors.
 - [Override the default polling policies](https://docs.cloud.google.com/swift/override-polling-policy)
 - [Long-running operations](https://docs.cloud.google.com/swift/long-running-operations)
 - [Paginated operations](https://docs.cloud.google.com/swift/pagination)
-- <doc:update-resource>
+- [Update a resource using a field mask](https://docs.cloud.google.com/swift/update-resource)
 - <doc:optimistic-concurrency-control-iam>
 - [Package traits](https://docs.cloud.google.com/swift/package-traits)
 - <doc:generate-text-using-the-vertex-ai-gemini-api>
