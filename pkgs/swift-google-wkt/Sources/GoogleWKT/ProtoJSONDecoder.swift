@@ -45,7 +45,7 @@ fileprivate struct Interceptor<T: Decodable>: Decodable {
   let inner: T
 
   init(from: any Decoder) throws {
-    let decoder = InternalDecoder(impl: from)
+    let decoder = InternalDecoder(impl: from, isMap: T.self is any _ProtoJSONMapMarker.Type)
     if T.self == Data.self {
       let container = try decoder.singleValueContainer()
       self.inner = try container.decode(Data.self) as! T
@@ -60,8 +60,12 @@ fileprivate struct Interceptor<T: Decodable>: Decodable {
 /// This wraps an implementation of the `Decoder` protocol and then applies the ProtoJSON rules.
 fileprivate struct InternalDecoder {
   let impl: any Decoder
+  let isMap: Bool
 
-  init(impl: any Decoder) { self.impl = impl }
+  init(impl: any Decoder, isMap: Bool = false) {
+    self.impl = impl
+    self.isMap = isMap
+  }
 }
 
 // Implements the `Decoder` protocol.
@@ -72,7 +76,7 @@ extension InternalDecoder: Decoder {
   func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key>
   where Key: CodingKey {
     let impl = try self.impl.container(keyedBy: type)
-    return KeyedDecodingContainer(InternalKeyedContainer(impl))
+    return KeyedDecodingContainer(InternalKeyedContainer(impl, isMap: self.isMap))
   }
 
   func singleValueContainer() throws -> any SingleValueDecodingContainer {
@@ -154,11 +158,28 @@ extension InternalSingleValueContainer: SingleValueDecodingContainer {
 
 fileprivate struct InternalKeyedContainer<K: CodingKey> {
   let impl: KeyedDecodingContainer<K>
+  let isMap: Bool
 
-  init(_ impl: KeyedDecodingContainer<K>) { self.impl = impl }
+  init(_ impl: KeyedDecodingContainer<K>, isMap: Bool = false) {
+    self.impl = impl
+    self.isMap = isMap
+  }
+
+  private func shouldDecodeDefault(forKey key: K) throws -> Bool {
+    guard !self.isMap else {
+      return false
+    }
+    if !self.impl.contains(key) {
+      return true
+    }
+    return try self.impl.decodeNil(forKey: key)
+  }
 
   func decodeGeneric<T: Decodable>(_ type: T.Type, forKey key: Self.Key) throws -> T {
-    if !self.impl.contains(key) {
+    if try self.shouldDecodeDefault(forKey: key) {
+      if type == Data.self {
+        return Data() as! T
+      }
       let decoder = DecodeToDefault()
       return try T(from: decoder)
     }
@@ -191,24 +212,37 @@ extension InternalKeyedContainer: KeyedDecodingContainerProtocol {
   func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type, forKey key: Self.Key) throws
     -> KeyedDecodingContainer<NestedKey>
   where NestedKey: CodingKey {
-    if !self.impl.contains(key) {
+    if try self.shouldDecodeDefault(forKey: key) {
       return KeyedDecodingContainer(DecodeToDefaultKeyed<NestedKey>())
     }
     let impl = try self.impl.nestedContainer(keyedBy: type, forKey: key)
-    return KeyedDecodingContainer(InternalKeyedContainer<NestedKey>(impl))
+    return KeyedDecodingContainer(InternalKeyedContainer<NestedKey>(impl, isMap: false))
   }
 
   func nestedUnkeyedContainer(forKey key: Self.Key) throws -> any UnkeyedDecodingContainer {
+    if try self.shouldDecodeDefault(forKey: key) {
+      return DecodeToDefault()
+    }
     let impl = try self.impl.nestedUnkeyedContainer(forKey: key)
     return InternalUnkeyedDecodingContainer(impl)
   }
 
   func superDecoder() throws -> any Decoder {
-    return try self.impl.superDecoder()
+    let decoder = try self.impl.superDecoder()
+    if !self.isMap,
+      let container = try? decoder.singleValueContainer(),
+      container.decodeNil()
+    {
+      return DecodeToDefault()
+    }
+    return InternalDecoder(impl: decoder, isMap: false)
   }
 
   func superDecoder(forKey key: K) throws -> any Decoder {
-    return try self.impl.superDecoder(forKey: key)
+    if try self.shouldDecodeDefault(forKey: key) {
+      return DecodeToDefault()
+    }
+    return InternalDecoder(impl: try self.impl.superDecoder(forKey: key), isMap: false)
   }
 
   func decode<T: Decodable>(_ type: T.Type, forKey key: Self.Key) throws -> T {
@@ -263,7 +297,7 @@ extension InternalUnkeyedDecodingContainer: UnkeyedDecodingContainer {
   }
 
   mutating func superDecoder() throws -> any Decoder {
-    return try self.impl.superDecoder()
+    return InternalDecoder(impl: try self.impl.superDecoder(), isMap: false)
   }
 }
 

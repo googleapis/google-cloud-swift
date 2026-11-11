@@ -114,7 +114,7 @@ import Testing
     #expect(input == roundtrip)
   }
 
-  // TODO(https://github.com/googleapis/librarian/issues/5260) - review if this is right.
+  // TODO(https://github.com/googleapis/google-cloud-swift/issues/1612) - preserve explicit null presence for WKTNullValue.
   @Test func complexOneOfSerialization_null() throws {
     let input = MessageWithComplexOneOf().with { $0.complex = .null(WKTNullValue()) }
     let encoder = _ProtoJSONEncoder()
@@ -127,6 +127,43 @@ import Testing
     let roundtrip = try decoder.decode(MessageWithComplexOneOf.self, from: data)
     // Currently decodes to nil because decodeIfPresent returns nil for null values.
     #expect(roundtrip == MessageWithComplexOneOf().with { $0.complex = nil })
+  }
+
+  @Test(
+    "OneOf null fields decode as unset",
+    arguments: [
+      (#"{"stringContents":null}"#, MessageWithOneOf()),
+      (#"{"messageValue":null}"#, MessageWithOneOf()),
+      (#"{"duration":null}"#, MessageWithOneOf()),
+      (
+        #"{"stringContentsOne":null,"stringContentsTwo":"test"}"#,
+        MessageWithOneOf().with { $0.twoStrings = .stringContentsTwo("test") }
+      ),
+    ]
+  )
+  func oneOfNullDeserialization(input: String, want: MessageWithOneOf) throws {
+    let decoder = _ProtoJSONDecoder()
+    let got = try decoder.decode(MessageWithOneOf.self, from: Data(input.utf8))
+    #expect(got == want)
+  }
+
+  @Test(
+    "ComplexOneOf null fields decode as unset",
+    arguments: [
+      (
+        #"{"int32":null,"boolValue":true}"#,
+        MessageWithComplexOneOf().with { $0.complex = .boolValue(true) }
+      ),
+      (
+        #"{"enum":null,"inner":null,"optionalDouble":null}"#,
+        MessageWithComplexOneOf()
+      ),
+    ]
+  )
+  func complexOneOfNullDeserialization(input: String, want: MessageWithComplexOneOf) throws {
+    let decoder = _ProtoJSONDecoder()
+    let got = try decoder.decode(MessageWithComplexOneOf.self, from: Data(input.utf8))
+    #expect(got == want)
   }
 
   @Test("Use oneof with @unknown")

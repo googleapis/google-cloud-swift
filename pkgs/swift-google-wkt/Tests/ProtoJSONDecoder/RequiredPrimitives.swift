@@ -53,6 +53,17 @@ extension ProtoJSONDecoderTest {
 
   static let requiredInputs: [(String, RequiredPrimitives)] = [
     (#"{}"#, RequiredPrimitives()),
+    (#"{"fieldBool":   null }"#, RequiredPrimitives()),
+    (#"{"fieldInt":    null }"#, RequiredPrimitives()),
+    (#"{"fieldInt32":  null }"#, RequiredPrimitives()),
+    (#"{"fieldInt64":  null }"#, RequiredPrimitives()),
+    (#"{"fieldUInt":   null }"#, RequiredPrimitives()),
+    (#"{"fieldUInt32": null }"#, RequiredPrimitives()),
+    (#"{"fieldUInt64": null }"#, RequiredPrimitives()),
+    (#"{"fieldFloat":  null }"#, RequiredPrimitives()),
+    (#"{"fieldDouble": null }"#, RequiredPrimitives()),
+    (#"{"fieldString": null }"#, RequiredPrimitives()),
+    (#"{"fieldData":   null }"#, RequiredPrimitives()),
     (#"{"fieldBool":   true }"#, RequiredPrimitives().with { $0.fieldBool = true }),
     (#"{"fieldInt":    42   }"#, RequiredPrimitives().with { $0.fieldInt = 42 }),
     (#"{"fieldInt32":  42   }"#, RequiredPrimitives().with { $0.fieldInt32 = 42 }),

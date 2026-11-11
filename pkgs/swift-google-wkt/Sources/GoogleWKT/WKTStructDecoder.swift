@@ -27,8 +27,8 @@ import Foundation
 /// - Integer decoding from `.number(Double)` uses `T(exactly:)` so non-integral or out-of-bounds
 ///   values fail with `DecodingError.dataCorrupted`.
 /// - `Data` values are decoded from base64 strings.
-/// - Missing keys in keyed containers fall back to `DecodeToDefault` so absent proto3 fields
-///   initialize to their default zero/empty values.
+/// - Missing or non-map `null` keys in keyed containers fall back to `DecodeToDefault` so absent or
+///   `null` proto3 fields initialize to their default zero/empty values.
 struct WKTStructDecoder {
   init() {}
 
@@ -40,7 +40,8 @@ struct WKTStructDecoder {
     if type == WKTValue.self {
       return WKTValue.object(fields) as! T
     }
-    let decoder = InternalValueDecoder(value: .object(fields), codingPath: [])
+    let decoder = InternalValueDecoder(
+      value: .object(fields), codingPath: [], isMap: type is any _ProtoJSONMapMarker.Type)
     return try T(from: decoder)
   }
 }
@@ -49,6 +50,13 @@ struct WKTStructDecoder {
 fileprivate struct InternalValueDecoder: Decoder {
   let value: WKTValue
   let codingPath: [any CodingKey]
+  let isMap: Bool
+
+  init(value: WKTValue, codingPath: [any CodingKey], isMap: Bool = false) {
+    self.value = value
+    self.codingPath = codingPath
+    self.isMap = isMap
+  }
 
   var userInfo: [CodingUserInfoKey: Any] { [:] }
 
@@ -64,7 +72,8 @@ fileprivate struct InternalValueDecoder: Decoder {
       )
     }
     return KeyedDecodingContainer(
-      InternalKeyedStructDecodingContainer<Key>(dict: dict, codingPath: self.codingPath)
+      InternalKeyedStructDecodingContainer<Key>(
+        dict: dict, codingPath: self.codingPath, isMap: self.isMap)
     )
   }
 
@@ -210,14 +219,19 @@ fileprivate struct InternalSingleValueStructDecodingContainer: SingleValueDecodi
     // `UInt64`), though `Int` and `UInt` may appear in enum representations or tests.
     if type == Int.self { return try self.decode(Int.self) as! T }
     if type == UInt.self { return try self.decode(UInt.self) as! T }
-    return try T(from: InternalValueDecoder(value: self.value, codingPath: self.codingPath))
+    return try T(
+      from: InternalValueDecoder(
+        value: self.value, codingPath: self.codingPath,
+        isMap: T.self is any _ProtoJSONMapMarker.Type
+      )
+    )
   }
 }
 
 /// Keyed decoding container backed by a `WKTStruct` (`[String: WKTValue]`).
 ///
-/// Missing keys fall back to `DecodeToDefault` when decoded via non-optional `decode(_:forKey:)`,
-/// matching proto3 default-value semantics in `_ProtoJSONDecoder`.
+/// Missing or non-map `null` keys fall back to `DecodeToDefault` when decoded via non-optional
+/// `decode(_:forKey:)`, matching proto3 default-value semantics in `_ProtoJSONDecoder`.
 fileprivate struct InternalKeyedStructDecodingContainer<K: CodingKey>:
   KeyedDecodingContainerProtocol
 {
@@ -225,6 +239,23 @@ fileprivate struct InternalKeyedStructDecodingContainer<K: CodingKey>:
 
   let dict: WKTStruct
   let codingPath: [any CodingKey]
+  let isMap: Bool
+
+  init(dict: WKTStruct, codingPath: [any CodingKey], isMap: Bool = false) {
+    self.dict = dict
+    self.codingPath = codingPath
+    self.isMap = isMap
+  }
+
+  private func nonNullEntry(forKey keyString: String) -> WKTValue? {
+    guard let entry = self.dict[keyString] else {
+      return nil
+    }
+    if !self.isMap, case .null = entry {
+      return nil
+    }
+    return entry
+  }
 
   var allKeys: [K] {
     self.dict.keys.compactMap { K(stringValue: $0) }
@@ -245,9 +276,13 @@ fileprivate struct InternalKeyedStructDecodingContainer<K: CodingKey>:
   }
 
   func decode<T: Decodable>(_ type: T.Type, forKey key: K) throws -> T {
-    // In proto3, omitted fields on the wire decode to their default value (`0`, `""`, `false`,
-    // `[]`, `[:]`, or a default-initialized nested message).
-    guard let entry = self.dict[key.stringValue] else {
+    // In proto3, omitted or `null` fields on the wire decode to their default value (`0`, `""`,
+    // `false`, `[]`, `[:]`, or a default-initialized nested message). Map entries preserve `null`
+    // so invalid `null` map values fail decoding (while `WKTValue`/`WKTNullValue` decode `.null`).
+    guard let entry = self.nonNullEntry(forKey: key.stringValue) else {
+      if type == Data.self {
+        return Data() as! T
+      }
       let decoder = DecodeToDefault()
       return try T(from: decoder)
     }
@@ -265,7 +300,10 @@ fileprivate struct InternalKeyedStructDecodingContainer<K: CodingKey>:
     if type == WKTListValue.self, case .array(let nestedList) = entry {
       return nestedList as! T
     }
-    let decoder = InternalValueDecoder(value: entry, codingPath: self.codingPath + [key])
+    let decoder = InternalValueDecoder(
+      value: entry, codingPath: self.codingPath + [key],
+      isMap: T.self is any _ProtoJSONMapMarker.Type
+    )
     return try T(from: decoder)
   }
 
@@ -289,7 +327,7 @@ fileprivate struct InternalKeyedStructDecodingContainer<K: CodingKey>:
   func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type, forKey key: K) throws
     -> KeyedDecodingContainer<NestedKey> where NestedKey: CodingKey
   {
-    guard let entry = self.dict[key.stringValue] else {
+    guard let entry = self.nonNullEntry(forKey: key.stringValue) else {
       return KeyedDecodingContainer(DecodeToDefaultKeyed<NestedKey>())
     }
     guard case .object(let nestedDict) = entry else {
@@ -303,19 +341,13 @@ fileprivate struct InternalKeyedStructDecodingContainer<K: CodingKey>:
     }
     return KeyedDecodingContainer(
       InternalKeyedStructDecodingContainer<NestedKey>(
-        dict: nestedDict, codingPath: self.codingPath + [key])
+        dict: nestedDict, codingPath: self.codingPath + [key], isMap: false)
     )
   }
 
   func nestedUnkeyedContainer(forKey key: K) throws -> any UnkeyedDecodingContainer {
-    guard let entry = self.dict[key.stringValue] else {
-      throw DecodingError.keyNotFound(
-        key,
-        DecodingError.Context(
-          codingPath: self.codingPath,
-          debugDescription: "Unkeyed container not found for key \(key.stringValue)."
-        )
-      )
+    guard let entry = self.nonNullEntry(forKey: key.stringValue) else {
+      return DecodeToDefault()
     }
     guard case .array(let list) = entry else {
       throw DecodingError.typeMismatch(
@@ -331,17 +363,18 @@ fileprivate struct InternalKeyedStructDecodingContainer<K: CodingKey>:
 
   func superDecoder() throws -> any Decoder {
     let superKey = _DynamicCodingKey(stringValue: "super")
-    guard let entry = self.dict[superKey.stringValue] else {
+    guard let entry = self.nonNullEntry(forKey: superKey.stringValue) else {
       return DecodeToDefault()
     }
-    return InternalValueDecoder(value: entry, codingPath: self.codingPath + [superKey])
+    return InternalValueDecoder(
+      value: entry, codingPath: self.codingPath + [superKey], isMap: false)
   }
 
   func superDecoder(forKey key: K) throws -> any Decoder {
-    guard let entry = self.dict[key.stringValue] else {
+    guard let entry = self.nonNullEntry(forKey: key.stringValue) else {
       return DecodeToDefault()
     }
-    return InternalValueDecoder(value: entry, codingPath: self.codingPath + [key])
+    return InternalValueDecoder(value: entry, codingPath: self.codingPath + [key], isMap: false)
   }
 }
 
@@ -411,7 +444,9 @@ fileprivate struct InternalUnkeyedStructDecodingContainer: UnkeyedDecodingContai
     if type == WKTListValue.self, case .array(let nestedList) = entry {
       return nestedList as! T
     }
-    return try T(from: InternalValueDecoder(value: entry, codingPath: itemPath))
+    return try T(
+      from: InternalValueDecoder(
+        value: entry, codingPath: itemPath, isMap: T.self is any _ProtoJSONMapMarker.Type))
   }
 
   mutating func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type) throws
