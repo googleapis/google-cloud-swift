@@ -68,7 +68,7 @@ import Testing
     #expect(await decorator.callCount == 2)
     #expect(try await credentials.universeDomain() == "public.universe.com")
 
-    let staticConfig = AccessTokenConfig(credentialSource: .staticToken(extracted)).with {
+    let staticConfig = AccessTokenConfig(token: extracted).with {
       $0.quotaProjectID = "static-quota-project"
     }
     let staticCredentials = try Credentials(configuration: .accessToken(staticConfig))

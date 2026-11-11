@@ -215,14 +215,13 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     let timeSource = MockTimeSource(currentDate: now)
     let expiry = now.addingTimeInterval(60)
 
-    let config = AccessTokenConfig(token: "mock-token.expiring-token", expirationDate: expiry).with
-    {
+    let config = AccessTokenConfig(
+      token: AccessToken(token: "mock-token.expiring-token", expirationDate: expiry),
+      timeSource: timeSource
+    ).with {
       $0.quotaProjectID = "proj-1"
     }
-    let staticCreds = AccessTokenCredentials(
-      config: config,
-      timeSource: timeSource
-    )
+    let staticCreds = AccessTokenCredentials(config: config)
 
     // Valid before expiration
     let validToken = try await staticCreds.accessToken()
@@ -261,12 +260,15 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     let staticCreds = AccessTokenCredentials(config: config)
     let debugDesc = String(reflecting: staticCreds)
     #expect(!debugDesc.contains("mock-token.secret-static-value"))
-    #expect(debugDesc.contains("[redacted]"))
     #expect(debugDesc.contains("quota-123"))
 
     let stringDesc = String(describing: staticCreds)
     #expect(!stringDesc.contains("mock-token.secret-static-value"))
-    #expect(stringDesc.contains("[redacted]"))
+
+    #expect(!String(reflecting: config.provider).contains("mock-token.secret-static-value"))
+    #expect(String(reflecting: config.provider).contains("[redacted]"))
+    #expect(!String(describing: config.provider).contains("mock-token.secret-static-value"))
+    #expect(String(describing: config.provider).contains("[redacted]"))
 
     let credentials = try Credentials(configuration: .accessToken(config))
     #expect(!String(reflecting: credentials).contains("mock-token.secret-static-value"))
@@ -371,10 +373,7 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
   @Test func customAccessTokenProviderPropagatesCancellationErrorDirectly() async throws {
     let timeSource = MockTimeSource(currentDate: Date())
     let provider = MockCustomAccessTokenProvider(token: nil, error: CancellationError())
-    let creds = AccessTokenCredentials(
-      config: AccessTokenConfig(provider: provider),
-      timeSource: timeSource
-    )
+    let creds = AccessTokenCredentials(config: AccessTokenConfig(provider: provider))
 
     await #expect(throws: CancellationError.self) {
       _ = try await creds.accessToken()

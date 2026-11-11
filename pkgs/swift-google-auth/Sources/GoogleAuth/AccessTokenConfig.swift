@@ -34,30 +34,9 @@ public import Foundation
 /// }
 /// let providerCredentials = try Credentials(configuration: .accessToken(providerConfig))
 /// ```
-public struct AccessTokenConfig: Sendable {
-  /// Defines how the access token is supplied.
-  ///
-  /// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
-  ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
-  ///   clause in `switch` statements.
-  public enum CredentialSource: Sendable {
-    /// A static, pre-obtained ``AccessToken``.
-    ///
-    /// Static access tokens cannot be refreshed automatically. If `token.expirationDate` is set and
-    /// has passed, calls to ``Credentials/headers()`` or ``Credentials/accessToken()`` fail with
-    /// ``CredentialsError/cannotFetchToken(message:underlyingError:)``.
-    case staticToken(AccessToken)
-
-    /// A custom asynchronous ``AccessTokenProvider``.
-    ///
-    /// Invoked directly on each call to ``Credentials/headers()`` or ``Credentials/accessToken()``.
-    /// Providers that perform network requests or expensive operations should implement their own
-    /// token caching.
-    case provider(any AccessTokenProvider)
-  }
-
-  /// The source supplying the access token.
-  public let credentialSource: CredentialSource
+public struct AccessTokenConfig: Sendable, CustomStringConvertible, CustomDebugStringConvertible {
+  /// The provider supplying the access token.
+  public let provider: any AccessTokenProvider
 
   /// Optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
   public var quotaProjectID: String? = nil
@@ -65,35 +44,43 @@ public struct AccessTokenConfig: Sendable {
   /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override (defaults to `googleapis.com`).
   public var universeDomain: String? = nil
 
-  /// Initializes a new instance of `AccessTokenConfig` with the specified credential source.
+  /// Initializes a new instance of `AccessTokenConfig` backed by a custom asynchronous ``AccessTokenProvider``.
   ///
-  /// - Parameter credentialSource: The source supplying the access token.
-  public init(credentialSource: CredentialSource) {
-    self.credentialSource = credentialSource
+  /// ``Credentials`` invokes ``AccessTokenProvider/accessToken()`` directly on each call to
+  /// ``Credentials/headers()`` or ``Credentials/accessToken()``. Providers that perform network
+  /// requests or expensive operations should implement their own token caching.
+  ///
+  /// - Parameter provider: The custom provider supplying ``AccessToken`` instances.
+  public init(provider: any AccessTokenProvider) {
+    self.provider = provider
   }
 
   /// Initializes a new instance of `AccessTokenConfig` backed by a static ``AccessToken``.
   ///
+  /// Static access tokens cannot be refreshed automatically. If `token.expirationDate` is set and
+  /// has passed, calls to ``Credentials/headers()`` or ``Credentials/accessToken()`` fail with
+  /// ``CredentialsError/cannotFetchToken(message:underlyingError:)``.
+  ///
   /// - Parameter token: The pre-obtained ``AccessToken``.
   public init(token: AccessToken) {
-    self.init(credentialSource: .staticToken(token))
+    self.init(token: token, timeSource: SystemTimeSource())
   }
 
   /// Initializes a new instance of `AccessTokenConfig` backed by a static raw token string and optional expiration date.
+  ///
+  /// Static access tokens cannot be refreshed automatically. If `expirationDate` is set and
+  /// has passed, calls to ``Credentials/headers()`` or ``Credentials/accessToken()`` fail with
+  /// ``CredentialsError/cannotFetchToken(message:underlyingError:)``.
   ///
   /// - Parameters:
   ///   - token: The raw OAuth 2.0 access token string.
   ///   - expirationDate: The date and time when the token expires, or `nil` if the token does not expire.
   public init(token: String, expirationDate: Date? = nil) {
-    self.init(
-      credentialSource: .staticToken(AccessToken(token: token, expirationDate: expirationDate)))
+    self.init(token: AccessToken(token: token, expirationDate: expirationDate))
   }
 
-  /// Initializes a new instance of `AccessTokenConfig` backed by a custom asynchronous ``AccessTokenProvider``.
-  ///
-  /// - Parameter provider: The custom provider supplying ``AccessToken`` instances.
-  public init(provider: any AccessTokenProvider) {
-    self.init(credentialSource: .provider(provider))
+  init(token: AccessToken, timeSource: any TimeSource) {
+    self.init(provider: StaticAccessTokenProvider(token: token, timeSource: timeSource))
   }
 
   /// Configures optional properties of `AccessTokenConfig` using a fluent closure.
@@ -104,5 +91,50 @@ public struct AccessTokenConfig: Sendable {
     var copy = self
     try configure(&copy)
     return copy
+  }
+
+  public var description: String {
+    debugDescription
+  }
+
+  public var debugDescription: String {
+    "AccessTokenConfig(provider: AccessTokenProvider, quotaProjectID: \(String(describing: quotaProjectID)), universeDomain: \(String(describing: universeDomain)))"
+  }
+}
+
+/// An internal ``AccessTokenProvider`` returning a fixed ``AccessToken`` and validating its expiration.
+struct StaticAccessTokenProvider: AccessTokenProvider, CustomStringConvertible,
+  CustomDebugStringConvertible
+{
+  /// Error thrown as the underlying error when a static access token has expired.
+  private struct ExpiredTokenError: Error, Sendable, CustomStringConvertible {
+    let expirationDate: Date
+
+    var description: String {
+      "Static access token expired at \(expirationDate)."
+    }
+  }
+
+  let token: AccessToken
+  let timeSource: any TimeSource
+
+  func accessToken() async throws -> AccessToken {
+    // Evaluate against exact wall-clock time (`<= now`) without refresh slack because static tokens
+    // cannot be refreshed early, and applying a refresh margin would prematurely reject valid tokens.
+    if let expirationDate = token.expirationDate, expirationDate <= timeSource.now {
+      throw CredentialsError.cannotFetchToken(
+        message: "The static access token has expired and cannot be refreshed.",
+        underlyingError: ExpiredTokenError(expirationDate: expirationDate)
+      )
+    }
+    return token
+  }
+
+  var description: String {
+    debugDescription
+  }
+
+  var debugDescription: String {
+    "StaticAccessTokenProvider(token: \"[redacted]\", expirationDate: \(String(describing: token.expirationDate)))"
   }
 }
