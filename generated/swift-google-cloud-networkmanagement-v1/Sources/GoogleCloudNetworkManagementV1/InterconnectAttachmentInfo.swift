@@ -24,11 +24,13 @@ public struct InterconnectAttachmentInfo: Codable, Equatable, GoogleWKT._AnyPack
   /// Name of an Interconnect attachment.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of an Interconnect attachment.
+  /// URI of the Interconnect attachment.
+  /// Format:
+  /// `projects/{project_id}/regions/{region}/interconnectAttachments/{attachment_id}`
   public var uri: Swift.String = Swift.String()
 
-  /// URI of the Interconnect where the Interconnect attachment is
-  /// configured.
+  /// URI of the Interconnect.
+  /// Format: `projects/{project_id}/global/interconnects/{interconnect_id}`
   public var interconnectUri: Swift.String = Swift.String()
 
   /// Name of a Google Cloud region where the Interconnect attachment is
@@ -36,6 +38,7 @@ public struct InterconnectAttachmentInfo: Codable, Equatable, GoogleWKT._AnyPack
   public var region: Swift.String = Swift.String()
 
   /// URI of the Cloud Router to be used for dynamic routing.
+  /// Format: `projects/{project_id}/regions/{region}/routers/{router_id}`
   public var cloudRouterUri: Swift.String = Swift.String()
 
   /// The type of interconnect attachment this is.

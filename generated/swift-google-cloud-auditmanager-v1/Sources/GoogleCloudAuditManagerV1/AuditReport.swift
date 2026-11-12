@@ -70,6 +70,10 @@ public struct AuditReport: Codable, Equatable, GoogleWKT._AnyPackable,
   /// report was generated for.
   public var scopeId: Swift.String = Swift.String()
 
+  /// Output only. Parameter values provided by the user and values for
+  /// tunable parameters, stored in the DB, keyed by control name.
+  public var cloudControlParameterStates: [Swift.String: CloudControlParameterStates] = [:]
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `AuditReport`.
@@ -106,6 +110,7 @@ public struct AuditReport: Codable, Equatable, GoogleWKT._AnyPackable,
     static let reportGenerationState = CodingKeys(stringValue: "reportGenerationState")
     static let complianceFramework = CodingKeys(stringValue: "complianceFramework")
     static let scopeId = CodingKeys(stringValue: "scopeId")
+    static let cloudControlParameterStates = CodingKeys(stringValue: "cloudControlParameterStates")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -119,6 +124,7 @@ public struct AuditReport: Codable, Equatable, GoogleWKT._AnyPackable,
       "reportGenerationState",
       "complianceFramework",
       "scopeId",
+      "cloudControlParameterStates",
     ]
   }
 
@@ -158,6 +164,11 @@ public struct AuditReport: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scopeId) {
       self.scopeId = value
     }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: CloudControlParameterStates].self, forKey: .cloudControlParameterStates)
+    {
+      self.cloudControlParameterStates = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -180,6 +191,7 @@ public struct AuditReport: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.reportGenerationState, forKey: .reportGenerationState)
     try container.encode(self.complianceFramework, forKey: .complianceFramework)
     try container.encode(self.scopeId, forKey: .scopeId)
+    try container.encode(self.cloudControlParameterStates, forKey: .cloudControlParameterStates)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -56,6 +56,10 @@ public struct PscAutoConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Type of the PSC connection.
   public var connectionType: ConnectionType = ConnectionType()
 
+  /// Optional. Immutable. The IP version used for the PSC auto-created
+  /// endpoint. If not specified, defaults to IPV4.
+  public var ipVersion: IpVersion = IpVersion()
+
   /// Ports of the exposed endpoint.
   public var ports: PortsOneOf? = nil
 
@@ -93,6 +97,7 @@ public struct PscAutoConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     static let serviceAttachment = CodingKeys(stringValue: "serviceAttachment")
     static let pscConnectionStatus = CodingKeys(stringValue: "pscConnectionStatus")
     static let connectionType = CodingKeys(stringValue: "connectionType")
+    static let ipVersion = CodingKeys(stringValue: "ipVersion")
 
     static let _knownKeys: Set<Swift.String> = [
       "port",
@@ -104,6 +109,7 @@ public struct PscAutoConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       "serviceAttachment",
       "pscConnectionStatus",
       "connectionType",
+      "ipVersion",
     ]
   }
 
@@ -134,6 +140,9 @@ public struct PscAutoConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     if let value = try container.decodeIfPresent(ConnectionType.self, forKey: .connectionType) {
       self.connectionType = value
+    }
+    if let value = try container.decodeIfPresent(IpVersion.self, forKey: .ipVersion) {
+      self.ipVersion = value
     }
 
     var ports: PortsOneOf? = nil
@@ -166,6 +175,7 @@ public struct PscAutoConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.serviceAttachment, forKey: .serviceAttachment)
     try container.encode(self.pscConnectionStatus, forKey: .pscConnectionStatus)
     try container.encode(self.connectionType, forKey: .connectionType)
+    try container.encode(self.ipVersion, forKey: .ipVersion)
 
     if let choice = self.ports {
       switch choice {

@@ -442,6 +442,42 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
     try await self.inner.createWorkspace(request: request, options: options)
   }
 
+  /// Creates a new Workspace in a given Repository asynchronously.
+  ///
+  /// @Snippet(path: "Dataform_CreateWorkspaceLongRunning")
+  public func createWorkspaceLongRunning(
+    request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createWorkspaceLongRunning(request: request, options: options)
+  }
+
+  /// Creates a new Workspace in a given Repository asynchronously.
+  ///
+  /// @Snippet(path: "Dataform_CreateWorkspaceLongRunning")
+  public func createWorkspaceLongRunningPollingUntilDone(
+    request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Workspace {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Workspace>.State in
+      return try op._extractStatus(Workspace.self)
+    }
+    let rawOp = try await self.createWorkspaceLongRunning(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Workspace>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Deletes a single Workspace.
   ///
   /// @Snippet(path: "Dataform_DeleteWorkspace")
@@ -1152,6 +1188,16 @@ extension Clients {
     func createWorkspace(
       request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Workspace
+
+    /// See `DataformClient.createWorkspaceLongRunning`.
+    func createWorkspaceLongRunning(
+      request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `DataformClient.createWorkspaceLongRunning`.
+    func createWorkspaceLongRunningPollingUntilDone(
+      request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> Workspace
 
     /// See `DataformClient.deleteWorkspace`.
     func deleteWorkspace(
@@ -2244,6 +2290,44 @@ extension Clients.DataformProtocol {
       $0.workspaceId = workspaceId
     }
     return try await self.createWorkspace(request: request)
+  }
+
+  public func createWorkspaceLongRunning(request: CreateWorkspaceRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.createWorkspaceLongRunning(request: request, options: .init())
+  }
+
+  public func createWorkspaceLongRunning(
+    request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createWorkspaceLongRunningPollingUntilDone(request: CreateWorkspaceRequest)
+    async throws -> Workspace
+  {
+    return try await self.createWorkspaceLongRunningPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func createWorkspaceLongRunningPollingUntilDone(
+    request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Workspace {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createWorkspaceLongRunningPollingUntilDone(
+    parent: Swift.String,
+    workspace: Workspace?,
+    workspaceId: Swift.String,
+  ) async throws -> Workspace {
+    let request = CreateWorkspaceRequest().with {
+      $0.parent = parent
+      $0.workspace = workspace
+      $0.workspaceId = workspaceId
+    }
+    return try await self.createWorkspaceLongRunningPollingUntilDone(request: request)
   }
 
   public func deleteWorkspace(request: DeleteWorkspaceRequest) async throws {

@@ -144,6 +144,10 @@ extension Clients {
       request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Workspace
 
+    func createWorkspaceLongRunning(
+      request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func deleteWorkspace(
       request: DeleteWorkspaceRequest, options: GoogleGax.RequestOptions
     ) async throws

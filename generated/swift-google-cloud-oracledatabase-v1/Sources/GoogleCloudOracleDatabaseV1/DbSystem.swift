@@ -26,10 +26,10 @@ public struct DbSystem: Codable, Equatable, GoogleWKT._AnyPackable,
   /// projects/{project}/locations/{region}/dbSystems/{db_system}
   public var name: Swift.String = Swift.String()
 
-  /// Optional. The properties of the DbSystem.
+  /// Optional. Immutable. The properties of the DbSystem.
   public var properties: DbSystemProperties? = nil
 
-  /// Optional. The GCP Oracle zone where Oracle DbSystem is hosted.
+  /// Optional. Immutable. The GCP Oracle zone where Oracle DbSystem is hosted.
   /// Example: us-east4-b-r2.
   /// If not specified, the system will pick a zone based on availability.
   public var gcpOracleZone: Swift.String = Swift.String()
@@ -37,14 +37,15 @@ public struct DbSystem: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. The labels or tags associated with the DbSystem.
   public var labels: [Swift.String: Swift.String] = [:]
 
-  /// Optional. The name of the OdbNetwork associated with the DbSystem.
-  /// Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}
-  /// It is optional but if specified, this should match the parent ODBNetwork of
-  /// the OdbSubnet.
+  /// Optional. Immutable. The name of the OdbNetwork associated with the
+  /// DbSystem. Format:
+  /// projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
+  /// optional but if specified, this should match the parent ODBNetwork of the
+  /// OdbSubnet.
   public var odbNetwork: Swift.String = Swift.String()
 
-  /// Required. The name of the OdbSubnet associated with the DbSystem for IP
-  /// allocation. Format:
+  /// Required. Immutable. The name of the OdbSubnet associated with the DbSystem
+  /// for IP allocation. Format:
   /// projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
   public var odbSubnet: Swift.String = Swift.String()
 
@@ -52,8 +53,8 @@ public struct DbSystem: Codable, Equatable, GoogleWKT._AnyPackable,
   /// DbSystem
   public var entitlementId: Swift.String = Swift.String()
 
-  /// Required. The display name for the System db. The name does not have to
-  /// be unique within your project.
+  /// Required. Immutable. The display name for the System db. The name does not
+  /// have to be unique within your project.
   public var displayName: Swift.String = Swift.String()
 
   /// Output only. The date and time that the DbSystem was created.

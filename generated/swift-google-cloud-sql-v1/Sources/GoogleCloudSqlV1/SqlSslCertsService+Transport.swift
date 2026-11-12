@@ -301,6 +301,221 @@
           GoogleCloudSqlV1.SslCertsListResponse.self, timeout: options.attemptTimeout
         ).get()
       }
+
+      @concurrent
+      public func updateCustomerManagedCertificate(
+        request: UpdateCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation {
+        let (path, query, configure, omitted) = try {
+          () throws -> (
+            Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void,
+            [Swift.String]
+          ) in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.project as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "project")
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
+                request.instance as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "instance")
+            else {
+              return nil
+            }
+            guard
+              let pathVariable2 = try GoogleGax._RoutingMatcher.pathValue(
+                request.certificateBundle as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "certificate_bundle")
+            else {
+              return nil
+            }
+            let path =
+              "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/customerManagedCertificates/\(pathVariable2)"
+            let query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            return (path, query)
+          }() {
+            return (
+              candidate.0, candidate.1, { $0.setMethod(.PATCH) },
+              ["project", "instance", "certificateBundle"]
+            )
+          }
+          var paths: [GoogleGax.PathMismatch] = []
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.instance as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "instance",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.certificateBundle as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "certificate_bundle",
+              expecting: "*"
+            )
+            paths.append(builder.build())
+          }
+          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+        }()
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
+        configure(&req)
+        try req.setBody(json: request, omitting: omitted)
+        return try await req.rpc(
+          GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
+        ).get()
+      }
+
+      @concurrent
+      public func deleteCustomerManagedCertificate(
+        request: DeleteCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation {
+        let (path, query, configure) = try {
+          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
+          in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.project as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "project")
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
+                request.instance as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "instance")
+            else {
+              return nil
+            }
+            guard
+              let pathVariable2 = try GoogleGax._RoutingMatcher.pathValue(
+                request.certificateBundle as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "certificate_bundle")
+            else {
+              return nil
+            }
+            let path =
+              "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/customerManagedCertificates/\(pathVariable2)"
+            let query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.DELETE) })
+          }
+          var paths: [GoogleGax.PathMismatch] = []
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.instance as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "instance",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.certificateBundle as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "certificate_bundle",
+              expecting: "*"
+            )
+            paths.append(builder.build())
+          }
+          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+        }()
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
+        configure(&req)
+        return try await req.rpc(
+          GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
+        ).get()
+      }
+
+      @concurrent
+      public func listCustomerManagedCertificates(
+        request: ListCustomerManagedCertificatesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse {
+        let (path, query, configure) = try {
+          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
+          in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.project as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "project")
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
+                request.instance as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "instance")
+            else {
+              return nil
+            }
+            let path =
+              "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/customerManagedCertificates"
+            let query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+          }
+          var paths: [GoogleGax.PathMismatch] = []
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.instance as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "instance",
+              expecting: "*"
+            )
+            paths.append(builder.build())
+          }
+          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+        }()
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
+        configure(&req)
+        return try await req.rpc(
+          GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse.self,
+          timeout: options.attemptTimeout
+        ).get()
+      }
     }
   }
 #endif

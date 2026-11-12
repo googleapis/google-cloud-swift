@@ -26,7 +26,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
   public var results: [ExecuteDashboardQueryResponse.ColumnData] = []
 
   /// Datasource of the query and results.
-  public var dataSources: [DataSource] = []
+  public var dataSources: [GoogleCloudChronicleV1.DataSource] = []
 
   /// Optional. Last time the cache was refreshed. This would be used by the UI
   /// to show the last updated time.
@@ -91,7 +91,9 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
     {
       self.results = value
     }
-    if let value = try container.decodeIfPresent([DataSource].self, forKey: .dataSources) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudChronicleV1.DataSource].self, forKey: .dataSources)
+    {
       self.dataSources = value
     }
     self.lastBackendCacheRefreshedTime = try container.decodeIfPresent(

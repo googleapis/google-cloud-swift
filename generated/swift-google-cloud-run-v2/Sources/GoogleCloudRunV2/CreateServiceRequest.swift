@@ -29,9 +29,10 @@ public struct CreateServiceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The Service instance to create.
   public var service: Service? = nil
 
-  /// Required. The unique identifier for the Service. It must begin with letter,
+  /// Optional. The unique identifier for the Service. It must begin with letter,
   /// and cannot end with hyphen; must contain fewer than 50 characters.
   /// The name of the service becomes {parent}/services/{service_id}.
+  /// If not provided, the server will generate a unique `service_id`.
   public var serviceId: Swift.String = Swift.String()
 
   /// Indicates that the request should be validated and default values

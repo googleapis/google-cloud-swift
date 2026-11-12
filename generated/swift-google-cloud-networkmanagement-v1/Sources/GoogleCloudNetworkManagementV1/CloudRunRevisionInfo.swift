@@ -24,13 +24,17 @@ public struct CloudRunRevisionInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Name of a Cloud Run revision.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of a Cloud Run revision.
+  /// URI of the Cloud Run revision.
+  /// Format:
+  /// `projects/{project_id}/locations/{location}/revisions/{revision_id}`
   public var uri: Swift.String = Swift.String()
 
   /// Location in which this revision is deployed.
   public var location: Swift.String = Swift.String()
 
   /// URI of Cloud Run service this revision belongs to.
+  /// Format: `projects/{project_id}/locations/{location}/services/{service_id}`
+  /// Mutually exclusive with `worker_pool_uri`.
   public var serviceUri: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

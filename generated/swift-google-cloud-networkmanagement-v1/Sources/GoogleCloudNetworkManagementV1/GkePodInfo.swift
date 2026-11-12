@@ -34,6 +34,7 @@ public struct GkePodInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var ipAddress: Swift.String = Swift.String()
 
   /// URI of the network containing the GKE Pod.
+  /// Format: `projects/{project_id}/global/networks/{network_id}`
   public var networkUri: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

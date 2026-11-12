@@ -49,7 +49,8 @@ public struct RuleDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   public var archiveTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The run frequency of the rule deployment.
-  public var runFrequency: RunFrequency = RunFrequency()
+  public var runFrequency: GoogleCloudChronicleV1.RunFrequency =
+    GoogleCloudChronicleV1.RunFrequency()
 
   /// Output only. The execution state of the rule deployment.
   public var executionState: RuleDeployment.ExecutionState = RuleDeployment.ExecutionState()
@@ -138,7 +139,9 @@ public struct RuleDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.archiveTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .archiveTime)
-    if let value = try container.decodeIfPresent(RunFrequency.self, forKey: .runFrequency) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudChronicleV1.RunFrequency.self, forKey: .runFrequency)
+    {
       self.runFrequency = value
     }
     if let value = try container.decodeIfPresent(

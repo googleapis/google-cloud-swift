@@ -501,6 +501,21 @@ extension Clients {
         })
     }
 
+    public func createWorkspaceLongRunning(
+      request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "createWorkspaceLongRunning",
+        action: {
+          (r: CreateWorkspaceRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.createWorkspaceLongRunning(request: r, options: o)
+        })
+    }
+
     public func deleteWorkspace(
       request: DeleteWorkspaceRequest, options: GoogleGax.RequestOptions
     ) async throws {

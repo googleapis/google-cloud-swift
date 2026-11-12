@@ -71,6 +71,15 @@
       "Product": "App Engine Admin API"
     }
   ],
+  "swift-google-backstory": [
+    {
+      "PkgName": "swift-google-backstory",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-backstory/0.6.0/documentation",
+      "APIShortname": "backstory",
+      "Product": "Malachite Common Protos"
+    }
+  ],
   "swift-google-bigtable-admin-v2": [
     {
       "PkgName": "swift-google-bigtable-admin-v2",

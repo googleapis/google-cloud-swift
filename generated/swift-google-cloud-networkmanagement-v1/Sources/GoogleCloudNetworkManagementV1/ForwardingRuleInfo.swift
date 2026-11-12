@@ -24,7 +24,10 @@ public struct ForwardingRuleInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Name of the forwarding rule.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of the forwarding rule.
+  /// URI of the forwarding rule in format
+  /// "projects/{project}/global/forwardingRules/{forwarding_rule}" (global) or
+  /// "projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}"
+  /// (regional).
   public var uri: Swift.String = Swift.String()
 
   /// Protocol defined in the forwarding rule that matches the packet.
@@ -39,7 +42,8 @@ public struct ForwardingRuleInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Target type of the forwarding rule.
   public var target: Swift.String = Swift.String()
 
-  /// Network URI.
+  /// URI of a VPC network where the forwarding rule is located in format
+  /// "projects/{project}/global/networks/{network}".
   public var networkUri: Swift.String = Swift.String()
 
   /// Region of the forwarding rule. Set only for regional forwarding rules.
@@ -50,7 +54,8 @@ public struct ForwardingRuleInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var loadBalancerName: Swift.String = Swift.String()
 
   /// URI of the PSC service attachment this forwarding rule targets (if
-  /// applicable).
+  /// applicable) in format
+  /// "projects/{project}/regions/{region}/serviceAttachments/{service_attachment}".
   public var pscServiceAttachmentUri: Swift.String = Swift.String()
 
   /// PSC Google API target this forwarding rule targets (if applicable).

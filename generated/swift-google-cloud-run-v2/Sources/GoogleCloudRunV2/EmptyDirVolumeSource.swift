@@ -17,15 +17,15 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// In memory (tmpfs) ephemeral storage.
+/// Represents in-memory (tmpfs) or disk-backed ephemeral storage.
 /// It is ephemeral in the sense that when the sandbox is taken down, the data is
 /// destroyed with it (it does not persist across sandbox runs).
 public struct EmptyDirVolumeSource: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// The medium on which the data is stored. Acceptable values today is only
-  /// MEMORY or none. When none, the default will currently be backed by memory
-  /// but could change over time. +optional
+  /// The medium on which the data is stored. Acceptable values are `MEMORY`,
+  /// `DISK`, or unset (`MEDIUM_UNSPECIFIED`). When unset, the default is
+  /// currently memory-backed but could change over time.
   public var medium: EmptyDirVolumeSource.Medium = EmptyDirVolumeSource.Medium()
 
   /// Limit on the storage usable by this EmptyDir volume.
@@ -33,10 +33,11 @@ public struct EmptyDirVolumeSource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The maximum usage on memory medium EmptyDir would be the minimum value
   /// between the SizeLimit specified here and the sum of memory limits of all
   /// containers. The default is nil which means that the limit is undefined.
-  /// More info:
-  /// https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume.
-  /// Info in Kubernetes:
-  /// https://kubernetes.io/docs/concepts/storage/volumes/#emptydir
+  /// For more information, see
+  /// [Configure in-memory volume
+  /// mounts](https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume)
+  /// and the [Kubernetes `emptyDir` volume
+  /// documentation](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir).
   public var sizeLimit: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -110,6 +111,8 @@ public struct EmptyDirVolumeSource: Codable, Equatable, GoogleWKT._AnyPackable,
     case unspecified
     /// Explicitly set the EmptyDir to be in memory. Uses tmpfs.
     case memory
+    /// Explicitly sets the EmptyDir to be a disk.
+    case disk
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -140,6 +143,7 @@ public struct EmptyDirVolumeSource: Codable, Equatable, GoogleWKT._AnyPackable,
       switch self {
       case .unspecified: return 0
       case .memory: return 1
+      case .disk: return 2
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -152,6 +156,7 @@ public struct EmptyDirVolumeSource: Codable, Equatable, GoogleWKT._AnyPackable,
       switch self {
       case .unspecified: return "MEDIUM_UNSPECIFIED"
       case .memory: return "MEMORY"
+      case .disk: return "DISK"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -164,6 +169,7 @@ public struct EmptyDirVolumeSource: Codable, Equatable, GoogleWKT._AnyPackable,
       switch stringValue {
       case "MEDIUM_UNSPECIFIED": self = .unspecified
       case "MEMORY": self = .memory
+      case "DISK": self = .disk
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -175,6 +181,7 @@ public struct EmptyDirVolumeSource: Codable, Equatable, GoogleWKT._AnyPackable,
       switch intValue {
       case 0: self = .unspecified
       case 1: self = .memory
+      case 2: self = .disk
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -202,6 +209,7 @@ public struct EmptyDirVolumeSource: Codable, Equatable, GoogleWKT._AnyPackable,
       switch self {
       case .unspecified: return try container.encode("MEDIUM_UNSPECIFIED")
       case .memory: return try container.encode("MEMORY")
+      case .disk: return try container.encode("DISK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

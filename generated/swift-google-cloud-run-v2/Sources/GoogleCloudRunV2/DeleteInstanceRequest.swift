@@ -20,6 +20,7 @@ import Foundation
 public struct DeleteInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
+  /// Required. The name of the Instance to delete.
   public var name: Swift.String = Swift.String()
 
   /// Optional. Indicates that the request should be validated without actually

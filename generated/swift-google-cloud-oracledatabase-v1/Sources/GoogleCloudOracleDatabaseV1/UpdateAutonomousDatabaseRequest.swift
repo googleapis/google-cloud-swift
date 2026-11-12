@@ -22,13 +22,19 @@ public struct UpdateAutonomousDatabaseRequest: Codable, Equatable, GoogleWKT._An
   Sendable
 {
   /// Optional. Field mask is used to specify the fields to be overwritten in the
-  /// Exadata resource by the update. The fields specified in the update_mask are
-  /// relative to the resource, not the full request. A field will be overwritten
-  /// if it is in the mask. If the user does not provide a mask then all fields
-  /// will be overwritten.
+  /// Exadata resource by the update. The fields specified in the `update_mask`
+  /// are relative to the resource, not the full request. A field will be
+  /// overwritten if it is in the mask. If the user does not provide a mask then
+  /// the service treats this as an implied field mask equivalent to
+  /// all fields that are populated (have a non-empty value). To clear or unset
+  /// a field, the field must be explicitly specified in the `update_mask`.
   public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
-  /// Required. The resource being updated
+  /// Required. The Autonomous Database resource being updated.
+  /// For `labels`, the provided map completely replaces existing labels; any
+  /// existing keys not included will be deleted. To clear all labels, specify
+  /// `labels` in the `update_mask` and omit or leave the `labels` field empty in
+  /// the update request.
   public var autonomousDatabase: AutonomousDatabase? = nil
 
   /// Optional. An optional ID to identify the request. This value is used to

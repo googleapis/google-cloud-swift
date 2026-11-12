@@ -20,6 +20,7 @@ import Foundation
 public struct GetInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
+  /// Required. The name of the Instance to retrieve.
   public var name: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

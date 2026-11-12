@@ -62,6 +62,12 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
   ///   safely without consuming resource quotas.
   public var validateOnly: Swift.Bool = Swift.Bool()
 
+  /// Optional. Maps dynamic parameter overrides by Cloud Control resource name
+  /// at execution time. For example,
+  /// `{"organizations/123/locations/global/cloudControls/control-1":
+  /// {parameters: [...]}}`
+  public var parameterOverrides: [Swift.String: ParameterOverrides] = [:]
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `GenerateAuditScopeReportRequest`.
@@ -92,6 +98,7 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
     static let reportFormat = CodingKeys(stringValue: "reportFormat")
     static let complianceFramework = CodingKeys(stringValue: "complianceFramework")
     static let validateOnly = CodingKeys(stringValue: "validateOnly")
+    static let parameterOverrides = CodingKeys(stringValue: "parameterOverrides")
 
     static let _knownKeys: Set<Swift.String> = [
       "scope",
@@ -99,6 +106,7 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
       "reportFormat",
       "complianceFramework",
       "validateOnly",
+      "parameterOverrides",
     ]
   }
 
@@ -124,6 +132,11 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
       self.validateOnly = value
     }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: ParameterOverrides].self, forKey: .parameterOverrides)
+    {
+      self.parameterOverrides = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -140,6 +153,7 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
     try container.encode(self.reportFormat, forKey: .reportFormat)
     try container.encode(self.complianceFramework, forKey: .complianceFramework)
     try container.encode(self.validateOnly, forKey: .validateOnly)
+    try container.encode(self.parameterOverrides, forKey: .parameterOverrides)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

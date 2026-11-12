@@ -30,6 +30,23 @@ public struct RemoteAgentTool: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The agent card of the remote agent that this tool invokes.
   public var agentCard: AgentCard? = nil
 
+  /// Optional. Authentication configuration for calling the remote agent.
+  public var apiAuthentication: ApiAuthentication? = nil
+
+  /// Optional. When enabled, the interaction between the CXAS app and the remote
+  /// agent will share the same context. If the remote agent returns a
+  /// context_id, it will be persisted for the entirety of the session for this
+  /// remote agent tool.
+  public var statefulAgent: Swift.Bool = Swift.Bool()
+
+  /// Optional. Mapping of input variable names of remote agent to GECX variable
+  /// names.
+  public var inputVariableMapping: [Swift.String: Swift.String] = [:]
+
+  /// Optional. Mapping of output variable names of remote agent to GECX variable
+  /// names.
+  public var outputVariableMapping: [Swift.String: Swift.String] = [:]
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `RemoteAgentTool`.
@@ -58,11 +75,19 @@ public struct RemoteAgentTool: Codable, Equatable, GoogleWKT._AnyPackable,
     static let name = CodingKeys(stringValue: "name")
     static let description = CodingKeys(stringValue: "description")
     static let agentCard = CodingKeys(stringValue: "agentCard")
+    static let apiAuthentication = CodingKeys(stringValue: "apiAuthentication")
+    static let statefulAgent = CodingKeys(stringValue: "statefulAgent")
+    static let inputVariableMapping = CodingKeys(stringValue: "inputVariableMapping")
+    static let outputVariableMapping = CodingKeys(stringValue: "outputVariableMapping")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
       "description",
       "agentCard",
+      "apiAuthentication",
+      "statefulAgent",
+      "inputVariableMapping",
+      "outputVariableMapping",
     ]
   }
 
@@ -75,6 +100,21 @@ public struct RemoteAgentTool: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
     self.agentCard = try container.decodeIfPresent(AgentCard.self, forKey: .agentCard)
+    self.apiAuthentication = try container.decodeIfPresent(
+      ApiAuthentication.self, forKey: .apiAuthentication)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .statefulAgent) {
+      self.statefulAgent = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .inputVariableMapping)
+    {
+      self.inputVariableMapping = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: Swift.String].self, forKey: .outputVariableMapping)
+    {
+      self.outputVariableMapping = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -86,6 +126,10 @@ public struct RemoteAgentTool: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
     try container.encodeIfPresent(self.agentCard, forKey: .agentCard)
+    try container.encodeIfPresent(self.apiAuthentication, forKey: .apiAuthentication)
+    try container.encode(self.statefulAgent, forKey: .statefulAgent)
+    try container.encode(self.inputVariableMapping, forKey: .inputVariableMapping)
+    try container.encode(self.outputVariableMapping, forKey: .outputVariableMapping)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

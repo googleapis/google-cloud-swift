@@ -38,6 +38,10 @@
     /// ID to start executing the recorded SQL queries.
     public var workloadId: Swift.String = Swift.String()
 
+    /// Output only. The name of the source Cloud SQL instance where the workload
+    /// was captured, excluding the project ID (for example, `my-source-instance`).
+    public var sourceInstance: Swift.String = Swift.String()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `StartWorkloadReplayContext`.
@@ -65,10 +69,12 @@
 
       static let replayInstance = CodingKeys(stringValue: "replayInstance")
       static let workloadId = CodingKeys(stringValue: "workloadId")
+      static let sourceInstance = CodingKeys(stringValue: "sourceInstance")
 
       static let _knownKeys: Set<Swift.String> = [
         "replayInstance",
         "workloadId",
+        "sourceInstance",
       ]
     }
 
@@ -80,6 +86,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workloadId) {
         self.workloadId = value
       }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceInstance) {
+        self.sourceInstance = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -90,6 +99,7 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.replayInstance, forKey: .replayInstance)
       try container.encode(self.workloadId, forKey: .workloadId)
+      try container.encode(self.sourceInstance, forKey: .sourceInstance)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -17,6 +17,7 @@ to learn about this library.
 - ``JobsClient``: Cloud Run Job Control Plane API.
 - ``RevisionsClient``: Cloud Run Revision Control Plane API.
 - ``ServicesClient``: Cloud Run Service Control Plane API.
+- ``SourceUploadClient``: The Cloud Run Source Upload API allows you to upload source code to deploy Cloud Run resources.
 - ``TasksClient``: Cloud Run Task Control Plane API.
 - ``WorkerPoolsClient``: Cloud Run WorkerPool Control Plane API.
 

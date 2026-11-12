@@ -216,6 +216,78 @@ extension Clients {
       request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse
 
+    func createRestoreTemplate(
+      request: CreateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getRestoreTemplate(
+      request: GetRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.RestoreTemplate
+
+    func listRestoreTemplates(
+      request: ListRestoreTemplatesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListRestoreTemplatesResponse
+
+    func updateRestoreTemplate(
+      request: UpdateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func deleteRestoreTemplate(
+      request: DeleteRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func runRestoreTemplate(
+      request: RunRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getRestoreTemplateExecution(
+      request: GetRestoreTemplateExecutionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.RestoreTemplateExecution
+
+    func listRestoreTemplateExecutions(
+      request: ListRestoreTemplateExecutionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListRestoreTemplateExecutionsResponse
+
+    func triggerRestoreCleanup(
+      request: TriggerRestoreCleanupRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func createRestoreVerificationPlan(
+      request: CreateRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func createRestoreVerificationPlanAssociation(
+      request: CreateRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getRestoreVerificationPlanAssociation(
+      request: GetRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlanAssociation
+
+    func listRestoreVerificationPlanAssociations(
+      request: ListRestoreVerificationPlanAssociationsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlanAssociationsResponse
+
+    func deleteRestoreVerificationPlanAssociation(
+      request: DeleteRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func triggerRestoreVerification(
+      request: TriggerRestoreVerificationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getRestoreVerificationPlan(
+      request: GetRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlan
+
+    func listRestoreVerificationPlans(
+      request: ListRestoreVerificationPlansRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlansResponse
+
+    func deleteRestoreVerificationPlan(
+      request: DeleteRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse

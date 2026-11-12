@@ -24,13 +24,23 @@ public struct VpnTunnelInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Name of a VPN tunnel.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of a VPN tunnel.
+  /// URI of the VPN tunnel.
+  /// Format: `projects/{project_id}/regions/{region}/vpnTunnels/{vpn_tunnel_id}`
   public var uri: Swift.String = Swift.String()
 
   /// URI of the VPN gateway at local end of the tunnel.
+  /// Format:
+  /// * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}` (HA
+  /// VPN gateway)
+  /// * `projects/{project_id}/regions/{region}/targetVpnGateways/{target_vpn_gateway_id}` (Classic VPN gateway)
   public var sourceGateway: Swift.String = Swift.String()
 
   /// URI of a VPN gateway at remote end of the tunnel.
+  /// Format:
+  /// * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}`
+  /// (GCP HA VPN gateway)
+  /// * `projects/{project_id}/global/peerVpnGateways/{peer_vpn_gateway_id}` (GCP
+  /// peer VPN gateway)
   public var remoteGateway: Swift.String = Swift.String()
 
   /// Remote VPN gateway's IP address.
@@ -39,7 +49,8 @@ public struct VpnTunnelInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Local VPN gateway's IP address.
   public var sourceGatewayIp: Swift.String = Swift.String()
 
-  /// URI of a Compute Engine network where the VPN tunnel is configured.
+  /// URI of the VPC network where the VPN tunnel is configured.
+  /// Format: `projects/{project_id}/global/networks/{network_id}`
   public var networkUri: Swift.String = Swift.String()
 
   /// Name of a Google Cloud region where this VPN tunnel is configured.

@@ -24,6 +24,8 @@ public struct NgfwPacketInspectionInfo: Codable, Equatable, GoogleWKT._AnyPackab
 {
   /// URI of the security profile group associated with this firewall packet
   /// inspection.
+  /// Format:
+  /// `organizations/{organization_id}/locations/global/securityProfileGroups/{security_profile_group_id}`
   public var securityProfileGroupUri: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

@@ -36,6 +36,16 @@ public struct UpdateServiceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// is set to true and the Service does not exist.
   public var allowMissing: Swift.Bool = Swift.Bool()
 
+  /// Optional. If set to true, a new revision will be created from the template
+  /// even if the system doesn't detect any changes from the previously deployed
+  /// revision.
+  ///
+  /// This may be useful for cases where the underlying resources need to be
+  /// recreated or reinitialized. For example if the image is specified by label,
+  /// but the underlying image digest has changed) or if the container performs
+  /// deployment initialization work that needs to be performed again.
+  public var forceNewRevision: Swift.Bool = Swift.Bool()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `UpdateServiceRequest`.
@@ -65,12 +75,14 @@ public struct UpdateServiceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     static let service = CodingKeys(stringValue: "service")
     static let validateOnly = CodingKeys(stringValue: "validateOnly")
     static let allowMissing = CodingKeys(stringValue: "allowMissing")
+    static let forceNewRevision = CodingKeys(stringValue: "forceNewRevision")
 
     static let _knownKeys: Set<Swift.String> = [
       "updateMask",
       "service",
       "validateOnly",
       "allowMissing",
+      "forceNewRevision",
     ]
   }
 
@@ -85,6 +97,9 @@ public struct UpdateServiceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowMissing) {
       self.allowMissing = value
     }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .forceNewRevision) {
+      self.forceNewRevision = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -97,6 +112,7 @@ public struct UpdateServiceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.service, forKey: .service)
     try container.encode(self.validateOnly, forKey: .validateOnly)
     try container.encode(self.allowMissing, forKey: .allowMissing)
+    try container.encode(self.forceNewRevision, forKey: .forceNewRevision)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

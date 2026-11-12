@@ -25,10 +25,10 @@ public struct OdbSubnet: Codable, Equatable, GoogleWKT._AnyPackable,
   /// projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
   public var name: Swift.String = Swift.String()
 
-  /// Required. The CIDR range of the subnet.
+  /// Required. Immutable. The CIDR range of the subnet.
   public var cidrRange: Swift.String = Swift.String()
 
-  /// Required. Purpose of the subnet.
+  /// Required. Immutable. Purpose of the subnet.
   public var purpose: OdbSubnet.Purpose = OdbSubnet.Purpose()
 
   /// Optional. Labels or tags associated with the resource.

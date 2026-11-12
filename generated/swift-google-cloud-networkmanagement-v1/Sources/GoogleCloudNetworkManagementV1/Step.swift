@@ -560,8 +560,8 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Forwarding state: for packets originating from a serverless endpoint
     /// forwarded through Direct VPC egress.
     case directVpcEgressConnection
-    /// Forwarding state: for packets originating from a serverless endpoint
-    /// forwarded through public (external) connectivity.
+    /// Forwarding state: for packets originating from a serverless
+    /// endpoint forwarded through public (external) connectivity.
     case serverlessExternalConnection
     /// Forwarding state: arriving at an interconnect attachment.
     case arriveAtInterconnectAttachment

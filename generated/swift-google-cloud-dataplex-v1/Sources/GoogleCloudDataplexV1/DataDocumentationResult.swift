@@ -51,10 +51,12 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
 
     static let datasetResult = CodingKeys(stringValue: "datasetResult")
     static let tableResult = CodingKeys(stringValue: "tableResult")
+    static let dataProductResult = CodingKeys(stringValue: "dataProductResult")
 
     static let _knownKeys: Set<Swift.String> = [
       "datasetResult",
       "tableResult",
+      "dataProductResult",
     ]
   }
 
@@ -81,6 +83,11 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     {
       try resultCheckAndSet(.tableResult(tableResult))
     }
+    if let dataProductResult = try container.decodeIfPresent(
+      DataDocumentationResult.DataProductResult.self, forKey: .dataProductResult)
+    {
+      try resultCheckAndSet(.dataProductResult(dataProductResult))
+    }
     self.result = result
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -97,6 +104,8 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
         try container.encode(value, forKey: .datasetResult)
       case .tableResult(let value):
         try container.encode(value, forKey: .tableResult)
+      case .dataProductResult(let value):
+        try container.encode(value, forKey: .dataProductResult)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -311,6 +320,204 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     }
 
     /// Packs this `TableResult` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._anySerialize(message: self)
+    }
+  }
+
+  /// Generated metadata about a data product.
+  public struct DataProductResult: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Output only. A detailed description for the data product.
+    public var overview: Swift.String = Swift.String()
+
+    /// Output only. Unordered list. Sample SQL queries for the data product.
+    public var queries: [DataDocumentationResult.Query] = []
+
+    /// Output only. Unordered list. Generated descriptions for assets in the
+    /// data product. Note that some assets may not have a generated description.
+    /// Such assets will not be included in this list.
+    public var assetDescriptions: [DataDocumentationResult.DataProductResult.AssetDescription] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `DataProductResult`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = DataProductResult().with { $0.overview = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let overview = CodingKeys(stringValue: "overview")
+      static let queries = CodingKeys(stringValue: "queries")
+      static let assetDescriptions = CodingKeys(stringValue: "assetDescriptions")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "overview",
+        "queries",
+        "assetDescriptions",
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .overview) {
+        self.overview = value
+      }
+      if let value = try container.decodeIfPresent(
+        [DataDocumentationResult.Query].self, forKey: .queries)
+      {
+        self.queries = value
+      }
+      if let value = try container.decodeIfPresent(
+        [DataDocumentationResult.DataProductResult.AssetDescription].self,
+        forKey: .assetDescriptions)
+      {
+        self.assetDescriptions = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.overview, forKey: .overview)
+      try container.encode(self.queries, forKey: .queries)
+      try container.encode(self.assetDescriptions, forKey: .assetDescriptions)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// Description for an asset in the data product.
+    public struct AssetDescription: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Output only. The service-qualified full resource name of the asset.
+      /// Example:
+      /// //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+      public var resource: Swift.String = Swift.String()
+
+      /// Output only. A generated description for the asset.
+      public var overview: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `AssetDescription`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = AssetDescription().with { $0.resource = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let resource = CodingKeys(stringValue: "resource")
+        static let overview = CodingKeys(stringValue: "overview")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "resource",
+          "overview",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+          self.resource = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .overview) {
+          self.overview = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.resource, forKey: .resource)
+        try container.encode(self.overview, forKey: .overview)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// The type URL for `AssetDescription`: `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.DataProductResult.AssetDescription"`.
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.DataProductResult.AssetDescription"
+      }
+
+      /// Initialize an instance of `AssetDescription` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.DataProductResult.AssetDescription"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `AssetDescription` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// The type URL for `DataProductResult`: `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.DataProductResult"`.
+    public static var _anyTypeUrl: Swift.String {
+      return
+        "type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.DataProductResult"
+    }
+
+    /// Initialize an instance of `DataProductResult` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.DataProductResult"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `DataProductResult` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
@@ -1043,6 +1250,8 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     indirect case datasetResult(DataDocumentationResult.DatasetResult)
     /// Output only. Insights for a Table resource.
     indirect case tableResult(DataDocumentationResult.TableResult)
+    /// Output only. Insights for a data product.
+    indirect case dataProductResult(DataDocumentationResult.DataProductResult)
   }
 
   /// The type URL for `DataDocumentationResult`: `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult"`.

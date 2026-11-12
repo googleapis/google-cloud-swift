@@ -24,7 +24,9 @@ public struct CloudFunctionInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Name of a Cloud Function.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of a Cloud Function.
+  /// URI of the Cloud Function.
+  /// Format:
+  /// `projects/{project_id}/locations/{location}/functions/{function_id}`
   public var uri: Swift.String = Swift.String()
 
   /// Location in which the Cloud Function is deployed.

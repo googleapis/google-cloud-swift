@@ -33,7 +33,8 @@ public struct Container: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Dockerhub is assumed.
   public var image: Swift.String = Swift.String()
 
-  /// Optional. Location of the source.
+  /// Optional. Location of the source. This field is only supported in Cloud Run
+  /// Service.
   public var sourceCode: SourceCode? = nil
 
   /// Entrypoint array. Not executed within a shell.
@@ -89,6 +90,10 @@ public struct Container: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The build info of the container image.
   public var buildInfo: BuildInfo? = nil
 
+  /// Optional. Indicates that this container can act as a sandbox supervisor and
+  /// launch sandboxes.
+  public var sandboxLauncher: Swift.Bool? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `Container`.
@@ -130,6 +135,7 @@ public struct Container: Codable, Equatable, GoogleWKT._AnyPackable,
     static let dependsOn = CodingKeys(stringValue: "dependsOn")
     static let baseImageUri = CodingKeys(stringValue: "baseImageUri")
     static let buildInfo = CodingKeys(stringValue: "buildInfo")
+    static let sandboxLauncher = CodingKeys(stringValue: "sandboxLauncher")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -148,6 +154,7 @@ public struct Container: Codable, Equatable, GoogleWKT._AnyPackable,
       "dependsOn",
       "baseImageUri",
       "buildInfo",
+      "sandboxLauncher",
     ]
   }
 
@@ -189,6 +196,7 @@ public struct Container: Codable, Equatable, GoogleWKT._AnyPackable,
       self.baseImageUri = value
     }
     self.buildInfo = try container.decodeIfPresent(BuildInfo.self, forKey: .buildInfo)
+    self.sandboxLauncher = try container.decodeIfPresent(Swift.Bool.self, forKey: .sandboxLauncher)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -213,6 +221,7 @@ public struct Container: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.dependsOn, forKey: .dependsOn)
     try container.encode(self.baseImageUri, forKey: .baseImageUri)
     try container.encodeIfPresent(self.buildInfo, forKey: .buildInfo)
+    try container.encodeIfPresent(self.sandboxLauncher, forKey: .sandboxLauncher)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

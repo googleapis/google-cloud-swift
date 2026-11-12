@@ -24,10 +24,12 @@ public struct NetworkInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Name of a Compute Engine network.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of a Compute Engine network.
+  /// URI of a Compute Engine network in format
+  /// "projects/{project}/global/networks/{network}"
   public var uri: Swift.String = Swift.String()
 
-  /// URI of the subnet matching the source IP address of the test.
+  /// URI of the subnet matching the source IP address of the test in format
+  /// "projects/{project}/regions/{region}/subnetworks/{subnetwork}"
   public var matchedSubnetUri: Swift.String = Swift.String()
 
   /// The IP range of the subnet matching the source IP address of the test.

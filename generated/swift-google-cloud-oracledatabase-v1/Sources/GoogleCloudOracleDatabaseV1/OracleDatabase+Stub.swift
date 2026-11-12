@@ -35,6 +35,10 @@ extension Clients {
       request: CreateCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func updateCloudExadataInfrastructure(
+      request: UpdateCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func deleteCloudExadataInfrastructure(
       request: DeleteCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
@@ -55,13 +59,37 @@ extension Clients {
       request: CreateCloudVmClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func updateCloudVmCluster(
+      request: UpdateCloudVmClusterRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func deleteCloudVmCluster(
       request: DeleteCloudVmClusterRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func enableCloudVmClusterIdentityConnector(
+      request: EnableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func disableCloudVmClusterIdentityConnector(
+      request: DisableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func enableExadbVmClusterIdentityConnector(
+      request: EnableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func disableExadbVmClusterIdentityConnector(
+      request: DisableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
     func listEntitlements(
       request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOracleDatabaseV1.ListEntitlementsResponse
+
+    func listFlexComponents(
+      request: ListFlexComponentsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.ListFlexComponentsResponse
 
     func listDbServers(
       request: ListDbServersRequest, options: GoogleGax.RequestOptions
@@ -163,6 +191,10 @@ extension Clients {
       request: CreateOdbNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func updateOdbNetwork(
+      request: UpdateOdbNetworkRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func deleteOdbNetwork(
       request: DeleteOdbNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
@@ -177,6 +209,10 @@ extension Clients {
 
     func createOdbSubnet(
       request: CreateOdbSubnetRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func updateOdbSubnet(
+      request: UpdateOdbSubnetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
     func deleteOdbSubnet(
@@ -235,6 +271,10 @@ extension Clients {
       request: CreateExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func updateExascaleDbStorageVault(
+      request: UpdateExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func deleteExascaleDbStorageVault(
       request: DeleteExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
@@ -242,6 +282,10 @@ extension Clients {
     func listDbSystemInitialStorageSizes(
       request: ListDbSystemInitialStorageSizesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOracleDatabaseV1.ListDbSystemInitialStorageSizesResponse
+
+    func listDbSystemComputePerformances(
+      request: ListDbSystemComputePerformancesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.ListDbSystemComputePerformancesResponse
 
     func listDatabases(
       request: ListDatabasesRequest, options: GoogleGax.RequestOptions
@@ -271,6 +315,10 @@ extension Clients {
       request: CreateDbSystemRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func updateDbSystem(
+      request: UpdateDbSystemRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func deleteDbSystem(
       request: DeleteDbSystemRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
@@ -285,6 +333,10 @@ extension Clients {
 
     func createGoldengateDeployment(
       request: CreateGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func updateGoldengateDeployment(
+      request: UpdateGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
     func deleteGoldengateDeployment(
@@ -309,6 +361,10 @@ extension Clients {
 
     func createGoldengateConnection(
       request: CreateGoldengateConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func updateGoldengateConnection(
+      request: UpdateGoldengateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
     func deleteGoldengateConnection(
@@ -351,6 +407,10 @@ extension Clients {
       request: CreateGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func updateGoldengateConnectionAssignment(
+      request: UpdateGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func deleteGoldengateConnectionAssignment(
       request: DeleteGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
@@ -358,6 +418,34 @@ extension Clients {
     func testGoldengateConnectionAssignment(
       request: TestGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOracleDatabaseV1.TestGoldengateConnectionAssignmentResponse
+
+    func listDatabaseConnections(
+      request: ListDatabaseConnectionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.ListDatabaseConnectionsResponse
+
+    func getDatabaseConnection(
+      request: GetDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.DatabaseConnection
+
+    func createDatabaseConnection(
+      request: CreateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func updateDatabaseConnection(
+      request: UpdateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func deleteDatabaseConnection(
+      request: DeleteDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func testDatabaseConnection(
+      request: TestDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.TestDatabaseConnectionResponse
+
+    func executeSql(
+      request: ExecuteSqlRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.ExecuteSqlResponse
 
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions

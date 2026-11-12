@@ -26,30 +26,50 @@ public struct LoadBalancerBackendInfo: Codable, Equatable, GoogleWKT._AnyPackabl
   /// endpoint group backends.
   public var name: Swift.String = Swift.String()
 
-  /// URI of the backend instance (if applicable). Populated for instance group
-  /// backends, and zonal NEG backends.
+  /// URI of the backend instance (if applicable) in format
+  /// "projects/{project}/zones/{zone}/instances/{instance}". Populated for
+  /// instance group backends, and zonal NEG backends.
   public var instanceUri: Swift.String = Swift.String()
 
-  /// URI of the backend service this backend belongs to (if applicable).
+  /// URI of the backend service this backend belongs to (if applicable) in
+  /// format
+  /// "projects/{project}/regions/{region}/backendServices/{backend_service}"
+  /// (regional) or "projects/{project}/global/backendServices/{backend_service}"
+  /// (global).
   public var backendServiceUri: Swift.String = Swift.String()
 
-  /// URI of the instance group this backend belongs to (if applicable).
+  /// URI of the instance group this backend belongs to (if applicable) in
+  /// format "projects/{project}/zones/{zone}/instanceGroups/{instance_group}".
   public var instanceGroupUri: Swift.String = Swift.String()
 
-  /// URI of the network endpoint group this backend belongs to (if applicable).
+  /// URI of the network endpoint group this backend belongs to (if applicable)
+  /// Format:
+  /// * `projects/{project_id}/zones/{zone}/networkEndpointGroups/{neg_id}`
+  /// (zonal NEG)
+  /// * `projects/{project_id}/regions/{region}/networkEndpointGroups/{neg_id}`
+  /// (regional NEG)
+  /// * `projects/{project_id}/global/networkEndpointGroups/{neg_id}` (global
+  /// NEG)
   public var networkEndpointGroupUri: Swift.String = Swift.String()
 
-  /// URI of the backend bucket this backend targets (if applicable).
+  /// URI of the backend bucket this backend targets (if applicable) in format
+  /// "projects/{project}/global/backendBuckets/{backend_bucket}".
   public var backendBucketUri: Swift.String = Swift.String()
 
   /// URI of the PSC service attachment this PSC NEG backend targets (if
-  /// applicable).
+  /// applicable) in format
+  /// "projects/{project}/regions/{region}/serviceAttachments/{service_attachment}".
   public var pscServiceAttachmentUri: Swift.String = Swift.String()
 
   /// PSC Google API target this PSC NEG backend targets (if applicable).
   public var pscGoogleApiTarget: Swift.String = Swift.String()
 
   /// URI of the health check attached to this backend (if applicable).
+  /// Format:
+  /// * `projects/{project_id}/global/healthChecks/{health_check_id}`
+  /// * `projects/{project_id}/regions/{region}/healthChecks/{health_check_id}`
+  /// * `projects/{project_id}/global/httpHealthChecks/{health_check_id}`
+  /// (legacy)
   public var healthCheckUri: Swift.String = Swift.String()
 
   /// Output only. Health check firewalls configuration state for the backend.

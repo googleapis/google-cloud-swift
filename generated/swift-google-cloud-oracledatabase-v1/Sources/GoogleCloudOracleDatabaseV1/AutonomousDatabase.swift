@@ -40,13 +40,13 @@ public struct AutonomousDatabase: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Autonomous Database.
   public var entitlementId: Swift.String = Swift.String()
 
-  /// Optional. Immutable. The password for the default ADMIN user.
+  /// Optional. Input only. Immutable. The password for the default ADMIN user.
   /// Note: Only one of `admin_password_secret_version` or `admin_password` can
   /// be populated.
   public var adminPassword: Swift.String = Swift.String()
 
-  /// Optional. Immutable. The resource name of a secret version in Secret
-  /// Manager which contains the database admin user's password. Format:
+  /// Optional. Input only. Immutable. The resource name of a secret version in
+  /// Secret Manager which contains the database admin user's password. Format:
   /// projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
   /// `admin_password_secret_version` or `admin_password` can be populated.
   public var adminPasswordSecretVersion: Swift.String = Swift.String()

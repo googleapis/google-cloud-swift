@@ -78,6 +78,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
     static let reason = CodingKeys(stringValue: "reason")
     static let revisionReason = CodingKeys(stringValue: "revisionReason")
     static let executionReason = CodingKeys(stringValue: "executionReason")
+    static let instanceReason = CodingKeys(stringValue: "instanceReason")
 
     static let _knownKeys: Set<Swift.String> = [
       "type",
@@ -88,6 +89,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
       "reason",
       "revisionReason",
       "executionReason",
+      "instanceReason",
     ]
   }
 
@@ -131,6 +133,11 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try reasonsCheckAndSet(.executionReason(executionReason))
     }
+    if let instanceReason = try container.decodeIfPresent(
+      Condition.InstanceReason.self, forKey: .instanceReason)
+    {
+      try reasonsCheckAndSet(.instanceReason(instanceReason))
+    }
     self.reasons = reasons
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -154,6 +161,8 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(value, forKey: .revisionReason)
       case .executionReason(let value):
         try container.encode(value, forKey: .executionReason)
+      case .instanceReason(let value):
+        try container.encode(value, forKey: .instanceReason)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -846,6 +855,8 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
     case deleted
     /// A delayed execution is waiting for a start time.
     case delayedStartPending
+    /// A delayed execution exceeded the maximum runtime duration.
+    case delayedExecutionExceedingDurationLimit
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -881,6 +892,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
       case .cancelling: return 4
       case .deleted: return 5
       case .delayedStartPending: return 6
+      case .delayedExecutionExceedingDurationLimit: return 7
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -898,6 +910,8 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
       case .cancelling: return "CANCELLING"
       case .deleted: return "DELETED"
       case .delayedStartPending: return "DELAYED_START_PENDING"
+      case .delayedExecutionExceedingDurationLimit:
+        return "DELAYED_EXECUTION_EXCEEDING_DURATION_LIMIT"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -915,6 +929,8 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
       case "CANCELLING": self = .cancelling
       case "DELETED": self = .deleted
       case "DELAYED_START_PENDING": self = .delayedStartPending
+      case "DELAYED_EXECUTION_EXCEEDING_DURATION_LIMIT":
+        self = .delayedExecutionExceedingDurationLimit
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -931,6 +947,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
       case 4: self = .cancelling
       case 5: self = .deleted
       case 6: self = .delayedStartPending
+      case 7: self = .delayedExecutionExceedingDurationLimit
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -964,6 +981,139 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
       case .cancelling: return try container.encode("CANCELLING")
       case .deleted: return try container.encode("DELETED")
       case .delayedStartPending: return try container.encode("DELAYED_START_PENDING")
+      case .delayedExecutionExceedingDurationLimit:
+        return try container.encode("DELAYED_EXECUTION_EXCEEDING_DURATION_LIMIT")
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
+    }
+  }
+
+  /// Reasons specific to Instance resource.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
+  public enum InstanceReason: Codable, Equatable, Hashable, Sendable {
+    /// Default value.
+    case unspecified
+    /// Instance deleted.
+    case instanceDeleted
+    /// Instance stopped.
+    case instanceStopped
+    /// Instance stopping.
+    case instanceStopping
+    /// Instance exited with a non-zero exit code.
+    case instanceNonZeroExitCode
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown value is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown value is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .instanceDeleted: return 1
+      case .instanceStopped: return 2
+      case .instanceStopping: return 3
+      case .instanceNonZeroExitCode: return 4
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "INSTANCE_REASON_UNSPECIFIED"
+      case .instanceDeleted: return "INSTANCE_DELETED"
+      case .instanceStopped: return "INSTANCE_STOPPED"
+      case .instanceStopping: return "INSTANCE_STOPPING"
+      case .instanceNonZeroExitCode: return "INSTANCE_NON_ZERO_EXIT_CODE"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:InstanceReason/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "INSTANCE_REASON_UNSPECIFIED": self = .unspecified
+      case "INSTANCE_DELETED": self = .instanceDeleted
+      case "INSTANCE_STOPPED": self = .instanceStopped
+      case "INSTANCE_STOPPING": self = .instanceStopping
+      case "INSTANCE_NON_ZERO_EXIT_CODE": self = .instanceNonZeroExitCode
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:InstanceReason/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .instanceDeleted
+      case 2: self = .instanceStopped
+      case 3: self = .instanceStopping
+      case 4: self = .instanceNonZeroExitCode
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode("INSTANCE_REASON_UNSPECIFIED")
+      case .instanceDeleted: return try container.encode("INSTANCE_DELETED")
+      case .instanceStopped: return try container.encode("INSTANCE_STOPPED")
+      case .instanceStopping: return try container.encode("INSTANCE_STOPPING")
+      case .instanceNonZeroExitCode: return try container.encode("INSTANCE_NON_ZERO_EXIT_CODE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -980,6 +1130,8 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
     case revisionReason(Condition.RevisionReason)
     /// Output only. A reason for the execution condition.
     case executionReason(Condition.ExecutionReason)
+    /// Output only. A reason for the instance condition.
+    case instanceReason(Condition.InstanceReason)
   }
 
   /// The type URL for `Condition`: `"type.googleapis.com/google.cloud.run.v2.Condition"`.

@@ -72,6 +72,13 @@ public struct ExadbVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// securely access the resources in the customer project.
   public var identityConnector: IdentityConnector? = nil
 
+  /// Optional. Input only. Immutable. If set to true, disables the automatic
+  /// provisioning of the Workload Identity Connector during creation. If set to
+  /// false or omitted, the Workload Identity Connector will be automatically
+  /// provisioned by default. Note: Provisioning the Workload Identity Connector
+  /// is a prerequisite for enabling Google Cloud CMEK.
+  public var identityConnectorDisabled: Swift.Bool = Swift.Bool()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `ExadbVmCluster`.
@@ -108,6 +115,7 @@ public struct ExadbVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     static let createTime = CodingKeys(stringValue: "createTime")
     static let entitlementId = CodingKeys(stringValue: "entitlementId")
     static let identityConnector = CodingKeys(stringValue: "identityConnector")
+    static let identityConnectorDisabled = CodingKeys(stringValue: "identityConnectorDisabled")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -121,6 +129,7 @@ public struct ExadbVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
       "createTime",
       "entitlementId",
       "identityConnector",
+      "identityConnectorDisabled",
     ]
   }
 
@@ -157,6 +166,11 @@ public struct ExadbVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.identityConnector = try container.decodeIfPresent(
       IdentityConnector.self, forKey: .identityConnector)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .identityConnectorDisabled)
+    {
+      self.identityConnectorDisabled = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -176,6 +190,7 @@ public struct ExadbVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.entitlementId, forKey: .entitlementId)
     try container.encodeIfPresent(self.identityConnector, forKey: .identityConnector)
+    try container.encode(self.identityConnectorDisabled, forKey: .identityConnectorDisabled)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

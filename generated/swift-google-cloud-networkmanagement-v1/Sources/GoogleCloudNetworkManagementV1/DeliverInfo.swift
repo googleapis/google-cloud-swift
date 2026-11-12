@@ -25,6 +25,9 @@ public struct DeliverInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var target: DeliverInfo.Target = DeliverInfo.Target()
 
   /// URI of the resource that the packet is delivered to.
+  /// For example:
+  /// * `"projects/{project}/zones/{zone}/instances/{instance}"`
+  /// * `"projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}"`
   public var resourceUri: Swift.String = Swift.String()
 
   /// IP address of the target (if applicable).
