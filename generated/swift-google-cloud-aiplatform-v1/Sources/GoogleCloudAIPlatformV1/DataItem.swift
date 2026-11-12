@@ -123,7 +123,9 @@
       {
         self.labels = value
       }
-      self.payload = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .payload)
+      if container.contains(.payload) {
+        self.payload = try container.decode(GoogleWKT.WKTValue.self, forKey: .payload)
+      }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
         self.etag = value
       }

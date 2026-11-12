@@ -123,7 +123,9 @@
       if let value = try container.decodeIfPresent([GoogleWKT.WKTValue].self, forKey: .instances) {
         self.instances = value
       }
-      self.parameters = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .parameters)
+      if container.contains(.parameters) {
+        self.parameters = try container.decode(GoogleWKT.WKTValue.self, forKey: .parameters)
+      }
       self.explanationSpecOverride = try container.decodeIfPresent(
         ExplanationSpecOverride.self, forKey: .explanationSpecOverride)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployedModelId) {

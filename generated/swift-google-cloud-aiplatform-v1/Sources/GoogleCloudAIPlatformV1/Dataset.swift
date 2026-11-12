@@ -185,7 +185,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metadataSchemaUri) {
         self.metadataSchemaUri = value
       }
-      self.metadata = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .metadata)
+      if container.contains(.metadata) {
+        self.metadata = try container.decode(GoogleWKT.WKTValue.self, forKey: .metadata)
+      }
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .dataItemCount) {
         self.dataItemCount = value
       }

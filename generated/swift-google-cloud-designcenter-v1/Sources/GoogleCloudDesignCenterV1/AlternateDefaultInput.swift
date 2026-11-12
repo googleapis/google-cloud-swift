@@ -66,7 +66,9 @@ public struct AlternateDefaultInput: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(DisplayVariableAlternateType.self, forKey: .type) {
       self.type = value
     }
-    self.value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value)
+    if container.contains(.value) {
+      self.value = try container.decode(GoogleWKT.WKTValue.self, forKey: .value)
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)

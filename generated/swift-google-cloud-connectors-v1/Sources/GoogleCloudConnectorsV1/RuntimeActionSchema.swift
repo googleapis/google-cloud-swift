@@ -171,8 +171,9 @@ public struct RuntimeActionSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .nullable) {
         self.nullable = value
       }
-      self.defaultValue = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .defaultValue)
+      if container.contains(.defaultValue) {
+        self.defaultValue = try container.decode(GoogleWKT.WKTValue.self, forKey: .defaultValue)
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

@@ -164,7 +164,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metricsSchemaUri) {
         self.metricsSchemaUri = value
       }
-      self.metrics = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .metrics)
+      if container.contains(.metrics) {
+        self.metrics = try container.decode(GoogleWKT.WKTValue.self, forKey: .metrics)
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sliceDimensions) {
@@ -184,7 +186,9 @@
       {
         self.explanationSpecs = value
       }
-      self.metadata = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .metadata)
+      if container.contains(.metadata) {
+        self.metadata = try container.decode(GoogleWKT.WKTValue.self, forKey: .metadata)
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

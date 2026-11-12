@@ -231,10 +231,14 @@
       {
         self.trainingTaskDefinition = value
       }
-      self.trainingTaskInputs = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .trainingTaskInputs)
-      self.trainingTaskMetadata = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .trainingTaskMetadata)
+      if container.contains(.trainingTaskInputs) {
+        self.trainingTaskInputs = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: .trainingTaskInputs)
+      }
+      if container.contains(.trainingTaskMetadata) {
+        self.trainingTaskMetadata = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: .trainingTaskMetadata)
+      }
       self.modelToUpload = try container.decodeIfPresent(
         GoogleCloudAIPlatformV1.Model.self, forKey: .modelToUpload)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {

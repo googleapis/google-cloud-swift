@@ -183,8 +183,9 @@ public struct RuntimeEntitySchema: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .nullable) {
         self.nullable = value
       }
-      self.defaultValue = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .defaultValue)
+      if container.contains(.defaultValue) {
+        self.defaultValue = try container.decode(GoogleWKT.WKTValue.self, forKey: .defaultValue)
+      }
       self.additionalDetails = try container.decodeIfPresent(
         GoogleWKT.WKTStruct.self, forKey: .additionalDetails)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

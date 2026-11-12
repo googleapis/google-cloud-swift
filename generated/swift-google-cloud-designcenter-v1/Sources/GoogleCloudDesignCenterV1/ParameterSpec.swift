@@ -111,8 +111,9 @@ public struct ParameterSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(ParameterSpec.ValueType.self, forKey: .valueType) {
       self.valueType = value
     }
-    self.defaultValue = try container.decodeIfPresent(
-      GoogleWKT.WKTValue.self, forKey: .defaultValue)
+    if container.contains(.defaultValue) {
+      self.defaultValue = try container.decode(GoogleWKT.WKTValue.self, forKey: .defaultValue)
+    }
     if let value = try container.decodeIfPresent([ParameterSpec].self, forKey: .subParameterSpecs) {
       self.subParameterSpecs = value
     }

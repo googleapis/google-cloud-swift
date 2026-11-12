@@ -97,6 +97,14 @@ import Testing
         MessageWithComplexOneOf().with { $0.complex = .value(.string("hello")) }
       ),
       (
+        #"{"value":null}"#,
+        MessageWithComplexOneOf().with { $0.complex = .value(.null(WKTNullValue())) }
+      ),
+      (
+        #"{"null":null}"#,
+        MessageWithComplexOneOf().with { $0.complex = .null(WKTNullValue()) }
+      ),
+      (
         #"{"optionalDouble":1.5}"#,
         MessageWithComplexOneOf().with { $0.complex = .optionalDouble(1.5) }
       ),
@@ -114,19 +122,36 @@ import Testing
     #expect(input == roundtrip)
   }
 
-  // TODO(https://github.com/googleapis/google-cloud-swift/issues/1612) - preserve explicit null presence for WKTNullValue.
-  @Test func complexOneOfSerialization_null() throws {
-    let input = MessageWithComplexOneOf().with { $0.complex = .null(WKTNullValue()) }
+  @Test(
+    "ComplexOneOf null WKT fields roundtrip through WKTAny",
+    arguments: [
+      MessageWithComplexOneOf().with { $0.complex = .null(WKTNullValue()) },
+      MessageWithComplexOneOf().with { $0.complex = .value(.null(WKTNullValue())) },
+    ]
+  )
+  func complexOneOfNullAnyRoundtrip(input: MessageWithComplexOneOf) throws {
+    let any = try WKTAny(fromMessage: input)
     let encoder = _ProtoJSONEncoder()
-    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
-    let data = try encoder.encode(input)
-    let jsonString = String(data: data, encoding: .utf8)!
-    #expect(jsonString == #"{"null":null}"#)
-
+    let data = try encoder.encode(any)
     let decoder = _ProtoJSONDecoder()
-    let roundtrip = try decoder.decode(MessageWithComplexOneOf.self, from: data)
-    // Currently decodes to nil because decodeIfPresent returns nil for null values.
-    #expect(roundtrip == MessageWithComplexOneOf().with { $0.complex = nil })
+    let decodedAny = try decoder.decode(WKTAny.self, from: data)
+    let roundtrip = try MessageWithComplexOneOf(fromAny: decodedAny)
+    #expect(roundtrip == input)
+  }
+
+  @Test(
+    "ComplexOneOf rejects duplicate fields when combined with explicit null",
+    arguments: [
+      #"{"null":null,"boolValue":true}"#,
+      #"{"value":null,"boolValue":true}"#,
+      #"{"null":null,"value":null}"#,
+    ]
+  )
+  func complexOneOfDuplicateWithNull(input: String) throws {
+    let decoder = _ProtoJSONDecoder()
+    #expect(throws: DecodingError.self) {
+      _ = try decoder.decode(MessageWithComplexOneOf.self, from: Data(input.utf8))
+    }
   }
 
   @Test(
@@ -148,7 +173,7 @@ import Testing
   }
 
   @Test(
-    "ComplexOneOf null fields decode as unset",
+    "ComplexOneOf null fields decode as unset except NullValue and Value",
     arguments: [
       (
         #"{"int32":null,"boolValue":true}"#,
@@ -157,6 +182,14 @@ import Testing
       (
         #"{"enum":null,"inner":null,"optionalDouble":null}"#,
         MessageWithComplexOneOf()
+      ),
+      (
+        #"{"int32":null,"null":null}"#,
+        MessageWithComplexOneOf().with { $0.complex = .null(WKTNullValue()) }
+      ),
+      (
+        #"{"int32":null,"value":null}"#,
+        MessageWithComplexOneOf().with { $0.complex = .value(.null(WKTNullValue())) }
       ),
     ]
   )
@@ -178,5 +211,34 @@ import Testing
     @unknown default:
       #expect(Bool(false), "\(got)")
     }
+  }
+
+  @Test(
+    "ComplexOneOf null WKT fields decode and roundtrip with Foundation JSONDecoder",
+    arguments: [
+      (#"{}"#, MessageWithComplexOneOf()),
+      (#"{"null":null}"#, MessageWithComplexOneOf().with { $0.complex = .null(WKTNullValue()) }),
+      (
+        #"{"value":null}"#,
+        MessageWithComplexOneOf().with { $0.complex = .value(.null(WKTNullValue())) }
+      ),
+      (
+        #"{"int32":null,"null":null}"#,
+        MessageWithComplexOneOf().with { $0.complex = .null(WKTNullValue()) }
+      ),
+      (
+        #"{"int32":null,"value":null}"#,
+        MessageWithComplexOneOf().with { $0.complex = .value(.null(WKTNullValue())) }
+      ),
+    ]
+  )
+  func complexOneOfFoundationJSONDecoderNulls(input: String, want: MessageWithComplexOneOf) throws {
+    let decoder = JSONDecoder()
+    let got = try decoder.decode(MessageWithComplexOneOf.self, from: Data(input.utf8))
+    #expect(got == want)
+
+    let encoded = try JSONEncoder().encode(got)
+    let roundtrip = try decoder.decode(MessageWithComplexOneOf.self, from: encoded)
+    #expect(roundtrip == want)
   }
 }

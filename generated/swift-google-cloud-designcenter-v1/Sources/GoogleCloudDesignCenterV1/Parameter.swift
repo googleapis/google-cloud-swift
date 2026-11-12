@@ -72,7 +72,9 @@ public struct Parameter: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
       self.key = value
     }
-    self.value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value)
+    if container.contains(.value) {
+      self.value = try container.decode(GoogleWKT.WKTValue.self, forKey: .value)
+    }
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .readOnly) {
       self.readOnly = value
     }

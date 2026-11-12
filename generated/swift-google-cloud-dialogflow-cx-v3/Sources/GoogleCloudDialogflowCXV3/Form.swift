@@ -192,8 +192,9 @@
         }
         self.fillBehavior = try container.decodeIfPresent(
           Form.Parameter.FillBehavior.self, forKey: .fillBehavior)
-        self.defaultValue = try container.decodeIfPresent(
-          GoogleWKT.WKTValue.self, forKey: .defaultValue)
+        if container.contains(.defaultValue) {
+          self.defaultValue = try container.decode(GoogleWKT.WKTValue.self, forKey: .defaultValue)
+        }
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .redact) {
           self.redact = value
         }

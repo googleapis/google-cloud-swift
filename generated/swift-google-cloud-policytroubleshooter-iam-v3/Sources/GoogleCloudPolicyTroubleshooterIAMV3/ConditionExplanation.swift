@@ -71,7 +71,9 @@ public struct ConditionExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value)
+    if container.contains(.value) {
+      self.value = try container.decode(GoogleWKT.WKTValue.self, forKey: .value)
+    }
     if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .errors) {
       self.errors = value
     }
@@ -161,7 +163,9 @@ public struct ConditionExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .end) {
         self.end = value
       }
-      self.value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value)
+      if container.contains(.value) {
+        self.value = try container.decode(GoogleWKT.WKTValue.self, forKey: .value)
+      }
       if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .errors) {
         self.errors = value
       }
