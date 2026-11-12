@@ -81,6 +81,10 @@ import Testing
     #expect(throws: DecodingError.self) {
       _ = try decoder.decode(T.self, from: Data(input.utf8))
     }
+    let jsonDecoder = JSONDecoder()
+    #expect(throws: DecodingError.self) {
+      _ = try jsonDecoder.decode(T.self, from: Data(input.utf8))
+    }
   }
 
   @Test(
@@ -98,5 +102,25 @@ import Testing
     let decodedAny = try decoder.decode(WKTAny.self, from: data)
     let roundtrip = try T(fromAny: decodedAny)
     #expect(roundtrip == input)
+  }
+
+  @Test(
+    "NullValue fields decode and roundtrip with Foundation JSONDecoder",
+    arguments: [
+      (#"{}"#, T()),
+      (#"{"singular":null}"#, T()),
+      (#"{"optional":null}"#, T().with { $0.optional = WKTNullValue() }),
+      (#"{"repeated":[null]}"#, T().with { $0.repeated = [WKTNullValue()] }),
+      (#"{"map":{"a":null}}"#, T().with { $0.map = ["a": WKTNullValue()] }),
+    ]
+  )
+  func foundationJSONDecoderNulls(input: String, want: T) throws {
+    let decoder = JSONDecoder()
+    let got = try decoder.decode(T.self, from: Data(input.utf8))
+    #expect(got == want)
+
+    let encoded = try JSONEncoder().encode(got)
+    let roundtrip = try decoder.decode(T.self, from: encoded)
+    #expect(roundtrip == want)
   }
 }

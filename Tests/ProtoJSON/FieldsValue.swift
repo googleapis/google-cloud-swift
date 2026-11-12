@@ -130,4 +130,24 @@ import Testing
     let roundtrip = try T(fromAny: decodedAny)
     #expect(roundtrip == input)
   }
+
+  @Test(
+    "Value null fields decode and roundtrip with Foundation JSONDecoder",
+    arguments: [
+      (#"{}"#, T()),
+      (#"{"singular":null}"#, T().with { $0.singular = .null(WKTNullValue()) }),
+      (#"{"optional":null}"#, T().with { $0.optional = .null(WKTNullValue()) }),
+      (#"{"repeated":[null]}"#, T().with { $0.repeated = [.null(WKTNullValue())] }),
+      (#"{"map":{"a":null}}"#, T().with { $0.map = ["a": .null(WKTNullValue())] }),
+    ]
+  )
+  func foundationJSONDecoderNulls(input: String, want: T) throws {
+    let decoder = JSONDecoder()
+    let got = try decoder.decode(T.self, from: Data(input.utf8))
+    #expect(got == want)
+
+    let encoded = try JSONEncoder().encode(got)
+    let roundtrip = try decoder.decode(T.self, from: encoded)
+    #expect(roundtrip == want)
+  }
 }

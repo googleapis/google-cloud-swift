@@ -212,4 +212,33 @@ import Testing
       #expect(Bool(false), "\(got)")
     }
   }
+
+  @Test(
+    "ComplexOneOf null WKT fields decode and roundtrip with Foundation JSONDecoder",
+    arguments: [
+      (#"{}"#, MessageWithComplexOneOf()),
+      (#"{"null":null}"#, MessageWithComplexOneOf().with { $0.complex = .null(WKTNullValue()) }),
+      (
+        #"{"value":null}"#,
+        MessageWithComplexOneOf().with { $0.complex = .value(.null(WKTNullValue())) }
+      ),
+      (
+        #"{"int32":null,"null":null}"#,
+        MessageWithComplexOneOf().with { $0.complex = .null(WKTNullValue()) }
+      ),
+      (
+        #"{"int32":null,"value":null}"#,
+        MessageWithComplexOneOf().with { $0.complex = .value(.null(WKTNullValue())) }
+      ),
+    ]
+  )
+  func complexOneOfFoundationJSONDecoderNulls(input: String, want: MessageWithComplexOneOf) throws {
+    let decoder = JSONDecoder()
+    let got = try decoder.decode(MessageWithComplexOneOf.self, from: Data(input.utf8))
+    #expect(got == want)
+
+    let encoded = try JSONEncoder().encode(got)
+    let roundtrip = try decoder.decode(MessageWithComplexOneOf.self, from: encoded)
+    #expect(roundtrip == want)
+  }
 }
