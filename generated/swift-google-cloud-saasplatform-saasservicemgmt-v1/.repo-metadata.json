@@ -2,7 +2,7 @@
     "api_description": "Model, deploy, and operate your SaaS at scale.",
     "api_id": "saasservicemgmt.googleapis.com",
     "api_shortname": "saasservicemgmt",
-    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-saasplatform-saasservicemgmt-v1/0.6.0/documentation",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-saasplatform-saasservicemgmt-v1/0.7.0/documentation",
     "distribution_name": "swift-google-cloud-saasplatform-saasservicemgmt-v1",
     "issue_tracker": "https://issuetracker.google.com/issues/new?component=1863319",
     "language": "swift",

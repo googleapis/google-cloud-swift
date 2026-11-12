@@ -36,7 +36,7 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     .package(url: "https://github.com/apple/swift-system.git", from: "1.0.0"),
     .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
