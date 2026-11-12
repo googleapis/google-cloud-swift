@@ -24,7 +24,7 @@ import Testing
     arguments: [
       (#"{}"#, T()),
       (#"{"singular":null}"#, T()),
-      (#"{"optional":null}"#, T()),
+      (#"{"optional":null}"#, T().with { $0.optional = WKTNullValue() }),
       (#"{}"#, T()),
       (#"{"repeated":[null]}"#, T().with { $0.repeated = [WKTNullValue()] }),
       (#"{}"#, T()),
@@ -40,6 +40,10 @@ import Testing
     "NullValue fields serialize",
     arguments: [
       (#"{"singular":null}"#, T()),
+      (
+        #"{"optional":null,"singular":null}"#,
+        T().with { $0.optional = WKTNullValue() }
+      ),
       (
         #"{"repeated":[null],"singular":null}"#,
         T().with { $0.repeated = [WKTNullValue()] }
@@ -60,5 +64,39 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let roundtrip = try decoder.decode(T.self, from: data)
     #expect(input == roundtrip)
+  }
+
+  @Test(
+    "NullValue fields reject non-null values",
+    arguments: [
+      #"{"singular":42}"#,
+      #"{"singular":"NULL_VALUE"}"#,
+      #"{"optional":42}"#,
+      #"{"repeated":[42]}"#,
+      #"{"map":{"a":42}}"#,
+    ]
+  )
+  func rejectNonNull(input: String) throws {
+    let decoder = _ProtoJSONDecoder()
+    #expect(throws: DecodingError.self) {
+      _ = try decoder.decode(T.self, from: Data(input.utf8))
+    }
+  }
+
+  @Test(
+    "NullValue fields roundtrip through WKTAny",
+    arguments: [
+      T(),
+      T().with { $0.optional = WKTNullValue() },
+    ]
+  )
+  func anyRoundtrip(input: T) throws {
+    let any = try WKTAny(fromMessage: input)
+    let encoder = _ProtoJSONEncoder()
+    let data = try encoder.encode(any)
+    let decoder = _ProtoJSONDecoder()
+    let decodedAny = try decoder.decode(WKTAny.self, from: data)
+    let roundtrip = try T(fromAny: decodedAny)
+    #expect(roundtrip == input)
   }
 }
