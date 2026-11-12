@@ -75,7 +75,7 @@ default:
         url: https://github.com/googleapis/swift-google-auth
         required_by_services: true
       - name: GoogleBackstory
-        url: https://github.com/googleapis/swift-backstory
+        url: https://github.com/googleapis/swift-google-backstory
         api_package: google.backstory
       - name: GoogleCloudAppHubV1
         url: https://github.com/googleapis/swift-google-cloud-apphub-v1
@@ -166,9 +166,6 @@ default:
         required_by_services: true
     default_version: 0.3.0
 libraries:
-  - name: backstory
-    version: 0.6.0
-    copyright_year: "2026"
   - name: google-api
     version: 0.6.0
     copyright_year: "2026"
@@ -242,6 +239,12 @@ libraries:
         - output: pkgs/swift-google-auth/Sources/GoogleAuth/generated
           api_path: ""
           module_type: package-version
+  - name: google-backstory
+    version: 0.6.0
+    apis:
+      - path: backstory
+    copyright_year: "2026"
+    output: generated/swift-google-backstory
   - name: google-bigtable-admin-v2
     version: 0.6.0
     copyright_year: "2026"
