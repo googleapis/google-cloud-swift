@@ -23,12 +23,9 @@ public import GoogleApi
 public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// The fully qualified name of this Instance. In CreateInstanceRequest, this
-  /// field is ignored, and instead composed from CreateInstanceRequest.parent
-  /// and CreateInstanceRequest.instance_id.
-  ///
-  /// Format:
-  /// projects/{project}/locations/{location}/instances/{instance_id}
+  /// The fully qualified name of this Instance. In `CreateInstanceRequest`, this
+  /// field is ignored, and instead composed from `CreateInstanceRequest.parent`
+  /// and `CreateInstanceRequest.instance_id`.
   public var name: Swift.String = Swift.String()
 
   /// User-provided description of the Instance. This field currently has a
@@ -42,7 +39,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. A number that monotonically increases every time the user
   /// modifies the desired state.
-  /// Please note that unlike v1, this is an int64 value. As with most Google
+  /// Please note that unlike v1, this is an `int64` value. As with most Google
   /// APIs, its JSON representation will be a `string` instead of an `integer`.
   public var generation: Swift.Int64 = Swift.Int64()
 
@@ -77,14 +74,13 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The launch stage as defined by [Google Cloud Platform
   ///  Launch Stages](https://cloud.google.com/terms/launch-stages).
-  ///  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
-  ///  is assumed.
-  ///  Set the launch stage to a preview stage on input to allow use of preview
-  ///  features in that stage. On read (or output), describes whether the
-  ///  resource uses preview features.
-  /// <p>
-  ///  For example, if ALPHA is provided as input, but only BETA and GA-level
-  ///  features are used, this field will be BETA on output.
+  ///  Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified,
+  ///  `GA` is assumed. Set the launch stage to a preview stage on input to allow
+  ///  use of preview features in that stage. On read (or output), describes
+  ///  whether the resource uses preview features.
+  ///
+  ///  For example, if `ALPHA` is provided as input, but only `BETA` and
+  ///  `GA`-level features are used, this field will be `BETA` on output.
   public var launchStage: GoogleApi.LaunchStage = GoogleApi.LaunchStage()
 
   /// Settings for the Binary Authorization feature.
@@ -101,6 +97,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   /// this Instance.
   public var containers: [Container] = []
 
+  /// Optional. Configuration for sandboxes.
+  public var sandboxes: SandboxConfiguration? = nil
+
   /// A list of Volumes to make available to containers.
   public var volumes: [Volume] = []
 
@@ -113,7 +112,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   public var encryptionKeyRevocationAction: EncryptionKeyRevocationAction =
     EncryptionKeyRevocationAction()
 
-  /// If encryption_key_revocation_action is SHUTDOWN, the duration before
+  /// If `encryption_key_revocation_action` is `SHUTDOWN`, the duration before
   /// shutting down all instances. The minimum increment is 1 hour.
   public var encryptionKeyShutdownDuration: GoogleWKT.WKTDuration? = nil
 
@@ -125,20 +124,29 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. Provides the ingress settings for this Instance. On output,
   /// returns the currently observed ingress settings, or
-  /// INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
+  /// `INGRESS_TRAFFIC_UNSPECIFIED` if no revision is active.
   public var ingress: IngressTraffic = IngressTraffic()
 
-  /// Optional. Disables IAM permission check for run.routes.invoke for callers
+  /// Optional. Disables IAM permission check for `run.routes.invoke` for callers
   /// of this Instance. For more information, visit
   /// https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
   public var invokerIamDisabled: Swift.Bool = Swift.Bool()
 
+  /// Optional. Disables public resolution of the default URI of this Instance.
+  public var defaultUriDisabled: Swift.Bool = Swift.Bool()
+
   /// Optional. IAP settings on the Instance.
   public var iapEnabled: Swift.Bool = Swift.Bool()
 
+  /// Optional. Enables SSH access to the Instance.
+  public var sshEnabled: Swift.Bool? = nil
+
+  /// Optional. Restart policy for the Instance.
+  public var restartPolicy: Instance.RestartPolicy = Instance.RestartPolicy()
+
   /// Output only. The generation of this Instance currently serving traffic. See
   /// comments in `reconciling` for additional information on reconciliation
-  /// process in Cloud Run. Please note that unlike v1, this is an int64 value.
+  /// process in Cloud Run. Please note that unlike v1, this is an `int64` value.
   /// As with most Google APIs, its JSON representation will be a `string`
   /// instead of an `integer`.
   public var observedGeneration: Swift.Int64 = Swift.Int64()
@@ -168,15 +176,15 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. All URLs serving traffic for this Instance.
   public var urls: [Swift.String] = []
 
-  /// Output only. Returns true if the Instance is currently being acted upon by
-  /// the system to bring it into the desired state.
+  /// Output only. Returns `true` if the Instance is currently being acted upon
+  /// by the system to bring it into the desired state.
   ///
   /// When a new Instance is created, or an existing one is updated, Cloud Run
   /// will asynchronously perform all necessary steps to bring the Instance to
   /// the desired serving state. This process is called reconciliation. While
   /// reconciliation is in process, `observed_generation` will have a transient
   /// value that might mismatch the intended state.
-  ///  Once reconciliation is over (and this field is false), there are two
+  ///  Once reconciliation is over (and this field is `false`), there are two
   /// possible outcomes: reconciliation succeeded and the serving state matches
   /// the Instance, or there was an error, and reconciliation failed. This state
   /// can be found in `terminal_condition.state`.
@@ -230,6 +238,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     static let vpcAccess = CodingKeys(stringValue: "vpcAccess")
     static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
     static let containers = CodingKeys(stringValue: "containers")
+    static let sandboxes = CodingKeys(stringValue: "sandboxes")
     static let volumes = CodingKeys(stringValue: "volumes")
     static let encryptionKey = CodingKeys(stringValue: "encryptionKey")
     static let encryptionKeyRevocationAction = CodingKeys(
@@ -240,7 +249,10 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     static let gpuZonalRedundancyDisabled = CodingKeys(stringValue: "gpuZonalRedundancyDisabled")
     static let ingress = CodingKeys(stringValue: "ingress")
     static let invokerIamDisabled = CodingKeys(stringValue: "invokerIamDisabled")
+    static let defaultUriDisabled = CodingKeys(stringValue: "defaultUriDisabled")
     static let iapEnabled = CodingKeys(stringValue: "iapEnabled")
+    static let sshEnabled = CodingKeys(stringValue: "sshEnabled")
+    static let restartPolicy = CodingKeys(stringValue: "restartPolicy")
     static let observedGeneration = CodingKeys(stringValue: "observedGeneration")
     static let logUri = CodingKeys(stringValue: "logUri")
     static let terminalCondition = CodingKeys(stringValue: "terminalCondition")
@@ -271,6 +283,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       "vpcAccess",
       "serviceAccount",
       "containers",
+      "sandboxes",
       "volumes",
       "encryptionKey",
       "encryptionKeyRevocationAction",
@@ -279,7 +292,10 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       "gpuZonalRedundancyDisabled",
       "ingress",
       "invokerIamDisabled",
+      "defaultUriDisabled",
       "iapEnabled",
+      "sshEnabled",
+      "restartPolicy",
       "observedGeneration",
       "logUri",
       "terminalCondition",
@@ -347,6 +363,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Container].self, forKey: .containers) {
       self.containers = value
     }
+    self.sandboxes = try container.decodeIfPresent(SandboxConfiguration.self, forKey: .sandboxes)
     if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
       self.volumes = value
     }
@@ -369,8 +386,17 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .invokerIamDisabled) {
       self.invokerIamDisabled = value
     }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .defaultUriDisabled) {
+      self.defaultUriDisabled = value
+    }
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .iapEnabled) {
       self.iapEnabled = value
+    }
+    self.sshEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .sshEnabled)
+    if let value = try container.decodeIfPresent(
+      Instance.RestartPolicy.self, forKey: .restartPolicy)
+    {
+      self.restartPolicy = value
     }
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .observedGeneration) {
       self.observedGeneration = value
@@ -426,6 +452,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.vpcAccess, forKey: .vpcAccess)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.containers, forKey: .containers)
+    try container.encodeIfPresent(self.sandboxes, forKey: .sandboxes)
     try container.encode(self.volumes, forKey: .volumes)
     try container.encode(self.encryptionKey, forKey: .encryptionKey)
     try container.encode(self.encryptionKeyRevocationAction, forKey: .encryptionKeyRevocationAction)
@@ -436,7 +463,10 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       self.gpuZonalRedundancyDisabled, forKey: .gpuZonalRedundancyDisabled)
     try container.encode(self.ingress, forKey: .ingress)
     try container.encode(self.invokerIamDisabled, forKey: .invokerIamDisabled)
+    try container.encode(self.defaultUriDisabled, forKey: .defaultUriDisabled)
     try container.encode(self.iapEnabled, forKey: .iapEnabled)
+    try container.encodeIfPresent(self.sshEnabled, forKey: .sshEnabled)
+    try container.encode(self.restartPolicy, forKey: .restartPolicy)
     try container.encode(self.observedGeneration, forKey: .observedGeneration)
     try container.encode(self.logUri, forKey: .logUri)
     try container.encodeIfPresent(self.terminalCondition, forKey: .terminalCondition)
@@ -448,6 +478,131 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.etag, forKey: .etag)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
+  /// Restart policy options for the instance. If not provided, the default is
+  /// `ON_FAILURE`.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
+  public enum RestartPolicy: Codable, Equatable, Hashable, Sendable {
+    /// Unspecified restart policy.
+    case unspecified
+    /// Always restart the instance.
+    case always
+    /// Restart if the instance terminates with non-zero exit code.
+    case onFailure
+    /// Never restart the instance.
+    case never
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown value is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown value is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .always: return 1
+      case .onFailure: return 2
+      case .never: return 3
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "RESTART_POLICY_UNSPECIFIED"
+      case .always: return "ALWAYS"
+      case .onFailure: return "ON_FAILURE"
+      case .never: return "NEVER"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:RestartPolicy/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "RESTART_POLICY_UNSPECIFIED": self = .unspecified
+      case "ALWAYS": self = .always
+      case "ON_FAILURE": self = .onFailure
+      case "NEVER": self = .never
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:RestartPolicy/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .always
+      case 2: self = .onFailure
+      case 3: self = .never
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode("RESTART_POLICY_UNSPECIFIED")
+      case .always: return try container.encode("ALWAYS")
+      case .onFailure: return try container.encode("ON_FAILURE")
+      case .never: return try container.encode("NEVER")
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
     }
   }
 

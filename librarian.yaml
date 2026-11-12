@@ -19,11 +19,11 @@ sources:
     commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
     sha256: 55912546338433f465a552e9ef09930c63b9eb697053937416890cff83a8622d
   discovery:
-    commit: 8a631f3d524e3cf59dd61dba334cb632561285a0
-    sha256: 1d3109e5727ac1c4274fbb03c6affcc178c58d3829982a5269613e7c9bcda9d3
+    commit: 0aa053282f26a04b1040c357a50a6aad3f41a11e
+    sha256: cb967bb113deb93dccc0e9b228e6a502b3c7cd1235e178a4922d0246de92d340
   googleapis:
-    commit: b77e95d789147749264738d04e410df743d76631
-    sha256: 98834bdfbfd45efb2dae0af58b6538d91121fb46a74099ce2b8c95d7baa9aae7
+    commit: 4fd96ccaf6dfa8f6d20645f7cb526570298ceaba
+    sha256: 903f30c77122766b4e286763fd1199d6cb79c27663f3651a43a43d25677d3239
   protobuf:
     commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
     sha256: 55912546338433f465a552e9ef09930c63b9eb697053937416890cff83a8622d
@@ -74,6 +74,9 @@ default:
       - name: GoogleAuth
         url: https://github.com/googleapis/swift-google-auth
         required_by_services: true
+      - name: GoogleBackstory
+        url: https://github.com/googleapis/swift-backstory
+        api_package: google.backstory
       - name: GoogleCloudAppHubV1
         url: https://github.com/googleapis/swift-google-cloud-apphub-v1
         api_package: google.cloud.apphub.v1
@@ -163,6 +166,9 @@ default:
         required_by_services: true
     default_version: 0.3.0
 libraries:
+  - name: backstory
+    version: 0.6.0
+    copyright_year: "2026"
   - name: google-api
     version: 0.6.0
     copyright_year: "2026"

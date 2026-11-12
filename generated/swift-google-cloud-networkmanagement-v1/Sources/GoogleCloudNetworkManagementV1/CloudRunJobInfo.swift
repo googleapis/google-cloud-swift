@@ -24,7 +24,8 @@ public struct CloudRunJobInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Name of a Cloud Run job.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of a Cloud Run job.
+  /// URI of the Cloud Run job.
+  /// Format: `projects/{project_id}/locations/{location}/jobs/{job_id}`
   public var uri: Swift.String = Swift.String()
 
   /// Location in which this job is deployed.

@@ -99,6 +99,44 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     return try await poller.wait()
   }
 
+  /// Updates the parameters of a single Exadata Infrastructure.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateCloudExadataInfrastructure")
+  public func updateCloudExadataInfrastructure(
+    request: UpdateCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateCloudExadataInfrastructure(request: request, options: options)
+  }
+
+  /// Updates the parameters of a single Exadata Infrastructure.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateCloudExadataInfrastructure")
+  public func updateCloudExadataInfrastructurePollingUntilDone(
+    request: UpdateCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
+  ) async throws -> CloudExadataInfrastructure {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<CloudExadataInfrastructure>.State in
+      return try op._extractStatus(CloudExadataInfrastructure.self)
+    }
+    let rawOp = try await self.updateCloudExadataInfrastructure(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<CloudExadataInfrastructure>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Deletes a single Exadata Infrastructure.
   ///
   /// @Snippet(path: "OracleDatabase_DeleteCloudExadataInfrastructure")
@@ -230,6 +268,43 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     return try await poller.wait()
   }
 
+  /// Updates the parameters of a single Vm Cluster.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateCloudVmCluster")
+  public func updateCloudVmCluster(
+    request: UpdateCloudVmClusterRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateCloudVmCluster(request: request, options: options)
+  }
+
+  /// Updates the parameters of a single Vm Cluster.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateCloudVmCluster")
+  public func updateCloudVmClusterPollingUntilDone(
+    request: UpdateCloudVmClusterRequest, options: GoogleGax.RequestOptions
+  ) async throws -> CloudVmCluster {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<CloudVmCluster>.State in
+      return try op._extractStatus(CloudVmCluster.self)
+    }
+    let rawOp = try await self.updateCloudVmCluster(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CloudVmCluster>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Deletes a single VM Cluster.
   ///
   /// @Snippet(path: "OracleDatabase_DeleteCloudVmCluster")
@@ -266,6 +341,158 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     try await poller.wait()
   }
 
+  /// Enables the Workload Identity Connector for a Cloud VM Cluster.
+  ///
+  /// @Snippet(path: "OracleDatabase_EnableCloudVmClusterIdentityConnector")
+  public func enableCloudVmClusterIdentityConnector(
+    request: EnableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.enableCloudVmClusterIdentityConnector(request: request, options: options)
+  }
+
+  /// Enables the Workload Identity Connector for a Cloud VM Cluster.
+  ///
+  /// @Snippet(path: "OracleDatabase_EnableCloudVmClusterIdentityConnector")
+  public func enableCloudVmClusterIdentityConnectorPollingUntilDone(
+    request: EnableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> CloudVmCluster {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<CloudVmCluster>.State in
+      return try op._extractStatus(CloudVmCluster.self)
+    }
+    let rawOp = try await self.enableCloudVmClusterIdentityConnector(
+      request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CloudVmCluster>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Disables the Workload Identity Connector for a Cloud VM Cluster.
+  ///
+  /// @Snippet(path: "OracleDatabase_DisableCloudVmClusterIdentityConnector")
+  public func disableCloudVmClusterIdentityConnector(
+    request: DisableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.disableCloudVmClusterIdentityConnector(request: request, options: options)
+  }
+
+  /// Disables the Workload Identity Connector for a Cloud VM Cluster.
+  ///
+  /// @Snippet(path: "OracleDatabase_DisableCloudVmClusterIdentityConnector")
+  public func disableCloudVmClusterIdentityConnectorPollingUntilDone(
+    request: DisableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> CloudVmCluster {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<CloudVmCluster>.State in
+      return try op._extractStatus(CloudVmCluster.self)
+    }
+    let rawOp = try await self.disableCloudVmClusterIdentityConnector(
+      request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CloudVmCluster>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Enables the Workload Identity Connector for an Exadb VM Cluster.
+  ///
+  /// @Snippet(path: "OracleDatabase_EnableExadbVmClusterIdentityConnector")
+  public func enableExadbVmClusterIdentityConnector(
+    request: EnableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.enableExadbVmClusterIdentityConnector(request: request, options: options)
+  }
+
+  /// Enables the Workload Identity Connector for an Exadb VM Cluster.
+  ///
+  /// @Snippet(path: "OracleDatabase_EnableExadbVmClusterIdentityConnector")
+  public func enableExadbVmClusterIdentityConnectorPollingUntilDone(
+    request: EnableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> ExadbVmCluster {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
+      return try op._extractStatus(ExadbVmCluster.self)
+    }
+    let rawOp = try await self.enableExadbVmClusterIdentityConnector(
+      request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Disables the Workload Identity Connector for an Exadb VM Cluster.
+  ///
+  /// @Snippet(path: "OracleDatabase_DisableExadbVmClusterIdentityConnector")
+  public func disableExadbVmClusterIdentityConnector(
+    request: DisableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.disableExadbVmClusterIdentityConnector(request: request, options: options)
+  }
+
+  /// Disables the Workload Identity Connector for an Exadb VM Cluster.
+  ///
+  /// @Snippet(path: "OracleDatabase_DisableExadbVmClusterIdentityConnector")
+  public func disableExadbVmClusterIdentityConnectorPollingUntilDone(
+    request: DisableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> ExadbVmCluster {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
+      return try op._extractStatus(ExadbVmCluster.self)
+    }
+    let rawOp = try await self.disableExadbVmClusterIdentityConnector(
+      request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Lists the entitlements in a given project.
   ///
   /// @Snippet(path: "OracleDatabase_ListEntitlements")
@@ -273,6 +500,15 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOracleDatabaseV1.ListEntitlementsResponse {
     try await self.inner.listEntitlements(request: request, options: options)
+  }
+
+  /// Lists Flex Components in a given project and location.
+  ///
+  /// @Snippet(path: "OracleDatabase_ListFlexComponents")
+  public func listFlexComponents(
+    request: ListFlexComponentsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.ListFlexComponentsResponse {
+    try await self.inner.listFlexComponents(request: request, options: options)
   }
 
   /// Lists the database servers of an Exadata Infrastructure instance.
@@ -813,6 +1049,44 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     return try await poller.wait()
   }
 
+  /// Updates the `labels` and `service_connectivity_config` of a single
+  /// OdbNetwork.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateOdbNetwork")
+  public func updateOdbNetwork(
+    request: UpdateOdbNetworkRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateOdbNetwork(request: request, options: options)
+  }
+
+  /// Updates the `labels` and `service_connectivity_config` of a single
+  /// OdbNetwork.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateOdbNetwork")
+  public func updateOdbNetworkPollingUntilDone(
+    request: UpdateOdbNetworkRequest, options: GoogleGax.RequestOptions
+  ) async throws -> OdbNetwork {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<OdbNetwork>.State in
+      return try op._extractStatus(OdbNetwork.self)
+    }
+    let rawOp = try await self.updateOdbNetwork(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<OdbNetwork>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Deletes a single ODB Network.
   ///
   /// @Snippet(path: "OracleDatabase_DeleteOdbNetwork")
@@ -888,6 +1162,42 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
       return try op._extractStatus(OdbSubnet.self)
     }
     let rawOp = try await self.createOdbSubnet(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<OdbSubnet>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Updates the `labels` of a single ODB Subnet.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateOdbSubnet")
+  public func updateOdbSubnet(
+    request: UpdateOdbSubnetRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateOdbSubnet(request: request, options: options)
+  }
+
+  /// Updates the `labels` of a single ODB Subnet.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateOdbSubnet")
+  public func updateOdbSubnetPollingUntilDone(
+    request: UpdateOdbSubnetRequest, options: GoogleGax.RequestOptions
+  ) async throws -> OdbSubnet {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<OdbSubnet>.State in
+      return try op._extractStatus(OdbSubnet.self)
+    }
+    let rawOp = try await self.updateOdbSubnet(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<OdbSubnet>.State in
       let op = try await self.getOperation(
@@ -1254,6 +1564,43 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     return try await poller.wait()
   }
 
+  /// Updates the `labels` of a single ExascaleDbStorageVault.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateExascaleDbStorageVault")
+  public func updateExascaleDbStorageVault(
+    request: UpdateExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateExascaleDbStorageVault(request: request, options: options)
+  }
+
+  /// Updates the `labels` of a single ExascaleDbStorageVault.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateExascaleDbStorageVault")
+  public func updateExascaleDbStorageVaultPollingUntilDone(
+    request: UpdateExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
+  ) async throws -> ExascaleDbStorageVault {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<ExascaleDbStorageVault>.State in
+      return try op._extractStatus(ExascaleDbStorageVault.self)
+    }
+    let rawOp = try await self.updateExascaleDbStorageVault(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExascaleDbStorageVault>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Deletes a single ExascaleDB Storage Vault.
   ///
   /// @Snippet(path: "OracleDatabase_DeleteExascaleDbStorageVault")
@@ -1298,6 +1645,16 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: ListDbSystemInitialStorageSizesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOracleDatabaseV1.ListDbSystemInitialStorageSizesResponse {
     try await self.inner.listDbSystemInitialStorageSizes(request: request, options: options)
+  }
+
+  /// Lists all the DbSystemComputePerformances for the given project and
+  /// location.
+  ///
+  /// @Snippet(path: "OracleDatabase_ListDbSystemComputePerformances")
+  public func listDbSystemComputePerformances(
+    request: ListDbSystemComputePerformancesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.ListDbSystemComputePerformancesResponse {
+    try await self.inner.listDbSystemComputePerformances(request: request, options: options)
   }
 
   /// Lists all the Databases for the given project, location and DbSystem.
@@ -1391,6 +1748,42 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     return try await poller.wait()
   }
 
+  /// Updates the `labels` of a single DbSystem.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateDbSystem")
+  public func updateDbSystem(
+    request: UpdateDbSystemRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateDbSystem(request: request, options: options)
+  }
+
+  /// Updates the `labels` of a single DbSystem.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateDbSystem")
+  public func updateDbSystemPollingUntilDone(
+    request: UpdateDbSystemRequest, options: GoogleGax.RequestOptions
+  ) async throws -> DbSystem {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<DbSystem>.State in
+      return try op._extractStatus(DbSystem.self)
+    }
+    let rawOp = try await self.updateDbSystem(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DbSystem>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Deletes a single DbSystem.
   ///
   /// @Snippet(path: "OracleDatabase_DeleteDbSystem")
@@ -1466,6 +1859,43 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
       return try op._extractStatus(GoldengateDeployment.self)
     }
     let rawOp = try await self.createGoldengateDeployment(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Updates the `labels` of a single GoldengateDeployment.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateGoldengateDeployment")
+  public func updateGoldengateDeployment(
+    request: UpdateGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateGoldengateDeployment(request: request, options: options)
+  }
+
+  /// Updates the `labels` of a single GoldengateDeployment.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateGoldengateDeployment")
+  public func updateGoldengateDeploymentPollingUntilDone(
+    request: UpdateGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoldengateDeployment {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
+      return try op._extractStatus(GoldengateDeployment.self)
+    }
+    let rawOp = try await self.updateGoldengateDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
       @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
@@ -1647,6 +2077,43 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     return try await poller.wait()
   }
 
+  /// Updates the `labels` of a single GoldengateConnection.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateGoldengateConnection")
+  public func updateGoldengateConnection(
+    request: UpdateGoldengateConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateGoldengateConnection(request: request, options: options)
+  }
+
+  /// Updates the `labels` of a single GoldengateConnection.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateGoldengateConnection")
+  public func updateGoldengateConnectionPollingUntilDone(
+    request: UpdateGoldengateConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoldengateConnection {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<GoldengateConnection>.State in
+      return try op._extractStatus(GoldengateConnection.self)
+    }
+    let rawOp = try await self.updateGoldengateConnection(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoldengateConnection>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Deletes a single GoldengateConnection.
   ///
   /// @Snippet(path: "OracleDatabase_DeleteGoldengateConnection")
@@ -1796,6 +2263,45 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     return try await poller.wait()
   }
 
+  /// Updates the `labels` of a single GoldengateConnectionAssignment.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateGoldengateConnectionAssignment")
+  public func updateGoldengateConnectionAssignment(
+    request: UpdateGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateGoldengateConnectionAssignment(request: request, options: options)
+  }
+
+  /// Updates the `labels` of a single GoldengateConnectionAssignment.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateGoldengateConnectionAssignment")
+  public func updateGoldengateConnectionAssignmentPollingUntilDone(
+    request: UpdateGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoldengateConnectionAssignment {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<GoldengateConnectionAssignment>.State in
+      return try op._extractStatus(GoldengateConnectionAssignment.self)
+    }
+    let rawOp = try await self.updateGoldengateConnectionAssignment(
+      request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<GoldengateConnectionAssignment>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Deletes a single GoldengateConnectionAssignment.
   ///
   /// @Snippet(path: "OracleDatabase_DeleteGoldengateConnectionAssignment")
@@ -1840,6 +2346,152 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: TestGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOracleDatabaseV1.TestGoldengateConnectionAssignmentResponse {
     try await self.inner.testGoldengateConnectionAssignment(request: request, options: options)
+  }
+
+  /// Lists DatabaseConnections in a given project and location.
+  ///
+  /// @Snippet(path: "OracleDatabase_ListDatabaseConnections")
+  public func listDatabaseConnections(
+    request: ListDatabaseConnectionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.ListDatabaseConnectionsResponse {
+    try await self.inner.listDatabaseConnections(request: request, options: options)
+  }
+
+  /// Gets details of a single DatabaseConnection.
+  ///
+  /// @Snippet(path: "OracleDatabase_GetDatabaseConnection")
+  public func getDatabaseConnection(
+    request: GetDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.DatabaseConnection {
+    try await self.inner.getDatabaseConnection(request: request, options: options)
+  }
+
+  /// Creates a new DatabaseConnection in a given project and location.
+  ///
+  /// @Snippet(path: "OracleDatabase_CreateDatabaseConnection")
+  public func createDatabaseConnection(
+    request: CreateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createDatabaseConnection(request: request, options: options)
+  }
+
+  /// Creates a new DatabaseConnection in a given project and location.
+  ///
+  /// @Snippet(path: "OracleDatabase_CreateDatabaseConnection")
+  public func createDatabaseConnectionPollingUntilDone(
+    request: CreateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> DatabaseConnection {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<DatabaseConnection>.State in
+      return try op._extractStatus(DatabaseConnection.self)
+    }
+    let rawOp = try await self.createDatabaseConnection(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DatabaseConnection>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Updates the parameters of a single DatabaseConnection.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateDatabaseConnection")
+  public func updateDatabaseConnection(
+    request: UpdateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateDatabaseConnection(request: request, options: options)
+  }
+
+  /// Updates the parameters of a single DatabaseConnection.
+  ///
+  /// @Snippet(path: "OracleDatabase_UpdateDatabaseConnection")
+  public func updateDatabaseConnectionPollingUntilDone(
+    request: UpdateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> DatabaseConnection {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<DatabaseConnection>.State in
+      return try op._extractStatus(DatabaseConnection.self)
+    }
+    let rawOp = try await self.updateDatabaseConnection(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DatabaseConnection>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Deletes a single DatabaseConnection.
+  ///
+  /// @Snippet(path: "OracleDatabase_DeleteDatabaseConnection")
+  public func deleteDatabaseConnection(
+    request: DeleteDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteDatabaseConnection(request: request, options: options)
+  }
+
+  /// Deletes a single DatabaseConnection.
+  ///
+  /// @Snippet(path: "OracleDatabase_DeleteDatabaseConnection")
+  public func deleteDatabaseConnectionPollingUntilDone(
+    request: DeleteDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteDatabaseConnection(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
+  /// Tests connectivity of a DatabaseConnection.
+  ///
+  /// @Snippet(path: "OracleDatabase_TestDatabaseConnection")
+  public func testDatabaseConnection(
+    request: TestDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.TestDatabaseConnectionResponse {
+    try await self.inner.testDatabaseConnection(request: request, options: options)
+  }
+
+  /// Executes a SQL statement on a DatabaseConnection.
+  ///
+  /// @Snippet(path: "OracleDatabase_ExecuteSql")
+  public func executeSql(
+    request: ExecuteSqlRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.ExecuteSqlResponse {
+    try await self.inner.executeSql(request: request, options: options)
   }
 
   /// Lists information about the supported locations for this service.
@@ -1949,6 +2601,16 @@ extension Clients {
       request: CreateCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
     ) async throws -> CloudExadataInfrastructure
 
+    /// See `OracleDatabaseClient.updateCloudExadataInfrastructure`.
+    func updateCloudExadataInfrastructure(
+      request: UpdateCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.updateCloudExadataInfrastructure`.
+    func updateCloudExadataInfrastructurePollingUntilDone(
+      request: UpdateCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
+    ) async throws -> CloudExadataInfrastructure
+
     /// See `OracleDatabaseClient.deleteCloudExadataInfrastructure`.
     func deleteCloudExadataInfrastructure(
       request: DeleteCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
@@ -1989,6 +2651,16 @@ extension Clients {
       request: CreateCloudVmClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> CloudVmCluster
 
+    /// See `OracleDatabaseClient.updateCloudVmCluster`.
+    func updateCloudVmCluster(
+      request: UpdateCloudVmClusterRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.updateCloudVmCluster`.
+    func updateCloudVmClusterPollingUntilDone(
+      request: UpdateCloudVmClusterRequest, options: GoogleGax.RequestOptions
+    ) async throws -> CloudVmCluster
+
     /// See `OracleDatabaseClient.deleteCloudVmCluster`.
     func deleteCloudVmCluster(
       request: DeleteCloudVmClusterRequest, options: GoogleGax.RequestOptions
@@ -1999,10 +2671,55 @@ extension Clients {
       request: DeleteCloudVmClusterRequest, options: GoogleGax.RequestOptions
     ) async throws
 
+    /// See `OracleDatabaseClient.enableCloudVmClusterIdentityConnector`.
+    func enableCloudVmClusterIdentityConnector(
+      request: EnableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.enableCloudVmClusterIdentityConnector`.
+    func enableCloudVmClusterIdentityConnectorPollingUntilDone(
+      request: EnableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> CloudVmCluster
+
+    /// See `OracleDatabaseClient.disableCloudVmClusterIdentityConnector`.
+    func disableCloudVmClusterIdentityConnector(
+      request: DisableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.disableCloudVmClusterIdentityConnector`.
+    func disableCloudVmClusterIdentityConnectorPollingUntilDone(
+      request: DisableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> CloudVmCluster
+
+    /// See `OracleDatabaseClient.enableExadbVmClusterIdentityConnector`.
+    func enableExadbVmClusterIdentityConnector(
+      request: EnableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.enableExadbVmClusterIdentityConnector`.
+    func enableExadbVmClusterIdentityConnectorPollingUntilDone(
+      request: EnableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> ExadbVmCluster
+
+    /// See `OracleDatabaseClient.disableExadbVmClusterIdentityConnector`.
+    func disableExadbVmClusterIdentityConnector(
+      request: DisableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.disableExadbVmClusterIdentityConnector`.
+    func disableExadbVmClusterIdentityConnectorPollingUntilDone(
+      request: DisableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> ExadbVmCluster
+
     /// See `OracleDatabaseClient.listEntitlements`.
     func listEntitlements(
       request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOracleDatabaseV1.ListEntitlementsResponse
+
+    /// See `OracleDatabaseClient.listFlexComponents`.
+    func listFlexComponents(
+      request: ListFlexComponentsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.ListFlexComponentsResponse
 
     /// See `OracleDatabaseClient.listDbServers`.
     func listDbServers(
@@ -2184,6 +2901,16 @@ extension Clients {
       request: CreateOdbNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> OdbNetwork
 
+    /// See `OracleDatabaseClient.updateOdbNetwork`.
+    func updateOdbNetwork(
+      request: UpdateOdbNetworkRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.updateOdbNetwork`.
+    func updateOdbNetworkPollingUntilDone(
+      request: UpdateOdbNetworkRequest, options: GoogleGax.RequestOptions
+    ) async throws -> OdbNetwork
+
     /// See `OracleDatabaseClient.deleteOdbNetwork`.
     func deleteOdbNetwork(
       request: DeleteOdbNetworkRequest, options: GoogleGax.RequestOptions
@@ -2212,6 +2939,16 @@ extension Clients {
     /// See `OracleDatabaseClient.createOdbSubnet`.
     func createOdbSubnetPollingUntilDone(
       request: CreateOdbSubnetRequest, options: GoogleGax.RequestOptions
+    ) async throws -> OdbSubnet
+
+    /// See `OracleDatabaseClient.updateOdbSubnet`.
+    func updateOdbSubnet(
+      request: UpdateOdbSubnetRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.updateOdbSubnet`.
+    func updateOdbSubnetPollingUntilDone(
+      request: UpdateOdbSubnetRequest, options: GoogleGax.RequestOptions
     ) async throws -> OdbSubnet
 
     /// See `OracleDatabaseClient.deleteOdbSubnet`.
@@ -2324,6 +3061,16 @@ extension Clients {
       request: CreateExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExascaleDbStorageVault
 
+    /// See `OracleDatabaseClient.updateExascaleDbStorageVault`.
+    func updateExascaleDbStorageVault(
+      request: UpdateExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.updateExascaleDbStorageVault`.
+    func updateExascaleDbStorageVaultPollingUntilDone(
+      request: UpdateExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
+    ) async throws -> ExascaleDbStorageVault
+
     /// See `OracleDatabaseClient.deleteExascaleDbStorageVault`.
     func deleteExascaleDbStorageVault(
       request: DeleteExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
@@ -2338,6 +3085,11 @@ extension Clients {
     func listDbSystemInitialStorageSizes(
       request: ListDbSystemInitialStorageSizesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOracleDatabaseV1.ListDbSystemInitialStorageSizesResponse
+
+    /// See `OracleDatabaseClient.listDbSystemComputePerformances`.
+    func listDbSystemComputePerformances(
+      request: ListDbSystemComputePerformancesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.ListDbSystemComputePerformancesResponse
 
     /// See `OracleDatabaseClient.listDatabases`.
     func listDatabases(
@@ -2379,6 +3131,16 @@ extension Clients {
       request: CreateDbSystemRequest, options: GoogleGax.RequestOptions
     ) async throws -> DbSystem
 
+    /// See `OracleDatabaseClient.updateDbSystem`.
+    func updateDbSystem(
+      request: UpdateDbSystemRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.updateDbSystem`.
+    func updateDbSystemPollingUntilDone(
+      request: UpdateDbSystemRequest, options: GoogleGax.RequestOptions
+    ) async throws -> DbSystem
+
     /// See `OracleDatabaseClient.deleteDbSystem`.
     func deleteDbSystem(
       request: DeleteDbSystemRequest, options: GoogleGax.RequestOptions
@@ -2407,6 +3169,16 @@ extension Clients {
     /// See `OracleDatabaseClient.createGoldengateDeployment`.
     func createGoldengateDeploymentPollingUntilDone(
       request: CreateGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoldengateDeployment
+
+    /// See `OracleDatabaseClient.updateGoldengateDeployment`.
+    func updateGoldengateDeployment(
+      request: UpdateGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.updateGoldengateDeployment`.
+    func updateGoldengateDeploymentPollingUntilDone(
+      request: UpdateGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoldengateDeployment
 
     /// See `OracleDatabaseClient.deleteGoldengateDeployment`.
@@ -2457,6 +3229,16 @@ extension Clients {
     /// See `OracleDatabaseClient.createGoldengateConnection`.
     func createGoldengateConnectionPollingUntilDone(
       request: CreateGoldengateConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoldengateConnection
+
+    /// See `OracleDatabaseClient.updateGoldengateConnection`.
+    func updateGoldengateConnection(
+      request: UpdateGoldengateConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.updateGoldengateConnection`.
+    func updateGoldengateConnectionPollingUntilDone(
+      request: UpdateGoldengateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoldengateConnection
 
     /// See `OracleDatabaseClient.deleteGoldengateConnection`.
@@ -2519,6 +3301,16 @@ extension Clients {
       request: CreateGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoldengateConnectionAssignment
 
+    /// See `OracleDatabaseClient.updateGoldengateConnectionAssignment`.
+    func updateGoldengateConnectionAssignment(
+      request: UpdateGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.updateGoldengateConnectionAssignment`.
+    func updateGoldengateConnectionAssignmentPollingUntilDone(
+      request: UpdateGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoldengateConnectionAssignment
+
     /// See `OracleDatabaseClient.deleteGoldengateConnectionAssignment`.
     func deleteGoldengateConnectionAssignment(
       request: DeleteGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
@@ -2533,6 +3325,56 @@ extension Clients {
     func testGoldengateConnectionAssignment(
       request: TestGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOracleDatabaseV1.TestGoldengateConnectionAssignmentResponse
+
+    /// See `OracleDatabaseClient.listDatabaseConnections`.
+    func listDatabaseConnections(
+      request: ListDatabaseConnectionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.ListDatabaseConnectionsResponse
+
+    /// See `OracleDatabaseClient.getDatabaseConnection`.
+    func getDatabaseConnection(
+      request: GetDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.DatabaseConnection
+
+    /// See `OracleDatabaseClient.createDatabaseConnection`.
+    func createDatabaseConnection(
+      request: CreateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.createDatabaseConnection`.
+    func createDatabaseConnectionPollingUntilDone(
+      request: CreateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> DatabaseConnection
+
+    /// See `OracleDatabaseClient.updateDatabaseConnection`.
+    func updateDatabaseConnection(
+      request: UpdateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.updateDatabaseConnection`.
+    func updateDatabaseConnectionPollingUntilDone(
+      request: UpdateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> DatabaseConnection
+
+    /// See `OracleDatabaseClient.deleteDatabaseConnection`.
+    func deleteDatabaseConnection(
+      request: DeleteDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `OracleDatabaseClient.deleteDatabaseConnection`.
+    func deleteDatabaseConnectionPollingUntilDone(
+      request: DeleteDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `OracleDatabaseClient.testDatabaseConnection`.
+    func testDatabaseConnection(
+      request: TestDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.TestDatabaseConnectionResponse
+
+    /// See `OracleDatabaseClient.executeSql`.
+    func executeSql(
+      request: ExecuteSqlRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudOracleDatabaseV1.ExecuteSqlResponse
 
     /// See `OracleDatabaseClient.listLocations`.
     func listLocations(
@@ -2664,6 +3506,42 @@ extension Clients.OracleDatabaseProtocol {
       $0.cloudExadataInfrastructureId = cloudExadataInfrastructureId
     }
     return try await self.createCloudExadataInfrastructurePollingUntilDone(request: request)
+  }
+
+  public func updateCloudExadataInfrastructure(request: UpdateCloudExadataInfrastructureRequest)
+    async throws -> GoogleLongRunning.Operation
+  {
+    try await self.updateCloudExadataInfrastructure(request: request, options: .init())
+  }
+
+  public func updateCloudExadataInfrastructure(
+    request: UpdateCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateCloudExadataInfrastructurePollingUntilDone(
+    request: UpdateCloudExadataInfrastructureRequest
+  ) async throws -> CloudExadataInfrastructure {
+    return try await self.updateCloudExadataInfrastructurePollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func updateCloudExadataInfrastructurePollingUntilDone(
+    request: UpdateCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
+  ) async throws -> CloudExadataInfrastructure {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateCloudExadataInfrastructurePollingUntilDone(
+    cloudExadataInfrastructure: CloudExadataInfrastructure?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> CloudExadataInfrastructure {
+    let request = UpdateCloudExadataInfrastructureRequest().with {
+      $0.cloudExadataInfrastructure = cloudExadataInfrastructure
+      $0.updateMask = updateMask
+    }
+    return try await self.updateCloudExadataInfrastructurePollingUntilDone(request: request)
   }
 
   public func deleteCloudExadataInfrastructure(request: DeleteCloudExadataInfrastructureRequest)
@@ -2839,6 +3717,41 @@ extension Clients.OracleDatabaseProtocol {
     return try await self.createCloudVmClusterPollingUntilDone(request: request)
   }
 
+  public func updateCloudVmCluster(request: UpdateCloudVmClusterRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateCloudVmCluster(request: request, options: .init())
+  }
+
+  public func updateCloudVmCluster(
+    request: UpdateCloudVmClusterRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateCloudVmClusterPollingUntilDone(request: UpdateCloudVmClusterRequest)
+    async throws -> CloudVmCluster
+  {
+    return try await self.updateCloudVmClusterPollingUntilDone(request: request, options: .init())
+  }
+
+  public func updateCloudVmClusterPollingUntilDone(
+    request: UpdateCloudVmClusterRequest, options: GoogleGax.RequestOptions
+  ) async throws -> CloudVmCluster {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateCloudVmClusterPollingUntilDone(
+    cloudVmCluster: CloudVmCluster?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> CloudVmCluster {
+    let request = UpdateCloudVmClusterRequest().with {
+      $0.cloudVmCluster = cloudVmCluster
+      $0.updateMask = updateMask
+    }
+    return try await self.updateCloudVmClusterPollingUntilDone(request: request)
+  }
+
   public func deleteCloudVmCluster(request: DeleteCloudVmClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2870,6 +3783,142 @@ extension Clients.OracleDatabaseProtocol {
       $0.name = name
     }
     try await self.deleteCloudVmClusterPollingUntilDone(request: request)
+  }
+
+  public func enableCloudVmClusterIdentityConnector(
+    request: EnableCloudVmClusterIdentityConnectorRequest
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.enableCloudVmClusterIdentityConnector(request: request, options: .init())
+  }
+
+  public func enableCloudVmClusterIdentityConnector(
+    request: EnableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func enableCloudVmClusterIdentityConnectorPollingUntilDone(
+    request: EnableCloudVmClusterIdentityConnectorRequest
+  ) async throws -> CloudVmCluster {
+    return try await self.enableCloudVmClusterIdentityConnectorPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func enableCloudVmClusterIdentityConnectorPollingUntilDone(
+    request: EnableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> CloudVmCluster {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func enableCloudVmClusterIdentityConnectorPollingUntilDone(
+    name: Swift.String,
+  ) async throws -> CloudVmCluster {
+    let request = EnableCloudVmClusterIdentityConnectorRequest().with {
+      $0.name = name
+    }
+    return try await self.enableCloudVmClusterIdentityConnectorPollingUntilDone(request: request)
+  }
+
+  public func disableCloudVmClusterIdentityConnector(
+    request: DisableCloudVmClusterIdentityConnectorRequest
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.disableCloudVmClusterIdentityConnector(request: request, options: .init())
+  }
+
+  public func disableCloudVmClusterIdentityConnector(
+    request: DisableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func disableCloudVmClusterIdentityConnectorPollingUntilDone(
+    request: DisableCloudVmClusterIdentityConnectorRequest
+  ) async throws -> CloudVmCluster {
+    return try await self.disableCloudVmClusterIdentityConnectorPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func disableCloudVmClusterIdentityConnectorPollingUntilDone(
+    request: DisableCloudVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> CloudVmCluster {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func disableCloudVmClusterIdentityConnectorPollingUntilDone(
+    name: Swift.String,
+  ) async throws -> CloudVmCluster {
+    let request = DisableCloudVmClusterIdentityConnectorRequest().with {
+      $0.name = name
+    }
+    return try await self.disableCloudVmClusterIdentityConnectorPollingUntilDone(request: request)
+  }
+
+  public func enableExadbVmClusterIdentityConnector(
+    request: EnableExadbVmClusterIdentityConnectorRequest
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.enableExadbVmClusterIdentityConnector(request: request, options: .init())
+  }
+
+  public func enableExadbVmClusterIdentityConnector(
+    request: EnableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func enableExadbVmClusterIdentityConnectorPollingUntilDone(
+    request: EnableExadbVmClusterIdentityConnectorRequest
+  ) async throws -> ExadbVmCluster {
+    return try await self.enableExadbVmClusterIdentityConnectorPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func enableExadbVmClusterIdentityConnectorPollingUntilDone(
+    request: EnableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> ExadbVmCluster {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func enableExadbVmClusterIdentityConnectorPollingUntilDone(
+    name: Swift.String,
+  ) async throws -> ExadbVmCluster {
+    let request = EnableExadbVmClusterIdentityConnectorRequest().with {
+      $0.name = name
+    }
+    return try await self.enableExadbVmClusterIdentityConnectorPollingUntilDone(request: request)
+  }
+
+  public func disableExadbVmClusterIdentityConnector(
+    request: DisableExadbVmClusterIdentityConnectorRequest
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.disableExadbVmClusterIdentityConnector(request: request, options: .init())
+  }
+
+  public func disableExadbVmClusterIdentityConnector(
+    request: DisableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func disableExadbVmClusterIdentityConnectorPollingUntilDone(
+    request: DisableExadbVmClusterIdentityConnectorRequest
+  ) async throws -> ExadbVmCluster {
+    return try await self.disableExadbVmClusterIdentityConnectorPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func disableExadbVmClusterIdentityConnectorPollingUntilDone(
+    request: DisableExadbVmClusterIdentityConnectorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> ExadbVmCluster {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func disableExadbVmClusterIdentityConnectorPollingUntilDone(
+    name: Swift.String,
+  ) async throws -> ExadbVmCluster {
+    let request = DisableExadbVmClusterIdentityConnectorRequest().with {
+      $0.name = name
+    }
+    return try await self.disableExadbVmClusterIdentityConnectorPollingUntilDone(request: request)
   }
 
   public func listEntitlements(request: ListEntitlementsRequest) async throws
@@ -2914,6 +3963,50 @@ extension Clients.OracleDatabaseProtocol {
       $0.parent = parent
     }
     return self.listEntitlementsByItems(request: request)
+  }
+
+  public func listFlexComponents(request: ListFlexComponentsRequest) async throws
+    -> GoogleCloudOracleDatabaseV1.ListFlexComponentsResponse
+  {
+    try await self.listFlexComponents(request: request, options: .init())
+  }
+
+  public func listFlexComponents(
+    request: ListFlexComponentsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.ListFlexComponentsResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listFlexComponentsByItems(
+    request: ListFlexComponentsRequest
+  ) -> some AsyncSequence<FlexComponent, any Swift.Error> & Sendable {
+    self.listFlexComponentsByItems(request: request, options: .init())
+  }
+
+  /// Lists Flex Components in a given project and location.
+  ///
+  /// @Snippet(path: "OracleDatabase_ListFlexComponents")
+  public func listFlexComponentsByItems(
+    request: ListFlexComponentsRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<FlexComponent, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudOracleDatabaseV1.ListFlexComponentsResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listFlexComponents(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listFlexComponentsByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<FlexComponent, any Swift.Error> & Sendable {
+    let request = ListFlexComponentsRequest().with {
+      $0.parent = parent
+    }
+    return self.listFlexComponentsByItems(request: request)
   }
 
   public func listDbServers(request: ListDbServersRequest) async throws
@@ -3838,6 +4931,41 @@ extension Clients.OracleDatabaseProtocol {
     return try await self.createOdbNetworkPollingUntilDone(request: request)
   }
 
+  public func updateOdbNetwork(request: UpdateOdbNetworkRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateOdbNetwork(request: request, options: .init())
+  }
+
+  public func updateOdbNetwork(
+    request: UpdateOdbNetworkRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateOdbNetworkPollingUntilDone(request: UpdateOdbNetworkRequest) async throws
+    -> OdbNetwork
+  {
+    return try await self.updateOdbNetworkPollingUntilDone(request: request, options: .init())
+  }
+
+  public func updateOdbNetworkPollingUntilDone(
+    request: UpdateOdbNetworkRequest, options: GoogleGax.RequestOptions
+  ) async throws -> OdbNetwork {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateOdbNetworkPollingUntilDone(
+    odbNetwork: OdbNetwork?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> OdbNetwork {
+    let request = UpdateOdbNetworkRequest().with {
+      $0.odbNetwork = odbNetwork
+      $0.updateMask = updateMask
+    }
+    return try await self.updateOdbNetworkPollingUntilDone(request: request)
+  }
+
   public func deleteOdbNetwork(request: DeleteOdbNetworkRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3969,6 +5097,41 @@ extension Clients.OracleDatabaseProtocol {
       $0.odbSubnetId = odbSubnetId
     }
     return try await self.createOdbSubnetPollingUntilDone(request: request)
+  }
+
+  public func updateOdbSubnet(request: UpdateOdbSubnetRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateOdbSubnet(request: request, options: .init())
+  }
+
+  public func updateOdbSubnet(
+    request: UpdateOdbSubnetRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateOdbSubnetPollingUntilDone(request: UpdateOdbSubnetRequest) async throws
+    -> OdbSubnet
+  {
+    return try await self.updateOdbSubnetPollingUntilDone(request: request, options: .init())
+  }
+
+  public func updateOdbSubnetPollingUntilDone(
+    request: UpdateOdbSubnetRequest, options: GoogleGax.RequestOptions
+  ) async throws -> OdbSubnet {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateOdbSubnetPollingUntilDone(
+    odbSubnet: OdbSubnet?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> OdbSubnet {
+    let request = UpdateOdbSubnetRequest().with {
+      $0.odbSubnet = odbSubnet
+      $0.updateMask = updateMask
+    }
+    return try await self.updateOdbSubnetPollingUntilDone(request: request)
   }
 
   public func deleteOdbSubnet(request: DeleteOdbSubnetRequest) async throws
@@ -4446,6 +5609,42 @@ extension Clients.OracleDatabaseProtocol {
     return try await self.createExascaleDbStorageVaultPollingUntilDone(request: request)
   }
 
+  public func updateExascaleDbStorageVault(request: UpdateExascaleDbStorageVaultRequest)
+    async throws -> GoogleLongRunning.Operation
+  {
+    try await self.updateExascaleDbStorageVault(request: request, options: .init())
+  }
+
+  public func updateExascaleDbStorageVault(
+    request: UpdateExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateExascaleDbStorageVaultPollingUntilDone(
+    request: UpdateExascaleDbStorageVaultRequest
+  ) async throws -> ExascaleDbStorageVault {
+    return try await self.updateExascaleDbStorageVaultPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func updateExascaleDbStorageVaultPollingUntilDone(
+    request: UpdateExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
+  ) async throws -> ExascaleDbStorageVault {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateExascaleDbStorageVaultPollingUntilDone(
+    exascaleDbStorageVault: ExascaleDbStorageVault?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> ExascaleDbStorageVault {
+    let request = UpdateExascaleDbStorageVaultRequest().with {
+      $0.exascaleDbStorageVault = exascaleDbStorageVault
+      $0.updateMask = updateMask
+    }
+    return try await self.updateExascaleDbStorageVaultPollingUntilDone(request: request)
+  }
+
   public func deleteExascaleDbStorageVault(request: DeleteExascaleDbStorageVaultRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -4522,6 +5721,51 @@ extension Clients.OracleDatabaseProtocol {
       $0.parent = parent
     }
     return self.listDbSystemInitialStorageSizesByItems(request: request)
+  }
+
+  public func listDbSystemComputePerformances(request: ListDbSystemComputePerformancesRequest)
+    async throws -> GoogleCloudOracleDatabaseV1.ListDbSystemComputePerformancesResponse
+  {
+    try await self.listDbSystemComputePerformances(request: request, options: .init())
+  }
+
+  public func listDbSystemComputePerformances(
+    request: ListDbSystemComputePerformancesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.ListDbSystemComputePerformancesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listDbSystemComputePerformancesByItems(
+    request: ListDbSystemComputePerformancesRequest
+  ) -> some AsyncSequence<DbSystemComputePerformance, any Swift.Error> & Sendable {
+    self.listDbSystemComputePerformancesByItems(request: request, options: .init())
+  }
+
+  /// Lists all the DbSystemComputePerformances for the given project and
+  /// location.
+  ///
+  /// @Snippet(path: "OracleDatabase_ListDbSystemComputePerformances")
+  public func listDbSystemComputePerformancesByItems(
+    request: ListDbSystemComputePerformancesRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<DbSystemComputePerformance, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudOracleDatabaseV1.ListDbSystemComputePerformancesResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listDbSystemComputePerformances(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listDbSystemComputePerformancesByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<DbSystemComputePerformance, any Swift.Error> & Sendable {
+    let request = ListDbSystemComputePerformancesRequest().with {
+      $0.parent = parent
+    }
+    return self.listDbSystemComputePerformancesByItems(request: request)
   }
 
   public func listDatabases(request: ListDatabasesRequest) async throws
@@ -4757,6 +6001,41 @@ extension Clients.OracleDatabaseProtocol {
     return try await self.createDbSystemPollingUntilDone(request: request)
   }
 
+  public func updateDbSystem(request: UpdateDbSystemRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateDbSystem(request: request, options: .init())
+  }
+
+  public func updateDbSystem(
+    request: UpdateDbSystemRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateDbSystemPollingUntilDone(request: UpdateDbSystemRequest) async throws
+    -> DbSystem
+  {
+    return try await self.updateDbSystemPollingUntilDone(request: request, options: .init())
+  }
+
+  public func updateDbSystemPollingUntilDone(
+    request: UpdateDbSystemRequest, options: GoogleGax.RequestOptions
+  ) async throws -> DbSystem {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateDbSystemPollingUntilDone(
+    dbSystem: DbSystem?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> DbSystem {
+    let request = UpdateDbSystemRequest().with {
+      $0.dbSystem = dbSystem
+      $0.updateMask = updateMask
+    }
+    return try await self.updateDbSystemPollingUntilDone(request: request)
+  }
+
   public func deleteDbSystem(request: DeleteDbSystemRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4889,6 +6168,42 @@ extension Clients.OracleDatabaseProtocol {
       $0.goldengateDeploymentId = goldengateDeploymentId
     }
     return try await self.createGoldengateDeploymentPollingUntilDone(request: request)
+  }
+
+  public func updateGoldengateDeployment(request: UpdateGoldengateDeploymentRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateGoldengateDeployment(request: request, options: .init())
+  }
+
+  public func updateGoldengateDeployment(
+    request: UpdateGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateGoldengateDeploymentPollingUntilDone(request: UpdateGoldengateDeploymentRequest)
+    async throws -> GoldengateDeployment
+  {
+    return try await self.updateGoldengateDeploymentPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func updateGoldengateDeploymentPollingUntilDone(
+    request: UpdateGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoldengateDeployment {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateGoldengateDeploymentPollingUntilDone(
+    goldengateDeployment: GoldengateDeployment?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> GoldengateDeployment {
+    let request = UpdateGoldengateDeploymentRequest().with {
+      $0.goldengateDeployment = goldengateDeployment
+      $0.updateMask = updateMask
+    }
+    return try await self.updateGoldengateDeploymentPollingUntilDone(request: request)
   }
 
   public func deleteGoldengateDeployment(request: DeleteGoldengateDeploymentRequest) async throws
@@ -5093,6 +6408,42 @@ extension Clients.OracleDatabaseProtocol {
       $0.goldengateConnectionId = goldengateConnectionId
     }
     return try await self.createGoldengateConnectionPollingUntilDone(request: request)
+  }
+
+  public func updateGoldengateConnection(request: UpdateGoldengateConnectionRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateGoldengateConnection(request: request, options: .init())
+  }
+
+  public func updateGoldengateConnection(
+    request: UpdateGoldengateConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateGoldengateConnectionPollingUntilDone(request: UpdateGoldengateConnectionRequest)
+    async throws -> GoldengateConnection
+  {
+    return try await self.updateGoldengateConnectionPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func updateGoldengateConnectionPollingUntilDone(
+    request: UpdateGoldengateConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoldengateConnection {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateGoldengateConnectionPollingUntilDone(
+    goldengateConnection: GoldengateConnection?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> GoldengateConnection {
+    let request = UpdateGoldengateConnectionRequest().with {
+      $0.goldengateConnection = goldengateConnection
+      $0.updateMask = updateMask
+    }
+    return try await self.updateGoldengateConnectionPollingUntilDone(request: request)
   }
 
   public func deleteGoldengateConnection(request: DeleteGoldengateConnectionRequest) async throws
@@ -5501,6 +6852,42 @@ extension Clients.OracleDatabaseProtocol {
     return try await self.createGoldengateConnectionAssignmentPollingUntilDone(request: request)
   }
 
+  public func updateGoldengateConnectionAssignment(
+    request: UpdateGoldengateConnectionAssignmentRequest
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.updateGoldengateConnectionAssignment(request: request, options: .init())
+  }
+
+  public func updateGoldengateConnectionAssignment(
+    request: UpdateGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateGoldengateConnectionAssignmentPollingUntilDone(
+    request: UpdateGoldengateConnectionAssignmentRequest
+  ) async throws -> GoldengateConnectionAssignment {
+    return try await self.updateGoldengateConnectionAssignmentPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func updateGoldengateConnectionAssignmentPollingUntilDone(
+    request: UpdateGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoldengateConnectionAssignment {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateGoldengateConnectionAssignmentPollingUntilDone(
+    goldengateConnectionAssignment: GoldengateConnectionAssignment?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> GoldengateConnectionAssignment {
+    let request = UpdateGoldengateConnectionAssignmentRequest().with {
+      $0.goldengateConnectionAssignment = goldengateConnectionAssignment
+      $0.updateMask = updateMask
+    }
+    return try await self.updateGoldengateConnectionAssignmentPollingUntilDone(request: request)
+  }
+
   public func deleteGoldengateConnectionAssignment(
     request: DeleteGoldengateConnectionAssignmentRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -5554,6 +6941,222 @@ extension Clients.OracleDatabaseProtocol {
       $0.name = name
     }
     return try await self.testGoldengateConnectionAssignment(request: request)
+  }
+
+  public func listDatabaseConnections(request: ListDatabaseConnectionsRequest) async throws
+    -> GoogleCloudOracleDatabaseV1.ListDatabaseConnectionsResponse
+  {
+    try await self.listDatabaseConnections(request: request, options: .init())
+  }
+
+  public func listDatabaseConnections(
+    request: ListDatabaseConnectionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.ListDatabaseConnectionsResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listDatabaseConnectionsByItems(
+    request: ListDatabaseConnectionsRequest
+  ) -> some AsyncSequence<DatabaseConnection, any Swift.Error> & Sendable {
+    self.listDatabaseConnectionsByItems(request: request, options: .init())
+  }
+
+  /// Lists DatabaseConnections in a given project and location.
+  ///
+  /// @Snippet(path: "OracleDatabase_ListDatabaseConnections")
+  public func listDatabaseConnectionsByItems(
+    request: ListDatabaseConnectionsRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<DatabaseConnection, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudOracleDatabaseV1.ListDatabaseConnectionsResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listDatabaseConnections(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listDatabaseConnectionsByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<DatabaseConnection, any Swift.Error> & Sendable {
+    let request = ListDatabaseConnectionsRequest().with {
+      $0.parent = parent
+    }
+    return self.listDatabaseConnectionsByItems(request: request)
+  }
+
+  public func getDatabaseConnection(request: GetDatabaseConnectionRequest) async throws
+    -> GoogleCloudOracleDatabaseV1.DatabaseConnection
+  {
+    try await self.getDatabaseConnection(request: request, options: .init())
+  }
+
+  public func getDatabaseConnection(
+    request: GetDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.DatabaseConnection {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getDatabaseConnection(
+    name: Swift.String,
+  ) async throws -> GoogleCloudOracleDatabaseV1.DatabaseConnection {
+    let request = GetDatabaseConnectionRequest().with {
+      $0.name = name
+    }
+    return try await self.getDatabaseConnection(request: request)
+  }
+
+  public func createDatabaseConnection(request: CreateDatabaseConnectionRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.createDatabaseConnection(request: request, options: .init())
+  }
+
+  public func createDatabaseConnection(
+    request: CreateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createDatabaseConnectionPollingUntilDone(request: CreateDatabaseConnectionRequest)
+    async throws -> DatabaseConnection
+  {
+    return try await self.createDatabaseConnectionPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func createDatabaseConnectionPollingUntilDone(
+    request: CreateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> DatabaseConnection {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createDatabaseConnectionPollingUntilDone(
+    parent: Swift.String,
+    databaseConnection: DatabaseConnection?,
+    databaseConnectionId: Swift.String,
+  ) async throws -> DatabaseConnection {
+    let request = CreateDatabaseConnectionRequest().with {
+      $0.parent = parent
+      $0.databaseConnection = databaseConnection
+      $0.databaseConnectionId = databaseConnectionId
+    }
+    return try await self.createDatabaseConnectionPollingUntilDone(request: request)
+  }
+
+  public func updateDatabaseConnection(request: UpdateDatabaseConnectionRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateDatabaseConnection(request: request, options: .init())
+  }
+
+  public func updateDatabaseConnection(
+    request: UpdateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateDatabaseConnectionPollingUntilDone(request: UpdateDatabaseConnectionRequest)
+    async throws -> DatabaseConnection
+  {
+    return try await self.updateDatabaseConnectionPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func updateDatabaseConnectionPollingUntilDone(
+    request: UpdateDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> DatabaseConnection {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateDatabaseConnectionPollingUntilDone(
+    databaseConnection: DatabaseConnection?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> DatabaseConnection {
+    let request = UpdateDatabaseConnectionRequest().with {
+      $0.databaseConnection = databaseConnection
+      $0.updateMask = updateMask
+    }
+    return try await self.updateDatabaseConnectionPollingUntilDone(request: request)
+  }
+
+  public func deleteDatabaseConnection(request: DeleteDatabaseConnectionRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.deleteDatabaseConnection(request: request, options: .init())
+  }
+
+  public func deleteDatabaseConnection(
+    request: DeleteDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteDatabaseConnectionPollingUntilDone(request: DeleteDatabaseConnectionRequest)
+    async throws
+  {
+    try await self.deleteDatabaseConnectionPollingUntilDone(request: request, options: .init())
+  }
+
+  public func deleteDatabaseConnectionPollingUntilDone(
+    request: DeleteDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteDatabaseConnectionPollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteDatabaseConnectionRequest().with {
+      $0.name = name
+    }
+    try await self.deleteDatabaseConnectionPollingUntilDone(request: request)
+  }
+
+  public func testDatabaseConnection(request: TestDatabaseConnectionRequest) async throws
+    -> GoogleCloudOracleDatabaseV1.TestDatabaseConnectionResponse
+  {
+    try await self.testDatabaseConnection(request: request, options: .init())
+  }
+
+  public func testDatabaseConnection(
+    request: TestDatabaseConnectionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.TestDatabaseConnectionResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func testDatabaseConnection(
+    name: Swift.String,
+  ) async throws -> GoogleCloudOracleDatabaseV1.TestDatabaseConnectionResponse {
+    let request = TestDatabaseConnectionRequest().with {
+      $0.name = name
+    }
+    return try await self.testDatabaseConnection(request: request)
+  }
+
+  public func executeSql(request: ExecuteSqlRequest) async throws
+    -> GoogleCloudOracleDatabaseV1.ExecuteSqlResponse
+  {
+    try await self.executeSql(request: request, options: .init())
+  }
+
+  public func executeSql(
+    request: ExecuteSqlRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudOracleDatabaseV1.ExecuteSqlResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func executeSql(
+    name: Swift.String,
+    sqlStatement: Swift.String,
+  ) async throws -> GoogleCloudOracleDatabaseV1.ExecuteSqlResponse {
+    let request = ExecuteSqlRequest().with {
+      $0.name = name
+      $0.sqlStatement = sqlStatement
+    }
+    return try await self.executeSql(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

@@ -1409,6 +1409,128 @@
       }
 
       @concurrent
+      public func start(
+        request: SqlInstancesStartRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation {
+        let (path, query, configure) = try {
+          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
+          in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.project as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "project")
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
+                request.instance as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "instance")
+            else {
+              return nil
+            }
+            let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1):start"
+            var query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          }
+          var paths: [GoogleGax.PathMismatch] = []
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.instance as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "instance",
+              expecting: "*"
+            )
+            paths.append(builder.build())
+          }
+          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+        }()
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
+        configure(&req)
+        return try await req.rpc(
+          GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
+        ).get()
+      }
+
+      @concurrent
+      public func stop(
+        request: SqlInstancesStopRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation {
+        let (path, query, configure) = try {
+          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
+          in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.project as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "project")
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
+                request.instance as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "instance")
+            else {
+              return nil
+            }
+            let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1):stop"
+            var query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          }
+          var paths: [GoogleGax.PathMismatch] = []
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.instance as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "instance",
+              expecting: "*"
+            )
+            paths.append(builder.build())
+          }
+          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+        }()
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
+        configure(&req)
+        return try await req.rpc(
+          GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
+        ).get()
+      }
+
+      @concurrent
       public func restoreBackup(
         request: SqlInstancesRestoreBackupRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -2427,6 +2549,71 @@
       }
 
       @concurrent
+      public func executeSqlReadOnly(
+        request: SqlInstancesExecuteSqlReadOnlyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.SqlInstancesExecuteSqlReadOnlyResponse {
+        let (path, query, configure) = try {
+          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
+          in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.project as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "project")
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
+                request.instance as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "instance")
+            else {
+              return nil
+            }
+            let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/executeSqlReadOnly"
+            var query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          }
+          var paths: [GoogleGax.PathMismatch] = []
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.instance as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "instance",
+              expecting: "*"
+            )
+            paths.append(builder.build())
+          }
+          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+        }()
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
+        configure(&req)
+        if let body = request.body {
+          try req.setBody(json: body)
+        }
+        return try await req.rpc(
+          GoogleCloudSqlV1.SqlInstancesExecuteSqlReadOnlyResponse.self,
+          timeout: options.attemptTimeout
+        ).get()
+      }
+
+      @concurrent
       public func executeSql(
         request: SqlInstancesExecuteSqlRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SqlInstancesExecuteSqlResponse {
@@ -2725,6 +2912,69 @@
         if let body = request.context {
           try req.setBody(json: body)
         }
+        return try await req.rpc(
+          GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
+        ).get()
+      }
+
+      @concurrent
+      public func reconcileNetworking(
+        request: SqlInstancesReconcileNetworkingRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation {
+        let (path, query, configure, omitted) = try {
+          () throws -> (
+            Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void,
+            [Swift.String]
+          ) in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.project as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "project")
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
+                request.instance as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "instance")
+            else {
+              return nil
+            }
+            let path =
+              "/v1/projects/\(pathVariable0)/instances/\(pathVariable1):reconcileNetworking"
+            let query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["project", "instance"])
+          }
+          var paths: [GoogleGax.PathMismatch] = []
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.instance as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "instance",
+              expecting: "*"
+            )
+            paths.append(builder.build())
+          }
+          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+        }()
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
+        configure(&req)
+        try req.setBody(json: request, omitting: omitted)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
         ).get()

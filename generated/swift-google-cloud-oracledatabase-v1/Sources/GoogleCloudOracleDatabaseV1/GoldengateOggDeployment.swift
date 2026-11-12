@@ -299,7 +299,8 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// The Goldengate deployment console password.
   public enum DeploymentPasswordOptionsOneOf: Codable, Equatable, Sendable {
-    /// Optional. The Goldengate deployment console password in plain text.
+    /// Optional. Input only. The Goldengate deployment console password in plain
+    /// text.
     case adminPassword(Swift.String)
     /// Optional. Input only. The Goldengate deployment console password secret
     /// version.

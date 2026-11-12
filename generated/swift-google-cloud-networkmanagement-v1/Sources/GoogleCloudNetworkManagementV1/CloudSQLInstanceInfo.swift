@@ -24,11 +24,12 @@ public struct CloudSQLInstanceInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Name of a Cloud SQL instance.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of a Cloud SQL instance.
+  /// URI of a Cloud SQL instance in format
+  /// "projects/{project}/instances/{instance}"
   public var uri: Swift.String = Swift.String()
 
   /// URI of a Cloud SQL instance network or empty string if the instance does
-  /// not have one.
+  /// not have one. In format "projects/{project}/global/networks/{network}".
   public var networkUri: Swift.String = Swift.String()
 
   /// Internal IP address of a Cloud SQL instance.

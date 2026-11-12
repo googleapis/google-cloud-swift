@@ -51,10 +51,13 @@ public struct ProxyConnectionInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// UDP.
   public var newDestinationPort: Swift.Int32 = Swift.Int32()
 
-  /// Uri of proxy subnet.
+  /// URI of the proxy subnet.
+  /// Format:
+  /// `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
   public var subnetUri: Swift.String = Swift.String()
 
-  /// URI of the network where connection is proxied.
+  /// URI of the VPC network where connection is proxied.
+  /// Format: `projects/{project_id}/global/networks/{network_id}`
   public var networkUri: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

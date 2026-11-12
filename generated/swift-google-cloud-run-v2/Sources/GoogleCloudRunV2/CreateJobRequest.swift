@@ -29,8 +29,9 @@ public struct CreateJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The Job instance to create.
   public var job: Job? = nil
 
-  /// Required. The unique identifier for the Job. The name of the job becomes
+  /// Optional. The unique identifier for the Job. The name of the job becomes
   /// {parent}/jobs/{job_id}.
+  /// If not provided, the server will generate a unique `job_id`.
   public var jobId: Swift.String = Swift.String()
 
   /// Indicates that the request should be validated and default values

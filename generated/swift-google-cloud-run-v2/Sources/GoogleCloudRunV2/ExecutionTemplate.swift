@@ -66,6 +66,16 @@ public struct ExecutionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// execution.
   public var template: TaskTemplate? = nil
 
+  /// Optional. If true, the system will start the execution within the next 12
+  /// hours depending on available capacity.
+  public var delayExecution: Swift.Bool? = nil
+
+  /// Optional. Arbitrary identifier for the API client.
+  public var client: Swift.String = Swift.String()
+
+  /// Optional. Arbitrary version identifier for the API client.
+  public var clientVersion: Swift.String = Swift.String()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `ExecutionTemplate`.
@@ -96,6 +106,9 @@ public struct ExecutionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     static let parallelism = CodingKeys(stringValue: "parallelism")
     static let taskCount = CodingKeys(stringValue: "taskCount")
     static let template = CodingKeys(stringValue: "template")
+    static let delayExecution = CodingKeys(stringValue: "delayExecution")
+    static let client = CodingKeys(stringValue: "client")
+    static let clientVersion = CodingKeys(stringValue: "clientVersion")
 
     static let _knownKeys: Set<Swift.String> = [
       "labels",
@@ -103,6 +116,9 @@ public struct ExecutionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
       "parallelism",
       "taskCount",
       "template",
+      "delayExecution",
+      "client",
+      "clientVersion",
     ]
   }
 
@@ -124,6 +140,13 @@ public struct ExecutionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
       self.taskCount = value
     }
     self.template = try container.decodeIfPresent(TaskTemplate.self, forKey: .template)
+    self.delayExecution = try container.decodeIfPresent(Swift.Bool.self, forKey: .delayExecution)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .client) {
+      self.client = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientVersion) {
+      self.clientVersion = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -137,6 +160,9 @@ public struct ExecutionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.parallelism, forKey: .parallelism)
     try container.encode(self.taskCount, forKey: .taskCount)
     try container.encodeIfPresent(self.template, forKey: .template)
+    try container.encodeIfPresent(self.delayExecution, forKey: .delayExecution)
+    try container.encode(self.client, forKey: .client)
+    try container.encode(self.clientVersion, forKey: .clientVersion)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

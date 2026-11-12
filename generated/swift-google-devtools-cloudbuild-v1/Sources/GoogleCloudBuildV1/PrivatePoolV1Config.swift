@@ -27,7 +27,9 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Network configuration for the pool.
   public var networkConfig: PrivatePoolV1Config.NetworkConfig? = nil
 
-  /// Immutable. Private Service Connect(PSC) Network configuration for the pool.
+  /// Immutable. Deprecated: Private Service Connect is no longer supported.
+  /// Private Service Connect(PSC) Network configuration for the pool.
+  @available(*, deprecated)
   public var privateServiceConnect: PrivatePoolV1Config.PrivateServiceConnect? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -66,6 +68,9 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.workerConfig = try container.decodeIfPresent(
@@ -80,6 +85,9 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.workerConfig, forKey: .workerConfig)
@@ -442,7 +450,9 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// Deprecated: Private Service Connect is no longer supported.
   /// Defines the Private Service Connect network configuration for the pool.
+  @available(*, deprecated)
   public struct PrivateServiceConnect: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {

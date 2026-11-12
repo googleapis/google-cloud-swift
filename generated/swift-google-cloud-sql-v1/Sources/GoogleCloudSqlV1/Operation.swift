@@ -457,6 +457,9 @@
       case switchoverBlueGreenDeployment
       /// Deletes a Blue-Green deployment.
       case deleteBlueGreenDeployment
+      /// Reconciles network infrastructure (e.g. Private Service Connect,
+      /// Automated DNS Records).
+      case reconcileNetworking
       /// Encodes an unknown integer value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -542,6 +545,7 @@
         case .createBlueGreenDeployment: return 56
         case .switchoverBlueGreenDeployment: return 57
         case .deleteBlueGreenDeployment: return 58
+        case .reconcileNetworking: return 64
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -609,6 +613,7 @@
         case .createBlueGreenDeployment: return "CREATE_BLUE_GREEN_DEPLOYMENT"
         case .switchoverBlueGreenDeployment: return "SWITCHOVER_BLUE_GREEN_DEPLOYMENT"
         case .deleteBlueGreenDeployment: return "DELETE_BLUE_GREEN_DEPLOYMENT"
+        case .reconcileNetworking: return "RECONCILE_NETWORKING"
         case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
@@ -679,6 +684,7 @@
         case "CREATE_BLUE_GREEN_DEPLOYMENT": self = .createBlueGreenDeployment
         case "SWITCHOVER_BLUE_GREEN_DEPLOYMENT": self = .switchoverBlueGreenDeployment
         case "DELETE_BLUE_GREEN_DEPLOYMENT": self = .deleteBlueGreenDeployment
+        case "RECONCILE_NETWORKING": self = .reconcileNetworking
         default: self = .unknownStringValue(stringValue)
         }
       }
@@ -748,6 +754,7 @@
         case 56: self = .createBlueGreenDeployment
         case 57: self = .switchoverBlueGreenDeployment
         case 58: self = .deleteBlueGreenDeployment
+        case 64: self = .reconcileNetworking
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -832,6 +839,7 @@
         case .switchoverBlueGreenDeployment:
           return try container.encode("SWITCHOVER_BLUE_GREEN_DEPLOYMENT")
         case .deleteBlueGreenDeployment: return try container.encode("DELETE_BLUE_GREEN_DEPLOYMENT")
+        case .reconcileNetworking: return try container.encode("RECONCILE_NETWORKING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -28,6 +28,7 @@ to learn about this library.
 - `ReferenceListServiceClient`: ReferenceListService provides an interface for managing reference lists.
 - `RuleServiceClient`: RuleService provides interface for user-created rules.
 - `RuleExecutionErrorServiceClient`: RuleExecutionErrorService contains endpoints related to rule execution errors.
+- `SearchServiceClient`: SearchService provides methods for searching data in Chronicle.
 
 ## Quickstart
 

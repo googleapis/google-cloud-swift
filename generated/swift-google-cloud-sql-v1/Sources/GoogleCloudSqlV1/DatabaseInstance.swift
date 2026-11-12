@@ -256,6 +256,15 @@
     /// When unspecified, Database Center integration is enabled by default.
     public var databaseCenterIntegration: DatabaseInstance.DatabaseCenterIntegration? = nil
 
+    /// Output only. The workload replay configuration for this instance. This
+    /// field is set only for workload replay instances.
+    public var workloadReplayConfig: WorkloadReplayConfig? = nil
+
+    /// Output only. The workload capture configuration for this instance. This
+    /// field is set only when an active workload capture is present on the
+    /// instance.
+    public var workloadCaptureConfig: WorkloadCaptureConfig? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DatabaseInstance`.
@@ -341,6 +350,8 @@
       static let databaseCenterIntegrationEnabled = CodingKeys(
         stringValue: "databaseCenterIntegrationEnabled")
       static let databaseCenterIntegration = CodingKeys(stringValue: "databaseCenterIntegration")
+      static let workloadReplayConfig = CodingKeys(stringValue: "workloadReplayConfig")
+      static let workloadCaptureConfig = CodingKeys(stringValue: "workloadCaptureConfig")
 
       static let _knownKeys: Set<Swift.String> = [
         "kind",
@@ -398,6 +409,8 @@
         "deploymentInfo",
         "databaseCenterIntegrationEnabled",
         "databaseCenterIntegration",
+        "workloadReplayConfig",
+        "workloadCaptureConfig",
       ]
     }
 
@@ -555,6 +568,10 @@
         GoogleWKT.WKTBoolValue.self, forKey: .databaseCenterIntegrationEnabled)
       self.databaseCenterIntegration = try container.decodeIfPresent(
         DatabaseInstance.DatabaseCenterIntegration.self, forKey: .databaseCenterIntegration)
+      self.workloadReplayConfig = try container.decodeIfPresent(
+        WorkloadReplayConfig.self, forKey: .workloadReplayConfig)
+      self.workloadCaptureConfig = try container.decodeIfPresent(
+        WorkloadCaptureConfig.self, forKey: .workloadCaptureConfig)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -628,6 +645,8 @@
         self.databaseCenterIntegrationEnabled, forKey: .databaseCenterIntegrationEnabled)
       try container.encodeIfPresent(
         self.databaseCenterIntegration, forKey: .databaseCenterIntegration)
+      try container.encodeIfPresent(self.workloadReplayConfig, forKey: .workloadReplayConfig)
+      try container.encodeIfPresent(self.workloadCaptureConfig, forKey: .workloadCaptureConfig)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

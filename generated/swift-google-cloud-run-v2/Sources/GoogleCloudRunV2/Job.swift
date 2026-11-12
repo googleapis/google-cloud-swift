@@ -156,6 +156,9 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Reserved for future use.
   public var satisfiesPzs: Swift.Bool = Swift.Bool()
 
+  /// Optional. The functional type of the Job.
+  public var functionalType: FunctionalType = FunctionalType()
+
   /// Optional. A system-generated fingerprint for this version of the
   /// resource. May be used to detect modification conflict during updates.
   public var etag: Swift.String = Swift.String()
@@ -212,6 +215,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
     static let startExecutionToken = CodingKeys(stringValue: "startExecutionToken")
     static let runExecutionToken = CodingKeys(stringValue: "runExecutionToken")
+    static let functionalType = CodingKeys(stringValue: "functionalType")
     static let etag = CodingKeys(stringValue: "etag")
 
     static let _knownKeys: Set<Swift.String> = [
@@ -240,6 +244,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       "satisfiesPzs",
       "startExecutionToken",
       "runExecutionToken",
+      "functionalType",
       "etag",
     ]
   }
@@ -309,6 +314,9 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
       self.satisfiesPzs = value
     }
+    if let value = try container.decodeIfPresent(FunctionalType.self, forKey: .functionalType) {
+      self.functionalType = value
+    }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
       self.etag = value
     }
@@ -365,6 +373,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.latestCreatedExecution, forKey: .latestCreatedExecution)
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encode(self.functionalType, forKey: .functionalType)
     try container.encode(self.etag, forKey: .etag)
 
     if let choice = self.createExecution {

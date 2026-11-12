@@ -27,7 +27,7 @@
     /// `projects/{project}/locations/{location}/cmekConfigs/{cmek_config}`.
     public var name: Swift.String = Swift.String()
 
-    /// KMS key resource name which will be used to encrypt resources
+    /// Required. KMS key resource name which will be used to encrypt resources
     /// `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.
     public var kmsKey: Swift.String = Swift.String()
 

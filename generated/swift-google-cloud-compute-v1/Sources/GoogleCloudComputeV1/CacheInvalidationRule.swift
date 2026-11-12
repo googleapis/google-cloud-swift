@@ -21,6 +21,14 @@
   public struct CacheInvalidationRule: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
+    /// If set, this invalidation rule will only apply to requests routed to the
+    /// given backend service or backend bucket.
+    /// For example, for a backend bucket `bb1` in the same scope as the URL map,
+    /// the path would be `projects/my-project/global/backendBuckets/bb1`; and
+    /// for a backend service `bs1` in the same scope as the URL map, the path
+    /// would be `projects/my-project/global/backendServices/bs1`.
+    public var backendService: Swift.String? = nil
+
     /// A list of cache tags used to identify cached objects.
     ///
     ///
@@ -35,11 +43,20 @@
     /// Up to 10 tags can be specified in a single invalidation request.
     public var cacheTags: [Swift.String] = []
 
+    /// If set, this invalidation rule will only apply to responses with the given
+    /// content-type. Parameters are not allowed and are ignored from the response
+    /// when matching. Wildcards are not allowed.
+    public var contentType: Swift.String? = nil
+
     /// If set, this invalidation rule will only apply to requests with a Host
     /// header matching host. This field also accepts wildcards (*) to replace the
     /// leftmost (or first) label of a hostname. For example, *.example.com will
     /// match www.example.com, but not sub1.dev.example.com.
     public var host: Swift.String? = nil
+
+    /// If set, this invalidation rule will only apply to responses with the
+    /// given HTTP status. Valid range is 200-599.
+    public var httpStatus: Swift.Int32? = nil
 
     public var path: Swift.String? = nil
 
@@ -53,7 +70,7 @@
     /// Commonly used to initialize the value, for example:
     ///
     /// ```
-    /// let value = CacheInvalidationRule().with { $0.cacheTags = ... }
+    /// let value = CacheInvalidationRule().with { $0.backendService = ... }
     /// ```
     @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
@@ -68,23 +85,33 @@
       init(stringValue: Swift.String) { self.stringValue = stringValue }
       init?(intValue: Swift.Int) { nil }
 
+      static let backendService = CodingKeys(stringValue: "backendService")
       static let cacheTags = CodingKeys(stringValue: "cacheTags")
+      static let contentType = CodingKeys(stringValue: "contentType")
       static let host = CodingKeys(stringValue: "host")
+      static let httpStatus = CodingKeys(stringValue: "httpStatus")
       static let path = CodingKeys(stringValue: "path")
 
       static let _knownKeys: Set<Swift.String> = [
+        "backendService",
         "cacheTags",
+        "contentType",
         "host",
+        "httpStatus",
         "path",
       ]
     }
 
     public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.backendService = try container.decodeIfPresent(
+        Swift.String.self, forKey: .backendService)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .cacheTags) {
         self.cacheTags = value
       }
+      self.contentType = try container.decodeIfPresent(Swift.String.self, forKey: .contentType)
       self.host = try container.decodeIfPresent(Swift.String.self, forKey: .host)
+      self.httpStatus = try container.decodeIfPresent(Swift.Int32.self, forKey: .httpStatus)
       self.path = try container.decodeIfPresent(Swift.String.self, forKey: .path)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -94,8 +121,11 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.backendService, forKey: .backendService)
       try container.encode(self.cacheTags, forKey: .cacheTags)
+      try container.encodeIfPresent(self.contentType, forKey: .contentType)
       try container.encodeIfPresent(self.host, forKey: .host)
+      try container.encodeIfPresent(self.httpStatus, forKey: .httpStatus)
       try container.encodeIfPresent(self.path, forKey: .path)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

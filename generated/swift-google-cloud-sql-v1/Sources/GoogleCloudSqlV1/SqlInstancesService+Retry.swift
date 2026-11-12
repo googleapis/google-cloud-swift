@@ -378,6 +378,36 @@
           })
       }
 
+      public func start(
+        request: SqlInstancesStartRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation {
+        return try await self._intercept(
+          request: request,
+          options: options,
+          idempotent: false,
+          action: {
+            (r: SqlInstancesStartRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudSqlV1.Operation
+            in
+            return try await self.inner.start(request: r, options: o)
+          })
+      }
+
+      public func stop(
+        request: SqlInstancesStopRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation {
+        return try await self._intercept(
+          request: request,
+          options: options,
+          idempotent: false,
+          action: {
+            (r: SqlInstancesStopRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudSqlV1.Operation
+            in
+            return try await self.inner.stop(request: r, options: o)
+          })
+      }
+
       public func restoreBackup(
         request: SqlInstancesRestoreBackupRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -618,6 +648,21 @@
           })
       }
 
+      public func executeSqlReadOnly(
+        request: SqlInstancesExecuteSqlReadOnlyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.SqlInstancesExecuteSqlReadOnlyResponse {
+        return try await self._intercept(
+          request: request,
+          options: options,
+          idempotent: false,
+          action: {
+            (r: SqlInstancesExecuteSqlReadOnlyRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudSqlV1.SqlInstancesExecuteSqlReadOnlyResponse
+            in
+            return try await self.inner.executeSqlReadOnly(request: r, options: o)
+          })
+      }
+
       public func executeSql(
         request: SqlInstancesExecuteSqlRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SqlInstancesExecuteSqlResponse {
@@ -690,6 +735,21 @@
               -> GoogleCloudSqlV1.Operation
             in
             return try await self.inner.pointInTimeRestore(request: r, options: o)
+          })
+      }
+
+      public func reconcileNetworking(
+        request: SqlInstancesReconcileNetworkingRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation {
+        return try await self._intercept(
+          request: request,
+          options: options,
+          idempotent: false,
+          action: {
+            (r: SqlInstancesReconcileNetworkingRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudSqlV1.Operation
+            in
+            return try await self.inner.reconcileNetworking(request: r, options: o)
           })
       }
     }

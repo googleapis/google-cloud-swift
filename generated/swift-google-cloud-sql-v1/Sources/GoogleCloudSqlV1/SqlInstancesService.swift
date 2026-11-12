@@ -279,6 +279,24 @@
       try await self.inner.restart(request: request, options: options)
     }
 
+    /// Starts a Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Start")
+    public func start(
+      request: SqlInstancesStartRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.Operation {
+      try await self.inner.start(request: request, options: options)
+    }
+
+    /// Stops a Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Stop")
+    public func stop(
+      request: SqlInstancesStopRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.Operation {
+      try await self.inner.stop(request: request, options: options)
+    }
+
     /// Restores a backup of a Cloud SQL instance. Using this operation might cause
     /// your instance to restart.
     ///
@@ -435,6 +453,15 @@
       try await self.inner.getLatestRecoveryTime(request: request, options: options)
     }
 
+    /// Execute SQL statements in read-only mode.
+    ///
+    /// @Snippet(path: "SqlInstancesService_ExecuteSqlReadOnly")
+    public func executeSqlReadOnly(
+      request: SqlInstancesExecuteSqlReadOnlyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.SqlInstancesExecuteSqlReadOnlyResponse {
+      try await self.inner.executeSqlReadOnly(request: request, options: options)
+    }
+
     /// Execute SQL statements.
     ///
     /// @Snippet(path: "SqlInstancesService_ExecuteSql")
@@ -479,6 +506,18 @@
       request: SqlInstancesPointInTimeRestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
       try await self.inner.pointInTimeRestore(request: request, options: options)
+    }
+
+    /// Repairs and recreates networking resources for a Cloud SQL instance. For
+    /// Private Service Connect (PSC), this operation recreates PSC DNS write
+    /// endpoints on specified VPC networks and reconciles Private Service Connect
+    /// connectivity infrastructure for the instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_ReconcileNetworking")
+    public func reconcileNetworking(
+      request: SqlInstancesReconcileNetworkingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.Operation {
+      try await self.inner.reconcileNetworking(request: request, options: options)
     }
   }
 
@@ -599,6 +638,16 @@
         request: SqlInstancesRestartRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation
 
+      /// See `SqlInstancesServiceClient.start`.
+      func start(
+        request: SqlInstancesStartRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation
+
+      /// See `SqlInstancesServiceClient.stop`.
+      func stop(
+        request: SqlInstancesStopRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation
+
       /// See `SqlInstancesServiceClient.restoreBackup`.
       func restoreBackup(
         request: SqlInstancesRestoreBackupRequest, options: GoogleGax.RequestOptions
@@ -679,6 +728,11 @@
         request: SqlInstancesGetLatestRecoveryTimeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SqlInstancesGetLatestRecoveryTimeResponse
 
+      /// See `SqlInstancesServiceClient.executeSqlReadOnly`.
+      func executeSqlReadOnly(
+        request: SqlInstancesExecuteSqlReadOnlyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.SqlInstancesExecuteSqlReadOnlyResponse
+
       /// See `SqlInstancesServiceClient.executeSql`.
       func executeSql(
         request: SqlInstancesExecuteSqlRequest, options: GoogleGax.RequestOptions
@@ -702,6 +756,11 @@
       /// See `SqlInstancesServiceClient.pointInTimeRestore`.
       func pointInTimeRestore(
         request: SqlInstancesPointInTimeRestoreRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation
+
+      /// See `SqlInstancesServiceClient.reconcileNetworking`.
+      func reconcileNetworking(
+        request: SqlInstancesReconcileNetworkingRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation
     }
   }
@@ -992,6 +1051,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    public func start(request: SqlInstancesStartRequest) async throws -> GoogleCloudSqlV1.Operation
+    {
+      try await self.start(request: request, options: .init())
+    }
+
+    public func start(
+      request: SqlInstancesStartRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func stop(request: SqlInstancesStopRequest) async throws -> GoogleCloudSqlV1.Operation {
+      try await self.stop(request: request, options: .init())
+    }
+
+    public func stop(
+      request: SqlInstancesStopRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
     public func restoreBackup(request: SqlInstancesRestoreBackupRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1184,6 +1264,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    public func executeSqlReadOnly(request: SqlInstancesExecuteSqlReadOnlyRequest) async throws
+      -> GoogleCloudSqlV1.SqlInstancesExecuteSqlReadOnlyResponse
+    {
+      try await self.executeSqlReadOnly(request: request, options: .init())
+    }
+
+    public func executeSqlReadOnly(
+      request: SqlInstancesExecuteSqlReadOnlyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.SqlInstancesExecuteSqlReadOnlyResponse {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
     public func executeSql(request: SqlInstancesExecuteSqlRequest) async throws
       -> GoogleCloudSqlV1.SqlInstancesExecuteSqlResponse
     {
@@ -1240,6 +1332,18 @@
 
     public func pointInTimeRestore(
       request: SqlInstancesPointInTimeRestoreRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func reconcileNetworking(request: SqlInstancesReconcileNetworkingRequest) async throws
+      -> GoogleCloudSqlV1.Operation
+    {
+      try await self.reconcileNetworking(request: request, options: .init())
+    }
+
+    public func reconcileNetworking(
+      request: SqlInstancesReconcileNetworkingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
       throw GoogleGax.RequestError.unimplemented
     }

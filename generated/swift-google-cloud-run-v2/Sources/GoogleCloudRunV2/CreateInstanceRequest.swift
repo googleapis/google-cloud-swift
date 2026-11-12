@@ -20,13 +20,16 @@ import Foundation
 public struct CreateInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
+  /// Required. The location and project in which this Instance should be
+  /// created.
   public var parent: Swift.String = Swift.String()
 
   public var instance: Instance? = nil
 
-  /// Required. The unique identifier for the Instance. It must begin with
+  /// Optional. The unique identifier for the Instance. It must begin with
   /// letter, and cannot end with hyphen; must contain fewer than 50 characters.
   /// The name of the instance becomes {parent}/instances/{instance_id}.
+  /// If not provided, the server will generate a unique `instance_id`.
   public var instanceId: Swift.String = Swift.String()
 
   /// Optional. Indicates that the request should be validated and default values

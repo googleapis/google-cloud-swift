@@ -775,6 +775,279 @@ extension Clients {
         })
     }
 
+    public func createRestoreTemplate(
+      request: CreateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateRestoreTemplateRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.createRestoreTemplate(request: r, options: o)
+        })
+    }
+
+    public func getRestoreTemplate(
+      request: GetRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.RestoreTemplate {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetRestoreTemplateRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBackupDRV1.RestoreTemplate
+          in
+          return try await self.inner.getRestoreTemplate(request: r, options: o)
+        })
+    }
+
+    public func listRestoreTemplates(
+      request: ListRestoreTemplatesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListRestoreTemplatesResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListRestoreTemplatesRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBackupDRV1.ListRestoreTemplatesResponse
+          in
+          return try await self.inner.listRestoreTemplates(request: r, options: o)
+        })
+    }
+
+    public func updateRestoreTemplate(
+      request: UpdateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateRestoreTemplateRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.updateRestoreTemplate(request: r, options: o)
+        })
+    }
+
+    public func deleteRestoreTemplate(
+      request: DeleteRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DeleteRestoreTemplateRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.deleteRestoreTemplate(request: r, options: o)
+        })
+    }
+
+    public func runRestoreTemplate(
+      request: RunRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: RunRestoreTemplateRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.runRestoreTemplate(request: r, options: o)
+        })
+    }
+
+    public func getRestoreTemplateExecution(
+      request: GetRestoreTemplateExecutionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.RestoreTemplateExecution {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetRestoreTemplateExecutionRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBackupDRV1.RestoreTemplateExecution
+          in
+          return try await self.inner.getRestoreTemplateExecution(request: r, options: o)
+        })
+    }
+
+    public func listRestoreTemplateExecutions(
+      request: ListRestoreTemplateExecutionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListRestoreTemplateExecutionsResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListRestoreTemplateExecutionsRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBackupDRV1.ListRestoreTemplateExecutionsResponse
+          in
+          return try await self.inner.listRestoreTemplateExecutions(request: r, options: o)
+        })
+    }
+
+    public func triggerRestoreCleanup(
+      request: TriggerRestoreCleanupRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: TriggerRestoreCleanupRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.triggerRestoreCleanup(request: r, options: o)
+        })
+    }
+
+    public func createRestoreVerificationPlan(
+      request: CreateRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateRestoreVerificationPlanRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.createRestoreVerificationPlan(request: r, options: o)
+        })
+    }
+
+    public func createRestoreVerificationPlanAssociation(
+      request: CreateRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateRestoreVerificationPlanAssociationRequest, o: GoogleGax.RequestOptions)
+            async throws -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.createRestoreVerificationPlanAssociation(
+            request: r, options: o)
+        })
+    }
+
+    public func getRestoreVerificationPlanAssociation(
+      request: GetRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlanAssociation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetRestoreVerificationPlanAssociationRequest, o: GoogleGax.RequestOptions)
+            async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlanAssociation
+          in
+          return try await self.inner.getRestoreVerificationPlanAssociation(request: r, options: o)
+        })
+    }
+
+    public func listRestoreVerificationPlanAssociations(
+      request: ListRestoreVerificationPlanAssociationsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlanAssociationsResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListRestoreVerificationPlanAssociationsRequest, o: GoogleGax.RequestOptions)
+            async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlanAssociationsResponse
+          in
+          return try await self.inner.listRestoreVerificationPlanAssociations(
+            request: r, options: o)
+        })
+    }
+
+    public func deleteRestoreVerificationPlanAssociation(
+      request: DeleteRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DeleteRestoreVerificationPlanAssociationRequest, o: GoogleGax.RequestOptions)
+            async throws -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.deleteRestoreVerificationPlanAssociation(
+            request: r, options: o)
+        })
+    }
+
+    public func triggerRestoreVerification(
+      request: TriggerRestoreVerificationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: TriggerRestoreVerificationRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.triggerRestoreVerification(request: r, options: o)
+        })
+    }
+
+    public func getRestoreVerificationPlan(
+      request: GetRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlan {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetRestoreVerificationPlanRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBackupDRV1.RestoreVerificationPlan
+          in
+          return try await self.inner.getRestoreVerificationPlan(request: r, options: o)
+        })
+    }
+
+    public func listRestoreVerificationPlans(
+      request: ListRestoreVerificationPlansRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlansResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListRestoreVerificationPlansRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBackupDRV1.ListRestoreVerificationPlansResponse
+          in
+          return try await self.inner.listRestoreVerificationPlans(request: r, options: o)
+        })
+    }
+
+    public func deleteRestoreVerificationPlan(
+      request: DeleteRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DeleteRestoreVerificationPlanRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.deleteRestoreVerificationPlan(request: r, options: o)
+        })
+    }
+
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {

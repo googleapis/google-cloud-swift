@@ -26,8 +26,9 @@ public struct FirewallInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// firewall policy rules.
   public var displayName: Swift.String = Swift.String()
 
-  /// The URI of the firewall rule. This field is not applicable to implied
-  /// VPC firewall rules.
+  /// The URI of the firewall rule in format
+  /// "projects/{project}/global/firewalls/{firewall}". This field is not
+  /// applicable to implied VPC firewall rules.
   public var uri: Swift.String = Swift.String()
 
   /// Possible values: INGRESS, EGRESS
@@ -39,7 +40,8 @@ public struct FirewallInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The priority of the firewall rule.
   public var priority: Swift.Int32 = Swift.Int32()
 
-  /// The URI of the VPC network that the firewall rule is associated with.
+  /// The URI of the VPC network that the firewall rule is associated with in
+  /// format "projects/{project}/global/networks/{network}".
   /// This field is not applicable to hierarchical firewall policy rules.
   public var networkUri: Swift.String = Swift.String()
 
@@ -58,6 +60,12 @@ public struct FirewallInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The URI of the firewall policy that this rule is associated with.
   /// This field is not applicable to VPC firewall rules and implied VPC firewall
   /// rules.
+  /// Format:
+  /// * `locations/global/firewallPolicies/{policy_id}` (hierarchical policy)
+  /// * `projects/{project_id}/global/firewallPolicies/{policy_id}` (global
+  /// network firewall policy)
+  /// * `projects/{project_id}/regions/{region}/firewallPolicies/{policy_id}`
+  /// (regional network firewall policy)
   public var policyUri: Swift.String = Swift.String()
 
   /// The firewall rule's type.

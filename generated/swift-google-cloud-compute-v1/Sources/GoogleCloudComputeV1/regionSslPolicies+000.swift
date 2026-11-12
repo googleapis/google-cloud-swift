@@ -110,6 +110,16 @@
       try await self.inner.`get`(request: request, options: options)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "regionSslPolicies_getIamPolicy")
+    public func getIamPolicy(
+      request: RegionSslPoliciesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Policy {
+      try await self.inner.getIamPolicy(request: request, options: options)
+    }
+
     /// Creates a new policy in the specified project and region using the data
     /// included in the request.
     ///
@@ -245,6 +255,25 @@
       return try await poller.wait()
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "regionSslPolicies_setIamPolicy")
+    public func setIamPolicy(
+      request: RegionSslPoliciesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Policy {
+      try await self.inner.setIamPolicy(request: request, options: options)
+    }
+
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionSslPolicies_testIamPermissions")
+    public func testIamPermissions(
+      request: RegionSslPoliciesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
+      try await self.inner.testIamPermissions(request: request, options: options)
+    }
+
     /// Retrieves the specified region-specific Operations resource.
     ///
     /// @Snippet(path: "regionSslPolicies_getOperation")
@@ -281,6 +310,11 @@
       func `get`(
         request: RegionSslPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SslPolicy
+
+      /// See `RegionSslPoliciesClient.getIamPolicy`.
+      func getIamPolicy(
+        request: RegionSslPoliciesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Policy
 
       /// See `RegionSslPoliciesClient.insert`.
       func insert(
@@ -322,6 +356,17 @@
       func patchPollingUntilDone(
         request: RegionSslPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionSslPoliciesClient.setIamPolicy`.
+      func setIamPolicy(
+        request: RegionSslPoliciesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Policy
+
+      /// See `RegionSslPoliciesClient.testIamPermissions`.
+      func testIamPermissions(
+        request: RegionSslPoliciesClient.TestIamPermissionsRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     }
   }
 
@@ -387,6 +432,31 @@
         $0.sslPolicy = sslPolicy
       }
       return try await self.`get`(request: request)
+    }
+
+    public func getIamPolicy(request: RegionSslPoliciesClient.GetIamPolicyRequest) async throws
+      -> GoogleCloudComputeV1.Policy
+    {
+      try await self.getIamPolicy(request: request, options: .init())
+    }
+
+    public func getIamPolicy(
+      request: RegionSslPoliciesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Policy {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func getIamPolicy(
+      project: Swift.String,
+      region: Swift.String,
+      resource: Swift.String,
+    ) async throws -> GoogleCloudComputeV1.Policy {
+      let request = RegionSslPoliciesClient.GetIamPolicyRequest().with {
+        $0.project = project
+        $0.region = region
+        $0.resource = resource
+      }
+      return try await self.getIamPolicy(request: request)
     }
 
     public func insert(request: RegionSslPoliciesClient.InsertRequest) async throws
@@ -533,6 +603,60 @@
         $0.body = body
       }
       return try await self.patchPollingUntilDone(request: request)
+    }
+
+    public func setIamPolicy(request: RegionSslPoliciesClient.SetIamPolicyRequest) async throws
+      -> GoogleCloudComputeV1.Policy
+    {
+      try await self.setIamPolicy(request: request, options: .init())
+    }
+
+    public func setIamPolicy(
+      request: RegionSslPoliciesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Policy {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func setIamPolicy(
+      project: Swift.String,
+      region: Swift.String,
+      resource: Swift.String,
+      body: RegionSetPolicyRequest?,
+    ) async throws -> GoogleCloudComputeV1.Policy {
+      let request = RegionSslPoliciesClient.SetIamPolicyRequest().with {
+        $0.project = project
+        $0.region = region
+        $0.resource = resource
+        $0.body = body
+      }
+      return try await self.setIamPolicy(request: request)
+    }
+
+    public func testIamPermissions(request: RegionSslPoliciesClient.TestIamPermissionsRequest)
+      async throws -> GoogleCloudComputeV1.TestPermissionsResponse
+    {
+      try await self.testIamPermissions(request: request, options: .init())
+    }
+
+    public func testIamPermissions(
+      request: RegionSslPoliciesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func testIamPermissions(
+      project: Swift.String,
+      region: Swift.String,
+      resource: Swift.String,
+      body: TestPermissionsRequest?,
+    ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
+      let request = RegionSslPoliciesClient.TestIamPermissionsRequest().with {
+        $0.project = project
+        $0.region = region
+        $0.resource = resource
+        $0.body = body
+      }
+      return try await self.testIamPermissions(request: request)
     }
 
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws

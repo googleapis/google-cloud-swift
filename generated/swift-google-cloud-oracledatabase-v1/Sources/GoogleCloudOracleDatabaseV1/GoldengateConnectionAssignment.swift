@@ -26,7 +26,7 @@ public struct GoldengateConnectionAssignment: Codable, Equatable, GoogleWKT._Any
   /// projects/{project}/locations/{region}/goldengateConnectionAssignments/{goldengate_connection_assignment}
   public var name: Swift.String = Swift.String()
 
-  /// Required. The properties of the GoldengateConnectionAssignment.
+  /// Required. Immutable. The properties of the GoldengateConnectionAssignment.
   public var properties: GoldengateConnectionAssignmentProperties? = nil
 
   /// Output only. The time when the connection assignment was created.
@@ -36,7 +36,8 @@ public struct GoldengateConnectionAssignment: Codable, Equatable, GoogleWKT._Any
   /// GoldengateConnectionAssignment.
   public var labels: [Swift.String: Swift.String] = [:]
 
-  /// Optional. The display name for the GoldengateConnectionAssignment.
+  /// Optional. Immutable. The display name for the
+  /// GoldengateConnectionAssignment.
   public var displayName: Swift.String = Swift.String()
 
   /// Output only. The OCID of the entitlement linked to this resource.

@@ -25,6 +25,9 @@ public struct DropInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var cause: DropInfo.Cause = DropInfo.Cause()
 
   /// URI of the resource that caused the drop.
+  /// Format:
+  /// * `projects/{project_id}/global/firewalls/{firewall_id}` (firewall rule)
+  /// * `projects/{project_id}/global/routes/{route_id}` (route)
   public var resourceUri: Swift.String = Swift.String()
 
   /// Source IP address of the dropped packet (if relevant).

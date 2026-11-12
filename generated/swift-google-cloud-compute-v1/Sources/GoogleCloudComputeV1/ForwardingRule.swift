@@ -84,6 +84,63 @@
     /// forwarding rules set the IPAddress field instead. Refer to theavailabilityGroup field for further details.
     public var ipaddress: Swift.String? = nil
 
+    /// IP addresses for which this forwarding rule accepts traffic. All IP
+    /// addresses must have the same IP version, IPv4 or IPv6. When a client sends
+    /// traffic that matches one of the specified IP addresses, protocol and ports,
+    /// the forwarding rule directs the traffic to the referencedbackendService. All IP addresses are served by the same set of
+    /// backends, and they share the target capacities specified in the backend
+    /// service fairly.
+    ///
+    /// Global external Passthrough Network Load Balancer requires two IP addresses
+    /// for each forwarding rule to provide high availability when both IP
+    /// addresses are used to serve client requests. The two IP addresses must come
+    /// from global IP pools that belong to two distinct Availability
+    /// Groups, represented by the purposePASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0 andPASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1. TheIPAddresses field specifies zero, one, or two IP addresses:
+    ///
+    ///    - If omitted, Google Cloud assigns two ephemeral IP addresses, one from
+    ///    each Availability Group.
+    ///    - If you specify one IP address that references an existing static IP
+    ///    address resource from one Availability Group, Google Cloud assigns an
+    ///    ephemeral IP address from the other Availability Group.
+    ///    - If you specify two IP addresses that reference existing static IP
+    ///    address resources, they are required to be from different Availability
+    ///    Groups.
+    ///
+    ///
+    ///
+    /// For global external Passthrough Network Load Balancer, each IP address can be one of the following:
+    ///
+    ///    - A static or ephemeral IPv4 address from a Google-owned IP pool.
+    ///    - A static IPv4 address from a global public delegated prefix.
+    ///    - A static or ephemeral IPv6 /96 prefix from a Google-owned IP pool.
+    ///
+    ///
+    ///
+    /// For global external Passthrough Network Load Balancer, the two IP addresses
+    /// can be of different types. One IP address can be from a BYOIP prefix while
+    /// the other is from a Google-owned IP pool. One IP address can be static
+    /// while the other is ephemeral. However, both IP addresses must have the same
+    /// IP version, IPv4 or IPv6.
+    ///
+    /// The IP addresses can only be set at creation and cannot be updated.
+    ///
+    /// When creating a global external Passthrough Network Load Balancer
+    /// forwarding rule (a parent forwarding rule), you must use theIPAddresses field, but the Google Cloud-generated child
+    /// forwarding rules set the IPAddress field instead. Refer to theavailabilityGroup field for further details.
+    ///
+    /// Refer to the IPAddress field for the formats that can be used
+    /// to specify IP addresses while creating a forwarding rule.
+    ///
+    /// Because Passthrough Network Load Balancers do not terminate or translate
+    /// traffic, the backend stack types must be compatible with the forwarding
+    /// rule IP version:
+    ///
+    ///    - If the forwarding rule IP version is IPv4, backends should be
+    ///    configured as dual-stack or IPv4-only.
+    ///    - If the forwarding rule IP version is IPv6, backends should be
+    ///    configured as dual-stack or IPv6-only.
+    public var ipaddresses: [Swift.String] = []
+
     /// The IP protocol to which this rule applies.
     ///
     /// For protocol forwarding, valid
@@ -127,6 +184,33 @@
     /// Output only. [Output Only]. The extensions that are attached to this ForwardingRule.
     public var attachedExtensions: [ForwardingRuleAttachedExtension] = []
 
+    /// Output only. [Output Only] Specifies the load balancing availability group, one of the
+    /// two that collectively provide high availability.
+    ///
+    /// Specifies the availability group of the forwarding rule. This
+    /// field is for use by global external passthrough load balancers (load
+    /// balancing scheme EXTERNAL_PASSTHROUGH) and is set for the
+    /// child forwarding rules only. The possible values are:
+    ///
+    ///    - AVAILABILITY_GROUP0: Set for the child forwarding rule
+    ///    that is programmed on the AVAILABILITY_GROUP0 load balancing
+    ///    stack. The child forwarding rule has the same IP protocol, port, and
+    ///    backend service settings as the parent forwarding rule, but has only one of
+    ///    the two IP addresses of the parent forwarding rule, the one with the
+    ///    purpose PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0.
+    ///    - AVAILABILITY_GROUP1: Set for the child forwarding rule
+    ///    that is programmed on the AVAILABILITY_GROUP1 load balancing
+    ///    stack. The child forwarding rule has the same IP protocol, port and backend
+    ///    service settings as the parent forwarding rule, but has only one of the two
+    ///    IP addresses of the parent forwarding rule, the one with the purposePASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1.
+    ///
+    ///
+    ///
+    /// For each global external Passthrough Network Load Balancer forwarding rule
+    /// (a parent forwarding rule) that you create, Google Cloud generates two
+    /// output-only child forwarding rules, one forAVAILABILITY_GROUP0 and one forAVAILABILITY_GROUP1.
+    public var availabilityGroup: ForwardingRule.AvailabilityGroup? = nil
+
     /// Identifies the backend service to which the forwarding rule sends traffic.
     ///
     /// It is a required field for the following load balancers:
@@ -149,6 +233,16 @@
     /// Always empty if the current forwarding rule does not have sourceIPRanges
     /// specified.
     public var baseForwardingRule: Swift.String? = nil
+
+    /// Output only. [Output Only] The resource URLs for the child forwarding rules.
+    ///
+    /// Applicable only to the parent forwarding rule of global
+    /// external passthrough load balancers. This field contains the list of child
+    /// forwarding rule URLs associated with the parent forwarding rule: one for
+    /// each availability group. AVAILABILITY_GROUP0 will be the first element, and
+    /// AVAILABILITY_GROUP1 will be the second element. Refer to theavailabilityGroup field for further details. It cannot be set
+    /// by any other forwarding rules.
+    public var childForwardingRules: [Swift.String] = []
 
     /// Output only. [Output Only] Creation timestamp inRFC3339
     /// text format.
@@ -316,6 +410,13 @@
     /// try to auto-generate a DNS zone or not. Non-PSC forwarding rules do not use
     /// this field. Once set, this field is not mutable.
     public var noAutomateDnsZone: Swift.Bool? = nil
+
+    /// Output only. [Output Only] The resource URL for the parent forwarding rule.
+    ///
+    /// Applicable only to the child forwarding rules of global external
+    /// passthrough load balancers. This field contains the URL of the parent
+    /// forwarding rule.
+    public var parentForwardingRule: Swift.String? = nil
 
     /// The ports, portRange, and allPorts
     /// fields are mutually exclusive. Only packets addressed to ports in the
@@ -486,13 +587,16 @@
       init?(intValue: Swift.Int) { nil }
 
       static let ipaddress = CodingKeys(stringValue: "IPAddress")
+      static let ipaddresses = CodingKeys(stringValue: "IPAddresses")
       static let ipprotocol = CodingKeys(stringValue: "IPProtocol")
       static let allPorts = CodingKeys(stringValue: "allPorts")
       static let allowGlobalAccess = CodingKeys(stringValue: "allowGlobalAccess")
       static let allowPscGlobalAccess = CodingKeys(stringValue: "allowPscGlobalAccess")
       static let attachedExtensions = CodingKeys(stringValue: "attachedExtensions")
+      static let availabilityGroup = CodingKeys(stringValue: "availabilityGroup")
       static let backendService = CodingKeys(stringValue: "backendService")
       static let baseForwardingRule = CodingKeys(stringValue: "baseForwardingRule")
+      static let childForwardingRules = CodingKeys(stringValue: "childForwardingRules")
       static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
       static let description = CodingKeys(stringValue: "description")
       static let externalManagedBackendBucketMigrationState = CodingKeys(
@@ -513,6 +617,7 @@
       static let network = CodingKeys(stringValue: "network")
       static let networkTier = CodingKeys(stringValue: "networkTier")
       static let noAutomateDnsZone = CodingKeys(stringValue: "noAutomateDnsZone")
+      static let parentForwardingRule = CodingKeys(stringValue: "parentForwardingRule")
       static let portRange = CodingKeys(stringValue: "portRange")
       static let ports = CodingKeys(stringValue: "ports")
       static let pscConnectionId = CodingKeys(stringValue: "pscConnectionId")
@@ -530,13 +635,16 @@
 
       static let _knownKeys: Set<Swift.String> = [
         "IPAddress",
+        "IPAddresses",
         "IPProtocol",
         "allPorts",
         "allowGlobalAccess",
         "allowPscGlobalAccess",
         "attachedExtensions",
+        "availabilityGroup",
         "backendService",
         "baseForwardingRule",
+        "childForwardingRules",
         "creationTimestamp",
         "description",
         "externalManagedBackendBucketMigrationState",
@@ -555,6 +663,7 @@
         "network",
         "networkTier",
         "noAutomateDnsZone",
+        "parentForwardingRule",
         "portRange",
         "ports",
         "pscConnectionId",
@@ -574,6 +683,9 @@
     public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.ipaddress = try container.decodeIfPresent(Swift.String.self, forKey: .ipaddress)
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ipaddresses) {
+        self.ipaddresses = value
+      }
       self.ipprotocol = try container.decodeIfPresent(
         ForwardingRule.IPProtocol.self, forKey: .ipprotocol)
       self.allPorts = try container.decodeIfPresent(Swift.Bool.self, forKey: .allPorts)
@@ -586,10 +698,17 @@
       {
         self.attachedExtensions = value
       }
+      self.availabilityGroup = try container.decodeIfPresent(
+        ForwardingRule.AvailabilityGroup.self, forKey: .availabilityGroup)
       self.backendService = try container.decodeIfPresent(
         Swift.String.self, forKey: .backendService)
       self.baseForwardingRule = try container.decodeIfPresent(
         Swift.String.self, forKey: .baseForwardingRule)
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .childForwardingRules)
+      {
+        self.childForwardingRules = value
+      }
       self.creationTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .creationTimestamp)
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
@@ -640,6 +759,8 @@
         ForwardingRule.NetworkTier.self, forKey: .networkTier)
       self.noAutomateDnsZone = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .noAutomateDnsZone)
+      self.parentForwardingRule = try container.decodeIfPresent(
+        Swift.String.self, forKey: .parentForwardingRule)
       self.portRange = try container.decodeIfPresent(Swift.String.self, forKey: .portRange)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ports) {
         self.ports = value
@@ -673,13 +794,16 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.ipaddress, forKey: .ipaddress)
+      try container.encode(self.ipaddresses, forKey: .ipaddresses)
       try container.encodeIfPresent(self.ipprotocol, forKey: .ipprotocol)
       try container.encodeIfPresent(self.allPorts, forKey: .allPorts)
       try container.encodeIfPresent(self.allowGlobalAccess, forKey: .allowGlobalAccess)
       try container.encodeIfPresent(self.allowPscGlobalAccess, forKey: .allowPscGlobalAccess)
       try container.encode(self.attachedExtensions, forKey: .attachedExtensions)
+      try container.encodeIfPresent(self.availabilityGroup, forKey: .availabilityGroup)
       try container.encodeIfPresent(self.backendService, forKey: .backendService)
       try container.encodeIfPresent(self.baseForwardingRule, forKey: .baseForwardingRule)
+      try container.encode(self.childForwardingRules, forKey: .childForwardingRules)
       try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
       try container.encodeIfPresent(self.description, forKey: .description)
       try container.encodeIfPresent(
@@ -710,6 +834,7 @@
       try container.encodeIfPresent(self.network, forKey: .network)
       try container.encodeIfPresent(self.networkTier, forKey: .networkTier)
       try container.encodeIfPresent(self.noAutomateDnsZone, forKey: .noAutomateDnsZone)
+      try container.encodeIfPresent(self.parentForwardingRule, forKey: .parentForwardingRule)
       try container.encodeIfPresent(self.portRange, forKey: .portRange)
       try container.encode(self.ports, forKey: .ports)
       try container.encodeIfPresent(self.pscConnectionId, forKey: .pscConnectionId)
@@ -802,6 +927,68 @@
         case .sctp: return try container.encode("SCTP")
         case .tcp: return try container.encode("TCP")
         case .udp: return try container.encode("UDP")
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    /// The enumerated type for the [availabilityGroup][google.cloud.compute.v1.ForwardingRule.availabilityGroup] field.
+    ///
+    /// [google.cloud.compute.v1.ForwardingRule.availabilityGroup]: <doc:ForwardingRule/AvailabilityGroup>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum AvailabilityGroup: Codable, Equatable, Hashable, Sendable {
+      case availabilityGroup0
+      case availabilityGroup1
+      case unspecified
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(Swift.String)
+
+      /// Returns the string value (or name) associated with the enumeration.
+      public var stringValue: Swift.String {
+        switch self {
+        case .availabilityGroup0: return "AVAILABILITY_GROUP0"
+        case .availabilityGroup1: return "AVAILABILITY_GROUP1"
+        case .unspecified: return "AVAILABILITY_GROUP_UNSPECIFIED"
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AvailabilityGroup/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "AVAILABILITY_GROUP0": self = .availabilityGroup0
+        case "AVAILABILITY_GROUP1": self = .availabilityGroup1
+        case "AVAILABILITY_GROUP_UNSPECIFIED": self = .unspecified
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .availabilityGroup0: return try container.encode("AVAILABILITY_GROUP0")
+        case .availabilityGroup1: return try container.encode("AVAILABILITY_GROUP1")
+        case .unspecified: return try container.encode("AVAILABILITY_GROUP_UNSPECIFIED")
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }
@@ -943,6 +1130,7 @@
     public enum LoadBalancingScheme: Codable, Equatable, Hashable, Sendable {
       case external
       case externalManaged
+      case externalPassthrough
       case `internal`
       case internalManaged
       case internalSelfManaged
@@ -962,6 +1150,7 @@
         switch self {
         case .external: return "EXTERNAL"
         case .externalManaged: return "EXTERNAL_MANAGED"
+        case .externalPassthrough: return "EXTERNAL_PASSTHROUGH"
         case .`internal`: return "INTERNAL"
         case .internalManaged: return "INTERNAL_MANAGED"
         case .internalSelfManaged: return "INTERNAL_SELF_MANAGED"
@@ -977,6 +1166,7 @@
         switch stringValue {
         case "EXTERNAL": self = .external
         case "EXTERNAL_MANAGED": self = .externalManaged
+        case "EXTERNAL_PASSTHROUGH": self = .externalPassthrough
         case "INTERNAL": self = .`internal`
         case "INTERNAL_MANAGED": self = .internalManaged
         case "INTERNAL_SELF_MANAGED": self = .internalSelfManaged
@@ -996,6 +1186,7 @@
         switch self {
         case .external: return try container.encode("EXTERNAL")
         case .externalManaged: return try container.encode("EXTERNAL_MANAGED")
+        case .externalPassthrough: return try container.encode("EXTERNAL_PASSTHROUGH")
         case .`internal`: return try container.encode("INTERNAL")
         case .internalManaged: return try container.encode("INTERNAL_MANAGED")
         case .internalSelfManaged: return try container.encode("INTERNAL_SELF_MANAGED")

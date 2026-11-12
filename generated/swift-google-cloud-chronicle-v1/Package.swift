@@ -35,6 +35,11 @@ let package = Package(
       from: "0.6.0"
     ),
     localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-backstory",
+      path: "generated/swift-backstory",
+      from: "0.6.0"
+    ),
+    localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-gax",
       path: "pkgs/swift-google-gax",
       from: "0.6.0"
@@ -67,6 +72,7 @@ let package = Package(
       dependencies: [
         .product(name: "GoogleApi", package: "swift-google-api"),
         .product(name: "GoogleAuth", package: "swift-google-auth"),
+        .product(name: "GoogleBackstory", package: "swift-backstory"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),

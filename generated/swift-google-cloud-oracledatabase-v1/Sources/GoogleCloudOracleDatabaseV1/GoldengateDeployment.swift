@@ -26,22 +26,22 @@ public struct GoldengateDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// projects/{project}/locations/{region}/goldengateDeployments/{goldengate_deployment}
   public var name: Swift.String = Swift.String()
 
-  /// Required. The properties of the GoldengateDeployment.
+  /// Required. Immutable. The properties of the GoldengateDeployment.
   public var properties: GoldengateDeploymentProperties? = nil
 
-  /// Optional. The GCP Oracle zone where Oracle GoldengateDeployment is hosted.
-  /// Example: us-east4-b-r2.
-  /// If not specified, the system will pick a zone based on availability.
+  /// Optional. Immutable. The GCP Oracle zone where Oracle GoldengateDeployment
+  /// is hosted. Example: us-east4-b-r2. If not specified, the system will pick a
+  /// zone based on availability.
   public var gcpOracleZone: Swift.String = Swift.String()
 
   /// Optional. The labels or tags associated with the GoldengateDeployment.
   public var labels: [Swift.String: Swift.String] = [:]
 
-  /// Optional. The name of the OdbNetwork associated with the
+  /// Optional. Immutable. The name of the OdbNetwork associated with the
   /// GoldengateDeployment.
   public var odbNetwork: Swift.String = Swift.String()
 
-  /// Required. The name of the OdbSubnet associated with the
+  /// Required. Immutable. The name of the OdbSubnet associated with the
   /// GoldengateDeployment for IP allocation.
   public var odbSubnet: Swift.String = Swift.String()
 
@@ -49,7 +49,7 @@ public struct GoldengateDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// GoldengateDeployment
   public var entitlementId: Swift.String = Swift.String()
 
-  /// Required. The display name for the GoldengateDeployment.
+  /// Required. Immutable. The display name for the GoldengateDeployment.
   public var displayName: Swift.String = Swift.String()
 
   /// Output only. The date and time that the GoldengateDeployment was created.

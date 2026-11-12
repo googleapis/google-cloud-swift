@@ -86,7 +86,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// Note that this value might not be what was used
   /// as input. For example, if ALPHA was provided as input in the parent
-  /// resource, but only BETA and GA-level features are were, this field will be
+  /// resource, but only BETA and GA-level features are used, this field will be
   /// BETA.
   public var launchStage: GoogleApi.LaunchStage = GoogleApi.LaunchStage()
 
@@ -145,6 +145,12 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Reserved for future use.
   public var satisfiesPzs: Swift.Bool = Swift.Bool()
 
+  /// Output only. Arbitrary identifier for the API client.
+  public var client: Swift.String = Swift.String()
+
+  /// Output only. Arbitrary version identifier for the API client.
+  public var clientVersion: Swift.String = Swift.String()
+
   /// Output only. A system-generated fingerprint for this version of the
   /// resource. May be used to detect modification conflict during updates.
   public var etag: Swift.String = Swift.String()
@@ -201,6 +207,8 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     static let retriedCount = CodingKeys(stringValue: "retriedCount")
     static let logUri = CodingKeys(stringValue: "logUri")
     static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let client = CodingKeys(stringValue: "client")
+    static let clientVersion = CodingKeys(stringValue: "clientVersion")
     static let etag = CodingKeys(stringValue: "etag")
 
     static let _knownKeys: Set<Swift.String> = [
@@ -231,6 +239,8 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
       "retriedCount",
       "logUri",
       "satisfiesPzs",
+      "client",
+      "clientVersion",
       "etag",
     ]
   }
@@ -312,6 +322,12 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
       self.satisfiesPzs = value
     }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .client) {
+      self.client = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientVersion) {
+      self.clientVersion = value
+    }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
       self.etag = value
     }
@@ -350,6 +366,8 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.retriedCount, forKey: .retriedCount)
     try container.encode(self.logUri, forKey: .logUri)
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encode(self.client, forKey: .client)
+    try container.encode(self.clientVersion, forKey: .clientVersion)
     try container.encode(self.etag, forKey: .etag)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

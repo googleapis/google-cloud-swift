@@ -25,7 +25,12 @@
     /// Defines the type of technology used by the confidential instance.
     public var confidentialInstanceType: ConfidentialInstanceConfig.ConfidentialInstanceType? = nil
 
+    /// Defines a set of Confidential Paravisor (SVSM) options.
+    public var confidentialParavisorConfig: ConfidentialParavisorConfig? = nil
+
     /// Defines whether the instance should have confidential compute enabled.
+    /// When enabled, the technology used defaults to
+    /// AMD SEV unless confidentialInstanceType is specified.
     public var enableConfidentialCompute: Swift.Bool? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -54,10 +59,13 @@
       init?(intValue: Swift.Int) { nil }
 
       static let confidentialInstanceType = CodingKeys(stringValue: "confidentialInstanceType")
+      static let confidentialParavisorConfig = CodingKeys(
+        stringValue: "confidentialParavisorConfig")
       static let enableConfidentialCompute = CodingKeys(stringValue: "enableConfidentialCompute")
 
       static let _knownKeys: Set<Swift.String> = [
         "confidentialInstanceType",
+        "confidentialParavisorConfig",
         "enableConfidentialCompute",
       ]
     }
@@ -66,6 +74,8 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.confidentialInstanceType = try container.decodeIfPresent(
         ConfidentialInstanceConfig.ConfidentialInstanceType.self, forKey: .confidentialInstanceType)
+      self.confidentialParavisorConfig = try container.decodeIfPresent(
+        ConfidentialParavisorConfig.self, forKey: .confidentialParavisorConfig)
       self.enableConfidentialCompute = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableConfidentialCompute)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -78,6 +88,8 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(
         self.confidentialInstanceType, forKey: .confidentialInstanceType)
+      try container.encodeIfPresent(
+        self.confidentialParavisorConfig, forKey: .confidentialParavisorConfig)
       try container.encodeIfPresent(
         self.enableConfidentialCompute, forKey: .enableConfidentialCompute)
       for (key, value) in self._unknownFields.json {

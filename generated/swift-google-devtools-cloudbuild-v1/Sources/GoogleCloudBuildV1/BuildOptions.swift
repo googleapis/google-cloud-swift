@@ -420,6 +420,9 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     case notVerified
     /// Build must be verified.
     case verified
+    /// Build verification is best effort. If provenance generation fails, the
+    /// build will still succeed.
+    case bestEffort
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -450,6 +453,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       switch self {
       case .notVerified: return 0
       case .verified: return 1
+      case .bestEffort: return 3
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -462,6 +466,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       switch self {
       case .notVerified: return "NOT_VERIFIED"
       case .verified: return "VERIFIED"
+      case .bestEffort: return "BEST_EFFORT"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -474,6 +479,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       switch stringValue {
       case "NOT_VERIFIED": self = .notVerified
       case "VERIFIED": self = .verified
+      case "BEST_EFFORT": self = .bestEffort
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -485,6 +491,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       switch intValue {
       case 0: self = .notVerified
       case 1: self = .verified
+      case 3: self = .bestEffort
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -512,6 +519,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       switch self {
       case .notVerified: return try container.encode("NOT_VERIFIED")
       case .verified: return try container.encode("VERIFIED")
+      case .bestEffort: return try container.encode("BEST_EFFORT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1064,7 +1072,9 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     /// build. The builder service account must have access to create and write
     /// to Cloud Storage buckets in the build project.
     case regionalUserOwnedBucket
-    /// Bucket is located in a Google-owned project and is not regionalized.
+    /// Deprecated: Use `REGIONAL_USER_OWNED_BUCKET` instead. Bucket is located
+    /// in a Google-owned project and is not regionalized.
+    @available(*, deprecated)
     case legacyBucket
     /// Encodes an unknown integer value.
     ///
@@ -1118,6 +1128,9 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from a string value.
     ///
     /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DefaultLogsBucketBehavior/unknownStringValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED": self = .unspecified
@@ -1130,6 +1143,9 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from an integer value.
     ///
     /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DefaultLogsBucketBehavior/unknownIntValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified

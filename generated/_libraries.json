@@ -1,4 +1,13 @@
 {
+  "swift-backstory": [
+    {
+      "PkgName": "swift-backstory",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-backstory/0.6.0/documentation",
+      "APIShortname": "backstory",
+      "Product": "Malachite Common Protos"
+    }
+  ],
   "swift-google-api": [
     {
       "PkgName": "swift-google-api",
