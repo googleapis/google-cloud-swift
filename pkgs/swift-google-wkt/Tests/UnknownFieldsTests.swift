@@ -231,17 +231,23 @@ import Testing
   @Test("Missing nested message decodes to default with empty unknown fields")
   func decodeMissingNestedMessage() throws {
     let decoder = _ProtoJSONDecoder()
-    let wrapper = try decoder.decode(WrapperMessage.self, from: Data("{}".utf8))
-    #expect(wrapper.nested == SampleMessage())
-    #expect(wrapper.nested._unknownFields.json.isEmpty)
-    #expect(wrapper.nested._unknownFields.proto.isEmpty)
+    for input in ["{}", #"{"nested": null}"#] {
+      let wrapper = try decoder.decode(WrapperMessage.self, from: Data(input.utf8))
+      #expect(wrapper.nested == SampleMessage())
+      #expect(wrapper.nested._unknownFields.json.isEmpty)
+      #expect(wrapper.nested._unknownFields.proto.isEmpty)
+    }
 
     let emptyAny = try AnyCodingMode.makeAny(for: WrapperMessage.self, fields: [:])
+    let nullNestedAny = try AnyCodingMode.makeAny(
+      jsonObject: #"{"nested": null}"#, for: WrapperMessage.self)
     for mode in AnyCodingMode.allCases {
-      let decoded = try mode.deserialize(WrapperMessage.self, from: emptyAny)
-      #expect(decoded == WrapperMessage())
-      #expect(decoded.nested._unknownFields.json.isEmpty)
-      #expect(decoded.nested._unknownFields.proto.isEmpty)
+      for any in [emptyAny, nullNestedAny] {
+        let decoded = try mode.deserialize(WrapperMessage.self, from: any)
+        #expect(decoded == WrapperMessage())
+        #expect(decoded.nested._unknownFields.json.isEmpty)
+        #expect(decoded.nested._unknownFields.proto.isEmpty)
+      }
     }
   }
 }

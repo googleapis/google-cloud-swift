@@ -38,9 +38,11 @@ import Testing
       (#"{"optional": "Pz8_"          }"#, T().with { $0.optional = Data("???".utf8) }),
       (#"{"optional": "Pz8_Pw"        }"#, T().with { $0.optional = Data("????".utf8) }),
       (#"{"repeated": []              }"#, T()),
+      (#"{"repeated": null            }"#, T()),
       (#"{"repeated": ["Pz8_"]        }"#, T().with { $0.repeated = [Data("???".utf8)] }),
       (#"{"repeated": ["Pz8_Pw", ""]  }"#, T().with { $0.repeated = [Data("????".utf8), Data()] }),
       (#"{"map":      {}              }"#, T()),
+      (#"{"map":      null            }"#, T()),
       (#"{"map":      {"a": "Pz8_"}   }"#, T().with { $0.map = ["a": Data("???".utf8)] }),
       (#"{"map":      {"a": "Pz8_Pw"} }"#, T().with { $0.map = ["a": Data("????".utf8)] }),
     ])
@@ -48,6 +50,18 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
+  }
+
+  @Test(
+    arguments: [
+      #"{"repeated": [null]}"#,
+      #"{"map": {"a": null}}"#,
+    ])
+  func invalidNullElementsThrow(input: String) throws {
+    let decoder = _ProtoJSONDecoder()
+    #expect(throws: DecodingError.self) {
+      try decoder.decode(T.self, from: Data(input.utf8))
+    }
   }
 
   @Test(

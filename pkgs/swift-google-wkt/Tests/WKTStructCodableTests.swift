@@ -23,6 +23,7 @@ import Testing
   typealias RepeatedPrimitives = ProtoJSONDecoderTest.RepeatedPrimitives
   typealias MapPrimitives = ProtoJSONDecoderTest.MapPrimitives
   typealias MessageWithRepeated = ProtoJSONDecoderTest.MessageWithRepeated
+  typealias MessageWithEnumAndNested = ProtoJSONDecoderTest.MessageWithEnumAndNested
   typealias CollectionModel = ProtoJSONEncoderTest.CollectionModel
 
   struct AllPrimitivesMessage: Codable, Equatable, _AnyPackable, Sendable {
@@ -455,6 +456,113 @@ import Testing
     #expect(decodedValue == .object(input))
   }
 
+  @Test func decodeToDefaultSingleValueAndKeyedContains() throws {
+    let decoder = DecodeToDefault()
+    let single = try decoder.singleValueContainer()
+    #expect(single.decodeNil())
+    #expect(try single.decode(Data.self) == Data())
+
+    enum TestKey: String, CodingKey {
+      case missing
+    }
+    let keyed = try decoder.container(keyedBy: TestKey.self)
+    #expect(keyed.allKeys.isEmpty)
+    #expect(!keyed.contains(.missing))
+    #expect(try keyed.decode(Data.self, forKey: .missing) == Data())
+  }
+
+  struct MissingOrNullContainersMessage: Codable, Equatable, _AnyPackable, Sendable {
+    static var _anyTypeUrl: String { "type.googleapis.com/test.MissingOrNullContainersMessage" }
+
+    var nestedDictValue: String
+    var nestedArrayValues: [Int32]
+    var superValue: String
+    var unkeyedSuperValue: String
+
+    enum CodingKeys: String, CodingKey {
+      case nestedDict
+      case nestedArray
+      case customSuper
+      case nested
+    }
+
+    enum NestedKeys: String, CodingKey {
+      case value
+    }
+
+    init(
+      nestedDictValue: String = "",
+      nestedArrayValues: [Int32] = [],
+      superValue: String = "",
+      unkeyedSuperValue: String = ""
+    ) {
+      self.nestedDictValue = nestedDictValue
+      self.nestedArrayValues = nestedArrayValues
+      self.superValue = superValue
+      self.unkeyedSuperValue = unkeyedSuperValue
+    }
+
+    init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      let nestedDict = try container.nestedContainer(keyedBy: NestedKeys.self, forKey: .nestedDict)
+      if try !container.contains(.nestedDict) || container.decodeNil(forKey: .nestedDict) {
+        #expect(!nestedDict.contains(.value))
+      }
+      self.nestedDictValue = try nestedDict.decode(String.self, forKey: .value)
+
+      var nestedArr = try container.nestedUnkeyedContainer(forKey: .nestedArray)
+      var items: [Int32] = []
+      while !nestedArr.isAtEnd {
+        items.append(try nestedArr.decode(Int32.self))
+      }
+      self.nestedArrayValues = items
+
+      let superDec = try container.superDecoder(forKey: .customSuper)
+      self.superValue = try String(from: superDec)
+
+      let defaultSuperDec = try container.superDecoder()
+      let defaultSuperContainer = try defaultSuperDec.singleValueContainer()
+      #expect(defaultSuperContainer.decodeNil())
+      self.unkeyedSuperValue = try defaultSuperContainer.decode(String.self)
+    }
+
+    func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      var nestedDict = container.nestedContainer(keyedBy: NestedKeys.self, forKey: .nestedDict)
+      try nestedDict.encode(self.nestedDictValue, forKey: .value)
+      var nestedArr = container.nestedUnkeyedContainer(forKey: .nestedArray)
+      for item in self.nestedArrayValues {
+        try nestedArr.encode(item)
+      }
+      let superEnc = container.superEncoder(forKey: .customSuper)
+      try self.superValue.encode(to: superEnc)
+    }
+
+    init(fromAny any: WKTAny) throws {
+      self = try _anyDeserialize(Self.self, from: any)
+    }
+
+    func _pack() throws -> WKTStruct {
+      return try _anySerialize(message: self)
+    }
+  }
+
+  @Test(
+    "nested containers and superDecoders decode missing and null as defaults",
+    arguments: AnyCodingMode.allCases,
+    [
+      #"{}"#,
+      #"{"nestedDict":null,"nestedArray":null,"customSuper":null,"super":null}"#,
+      #"{"nestedDict":{"value":null}}"#,
+    ]
+  )
+  func nestedContainersAndSuperDecodersNullAndMissing(mode: AnyCodingMode, input: String) throws {
+    let any = try AnyCodingMode.makeAny(
+      jsonObject: input, for: MissingOrNullContainersMessage.self)
+    let got = try mode.deserialize(MissingOrNullContainersMessage.self, from: any)
+    #expect(got == MissingOrNullContainersMessage())
+  }
+
   @Test(
     "required primitives",
     arguments: AnyCodingMode.allCases,
@@ -573,6 +681,18 @@ import Testing
   }
 
   @Test(
+    "repeated null elements throw",
+    arguments: AnyCodingMode.allCases,
+    ProtoJSONDecoderTest.repeatedNullElementInputs
+  )
+  func repeatedPrimitivesNullElements(mode: AnyCodingMode, input: String) throws {
+    let any = try AnyCodingMode.makeAny(jsonObject: input, for: RepeatedPrimitives.self)
+    #expect(throws: DecodingError.self) {
+      _ = try mode.deserialize(RepeatedPrimitives.self, from: any)
+    }
+  }
+
+  @Test(
     "map primitives",
     arguments: AnyCodingMode.allCases,
     ProtoJSONDecoderTest.mapInputs
@@ -609,6 +729,44 @@ import Testing
       _ = try mode.deserialize(MapPrimitives.self, from: any)
     }
     #expect({ if case .typeMismatch = error { true } else { false } }())
+  }
+
+  @Test(
+    "map null values throw",
+    arguments: AnyCodingMode.allCases,
+    ProtoJSONDecoderTest.mapNullValueInputs
+  )
+  func mapPrimitivesNullValues(mode: AnyCodingMode, input: String) throws {
+    let any = try AnyCodingMode.makeAny(jsonObject: input, for: MapPrimitives.self)
+    #expect(throws: DecodingError.self) {
+      _ = try mode.deserialize(MapPrimitives.self, from: any)
+    }
+  }
+
+  @Test(
+    "enum and nested null values",
+    arguments: AnyCodingMode.allCases,
+    ProtoJSONDecoderTest.enumAndNestedInputs
+  )
+  func enumAndNestedNullValues(
+    mode: AnyCodingMode, testCase: (String, MessageWithEnumAndNested)
+  ) throws {
+    let (input, want) = testCase
+    let any = try AnyCodingMode.makeAny(jsonObject: input, for: MessageWithEnumAndNested.self)
+    let got = try mode.deserialize(MessageWithEnumAndNested.self, from: any)
+    #expect(got == want)
+  }
+
+  @Test(
+    "enum and nested invalid null elements throw",
+    arguments: AnyCodingMode.allCases,
+    ProtoJSONDecoderTest.enumAndNestedBadInputs
+  )
+  func enumAndNestedInvalidNullElements(mode: AnyCodingMode, input: String) throws {
+    let any = try AnyCodingMode.makeAny(jsonObject: input, for: MessageWithEnumAndNested.self)
+    #expect(throws: DecodingError.self) {
+      _ = try mode.deserialize(MessageWithEnumAndNested.self, from: any)
+    }
   }
 
   @Test(arguments: AnyCodingMode.allCases)

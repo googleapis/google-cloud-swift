@@ -22,6 +22,10 @@ import Testing
     arguments: [
       // Empty case
       (#"{}"#, MessageWithRecursion()),
+      (#"{"singular":null}"#, MessageWithRecursion()),
+      (#"{"optional":null}"#, MessageWithRecursion()),
+      (#"{"repeated":null}"#, MessageWithRecursion()),
+      (#"{"map":null}"#, MessageWithRecursion()),
       // Deep recursive chain
       (
         """
@@ -100,6 +104,19 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(MessageWithRecursion.self, from: Data(input.utf8))
     #expect(got == want)
+  }
+
+  @Test(
+    "Recursion invalid null elements throw",
+    arguments: [
+      #"{"repeated":[null]}"#,
+      #"{"map":{"key1":null}}"#,
+    ])
+  func invalidNullElements(input: String) throws {
+    let decoder = _ProtoJSONDecoder()
+    #expect(throws: DecodingError.self) {
+      try decoder.decode(MessageWithRecursion.self, from: Data(input.utf8))
+    }
   }
 
   @Test func testRoundtripSerialization() throws {
