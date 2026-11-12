@@ -15,11 +15,24 @@
 import Foundation
 import Synchronization
 
-/// A type that can fetch authentication tokens from a backend source.
+/// An internal, uncached backend fetcher that mints or exchanges fresh access tokens for `TokenCache`.
+///
+/// ### `TokenProvider` vs. ``AccessTokenProvider``
+/// - `TokenProvider` (`internal`) represents a raw, **uncached** token acquisition step (such as
+///   local RSA JWT signing or an OAuth 2.0 / STS / Metadata Server HTTP exchange) wrapped inside
+///   `TokenCache`. Every call to `fetchToken()` unconditionally produces a new token.
+/// - ``AccessTokenProvider`` (`public`) represents a **ready-to-use** token supplier (custom user
+///   providers, `StaticAccessTokenProvider`, and the `TokenCache`-backed `*Credentials` types)
+///   whose `accessToken()` is called directly per request and expected to handle any caching itself.
+/// - Concurrency: under `NonisolatedNonsendingByDefault`, `fetchToken()` is marked `@concurrent` so
+///   `TokenCache`'s actor-isolated refresh `Task` hops off the cache actor's serial executor onto the
+///   global concurrent pool (avoiding blocking cached reads during CPU-bound JWT signing), whereas
+///   ``AccessTokenProvider/accessToken()`` omits `@concurrent` so caller-defined `actor` conformances
+///   can isolate `accessToken()` directly to their own executor.
 protocol TokenProvider: Sendable {
-  /// Asynchronously fetches a fresh access token from the provider.
+  /// Unconditionally mints or fetches a fresh access token from the underlying source.
   ///
-  /// - Returns: A fresh access token.
+  /// - Returns: A newly acquired ``AccessToken``.
   @concurrent
   func fetchToken() async throws -> AccessToken
 }

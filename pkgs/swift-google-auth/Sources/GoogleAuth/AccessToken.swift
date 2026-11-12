@@ -71,6 +71,11 @@ public struct AccessToken: Sendable, Hashable, CustomStringConvertible, CustomDe
   }
 }
 
+// Note: Distinct from internal `TokenProvider` (in `TokenCache.swift`), which models uncached
+// `@concurrent` backend token fetches wrapped inside `TokenCache`. `AccessTokenProvider` models a
+// ready-to-use token supplier and intentionally omits `@concurrent` under
+// `NonisolatedNonsendingByDefault` so downstream `actor` types can conform directly.
+
 /// A type that asynchronously provides access tokens from a custom authentication source.
 ///
 /// Conforming types can be supplied to ``AccessTokenConfig/init(provider:)`` with
@@ -81,7 +86,8 @@ public struct AccessToken: Sendable, Hashable, CustomStringConvertible, CustomDe
 /// ``Credentials/accessToken()`` is called. Implementations that fetch tokens over the network
 /// or perform expensive operations are responsible for caching and refreshing their own tokens.
 ///
-/// Conforming types must be `Sendable` and provide a thread-safe implementation of ``accessToken()``.
+/// Conforming types must be `Sendable` and provide a thread-safe implementation of ``accessToken()``
+/// (for example, an `actor` or a value type backed by synchronized state).
 public protocol AccessTokenProvider: Sendable {
   /// Asynchronously retrieves a valid access token from the provider.
   ///
