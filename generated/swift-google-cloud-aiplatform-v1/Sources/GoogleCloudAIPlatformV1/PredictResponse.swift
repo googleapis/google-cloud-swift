@@ -118,7 +118,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelDisplayName) {
         self.modelDisplayName = value
       }
-      self.metadata = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .metadata)
+      if container.contains(.metadata) {
+        self.metadata = try container.decode(GoogleWKT.WKTValue.self, forKey: .metadata)
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

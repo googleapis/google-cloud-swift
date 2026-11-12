@@ -239,7 +239,9 @@
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .nullable) {
         self.nullable = value
       }
-      self.`default` = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .`default`)
+      if container.contains(.`default`) {
+        self.`default` = try container.decode(GoogleWKT.WKTValue.self, forKey: .`default`)
+      }
       self.items = try container.decodeIfPresent(
         GoogleWKT.WKTRecursive<Schema>.self, forKey: .items)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .minItems) {
@@ -282,12 +284,16 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pattern) {
         self.pattern = value
       }
-      self.example = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .example)
+      if container.contains(.example) {
+        self.example = try container.decode(GoogleWKT.WKTValue.self, forKey: .example)
+      }
       if let value = try container.decodeIfPresent([Schema].self, forKey: .anyOf) {
         self.anyOf = value
       }
-      self.additionalProperties = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .additionalProperties)
+      if container.contains(.additionalProperties) {
+        self.additionalProperties = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: .additionalProperties)
+      }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ref) {
         self.ref = value
       }

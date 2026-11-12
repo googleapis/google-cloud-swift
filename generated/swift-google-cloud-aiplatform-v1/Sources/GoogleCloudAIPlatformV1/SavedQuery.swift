@@ -127,7 +127,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
         self.displayName = value
       }
-      self.metadata = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .metadata)
+      if container.contains(.metadata) {
+        self.metadata = try container.decode(GoogleWKT.WKTValue.self, forKey: .metadata)
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(

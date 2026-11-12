@@ -360,8 +360,10 @@
         BatchPredictionJob.InputConfig.self, forKey: .inputConfig)
       self.instanceConfig = try container.decodeIfPresent(
         BatchPredictionJob.InstanceConfig.self, forKey: .instanceConfig)
-      self.modelParameters = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .modelParameters)
+      if container.contains(.modelParameters) {
+        self.modelParameters = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: .modelParameters)
+      }
       self.outputConfig = try container.decodeIfPresent(
         BatchPredictionJob.OutputConfig.self, forKey: .outputConfig)
       self.dedicatedResources = try container.decodeIfPresent(

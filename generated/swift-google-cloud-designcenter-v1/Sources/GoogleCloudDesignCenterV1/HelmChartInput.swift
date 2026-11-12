@@ -93,8 +93,9 @@ public struct HelmChartInput: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
       self.type = value
     }
-    self.defaultValue = try container.decodeIfPresent(
-      GoogleWKT.WKTValue.self, forKey: .defaultValue)
+    if container.contains(.defaultValue) {
+      self.defaultValue = try container.decode(GoogleWKT.WKTValue.self, forKey: .defaultValue)
+    }
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isRequired) {
       self.isRequired = value
     }

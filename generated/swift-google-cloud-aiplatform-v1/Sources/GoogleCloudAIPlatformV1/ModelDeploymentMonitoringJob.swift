@@ -282,8 +282,10 @@
       {
         self.predictInstanceSchemaUri = value
       }
-      self.samplePredictInstance = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .samplePredictInstance)
+      if container.contains(.samplePredictInstance) {
+        self.samplePredictInstance = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: .samplePredictInstance)
+      }
       if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .analysisInstanceSchemaUri)
       {

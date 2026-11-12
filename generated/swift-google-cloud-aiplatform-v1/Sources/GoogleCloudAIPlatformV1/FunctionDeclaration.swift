@@ -134,11 +134,15 @@
         self.description = value
       }
       self.parameters = try container.decodeIfPresent(Schema.self, forKey: .parameters)
-      self.parametersJsonSchema = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .parametersJsonSchema)
+      if container.contains(.parametersJsonSchema) {
+        self.parametersJsonSchema = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: .parametersJsonSchema)
+      }
       self.response = try container.decodeIfPresent(Schema.self, forKey: .response)
-      self.responseJsonSchema = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .responseJsonSchema)
+      if container.contains(.responseJsonSchema) {
+        self.responseJsonSchema = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: .responseJsonSchema)
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

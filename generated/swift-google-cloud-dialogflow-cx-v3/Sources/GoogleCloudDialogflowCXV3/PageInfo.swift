@@ -292,7 +292,9 @@
           {
             self.state = value
           }
-          self.value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value)
+          if container.contains(.value) {
+            self.value = try container.decode(GoogleWKT.WKTValue.self, forKey: .value)
+          }
           if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .justCollected) {
             self.justCollected = value
           }

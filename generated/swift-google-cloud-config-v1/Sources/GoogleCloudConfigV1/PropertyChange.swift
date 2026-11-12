@@ -87,12 +87,16 @@ public struct PropertyChange: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.beforeSensitivePaths = value
     }
-    self.before = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .before)
+    if container.contains(.before) {
+      self.before = try container.decode(GoogleWKT.WKTValue.self, forKey: .before)
+    }
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .afterSensitivePaths)
     {
       self.afterSensitivePaths = value
     }
-    self.after = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .after)
+    if container.contains(.after) {
+      self.after = try container.decode(GoogleWKT.WKTValue.self, forKey: .after)
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)

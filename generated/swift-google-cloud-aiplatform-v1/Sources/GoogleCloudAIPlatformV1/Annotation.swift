@@ -137,7 +137,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .payloadSchemaUri) {
         self.payloadSchemaUri = value
       }
-      self.payload = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .payload)
+      if container.contains(.payload) {
+        self.payload = try container.decode(GoogleWKT.WKTValue.self, forKey: .payload)
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(

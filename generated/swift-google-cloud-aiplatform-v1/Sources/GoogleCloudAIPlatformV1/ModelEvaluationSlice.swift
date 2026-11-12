@@ -105,7 +105,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metricsSchemaUri) {
         self.metricsSchemaUri = value
       }
-      self.metrics = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .metrics)
+      if container.contains(.metrics) {
+        self.metrics = try container.decode(GoogleWKT.WKTValue.self, forKey: .metrics)
+      }
       self.createTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       self.modelExplanation = try container.decodeIfPresent(

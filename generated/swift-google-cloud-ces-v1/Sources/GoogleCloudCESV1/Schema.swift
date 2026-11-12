@@ -209,7 +209,9 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .`enum`) {
       self.`enum` = value
     }
-    self.`default` = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .`default`)
+    if container.contains(.`default`) {
+      self.`default` = try container.decode(GoogleWKT.WKTValue.self, forKey: .`default`)
+    }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ref) {
       self.ref = value
     }

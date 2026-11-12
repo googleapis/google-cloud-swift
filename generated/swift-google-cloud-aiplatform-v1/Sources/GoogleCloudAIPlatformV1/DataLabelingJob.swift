@@ -211,7 +211,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .inputsSchemaUri) {
         self.inputsSchemaUri = value
       }
-      self.inputs = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .inputs)
+      if container.contains(.inputs) {
+        self.inputs = try container.decode(GoogleWKT.WKTValue.self, forKey: .inputs)
+      }
       if let value = try container.decodeIfPresent(JobState.self, forKey: .state) {
         self.state = value
       }

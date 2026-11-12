@@ -92,7 +92,8 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
       }
       complex = $0
     }
-    if let null = try container.decodeIfPresent(GoogleWKT.WKTNullValue.self, forKey: .null) {
+    if container.contains(.null) {
+      let null = try container.decode(GoogleWKT.WKTNullValue.self, forKey: .null)
       try complexCheckAndSet(.null(null))
     }
     if let boolValue = try container.decodeIfPresent(Swift.Bool.self, forKey: .boolValue) {
@@ -128,7 +129,8 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
     if let duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration) {
       try complexCheckAndSet(.duration(duration))
     }
-    if let value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value) {
+    if container.contains(.value) {
+      let value = try container.decode(GoogleWKT.WKTValue.self, forKey: .value)
       try complexCheckAndSet(.value(value))
     }
     if let optionalDouble = try container.decodeIfPresent(

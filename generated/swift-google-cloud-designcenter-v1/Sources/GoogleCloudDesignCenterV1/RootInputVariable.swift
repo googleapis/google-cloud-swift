@@ -84,9 +84,12 @@ public struct RootInputVariable: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .variableType) {
       self.variableType = value
     }
-    self.value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value)
-    self.defaultValue = try container.decodeIfPresent(
-      GoogleWKT.WKTValue.self, forKey: .defaultValue)
+    if container.contains(.value) {
+      self.value = try container.decode(GoogleWKT.WKTValue.self, forKey: .value)
+    }
+    if container.contains(.defaultValue) {
+      self.defaultValue = try container.decode(GoogleWKT.WKTValue.self, forKey: .defaultValue)
+    }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .alias) {
       self.alias = value
     }

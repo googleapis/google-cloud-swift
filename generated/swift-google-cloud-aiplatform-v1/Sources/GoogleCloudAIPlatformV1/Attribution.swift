@@ -210,8 +210,10 @@
       {
         self.instanceOutputValue = value
       }
-      self.featureAttributions = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .featureAttributions)
+      if container.contains(.featureAttributions) {
+        self.featureAttributions = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: .featureAttributions)
+      }
       if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .outputIndex) {
         self.outputIndex = value
       }

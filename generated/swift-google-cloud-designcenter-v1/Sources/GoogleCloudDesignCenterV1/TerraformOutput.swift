@@ -68,7 +68,9 @@ public struct TerraformOutput: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.type = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .type)
+    if container.contains(.type) {
+      self.type = try container.decode(GoogleWKT.WKTValue.self, forKey: .type)
+    }
     if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .terraformOutputVariable)
     {

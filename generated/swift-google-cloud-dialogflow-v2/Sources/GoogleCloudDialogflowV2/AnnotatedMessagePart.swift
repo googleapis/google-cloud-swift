@@ -89,8 +89,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityType) {
         self.entityType = value
       }
-      self.formattedValue = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .formattedValue)
+      if container.contains(.formattedValue) {
+        self.formattedValue = try container.decode(GoogleWKT.WKTValue.self, forKey: .formattedValue)
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
