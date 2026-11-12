@@ -35,4 +35,4 @@ best-practices to retry transient RPC errors.
 - [Package traits](https://docs.cloud.google.com/swift/package-traits)
 - [Generate text using the Vertex AI Gemini API](https://docs.cloud.google.com/swift/generate-text-using-the-vertex-ai-gemini-api)
 - [Deploy a Swift service to Cloud Run](https://docs.cloud.google.com/swift/deploy-to-cloud-run)
-- <doc:deploy-to-gke>
+- [Deploy a Swift service to Google Kubernetes Engine](https://docs.cloud.google.com/swift/deploy-to-gke)
