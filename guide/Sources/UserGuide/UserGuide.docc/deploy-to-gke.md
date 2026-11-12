@@ -10,7 +10,7 @@
 [Google Cloud CLI]: https://cloud.google.com/sdk/docs/install
 [Google Kubernetes Engine]: https://cloud.google.com/kubernetes-engine/docs
 [Hummingbird]: https://github.com/hummingbird-project/hummingbird
-[Vertex AI Gemini API]: <doc:generate-text-using-the-vertex-ai-gemini-api>
+[Vertex AI Gemini API]: https://docs.cloud.google.com/swift/generate-text-using-the-vertex-ai-gemini-api
 [Workload Identity Federation for GKE]: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
 [install kubectl]: https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#install_kubectl
 

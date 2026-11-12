@@ -10,7 +10,7 @@
 [Getting started with Swift]: <doc:quickstart>
 [Google Cloud CLI]: https://cloud.google.com/sdk/docs/install
 [Hummingbird]: https://github.com/hummingbird-project/hummingbird
-[Vertex AI Gemini API]: <doc:generate-text-using-the-vertex-ai-gemini-api>
+[Vertex AI Gemini API]: https://docs.cloud.google.com/swift/generate-text-using-the-vertex-ai-gemini-api
 
 In this guide, you build a containerized HTTP service in Swift using
 [Hummingbird] and the [Vertex AI Gemini API], package it with a multi-stage
