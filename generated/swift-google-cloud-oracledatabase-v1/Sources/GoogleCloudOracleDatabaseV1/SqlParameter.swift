@@ -76,7 +76,9 @@ public struct SqlParameter: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value)
+    if container.contains(.value) {
+      self.value = try container.decode(GoogleWKT.WKTValue.self, forKey: .value)
+    }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .typeName) {
       self.typeName = value
     }
