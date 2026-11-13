@@ -13,13 +13,13 @@ best-practices to retry transient RPC errors.
 
 ## Discover
 
-- <doc:overview>
+- [Swift on Google Cloud overview](https://docs.cloud.google.com/swift/overview)
 - [Supported Swift versions](https://docs.cloud.google.com/swift/supported-versions)
 - [Post-quantum cryptography (PQC) support](https://docs.cloud.google.com/swift/post-quantum-cryptography)
 
 ## Get started
 
-- <doc:quickstart>
+- [Quickstart: Get started with Swift](https://docs.cloud.google.com/swift/quickstart)
 
 ## Develop
 
