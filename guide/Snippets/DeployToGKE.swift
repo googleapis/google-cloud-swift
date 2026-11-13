@@ -36,7 +36,7 @@ struct GKEGemini {
 
     // snippet.client [START swift_gke_client]
     let client = try PredictionServiceClient()
-    let model = "projects/\(projectId)/locations/global/publishers/google/models/gemini-2.5-flash"
+    let model = "projects/\(projectId)/locations/global/publishers/google/models/gemini-3.8-flash"
     // snippet.end [END swift_gke_client]
 
     // snippet.router [START swift_gke_router]
