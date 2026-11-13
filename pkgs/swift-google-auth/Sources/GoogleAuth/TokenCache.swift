@@ -15,35 +15,26 @@
 import Foundation
 import Synchronization
 
-/// Represents an access token used to authenticate requests.
-struct Token: Sendable, Hashable {
-  /// The raw token string (e.g. access token).
-  let accessToken: String
-  /// The token type (e.g. "Bearer").
-  let tokenType: String
-  /// The date/time when the token will expire.
-  let expirationDate: Date
-
-  /// Initializes a token with an access string, token type, and expiration.
-  ///
-  /// - Parameters:
-  ///   - accessToken: The raw token string.
-  ///   - tokenType: The type of the token (defaults to "Bearer").
-  ///   - expirationDate: The date/time when the token expires.
-  init(accessToken: String, tokenType: String = "Bearer", expirationDate: Date) {
-    self.accessToken = accessToken
-    self.tokenType = tokenType
-    self.expirationDate = expirationDate
-  }
-}
-
-/// A type that can fetch authentication tokens from a backend source.
+/// An internal, uncached backend fetcher that mints or exchanges fresh access tokens for `TokenCache`.
+///
+/// ### `TokenProvider` vs. ``AccessTokenProvider``
+/// - `TokenProvider` (`internal`) represents a raw, **uncached** token acquisition step (such as
+///   local RSA JWT signing or an OAuth 2.0 / STS / Metadata Server HTTP exchange) wrapped inside
+///   `TokenCache`. Every call to `fetchToken()` unconditionally produces a new token.
+/// - ``AccessTokenProvider`` (`public`) represents a **ready-to-use** token supplier (custom user
+///   providers, `StaticAccessTokenProvider`, and the `TokenCache`-backed `*Credentials` types)
+///   whose `accessToken()` is called directly per request and expected to handle any caching itself.
+/// - Concurrency: under `NonisolatedNonsendingByDefault`, `fetchToken()` is marked `@concurrent` so
+///   `TokenCache`'s actor-isolated refresh `Task` hops off the cache actor's serial executor onto the
+///   global concurrent pool (avoiding blocking cached reads during CPU-bound JWT signing), whereas
+///   ``AccessTokenProvider/accessToken()`` omits `@concurrent` so caller-defined `actor` conformances
+///   can isolate `accessToken()` directly to their own executor.
 protocol TokenProvider: Sendable {
-  /// Asynchronously fetches a fresh token from the provider.
+  /// Unconditionally mints or fetches a fresh access token from the underlying source.
   ///
-  /// - Returns: A fresh token.
+  /// - Returns: A newly acquired ``AccessToken``.
   @concurrent
-  func fetchToken() async throws -> Token
+  func fetchToken() async throws -> AccessToken
 }
 
 /// An abstraction over time measurement used by `TokenCache`.
@@ -110,8 +101,8 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
   }
 
   private let provider: any TokenProvider
-  private var cachedToken: Token?
-  private var activeRefreshTask: Task<Token, any Error>?
+  private var cachedToken: AccessToken?
+  private var activeRefreshTask: Task<AccessToken, any Error>?
   // Stored in a `Mutex` on a `let` property rather than an actor-isolated `var` so `nonisolated deinit`
   // can safely cancel the sleeping task upon deallocation under Swift 6 strict concurrency.
   private let backgroundTask = Mutex<Task<Void, Never>?>(nil)
@@ -172,7 +163,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
   ///
   /// If missing/expired, awaits the active refresh task (sharing it concurrently to prevent thundering herds)
   /// and lazily starts the proactive background refresh loop.
-  func token() async throws -> Token {
+  func token() async throws -> AccessToken {
     if let cached = self.cachedToken, !self.isExpired(cached) {
       return cached
     }
@@ -190,7 +181,11 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
       // while `self.activeRefreshTask == task` should update state and start the background loop.
       if self.activeRefreshTask == task {
         self.updateCache(with: token)
-        self.startBackgroundRefreshIfNeeded(initialSleep: self.refreshSleepDuration(for: token))
+        if let expirationDate = token.expirationDate {
+          self.startBackgroundRefreshIfNeeded(
+            initialSleep: self.refreshSleepDuration(for: expirationDate)
+          )
+        }
       }
       return token
     } catch {
@@ -254,16 +249,22 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     self.backgroundTask.withLock { $0 = task }
   }
 
-  private func isExpired(_ token: Token) -> Bool {
-    return token.expirationDate <= timeSource.now
+  private func isExpired(_ token: AccessToken) -> Bool {
+    guard let expirationDate = token.expirationDate else {
+      return false
+    }
+    return expirationDate <= timeSource.now
   }
 
-  private func isStale(_ token: Token) -> Bool {
-    let timeUntilExpiry = token.expirationDate.timeIntervalSince(timeSource.now)
+  private func isStale(_ token: AccessToken) -> Bool {
+    guard let expirationDate = token.expirationDate else {
+      return false
+    }
+    let timeUntilExpiry = expirationDate.timeIntervalSince(timeSource.now)
     return Duration.seconds(timeUntilExpiry) <= self.normalRefreshSlack
   }
 
-  private func triggerRefresh() -> Task<Token, any Error> {
+  private func triggerRefresh() -> Task<AccessToken, any Error> {
     if let task = self.activeRefreshTask {
       return task
     }
@@ -275,7 +276,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     return task
   }
 
-  private func updateCache(with token: Token) {
+  private func updateCache(with token: AccessToken) {
     self.cachedToken = token
     self.activeRefreshTask = nil
   }
@@ -284,8 +285,8 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     self.activeRefreshTask = nil
   }
 
-  private func refreshSleepDuration(for token: Token) -> Duration {
-    let timeUntilExpiry = token.expirationDate.timeIntervalSince(timeSource.now)
+  private func refreshSleepDuration(for expirationDate: Date) -> Duration {
+    let timeUntilExpiry = expirationDate.timeIntervalSince(timeSource.now)
     let duration = Duration.seconds(timeUntilExpiry)
 
     if duration > self.normalRefreshSlack {
@@ -331,7 +332,10 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
 
     // If we already have a valid, non-stale token, sleep until scheduled refresh
     if let cached = self.cachedToken, !self.isStale(cached) {
-      let sleepDuration = self.refreshSleepDuration(for: cached)
+      guard let expirationDate = cached.expirationDate else {
+        return .terminate
+      }
+      let sleepDuration = self.refreshSleepDuration(for: expirationDate)
       if sleepDuration > .zero {
         return .sleep(sleepDuration)
       }
@@ -345,7 +349,10 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
         self.updateCache(with: token)
       }
 
-      return .sleep(self.refreshSleepDuration(for: token))
+      guard let expirationDate = token.expirationDate else {
+        return .terminate
+      }
+      return .sleep(self.refreshSleepDuration(for: expirationDate))
     } catch {
       if self.activeRefreshTask == task {
         self.clearActiveTask()

@@ -67,6 +67,10 @@ The primary entry point is the `Credentials` struct. A default-initialized
   `gcloud` CLI.
 - **Workload / Workforce Identity Federation (WIF)**: Programmatic Security Token
   Service (STS) token exchange for federated identity providers.
+- **Static, Custom & Extracted Access Tokens**: Authenticate with pre-obtained
+  `AccessToken` instances or custom asynchronous `AccessTokenProvider`
+  implementations, and extract raw `AccessToken`s via
+  `Credentials.accessTokenProvider` for non-HTTP protocols and database drivers.
 - **Automatic Token Refresh & Caching**: Proactively and concurrently refreshes
   expiring OAuth access tokens and safely caches them in memory.
 - **Universe Domain Support**: Supports custom and multi-tenant Google Cloud
@@ -170,6 +174,50 @@ let customConfig = MDSConfig().with {
     $0.scopes = ["https://www.googleapis.com/auth/cloud-platform"]
 }
 let customCredentials = try Credentials(configuration: .mds(customConfig))
+```
+
+### Static and Custom Access Tokens
+
+You can extract a raw `AccessToken` from any OAuth 2.0 `Credentials` instance,
+or supply a pre-obtained static token or custom asynchronous `AccessTokenProvider`:
+
+```swift
+import Foundation
+import GoogleAuth
+
+// Extract a raw access token (e.g. for non-HTTP protocols or database drivers):
+let adcCredentials = try Credentials()
+if let tokenProvider = adcCredentials.accessTokenProvider {
+    let token = try await tokenProvider.accessToken()
+    _ = token
+}
+
+// Authenticate with a pre-obtained static access token:
+let staticConfig = AccessTokenConfig(token: "my-access-token").with {
+    $0.quotaProjectID = "my-quota-project-id"
+}
+let staticCredentials = try Credentials(configuration: .accessToken(staticConfig))
+
+// Or integrate a custom asynchronous AccessTokenProvider (called per request,
+// so network-backed providers should cache tokens and retry transient errors):
+actor VaultTokenProvider: AccessTokenProvider {
+    private var cached: AccessToken?
+
+    func accessToken() async throws -> AccessToken {
+        if let cached, let expiry = cached.expirationDate, expiry > Date().addingTimeInterval(60) {
+            return cached
+        }
+        let fresh = AccessToken(
+            token: "fetched-token",
+            expirationDate: Date().addingTimeInterval(3600)
+        )
+        cached = fresh
+        return fresh
+    }
+}
+let customCredentials = try Credentials(
+    configuration: .accessToken(AccessTokenConfig(provider: VaultTokenProvider()))
+)
 ```
 
 ### Using with Google Cloud Client Libraries

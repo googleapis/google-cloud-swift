@@ -57,7 +57,7 @@ struct UserCredentialsParser: CredentialSourceParser {
 typealias UserCredentials = UserCredentialsGeneric<ContinuousClock>
 
 /// Generic implementation of authorized user credentials parameterized by clock type.
-struct UserCredentialsGeneric<C: Clock>: CredentialsProvider, Sendable
+struct UserCredentialsGeneric<C: Clock>: CredentialsProvider, AccessTokenProvider, Sendable
 where C.Instant.Duration == Duration {
   private let cache: TokenCache<C>
   let provider: UserAccountTokenProvider
@@ -112,9 +112,13 @@ where C.Instant.Duration == Duration {
     )
   }
 
+  func accessToken() async throws -> AccessToken {
+    return try await cache.token()
+  }
+
   func headers() async throws -> AuthHeaders {
     let token = try await cache.token()
-    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]
+    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.token)")]
     if let quotaProjectID = quotaProjectID {
       headers.append(name: "x-goog-user-project", value: quotaProjectID)
     }

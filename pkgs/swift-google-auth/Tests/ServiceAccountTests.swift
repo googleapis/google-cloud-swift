@@ -21,7 +21,7 @@ import JWTKit
 @Suite("Service Account Key & Credentials Tests")
 struct ServiceAccountTests {
   // Returns a mock Service Account JSON key string containing a statically embedded 2048-bit PKCS#8 RSA key for determinism.
-  private static func generateMockKeyJSON() throws -> Data {
+  static func generateMockKeyJSON() throws -> Data {
     let json = """
       {
         "type": "service_account",
@@ -49,9 +49,12 @@ struct ServiceAccountTests {
     let mockKeyJSON = try ServiceAccountTests.generateMockKeyJSON()
     let credentials = try ServiceAccountCredentials(keyJSON: mockKeyJSON)
     let headers = try await credentials.headers()
+    let accessToken = try await credentials.accessToken()
 
     #expect(headers.count == 1)
-    #expect(headers["Authorization"]?.hasPrefix("Bearer ") == true)
+    #expect(headers["Authorization"] == "Bearer \(accessToken.token)")
+    #expect(!accessToken.token.isEmpty)
+    #expect(accessToken.expirationDate != nil)
   }
 
   @Test("Service Account Credentials injects custom billing quota project header")
@@ -169,14 +172,14 @@ struct ServiceAccountTests {
 
     // First request triggers a fetch on provider
     let token1 = try await cache.token()
-    #expect(!token1.accessToken.isEmpty)
+    #expect(!token1.token.isEmpty)
 
     // Wait for background loop to sleep
     await clock.sleeperWaiting()
 
     // Second request instantly returns cached token
     let token2 = try await cache.token()
-    #expect(token2.accessToken == token1.accessToken)
+    #expect(token2.token == token1.token)
   }
 
   @Test(
@@ -296,7 +299,7 @@ struct ServiceAccountTests {
 
     #expect(
       token.expirationDate == expectedExpiry,
-      "Expected expiration date \(expectedExpiry), got \(token.expirationDate)")
+      "Expected expiration date \(expectedExpiry), got \(String(describing: token.expirationDate))")
   }
 
   @Test("Service Account Credentials resolves universe domain from JSON or override")

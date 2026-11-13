@@ -81,7 +81,7 @@ struct ServiceAccountTokenProvider: TokenProvider, Sendable {
   }
 
   @concurrent
-  func fetchToken() async throws -> Token {
+  func fetchToken() async throws -> AccessToken {
     let now = timeSource.now
     let iatDate = now.addingTimeInterval(clockSkewFudgeSeconds)
     let expDate = iatDate.addingTimeInterval(tokenLifetimeSeconds)
@@ -106,6 +106,6 @@ struct ServiceAccountTokenProvider: TokenProvider, Sendable {
       throw CredentialsError.parseError("RSA JWT signing failed: \(error.localizedDescription)")
     }
 
-    return Token(accessToken: signedJWT, expirationDate: expDate)
+    return AccessToken(token: signedJWT, expirationDate: expDate)
   }
 }

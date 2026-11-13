@@ -52,7 +52,7 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
   let httpClient: AuthHTTPClient
 
   @concurrent
-  func fetchToken() async throws -> Token {
+  func fetchToken() async throws -> AccessToken {
     let targetUniverse: String
     if let universeDomainOverride {
       targetUniverse = universeDomainOverride
@@ -167,9 +167,8 @@ struct ImpersonatedTokenProvider: TokenProvider, Sendable {
       )
     }
 
-    return Token(
-      accessToken: response.accessToken,
-      tokenType: "Bearer",
+    return AccessToken(
+      token: response.accessToken,
       expirationDate: response.expireTime.date
     )
   }
