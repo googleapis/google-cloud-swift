@@ -16,9 +16,9 @@ import Foundation
 import GoogleAuth
 import Testing
 
-/// Public-only API tests verifying that `AccessTokenProvider`, `AccessToken`, `AccessTokenConfig`,
-/// and `Credentials.accessToken()` can be mocked and wrapped by forwarding decorators using plain
-/// `import GoogleAuth` (never `@testable import`).
+/// Public-only API tests verifying that `AccessTokenProvider`, `AnyAccessTokenProvider`, `AccessToken`,
+/// `AccessTokenConfig`, and `Credentials.accessTokenProvider` can be mocked and wrapped by forwarding
+/// decorators using plain `import GoogleAuth` (never `@testable import`).
 @Suite struct AccessTokenProviderPublicAPITests {
   private struct MockAccessTokenProvider: AccessTokenProvider {
     let token: AccessToken
@@ -53,8 +53,9 @@ import Testing
       $0.universeDomain = "public.universe.com"
     }
     let credentials = try Credentials(configuration: .accessToken(config))
+    let tokenProvider: AnyAccessTokenProvider = try #require(credentials.accessTokenProvider)
 
-    let extracted = try await credentials.accessToken()
+    let extracted = try await tokenProvider.accessToken()
     #expect(extracted == expected)
     #expect(await decorator.callCount == 1)
 
@@ -68,10 +69,25 @@ import Testing
     #expect(await decorator.callCount == 2)
     #expect(try await credentials.universeDomain() == "public.universe.com")
 
+    // AnyAccessTokenProvider itself conforms to AccessTokenProvider and can be wrapped or constructed directly:
+    let outerDecorator = ForwardingAccessTokenProvider(wrapping: tokenProvider)
+    #expect(try await outerDecorator.accessToken() == expected)
+    #expect(await outerDecorator.callCount == 1)
+    #expect(await decorator.callCount == 3)
+
+    let directlyErased = AnyAccessTokenProvider(outerDecorator)
+    #expect(try await directlyErased.accessToken() == expected)
+    #expect(await outerDecorator.callCount == 2)
+
     let staticConfig = AccessTokenConfig(token: extracted).with {
       $0.quotaProjectID = "static-quota-project"
     }
     let staticCredentials = try Credentials(configuration: .accessToken(staticConfig))
-    #expect(try await staticCredentials.accessToken() == expected)
+    let staticTokenProvider = try #require(staticCredentials.accessTokenProvider)
+    #expect(try await staticTokenProvider.accessToken() == expected)
+
+    // Non-token credentials return nil rather than throwing at call time:
+    #expect(try Credentials(configuration: .anonymous).accessTokenProvider == nil)
+    #expect(try Credentials(configuration: .apiKey("my-api-key")).accessTokenProvider == nil)
   }
 }

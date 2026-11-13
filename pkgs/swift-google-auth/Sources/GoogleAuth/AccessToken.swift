@@ -17,7 +17,8 @@ public import Foundation
 /// Represents an OAuth 2.0 access token or signed assertion used to authenticate requests.
 ///
 /// An `AccessToken` contains the raw token string and an optional expiration timestamp.
-/// You can obtain an `AccessToken` directly from ``Credentials/accessToken()`` when
+/// You can obtain an `AccessToken` via ``Credentials/accessTokenProvider`` and
+/// ``AnyAccessTokenProvider/accessToken()`` when
 /// authenticating non-HTTP protocols, database drivers, WebSockets, or third-party clients,
 /// or supply one via ``CredentialsConfiguration/accessToken(_:)`` (using ``AccessTokenConfig``)
 /// or ``AccessTokenProvider``.
@@ -83,7 +84,7 @@ public struct AccessToken: Sendable, Hashable, CustomStringConvertible, CustomDe
 /// with ``Credentials``.
 ///
 /// ``Credentials`` invokes ``accessToken()`` directly whenever ``Credentials/headers()`` or
-/// ``Credentials/accessToken()`` is called. Implementations that fetch tokens over the network
+/// ``AnyAccessTokenProvider/accessToken()`` is called. Implementations that fetch tokens over the network
 /// or perform expensive operations are responsible for caching and refreshing their own tokens.
 ///
 /// Conforming types must be `Sendable` and provide a thread-safe implementation of ``accessToken()``
@@ -97,4 +98,56 @@ public protocol AccessTokenProvider: Sendable {
   /// - Returns: A valid ``AccessToken``.
   /// - Throws: Any error preventing retrieval of the access token.
   func accessToken() async throws -> AccessToken
+}
+
+/// A type-erased ``AccessTokenProvider`` that supplies OAuth 2.0 access tokens.
+///
+/// Obtain an `AnyAccessTokenProvider` from ``Credentials/accessTokenProvider`` when authenticating
+/// non-HTTP protocols, database drivers, WebSockets, or third-party clients that require raw
+/// ``AccessToken`` values and expiration timestamps instead of HTTP `Authorization` headers, or
+/// wrap any ``AccessTokenProvider`` using ``init(_:)``.
+///
+/// When obtained from ``Credentials/accessTokenProvider`` on a built-in OAuth 2.0 credential source
+/// (such as Application Default Credentials, Service Accounts, User Accounts, Metadata Server,
+/// Workload Identity Federation, or Service Account Impersonation), `AnyAccessTokenProvider` shares
+/// the underlying in-memory token cache and proactive background refresh loop of that ``Credentials``
+/// instance.
+///
+/// ### Usage Example
+/// @Snippet(path: "AccessTokenProviderSample")
+public struct AnyAccessTokenProvider: AccessTokenProvider, Sendable, CustomStringConvertible,
+  CustomDebugStringConvertible
+{
+  private let provider: any AccessTokenProvider
+
+  /// Wraps an ``AccessTokenProvider`` in a type-erased `AnyAccessTokenProvider`.
+  ///
+  /// - Parameter provider: The underlying access token provider to wrap.
+  public init(_ provider: any AccessTokenProvider) {
+    if let alreadyErased = provider as? AnyAccessTokenProvider {
+      self = alreadyErased
+    } else {
+      self.provider = provider
+    }
+  }
+
+  /// Asynchronously retrieves a valid OAuth 2.0 access token from the underlying provider.
+  ///
+  /// When obtained from ``Credentials/accessTokenProvider``, returns a cached token if valid,
+  /// or awaits an active refresh if the token is missing or expired.
+  ///
+  /// - Returns: A valid ``AccessToken`` containing the raw token string and optional expiration date.
+  /// - Throws: ``CredentialsError/cannotFetchToken(message:underlyingError:)`` (or another error
+  ///   thrown by a directly wrapped custom ``AccessTokenProvider``) if token resolution fails.
+  public func accessToken() async throws -> AccessToken {
+    return try await self.provider.accessToken()
+  }
+
+  public var description: String {
+    debugDescription
+  }
+
+  public var debugDescription: String {
+    "AnyAccessTokenProvider"
+  }
 }

@@ -284,21 +284,20 @@ public struct Credentials: Sendable {
     )
   }
 
-  /// Asynchronously retrieves the current OAuth 2.0 access token.
+  /// A type-erased ``AnyAccessTokenProvider`` backed by these credentials if they produce OAuth 2.0
+  /// access tokens, or `nil` if this credential type does not use access tokens (such as
+  /// ``CredentialsConfiguration/anonymous`` or ``CredentialsConfiguration/apiKey(_:)``).
   ///
-  /// Returns a cached token if valid, or awaits an active refresh if the token is missing or expired.
+  /// The returned ``AnyAccessTokenProvider`` shares the in-memory token cache and proactive
+  /// background refresh loop of this ``Credentials`` instance.
   ///
-  /// - Returns: The current ``AccessToken`` containing the raw token string and optional expiration date.
-  /// - Throws: ``CredentialsError/notSupported(_:)`` if the credential type does not use access tokens
-  ///   (such as ``CredentialsConfiguration/anonymous`` or ``CredentialsConfiguration/apiKey(_:)``),
-  ///   or ``CredentialsError/cannotFetchToken(message:underlyingError:)`` if token resolution fails.
-  public func accessToken() async throws -> AccessToken {
+  /// ### Usage Example
+  /// @Snippet(path: "AccessTokenProviderSample")
+  public var accessTokenProvider: AnyAccessTokenProvider? {
     guard let tokenProvider = self.credentialsProvider as? any AccessTokenProvider else {
-      throw CredentialsError.notSupported(
-        "This credential type does not produce OAuth 2.0 access tokens; use headers() instead."
-      )
+      return nil
     }
-    return try await tokenProvider.accessToken()
+    return AnyAccessTokenProvider(tokenProvider)
   }
 
   /// Asynchronously retrieves the request headers required to authenticate a request.

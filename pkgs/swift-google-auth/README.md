@@ -185,10 +185,13 @@ import GoogleAuth
 
 // Extract a raw access token (e.g. for non-HTTP protocols or database drivers):
 let adcCredentials = try Credentials()
-let token = try await adcCredentials.accessToken()
+if let tokenProvider = adcCredentials.accessTokenProvider {
+    let token = try await tokenProvider.accessToken()
+    _ = token
+}
 
 // Authenticate with a pre-obtained static access token:
-let staticConfig = AccessTokenConfig(token: token).with {
+let staticConfig = AccessTokenConfig(token: "my-access-token").with {
     $0.quotaProjectID = "my-quota-project-id"
 }
 let staticCredentials = try Credentials(configuration: .accessToken(staticConfig))

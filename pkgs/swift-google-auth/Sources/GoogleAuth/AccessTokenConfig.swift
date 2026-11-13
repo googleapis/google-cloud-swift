@@ -35,7 +35,7 @@ public struct AccessTokenConfig: Sendable, CustomStringConvertible, CustomDebugS
   /// Initializes a new instance of `AccessTokenConfig` backed by a custom asynchronous ``AccessTokenProvider``.
   ///
   /// ``Credentials`` invokes ``AccessTokenProvider/accessToken()`` directly on each call to
-  /// ``Credentials/headers()`` or ``Credentials/accessToken()``. Providers that perform network
+  /// ``Credentials/headers()`` or ``AnyAccessTokenProvider/accessToken()``. Providers that perform network
   /// requests or expensive operations should implement their own token caching.
   ///
   /// - Parameter provider: The custom provider supplying ``AccessToken`` instances.
@@ -46,7 +46,7 @@ public struct AccessTokenConfig: Sendable, CustomStringConvertible, CustomDebugS
   /// Initializes a new instance of `AccessTokenConfig` backed by a static ``AccessToken``.
   ///
   /// Static access tokens cannot be refreshed automatically. If `token.expirationDate` is set and
-  /// has passed, calls to ``Credentials/headers()`` or ``Credentials/accessToken()`` fail with
+  /// has passed, calls to ``Credentials/headers()`` or ``AnyAccessTokenProvider/accessToken()`` fail with
   /// ``CredentialsError/cannotFetchToken(message:underlyingError:)``.
   ///
   /// - Parameter token: The pre-obtained ``AccessToken``.
@@ -57,7 +57,7 @@ public struct AccessTokenConfig: Sendable, CustomStringConvertible, CustomDebugS
   /// Initializes a new instance of `AccessTokenConfig` backed by a static raw token string and optional expiration date.
   ///
   /// Static access tokens cannot be refreshed automatically. If `expirationDate` is set and
-  /// has passed, calls to ``Credentials/headers()`` or ``Credentials/accessToken()`` fail with
+  /// has passed, calls to ``Credentials/headers()`` or ``AnyAccessTokenProvider/accessToken()`` fail with
   /// ``CredentialsError/cannotFetchToken(message:underlyingError:)``.
   ///
   /// - Parameters:

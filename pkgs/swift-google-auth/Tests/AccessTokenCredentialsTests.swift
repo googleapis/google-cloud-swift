@@ -122,7 +122,8 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
       configuration: .accessToken(AccessTokenConfig(token: "mock-token.static-token"))
     )
 
-    let token = try await credentials.accessToken()
+    let tokenCredentials = try #require(credentials.accessTokenProvider)
+    let token = try await tokenCredentials.accessToken()
     #expect(token.token == "mock-token.static-token")
     #expect(token.expirationDate == nil)
 
@@ -141,7 +142,8 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     }
     let credentials = try Credentials(configuration: .accessToken(config))
 
-    let token = try await credentials.accessToken()
+    let tokenCredentials = try #require(credentials.accessTokenProvider)
+    let token = try await tokenCredentials.accessToken()
     #expect(token == expectedToken)
 
     let headers = try await credentials.headers()
@@ -192,7 +194,8 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     }
     let credentials = try Credentials(configuration: .accessToken(config))
 
-    let token = try await credentials.accessToken()
+    let tokenCredentials = try #require(credentials.accessTokenProvider)
+    let token = try await tokenCredentials.accessToken()
     #expect(token.token == "mock-token.overload-token")
     #expect(token.expirationDate == futureExpiry)
 
@@ -273,6 +276,10 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     let credentials = try Credentials(configuration: .accessToken(config))
     #expect(!String(reflecting: credentials).contains("mock-token.secret-static-value"))
     #expect(!String(describing: credentials).contains("mock-token.secret-static-value"))
+
+    let tokenCredentials = try #require(credentials.accessTokenProvider)
+    #expect(!String(reflecting: tokenCredentials).contains("mock-token.secret-static-value"))
+    #expect(!String(describing: tokenCredentials).contains("mock-token.secret-static-value"))
   }
 
   // MARK: - Custom AccessTokenProvider Tests
@@ -288,8 +295,9 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
       $0.universeDomain = "custom.universe.com"
     }
     let credentials = try Credentials(configuration: .accessToken(config))
+    let tokenCredentials = try #require(credentials.accessTokenProvider)
 
-    let token = try await credentials.accessToken()
+    let token = try await tokenCredentials.accessToken()
     #expect(token.token == "mock-token.custom-provider-token-1")
     #expect(token.expirationDate == expiry)
     #expect(await provider.count == 1)
@@ -311,7 +319,7 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
       token: AccessToken(
         token: "mock-token.custom-provider-token-2", expirationDate: refreshedExpiry)
     )
-    let token2 = try await credentials.accessToken()
+    let token2 = try await tokenCredentials.accessToken()
     #expect(token2.token == "mock-token.custom-provider-token-2")
     #expect(token2.expirationDate == refreshedExpiry)
     #expect(await provider.count == 3)
@@ -323,9 +331,10 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     let credentials = try Credentials(
       configuration: .accessToken(AccessTokenConfig(provider: provider))
     )
+    let tokenCredentials = try #require(credentials.accessTokenProvider)
 
     let error = await #expect(throws: CredentialsError.self) {
-      _ = try await credentials.accessToken()
+      _ = try await tokenCredentials.accessToken()
     }
     guard case let .cannotFetchToken(_, underlyingError) = error else {
       Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
@@ -342,9 +351,10 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     let credentials = try Credentials(
       configuration: .accessToken(AccessTokenConfig(provider: provider))
     )
+    let tokenCredentials = try #require(credentials.accessTokenProvider)
 
     let thrownError = await #expect(throws: CredentialsError.self) {
-      _ = try await credentials.accessToken()
+      _ = try await tokenCredentials.accessToken()
     }
     guard case let .parseError(message) = thrownError else {
       Issue.record("Expected CredentialsError.parseError, got \(thrownError)")
@@ -360,7 +370,7 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     await provider.configure(token: nil, error: cannotFetch)
 
     let thrownCannotFetch = await #expect(throws: CredentialsError.self) {
-      _ = try await credentials.accessToken()
+      _ = try await tokenCredentials.accessToken()
     }
     guard case let .cannotFetchToken(fetchMessage, underlyingError) = thrownCannotFetch else {
       Issue.record("Expected CredentialsError.cannotFetchToken, got \(thrownCannotFetch)")
@@ -391,28 +401,34 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     #expect(await provider.count == 2)
   }
 
-  // MARK: - Credentials.accessToken() Across Built-in Providers
+  // MARK: - Credentials.accessTokenProvider & AnyAccessTokenProvider Tests
 
-  @Test func anonymousCredentialsAccessTokenThrowsNotSupported() async throws {
-    let credentials = try Credentials(configuration: .anonymous)
-    let error = await #expect(throws: CredentialsError.self) {
-      _ = try await credentials.accessToken()
+  @Test func anyAccessTokenProviderFlattensDoubleWrappingAndRedactsDescriptions() async throws {
+    struct SecretCustomProvider: AccessTokenProvider {
+      let secret = "mock-token.custom-struct-secret"
+      func accessToken() async throws -> AccessToken {
+        AccessToken(token: secret)
+      }
     }
-    guard case .notSupported = error else {
-      Issue.record("Expected CredentialsError.notSupported, got \(String(describing: error))")
-      return
-    }
+
+    let first = AnyAccessTokenProvider(SecretCustomProvider())
+    let second = AnyAccessTokenProvider(first)
+
+    #expect((try await second.accessToken()).token == "mock-token.custom-struct-secret")
+    #expect(!String(reflecting: first).contains("mock-token.custom-struct-secret"))
+    #expect(!String(describing: first).contains("mock-token.custom-struct-secret"))
+    #expect(!String(reflecting: second).contains("mock-token.custom-struct-secret"))
+    #expect(!String(describing: second).contains("mock-token.custom-struct-secret"))
   }
 
-  @Test func apiKeyCredentialsAccessTokenThrowsNotSupported() async throws {
+  @Test func anonymousCredentialsAccessTokenProviderIsNil() throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    #expect(credentials.accessTokenProvider == nil)
+  }
+
+  @Test func apiKeyCredentialsAccessTokenProviderIsNil() throws {
     let credentials = try Credentials(configuration: .apiKey("my-api-key"))
-    let error = await #expect(throws: CredentialsError.self) {
-      _ = try await credentials.accessToken()
-    }
-    guard case .notSupported = error else {
-      Issue.record("Expected CredentialsError.notSupported, got \(String(describing: error))")
-      return
-    }
+    #expect(credentials.accessTokenProvider == nil)
   }
 
   @Test func userCredentialsAccessTokenExtractsRawTokenAndExpiry() async throws {
