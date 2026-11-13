@@ -73,12 +73,16 @@ private actor StreamGate {
 
 @Suite struct P2CHTTPClientTests {
   @Test(arguments: [
-    (coreCount: 1, expected: 4),
-    (coreCount: 2, expected: 4),
-    (coreCount: 4, expected: 4),
-    (coreCount: 8, expected: 8),
-    (coreCount: 16, expected: 16),
-    (coreCount: 64, expected: 16),
+    (coreCount: 0, expected: 1),
+    (coreCount: 1, expected: 1),
+    (coreCount: 2, expected: 1),
+    (coreCount: 3, expected: 1),
+    (coreCount: 4, expected: 2),
+    (coreCount: 7, expected: 2),
+    (coreCount: 8, expected: 3),
+    (coreCount: 16, expected: 4),
+    (coreCount: 64, expected: 6),
+    (coreCount: 192, expected: 7),
   ])
   func resolveConnectionPoolSizeDefaults(coreCount: Int, expected: Int) {
     #expect(StorageClientOptions.resolveConnectionPoolSize(nil, coreCount: coreCount) == expected)

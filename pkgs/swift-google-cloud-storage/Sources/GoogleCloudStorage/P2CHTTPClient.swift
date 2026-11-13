@@ -19,6 +19,10 @@ import Synchronization
 
 /// Deterministic SplitMix64 PRNG for repeatable unit tests and fast uncontended P2C sampling
 /// inside `Mutex<State>`.
+///
+/// The Swift standard library (including Swift 6+) provides only the non-seedable
+/// `SystemRandomNumberGenerator` and no built-in seedable `RandomNumberGenerator`. Keeping a tiny
+/// SplitMix64 implementation inline avoids taking an extra package dependency solely for this PRNG.
 struct SplitMix64: RandomNumberGenerator, Sendable {
   private var state: UInt64
 
