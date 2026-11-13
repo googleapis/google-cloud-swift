@@ -82,8 +82,8 @@ By default, `StorageW1R3Benchmark` uses `--load-balancer random` to pick either 
     --stage-local \
     --task-count 64 \
     --iterations 100 \
-    --min-object-size 128KiB \
-    --max-object-size 16MiB \
+    --min-object-size 64MiB \
+    --max-object-size 64MiB \
     --load-balancer random \
     --connection-pool-size 8
 ```

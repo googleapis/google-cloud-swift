@@ -17,21 +17,6 @@ import GoogleAuth
 import GoogleCloudStorage
 import GoogleGax
 
-/// Holds pooled `StorageClient` instances keyed by load-balancing strategy.
-struct StorageClientPools: Sendable {
-  let p2c: [StorageClient]
-  let roundRobin: [StorageClient]
-
-  func client(for loadBalancer: StorageLoadBalancer, taskIndex: Int) -> StorageClient {
-    switch loadBalancer {
-    case .p2c:
-      return self.p2c[taskIndex % self.p2c.count]
-    case .roundRobin:
-      return self.roundRobin[taskIndex % self.roundRobin.count]
-    }
-  }
-}
-
 /// Orchestrates the execution of the W1R3 benchmark across concurrent worker tasks.
 extension StorageW1R3 {
   func runWorker(
