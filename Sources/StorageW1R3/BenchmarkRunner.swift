@@ -14,8 +14,23 @@
 
 import Foundation
 import GoogleAuth
-import GoogleGax
 import GoogleCloudStorage
+import GoogleGax
+
+/// Holds pooled `StorageClient` instances keyed by load-balancing strategy.
+struct StorageClientPools: Sendable {
+  let p2c: [StorageClient]
+  let roundRobin: [StorageClient]
+
+  func client(for loadBalancer: StorageLoadBalancer, taskIndex: Int) -> StorageClient {
+    switch loadBalancer {
+    case .p2c:
+      return self.p2c[taskIndex % self.p2c.count]
+    case .roundRobin:
+      return self.roundRobin[taskIndex % self.roundRobin.count]
+    }
+  }
+}
 
 /// Orchestrates the execution of the W1R3 benchmark across concurrent worker tasks.
 extension StorageW1R3 {
@@ -23,7 +38,7 @@ extension StorageW1R3 {
     taskIndex: Int,
     counters: BenchmarkCounters,
     buffer: ByteChunk,
-    storageClient: StorageClient,
+    clientPools: StorageClientPools,
     controlClient: StorageControlClient,
   ) async {
     let clock = ContinuousClock()
@@ -56,6 +71,9 @@ extension StorageW1R3 {
       let isStreaming = isResumable ? self.pickResumableMode() : false
       let uploadCrc32c = self.pickCrc32c()
       let uploadChunkSize = (isResumable && !isStreaming) ? self.pickChunkSize() : nil
+      let selectedLB = self.pickLoadBalancer()
+      let lbTag = Self.loadBalancerTag(selectedLB)
+      let storageClient = clientPools.client(for: selectedLB, taskIndex: taskIndex)
       let uploadSlice = buffer.subdata(in: 0..<size)
       let iterationId = IterationId(
         task: taskIndex, taskStartInstant: taskStartInstant, iteration: iteration)
@@ -72,7 +90,8 @@ extension StorageW1R3 {
           isResumable: isResumable,
           chunkSize: uploadChunkSize,
           isStreaming: isStreaming,
-          crc32cEnabled: uploadCrc32c)
+          crc32cEnabled: uploadCrc32c,
+          loadBalancerTag: lbTag)
       else {
         continue
       }
@@ -86,7 +105,8 @@ extension StorageW1R3 {
           client: storageClient,
           object: uploadedObject,
           size: size,
-          crc32cEnabled: downloadCrc32c)
+          crc32cEnabled: downloadCrc32c,
+          loadBalancerTag: lbTag)
       }
 
       if self.noDelete {
@@ -131,7 +151,8 @@ extension StorageW1R3 {
     isResumable: Bool,
     chunkSize: Int?,
     isStreaming: Bool,
-    crc32cEnabled: Bool
+    crc32cEnabled: Bool,
+    loadBalancerTag: String
   ) async -> GoogleCloudStorage.Object? {
     let uploadOp: Operation = isResumable ? .resumable : .singleShot
     let modeDetails = isResumable ? (isStreaming ? "mode=streaming" : "mode=chunked") : ""
@@ -142,7 +163,8 @@ extension StorageW1R3 {
       targetSize: buffer.count,
       object: objectName,
       crc32cEnabled: crc32cEnabled,
-      chunkSize: chunkSize
+      chunkSize: chunkSize,
+      loadBalancer: loadBalancerTag
     )
     do {
       let object = try await StorageOperations.upload(
@@ -180,7 +202,8 @@ extension StorageW1R3 {
     client: StorageClient,
     object: GoogleCloudStorage.Object,
     size: Int,
-    crc32cEnabled: Bool
+    crc32cEnabled: Bool,
+    loadBalancerTag: String
   ) async {
     let readOp = Operation.read(readIndex)
     let readBuilder = SampleBuilder(
@@ -188,7 +211,8 @@ extension StorageW1R3 {
       op: readOp,
       targetSize: size,
       object: object.name,
-      crc32cEnabled: crc32cEnabled
+      crc32cEnabled: crc32cEnabled,
+      loadBalancer: loadBalancerTag
     )
 
     let (transferSize, readError) = await StorageOperations.download(
@@ -285,12 +309,37 @@ extension StorageW1R3 {
     return String((0..<32).map { _ in charset.randomElement()! })
   }
 
-  func makeClients(_ credentials: Credentials) throws -> [StorageClient] {
+  func makeClientPools(_ credentials: Credentials) throws -> StorageClientPools {
+    switch self.loadBalancer {
+    case .p2c:
+      return StorageClientPools(
+        p2c: try self.makeClients(credentials, loadBalancer: .p2c),
+        roundRobin: []
+      )
+    case .roundRobin:
+      return StorageClientPools(
+        p2c: [],
+        roundRobin: try self.makeClients(credentials, loadBalancer: .roundRobin)
+      )
+    case .random:
+      return StorageClientPools(
+        p2c: try self.makeClients(credentials, loadBalancer: .p2c),
+        roundRobin: try self.makeClients(credentials, loadBalancer: .roundRobin)
+      )
+    }
+  }
+
+  func makeClients(
+    _ credentials: Credentials,
+    loadBalancer: StorageLoadBalancer = .roundRobin
+  ) throws -> [StorageClient] {
     var clients: [StorageClient] = []
     for _ in 0..<self.clientCount {
       clients.append(
         try StorageClient(
           .init().with {
+            $0.connectionPoolSize = self.connectionPoolSize
+            $0.loadBalancer = loadBalancer
             $0.client = .init().with { clientOptions in
               clientOptions.credentials = credentials
               clientOptions.retryPolicy = StorageBaseRetryPolicy.defaultPolicy

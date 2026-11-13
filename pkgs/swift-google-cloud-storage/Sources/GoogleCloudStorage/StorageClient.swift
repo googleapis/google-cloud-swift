@@ -36,11 +36,37 @@ public final class StorageClient: StorageProtocol, Sendable {
   /// resolves Application Default Credentials synchronously (including reading local credential
   /// files from disk). Prefer initializing the client at application startup and reusing it across
   /// requests.
-  public init(_ options: StorageClientOptions = .init()) throws {
+  public convenience init(_ options: StorageClientOptions = .init()) throws {
+    try self.init(options, environment: ProcessInfo.processInfo.environment)
+  }
+
+  init(
+    _ options: StorageClientOptions = .init(),
+    environment: [String: String]
+  ) throws {
+    let universeDomain = GoogleGax._Host.resolveUniverseDomain(
+      options: options.client,
+      environment: environment
+    )
+    let credentials = try options.client.credentials ?? GoogleAuth.Credentials()
+    let endpoint = try GoogleGax._Host.endpoint(
+      endpoint: options.client.endpoint,
+      defaultEndpoint: Self.defaultEndpoint,
+      universeDomain: universeDomain
+    )
+    _ = try GoogleGax._HTTPClient.validateEndpoint(endpoint)
+    let poolSize = StorageClientOptions.resolveConnectionPoolSize(options.connectionPoolSize)
+    let clients = (0..<poolSize).map { _ in StorageHTTPClientHolder() }
+    let transport = Self.makeTransport(clients: clients, loadBalancer: options.loadBalancer)
     self.options = options
     self.inner = try GoogleGax._HTTPClient(
-      from: options.client,
-      withDefaultEndpoint: Self.defaultEndpoint,
+      transport,
+      endpoint: endpoint,
+      credentials: credentials,
+      logger: options.client.logger,
+      quotaProject: options.client.quotaProject,
+      defaultEndpoint: Self.defaultEndpoint,
+      universeDomain: universeDomain,
       clientHeader: .veneer(packageVersion: PackageVersion.version)
     )
   }
@@ -56,11 +82,25 @@ public final class StorageClient: StorageProtocol, Sendable {
     )
   }
 
-  init(
+  convenience init(
     _ options: StorageClientOptions = .init(),
     mock: any _HTTPClientProtocol,
     environment: [String: String]
   ) throws {
+    try self.init(
+      options,
+      mocks: [mock],
+      environment: environment
+    )
+  }
+
+  init(
+    _ options: StorageClientOptions = .init(),
+    mocks: [any _HTTPClientProtocol],
+    seed: UInt64? = nil,
+    environment: [String: String] = ProcessInfo.processInfo.environment
+  ) throws {
+    precondition(!mocks.isEmpty, "StorageClient requires at least one mock HTTP client")
     let universeDomain = GoogleGax._Host.resolveUniverseDomain(
       options: options.client,
       environment: environment
@@ -70,11 +110,20 @@ public final class StorageClient: StorageProtocol, Sendable {
       defaultEndpoint: Self.defaultEndpoint,
       universeDomain: universeDomain
     )
+    _ = try GoogleGax._HTTPClient.validateEndpoint(endpoint)
+    let poolSize = StorageClientOptions.resolveConnectionPoolSize(options.connectionPoolSize)
+    let selectedMocks = Array(mocks.prefix(poolSize))
+    let transport = Self.makeTransport(
+      clients: selectedMocks,
+      loadBalancer: options.loadBalancer,
+      seed: seed
+    )
     self.options = options
     self.inner = try GoogleGax._HTTPClient(
-      mock,
+      transport,
       endpoint: endpoint,
       credentials: options.client.credentials,
+      logger: options.client.logger,
       quotaProject: options.client.quotaProject,
       defaultEndpoint: Self.defaultEndpoint,
       universeDomain: universeDomain,
@@ -88,5 +137,25 @@ public final class StorageClient: StorageProtocol, Sendable {
   ) {
     self.options = options
     self.inner = client
+  }
+
+  static func makeTransport(
+    clients: [any _HTTPClientProtocol],
+    loadBalancer: StorageLoadBalancer,
+    seed: UInt64? = nil
+  ) -> any _HTTPClientProtocol {
+    precondition(!clients.isEmpty, "StorageClient requires at least one HTTP client")
+    if clients.count == 1 {
+      return clients[0]
+    }
+    switch loadBalancer {
+    case .p2c:
+      if let seed {
+        return P2CHTTPClient(clients: clients, seed: seed)
+      }
+      return P2CHTTPClient(clients: clients)
+    case .roundRobin:
+      return RoundRobinHTTPClient(clients: clients)
+    }
   }
 }

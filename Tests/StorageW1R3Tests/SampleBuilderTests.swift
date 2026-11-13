@@ -133,4 +133,31 @@ import Testing
     #expect(sample.result == .err)
     #expect(sample.details == "chunkSize=16777216;code=503;message=Unavailable")
   }
+
+  @Test func sampleBuilderWithLoadBalancerAndChunkSize() {
+    let now = ContinuousClock.now
+    let iterId = IterationId(task: 1, taskStartInstant: now, iteration: 0)
+    let builder = SampleBuilder(
+      iterationId: iterId,
+      op: .resumable,
+      targetSize: 8 * 1024 * 1024,
+      object: "obj-lb",
+      crc32cEnabled: true,
+      chunkSize: 4 * 1024 * 1024,
+      loadBalancer: "p2c"
+    )
+
+    let sample = builder.success(details: "mode=chunked")
+    #expect(sample.details == "lb=p2c;chunkSize=4194304;mode=chunked")
+
+    let readBuilder = SampleBuilder(
+      iterationId: iterId,
+      op: .read(0),
+      targetSize: 1024,
+      object: "obj-lb",
+      crc32cEnabled: true,
+      loadBalancer: "round-robin"
+    )
+    #expect(readBuilder.success().details == "lb=round-robin")
+  }
 }

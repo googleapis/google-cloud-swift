@@ -74,6 +74,20 @@ You can view execution anytime by running:
 gcloud compute instances tail-serial-port-output <INSTANCE_NAME> --zone=<ZONE>
 ```
 
+#### 5. Head-to-Head Connection Pool Comparison (`P2C` vs. `Round-Robin`)
+By default, `StorageW1R3Benchmark` uses `--load-balancer random` to pick either `p2c` or `round-robin` per iteration within the same VM run and tags each CSV row in `Details` (`lb=p2c` or `lb=round-robin`):
+
+```shell
+./Sources/StorageW1R3/scripts/run-w1r3-gce.sh \
+    --stage-local \
+    --task-count 64 \
+    --iterations 100 \
+    --min-object-size 128KiB \
+    --max-object-size 16MiB \
+    --load-balancer random \
+    --connection-pool-size 8
+```
+
 ---
 
 ## A/B Testing & Comparing Branches or Configurations
@@ -156,6 +170,8 @@ You can use the same GCE provisioning and A/B comparison workflow for targets ot
 | `--max-object-size` | `128KiB` | Maximum object size (e.g. `128KiB`, `16MiB`) |
 | `--read-count` | `3` | Number of read operations per object |
 | `--client-count` | `1` | Number of `StorageClient` instances |
+| `--load-balancer` | `random` | HTTP pool strategy in `StorageW1R3Benchmark`: `random` (interleaved head-to-head), `p2c`, or `round-robin` |
+| `--connection-pool-size` | SDK default | Override the HTTP connection pool size per `StorageClient` |
 | `--crc32c` | `always` | Checksum mode: `always`, `random`, or `never` |
 | `--extra-args` | `""` | Additional CLI flags passed to baseline benchmark |
 | `--compare-ref` | `""` | Git branch, commit, or tag for comparison (`experiment`) variant |
@@ -266,6 +282,24 @@ FROM `<PROJECT_ID>.w1r3.<TABLE_NAME>`
 WHERE Result = 'OK'
 GROUP BY Operation, size_bucket
 ORDER BY Operation, MIN(Size);
+```
+
+#### 4. Head-to-Head Load Balancer Comparison (`P2C` vs. `Round-Robin`)
+
+```sql
+SELECT
+  Operation,
+  REGEXP_EXTRACT(Details, r'(?:^|;)lb=([^;]+)') AS load_balancer,
+  COUNT(*) AS sample_count,
+  ROUND(AVG(SAFE_DIVIDE(TransferSize * 8.0, ElapsedMicroseconds)), 2) AS avg_mbps,
+  ROUND(APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(50)], 2) AS p50_ms,
+  ROUND(APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(95)], 2) AS p95_ms,
+  ROUND(APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(99)], 2) AS p99_ms,
+  ROUND(MAX(ElapsedMicroseconds) / 1000.0, 2) AS max_ms
+FROM `<PROJECT_ID>.w1r3.<TABLE_NAME>`
+WHERE Result = 'OK'
+GROUP BY Operation, load_balancer
+ORDER BY Operation, load_balancer;
 ```
 
 ---

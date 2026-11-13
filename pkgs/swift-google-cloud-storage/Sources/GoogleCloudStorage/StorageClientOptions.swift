@@ -13,8 +13,38 @@
 // limitations under the License.
 
 public import GoogleGax
+import NIOCore
+
+/// Load-balancing strategy used by ``StorageClient`` to distribute HTTP requests across its
+/// internal connection pool.
+///
+/// In our experiments, the ``StorageLoadBalancer/p2c`` load balancer improves median latency for
+/// uploads, and the tail latency for both uploads and downloads. The
+/// ``StorageLoadBalancer/roundRobin`` load balancer offers better median latency for downloads.
+///
+/// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
+///   enumeration in minor or patch releases. Always handle unexpected cases using an
+///   `@unknown default:` clause in `switch` statements.
+public enum StorageLoadBalancer: Sendable, Hashable {
+  /// Distributes requests sequentially across pooled HTTP connections in round-robin order
+  /// (the default).
+  case roundRobin
+
+  /// Power of Two Random Choices (`P2C`): samples two distinct connections at random and routes
+  /// the request to the one with fewer active in-flight requests (including streaming response
+  /// bodies).
+  case p2c
+}
 
 /// Configuration options for ``StorageClient``.
+///
+/// ```swift
+/// let options = StorageClientOptions().with {
+///   $0.connectionPoolSize = 8
+///   $0.loadBalancer = .p2c
+/// }
+/// let client = try StorageClient(options)
+/// ```
 public struct StorageClientOptions: Sendable {
   /// Common options used by all Google Swift SDK clients.
   public var client: GoogleGax.ClientOptions
@@ -24,6 +54,20 @@ public struct StorageClientOptions: Sendable {
 
   /// Default configuration inherited by `readObject` operations.
   public var readObject: ReadObjectOptions
+
+  /// Optional override for the number of underlying HTTP connection pools managed by ``StorageClient``.
+  ///
+  /// When `nil`, ``StorageClient`` scales the pool size between 4 and 16 based on the host CPU
+  /// core count. Values less than `1` are clamped to `1`.
+  public var connectionPoolSize: Int? = nil
+
+  /// Load-balancing strategy used to distribute requests across pooled HTTP connections.
+  ///
+  /// Defaults to ``StorageLoadBalancer/roundRobin``. In our experiments, the
+  /// ``StorageLoadBalancer/p2c`` load balancer improves median latency for uploads, and the tail
+  /// latency for both uploads and downloads. The ``StorageLoadBalancer/roundRobin`` load balancer
+  /// offers better median latency for downloads.
+  public var loadBalancer: StorageLoadBalancer = .roundRobin
 
   public init(
     client: GoogleGax.ClientOptions = .init(),
@@ -41,5 +85,15 @@ public struct StorageClientOptions: Sendable {
     var copy = self
     try config(&copy)
     return copy
+  }
+
+  static func resolveConnectionPoolSize(
+    _ configured: Int?,
+    coreCount: Int = NIOCore.System.coreCount
+  ) -> Int {
+    if let configured {
+      return max(1, configured)
+    }
+    return min(max(4, coreCount), 16)
   }
 }
