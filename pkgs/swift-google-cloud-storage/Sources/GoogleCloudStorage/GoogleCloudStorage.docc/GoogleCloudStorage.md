@@ -11,7 +11,8 @@ amount of data and retrieve it as often as you like.
 This library implements types to work with Google Cloud Storage.
 
 Use ``StorageClient`` to write (upload) and read (download) [objects]. A default
-initialized `StorageClient` works in most cases. The client supports resumable
+initialized `StorageClient` works in most cases, and you can tune connection pooling or
+operation defaults with ``StorageClientOptions``. The client supports resumable
 uploads, single-shot uploads, full and partial object reads. To provide data for
 writes implement the ``SeekableWriteObjectSource`` or the ``WriteObjectSource``
 protocols.
@@ -24,6 +25,11 @@ Use ``StorageProtocol`` and ``StorageControlProtocol`` if you want
 to mock the clients in your tests.
 
 ## Topics
+
+### Client Configuration
+
+- ``StorageClientOptions``
+- ``StorageLoadBalancer``
 
 ### Troubleshooting and Error Handling
 

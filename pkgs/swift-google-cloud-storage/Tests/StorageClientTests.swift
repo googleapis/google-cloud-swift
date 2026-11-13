@@ -507,4 +507,152 @@ import Testing
     let request = registry.lastRequest(for: uploadUrl)
     #expect(request?.value(forHTTPHeaderField: "Host") == "storage.googleapis.com")
   }
+
+  @Test func poolOptionsDefaultsAndMutation() {
+    let defaults = StorageClientOptions()
+    #expect(defaults.connectionPoolSize == nil)
+    #expect(defaults.loadBalancer == .roundRobin)
+
+    let configured = defaults.with {
+      $0.connectionPoolSize = 6
+      $0.loadBalancer = .p2c
+    }
+    #expect(configured.connectionPoolSize == 6)
+    #expect(configured.loadBalancer == .p2c)
+  }
+
+  @Test(arguments: [
+    (StorageLoadBalancer.p2c, 0),
+    (StorageLoadBalancer.p2c, -3),
+    (StorageLoadBalancer.roundRobin, 0),
+    (StorageLoadBalancer.roundRobin, -3),
+  ])
+  func connectionPoolSizeClampsNonPositiveToSingleSlot(
+    loadBalancer: StorageLoadBalancer,
+    configuredPoolSize: Int
+  ) async throws {
+    let endpoint = "http://clamped-pool-test"
+    let uploadUrl = "\(endpoint)/upload/storage/v1/b/test-bucket/o?uploadType=multipart&name=obj"
+    let m0 = MockRegistry.create()
+    let m1 = MockRegistry.create()
+    for _ in 0..<3 {
+      m0.register(
+        response: .success(
+          statusCode: 200,
+          data: makeObjectJSON(name: "obj", bucket: "test-bucket", size: 5),
+          headers: ["Content-Type": "application/json"]
+        ),
+        for: uploadUrl
+      )
+    }
+
+    let options = StorageClientOptions().with {
+      $0.client.endpoint = endpoint
+      $0.client.credentials = try? Credentials(configuration: .anonymous)
+      $0.connectionPoolSize = configuredPoolSize
+      $0.loadBalancer = loadBalancer
+    }
+    let client = try StorageClient(options, mocks: [m0, m1], environment: [:])
+    let writeOptions = WriteObjectOptions().with { $0.idempotent = true }
+
+    for _ in 0..<3 {
+      _ = try await client.writeObject(
+        Data("hello".utf8),
+        to: "test-bucket",
+        as: "obj",
+        options: writeOptions
+      )
+    }
+
+    #expect(m0.recordedRequests().count == 3)
+    #expect(m1.recordedRequests().isEmpty)
+  }
+
+  @Test func pooledClientSharesCredentialsAndDistributesRoundRobin() async throws {
+    let endpoint = "http://rr-pool-test"
+    let uploadUrl = "\(endpoint)/upload/storage/v1/b/test-bucket/o?uploadType=multipart&name=obj"
+    let m0 = MockRegistry.create()
+    let m1 = MockRegistry.create()
+    for mock in [m0, m1] {
+      for _ in 0..<2 {
+        mock.register(
+          response: .success(
+            statusCode: 200,
+            data: makeObjectJSON(name: "obj", bucket: "test-bucket", size: 5),
+            headers: ["Content-Type": "application/json"]
+          ),
+          for: uploadUrl
+        )
+      }
+    }
+
+    let options = StorageClientOptions().with {
+      $0.client.endpoint = endpoint
+      $0.client.credentials = try? Credentials(configuration: .apiKey("shared-test-key"))
+      $0.connectionPoolSize = 2
+      $0.loadBalancer = .roundRobin
+    }
+    let client = try StorageClient(options, mocks: [m0, m1], environment: [:])
+    let writeOptions = WriteObjectOptions().with { $0.idempotent = true }
+
+    for _ in 0..<4 {
+      _ = try await client.writeObject(
+        Data("hello".utf8),
+        to: "test-bucket",
+        as: "obj",
+        options: writeOptions
+      )
+    }
+
+    let reqs0 = m0.recordedRequests()
+    let reqs1 = m1.recordedRequests()
+    #expect(reqs0.count == 2)
+    #expect(reqs1.count == 2)
+    #expect(
+      reqs0.allSatisfy { $0.value(forHTTPHeaderField: "x-goog-api-key") == "shared-test-key" })
+    #expect(
+      reqs1.allSatisfy { $0.value(forHTTPHeaderField: "x-goog-api-key") == "shared-test-key" })
+  }
+
+  @Test func pooledClientHandlesReadObjectCancelWithP2C() async throws {
+    let endpoint = "http://p2c-read-test"
+    let requestUrl = "\(endpoint)/storage/v1/b/test-bucket/o/test-obj?alt=media"
+    let m0 = MockRegistry.create()
+    let m1 = MockRegistry.create()
+    for mock in [m0, m1] {
+      mock.register(
+        response: .stream(
+          statusCode: 200,
+          chunks: [Data("chunk-1".utf8), Data("chunk-2".utf8)],
+          headers: ["Content-Length": "14"]
+        ),
+        for: requestUrl
+      )
+    }
+
+    let options = StorageClientOptions().with {
+      $0.client.endpoint = endpoint
+      $0.client.credentials = try? Credentials(configuration: .anonymous)
+      $0.connectionPoolSize = 2
+      $0.loadBalancer = .p2c
+    }
+    let client = try StorageClient(options, mocks: [m0, m1], seed: 1234, environment: [:])
+
+    let handle1 = client.readObject(from: "test-bucket", object: "test-obj")
+    _ = try await handle1.metadata
+
+    let handle2 = client.readObject(from: "test-bucket", object: "test-obj")
+    var data = Data()
+    for try await chunk in handle2.body {
+      data.append(chunk.data)
+    }
+    #expect(data == Data("chunk-1chunk-2".utf8))
+    #expect(m0.recordedRequests().count == 1)
+    #expect(m1.recordedRequests().count == 1)
+
+    handle1.cancel()
+    await #expect(throws: CancellationError.self) {
+      for try await _ in handle1.body {}
+    }
+  }
 }
