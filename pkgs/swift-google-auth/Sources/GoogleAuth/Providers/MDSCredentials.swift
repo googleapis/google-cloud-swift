@@ -169,7 +169,7 @@ struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server cannot be reached or returns an error.
   func headers() async throws -> AuthHeaders {
     let token = try await self.cache.token()
-    var headers: AuthHeaders = [("Authorization", "Bearer \(token.token)")]
+    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.token)")]
     if let quota = self.provider.quotaProjectID {
       headers.append(name: "x-goog-user-project", value: quota)
     }

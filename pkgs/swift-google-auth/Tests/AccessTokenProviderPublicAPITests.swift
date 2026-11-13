@@ -90,4 +90,20 @@ import Testing
     #expect(try Credentials(configuration: .anonymous).accessTokenProvider == nil)
     #expect(try Credentials(configuration: .apiKey("my-api-key")).accessTokenProvider == nil)
   }
+
+  @Test @MainActor
+  func mainActorCallerWithCustomTokenType() async throws {
+    let custom = AccessToken(token: "mock-token.main-actor", tokenType: "CustomScheme")
+    #expect(custom.tokenType == "CustomScheme")
+
+    let credentials = try Credentials(
+      configuration: .accessToken(
+        AccessTokenConfig(provider: MockAccessTokenProvider(token: custom))
+      )
+    )
+    let provider = try #require(credentials.accessTokenProvider)
+    #expect(try await provider.accessToken() == custom)
+    #expect(
+      try await credentials.headers() == [("Authorization", "CustomScheme mock-token.main-actor")])
+  }
 }

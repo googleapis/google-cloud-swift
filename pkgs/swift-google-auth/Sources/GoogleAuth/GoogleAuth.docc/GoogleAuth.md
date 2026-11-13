@@ -94,7 +94,9 @@ For advanced scenarios, ``CredentialsConfiguration`` allows explicit configurati
   (AWS, Azure, Apple Account, GitHub Actions, Okta) by exchanging external subject tokens for
   Google Cloud access tokens via the Security Token Service ([AIP-4117]).
 - **Static & Custom Access Tokens**: Supply a pre-obtained ``AccessToken`` or integrate a custom
-  asynchronous ``AccessTokenProvider`` via ``AccessTokenConfig``.
+  asynchronous ``AccessTokenProvider`` via ``AccessTokenConfig``, or extract raw ``AccessToken``
+  values for non-HTTP protocols via ``Credentials/accessTokenProvider`` and
+  ``AnyAccessTokenProvider``.
 - **[API Keys]**: Associate requests with a Google Cloud project for billing and quota
   when accessing APIs that support API key authentication.
 

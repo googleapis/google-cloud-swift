@@ -203,7 +203,11 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     let fetchOperation: @Sendable () async throws -> AccessToken = {
       let response: TokenResponse = try await self.client.get(url: url, headers: headers)
       let expiration = Date().addingTimeInterval(TimeInterval(response.expiresIn))
-      return AccessToken(token: response.accessToken, expirationDate: expiration)
+      return AccessToken(
+        token: response.accessToken,
+        tokenType: response.tokenType,
+        expirationDate: expiration
+      )
     }
 
     // ADC falls back to the metadata server when it finds no other credentials. Outside Google

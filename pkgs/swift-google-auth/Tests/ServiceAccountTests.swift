@@ -21,7 +21,7 @@ import JWTKit
 @Suite("Service Account Key & Credentials Tests")
 struct ServiceAccountTests {
   // Returns a mock Service Account JSON key string containing a statically embedded 2048-bit PKCS#8 RSA key for determinism.
-  private static func generateMockKeyJSON() throws -> Data {
+  static func generateMockKeyJSON() throws -> Data {
     let json = """
       {
         "type": "service_account",

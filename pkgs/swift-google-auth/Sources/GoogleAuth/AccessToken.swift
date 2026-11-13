@@ -16,7 +16,8 @@ public import Foundation
 
 /// Represents an OAuth 2.0 access token or signed assertion used to authenticate requests.
 ///
-/// An `AccessToken` contains the raw token string and an optional expiration timestamp.
+/// An `AccessToken` contains the raw token string, its authorization scheme (`tokenType`), and an
+/// optional expiration timestamp.
 /// You can obtain an `AccessToken` via ``Credentials/accessTokenProvider`` and
 /// ``AnyAccessTokenProvider/accessToken()`` when
 /// authenticating non-HTTP protocols, database drivers, WebSockets, or third-party clients,
@@ -27,35 +28,22 @@ public struct AccessToken: Sendable, Hashable, CustomStringConvertible, CustomDe
   /// The raw access token string.
   public let token: String
 
-  /// The OAuth 2.0 token type (e.g. `"Bearer"`), used internally when formatting `Authorization` headers.
-  let tokenType: String
+  /// The OAuth 2.0 token type (for example, `"Bearer"`), used as the authorization scheme in HTTP `Authorization` headers.
+  public let tokenType: String
 
   /// The date and time when the token expires, or `nil` if the token does not have a known expiration.
   public let expirationDate: Date?
 
-  /// Initializes an access token with a raw token string and optional expiration date.
+  /// Initializes an access token with a raw token string, token type, and optional expiration date.
   ///
   /// - Parameters:
   ///   - token: The raw access token string.
+  ///   - tokenType: The OAuth 2.0 token type (defaults to `"Bearer"`).
   ///   - expirationDate: The date and time when the token expires (defaults to `nil`).
-  public init(token: String, expirationDate: Date? = nil) {
-    self.init(token: token, tokenType: "Bearer", expirationDate: expirationDate)
-  }
-
-  /// Initializes an access token with a raw token string, token type, and optional expiration date.
-  init(token: String, tokenType: String, expirationDate: Date? = nil) {
+  public init(token: String, tokenType: String = "Bearer", expirationDate: Date? = nil) {
     self.token = token
     self.tokenType = tokenType
     self.expirationDate = expirationDate
-  }
-
-  public static func == (lhs: AccessToken, rhs: AccessToken) -> Bool {
-    lhs.token == rhs.token && lhs.expirationDate == rhs.expirationDate
-  }
-
-  public func hash(into hasher: inout Hasher) {
-    hasher.combine(token)
-    hasher.combine(expirationDate)
   }
 
   /// A textual representation of the access token with the secret value redacted.
@@ -68,7 +56,9 @@ public struct AccessToken: Sendable, Hashable, CustomStringConvertible, CustomDe
 
   /// A debug textual representation of the access token with the secret value redacted.
   public var debugDescription: String {
-    "AccessToken(token: \"[redacted]\", expirationDate: \(String(describing: expirationDate)))"
+    let expiryDescription = expirationDate.map(String.init(describing:)) ?? "nil"
+    return
+      "AccessToken(token: \"[redacted]\", tokenType: \(String(reflecting: tokenType)), expirationDate: \(expiryDescription))"
   }
 }
 
@@ -84,16 +74,19 @@ public struct AccessToken: Sendable, Hashable, CustomStringConvertible, CustomDe
 /// with ``Credentials``.
 ///
 /// ``Credentials`` invokes ``accessToken()`` directly whenever ``Credentials/headers()`` or
-/// ``AnyAccessTokenProvider/accessToken()`` is called. Implementations that fetch tokens over the network
-/// or perform expensive operations are responsible for caching and refreshing their own tokens.
+/// ``AnyAccessTokenProvider/accessToken()`` is called, without additional caching or retry logic.
+/// Google Cloud client libraries treat ``CredentialsError`` failures from authentication providers
+/// as non-retryable, so implementations that fetch tokens over the network or perform expensive
+/// operations are responsible for caching, refreshing, and retrying transient errors internally.
 ///
 /// Conforming types must be `Sendable` and provide a thread-safe implementation of ``accessToken()``
 /// (for example, an `actor` or a value type backed by synchronized state).
 public protocol AccessTokenProvider: Sendable {
   /// Asynchronously retrieves a valid access token from the provider.
   ///
-  /// Errors thrown by this method are wrapped in ``CredentialsError/cannotFetchToken(message:underlyingError:)``
-  /// (unless already a ``CredentialsError`` or `CancellationError`).
+  /// When invoked by ``Credentials``, errors thrown by this method are wrapped in
+  /// ``CredentialsError/cannotFetchToken(message:underlyingError:)`` (unless already a
+  /// ``CredentialsError`` or `CancellationError`).
   ///
   /// - Returns: A valid ``AccessToken``.
   /// - Throws: Any error preventing retrieval of the access token.
@@ -143,10 +136,12 @@ public struct AnyAccessTokenProvider: AccessTokenProvider, Sendable, CustomStrin
     return try await self.provider.accessToken()
   }
 
+  /// A textual representation of the type-erased access token provider.
   public var description: String {
     debugDescription
   }
 
+  /// A debug textual representation of the type-erased access token provider.
   public var debugDescription: String {
     "AnyAccessTokenProvider"
   }

@@ -46,7 +46,7 @@ struct AccessTokenCredentials: CredentialsProvider, AccessTokenProvider, Sendabl
 
   func headers() async throws -> AuthHeaders {
     let validToken = try await self.accessToken()
-    var headers: AuthHeaders = [("Authorization", "Bearer \(validToken.token)")]
+    var headers: AuthHeaders = [("Authorization", "\(validToken.tokenType) \(validToken.token)")]
     if let quotaProjectID = self.quotaProjectID {
       headers.append(name: "x-goog-user-project", value: quotaProjectID)
     }
@@ -62,6 +62,8 @@ struct AccessTokenCredentials: CredentialsProvider, AccessTokenProvider, Sendabl
   }
 
   var debugDescription: String {
-    "AccessTokenCredentials(provider: AccessTokenProvider, quotaProjectID: \(String(describing: quotaProjectID)), universeDomain: \(String(reflecting: universeDomain)))"
+    let quotaDescription = quotaProjectID.map(String.init(reflecting:)) ?? "nil"
+    return
+      "AccessTokenCredentials(provider: AccessTokenProvider, quotaProjectID: \(quotaDescription), universeDomain: \(String(reflecting: universeDomain)))"
   }
 }

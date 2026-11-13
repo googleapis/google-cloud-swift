@@ -67,8 +67,10 @@ The primary entry point is the `Credentials` struct. A default-initialized
   `gcloud` CLI.
 - **Workload / Workforce Identity Federation (WIF)**: Programmatic Security Token
   Service (STS) token exchange for federated identity providers.
-- **Static & Custom Access Tokens**: Authenticate with pre-obtained `AccessToken`
-  instances or custom asynchronous `AccessTokenProvider` implementations.
+- **Static, Custom & Extracted Access Tokens**: Authenticate with pre-obtained
+  `AccessToken` instances or custom asynchronous `AccessTokenProvider`
+  implementations, and extract raw `AccessToken`s via
+  `Credentials.accessTokenProvider` for non-HTTP protocols and database drivers.
 - **Automatic Token Refresh & Caching**: Proactively and concurrently refreshes
   expiring OAuth access tokens and safely caches them in memory.
 - **Universe Domain Support**: Supports custom and multi-tenant Google Cloud
@@ -196,13 +198,21 @@ let staticConfig = AccessTokenConfig(token: "my-access-token").with {
 }
 let staticCredentials = try Credentials(configuration: .accessToken(staticConfig))
 
-// Or integrate a custom asynchronous AccessTokenProvider:
-struct VaultTokenProvider: AccessTokenProvider {
+// Or integrate a custom asynchronous AccessTokenProvider (called per request,
+// so network-backed providers should cache tokens and retry transient errors):
+actor VaultTokenProvider: AccessTokenProvider {
+    private var cached: AccessToken?
+
     func accessToken() async throws -> AccessToken {
-        AccessToken(
+        if let cached, let expiry = cached.expirationDate, expiry > Date().addingTimeInterval(60) {
+            return cached
+        }
+        let fresh = AccessToken(
             token: "fetched-token",
             expirationDate: Date().addingTimeInterval(3600)
         )
+        cached = fresh
+        return fresh
     }
 }
 let customCredentials = try Credentials(

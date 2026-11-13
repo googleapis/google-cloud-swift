@@ -54,7 +54,7 @@ public struct AccessTokenConfig: Sendable, CustomStringConvertible, CustomDebugS
     self.init(token: token, timeSource: SystemTimeSource())
   }
 
-  /// Initializes a new instance of `AccessTokenConfig` backed by a static raw token string and optional expiration date.
+  /// Initializes a new instance of `AccessTokenConfig` backed by a static raw token string, token type, and optional expiration date.
   ///
   /// Static access tokens cannot be refreshed automatically. If `expirationDate` is set and
   /// has passed, calls to ``Credentials/headers()`` or ``AnyAccessTokenProvider/accessToken()`` fail with
@@ -62,9 +62,11 @@ public struct AccessTokenConfig: Sendable, CustomStringConvertible, CustomDebugS
   ///
   /// - Parameters:
   ///   - token: The raw OAuth 2.0 access token string.
+  ///   - tokenType: The OAuth 2.0 token type (defaults to `"Bearer"`).
   ///   - expirationDate: The date and time when the token expires, or `nil` if the token does not expire.
-  public init(token: String, expirationDate: Date? = nil) {
-    self.init(token: AccessToken(token: token, expirationDate: expirationDate))
+  public init(token: String, tokenType: String = "Bearer", expirationDate: Date? = nil) {
+    self.init(
+      token: AccessToken(token: token, tokenType: tokenType, expirationDate: expirationDate))
   }
 
   init(token: AccessToken, timeSource: any TimeSource) {
@@ -81,12 +83,17 @@ public struct AccessTokenConfig: Sendable, CustomStringConvertible, CustomDebugS
     return copy
   }
 
+  /// A textual representation of the access token configuration with secrets redacted.
   public var description: String {
     debugDescription
   }
 
+  /// A debug textual representation of the access token configuration with secrets redacted.
   public var debugDescription: String {
-    "AccessTokenConfig(provider: AccessTokenProvider, quotaProjectID: \(String(describing: quotaProjectID)), universeDomain: \(String(describing: universeDomain)))"
+    let quotaDescription = quotaProjectID.map(String.init(reflecting:)) ?? "nil"
+    let universeDescription = universeDomain.map(String.init(reflecting:)) ?? "nil"
+    return
+      "AccessTokenConfig(provider: AccessTokenProvider, quotaProjectID: \(quotaDescription), universeDomain: \(universeDescription))"
   }
 }
 
@@ -95,11 +102,17 @@ struct StaticAccessTokenProvider: AccessTokenProvider, CustomStringConvertible,
   CustomDebugStringConvertible
 {
   /// Error thrown as the underlying error when a static access token has expired.
-  private struct ExpiredTokenError: Error, Sendable, CustomStringConvertible {
+  private struct ExpiredTokenError: Error, Sendable, CustomStringConvertible,
+    CustomDebugStringConvertible
+  {
     let expirationDate: Date
 
     var description: String {
       "Static access token expired at \(expirationDate)."
+    }
+
+    var debugDescription: String {
+      "ExpiredTokenError(expirationDate: \(expirationDate))"
     }
   }
 
@@ -123,6 +136,8 @@ struct StaticAccessTokenProvider: AccessTokenProvider, CustomStringConvertible,
   }
 
   var debugDescription: String {
-    "StaticAccessTokenProvider(token: \"[redacted]\", expirationDate: \(String(describing: token.expirationDate)))"
+    let expiryDescription = token.expirationDate.map(String.init(describing:)) ?? "nil"
+    return
+      "StaticAccessTokenProvider(token: \"[redacted]\", tokenType: \(String(reflecting: token.tokenType)), expirationDate: \(expiryDescription))"
   }
 }

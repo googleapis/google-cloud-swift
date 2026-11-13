@@ -17,9 +17,21 @@
 import Foundation
 import GoogleAuth
 
-struct CustomTokenProvider: AccessTokenProvider {
+// Credentials invokes accessToken() on each request, so network-backed providers
+// should cache tokens and retry transient failures internally.
+actor CustomTokenProvider: AccessTokenProvider {
+  private var cached: AccessToken?
+
   func accessToken() async throws -> AccessToken {
-    AccessToken(token: "custom-access-token", expirationDate: Date().addingTimeInterval(3600))
+    if let cached, let expiry = cached.expirationDate, expiry > Date().addingTimeInterval(60) {
+      return cached
+    }
+    let fresh = AccessToken(
+      token: "custom-access-token",
+      expirationDate: Date().addingTimeInterval(3600)
+    )
+    cached = fresh
+    return fresh
   }
 }
 

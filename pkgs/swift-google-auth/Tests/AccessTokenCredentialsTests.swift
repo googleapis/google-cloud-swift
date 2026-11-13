@@ -78,9 +78,11 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
       tokenType: "Custom",
       expirationDate: expiry
     )
+    #expect(tokenWithExpiry.tokenType == "Bearer")
     #expect(customTypeToken.tokenType == "Custom")
-    #expect(customTypeToken == tokenWithExpiry)
-    #expect(customTypeToken.hashValue == tokenWithExpiry.hashValue)
+    #expect(customTypeToken != tokenWithExpiry)
+    set.insert(customTypeToken)
+    #expect(set.count == 3)
   }
 
   @Test func accessTokenDebugAndStringDescriptionsRedactToken() {
@@ -341,6 +343,16 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
       return
     }
     #expect(underlyingError is CustomFailure)
+
+    let headersError = await #expect(throws: CredentialsError.self) {
+      _ = try await credentials.headers()
+    }
+    guard case let .cannotFetchToken(_, headersUnderlying) = headersError else {
+      Issue.record(
+        "Expected CredentialsError.cannotFetchToken, got \(String(describing: headersError))")
+      return
+    }
+    #expect(headersUnderlying is CustomFailure)
   }
 
   @Test func customAccessTokenProviderPropagatesCredentialsErrorDirectly() async throws {
@@ -383,12 +395,20 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
   @Test func customAccessTokenProviderPropagatesCancellationErrorDirectly() async throws {
     let timeSource = MockTimeSource(currentDate: Date())
     let provider = MockCustomAccessTokenProvider(token: nil, error: CancellationError())
-    let creds = AccessTokenCredentials(config: AccessTokenConfig(provider: provider))
+    let credentials = try Credentials(
+      configuration: .accessToken(AccessTokenConfig(provider: provider))
+    )
 
     await #expect(throws: CancellationError.self) {
-      _ = try await creds.accessToken()
+      _ = try await credentials.headers()
     }
     #expect(await provider.count == 1)
+
+    let tokenProvider = try #require(credentials.accessTokenProvider)
+    await #expect(throws: CancellationError.self) {
+      _ = try await tokenProvider.accessToken()
+    }
+    #expect(await provider.count == 2)
 
     let expectedToken = AccessToken(
       token: "mock-token.recovered-after-cancel",
@@ -396,9 +416,49 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
     )
     await provider.configure(token: expectedToken, error: nil)
 
-    let recovered = try await creds.accessToken()
+    let recovered = try await tokenProvider.accessToken()
     #expect(recovered == expectedToken)
-    #expect(await provider.count == 2)
+    #expect(await provider.count == 3)
+  }
+
+  @Test func publicStaticAccessTokenRejectsPastExpirationAndPreservesCustomTokenType() async throws
+  {
+    let expiredCreds = try Credentials(
+      configuration: .accessToken(
+        AccessTokenConfig(token: "mock-token.already-expired", expirationDate: .distantPast)
+      )
+    )
+    let expiredError = await #expect(throws: CredentialsError.self) {
+      _ = try await expiredCreds.headers()
+    }
+    if case let .cannotFetchToken(_, underlying) = expiredError {
+      #expect(!String(reflecting: underlying).contains("unknown context"))
+    } else {
+      Issue.record("Expected CredentialsError.cannotFetchToken")
+    }
+
+    let customSchemeConfig = AccessTokenConfig(
+      token: "mock-token.custom-scheme-token",
+      tokenType: "DPoP"
+    )
+    let customSchemeCreds = try Credentials(configuration: .accessToken(customSchemeConfig))
+    let headers = try await customSchemeCreds.headers()
+    #expect(headers == [("Authorization", "DPoP mock-token.custom-scheme-token")])
+    let extracted = try await #require(customSchemeCreds.accessTokenProvider).accessToken()
+    #expect(extracted.tokenType == "DPoP")
+  }
+
+  @Test func serviceAccountCredentialsHeadersAndAccessTokenProviderShareCache() async throws {
+    let keyJSON = try ServiceAccountTests.generateMockKeyJSON()
+    let credentials = try Credentials(
+      configuration: .serviceAccount(ServiceAccountConfig(keyJSON: keyJSON))
+    )
+    let tokenProvider = try #require(credentials.accessTokenProvider)
+
+    let extracted = try await tokenProvider.accessToken()
+    let headers = try await credentials.headers()
+    #expect(headers == [("Authorization", "\(extracted.tokenType) \(extracted.token)")])
+    #expect(try await tokenProvider.accessToken() == extracted)
   }
 
   // MARK: - Credentials.accessTokenProvider & AnyAccessTokenProvider Tests
@@ -466,9 +526,15 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
       clock: TestClock()
     )
 
-    let accessToken = try await userCreds.accessToken()
+    // MockHTTPClient only has 1 response queued; calling both AnyAccessTokenProvider and headers()
+    // verifies they share the single in-memory TokenCache without issuing a second HTTP refresh.
+    let erasedProvider = AnyAccessTokenProvider(userCreds)
+    let accessToken = try await erasedProvider.accessToken()
     #expect(accessToken.token == "mock-token.user-access-token")
+    #expect(accessToken.tokenType == "Bearer")
     #expect(accessToken.expirationDate != nil)
+    let headers = try await userCreds.headers()
+    #expect(headers == [("Authorization", "Bearer mock-token.user-access-token")])
   }
 
   @Test func mdsCredentialsAccessTokenExtractsRawTokenAndExpiry() async throws {
