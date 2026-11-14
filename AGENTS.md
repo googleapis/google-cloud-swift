@@ -71,6 +71,10 @@ Required checks, in the same pull request as the new API:
   error handling, retries, and observability.
 - If the package has a design document in `doc/design/`, update it when the
   implementation diverges.
+- Comply with `.strictMemorySafety()` across library code, `Snippets/`, and
+  `Tests/`: protect mutable state using `Synchronization.Mutex` inside `final class`
+  or `StateBox` reference wrappers (never `@unchecked Sendable`), and avoid
+  `withUnsafeCurrentTask` in tests.
 
 ## Dependencies and Local Development
 

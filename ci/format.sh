@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Runs swift-format lint for every local package found under `pkgs/`.
+# Runs swift-format in-place for local packages, guide snippets, and select GAPICs.
 # New local packages are picked up automatically — no changes to this script
 # are required when adding one.
 #
@@ -29,7 +29,8 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 # The PRs are too slow if we run them for all packages. We YOLO the PRs and just
 # run this build for the hand-crafted files and some select GAPICs. The post-PR
 # build will run for everything, we can afford those to be slower.
-if [[ "${1:-missingevent}" == "push" ]]; then
+event="${1:-pr}"
+if [[ "${event}" == "push" ]]; then
     subset=(".")
 else
     subset=(
@@ -55,28 +56,25 @@ count=0
 # assignment as a workaround, and set IFS to avoid breaking on spaces.
 IFS=$'\n'
 packages=($(git ls-files "${subset[@]}" | grep '/Package.swift' | xargs -I{} dirname {} | sort))
-if [[ "$1" != "push" ]]; then
-  packages+=(".")
-fi
+packages+=(".")
 unset IFS
 for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
     count=$((count + 1))
 
-    if swift-format format -i -r "${dir}/Sources" "${dir}/Tests" "${dir}/Package.swift"; then
+    paths=()
+    for subdir in Sources Tests Snippets; do
+        [[ -d "${dir}/${subdir}" ]] && paths+=("${dir}/${subdir}")
+    done
+    paths+=("${dir}/Package.swift")
+
+    if swift-format format -i -r "${paths[@]}"; then
         echo "::notice:: ✓ ${dir} passed"
     else
         echo "::error:: ✗ ${dir} failed"
         errors=$((errors + 1))
     fi
 done
-
-if swift-format format -i -r "./Tests" "./Package.swift"; then
-    echo "::notice:: ✓ top-level passed"
-else
-    echo "::error:: ✗ top-level failed"
-    errors=$((errors + 1))
-fi
 
 echo ""
 echo "::notice:: ${count} package(s) formatted, ${errors} failure(s)."
