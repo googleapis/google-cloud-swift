@@ -34,33 +34,32 @@ jobs:
         uses: ./.github/actions/install-swift
       - name: Build Documentation
         run: |
-          set -ev
+          set -euo pipefail
           args=(
             --transform-for-static-hosting
             --disable-indexing
             --warnings-as-errors
           )
-          declare -A targets=(
-            [UserGuide]=guide
-            [GoogleWKT]=wkt
-            [GoogleGax]=gax
-            [GoogleAuth]=auth
-            [GoogleCloudStorage]=storage
-            [GoogleCloudSecretManagerV1]=google-cloud-secretmanager-v1
+          targets=(
+            UserGuide
+            GoogleWKT
+            GoogleGax
+            GoogleAuth
+            GoogleCloudStorage
+            GoogleCloudSecretManagerV1
           )
           # Build the documentation against the packages in this repository,
           # not against the last published version of each package.
           export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS="${PWD}"
           mkdir -p .render
-          for target in "${!targets[@]}"; do
-            dir="${target[${target}]}"
+          for target in "${targets[@]}"; do
             swift package \
               --build-system native \
-              --allow-writing-to-directory .render/${dir} \
+              --allow-writing-to-directory ".render/${target}" \
               generate-documentation "${args[@]}" \
-              --target ${target} \
-              --hosting-base-path google-cloud-swift/${target} \
-              --output-path .render/${dir}
+              --target "${target}" \
+              --hosting-base-path "google-cloud-swift/${target}" \
+              --output-path ".render/${target}"
           done
           # Replace the top-level index file with a redirect, as we only host
           # one target. Otherwise users have to find the hidden directory.
@@ -72,7 +71,7 @@ jobs:
           </head>
           <body>
           _EOF_
-          for target in "${!targets[@]}"; do
+          for target in "${targets[@]}"; do
             printf '  <li><a href=\"%s/documentation/%s\">%s</a></li>\n' "${target}" "${target,,}" "${target}" >>.render/index.html
           done
           cat >>.render/index.html <<_EOF_
