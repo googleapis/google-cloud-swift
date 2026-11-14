@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Runs swift-format lint for every local package found under `pkgs/`.
+# Runs swift-format lint for local packages, guide snippets, and select GAPICs.
 # New local packages are picked up automatically — no changes to this script
 # are required when adding one.
 #
@@ -29,7 +29,8 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 # The PRs are too slow if we run them for all packages. We YOLO the PRs and just
 # run this build for the hand-crafted files and some select GAPICs. The post-PR
 # build will run for everything, we can afford those to be slower.
-if [[ "$1" == "push" ]]; then
+event="${1:-pr}"
+if [[ "${event}" == "push" ]]; then
     subset=(".")
 else
     subset=(
@@ -55,9 +56,7 @@ count=0
 # assignment as a workaround, and set IFS to avoid breaking on spaces.
 IFS=$'\n'
 packages=($(git ls-files "${subset[@]}" | grep '/Package.swift' | xargs -I{} dirname {} | sort))
-if [[ "$1" != "push" ]]; then
-  packages+=(".")
-fi
+packages+=(".")
 unset IFS
 for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
@@ -65,9 +64,15 @@ for dir in "${packages[@]}"; do
 
     echo "::group:: --- Linting ${dir} ---"
 
-    # For local packages, we run swift-format directly on the Sources and Tests directories
+    paths=()
+    for subdir in Sources Tests Snippets; do
+        [[ -d "${dir}/${subdir}" ]] && paths+=("${dir}/${subdir}")
+    done
+    paths+=("${dir}/Package.swift")
+
+    # Run swift-format directly on existing source/test/snippet directories and Package.swift
     # to avoid the SPM plugin forcefully feeding the generated Rust bridge files.
-    if swift-format lint --strict -r "${dir}/Sources" "${dir}/Tests"; then
+    if swift-format lint --strict -r "${paths[@]}"; then
         echo "::notice:: ✓ ${dir} passed"
         echo "::endgroup::"
     else
