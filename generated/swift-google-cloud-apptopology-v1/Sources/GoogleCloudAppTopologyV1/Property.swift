@@ -137,7 +137,7 @@ public struct Property: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// REQUIRED
   /// Value type of the property.
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// StringValue represents a property that has a string value type.
     indirect case stringValue(StringValue)
     /// IntValue represents a property that has an integer value type.

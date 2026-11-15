@@ -96,7 +96,7 @@ public struct StoredInfoTypeStats: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Stat types
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// StoredInfoType where findings are defined by a dictionary of phrases.
     indirect case largeCustomDictionary(LargeCustomDictionaryStats)
   }

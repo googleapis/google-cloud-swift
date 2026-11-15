@@ -149,7 +149,7 @@ public struct AccessLevel: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Describes the necessary conditions for the level to apply.
-  public enum LevelOneOf: Codable, Equatable, Sendable {
+  public enum LevelOneOf: Equatable, Sendable {
     /// A `BasicLevel` composed of `Conditions`.
     indirect case basic(BasicLevel)
     /// A `CustomLevel` written in the Common Expression Language.

@@ -96,7 +96,7 @@ public struct BatchContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Represents the batch to inspect or redact.
-  public enum BatchOneOf: Codable, Equatable, Sendable {
+  public enum BatchOneOf: Equatable, Sendable {
     /// Optional. Represents a batch of string values to inspect or redact.
     indirect case stringValueBatch(StringValueBatch)
   }

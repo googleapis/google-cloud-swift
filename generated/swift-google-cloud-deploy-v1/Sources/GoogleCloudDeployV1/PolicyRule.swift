@@ -94,7 +94,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum RuleOneOf: Codable, Equatable, Sendable {
+  public enum RuleOneOf: Equatable, Sendable {
     /// Optional. Rollout restrictions.
     indirect case rolloutRestriction(RolloutRestriction)
   }

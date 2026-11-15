@@ -221,7 +221,7 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. Specifies the day(s) on which the exclusion window takes
   /// effect. Exactly one of the fields MUST be specified.
-  public enum RecurrenceOneOf: Codable, Equatable, Sendable {
+  public enum RecurrenceOneOf: Equatable, Sendable {
     /// No recurrence. The exclusion window occurs only once and on this
     /// date in UTC.
     indirect case singleOccurrenceDate(GoogleType.Date)

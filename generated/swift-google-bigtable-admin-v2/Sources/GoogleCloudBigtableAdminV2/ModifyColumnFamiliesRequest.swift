@@ -213,7 +213,7 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
 
     /// Column family modifications.
-    public enum ModOneOf: Codable, Equatable, Sendable {
+    public enum ModOneOf: Equatable, Sendable {
       /// Create a new column family with the specified schema, or fail if
       /// one already exists with the given ID.
       indirect case create(ColumnFamily)

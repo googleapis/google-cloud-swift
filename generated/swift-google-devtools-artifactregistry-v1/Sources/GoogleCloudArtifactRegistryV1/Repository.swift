@@ -1270,7 +1270,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Repository-specific configurations.
-  public enum FormatConfigOneOf: Codable, Equatable, Sendable {
+  public enum FormatConfigOneOf: Equatable, Sendable {
     /// Maven repository config contains repository level configuration
     /// for the repositories of maven type.
     indirect case mavenConfig(Repository.MavenRepositoryConfig)
@@ -1281,7 +1281,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Repository configuration specific to the Mode value being selected (Remote
   /// or Virtual)
-  public enum ModeConfigOneOf: Codable, Equatable, Sendable {
+  public enum ModeConfigOneOf: Equatable, Sendable {
     /// Configuration specific for a Virtual Repository.
     indirect case virtualRepositoryConfig(VirtualRepositoryConfig)
     /// Configuration specific for a Remote Repository.

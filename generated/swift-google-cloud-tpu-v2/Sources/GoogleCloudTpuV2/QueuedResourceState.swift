@@ -1047,7 +1047,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Further data for the state.
-  public enum StateDataOneOf: Codable, Equatable, Sendable {
+  public enum StateDataOneOf: Equatable, Sendable {
     /// Output only. Further data for the creating state.
     indirect case creatingData(QueuedResourceState.CreatingData)
     /// Output only. Further data for the accepted state.

@@ -223,7 +223,7 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of resource represented by this Membership
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Optional. Endpoint information to reach this member.
     indirect case endpoint(MembershipEndpoint)
   }

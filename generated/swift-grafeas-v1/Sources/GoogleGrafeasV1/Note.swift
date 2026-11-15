@@ -268,7 +268,7 @@ public struct Note: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Immutable. The type of analysis this note represents.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// A note describing a package vulnerability.
     indirect case vulnerability(VulnerabilityNote)
     /// A note describing build provenance for a verifiable build.

@@ -158,7 +158,7 @@ public struct ImportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A Cloud Storage URI of a folder to import file data from, in the
   /// form of `gs://<bucket_name>/<path_inside_bucket>/`.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The Cloud Storage source bucket and, optionally, path inside the bucket.
     /// If a path inside the bucket is specified, it must end with a forward
     /// slash (`/`).
@@ -166,7 +166,7 @@ public struct ImportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The destination of the data transfer.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Lustre path destination.
     indirect case lustrePath(LustrePath)
   }

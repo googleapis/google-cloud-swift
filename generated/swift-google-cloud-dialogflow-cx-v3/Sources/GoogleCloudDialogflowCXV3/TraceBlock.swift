@@ -166,7 +166,7 @@
     }
 
     /// Metadata of the trace.
-    public enum TraceMetadataOneOf: Codable, Equatable, Sendable {
+    public enum TraceMetadataOneOf: Equatable, Sendable {
       /// Metadata of the playbook trace.
       indirect case playbookTraceMetadata(PlaybookTraceMetadata)
       /// Metadata of the flow trace.

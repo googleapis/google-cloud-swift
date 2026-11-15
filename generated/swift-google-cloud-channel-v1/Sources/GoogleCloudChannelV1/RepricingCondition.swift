@@ -97,7 +97,7 @@ public struct RepricingCondition: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Represents the types of existing conditional statements.
-  public enum ConditionOneOf: Codable, Equatable, Sendable {
+  public enum ConditionOneOf: Equatable, Sendable {
     /// SKU Group condition for override.
     indirect case skuGroupCondition(SkuGroupCondition)
   }

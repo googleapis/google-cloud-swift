@@ -123,7 +123,7 @@ public struct ComputeResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Particular type of configuration for this compute resource.
-  public enum ConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Equatable, Sendable {
     /// Optional. Immutable. If set, indicates that this resource should use
     /// on-demand VMs.
     indirect case newOnDemandInstances(NewOnDemandInstancesConfig)

@@ -343,7 +343,7 @@
 
     /// The spec for the metric.
     /// It would be either a pre-defined metric, or a inline metric spec.
-    public enum MetricSpecOneOf: Codable, Equatable, Sendable {
+    public enum MetricSpecOneOf: Equatable, Sendable {
       /// The spec for a pre-defined metric.
       indirect case predefinedMetricSpec(PredefinedMetricSpec)
       /// Spec for a computation based metric.

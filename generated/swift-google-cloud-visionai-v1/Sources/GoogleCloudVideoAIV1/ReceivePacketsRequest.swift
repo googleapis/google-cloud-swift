@@ -235,7 +235,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The mode in which the consumer reads messages.
-    public enum ConsumerModeOneOf: Codable, Equatable, Sendable {
+    public enum ConsumerModeOneOf: Equatable, Sendable {
       /// Options for configuring eager mode.
       indirect case eagerReceiveMode(EagerMode)
       /// Options for configuring controlled mode.
@@ -265,7 +265,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Possible request types from the client.
-  public enum RequestOneOf: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Equatable, Sendable {
     /// The request to setup the initial state of session.
     ///
     /// The client must send and only send this as the first message.

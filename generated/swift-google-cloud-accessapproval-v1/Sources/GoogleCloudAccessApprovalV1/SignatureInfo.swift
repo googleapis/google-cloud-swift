@@ -114,7 +114,7 @@ public struct SignatureInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// How this signature may be verified.
-  public enum VerificationInfoOneOf: Codable, Equatable, Sendable {
+  public enum VerificationInfoOneOf: Equatable, Sendable {
     /// The public key for the Google default signing, encoded in PEM format. The
     /// signature was created using a private key which may be verified using
     /// this public key.

@@ -96,7 +96,7 @@
     }
 
     /// Required. Where the data is from.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// The Cloud Storage URI has the form gs://<Google Cloud Storage bucket
       /// name>//agent*.json. Wildcards are allowed and will be expanded into all
       /// matched JSON files, which will be read as one conversation per file.

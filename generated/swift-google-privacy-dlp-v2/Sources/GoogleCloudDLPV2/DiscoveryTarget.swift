@@ -141,7 +141,7 @@ public struct DiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A target to match against for Discovery.
-  public enum TargetOneOf: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Equatable, Sendable {
     /// BigQuery target for Discovery. The first target to match a table will be
     /// the one applied.
     indirect case bigQueryTarget(BigQueryDiscoveryTarget)

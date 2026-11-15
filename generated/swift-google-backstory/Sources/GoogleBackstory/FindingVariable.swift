@@ -334,7 +334,7 @@ public struct FindingVariable: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The typed value of the variable.
-  public enum TypedValueOneOf: Codable, Equatable, Sendable {
+  public enum TypedValueOneOf: Equatable, Sendable {
     /// The value in boolean format.
     case boolVal(Swift.Bool)
     /// The value in bytes format.

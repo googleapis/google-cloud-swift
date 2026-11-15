@@ -122,7 +122,7 @@ public struct RestoreFromCloudSQLRequest: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// The source CloudSQL resource to restore from.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Cluster created from CloudSQL backup run.
     indirect case cloudsqlBackupRunSource(CloudSQLBackupRunSource)
   }

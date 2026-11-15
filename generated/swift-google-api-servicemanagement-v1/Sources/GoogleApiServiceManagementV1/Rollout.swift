@@ -495,7 +495,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Strategy that defines which versions of service configurations should be
   /// pushed
   /// and how they should be used at runtime.
-  public enum StrategyOneOf: Codable, Equatable, Sendable {
+  public enum StrategyOneOf: Equatable, Sendable {
     /// Google Service Control selects service configurations based on
     /// traffic percentage.
     indirect case trafficPercentStrategy(Rollout.TrafficPercentStrategy)

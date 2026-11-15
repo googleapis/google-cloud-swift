@@ -404,7 +404,7 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The operation that the `AutomationRun` will perform.
-  public enum OperationOneOf: Codable, Equatable, Sendable {
+  public enum OperationOneOf: Equatable, Sendable {
     /// Output only. Promotes a release to a specified 'Target'.
     indirect case promoteReleaseOperation(PromoteReleaseOperation)
     /// Output only. Advances a rollout to the next phase.

@@ -191,7 +191,7 @@ public struct ReportConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Format in which report will be published.
-  public enum ReportFormatOneOf: Codable, Equatable, Sendable {
+  public enum ReportFormatOneOf: Equatable, Sendable {
     /// Options for CSV formatted reports.
     indirect case csvOptions(CSVOptions)
     /// Options for Parquet formatted reports.
@@ -199,7 +199,7 @@ public struct ReportConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration options for report contents.
-  public enum ReportKindOneOf: Codable, Equatable, Sendable {
+  public enum ReportKindOneOf: Equatable, Sendable {
     /// Report for exporting object metadata.
     indirect case objectMetadataReportOptions(ObjectMetadataReportOptions)
   }

@@ -776,7 +776,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       }
 
       /// Load mode
-      public enum ModeOneOf: Codable, Equatable, Sendable {
+      public enum ModeOneOf: Equatable, Sendable {
         /// Replace destination table
         indirect case replace(WorkflowInvocationAction.DataPreparationAction.ActionSimpleLoadMode)
         /// Append into destination table
@@ -966,7 +966,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     }
 
     /// The definition for the data preparation.
-    public enum DefinitionOneOf: Codable, Equatable, Sendable {
+    public enum DefinitionOneOf: Equatable, Sendable {
       /// Output only. YAML representing the contents of the data preparation.
       /// Can be used to show the customer what the input was to their workflow.
       case contentsYaml(Swift.String)
@@ -1287,7 +1287,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The action's details.
-  public enum ActionOneOf: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Equatable, Sendable {
     /// Output only. The workflow action's bigquery action details.
     indirect case bigqueryAction(WorkflowInvocationAction.BigQueryAction)
     /// Output only. The workflow action's notebook action details.

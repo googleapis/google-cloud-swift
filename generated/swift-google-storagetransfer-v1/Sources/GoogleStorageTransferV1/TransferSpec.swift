@@ -263,7 +263,7 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The write sink for the data.
-  public enum DataSinkOneOf: Codable, Equatable, Sendable {
+  public enum DataSinkOneOf: Equatable, Sendable {
     /// A Cloud Storage data sink.
     indirect case gcsDataSink(GcsData)
     /// A POSIX Filesystem data sink.
@@ -271,7 +271,7 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The read source of the data.
-  public enum DataSourceOneOf: Codable, Equatable, Sendable {
+  public enum DataSourceOneOf: Equatable, Sendable {
     /// A Cloud Storage data source.
     indirect case gcsDataSource(GcsData)
     /// An AWS S3 data source.
@@ -288,7 +288,7 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case hdfsDataSource(HdfsData)
   }
 
-  public enum IntermediateDataLocationOneOf: Codable, Equatable, Sendable {
+  public enum IntermediateDataLocationOneOf: Equatable, Sendable {
     /// For transfers between file systems, specifies a Cloud Storage bucket
     /// to be used as an intermediate location through which to transfer data.
     ///

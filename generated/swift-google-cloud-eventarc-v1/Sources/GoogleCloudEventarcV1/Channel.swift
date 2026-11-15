@@ -334,7 +334,7 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum TransportOneOf: Codable, Equatable, Sendable {
+  public enum TransportOneOf: Equatable, Sendable {
     /// Output only. The name of the Pub/Sub topic created and managed by
     /// Eventarc system as a transport for the event delivery. Format:
     /// `projects/{project}/topics/{topic_id}`.

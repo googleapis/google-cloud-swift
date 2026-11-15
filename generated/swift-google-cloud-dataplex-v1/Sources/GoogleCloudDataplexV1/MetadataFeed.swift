@@ -503,7 +503,7 @@ public struct MetadataFeed: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The endpoint defines the where the metadata feed messages are
   /// published.
-  public enum EndpointOneOf: Codable, Equatable, Sendable {
+  public enum EndpointOneOf: Equatable, Sendable {
     /// Optional. The pubsub topic that you want the metadata feed messages to
     /// publish to. Please grant Dataplex service account the permission to
     /// publish messages to the topic. The service account is:

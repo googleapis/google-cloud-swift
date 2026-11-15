@@ -329,7 +329,7 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
 
   /// Configuration for an external data store containing objects that will
   /// be converted to FeedbackLabels.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// A cloud storage bucket source.
     indirect case gcsSource(BulkUploadFeedbackLabelsRequest.GcsSource)
   }

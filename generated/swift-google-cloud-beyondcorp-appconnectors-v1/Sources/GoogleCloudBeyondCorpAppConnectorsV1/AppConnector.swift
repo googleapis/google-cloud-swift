@@ -308,7 +308,7 @@ public struct AppConnector: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum TypeOneOf: Codable, Equatable, Sendable {
+    public enum TypeOneOf: Equatable, Sendable {
       /// A GCP service account.
       indirect case serviceAccount(AppConnector.PrincipalInfo.ServiceAccount)
     }

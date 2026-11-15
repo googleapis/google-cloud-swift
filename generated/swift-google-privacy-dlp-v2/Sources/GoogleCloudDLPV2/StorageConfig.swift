@@ -286,7 +286,7 @@ public struct StorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of storage system to inspect.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Google Cloud Datastore options.
     indirect case datastoreOptions(DatastoreOptions)
     /// Cloud Storage options.

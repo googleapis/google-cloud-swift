@@ -255,7 +255,7 @@ public struct ImportDataFile: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum FileInfoOneOf: Codable, Equatable, Sendable {
+  public enum FileInfoOneOf: Equatable, Sendable {
     /// Information about a file that is uploaded to a storage service.
     indirect case uploadFileInfo(UploadFileInfo)
   }

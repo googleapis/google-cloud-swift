@@ -639,7 +639,7 @@
     }
 
     /// User details for specific database type
-    public enum UserDetailsOneOf: Codable, Equatable, Sendable {
+    public enum UserDetailsOneOf: Equatable, Sendable {
       indirect case sqlserverUserDetails(SqlServerUserDetails)
     }
 

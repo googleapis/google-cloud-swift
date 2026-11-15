@@ -183,7 +183,7 @@
       }
     }
 
-    public enum KeyOneofOneOf: Codable, Equatable, Sendable {
+    public enum KeyOneofOneOf: Equatable, Sendable {
       /// String key to use for lookup.
       case key(Swift.String)
       /// The actual Entity ID will be composed from this struct. This should match

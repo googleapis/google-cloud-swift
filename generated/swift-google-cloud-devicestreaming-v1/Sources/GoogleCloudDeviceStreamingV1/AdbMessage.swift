@@ -99,7 +99,7 @@ public struct AdbMessage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ContentsOneOf: Codable, Equatable, Sendable {
+  public enum ContentsOneOf: Equatable, Sendable {
     /// Open a new stream.
     indirect case `open`(Open)
     /// Send data to a stream.

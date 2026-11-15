@@ -184,7 +184,7 @@ public struct Key: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Platform-specific settings for this key. The key can only be used on a
   /// platform for which the settings are enabled.
-  public enum PlatformSettingsOneOf: Codable, Equatable, Sendable {
+  public enum PlatformSettingsOneOf: Equatable, Sendable {
     /// Settings for keys that can be used by websites.
     indirect case webSettings(WebKeySettings)
     /// Settings for keys that can be used by Android apps.

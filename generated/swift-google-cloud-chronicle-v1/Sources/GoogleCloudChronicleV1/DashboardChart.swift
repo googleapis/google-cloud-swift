@@ -3725,7 +3725,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// Action to be performed on drill down.
-        public enum ActionOneOf: Codable, Equatable, Sendable {
+        public enum ActionOneOf: Equatable, Sendable {
           /// Drill down query action config.
           indirect case query(
             DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownQuery)
@@ -3761,7 +3761,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Drill down settings.
-      public enum SettingsOneOf: Codable, Equatable, Sendable {
+      public enum SettingsOneOf: Equatable, Sendable {
         /// Default drill down settings.
         indirect case defaultSettings(
           DashboardChart.DrillDownConfig.DrillDown.DefaultDrillDownSettings)

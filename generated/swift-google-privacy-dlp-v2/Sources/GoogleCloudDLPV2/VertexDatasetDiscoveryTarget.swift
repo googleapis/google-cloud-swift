@@ -120,7 +120,7 @@ public struct VertexDatasetDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// Type of schedule.
-  public enum CadenceOneOf: Codable, Equatable, Sendable {
+  public enum CadenceOneOf: Equatable, Sendable {
     /// How often and when to update profiles. New datasets that match both the
     /// filter and conditions are scanned as quickly as possible depending on
     /// system capacity.

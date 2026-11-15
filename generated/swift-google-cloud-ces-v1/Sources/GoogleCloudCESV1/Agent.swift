@@ -647,7 +647,7 @@ public struct Agent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of agent.
-  public enum AgentTypeOneOf: Codable, Equatable, Sendable {
+  public enum AgentTypeOneOf: Equatable, Sendable {
     /// Optional. The default agent type.
     indirect case llmAgent(Agent.LlmAgent)
     /// Optional. The remote

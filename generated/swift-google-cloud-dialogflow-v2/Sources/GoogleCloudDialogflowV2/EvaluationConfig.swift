@@ -305,7 +305,7 @@
     }
 
     /// Specific configurations for different models in order to do evaluation.
-    public enum ModelSpecificConfigOneOf: Codable, Equatable, Sendable {
+    public enum ModelSpecificConfigOneOf: Equatable, Sendable {
       /// Configuration for smart reply model evaluation.
       indirect case smartReplyConfig(EvaluationConfig.SmartReplyConfig)
       /// Configuration for smart compose model evaluation.

@@ -214,7 +214,7 @@
     }
 
     /// Recommended flag value for UI display.
-    public enum RecommendedValueOneOf: Codable, Equatable, Sendable {
+    public enum RecommendedValueOneOf: Equatable, Sendable {
       /// Recommended string value in string format for UI display.
       case recommendedStringValue(Swift.String)
       /// Recommended int value in integer format for UI display.

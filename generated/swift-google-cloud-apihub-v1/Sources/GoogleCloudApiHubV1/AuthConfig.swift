@@ -556,7 +556,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Supported auth types.
-  public enum ConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Equatable, Sendable {
     /// Google Service Account.
     indirect case googleServiceAccountConfig(GoogleServiceAccountConfig)
     /// User Password.

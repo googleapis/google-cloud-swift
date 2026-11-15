@@ -139,7 +139,7 @@ public struct StreamAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum AnnotationPayloadOneOf: Codable, Equatable, Sendable {
+  public enum AnnotationPayloadOneOf: Equatable, Sendable {
     /// Annotation for type ACTIVE_ZONE
     indirect case activeZone(NormalizedPolygon)
     /// Annotation for type CROSSING_LINE

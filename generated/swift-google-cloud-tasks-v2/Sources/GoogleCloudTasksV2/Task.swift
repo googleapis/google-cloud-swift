@@ -413,7 +413,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The message to send to the worker.
-  public enum MessageTypeOneOf: Codable, Equatable, Sendable {
+  public enum MessageTypeOneOf: Equatable, Sendable {
     /// HTTP request that is sent to the App Engine app handler.
     ///
     /// An App Engine task is a task that has

@@ -175,7 +175,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Equatable, Sendable {
     /// Cloud Pub/Sub Configuration to receive notifications.
     indirect case pubsubNotification(NotificationConfig.CloudPubSubNotificationConfig)
   }

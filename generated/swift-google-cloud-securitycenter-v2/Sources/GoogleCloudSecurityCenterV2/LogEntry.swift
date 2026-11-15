@@ -96,7 +96,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The log entry.
-  public enum LogEntryOneOf: Codable, Equatable, Sendable {
+  public enum LogEntryOneOf: Equatable, Sendable {
     /// An individual entry in a log stored in Cloud Logging.
     indirect case cloudLoggingEntry(CloudLoggingEntry)
   }

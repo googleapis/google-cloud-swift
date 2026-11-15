@@ -390,7 +390,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The potential places the data can be read from.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// List of words or phrases to search for.
       indirect case wordList(CustomInfoType.Dictionary.WordList)
       /// Newline-delimited file of words in Cloud Storage. Only a single file
@@ -1034,7 +1034,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The type of file label to detect.
-    public enum TypeOneOf: Codable, Equatable, Sendable {
+    public enum TypeOneOf: Equatable, Sendable {
       /// Sensitivity labels published by Microsoft.
       indirect case sensitivityLabel(CustomInfoType.FileLabelInfoType.SensitivityLabel)
       /// Google Drive labels published by Google.
@@ -1327,7 +1327,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// How the likelihood will be modified.
-      public enum AdjustmentOneOf: Codable, Equatable, Sendable {
+      public enum AdjustmentOneOf: Equatable, Sendable {
         /// Set the likelihood of a finding to a fixed value.
         case fixedLikelihood(Likelihood)
         /// Increase or decrease the likelihood by the specified number of
@@ -1473,7 +1473,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Type of hotword rule.
-    public enum TypeOneOf: Codable, Equatable, Sendable {
+    public enum TypeOneOf: Equatable, Sendable {
       /// Hotword-based detection rule.
       indirect case hotwordRule(CustomInfoType.DetectionRule.HotwordRule)
     }
@@ -1612,7 +1612,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of custom detector.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// A list of phrases to detect as a CustomInfoType.
     indirect case dictionary(CustomInfoType.Dictionary)
     /// Regular expression based CustomInfoType.

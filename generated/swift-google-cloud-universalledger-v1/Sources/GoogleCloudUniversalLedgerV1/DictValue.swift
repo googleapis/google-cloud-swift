@@ -164,7 +164,7 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Each key can be exactly one kind.
-  public enum KeysOneOf: Codable, Equatable, Sendable {
+  public enum KeysOneOf: Equatable, Sendable {
     /// Optional. A list of boolean keys.
     indirect case boolKeys(BoolList)
     /// Optional. A list of string keys.
@@ -176,7 +176,7 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Each value can be exactly one kind.
-  public enum ValuesOneOf: Codable, Equatable, Sendable {
+  public enum ValuesOneOf: Equatable, Sendable {
     /// Optional. A list of boolean values.
     indirect case boolValues(BoolList)
     /// Optional. A list of string values.

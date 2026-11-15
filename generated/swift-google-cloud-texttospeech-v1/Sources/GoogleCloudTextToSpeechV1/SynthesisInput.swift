@@ -147,7 +147,7 @@ public struct SynthesisInput: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The input source, which is either plain text or SSML.
-  public enum InputSourceOneOf: Codable, Equatable, Sendable {
+  public enum InputSourceOneOf: Equatable, Sendable {
     /// The raw text to be synthesized.
     case text(Swift.String)
     /// Markup for Chirp 3: HD voices specifically. This field may not be used

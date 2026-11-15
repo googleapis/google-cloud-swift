@@ -110,7 +110,7 @@ public struct BigQueryTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Output only.
-  public enum TypeSpecOneOf: Codable, Equatable, Sendable {
+  public enum TypeSpecOneOf: Equatable, Sendable {
     /// Table view specification. Populated only if
     /// the `table_source_type` is `BIGQUERY_VIEW`.
     indirect case viewSpec(ViewSpec)

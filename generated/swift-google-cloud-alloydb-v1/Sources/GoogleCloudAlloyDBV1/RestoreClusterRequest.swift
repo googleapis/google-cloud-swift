@@ -165,7 +165,7 @@ public struct RestoreClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required.
   /// The source to import from.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Backup source.
     indirect case backupSource(BackupSource)
     /// ContinuousBackup source. Continuous backup needs to be enabled in the

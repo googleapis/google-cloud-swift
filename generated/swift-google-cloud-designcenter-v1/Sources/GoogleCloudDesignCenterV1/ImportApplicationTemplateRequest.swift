@@ -154,7 +154,7 @@ public struct ImportApplicationTemplateRequest: Codable, Equatable, GoogleWKT._A
   }
 
   /// The source for setting application template components/connections.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Optional. The source URI for application template revision.
     case applicationTemplateRevisionUri(Swift.String)
     /// Optional. The source URI for catalog template.

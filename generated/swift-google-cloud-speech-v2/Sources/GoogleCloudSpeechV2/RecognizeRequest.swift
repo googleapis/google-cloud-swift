@@ -159,7 +159,7 @@ public struct RecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The audio source, which is either inline content or a Google Cloud
   /// Storage URI.
-  public enum AudioSourceOneOf: Codable, Equatable, Sendable {
+  public enum AudioSourceOneOf: Equatable, Sendable {
     /// The audio data bytes encoded as specified in
     /// [RecognitionConfig][google.cloud.speech.v2.RecognitionConfig]. As
     /// with all bytes fields, proto buffers use a pure binary representation,

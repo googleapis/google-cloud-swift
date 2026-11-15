@@ -153,7 +153,7 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
   }
 
   /// The data object that has been enriched by the discover API call.
-  public enum DataObjectOneOf: Codable, Equatable, Sendable {
+  public enum DataObjectOneOf: Equatable, Sendable {
     /// Enriched Oracle RDBMS object.
     indirect case oracleRdbms(OracleRdbms)
     /// Enriched MySQL RDBMS object.

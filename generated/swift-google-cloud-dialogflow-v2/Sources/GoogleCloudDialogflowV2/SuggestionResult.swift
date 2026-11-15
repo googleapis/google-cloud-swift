@@ -165,7 +165,7 @@
     }
 
     /// Different type of suggestion response.
-    public enum SuggestionResponseOneOf: Codable, Equatable, Sendable {
+    public enum SuggestionResponseOneOf: Equatable, Sendable {
       /// Error status if the request failed.
       indirect case error(GoogleRpc.Status)
       /// SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.

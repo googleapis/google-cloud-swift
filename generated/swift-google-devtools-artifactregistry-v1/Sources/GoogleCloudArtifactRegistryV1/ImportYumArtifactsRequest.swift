@@ -105,7 +105,7 @@ public struct ImportYumArtifactsRequest: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The source location of the package binaries.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Google Cloud Storage location where input content is located.
     indirect case gcsSource(ImportYumArtifactsGcsSource)
   }

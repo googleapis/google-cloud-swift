@@ -1690,14 +1690,14 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum SpecOneOf: Codable, Equatable, Sendable {
+  public enum SpecOneOf: Equatable, Sendable {
     /// Import job specification.
     indirect case importSpec(MetadataJob.ImportJobSpec)
     /// Export job specification.
     indirect case exportSpec(MetadataJob.ExportJobSpec)
   }
 
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// Output only. Import job result.
     indirect case importResult(MetadataJob.ImportJobResult)
     /// Output only. Export job result.

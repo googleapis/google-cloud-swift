@@ -575,7 +575,7 @@
     }
 
     /// Required. The source of this document.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// The URI where the file content is located.
       ///
       /// For documents stored in Google Cloud Storage, these URIs must have

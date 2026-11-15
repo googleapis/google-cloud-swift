@@ -340,7 +340,7 @@ public struct GoldengateMongodbConnectionProperties: Codable, Equatable, GoogleW
   }
 
   /// The password Oracle Goldengate uses to connect the associated database.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password Oracle Goldengate uses to connect the
     /// Mongodb connection in plain text.
     case password(Swift.String)
@@ -352,7 +352,7 @@ public struct GoldengateMongodbConnectionProperties: Codable, Equatable, GoogleW
   }
 
   /// Client Certificate key file password.
-  public enum TlsCertificateKeyFilePasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum TlsCertificateKeyFilePasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The Client Certificate key file password in plain
     /// text.
     case tlsCertificateKeyFilePassword(Swift.String)

@@ -485,7 +485,7 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The application/framework-specific portion of the batch configuration.
-  public enum BatchConfigOneOf: Codable, Equatable, Sendable {
+  public enum BatchConfigOneOf: Equatable, Sendable {
     /// Optional. PySpark batch config.
     indirect case pysparkBatch(PySparkBatch)
     /// Optional. Spark batch config.

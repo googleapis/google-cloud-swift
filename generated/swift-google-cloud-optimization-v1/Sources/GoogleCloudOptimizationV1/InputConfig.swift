@@ -105,7 +105,7 @@ public struct InputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The location of the input model in cloud storage.
   /// Required.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The Google Cloud Storage location to read the input from. This must be a
     /// single file.
     indirect case gcsSource(GcsSource)

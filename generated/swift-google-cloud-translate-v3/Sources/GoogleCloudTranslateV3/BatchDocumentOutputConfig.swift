@@ -98,7 +98,7 @@ public struct BatchDocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// The destination of output. The destination directory provided must exist
   /// and be empty.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Google Cloud Storage destination for output content.
     /// For every single input document (for example, gs://a/b/c.[extension]), we
     /// generate at most 2 * n output files. (n is the # of target_language_codes

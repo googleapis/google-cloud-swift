@@ -373,13 +373,13 @@ public struct ExportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Oneof field to support other destinations in future.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Required. Option to export data to cloud storage.
     indirect case gcsDestination(GcsDestination)
   }
 
   /// Required field to specify export file type and options.
-  public enum ExportOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ExportOptionsOneOf: Equatable, Sendable {
     /// Options for exporting data in CSV format. Required field to be set for
     /// CSV file type.
     indirect case csvExportOptions(ExportClusterRequest.CsvExportOptions)

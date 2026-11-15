@@ -344,7 +344,7 @@ public struct Clip: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The allowlist forms of a slice.
-    public enum KindOneOf: Codable, Equatable, Sendable {
+    public enum KindOneOf: Equatable, Sendable {
       /// A slice in form of a tuple of Unix epoch time.
       indirect case timeSlice(Clip.TimeSlice)
     }

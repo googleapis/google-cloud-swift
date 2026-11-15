@@ -106,7 +106,7 @@
     }
 
     /// The result of the upload.
-    public enum ResultOneOf: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Equatable, Sendable {
       /// The RagFile that had been uploaded into the RagCorpus.
       indirect case ragFile(RagFile)
       /// The error that occurred while processing the RagFile.

@@ -1245,7 +1245,7 @@
       }
 
       /// Sources.
-      public enum SourceOneOf: Codable, Equatable, Sendable {
+      public enum SourceOneOf: Equatable, Sendable {
         /// If set, grounding is performed with inline content.
         indirect case inlineSource(GenerateGroundedContentRequest.GroundingSource.InlineSource)
         /// If set, grounding is performed with Vertex AI Search.

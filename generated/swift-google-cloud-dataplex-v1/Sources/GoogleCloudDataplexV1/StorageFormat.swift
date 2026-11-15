@@ -734,7 +734,7 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional format-specific options.
-  public enum OptionsOneOf: Codable, Equatable, Sendable {
+  public enum OptionsOneOf: Equatable, Sendable {
     /// Optional. Additional information about CSV formatted data.
     indirect case csv(StorageFormat.CsvOptions)
     /// Optional. Additional information about CSV formatted data.

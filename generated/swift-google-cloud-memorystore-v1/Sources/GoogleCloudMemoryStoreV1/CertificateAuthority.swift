@@ -271,7 +271,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Information about the server certificate authority.
-  public enum ServerCaOneOf: Codable, Equatable, Sendable {
+  public enum ServerCaOneOf: Equatable, Sendable {
     /// A managed server certificate authority.
     indirect case managedServerCa(CertificateAuthority.ManagedCertificateAuthority)
   }

@@ -288,7 +288,7 @@
     }
 
     /// Required. The intents to import.
-    public enum IntentsOneOf: Codable, Equatable, Sendable {
+    public enum IntentsOneOf: Equatable, Sendable {
       /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI
       /// to import intents from. The format of this URI must be
       /// `gs://<bucket-name>/<object-name>`.

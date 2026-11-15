@@ -174,7 +174,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum ValueOneOf: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Equatable, Sendable {
       /// The name of an existing PhraseSet resource. The user must have read
       /// access to the resource and it must not be deleted.
       case phraseSet(Swift.String)

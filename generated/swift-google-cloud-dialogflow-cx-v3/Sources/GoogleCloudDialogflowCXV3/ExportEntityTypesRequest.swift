@@ -280,7 +280,7 @@
     }
 
     /// The destination to export.
-    public enum DestinationOneOf: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Equatable, Sendable {
       /// Optional. The [Google Cloud
       /// Storage](https://cloud.google.com/storage/docs/) URI to export the entity
       /// types to. The format of this URI must be

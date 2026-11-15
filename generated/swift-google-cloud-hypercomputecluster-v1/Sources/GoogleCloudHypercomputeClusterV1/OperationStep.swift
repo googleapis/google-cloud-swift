@@ -423,7 +423,7 @@ public struct OperationStep: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Step of the operation.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Output only. If set, indicates that new network creation is part of the
     /// operation.
     indirect case createNetwork(CreateNetwork)

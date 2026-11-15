@@ -96,7 +96,7 @@ public struct ImportProductSetsInputConfig: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// The source of the input.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The Google Cloud Storage location for a csv file which preserves a list
     /// of ImportProductSetRequests in each line.
     indirect case gcsSource(ImportProductSetsGcsSource)

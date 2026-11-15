@@ -128,7 +128,7 @@ public struct ApiHubResource: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ResourceOneOf: Codable, Equatable, Sendable {
+  public enum ResourceOneOf: Equatable, Sendable {
     /// This represents Api resource in search results. Only name, display_name,
     /// description and owner fields are populated in search results.
     indirect case api(Api)

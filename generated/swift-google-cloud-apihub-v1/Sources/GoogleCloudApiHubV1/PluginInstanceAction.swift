@@ -412,7 +412,7 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The status of the plugin action.
-  public enum ActionStatusOneOf: Codable, Equatable, Sendable {
+  public enum ActionStatusOneOf: Equatable, Sendable {
     /// Optional. The execution information for the plugin instance action done
     /// corresponding to an API hub instance.
     indirect case hubInstanceAction(ExecutionStatus)

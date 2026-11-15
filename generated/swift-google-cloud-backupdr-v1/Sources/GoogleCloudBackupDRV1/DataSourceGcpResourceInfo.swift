@@ -126,7 +126,7 @@ public struct DataSourceGcpResourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The properties of the GCP resource.
-  public enum ResourcePropertiesOneOf: Codable, Equatable, Sendable {
+  public enum ResourcePropertiesOneOf: Equatable, Sendable {
     /// Output only. The properties of the Cloud SQL instance.
     indirect case cloudSqlInstanceProperties(CloudSqlInstanceDataSourceReferenceProperties)
   }

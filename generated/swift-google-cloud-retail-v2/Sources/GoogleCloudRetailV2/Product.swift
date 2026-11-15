@@ -1100,7 +1100,7 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ExpirationOneOf: Codable, Equatable, Sendable {
+  public enum ExpirationOneOf: Equatable, Sendable {
     /// Note that this field is applied in the following ways:
     ///
     /// * If the [Product][google.cloud.retail.v2.Product] is already expired

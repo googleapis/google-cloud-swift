@@ -850,7 +850,7 @@
       }
 
       /// Specifies the image bytes.
-      public enum ImageOneOf: Codable, Equatable, Sendable {
+      public enum ImageOneOf: Equatable, Sendable {
         /// Base64 encoded image bytes. Supported image formats: JPEG, PNG, and
         /// BMP.
         case imageBytes(Swift.String)
@@ -4979,7 +4979,7 @@
         }
 
         /// Configures how the relevance threshold is determined.
-        public enum RelevanceThresholdSpecOneOf: Codable, Equatable, Sendable {
+        public enum RelevanceThresholdSpecOneOf: Equatable, Sendable {
           /// Pre-defined relevance threshold for the sub-search.
           case relevanceThreshold(SearchRequest.RelevanceThreshold)
           /// Custom relevance threshold for the sub-search.

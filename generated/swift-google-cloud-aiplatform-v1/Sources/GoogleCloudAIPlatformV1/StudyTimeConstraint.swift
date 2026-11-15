@@ -103,7 +103,7 @@
       }
     }
 
-    public enum ConstraintOneOf: Codable, Equatable, Sendable {
+    public enum ConstraintOneOf: Equatable, Sendable {
       /// Counts the wallclock time passed since the creation of this Study.
       indirect case maxDuration(GoogleWKT.WKTDuration)
       /// Compares the wallclock time to this time. Must use UTC timezone.

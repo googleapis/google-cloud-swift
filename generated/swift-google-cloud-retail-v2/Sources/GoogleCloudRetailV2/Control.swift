@@ -183,7 +183,7 @@ public struct Control: Codable, Equatable, GoogleWKT._AnyPackable,
   /// A behavior/type must be specified on creation. Type cannot be changed once
   /// specified (e.g. A Rule control will always be a Rule control.). An
   /// INVALID_ARGUMENT will be returned if either condition is violated.
-  public enum ControlOneOf: Codable, Equatable, Sendable {
+  public enum ControlOneOf: Equatable, Sendable {
     /// A rule control - a condition-action pair.
     /// Enacts a set action when the condition is triggered.
     /// For example: Boost "gShoe" when query full matches "Running Shoes".

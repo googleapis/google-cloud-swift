@@ -134,7 +134,7 @@
     }
 
     /// Required. The destination for the export.
-    public enum DestinationOneOf: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Equatable, Sendable {
       /// Cloud Storage file path to export the document.
       indirect case gcsDestination(GcsDestination)
     }

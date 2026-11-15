@@ -186,7 +186,7 @@
     }
 
     /// The output of this Neural Architecture Search (NAS) job.
-    public enum OutputOneOf: Codable, Equatable, Sendable {
+    public enum OutputOneOf: Equatable, Sendable {
       /// Output only. The output of this multi-trial Neural Architecture Search
       /// (NAS) job.
       indirect case multiTrialJobOutput(NasJobOutput.MultiTrialJobOutput)

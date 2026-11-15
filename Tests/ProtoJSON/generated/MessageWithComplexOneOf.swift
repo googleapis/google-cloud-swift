@@ -367,7 +367,7 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum ComplexOneOf: Codable, Equatable, Sendable {
+  public enum ComplexOneOf: Equatable, Sendable {
     case null(GoogleWKT.WKTNullValue)
     case boolValue(Swift.Bool)
     case bytesValue(Foundation.Data)

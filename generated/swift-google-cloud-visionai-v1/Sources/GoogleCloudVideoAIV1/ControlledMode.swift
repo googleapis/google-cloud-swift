@@ -113,7 +113,7 @@ public struct ControlledMode: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// This is the offset from which to start receiveing.
-  public enum StartingOffsetOneOf: Codable, Equatable, Sendable {
+  public enum StartingOffsetOneOf: Equatable, Sendable {
     /// This can be set to the following logical starting points:
     ///
     /// "begin": This will read from the earliest available message.

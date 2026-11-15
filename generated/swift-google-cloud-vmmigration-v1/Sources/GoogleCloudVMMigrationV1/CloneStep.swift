@@ -124,7 +124,7 @@ public struct CloneStep: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum StepOneOf: Codable, Equatable, Sendable {
+  public enum StepOneOf: Equatable, Sendable {
     /// Adapting OS step.
     indirect case adaptingOs(AdaptingOSStep)
     /// Preparing VM disks step.

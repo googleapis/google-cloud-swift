@@ -109,7 +109,7 @@ public struct AttributeValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the value.
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// A string up to 256 bytes long.
     indirect case stringValue(TruncatableString)
     /// A 64-bit signed integer.

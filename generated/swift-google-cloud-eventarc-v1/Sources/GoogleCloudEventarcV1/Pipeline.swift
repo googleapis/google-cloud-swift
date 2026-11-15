@@ -562,7 +562,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     /// One of Protobuf, Avro, and JSON supported.
     /// This allows specification of what specific format
     /// messages are sent and received.
-    public enum KindOneOf: Codable, Equatable, Sendable {
+    public enum KindOneOf: Equatable, Sendable {
       /// Optional. Protobuf format.
       indirect case protobuf(Pipeline.MessagePayloadFormat.ProtobufFormat)
       /// Optional. Avro format.
@@ -1359,7 +1359,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The type of authentication method.
-      public enum AuthenticationMethodDescriptorOneOf: Codable, Equatable, Sendable {
+      public enum AuthenticationMethodDescriptorOneOf: Equatable, Sendable {
         /// Optional. This authenticate method will apply Google OIDC tokens
         /// signed by a Google Cloud service account to the requests.
         indirect case googleOidc(Pipeline.Destination.AuthenticationConfig.OidcToken)
@@ -1397,7 +1397,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The destination identifier to which the request should be routed to.
-    public enum DestinationDescriptorOneOf: Codable, Equatable, Sendable {
+    public enum DestinationDescriptorOneOf: Equatable, Sendable {
       /// Optional. An HTTP endpoint destination described by an URI.
       /// If a DNS FQDN is provided as the endpoint, Pipeline will create a
       /// peering zone to the consumer VPC and forward DNS requests to the VPC
@@ -1678,7 +1678,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The config of mediation.
-    public enum MediationDescriptorOneOf: Codable, Equatable, Sendable {
+    public enum MediationDescriptorOneOf: Equatable, Sendable {
       /// Optional. How the Pipeline is to transform messages
       indirect case transformation(Pipeline.Mediation.Transformation)
     }

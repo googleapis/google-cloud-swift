@@ -138,7 +138,7 @@
     }
 
     /// The generation strategy to use.
-    public enum StrategyOneOf: Codable, Equatable, Sendable {
+    public enum StrategyOneOf: Equatable, Sendable {
       /// Generate data from a high-level task description.
       indirect case taskDescription(TaskDescriptionStrategy)
     }

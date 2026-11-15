@@ -222,7 +222,7 @@
     }
 
     /// Required. The source of the input.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// The inline source for the input content for license assignment.
       indirect case inlineSource(BatchUpdateUserLicensesRequest.InlineSource)
     }

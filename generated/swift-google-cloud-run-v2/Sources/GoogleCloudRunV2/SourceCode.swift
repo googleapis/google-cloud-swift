@@ -381,7 +381,7 @@ public struct SourceCode: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source type.
-  public enum SourceTypeOneOf: Codable, Equatable, Sendable {
+  public enum SourceTypeOneOf: Equatable, Sendable {
     /// The source is a Cloud Storage bucket.
     indirect case cloudStorageSource(SourceCode.CloudStorageSource)
     /// Optional. Input only. Source code inlined in the request. Cloud Run will

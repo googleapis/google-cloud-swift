@@ -1267,7 +1267,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Metadata that applies to the conversation.
-  public enum MetadataOneOf: Codable, Equatable, Sendable {
+  public enum MetadataOneOf: Equatable, Sendable {
     /// Call-specific metadata.
     indirect case callMetadata(Conversation.CallMetadata)
   }
@@ -1276,7 +1276,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// duration from the time that the conversation creation request was received.
   /// Conversations with an expiration set will be removed up to 24 hours after
   /// the specified time.
-  public enum ExpirationOneOf: Codable, Equatable, Sendable {
+  public enum ExpirationOneOf: Equatable, Sendable {
     /// The time at which this conversation should expire. After this time, the
     /// conversation data and any associated analyses will be deleted.
     indirect case expireTime(GoogleWKT.WKTTimestamp)

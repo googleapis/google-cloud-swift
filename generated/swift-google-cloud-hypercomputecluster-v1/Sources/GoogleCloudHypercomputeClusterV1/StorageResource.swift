@@ -122,7 +122,7 @@ public struct StorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Reference to the storage resource in Google Cloud. Exactly one of these
   /// fields will be populated based on the configured type of storage resource.
-  public enum ReferenceOneOf: Codable, Equatable, Sendable {
+  public enum ReferenceOneOf: Equatable, Sendable {
     /// Reference to a Filestore instance. Populated if and only if the storage
     /// resource was configured to use Filestore.
     indirect case filestore(FilestoreReference)

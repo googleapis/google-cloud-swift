@@ -179,7 +179,7 @@ public struct BigQuerySource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// BigQuery table partition info. Leave this empty if the BigQuery table
   /// is not partitioned.
-  public enum PartitionOneOf: Codable, Equatable, Sendable {
+  public enum PartitionOneOf: Equatable, Sendable {
     /// BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
     indirect case partitionDate(GoogleType.Date)
   }

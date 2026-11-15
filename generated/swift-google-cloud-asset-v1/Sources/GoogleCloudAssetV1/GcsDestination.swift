@@ -101,7 +101,7 @@ public struct GcsDestination: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required.
-  public enum ObjectUriOneOf: Codable, Equatable, Sendable {
+  public enum ObjectUriOneOf: Equatable, Sendable {
     /// The URI of the Cloud Storage object. It's the same URI that is used by
     /// gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
     /// Editing Object

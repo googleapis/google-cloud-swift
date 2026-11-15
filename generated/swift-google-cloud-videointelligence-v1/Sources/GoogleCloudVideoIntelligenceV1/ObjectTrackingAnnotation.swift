@@ -140,7 +140,7 @@ public struct ObjectTrackingAnnotation: Codable, Equatable, GoogleWKT._AnyPackab
 
   /// Different representation of tracking info in non-streaming batch
   /// and streaming modes.
-  public enum TrackInfoOneOf: Codable, Equatable, Sendable {
+  public enum TrackInfoOneOf: Equatable, Sendable {
     /// Non-streaming batch mode ONLY.
     /// Each object track corresponds to one video segment where it appears.
     indirect case segment(VideoSegment)

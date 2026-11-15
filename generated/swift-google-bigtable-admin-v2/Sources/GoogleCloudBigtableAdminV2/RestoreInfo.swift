@@ -103,7 +103,7 @@ public struct RestoreInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Information about the source used to restore the table.
-  public enum SourceInfoOneOf: Codable, Equatable, Sendable {
+  public enum SourceInfoOneOf: Equatable, Sendable {
     /// Information about the backup used to restore the table. The backup
     /// may no longer exist.
     indirect case backupInfo(BackupInfo)

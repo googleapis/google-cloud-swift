@@ -103,7 +103,7 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The actual value of the secret.
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// Optional. Input only. The actual raw value of the secret as plain text.
     case rawValue(Swift.String)
     /// Optional. A Secret Manager resource name storing the actual value of the

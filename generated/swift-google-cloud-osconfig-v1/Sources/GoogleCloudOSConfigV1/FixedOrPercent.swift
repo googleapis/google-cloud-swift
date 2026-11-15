@@ -102,7 +102,7 @@ public struct FixedOrPercent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of the value.
-  public enum ModeOneOf: Codable, Equatable, Sendable {
+  public enum ModeOneOf: Equatable, Sendable {
     /// Specifies a fixed value.
     case fixed(Swift.Int32)
     /// Specifies the relative value defined as a percentage, which will be

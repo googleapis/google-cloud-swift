@@ -357,7 +357,7 @@
       /// Matcher for the [Document][google.cloud.discoveryengine.v1.Document]s.
       ///
       /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-      public enum MatcherOneOf: Codable, Equatable, Sendable {
+      public enum MatcherOneOf: Equatable, Sendable {
         /// Matcher by exact URIs.
         indirect case urisMatcher(BatchGetDocumentsMetadataRequest.UrisMatcher)
         /// Matcher by FHIR resource names.

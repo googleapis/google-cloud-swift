@@ -536,7 +536,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum ModeOneOf: Codable, Equatable, Sendable {
+    public enum ModeOneOf: Equatable, Sendable {
       /// Provision IOPS dynamically based on the capacity of the instance.
       /// Provisioned IOPS will be calculated by multiplying the capacity of the
       /// instance in TiB by the `iops_per_tb` value. For example, for a 2 TiB

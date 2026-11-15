@@ -179,7 +179,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     }
 
     /// The config for the app.
-    public enum ChannelConfigOneOf: Codable, Equatable, Sendable {
+    public enum ChannelConfigOneOf: Equatable, Sendable {
       /// WhatsApp config.
       indirect case whatsappConfig(OmnichannelIntegrationConfig.WhatsappConfig)
     }
@@ -419,7 +419,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     }
 
     /// The config for the subscriber.
-    public enum SubscriberConfigOneOf: Codable, Equatable, Sendable {
+    public enum SubscriberConfigOneOf: Equatable, Sendable {
       /// Ces app config.
       indirect case cesAppConfig(OmnichannelIntegrationConfig.CesAppConfig)
     }

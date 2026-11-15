@@ -353,7 +353,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
 
   /// Required. A tee attestation report, used to populate hardware rooted
   /// claims.
-  public enum TeeAttestationOneOf: Codable, Equatable, Sendable {
+  public enum TeeAttestationOneOf: Equatable, Sendable {
     /// The TPM-specific data provided by the attesting platform, used to
     /// populate any of the claims regarding platform state.
     indirect case tpmAttestation(TpmAttestation)

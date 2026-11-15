@@ -105,7 +105,7 @@ public struct ImportAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The file contains all assets information to be imported.
     /// * The file is in JSONL format.
     /// * Each line corresponding to one asset.

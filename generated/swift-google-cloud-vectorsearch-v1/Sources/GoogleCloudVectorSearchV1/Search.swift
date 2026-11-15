@@ -110,7 +110,7 @@ public struct Search: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of search to perform.
-  public enum SearchTypeOneOf: Codable, Equatable, Sendable {
+  public enum SearchTypeOneOf: Equatable, Sendable {
     /// A vector-based search.
     indirect case vectorSearch(VectorSearch)
     /// A semantic search.

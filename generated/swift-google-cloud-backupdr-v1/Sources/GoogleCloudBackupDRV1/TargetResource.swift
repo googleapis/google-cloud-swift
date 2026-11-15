@@ -94,7 +94,7 @@ public struct TargetResource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Minimum details to identify the restored resource.
-  public enum TargetResourceInfoOneOf: Codable, Equatable, Sendable {
+  public enum TargetResourceInfoOneOf: Equatable, Sendable {
     /// Details of the native Google Cloud resource created as part of restore.
     indirect case gcpResource(GcpResource)
   }

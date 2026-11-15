@@ -145,7 +145,7 @@
     }
 
     /// The source of the intent batch.
-    public enum IntentBatchOneOf: Codable, Equatable, Sendable {
+    public enum IntentBatchOneOf: Equatable, Sendable {
       /// The URI to a Google Cloud Storage file containing intents to update or
       /// create. The file format can either be a serialized proto (of IntentBatch
       /// type) or JSON object. Note: The URI must start with "gs://".

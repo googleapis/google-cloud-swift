@@ -114,7 +114,7 @@ public struct FileStoreCollection: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The first filter containing a pattern that matches a file store will be
   /// used.
-  public enum PatternOneOf: Codable, Equatable, Sendable {
+  public enum PatternOneOf: Equatable, Sendable {
     /// Optional. A collection of regular expressions to match a file store
     /// against.
     indirect case includeRegexes(FileStoreRegexes)

@@ -232,7 +232,7 @@ public struct TransferRun: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Data transfer destination.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Output only. The BigQuery target dataset id.
     case destinationDatasetId(Swift.String)
   }

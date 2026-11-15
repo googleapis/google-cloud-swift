@@ -118,7 +118,7 @@ public struct Waypoint: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Different ways to represent a location.
-  public enum LocationTypeOneOf: Codable, Equatable, Sendable {
+  public enum LocationTypeOneOf: Equatable, Sendable {
     /// A point specified using geographic coordinates, including an optional
     /// heading.
     indirect case location(GoogleCloudOptimizationV1.Location)

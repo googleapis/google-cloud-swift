@@ -312,7 +312,7 @@
     }
 
     /// Defines options to select feature values to be deleted.
-    public enum DeleteOptionOneOf: Codable, Equatable, Sendable {
+    public enum DeleteOptionOneOf: Equatable, Sendable {
       /// Select feature values to be deleted by specifying entities.
       indirect case selectEntity(DeleteFeatureValuesRequest.SelectEntity)
       /// Select feature values to be deleted by specifying time range and

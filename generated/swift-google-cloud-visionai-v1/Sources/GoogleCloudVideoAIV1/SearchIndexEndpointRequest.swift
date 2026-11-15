@@ -154,7 +154,7 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// The oneof global search query.
-  public enum QueryOneOf: Codable, Equatable, Sendable {
+  public enum QueryOneOf: Equatable, Sendable {
     /// An image-only query.
     indirect case imageQuery(ImageQuery)
     /// A text-only query.

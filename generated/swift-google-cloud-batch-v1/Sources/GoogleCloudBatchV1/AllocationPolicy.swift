@@ -403,7 +403,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// A data source from which a PD will be created.
-    public enum DataSourceOneOf: Codable, Equatable, Sendable {
+    public enum DataSourceOneOf: Equatable, Sendable {
       /// URL for a VM image to use as the data source for this disk.
       /// For example, the following are all valid URLs:
       ///
@@ -542,7 +542,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum AttachedOneOf: Codable, Equatable, Sendable {
+    public enum AttachedOneOf: Equatable, Sendable {
       indirect case newDisk(AllocationPolicy.Disk)
       /// Name of an existing PD.
       case existingDisk(Swift.String)
@@ -984,7 +984,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum PolicyTemplateOneOf: Codable, Equatable, Sendable {
+    public enum PolicyTemplateOneOf: Equatable, Sendable {
       /// InstancePolicy.
       indirect case policy(AllocationPolicy.InstancePolicy)
       /// Name of an instance template used to create VMs.

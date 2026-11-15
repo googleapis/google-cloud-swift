@@ -464,7 +464,7 @@ public struct Server: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Configuration for server access.
   /// If this is set, it must match the value in the `access_type` field.
-  public enum AccessConfigOneOf: Codable, Equatable, Sendable {
+  public enum AccessConfigOneOf: Equatable, Sendable {
     /// Configuration for external access.
     indirect case externalConfig(ExternalServerConfig)
     /// Configuration for internal access.

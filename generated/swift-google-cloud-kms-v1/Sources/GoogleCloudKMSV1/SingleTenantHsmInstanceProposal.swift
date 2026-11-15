@@ -1496,7 +1496,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
   /// The type of parameters is determined by the operation being proposed.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-  public enum ApprovalParametersOneOf: Codable, Equatable, Sendable {
+  public enum ApprovalParametersOneOf: Equatable, Sendable {
     /// Output only. The quorum approval parameters for the
     /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
     ///
@@ -1519,7 +1519,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
   /// time is 5 minutes.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-  public enum ExpirationOneOf: Codable, Equatable, Sendable {
+  public enum ExpirationOneOf: Equatable, Sendable {
     /// The time at which the
     /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
     /// will expire if not approved and executed.
@@ -1538,7 +1538,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
   /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
-  public enum OperationOneOf: Codable, Equatable, Sendable {
+  public enum OperationOneOf: Equatable, Sendable {
     /// Register 2FA keys for the
     /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
     /// This operation requires all N Challenges to be signed by 2FA keys. The

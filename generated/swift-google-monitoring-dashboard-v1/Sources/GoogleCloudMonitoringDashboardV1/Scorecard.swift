@@ -356,7 +356,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Defines the optional additional chart shown on the scorecard. If
   /// neither is included - then a default scorecard is shown.
-  public enum DataViewOneOf: Codable, Equatable, Sendable {
+  public enum DataViewOneOf: Equatable, Sendable {
     /// Will cause the scorecard to show a gauge chart.
     indirect case gaugeView(Scorecard.GaugeView)
     /// Will cause the scorecard to show a spark chart.

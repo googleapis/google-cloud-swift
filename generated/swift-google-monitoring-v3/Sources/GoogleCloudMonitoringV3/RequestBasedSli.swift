@@ -106,7 +106,7 @@ public struct RequestBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The means to compute a ratio of `good_service` to `total_service`.
-  public enum MethodOneOf: Codable, Equatable, Sendable {
+  public enum MethodOneOf: Equatable, Sendable {
     /// `good_total_ratio` is used when the ratio of `good_service` to
     /// `total_service` is computed from two `TimeSeries`.
     indirect case goodTotalRatio(TimeSeriesRatio)

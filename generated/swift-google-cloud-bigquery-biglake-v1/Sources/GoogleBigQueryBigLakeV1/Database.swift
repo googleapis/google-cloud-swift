@@ -261,7 +261,7 @@ public struct Database: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Options specified for the database type.
-  public enum OptionsOneOf: Codable, Equatable, Sendable {
+  public enum OptionsOneOf: Equatable, Sendable {
     /// Options of a Hive database.
     indirect case hiveOptions(HiveDatabaseOptions)
   }

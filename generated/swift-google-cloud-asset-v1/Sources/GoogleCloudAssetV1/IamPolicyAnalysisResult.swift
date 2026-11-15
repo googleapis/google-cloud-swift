@@ -312,7 +312,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public enum OneofAccessOneOf: Codable, Equatable, Sendable {
+    public enum OneofAccessOneOf: Equatable, Sendable {
       /// The role.
       case role(Swift.String)
       /// The permission.

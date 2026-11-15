@@ -196,7 +196,7 @@ public struct Account: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specific details based on the type of account.
-  public enum AccountDetailsOneOf: Codable, Equatable, Sendable {
+  public enum AccountDetailsOneOf: Equatable, Sendable {
     /// Output only. Details for a standard user account.
     indirect case userDetails(UserDetails)
     /// Output only. Details for an account manager account.

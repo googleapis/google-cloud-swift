@@ -94,7 +94,7 @@ public struct Entrypoint: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The command to run.
-  public enum CommandOneOf: Codable, Equatable, Sendable {
+  public enum CommandOneOf: Equatable, Sendable {
     /// The format should be a shell command that can be fed to `bash -c`.
     case shell(Swift.String)
   }

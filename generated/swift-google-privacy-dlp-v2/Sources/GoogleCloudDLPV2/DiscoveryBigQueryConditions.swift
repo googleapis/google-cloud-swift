@@ -218,7 +218,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
   /// The type of BigQuery tables to scan. If nothing is set the default
   /// behavior is to scan only tables of type TABLE and to give errors
   /// for all unsupported tables.
-  public enum IncludedTypesOneOf: Codable, Equatable, Sendable {
+  public enum IncludedTypesOneOf: Equatable, Sendable {
     /// Restrict discovery to specific table types.
     indirect case types(BigQueryTableTypes)
     /// Restrict discovery to categories of table types.

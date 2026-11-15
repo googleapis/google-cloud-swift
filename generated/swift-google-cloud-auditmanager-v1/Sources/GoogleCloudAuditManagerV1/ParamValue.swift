@@ -124,7 +124,7 @@ public struct ParamValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The list of possible parameter value types.
-  public enum KindOneOf: Codable, Equatable, Sendable {
+  public enum KindOneOf: Equatable, Sendable {
     /// Optional. A string value.
     case stringValue(Swift.String)
     /// Optional. A boolean value.

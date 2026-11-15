@@ -102,7 +102,7 @@ public struct RepairPhase: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The `RepairPhase` type and the information for that type.
-  public enum RepairPhaseOneOf: Codable, Equatable, Sendable {
+  public enum RepairPhaseOneOf: Equatable, Sendable {
     /// Output only. Records of the retry attempts for retry repair mode.
     indirect case retry(RetryPhase)
     /// Output only. Rollback attempt for rollback repair mode .

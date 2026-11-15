@@ -1748,7 +1748,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines the search source, either a single DataStore or an Engine.
-  public enum SearchSourceOneOf: Codable, Equatable, Sendable {
+  public enum SearchSourceOneOf: Equatable, Sendable {
     /// Optional. Search within a single specific DataStore.
     indirect case dataStoreSource(DataStoreTool.DataStoreSource)
     /// Optional. Search within an Engine (potentially across multiple

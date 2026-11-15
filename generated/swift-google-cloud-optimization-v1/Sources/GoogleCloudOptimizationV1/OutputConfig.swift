@@ -107,7 +107,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The location of the output result in cloud storage.
   /// Required.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// The Google Cloud Storage location to write the output to.
     indirect case gcsDestination(GcsDestination)
   }

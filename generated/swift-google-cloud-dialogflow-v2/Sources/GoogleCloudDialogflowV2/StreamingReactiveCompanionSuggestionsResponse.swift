@@ -274,7 +274,7 @@
     }
 
     /// Response for the current reactive query.
-    public enum ResponseOneOf: Codable, Equatable, Sendable {
+    public enum ResponseOneOf: Equatable, Sendable {
       /// Streamed response text chunks.
       case responseChunk(Swift.String)
       /// Status of the response for the current query. If set and non-ok,

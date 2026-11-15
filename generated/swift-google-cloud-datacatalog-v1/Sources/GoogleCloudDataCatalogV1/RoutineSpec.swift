@@ -491,7 +491,7 @@ public struct RoutineSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Contains fields specific to the source system.
-  public enum SystemSpecOneOf: Codable, Equatable, Sendable {
+  public enum SystemSpecOneOf: Equatable, Sendable {
     /// Fields specific for BigQuery routines.
     indirect case bigqueryRoutineSpec(BigQueryRoutineSpec)
   }

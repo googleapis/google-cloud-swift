@@ -180,7 +180,7 @@ public struct CallAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The data in the annotation.
-  public enum DataOneOf: Codable, Equatable, Sendable {
+  public enum DataOneOf: Equatable, Sendable {
     /// Data specifying an interruption.
     indirect case interruptionData(InterruptionData)
     /// Data specifying sentiment.

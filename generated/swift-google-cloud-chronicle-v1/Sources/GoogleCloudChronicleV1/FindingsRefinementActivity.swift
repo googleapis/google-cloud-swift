@@ -107,7 +107,7 @@ public struct FindingsRefinementActivity: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// The activity for the findings refinement.
-  public enum ActivityOneOf: Codable, Equatable, Sendable {
+  public enum ActivityOneOf: Equatable, Sendable {
     /// The activity for the detection exclusion.
     indirect case detectionExclusionActivity(DetectionExclusionActivity)
   }

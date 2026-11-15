@@ -293,7 +293,7 @@
     }
 
     /// Required. The entity types to import.
-    public enum EntityTypesOneOf: Codable, Equatable, Sendable {
+    public enum EntityTypesOneOf: Equatable, Sendable {
       /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI
       /// to import entity types from. The format of this URI must be
       /// `gs://<bucket-name>/<object-name>`.

@@ -180,7 +180,7 @@ public struct ContentLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of the container within the file with location of the finding.
-  public enum LocationOneOf: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Equatable, Sendable {
     /// Location within a row or record of a database table.
     indirect case recordLocation(RecordLocation)
     /// Location within an image's pixels.

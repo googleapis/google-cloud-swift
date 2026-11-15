@@ -152,7 +152,7 @@ public struct RepoSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A revision within the Cloud Source Repository must be specified in
   /// one of these ways.
-  public enum RevisionOneOf: Codable, Equatable, Sendable {
+  public enum RevisionOneOf: Equatable, Sendable {
     /// Regex matching branches to build.
     ///
     /// The syntax of the regular expressions accepted is the syntax accepted by

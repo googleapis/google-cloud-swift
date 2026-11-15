@@ -125,7 +125,7 @@ public struct TypedValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The typed value field.
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// A Boolean value: `true` or `false`.
     case boolValue(Swift.Bool)
     /// A 64-bit integer. Its range is approximately &plusmn;9.2x10<sup>18</sup>.

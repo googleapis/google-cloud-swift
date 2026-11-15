@@ -127,7 +127,7 @@ public struct ClientQuery: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The query request specific message.
-  public enum KindOneOf: Codable, Equatable, Sendable {
+  public enum KindOneOf: Equatable, Sendable {
     /// Optional. Query for the details of an account.
     indirect case accountQuery(AccountQuery)
     /// Optional. Query for the state of a transaction.

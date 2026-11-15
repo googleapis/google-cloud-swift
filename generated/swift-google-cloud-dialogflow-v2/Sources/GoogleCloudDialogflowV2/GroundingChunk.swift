@@ -309,7 +309,7 @@
     }
 
     /// The source of the grounding chunk. Currently we only support web search.
-    public enum ChunkTypeOneOf: Codable, Equatable, Sendable {
+    public enum ChunkTypeOneOf: Equatable, Sendable {
       /// Optional. A grounding chunk from a web page, typically from web
       /// search. See the `Web` message for details.
       indirect case web(GroundingChunk.Web)

@@ -200,7 +200,7 @@ public struct FacetBucket: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Bucket associated with a facet. For example, bucket of facet “team”
   /// can be "49ers", "patriots", etc; bucket of facet "player" can be "tom
   /// brady", "drew brees", etc.
-  public enum BucketValueOneOf: Codable, Equatable, Sendable {
+  public enum BucketValueOneOf: Equatable, Sendable {
     /// Singular value.
     indirect case value(FacetValue)
     /// Range value.

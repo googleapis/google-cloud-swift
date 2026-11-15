@@ -115,7 +115,7 @@ public struct DataProfileBigQueryRowSchema: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// Data profile type.
-  public enum DataProfileOneOf: Codable, Equatable, Sendable {
+  public enum DataProfileOneOf: Equatable, Sendable {
     /// Table data profile column
     indirect case tableProfile(TableDataProfile)
     /// Column data profile column

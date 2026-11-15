@@ -327,7 +327,7 @@ public struct GoldengateDb2ConnectionProperties: Codable, Equatable, GoogleWKT._
 
   /// The password Oracle Goldengate uses to connect to the associated DB2
   /// database.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password Oracle Goldengate uses for Db2
     /// connection in plain text.
     case password(Swift.String)

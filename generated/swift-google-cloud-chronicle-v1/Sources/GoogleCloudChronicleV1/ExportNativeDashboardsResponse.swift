@@ -96,7 +96,7 @@ public struct ExportNativeDashboardsResponse: Codable, Equatable, GoogleWKT._Any
   }
 
   /// Destination for the exported data.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// The data for the exported dashboards included directly in the response.
     indirect case inlineDestination(InlineDestination)
   }

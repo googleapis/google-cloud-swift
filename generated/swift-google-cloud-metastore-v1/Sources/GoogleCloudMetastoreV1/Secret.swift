@@ -92,7 +92,7 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// The relative resource name of a Secret Manager secret version, in the
     /// following form:
     ///

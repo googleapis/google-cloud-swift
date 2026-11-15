@@ -369,7 +369,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defaults to text format.
-  public enum OutputFormatOneOf: Codable, Equatable, Sendable {
+  public enum OutputFormatOneOf: Equatable, Sendable {
     /// Optional. If set, message data will be written to Cloud Storage in text
     /// format.
     indirect case textConfig(CloudStorageConfig.TextConfig)

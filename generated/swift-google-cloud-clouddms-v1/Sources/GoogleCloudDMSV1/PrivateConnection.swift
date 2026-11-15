@@ -304,7 +304,7 @@ public struct PrivateConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ConnectivityOneOf: Codable, Equatable, Sendable {
+  public enum ConnectivityOneOf: Equatable, Sendable {
     /// VPC peering configuration.
     indirect case vpcPeeringConfig(VpcPeeringConfig)
   }

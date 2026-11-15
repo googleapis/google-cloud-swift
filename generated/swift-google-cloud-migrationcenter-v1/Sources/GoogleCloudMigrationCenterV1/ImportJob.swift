@@ -327,7 +327,7 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Holds the various report types of an import job.
-  public enum ReportOneOf: Codable, Equatable, Sendable {
+  public enum ReportOneOf: Equatable, Sendable {
     /// Output only. The report with the validation results of the import job.
     indirect case validationReport(ValidationReport)
     /// Output only. The report with the results of running the import job.

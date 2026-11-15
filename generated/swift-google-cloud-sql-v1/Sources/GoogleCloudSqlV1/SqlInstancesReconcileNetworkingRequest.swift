@@ -124,7 +124,7 @@
     }
 
     /// Specific networking reconciliation task.
-    public enum ReconcileDataOneOf: Codable, Equatable, Sendable {
+    public enum ReconcileDataOneOf: Equatable, Sendable {
       /// Request to recreate Private Service Connect DNS write endpoints and
       /// reconcile Private Service Connect connectivity infrastructure for the
       /// instance.

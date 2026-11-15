@@ -96,7 +96,7 @@ public struct OtherCloudResourceCollection: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// The first filter containing a pattern that matches a resource will be used.
-  public enum PatternOneOf: Codable, Equatable, Sendable {
+  public enum PatternOneOf: Equatable, Sendable {
     /// A collection of regular expressions to match a resource against.
     indirect case includeRegexes(OtherCloudResourceRegexes)
   }

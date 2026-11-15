@@ -134,7 +134,7 @@ public struct DataAccessLabelReference: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The unique identifier for the label.
-  public enum LabelOneOf: Codable, Equatable, Sendable {
+  public enum LabelOneOf: Equatable, Sendable {
     /// The name of the data access label.
     case dataAccessLabel(Swift.String)
     /// The name of the log type.

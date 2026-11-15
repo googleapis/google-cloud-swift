@@ -139,7 +139,7 @@ public struct LookupEntryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. A full name, SQL name, or a fully qualified name of a
   /// Google Cloud Platform resource.
-  public enum TargetNameOneOf: Codable, Equatable, Sendable {
+  public enum TargetNameOneOf: Equatable, Sendable {
     /// The full name of the Google Cloud Platform resource the Data Catalog
     /// entry represents. For more information, see [Full Resource Name]
     /// (https://cloud.google.com/apis/design/resource_names#full_resource_name).

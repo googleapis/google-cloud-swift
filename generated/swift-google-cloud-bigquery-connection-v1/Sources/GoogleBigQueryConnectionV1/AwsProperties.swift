@@ -109,7 +109,7 @@ public struct AwsProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Authentication method chosen at connection creation.
-  public enum AuthenticationMethodOneOf: Codable, Equatable, Sendable {
+  public enum AuthenticationMethodOneOf: Equatable, Sendable {
     /// Authentication using Google owned AWS IAM user's access key to assume
     /// into customer's AWS IAM Role.
     /// Deprecated, do not use.

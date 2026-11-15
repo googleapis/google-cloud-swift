@@ -897,7 +897,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum AutomatedBackupConfigOneOf: Codable, Equatable, Sendable {
+  public enum AutomatedBackupConfigOneOf: Equatable, Sendable {
     /// If specified, automated backups are enabled for this table.
     /// Otherwise, automated backups are disabled.
     indirect case automatedBackupPolicy(Table.AutomatedBackupPolicy)

@@ -151,7 +151,7 @@ public struct CollectUserEventRequest: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// The rule that can convert the raw_json to a user event. It is needed
   /// only when the raw_json is set.
-  public enum ConversionRuleOneOf: Codable, Equatable, Sendable {
+  public enum ConversionRuleOneOf: Equatable, Sendable {
     /// The prebuilt rule name that can convert a specific type of raw_json.
     /// For example: "ga4_bq" rule for the GA4 user event schema.
     case prebuiltRule(Swift.String)

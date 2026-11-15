@@ -187,7 +187,7 @@ public struct PostgreSqlConnectionProfile: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// Connectivity options used to establish a connection to the database server.
-  public enum ConnectivityOneOf: Codable, Equatable, Sendable {
+  public enum ConnectivityOneOf: Equatable, Sendable {
     /// Static ip connectivity data (default, no additional details needed).
     indirect case staticIpConnectivity(StaticIpConnectivity)
     /// Private service connect connectivity.

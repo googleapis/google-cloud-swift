@@ -115,7 +115,7 @@ public struct ServiceNowProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Authentication credentials.
-  public enum CredentialsOneOf: Codable, Equatable, Sendable {
+  public enum CredentialsOneOf: Equatable, Sendable {
     /// User-password authentication.
     indirect case userPasswordCredentials(UserPasswordCredentials)
     /// Credentials for authenticating with the ServiceNow API.

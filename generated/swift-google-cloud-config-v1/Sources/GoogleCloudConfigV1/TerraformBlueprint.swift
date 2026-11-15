@@ -127,7 +127,7 @@ public struct TerraformBlueprint: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Location of the source configs.
   /// Required.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// URI of an object in Google Cloud Storage.
     /// Format: `gs://{bucket}/{object}`
     ///

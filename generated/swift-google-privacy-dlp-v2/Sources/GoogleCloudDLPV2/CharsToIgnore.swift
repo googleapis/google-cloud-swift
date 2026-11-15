@@ -244,7 +244,7 @@ public struct CharsToIgnore: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of characters to skip.
-  public enum CharactersOneOf: Codable, Equatable, Sendable {
+  public enum CharactersOneOf: Equatable, Sendable {
     /// Characters to not transform when masking.
     case charactersToSkip(Swift.String)
     /// Common characters to not transform when masking. Useful to avoid removing

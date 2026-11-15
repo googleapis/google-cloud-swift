@@ -294,7 +294,7 @@ public struct ConnectCluster: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Platform specific configuration properties for a Kafka Connect cluster.
-  public enum PlatformConfigOneOf: Codable, Equatable, Sendable {
+  public enum PlatformConfigOneOf: Equatable, Sendable {
     /// Required. Configuration properties for a Kafka Connect cluster deployed
     /// to Google Cloud Platform.
     indirect case gcpConfig(ConnectGcpConfig)

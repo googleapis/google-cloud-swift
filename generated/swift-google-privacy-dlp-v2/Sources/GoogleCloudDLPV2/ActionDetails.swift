@@ -98,7 +98,7 @@ public struct ActionDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Summary of what occurred in the actions.
-  public enum DetailsOneOf: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Equatable, Sendable {
     /// Outcome of a de-identification action.
     indirect case deidentifyDetails(DeidentifyDataSourceDetails)
   }

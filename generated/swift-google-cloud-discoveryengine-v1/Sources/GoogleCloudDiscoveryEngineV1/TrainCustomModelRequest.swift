@@ -269,7 +269,7 @@
     }
 
     /// Model training input.
-    public enum TrainingInputOneOf: Codable, Equatable, Sendable {
+    public enum TrainingInputOneOf: Equatable, Sendable {
       /// Cloud Storage training input.
       indirect case gcsTrainingInput(TrainCustomModelRequest.GcsTrainingInput)
     }

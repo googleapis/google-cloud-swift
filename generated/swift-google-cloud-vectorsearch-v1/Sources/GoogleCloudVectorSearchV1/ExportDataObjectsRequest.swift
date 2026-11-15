@@ -499,7 +499,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     }
 
     /// Exactly one of `included_fields` or `excluded_fields` must be set.
-    public enum SelectorOneOf: Codable, Equatable, Sendable {
+    public enum SelectorOneOf: Equatable, Sendable {
       /// Optional. Only these top-level fields will appear in each exported
       /// record.
       indirect case includedFields(ExportDataObjectsRequest.FieldFilter.FieldList)
@@ -531,7 +531,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The configuration for the export data.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// The Cloud Storage location where user wants to export Data Objects.
     indirect case gcsDestination(ExportDataObjectsRequest.GcsExportDestination)
   }

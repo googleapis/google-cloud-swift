@@ -481,7 +481,7 @@
     }
 
     /// Required. The fulfillment configuration.
-    public enum FulfillmentOneOf: Codable, Equatable, Sendable {
+    public enum FulfillmentOneOf: Equatable, Sendable {
       /// Configuration for a generic web service.
       indirect case genericWebService(Fulfillment.GenericWebService)
     }

@@ -118,7 +118,7 @@ public struct ImportEntriesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Source of imported entries, e.g. dump stored in a Cloud Storage
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Path to a Cloud Storage bucket that contains a dump ready for ingestion.
     case gcsBucketPath(Swift.String)
   }

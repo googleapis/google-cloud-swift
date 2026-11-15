@@ -361,7 +361,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Exporter destination.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Specified if sink is a BigQuery table.
     indirect case bigQueryDestination(ExportInsightsDataRequest.BigQueryDestination)
   }

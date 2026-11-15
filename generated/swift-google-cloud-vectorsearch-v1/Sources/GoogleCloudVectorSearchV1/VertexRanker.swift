@@ -219,7 +219,7 @@ public struct VertexRanker: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The record specification for ranking. At least one record spec must be
   /// set.
-  public enum RecordSpecOneOf: Codable, Equatable, Sendable {
+  public enum RecordSpecOneOf: Equatable, Sendable {
     /// The record spec for text search.
     indirect case textRecordSpec(VertexRanker.TextRecordSpec)
   }

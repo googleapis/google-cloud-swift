@@ -122,7 +122,7 @@ public struct MessageTransform: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of transform to apply to messages.
-  public enum TransformOneOf: Codable, Equatable, Sendable {
+  public enum TransformOneOf: Equatable, Sendable {
     /// Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's
     /// are specified on a resource, each must have a unique `function_name`.
     indirect case javascriptUdf(JavaScriptUDF)

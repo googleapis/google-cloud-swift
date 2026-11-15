@@ -118,7 +118,7 @@ public struct DestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Stream configuration that is specific to the data destination type.
-  public enum DestinationStreamConfigOneOf: Codable, Equatable, Sendable {
+  public enum DestinationStreamConfigOneOf: Equatable, Sendable {
     /// A configuration for how data should be loaded to Cloud Storage.
     indirect case gcsDestinationConfig(GcsDestinationConfig)
     /// BigQuery destination configuration.

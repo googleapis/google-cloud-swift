@@ -158,7 +158,7 @@
     }
 
     /// Metrics details.
-    public enum MetricsOneOf: Codable, Equatable, Sendable {
+    public enum MetricsOneOf: Equatable, Sendable {
       /// Output only. Only available when model is for smart reply.
       indirect case smartReplyMetrics(SmartReplyMetrics)
     }

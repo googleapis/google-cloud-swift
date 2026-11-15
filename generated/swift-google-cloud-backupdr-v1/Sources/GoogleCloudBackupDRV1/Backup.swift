@@ -744,7 +744,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Workload specific backup properties.
-  public enum BackupPropertiesOneOf: Codable, Equatable, Sendable {
+  public enum BackupPropertiesOneOf: Equatable, Sendable {
     /// Output only. Compute Engine specific backup properties.
     indirect case computeInstanceBackupProperties(ComputeInstanceBackupProperties)
     /// Output only. Cloud SQL specific backup properties.
@@ -758,13 +758,13 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration Info has the resource format-specific configuration.
-  public enum PlanInfoOneOf: Codable, Equatable, Sendable {
+  public enum PlanInfoOneOf: Equatable, Sendable {
     /// Output only. Configuration for a Google Cloud resource.
     indirect case gcpBackupPlanInfo(Backup.GCPBackupPlanInfo)
   }
 
   /// Resource that is being backed up.
-  public enum SourceResourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceResourceOneOf: Equatable, Sendable {
     /// Output only. Unique identifier of the GCP resource that is being backed
     /// up.
     indirect case gcpResource(BackupGcpResource)

@@ -329,7 +329,7 @@
       }
 
       /// Instruction on how to execute current step.
-      public enum InstructionOneOf: Codable, Equatable, Sendable {
+      public enum InstructionOneOf: Equatable, Sendable {
         /// Step instruction in text format.
         case text(Swift.String)
       }

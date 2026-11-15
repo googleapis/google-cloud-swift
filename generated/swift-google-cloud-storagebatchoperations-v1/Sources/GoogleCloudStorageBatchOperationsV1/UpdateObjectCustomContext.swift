@@ -103,7 +103,7 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// One of the actions must be set.
-  public enum ActionOneOf: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Equatable, Sendable {
     /// A collection of updates to apply to specific custom contexts.
     /// Use this to add, update or delete individual contexts by key.
     indirect case customContextUpdates(CustomContextUpdates)

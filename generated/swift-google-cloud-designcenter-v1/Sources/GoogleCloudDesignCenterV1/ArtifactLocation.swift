@@ -104,7 +104,7 @@ public struct ArtifactLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies the type of destination for the artifact.
-  public enum LocationOneOf: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Equatable, Sendable {
     /// Optional. Source Code Management(SCM) config for storing the content,
     /// such as generated IaC. Supports sources integrated with Developer Connect
     /// like GitHub, GitHub Enterprise, GitLab, and Bitbucket.

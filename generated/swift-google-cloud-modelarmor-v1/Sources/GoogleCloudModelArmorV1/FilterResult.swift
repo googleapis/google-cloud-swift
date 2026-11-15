@@ -145,7 +145,7 @@ public struct FilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Encapsulates one of responsible AI, Sensitive Data Protection, Prompt
   /// Injection and Jailbreak, Malicious URI, CSAM, Virus Scan related filter
   /// results.
-  public enum FilterResultOneOf: Codable, Equatable, Sendable {
+  public enum FilterResultOneOf: Equatable, Sendable {
     /// Responsible AI filter results.
     indirect case raiFilterResult(RaiFilterResult)
     /// Sensitive Data Protection results.

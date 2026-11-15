@@ -104,7 +104,7 @@ public struct MembershipFeatureState: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public enum FeatureStateOneOf: Codable, Equatable, Sendable {
+  public enum FeatureStateOneOf: Equatable, Sendable {
     /// Config Management-specific state.
     indirect case configmanagement(GoogleCloudGKEHubConfigManagementV1.MembershipState)
   }

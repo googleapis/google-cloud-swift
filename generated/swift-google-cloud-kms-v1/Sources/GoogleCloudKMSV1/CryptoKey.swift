@@ -502,7 +502,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Controls the rate of automatic rotation.
-  public enum RotationScheduleOneOf: Codable, Equatable, Sendable {
+  public enum RotationScheduleOneOf: Equatable, Sendable {
     /// [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time]
     /// will be advanced by this period when the service automatically rotates a
     /// key. Must be at least 24 hours and at most 876,000 hours.

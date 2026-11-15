@@ -928,7 +928,7 @@ public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Operation to be executed by this event.
-  public enum TaskOneOf: Codable, Equatable, Sendable {
+  public enum TaskOneOf: Equatable, Sendable {
     /// Switches to another input stream.
     indirect case inputSwitch(Event.InputSwitchTask)
     /// Inserts a new ad opportunity.

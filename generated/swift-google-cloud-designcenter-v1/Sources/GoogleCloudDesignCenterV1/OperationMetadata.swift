@@ -202,7 +202,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Metadata about the state of an operation for a particular
   /// resource.
-  public enum ResourceMetadataOneOf: Codable, Equatable, Sendable {
+  public enum ResourceMetadataOneOf: Equatable, Sendable {
     /// Output only. The application deployment metadata this operation is
     /// associated with.
     indirect case deploymentMetadata(GoogleCloudDesignCenterV1.DeploymentOperationMetadata)

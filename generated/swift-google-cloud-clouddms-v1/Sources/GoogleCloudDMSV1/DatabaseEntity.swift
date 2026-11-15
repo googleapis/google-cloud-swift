@@ -369,7 +369,7 @@ public struct DatabaseEntity: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The specific body for each entity type.
-  public enum EntityBodyOneOf: Codable, Equatable, Sendable {
+  public enum EntityBodyOneOf: Equatable, Sendable {
     /// Database.
     indirect case database(DatabaseInstanceEntity)
     /// Schema.

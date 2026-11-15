@@ -104,7 +104,7 @@ public struct UploadSourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The Cloud Run resource the upload source archive will be used for.
-  public enum TargetOneOf: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Equatable, Sendable {
     /// The name of Cloud Run Service upload source archive will be used for.
     case service(Swift.String)
   }

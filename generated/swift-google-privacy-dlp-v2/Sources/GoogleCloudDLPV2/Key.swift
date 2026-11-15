@@ -194,7 +194,7 @@ public struct Key: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The type of ID.
-    public enum IdTypeOneOf: Codable, Equatable, Sendable {
+    public enum IdTypeOneOf: Equatable, Sendable {
       /// The auto-allocated ID of the entity.
       /// Never equal to zero. Values less than zero are discouraged and may not
       /// be supported in the future.

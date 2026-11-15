@@ -612,7 +612,7 @@
       }
 
       /// One of decomposition details.
-      public enum DecompositionOneOf: Codable, Equatable, Sendable {
+      public enum DecompositionOneOf: Equatable, Sendable {
         /// only available for accuracy metric.
         indirect case accuracyDecomposition(SummarizationEvaluationMetrics.AccuracyDecomposition)
         /// only available for adherence metric.
@@ -740,7 +740,7 @@
       }
 
       /// One of evaluation result details.
-      public enum ResultOneOf: Codable, Equatable, Sendable {
+      public enum ResultOneOf: Equatable, Sendable {
         /// Only available for accuracy metric.
         indirect case accuracyDecomposition(SummarizationEvaluationMetrics.AccuracyDecomposition)
         /// Only available for adherence metric.

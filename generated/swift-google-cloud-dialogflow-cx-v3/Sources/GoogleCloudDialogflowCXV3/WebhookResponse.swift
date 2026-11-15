@@ -353,7 +353,7 @@
     /// The target to transition to. This can be set optionally to indicate an
     /// immediate transition to a different page in the same host flow, or a
     /// different flow in the same agent.
-    public enum TransitionOneOf: Codable, Equatable, Sendable {
+    public enum TransitionOneOf: Equatable, Sendable {
       /// The target page to transition to.
       /// Format:
       /// `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.

@@ -215,13 +215,13 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The infrastructure type of the index.
-  public enum InfraTypeOneOf: Codable, Equatable, Sendable {
+  public enum InfraTypeOneOf: Equatable, Sendable {
     /// Optional. Dedicated infrastructure for the index.
     indirect case dedicatedInfrastructure(DedicatedInfrastructure)
   }
 
   /// The type of the index.
-  public enum IndexTypeOneOf: Codable, Equatable, Sendable {
+  public enum IndexTypeOneOf: Equatable, Sendable {
     /// Optional. Dense ScaNN index.
     indirect case denseScann(DenseScannIndex)
   }

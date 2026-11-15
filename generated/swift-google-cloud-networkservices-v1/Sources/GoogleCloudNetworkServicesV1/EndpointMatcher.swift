@@ -433,7 +433,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies type of the matcher used for this endpoint matcher.
-  public enum MatcherTypeOneOf: Codable, Equatable, Sendable {
+  public enum MatcherTypeOneOf: Equatable, Sendable {
     /// The matcher is based on node metadata presented by xDS clients.
     indirect case metadataLabelMatcher(EndpointMatcher.MetadataLabelMatcher)
   }

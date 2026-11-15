@@ -404,7 +404,7 @@ public struct ImageTransformations: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Part of the image to transform.
-    public enum TargetOneOf: Codable, Equatable, Sendable {
+    public enum TargetOneOf: Equatable, Sendable {
       /// Apply transformation to the selected info_types.
       indirect case selectedInfoTypes(ImageTransformations.ImageTransformation.SelectedInfoTypes)
       /// Apply transformation to all findings not specified in other

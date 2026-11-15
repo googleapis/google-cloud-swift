@@ -366,7 +366,7 @@ public struct FileLabel: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of file label.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Sensitivity labels published by Microsoft.
     indirect case sensitivityLabel(FileLabel.SensitivityLabelMetadata)
     /// Google Drive labels published by Google.

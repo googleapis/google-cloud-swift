@@ -139,7 +139,7 @@ public struct ExportArtifactRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The artifact to be exported.
-  public enum SourceArtifactOneOf: Codable, Equatable, Sendable {
+  public enum SourceArtifactOneOf: Equatable, Sendable {
     /// The artifact version to export.
     /// Format:
     /// projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/versions/{version}
@@ -150,7 +150,7 @@ public struct ExportArtifactRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The destination to export the artifact to.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// The Cloud Storage path to export the artifact to. Should start with the
     /// bucket name, and optionally have a directory path. Examples:
     /// `dst_bucket`, `dst_bucket/sub_dir`.

@@ -111,7 +111,7 @@ public struct VmUtilizationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum VmDetailsOneOf: Codable, Equatable, Sendable {
+  public enum VmDetailsOneOf: Equatable, Sendable {
     /// The description of the VM in a Source of type Vmware.
     indirect case vmwareVmDetails(VmwareVmDetails)
   }

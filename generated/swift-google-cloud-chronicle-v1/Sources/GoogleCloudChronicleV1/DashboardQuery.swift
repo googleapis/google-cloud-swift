@@ -285,7 +285,7 @@ public struct DashboardQuery: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum TimeInputOneOf: Codable, Equatable, Sendable {
+    public enum TimeInputOneOf: Equatable, Sendable {
       /// time range to fetch the data for.
       indirect case timeWindow(GoogleType.Interval)
       /// time range for last x units.

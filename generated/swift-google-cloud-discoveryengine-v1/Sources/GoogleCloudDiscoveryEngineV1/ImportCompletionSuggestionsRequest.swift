@@ -219,7 +219,7 @@
     }
 
     /// The source of the autocomplete suggestions.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// The Inline source for suggestion entries.
       indirect case inlineSource(ImportCompletionSuggestionsRequest.InlineSource)
       /// Cloud Storage location for the input content.

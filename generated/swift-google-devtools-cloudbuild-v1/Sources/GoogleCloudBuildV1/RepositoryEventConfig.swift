@@ -248,7 +248,7 @@ public struct RepositoryEventConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The types of filter to trigger a build.
-  public enum FilterOneOf: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Equatable, Sendable {
     /// Filter to match changes in pull requests.
     indirect case pullRequest(PullRequestFilter)
     /// Filter to match changes in refs like branches, tags.

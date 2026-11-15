@@ -731,7 +731,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The Confidential Computing feature that the attestation is for.
-  public enum CcFeatureOneOf: Codable, Equatable, Sendable {
+  public enum CcFeatureOneOf: Equatable, Sendable {
     /// Single GPU Passthrough (SPT) attestation.
     indirect case spt(NvidiaAttestation.SinglePassthroughAttestation)
     /// Protected PCIe (PPCIE) attestation.

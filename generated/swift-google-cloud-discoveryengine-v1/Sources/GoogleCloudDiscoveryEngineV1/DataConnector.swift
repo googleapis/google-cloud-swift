@@ -851,7 +851,7 @@
       ///
       /// * Key: `document_id_column`
       /// * Value: type STRING. The value of the column ID.
-      public enum EntityParamsOneOf: Codable, Equatable, Sendable {
+      public enum EntityParamsOneOf: Equatable, Sendable {
         /// The parameters for the entity to facilitate data ingestion in
         /// structured json format.
         indirect case params(GoogleWKT.WKTStruct)
@@ -993,7 +993,7 @@
       /// Both arms hold customer-supplied auth parameters, including PEM private
       /// keys. Without a redacting semantic type, `DebugString()` prints the key
       /// material in full.
-      public enum AuthConfigOneOf: Codable, Equatable, Sendable {
+      public enum AuthConfigOneOf: Equatable, Sendable {
         /// Optional. Any authentication parameters specific to EUA connectors.
         indirect case authParams(GoogleWKT.WKTStruct)
         /// Optional. Any authentication parameters specific to EUA connectors in
@@ -1120,7 +1120,7 @@
       }
 
       /// Authentication configuration for FEDERATED connectors.
-      public enum AuthConfigOneOf: Codable, Equatable, Sendable {
+      public enum AuthConfigOneOf: Equatable, Sendable {
         /// Optional. Any authentication parameters specific to FEDERATED
         /// connectors.
         indirect case authParams(GoogleWKT.WKTStruct)
@@ -2193,7 +2193,7 @@
     ///   Supported values: `BASIC_AUTH`, `OAUTH`, `OAUTH_ACCESS_TOKEN`,
     ///   `OAUTH_TWO_LEGGED`, `OAUTH_JWT_BEARER`, `OAUTH_PASSWORD_GRANT`, `JWT`,
     ///   `API_TOKEN`, `FEDERATED_CREDENTIAL`, `NO_AUTH`.
-    public enum DataConnectorParamsOneOf: Codable, Equatable, Sendable {
+    public enum DataConnectorParamsOneOf: Equatable, Sendable {
       /// Required data connector parameters in structured json format.
       indirect case params(GoogleWKT.WKTStruct)
       /// Required data connector parameters in json string format.

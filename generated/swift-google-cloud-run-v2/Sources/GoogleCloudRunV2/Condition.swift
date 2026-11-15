@@ -1123,7 +1123,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The reason for this condition. Depending on the condition type,
   /// it will populate one of these fields.
   /// Successful conditions cannot have a reason.
-  public enum ReasonsOneOf: Codable, Equatable, Sendable {
+  public enum ReasonsOneOf: Equatable, Sendable {
     /// Output only. A common (service-level) reason for this condition.
     case reason(Condition.CommonReason)
     /// Output only. A reason for the revision condition.

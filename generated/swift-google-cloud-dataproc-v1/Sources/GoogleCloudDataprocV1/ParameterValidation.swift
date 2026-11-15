@@ -101,7 +101,7 @@ public struct ParameterValidation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The type of validation to be performed.
-  public enum ValidationTypeOneOf: Codable, Equatable, Sendable {
+  public enum ValidationTypeOneOf: Equatable, Sendable {
     /// Validation based on regular expressions.
     indirect case regex(RegexValidation)
     /// Validation based on a list of allowed values.

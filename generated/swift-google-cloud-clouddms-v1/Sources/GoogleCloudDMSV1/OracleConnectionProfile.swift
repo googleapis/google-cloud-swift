@@ -184,7 +184,7 @@ public struct OracleConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Connectivity options used to establish a connection to the database server.
-  public enum ConnectivityOneOf: Codable, Equatable, Sendable {
+  public enum ConnectivityOneOf: Equatable, Sendable {
     /// Static Service IP connectivity.
     indirect case staticServiceIpConnectivity(StaticServiceIpConnectivity)
     /// Forward SSH tunnel connectivity.

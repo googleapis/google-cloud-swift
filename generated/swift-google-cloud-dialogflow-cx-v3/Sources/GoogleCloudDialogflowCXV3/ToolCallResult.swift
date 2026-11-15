@@ -206,7 +206,7 @@
     }
 
     /// The tool call's result.
-    public enum ResultOneOf: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Equatable, Sendable {
       /// The tool call's error.
       indirect case error(ToolCallResult.Error)
       /// The tool call's output parameters.

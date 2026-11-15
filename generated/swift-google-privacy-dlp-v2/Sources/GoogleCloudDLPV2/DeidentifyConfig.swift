@@ -124,7 +124,7 @@ public struct DeidentifyConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of transformation
-  public enum TransformationOneOf: Codable, Equatable, Sendable {
+  public enum TransformationOneOf: Equatable, Sendable {
     /// Treat the dataset as free-form text and apply the same free text
     /// transformation everywhere.
     indirect case infoTypeTransformations(InfoTypeTransformations)

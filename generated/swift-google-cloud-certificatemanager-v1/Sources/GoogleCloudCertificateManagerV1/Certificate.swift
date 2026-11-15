@@ -1978,7 +1978,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of the certificate. Required.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// If set, defines data of a self-managed certificate.
     indirect case selfManaged(Certificate.SelfManagedCertificate)
     /// If set, contains configuration and state of a managed certificate.

@@ -131,7 +131,7 @@ public struct SeedConversionWorkspaceRequest: Codable, Equatable, GoogleWKT._Any
   /// The input to be used for seeding the conversion workspace. The input can
   /// either be from the source or destination databases and it can be provided
   /// through a connection profile or a DDL file.
-  public enum SeedFromOneOf: Codable, Equatable, Sendable {
+  public enum SeedFromOneOf: Equatable, Sendable {
     /// Optional. Fully qualified (Uri) name of the source connection profile.
     case sourceConnectionProfile(Swift.String)
     /// Optional. Fully qualified (Uri) name of the destination connection

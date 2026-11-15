@@ -448,7 +448,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum ResourceTypeOneOf: Codable, Equatable, Sendable {
+    public enum ResourceTypeOneOf: Equatable, Sendable {
       /// The configuration proto that includes the Googleapis resources. I.e.
       /// type.googleapis.com/google.cloud.vision.v1.StreamWithAnnotation
       case configTypeUri(Swift.String)

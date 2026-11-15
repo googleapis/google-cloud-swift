@@ -106,7 +106,7 @@ public struct UserId: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum IdOneofOneOf: Codable, Equatable, Sendable {
+  public enum IdOneofOneOf: Equatable, Sendable {
     /// Optional. An email address.
     case email(Swift.String)
     /// Optional. A phone number. Should use the E.164 format.

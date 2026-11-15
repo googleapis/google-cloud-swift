@@ -122,7 +122,7 @@ public struct OperationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OperationOneOf: Codable, Equatable, Sendable {
+  public enum OperationOneOf: Equatable, Sendable {
     /// The HTTP Operation.
     indirect case httpOperation(HttpOperation)
   }

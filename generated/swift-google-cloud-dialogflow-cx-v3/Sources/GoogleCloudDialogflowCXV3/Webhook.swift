@@ -1207,7 +1207,7 @@
     }
 
     /// Required. The webhook configuration.
-    public enum WebhookOneOf: Codable, Equatable, Sendable {
+    public enum WebhookOneOf: Equatable, Sendable {
       /// Configuration for a generic web service.
       indirect case genericWebService(Webhook.GenericWebService)
       /// Configuration for a [Service

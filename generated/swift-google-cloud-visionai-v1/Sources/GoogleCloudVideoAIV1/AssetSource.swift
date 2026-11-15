@@ -263,7 +263,7 @@ public struct AssetSource: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum SourceFormOneOf: Codable, Equatable, Sendable {
+  public enum SourceFormOneOf: Equatable, Sendable {
     /// The source of the asset is from Cloud Storage.
     indirect case assetGcsSource(AssetSource.AssetGcsSource)
     /// The source of the asset is from content bytes.

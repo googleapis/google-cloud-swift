@@ -410,7 +410,7 @@ public struct GoldengateElasticsearchConnectionProperties: Codable, Equatable, G
 
   /// The password Oracle Goldengate uses to connect the associated system of
   /// the given technology.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password Oracle Goldengate uses for Elastic
     /// Search connection in plain text.
     case password(Swift.String)

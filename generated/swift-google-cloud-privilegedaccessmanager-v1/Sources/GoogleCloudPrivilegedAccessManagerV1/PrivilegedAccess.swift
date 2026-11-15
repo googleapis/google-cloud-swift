@@ -297,7 +297,7 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum AccessTypeOneOf: Codable, Equatable, Sendable {
+  public enum AccessTypeOneOf: Equatable, Sendable {
     /// Access to a Google Cloud resource through IAM.
     indirect case gcpIamAccess(PrivilegedAccess.GcpIamAccess)
   }

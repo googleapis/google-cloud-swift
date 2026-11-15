@@ -198,7 +198,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Properties specific to the underlying data source.
-  public enum PropertiesOneOf: Codable, Equatable, Sendable {
+  public enum PropertiesOneOf: Equatable, Sendable {
     /// Cloud SQL properties.
     indirect case cloudSql(CloudSqlProperties)
     /// Amazon Web Services (AWS) properties.

@@ -109,7 +109,7 @@ public struct StreamingSynthesizeRequest: Codable, Equatable, GoogleWKT._AnyPack
 
   /// The request to be sent, either a StreamingSynthesizeConfig or
   /// StreamingSynthesisInput.
-  public enum StreamingRequestOneOf: Codable, Equatable, Sendable {
+  public enum StreamingRequestOneOf: Equatable, Sendable {
     /// StreamingSynthesizeConfig to be used in this streaming attempt. Only
     /// specified in the first message sent in a `StreamingSynthesize` call.
     indirect case streamingConfig(StreamingSynthesizeConfig)

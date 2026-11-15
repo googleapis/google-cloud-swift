@@ -320,7 +320,7 @@ public struct GoldengateMicrosoftSqlserverConnectionProperties: Codable, Equatab
 
   /// The password Oracle Goldengate uses to connect the associated Microsoft
   /// SQL Server.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password Oracle Goldengate uses for Microsoft
     /// SQL Server connection in plain text.
     case password(Swift.String)

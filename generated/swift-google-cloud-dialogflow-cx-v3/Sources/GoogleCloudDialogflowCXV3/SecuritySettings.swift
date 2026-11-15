@@ -1056,7 +1056,7 @@
     /// Specifies how data is retained. Note that even if the data is
     /// purged due to retention policy, we may still hold it in backup storage for
     /// a few days without allowing direct readings.
-    public enum DataRetentionOneOf: Codable, Equatable, Sendable {
+    public enum DataRetentionOneOf: Equatable, Sendable {
       /// Retains the data for the specified number of days.
       /// User must set a value lower than Dialogflow's default 365d TTL (30 days
       /// for Agent Assist traffic), higher value will be ignored and use default.

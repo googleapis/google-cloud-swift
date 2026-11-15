@@ -166,7 +166,7 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The source of transfer operation.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Output only. Lustre source.
     indirect case sourceLustrePath(LustrePath)
     /// Output only. Cloud Storage source.
@@ -174,7 +174,7 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The destination of transfer operation.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Output only. Cloud Storage destination.
     indirect case destinationGcsPath(GcsPath)
     /// Output only. Lustre destination.

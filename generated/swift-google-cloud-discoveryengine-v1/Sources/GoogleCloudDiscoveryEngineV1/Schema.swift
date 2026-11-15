@@ -129,7 +129,7 @@
     ///
     /// [google.cloud.discoveryengine.v1.Schema.json_schema]: <doc:Schema/SchemaOneOf/jsonSchema(_:)>
     /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/SchemaOneOf/structSchema(_:)>
-    public enum SchemaOneOf: Codable, Equatable, Sendable {
+    public enum SchemaOneOf: Equatable, Sendable {
       /// The structured representation of the schema.
       indirect case structSchema(GoogleWKT.WKTStruct)
       /// The JSON representation of the schema.

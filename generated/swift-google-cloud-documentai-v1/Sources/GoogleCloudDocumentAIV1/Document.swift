@@ -3717,7 +3717,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Must match entity type defined in schema if
       /// known. If this field is present, the `text` field could also be
       /// populated.
-      public enum StructuredValueOneOf: Codable, Equatable, Sendable {
+      public enum StructuredValueOneOf: Equatable, Sendable {
         /// Money value. See also:
         /// https://github.com/googleapis/googleapis/blob/master/google/type/money.proto
         indirect case moneyValue(GoogleType.Money)
@@ -5241,7 +5241,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Who/what made the change
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// If the change was made by a person specify the name or id of that
       /// person.
       case agent(Swift.String)
@@ -6449,7 +6449,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// Source of the image.
-        public enum ImageSourceOneOf: Codable, Equatable, Sendable {
+        public enum ImageSourceOneOf: Equatable, Sendable {
           /// Optional. Asset id of the inline image. If set, find the image
           /// content in the blob_assets field.
           case blobAssetId(Swift.String)
@@ -6486,7 +6486,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public enum BlockOneOf: Codable, Equatable, Sendable {
+      public enum BlockOneOf: Equatable, Sendable {
         /// Block consisting of text content.
         indirect case textBlock(Document.DocumentLayout.DocumentLayoutBlock.LayoutTextBlock)
         /// Block consisting of table content/structure.
@@ -7088,7 +7088,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// Source of the image.
-        public enum ImageSourceOneOf: Codable, Equatable, Sendable {
+        public enum ImageSourceOneOf: Equatable, Sendable {
           /// Optional. Asset id of the inline image. If set, find the image
           /// content in the blob_assets field.
           case blobAssetId(Swift.String)
@@ -7294,7 +7294,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// The type of the chunk field.
-        public enum FieldTypeOneOf: Codable, Equatable, Sendable {
+        public enum FieldTypeOneOf: Equatable, Sendable {
           /// The image chunk field in the chunk.
           indirect case imageChunkField(Document.ChunkedDocument.Chunk.ImageChunkField)
           /// The table chunk field in the chunk.
@@ -7906,7 +7906,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Original source document from the user.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Optional. Currently supports Google Cloud Storage URI of the form
     /// `gs://bucket_name/object_name`. Object versioning is not supported.
     /// For more information, refer to [Google Cloud Storage Request

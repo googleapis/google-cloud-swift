@@ -1061,7 +1061,7 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
   }
 
   /// The connection details.
-  public enum ConnectionDetailsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionDetailsOneOf: Equatable, Sendable {
     /// Properties for an Oracle Database Connection.
     indirect case oracleConnectionProperties(GoldengateOracleConnectionProperties)
     /// Properties for a Goldengate Connection.

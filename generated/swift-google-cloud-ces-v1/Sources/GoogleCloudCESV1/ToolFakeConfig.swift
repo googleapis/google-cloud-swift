@@ -103,7 +103,7 @@ public struct ToolFakeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The response is either static or it is provided by a python function.
-  public enum ToolResponseOneOf: Codable, Equatable, Sendable {
+  public enum ToolResponseOneOf: Equatable, Sendable {
     /// Optional. Code block which will be executed instead of a real tool call.
     indirect case codeBlock(CodeBlock)
   }

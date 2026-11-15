@@ -184,7 +184,7 @@ public struct ExportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Google Cloud Storage URI to export the issue model to.
     indirect case gcsDestination(ExportIssueModelRequest.GcsDestination)
   }

@@ -118,7 +118,7 @@
     }
 
     /// Required. The input specification.
-    public enum InputOneOf: Codable, Equatable, Sendable {
+    public enum InputOneOf: Equatable, Sendable {
       /// Instructs the speech recognizer how to process the speech audio.
       indirect case audioConfig(InputAudioConfig)
       /// The natural language text to be processed. Text length must not exceed

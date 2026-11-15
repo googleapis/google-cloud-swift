@@ -142,7 +142,7 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleWKT._AnyPa
 
   /// The resources which the findings refinement is applied to. Corresponds to
   /// the type of the findings refinement.
-  public enum FindingsRefinementApplicationOneOf: Codable, Equatable, Sendable {
+  public enum FindingsRefinementApplicationOneOf: Equatable, Sendable {
     /// The resources which the detection exclusion is applied to.
     indirect case detectionExclusionApplication(DetectionExclusionApplication)
   }

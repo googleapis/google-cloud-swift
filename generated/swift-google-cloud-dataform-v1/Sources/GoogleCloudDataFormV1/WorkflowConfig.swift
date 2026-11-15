@@ -264,7 +264,7 @@ public struct WorkflowConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The result of this execution attempt.
-    public enum ResultOneOf: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Equatable, Sendable {
       /// The name of the created workflow invocation, if one was successfully
       /// created. Must be in the format
       /// `projects/*/locations/*/repositories/*/workflowInvocations/*`.

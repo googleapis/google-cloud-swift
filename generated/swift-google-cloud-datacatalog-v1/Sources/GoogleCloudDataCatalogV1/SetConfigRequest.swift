@@ -117,7 +117,7 @@ public struct SetConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configuration field to set.
-  public enum ConfigurationOneOf: Codable, Equatable, Sendable {
+  public enum ConfigurationOneOf: Equatable, Sendable {
     /// Opt-in status for the migration of Tag Templates to Dataplex.
     case tagTemplateMigration(TagTemplateMigration)
     /// Opt-in status for the UI switch to Dataplex.

@@ -126,7 +126,7 @@ public struct ServiceLevelIndicator: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Service level indicators can be grouped by whether the "unit" of service
   /// being measured is based on counts of good requests or on counts of good
   /// time windows
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Basic SLI on a well-known service type.
     indirect case basicSli(BasicSli)
     /// Request-based SLIs

@@ -539,7 +539,7 @@
     }
 
     /// The artifacts to deploy.
-    public enum ArtifactsOneOf: Codable, Equatable, Sendable {
+    public enum ArtifactsOneOf: Equatable, Sendable {
       /// The Model Garden model to deploy.
       /// Format:
       /// `publishers/{publisher}/models/{publisher_model}@{version_id}`, or

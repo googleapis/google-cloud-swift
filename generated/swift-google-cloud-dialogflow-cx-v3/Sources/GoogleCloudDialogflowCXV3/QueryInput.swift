@@ -156,7 +156,7 @@
     }
 
     /// Required. The input specification.
-    public enum InputOneOf: Codable, Equatable, Sendable {
+    public enum InputOneOf: Equatable, Sendable {
       /// The natural language text to be processed.
       indirect case text(TextInput)
       /// The intent to be triggered.

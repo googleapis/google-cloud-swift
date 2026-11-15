@@ -391,13 +391,13 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies objects to be transformed.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Specifies a list of buckets and their objects to be transformed.
     indirect case bucketList(BucketList)
   }
 
   /// Operation to be performed on the objects.
-  public enum TransformationOneOf: Codable, Equatable, Sendable {
+  public enum TransformationOneOf: Equatable, Sendable {
     /// Changes object hold status.
     indirect case putObjectHold(PutObjectHold)
     /// Delete objects.

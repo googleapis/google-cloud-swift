@@ -438,7 +438,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Bucket locations to include or exclude.
-    public enum CloudStorageLocationsOneOf: Codable, Equatable, Sendable {
+    public enum CloudStorageLocationsOneOf: Equatable, Sendable {
       /// Bucket locations to include.
       indirect case includedCloudStorageLocations(IntelligenceConfig.Filter.CloudStorageLocations)
       /// Bucket locations to exclude.
@@ -446,7 +446,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Buckets to include or exclude.
-    public enum CloudStorageBucketsOneOf: Codable, Equatable, Sendable {
+    public enum CloudStorageBucketsOneOf: Equatable, Sendable {
       /// Buckets to include.
       indirect case includedCloudStorageBuckets(IntelligenceConfig.Filter.CloudStorageBuckets)
       /// Buckets to exclude.

@@ -122,7 +122,7 @@
     }
 
     /// The source of the retrieval.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// Set to use data source powered by Vertex AI Search.
       indirect case vertexAiSearch(VertexAISearch)
       /// Set to use data source powered by Vertex RAG store.

@@ -333,7 +333,7 @@ public struct InsightsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The context of the InsightsConfig.
-  public enum InsightsConfigContextOneOf: Codable, Equatable, Sendable {
+  public enum InsightsConfigContextOneOf: Equatable, Sendable {
     /// Optional. The name of the App Hub Application.
     /// Format:
     /// projects/{project}/locations/{location}/applications/{application}

@@ -258,7 +258,7 @@
     }
 
     /// Value for the feature.
-    public enum ValueOneOf: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Equatable, Sendable {
       /// Bool type feature value.
       case boolValue(Swift.Bool)
       /// Double type feature value.

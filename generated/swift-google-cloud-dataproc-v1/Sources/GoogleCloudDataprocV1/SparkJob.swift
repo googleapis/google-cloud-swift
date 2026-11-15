@@ -183,7 +183,7 @@ public struct SparkJob: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.dataproc.v1.SparkJob.jar_file_uris]: <doc:SparkJob/jarFileUris>
   /// [google.cloud.dataproc.v1.SparkJob.main_class]: <doc:SparkJob/DriverOneOf/mainClass(_:)>
-  public enum DriverOneOf: Codable, Equatable, Sendable {
+  public enum DriverOneOf: Equatable, Sendable {
     /// The HCFS URI of the jar file that contains the main class.
     case mainJarFileUri(Swift.String)
     /// The name of the driver's main class. The jar file that contains the class

@@ -286,7 +286,7 @@ public struct Impact: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Contains projections (if any) for this category.
-  public enum ProjectionOneOf: Codable, Equatable, Sendable {
+  public enum ProjectionOneOf: Equatable, Sendable {
     /// Use with CategoryType.COST
     indirect case costProjection(CostProjection)
     /// Use with CategoryType.SECURITY

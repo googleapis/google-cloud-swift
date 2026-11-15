@@ -307,7 +307,7 @@ public struct DataProduct: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The type of the principal entity.
-    public enum TypeOneOf: Codable, Equatable, Sendable {
+    public enum TypeOneOf: Equatable, Sendable {
       /// Optional. Email of the Google Group, as per
       /// https://cloud.google.com/iam/docs/principals-overview#google-group.
       case googleGroup(Swift.String)

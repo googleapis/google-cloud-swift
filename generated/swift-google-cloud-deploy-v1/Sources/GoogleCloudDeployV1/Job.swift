@@ -331,7 +331,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of Job.
-  public enum JobTypeOneOf: Codable, Equatable, Sendable {
+  public enum JobTypeOneOf: Equatable, Sendable {
     /// Output only. A deploy Job.
     indirect case deployJob(DeployJob)
     /// Output only. A verify Job.

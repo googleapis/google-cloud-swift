@@ -259,7 +259,7 @@ public struct Occurrence: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. Immutable. Describes the details of the note kind found on this
   /// resource.
-  public enum DetailsOneOf: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Equatable, Sendable {
     /// Describes a security vulnerability.
     indirect case vulnerability(VulnerabilityOccurrence)
     /// Describes a verifiable build.

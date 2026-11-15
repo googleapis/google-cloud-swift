@@ -873,7 +873,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
         /// Structural and profile information for specific field type. Not
         /// available, if mode is REPEATABLE.
-        public enum FieldInfoOneOf: Codable, Equatable, Sendable {
+        public enum FieldInfoOneOf: Equatable, Sendable {
           /// String type field information.
           indirect case stringProfile(
             GoogleCloudDataplexV1.DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo)

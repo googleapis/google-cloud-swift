@@ -469,7 +469,7 @@ public struct AbuseEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// REQUIRED Contains addiional metadata about the detected abuse event.
-  public enum EventTypeOneOf: Codable, Equatable, Sendable {
+  public enum EventTypeOneOf: Equatable, Sendable {
     /// Information about a cryptocurrency mining event observed on the monitored
     /// resource.
     indirect case cryptoMiningEvent(CryptoMiningEvent)

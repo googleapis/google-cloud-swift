@@ -802,7 +802,7 @@
     }
 
     /// The input notebook.
-    public enum NotebookSourceOneOf: Codable, Equatable, Sendable {
+    public enum NotebookSourceOneOf: Equatable, Sendable {
       /// The Dataform Repository pointing to a single file notebook repository.
       indirect case dataformRepositorySource(NotebookExecutionJob.DataformRepositorySource)
       /// The Cloud Storage url pointing to the ipynb file. Format:
@@ -813,7 +813,7 @@
     }
 
     /// The compute config to use for an execution job.
-    public enum EnvironmentSpecOneOf: Codable, Equatable, Sendable {
+    public enum EnvironmentSpecOneOf: Equatable, Sendable {
       /// The NotebookRuntimeTemplate to source compute configuration from.
       case notebookRuntimeTemplateResourceName(Swift.String)
       /// The custom compute configuration for an execution job.
@@ -821,14 +821,14 @@
     }
 
     /// The location to store the notebook execution result.
-    public enum ExecutionSinkOneOf: Codable, Equatable, Sendable {
+    public enum ExecutionSinkOneOf: Equatable, Sendable {
       /// The Cloud Storage location to upload the result to. Format:
       /// `gs://bucket-name`
       case gcsOutputUri(Swift.String)
     }
 
     /// The identity to run the execution as.
-    public enum ExecutionIdentityOneOf: Codable, Equatable, Sendable {
+    public enum ExecutionIdentityOneOf: Equatable, Sendable {
       /// The user email to run the execution as. Only supported by Colab runtimes.
       case executionUser(Swift.String)
       /// The service account to run the execution as.
@@ -837,7 +837,7 @@
 
     /// Runtime environment for the notebook execution job. If unspecified, the
     /// default runtime of Colab is used.
-    public enum RuntimeEnvironmentOneOf: Codable, Equatable, Sendable {
+    public enum RuntimeEnvironmentOneOf: Equatable, Sendable {
       /// The Workbench runtime configuration to use for the notebook execution.
       indirect case workbenchRuntime(NotebookExecutionJob.WorkbenchRuntime)
     }

@@ -485,7 +485,7 @@ public struct AwsSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum CredentialsTypeOneOf: Codable, Equatable, Sendable {
+  public enum CredentialsTypeOneOf: Equatable, Sendable {
     /// AWS Credentials using access key id and secret.
     indirect case accessKeyCreds(AwsSourceDetails.AccessKeyCredentials)
   }

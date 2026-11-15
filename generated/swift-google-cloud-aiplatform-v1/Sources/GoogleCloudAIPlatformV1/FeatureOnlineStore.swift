@@ -832,7 +832,7 @@
       }
     }
 
-    public enum StorageTypeOneOf: Codable, Equatable, Sendable {
+    public enum StorageTypeOneOf: Equatable, Sendable {
       /// Contains settings for the Cloud Bigtable instance that will be created
       /// to serve featureValues for all FeatureViews under this
       /// FeatureOnlineStore.

@@ -130,7 +130,7 @@ public struct CdnKey: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration associated with the CDN key.
-  public enum CdnKeyConfigOneOf: Codable, Equatable, Sendable {
+  public enum CdnKeyConfigOneOf: Equatable, Sendable {
     /// The configuration for a Google Cloud CDN key.
     indirect case googleCdnKey(GoogleCdnKey)
     /// The configuration for an Akamai CDN key.

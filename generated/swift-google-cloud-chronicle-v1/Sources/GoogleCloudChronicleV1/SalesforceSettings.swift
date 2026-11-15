@@ -114,7 +114,7 @@ public struct SalesforceSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Possible types of authentication.
-  public enum AuthenticationOneOf: Codable, Equatable, Sendable {
+  public enum AuthenticationOneOf: Equatable, Sendable {
     /// Input only. OAuthPasswordGrantCredentials auth.
     indirect case oauthPasswordGrantAuth(OAuthPasswordGrantCredentials)
     /// Input only. OAuthJWTCredentials auth.

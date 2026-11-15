@@ -103,7 +103,7 @@ public struct VerificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The action to execute.
-  public enum VerificationActionOneOf: Codable, Equatable, Sendable {
+  public enum VerificationActionOneOf: Equatable, Sendable {
     /// Cloud Run job action to execute.
     /// Format: `projects/{project}/locations/{location}/jobs/{job}`
     case cloudRunJob(Swift.String)

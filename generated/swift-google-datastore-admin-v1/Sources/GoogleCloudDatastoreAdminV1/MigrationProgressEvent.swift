@@ -412,7 +412,7 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// Details about this step.
-  public enum StepDetailsOneOf: Codable, Equatable, Sendable {
+  public enum StepDetailsOneOf: Equatable, Sendable {
     /// Details for the `PREPARE` step.
     indirect case prepareStepDetails(MigrationProgressEvent.PrepareStepDetails)
     /// Details for the `REDIRECT_WRITES` step.

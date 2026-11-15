@@ -495,7 +495,7 @@ public struct AuthorizationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public enum TypeOneOf: Codable, Equatable, Sendable {
+        public enum TypeOneOf: Equatable, Sendable {
           /// Required. The value of the header must match the regular expression
           /// specified in regexMatch. For regular expression grammar,
           /// please see: en.cppreference.com/w/cpp/regex/ecmascript

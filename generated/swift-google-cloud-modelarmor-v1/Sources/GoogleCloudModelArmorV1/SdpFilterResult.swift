@@ -113,7 +113,7 @@ public struct SdpFilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Either of Sensitive Data Protection Inspect result or Deidentify result.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// Sensitive Data Protection Inspection result if inspection is performed.
     indirect case inspectResult(SdpInspectResult)
     /// Sensitive Data Protection Deidentification result if deidentification is

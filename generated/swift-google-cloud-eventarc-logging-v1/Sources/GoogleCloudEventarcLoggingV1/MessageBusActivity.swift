@@ -216,7 +216,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// One of the activities that can be logged during the processing of an event
   /// published to a message bus.
-  public enum ActivityOneOf: Codable, Equatable, Sendable {
+  public enum ActivityOneOf: Equatable, Sendable {
     /// Logged when an event is received by a message bus.
     indirect case received(MessageBusActivity.Received)
   }

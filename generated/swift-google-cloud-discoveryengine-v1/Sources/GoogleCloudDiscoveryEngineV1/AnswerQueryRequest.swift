@@ -2258,7 +2258,7 @@
           }
 
           /// Search result content.
-          public enum ContentOneOf: Codable, Equatable, Sendable {
+          public enum ContentOneOf: Equatable, Sendable {
             /// Unstructured document information.
             indirect case unstructuredDocumentInfo(
               AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo)
@@ -2315,7 +2315,7 @@
 
       /// Search parameters to control the search behavior.
       /// Or provide search result list to generate answer.
-      public enum InputOneOf: Codable, Equatable, Sendable {
+      public enum InputOneOf: Equatable, Sendable {
         /// Search parameters.
         indirect case searchParams(AnswerQueryRequest.SearchSpec.SearchParams)
         /// Search result list.
@@ -3295,7 +3295,7 @@
         }
 
         /// Search result content.
-        public enum ContentOneOf: Codable, Equatable, Sendable {
+        public enum ContentOneOf: Equatable, Sendable {
           /// Chunk information.
           indirect case chunkInfo(AnswerQueryRequest.EndUserSpec.EndUserMetaData.ChunkInfo)
         }

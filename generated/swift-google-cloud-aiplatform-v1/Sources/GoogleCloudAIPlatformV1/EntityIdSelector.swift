@@ -107,7 +107,7 @@
 
     /// Details about the source data, including the location of the storage and
     /// the format.
-    public enum EntityIdsSourceOneOf: Codable, Equatable, Sendable {
+    public enum EntityIdsSourceOneOf: Equatable, Sendable {
       /// Source of Csv
       indirect case csvSource(CsvSource)
     }

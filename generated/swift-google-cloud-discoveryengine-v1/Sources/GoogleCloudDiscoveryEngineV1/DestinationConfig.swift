@@ -207,7 +207,7 @@
       }
 
       /// The endpoint destination.
-      public enum DestinationOneOf: Codable, Equatable, Sendable {
+      public enum DestinationOneOf: Equatable, Sendable {
         /// Publicly routable host.
         case host(Swift.String)
       }
@@ -235,7 +235,7 @@
     }
 
     /// Additional parameters for this destination config.
-    public enum DestinationConfigParamsOneOf: Codable, Equatable, Sendable {
+    public enum DestinationConfigParamsOneOf: Equatable, Sendable {
       /// Optional. Additional parameters for this destination config in structured
       /// json format.
       indirect case params(GoogleWKT.WKTStruct)

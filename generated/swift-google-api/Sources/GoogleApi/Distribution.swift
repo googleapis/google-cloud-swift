@@ -671,7 +671,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Exactly one of these three fields must be set.
-    public enum OptionsOneOf: Codable, Equatable, Sendable {
+    public enum OptionsOneOf: Equatable, Sendable {
       /// The linear bucket.
       indirect case linearBuckets(Distribution.BucketOptions.Linear)
       /// The exponential buckets.

@@ -261,7 +261,7 @@ public struct AmbientSoundConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Ambient noise to be played with the synthesized agent response, to
   /// enhance the naturalness of the conversation.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Optional. Deprecated: `prebuilt_ambient_noise` is deprecated in favor of
     /// `prebuilt_ambient_sound`.
     @available(*, deprecated)

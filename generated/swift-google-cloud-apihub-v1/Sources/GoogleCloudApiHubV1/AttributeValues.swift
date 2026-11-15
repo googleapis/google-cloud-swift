@@ -294,7 +294,7 @@ public struct AttributeValues: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The attribute values associated with the resource.
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// The attribute values associated with a resource in case attribute data
     /// type is enum.
     indirect case enumValues(AttributeValues.EnumAttributeValues)

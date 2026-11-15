@@ -236,7 +236,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// One of the activities that can be logged during the processing of a Google
   /// API event.
-  public enum ActivityOneOf: Codable, Equatable, Sendable {
+  public enum ActivityOneOf: Equatable, Sendable {
     /// Logged when an event is published to a message bus.
     indirect case published(GoogleApiSourceActivity.Published)
   }

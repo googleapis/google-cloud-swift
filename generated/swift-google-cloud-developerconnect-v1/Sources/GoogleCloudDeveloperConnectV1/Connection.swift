@@ -280,7 +280,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration for the connection depending on the type of provider.
-  public enum ConnectionConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionConfigOneOf: Equatable, Sendable {
     /// Configuration for connections to github.com.
     indirect case githubConfig(GitHubConfig)
     /// Configuration for connections to an instance of GitHub Enterprise.

@@ -290,7 +290,7 @@
     }
 
     /// Credentials for the database connection.
-    public enum UserPasswordOneOf: Codable, Equatable, Sendable {
+    public enum UserPasswordOneOf: Equatable, Sendable {
       /// Optional. The resource name of the Secret Manager secret holding the
       /// password for the user to log into the database. The secret should be
       /// created using the regional endpoint (for API) or from the Regional

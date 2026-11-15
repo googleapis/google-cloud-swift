@@ -178,7 +178,7 @@ public struct ImportCustomerRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// A customer's cloud_identity_id or domain is required to look up the
   /// customer's Cloud Identity. For Team customers, only the cloud_identity_id
   /// option is valid.
-  public enum CustomerIdentityOneOf: Codable, Equatable, Sendable {
+  public enum CustomerIdentityOneOf: Equatable, Sendable {
     /// Required. Customer domain.
     case domain(Swift.String)
     /// Required. Customer's Cloud Identity ID

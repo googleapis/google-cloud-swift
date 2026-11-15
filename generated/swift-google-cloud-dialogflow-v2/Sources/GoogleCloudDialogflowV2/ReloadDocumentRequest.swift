@@ -148,7 +148,7 @@
     /// Reloading from a new document source is allowed for smart messaging
     /// documents only. If you want to update the source for other document types,
     /// please delete the existing document and create a new one instead.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// Optional. The path of gcs source file for reloading document content. For
       /// now, only gcs uri is supported.
       ///

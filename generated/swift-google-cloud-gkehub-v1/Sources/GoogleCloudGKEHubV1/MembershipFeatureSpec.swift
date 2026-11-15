@@ -96,7 +96,7 @@ public struct MembershipFeatureSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum FeatureSpecOneOf: Codable, Equatable, Sendable {
+  public enum FeatureSpecOneOf: Equatable, Sendable {
     /// Config Management-specific spec.
     indirect case configmanagement(GoogleCloudGKEHubConfigManagementV1.MembershipSpec)
   }

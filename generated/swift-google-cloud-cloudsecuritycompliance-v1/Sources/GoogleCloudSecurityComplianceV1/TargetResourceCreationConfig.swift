@@ -105,7 +105,7 @@ public struct TargetResourceCreationConfig: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// The configuration that's required to create the target resource.
-  public enum ResourceCreationConfigOneOf: Codable, Equatable, Sendable {
+  public enum ResourceCreationConfigOneOf: Equatable, Sendable {
     /// Optional. The configuration that's required to create a folder.
     indirect case folderCreationConfig(FolderCreationConfig)
     /// Optional. The configuration that's required to create a project.

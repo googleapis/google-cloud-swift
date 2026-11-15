@@ -317,7 +317,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The schedule of automated backups.
-  public enum ScheduleOneOf: Codable, Equatable, Sendable {
+  public enum ScheduleOneOf: Equatable, Sendable {
     /// Optional. Trigger automated backups at a fixed frequency.
     indirect case fixedFrequencySchedule(AutomatedBackupConfig.FixedFrequencySchedule)
   }

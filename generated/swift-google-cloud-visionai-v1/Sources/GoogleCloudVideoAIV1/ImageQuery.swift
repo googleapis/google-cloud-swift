@@ -99,7 +99,7 @@ public struct ImageQuery: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ImageOneOf: Codable, Equatable, Sendable {
+  public enum ImageOneOf: Equatable, Sendable {
     /// Input image in raw bytes.
     case inputImage(Foundation.Data)
     /// Resource name of the asset. Only supported in IMAGE corpus type.

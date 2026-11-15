@@ -101,7 +101,7 @@ public struct DataItem: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Either of text or bytes data.
-  public enum DataItemOneOf: Codable, Equatable, Sendable {
+  public enum DataItemOneOf: Equatable, Sendable {
     /// Plaintext string data for sanitization.
     case text(Swift.String)
     /// Data provided in the form of bytes.

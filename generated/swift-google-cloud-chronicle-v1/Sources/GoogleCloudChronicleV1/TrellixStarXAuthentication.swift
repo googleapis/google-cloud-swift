@@ -113,7 +113,7 @@ public struct TrellixStarXAuthentication: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// One of multiple potential auth types.
-  public enum AuthTypeOneOf: Codable, Equatable, Sendable {
+  public enum AuthTypeOneOf: Equatable, Sendable {
     /// Input only. MssoAuthentication auth type.
     indirect case msso(MssoAuthentication)
     /// Input only. TrellixIAMAuthentication auth type.

@@ -539,7 +539,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Select the specific paging mechanism the third-party API requires.
-  public enum PaginationStrategyOneOf: Codable, Equatable, Sendable {
+  public enum PaginationStrategyOneOf: Equatable, Sendable {
     /// Fetch data in a single request without paging.
     indirect case `none`(CustomAPIPagination.NonePagination)
     /// Use tokens (custom keys) to get the next page of data.

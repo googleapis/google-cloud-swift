@@ -119,7 +119,7 @@ public struct RestoreTableRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The source from which to restore.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Name of the backup from which to restore.  Values are of the form
     /// `projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>`.
     case backup(Swift.String)

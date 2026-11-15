@@ -102,7 +102,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum KindOneOf: Codable, Equatable, Sendable {
+  public enum KindOneOf: Equatable, Sendable {
     /// A rule for a deny policy.
     indirect case denyRule(DenyRule)
   }

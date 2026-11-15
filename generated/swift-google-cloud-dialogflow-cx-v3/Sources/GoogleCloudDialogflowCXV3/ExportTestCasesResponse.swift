@@ -105,7 +105,7 @@
     }
 
     /// The exported test cases.
-    public enum DestinationOneOf: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Equatable, Sendable {
       /// The URI to a file containing the exported test cases. This field is
       ///  populated only if `gcs_uri` is specified in
       /// [ExportTestCasesRequest][google.cloud.dialogflow.cx.v3.ExportTestCasesRequest].

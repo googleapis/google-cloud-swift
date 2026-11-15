@@ -102,7 +102,7 @@ public struct SearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The entry's contents.
-  public enum EntryOneOf: Codable, Equatable, Sendable {
+  public enum EntryOneOf: Equatable, Sendable {
     /// Details when search result is a file.
     indirect case file(FileSearchResult)
     /// Details when search result is a directory.

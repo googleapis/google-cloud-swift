@@ -2396,7 +2396,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// This field specifies the type of user answer.
-      public enum TypeOneOf: Codable, Equatable, Sendable {
+      public enum TypeOneOf: Equatable, Sendable {
         /// This field specifies the incremental input text from the user during
         /// the conversational search.
         case textAnswer(Swift.String)

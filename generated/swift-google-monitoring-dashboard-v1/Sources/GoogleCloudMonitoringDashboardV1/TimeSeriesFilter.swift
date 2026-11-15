@@ -142,7 +142,7 @@ public struct TimeSeriesFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Selects an optional time series filter.
-  public enum OutputFilterOneOf: Codable, Equatable, Sendable {
+  public enum OutputFilterOneOf: Equatable, Sendable {
     /// Ranking based time series filter.
     indirect case pickTimeSeriesFilter(PickTimeSeriesFilter)
     /// Statistics based time series filter.

@@ -281,7 +281,7 @@ public struct Target: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Destination to which the Skaffold configuration is applied during a
   /// rollout.
-  public enum DeploymentTargetOneOf: Codable, Equatable, Sendable {
+  public enum DeploymentTargetOneOf: Equatable, Sendable {
     /// Optional. Information specifying a GKE Cluster.
     indirect case gke(GkeCluster)
     /// Optional. Information specifying an Anthos Cluster.

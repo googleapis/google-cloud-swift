@@ -126,7 +126,7 @@ public struct LinkMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum RequestOneOf: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Equatable, Sendable {
     /// CreateLink RPC request.
     indirect case createLinkRequest(CreateLinkRequest)
     /// DeleteLink RPC request.

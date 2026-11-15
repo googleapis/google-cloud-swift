@@ -138,7 +138,7 @@
     }
 
     /// The delta of field value being streamed.
-    public enum DeltaOneOf: Codable, Equatable, Sendable {
+    public enum DeltaOneOf: Equatable, Sendable {
       /// Optional. Represents a null value.
       case nullValue(GoogleWKT.WKTNullValue)
       /// Optional. Represents a double value.

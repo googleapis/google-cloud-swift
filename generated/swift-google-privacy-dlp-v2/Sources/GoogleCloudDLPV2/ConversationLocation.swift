@@ -173,7 +173,7 @@ public struct ConversationLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The location of the finding within a conversation.
-  public enum LocationOneOf: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Equatable, Sendable {
     /// Matches an index of a message in the conversation provided in the
     /// request.
     case messageIndex(Swift.Int32)

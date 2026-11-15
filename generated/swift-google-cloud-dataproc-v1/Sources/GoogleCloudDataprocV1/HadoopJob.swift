@@ -178,7 +178,7 @@ public struct HadoopJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// either the jar file that contains the main class or the main class name.
   /// To specify both, add the jar file to `jar_file_uris`, and then specify
   /// the main class name in this property.
-  public enum DriverOneOf: Codable, Equatable, Sendable {
+  public enum DriverOneOf: Equatable, Sendable {
     /// The HCFS URI of the jar file containing the main class.
     /// Examples:
     ///     'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar'

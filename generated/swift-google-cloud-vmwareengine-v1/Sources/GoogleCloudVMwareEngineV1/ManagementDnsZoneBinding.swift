@@ -308,7 +308,7 @@ public struct ManagementDnsZoneBinding: Codable, Equatable, GoogleWKT._AnyPackab
   /// Required. The relative resource name of the network to bind to the
   /// management DNS zone. This network can be a consumer VPC network or a
   /// VMware engine network.
-  public enum BindNetworkOneOf: Codable, Equatable, Sendable {
+  public enum BindNetworkOneOf: Equatable, Sendable {
     /// Network to bind is a standard consumer VPC.
     /// Specify the name in the following form for consumer
     /// VPC network: `projects/{project}/global/networks/{network_id}`.

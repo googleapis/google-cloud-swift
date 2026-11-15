@@ -107,7 +107,7 @@ public struct CELExpression: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The criteria of the CEL expression.
-  public enum CriteriaOneOf: Codable, Equatable, Sendable {
+  public enum CriteriaOneOf: Equatable, Sendable {
     /// The resource instance types on which this expression is defined.
     /// The format is `<SERVICE_NAME>/<type>`.
     /// For example: `compute.googleapis.com/Instance`

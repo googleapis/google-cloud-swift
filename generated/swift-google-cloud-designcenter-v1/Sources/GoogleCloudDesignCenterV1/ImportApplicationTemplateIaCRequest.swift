@@ -141,7 +141,7 @@ public struct ImportApplicationTemplateIaCRequest: Codable, Equatable, GoogleWKT
   }
 
   /// The source location of terraform code.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Optional. The Cloud Storage URI of the terraform code.
     case gcsUri(Swift.String)
     /// Optional. The IaC module to import.

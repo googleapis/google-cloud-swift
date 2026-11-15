@@ -140,7 +140,7 @@ public struct MockedToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The identifier of the tool to mock.
-  public enum ToolIdentifierOneOf: Codable, Equatable, Sendable {
+  public enum ToolIdentifierOneOf: Equatable, Sendable {
     /// Optional. The name of the tool to mock.
     /// Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
     case toolId(Swift.String)

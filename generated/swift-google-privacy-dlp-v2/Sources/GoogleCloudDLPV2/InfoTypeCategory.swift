@@ -873,7 +873,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Categories of infotypes.
-  public enum CategoryOneOf: Codable, Equatable, Sendable {
+  public enum CategoryOneOf: Equatable, Sendable {
     /// The region or country that issued the ID or document represented by the
     /// infoType.
     case locationCategory(InfoTypeCategory.LocationCategory)

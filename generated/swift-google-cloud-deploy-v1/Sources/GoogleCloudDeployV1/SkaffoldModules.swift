@@ -412,7 +412,7 @@ public struct SkaffoldModules: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source that contains the Skaffold Config modules.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Optional. Remote git repository containing the Skaffold Config modules.
     indirect case git(SkaffoldModules.SkaffoldGitSource)
     /// Optional. Cloud Storage bucket containing the Skaffold Config modules.

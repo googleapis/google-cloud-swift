@@ -154,7 +154,7 @@ public struct SparkBatch: Codable, Equatable, GoogleWKT._AnyPackable,
   /// main class name. To pass both a main jar and a main class in that jar, add
   /// the jar to `jar_file_uris`, and then specify the main class
   /// name in `main_class`.
-  public enum DriverOneOf: Codable, Equatable, Sendable {
+  public enum DriverOneOf: Equatable, Sendable {
     /// Optional. The HCFS URI of the jar file that contains the main class.
     case mainJarFileUri(Swift.String)
     /// Optional. The name of the driver main class. The jar file that contains

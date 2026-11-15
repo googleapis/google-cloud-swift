@@ -298,7 +298,7 @@ public struct GatewaySecurityPolicyRule: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public enum ProfileOneOf: Codable, Equatable, Sendable {
+  public enum ProfileOneOf: Equatable, Sendable {
     /// Required. Profile which tells what the primitive action should be.
     case basicProfile(GatewaySecurityPolicyRule.BasicProfile)
   }

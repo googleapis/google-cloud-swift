@@ -110,7 +110,7 @@ public struct GitReference: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The reference from which the content such as Infrastructure as Code (IaC)
   /// should be read.
-  public enum ReferenceOneOf: Codable, Equatable, Sendable {
+  public enum ReferenceOneOf: Equatable, Sendable {
     /// Optional. The name of the branch from which content should be read.
     /// For example: "main"
     case branch(Swift.String)

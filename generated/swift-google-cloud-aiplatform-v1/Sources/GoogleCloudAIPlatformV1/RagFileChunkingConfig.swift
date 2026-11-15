@@ -187,7 +187,7 @@
     }
 
     /// Specifies the chunking config for RagFiles.
-    public enum ChunkingConfigOneOf: Codable, Equatable, Sendable {
+    public enum ChunkingConfigOneOf: Equatable, Sendable {
       /// Specifies the fixed length chunking config.
       indirect case fixedLengthChunking(RagFileChunkingConfig.FixedLengthChunking)
     }

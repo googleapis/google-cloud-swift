@@ -133,7 +133,7 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum DescriptorOneOf: Codable, Equatable, Sendable {
+  public enum DescriptorOneOf: Equatable, Sendable {
     /// Cloud Run fully-managed resource that receives the events. The resource
     /// should be in the same project as the trigger.
     indirect case cloudRun(CloudRun)

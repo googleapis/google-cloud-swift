@@ -148,7 +148,7 @@ public struct CreateDlpJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configuration details for the specific type of job to run.
-  public enum JobOneOf: Codable, Equatable, Sendable {
+  public enum JobOneOf: Equatable, Sendable {
     /// An inspection job scans a storage repository for InfoTypes.
     indirect case inspectJob(InspectJobConfig)
     /// A risk analysis job calculates re-identification risk metrics for a

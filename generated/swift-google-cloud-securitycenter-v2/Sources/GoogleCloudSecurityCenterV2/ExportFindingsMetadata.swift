@@ -104,7 +104,7 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// The destination to export findings to.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Required. The destination big query dataset to export findings to.
     indirect case bigQueryDestination(BigQueryDestination)
   }

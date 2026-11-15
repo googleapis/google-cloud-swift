@@ -688,7 +688,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// The processor version is either a pretrained Google-managed foundation
     /// model or a custom Generative AI model created by the user.
-    public enum ModelInfoOneOf: Codable, Equatable, Sendable {
+    public enum ModelInfoOneOf: Equatable, Sendable {
       /// Information for a pretrained Google-managed foundation model.
       indirect case foundationGenAiModelInfo(
         ProcessorVersion.GenAiModelInfo.FoundationGenAiModelInfo)

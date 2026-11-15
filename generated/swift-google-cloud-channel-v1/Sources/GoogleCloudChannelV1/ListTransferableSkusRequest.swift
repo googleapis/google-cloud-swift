@@ -173,7 +173,7 @@ public struct ListTransferableSkusRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// Specifies the identity of transferred customer.
   /// Either a cloud_identity_id of the customer or the customer name is
   /// required to look up transferable SKUs.
-  public enum TransferredCustomerIdentityOneOf: Codable, Equatable, Sendable {
+  public enum TransferredCustomerIdentityOneOf: Equatable, Sendable {
     /// Customer's Cloud Identity ID
     case cloudIdentityId(Swift.String)
     /// A reseller is required to create a customer and use the resource name of

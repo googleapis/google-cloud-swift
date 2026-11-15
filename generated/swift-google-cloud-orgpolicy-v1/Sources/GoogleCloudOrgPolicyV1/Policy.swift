@@ -758,7 +758,7 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// Attempting to set a `Policy` with a `policy_type` not set will result in an
   /// `invalid_argument` error.
-  public enum PolicyTypeOneOf: Codable, Equatable, Sendable {
+  public enum PolicyTypeOneOf: Equatable, Sendable {
     /// List of values either allowed or disallowed.
     indirect case listPolicy(Policy.ListPolicy)
     /// For boolean `Constraints`, whether to enforce the `Constraint` or not.

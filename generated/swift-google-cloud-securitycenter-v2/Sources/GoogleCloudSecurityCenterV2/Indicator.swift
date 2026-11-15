@@ -594,7 +594,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The signature.
-    public enum SignatureOneOf: Codable, Equatable, Sendable {
+    public enum SignatureOneOf: Equatable, Sendable {
       /// Signature indicating that a binary family was matched.
       indirect case memoryHashSignature(Indicator.ProcessSignature.MemoryHashSignature)
       /// Signature indicating that a YARA rule was matched.

@@ -205,7 +205,7 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
-    public enum DetectorNameOneOf: Codable, Equatable, Sendable {
+    public enum DetectorNameOneOf: Equatable, Sendable {
       /// Full resource name for the curated rule this activity corresponds to.
       /// Format:
       /// projects/{project}/locations/{location}/instances/{instance}/curatedRules/{rule}

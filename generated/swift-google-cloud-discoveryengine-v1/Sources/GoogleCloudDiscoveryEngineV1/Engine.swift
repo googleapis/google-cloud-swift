@@ -896,7 +896,7 @@
 
         /// Feature related configurations applied to a specific type of media
         /// recommendation engines.
-        public enum TypeDedicatedConfigOneOf: Codable, Equatable, Sendable {
+        public enum TypeDedicatedConfigOneOf: Equatable, Sendable {
           /// Recommended for you engine feature config.
           indirect case recommendedForYouConfig(
             Engine.MediaRecommendationEngineConfig.RecommendedForYouFeatureConfig)
@@ -2536,7 +2536,7 @@
     }
 
     /// Additional config specs that defines the behavior of the engine.
-    public enum EngineConfigOneOf: Codable, Equatable, Sendable {
+    public enum EngineConfigOneOf: Equatable, Sendable {
       /// Configurations for the Chat Engine. Only applicable if
       /// [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type] is
       /// [SOLUTION_TYPE_CHAT][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_CHAT].
@@ -2566,7 +2566,7 @@
     }
 
     /// Engine metadata to monitor the status of the engine.
-    public enum EngineMetadataOneOf: Codable, Equatable, Sendable {
+    public enum EngineMetadataOneOf: Equatable, Sendable {
       /// Output only. Additional information of the Chat Engine. Only applicable
       /// if [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type]
       /// is

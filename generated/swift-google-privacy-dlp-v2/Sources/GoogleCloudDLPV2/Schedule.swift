@@ -96,7 +96,7 @@ public struct Schedule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of schedule.
-  public enum OptionOneOf: Codable, Equatable, Sendable {
+  public enum OptionOneOf: Equatable, Sendable {
     /// With this option a job is started on a regular periodic basis. For
     /// example: every day (86400 seconds).
     ///

@@ -301,7 +301,7 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// URI of the policy or the policy revision.
-  public enum UriOneOf: Codable, Equatable, Sendable {
+  public enum UriOneOf: Equatable, Sendable {
     /// Optional. URI of the policy.
     case policyUri(Swift.String)
     /// Optional. URI of the policy revision.

@@ -125,7 +125,7 @@
 
     /// Union field identity_provider_id. Identity Provider id can be a user or a
     /// group.
-    public enum IdentityProviderIdOneOf: Codable, Equatable, Sendable {
+    public enum IdentityProviderIdOneOf: Equatable, Sendable {
       /// User identifier.
       /// For Google Workspace user account, user_id should be the google workspace
       /// user email.

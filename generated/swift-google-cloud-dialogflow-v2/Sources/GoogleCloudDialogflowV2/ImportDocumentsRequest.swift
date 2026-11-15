@@ -143,7 +143,7 @@
     ///
     /// Dialogflow supports up to 350 documents in each request. If you try to
     /// import more, Dialogflow will return an error.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// Optional. The Google Cloud Storage location for the documents.
       /// The path can include a wildcard.
       ///

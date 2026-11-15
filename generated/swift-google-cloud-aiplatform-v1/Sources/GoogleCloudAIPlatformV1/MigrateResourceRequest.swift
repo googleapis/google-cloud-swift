@@ -628,7 +628,7 @@
       }
     }
 
-    public enum RequestOneOf: Codable, Equatable, Sendable {
+    public enum RequestOneOf: Equatable, Sendable {
       /// Config for migrating Version in ml.googleapis.com to Vertex AI's Model.
       indirect case migrateMlEngineModelVersionConfig(
         MigrateResourceRequest.MigrateMlEngineModelVersionConfig)

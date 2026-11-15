@@ -159,7 +159,7 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// constraints.
   ///
   /// This takes precedence over the `source_node_type` field.
-  public enum SourceNodeOneOf: Codable, Equatable, Sendable {
+  public enum SourceNodeOneOf: Equatable, Sendable {
     /// Optional. The specific node type name that acts as the source for this
     /// edge.
     case srcNodeType(Swift.String)
@@ -174,7 +174,7 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// constraints.
   ///
   /// This takes precedence over the `destination_node_type` field.
-  public enum DestinationNodeOneOf: Codable, Equatable, Sendable {
+  public enum DestinationNodeOneOf: Equatable, Sendable {
     /// Optional. The specific node type name that acts as the destination for
     /// this edge.
     case destNodeType(Swift.String)

@@ -195,7 +195,7 @@ public struct ScannedData: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The range of scanned data
-  public enum DataRangeOneOf: Codable, Equatable, Sendable {
+  public enum DataRangeOneOf: Equatable, Sendable {
     /// The range denoted by values of an incremental field
     indirect case incrementalField(ScannedData.IncrementalField)
   }

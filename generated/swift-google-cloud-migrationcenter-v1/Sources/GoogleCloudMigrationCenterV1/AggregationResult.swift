@@ -552,7 +552,7 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     indirect case count(AggregationResult.Count)
     indirect case sum(AggregationResult.Sum)
     indirect case histogram(AggregationResult.Histogram)

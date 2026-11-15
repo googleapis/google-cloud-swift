@@ -96,7 +96,7 @@ public struct FileStoreRegex: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of resource regex to use.
-  public enum ResourceRegexOneOf: Codable, Equatable, Sendable {
+  public enum ResourceRegexOneOf: Equatable, Sendable {
     /// Optional. Regex for Cloud Storage.
     indirect case cloudStorageRegex(CloudStorageRegex)
   }

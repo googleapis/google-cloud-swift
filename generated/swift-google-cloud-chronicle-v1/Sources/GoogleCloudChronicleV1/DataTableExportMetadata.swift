@@ -204,7 +204,7 @@ public struct DataTableExportMetadata: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Result or error of the export operation.
-  public enum ResultMetadataOrErrorOneOf: Codable, Equatable, Sendable {
+  public enum ResultMetadataOrErrorOneOf: Equatable, Sendable {
     /// The error result of the export operation in case of failure.
     indirect case error(GoogleRpc.Status)
     /// Metadata about the export operation's result in case of success.

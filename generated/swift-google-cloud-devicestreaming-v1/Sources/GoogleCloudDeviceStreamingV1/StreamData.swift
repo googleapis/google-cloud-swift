@@ -112,7 +112,7 @@ public struct StreamData: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The data of the stream, either bytes or "Close", indicating that the stream
   /// is done.
-  public enum ContentsOneOf: Codable, Equatable, Sendable {
+  public enum ContentsOneOf: Equatable, Sendable {
     /// Data in the stream.
     case data(Foundation.Data)
     /// The stream is closing. EOF.

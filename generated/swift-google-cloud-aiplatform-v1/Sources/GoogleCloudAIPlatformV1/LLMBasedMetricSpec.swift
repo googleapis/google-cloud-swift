@@ -140,7 +140,7 @@
     }
 
     /// Source of the rubrics to be used for evaluation.
-    public enum RubricsSourceOneOf: Codable, Equatable, Sendable {
+    public enum RubricsSourceOneOf: Equatable, Sendable {
       /// Use a pre-defined group of rubrics associated with the input.
       /// Refers to a key in the rubric_groups map of EvaluationInstance.
       case rubricGroupKey(Swift.String)

@@ -296,7 +296,7 @@ public struct BasicSli: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// This SLI can be evaluated on the basis of availability or latency.
-  public enum SliCriteriaOneOf: Codable, Equatable, Sendable {
+  public enum SliCriteriaOneOf: Equatable, Sendable {
     /// Good service is defined to be the count of requests made to this service
     /// that return successfully.
     indirect case availability(BasicSli.AvailabilityCriteria)

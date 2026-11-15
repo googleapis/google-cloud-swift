@@ -272,7 +272,7 @@
     }
 
     /// Normally, detail feedback is provided when answer is not fully correct.
-    public enum DetailFeedbackOneOf: Codable, Equatable, Sendable {
+    public enum DetailFeedbackOneOf: Equatable, Sendable {
       /// Detail feedback of agent assist suggestions.
       indirect case agentAssistantDetailFeedback(AgentAssistantFeedback)
     }

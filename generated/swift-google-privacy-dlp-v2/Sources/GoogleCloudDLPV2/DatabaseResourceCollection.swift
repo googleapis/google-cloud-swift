@@ -99,7 +99,7 @@ public struct DatabaseResourceCollection: Codable, Equatable, GoogleWKT._AnyPack
 
   /// The first filter containing a pattern that matches a database resource will
   /// be used.
-  public enum PatternOneOf: Codable, Equatable, Sendable {
+  public enum PatternOneOf: Equatable, Sendable {
     /// A collection of regular expressions to match a database resource against.
     indirect case includeRegexes(DatabaseResourceRegexes)
   }

@@ -111,7 +111,7 @@ public struct OAuthJWTCredentials: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Credentials.
-  public enum CredentialsOneOf: Codable, Equatable, Sendable {
+  public enum CredentialsOneOf: Equatable, Sendable {
     /// RS credentials.
     indirect case rsCredentials(RSCredentials)
   }

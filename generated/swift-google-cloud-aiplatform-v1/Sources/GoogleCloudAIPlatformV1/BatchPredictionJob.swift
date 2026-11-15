@@ -578,7 +578,7 @@
       }
 
       /// Required. The source of the input.
-      public enum SourceOneOf: Codable, Equatable, Sendable {
+      public enum SourceOneOf: Equatable, Sendable {
         /// The Cloud Storage location for the input instances.
         indirect case gcsSource(GcsSource)
         /// The BigQuery location of the input table.
@@ -936,7 +936,7 @@
       }
 
       /// Required. The destination of the output.
-      public enum DestinationOneOf: Codable, Equatable, Sendable {
+      public enum DestinationOneOf: Equatable, Sendable {
         /// The Cloud Storage location of the directory where the output is
         /// to be written to. In the given directory a new directory is created.
         /// Its name is `prediction-<model-display-name>-<job-create-time>`,
@@ -1133,7 +1133,7 @@
       }
 
       /// The output location into which prediction output is written.
-      public enum OutputLocationOneOf: Codable, Equatable, Sendable {
+      public enum OutputLocationOneOf: Equatable, Sendable {
         /// Output only. The full path of the Cloud Storage directory created, into
         /// which the prediction output is written.
         case gcsOutputDirectory(Swift.String)

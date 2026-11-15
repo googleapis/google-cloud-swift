@@ -402,7 +402,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Summarization must use either a preexisting conversation profile or one
     /// of the supported default models.
-    public enum ModelSourceOneOf: Codable, Equatable, Sendable {
+    public enum ModelSourceOneOf: Equatable, Sendable {
       /// Resource name of the Dialogflow conversation profile.
       /// Format:
       /// projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
@@ -596,7 +596,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Which scorecards should be scored.
-    public enum ScorecardSourceOneOf: Codable, Equatable, Sendable {
+    public enum ScorecardSourceOneOf: Equatable, Sendable {
       /// A manual list of scorecards to score.
       indirect case scorecardList(AnnotatorSelector.QaConfig.ScorecardList)
     }

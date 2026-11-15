@@ -301,7 +301,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Request data for each BigQuery method.
-  public enum RequestOneOf: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Equatable, Sendable {
     /// Table insert request.
     indirect case tableInsertRequest(TableInsertRequest)
     /// Table update request.
@@ -325,7 +325,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Response data for each BigQuery method.
-  public enum ResponseOneOf: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Equatable, Sendable {
     /// Table insert response.
     indirect case tableInsertResponse(TableInsertResponse)
     /// Table update response.

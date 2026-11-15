@@ -94,7 +94,7 @@ public struct SecretLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The detailed location of the secret.
-  public enum LocationOneOf: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Equatable, Sendable {
     /// The secret is found from a file.
     indirect case fileLocation(FileLocation)
   }

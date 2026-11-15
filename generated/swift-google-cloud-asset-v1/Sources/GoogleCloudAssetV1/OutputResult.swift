@@ -94,7 +94,7 @@ public struct OutputResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Asset export result.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// Export result on Cloud Storage.
     indirect case gcsResult(GcsOutputResult)
   }

@@ -105,7 +105,7 @@ public struct ParameterSubstitutionRule: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The type of substitution.
-  public enum SubstitutionTypeOneOf: Codable, Equatable, Sendable {
+  public enum SubstitutionTypeOneOf: Equatable, Sendable {
     /// The placeholder substitution rule.
     indirect case placeholderSubstitutionRule(PlaceholderSubstitutionRule)
     /// The attribute substitution rule.

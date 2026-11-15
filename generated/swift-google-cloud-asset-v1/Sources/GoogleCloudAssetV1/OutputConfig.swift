@@ -105,7 +105,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Asset export destination.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Destination on Cloud Storage.
     indirect case gcsDestination(GoogleCloudAssetV1.GcsDestination)
     /// Destination on BigQuery. The output table stores the fields in asset

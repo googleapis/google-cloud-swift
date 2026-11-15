@@ -611,7 +611,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Supported auth types.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// UserPassword.
     indirect case userPassword(AuthConfig.UserPassword)
     /// Oauth2JwtBearer.

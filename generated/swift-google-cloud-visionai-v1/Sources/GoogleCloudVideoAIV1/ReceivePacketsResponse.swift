@@ -103,7 +103,7 @@ public struct ReceivePacketsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// Possible response types.
-  public enum ResponseOneOf: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Equatable, Sendable {
     /// A genuine data payload originating from the sender.
     indirect case packet(Packet)
     /// A control message from the server.

@@ -105,7 +105,7 @@ public struct NetworkResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Particular type of configuration for this network resource.
-  public enum ConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Equatable, Sendable {
     /// Optional. Immutable. If set, indicates that a new network should be
     /// created.
     indirect case newNetwork(NewNetworkConfig)

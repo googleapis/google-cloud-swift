@@ -149,7 +149,7 @@
     }
 
     /// Action details.
-    public enum ActionOneOf: Codable, Equatable, Sendable {
+    public enum ActionOneOf: Equatable, Sendable {
       /// Optional. Agent obtained a message from the customer.
       indirect case userUtterance(UserUtterance)
       /// Optional. Action performed by the agent as a message.

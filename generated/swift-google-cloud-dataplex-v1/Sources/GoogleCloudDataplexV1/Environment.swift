@@ -499,13 +499,13 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Hardware config
-    public enum ResourcesOneOf: Codable, Equatable, Sendable {
+    public enum ResourcesOneOf: Equatable, Sendable {
       /// Optional. Compute resources needed for analyze interactive workloads.
       indirect case compute(Environment.InfrastructureSpec.ComputeResources)
     }
 
     /// Software config
-    public enum RuntimeOneOf: Codable, Equatable, Sendable {
+    public enum RuntimeOneOf: Equatable, Sendable {
       /// Required. Software Runtime Configuration for analyze interactive
       /// workloads.
       indirect case osImage(Environment.InfrastructureSpec.OsImageRuntime)

@@ -139,7 +139,7 @@ public struct FeedbackLabel: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Label type.
-  public enum LabelTypeOneOf: Codable, Equatable, Sendable {
+  public enum LabelTypeOneOf: Equatable, Sendable {
     /// String label.
     case label(Swift.String)
     /// QaAnswer label.

@@ -258,7 +258,7 @@
       }
 
       /// Schema representation.
-      public enum SchemaOneOf: Codable, Equatable, Sendable {
+      public enum SchemaOneOf: Equatable, Sendable {
         /// Required. The OpenAPI schema specified as a text.
         case textSchema(Swift.String)
       }
@@ -1549,7 +1549,7 @@
       }
 
       /// The auth configuration.
-      public enum AuthConfigOneOf: Codable, Equatable, Sendable {
+      public enum AuthConfigOneOf: Equatable, Sendable {
         /// Config for API key auth.
         indirect case apiKeyConfig(Tool.Authentication.ApiKeyConfig)
         /// Config for OAuth.
@@ -1973,7 +1973,7 @@
     }
 
     /// Specification of the Tool.
-    public enum SpecificationOneOf: Codable, Equatable, Sendable {
+    public enum SpecificationOneOf: Equatable, Sendable {
       /// OpenAPI specification of the Tool.
       indirect case openApiSpec(Tool.OpenApiTool)
       /// Data store search tool specification.

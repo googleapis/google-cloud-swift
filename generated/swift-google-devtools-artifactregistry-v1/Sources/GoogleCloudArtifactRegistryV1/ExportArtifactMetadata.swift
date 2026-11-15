@@ -175,7 +175,7 @@ public struct ExportArtifactMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// The destination the file was exported to.
-    public enum DestinationOneOf: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Equatable, Sendable {
       /// Cloud Storage Object path of the exported file. Examples:
       /// `dst_bucket/file1`, `dst_bucket/sub_dir/file1`
       case gcsObjectPath(Swift.String)

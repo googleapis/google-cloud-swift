@@ -813,7 +813,7 @@ public struct WidgetTool: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The input of the widget tool.
-  public enum InputOneOf: Codable, Equatable, Sendable {
+  public enum InputOneOf: Equatable, Sendable {
     /// Optional. The input parameters of the widget tool.
     indirect case parameters(Schema)
   }

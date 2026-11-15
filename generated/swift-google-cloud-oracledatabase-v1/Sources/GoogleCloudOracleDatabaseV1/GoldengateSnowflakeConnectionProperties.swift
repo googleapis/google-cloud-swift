@@ -281,7 +281,7 @@ public struct GoldengateSnowflakeConnectionProperties: Codable, Equatable, Googl
   }
 
   /// The password Oracle Goldengate uses to connect to Snowflake platform.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password Oracle Goldengate uses to connect to
     /// Snowflake platform in plain text.
     case password(Swift.String)

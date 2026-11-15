@@ -170,7 +170,7 @@ public struct SlurmNodeSet: Codable, Equatable, GoogleWKT._AnyPackable,
   /// with default values.
   ///
   /// [google.cloud.hypercomputecluster.v1.ComputeInstanceSlurmNodeSet]: <doc:ComputeInstanceSlurmNodeSet>
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Optional. If set, indicates that the nodeset should be backed by Compute
     /// Engine instances.
     indirect case computeInstance(ComputeInstanceSlurmNodeSet)

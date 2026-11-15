@@ -638,7 +638,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The Cloud VPC network identifier.
-      public enum NetworkNameOneOf: Codable, Equatable, Sendable {
+      public enum NetworkNameOneOf: Equatable, Sendable {
         /// Optional. The Cloud VPC network in which the job is run. By default,
         /// the Cloud VPC network named Default within the project is used.
         case network(Swift.String)
@@ -669,19 +669,19 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Hardware config.
-    public enum ResourcesOneOf: Codable, Equatable, Sendable {
+    public enum ResourcesOneOf: Equatable, Sendable {
       /// Compute resources needed for a Task when using Dataproc Serverless.
       indirect case batch(Task.InfrastructureSpec.BatchComputeResources)
     }
 
     /// Software config.
-    public enum RuntimeOneOf: Codable, Equatable, Sendable {
+    public enum RuntimeOneOf: Equatable, Sendable {
       /// Container Image Runtime Configuration.
       indirect case containerImage(Task.InfrastructureSpec.ContainerImageRuntime)
     }
 
     /// Networking config.
-    public enum NetworkOneOf: Codable, Equatable, Sendable {
+    public enum NetworkOneOf: Equatable, Sendable {
       /// Vpc network.
       indirect case vpcNetwork(Task.InfrastructureSpec.VpcNetwork)
     }
@@ -942,7 +942,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Trigger only applies for RECURRING tasks.
-    public enum TriggerOneOf: Codable, Equatable, Sendable {
+    public enum TriggerOneOf: Equatable, Sendable {
       /// Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for
       /// running tasks periodically. To explicitly set a timezone to the cron
       /// tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
@@ -1254,7 +1254,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Required. The specification of the main method to call to drive the
     /// job. Specify either the jar file that contains the main class or the
     /// main class name.
-    public enum DriverOneOf: Codable, Equatable, Sendable {
+    public enum DriverOneOf: Equatable, Sendable {
       /// The Cloud Storage URI of the jar file that contains the main class.
       /// The execution args are passed in as a sequence of named process
       /// arguments (`--key=value`).
@@ -1500,7 +1500,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Task template specific user-specified config.
-  public enum ConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Equatable, Sendable {
     /// Config related to running custom Spark tasks.
     indirect case spark(Task.SparkTaskConfig)
     /// Config related to running scheduled Notebooks.

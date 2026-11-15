@@ -97,7 +97,7 @@
     }
 
     /// The destination for evaluation output.
-    public enum DestinationOneOf: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Equatable, Sendable {
       /// Cloud storage destination for evaluation output.
       indirect case gcsDestination(GcsDestination)
     }

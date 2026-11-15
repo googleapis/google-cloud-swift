@@ -329,7 +329,7 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the compilation result to use for this invocation.
-  public enum CompilationSourceOneOf: Codable, Equatable, Sendable {
+  public enum CompilationSourceOneOf: Equatable, Sendable {
     /// Immutable. The name of the compilation result to use for this invocation.
     /// Must be in the format
     /// `projects/*/locations/*/repositories/*/compilationResults/*`.

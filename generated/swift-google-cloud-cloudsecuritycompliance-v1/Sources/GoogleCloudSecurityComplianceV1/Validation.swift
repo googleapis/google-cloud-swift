@@ -110,7 +110,7 @@ public struct Validation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines validators for parameter values.
-  public enum ConstraintOneOf: Codable, Equatable, Sendable {
+  public enum ConstraintOneOf: Equatable, Sendable {
     /// The permitted set of values for the parameter.
     indirect case allowedValues(AllowedValues)
     /// The permitted range for numeric parameters.

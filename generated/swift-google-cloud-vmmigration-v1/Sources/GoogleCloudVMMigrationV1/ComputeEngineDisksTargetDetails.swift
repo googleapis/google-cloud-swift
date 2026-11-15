@@ -115,7 +115,7 @@ public struct ComputeEngineDisksTargetDetails: Codable, Equatable, GoogleWKT._An
   }
 
   /// Details of the VM the disks are attached to.
-  public enum VmTargetOneOf: Codable, Equatable, Sendable {
+  public enum VmTargetOneOf: Equatable, Sendable {
     /// Details of the disks-only migration target.
     indirect case disksTargetDetails(DisksMigrationDisksTargetDetails)
     /// Details for the VM the migrated data disks are attached to.

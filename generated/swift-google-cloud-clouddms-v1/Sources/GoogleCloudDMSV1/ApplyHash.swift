@@ -94,7 +94,7 @@ public struct ApplyHash: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum HashFunctionOneOf: Codable, Equatable, Sendable {
+  public enum HashFunctionOneOf: Equatable, Sendable {
     /// Optional. Generate UUID from the data's byte array
     indirect case uuidFromBytes(GoogleWKT.WKTEmpty)
   }

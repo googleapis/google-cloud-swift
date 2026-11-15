@@ -166,7 +166,7 @@ public struct AccountConnector: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The AccountConnector config.
-  public enum AccountConnectorConfigOneOf: Codable, Equatable, Sendable {
+  public enum AccountConnectorConfigOneOf: Equatable, Sendable {
     /// Optional. Provider OAuth config.
     indirect case providerOauthConfig(ProviderOAuthConfig)
   }

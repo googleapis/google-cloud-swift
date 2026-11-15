@@ -1080,7 +1080,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional details about the event.
-  public enum DetailsOneOf: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Equatable, Sendable {
     /// Details about discovery configuration in effect.
     indirect case config(DiscoveryEvent.ConfigDetails)
     /// Details about the entity associated with the event.

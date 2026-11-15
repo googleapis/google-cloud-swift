@@ -557,7 +557,7 @@
       /// Specify the threshold for demoting watched content, the threshold can be
       /// either percentage or minutes value.
       /// This must be set for `media-complete` event type.
-      public enum DemoteContentWatchedOneOf: Codable, Equatable, Sendable {
+      public enum DemoteContentWatchedOneOf: Equatable, Sendable {
         /// Specifies the content watched percentage threshold for demotion.
         /// Threshold value must be between [0, 1.0] inclusive.
         case contentWatchedPercentageThreshold(Swift.Float)
@@ -671,7 +671,7 @@
     }
 
     /// Industry vertical specific config.
-    public enum VerticalConfigOneOf: Codable, Equatable, Sendable {
+    public enum VerticalConfigOneOf: Equatable, Sendable {
       /// The MediaConfig of the serving configuration.
       indirect case mediaConfig(ServingConfig.MediaConfig)
       /// The GenericConfig of the serving configuration.

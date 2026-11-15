@@ -271,7 +271,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// source can be a directly pushed `ResourceBundle` or
     /// `CloudBuildRepository` containing the kubernetes configuration.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// Information specifying `ResourceBundle`.
       indirect case resourceBundle(FleetPackage.ResourceBundleTag)
       /// Information specifying `CloudBuildRepository`.
@@ -516,7 +516,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// variants_pattern is the configuration for how to read the repository
     /// to find variants.
-    public enum VariantsOneOf: Codable, Equatable, Sendable {
+    public enum VariantsOneOf: Equatable, Sendable {
       /// Optional. variants_pattern is a glob pattern that will be used to find
       /// variants in the repository. Examples: `variants/*.yaml`, `us-*`
       case variantsPattern(Swift.String)
@@ -621,7 +621,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// target for the fleet package.
-    public enum TargetOneOf: Codable, Equatable, Sendable {
+    public enum TargetOneOf: Equatable, Sendable {
       /// The GKE fleet information.
       indirect case fleet(Fleet)
     }
@@ -728,7 +728,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// strategy for selecting a variant.
-    public enum StrategyOneOf: Codable, Equatable, Sendable {
+    public enum StrategyOneOf: Equatable, Sendable {
       /// Required. variant_name_template is a template that can refer to
       /// variables containing cluster membership metadata such as location,
       /// name, and labels to generate the name of the variant for a target

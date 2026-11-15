@@ -216,7 +216,7 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum QueryOneOf: Codable, Equatable, Sendable {
+  public enum QueryOneOf: Equatable, Sendable {
     /// Optional. A SQL statement that's compatible with [BigQuery
     /// SQL](https://cloud.google.com/bigquery/docs/introduction-sql).
     case statement(Swift.String)
@@ -232,7 +232,7 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// * [read_time] - query asset metadata as it was at that point in time.
   /// If data for the timestamp/date range selected does not exist,
   /// it will simply return a valid response with no rows.
-  public enum TimeOneOf: Codable, Equatable, Sendable {
+  public enum TimeOneOf: Equatable, Sendable {
     /// Optional. [start_time] is required. [start_time] must be less than
     /// [end_time] Defaults [end_time] to now if [start_time] is set and
     /// [end_time] isn't. Maximum permitted time range is 7 days.

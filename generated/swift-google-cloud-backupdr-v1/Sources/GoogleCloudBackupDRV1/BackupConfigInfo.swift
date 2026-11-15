@@ -270,7 +270,7 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration Info has the resource format-specific configuration.
-  public enum BackupConfigOneOf: Codable, Equatable, Sendable {
+  public enum BackupConfigOneOf: Equatable, Sendable {
     /// Configuration for a Google Cloud resource.
     indirect case gcpBackupConfig(GcpBackupConfig)
     /// Configuration for an application backed up by a Backup Appliance.

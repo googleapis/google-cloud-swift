@@ -103,7 +103,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The source is required and immutable. Once it is set, it cannot be change
   /// to others.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Immutable. The Dataplex Universal Catalog entity that represents the data
     /// source (e.g. BigQuery table) for DataScan, of the form:
     /// `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.

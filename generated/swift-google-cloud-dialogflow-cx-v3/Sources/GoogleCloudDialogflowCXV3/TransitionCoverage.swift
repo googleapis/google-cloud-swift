@@ -173,7 +173,7 @@
       }
 
       /// A TransitionNode can be either a page or a flow.
-      public enum KindOneOf: Codable, Equatable, Sendable {
+      public enum KindOneOf: Equatable, Sendable {
         /// Indicates a transition to a [Page][google.cloud.dialogflow.cx.v3.Page].
         /// Only some fields such as name and displayname will be set.
         ///
@@ -331,7 +331,7 @@
       }
 
       /// The detailed transition.
-      public enum DetailOneOf: Codable, Equatable, Sendable {
+      public enum DetailOneOf: Equatable, Sendable {
         /// Intent route or condition route.
         indirect case transitionRoute(TransitionRoute)
         /// Event handler.

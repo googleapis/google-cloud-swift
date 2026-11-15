@@ -196,7 +196,7 @@ public struct Toolset: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the toolset.
-  public enum ToolsetTypeOneOf: Codable, Equatable, Sendable {
+  public enum ToolsetTypeOneOf: Equatable, Sendable {
     /// Optional. A toolset that contains a list of tools that are offered by the
     /// MCP server.
     indirect case mcpToolset(McpToolset)

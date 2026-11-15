@@ -114,7 +114,7 @@ public struct DependencyEntityReference: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Required. Unique identifier for the participating entity.
-  public enum IdentifierOneOf: Codable, Equatable, Sendable {
+  public enum IdentifierOneOf: Equatable, Sendable {
     /// The resource name of an operation in the API Hub.
     ///
     /// Format:

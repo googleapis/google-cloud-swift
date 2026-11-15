@@ -96,7 +96,7 @@ public struct PhraseMatchRuleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configuration of the phrase match rule.
-  public enum ConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Equatable, Sendable {
     /// The configuration for the exact match rule.
     indirect case exactMatchConfig(ExactMatchConfig)
   }

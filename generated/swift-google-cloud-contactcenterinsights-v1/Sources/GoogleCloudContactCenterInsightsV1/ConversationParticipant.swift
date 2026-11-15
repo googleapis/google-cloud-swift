@@ -271,7 +271,7 @@ public struct ConversationParticipant: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum ParticipantOneOf: Codable, Equatable, Sendable {
+  public enum ParticipantOneOf: Equatable, Sendable {
     /// The name of the participant provided by Dialogflow. Format:
     /// projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}
     case dialogflowParticipantName(Swift.String)

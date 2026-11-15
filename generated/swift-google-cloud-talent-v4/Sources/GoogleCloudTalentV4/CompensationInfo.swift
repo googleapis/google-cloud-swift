@@ -296,7 +296,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Compensation amount. It could be a fixed amount or a floating range.
-    public enum CompensationAmountOneOf: Codable, Equatable, Sendable {
+    public enum CompensationAmountOneOf: Equatable, Sendable {
       /// Compensation amount.
       indirect case amount(GoogleType.Money)
       /// Compensation range.

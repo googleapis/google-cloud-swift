@@ -116,7 +116,7 @@ public struct PublishRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum FormatOneOf: Codable, Equatable, Sendable {
+  public enum FormatOneOf: Equatable, Sendable {
     /// The Protobuf format of the CloudEvent being published. Specification can
     /// be found here:
     /// https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/protobuf-format.md

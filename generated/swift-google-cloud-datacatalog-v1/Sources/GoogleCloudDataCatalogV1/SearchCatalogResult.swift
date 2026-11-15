@@ -215,7 +215,7 @@ public struct SearchCatalogResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The source system of the entry. Applicable only when the
   /// `search_result_type` is `ENTRY`.
-  public enum SystemOneOf: Codable, Equatable, Sendable {
+  public enum SystemOneOf: Equatable, Sendable {
     /// Output only. The source system that Data Catalog automatically integrates
     /// with, such as BigQuery, Cloud Pub/Sub, or Dataproc Metastore.
     case integratedSystem(IntegratedSystem)

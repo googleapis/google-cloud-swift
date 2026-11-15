@@ -315,7 +315,7 @@
     }
 
     /// Data Source to retrieve contexts.
-    public enum DataSourceOneOf: Codable, Equatable, Sendable {
+    public enum DataSourceOneOf: Equatable, Sendable {
       /// The data source for Vertex RagStore.
       indirect case vertexRagStore(RetrieveContextsRequest.VertexRagStore)
     }

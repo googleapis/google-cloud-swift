@@ -212,7 +212,7 @@
     }
 
     /// Required - The desired input source of the user event data.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// The Inline source for the input content for UserEvents.
       indirect case inlineSource(ImportUserEventsRequest.InlineSource)
       /// Cloud Storage location for the input content.

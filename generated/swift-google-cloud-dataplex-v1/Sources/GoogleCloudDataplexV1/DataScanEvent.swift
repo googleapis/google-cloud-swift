@@ -1477,7 +1477,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The result of the data scan job.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// Data profile result for data profile type data scan.
     indirect case dataProfile(DataScanEvent.DataProfileResult)
     /// Data quality result for data quality type data scan.
@@ -1485,7 +1485,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The applied configs in the data scan job.
-  public enum AppliedConfigsOneOf: Codable, Equatable, Sendable {
+  public enum AppliedConfigsOneOf: Equatable, Sendable {
     /// Applied configs for data profile type data scan.
     indirect case dataProfileConfigs(DataScanEvent.DataProfileAppliedConfigs)
     /// Applied configs for data quality type data scan.

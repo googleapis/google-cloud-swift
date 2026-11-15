@@ -255,7 +255,7 @@
     }
 
     /// The destination to export.
-    public enum DestinationOneOf: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Equatable, Sendable {
       /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to
       /// export the test cases to. The format of this URI must be
       /// `gs://<bucket-name>/<object-name>`. If unspecified, the serialized test

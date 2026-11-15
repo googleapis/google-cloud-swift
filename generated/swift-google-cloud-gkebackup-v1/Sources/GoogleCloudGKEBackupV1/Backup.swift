@@ -554,7 +554,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Platform-specific version
-    public enum PlatformVersionOneOf: Codable, Equatable, Sendable {
+    public enum PlatformVersionOneOf: Equatable, Sendable {
       /// Output only. GKE version
       case gkeVersion(Swift.String)
       /// Output only. Anthos version
@@ -731,7 +731,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   /// value.
   ///
   /// [google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]: <doc:BackupPlan/BackupConfig/BackupScopeOneOf>
-  public enum BackupScopeOneOf: Codable, Equatable, Sendable {
+  public enum BackupScopeOneOf: Equatable, Sendable {
     /// Output only. If True, all namespaces were included in the Backup.
     case allNamespaces(Swift.Bool)
     /// Output only. If set, the list of namespaces that were included in the

@@ -97,7 +97,7 @@ public struct ApplicationOutputParameters: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// The output parameters of the application.
-  public enum ParametersOneOf: Codable, Equatable, Sendable {
+  public enum ParametersOneOf: Equatable, Sendable {
     /// Output only. Helm application output parameters.
     indirect case helmApplicationOutputParameters(HelmApplicationOutputParameters)
   }

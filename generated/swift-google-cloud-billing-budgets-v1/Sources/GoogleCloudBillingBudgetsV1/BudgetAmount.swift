@@ -106,7 +106,7 @@ public struct BudgetAmount: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specification for what amount to use as the budget.
-  public enum BudgetAmountOneOf: Codable, Equatable, Sendable {
+  public enum BudgetAmountOneOf: Equatable, Sendable {
     /// A specified amount to use as the budget.
     /// `currency_code` is optional. If specified when creating a budget, it must
     /// match the currency of the billing account. If specified when updating a

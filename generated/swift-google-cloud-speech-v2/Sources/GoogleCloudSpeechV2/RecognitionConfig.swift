@@ -186,7 +186,7 @@ public struct RecognitionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Decoding parameters for audio being sent for recognition.
-  public enum DecodingConfigOneOf: Codable, Equatable, Sendable {
+  public enum DecodingConfigOneOf: Equatable, Sendable {
     /// Automatically detect decoding parameters.
     /// Preferred for supported formats.
     indirect case autoDecodingConfig(AutoDetectDecodingConfig)

@@ -244,7 +244,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum StreamOutputConfigOneOf: Codable, Equatable, Sendable {
+  public enum StreamOutputConfigOneOf: Equatable, Sendable {
     /// By default, the output of the node will only be available to downstream
     /// nodes. To consume the direct output from the application node, the output
     /// must be sent to Vision AI Streams at first.

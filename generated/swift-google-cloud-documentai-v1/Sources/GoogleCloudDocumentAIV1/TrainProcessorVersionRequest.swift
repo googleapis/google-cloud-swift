@@ -548,7 +548,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public enum ProcessorFlagsOneOf: Codable, Equatable, Sendable {
+  public enum ProcessorFlagsOneOf: Equatable, Sendable {
     /// Options to control Custom Document Extraction (CDE) Processor.
     indirect case customDocumentExtractionOptions(
       TrainProcessorVersionRequest.CustomDocumentExtractionOptions)

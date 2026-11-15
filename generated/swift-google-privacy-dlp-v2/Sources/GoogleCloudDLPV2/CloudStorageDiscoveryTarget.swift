@@ -120,7 +120,7 @@ public struct CloudStorageDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// How often and when to update profiles.
-  public enum CadenceOneOf: Codable, Equatable, Sendable {
+  public enum CadenceOneOf: Equatable, Sendable {
     /// Optional. How often and when to update profiles. New buckets that match
     /// both the filter and conditions are scanned as quickly as possible
     /// depending on system capacity.

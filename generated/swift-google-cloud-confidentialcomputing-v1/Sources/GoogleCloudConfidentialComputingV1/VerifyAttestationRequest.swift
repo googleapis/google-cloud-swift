@@ -201,7 +201,7 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleWKT._AnyPackab
 
   /// An optional tee attestation report, used to populate hardware rooted
   /// claims.
-  public enum TeeAttestationOneOf: Codable, Equatable, Sendable {
+  public enum TeeAttestationOneOf: Equatable, Sendable {
     /// Optional. A TDX with CCEL and RTMR Attestation Quote.
     indirect case tdCcel(TdxCcelAttestation)
     /// Optional. An SEV-SNP Attestation Report.
@@ -209,7 +209,7 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// An optional device attestation report.
-  public enum DeviceAttestationOneOf: Codable, Equatable, Sendable {
+  public enum DeviceAttestationOneOf: Equatable, Sendable {
     /// Optional. An Nvidia attestation report for GPU and NVSwitch devices.
     indirect case nvidiaAttestation(NvidiaAttestation)
   }

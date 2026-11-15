@@ -593,14 +593,14 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
 
   /// Configuration for an external data store containing objects that will
   /// be converted to conversations.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// A cloud storage bucket source. Note that any previously ingested objects
     /// from the source will be skipped to avoid duplication.
     indirect case gcsSource(IngestConversationsRequest.GcsSource)
   }
 
   /// Configuration for converting individual `source` objects to conversations.
-  public enum ObjectConfigOneOf: Codable, Equatable, Sendable {
+  public enum ObjectConfigOneOf: Equatable, Sendable {
     /// Configuration for when `source` contains conversation transcripts.
     indirect case transcriptObjectConfig(IngestConversationsRequest.TranscriptObjectConfig)
   }

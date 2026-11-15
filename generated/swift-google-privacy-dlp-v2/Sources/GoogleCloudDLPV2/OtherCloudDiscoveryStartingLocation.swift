@@ -181,7 +181,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
     }
 
     /// The scope of this starting location.
-    public enum ScopeOneOf: Codable, Equatable, Sendable {
+    public enum ScopeOneOf: Equatable, Sendable {
       /// The AWS account ID that this discovery config applies to.
       /// Within an AWS organization, you can find the AWS account ID inside an
       /// AWS account ARN. Example:
@@ -216,7 +216,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
   }
 
   /// The other cloud starting location for discovery.
-  public enum LocationOneOf: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Equatable, Sendable {
     /// The AWS starting location for discovery.
     indirect case awsLocation(OtherCloudDiscoveryStartingLocation.AwsDiscoveryStartingLocation)
   }

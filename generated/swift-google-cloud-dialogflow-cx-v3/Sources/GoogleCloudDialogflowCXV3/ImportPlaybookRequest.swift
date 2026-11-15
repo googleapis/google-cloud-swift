@@ -140,7 +140,7 @@
     /// Dialogflow performs a read operation for the Cloud Storage object
     /// on the caller's behalf, so your request authentication must
     /// have read permissions for the object. For more information, see
-    public enum PlaybookOneOf: Codable, Equatable, Sendable {
+    public enum PlaybookOneOf: Equatable, Sendable {
       /// [Dialogflow access
       /// control]
       /// (https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).

@@ -109,7 +109,7 @@ public struct ProviderOAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// OAuth Provider ID. It could be Developer Connect owned or providers
   /// provided.
-  public enum OauthProviderIdOneOf: Codable, Equatable, Sendable {
+  public enum OauthProviderIdOneOf: Equatable, Sendable {
     /// Optional. Immutable. Developer Connect provided OAuth.
     case systemProviderId(SystemProvider)
   }

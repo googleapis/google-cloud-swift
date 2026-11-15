@@ -231,7 +231,7 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Source of the values for the filter.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// Optional. Manual options provided by the user.
       indirect case manualOptions(AdvancedFilterConfig.ManualOptions)
       /// Optional. Query options to fetch the values from the query engine.

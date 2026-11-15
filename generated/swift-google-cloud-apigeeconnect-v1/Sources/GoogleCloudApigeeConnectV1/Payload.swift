@@ -108,7 +108,7 @@ public struct Payload: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The kind of payload.
-  public enum KindOneOf: Codable, Equatable, Sendable {
+  public enum KindOneOf: Equatable, Sendable {
     /// The HttpRequest proto.
     indirect case httpRequest(HttpRequest)
     /// The information of stream.

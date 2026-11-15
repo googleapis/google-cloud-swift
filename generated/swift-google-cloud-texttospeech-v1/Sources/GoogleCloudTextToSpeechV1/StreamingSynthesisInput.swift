@@ -115,7 +115,7 @@ public struct StreamingSynthesisInput: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum InputSourceOneOf: Codable, Equatable, Sendable {
+  public enum InputSourceOneOf: Equatable, Sendable {
     /// The raw text to be synthesized. It is recommended that each input
     /// contains complete, terminating sentences, which results in better prosody
     /// in the output audio.

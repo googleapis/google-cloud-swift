@@ -1267,7 +1267,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// In case of an imported cluster, this field contains information about the
   /// source this cluster was imported from.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Output only. Cluster created from backup.
     indirect case backupSource(BackupSource)
     /// Output only. Cluster created via DMS migration.

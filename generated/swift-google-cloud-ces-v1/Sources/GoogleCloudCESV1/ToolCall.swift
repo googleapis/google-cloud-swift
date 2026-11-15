@@ -133,7 +133,7 @@ public struct ToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The identifier of the tool to execute. It could be either a persisted tool
   /// or a tool from a toolset.
-  public enum ToolIdentifierOneOf: Codable, Equatable, Sendable {
+  public enum ToolIdentifierOneOf: Equatable, Sendable {
     /// Optional. The name of the tool to execute.
     /// Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
     case tool(Swift.String)

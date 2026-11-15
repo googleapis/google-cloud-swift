@@ -112,7 +112,7 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum OutputOneOf: Codable, Equatable, Sendable {
+  public enum OutputOneOf: Equatable, Sendable {
     /// If this message is populated, recognition results are written to the
     /// provided Google Cloud Storage URI.
     indirect case gcsOutputConfig(GcsOutputConfig)

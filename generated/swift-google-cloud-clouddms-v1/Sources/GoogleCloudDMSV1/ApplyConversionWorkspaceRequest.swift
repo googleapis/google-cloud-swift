@@ -138,7 +138,7 @@ public struct ApplyConversionWorkspaceRequest: Codable, Equatable, GoogleWKT._An
   }
 
   /// Which destination to use when applying the conversion workspace.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Optional. Fully qualified (Uri) name of the destination connection
     /// profile.
     case connectionProfile(Swift.String)

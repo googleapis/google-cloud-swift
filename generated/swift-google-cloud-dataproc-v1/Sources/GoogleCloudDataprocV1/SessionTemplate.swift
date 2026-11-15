@@ -189,7 +189,7 @@ public struct SessionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The session configuration.
-  public enum SessionConfigOneOf: Codable, Equatable, Sendable {
+  public enum SessionConfigOneOf: Equatable, Sendable {
     /// Optional. Jupyter session config.
     indirect case jupyterSession(JupyterConfig)
     /// Optional. Spark connect session config.

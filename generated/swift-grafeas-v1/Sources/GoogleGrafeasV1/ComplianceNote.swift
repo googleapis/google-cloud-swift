@@ -261,12 +261,12 @@ public struct ComplianceNote: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ComplianceTypeOneOf: Codable, Equatable, Sendable {
+  public enum ComplianceTypeOneOf: Equatable, Sendable {
     indirect case cisBenchmark(ComplianceNote.CisBenchmark)
   }
 
   /// Potential impact of the suggested remediation
-  public enum PotentialImpactOneOf: Codable, Equatable, Sendable {
+  public enum PotentialImpactOneOf: Equatable, Sendable {
     case impact(Swift.String)
   }
 

@@ -254,7 +254,7 @@ public struct Boundary: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The scope defining the boundary.
-  public enum ScopeOneOf: Codable, Equatable, Sendable {
+  public enum ScopeOneOf: Equatable, Sendable {
     /// Optional. The resource name of the CRM node being attached to the
     /// boundary.
     /// Format: `projects/{project-number}` or `projects/{project-id}`

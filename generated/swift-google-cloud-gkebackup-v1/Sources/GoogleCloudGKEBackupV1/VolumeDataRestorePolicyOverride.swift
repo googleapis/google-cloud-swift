@@ -105,7 +105,7 @@ public struct VolumeDataRestorePolicyOverride: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public enum ScopeOneOf: Codable, Equatable, Sendable {
+  public enum ScopeOneOf: Equatable, Sendable {
     /// A list of PVCs to apply the policy override to.
     indirect case selectedPvcs(NamespacedNames)
   }

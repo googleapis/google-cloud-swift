@@ -165,7 +165,7 @@
       }
 
       /// TTL can be either a number of days or indefinite.
-      public enum TimeInfoOneOf: Codable, Equatable, Sendable {
+      public enum TimeInfoOneOf: Equatable, Sendable {
         /// Defines the number of days for session TTL.
         case days(Swift.Int32)
       }

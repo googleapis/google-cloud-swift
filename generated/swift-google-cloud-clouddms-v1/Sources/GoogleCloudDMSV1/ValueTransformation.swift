@@ -186,7 +186,7 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum FilterOneOf: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Equatable, Sendable {
     /// Optional. Value is null
     indirect case isNull(GoogleWKT.WKTEmpty)
     /// Optional. Value is found in the specified list.
@@ -199,7 +199,7 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case doubleComparison(DoubleComparisonFilter)
   }
 
-  public enum ActionOneOf: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Equatable, Sendable {
     /// Optional. Set to null
     indirect case assignNull(GoogleWKT.WKTEmpty)
     /// Optional. Set to a specific value (value is converted to fit the target

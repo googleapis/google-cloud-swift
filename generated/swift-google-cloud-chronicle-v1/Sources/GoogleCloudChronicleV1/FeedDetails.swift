@@ -1213,7 +1213,7 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional details of the feed. Depends on the feed type.
-  public enum DetailsOneOf: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Equatable, Sendable {
     /// Anomali IOC settings.
     indirect case anomaliSettings(AnomaliIocSettings)
     /// Azure AD Context settings.

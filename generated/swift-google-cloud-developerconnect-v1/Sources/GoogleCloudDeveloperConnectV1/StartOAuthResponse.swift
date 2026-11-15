@@ -150,7 +150,7 @@ public struct StartOAuthResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The ID of the service provider.
-  public enum IdOneOf: Codable, Equatable, Sendable {
+  public enum IdOneOf: Equatable, Sendable {
     /// The ID of the system provider.
     case systemProviderId(SystemProvider)
   }

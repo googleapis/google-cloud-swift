@@ -114,7 +114,7 @@ public struct Canary: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The mode to use for the canary deployment strategy.
-  public enum ModeOneOf: Codable, Equatable, Sendable {
+  public enum ModeOneOf: Equatable, Sendable {
     /// Optional. Configures the progressive based deployment for a Target.
     indirect case canaryDeployment(CanaryDeployment)
     /// Optional. Configures the progressive based deployment for a Target, but

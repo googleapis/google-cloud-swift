@@ -129,7 +129,7 @@ public struct AttestorPublicKey: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum PublicKeyOneOf: Codable, Equatable, Sendable {
+  public enum PublicKeyOneOf: Equatable, Sendable {
     /// ASCII-armored representation of a PGP public key, as the entire output by
     /// the command `gpg --export --armor foo@example.com` (either LF or CRLF
     /// line endings).

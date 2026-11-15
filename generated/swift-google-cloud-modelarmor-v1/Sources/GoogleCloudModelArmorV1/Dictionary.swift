@@ -112,7 +112,7 @@ public struct Dictionary: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Source of the dictionary.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Message defining a list of words or phrases.
     indirect case wordList(WordList)
   }

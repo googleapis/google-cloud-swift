@@ -380,7 +380,7 @@ public struct ImportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The app to import.
-  public enum AppOneOf: Codable, Equatable, Sendable {
+  public enum AppOneOf: Equatable, Sendable {
     /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI
     /// from which to import app. The format of this URI must be
     /// `gs://<bucket-name>/<object-name>`.

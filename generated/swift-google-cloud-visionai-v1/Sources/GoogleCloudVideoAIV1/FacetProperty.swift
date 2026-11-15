@@ -560,7 +560,7 @@ public struct FacetProperty: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum RangeFacetConfigOneOf: Codable, Equatable, Sendable {
+  public enum RangeFacetConfigOneOf: Equatable, Sendable {
     /// Fixed range facet bucket config.
     indirect case fixedRangeBucketSpec(FacetProperty.FixedRangeBucketSpec)
     /// Custom range facet bucket config.

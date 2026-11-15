@@ -124,7 +124,7 @@ public struct BigQueryDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackabl
   /// The generation rule includes the logic on how frequently
   /// to update the data profiles. If not specified, discovery will re-run and
   /// update no more than once a month if new columns appear in the table.
-  public enum FrequencyOneOf: Codable, Equatable, Sendable {
+  public enum FrequencyOneOf: Equatable, Sendable {
     /// How often and when to update profiles. New tables that match both the
     /// filter and conditions are scanned as quickly as possible depending on
     /// system capacity.

@@ -315,7 +315,7 @@
     }
 
     /// The parser to use for RagFiles.
-    public enum ParserOneOf: Codable, Equatable, Sendable {
+    public enum ParserOneOf: Equatable, Sendable {
       /// The Layout Parser to use for RagFiles.
       indirect case layoutParser(RagFileParsingConfig.LayoutParser)
       /// The LLM Parser to use for RagFiles.

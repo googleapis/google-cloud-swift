@@ -197,7 +197,7 @@ public struct Companion: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Ad resource associated with the companion ad.
-  public enum AdResourceOneOf: Codable, Equatable, Sendable {
+  public enum AdResourceOneOf: Equatable, Sendable {
     /// The IFrame ad resource associated with the companion ad.
     indirect case iframeAdResource(IframeAdResource)
     /// The static ad resource associated with the companion ad.

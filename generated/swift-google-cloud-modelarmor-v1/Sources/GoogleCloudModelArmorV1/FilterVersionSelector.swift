@@ -105,7 +105,7 @@ public struct FilterVersionSelector: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Specifies whether to use a specific version or an alias.
   /// The 'oneof' ensures that only one of these fields can be set.
-  public enum VersionSpecOneOf: Codable, Equatable, Sendable {
+  public enum VersionSpecOneOf: Equatable, Sendable {
     /// Allows customers to pin to a specific, immutable Filter Version.
     /// This provides stability, as this will not change after a version upgrade.
     /// Expected format is a case-sensitive string, e.g., "v1", "v2".

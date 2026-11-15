@@ -330,7 +330,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Stage specific status information, if any.
-    public enum StageSpecificStatusOneOf: Codable, Equatable, Sendable {
+    public enum StageSpecificStatusOneOf: Equatable, Sendable {
       /// Read pool instances upgrade metadata.
       indirect case readPoolInstancesUpgrade(
         UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus)

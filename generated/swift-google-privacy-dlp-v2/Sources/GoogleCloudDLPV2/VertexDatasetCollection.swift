@@ -96,7 +96,7 @@ public struct VertexDatasetCollection: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// The pattern used to filter dataset resources.
-  public enum PatternOneOf: Codable, Equatable, Sendable {
+  public enum PatternOneOf: Equatable, Sendable {
     /// The regex used to filter dataset resources.
     indirect case vertexDatasetRegexes(VertexDatasetRegexes)
   }

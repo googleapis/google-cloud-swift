@@ -417,7 +417,7 @@ public struct GoldengateOracleConnectionProperties: Codable, Equatable, GoogleWK
   /// The password Oracle Goldengate uses to connect the associated system of the
   /// given technology. It must conform to the specific security requirements
   /// including length, case sensitivity, and so on.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password Oracle Goldengate uses in plain text.
     case password(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret

@@ -213,7 +213,7 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The image to use when creating the disk.
     indirect case image(BootDiskDefaults.DiskImageDefaults)
   }

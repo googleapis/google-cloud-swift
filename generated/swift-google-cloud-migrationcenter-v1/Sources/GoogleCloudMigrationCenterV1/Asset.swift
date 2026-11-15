@@ -178,7 +178,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The internal information of an asset. Only one field can be specified
   /// with different attributes based on the type of the asset.
-  public enum AssetDetailsOneOf: Codable, Equatable, Sendable {
+  public enum AssetDetailsOneOf: Equatable, Sendable {
     /// Output only. Asset information specific for virtual and physical
     /// machines.
     indirect case machineDetails(MachineDetails)

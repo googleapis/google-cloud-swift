@@ -104,7 +104,7 @@ public struct ExportAppResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The exported app.
-  public enum AppOneOf: Codable, Equatable, Sendable {
+  public enum AppOneOf: Equatable, Sendable {
     /// App folder compressed as a zip file.
     case appContent(Foundation.Data)
     /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI

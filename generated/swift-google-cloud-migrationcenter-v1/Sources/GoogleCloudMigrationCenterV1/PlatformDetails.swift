@@ -130,7 +130,7 @@ public struct PlatformDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum VendorDetailsOneOf: Codable, Equatable, Sendable {
+  public enum VendorDetailsOneOf: Equatable, Sendable {
     /// VMware specific details.
     indirect case vmwareDetails(VmwarePlatformDetails)
     /// AWS EC2 specific details.

@@ -124,7 +124,7 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleWKT._AnyP
   }
 
   /// The target storage.
-  public enum TargetStorageOneOf: Codable, Equatable, Sendable {
+  public enum TargetStorageOneOf: Equatable, Sendable {
     /// Required. The target disk.
     indirect case targetDisk(ComputeEngineDisk)
   }

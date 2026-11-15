@@ -131,7 +131,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum VolumeTypeOneOf: Codable, Equatable, Sendable {
+  public enum VolumeTypeOneOf: Equatable, Sendable {
     /// Secret represents a secret that should populate this volume.
     indirect case secret(SecretVolumeSource)
     /// For Cloud SQL volumes, contains the specific instances that should be

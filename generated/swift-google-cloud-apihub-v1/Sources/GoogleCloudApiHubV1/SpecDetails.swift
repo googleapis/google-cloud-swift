@@ -104,7 +104,7 @@ public struct SpecDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum DetailsOneOf: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Equatable, Sendable {
     /// Output only. Additional details apart from `OperationDetails` parsed from
     /// an OpenAPI spec. The OperationDetails parsed from the spec can be
     /// obtained by using

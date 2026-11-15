@@ -195,7 +195,7 @@ public struct ImportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Google Cloud Storage source message.
     indirect case gcsSource(ImportIssueModelRequest.GcsSource)
   }

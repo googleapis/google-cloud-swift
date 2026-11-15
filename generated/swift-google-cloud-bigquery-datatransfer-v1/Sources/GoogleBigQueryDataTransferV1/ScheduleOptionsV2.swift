@@ -117,7 +117,7 @@ public struct ScheduleOptionsV2: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Data transfer schedules.
-  public enum ScheduleOneOf: Codable, Equatable, Sendable {
+  public enum ScheduleOneOf: Equatable, Sendable {
     /// Time based transfer schedule options. This is the default schedule
     /// option.
     indirect case timeBasedSchedule(TimeBasedSchedule)

@@ -357,7 +357,7 @@
       }
     }
 
-    public enum ReadOptionOneOf: Codable, Equatable, Sendable {
+    public enum ReadOptionOneOf: Equatable, Sendable {
       /// Each read instance consists of exactly one read timestamp and one or more
       /// entity IDs identifying entities of the corresponding EntityTypes whose
       /// Features are requested.

@@ -606,7 +606,7 @@
       }
 
       /// The source, which is either plain text or SSML.
-      public enum SourceOneOf: Codable, Equatable, Sendable {
+      public enum SourceOneOf: Equatable, Sendable {
         /// The raw text to be synthesized.
         case text(Swift.String)
         /// The SSML text to be synthesized. For more information, see
@@ -967,7 +967,7 @@
         }
 
         /// Content of the segment.
-        public enum ContentOneOf: Codable, Equatable, Sendable {
+        public enum ContentOneOf: Equatable, Sendable {
           /// Raw audio synthesized from the Dialogflow agent's response using
           /// the output config specified in the request.
           case audio(Foundation.Data)
@@ -1100,7 +1100,7 @@
       }
 
       /// Endpoint to transfer the call to.
-      public enum EndpointOneOf: Codable, Equatable, Sendable {
+      public enum EndpointOneOf: Equatable, Sendable {
         /// Transfer the call to a phone number
         /// in [E.164 format](https://en.wikipedia.org/wiki/E.164).
         case phoneNumber(Swift.String)
@@ -1340,7 +1340,7 @@
     }
 
     /// Required. The rich response message.
-    public enum MessageOneOf: Codable, Equatable, Sendable {
+    public enum MessageOneOf: Equatable, Sendable {
       /// Returns a text response.
       indirect case text(ResponseMessage.Text)
       /// Returns a response containing a custom, platform-specific payload.

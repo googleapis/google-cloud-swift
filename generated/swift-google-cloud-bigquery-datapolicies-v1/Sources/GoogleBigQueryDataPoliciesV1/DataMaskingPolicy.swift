@@ -304,7 +304,7 @@ public struct DataMaskingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A masking expression to bind to the data masking rule.
-  public enum MaskingExpressionOneOf: Codable, Equatable, Sendable {
+  public enum MaskingExpressionOneOf: Equatable, Sendable {
     /// A predefined masking expression.
     case predefinedExpression(DataMaskingPolicy.PredefinedExpression)
     /// The name of the BigQuery routine that contains the custom masking

@@ -104,7 +104,7 @@ public struct ImportYumArtifactsErrorInfo: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// The source that was not imported.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Google Cloud Storage location requested.
     indirect case gcsSource(ImportYumArtifactsGcsSource)
   }

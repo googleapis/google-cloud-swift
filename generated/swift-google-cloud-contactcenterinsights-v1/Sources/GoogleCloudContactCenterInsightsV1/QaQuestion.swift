@@ -286,7 +286,7 @@ public struct QaQuestion: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The answer value may be one of a few different types.
-    public enum ValueOneOf: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Equatable, Sendable {
       /// String value.
       case strValue(Swift.String)
       /// Numerical value.

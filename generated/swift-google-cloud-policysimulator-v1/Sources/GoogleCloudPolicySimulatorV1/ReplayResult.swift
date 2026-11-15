@@ -149,7 +149,7 @@ public struct ReplayResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The result of replaying the access tuple.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// The difference between the principal's access under the current
     /// (baseline) policies and the principal's access under the proposed
     /// (simulated) policies.

@@ -512,7 +512,7 @@
           }
         }
 
-        public enum KindOneOf: Codable, Equatable, Sendable {
+        public enum KindOneOf: Equatable, Sendable {
           /// Artifact resource id from MLMD. Which is the last portion of an
           /// artifact resource name:
           /// `projects/{project}/locations/{location}/metadataStores/default/artifacts/{artifact_id}`.

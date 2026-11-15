@@ -530,7 +530,7 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
       }
     }
 
-    public enum GovernedAssetOneOf: Codable, Equatable, Sendable {
+    public enum GovernedAssetOneOf: Equatable, Sendable {
       /// A Google Cloud resource governed by the organization
       /// policies of the
       /// [AnalyzeOrgPolicyGovernedAssetsRequest.constraint][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsRequest.constraint].

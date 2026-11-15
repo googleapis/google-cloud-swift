@@ -361,7 +361,7 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
   /// DataScan scheduling and trigger settings.
   ///
   /// If not specified, the default is `onDemand`.
-  public enum ModeOneOf: Codable, Equatable, Sendable {
+  public enum ModeOneOf: Equatable, Sendable {
     /// The scan runs once via `RunDataScan` API.
     indirect case onDemand(GoogleCloudDataplexV1.Trigger.OnDemand)
     /// The scan is scheduled to run periodically.

@@ -275,7 +275,7 @@ public struct SerializedPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Source uri of the policy or the policy revision.
-  public enum SourceUriOneOf: Codable, Equatable, Sendable {
+  public enum SourceUriOneOf: Equatable, Sendable {
     /// Optional. URI of the policy.
     case policyUri(Swift.String)
     /// Optional. URI of the policy revision.

@@ -126,7 +126,7 @@ public struct PurgeProductsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The Products to delete.
-  public enum TargetOneOf: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Equatable, Sendable {
     /// Specify which ProductSet contains the Products to be deleted.
     indirect case productSetPurgeConfig(ProductSetPurgeConfig)
     /// If delete_orphan_products is true, all Products that are not in any

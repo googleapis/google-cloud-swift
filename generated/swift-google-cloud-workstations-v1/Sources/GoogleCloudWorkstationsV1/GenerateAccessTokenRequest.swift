@@ -126,7 +126,7 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// Desired expiration or lifetime of the access token.
-  public enum ExpirationOneOf: Codable, Equatable, Sendable {
+  public enum ExpirationOneOf: Equatable, Sendable {
     /// Desired expiration time of the access token. This value must
     /// be at most 24 hours in the future. If a value is not specified, the
     /// token's expiration time will be set to a default value of 1 hour in the

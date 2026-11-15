@@ -125,7 +125,7 @@
     /// Represents the standard deviation of the gaussian kernel
     /// that will be used to add noise to the interpolated inputs
     /// prior to computing gradients.
-    public enum GradientNoiseSigmaOneOf: Codable, Equatable, Sendable {
+    public enum GradientNoiseSigmaOneOf: Equatable, Sendable {
       /// This is a single float value and will be used to add noise to all the
       /// features. Use this field when all features are normalized to have the
       /// same distribution: scale to range [0, 1], [-1, 1] or z-scoring, where

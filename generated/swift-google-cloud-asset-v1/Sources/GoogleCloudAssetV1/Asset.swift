@@ -252,7 +252,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A representation of an [access
   /// policy](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
-  public enum AccessContextPolicyOneOf: Codable, Equatable, Sendable {
+  public enum AccessContextPolicyOneOf: Equatable, Sendable {
     /// Also refer to the [access policy user
     /// guide](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
     indirect case accessPolicy(GoogleIdentityAccessContextManagerV1.AccessPolicy)

@@ -132,7 +132,7 @@ public struct ContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Data of the item either in the byte array or UTF-8 string form, or table.
-  public enum DataItemOneOf: Codable, Equatable, Sendable {
+  public enum DataItemOneOf: Equatable, Sendable {
     /// String data to inspect or redact.
     case value(Swift.String)
     /// Structured content for inspection. See

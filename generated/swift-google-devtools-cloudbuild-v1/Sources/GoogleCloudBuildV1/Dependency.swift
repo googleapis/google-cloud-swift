@@ -317,7 +317,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The type of git source repo (url or dev connect).
-    public enum RepotypeOneOf: Codable, Equatable, Sendable {
+    public enum RepotypeOneOf: Equatable, Sendable {
       /// Location of the Git repository.
       case url(Swift.String)
       /// The Developer Connect Git repository link formatted as
@@ -348,7 +348,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of dependency to fetch.
-  public enum DepOneOf: Codable, Equatable, Sendable {
+  public enum DepOneOf: Equatable, Sendable {
     /// If set to true disable all dependency fetching (ignoring the default
     /// source as well).
     case empty(Swift.Bool)

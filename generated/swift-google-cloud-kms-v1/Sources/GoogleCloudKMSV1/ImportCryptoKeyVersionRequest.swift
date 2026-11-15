@@ -270,7 +270,7 @@ public struct ImportCryptoKeyVersionRequest: Codable, Equatable, GoogleWKT._AnyP
   /// instead.
   ///
   /// [google.cloud.kms.v1.ImportCryptoKeyVersionRequest.wrapped_key]: <doc:ImportCryptoKeyVersionRequest/wrappedKey>
-  public enum WrappedKeyMaterialOneOf: Codable, Equatable, Sendable {
+  public enum WrappedKeyMaterialOneOf: Equatable, Sendable {
     /// Optional. This field has the same meaning as
     /// [wrapped_key][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.wrapped_key].
     /// Prefer to use that field in new work. Either that field or this field

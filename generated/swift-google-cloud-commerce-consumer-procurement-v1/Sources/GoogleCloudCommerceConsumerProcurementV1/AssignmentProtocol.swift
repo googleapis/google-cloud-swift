@@ -257,7 +257,7 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of assignment protocol.
-  public enum AssignmentTypeOneOf: Codable, Equatable, Sendable {
+  public enum AssignmentTypeOneOf: Equatable, Sendable {
     /// Allow manual assignments triggered by administrative operations only.
     indirect case manualAssignmentType(AssignmentProtocol.ManualAssignmentType)
     /// Allow automatic assignments triggered by data plane operations.

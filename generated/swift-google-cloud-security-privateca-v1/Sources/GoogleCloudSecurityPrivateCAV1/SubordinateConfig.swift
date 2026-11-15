@@ -190,7 +190,7 @@ public struct SubordinateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum SubordinateConfigOneOf: Codable, Equatable, Sendable {
+  public enum SubordinateConfigOneOf: Equatable, Sendable {
     /// Required. This can refer to a
     /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
     /// that was used to create a subordinate

@@ -113,7 +113,7 @@ public struct BinaryAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum BinauthzMethodOneOf: Codable, Equatable, Sendable {
+  public enum BinauthzMethodOneOf: Equatable, Sendable {
     /// Optional. If True, indicates to use the default project's binary
     /// authorization policy. If False, binary authorization will be disabled.
     case useDefault(Swift.Bool)

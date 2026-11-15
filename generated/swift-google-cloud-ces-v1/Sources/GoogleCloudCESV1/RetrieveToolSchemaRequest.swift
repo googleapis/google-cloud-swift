@@ -116,7 +116,7 @@ public struct RetrieveToolSchemaRequest: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// The identifier of the tool to retrieve the schema for. It could be either a
   /// persisted tool or a tool from a toolset.
-  public enum ToolIdentifierOneOf: Codable, Equatable, Sendable {
+  public enum ToolIdentifierOneOf: Equatable, Sendable {
     /// Optional. The name of the tool to retrieve the schema for.
     /// Format:
     /// projects/{project}/locations/{location}/apps/{app}/tools/{tool}

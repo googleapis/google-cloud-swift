@@ -254,7 +254,7 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// How transformation errors should be handled.
-  public enum ModeOneOf: Codable, Equatable, Sendable {
+  public enum ModeOneOf: Equatable, Sendable {
     /// Throw an error
     indirect case throwError(TransformationErrorHandling.ThrowError)
     /// Ignore errors

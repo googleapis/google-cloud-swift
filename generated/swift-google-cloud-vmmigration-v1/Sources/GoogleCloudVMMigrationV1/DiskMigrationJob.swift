@@ -305,7 +305,7 @@ public struct DiskMigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Unattached source disk details.
-  public enum SourceDiskDetailsOneOf: Codable, Equatable, Sendable {
+  public enum SourceDiskDetailsOneOf: Equatable, Sendable {
     /// Details of the unattached AWS source disk.
     indirect case awsSourceDiskDetails(AwsSourceDiskDetails)
   }

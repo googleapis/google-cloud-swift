@@ -105,7 +105,7 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public enum ConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Equatable, Sendable {
     /// Required. YARN autoscaling configuration.
     indirect case yarnConfig(BasicYarnAutoscalingConfig)
   }

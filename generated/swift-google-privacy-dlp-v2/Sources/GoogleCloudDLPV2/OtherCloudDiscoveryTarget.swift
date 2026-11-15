@@ -133,7 +133,7 @@ public struct OtherCloudDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Type of cadence.
-  public enum CadenceOneOf: Codable, Equatable, Sendable {
+  public enum CadenceOneOf: Equatable, Sendable {
     /// How often and when to update data profiles. New resources that match both
     /// the filter and conditions are scanned as quickly as possible depending on
     /// system capacity.

@@ -342,12 +342,12 @@
       }
     }
 
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// The Cloud Storage input instances.
       indirect case exampleGcsSource(Examples.ExampleGcsSource)
     }
 
-    public enum ConfigOneOf: Codable, Equatable, Sendable {
+    public enum ConfigOneOf: Equatable, Sendable {
       /// The full configuration for the generated index, the semantics are the
       /// same as [metadata][google.cloud.aiplatform.v1.Index.metadata] and should
       /// match

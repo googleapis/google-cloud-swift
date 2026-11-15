@@ -630,7 +630,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Job configuration information.
-  public enum ConfigurationOneOf: Codable, Equatable, Sendable {
+  public enum ConfigurationOneOf: Equatable, Sendable {
     /// Query job information.
     indirect case query(JobConfiguration.Query)
     /// Load job information.

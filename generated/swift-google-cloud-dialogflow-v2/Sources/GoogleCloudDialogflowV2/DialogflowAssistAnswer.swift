@@ -115,7 +115,7 @@
     }
 
     /// Result from DetectIntent for one matched intent.
-    public enum ResultOneOf: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Equatable, Sendable {
       /// Result from v2 agent.
       indirect case queryResult(QueryResult)
       /// An intent suggestion generated from conversation.

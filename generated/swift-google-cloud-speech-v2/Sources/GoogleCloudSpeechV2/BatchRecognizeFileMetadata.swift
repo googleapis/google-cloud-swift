@@ -135,7 +135,7 @@ public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// The audio source, which is a Google Cloud Storage URI.
-  public enum AudioSourceOneOf: Codable, Equatable, Sendable {
+  public enum AudioSourceOneOf: Equatable, Sendable {
     /// Cloud Storage URI for the audio file.
     case uri(Swift.String)
   }

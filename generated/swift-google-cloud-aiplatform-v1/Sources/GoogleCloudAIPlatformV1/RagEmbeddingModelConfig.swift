@@ -204,7 +204,7 @@
     }
 
     /// The model config to use.
-    public enum ModelConfigOneOf: Codable, Equatable, Sendable {
+    public enum ModelConfigOneOf: Equatable, Sendable {
       /// The Vertex AI Prediction Endpoint that either refers to a publisher model
       /// or an endpoint that is hosting a 1P fine-tuned text embedding model.
       /// Endpoints hosting non-1P fine-tuned text embedding models are

@@ -355,7 +355,7 @@
     }
 
     /// The original conversational query.
-    public enum QueryOneOf: Codable, Equatable, Sendable {
+    public enum QueryOneOf: Equatable, Sendable {
       /// If [natural language text][google.cloud.dialogflow.cx.v3.TextInput] was
       /// provided as input, this field will contain a copy of the text.
       ///

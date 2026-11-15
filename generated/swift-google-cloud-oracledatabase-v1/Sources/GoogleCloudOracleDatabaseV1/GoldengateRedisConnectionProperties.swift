@@ -508,7 +508,7 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleWKT
 
   /// The password Oracle Goldengate uses to connect the associated system of
   /// the given technology.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password Oracle Goldengate uses for Redis
     /// connection in plain text.
     case password(Swift.String)
@@ -520,7 +520,7 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleWKT
   }
 
   /// The TrustStore password.
-  public enum TrustStorePasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum TrustStorePasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The TrustStore password in plain text.
     case trustStorePassword(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret
@@ -530,7 +530,7 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleWKT
   }
 
   /// The KeyStore password.
-  public enum KeyStorePasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum KeyStorePasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The KeyStore password in plain text.
     case keyStorePassword(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret

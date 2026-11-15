@@ -112,7 +112,7 @@ public struct UserEventInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the input.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Required. The Inline source for the input content for UserEvents.
     indirect case userEventInlineSource(UserEventInlineSource)
     /// Required. Google Cloud Storage location for the input content.

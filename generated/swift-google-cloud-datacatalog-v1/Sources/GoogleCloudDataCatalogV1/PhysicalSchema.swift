@@ -580,7 +580,7 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum SchemaOneOf: Codable, Equatable, Sendable {
+  public enum SchemaOneOf: Equatable, Sendable {
     /// Schema in Avro JSON format.
     indirect case avro(PhysicalSchema.AvroSchema)
     /// Schema in Thrift format.

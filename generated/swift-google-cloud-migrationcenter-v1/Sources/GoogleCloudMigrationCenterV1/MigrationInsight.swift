@@ -104,7 +104,7 @@ public struct MigrationInsight: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A target for the migration.
-  public enum MigrationTargetOneOf: Codable, Equatable, Sendable {
+  public enum MigrationTargetOneOf: Equatable, Sendable {
     /// Output only. A Google Compute Engine target.
     indirect case computeEngineTarget(ComputeEngineMigrationTarget)
   }

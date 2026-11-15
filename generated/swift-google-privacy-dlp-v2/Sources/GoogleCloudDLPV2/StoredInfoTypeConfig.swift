@@ -132,7 +132,7 @@ public struct StoredInfoTypeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Stored infotype types.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// StoredInfoType where findings are defined by a dictionary of phrases.
     indirect case largeCustomDictionary(LargeCustomDictionaryConfig)
     /// Store dictionary-based CustomInfoType.

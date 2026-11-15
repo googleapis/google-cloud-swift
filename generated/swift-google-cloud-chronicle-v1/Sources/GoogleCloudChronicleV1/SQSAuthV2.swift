@@ -105,7 +105,7 @@ public struct SQSAuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// auth tyoe for the SQS queue.
-  public enum AuthTypeOneOf: Codable, Equatable, Sendable {
+  public enum AuthTypeOneOf: Equatable, Sendable {
     /// Required. Auth key and secret for the SQS queue.
     indirect case sqsV2AccessKeySecretAuth(SQSV2AccessKeySecretAuth)
     /// Required. AWS IAM Role for Identity Federation.

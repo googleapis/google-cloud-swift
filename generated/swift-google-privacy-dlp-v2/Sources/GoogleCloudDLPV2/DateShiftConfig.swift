@@ -131,7 +131,7 @@ public struct DateShiftConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Method for calculating shift that takes context into consideration. If
   /// set, must also set context. Can only be applied to table items.
-  public enum MethodOneOf: Codable, Equatable, Sendable {
+  public enum MethodOneOf: Equatable, Sendable {
     /// Causes the shift to be computed based on this key and the context. This
     /// results in the same shift for the same context and crypto_key. If
     /// set, must also set context. Can only be applied to table items.

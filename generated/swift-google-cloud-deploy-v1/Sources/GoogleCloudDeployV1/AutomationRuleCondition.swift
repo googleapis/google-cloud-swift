@@ -106,7 +106,7 @@ public struct AutomationRuleCondition: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Details specific to the automation rule type.
-  public enum RuleTypeConditionOneOf: Codable, Equatable, Sendable {
+  public enum RuleTypeConditionOneOf: Equatable, Sendable {
     /// Optional. TimedPromoteReleaseCondition contains rule conditions specific
     /// to a an Automation with a timed promote release rule defined.
     indirect case timedPromoteReleaseCondition(TimedPromoteReleaseCondition)

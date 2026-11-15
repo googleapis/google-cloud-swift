@@ -112,7 +112,7 @@ public struct VmImage: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The reference to an external Compute Engine VM image.
-  public enum ImageOneOf: Codable, Equatable, Sendable {
+  public enum ImageOneOf: Equatable, Sendable {
     /// Optional. Use VM image name to find the image.
     case name(Swift.String)
     /// Optional. Use this VM image family to find the image; the newest image in

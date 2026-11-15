@@ -236,7 +236,7 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
   }
 
   /// The connection profile on which to run discover.
-  public enum TargetOneOf: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Equatable, Sendable {
     /// Optional. An ad-hoc connection profile configuration.
     indirect case connectionProfile(ConnectionProfile)
     /// Optional. A reference to an existing connection profile.
@@ -244,7 +244,7 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
   }
 
   /// The depth of the retrieved hierarchy of data objects.
-  public enum HierarchyOneOf: Codable, Equatable, Sendable {
+  public enum HierarchyOneOf: Equatable, Sendable {
     /// Optional. Whether to retrieve the full hierarchy of data objects (TRUE)
     /// or only the current level (FALSE).
     case fullHierarchy(Swift.Bool)
@@ -254,7 +254,7 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
   }
 
   /// The data object to populate with child data objects and metadata.
-  public enum DataObjectOneOf: Codable, Equatable, Sendable {
+  public enum DataObjectOneOf: Equatable, Sendable {
     /// Optional. Oracle RDBMS to enrich with child data objects and metadata.
     indirect case oracleRdbms(OracleRdbms)
     /// Optional. MySQL RDBMS to enrich with child data objects and metadata.

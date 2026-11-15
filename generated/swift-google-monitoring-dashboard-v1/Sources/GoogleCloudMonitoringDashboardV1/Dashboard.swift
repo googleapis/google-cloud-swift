@@ -169,7 +169,7 @@ public struct Dashboard: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A dashboard's root container element that defines the layout style.
-  public enum LayoutOneOf: Codable, Equatable, Sendable {
+  public enum LayoutOneOf: Equatable, Sendable {
     /// Content is arranged with a basic layout that re-flows a simple list of
     /// informational elements like widgets or tiles.
     indirect case gridLayout(GridLayout)

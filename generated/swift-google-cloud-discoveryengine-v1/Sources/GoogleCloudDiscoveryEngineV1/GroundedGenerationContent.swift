@@ -167,7 +167,7 @@
       }
 
       /// Holder of data. It only supports text for now.
-      public enum DataOneOf: Codable, Equatable, Sendable {
+      public enum DataOneOf: Equatable, Sendable {
         /// Inline text.
         case text(Swift.String)
       }

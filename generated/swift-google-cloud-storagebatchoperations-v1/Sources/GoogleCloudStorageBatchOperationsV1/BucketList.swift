@@ -171,7 +171,7 @@ public struct BucketList: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Specifies objects to be transformed.
-    public enum ObjectConfigurationOneOf: Codable, Equatable, Sendable {
+    public enum ObjectConfigurationOneOf: Equatable, Sendable {
       /// Specifies objects matching a prefix set.
       indirect case prefixList(PrefixList)
       /// Specifies objects in a manifest file.

@@ -101,7 +101,7 @@ public struct Vector: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the vector.
-  public enum VectorTypeOneOf: Codable, Equatable, Sendable {
+  public enum VectorTypeOneOf: Equatable, Sendable {
     /// A dense vector.
     indirect case dense(DenseVector)
     /// A sparse vector.

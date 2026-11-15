@@ -381,7 +381,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Change Data Capture (CDC) read position.
-    public enum PositionOneOf: Codable, Equatable, Sendable {
+    public enum PositionOneOf: Equatable, Sendable {
       /// MySQL specific log position to start replicating from.
       indirect case mysqlLogPosition(MysqlLogPosition)
       /// Oracle SCN to start replicating from.
@@ -421,7 +421,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The position to start reading from when starting, resuming, or recovering
   /// the stream.
   /// If not set, the system's default value will be used.
-  public enum StartPositionOneOf: Codable, Equatable, Sendable {
+  public enum StartPositionOneOf: Equatable, Sendable {
     /// Optional. Start replicating from the most recent position in the source.
     indirect case mostRecentStartPosition(CdcStrategy.MostRecentStartPosition)
     /// Optional. Resume replication from the next available position in the

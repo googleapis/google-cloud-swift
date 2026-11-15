@@ -172,7 +172,7 @@
 
     /// The backend config of the RagCorpus.
     /// It can be data store and/or retrieval engine.
-    public enum BackendConfigOneOf: Codable, Equatable, Sendable {
+    public enum BackendConfigOneOf: Equatable, Sendable {
       /// Optional. Immutable. The config for the Vector DBs.
       indirect case vectorDbConfig(RagVectorDbConfig)
       /// Optional. Immutable. The config for the Vertex AI Search.

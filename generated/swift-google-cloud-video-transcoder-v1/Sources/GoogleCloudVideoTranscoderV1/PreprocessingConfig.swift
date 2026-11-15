@@ -1064,7 +1064,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Specify the video deinterlacing filter. The default is `yadif`.
-    public enum DeinterlacingFilterOneOf: Codable, Equatable, Sendable {
+    public enum DeinterlacingFilterOneOf: Equatable, Sendable {
       /// Specifies the Yet Another Deinterlacing Filter Configuration.
       indirect case yadif(PreprocessingConfig.Deinterlace.YadifConfig)
       /// Specifies the Bob Weaver Deinterlacing Filter Configuration.

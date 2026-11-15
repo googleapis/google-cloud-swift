@@ -109,7 +109,7 @@
     }
 
     /// The Tuned Model Reference for the model.
-    public enum TunedModelRefOneOf: Codable, Equatable, Sendable {
+    public enum TunedModelRefOneOf: Equatable, Sendable {
       /// Support migration from model registry.
       case tunedModel(Swift.String)
       /// Support migration from tuning job list page, from gemini-1.0-pro-002

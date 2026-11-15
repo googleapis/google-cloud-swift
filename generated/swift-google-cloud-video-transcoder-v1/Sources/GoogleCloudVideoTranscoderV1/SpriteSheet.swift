@@ -224,7 +224,7 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specify either total number of sprites or interval to create sprites.
-  public enum ExtractionStrategyOneOf: Codable, Equatable, Sendable {
+  public enum ExtractionStrategyOneOf: Equatable, Sendable {
     /// Total number of sprites. Create the specified number of sprites
     /// distributed evenly across the timeline of the output media. The default
     /// is 100.

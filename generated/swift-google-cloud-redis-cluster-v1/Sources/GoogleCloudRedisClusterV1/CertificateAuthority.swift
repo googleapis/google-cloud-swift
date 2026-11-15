@@ -270,7 +270,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// server ca information
-  public enum ServerCaOneOf: Codable, Equatable, Sendable {
+  public enum ServerCaOneOf: Equatable, Sendable {
     indirect case managedServerCa(CertificateAuthority.ManagedCertificateAuthority)
   }
 

@@ -277,7 +277,7 @@ public struct SharedTemplateRevision: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// The artifact location of the Terraform in the template.
-  public enum ArtifactLocationOneOf: Codable, Equatable, Sendable {
+  public enum ArtifactLocationOneOf: Equatable, Sendable {
     /// Optional. The git source.
     indirect case gitSource(GoogleCloudDesignCenterV1.GitSource)
     /// Optional. Deprecated: Added new field tf_module_gcs_uri.

@@ -197,7 +197,7 @@
     }
 
     /// The encapsulated schema.
-    public enum SchemaOneOf: Codable, Equatable, Sendable {
+    public enum SchemaOneOf: Equatable, Sendable {
       /// Set if this is an inline schema definition.
       indirect case inlineSchema(InlineSchema)
       /// Set if this is a schema reference.

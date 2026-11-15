@@ -838,13 +838,13 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines where content keys are stored.
-  public enum SecretSourceOneOf: Codable, Equatable, Sendable {
+  public enum SecretSourceOneOf: Equatable, Sendable {
     /// For keys stored in Google Secret Manager.
     indirect case secretManagerKeySource(Encryption.SecretManagerSource)
   }
 
   /// Encryption modes for HLS and MPEG-Dash.
-  public enum EncryptionModeOneOf: Codable, Equatable, Sendable {
+  public enum EncryptionModeOneOf: Equatable, Sendable {
     /// Configuration for HLS AES-128 encryption.
     indirect case aes128(Encryption.Aes128Encryption)
     /// Configuration for HLS SAMPLE-AES encryption.

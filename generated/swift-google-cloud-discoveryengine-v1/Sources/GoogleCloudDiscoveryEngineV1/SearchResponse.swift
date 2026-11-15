@@ -1018,7 +1018,7 @@
         }
 
         /// A facet value which contains values.
-        public enum FacetValueOneOf: Codable, Equatable, Sendable {
+        public enum FacetValueOneOf: Equatable, Sendable {
           /// Text value of a facet, such as "Black" for facet "colors".
           case value(Swift.String)
           /// Interval value for a facet, such as [10, 20) for facet "price". It
@@ -3087,7 +3087,7 @@
           }
 
           /// The expression type.
-          public enum ExprOneOf: Codable, Equatable, Sendable {
+          public enum ExprOneOf: Equatable, Sendable {
             /// String constraint expression.
             indirect case stringConstraint(
               SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter

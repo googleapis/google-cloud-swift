@@ -263,7 +263,7 @@
           }
         }
 
-        public enum DataOneOf: Codable, Equatable, Sendable {
+        public enum DataOneOf: Equatable, Sendable {
           /// Feature value.
           indirect case value(FeatureValue)
         }
@@ -314,7 +314,7 @@
       }
     }
 
-    public enum FormatOneOf: Codable, Equatable, Sendable {
+    public enum FormatOneOf: Equatable, Sendable {
       /// Feature values in KeyValue format.
       indirect case keyValues(FetchFeatureValuesResponse.FeatureNameValuePairList)
       /// Feature values in proto Struct format.

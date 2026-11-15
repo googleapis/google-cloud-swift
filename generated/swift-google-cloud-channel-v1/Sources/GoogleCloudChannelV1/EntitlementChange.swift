@@ -800,7 +800,7 @@ public struct EntitlementChange: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The reason the change was made
-  public enum ChangeReasonOneOf: Codable, Equatable, Sendable {
+  public enum ChangeReasonOneOf: Equatable, Sendable {
     /// Suspension reason for the Entitlement.
     case suspensionReason(Entitlement.SuspensionReason)
     /// Cancellation reason for the Entitlement.

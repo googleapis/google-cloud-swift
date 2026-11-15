@@ -122,14 +122,14 @@ public struct Ranker: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The ranking method to use.
-  public enum RankerOneOf: Codable, Equatable, Sendable {
+  public enum RankerOneOf: Equatable, Sendable {
     /// Reciprocal Rank Fusion ranking.
     indirect case rrf(ReciprocalRankFusion)
   }
 
   /// The reranker to use for final ranking of the results combined by the
   /// ranker.
-  public enum RerankerOneOf: Codable, Equatable, Sendable {
+  public enum RerankerOneOf: Equatable, Sendable {
     /// Optional. Vertex AI ranking.
     indirect case vertexRanker(VertexRanker)
   }

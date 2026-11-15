@@ -144,7 +144,7 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// The location to store the notebook execution result.
-  public enum ExecutionSinkOneOf: Codable, Equatable, Sendable {
+  public enum ExecutionSinkOneOf: Equatable, Sendable {
     /// Optional. The Google Cloud Storage location to upload the result to.
     /// Format: `gs://bucket-name`.
     case gcsOutputBucket(Swift.String)
@@ -152,7 +152,7 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleWKT._AnyPackable
 
   /// The destination of the snapshot of repository files to be available for
   /// read-only access inside a notebook runtime
-  public enum RepositorySnapshotStorageOneOf: Codable, Equatable, Sendable {
+  public enum RepositorySnapshotStorageOneOf: Equatable, Sendable {
     /// Optional. The Google Cloud Storage destination to upload the snapshot to.
     /// For empty URI it defaults to the provided gcs_output_bucket.
     /// Format: `gs://bucket-name/path/`.

@@ -440,13 +440,13 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Location of source.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Required. Source for the build.
     indirect case storageSource(StorageSource)
   }
 
   /// Build type must be one of the following.
-  public enum BuildTypeOneOf: Codable, Equatable, Sendable {
+  public enum BuildTypeOneOf: Equatable, Sendable {
     /// Build the source using Buildpacks.
     indirect case buildpackBuild(SubmitBuildRequest.BuildpacksBuild)
     /// Build the source using Docker. This means the source has a Dockerfile.

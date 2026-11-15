@@ -103,7 +103,7 @@ public struct SdpFilterSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Either of Sensitive Data Protection basic or advanced configuration.
-  public enum SdpConfigurationOneOf: Codable, Equatable, Sendable {
+  public enum SdpConfigurationOneOf: Equatable, Sendable {
     /// Optional. Basic Sensitive Data Protection configuration inspects the
     /// content for sensitive data using a fixed set of six info-types. Sensitive
     /// Data Protection templates cannot be used with basic configuration. Only

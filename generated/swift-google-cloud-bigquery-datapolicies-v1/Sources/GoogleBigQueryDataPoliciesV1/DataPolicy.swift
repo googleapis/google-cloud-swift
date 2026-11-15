@@ -273,14 +273,14 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Label that is bound to this data policy.
-  public enum MatchingLabelOneOf: Codable, Equatable, Sendable {
+  public enum MatchingLabelOneOf: Equatable, Sendable {
     /// Policy tag resource name, in the format of
     /// `projects/{project_number}/locations/{location_id}/taxonomies/{taxonomy_id}/policyTags/{policyTag_id}`.
     case policyTag(Swift.String)
   }
 
   /// The policy that is bound to this data policy.
-  public enum PolicyOneOf: Codable, Equatable, Sendable {
+  public enum PolicyOneOf: Equatable, Sendable {
     /// The data masking policy that specifies the data masking rule to use.
     indirect case dataMaskingPolicy(DataMaskingPolicy)
   }

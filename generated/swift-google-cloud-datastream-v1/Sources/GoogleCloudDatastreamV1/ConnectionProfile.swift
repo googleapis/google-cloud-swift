@@ -306,7 +306,7 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Connection configuration for the ConnectionProfile.
-  public enum ProfileOneOf: Codable, Equatable, Sendable {
+  public enum ProfileOneOf: Equatable, Sendable {
     /// Profile for connecting to an Oracle source.
     indirect case oracleProfile(OracleProfile)
     /// Profile for connecting to a Cloud Storage destination.
@@ -336,7 +336,7 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Connectivity options used to establish a connection to the profile.
-  public enum ConnectivityOneOf: Codable, Equatable, Sendable {
+  public enum ConnectivityOneOf: Equatable, Sendable {
     /// Static Service IP connectivity.
     indirect case staticServiceIpConnectivity(StaticServiceIpConnectivity)
     /// Forward SSH tunnel connectivity.

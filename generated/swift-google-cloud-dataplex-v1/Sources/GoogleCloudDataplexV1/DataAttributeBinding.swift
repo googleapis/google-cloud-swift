@@ -292,7 +292,7 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The reference to the resource that is associated to attributes, or
   /// the query to match resources and associate attributes.
-  public enum ResourceReferenceOneOf: Codable, Equatable, Sendable {
+  public enum ResourceReferenceOneOf: Equatable, Sendable {
     /// Optional. Immutable. The resource name of the resource that is associated
     /// to attributes. Presently, only entity resource is supported in the form:
     /// projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity_id}

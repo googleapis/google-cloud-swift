@@ -276,7 +276,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
   }
 
   /// Server ca information.
-  public enum ServerCaOneOf: Codable, Equatable, Sendable {
+  public enum ServerCaOneOf: Equatable, Sendable {
     /// CA certificate chains for memorystore managed server authentication.
     indirect case managedServerCa(
       SharedRegionalCertificateAuthority.RegionalManagedCertificateAuthority)

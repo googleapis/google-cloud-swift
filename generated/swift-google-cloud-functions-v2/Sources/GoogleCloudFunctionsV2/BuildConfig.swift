@@ -366,7 +366,7 @@ public struct BuildConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// This controls when security patches are applied to the runtime environment.
-  public enum RuntimeUpdatePolicyOneOf: Codable, Equatable, Sendable {
+  public enum RuntimeUpdatePolicyOneOf: Equatable, Sendable {
     indirect case automaticUpdatePolicy(AutomaticUpdatePolicy)
     indirect case onDeployUpdatePolicy(OnDeployUpdatePolicy)
   }

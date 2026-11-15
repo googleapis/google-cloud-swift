@@ -147,7 +147,7 @@
     }
 
     /// The custom task to be executed in this worker pool.
-    public enum TaskOneOf: Codable, Equatable, Sendable {
+    public enum TaskOneOf: Equatable, Sendable {
       /// The custom container task.
       indirect case containerSpec(GoogleCloudAIPlatformV1.ContainerSpec)
       /// The Python packaged task.

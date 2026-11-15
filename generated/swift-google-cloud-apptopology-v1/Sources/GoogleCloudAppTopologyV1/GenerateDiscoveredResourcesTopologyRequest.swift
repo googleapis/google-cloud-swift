@@ -120,7 +120,7 @@ public struct GenerateDiscoveredResourcesTopologyRequest: Codable, Equatable, Go
 
   /// Query the topology by building a graph pattern filter or pre-defined
   /// topology view.
-  public enum QueryOneOf: Codable, Equatable, Sendable {
+  public enum QueryOneOf: Equatable, Sendable {
     /// Filters for the topology nodes and edges; Detail format see GraphPattern
     /// proto. A separate 'LookupSchema' method will be added that will return
     /// the necessary information to be able to construct these filters.

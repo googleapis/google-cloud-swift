@@ -118,7 +118,7 @@ public struct Tile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The attribute key and value for the tile.
-  public enum ProductAttributeOneOf: Codable, Equatable, Sendable {
+  public enum ProductAttributeOneOf: Equatable, Sendable {
     /// The product attribute key-value.
     indirect case productAttributeValue(ProductAttributeValue)
     /// The product attribute key-numeric interval.

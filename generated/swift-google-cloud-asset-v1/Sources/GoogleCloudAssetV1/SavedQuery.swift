@@ -220,7 +220,7 @@ public struct SavedQuery: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum QueryContentOneOf: Codable, Equatable, Sendable {
+    public enum QueryContentOneOf: Equatable, Sendable {
       /// An IAM Policy Analysis query, which could be used in
       /// the
       /// [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy]

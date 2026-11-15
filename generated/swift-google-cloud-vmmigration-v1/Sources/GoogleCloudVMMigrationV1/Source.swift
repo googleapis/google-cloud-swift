@@ -159,7 +159,7 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum SourceDetailsOneOf: Codable, Equatable, Sendable {
+  public enum SourceDetailsOneOf: Equatable, Sendable {
     /// Vmware type source details.
     indirect case vmware(VmwareSourceDetails)
     /// AWS type source details.

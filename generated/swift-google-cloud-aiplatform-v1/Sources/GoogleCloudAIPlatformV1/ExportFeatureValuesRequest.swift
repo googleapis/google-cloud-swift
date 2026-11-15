@@ -332,7 +332,7 @@
     }
 
     /// Required. The mode in which Feature values are exported.
-    public enum ModeOneOf: Codable, Equatable, Sendable {
+    public enum ModeOneOf: Equatable, Sendable {
       /// Exports the latest Feature values of all entities of the EntityType
       /// within a time range.
       indirect case snapshotExport(ExportFeatureValuesRequest.SnapshotExport)

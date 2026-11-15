@@ -151,7 +151,7 @@ public struct Interval: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// This field must not be larger than max.
   /// Otherwise, an INVALID_ARGUMENT error is returned.
-  public enum MinOneOf: Codable, Equatable, Sendable {
+  public enum MinOneOf: Equatable, Sendable {
     /// Inclusive lower bound.
     case minimum(Swift.Double)
     /// Exclusive lower bound.
@@ -163,7 +163,7 @@ public struct Interval: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// This field must be not smaller than min.
   /// Otherwise, an INVALID_ARGUMENT error is returned.
-  public enum MaxOneOf: Codable, Equatable, Sendable {
+  public enum MaxOneOf: Equatable, Sendable {
     /// Inclusive upper bound.
     case maximum(Swift.Double)
     /// Exclusive upper bound.

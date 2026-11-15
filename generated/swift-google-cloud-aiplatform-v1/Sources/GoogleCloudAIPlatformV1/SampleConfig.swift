@@ -257,14 +257,14 @@
 
     /// Decides sample size for the initial batch. initial_batch_sample_percentage
     /// is used by default.
-    public enum InitialBatchSampleSizeOneOf: Codable, Equatable, Sendable {
+    public enum InitialBatchSampleSizeOneOf: Equatable, Sendable {
       /// The percentage of data needed to be labeled in the first batch.
       case initialBatchSamplePercentage(Swift.Int32)
     }
 
     /// Decides sample size for the following batches.
     /// following_batch_sample_percentage is used by default.
-    public enum FollowingBatchSampleSizeOneOf: Codable, Equatable, Sendable {
+    public enum FollowingBatchSampleSizeOneOf: Equatable, Sendable {
       /// The percentage of data needed to be labeled in each following batch
       /// (except the first batch).
       case followingBatchSamplePercentage(Swift.Int32)

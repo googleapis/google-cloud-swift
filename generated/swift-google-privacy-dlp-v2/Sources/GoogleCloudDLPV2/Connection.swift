@@ -124,7 +124,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of connection.
-  public enum PropertiesOneOf: Codable, Equatable, Sendable {
+  public enum PropertiesOneOf: Equatable, Sendable {
     /// Connect to a Cloud SQL instance.
     indirect case cloudSql(CloudSqlProperties)
   }

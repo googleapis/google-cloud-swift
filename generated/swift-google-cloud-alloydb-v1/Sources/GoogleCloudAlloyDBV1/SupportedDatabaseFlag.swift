@@ -636,7 +636,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The restrictions on the flag value per type.
-  public enum RestrictionsOneOf: Codable, Equatable, Sendable {
+  public enum RestrictionsOneOf: Equatable, Sendable {
     /// Restriction on STRING type value.
     indirect case stringRestrictions(SupportedDatabaseFlag.StringRestrictions)
     /// Restriction on INTEGER type value.
@@ -644,7 +644,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The recommended value for the flag by type, if applicable.
-  public enum RecommendedValueOneOf: Codable, Equatable, Sendable {
+  public enum RecommendedValueOneOf: Equatable, Sendable {
     /// The recommended value for a STRING flag.
     case recommendedStringValue(Swift.String)
     /// The recommended value for an INTEGER flag.

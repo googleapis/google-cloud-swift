@@ -116,7 +116,7 @@ public struct CompletionDataInputConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// * `allowlist`:  One JSON allow suggestion per line.
   ///
   /// [google.cloud.retail.v2.BigQuerySource.data_schema]: <doc:BigQuerySource/dataSchema>
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Required. BigQuery input source.
     ///
     /// Add the IAM permission "BigQuery Data Viewer" for

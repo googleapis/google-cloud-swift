@@ -301,7 +301,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Required. Specify the input to the application instance.
-    public enum InputResourceInformationOneOf: Codable, Equatable, Sendable {
+    public enum InputResourceInformationOneOf: Equatable, Sendable {
       /// The direct input resource name.
       /// If the instance type is STREAMING_PREDICTION, the input resource is in
       /// format of

@@ -165,7 +165,7 @@ public struct SearchTeamFoldersResponse: Codable, Equatable, GoogleWKT._AnyPacka
     }
 
     /// The content entry.
-    public enum EntryOneOf: Codable, Equatable, Sendable {
+    public enum EntryOneOf: Equatable, Sendable {
       /// A TeamFolder resource that is in the project / location.
       indirect case teamFolder(TeamFolder)
     }

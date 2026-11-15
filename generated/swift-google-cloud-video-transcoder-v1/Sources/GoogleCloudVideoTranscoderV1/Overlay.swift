@@ -650,7 +650,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Animations can be static or fade, or they can end the previous animation.
-    public enum AnimationTypeOneOf: Codable, Equatable, Sendable {
+    public enum AnimationTypeOneOf: Equatable, Sendable {
       /// Display static overlay object.
       indirect case animationStatic(Overlay.AnimationStatic)
       /// Display overlay object with fade animation.

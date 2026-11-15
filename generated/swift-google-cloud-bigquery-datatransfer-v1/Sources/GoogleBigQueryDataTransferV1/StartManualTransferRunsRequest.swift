@@ -212,7 +212,7 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._Any
 
   /// The requested time specification - this can be a time range or a specific
   /// run_time.
-  public enum TimeOneOf: Codable, Equatable, Sendable {
+  public enum TimeOneOf: Equatable, Sendable {
     /// A time_range start and end timestamp for historical data files or reports
     /// that are scheduled to be transferred by the scheduled transfer run.
     /// requested_time_range must be a past time and cannot include future time

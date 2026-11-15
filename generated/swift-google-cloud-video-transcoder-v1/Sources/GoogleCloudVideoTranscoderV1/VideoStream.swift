@@ -624,7 +624,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// GOP mode can be either by frame count or duration.
-    public enum GopModeOneOf: Codable, Equatable, Sendable {
+    public enum GopModeOneOf: Equatable, Sendable {
       /// Select the GOP size based on the specified frame count. Must be greater
       /// than zero.
       case gopFrameCount(Swift.Int32)
@@ -637,7 +637,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Color format can be sdr or hlg.
-    public enum ColorFormatOneOf: Codable, Equatable, Sendable {
+    public enum ColorFormatOneOf: Equatable, Sendable {
       /// Optional. SDR color format setting for H264.
       indirect case sdr(VideoStream.H264ColorFormatSDR)
       /// Optional. HLG color format setting for H264.
@@ -1259,7 +1259,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// GOP mode can be either by frame count or duration.
-    public enum GopModeOneOf: Codable, Equatable, Sendable {
+    public enum GopModeOneOf: Equatable, Sendable {
       /// Select the GOP size based on the specified frame count. Must be greater
       /// than zero.
       case gopFrameCount(Swift.Int32)
@@ -1272,7 +1272,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Color format can be sdr, hlg, hdr10.
-    public enum ColorFormatOneOf: Codable, Equatable, Sendable {
+    public enum ColorFormatOneOf: Equatable, Sendable {
       /// Optional. SDR color format setting for H265.
       indirect case sdr(VideoStream.H265ColorFormatSDR)
       /// Optional. HLG color format setting for H265.
@@ -1695,7 +1695,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// GOP mode can be either by frame count or duration.
-    public enum GopModeOneOf: Codable, Equatable, Sendable {
+    public enum GopModeOneOf: Equatable, Sendable {
       /// Select the GOP size based on the specified frame count. Must be greater
       /// than zero.
       case gopFrameCount(Swift.Int32)
@@ -1708,7 +1708,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Color format can be sdr or hlg.
-    public enum ColorFormatOneOf: Codable, Equatable, Sendable {
+    public enum ColorFormatOneOf: Equatable, Sendable {
       /// Optional. SDR color format setting for VP9.
       indirect case sdr(VideoStream.Vp9ColorFormatSDR)
       /// Optional. HLG color format setting for VP9.
@@ -1862,7 +1862,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Codec settings can be h264, h265, or vp9.
-  public enum CodecSettingsOneOf: Codable, Equatable, Sendable {
+  public enum CodecSettingsOneOf: Equatable, Sendable {
     /// H264 codec settings.
     indirect case h264(VideoStream.H264CodecSettings)
     /// H265 codec settings.

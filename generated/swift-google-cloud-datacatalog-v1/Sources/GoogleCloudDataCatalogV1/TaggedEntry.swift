@@ -115,7 +115,7 @@ public struct TaggedEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Entry to be ingested.
-  public enum EntryOneOf: Codable, Equatable, Sendable {
+  public enum EntryOneOf: Equatable, Sendable {
     /// Non-encrypted Data Catalog v1 Entry.
     indirect case v1Entry(Entry)
   }

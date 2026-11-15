@@ -110,7 +110,7 @@ public struct MoveAnalysis: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// Analysis result of moving the target resource.
     indirect case analysis(MoveAnalysisResult)
     /// Description of error encountered when performing the analysis.

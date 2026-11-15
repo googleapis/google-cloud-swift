@@ -105,7 +105,7 @@ public struct ConversationDataSource: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// The source of the conversation.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// A Cloud Storage location specification for the audio and transcript.
     indirect case gcsSource(GoogleCloudContactCenterInsightsV1.GcsSource)
     /// The source when the conversation comes from Dialogflow.

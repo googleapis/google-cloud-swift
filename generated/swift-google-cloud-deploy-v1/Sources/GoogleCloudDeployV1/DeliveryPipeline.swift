@@ -206,7 +206,7 @@ public struct DeliveryPipeline: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The ordering configuration of the `DeliveryPipeline`.
-  public enum PipelineOneOf: Codable, Equatable, Sendable {
+  public enum PipelineOneOf: Equatable, Sendable {
     /// Optional. SerialPipeline defines a sequential set of stages for a
     /// `DeliveryPipeline`.
     indirect case serialPipeline(SerialPipeline)

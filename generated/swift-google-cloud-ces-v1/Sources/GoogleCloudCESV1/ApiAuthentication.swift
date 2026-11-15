@@ -129,7 +129,7 @@ public struct ApiAuthentication: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The auth configuration.
-  public enum AuthConfigOneOf: Codable, Equatable, Sendable {
+  public enum AuthConfigOneOf: Equatable, Sendable {
     /// Optional. Config for API key auth.
     indirect case apiKeyConfig(ApiKeyConfig)
     /// Optional. Config for OAuth.

@@ -534,7 +534,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum TypeDedicatedConfigOneOf: Codable, Equatable, Sendable {
+    public enum TypeDedicatedConfigOneOf: Equatable, Sendable {
       /// Additional configs for frequently-bought-together models.
       indirect case frequentlyBoughtTogetherConfig(Model.FrequentlyBoughtTogetherFeaturesConfig)
     }

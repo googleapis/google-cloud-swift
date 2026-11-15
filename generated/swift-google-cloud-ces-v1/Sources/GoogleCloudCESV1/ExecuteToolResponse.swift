@@ -137,7 +137,7 @@ public struct ExecuteToolResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The identifier of the tool that got executed.
-  public enum ToolIdentifierOneOf: Codable, Equatable, Sendable {
+  public enum ToolIdentifierOneOf: Equatable, Sendable {
     /// The name of the tool that got executed.
     /// Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
     case tool(Swift.String)

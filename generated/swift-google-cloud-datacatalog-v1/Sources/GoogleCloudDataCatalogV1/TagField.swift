@@ -241,7 +241,7 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The value of this field.
-  public enum KindOneOf: Codable, Equatable, Sendable {
+  public enum KindOneOf: Equatable, Sendable {
     /// The value of a tag field with a double type.
     case doubleValue(Swift.Double)
     /// The value of a tag field with a string type.

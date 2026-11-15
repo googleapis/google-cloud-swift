@@ -364,7 +364,7 @@ public struct SqlServerSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// This captures various options like no TLS encryption from client if server
   /// doesn't ask for it, only encryption without validation and both encryption
   /// as well as validation of server certificate.
-  public enum EncryptionSettingOneOf: Codable, Equatable, Sendable {
+  public enum EncryptionSettingOneOf: Equatable, Sendable {
     /// If set, Datastream will not enforce encryption. If the DB server mandates
     /// encryption, then connection will be encrypted but server identity will
     /// not be authenticated.

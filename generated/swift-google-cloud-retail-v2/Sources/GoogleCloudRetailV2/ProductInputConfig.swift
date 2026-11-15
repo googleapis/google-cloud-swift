@@ -112,7 +112,7 @@ public struct ProductInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The source of the input.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The Inline source for the input content for products.
     indirect case productInlineSource(ProductInlineSource)
     /// Google Cloud Storage location for the input content.

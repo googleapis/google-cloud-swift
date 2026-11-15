@@ -507,7 +507,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public enum IngressConfigOneOf: Codable, Equatable, Sendable {
+    public enum IngressConfigOneOf: Equatable, Sendable {
       /// The basic ingress config for ClientGateways.
       indirect case config(ClientConnectorService.Ingress.Config)
     }
@@ -693,7 +693,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public enum DestinationTypeOneOf: Codable, Equatable, Sendable {
+    public enum DestinationTypeOneOf: Equatable, Sendable {
       /// A VPC from the consumer project.
       indirect case peeredVpc(ClientConnectorService.Egress.PeeredVpc)
     }

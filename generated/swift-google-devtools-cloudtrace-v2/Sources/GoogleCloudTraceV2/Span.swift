@@ -731,7 +731,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// A `TimeEvent` can contain either an `Annotation` object or a
     /// `MessageEvent` object, but not both.
-    public enum ValueOneOf: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Equatable, Sendable {
       /// Text annotation with a set of attributes.
       indirect case annotation(Span.TimeEvent.Annotation)
       /// An event describing a message sent/received between Spans.

@@ -136,7 +136,7 @@ public struct PostRestorePhaseInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The result of the post-restore action.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// Output only. The fully qualified URI of the Cloud Run Execution triggered
     /// for post-restore actions.
     case cloudRunExecution(Swift.String)

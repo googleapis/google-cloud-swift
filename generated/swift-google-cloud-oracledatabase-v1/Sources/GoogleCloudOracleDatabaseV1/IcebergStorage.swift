@@ -253,7 +253,7 @@ public struct IcebergStorage: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of Iceberg storage.
-  public enum StorageDetailsOneOf: Codable, Equatable, Sendable {
+  public enum StorageDetailsOneOf: Equatable, Sendable {
     /// The Amazon S3 Iceberg storage.
     indirect case amazonS3IcebergStorage(AmazonS3IcebergStorage)
     /// The Google Cloud Storage Iceberg storage.

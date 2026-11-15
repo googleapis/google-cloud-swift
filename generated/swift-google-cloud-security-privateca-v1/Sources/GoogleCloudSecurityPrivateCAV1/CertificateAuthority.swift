@@ -528,7 +528,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum KeyVersionOneOf: Codable, Equatable, Sendable {
+    public enum KeyVersionOneOf: Equatable, Sendable {
       /// The resource name for an existing Cloud KMS CryptoKeyVersion in the
       /// format
       /// `projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*`.

@@ -145,7 +145,7 @@
     }
 
     /// The aggregation result.
-    public enum AggregationResultOneOf: Codable, Equatable, Sendable {
+    public enum AggregationResultOneOf: Equatable, Sendable {
       /// Result for pointwise metric.
       indirect case pointwiseMetricResult(PointwiseMetricResult)
       /// Result for pairwise metric.

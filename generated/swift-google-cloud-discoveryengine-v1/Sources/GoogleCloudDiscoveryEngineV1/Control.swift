@@ -810,7 +810,7 @@
       }
 
       /// Constant value boost or custom ranking based boost specifications.
-      public enum BoostSpecOneOf: Codable, Equatable, Sendable {
+      public enum BoostSpecOneOf: Equatable, Sendable {
         /// Optional. Strength of the boost, which should be in [-1, 1]. Negative
         /// boost means demotion. Default is 0.0 (No-op).
         case fixedBoost(Swift.Float)
@@ -1200,7 +1200,7 @@
       }
     }
 
-    public enum ActionOneOf: Codable, Equatable, Sendable {
+    public enum ActionOneOf: Equatable, Sendable {
       /// Defines a boost-type control
       indirect case boostAction(Control.BoostAction)
       /// Defines a filter-type control

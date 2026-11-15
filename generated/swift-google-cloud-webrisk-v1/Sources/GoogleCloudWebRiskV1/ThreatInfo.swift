@@ -300,7 +300,7 @@ public struct ThreatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum ValueOneOf: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Equatable, Sendable {
       /// A decimal representation of confidence in the range of 0
       /// to 1 where 0 indicates no confidence and 1 indicates
       /// complete confidence.

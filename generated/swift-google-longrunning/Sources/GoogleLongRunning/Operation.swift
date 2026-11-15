@@ -141,7 +141,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// If `done` == `false`, neither `error` nor `response` is set.
   /// If `done` == `true`, exactly one of `error` or `response` can be set.
   /// Some services might not provide the result.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// The error result of the operation in case of failure or cancellation.
     indirect case error(GoogleRpc.Status)
     /// The normal, successful response of the operation.  If the original

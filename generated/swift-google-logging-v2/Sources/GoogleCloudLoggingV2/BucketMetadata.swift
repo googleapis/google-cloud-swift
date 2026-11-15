@@ -126,7 +126,7 @@ public struct BucketMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum RequestOneOf: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Equatable, Sendable {
     /// LongRunningCreateBucket RPC request.
     indirect case createBucketRequest(CreateBucketRequest)
     /// LongRunningUpdateBucket RPC request.

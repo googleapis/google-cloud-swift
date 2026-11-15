@@ -109,7 +109,7 @@ public struct FacetValue: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// String type value.
     case stringValue(Swift.String)
     /// Integer type value.

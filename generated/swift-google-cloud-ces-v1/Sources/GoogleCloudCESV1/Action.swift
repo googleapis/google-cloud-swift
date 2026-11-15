@@ -359,7 +359,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specification for an action to configure for the tool to use.
-  public enum ActionSpecOneOf: Codable, Equatable, Sendable {
+  public enum ActionSpecOneOf: Equatable, Sendable {
     /// ID of a Connection action for the tool to use.
     case connectionActionId(Swift.String)
     /// Entity operation configuration for the tool to use.

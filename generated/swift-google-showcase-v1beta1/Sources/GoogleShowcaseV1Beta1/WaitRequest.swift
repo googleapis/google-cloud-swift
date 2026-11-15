@@ -133,14 +133,14 @@ public struct WaitRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum EndOneOf: Codable, Equatable, Sendable {
+  public enum EndOneOf: Equatable, Sendable {
     /// The time that this operation will complete.
     indirect case endTime(GoogleWKT.WKTTimestamp)
     /// The duration of this operation.
     indirect case ttl(GoogleWKT.WKTDuration)
   }
 
-  public enum ResponseOneOf: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Equatable, Sendable {
     /// The error that will be returned by the server. If this code is specified
     /// to be the OK rpc code, an empty response will be returned.
     indirect case error(GoogleRpc.Status)

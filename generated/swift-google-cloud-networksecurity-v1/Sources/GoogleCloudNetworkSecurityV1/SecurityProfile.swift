@@ -327,7 +327,7 @@ public struct SecurityProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The behavior for the ProfileType that the SecurityProfile resource is meant
   /// to configure. This field must correspond to the ProfileType of the
   /// SecurityProfile.
-  public enum ProfileOneOf: Codable, Equatable, Sendable {
+  public enum ProfileOneOf: Equatable, Sendable {
     /// The threat prevention configuration for the SecurityProfile.
     indirect case threatPreventionProfile(ThreatPreventionProfile)
     /// The custom Packet Mirroring v2 configuration for the SecurityProfile.

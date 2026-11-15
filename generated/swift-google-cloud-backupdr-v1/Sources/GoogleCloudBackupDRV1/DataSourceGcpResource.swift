@@ -160,7 +160,7 @@ public struct DataSourceGcpResource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// gcp_Properties has properties of the Google Cloud Resource.
-  public enum GcpResourcePropertiesOneOf: Codable, Equatable, Sendable {
+  public enum GcpResourcePropertiesOneOf: Equatable, Sendable {
     /// ComputeInstanceDataSourceProperties has a subset of Compute Instance
     /// properties that are useful at the Datasource level.
     indirect case computeInstanceDatasourceProperties(ComputeInstanceDataSourceProperties)

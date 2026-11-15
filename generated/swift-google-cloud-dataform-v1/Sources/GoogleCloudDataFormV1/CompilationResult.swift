@@ -311,7 +311,7 @@ public struct CompilationResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the compilation result.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Immutable. Git commit/tag/branch name at which the repository should be
     /// compiled. Must exist in the remote repository. Examples:
     /// - a commit SHA: `12ade345`

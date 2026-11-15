@@ -637,7 +637,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Configuration to specify how the log file should be accessed.
-    public enum LogFileAccessOneOf: Codable, Equatable, Sendable {
+    public enum LogFileAccessOneOf: Equatable, Sendable {
       /// Use Oracle ASM.
       indirect case oracleAsmLogFileAccess(
         OracleSourceConfig.BinaryLogParser.OracleAsmLogFileAccess)
@@ -668,7 +668,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configuration for handle Oracle large objects.
-  public enum LargeObjectsHandlingOneOf: Codable, Equatable, Sendable {
+  public enum LargeObjectsHandlingOneOf: Equatable, Sendable {
     /// Drop large object values.
     indirect case dropLargeObjects(OracleSourceConfig.DropLargeObjects)
     /// Stream large object values.
@@ -676,7 +676,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration to select the CDC method.
-  public enum CdcMethodOneOf: Codable, Equatable, Sendable {
+  public enum CdcMethodOneOf: Equatable, Sendable {
     /// Use LogMiner.
     indirect case logMiner(OracleSourceConfig.LogMiner)
     /// Use Binary Log Parser.

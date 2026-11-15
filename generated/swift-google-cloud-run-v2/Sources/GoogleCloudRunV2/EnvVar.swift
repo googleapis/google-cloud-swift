@@ -109,7 +109,7 @@ public struct EnvVar: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ValuesOneOf: Codable, Equatable, Sendable {
+  public enum ValuesOneOf: Equatable, Sendable {
     /// Literal value of the environment variable.
     /// Defaults to "", and the maximum length is 32768 bytes.
     /// Variable references are not supported in Cloud Run.

@@ -291,7 +291,7 @@ public struct AutoscalingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Autoscaling algorithm for policy.
-  public enum AlgorithmOneOf: Codable, Equatable, Sendable {
+  public enum AlgorithmOneOf: Equatable, Sendable {
     indirect case basicAlgorithm(BasicAutoscalingAlgorithm)
   }
 

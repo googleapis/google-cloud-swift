@@ -183,7 +183,7 @@
     }
 
     /// Required. The input content.
-    public enum InputOneOf: Codable, Equatable, Sendable {
+    public enum InputOneOf: Equatable, Sendable {
       /// The natural language text to be processed.
       indirect case textInput(TextInput)
       /// The natural language speech audio to be processed.

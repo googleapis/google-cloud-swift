@@ -349,7 +349,7 @@
       }
     }
 
-    public enum OrderOneOf: Codable, Equatable, Sendable {
+    public enum OrderOneOf: Equatable, Sendable {
       /// A comma-separated list of data item fields to order by, sorted in
       /// ascending order. Use "desc" after a field name for descending.
       case orderByDataItem(Swift.String)

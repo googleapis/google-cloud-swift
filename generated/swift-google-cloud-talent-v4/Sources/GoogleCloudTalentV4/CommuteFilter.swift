@@ -264,7 +264,7 @@ public struct CommuteFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Traffic factor to take into account while searching by commute.
-  public enum TrafficOptionOneOf: Codable, Equatable, Sendable {
+  public enum TrafficOptionOneOf: Equatable, Sendable {
     /// Specifies the traffic density to use when calculating commute time.
     case roadTraffic(CommuteFilter.RoadTraffic)
     /// The departure time used to calculate traffic impact, represented as

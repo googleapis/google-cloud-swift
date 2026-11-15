@@ -310,7 +310,7 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum IpRangeOneOf: Codable, Equatable, Sendable {
+    public enum IpRangeOneOf: Equatable, Sendable {
       /// A single IP address. For example: `10.0.0.5`.
       case ipAddress(Swift.String)
       /// An IP address range in the CIDR format. For example: `10.0.0.0/24`.

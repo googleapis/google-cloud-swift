@@ -93,7 +93,7 @@
       }
     }
 
-    public enum ThresholdOneOf: Codable, Equatable, Sendable {
+    public enum ThresholdOneOf: Equatable, Sendable {
       /// Specify a threshold value that can trigger the alert.
       /// If this threshold config is for feature distribution distance:
       ///   1. For categorical feature, the distribution distance is calculated by

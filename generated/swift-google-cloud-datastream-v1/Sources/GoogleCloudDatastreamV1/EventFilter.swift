@@ -96,7 +96,7 @@ public struct EventFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A filter type.
-  public enum FilterOneOf: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Equatable, Sendable {
     /// An SQL-query Where clause selecting which data should be included, not
     /// including the "WHERE" keyword. e.g., `t.key1 = 'value1' AND t.key2 =
     /// 'value2'`

@@ -415,7 +415,7 @@
         }
       }
 
-      public enum ValueOneOf: Codable, Equatable, Sendable {
+      public enum ValueOneOf: Equatable, Sendable {
         /// The tokenization quality used for given media.
         case level(Part.MediaResolution.Level)
       }
@@ -442,7 +442,7 @@
       }
     }
 
-    public enum DataOneOf: Codable, Equatable, Sendable {
+    public enum DataOneOf: Equatable, Sendable {
       /// Optional. Text part (can be code).
       case text(Swift.String)
       /// Optional. Inlined bytes data.
@@ -464,7 +464,7 @@
       indirect case codeExecutionResult(CodeExecutionResult)
     }
 
-    public enum MetadataOneOf: Codable, Equatable, Sendable {
+    public enum MetadataOneOf: Equatable, Sendable {
       /// Optional. Video metadata. The metadata should only be specified while the
       /// video data is presented in inline_data or file_data.
       indirect case videoMetadata(VideoMetadata)

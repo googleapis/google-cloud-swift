@@ -461,7 +461,7 @@ public struct UnitOperation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum UnitOperationTypeOneOf: Codable, Equatable, Sendable {
+  public enum UnitOperationTypeOneOf: Equatable, Sendable {
     /// Optional. Provision operation.
     indirect case provision(Provision)
     /// Optional. Upgrade operation.

@@ -120,7 +120,7 @@ public struct DiscoveryCloudStorageFilter: Codable, Equatable, GoogleWKT._AnyPac
   /// other buckets within the location being profiled. The first
   /// filter to match will be applied, regardless of the condition. If none is
   /// set, will default to `others`.
-  public enum FilterOneOf: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Equatable, Sendable {
     /// Optional. A specific set of buckets for this filter to apply to.
     indirect case collection(FileStoreCollection)
     /// Optional. The bucket to scan. Targets including this can only include one

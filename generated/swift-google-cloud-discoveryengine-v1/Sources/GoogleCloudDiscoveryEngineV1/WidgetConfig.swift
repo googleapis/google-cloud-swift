@@ -3355,7 +3355,7 @@
       }
 
       /// Various ways to store an image, i.e., as a URL or base64 encoded string.
-      public enum StorageMethodOneOf: Codable, Equatable, Sendable {
+      public enum StorageMethodOneOf: Equatable, Sendable {
         /// Image URL.
         case url(Swift.String)
       }

@@ -107,7 +107,7 @@
       }
     }
 
-    public enum ValueOneOf: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Equatable, Sendable {
       /// An integer value.
       case intValue(Swift.Int64)
       /// A double value.

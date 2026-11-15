@@ -132,7 +132,7 @@ public struct FieldTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Transformation to apply. [required]
-  public enum TransformationOneOf: Codable, Equatable, Sendable {
+  public enum TransformationOneOf: Equatable, Sendable {
     /// Apply the transformation to the entire field.
     indirect case primitiveTransformation(PrimitiveTransformation)
     /// Treat the contents of the field as free text, and selectively

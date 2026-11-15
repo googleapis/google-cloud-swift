@@ -113,7 +113,7 @@ public struct UniversalActionExtensionPoint: Codable, Equatable, GoogleWKT._AnyP
 
   /// Required. The action type supported on a universal action menu item. It
   /// could be either a link to open or an endpoint to execute.
-  public enum ActionTypeOneOf: Codable, Equatable, Sendable {
+  public enum ActionTypeOneOf: Equatable, Sendable {
     /// URL to be opened by the UniversalAction.
     case openLink(Swift.String)
     /// Endpoint to be run by the UniversalAction.

@@ -381,7 +381,7 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Properties of the protected GCP resource.
-  public enum ResourcePropertiesOneOf: Codable, Equatable, Sendable {
+  public enum ResourcePropertiesOneOf: Equatable, Sendable {
     /// Output only. Cloud SQL instance's backup plan association properties.
     indirect case cloudSqlInstanceBackupPlanAssociationProperties(
       CloudSqlInstanceBackupPlanAssociationProperties)

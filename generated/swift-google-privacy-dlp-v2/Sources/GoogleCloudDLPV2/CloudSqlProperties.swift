@@ -263,7 +263,7 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// How to authenticate to the instance.
-  public enum CredentialOneOf: Codable, Equatable, Sendable {
+  public enum CredentialOneOf: Equatable, Sendable {
     /// A username and password stored in Secret Manager.
     indirect case usernamePassword(SecretManagerCredential)
     /// Built-in IAM authentication (must be configured in Cloud SQL).

@@ -130,7 +130,7 @@ public struct RuleExecutionError: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The resource name of the source that generated the rule execution error.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Output only. The resource name of the rule that generated the rule
     /// execution error.
     case rule(Swift.String)

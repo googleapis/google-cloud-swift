@@ -201,7 +201,7 @@ public struct CustomTargetType: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines the `CustomTargetType` renderer and deployer.
-  public enum DefinitionOneOf: Codable, Equatable, Sendable {
+  public enum DefinitionOneOf: Equatable, Sendable {
     /// Optional. Configures render and deploy for the `CustomTargetType` using
     /// Skaffold custom actions.
     indirect case customActions(CustomTargetSkaffoldActions)

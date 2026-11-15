@@ -108,7 +108,7 @@ public struct BlockRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ResponseOneOf: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Equatable, Sendable {
     /// The error that will be returned by the server. If this code is specified
     /// to be the OK rpc code, an empty response will be returned.
     indirect case error(GoogleRpc.Status)

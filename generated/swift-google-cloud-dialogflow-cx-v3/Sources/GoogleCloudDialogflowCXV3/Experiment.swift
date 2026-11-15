@@ -297,7 +297,7 @@
 
       /// The variants of the experiment. We currently only support single variant
       /// experiment.
-      public enum VariantsOneOf: Codable, Equatable, Sendable {
+      public enum VariantsOneOf: Equatable, Sendable {
         /// The flow versions as the variants of this experiment.
         indirect case versionVariants(VersionVariants)
       }
@@ -623,7 +623,7 @@
         }
 
         /// The actual value of the metric.
-        public enum ValueOneOf: Codable, Equatable, Sendable {
+        public enum ValueOneOf: Equatable, Sendable {
           /// Ratio value of a metric.
           case ratio(Swift.Double)
           /// Count value of a metric.

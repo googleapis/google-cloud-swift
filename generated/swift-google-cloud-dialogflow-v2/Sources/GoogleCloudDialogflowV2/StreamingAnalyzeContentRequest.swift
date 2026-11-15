@@ -327,7 +327,7 @@
     }
 
     /// The input config.
-    public enum ConfigOneOf: Codable, Equatable, Sendable {
+    public enum ConfigOneOf: Equatable, Sendable {
       /// Instructs the speech recognizer how to process the speech audio.
       indirect case audioConfig(InputAudioConfig)
       /// The natural language text to be processed.
@@ -335,7 +335,7 @@
     }
 
     /// The input.
-    public enum InputOneOf: Codable, Equatable, Sendable {
+    public enum InputOneOf: Equatable, Sendable {
       /// The input audio content to be recognized. Must be sent if `audio_config`
       /// is set in the first message. The complete audio over all streaming
       /// messages must not exceed 1 minute.

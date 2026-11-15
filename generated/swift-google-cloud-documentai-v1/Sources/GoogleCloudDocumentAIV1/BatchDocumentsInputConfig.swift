@@ -103,7 +103,7 @@ public struct BatchDocumentsInputConfig: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// The source. Make sure that the caller of the API has storage.objects.get
   /// access to the buckets.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The set of documents that match the specified Cloud Storage `gcs_prefix`.
     indirect case gcsPrefix(GcsPrefix)
     /// The set of documents individually specified on Cloud Storage.

@@ -113,7 +113,7 @@ public struct PushFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Modified refs to match.
   /// A modified refs are the refs modified by a git push operation.
-  public enum GitRefOneOf: Codable, Equatable, Sendable {
+  public enum GitRefOneOf: Equatable, Sendable {
     /// Regexes matching branches to build.
     ///
     /// The syntax of the regular expressions accepted is the syntax accepted by

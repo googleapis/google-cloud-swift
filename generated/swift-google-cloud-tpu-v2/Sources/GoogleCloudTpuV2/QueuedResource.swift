@@ -436,7 +436,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Either a node_id or multislice_params.
-      public enum NameStrategyOneOf: Codable, Equatable, Sendable {
+      public enum NameStrategyOneOf: Equatable, Sendable {
         /// Optional. The unqualified resource name. Should follow the
         /// `^[A-Za-z0-9_.~+%-]+$` regex format. This is only specified when
         /// requesting a single node. In case of multislice requests,
@@ -755,7 +755,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Time flexibility specification.
-    public enum StartTimingConstraintsOneOf: Codable, Equatable, Sendable {
+    public enum StartTimingConstraintsOneOf: Equatable, Sendable {
       /// Optional. A relative time after which resources should not be created.
       /// If the request cannot be fulfilled by this time the request will be
       /// failed.
@@ -796,13 +796,13 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Resource specification.
-  public enum ResourceOneOf: Codable, Equatable, Sendable {
+  public enum ResourceOneOf: Equatable, Sendable {
     /// Optional. Defines a TPU resource.
     indirect case tpu(QueuedResource.Tpu)
   }
 
   /// Tier specifies the required tier.
-  public enum TierOneOf: Codable, Equatable, Sendable {
+  public enum TierOneOf: Equatable, Sendable {
     /// Optional. The Spot tier.
     indirect case spot(QueuedResource.Spot)
     /// Optional. The Guaranteed tier

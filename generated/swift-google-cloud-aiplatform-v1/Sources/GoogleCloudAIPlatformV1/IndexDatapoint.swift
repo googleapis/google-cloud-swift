@@ -594,7 +594,7 @@
 
       /// The type of Value must be consistent for all datapoints with a given
       /// namespace name. This is verified at runtime.
-      public enum ValueOneOf: Codable, Equatable, Sendable {
+      public enum ValueOneOf: Equatable, Sendable {
         /// Represents 64 bit integer.
         case valueInt(Swift.Int64)
         /// Represents 32 bit float.

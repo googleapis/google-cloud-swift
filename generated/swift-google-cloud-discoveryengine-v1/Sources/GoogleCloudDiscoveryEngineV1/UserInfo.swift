@@ -214,7 +214,7 @@
         }
       }
 
-      public enum LocationOneOf: Codable, Equatable, Sendable {
+      public enum LocationOneOf: Equatable, Sendable {
         /// Optional. Location represented by a latitude/longitude point.
         indirect case point(GoogleType.LatLng)
         /// Location represented by a natural language address. Will later be

@@ -174,7 +174,7 @@
     }
 
     /// The expiration of the session.
-    public enum ExpirationOneOf: Codable, Equatable, Sendable {
+    public enum ExpirationOneOf: Equatable, Sendable {
       /// Optional. Timestamp of when this session is considered expired.
       /// This is *always* provided on output, regardless of what was sent
       /// on input.

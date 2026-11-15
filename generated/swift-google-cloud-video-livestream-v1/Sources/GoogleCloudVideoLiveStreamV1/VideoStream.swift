@@ -360,7 +360,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// GOP mode can be either by frame count or duration.
-    public enum GopModeOneOf: Codable, Equatable, Sendable {
+    public enum GopModeOneOf: Equatable, Sendable {
       /// Select the GOP size based on the specified frame count.
       /// If GOP frame count is set instead of GOP duration, GOP duration will be
       /// calculated by `gopFrameCount`/`frameRate`. The calculated GOP duration
@@ -603,7 +603,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// GOP mode can be either by frame count or duration.
-    public enum GopModeOneOf: Codable, Equatable, Sendable {
+    public enum GopModeOneOf: Equatable, Sendable {
       /// Optional. Select the GOP size based on the specified frame count.
       /// If GOP frame count is set instead of GOP duration, GOP duration will be
       /// calculated by `gopFrameCount`/`frameRate`. The calculated GOP duration
@@ -646,7 +646,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Codec settings.
-  public enum CodecSettingsOneOf: Codable, Equatable, Sendable {
+  public enum CodecSettingsOneOf: Equatable, Sendable {
     /// H264 codec settings.
     indirect case h264(VideoStream.H264CodecSettings)
     /// H265 codec settings.

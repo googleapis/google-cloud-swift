@@ -410,7 +410,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
   }
 
   /// The password to access Schema Registry using basic authentication.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password to access Schema Registry in plain
     /// text.
     case password(Swift.String)
@@ -422,7 +422,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
   }
 
   /// The TrustStore password.
-  public enum TrustStorePasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum TrustStorePasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The TrustStore password in plain text.
     case trustStorePassword(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret
@@ -432,7 +432,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
   }
 
   /// The KeyStore password.
-  public enum KeyStorePasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum KeyStorePasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The KeyStore password in plain text.
     case keyStorePassword(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret
@@ -442,7 +442,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
   }
 
   /// The password for the cert inside the KeyStore.
-  public enum SslKeyPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum SslKeyPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password for the cert inside the KeyStore in
     /// plain text.
     case sslKeyPassword(Swift.String)

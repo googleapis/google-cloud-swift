@@ -522,7 +522,7 @@ public struct VolumeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// A client object.
-    public enum ClientOneOf: Codable, Equatable, Sendable {
+    public enum ClientOneOf: Equatable, Sendable {
       /// Either a single machine, identified by an ID, or a comma-separated
       /// list of machine IDs.
       case machineId(Swift.String)

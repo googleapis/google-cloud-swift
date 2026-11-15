@@ -642,7 +642,7 @@ public struct ColumnSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Information only applying for columns in Entries from a specific system.
-  public enum SystemSpecOneOf: Codable, Equatable, Sendable {
+  public enum SystemSpecOneOf: Equatable, Sendable {
     /// Looker specific column info of this column.
     indirect case lookerColumnSpec(ColumnSchema.LookerColumnSpec)
   }

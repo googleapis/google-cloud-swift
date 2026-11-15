@@ -168,7 +168,7 @@ public struct Property: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Value of the Property parsed into a specific data type.
   /// Specific type value(s) obtained from Document AIs Property.mention_text
   /// field.
-  public enum ValuesOneOf: Codable, Equatable, Sendable {
+  public enum ValuesOneOf: Equatable, Sendable {
     /// Integer property values.
     indirect case integerValues(IntegerArray)
     /// Float property values.

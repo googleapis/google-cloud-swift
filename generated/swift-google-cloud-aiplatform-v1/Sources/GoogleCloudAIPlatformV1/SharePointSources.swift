@@ -248,7 +248,7 @@
       }
 
       /// The SharePoint folder source. If not provided, uses "root".
-      public enum FolderSourceOneOf: Codable, Equatable, Sendable {
+      public enum FolderSourceOneOf: Equatable, Sendable {
         /// The path of the SharePoint folder to download from.
         case sharepointFolderPath(Swift.String)
         /// The ID of the SharePoint folder to download from.
@@ -256,7 +256,7 @@
       }
 
       /// The SharePoint drive source.
-      public enum DriveSourceOneOf: Codable, Equatable, Sendable {
+      public enum DriveSourceOneOf: Equatable, Sendable {
         /// The name of the drive to download from.
         case driveName(Swift.String)
         /// The ID of the drive to download from.

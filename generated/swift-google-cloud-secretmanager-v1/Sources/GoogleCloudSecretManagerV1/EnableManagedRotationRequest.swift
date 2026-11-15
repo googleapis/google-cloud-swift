@@ -117,7 +117,7 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleWKT._AnyPa
 
   /// The credential required for Managed Rotation.
   /// Right now, only Cloud SQL Single User credentials are supported.
-  public enum CredentialOneOf: Codable, Equatable, Sendable {
+  public enum CredentialOneOf: Equatable, Sendable {
     /// Credentials required for Cloud SQL DB for Single user Managed Rotation.
     indirect case cloudSqlSingleUserCredentials(CloudSqlSingleUserCredentials)
   }

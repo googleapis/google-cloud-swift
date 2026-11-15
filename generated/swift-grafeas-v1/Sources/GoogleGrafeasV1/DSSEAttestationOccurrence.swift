@@ -101,7 +101,7 @@ public struct DSSEAttestationOccurrence: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public enum DecodedPayloadOneOf: Codable, Equatable, Sendable {
+  public enum DecodedPayloadOneOf: Equatable, Sendable {
     indirect case statement(InTotoStatement)
   }
 

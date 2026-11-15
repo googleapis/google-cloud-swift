@@ -321,7 +321,7 @@ public struct DvrSession: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The allowlist forms of a DVR window.
-    public enum KindOneOf: Codable, Equatable, Sendable {
+    public enum KindOneOf: Equatable, Sendable {
       /// A time interval in the form of a tuple of Unix epoch time.
       indirect case timeInterval(TimeInterval)
     }

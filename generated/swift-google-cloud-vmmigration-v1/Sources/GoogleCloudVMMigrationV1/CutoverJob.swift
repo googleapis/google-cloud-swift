@@ -340,7 +340,7 @@ public struct CutoverJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Details of the VM to create as the target of this cutover job.
-  public enum TargetVmDetailsOneOf: Codable, Equatable, Sendable {
+  public enum TargetVmDetailsOneOf: Equatable, Sendable {
     /// Output only. Details of the target VM in Compute Engine.
     indirect case computeEngineTargetDetails(ComputeEngineTargetDetails)
     /// Output only. Details of the target Persistent Disks in Compute Engine.

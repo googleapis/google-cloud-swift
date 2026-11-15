@@ -104,7 +104,7 @@ public struct VectorField: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Vector type configuration.
-  public enum VectorTypeConfigOneOf: Codable, Equatable, Sendable {
+  public enum VectorTypeConfigOneOf: Equatable, Sendable {
     /// Dense vector field.
     indirect case denseVector(DenseVectorField)
     /// Sparse vector field.

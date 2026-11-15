@@ -201,7 +201,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The log entry payload, which can be one of multiple types.
-  public enum PayloadOneOf: Codable, Equatable, Sendable {
+  public enum PayloadOneOf: Equatable, Sendable {
     /// The log entry payload, represented as a protocol buffer that is
     /// expressed as a JSON object. The only accepted type currently is
     /// [AuditLog][google.cloud.audit.AuditLog].

@@ -151,7 +151,7 @@
     }
 
     /// The record for this answer.
-    public enum RecordOneOf: Codable, Equatable, Sendable {
+    public enum RecordOneOf: Equatable, Sendable {
       /// Output only. The record for human agent assistant.
       indirect case agentAssistantRecord(AgentAssistantRecord)
     }

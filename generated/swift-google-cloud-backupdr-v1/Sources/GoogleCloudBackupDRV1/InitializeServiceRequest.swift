@@ -141,7 +141,7 @@ public struct InitializeServiceRequest: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The configuration for initializing the resource.
-  public enum InitializationConfigOneOf: Codable, Equatable, Sendable {
+  public enum InitializationConfigOneOf: Equatable, Sendable {
     /// Optional. The configuration for initializing a Cloud SQL instance.
     indirect case cloudSqlInstanceInitializationConfig(CloudSqlInstanceInitializationConfig)
   }

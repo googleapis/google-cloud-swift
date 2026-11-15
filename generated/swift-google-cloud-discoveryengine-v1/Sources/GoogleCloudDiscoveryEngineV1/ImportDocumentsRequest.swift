@@ -526,7 +526,7 @@
     }
 
     /// Required. The source of the input.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// The Inline source for the input content for documents.
       indirect case inlineSource(ImportDocumentsRequest.InlineSource)
       /// Cloud Storage location for the input content.

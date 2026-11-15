@@ -99,7 +99,7 @@ public struct NewReservedInstancesConfig: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// Source of the reservation
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Optional. Immutable. Name of the reservation from which VM instances
     /// should be created, in the format
     /// `projects/{project}/zones/{zone}/reservations/{reservation}`.

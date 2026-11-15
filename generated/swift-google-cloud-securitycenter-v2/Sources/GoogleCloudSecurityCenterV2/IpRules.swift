@@ -264,7 +264,7 @@ public struct IpRules: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The list of allow rules specified by this firewall. Each rule specifies a
   /// protocol and port-range tuple that describes a permitted connection.
-  public enum RulesOneOf: Codable, Equatable, Sendable {
+  public enum RulesOneOf: Equatable, Sendable {
     /// Tuple with allowed rules.
     indirect case allowed(Allowed)
     /// Tuple with denied rules.
