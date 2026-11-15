@@ -241,4 +241,16 @@ import Testing
     let roundtrip = try decoder.decode(MessageWithComplexOneOf.self, from: encoded)
     #expect(roundtrip == want)
   }
+
+  @Test("OneOf enums do not conform to Codable")
+  func oneOfEnumsAreNotCodable() {
+    func isCodable<T>(_ type: T.Type) -> Bool {
+      (type is any Encodable.Type) || (type is any Decodable.Type)
+    }
+    #expect(!isCodable(MessageWithOneOf.SingleStringOneOf.self))
+    #expect(!isCodable(MessageWithOneOf.TwoStringsOneOf.self))
+    #expect(!isCodable(MessageWithOneOf.OneMessageOneOf.self))
+    #expect(!isCodable(MessageWithOneOf.MixedOneOf.self))
+    #expect(!isCodable(MessageWithComplexOneOf.ComplexOneOf.self))
+  }
 }
