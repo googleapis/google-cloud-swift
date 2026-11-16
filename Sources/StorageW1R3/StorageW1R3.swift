@@ -65,7 +65,7 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
     logToStderr("Random payload buffer ready.")
 
     let credentials = try Credentials()
-    let storageClients = try self.makeClients(credentials)
+    let clientPools = try self.makeClientPools(credentials)
     let controlClients = try self.makeControlClients(credentials)
     logToStderr("Clients initialized ready.")
 
@@ -92,7 +92,7 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
             taskIndex: taskIndex,
             counters: counters,
             buffer: randomBuffer,
-            storageClient: storageClients[taskIndex % storageClients.count],
+            clientPools: clientPools,
             controlClient: controlClients[taskIndex % controlClients.count],
           )
         }
@@ -234,6 +234,39 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
   )
   var chunkSize: Int?
 
+  @Option(
+    name: .customLong("load-balancer"),
+    help:
+      "Load balancer strategy across HTTP connection pools: p2c, round-robin, or random (default)."
+  )
+  var loadBalancer: LoadBalancerOption = .random
+
+  @Option(
+    name: .customLong("connection-pool-size"),
+    help: "Number of pooled HTTP clients per StorageClient (defaults to SDK core-count scaling)."
+  )
+  var connectionPoolSize: Int?
+
+  func pickLoadBalancer() -> StorageLoadBalancer {
+    switch self.loadBalancer {
+    case .p2c:
+      return .p2c
+    case .roundRobin:
+      return .roundRobin
+    case .random:
+      return Bool.random() ? .p2c : .roundRobin
+    }
+  }
+
+  static func loadBalancerTag(_ loadBalancer: StorageLoadBalancer) -> String {
+    switch loadBalancer {
+    case .p2c:
+      return "p2c"
+    case .roundRobin:
+      return "round-robin"
+    }
+  }
+
   static let resumableChunkAlignment: Int = 256 * 1024
 
   static func parseChunkSizes(_ input: String) throws -> [Int] {
@@ -309,6 +342,11 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
     }
     guard controlClientCount >= 1 else {
       throw ValidationError("control-client-count must be at least 1")
+    }
+    if let connectionPoolSize {
+      guard connectionPoolSize >= 1 else {
+        throw ValidationError("connection-pool-size must be at least 1")
+      }
     }
     guard chunkSizeInterval > 0 else {
       throw ValidationError("chunk-size-interval must be positive")
@@ -397,6 +435,25 @@ public enum Crc32cOption: String, ExpressibleByArgument, CaseIterable, Sendable 
       self = .random
     case "never", "disabled", "false":
       self = .never
+    default:
+      return nil
+    }
+  }
+}
+
+public enum LoadBalancerOption: String, ExpressibleByArgument, CaseIterable, Sendable {
+  case p2c
+  case roundRobin = "round-robin"
+  case random
+
+  public init?(argument: String) {
+    switch argument.lowercased() {
+    case "p2c":
+      self = .p2c
+    case "round-robin", "roundrobin", "round_robin":
+      self = .roundRobin
+    case "random", "both", "head-to-head":
+      self = .random
     default:
       return nil
     }

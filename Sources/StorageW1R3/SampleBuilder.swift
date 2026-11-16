@@ -26,6 +26,7 @@ public struct SampleBuilder: Sendable {
   public let object: String
   public let crc32cEnabled: Bool
   public let chunkSize: Int?
+  public let loadBalancer: String?
 
   public init(
     iterationId: IterationId,
@@ -33,7 +34,8 @@ public struct SampleBuilder: Sendable {
     targetSize: Int,
     object: String,
     crc32cEnabled: Bool,
-    chunkSize: Int? = nil
+    chunkSize: Int? = nil,
+    loadBalancer: String? = nil
   ) {
     self.task = iterationId.task
     self.clock = ContinuousClock()
@@ -49,6 +51,7 @@ public struct SampleBuilder: Sendable {
     self.object = object
     self.crc32cEnabled = crc32cEnabled
     self.chunkSize = chunkSize
+    self.loadBalancer = loadBalancer
   }
 
   private var elapsedMicroseconds: Int64 {
@@ -59,13 +62,17 @@ public struct SampleBuilder: Sendable {
 
   private func formatDetails(_ rawDetails: String) -> String {
     let sanitized = rawDetails.replacingOccurrences(of: ",", with: ";")
-    if let chunkSize {
-      if sanitized.isEmpty {
-        return "chunkSize=\(chunkSize)"
-      }
-      return "chunkSize=\(chunkSize);\(sanitized)"
+    var parts: [String] = []
+    if let loadBalancer {
+      parts.append("lb=\(loadBalancer)")
     }
-    return sanitized
+    if let chunkSize {
+      parts.append("chunkSize=\(chunkSize)")
+    }
+    if !sanitized.isEmpty {
+      parts.append(sanitized)
+    }
+    return parts.joined(separator: ";")
   }
 
   public func success(transferSize: Int? = nil, details: String = "") -> Sample {

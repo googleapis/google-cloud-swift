@@ -25,6 +25,8 @@ import Testing
     }
     try benchmark.validate()
     #expect(benchmark.bucketName == "my-bucket")
+    #expect(benchmark.loadBalancer == .random)
+    #expect(benchmark.connectionPoolSize == nil)
   }
 
   @Test func validConfigurationPasses() throws {
@@ -39,6 +41,8 @@ import Testing
       "--read-count=2",
       "--client-count=7",
       "--control-client-count=17",
+      "--load-balancer=round-robin",
+      "--connection-pool-size=8",
     ])
     guard let benchmark = parsed as? StorageW1R3 else {
       Issue.record("cannot convert to StorageW1R3")
@@ -46,6 +50,8 @@ import Testing
     }
     try benchmark.validate()
     #expect(benchmark.bucketName == "my-bucket")
+    #expect(benchmark.loadBalancer == .roundRobin)
+    #expect(benchmark.connectionPoolSize == 8)
   }
 
   @Test func validChunkSizeConfigurationsPass() throws {
@@ -84,6 +90,9 @@ import Testing
     ["--min-chunk-size=32MiB", "--max-chunk-size=8MiB"],
     ["--min-chunk-size=512KiB", "--max-chunk-size=16MiB", "--chunk-size-interval=1MiB"],
     ["--min-chunk-size=1MiB", "--max-chunk-size=1536KiB", "--chunk-size-interval=1MiB"],
+    ["--connection-pool-size=0"],
+    ["--connection-pool-size=-2"],
+    ["--load-balancer=invalid"],
   ])
   func invalidConfigurationThrows(args: [String]) throws {
     #expect(throws: (any Error).self) {

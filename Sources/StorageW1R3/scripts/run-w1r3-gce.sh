@@ -65,6 +65,8 @@ Options:
   --max-object-size SIZE       Maximum object size, e.g. 128KiB, 1MiB, 16MiB (default: 128KiB)
   --read-count N               Number of reads per uploaded object (default: 3)
   --client-count N             Number of Storage clients (default: 1)
+  --load-balancer MODE         HTTP pool load balancer: random (default), p2c, or round-robin
+  --connection-pool-size N     Number of pooled HTTP clients per StorageClient (default: SDK scaling)
   --crc32c MODE                CRC32C mode: always, random, never (default: always)
   --chunk-size SIZE            Fixed resumable upload chunk size (e.g. 32MiB)
   --chunk-sizes SIZES          Candidate chunk sizes, comma-separated (e.g. 8MiB,16MiB,32MiB)
@@ -146,6 +148,8 @@ MIN_OBJECT_SIZE="0"
 MAX_OBJECT_SIZE="128KiB"
 READ_COUNT=3
 CLIENT_COUNT=1
+LOAD_BALANCER=""
+CONNECTION_POOL_SIZE=""
 CRC32C="always"
 CHUNK_SIZE=""
 CHUNK_SIZES=""
@@ -190,6 +194,8 @@ while [[ $# -gt 0 ]]; do
     --max-object-size) MAX_OBJECT_SIZE="$2"; shift 2 ;;
     --read-count) READ_COUNT="$2"; shift 2 ;;
     --client-count) CLIENT_COUNT="$2"; shift 2 ;;
+    --load-balancer) LOAD_BALANCER="$2"; shift 2 ;;
+    --connection-pool-size) CONNECTION_POOL_SIZE="$2"; shift 2 ;;
     --crc32c) CRC32C="$2"; shift 2 ;;
     --chunk-size) CHUNK_SIZE="$2"; shift 2 ;;
     --chunk-sizes) CHUNK_SIZES="$2"; shift 2 ;;
@@ -521,6 +527,12 @@ fi
 # 4. Prepare Metadata attributes
 if [[ "${BENCHMARK_PRODUCT}" == "StorageW1R3Benchmark" && -z "${BENCHMARK_COMMAND}" ]]; then
   BASE_FLAGS="--task-count ${TASK_COUNT} --iterations ${ITERATIONS} --min-object-size ${MIN_OBJECT_SIZE} --max-object-size ${MAX_OBJECT_SIZE} --read-count ${READ_COUNT} --client-count ${CLIENT_COUNT} --crc32c ${CRC32C}"
+  if [[ -n "${LOAD_BALANCER}" ]]; then
+    BASE_FLAGS="${BASE_FLAGS} --load-balancer ${LOAD_BALANCER}"
+  fi
+  if [[ -n "${CONNECTION_POOL_SIZE}" ]]; then
+    BASE_FLAGS="${BASE_FLAGS} --connection-pool-size ${CONNECTION_POOL_SIZE}"
+  fi
   if [[ -n "${CHUNK_SIZE}" ]]; then
     BASE_FLAGS="${BASE_FLAGS} --chunk-size ${CHUNK_SIZE}"
   fi
