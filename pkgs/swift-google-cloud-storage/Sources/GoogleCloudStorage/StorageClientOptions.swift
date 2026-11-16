@@ -36,8 +36,8 @@ public struct StorageClientOptions: Sendable {
 
   /// Optional override for the number of underlying HTTP connection pools managed by ``StorageClient``.
   ///
-  /// When `nil`, ``StorageClient`` defaults to `max(1, log2(coreCount))` based on the host CPU
-  /// core count. Values less than `1` are clamped to `1`.
+  /// When `nil`, ``StorageClient`` defaults to `max(1, floor(log2(coreCount)))` based on the host
+  /// CPU core count. Values less than `1` are clamped to `1`.
   public var connectionPoolSize: Int? = nil
 
   /// Load-balancing strategy used to distribute requests across pooled HTTP connections.

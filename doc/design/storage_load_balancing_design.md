@@ -38,7 +38,7 @@ StorageClient
 3. **Pool Size Heuristic:**
    `StorageClientOptions.resolveConnectionPoolSize(_:coreCount:)` computes the number of HTTP client slots as:
    - Explicit override: `max(1, configured)` when `connectionPoolSize != nil`.
-   - Default (`nil`): `max(1, Int.bitWidth - 1 - coreCount.leadingZeroBitCount)` (integer `max(1, floor(log2(NIOCore.System.coreCount)))`, growing slowly with host CPU core count).
+   - Default (`nil`): `max(1, floor(log2(coreCount)))` based on `NIOCore.System.coreCount` (returning `1` when `coreCount <= 1`, and `Int.bitWidth - 1 - coreCount.leadingZeroBitCount` when `coreCount > 1`), growing slowly with host CPU core count.
 4. **Public Configuration on `StorageClientOptions`:**
    Because the two load-balancing algorithms exhibit meaningfully different median vs. tail latency
    tradeoffs across uploads and downloads, `StorageClientOptions` exposes both pool sizing and
