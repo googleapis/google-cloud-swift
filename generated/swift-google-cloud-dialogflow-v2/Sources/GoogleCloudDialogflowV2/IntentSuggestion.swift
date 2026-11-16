@@ -114,7 +114,7 @@
     }
 
     /// The name of the intent.
-    public enum IntentOneOf: Codable, Equatable, Sendable {
+    public enum IntentOneOf: Equatable, Sendable {
       /// The unique identifier of this
       /// [intent][google.cloud.dialogflow.v2.Intent]. Format: `projects/<Project
       /// ID>/locations/<Location ID>/agent/intents/<Intent ID>`.

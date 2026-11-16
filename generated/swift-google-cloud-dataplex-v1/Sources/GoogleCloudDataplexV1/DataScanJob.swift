@@ -412,7 +412,7 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Data scan related setting.
-  public enum SpecOneOf: Codable, Equatable, Sendable {
+  public enum SpecOneOf: Equatable, Sendable {
     /// Output only. Settings for a data quality scan.
     indirect case dataQualitySpec(DataQualitySpec)
     /// Output only. Settings for a data profile scan.
@@ -424,7 +424,7 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The result of the data scan.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// Output only. The result of a data quality scan.
     indirect case dataQualityResult(GoogleCloudDataplexV1.DataQualityResult)
     /// Output only. The result of a data profile scan.

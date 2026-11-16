@@ -301,7 +301,7 @@
       }
 
       /// Tool-specific details about the retrieved context.
-      public enum ContextDetailsOneOf: Codable, Equatable, Sendable {
+      public enum ContextDetailsOneOf: Equatable, Sendable {
         /// Additional context for the RAG retrieval result. This is only populated
         /// when using the RAG retrieval tool.
         indirect case ragChunk(RagChunk)
@@ -730,7 +730,7 @@
     }
 
     /// Chunk type.
-    public enum ChunkTypeOneOf: Codable, Equatable, Sendable {
+    public enum ChunkTypeOneOf: Equatable, Sendable {
       /// Grounding chunk from the web.
       indirect case web(GroundingChunk.Web)
       /// Grounding chunk from context retrieved by the retrieval tools.

@@ -122,7 +122,7 @@ public struct JwtLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum InOneOf: Codable, Equatable, Sendable {
+  public enum InOneOf: Equatable, Sendable {
     /// Specifies HTTP header name to extract JWT token.
     case header(Swift.String)
     /// Specifies URL query parameter name to extract JWT token.

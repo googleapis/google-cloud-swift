@@ -1242,7 +1242,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of restrictions for this `Constraint`.
   ///
   /// Immutable after creation.
-  public enum ConstraintTypeOneOf: Codable, Equatable, Sendable {
+  public enum ConstraintTypeOneOf: Equatable, Sendable {
     /// Defines this constraint as being a list constraint.
     indirect case listConstraint(Constraint.ListConstraint)
     /// Defines this constraint as being a boolean constraint.

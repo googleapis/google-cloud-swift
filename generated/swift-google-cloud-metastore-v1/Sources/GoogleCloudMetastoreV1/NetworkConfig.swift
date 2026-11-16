@@ -176,7 +176,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum VpcResourceOneOf: Codable, Equatable, Sendable {
+    public enum VpcResourceOneOf: Equatable, Sendable {
       /// Immutable. The subnetwork of the customer project from which an IP
       /// address is reserved and used as the Dataproc Metastore service's
       /// endpoint. It is accessible to hosts in the subnet and to all

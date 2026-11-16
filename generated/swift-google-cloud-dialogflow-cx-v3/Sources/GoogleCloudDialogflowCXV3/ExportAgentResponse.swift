@@ -114,7 +114,7 @@
     }
 
     /// The exported agent.
-    public enum AgentOneOf: Codable, Equatable, Sendable {
+    public enum AgentOneOf: Equatable, Sendable {
       /// The URI to a file containing the exported agent. This field is populated
       /// if `agent_uri` is specified in
       /// [ExportAgentRequest][google.cloud.dialogflow.cx.v3.ExportAgentRequest].

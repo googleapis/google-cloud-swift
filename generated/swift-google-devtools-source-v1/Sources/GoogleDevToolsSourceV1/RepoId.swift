@@ -103,7 +103,7 @@ public struct RepoId: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A cloud repository can be identified by either its project ID and
   /// repository name combination, or its globally unique identifier.
-  public enum IdOneOf: Codable, Equatable, Sendable {
+  public enum IdOneOf: Equatable, Sendable {
     /// A combination of a project ID and a repo name.
     indirect case projectRepoId(ProjectRepoId)
     /// A server-assigned, globally unique identifier.

@@ -142,7 +142,7 @@ public struct CutoverStep: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum StepOneOf: Codable, Equatable, Sendable {
+  public enum StepOneOf: Equatable, Sendable {
     /// A replication cycle prior cutover step.
     indirect case previousReplicationCycle(ReplicationCycle)
     /// Shutting down VM step.

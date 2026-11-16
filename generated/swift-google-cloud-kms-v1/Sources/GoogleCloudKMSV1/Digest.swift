@@ -117,7 +117,7 @@ public struct Digest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The message digest.
-  public enum DigestOneOf: Codable, Equatable, Sendable {
+  public enum DigestOneOf: Equatable, Sendable {
     /// A message digest produced with the SHA-256 algorithm.
     case sha256(Foundation.Data)
     /// A message digest produced with the SHA-384 algorithm.

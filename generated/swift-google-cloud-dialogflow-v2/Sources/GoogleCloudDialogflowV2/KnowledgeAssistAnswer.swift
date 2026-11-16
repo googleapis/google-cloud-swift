@@ -860,7 +860,7 @@
       }
 
       /// Source of result.
-      public enum SourceOneOf: Codable, Equatable, Sendable {
+      public enum SourceOneOf: Equatable, Sendable {
         /// Populated if the prediction came from FAQ.
         indirect case faqSource(KnowledgeAssistAnswer.KnowledgeAnswer.FaqSource)
         /// Populated if the prediction was Generative.

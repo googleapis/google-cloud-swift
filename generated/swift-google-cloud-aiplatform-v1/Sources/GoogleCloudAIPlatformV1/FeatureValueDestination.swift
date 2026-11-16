@@ -113,7 +113,7 @@
       }
     }
 
-    public enum DestinationOneOf: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Equatable, Sendable {
       /// Output in BigQuery format.
       /// [BigQueryDestination.output_uri][google.cloud.aiplatform.v1.BigQueryDestination.output_uri]
       /// in

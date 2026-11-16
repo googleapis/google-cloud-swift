@@ -333,7 +333,7 @@
     }
 
     /// The tier of the RagManagedDb.
-    public enum TierOneOf: Codable, Equatable, Sendable {
+    public enum TierOneOf: Equatable, Sendable {
       /// Sets the RagManagedDb to the Scaled tier.
       indirect case scaled(RagManagedDbConfig.Scaled)
       /// Sets the RagManagedDb to the Basic tier.

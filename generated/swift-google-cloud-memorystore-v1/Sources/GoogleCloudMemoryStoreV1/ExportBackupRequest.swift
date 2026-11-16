@@ -104,7 +104,7 @@ public struct ExportBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Specify destination to export a backup.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Google Cloud Storage bucket, like "my-bucket".
     case gcsBucket(Swift.String)
   }

@@ -541,14 +541,14 @@ public struct AssessmentFinding: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Next steps related to the findings.
-  public enum NextStepOneOf: Codable, Equatable, Sendable {
+  public enum NextStepOneOf: Equatable, Sendable {
     /// Optional. A description of the steps that users can take to fix the
     /// finding.
     indirect case remediationStep(RemediationStep)
   }
 
   /// Additional details about the finding.
-  public enum AdditionalDetailsOneOf: Codable, Equatable, Sendable {
+  public enum AdditionalDetailsOneOf: Equatable, Sendable {
     /// Optional. A description of the additional details about finding.
     case additionalNotes(Swift.String)
   }

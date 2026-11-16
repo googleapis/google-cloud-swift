@@ -121,7 +121,7 @@ public struct DiscoveryVertexDatasetFilter: Codable, Equatable, GoogleWKT._AnyPa
   /// other datasets within the location being profiled. The first
   /// filter to match will be applied, regardless of the condition. If none is
   /// set, this field defaults to `others`.
-  public enum FilterOneOf: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Equatable, Sendable {
     /// A specific set of Vertex AI datasets for this filter to apply to.
     indirect case collection(VertexDatasetCollection)
     /// The dataset resource to scan. Targets including this can only include

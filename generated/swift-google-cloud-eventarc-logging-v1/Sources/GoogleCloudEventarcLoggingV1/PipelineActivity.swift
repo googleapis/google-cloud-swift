@@ -925,7 +925,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Oneof for the different logging activities in a pipeline.
-  public enum ActivityOneOf: Codable, Equatable, Sendable {
+  public enum ActivityOneOf: Equatable, Sendable {
     /// Logging when a message is received in this Pipeline (or an error
     /// encountered).
     indirect case messageReceived(PipelineActivity.MessageReceived)

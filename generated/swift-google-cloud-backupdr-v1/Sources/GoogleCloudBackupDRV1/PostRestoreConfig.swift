@@ -103,7 +103,7 @@ public struct PostRestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The action to execute.
-  public enum PostRestoreActionOneOf: Codable, Equatable, Sendable {
+  public enum PostRestoreActionOneOf: Equatable, Sendable {
     /// Cloud Run job action to execute.
     /// Format: `projects/{project}/locations/{location}/jobs/{job}`
     case cloudRunJob(Swift.String)

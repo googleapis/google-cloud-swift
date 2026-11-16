@@ -103,7 +103,7 @@ public struct ReceiveEventsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Possible response types.
-  public enum ResponseOneOf: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Equatable, Sendable {
     /// The event update message.
     indirect case eventUpdate(EventUpdate)
     /// A control message from the server.

@@ -99,7 +99,7 @@ public struct SendPacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum RequestOneOf: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Equatable, Sendable {
     /// Packets sent over the streaming rpc.
     indirect case packet(Packet)
     /// The first message of the streaming rpc including the request metadata.

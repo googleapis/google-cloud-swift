@@ -190,7 +190,7 @@
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     /// [google.cloud.discoveryengine.v1.DocumentInfo.id]: <doc:DocumentInfo/DocumentDescriptorOneOf/id(_:)>
     /// [google.cloud.discoveryengine.v1.DocumentInfo.name]: <doc:DocumentInfo/DocumentDescriptorOneOf/name(_:)>
-    public enum DocumentDescriptorOneOf: Codable, Equatable, Sendable {
+    public enum DocumentDescriptorOneOf: Equatable, Sendable {
       /// The [Document][google.cloud.discoveryengine.v1.Document] resource ID.
       ///
       /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>

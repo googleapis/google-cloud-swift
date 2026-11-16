@@ -136,7 +136,7 @@ public struct PreRestorePhaseInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The result of the pre-restore action.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// Output only. The fully qualified URI of the Cloud Run Execution triggered
     /// for pre-restore actions.
     case cloudRunExecution(Swift.String)

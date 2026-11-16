@@ -106,7 +106,7 @@ public struct InputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Specify the input.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Required. Google Cloud Storage location for the source input.
     /// This can be a single file (for example,
     /// `gs://translation-test/input.tsv`) or a wildcard (for example,

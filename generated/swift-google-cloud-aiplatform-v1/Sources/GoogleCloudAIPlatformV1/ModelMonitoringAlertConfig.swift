@@ -204,7 +204,7 @@
       }
     }
 
-    public enum AlertOneOf: Codable, Equatable, Sendable {
+    public enum AlertOneOf: Equatable, Sendable {
       /// Email alert config.
       indirect case emailAlertConfig(ModelMonitoringAlertConfig.EmailAlertConfig)
     }

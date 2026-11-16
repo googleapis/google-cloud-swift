@@ -237,7 +237,7 @@ public struct TimecodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// For EMBEDDED_TIMECODE source only.
   /// Used to interpret the embedded timecode (which contains only the time part
   /// and no date). We assume all inputs are live.
-  public enum TimeOffsetOneOf: Codable, Equatable, Sendable {
+  public enum TimeOffsetOneOf: Equatable, Sendable {
     /// UTC offset. Must be whole seconds, between -18 hours and +18 hours.
     indirect case utcOffset(GoogleWKT.WKTDuration)
     /// Time zone e.g. "America/Los_Angeles".

@@ -128,7 +128,7 @@
     }
 
     /// The type of coverage requested.
-    public enum CoverageTypeOneOf: Codable, Equatable, Sendable {
+    public enum CoverageTypeOneOf: Equatable, Sendable {
       /// Intent coverage.
       indirect case intentCoverage(IntentCoverage)
       /// Transition (excluding transition route groups) coverage.

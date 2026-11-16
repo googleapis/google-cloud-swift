@@ -223,7 +223,7 @@ public struct WebhookConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Auth method specifies how the webhook authenticates with GCP.
-  public enum AuthMethodOneOf: Codable, Equatable, Sendable {
+  public enum AuthMethodOneOf: Equatable, Sendable {
     /// Required. Resource name for the secret required as a URL parameter.
     case secret(Swift.String)
   }

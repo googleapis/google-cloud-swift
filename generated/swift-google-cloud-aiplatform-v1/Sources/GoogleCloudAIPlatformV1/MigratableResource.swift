@@ -628,7 +628,7 @@
       }
     }
 
-    public enum ResourceOneOf: Codable, Equatable, Sendable {
+    public enum ResourceOneOf: Equatable, Sendable {
       /// Output only. Represents one Version in ml.googleapis.com.
       indirect case mlEngineModelVersion(MigratableResource.MlEngineModelVersion)
       /// Output only. Represents one Model in automl.googleapis.com.

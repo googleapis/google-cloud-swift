@@ -98,7 +98,7 @@ public struct BigQueryTableCollection: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// Maximum of 100 entries.
   /// The first filter containing a pattern that matches a table will be used.
-  public enum PatternOneOf: Codable, Equatable, Sendable {
+  public enum PatternOneOf: Equatable, Sendable {
     /// A collection of regular expressions to match a BigQuery table against.
     indirect case includeRegexes(BigQueryRegexes)
   }

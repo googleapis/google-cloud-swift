@@ -386,7 +386,7 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// ApiOperation protocol style
-  public enum OperationOneOf: Codable, Equatable, Sendable {
+  public enum OperationOneOf: Equatable, Sendable {
     /// Optional. An HTTP Operation.
     indirect case httpOperation(HttpOperationDetails)
   }

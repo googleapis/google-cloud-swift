@@ -741,7 +741,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// A type of trigger.
-      public enum TypeOneOf: Codable, Equatable, Sendable {
+      public enum TypeOneOf: Equatable, Sendable {
         /// The absolute number of time series that must fail
         /// the predicate for the condition to be triggered.
         case count(Swift.Int32)
@@ -2268,7 +2268,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The schedule indicates how often the query should be run.
-      public enum ScheduleOneOf: Codable, Equatable, Sendable {
+      public enum ScheduleOneOf: Equatable, Sendable {
         /// Schedule the query to execute every so many minutes.
         indirect case minutes(AlertPolicy.Condition.SqlCondition.Minutes)
         /// Schedule the query to execute every so many hours.
@@ -2278,7 +2278,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The test to be run against the SQL result set.
-      public enum EvaluateOneOf: Codable, Equatable, Sendable {
+      public enum EvaluateOneOf: Equatable, Sendable {
         /// Test the row count against a threshold.
         indirect case rowCountTest(AlertPolicy.Condition.SqlCondition.RowCountTest)
         /// Test the boolean value in the indicated column.
@@ -2437,7 +2437,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Only one of the following condition types will be specified.
-    public enum ConditionOneOf: Codable, Equatable, Sendable {
+    public enum ConditionOneOf: Equatable, Sendable {
       /// A condition that compares a time series against a threshold.
       indirect case conditionThreshold(AlertPolicy.Condition.MetricThreshold)
       /// A condition that checks that a time series continues to

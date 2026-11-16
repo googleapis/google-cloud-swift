@@ -1164,7 +1164,7 @@
       }
 
       /// Specifies where the source code is located.
-      public enum SourceOneOf: Codable, Equatable, Sendable {
+      public enum SourceOneOf: Equatable, Sendable {
         /// Source code is provided directly in the request.
         indirect case inlineSource(ReasoningEngineSpec.SourceCodeSpec.InlineSource)
         /// Source code is in a Git repository managed by Developer Connect.
@@ -1176,7 +1176,7 @@
 
       /// Specifies the language-specific configuration for building and running
       /// the code.
-      public enum LanguageSpecOneOf: Codable, Equatable, Sendable {
+      public enum LanguageSpecOneOf: Equatable, Sendable {
         /// Configuration for a Python application.
         indirect case pythonSpec(ReasoningEngineSpec.SourceCodeSpec.PythonSpec)
         /// Optional. Configuration for building an image with custom config file.
@@ -1510,7 +1510,7 @@
     /// Defines the source for the deployment.
     /// The `package_spec` field should not be set if `deployment_source` is
     /// specified.
-    public enum DeploymentSourceOneOf: Codable, Equatable, Sendable {
+    public enum DeploymentSourceOneOf: Equatable, Sendable {
       /// Deploy from source code files with a defined entrypoint.
       indirect case sourceCodeSpec(ReasoningEngineSpec.SourceCodeSpec)
       /// Deploy from a container image with a defined entrypoint and commands.

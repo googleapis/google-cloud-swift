@@ -333,7 +333,7 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
     }
 
     /// The kind of CA config.
-    public enum KindOneOf: Codable, Equatable, Sendable {
+    public enum KindOneOf: Equatable, Sendable {
       /// Defines a CertificateAuthorityServiceConfig.
       indirect case certificateAuthorityServiceConfig(
         CertificateIssuanceConfig.CertificateAuthorityConfig.CertificateAuthorityServiceConfig)

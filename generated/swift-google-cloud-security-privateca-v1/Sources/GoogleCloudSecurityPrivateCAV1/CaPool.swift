@@ -1055,7 +1055,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public enum KeyTypeOneOf: Codable, Equatable, Sendable {
+      public enum KeyTypeOneOf: Equatable, Sendable {
         /// Represents an allowed RSA key type.
         indirect case rsa(CaPool.IssuancePolicy.AllowedKeyType.RsaKeyType)
         /// Represents an allowed Elliptic Curve key type.

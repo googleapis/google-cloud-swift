@@ -142,7 +142,7 @@
     }
 
     /// Output only. The agent assist answer.
-    public enum AnswerOneOf: Codable, Equatable, Sendable {
+    public enum AnswerOneOf: Equatable, Sendable {
       /// Output only. The article suggestion answer.
       indirect case articleSuggestionAnswer(ArticleAnswer)
       /// Output only. The FAQ answer.

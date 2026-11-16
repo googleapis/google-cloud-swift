@@ -668,7 +668,7 @@
       }
 
       /// Routing mode.
-      public enum RoutingConfigOneOf: Codable, Equatable, Sendable {
+      public enum RoutingConfigOneOf: Equatable, Sendable {
         /// Automated routing.
         indirect case autoMode(GenerationConfig.RoutingConfig.AutoRoutingMode)
         /// Manual routing.

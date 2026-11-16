@@ -233,7 +233,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Setup for the Notebook instance.
-  public enum InfrastructureOneOf: Codable, Equatable, Sendable {
+  public enum InfrastructureOneOf: Equatable, Sendable {
     /// Optional. Compute Engine setup for the notebook. Uses notebook-defined
     /// fields.
     indirect case gceSetup(GceSetup)

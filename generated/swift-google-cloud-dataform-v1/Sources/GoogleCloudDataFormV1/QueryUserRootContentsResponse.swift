@@ -172,7 +172,7 @@ public struct QueryUserRootContentsResponse: Codable, Equatable, GoogleWKT._AnyP
     }
 
     /// The content entry.
-    public enum EntryOneOf: Codable, Equatable, Sendable {
+    public enum EntryOneOf: Equatable, Sendable {
       /// A subfolder.
       indirect case folder(Folder)
       /// A repository.

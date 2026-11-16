@@ -351,7 +351,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public enum CredentialsOneOf: Codable, Equatable, Sendable {
+    public enum CredentialsOneOf: Equatable, Sendable {
       /// Use username and password to access the remote repository.
       indirect case usernamePasswordCredentials(
         RemoteRepositoryConfig.UpstreamCredentials.UsernamePasswordCredentials)
@@ -661,7 +661,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// Address of the remote repository.
-    public enum UpstreamOneOf: Codable, Equatable, Sendable {
+    public enum UpstreamOneOf: Equatable, Sendable {
       /// One of the publicly available Docker repositories supported by Artifact
       /// Registry.
       case publicRepository(RemoteRepositoryConfig.DockerRepository.PublicRepository)
@@ -973,7 +973,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// Address of the remote repository.
-    public enum UpstreamOneOf: Codable, Equatable, Sendable {
+    public enum UpstreamOneOf: Equatable, Sendable {
       /// One of the publicly available Maven repositories supported by Artifact
       /// Registry.
       case publicRepository(RemoteRepositoryConfig.MavenRepository.PublicRepository)
@@ -1284,7 +1284,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// Address of the remote repository
-    public enum UpstreamOneOf: Codable, Equatable, Sendable {
+    public enum UpstreamOneOf: Equatable, Sendable {
       /// One of the publicly available Npm repositories supported by Artifact
       /// Registry.
       case publicRepository(RemoteRepositoryConfig.NpmRepository.PublicRepository)
@@ -1595,7 +1595,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// Address of the remote repository.
-    public enum UpstreamOneOf: Codable, Equatable, Sendable {
+    public enum UpstreamOneOf: Equatable, Sendable {
       /// One of the publicly available Python repositories supported by Artifact
       /// Registry.
       case publicRepository(RemoteRepositoryConfig.PythonRepository.PublicRepository)
@@ -2016,7 +2016,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// Address of the remote repository.
-    public enum UpstreamOneOf: Codable, Equatable, Sendable {
+    public enum UpstreamOneOf: Equatable, Sendable {
       /// One of the publicly available Apt repositories supported by Artifact
       /// Registry.
       indirect case publicRepository(RemoteRepositoryConfig.AptRepository.PublicRepository)
@@ -2458,7 +2458,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// Address of the remote repository.
-    public enum UpstreamOneOf: Codable, Equatable, Sendable {
+    public enum UpstreamOneOf: Equatable, Sendable {
       /// One of the publicly available Yum repositories supported by Artifact
       /// Registry.
       indirect case publicRepository(RemoteRepositoryConfig.YumRepository.PublicRepository)
@@ -2571,7 +2571,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// Settings specific to the remote repository.
-  public enum RemoteSourceOneOf: Codable, Equatable, Sendable {
+  public enum RemoteSourceOneOf: Equatable, Sendable {
     /// Specific settings for a Docker remote repository.
     indirect case dockerRepository(RemoteRepositoryConfig.DockerRepository)
     /// Specific settings for a Maven remote repository.

@@ -329,7 +329,7 @@
       }
 
       /// Failure reason.
-      public enum FailureOneOf: Codable, Equatable, Sendable {
+      public enum FailureOneOf: Equatable, Sendable {
         /// Failed due to insufficient quota.
         indirect case quotaFailure(TargetSite.FailureReason.QuotaFailure)
       }

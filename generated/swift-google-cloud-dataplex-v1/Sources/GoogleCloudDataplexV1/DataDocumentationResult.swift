@@ -1245,7 +1245,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// The result of the data documentation scan.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// Output only. Insights for a Dataset resource.
     indirect case datasetResult(DataDocumentationResult.DatasetResult)
     /// Output only. Insights for a Table resource.

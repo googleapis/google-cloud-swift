@@ -116,7 +116,7 @@ public struct ImportTaxonomiesRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Source taxonomies to import.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Inline source taxonomy to import.
     indirect case inlineSource(InlineSource)
     /// Cross-regional source taxonomy to import.

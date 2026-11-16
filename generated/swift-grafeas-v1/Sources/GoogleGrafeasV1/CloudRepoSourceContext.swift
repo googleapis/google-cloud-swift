@@ -111,7 +111,7 @@ public struct CloudRepoSourceContext: Codable, Equatable, GoogleWKT._AnyPackable
 
   /// A revision in a Cloud Repo can be identified by either its revision ID or
   /// its alias.
-  public enum RevisionOneOf: Codable, Equatable, Sendable {
+  public enum RevisionOneOf: Equatable, Sendable {
     /// A revision ID.
     case revisionId(Swift.String)
     /// An alias, which may be a branch or tag.

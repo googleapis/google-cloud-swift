@@ -103,7 +103,7 @@ public struct RestoreParameters: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source that the volume is created from.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Full name of the snapshot resource.
     /// Format:
     /// projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}

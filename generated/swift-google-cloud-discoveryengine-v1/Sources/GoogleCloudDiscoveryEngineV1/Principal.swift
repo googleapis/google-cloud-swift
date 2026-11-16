@@ -111,7 +111,7 @@
     }
 
     /// Union field principal. Principal can be a user or a group.
-    public enum PrincipalOneOf: Codable, Equatable, Sendable {
+    public enum PrincipalOneOf: Equatable, Sendable {
       /// User identifier.
       /// For Google Workspace user account, user_id should be the google workspace
       /// user email.

@@ -1342,7 +1342,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Info specific to a remote Iceberg REST catalog.
-    public enum RemoteCatalogInfoOneOf: Codable, Equatable, Sendable {
+    public enum RemoteCatalogInfoOneOf: Equatable, Sendable {
       /// Optional. Info specific to a Unity Catalog by Databricks.
       indirect case unityCatalogInfo(IcebergCatalog.FederatedCatalogOptions.UnityCatalogInfo)
       /// Optional. Info specific to an AWS Glue Catalog.

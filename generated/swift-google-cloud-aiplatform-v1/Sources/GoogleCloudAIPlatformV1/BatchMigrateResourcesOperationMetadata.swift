@@ -198,7 +198,7 @@
       /// If the resource's migration is ongoing, none of the result will be set.
       /// If the resource's migration is finished, either error or one of the
       /// migrated resource name will be filled.
-      public enum ResultOneOf: Codable, Equatable, Sendable {
+      public enum ResultOneOf: Equatable, Sendable {
         /// The error result of the migration request in case of failure.
         indirect case error(GoogleRpc.Status)
         /// Migrated model resource name.

@@ -133,7 +133,7 @@ public struct ImageImportStep: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum StepOneOf: Codable, Equatable, Sendable {
+  public enum StepOneOf: Equatable, Sendable {
     /// Initializing step.
     indirect case initializing(InitializingImageImportStep)
     /// Loading source files step.

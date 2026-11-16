@@ -711,7 +711,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum ConfigOneOf: Codable, Equatable, Sendable {
+    public enum ConfigOneOf: Equatable, Sendable {
       /// Remote control plane configuration.
       indirect case remote(Cluster.ControlPlane.Remote)
       /// Local control plane configuration.

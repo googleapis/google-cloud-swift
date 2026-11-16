@@ -200,7 +200,7 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Stream configuration that is specific to the data source type.
-  public enum SourceStreamConfigOneOf: Codable, Equatable, Sendable {
+  public enum SourceStreamConfigOneOf: Equatable, Sendable {
     /// Oracle data source configuration.
     indirect case oracleSourceConfig(OracleSourceConfig)
     /// MySQL data source configuration.

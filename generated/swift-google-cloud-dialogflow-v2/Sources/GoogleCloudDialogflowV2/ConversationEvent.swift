@@ -303,7 +303,7 @@
     }
 
     /// Payload of conversation event.
-    public enum PayloadOneOf: Codable, Equatable, Sendable {
+    public enum PayloadOneOf: Equatable, Sendable {
       /// Payload of NEW_MESSAGE event.
       indirect case newMessagePayload(GoogleCloudDialogflowV2.Message)
       /// Payload of NEW_RECOGNITION_RESULT event.

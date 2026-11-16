@@ -210,7 +210,7 @@ public struct OperationProgress: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Strictly one of the values is required.
-    public enum ValueOneOf: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Equatable, Sendable {
       /// For metrics with integer value.
       case intValue(Swift.Int64)
       /// For metrics with floating point value.

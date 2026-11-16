@@ -544,7 +544,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
 
   /// Configuration for an external data store to which the feedback labels
   /// will be written to.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// A cloud storage bucket destination.
     indirect case gcsDestination(BulkDownloadFeedbackLabelsRequest.GcsDestination)
   }

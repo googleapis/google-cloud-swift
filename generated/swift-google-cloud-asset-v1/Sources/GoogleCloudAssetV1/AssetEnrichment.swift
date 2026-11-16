@@ -94,7 +94,7 @@ public struct AssetEnrichment: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum EnrichmentDataOneOf: Codable, Equatable, Sendable {
+  public enum EnrichmentDataOneOf: Equatable, Sendable {
     /// The resource owners for a resource.
     ///
     /// Note that this field only contains the members that have "roles/owner"

@@ -185,7 +185,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Ephemeral metadata about the state of an operation for a particular
   /// resource.
-  public enum ResourceMetadataOneOf: Codable, Equatable, Sendable {
+  public enum ResourceMetadataOneOf: Equatable, Sendable {
     /// Output only. Metadata about the deployment operation state.
     indirect case deploymentMetadata(DeploymentOperationMetadata)
     /// Output only. Metadata about the preview operation state.

@@ -285,7 +285,7 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The destination of the results.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Output config to write the results to Cloud Storage.
     indirect case gcsOutputConfig(DocumentOutputConfig.GcsOutputConfig)
   }

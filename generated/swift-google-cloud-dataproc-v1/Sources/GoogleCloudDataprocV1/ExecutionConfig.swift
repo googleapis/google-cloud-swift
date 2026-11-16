@@ -208,7 +208,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Network configuration for workload execution.
-  public enum NetworkOneOf: Codable, Equatable, Sendable {
+  public enum NetworkOneOf: Equatable, Sendable {
     /// Optional. Network URI to connect workload to.
     case networkUri(Swift.String)
     /// Optional. Subnetwork URI to connect workload to.

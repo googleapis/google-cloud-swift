@@ -140,7 +140,7 @@ public struct BatchRecognizeFileResult: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// Recognition results written to Cloud Storage. This is
     /// populated only when
     /// [GcsOutputConfig][google.cloud.speech.v2.GcsOutputConfig] is set in

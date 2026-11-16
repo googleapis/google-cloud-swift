@@ -107,7 +107,7 @@
     }
 
     /// The exported intents.
-    public enum IntentsOneOf: Codable, Equatable, Sendable {
+    public enum IntentsOneOf: Equatable, Sendable {
       /// The URI to a file containing the exported intents. This field is
       /// populated only if `intents_uri` is specified in
       /// [ExportIntentsRequest][google.cloud.dialogflow.cx.v3.ExportIntentsRequest].

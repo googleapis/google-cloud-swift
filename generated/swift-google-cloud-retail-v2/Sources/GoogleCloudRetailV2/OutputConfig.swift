@@ -292,7 +292,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configuration of destination for holding output data.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// The Google Cloud Storage location where the output is to be written to.
     indirect case gcsDestination(OutputConfig.GcsDestination)
     /// The BigQuery location where the output is to be written to.

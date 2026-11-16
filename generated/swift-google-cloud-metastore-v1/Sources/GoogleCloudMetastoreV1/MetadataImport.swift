@@ -511,7 +511,7 @@ public struct MetadataImport: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The metadata to be imported.
-  public enum MetadataOneOf: Codable, Equatable, Sendable {
+  public enum MetadataOneOf: Equatable, Sendable {
     /// Immutable. A database dump from a pre-existing metastore's database.
     indirect case databaseDump(MetadataImport.DatabaseDump)
   }

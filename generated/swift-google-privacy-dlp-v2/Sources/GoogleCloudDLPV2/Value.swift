@@ -154,7 +154,7 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Value types
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// integer
     case integerValue(Swift.Int64)
     /// float

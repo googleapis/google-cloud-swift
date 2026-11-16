@@ -278,7 +278,7 @@ public struct Connector: Codable, Equatable, GoogleWKT._AnyPackable,
   /// A policy that specifies how to restart the failed connectors/tasks in a
   /// Cluster resource. If not set, the failed connectors/tasks won't be
   /// restarted.
-  public enum RestartPolicyOneOf: Codable, Equatable, Sendable {
+  public enum RestartPolicyOneOf: Equatable, Sendable {
     /// Optional. Restarts the individual tasks of a Connector.
     indirect case taskRestartPolicy(TaskRetryPolicy)
   }

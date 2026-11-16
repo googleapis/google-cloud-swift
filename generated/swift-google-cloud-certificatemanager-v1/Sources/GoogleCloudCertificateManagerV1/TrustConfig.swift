@@ -256,7 +256,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Kind of the trust anchor. Required.
-    public enum KindOneOf: Codable, Equatable, Sendable {
+    public enum KindOneOf: Equatable, Sendable {
       /// PEM root certificate of the PKI used for validation.
       ///
       /// Each certificate provided in PEM format may occupy up to 5kB.
@@ -364,7 +364,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Kind of the intermediate CA. Required.
-    public enum KindOneOf: Codable, Equatable, Sendable {
+    public enum KindOneOf: Equatable, Sendable {
       /// PEM intermediate certificate used for building up paths
       /// for validation.
       ///

@@ -339,7 +339,7 @@ public struct DlpJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Job details.
-  public enum DetailsOneOf: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Equatable, Sendable {
     /// Results from analyzing risk of a data source.
     indirect case riskDetails(AnalyzeDataSourceRiskDetails)
     /// Results from inspecting a data source.

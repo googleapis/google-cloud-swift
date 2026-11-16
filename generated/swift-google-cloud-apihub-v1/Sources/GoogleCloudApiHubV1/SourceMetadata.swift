@@ -335,7 +335,7 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the resource.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Output only. The source of the resource is a plugin instance action.
     indirect case pluginInstanceActionSource(SourceMetadata.PluginInstanceActionSource)
   }

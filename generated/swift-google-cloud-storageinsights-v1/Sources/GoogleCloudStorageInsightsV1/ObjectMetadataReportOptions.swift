@@ -135,13 +135,13 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// Filter options for storage systems.
-  public enum FilterOneOf: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Equatable, Sendable {
     /// Cloud Storage as the storage system.
     indirect case storageFilters(CloudStorageFilters)
   }
 
   /// Options on destination for storage systems.
-  public enum DestinationOptionsOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOptionsOneOf: Equatable, Sendable {
     /// Cloud Storage as the storage system.
     indirect case storageDestinationOptions(CloudStorageDestinationOptions)
   }

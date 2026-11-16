@@ -2915,7 +2915,7 @@
           }
 
           /// Image to show with the media card.
-          public enum ImageOneOf: Codable, Equatable, Sendable {
+          public enum ImageOneOf: Equatable, Sendable {
             /// Optional. Image to display above media content.
             indirect case largeImage(Intent.Message.Image)
             /// Optional. Icon to display above media content.
@@ -4345,7 +4345,7 @@
       }
 
       /// Required. The rich response message.
-      public enum MessageOneOf: Codable, Equatable, Sendable {
+      public enum MessageOneOf: Equatable, Sendable {
         /// The text response.
         indirect case text(Intent.Message.Text)
         /// The image response.

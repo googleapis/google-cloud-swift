@@ -1084,7 +1084,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Deployment mode of the network proxy. Exactly one of the fields in this
   /// `oneof` must be set.
-  public enum DeploymentModeOneOf: Codable, Equatable, Sendable {
+  public enum DeploymentModeOneOf: Equatable, Sendable {
     /// Optional. Proxy is orchestrated and managed by GoogleCloud in a tenant
     /// project.
     indirect case googleManaged(AgentGateway.GoogleManaged)

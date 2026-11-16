@@ -278,7 +278,7 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Garbage collection rules.
-  public enum RuleOneOf: Codable, Equatable, Sendable {
+  public enum RuleOneOf: Equatable, Sendable {
     /// Delete all cells in a column except the most recent N.
     case maxNumVersions(Swift.Int32)
     /// Delete cells in a column older than the given age.

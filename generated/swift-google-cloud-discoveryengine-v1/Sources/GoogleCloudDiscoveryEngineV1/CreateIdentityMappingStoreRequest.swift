@@ -141,7 +141,7 @@
 
     /// CMEK options for the Identity Mapping Store. Setting this field will
     /// override the default CmekConfig if one is set for the project.
-    public enum CmekOptionsOneOf: Codable, Equatable, Sendable {
+    public enum CmekOptionsOneOf: Equatable, Sendable {
       /// Resource name of the CmekConfig to use for protecting this Identity
       /// Mapping Store.
       case cmekConfigName(Swift.String)

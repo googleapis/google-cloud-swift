@@ -346,7 +346,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
     }
 
     /// The operation to perform on the file.
-    public enum OperationOneOf: Codable, Equatable, Sendable {
+    public enum OperationOneOf: Equatable, Sendable {
       /// Represents the write operation.
       indirect case writeFile(CommitRepositoryChangesRequest.FileOperation.WriteFile)
       /// Represents the delete operation.

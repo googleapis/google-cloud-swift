@@ -432,7 +432,7 @@
           }
         }
 
-        public enum DataOneOf: Codable, Equatable, Sendable {
+        public enum DataOneOf: Equatable, Sendable {
           /// Feature value if a single value is requested.
           indirect case value(FeatureValue)
           /// Feature values list if values, successive in time, are requested.

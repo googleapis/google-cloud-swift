@@ -1155,7 +1155,7 @@
       }
 
       /// Search result content.
-      public enum ContentOneOf: Codable, Equatable, Sendable {
+      public enum ContentOneOf: Equatable, Sendable {
         /// Unstructured document information.
         indirect case unstructuredDocumentInfo(Answer.Reference.UnstructuredDocumentInfo)
         /// Chunk information.
@@ -1854,7 +1854,7 @@
         }
 
         /// The action.
-        public enum ActionOneOf: Codable, Equatable, Sendable {
+        public enum ActionOneOf: Equatable, Sendable {
           /// Search action.
           indirect case searchAction(Answer.Step.Action.SearchAction)
         }

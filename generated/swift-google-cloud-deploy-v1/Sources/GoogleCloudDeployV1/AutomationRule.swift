@@ -123,7 +123,7 @@ public struct AutomationRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configuration of the Automation rule.
-  public enum RuleOneOf: Codable, Equatable, Sendable {
+  public enum RuleOneOf: Equatable, Sendable {
     /// Optional. `PromoteReleaseRule` will automatically promote a release from
     /// the current target to a specified target.
     indirect case promoteReleaseRule(PromoteReleaseRule)

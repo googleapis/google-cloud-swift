@@ -105,7 +105,7 @@ public struct DiscoveryOtherCloudConditions: Codable, Equatable, GoogleWKT._AnyP
   }
 
   /// The conditions to apply.
-  public enum ConditionsOneOf: Codable, Equatable, Sendable {
+  public enum ConditionsOneOf: Equatable, Sendable {
     /// Amazon S3 bucket conditions.
     indirect case amazonS3BucketConditions(AmazonS3BucketConditions)
   }

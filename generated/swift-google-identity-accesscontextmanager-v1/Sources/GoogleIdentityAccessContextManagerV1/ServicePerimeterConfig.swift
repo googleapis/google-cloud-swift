@@ -329,7 +329,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// The API method name or Cloud IAM permission name to allow.
-    public enum KindOneOf: Codable, Equatable, Sendable {
+    public enum KindOneOf: Equatable, Sendable {
       /// Value for `method` should be a valid method name for the corresponding
       /// `service_name` in [ApiOperation]
       /// [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation].
@@ -558,7 +558,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// Allowed ingress source. It can be one of [AccessLevel]
     /// [google.identity.accesscontextmanager.v1.AccessLevel] or Google
     /// Cloud resource.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// An [AccessLevel]
       /// [google.identity.accesscontextmanager.v1.AccessLevel] resource
       /// name that allow resources within the [ServicePerimeters]

@@ -208,7 +208,7 @@ public struct ExperimentInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Information associated with the specific experiment entity being recorded.
-  public enum ExperimentMetadataOneOf: Codable, Equatable, Sendable {
+  public enum ExperimentMetadataOneOf: Equatable, Sendable {
     /// A/B test between existing Cloud Retail Search
     /// [ServingConfig][google.cloud.retail.v2.ServingConfig]s.
     ///

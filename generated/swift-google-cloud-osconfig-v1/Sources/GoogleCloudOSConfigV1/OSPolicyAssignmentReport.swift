@@ -835,7 +835,7 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleWKT._AnyPackab
       }
 
       /// Resource specific output.
-      public enum OutputOneOf: Codable, Equatable, Sendable {
+      public enum OutputOneOf: Equatable, Sendable {
         /// ExecResource specific output.
         indirect case execResourceOutput(
           OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance.ExecResourceOutput)

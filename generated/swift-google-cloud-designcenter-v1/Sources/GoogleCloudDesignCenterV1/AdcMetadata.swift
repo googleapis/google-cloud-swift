@@ -121,7 +121,7 @@ public struct AdcMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Application or ApplicationTemplate URI
-  public enum AppUriOneOf: Codable, Equatable, Sendable {
+  public enum AppUriOneOf: Equatable, Sendable {
     /// Output only. Application URI
     case applicationUri(Swift.String)
     /// Output only. ApplicationTemplate URI

@@ -167,7 +167,7 @@
     }
 
     /// Generator.
-    public enum GeneratorResourceOneOf: Codable, Equatable, Sendable {
+    public enum GeneratorResourceOneOf: Equatable, Sendable {
       /// Uncreated generator. It should be a complete generator that includes all
       /// information about the generator.
       indirect case generator(Generator)

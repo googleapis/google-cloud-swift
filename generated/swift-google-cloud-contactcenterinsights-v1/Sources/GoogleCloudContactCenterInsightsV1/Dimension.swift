@@ -695,7 +695,7 @@ public struct Dimension: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Output-only metadata about the dimension.
-  public enum DimensionMetadataOneOf: Codable, Equatable, Sendable {
+  public enum DimensionMetadataOneOf: Equatable, Sendable {
     /// Output only. Metadata about the issue dimension.
     indirect case issueDimensionMetadata(Dimension.IssueDimensionMetadata)
     /// Output only. Metadata about the agent dimension.

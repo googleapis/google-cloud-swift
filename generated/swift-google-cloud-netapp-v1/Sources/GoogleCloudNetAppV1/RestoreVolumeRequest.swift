@@ -133,13 +133,13 @@ public struct RestoreVolumeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the restore operation.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The backup source of the restore operation.
     indirect case backupSource(BackupSource)
   }
 
   /// The target of the restore operation.
-  public enum TargetOneOf: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Equatable, Sendable {
     /// The ONTAP volume target of the restore operation.
     indirect case ontapVolumeTarget(OntapVolumeTarget)
   }

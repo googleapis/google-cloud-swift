@@ -686,7 +686,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ContentOneOf: Codable, Equatable, Sendable {
+  public enum ContentOneOf: Equatable, Sendable {
     indirect case ipUtilizationInfo(IpUtilizationInfo)
   }
 

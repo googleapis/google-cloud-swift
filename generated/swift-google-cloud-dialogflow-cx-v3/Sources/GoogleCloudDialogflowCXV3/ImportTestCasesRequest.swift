@@ -115,7 +115,7 @@
     }
 
     /// Required. The source to import.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI
       /// to import test cases from. The format of this URI must be
       /// `gs://<bucket-name>/<object-name>`.

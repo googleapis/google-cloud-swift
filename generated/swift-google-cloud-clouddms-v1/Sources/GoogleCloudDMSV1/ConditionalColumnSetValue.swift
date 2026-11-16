@@ -124,7 +124,7 @@ public struct ConditionalColumnSetValue: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public enum SourceFilterOneOf: Codable, Equatable, Sendable {
+  public enum SourceFilterOneOf: Equatable, Sendable {
     /// Optional. Optional filter on source column length. Used for text based
     /// data types like varchar.
     indirect case sourceTextFilter(SourceTextFilter)

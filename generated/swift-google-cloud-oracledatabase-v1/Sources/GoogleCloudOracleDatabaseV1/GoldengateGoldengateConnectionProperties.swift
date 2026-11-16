@@ -154,7 +154,7 @@ public struct GoldengateGoldengateConnectionProperties: Codable, Equatable, Goog
 
   /// The password used to connect to the Oracle Goldengate accessed through this
   /// connection.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password used to connect to the Oracle
     /// Goldengate in plain text.
     case password(Swift.String)

@@ -928,7 +928,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Target dataset(s) configuration.
-  public enum DatasetConfigOneOf: Codable, Equatable, Sendable {
+  public enum DatasetConfigOneOf: Equatable, Sendable {
     /// Single destination dataset.
     indirect case singleTargetDataset(BigQueryDestinationConfig.SingleTargetDataset)
     /// Source hierarchy datasets.
@@ -936,7 +936,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Destination write mode.
-  public enum WriteModeOneOf: Codable, Equatable, Sendable {
+  public enum WriteModeOneOf: Equatable, Sendable {
     /// The standard mode
     indirect case merge(BigQueryDestinationConfig.Merge)
     /// Append only mode

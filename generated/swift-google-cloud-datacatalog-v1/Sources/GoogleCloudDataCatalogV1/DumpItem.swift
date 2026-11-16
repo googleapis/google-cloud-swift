@@ -92,7 +92,7 @@ public struct DumpItem: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ItemOneOf: Codable, Equatable, Sendable {
+  public enum ItemOneOf: Equatable, Sendable {
     /// Entry and its tags.
     indirect case taggedEntry(TaggedEntry)
   }

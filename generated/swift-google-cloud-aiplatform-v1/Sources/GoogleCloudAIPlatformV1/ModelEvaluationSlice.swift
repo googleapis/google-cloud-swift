@@ -429,7 +429,7 @@
             }
           }
 
-          public enum KindOneOf: Codable, Equatable, Sendable {
+          public enum KindOneOf: Equatable, Sendable {
             /// A unique specific value for a given feature.
             /// Example: `{ "value": { "string_value": "12345" } }`
             indirect case value(ModelEvaluationSlice.Slice.SliceSpec.Value)
@@ -642,7 +642,7 @@
             }
           }
 
-          public enum KindOneOf: Codable, Equatable, Sendable {
+          public enum KindOneOf: Equatable, Sendable {
             /// String type.
             case stringValue(Swift.String)
             /// Float type.

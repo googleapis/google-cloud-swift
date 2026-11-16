@@ -138,7 +138,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source for the volume.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// A Network File System (NFS) volume. For example, a
     /// Filestore file share.
     indirect case nfs(NFS)

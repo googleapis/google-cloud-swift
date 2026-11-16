@@ -97,7 +97,7 @@ public struct DatasetSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Fields specific to the source system.
-  public enum SystemSpecOneOf: Codable, Equatable, Sendable {
+  public enum SystemSpecOneOf: Equatable, Sendable {
     /// Vertex AI Dataset specific fields
     indirect case vertexDatasetSpec(VertexDatasetSpec)
   }

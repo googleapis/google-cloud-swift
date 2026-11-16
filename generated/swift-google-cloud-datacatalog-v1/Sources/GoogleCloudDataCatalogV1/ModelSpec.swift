@@ -97,7 +97,7 @@ public struct ModelSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// System spec
-  public enum SystemSpecOneOf: Codable, Equatable, Sendable {
+  public enum SystemSpecOneOf: Equatable, Sendable {
     /// Specification for vertex model resources.
     indirect case vertexModelSpec(VertexModelSpec)
   }

@@ -234,7 +234,7 @@
     }
 
     /// The desired input source for the purging documents based on document IDs.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// Cloud Storage location for the input content.
       /// Supported `data_schema`:
       /// * `document_id`: One valid

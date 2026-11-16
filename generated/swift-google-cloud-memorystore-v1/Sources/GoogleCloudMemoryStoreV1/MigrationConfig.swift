@@ -255,7 +255,7 @@ public struct MigrationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Details about the migration source.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Output only. Configuration for migrating from a self-managed Valkey/Redis
     /// instance
     indirect case selfManagedSource(SelfManagedSource)

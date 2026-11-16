@@ -336,7 +336,7 @@
       }
     }
 
-    public enum DetailsOneOf: Codable, Equatable, Sendable {
+    public enum DetailsOneOf: Equatable, Sendable {
       /// Output only. The detailed info for a container executor.
       indirect case containerDetail(PipelineTaskExecutorDetail.ContainerDetail)
       /// Output only. The detailed info for a custom job executor.

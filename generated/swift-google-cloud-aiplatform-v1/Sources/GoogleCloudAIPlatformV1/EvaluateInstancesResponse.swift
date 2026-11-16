@@ -339,7 +339,7 @@
 
     /// Evaluation results will be served in the same order as presented in
     /// EvaluationRequest.instances.
-    public enum EvaluationResultsOneOf: Codable, Equatable, Sendable {
+    public enum EvaluationResultsOneOf: Equatable, Sendable {
       /// Auto metric evaluation results.
       /// Results for exact match metric.
       indirect case exactMatchResults(ExactMatchResults)

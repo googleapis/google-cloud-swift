@@ -162,7 +162,7 @@ public struct Chunk: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Chunk data.
-  public enum DataOneOf: Codable, Equatable, Sendable {
+  public enum DataOneOf: Equatable, Sendable {
     /// Optional. Text data.
     case text(Swift.String)
     /// Optional. Transcript associated with the audio.

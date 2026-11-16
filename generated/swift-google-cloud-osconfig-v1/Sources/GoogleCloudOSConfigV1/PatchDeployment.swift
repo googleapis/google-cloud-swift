@@ -316,7 +316,7 @@ public struct PatchDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Schedule for the patch.
-  public enum ScheduleOneOf: Codable, Equatable, Sendable {
+  public enum ScheduleOneOf: Equatable, Sendable {
     /// Required. Schedule a one-time execution.
     indirect case oneTimeSchedule(OneTimeSchedule)
     /// Required. Schedule recurring executions.

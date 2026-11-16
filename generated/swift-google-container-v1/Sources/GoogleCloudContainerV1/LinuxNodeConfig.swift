@@ -815,7 +815,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// Optional. Specifies the size of the swap space. If omitted, GKE
       /// determines an optimal size based on node memory.
-      public enum SwapSizeOneOf: Codable, Equatable, Sendable {
+      public enum SwapSizeOneOf: Equatable, Sendable {
         /// Specifies the size of the swap space in gibibytes (GiB).
         case swapSizeGib(Swift.Int64)
         /// Specifies the size of the swap space as a percentage of the boot disk
@@ -931,7 +931,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Specifies the size of the swap space to be provisioned.
-      public enum SwapSizeOneOf: Codable, Equatable, Sendable {
+      public enum SwapSizeOneOf: Equatable, Sendable {
         /// Specifies the size of the swap space in gibibytes (GiB).
         case swapSizeGib(Swift.Int64)
         /// Specifies the size of the swap space as a percentage of the ephemeral
@@ -1045,7 +1045,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Optional. Defines the backing storage for the swap space.
     /// If omitted, defaults to the 'boot_disk_profile'.
-    public enum PerformanceProfileOneOf: Codable, Equatable, Sendable {
+    public enum PerformanceProfileOneOf: Equatable, Sendable {
       /// Swap on the node's boot disk.
       indirect case bootDiskProfile(LinuxNodeConfig.SwapConfig.BootDiskProfile)
       /// Swap on the local SSD shared with pod ephemeral storage.

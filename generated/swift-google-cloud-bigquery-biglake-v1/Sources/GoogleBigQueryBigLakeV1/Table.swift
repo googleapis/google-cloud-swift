@@ -271,7 +271,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Options specified for the table type.
-  public enum OptionsOneOf: Codable, Equatable, Sendable {
+  public enum OptionsOneOf: Equatable, Sendable {
     /// Options of a Hive table.
     indirect case hiveOptions(HiveTableOptions)
   }

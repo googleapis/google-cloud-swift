@@ -440,7 +440,7 @@ public struct BackendRule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// Refer to https://developers.google.com/identity/protocols/OpenIDConnect for
   /// JWT ID token.
-  public enum AuthenticationOneOf: Codable, Equatable, Sendable {
+  public enum AuthenticationOneOf: Equatable, Sendable {
     /// The JWT audience is used when generating a JWT ID token for the backend.
     /// This ID token will be added in the HTTP "authorization" header, and sent
     /// to the backend.

@@ -206,7 +206,7 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The target environment for the restore operation.
-  public enum TargetEnvironmentOneOf: Codable, Equatable, Sendable {
+  public enum TargetEnvironmentOneOf: Equatable, Sendable {
     /// Compute Engine target environment to be used during restore.
     indirect case computeInstanceTargetEnvironment(ComputeInstanceTargetEnvironment)
     /// Disk target environment to be used during restore.
@@ -216,7 +216,7 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The property overrides for the instance being restored.
-  public enum InstancePropertiesOneOf: Codable, Equatable, Sendable {
+  public enum InstancePropertiesOneOf: Equatable, Sendable {
     /// Compute Engine instance properties to be overridden during restore.
     indirect case computeInstanceRestoreProperties(ComputeInstanceRestoreProperties)
     /// Disk properties to be overridden during restore.

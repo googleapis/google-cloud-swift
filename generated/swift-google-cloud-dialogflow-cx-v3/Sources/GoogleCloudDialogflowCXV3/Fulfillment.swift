@@ -527,7 +527,7 @@
           }
 
           /// Either a message is returned or additional cases to be evaluated.
-          public enum CasesOrMessageOneOf: Codable, Equatable, Sendable {
+          public enum CasesOrMessageOneOf: Equatable, Sendable {
             /// Returned message.
             indirect case message(ResponseMessage)
             /// Additional cases to be evaluated.

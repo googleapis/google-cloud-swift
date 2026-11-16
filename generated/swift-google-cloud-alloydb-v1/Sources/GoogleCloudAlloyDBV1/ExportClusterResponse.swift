@@ -96,7 +96,7 @@ public struct ExportClusterResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Oneof field to support other destinations in future.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Required. Option to export data to cloud storage.
     indirect case gcsDestination(GcsDestination)
   }

@@ -255,7 +255,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum ActionOneOf: Codable, Equatable, Sendable {
+    public enum ActionOneOf: Equatable, Sendable {
       /// Optional. If set, the verdict will be returned to the user.
       case returnVerdict(ContentPolicyVerdict)
     }
@@ -614,7 +614,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// A condition based on info types.
-        public enum InfoTypeConditionOneOf: Codable, Equatable, Sendable {
+        public enum InfoTypeConditionOneOf: Equatable, Sendable {
           /// match any of these info types.
           indirect case infoTypes(
             ContentPolicy.PolicyRule.PolicyCondition.InfoTypeCondition.InfoTypes)
@@ -646,7 +646,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// A condition.
-      public enum ConditionOneOf: Codable, Equatable, Sendable {
+      public enum ConditionOneOf: Equatable, Sendable {
         /// A condition based on info types.
         indirect case infoTypeCondition(ContentPolicy.PolicyRule.PolicyCondition.InfoTypeCondition)
       }
@@ -874,7 +874,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The destination for the action logs.
-    public enum DestinationOneOf: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Equatable, Sendable {
       /// Optional. Log the actions taken to a BigQuery table.
       indirect case logToBigQuery(ContentPolicy.LoggingConfig.LogToBigQuery)
     }

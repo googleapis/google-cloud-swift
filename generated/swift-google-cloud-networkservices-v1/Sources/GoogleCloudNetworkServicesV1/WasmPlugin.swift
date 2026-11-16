@@ -351,7 +351,7 @@ public struct WasmPlugin: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum PluginConfigSourceOneOf: Codable, Equatable, Sendable {
+    public enum PluginConfigSourceOneOf: Equatable, Sendable {
       /// Configuration for the plugin.
       /// The configuration is provided to the plugin at runtime through
       /// the `ON_CONFIGURE` callback. When a new

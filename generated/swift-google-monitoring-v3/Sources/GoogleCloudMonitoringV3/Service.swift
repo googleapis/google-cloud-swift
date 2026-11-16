@@ -1427,7 +1427,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// REQUIRED. Service-identifying atoms specifying the underlying service.
-  public enum IdentifierOneOf: Codable, Equatable, Sendable {
+  public enum IdentifierOneOf: Equatable, Sendable {
     /// Custom service type.
     indirect case custom(Service.Custom)
     /// Type used for App Engine services.

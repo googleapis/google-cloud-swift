@@ -579,7 +579,7 @@
       }
 
       /// The source specific config for the input data.
-      public enum SourceSpecificConfigOneOf: Codable, Equatable, Sendable {
+      public enum SourceSpecificConfigOneOf: Equatable, Sendable {
         /// The distinctive configs for Agent Assist conversations as the
         /// conversation source.
         indirect case agentAssistInputDataConfig(
@@ -873,7 +873,7 @@
     }
 
     /// Feature used for evaluation.
-    public enum EvaluationFeatureConfigOneOf: Codable, Equatable, Sendable {
+    public enum EvaluationFeatureConfigOneOf: Equatable, Sendable {
       /// Evaluation configs for summarization generator.
       indirect case summarizationConfig(GeneratorEvaluationConfig.SummarizationConfig)
     }

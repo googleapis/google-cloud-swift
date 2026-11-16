@@ -190,7 +190,7 @@
 
     /// The origin location of the RagFile if it is imported from Google Cloud
     /// Storage or Google Drive.
-    public enum RagFileSourceOneOf: Codable, Equatable, Sendable {
+    public enum RagFileSourceOneOf: Equatable, Sendable {
       /// Output only. Google Cloud Storage location of the RagFile.
       /// It does not support wildcards in the Cloud Storage uri for now.
       indirect case gcsSource(GcsSource)

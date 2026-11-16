@@ -1535,7 +1535,7 @@
       ///
       /// [google.cloud.aiplatform.v1.Attribution.output_display_name]: <doc:Attribution/outputDisplayName>
       /// [google.cloud.aiplatform.v1.Attribution.output_index]: <doc:Attribution/outputIndex>
-      public enum DisplayNameMappingOneOf: Codable, Equatable, Sendable {
+      public enum DisplayNameMappingOneOf: Equatable, Sendable {
         /// Static mapping between the index and display name.
         ///
         /// Use this if the outputs are a deterministic n-dimensional array, e.g. a

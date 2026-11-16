@@ -192,7 +192,7 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleWKT._AnyPackabl
   /// within the location being profiled. The first filter to match will be
   /// applied, regardless of the condition. If none is set, will default to
   /// `other_tables`.
-  public enum FilterOneOf: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Equatable, Sendable {
     /// A specific set of tables for this filter to apply to. A table collection
     /// must be specified in only one filter per config.
     /// If a table id or dataset is empty, Cloud DLP assumes all tables in that

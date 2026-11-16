@@ -535,7 +535,7 @@
 
     /// Required.
     /// The time specification to launch scheduled runs.
-    public enum TimeSpecificationOneOf: Codable, Equatable, Sendable {
+    public enum TimeSpecificationOneOf: Equatable, Sendable {
       /// Cron schedule (https://en.wikipedia.org/wiki/Cron) to launch scheduled
       /// runs. To explicitly set a timezone to the cron tab, apply a prefix in the
       /// cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or "TZ=${IANA_TIME_ZONE}".
@@ -548,7 +548,7 @@
     /// Required.
     /// The API request template to launch the scheduled runs.
     /// User-specified ID is not supported in the request template.
-    public enum RequestOneOf: Codable, Equatable, Sendable {
+    public enum RequestOneOf: Equatable, Sendable {
       /// Request for
       /// [PipelineService.CreatePipelineJob][google.cloud.aiplatform.v1.PipelineService.CreatePipelineJob].
       /// CreatePipelineJobRequest.parent field is required (format:

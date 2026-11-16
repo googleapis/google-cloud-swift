@@ -362,7 +362,7 @@ public struct EffectiveVpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPack
   /// which traffic is logged. The target resource must belong to the same
   /// project as the configuration.
   /// This field is not supported for organization level configurations.
-  public enum TargetResourceOneOf: Codable, Equatable, Sendable {
+  public enum TargetResourceOneOf: Equatable, Sendable {
     /// Traffic will be logged from VMs, VPN tunnels and Interconnect Attachments
     /// within the network.
     /// Format: projects/{project_id}/global/networks/{name}

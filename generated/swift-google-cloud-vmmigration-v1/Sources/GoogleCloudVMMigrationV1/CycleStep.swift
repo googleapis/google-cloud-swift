@@ -124,7 +124,7 @@ public struct CycleStep: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum StepOneOf: Codable, Equatable, Sendable {
+  public enum StepOneOf: Equatable, Sendable {
     /// Initializing replication step.
     indirect case initializingReplication(InitializingReplicationStep)
     /// Replicating step.

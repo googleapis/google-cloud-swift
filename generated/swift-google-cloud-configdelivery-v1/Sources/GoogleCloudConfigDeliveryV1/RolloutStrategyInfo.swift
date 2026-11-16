@@ -107,7 +107,7 @@ public struct RolloutStrategyInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// strategy represents result of applying one of the rollout strategies.
-  public enum StrategyOneOf: Codable, Equatable, Sendable {
+  public enum StrategyOneOf: Equatable, Sendable {
     /// AllAtOnceStrategyInfo represents the status of AllAtOnce rollout strategy
     /// execution.
     indirect case allAtOnceStrategyInfo(AllAtOnceStrategyInfo)

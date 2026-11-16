@@ -232,7 +232,7 @@
     }
 
     /// The source of the input.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// The inline source to purge identity mapping entries from.
       indirect case inlineSource(PurgeIdentityMappingsRequest.InlineSource)
     }

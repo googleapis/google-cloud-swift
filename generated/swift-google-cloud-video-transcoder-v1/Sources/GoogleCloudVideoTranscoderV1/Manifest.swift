@@ -478,7 +478,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies the manifest configuration.
-  public enum ManifestConfigOneOf: Codable, Equatable, Sendable {
+  public enum ManifestConfigOneOf: Equatable, Sendable {
     /// `DASH` manifest configuration.
     indirect case dash(Manifest.DashConfig)
   }

@@ -625,7 +625,7 @@
     }
 
     /// Contained data.
-    public enum DataOneOf: Codable, Equatable, Sendable {
+    public enum DataOneOf: Equatable, Sendable {
       /// Inline text.
       case text(Swift.String)
       /// Inline binary data.

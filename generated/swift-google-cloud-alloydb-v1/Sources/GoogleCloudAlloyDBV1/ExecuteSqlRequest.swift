@@ -148,7 +148,7 @@ public struct ExecuteSqlRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Oneof field to support other credential mechanisms in future like
   /// SecretManager etc.
-  public enum UserCredentialOneOf: Codable, Equatable, Sendable {
+  public enum UserCredentialOneOf: Equatable, Sendable {
     /// Optional. The database native user’s password.
     case password(Swift.String)
   }

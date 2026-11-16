@@ -103,7 +103,7 @@ public struct RemoveAclEntryResponse: Codable, Equatable, GoogleWKT._AnyPackable
 
   /// The result of removing the acl entry, depending on whether the acl was
   /// deleted as a result of removing the acl entry.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// The updated acl. Returned if the removed acl entry was not the last entry
     /// in the acl.
     indirect case acl(Acl)

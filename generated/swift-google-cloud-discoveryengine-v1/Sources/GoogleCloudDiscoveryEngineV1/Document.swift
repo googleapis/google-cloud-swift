@@ -327,7 +327,7 @@
       }
 
       /// The content of the unstructured document.
-      public enum ContentOneOf: Codable, Equatable, Sendable {
+      public enum ContentOneOf: Equatable, Sendable {
         /// The content represented as a stream of bytes. The maximum length is
         /// 1,000,000 bytes (1 MB / ~0.95 MiB).
         ///
@@ -705,7 +705,7 @@
     ///
     /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/DataOneOf/jsonData(_:)>
     /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/DataOneOf/structData(_:)>
-    public enum DataOneOf: Codable, Equatable, Sendable {
+    public enum DataOneOf: Equatable, Sendable {
       /// The structured JSON data for the document. It should conform to the
       /// registered [Schema][google.cloud.discoveryengine.v1.Schema] or an
       /// `INVALID_ARGUMENT` error is thrown.

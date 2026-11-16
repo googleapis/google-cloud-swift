@@ -306,7 +306,7 @@ public struct TransferConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The desination of the transfer config.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// The BigQuery target dataset id.
     case destinationDatasetId(Swift.String)
   }

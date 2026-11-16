@@ -118,7 +118,7 @@ public struct ExportTaxonomiesRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Required. Export destination for taxonomies.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Serialized export taxonomies that contain all the policy
     /// tags as nested protocol buffers.
     case serializedTaxonomies(Swift.Bool)

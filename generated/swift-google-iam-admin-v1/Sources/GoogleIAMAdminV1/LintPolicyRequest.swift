@@ -112,7 +112,7 @@ public struct LintPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The Cloud IAM object to be linted.
-  public enum LintObjectOneOf: Codable, Equatable, Sendable {
+  public enum LintObjectOneOf: Equatable, Sendable {
     /// [google.iam.v1.Binding.condition] [google.iam.v1.Binding.condition] object to be linted.
     indirect case condition(GoogleType.Expr)
   }

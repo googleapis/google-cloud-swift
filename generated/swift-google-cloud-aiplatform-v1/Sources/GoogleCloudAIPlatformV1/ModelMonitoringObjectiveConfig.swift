@@ -240,7 +240,7 @@
         }
       }
 
-      public enum DataSourceOneOf: Codable, Equatable, Sendable {
+      public enum DataSourceOneOf: Equatable, Sendable {
         /// The resource name of the Dataset used to train this Model.
         case dataset(Swift.String)
         /// The Google Cloud Storage uri of the unmanaged Dataset used to train
@@ -797,7 +797,7 @@
 
         /// The configuration specifying of BatchExplain job output. This can be
         /// used to generate the baseline of feature attribution scores.
-        public enum DestinationOneOf: Codable, Equatable, Sendable {
+        public enum DestinationOneOf: Equatable, Sendable {
           /// Cloud Storage location for BatchExplain output.
           indirect case gcs(GcsDestination)
           /// BigQuery location for BatchExplain output.

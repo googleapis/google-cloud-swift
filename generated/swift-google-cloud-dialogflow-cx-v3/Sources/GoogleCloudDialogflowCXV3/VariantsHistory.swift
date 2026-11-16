@@ -107,7 +107,7 @@
 
     /// The variants updated. We currently only support single variant
     /// experiment.
-    public enum VariantsOneOf: Codable, Equatable, Sendable {
+    public enum VariantsOneOf: Equatable, Sendable {
       /// The flow versions as the variants.
       indirect case versionVariants(VersionVariants)
     }

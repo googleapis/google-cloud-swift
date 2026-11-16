@@ -110,7 +110,7 @@ public struct ImageContainmentType: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The type of relationship to check between the target finding and the
   /// context finding.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// The context finding's bounding box must fully contain the target
     /// finding's bounding box.
     indirect case encloses(Encloses)

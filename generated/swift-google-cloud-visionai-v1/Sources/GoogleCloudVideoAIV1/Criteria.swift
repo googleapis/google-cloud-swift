@@ -160,7 +160,7 @@ public struct Criteria: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// The text values associated with the field.
     indirect case textArray(StringArray)
     /// The integer ranges associated with the field.

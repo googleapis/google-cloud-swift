@@ -345,7 +345,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The source resource that is represented by this DataSource. It can be a
   /// Google Cloud resource, or one backed up by a Backup Appliance.
-  public enum SourceResourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceResourceOneOf: Equatable, Sendable {
     /// The backed up resource is a Google Cloud resource.
     /// The word 'DataSource' was included in the names to indicate that this is
     /// the representation of the Google Cloud resource used within the

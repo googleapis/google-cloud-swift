@@ -106,7 +106,7 @@ public struct SrtPushOutputEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines where SRT encryption passphrase are stored.
-  public enum PassphraseSourceOneOf: Codable, Equatable, Sendable {
+  public enum PassphraseSourceOneOf: Equatable, Sendable {
     /// The name of the Secret Version containing the SRT encryption passphrase,
     /// which is stored in Google Secret Manager. It should be in the format of
     /// `projects/{project}/secrets/{secret_id}/versions/{version_number}`.

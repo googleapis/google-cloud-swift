@@ -914,7 +914,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The type of condition on which attaching the tag will be predicated.
-      public enum TypeOneOf: Codable, Equatable, Sendable {
+      public enum TypeOneOf: Equatable, Sendable {
         /// Conditions attaching the tag to a resource on its profile having this
         /// sensitivity score.
         indirect case sensitivityScore(SensitivityScore)
@@ -1022,7 +1022,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The format of the tag value.
-      public enum FormatOneOf: Codable, Equatable, Sendable {
+      public enum FormatOneOf: Equatable, Sendable {
         /// The namespaced name for the tag value to attach to resources. Must be
         /// in the format `{parent_id}/{tag_key_short_name}/{short_name}`, for
         /// example, "123456/environment/prod" for an organization parent, or
@@ -1208,7 +1208,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of action to execute when a profile is generated.
-  public enum ActionOneOf: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Equatable, Sendable {
     /// Export data profiles into a provided location.
     indirect case exportData(DataProfileAction.Export)
     /// Publish a message into the Pub/Sub topic.

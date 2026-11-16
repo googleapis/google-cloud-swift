@@ -187,7 +187,7 @@ public struct CurationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The curation information for this plugin instance.
-  public enum CurationConfigOneOf: Codable, Equatable, Sendable {
+  public enum CurationConfigOneOf: Equatable, Sendable {
     /// Optional. Custom curation information for this plugin instance.
     indirect case customCuration(CurationConfig.CustomCuration)
   }

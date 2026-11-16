@@ -243,7 +243,7 @@
         }
 
         /// Feature value data to write.
-        public enum DataOneofOneOf: Codable, Equatable, Sendable {
+        public enum DataOneofOneOf: Equatable, Sendable {
           /// Feature value. A user provided timestamp may be set in the
           /// `FeatureValue.metadata.generate_time` field.
           indirect case value(FeatureValue)

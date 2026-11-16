@@ -711,7 +711,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum InfoOneOf: Codable, Equatable, Sendable {
+    public enum InfoOneOf: Equatable, Sendable {
       /// Output only. Describes ongoing update when instance state is UPDATING.
       indirect case updateInfo(Instance.StateInfo.UpdateInfo)
     }
@@ -1081,7 +1081,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// A PSC connection to an instance could either be created through Service
     /// Connectivity Automation (auto connection) during the cluster creation,
     /// or it could be created by customer themeslves (user-created connection).
-    public enum ConnectionOneOf: Codable, Equatable, Sendable {
+    public enum ConnectionOneOf: Equatable, Sendable {
       /// Immutable. Detailed information of a PSC connection that is created
       /// through service connectivity automation.
       indirect case pscAutoConnection(PscAutoConnection)
@@ -1931,7 +1931,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source to import from.
-  public enum ImportSourcesOneOf: Codable, Equatable, Sendable {
+  public enum ImportSourcesOneOf: Equatable, Sendable {
     /// Optional. Immutable. Backups that stored in Cloud Storage buckets.
     /// The Cloud Storage buckets need to be the same region as the instances.
     /// Read permission is required to import from the provided Cloud Storage

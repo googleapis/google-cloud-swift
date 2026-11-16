@@ -109,7 +109,7 @@ public struct VariableMapping: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum MappingTypeOneOf: Codable, Equatable, Sendable {
+  public enum MappingTypeOneOf: Equatable, Sendable {
     /// Optional. Output variables which will get their values from dependencies
     indirect case from(FromMapping)
     /// Optional. Input variables whose values will be passed on to dependencies.

@@ -397,7 +397,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
   ///
   /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
-  public enum ReplicationStatusOneOf: Codable, Equatable, Sendable {
+  public enum ReplicationStatusOneOf: Equatable, Sendable {
     /// Describes the replication status of a
     /// [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] with
     /// automatic replication.

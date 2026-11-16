@@ -793,7 +793,7 @@
     }
 
     /// Grounding metadata for various modals. It only supports text for now.
-    public enum MetadataOneOf: Codable, Equatable, Sendable {
+    public enum MetadataOneOf: Equatable, Sendable {
       /// Metadata for grounding based on text sources.
       indirect case textGroundingMetadata(AssistantGroundedContent.TextGroundingMetadata)
     }

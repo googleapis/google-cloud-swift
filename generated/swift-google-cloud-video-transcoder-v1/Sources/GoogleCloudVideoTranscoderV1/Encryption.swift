@@ -842,7 +842,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Encryption mode can be either `aes` or `cenc`.
-  public enum EncryptionModeOneOf: Codable, Equatable, Sendable {
+  public enum EncryptionModeOneOf: Equatable, Sendable {
     /// Configuration for AES-128 encryption.
     indirect case aes128(Encryption.Aes128Encryption)
     /// Configuration for SAMPLE-AES encryption.
@@ -852,7 +852,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines where content keys are stored.
-  public enum SecretSourceOneOf: Codable, Equatable, Sendable {
+  public enum SecretSourceOneOf: Equatable, Sendable {
     /// Keys are stored in Google Secret Manager.
     indirect case secretManagerKeySource(Encryption.SecretManagerSource)
   }

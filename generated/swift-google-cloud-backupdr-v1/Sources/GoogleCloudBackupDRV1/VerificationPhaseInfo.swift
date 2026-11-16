@@ -136,7 +136,7 @@ public struct VerificationPhaseInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The result of the verification action.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// Output only. The fully qualified URI of the Cloud Run Execution triggered
     /// for verification.
     case cloudRunExecution(Swift.String)

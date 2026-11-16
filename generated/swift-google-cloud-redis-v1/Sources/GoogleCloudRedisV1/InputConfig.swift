@@ -94,7 +94,7 @@ public struct InputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Specify source location of input data
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Google Cloud Storage location where input content is located.
     indirect case gcsSource(GcsSource)
   }

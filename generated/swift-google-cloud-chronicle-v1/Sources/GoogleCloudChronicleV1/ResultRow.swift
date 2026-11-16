@@ -148,7 +148,7 @@ public struct ResultRow: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A result row of the search query.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// UDM event.
     indirect case eventRecord(EventRecord)
     /// Stats record.

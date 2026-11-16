@@ -729,7 +729,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public enum CloudStorageBucketOneOf: Codable, Equatable, Sendable {
+      public enum CloudStorageBucketOneOf: Equatable, Sendable {
         /// Cloud Storage bucket name.
         case bucketName(Swift.String)
         /// A regex pattern for bucket names matching the regex. Regex should
@@ -1225,7 +1225,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The destination project check result. It indicates whether the project
     /// is in the correct organization or if an internal error occurred during
     /// the check.
-    public enum DestinationProjectCheckResultOneOf: Codable, Equatable, Sendable {
+    public enum DestinationProjectCheckResultOneOf: Equatable, Sendable {
       /// Optional. Indicates if the destination project resides within the same
       /// organization as the source project.
       case destinationProjectOrgError(Swift.Bool)
@@ -1480,7 +1480,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines the options for providing source identifiers for the dataset.
-  public enum SourceOptionsOneOf: Codable, Equatable, Sendable {
+  public enum SourceOptionsOneOf: Equatable, Sendable {
     /// Defines the options for providing source projects for the dataset.
     indirect case sourceProjects(DatasetConfig.SourceProjects)
     /// Defines the options for providing source folders for the dataset.
@@ -1503,13 +1503,13 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Cloud Storage locations to include or exclude.
-  public enum CloudStorageLocationsOneOf: Codable, Equatable, Sendable {
+  public enum CloudStorageLocationsOneOf: Equatable, Sendable {
     indirect case includeCloudStorageLocations(DatasetConfig.CloudStorageLocations)
     indirect case excludeCloudStorageLocations(DatasetConfig.CloudStorageLocations)
   }
 
   /// Cloud Storage buckets to include or exclude.
-  public enum CloudStorageBucketsOneOf: Codable, Equatable, Sendable {
+  public enum CloudStorageBucketsOneOf: Equatable, Sendable {
     indirect case includeCloudStorageBuckets(DatasetConfig.CloudStorageBuckets)
     indirect case excludeCloudStorageBuckets(DatasetConfig.CloudStorageBuckets)
   }

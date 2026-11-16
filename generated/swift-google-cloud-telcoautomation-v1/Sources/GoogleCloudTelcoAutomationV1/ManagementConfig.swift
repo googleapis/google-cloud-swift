@@ -107,7 +107,7 @@ public struct ManagementConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The configuration can be one of StandardManagementConfig
   /// and FullManagementConfig
-  public enum OneofConfigOneOf: Codable, Equatable, Sendable {
+  public enum OneofConfigOneOf: Equatable, Sendable {
     /// Configuration of the standard (GKE) cluster management
     indirect case standardManagementConfig(StandardManagementConfig)
     /// Configuration of the full (Autopilot) cluster management. Full cluster

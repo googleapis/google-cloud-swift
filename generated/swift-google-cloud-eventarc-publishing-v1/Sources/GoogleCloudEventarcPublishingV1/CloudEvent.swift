@@ -283,7 +283,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The value of the attribute.
-    public enum AttrOneOf: Codable, Equatable, Sendable {
+    public enum AttrOneOf: Equatable, Sendable {
       /// Boolean value.
       case ceBoolean(Swift.Bool)
       /// Integer value.
@@ -327,7 +327,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// specified by the 'datacontenttype' attribute (e.g. application/json), and
   /// adheres to the dataschema format when those respective attributes are
   /// present.
-  public enum DataOneOf: Codable, Equatable, Sendable {
+  public enum DataOneOf: Equatable, Sendable {
     /// Optional. Binary data.
     case binaryData(Foundation.Data)
     /// Optional. Text data.

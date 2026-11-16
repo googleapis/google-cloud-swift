@@ -689,7 +689,7 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Blueprint that was deployed.
-  public enum BlueprintOneOf: Codable, Equatable, Sendable {
+  public enum BlueprintOneOf: Equatable, Sendable {
     /// Output only. A blueprint described using Terraform's HashiCorp
     /// Configuration Language as a root module.
     indirect case terraformBlueprint(TerraformBlueprint)

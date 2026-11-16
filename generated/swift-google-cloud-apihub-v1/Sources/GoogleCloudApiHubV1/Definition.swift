@@ -270,7 +270,7 @@ public struct Definition: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// Output only. The value of a schema definition.
     indirect case schema(Schema)
   }

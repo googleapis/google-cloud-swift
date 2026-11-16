@@ -269,7 +269,7 @@
         }
       }
 
-      public enum ReferenceOneOf: Codable, Equatable, Sendable {
+      public enum ReferenceOneOf: Equatable, Sendable {
         /// The URI of the resource.
         case uri(Swift.String)
         /// The resource name of the Google Cloud resource.
@@ -1206,7 +1206,7 @@
 
         /// The prediction (for example, the machine) resources that the
         /// DeployedModel uses.
-        public enum PredictionResourcesOneOf: Codable, Equatable, Sendable {
+        public enum PredictionResourcesOneOf: Equatable, Sendable {
           /// A description of resources that are dedicated to the DeployedModel,
           /// and that need a higher degree of manual configuration.
           indirect case dedicatedResources(DedicatedResources)

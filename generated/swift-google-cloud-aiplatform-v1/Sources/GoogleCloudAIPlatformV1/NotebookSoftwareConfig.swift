@@ -114,7 +114,7 @@
     }
 
     /// The image to be used by the notebook runtime.
-    public enum RuntimeImageOneOf: Codable, Equatable, Sendable {
+    public enum RuntimeImageOneOf: Equatable, Sendable {
       /// Optional. Google-managed NotebookRuntime colab image.
       indirect case colabImage(ColabImage)
     }

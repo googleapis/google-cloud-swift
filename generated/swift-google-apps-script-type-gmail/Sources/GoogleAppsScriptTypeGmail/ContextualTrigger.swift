@@ -110,7 +110,7 @@ public struct ContextualTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The type of trigger determines the conditions Gmail uses to show the
   /// add-on.
-  public enum TriggerOneOf: Codable, Equatable, Sendable {
+  public enum TriggerOneOf: Equatable, Sendable {
     /// UnconditionalTriggers are executed when any mail message is opened.
     indirect case unconditional(UnconditionalTrigger)
   }

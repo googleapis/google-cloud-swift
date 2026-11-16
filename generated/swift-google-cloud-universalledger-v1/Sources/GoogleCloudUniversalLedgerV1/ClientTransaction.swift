@@ -403,7 +403,7 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The client transaction-specific message.
-  public enum KindOneOf: Codable, Equatable, Sendable {
+  public enum KindOneOf: Equatable, Sendable {
     /// Optional. An operational transaction message. Note this can only be sent
     /// by the platform operator. Should be any one of:
     ///

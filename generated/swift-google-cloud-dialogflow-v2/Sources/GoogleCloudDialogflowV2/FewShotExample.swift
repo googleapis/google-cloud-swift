@@ -126,7 +126,7 @@
     }
 
     /// Instruction list of this few_shot example.
-    public enum InstructionListOneOf: Codable, Equatable, Sendable {
+    public enum InstructionListOneOf: Equatable, Sendable {
       /// Summarization sections.
       indirect case summarizationSectionList(SummarizationSectionList)
     }

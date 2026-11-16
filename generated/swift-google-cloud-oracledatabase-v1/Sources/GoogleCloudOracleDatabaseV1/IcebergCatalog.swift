@@ -272,7 +272,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of Iceberg catalog.
-  public enum CatalogDetailsOneOf: Codable, Equatable, Sendable {
+  public enum CatalogDetailsOneOf: Equatable, Sendable {
     /// The Glue Iceberg catalog.
     indirect case glueIcebergCatalog(GlueIcebergCatalog)
     /// The Nessie Iceberg catalog.

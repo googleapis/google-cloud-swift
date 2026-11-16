@@ -312,7 +312,7 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
   /// entire_corpus if unspecified. Behavior in UpdateIndex: if update_mask
   /// includes one of the asset_filter field paths, the index will be rebuilt
   /// with latest assets, including their analyzed data and annotations.
-  public enum AssetFilterOneOf: Codable, Equatable, Sendable {
+  public enum AssetFilterOneOf: Equatable, Sendable {
     /// Include all assets under the corpus.
     case entireCorpus(Swift.Bool)
   }

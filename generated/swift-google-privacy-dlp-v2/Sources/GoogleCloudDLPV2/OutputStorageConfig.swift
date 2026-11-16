@@ -264,7 +264,7 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output storage types.
   /// *
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Store findings in an existing table or a new table in an existing
     /// dataset. If table_id is not set a new one will be generated
     /// for you with the following format:

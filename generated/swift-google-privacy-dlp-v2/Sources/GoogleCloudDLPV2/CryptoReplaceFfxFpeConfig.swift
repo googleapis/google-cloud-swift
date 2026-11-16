@@ -323,7 +323,7 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Choose an alphabet which the data being transformed will be made up of.
-  public enum AlphabetOneOf: Codable, Equatable, Sendable {
+  public enum AlphabetOneOf: Equatable, Sendable {
     /// Common alphabets.
     case commonAlphabet(CryptoReplaceFfxFpeConfig.FfxCommonNativeAlphabet)
     /// This is supported by mapping these to the alphanumeric characters

@@ -96,7 +96,7 @@ public struct EventDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The details of the event.
-  public enum EventDetailsOneOf: Codable, Equatable, Sendable {
+  public enum EventDetailsOneOf: Equatable, Sendable {
     /// Output only. Additional details for an execution event.
     indirect case executionDetails(ExecutionDetails)
   }

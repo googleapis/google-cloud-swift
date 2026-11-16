@@ -111,7 +111,7 @@ public struct ExclusionRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Exclusion rule types.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Dictionary which defines the rule.
     indirect case dictionary(Dictionary)
     /// Regular expression which defines the rule.

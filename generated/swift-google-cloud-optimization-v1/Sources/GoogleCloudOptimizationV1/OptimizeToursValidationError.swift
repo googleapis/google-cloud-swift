@@ -478,7 +478,7 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public enum IndexOrKeyOneOf: Codable, Equatable, Sendable {
+    public enum IndexOrKeyOneOf: Equatable, Sendable {
       /// Index of the field if repeated.
       case index(Swift.Int32)
       /// Key if the field is a map.

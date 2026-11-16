@@ -1172,7 +1172,7 @@
         }
       }
 
-      public enum SourceOneOf: Codable, Equatable, Sendable {
+      public enum SourceOneOf: Equatable, Sendable {
         /// Source information of Model Garden models.
         indirect case modelGardenSource(ModelGardenSource)
         /// Information about the base model of Genie models.

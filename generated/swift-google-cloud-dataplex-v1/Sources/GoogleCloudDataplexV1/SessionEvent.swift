@@ -533,7 +533,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional information about the Query metadata.
-  public enum DetailOneOf: Codable, Equatable, Sendable {
+  public enum DetailOneOf: Equatable, Sendable {
     /// The execution details of the query.
     indirect case query(SessionEvent.QueryDetail)
   }

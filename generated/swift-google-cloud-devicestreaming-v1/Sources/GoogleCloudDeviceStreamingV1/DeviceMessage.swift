@@ -106,7 +106,7 @@ public struct DeviceMessage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ContentsOneOf: Codable, Equatable, Sendable {
+  public enum ContentsOneOf: Equatable, Sendable {
     /// Information about the device's state.
     indirect case statusUpdate(StatusUpdate)
     /// The result of a device stream from ADB.

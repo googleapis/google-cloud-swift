@@ -197,7 +197,7 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public enum EventPayloadOneOf: Codable, Equatable, Sendable {
+  public enum EventPayloadOneOf: Equatable, Sendable {
     /// A payload for a change in the state of a stream.
     indirect case streamStateChange(StreamActivityLogEntry.StreamStateChange)
   }

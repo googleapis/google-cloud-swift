@@ -317,7 +317,7 @@
 
     /// Details about the source data, including the location of the storage and
     /// the format.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       indirect case avroSource(AvroSource)
       indirect case bigquerySource(GoogleCloudAIPlatformV1.BigQuerySource)
       indirect case csvSource(CsvSource)
@@ -325,7 +325,7 @@
 
     /// Source of Feature timestamp for all Feature values of each entity.
     /// Timestamps must be millisecond-aligned.
-    public enum FeatureTimeSourceOneOf: Codable, Equatable, Sendable {
+    public enum FeatureTimeSourceOneOf: Equatable, Sendable {
       /// Source column that holds the Feature timestamp for all Feature
       /// values in each entity.
       case featureTimeField(Swift.String)

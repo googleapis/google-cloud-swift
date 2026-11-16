@@ -285,7 +285,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configurations for the output endpoint by streaming protocols.
-  public enum EndpointOneOf: Codable, Equatable, Sendable {
+  public enum EndpointOneOf: Equatable, Sendable {
     /// Output endpoint using SRT_PUSH.
     indirect case srtPush(SrtPushOutputEndpoint)
     /// Output endpoint using RTMP_PUSH.

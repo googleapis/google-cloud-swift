@@ -323,7 +323,7 @@ public struct RestoreVerificationPlanAssociation: Codable, Equatable, GoogleWKT.
   }
 
   /// The specific association link.
-  public enum AssociationOneOf: Codable, Equatable, Sendable {
+  public enum AssociationOneOf: Equatable, Sendable {
     /// Required. Immutable. The canonical name of the RestoreTemplate to
     /// trigger.
     case restoreTemplate(Swift.String)

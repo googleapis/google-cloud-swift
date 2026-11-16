@@ -801,7 +801,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Configuration properties specific to the underlying metastore service
   /// technology (the software that serves metastore queries).
-  public enum MetastoreConfigOneOf: Codable, Equatable, Sendable {
+  public enum MetastoreConfigOneOf: Equatable, Sendable {
     /// Configuration information specific to running Hive metastore
     /// software as the metastore service.
     indirect case hiveMetastoreConfig(HiveMetastoreConfig)

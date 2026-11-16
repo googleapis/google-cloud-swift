@@ -392,7 +392,7 @@ public struct LogSink: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Destination dependent options.
-  public enum OptionsOneOf: Codable, Equatable, Sendable {
+  public enum OptionsOneOf: Equatable, Sendable {
     /// Optional. Options that affect sinks exporting data to BigQuery.
     indirect case bigqueryOptions(BigQueryOptions)
   }

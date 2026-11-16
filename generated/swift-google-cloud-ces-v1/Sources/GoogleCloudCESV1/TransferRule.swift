@@ -213,7 +213,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The condition to evaluate.
-    public enum ConditionTypeOneOf: Codable, Equatable, Sendable {
+    public enum ConditionTypeOneOf: Equatable, Sendable {
       /// Optional. A rule that evaluates a session state condition.
       /// If the condition evaluates to true, the transfer occurs.
       indirect case expressionCondition(ExpressionCondition)
@@ -442,7 +442,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The rule type.
-  public enum RuleTypeOneOf: Codable, Equatable, Sendable {
+  public enum RuleTypeOneOf: Equatable, Sendable {
     /// Optional. A rule that immediately transfers to the target agent when the
     /// condition is met.
     indirect case deterministicTransfer(TransferRule.DeterministicTransfer)

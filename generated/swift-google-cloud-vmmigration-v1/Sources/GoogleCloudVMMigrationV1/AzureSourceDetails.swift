@@ -382,7 +382,7 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum CredentialsTypeOneOf: Codable, Equatable, Sendable {
+  public enum CredentialsTypeOneOf: Equatable, Sendable {
     /// Azure Credentials using tenant ID, client ID and secret.
     indirect case clientSecretCreds(AzureSourceDetails.ClientSecretCredentials)
   }

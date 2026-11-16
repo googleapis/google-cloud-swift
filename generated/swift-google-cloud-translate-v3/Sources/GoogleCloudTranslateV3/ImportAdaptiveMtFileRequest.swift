@@ -115,7 +115,7 @@ public struct ImportAdaptiveMtFileRequest: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// The source for the document.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Inline file source.
     indirect case fileInputSource(FileInputSource)
     /// Google Cloud Storage file source.

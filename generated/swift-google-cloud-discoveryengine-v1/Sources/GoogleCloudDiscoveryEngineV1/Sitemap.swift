@@ -114,7 +114,7 @@
     }
 
     /// Supported feed sources.
-    public enum FeedOneOf: Codable, Equatable, Sendable {
+    public enum FeedOneOf: Equatable, Sendable {
       /// Public URI for the sitemap, e.g. `www.example.com/sitemap.xml`.
       case uri(Swift.String)
     }

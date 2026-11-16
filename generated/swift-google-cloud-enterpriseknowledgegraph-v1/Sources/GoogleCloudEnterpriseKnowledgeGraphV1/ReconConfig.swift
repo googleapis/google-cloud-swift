@@ -299,7 +299,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Choice of clustering algorithm. Default is ConnectedComponentsConfig.
-  public enum ClusteringConfigOneOf: Codable, Equatable, Sendable {
+  public enum ClusteringConfigOneOf: Equatable, Sendable {
     /// Configs for connected components.
     indirect case connectedComponentsConfig(ConnectedComponentsConfig)
     /// Configs for affinity clustering.

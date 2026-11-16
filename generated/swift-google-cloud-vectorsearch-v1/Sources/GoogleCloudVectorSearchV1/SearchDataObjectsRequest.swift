@@ -148,7 +148,7 @@ public struct SearchDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The query to search for.
-  public enum SearchTypeOneOf: Codable, Equatable, Sendable {
+  public enum SearchTypeOneOf: Equatable, Sendable {
     /// A vector search operation.
     indirect case vectorSearch(VectorSearch)
     /// A semantic search operation.

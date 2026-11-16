@@ -141,7 +141,7 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration to select the CDC read method for the stream.
-  public enum CdcMethodOneOf: Codable, Equatable, Sendable {
+  public enum CdcMethodOneOf: Equatable, Sendable {
     /// CDC reader reads from transaction logs.
     indirect case transactionLogs(SqlServerTransactionLogs)
     /// CDC reader reads from change tables.

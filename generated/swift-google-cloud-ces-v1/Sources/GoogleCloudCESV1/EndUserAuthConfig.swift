@@ -289,7 +289,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The auth configuration.
-  public enum AuthConfigOneOf: Codable, Equatable, Sendable {
+  public enum AuthConfigOneOf: Equatable, Sendable {
     /// Oauth 2.0 Authorization Code authentication.
     indirect case oauth2AuthCodeConfig(EndUserAuthConfig.Oauth2AuthCodeConfig)
     /// JWT Profile Oauth 2.0 Authorization Grant authentication.

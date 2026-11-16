@@ -141,7 +141,7 @@ public struct AwsS3CompatibleData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Specifies the metadata of the S3 compatible data provider. Each provider
   /// may contain some attributes that do not apply to all S3-compatible data
   /// providers. When not specified, S3CompatibleMetadata is used by default.
-  public enum DataProviderOneOf: Codable, Equatable, Sendable {
+  public enum DataProviderOneOf: Equatable, Sendable {
     /// A S3 compatible metadata.
     indirect case s3Metadata(S3CompatibleMetadata)
   }

@@ -240,7 +240,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum PropertiesOneOf: Codable, Equatable, Sendable {
+  public enum PropertiesOneOf: Equatable, Sendable {
     /// Detailed properties of the underlying storage.
     indirect case storageProperties(StorageProperties)
   }

@@ -450,7 +450,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.documentai.v1.Document.Page.page_number]: <doc:Document/Page/pageNumber>
   /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:options:)>
-  public enum PageRangeOneOf: Codable, Equatable, Sendable {
+  public enum PageRangeOneOf: Equatable, Sendable {
     /// Which pages to process (1-indexed).
     indirect case individualPageSelector(ProcessOptions.IndividualPageSelector)
     /// Only process certain pages from the start. Process all if the document

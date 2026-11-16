@@ -420,7 +420,7 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum AggregationFunctionOneOf: Codable, Equatable, Sendable {
+  public enum AggregationFunctionOneOf: Equatable, Sendable {
     /// Count the number of matching objects.
     indirect case count(Aggregation.Count)
     /// Sum over a numeric field.

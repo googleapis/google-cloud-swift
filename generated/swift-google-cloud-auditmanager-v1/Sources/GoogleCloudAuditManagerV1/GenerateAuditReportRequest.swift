@@ -296,7 +296,7 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// Options for the report destination location.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// URL for the Cloud Storage bucket where the report and evidence is
     /// uploaded. You must select a bucket that was provided during the
     /// enrollment process.

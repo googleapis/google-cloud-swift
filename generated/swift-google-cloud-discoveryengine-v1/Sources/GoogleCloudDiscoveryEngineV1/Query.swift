@@ -104,7 +104,7 @@
     }
 
     /// Query content.
-    public enum ContentOneOf: Codable, Equatable, Sendable {
+    public enum ContentOneOf: Equatable, Sendable {
       /// Plain text.
       case text(Swift.String)
     }

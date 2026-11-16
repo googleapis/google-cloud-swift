@@ -110,7 +110,7 @@ public struct TerraformModuleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Specifies an override for the default module source handling.
   /// If no override is set, the default behavior is to keep the original
   /// module references.
-  public enum SourceOverrideOneOf: Codable, Equatable, Sendable {
+  public enum SourceOverrideOneOf: Equatable, Sendable {
     /// Optional. This is typically only valid for 3P components if ingested via
     /// devconnect URI. Typically, for 1P components, since they are sourced from
     /// public git repos, this field is not applicable.

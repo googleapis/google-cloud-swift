@@ -196,7 +196,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum RetriesOneOf: Codable, Equatable, Sendable {
+  public enum RetriesOneOf: Equatable, Sendable {
     /// Number of retries allowed per Task, before marking this Task failed.
     /// Defaults to 3.
     case maxRetries(Swift.Int32)

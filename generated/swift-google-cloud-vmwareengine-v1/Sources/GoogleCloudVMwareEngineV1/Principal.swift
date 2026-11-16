@@ -108,7 +108,7 @@ public struct Principal: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The consumer provided user/service account which needs to be
   /// granted permission to DNS bind with the intranet VPC corresponding to the
   /// consumer project.
-  public enum PrincipalOneOf: Codable, Equatable, Sendable {
+  public enum PrincipalOneOf: Equatable, Sendable {
     /// The user who needs to be granted permission.
     case user(Swift.String)
     /// The service account which needs to be granted the permission.

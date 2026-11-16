@@ -1275,7 +1275,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional details about the action based on the action category.
-  public enum DetailsOneOf: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Equatable, Sendable {
     /// Details for issues related to invalid or unsupported data formats.
     indirect case invalidDataFormat(GoogleCloudDataplexV1.Action.InvalidDataFormat)
     /// Details for issues related to incompatible schemas detected within data.

@@ -117,7 +117,7 @@ public struct SourceSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The specific source SQL.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The base URI for all files to be read in as sources for translation.
     case baseUri(Swift.String)
     /// Source literal.

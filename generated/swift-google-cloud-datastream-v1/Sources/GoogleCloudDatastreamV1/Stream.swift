@@ -369,7 +369,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// List of objects to exclude.
-    public enum ExcludedObjectsOneOf: Codable, Equatable, Sendable {
+    public enum ExcludedObjectsOneOf: Equatable, Sendable {
       /// Oracle data source objects to avoid backfilling.
       indirect case oracleExcludedObjects(OracleRdbms)
       /// MySQL data source objects to avoid backfilling.
@@ -627,7 +627,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The filter to apply.
-      public enum FilterTypeOneOf: Codable, Equatable, Sendable {
+      public enum FilterTypeOneOf: Equatable, Sendable {
         /// Specific source object identifier.
         indirect case sourceObjectIdentifier(SourceObjectIdentifier)
       }
@@ -742,7 +742,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The rule to apply.
-      public enum RuleOneOf: Codable, Equatable, Sendable {
+      public enum RuleOneOf: Equatable, Sendable {
         /// BigQuery partitioning rule.
         indirect case bigqueryPartitioning(BigQueryPartitioning)
         /// BigQuery clustering rule.
@@ -957,7 +957,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Stream backfill strategy.
-  public enum BackfillStrategyOneOf: Codable, Equatable, Sendable {
+  public enum BackfillStrategyOneOf: Equatable, Sendable {
     /// Automatically backfill objects included in the stream source
     /// configuration. Specific objects can be excluded.
     indirect case backfillAll(Stream.BackfillAllStrategy)

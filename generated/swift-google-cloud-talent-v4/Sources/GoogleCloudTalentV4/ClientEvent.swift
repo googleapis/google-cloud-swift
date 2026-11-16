@@ -143,7 +143,7 @@ public struct ClientEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required.
   ///
   /// The detail information of a specific event type.
-  public enum EventOneOf: Codable, Equatable, Sendable {
+  public enum EventOneOf: Equatable, Sendable {
     /// An event issued when a job seeker interacts with the application that
     /// implements Cloud Talent Solution.
     indirect case jobEvent(JobEvent)

@@ -139,7 +139,7 @@
     }
 
     /// The output response.
-    public enum ResponseOneOf: Codable, Equatable, Sendable {
+    public enum ResponseOneOf: Equatable, Sendable {
       /// The result of speech recognition.
       indirect case recognitionResult(StreamingRecognitionResult)
       /// The response from detect intent.

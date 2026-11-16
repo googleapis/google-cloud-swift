@@ -188,7 +188,7 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Filter on source column parameters.
-  public enum SourceFilterOneOf: Codable, Equatable, Sendable {
+  public enum SourceFilterOneOf: Equatable, Sendable {
     /// Optional. Filter for text-based data types like varchar.
     indirect case sourceTextFilter(SourceTextFilter)
     /// Optional. Filter for fixed point number data types such as

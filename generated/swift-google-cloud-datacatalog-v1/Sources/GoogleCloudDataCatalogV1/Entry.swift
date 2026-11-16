@@ -480,7 +480,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Entry type.
-  public enum EntryTypeOneOf: Codable, Equatable, Sendable {
+  public enum EntryTypeOneOf: Equatable, Sendable {
     /// The type of the entry.
     ///
     /// For details, see [`EntryType`](#entrytype).
@@ -502,7 +502,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source system of the entry.
-  public enum SystemOneOf: Codable, Equatable, Sendable {
+  public enum SystemOneOf: Equatable, Sendable {
     /// Output only. Indicates the entry's source system that Data Catalog
     /// integrates with, such as BigQuery, Pub/Sub, or Dataproc Metastore.
     case integratedSystem(IntegratedSystem)
@@ -521,7 +521,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// System specification.
   /// Can be used as a complement for `spec`, when some metadata is relevant for
   /// all entries existing within given system
-  public enum SystemSpecOneOf: Codable, Equatable, Sendable {
+  public enum SystemSpecOneOf: Equatable, Sendable {
     /// Specification that applies to a relational database system. Only settable
     /// when `user_specified_system` is equal to `SQL_DATABASE`
     indirect case sqlDatabaseSystemSpec(SqlDatabaseSystemSpec)
@@ -534,7 +534,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type specification.
-  public enum TypeSpecOneOf: Codable, Equatable, Sendable {
+  public enum TypeSpecOneOf: Equatable, Sendable {
     /// Specification that applies to a Cloud Storage fileset. Valid only
     /// for entries with the `FILESET` type.
     indirect case gcsFilesetSpec(GcsFilesetSpec)
@@ -555,7 +555,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// When extending the API with new types and systems, use this field instead
   /// of the legacy `type_spec`.
-  public enum SpecOneOf: Codable, Equatable, Sendable {
+  public enum SpecOneOf: Equatable, Sendable {
     /// Specification that applies to a table resource. Valid only
     /// for entries with the `TABLE` or `EXPLORE` type.
     indirect case databaseTableSpec(DatabaseTableSpec)

@@ -276,7 +276,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public enum EnvironmentOneOf: Codable, Equatable, Sendable {
+  public enum EnvironmentOneOf: Equatable, Sendable {
     /// Default Analytics Hub data exchange, used for secured data sharing.
     indirect case defaultExchangeConfig(SharingEnvironmentConfig.DefaultExchangeConfig)
     /// Data Clean Room (DCR), used for privacy-safe and secured data sharing.

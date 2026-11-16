@@ -345,7 +345,7 @@
         }
       }
 
-      public enum RankingOneOf: Codable, Equatable, Sendable {
+      public enum RankingOneOf: Equatable, Sendable {
         /// Optional. Represents RRF algorithm that combines search results.
         indirect case rrf(FindNeighborsRequest.Query.RRF)
       }

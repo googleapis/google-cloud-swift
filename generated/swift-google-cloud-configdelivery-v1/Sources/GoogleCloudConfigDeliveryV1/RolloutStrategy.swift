@@ -104,7 +104,7 @@ public struct RolloutStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// strategy defines how updates to a resource bundle should be rolled out
   /// across clusters.
-  public enum StrategyOneOf: Codable, Equatable, Sendable {
+  public enum StrategyOneOf: Equatable, Sendable {
     /// AllAtOnceStrategy causes all clusters to be updated concurrently.
     indirect case allAtOnce(AllAtOnceStrategy)
     /// RollingStrategy causes a specified number of clusters to be updated

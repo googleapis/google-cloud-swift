@@ -265,7 +265,7 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// What event needs to occur for a new job to be started.
-    public enum TriggerOneOf: Codable, Equatable, Sendable {
+    public enum TriggerOneOf: Equatable, Sendable {
       /// Create a job on a repeating basis based on the elapse of time.
       indirect case schedule(Schedule)
       /// For use with hybrid jobs. Jobs must be manually created and finished.
@@ -422,7 +422,7 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configuration details for the specific type of job to run.
-  public enum JobOneOf: Codable, Equatable, Sendable {
+  public enum JobOneOf: Equatable, Sendable {
     /// For inspect jobs, a snapshot of the configuration.
     indirect case inspectJob(InspectJobConfig)
   }

@@ -158,7 +158,7 @@ public struct CustomAPISettings: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Choose the method and credentials used to securely authorize access to the
   /// API.
-  public enum AuthenticationOneOf: Codable, Equatable, Sendable {
+  public enum AuthenticationOneOf: Equatable, Sendable {
     /// Authenticate without credentials or secrets.
     indirect case noAuth(CustomAPINoAuth)
     /// Authenticate using Username/Password credentials.

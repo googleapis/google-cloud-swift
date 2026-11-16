@@ -247,7 +247,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The source of the document: a string containing the content or a
   /// Google Cloud Storage URI.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The content of the input in string format.
     /// Cloud audit logging exempt since it is based on user data.
     case content(Swift.String)

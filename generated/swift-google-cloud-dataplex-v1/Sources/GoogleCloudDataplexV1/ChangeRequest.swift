@@ -693,7 +693,7 @@ public struct ChangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Detailed specification of the change, embedding the original request.
-  public enum ChangePayloadOneOf: Codable, Equatable, Sendable {
+  public enum ChangePayloadOneOf: Equatable, Sendable {
     /// Payload for creating an Entry.
     indirect case createEntry(CreateEntryRequest)
     /// Payload for updating an Entry.

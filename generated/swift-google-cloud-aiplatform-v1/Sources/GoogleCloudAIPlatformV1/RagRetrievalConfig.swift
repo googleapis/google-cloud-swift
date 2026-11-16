@@ -190,7 +190,7 @@
 
       /// Filter contexts retrieved from the vector DB based on either vector
       /// distance or vector similarity.
-      public enum VectorDbThresholdOneOf: Codable, Equatable, Sendable {
+      public enum VectorDbThresholdOneOf: Equatable, Sendable {
         /// Optional. Only returns contexts with vector distance smaller than the
         /// threshold.
         case vectorDistanceThreshold(Swift.Double)
@@ -469,7 +469,7 @@
       }
 
       /// Config options for ranking. Currently only Rank Service is supported.
-      public enum RankingConfigOneOf: Codable, Equatable, Sendable {
+      public enum RankingConfigOneOf: Equatable, Sendable {
         /// Optional. Config for Rank Service.
         indirect case rankService(RagRetrievalConfig.Ranking.RankService)
         /// Optional. Config for LlmRanker.

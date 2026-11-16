@@ -243,7 +243,7 @@ public struct ProcessorConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ProcessorConfigOneOf: Codable, Equatable, Sendable {
+  public enum ProcessorConfigOneOf: Equatable, Sendable {
     /// Configs of stream input processor.
     indirect case videoStreamInputConfig(VideoStreamInputConfig)
     /// Config of AI-enabled input devices.

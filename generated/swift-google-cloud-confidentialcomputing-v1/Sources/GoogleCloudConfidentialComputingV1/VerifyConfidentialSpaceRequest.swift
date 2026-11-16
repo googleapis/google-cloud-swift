@@ -280,7 +280,7 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
     }
 
     /// An optional additional configuration per token type.
-    public enum TokenProfileOptionsOneOf: Codable, Equatable, Sendable {
+    public enum TokenProfileOptionsOneOf: Equatable, Sendable {
       /// Optional. Options for the AWS token type.
       indirect case awsPrincipalTagsOptions(AwsPrincipalTagsOptions)
     }
@@ -310,7 +310,7 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
 
   /// Required. A tee attestation report, used to populate hardware rooted
   /// claims.
-  public enum TeeAttestationOneOf: Codable, Equatable, Sendable {
+  public enum TeeAttestationOneOf: Equatable, Sendable {
     /// Input only. A TDX with CCEL and RTMR Attestation Quote.
     indirect case tdCcel(TdxCcelAttestation)
     /// Input only. The TPM-specific data provided by the attesting platform,

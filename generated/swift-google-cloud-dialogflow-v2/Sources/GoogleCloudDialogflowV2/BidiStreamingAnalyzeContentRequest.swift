@@ -391,7 +391,7 @@
       }
 
       /// The config of the session.
-      public enum ConfigOneOf: Codable, Equatable, Sendable {
+      public enum ConfigOneOf: Equatable, Sendable {
         /// Configure a voice-based session.
         indirect case voiceSessionConfig(
           BidiStreamingAnalyzeContentRequest.Config.VoiceSessionConfig)
@@ -528,7 +528,7 @@
       }
 
       /// Content that indicates the end of the turn.
-      public enum MainContentOneOf: Codable, Equatable, Sendable {
+      public enum MainContentOneOf: Equatable, Sendable {
         /// The UTF-8 encoded natural language text to be processed.
         case text(Swift.String)
         /// The intent to be triggered on V3 agent.
@@ -659,7 +659,7 @@
         }
       }
 
-      public enum InputOneOf: Codable, Equatable, Sendable {
+      public enum InputOneOf: Equatable, Sendable {
         /// The content of audio stream to be recognized.
         case audio(Foundation.Data)
         /// The DTMF digits used to invoke intent and fill in parameter value.
@@ -695,7 +695,7 @@
     }
 
     /// Required. Possible request types for BidiStreamingAnalyzeContent.
-    public enum RequestOneOf: Codable, Equatable, Sendable {
+    public enum RequestOneOf: Equatable, Sendable {
       /// The config message for this conversation.
       indirect case config(BidiStreamingAnalyzeContentRequest.Config)
       /// Text, audio or other multi-modality inputs.

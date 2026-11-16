@@ -199,7 +199,7 @@
     /// another flow in the same agent.
     ///
     /// [google.cloud.dialogflow.cx.v3.TransitionRoute]: <doc:TransitionRoute>
-    public enum TargetOneOf: Codable, Equatable, Sendable {
+    public enum TargetOneOf: Equatable, Sendable {
       /// The target page to transition to.
       /// Format:
       /// `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.

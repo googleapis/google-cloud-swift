@@ -149,7 +149,7 @@ public struct AssessmentReport: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Resource associated with the report.
-  public enum AdcResourceUriOneOf: Codable, Equatable, Sendable {
+  public enum AdcResourceUriOneOf: Equatable, Sendable {
     /// Output only. Application URI.
     case adcApplicationUri(Swift.String)
     /// Output only. Application Template URI.

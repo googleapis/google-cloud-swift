@@ -115,7 +115,7 @@ public struct KubernetesClusterConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum ConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Equatable, Sendable {
     /// Required. The configuration for running the Dataproc cluster on GKE.
     indirect case gkeClusterConfig(GkeClusterConfig)
   }

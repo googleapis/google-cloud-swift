@@ -158,7 +158,7 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration of allocating IP addresses for pods in the GKE cluster.
-  public enum ClusterIpAllocationOneOf: Codable, Equatable, Sendable {
+  public enum ClusterIpAllocationOneOf: Equatable, Sendable {
     /// Optional. The name of the GKE cluster's secondary range used to allocate
     /// IP addresses to pods.
     ///
@@ -185,7 +185,7 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration of allocating IP addresses for services in the GKE cluster.
-  public enum ServicesIpAllocationOneOf: Codable, Equatable, Sendable {
+  public enum ServicesIpAllocationOneOf: Equatable, Sendable {
     /// Optional. The name of the services' secondary range used to allocate
     /// IP addresses to the GKE cluster.
     ///

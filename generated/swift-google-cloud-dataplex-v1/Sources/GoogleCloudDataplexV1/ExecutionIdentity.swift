@@ -336,7 +336,7 @@ public struct ExecutionIdentity: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The identity to run the datascan.
-  public enum IdentityOneOf: Codable, Equatable, Sendable {
+  public enum IdentityOneOf: Equatable, Sendable {
     /// Optional. The Dataplex service agent associated with the user's project.
     indirect case dataplexServiceAgent(ExecutionIdentity.DataplexServiceAgent)
     /// Optional. The credential of the calling user. Supports only ONE_TIME

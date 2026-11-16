@@ -190,7 +190,7 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// Specifies a Synthetic Monitor's execution stack.
-  public enum TargetOneOf: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Equatable, Sendable {
     /// Target a Synthetic Monitor GCFv2 instance.
     indirect case cloudFunctionV2(SyntheticMonitorTarget.CloudFunctionV2Target)
   }

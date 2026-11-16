@@ -111,7 +111,7 @@ public struct AzureAuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Possible types of authentication.
-  public enum AuthTypeOneOf: Codable, Equatable, Sendable {
+  public enum AuthTypeOneOf: Equatable, Sendable {
     /// Required. Access Key also known as shared key.
     case accessKey(Swift.String)
     /// Required. SAS Token.

@@ -115,7 +115,7 @@ public struct TransformationLocation: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// Location type.
-  public enum LocationTypeOneOf: Codable, Equatable, Sendable {
+  public enum LocationTypeOneOf: Equatable, Sendable {
     /// For infotype transformations, link to the corresponding findings ID so
     /// that location information does not need to be duplicated. Each findings
     /// ID correlates to an entry in the findings output table, this table only

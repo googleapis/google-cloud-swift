@@ -183,7 +183,7 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Sorting specification. If this field is not specified, by default:
   /// - STREAM_VIDEO: search results are sorted by the start time.
-  public enum SortSpecOneOf: Codable, Equatable, Sendable {
+  public enum SortSpecOneOf: Equatable, Sendable {
     /// Sort by the value under the data schema key.
     indirect case schemaKeySortingStrategy(SchemaKeySortingStrategy)
   }

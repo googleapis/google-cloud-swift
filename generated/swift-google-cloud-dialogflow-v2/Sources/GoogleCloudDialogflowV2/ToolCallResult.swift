@@ -272,7 +272,7 @@
     }
 
     /// Specifies the source of this tool call.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// Optional. The [tool][google.cloud.dialogflow.v2.Tool] associated with
       /// this call. Format:
       /// `projects/<ProjectID>/locations/<LocationID>/tools/<ToolID>`.
@@ -294,7 +294,7 @@
     }
 
     /// The tool call's result.
-    public enum ResultOneOf: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Equatable, Sendable {
       /// Optional. The tool call's error.
       indirect case error(ToolCallResult.Error)
       /// Optional. Only populated if the response content is not utf-8 encoded.

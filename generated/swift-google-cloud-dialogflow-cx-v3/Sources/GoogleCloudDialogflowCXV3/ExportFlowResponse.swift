@@ -106,7 +106,7 @@
     }
 
     /// The exported flow.
-    public enum FlowOneOf: Codable, Equatable, Sendable {
+    public enum FlowOneOf: Equatable, Sendable {
       /// The URI to a file containing the exported flow. This field is populated
       /// only if `flow_uri` is specified in
       /// [ExportFlowRequest][google.cloud.dialogflow.cx.v3.ExportFlowRequest].

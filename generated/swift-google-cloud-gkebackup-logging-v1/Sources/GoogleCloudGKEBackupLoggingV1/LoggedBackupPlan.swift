@@ -467,7 +467,7 @@ public struct LoggedBackupPlan: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum BackupScopeOneOf: Codable, Equatable, Sendable {
+    public enum BackupScopeOneOf: Equatable, Sendable {
       /// If set to true, backup whole cluster
       case allNamespaces(Swift.Bool)
       /// If set, backup the list of namespaces

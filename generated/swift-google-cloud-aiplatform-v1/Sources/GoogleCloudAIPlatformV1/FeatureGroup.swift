@@ -377,7 +377,7 @@
       }
     }
 
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// Indicates that features for this group come from BigQuery Table/View.
       /// By default treats the source as a sparse time series source. The BigQuery
       /// source table or view must have at least one entity ID column and a column

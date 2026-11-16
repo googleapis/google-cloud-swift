@@ -114,7 +114,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Sources of crypto keys.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Transient crypto key
     indirect case transient(TransientCryptoKey)
     /// Unwrapped crypto key

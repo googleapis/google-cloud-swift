@@ -94,7 +94,7 @@ public struct GlossaryInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Specify the input.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Required. Google Cloud Storage location of glossary data.
     /// File format is determined based on the filename extension. API returns
     /// [google.rpc.Code.INVALID_ARGUMENT] for unsupported URI-s and file

@@ -207,7 +207,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   /// will be overridden.
   ///
   /// [google.cloud.scheduler.v1.HttpTarget.headers]: <doc:HttpTarget/headers>
-  public enum AuthorizationHeaderOneOf: Codable, Equatable, Sendable {
+  public enum AuthorizationHeaderOneOf: Equatable, Sendable {
     /// If specified, an
     /// [OAuth token](https://developers.google.com/identity/protocols/OAuth2)
     /// will be generated and attached as an `Authorization` header in the HTTP

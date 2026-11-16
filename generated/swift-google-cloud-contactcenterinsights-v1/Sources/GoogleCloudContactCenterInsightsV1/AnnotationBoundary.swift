@@ -104,7 +104,7 @@ public struct AnnotationBoundary: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A detailed boundary, which describes a more specific point.
-  public enum DetailedBoundaryOneOf: Codable, Equatable, Sendable {
+  public enum DetailedBoundaryOneOf: Equatable, Sendable {
     /// The word index of this boundary with respect to the first word in the
     /// transcript piece. This index starts at zero.
     case wordIndex(Swift.Int32)

@@ -105,7 +105,7 @@ public struct DeploymentSource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source for the IaC deployment.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Application template revision URI.
     case applicationTemplateRevision(Swift.String)
     /// Shared template revision URI.

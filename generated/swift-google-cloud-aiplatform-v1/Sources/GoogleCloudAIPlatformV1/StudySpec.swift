@@ -1394,7 +1394,7 @@
 
         /// A set of parameter values from the parent ParameterSpec's feasible
         /// space.
-        public enum ParentValueConditionOneOf: Codable, Equatable, Sendable {
+        public enum ParentValueConditionOneOf: Equatable, Sendable {
           /// The spec for matching values from a parent parameter of
           /// `DISCRETE` type.
           indirect case parentDiscreteValues(
@@ -1560,7 +1560,7 @@
         }
       }
 
-      public enum ParameterValueSpecOneOf: Codable, Equatable, Sendable {
+      public enum ParameterValueSpecOneOf: Equatable, Sendable {
         /// The value spec for a 'DOUBLE' parameter.
         indirect case doubleValueSpec(StudySpec.ParameterSpec.DoubleValueSpec)
         /// The value spec for an 'INTEGER' parameter.
@@ -2473,7 +2473,7 @@
       }
     }
 
-    public enum AutomatedStoppingSpecOneOf: Codable, Equatable, Sendable {
+    public enum AutomatedStoppingSpecOneOf: Equatable, Sendable {
       /// The automated early stopping spec using decay curve rule.
       indirect case decayCurveStoppingSpec(StudySpec.DecayCurveAutomatedStoppingSpec)
       /// The automated early stopping spec using median rule.

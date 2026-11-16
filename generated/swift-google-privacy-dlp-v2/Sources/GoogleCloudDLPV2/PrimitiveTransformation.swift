@@ -193,7 +193,7 @@ public struct PrimitiveTransformation: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Type of transformation.
-  public enum TransformationOneOf: Codable, Equatable, Sendable {
+  public enum TransformationOneOf: Equatable, Sendable {
     /// Replace with a specified value.
     indirect case replaceConfig(ReplaceValueConfig)
     /// Redact

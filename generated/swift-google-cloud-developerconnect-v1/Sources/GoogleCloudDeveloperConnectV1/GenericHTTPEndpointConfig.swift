@@ -224,7 +224,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
     }
 
     /// The password to authenticate as.
-    public enum PasswordOneOf: Codable, Equatable, Sendable {
+    public enum PasswordOneOf: Equatable, Sendable {
       /// The password SecretManager secret version to authenticate as.
       case passwordSecretVersion(Swift.String)
     }
@@ -331,7 +331,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
     }
 
     /// The token to authenticate as.
-    public enum TokenOneOf: Codable, Equatable, Sendable {
+    public enum TokenOneOf: Equatable, Sendable {
       /// Optional. The token SecretManager secret version to authenticate as.
       case tokenSecretVersion(Swift.String)
     }
@@ -361,7 +361,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// The authentication mechanism to use for requests to the HTTP service
   /// provider.
-  public enum AuthenticationOneOf: Codable, Equatable, Sendable {
+  public enum AuthenticationOneOf: Equatable, Sendable {
     /// Optional. Basic authentication with username and password.
     indirect case basicAuthentication(GenericHTTPEndpointConfig.BasicAuthentication)
     /// Optional. Bearer token authentication with a token.

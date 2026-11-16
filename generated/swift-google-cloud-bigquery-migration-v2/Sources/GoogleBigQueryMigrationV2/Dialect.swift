@@ -232,7 +232,7 @@ public struct Dialect: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The possible dialect options that this message represents.
-  public enum DialectValueOneOf: Codable, Equatable, Sendable {
+  public enum DialectValueOneOf: Equatable, Sendable {
     /// The BigQuery dialect
     indirect case bigqueryDialect(BigQueryDialect)
     /// The HiveQL dialect

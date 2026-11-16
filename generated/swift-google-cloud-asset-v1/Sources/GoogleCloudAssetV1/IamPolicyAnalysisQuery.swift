@@ -696,7 +696,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// The IAM conditions time context.
-    public enum TimeContextOneOf: Codable, Equatable, Sendable {
+    public enum TimeContextOneOf: Equatable, Sendable {
       /// The hypothetical access timestamp to evaluate IAM conditions. Note that
       /// this value must not be earlier than the current time; otherwise, an
       /// INVALID_ARGUMENT error will be returned.

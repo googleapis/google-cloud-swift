@@ -150,7 +150,7 @@
     }
 
     /// Ranking metrics of this suggestion.
-    public enum RankingInfoOneOf: Codable, Equatable, Sendable {
+    public enum RankingInfoOneOf: Equatable, Sendable {
       /// Global score of this suggestion. Control how this suggestion would be
       /// scored / ranked.
       case globalScore(Swift.Double)

@@ -181,7 +181,7 @@ public struct ConnectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum RequestOneOf: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Equatable, Sendable {
     /// Provides information that specifies how to process subsequent requests.
     /// The first `ConnectRequest` message must contain a `config`  message.
     indirect case config(ConnectRequest.ConnectConfig)

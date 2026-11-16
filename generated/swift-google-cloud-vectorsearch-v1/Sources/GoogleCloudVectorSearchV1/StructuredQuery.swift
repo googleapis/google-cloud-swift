@@ -121,7 +121,7 @@ public struct StructuredQuery: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of query to execute.
-  public enum QueryTypeOneOf: Codable, Equatable, Sendable {
+  public enum QueryTypeOneOf: Equatable, Sendable {
     /// Optional. A leaf-level text query.
     indirect case text(TextQuery)
     /// Optional. A query that applies a unary operator to a sub-query.

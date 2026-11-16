@@ -99,7 +99,7 @@ public struct OtherCloudResourceRegex: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// The type of resource regex to use.
-  public enum ResourceRegexOneOf: Codable, Equatable, Sendable {
+  public enum ResourceRegexOneOf: Equatable, Sendable {
     /// Regex for Amazon S3 buckets.
     indirect case amazonS3BucketRegex(AmazonS3BucketRegex)
   }

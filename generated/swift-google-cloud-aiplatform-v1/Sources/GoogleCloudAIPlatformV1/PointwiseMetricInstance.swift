@@ -106,7 +106,7 @@
     }
 
     /// Instance for pointwise metric.
-    public enum InstanceOneOf: Codable, Equatable, Sendable {
+    public enum InstanceOneOf: Equatable, Sendable {
       /// Instance specified as a json string. String key-value pairs are expected
       /// in the json_instance to render
       /// PointwiseMetricSpec.instance_prompt_template.

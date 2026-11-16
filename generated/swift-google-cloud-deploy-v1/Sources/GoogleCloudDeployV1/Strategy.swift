@@ -101,7 +101,7 @@ public struct Strategy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Deployment strategy details.
-  public enum DeploymentStrategyOneOf: Codable, Equatable, Sendable {
+  public enum DeploymentStrategyOneOf: Equatable, Sendable {
     /// Optional. Standard deployment strategy executes a single deploy and
     /// allows verifying the deployment.
     indirect case standard(Standard)

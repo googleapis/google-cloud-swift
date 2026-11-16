@@ -508,7 +508,7 @@
       }
 
       /// Schema representation.
-      public enum SchemaOneOf: Codable, Equatable, Sendable {
+      public enum SchemaOneOf: Equatable, Sendable {
         /// Required. The OpenAPI schema specified as a text.
         case textSchema(Swift.String)
       }
@@ -945,7 +945,7 @@
         }
 
         /// Required. Specification for an action to configure for the tool to use.
-        public enum ActionSpecOneOf: Codable, Equatable, Sendable {
+        public enum ActionSpecOneOf: Equatable, Sendable {
           /// ID of a Connection action for the tool to use.
           case connectionActionId(Swift.String)
           /// Entity operation configuration for the tool to use.
@@ -1902,7 +1902,7 @@
       }
 
       /// The auth configuration.
-      public enum AuthConfigOneOf: Codable, Equatable, Sendable {
+      public enum AuthConfigOneOf: Equatable, Sendable {
         /// Config for API key auth.
         indirect case apiKeyConfig(Tool.Authentication.ApiKeyConfig)
         /// Config for OAuth.
@@ -2462,7 +2462,7 @@
     }
 
     /// Specification of the Tool.
-    public enum SpecificationOneOf: Codable, Equatable, Sendable {
+    public enum SpecificationOneOf: Equatable, Sendable {
       /// Vertex extension tool specification.
       @available(*, deprecated)
       indirect case extensionSpec(Tool.ExtensionTool)

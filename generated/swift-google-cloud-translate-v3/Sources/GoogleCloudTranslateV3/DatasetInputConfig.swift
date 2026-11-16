@@ -168,7 +168,7 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Source of the file containing sentence pairs.
     /// Supported formats are tab-separated values (.tsv) and Translation Memory
     /// eXchange (.tmx) .
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// Google Cloud Storage file source.
       indirect case gcsSource(GcsInputSource)
     }

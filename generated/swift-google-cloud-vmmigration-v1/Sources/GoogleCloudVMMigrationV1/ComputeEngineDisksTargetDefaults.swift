@@ -150,13 +150,13 @@ public struct ComputeEngineDisksTargetDefaults: Codable, Equatable, GoogleWKT._A
     }
   }
 
-  public enum LocationOneOf: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Equatable, Sendable {
     /// The zone in which to create the Persistent Disks.
     case zone(Swift.String)
   }
 
   /// Details of the VM to attach the disks to as the target of this migration.
-  public enum VmTargetOneOf: Codable, Equatable, Sendable {
+  public enum VmTargetOneOf: Equatable, Sendable {
     /// Details of the disk only migration target.
     indirect case disksTargetDefaults(DisksMigrationDisksTargetDefaults)
     /// Details of the VM migration target.

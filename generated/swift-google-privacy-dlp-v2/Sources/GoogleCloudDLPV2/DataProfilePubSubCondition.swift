@@ -162,7 +162,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
     }
 
     /// The value for the condition to trigger.
-    public enum ValueOneOf: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Equatable, Sendable {
       /// The minimum data risk score that triggers the condition.
       case minimumRiskScore(DataProfilePubSubCondition.ProfileScoreBucket)
       /// The minimum sensitivity level that triggers the condition.

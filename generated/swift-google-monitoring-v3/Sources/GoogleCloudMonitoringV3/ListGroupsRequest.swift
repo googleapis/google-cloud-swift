@@ -151,7 +151,7 @@ public struct ListGroupsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// An optional filter consisting of a single group name.  The filters limit
   /// the groups returned based on their parent-child relationship with the
   /// specified group. If no filter is specified, all groups are returned.
-  public enum FilterOneOf: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Equatable, Sendable {
     /// A group name. The format is:
     ///
     ///     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]

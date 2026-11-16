@@ -111,7 +111,7 @@ public struct RecordKey: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of key
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// BigQuery key
     indirect case datastoreKey(DatastoreKey)
     /// Datastore key

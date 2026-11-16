@@ -225,7 +225,7 @@ public struct EnrollmentActivity: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// One of the activities that can be logged during the processing of an
   /// enrollment.
-  public enum ActivityOneOf: Codable, Equatable, Sendable {
+  public enum ActivityOneOf: Equatable, Sendable {
     /// Logged when an event matches an enrollment.
     indirect case matched(EnrollmentActivity.Matched)
   }

@@ -118,7 +118,7 @@ public struct DropRowRangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Delete all rows or by prefix.
-  public enum TargetOneOf: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Equatable, Sendable {
     /// Delete all rows that start with this row key prefix. Prefix cannot be
     /// zero length.
     case rowKeyPrefix(Foundation.Data)

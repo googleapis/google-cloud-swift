@@ -270,7 +270,7 @@
       /// Matcher for the [Sitemap][google.cloud.discoveryengine.v1.Sitemap]s.
       ///
       /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
-      public enum MatcherOneOf: Codable, Equatable, Sendable {
+      public enum MatcherOneOf: Equatable, Sendable {
         /// Matcher by sitemap URIs.
         indirect case urisMatcher(FetchSitemapsRequest.UrisMatcher)
       }

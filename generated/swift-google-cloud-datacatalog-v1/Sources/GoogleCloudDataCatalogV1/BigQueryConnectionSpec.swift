@@ -226,7 +226,7 @@ public struct BigQueryConnectionSpec: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public enum ConnectionSpecOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionSpecOneOf: Equatable, Sendable {
     /// Specification for the BigQuery connection to a Cloud SQL instance.
     indirect case cloudSql(CloudSqlBigQueryConnectionSpec)
   }

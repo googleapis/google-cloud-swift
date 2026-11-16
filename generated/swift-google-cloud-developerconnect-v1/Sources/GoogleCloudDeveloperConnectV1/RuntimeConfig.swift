@@ -279,7 +279,7 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the runtime.
-  public enum RuntimeOneOf: Codable, Equatable, Sendable {
+  public enum RuntimeOneOf: Equatable, Sendable {
     /// Output only. Google Kubernetes Engine runtime.
     indirect case gkeWorkload(GKEWorkload)
     /// Output only. Cloud Run runtime.
@@ -287,7 +287,7 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Where the runtime is derived from.
-  public enum DerivedFromOneOf: Codable, Equatable, Sendable {
+  public enum DerivedFromOneOf: Equatable, Sendable {
     /// Output only. App Hub Workload.
     indirect case appHubWorkload(AppHubWorkload)
     /// Output only. App Hub Service.

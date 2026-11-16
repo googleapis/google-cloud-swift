@@ -301,7 +301,7 @@ public struct Watchlist: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Ways to populate entities in watchlist.
     /// Currently, only manual is supported.
-    public enum MechanismOneOf: Codable, Equatable, Sendable {
+    public enum MechanismOneOf: Equatable, Sendable {
       /// Optional. Entities are added manually.
       indirect case manual(Watchlist.EntityPopulationMechanism.Manual)
     }

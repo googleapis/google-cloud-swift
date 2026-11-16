@@ -419,7 +419,7 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The policy that is bound to this data policy.
-  public enum PolicyOneOf: Codable, Equatable, Sendable {
+  public enum PolicyOneOf: Equatable, Sendable {
     /// Optional. The data masking policy that specifies the data masking rule to
     /// use. It must be set if the data policy type is DATA_MASKING_POLICY.
     indirect case dataMaskingPolicy(DataMaskingPolicy)

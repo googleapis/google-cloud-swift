@@ -330,7 +330,7 @@
 
     /// Response based on which delete option is specified in the
     /// request
-    public enum ResponseOneOf: Codable, Equatable, Sendable {
+    public enum ResponseOneOf: Equatable, Sendable {
       /// Response for request specifying the entities to delete
       indirect case selectEntity(DeleteFeatureValuesResponse.SelectEntity)
       /// Response for request specifying time range and feature

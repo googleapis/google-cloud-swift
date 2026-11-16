@@ -123,7 +123,7 @@ public struct BigQueryPartitioning: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Partitioning to apply on the table.
-  public enum PartitioningOneOf: Codable, Equatable, Sendable {
+  public enum PartitioningOneOf: Equatable, Sendable {
     /// Integer range partitioning.
     indirect case integerRangePartition(IntegerRangePartition)
     /// Time unit column partitioning.

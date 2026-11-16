@@ -139,7 +139,7 @@ public struct Restrictions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The websites, IP addresses, Android apps, or iOS apps (the clients) that
   /// are allowed to use the key. You can specify only one type of client
   /// restrictions per key.
-  public enum ClientRestrictionsOneOf: Codable, Equatable, Sendable {
+  public enum ClientRestrictionsOneOf: Equatable, Sendable {
     /// The HTTP referrers (websites) that are allowed to use the key.
     indirect case browserKeyRestrictions(BrowserKeyRestrictions)
     /// The IP addresses of callers that are allowed to use the key.

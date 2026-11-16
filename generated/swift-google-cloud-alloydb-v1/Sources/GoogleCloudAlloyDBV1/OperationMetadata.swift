@@ -174,7 +174,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Request specific metadata, if any.
-  public enum RequestSpecificOneOf: Codable, Equatable, Sendable {
+  public enum RequestSpecificOneOf: Equatable, Sendable {
     /// Output only. BatchCreateInstances related metadata.
     indirect case batchCreateInstancesMetadata(BatchCreateInstancesMetadata)
     /// Output only. UpgradeClusterStatus related metadata.

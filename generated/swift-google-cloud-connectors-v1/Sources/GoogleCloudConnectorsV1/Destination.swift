@@ -109,7 +109,7 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// PSC service attachments.
     /// Format: projects/*/regions/*/serviceAttachments/*
     case serviceAttachment(Swift.String)

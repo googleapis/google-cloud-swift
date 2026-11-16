@@ -109,7 +109,7 @@
     }
 
     /// Exported entity types can be either in cloud storage or local download.
-    public enum ExportedEntityTypesOneOf: Codable, Equatable, Sendable {
+    public enum ExportedEntityTypesOneOf: Equatable, Sendable {
       /// The URI to a file containing the exported entity types. This field is
       /// populated only if `entity_types_uri` is specified in
       /// [ExportEntityTypesRequest][google.cloud.dialogflow.cx.v3.ExportEntityTypesRequest].

@@ -458,7 +458,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The service definition configuration.
-  public enum ServiceDefinitionOneOf: Codable, Equatable, Sendable {
+  public enum ServiceDefinitionOneOf: Equatable, Sendable {
     /// Optional. Kubernetes Gateway API service mesh configuration.
     indirect case gatewayServiceMesh(KubernetesConfig.GatewayServiceMesh)
     /// Optional. Kubernetes Service networking configuration.

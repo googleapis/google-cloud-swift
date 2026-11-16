@@ -394,7 +394,7 @@ public struct MigrationTask: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The details of the task.
-  public enum TaskDetailsOneOf: Codable, Equatable, Sendable {
+  public enum TaskDetailsOneOf: Equatable, Sendable {
     /// Task configuration for Assessment.
     indirect case assessmentTaskDetails(AssessmentTaskDetails)
     /// Task configuration for CW Batch/Offline SQL Translation.

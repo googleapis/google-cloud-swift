@@ -160,7 +160,7 @@ public struct DataAccessLabel: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required.
   /// The definition of the data access label that determines which
   /// data gets tagged with this label.
-  public enum DefinitionOneOf: Codable, Equatable, Sendable {
+  public enum DefinitionOneOf: Equatable, Sendable {
     /// A UDM query over event data.
     case udmQuery(Swift.String)
   }

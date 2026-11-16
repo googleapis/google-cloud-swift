@@ -269,7 +269,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The config for triggering notifications.
-  public enum NotifyConfigOneOf: Codable, Equatable, Sendable {
+  public enum NotifyConfigOneOf: Equatable, Sendable {
     /// The config for triggering streaming-based notifications.
     indirect case streamingConfig(NotificationConfig.StreamingConfig)
   }

@@ -116,7 +116,7 @@ public struct ListValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Each value can be exactly one kind.
-  public enum ValuesOneOf: Codable, Equatable, Sendable {
+  public enum ValuesOneOf: Equatable, Sendable {
     /// Optional. A list of boolean values.
     indirect case boolValues(BoolList)
     /// Optional. A list of string values.

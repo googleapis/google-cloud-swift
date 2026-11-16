@@ -443,7 +443,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Which encoding to use.
-      public enum EncodingOneOf: Codable, Equatable, Sendable {
+      public enum EncodingOneOf: Equatable, Sendable {
         /// Use `Raw` encoding.
         indirect case raw(GoogleCloudBigtableAdminV2.Type_.Bytes.Encoding.Raw)
       }
@@ -795,7 +795,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Which encoding to use.
-      public enum EncodingOneOf: Codable, Equatable, Sendable {
+      public enum EncodingOneOf: Equatable, Sendable {
         /// Deprecated: if set, converts to an empty `utf8_bytes`.
         @available(*, deprecated)
         indirect case utf8Raw(GoogleCloudBigtableAdminV2.Type_.String.Encoding.Utf8Raw)
@@ -1165,7 +1165,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Which encoding to use.
-      public enum EncodingOneOf: Codable, Equatable, Sendable {
+      public enum EncodingOneOf: Equatable, Sendable {
         /// Use `BigEndianBytes` encoding.
         indirect case bigEndianBytes(GoogleCloudBigtableAdminV2.Type_.Int64.Encoding.BigEndianBytes)
         /// Use `OrderedCodeBytes` encoding.
@@ -1564,7 +1564,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Which encoding to use.
-      public enum EncodingOneOf: Codable, Equatable, Sendable {
+      public enum EncodingOneOf: Equatable, Sendable {
         /// Encodes the number of microseconds since the Unix epoch using the
         /// given `Int64` encoding. Values must be microsecond-aligned.
         ///
@@ -2223,7 +2223,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Which encoding to use.
-      public enum EncodingOneOf: Codable, Equatable, Sendable {
+      public enum EncodingOneOf: Equatable, Sendable {
         /// Use `Singleton` encoding.
         indirect case singleton(GoogleCloudBigtableAdminV2.Type_.Struct.Encoding.Singleton)
         /// Use `DelimitedBytes` encoding.
@@ -3054,7 +3054,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Which aggregator function to use. The configured types must match.
-    public enum AggregatorOneOf: Codable, Equatable, Sendable {
+    public enum AggregatorOneOf: Equatable, Sendable {
       /// Sum aggregator.
       indirect case sum(GoogleCloudBigtableAdminV2.Type_.Aggregate.Sum)
       /// HyperLogLogPlusPlusUniqueCount aggregator.
@@ -3089,7 +3089,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The kind of type that this represents.
-  public enum KindOneOf: Codable, Equatable, Sendable {
+  public enum KindOneOf: Equatable, Sendable {
     /// Bytes
     indirect case bytesType(GoogleCloudBigtableAdminV2.Type_.Bytes)
     /// String

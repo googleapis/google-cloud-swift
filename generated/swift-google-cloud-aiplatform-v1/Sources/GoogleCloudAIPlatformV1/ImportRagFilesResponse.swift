@@ -140,7 +140,7 @@
     }
 
     /// The location into which the partial failures were written.
-    public enum PartialFailureSinkOneOf: Codable, Equatable, Sendable {
+    public enum PartialFailureSinkOneOf: Equatable, Sendable {
       /// The Google Cloud Storage path into which the partial failures were
       /// written.
       case partialFailuresGcsPath(Swift.String)

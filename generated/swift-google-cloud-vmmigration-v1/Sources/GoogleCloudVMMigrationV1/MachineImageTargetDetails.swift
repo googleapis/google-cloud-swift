@@ -225,7 +225,7 @@ public struct MachineImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public enum OsAdaptationConfigOneOf: Codable, Equatable, Sendable {
+  public enum OsAdaptationConfigOneOf: Equatable, Sendable {
     /// Optional. Use to set the parameters relevant for the OS adaptation
     /// process.
     indirect case osAdaptationParameters(ImageImportOsAdaptationParameters)

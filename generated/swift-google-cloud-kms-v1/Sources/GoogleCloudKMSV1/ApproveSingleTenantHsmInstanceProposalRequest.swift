@@ -324,7 +324,7 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
 
   /// The approval payload. The type of approval payload must correspond to the
   /// type of approval_parameters in the proposal.
-  public enum ApprovalPayloadOneOf: Codable, Equatable, Sendable {
+  public enum ApprovalPayloadOneOf: Equatable, Sendable {
     /// Required. The reply to
     /// [QuorumParameters][google.cloud.kms.v1.SingleTenantHsmInstanceProposal.QuorumParameters]
     /// for approving the proposal.

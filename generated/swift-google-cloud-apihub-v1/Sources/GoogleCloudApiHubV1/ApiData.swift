@@ -96,7 +96,7 @@ public struct ApiData: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The data to be collected.
-  public enum DataOneOf: Codable, Equatable, Sendable {
+  public enum DataOneOf: Equatable, Sendable {
     /// Optional. The list of API metadata.
     indirect case apiMetadataList(ApiMetadataList)
   }

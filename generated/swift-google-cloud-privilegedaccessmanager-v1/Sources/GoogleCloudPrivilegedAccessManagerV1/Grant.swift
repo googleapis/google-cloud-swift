@@ -1285,7 +1285,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public enum EventOneOf: Codable, Equatable, Sendable {
+      public enum EventOneOf: Equatable, Sendable {
         /// The grant was requested.
         indirect case requested(Grant.Timeline.Event.Requested)
         /// The grant was approved.

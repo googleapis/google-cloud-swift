@@ -170,7 +170,7 @@ public struct ImageImport: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Immutable. The path to the Cloud Storage file from which the image should
     /// be imported.
     case cloudStorageUri(Swift.String)
@@ -178,7 +178,7 @@ public struct ImageImport: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The configuration of the resources that will be created in GCP as a result
   /// of the ImageImport.
-  public enum TargetDefaultsOneOf: Codable, Equatable, Sendable {
+  public enum TargetDefaultsOneOf: Equatable, Sendable {
     /// Immutable. Target details for importing a disk image, will be used by
     /// ImageImportJob.
     indirect case diskImageTargetDefaults(DiskImageTargetDetails)

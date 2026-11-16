@@ -658,7 +658,7 @@
       }
     }
 
-    public enum ProbeTypeOneOf: Codable, Equatable, Sendable {
+    public enum ProbeTypeOneOf: Equatable, Sendable {
       /// ExecAction probes the health of a container by executing a command.
       indirect case exec(Probe.ExecAction)
       /// HttpGetAction probes the health of a container by sending an HTTP GET

@@ -121,7 +121,7 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A SourceContext can refer any one of the following types of repositories.
-  public enum ContextOneOf: Codable, Equatable, Sendable {
+  public enum ContextOneOf: Equatable, Sendable {
     /// A SourceContext referring to a revision in a Google Cloud Source Repo.
     indirect case cloudRepo(CloudRepoSourceContext)
     /// A SourceContext referring to a Gerrit project.

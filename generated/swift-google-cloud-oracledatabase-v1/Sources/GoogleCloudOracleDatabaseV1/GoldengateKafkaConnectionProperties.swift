@@ -466,7 +466,7 @@ public struct GoldengateKafkaConnectionProperties: Codable, Equatable, GoogleWKT
   }
 
   /// The password for Kafka basic/SASL auth.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password for Kafka basic/SASL auth in plain
     /// text.
     case password(Swift.String)
@@ -477,7 +477,7 @@ public struct GoldengateKafkaConnectionProperties: Codable, Equatable, GoogleWKT
   }
 
   /// The TrustStore password.
-  public enum TrustStorePasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum TrustStorePasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The TrustStore password in plain text.
     case trustStorePassword(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret
@@ -487,7 +487,7 @@ public struct GoldengateKafkaConnectionProperties: Codable, Equatable, GoogleWKT
   }
 
   /// The KeyStore password.
-  public enum KeyStorePasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum KeyStorePasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The KeyStore password in plain text.
     case keyStorePassword(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret
@@ -498,7 +498,7 @@ public struct GoldengateKafkaConnectionProperties: Codable, Equatable, GoogleWKT
 
   /// The password for the cert inside of the KeyStore.
   /// In case it differs from the KeyStore password, it should be provided.
-  public enum SslKeyPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum SslKeyPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password for the cert inside of the KeyStore in
     /// plain text.
     case sslKeyPassword(Swift.String)

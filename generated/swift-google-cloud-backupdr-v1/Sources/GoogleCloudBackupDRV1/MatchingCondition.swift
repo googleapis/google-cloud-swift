@@ -98,7 +98,7 @@ public struct MatchingCondition: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A condition that a resource must meet to be protected by the
   /// policy.
-  public enum ConditionOneOf: Codable, Equatable, Sendable {
+  public enum ConditionOneOf: Equatable, Sendable {
     /// Optional. A condition that matches resources based on their labels.
     /// For MVP, this is limited to a single label match.
     indirect case labelCondition(KeyValuePair)

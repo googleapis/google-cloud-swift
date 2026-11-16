@@ -202,7 +202,7 @@ public struct AwsS3Data: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum PrivateNetworkOneOf: Codable, Equatable, Sendable {
+  public enum PrivateNetworkOneOf: Equatable, Sendable {
     /// Egress bytes over a Google-managed private network.
     /// This network is shared between other users of Storage Transfer Service.
     case managedPrivateNetwork(Swift.Bool)

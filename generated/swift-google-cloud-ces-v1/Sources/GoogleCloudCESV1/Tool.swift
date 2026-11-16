@@ -275,7 +275,7 @@ public struct Tool: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the tool.
-  public enum ToolTypeOneOf: Codable, Equatable, Sendable {
+  public enum ToolTypeOneOf: Equatable, Sendable {
     /// Optional. The client function.
     indirect case clientFunction(ClientFunction)
     /// Optional. The open API tool.

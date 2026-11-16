@@ -157,7 +157,7 @@ public struct TrinoJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. The sequence of Trino queries to execute, specified as
   /// either an HCFS file URI or as a list of queries.
-  public enum QueriesOneOf: Codable, Equatable, Sendable {
+  public enum QueriesOneOf: Equatable, Sendable {
     /// The HCFS URI of the script that contains SQL queries.
     case queryFileUri(Swift.String)
     /// A list of queries.

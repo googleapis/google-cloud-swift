@@ -114,7 +114,7 @@ public struct SdpContentLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of the container within the file with location of the finding. This
   /// may be extended to include other container types like audio, video, etc in
   /// future.
-  public enum LocationOneOf: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Equatable, Sendable {
     /// Location within an image's pixels.
     indirect case imageFindingLocation(SdpImageFindingLocation)
   }

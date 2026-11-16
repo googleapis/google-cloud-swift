@@ -114,7 +114,7 @@ public struct InspectionRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Inspection rule types.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Hotword-based detection rule.
     indirect case hotwordRule(CustomInfoType.DetectionRule.HotwordRule)
     /// Exclusion rule.

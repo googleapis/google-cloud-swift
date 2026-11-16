@@ -110,7 +110,7 @@ public struct StreamStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The result of the stream. Either "Okay" for success or "Fail" for failure.
-  public enum StatusOneOf: Codable, Equatable, Sendable {
+  public enum StatusOneOf: Equatable, Sendable {
     /// Okay for success.
     indirect case okay(Okay)
     /// Fail for failure.

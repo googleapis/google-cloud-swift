@@ -345,7 +345,7 @@
     }
 
     /// The destination of the output.
-    public enum DestinationOneOf: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Equatable, Sendable {
       /// The Google Cloud Storage location where the output is to be written to.
       /// In the given directory a new directory will be created with name:
       /// `export-data-<dataset-display-name>-<timestamp-of-export-call>` where
@@ -360,7 +360,7 @@
 
     /// The instructions how the export data should be split between the
     /// training, validation and test sets.
-    public enum SplitOneOf: Codable, Equatable, Sendable {
+    public enum SplitOneOf: Equatable, Sendable {
       /// Split based on fractions defining the size of each set.
       indirect case fractionSplit(ExportFractionSplit)
       /// Split based on the provided filters for each set.

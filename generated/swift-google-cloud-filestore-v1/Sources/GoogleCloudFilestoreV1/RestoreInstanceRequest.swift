@@ -113,7 +113,7 @@ public struct RestoreInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The resource name of the backup, in the format
     /// `projects/{project_number}/locations/{location_id}/backups/{backup_id}`.
     case sourceBackup(Swift.String)

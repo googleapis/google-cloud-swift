@@ -305,7 +305,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Details of the environment.
-  public enum ExecutionEnvironmentOneOf: Codable, Equatable, Sendable {
+  public enum ExecutionEnvironmentOneOf: Equatable, Sendable {
     /// Optional. Use default Cloud Build pool.
     indirect case defaultPool(DefaultPool)
     /// Optional. Use private Cloud Build pool.

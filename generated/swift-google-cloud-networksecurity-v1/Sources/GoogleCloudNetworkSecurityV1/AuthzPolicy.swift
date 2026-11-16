@@ -490,7 +490,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public enum MatchPatternOneOf: Codable, Equatable, Sendable {
+      public enum MatchPatternOneOf: Equatable, Sendable {
         /// The input string must match exactly the string specified here.
         ///
         /// Examples:

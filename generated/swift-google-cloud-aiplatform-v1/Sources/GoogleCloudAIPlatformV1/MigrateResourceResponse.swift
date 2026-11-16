@@ -111,7 +111,7 @@
     }
 
     /// After migration, the resource name in Vertex AI.
-    public enum MigratedResourceOneOf: Codable, Equatable, Sendable {
+    public enum MigratedResourceOneOf: Equatable, Sendable {
       /// Migrated Dataset's resource name.
       case dataset(Swift.String)
       /// Migrated Model's resource name.

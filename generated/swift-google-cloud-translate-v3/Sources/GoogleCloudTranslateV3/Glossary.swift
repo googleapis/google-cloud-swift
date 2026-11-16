@@ -329,7 +329,7 @@ public struct Glossary: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Languages supported by the glossary.
-  public enum LanguagesOneOf: Codable, Equatable, Sendable {
+  public enum LanguagesOneOf: Equatable, Sendable {
     /// Used with unidirectional glossaries.
     indirect case languagePair(Glossary.LanguageCodePair)
     /// Used with equivalent term set glossaries.

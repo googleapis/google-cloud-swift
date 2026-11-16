@@ -383,7 +383,7 @@ public struct MappingRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The rule specific details.
-  public enum DetailsOneOf: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Equatable, Sendable {
     /// Optional. Rule to specify how a single entity should be renamed.
     indirect case singleEntityRename(SingleEntityRename)
     /// Optional. Rule to specify how multiple entities should be renamed.

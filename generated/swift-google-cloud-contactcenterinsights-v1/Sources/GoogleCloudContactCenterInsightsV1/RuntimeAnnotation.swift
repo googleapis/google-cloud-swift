@@ -409,7 +409,7 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The data in the annotation.
-  public enum DataOneOf: Codable, Equatable, Sendable {
+  public enum DataOneOf: Equatable, Sendable {
     /// Agent Assist Article Suggestion data.
     indirect case articleSuggestion(ArticleSuggestionData)
     /// Agent Assist FAQ answer data.

@@ -102,7 +102,7 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The runtime configuration details.
-  public enum RuntimeConfigOneOf: Codable, Equatable, Sendable {
+  public enum RuntimeConfigOneOf: Equatable, Sendable {
     /// Optional. Kubernetes runtime configuration.
     indirect case kubernetes(KubernetesConfig)
     /// Optional. Cloud Run runtime configuration.

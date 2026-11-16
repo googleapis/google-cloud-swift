@@ -150,7 +150,7 @@
       }
     }
 
-    public enum ExpirationOneOf: Codable, Equatable, Sendable {
+    public enum ExpirationOneOf: Equatable, Sendable {
       /// Optional. Retention period of the final backup.
       case finalBackupTtlDays(Swift.Int64)
       /// Optional. Final Backup expiration time.

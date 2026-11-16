@@ -352,7 +352,7 @@ public struct DatabaseConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// How the Oracle Wallet is supplied for secure TLS/mTLS connections.
-  public enum WalletSourceOneOf: Codable, Equatable, Sendable {
+  public enum WalletSourceOneOf: Equatable, Sendable {
     /// Optional. Optional: The resource name of the GCP Secret Manager secret
     /// version containing base64 encoded content of the Oracle Wallet ZIP file
     /// required for mTLS/TLS connections. Format:
@@ -363,7 +363,7 @@ public struct DatabaseConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Network configuration for reaching the database.
-  public enum NetworkConfigurationOneOf: Codable, Equatable, Sendable {
+  public enum NetworkConfigurationOneOf: Equatable, Sendable {
     /// Optional. Immutable. For Oracle Database@Google cloud resources.
     /// Format: projects/{project}/locations/{location}/odbNetworks/{odbNetwork}
     case odbNetwork(Swift.String)

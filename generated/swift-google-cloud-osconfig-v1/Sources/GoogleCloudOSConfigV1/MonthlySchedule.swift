@@ -104,7 +104,7 @@ public struct MonthlySchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// One day in a month.
-  public enum DayOfMonthOneOf: Codable, Equatable, Sendable {
+  public enum DayOfMonthOneOf: Equatable, Sendable {
     /// Required. Week day in a month.
     indirect case weekDayOfMonth(WeekDayOfMonth)
     /// Required. One day of the month. 1-31 indicates the 1st to the 31st day.

@@ -114,7 +114,7 @@ public struct AdjustmentRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Condition under which the adjustment rule is applied.
-  public enum ConditionsOneOf: Codable, Equatable, Sendable {
+  public enum ConditionsOneOf: Equatable, Sendable {
     /// Set of infoTypes for which findings would affect this rule.
     indirect case adjustByMatchingInfoTypes(AdjustByMatchingInfoTypes)
     /// AdjustmentRule condition for image findings.

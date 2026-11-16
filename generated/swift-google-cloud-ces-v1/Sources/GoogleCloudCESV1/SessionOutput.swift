@@ -265,7 +265,7 @@ public struct SessionOutput: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the output.
-  public enum OutputTypeOneOf: Codable, Equatable, Sendable {
+  public enum OutputTypeOneOf: Equatable, Sendable {
     /// Output text from the CES agent.
     case text(Swift.String)
     /// Output audio from the CES agent.

@@ -152,7 +152,7 @@ public struct HiveJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. The sequence of Hive queries to execute, specified as either
   /// an HCFS file URI or a list of queries.
-  public enum QueriesOneOf: Codable, Equatable, Sendable {
+  public enum QueriesOneOf: Equatable, Sendable {
     /// The HCFS URI of the script that contains Hive queries.
     case queryFileUri(Swift.String)
     /// A list of queries.

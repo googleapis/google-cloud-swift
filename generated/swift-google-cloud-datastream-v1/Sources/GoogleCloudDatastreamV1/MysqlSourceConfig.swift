@@ -278,7 +278,7 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The CDC method to use for the stream.
-  public enum CdcMethodOneOf: Codable, Equatable, Sendable {
+  public enum CdcMethodOneOf: Equatable, Sendable {
     /// Use Binary log position based replication.
     indirect case binaryLogPosition(MysqlSourceConfig.BinaryLogPosition)
     /// Use GTID based replication.

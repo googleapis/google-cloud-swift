@@ -741,7 +741,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Determines when discovery is triggered.
-    public enum TriggerOneOf: Codable, Equatable, Sendable {
+    public enum TriggerOneOf: Equatable, Sendable {
       /// Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for
       /// running discovery periodically. Successive discovery runs must be
       /// scheduled at least 60 minutes apart. The default value is to run

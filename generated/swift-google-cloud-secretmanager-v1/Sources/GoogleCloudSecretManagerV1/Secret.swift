@@ -484,7 +484,7 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
   /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
-  public enum ExpirationOneOf: Codable, Equatable, Sendable {
+  public enum ExpirationOneOf: Equatable, Sendable {
     /// Optional. Timestamp in UTC when the
     /// [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to expire.
     /// This is always provided on output, regardless of what was sent on input.

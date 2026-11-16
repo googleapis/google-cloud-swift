@@ -386,7 +386,7 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// Users need the eventarc.googleApiSource.create permission on the entire org
   /// in order to create a resource with these settings.
-  public enum WideScopeSubscriptionOneOf: Codable, Equatable, Sendable {
+  public enum WideScopeSubscriptionOneOf: Equatable, Sendable {
     /// Optional. Config to enable subscribing to events from all projects in the
     /// GoogleApiSource's org.
     indirect case organizationSubscription(GoogleApiSource.OrganizationSubscription)

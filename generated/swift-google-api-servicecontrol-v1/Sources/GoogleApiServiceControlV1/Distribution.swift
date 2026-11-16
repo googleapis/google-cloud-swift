@@ -551,7 +551,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
   /// lower bound of the smallest finite bucket; the lower bound of the
   /// overflow bucket is equal to the upper bound of the largest finite
   /// bucket.
-  public enum BucketOptionOneOf: Codable, Equatable, Sendable {
+  public enum BucketOptionOneOf: Equatable, Sendable {
     /// Buckets with constant width.
     indirect case linearBuckets(GoogleApiServiceControlV1.Distribution.LinearBuckets)
     /// Buckets with exponentially growing width.

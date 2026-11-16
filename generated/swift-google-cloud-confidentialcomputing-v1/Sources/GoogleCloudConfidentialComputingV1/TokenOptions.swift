@@ -126,7 +126,7 @@ public struct TokenOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// An optional additional configuration per token type.
-  public enum TokenTypeOptionsOneOf: Codable, Equatable, Sendable {
+  public enum TokenTypeOptionsOneOf: Equatable, Sendable {
     /// Optional. Options for AWS token type.
     indirect case awsPrincipalTagsOptions(AwsPrincipalTagsOptions)
   }

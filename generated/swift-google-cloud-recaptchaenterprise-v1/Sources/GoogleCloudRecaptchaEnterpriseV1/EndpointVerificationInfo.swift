@@ -118,7 +118,7 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public enum EndpointOneOf: Codable, Equatable, Sendable {
+  public enum EndpointOneOf: Equatable, Sendable {
     /// Email address for which to trigger a verification request.
     case emailAddress(Swift.String)
     /// Phone number for which to trigger a verification request. Should be given

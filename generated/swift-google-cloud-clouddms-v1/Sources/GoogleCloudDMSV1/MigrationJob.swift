@@ -1161,7 +1161,7 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The connectivity method.
-  public enum ConnectivityOneOf: Codable, Equatable, Sendable {
+  public enum ConnectivityOneOf: Equatable, Sendable {
     /// The details needed to communicate to the source over Reverse SSH
     /// tunnel connectivity.
     indirect case reverseSshConnectivity(ReverseSshConnectivity)

@@ -116,7 +116,7 @@ public struct MetadataLocation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Label of the piece of metadata containing the finding, for example -
   /// latitude, author, caption.
-  public enum LabelOneOf: Codable, Equatable, Sendable {
+  public enum LabelOneOf: Equatable, Sendable {
     /// Storage metadata.
     indirect case storageLabel(StorageMetadataLabel)
     /// Metadata key that contains the finding.

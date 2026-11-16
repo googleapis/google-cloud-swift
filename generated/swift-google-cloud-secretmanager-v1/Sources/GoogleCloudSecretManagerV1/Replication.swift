@@ -397,7 +397,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The replication policy for this secret.
-  public enum ReplicationOneOf: Codable, Equatable, Sendable {
+  public enum ReplicationOneOf: Equatable, Sendable {
     /// The [Secret][google.cloud.secretmanager.v1.Secret] will automatically be
     /// replicated without any restrictions.
     ///

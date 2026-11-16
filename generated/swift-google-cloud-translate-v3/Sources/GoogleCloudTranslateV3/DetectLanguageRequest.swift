@@ -158,7 +158,7 @@ public struct DetectLanguageRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The source of the document from which to detect the language.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The content of the input stored as a string.
     case content(Swift.String)
   }

@@ -105,7 +105,7 @@ public struct EncryptionUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines where new content keys are stored.
-  public enum SecretSourceOneOf: Codable, Equatable, Sendable {
+  public enum SecretSourceOneOf: Equatable, Sendable {
     /// For keys stored in Google Secret Manager.
     indirect case secretManagerKeySource(Encryption.SecretManagerSource)
   }

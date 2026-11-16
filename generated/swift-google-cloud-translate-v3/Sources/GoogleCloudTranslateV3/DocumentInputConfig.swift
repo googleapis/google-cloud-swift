@@ -131,7 +131,7 @@ public struct DocumentInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
   /// The input file size should be <= 20MB and the maximum page limit is 20 for
   /// - application/pdf
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Document's content represented as a stream of bytes.
     case content(Foundation.Data)
     /// Google Cloud Storage location. This must be a single file.

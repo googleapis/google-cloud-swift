@@ -445,7 +445,7 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleWKT._AnyP
   }
 
   /// IAM policy analysis export destination.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Destination on Cloud Storage.
     indirect case gcsDestination(IamPolicyAnalysisOutputConfig.GcsDestination)
     /// Destination on BigQuery.

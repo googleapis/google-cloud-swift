@@ -356,7 +356,7 @@ public struct JobRun: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The `JobRun` type and the information for that type.
-  public enum JobRunOneOf: Codable, Equatable, Sendable {
+  public enum JobRunOneOf: Equatable, Sendable {
     /// Output only. Information specific to a deploy `JobRun`.
     indirect case deployJobRun(DeployJobRun)
     /// Output only. Information specific to a verify `JobRun`.

@@ -196,7 +196,7 @@ public struct PacketType: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// It is non-empty only for specific type class codecs. Needed only when the
     /// type string alone is not enough to disambiguate the specific type.
-    public enum TypeDetailsOneOf: Codable, Equatable, Sendable {
+    public enum TypeDetailsOneOf: Equatable, Sendable {
       /// GstreamerBufferDescriptor is the descriptor for gstreamer buffer type.
       indirect case gstreamerBufferDescriptor(GstreamerBufferDescriptor)
       /// RawImageDescriptor is the descriptor for the raw image type.

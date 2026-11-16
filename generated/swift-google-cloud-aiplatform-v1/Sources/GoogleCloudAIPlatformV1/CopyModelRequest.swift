@@ -154,7 +154,7 @@
     }
 
     /// If both fields are unset, a new Model will be created with a generated ID.
-    public enum DestinationModelOneOf: Codable, Equatable, Sendable {
+    public enum DestinationModelOneOf: Equatable, Sendable {
       /// Optional. Copy source_model into a new Model with this ID. The ID will
       /// become the final component of the model resource name.
       ///

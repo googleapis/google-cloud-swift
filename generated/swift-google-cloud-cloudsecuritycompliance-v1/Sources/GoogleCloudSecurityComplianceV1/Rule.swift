@@ -113,7 +113,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The rule implementation.
-  public enum ImplementationOneOf: Codable, Equatable, Sendable {
+  public enum ImplementationOneOf: Equatable, Sendable {
     /// The rule's logic expression in Common Expression Language (CEL).
     indirect case celExpression(CELExpression)
   }

@@ -471,7 +471,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Expression types.
-    public enum TypeOneOf: Codable, Equatable, Sendable {
+    public enum TypeOneOf: Equatable, Sendable {
       /// Conditions to apply to the expression.
       indirect case conditions(RecordCondition.Conditions)
     }

@@ -327,7 +327,7 @@
       }
     }
 
-    public enum SourceModelOneOf: Codable, Equatable, Sendable {
+    public enum SourceModelOneOf: Equatable, Sendable {
       /// The base model that is being tuned. See [Supported
       /// models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/tuning#supported_models).
       case baseModel(Swift.String)
@@ -335,7 +335,7 @@
       indirect case preTunedModel(PreTunedModel)
     }
 
-    public enum TuningSpecOneOf: Codable, Equatable, Sendable {
+    public enum TuningSpecOneOf: Equatable, Sendable {
       /// Tuning Spec for Supervised Fine Tuning.
       indirect case supervisedTuningSpec(SupervisedTuningSpec)
     }

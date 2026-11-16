@@ -472,7 +472,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The reference to the asset.
   /// The maximum size of the resource is 250 MB.
-  public enum ResourceOneOf: Codable, Equatable, Sendable {
+  public enum ResourceOneOf: Equatable, Sendable {
     /// VideoAsset represents a video.
     indirect case video(Asset.VideoAsset)
     /// ImageAsset represents an image.

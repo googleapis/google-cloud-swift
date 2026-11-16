@@ -94,7 +94,7 @@ public struct BatchDocumentInputConfig: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// Specify the input.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Google Cloud Storage location for the source input.
     /// This can be a single file (for example,
     /// `gs://translation-test/input.docx`) or a wildcard (for example,

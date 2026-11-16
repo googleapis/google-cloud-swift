@@ -103,7 +103,7 @@ public struct ReceiveEventsControlResponse: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// Possible control messages.
-  public enum ControlOneOf: Codable, Equatable, Sendable {
+  public enum ControlOneOf: Equatable, Sendable {
     /// A server heartbeat.
     case heartbeat(Swift.Bool)
     /// A request to the receiver to complete any final writes followed by a

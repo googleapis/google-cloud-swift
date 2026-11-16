@@ -512,7 +512,7 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The pipeline metadata.
-  public enum PipelineMetadataOneOf: Codable, Equatable, Sendable {
+  public enum PipelineMetadataOneOf: Equatable, Sendable {
     /// The pipeline metadata for GcsIngest pipeline.
     indirect case gcsIngestPipelineMetadata(RunPipelineMetadata.GcsIngestPipelineMetadata)
     /// The pipeline metadata for Export-to-CDW pipeline.

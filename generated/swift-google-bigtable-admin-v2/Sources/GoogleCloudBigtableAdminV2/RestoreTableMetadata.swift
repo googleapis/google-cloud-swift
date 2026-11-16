@@ -153,7 +153,7 @@ public struct RestoreTableMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [RestoreTableRequest][google.bigtable.admin.v2.RestoreTableRequest].
   ///
   /// [google.bigtable.admin.v2.RestoreTableRequest]: <doc:RestoreTableRequest>
-  public enum SourceInfoOneOf: Codable, Equatable, Sendable {
+  public enum SourceInfoOneOf: Equatable, Sendable {
     indirect case backupInfo(BackupInfo)
   }
 

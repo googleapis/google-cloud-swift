@@ -580,7 +580,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum InfoOneOf: Codable, Equatable, Sendable {
+    public enum InfoOneOf: Equatable, Sendable {
       /// Describes ongoing update on the cluster when cluster state is UPDATING.
       indirect case updateInfo(Cluster.StateInfo.UpdateInfo)
     }
@@ -906,7 +906,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source to import from.
-  public enum ImportSourcesOneOf: Codable, Equatable, Sendable {
+  public enum ImportSourcesOneOf: Equatable, Sendable {
     /// Optional. Backups stored in Cloud Storage buckets.
     /// The Cloud Storage buckets need to be the same region as the clusters.
     /// Read permission is required to import from the provided Cloud Storage

@@ -172,7 +172,7 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equa
     }
 
     /// The result of the simulation.
-    public enum ResultOneOf: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Equatable, Sendable {
       /// Finding that would be published for the test case if a violation is
       /// detected.
       indirect case finding(SimulatedFinding)

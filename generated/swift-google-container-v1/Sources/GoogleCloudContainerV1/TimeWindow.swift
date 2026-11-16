@@ -109,7 +109,7 @@ public struct TimeWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OptionsOneOf: Codable, Equatable, Sendable {
+  public enum OptionsOneOf: Equatable, Sendable {
     /// MaintenanceExclusionOptions provides maintenance exclusion related
     /// options.
     indirect case maintenanceExclusionOptions(MaintenanceExclusionOptions)

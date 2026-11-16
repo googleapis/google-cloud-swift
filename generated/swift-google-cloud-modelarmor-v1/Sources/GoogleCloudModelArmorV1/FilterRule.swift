@@ -95,7 +95,7 @@ public struct FilterRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Rule types.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Exclusion rule.
     indirect case exclusionRule(ExclusionRule)
   }

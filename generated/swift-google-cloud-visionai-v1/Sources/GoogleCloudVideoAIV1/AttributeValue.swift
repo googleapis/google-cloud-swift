@@ -115,7 +115,7 @@ public struct AttributeValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Attribute value.
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// int.
     case i(Swift.Int64)
     /// float.

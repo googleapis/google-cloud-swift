@@ -177,7 +177,7 @@ public struct VectorSearch: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies the type of vector to use for the query.
-  public enum VectorTypeOneOf: Codable, Equatable, Sendable {
+  public enum VectorTypeOneOf: Equatable, Sendable {
     /// A dense vector for the query.
     indirect case vector(DenseVector)
     /// A sparse vector for the query.

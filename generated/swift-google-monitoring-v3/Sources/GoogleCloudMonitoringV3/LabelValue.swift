@@ -108,7 +108,7 @@ public struct LabelValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The label value can be a bool, int64, or string.
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// A bool label value.
     case boolValue(Swift.Bool)
     /// An int64 label value.

@@ -138,7 +138,7 @@ public struct BackupApplianceLockInfo: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// The information about this lock.
-  public enum LockSourceOneOf: Codable, Equatable, Sendable {
+  public enum LockSourceOneOf: Equatable, Sendable {
     /// The job name on the backup/recovery appliance that created this lock.
     case jobName(Swift.String)
     /// The image name that depends on this Backup.

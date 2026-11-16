@@ -466,7 +466,7 @@
     /// Required.
     /// The model metadata that is specific to the problem type.
     /// Must match the metadata type of the dataset used to train the model.
-    public enum ModelMetadataOneOf: Codable, Equatable, Sendable {
+    public enum ModelMetadataOneOf: Equatable, Sendable {
       /// Metadata for article suggestion models.
       indirect case articleSuggestionModelMetadata(ArticleSuggestionModelMetadata)
       /// Metadata for smart reply models.

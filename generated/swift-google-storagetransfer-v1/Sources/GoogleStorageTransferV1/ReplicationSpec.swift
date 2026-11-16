@@ -147,13 +147,13 @@ public struct ReplicationSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The data source to be replicated.
-  public enum DataSourceOneOf: Codable, Equatable, Sendable {
+  public enum DataSourceOneOf: Equatable, Sendable {
     /// The Cloud Storage bucket from which to replicate objects.
     indirect case gcsDataSource(GcsData)
   }
 
   /// The destination for replicated objects.
-  public enum DataSinkOneOf: Codable, Equatable, Sendable {
+  public enum DataSinkOneOf: Equatable, Sendable {
     /// The Cloud Storage bucket to which to replicate objects.
     indirect case gcsDataSink(GcsData)
   }

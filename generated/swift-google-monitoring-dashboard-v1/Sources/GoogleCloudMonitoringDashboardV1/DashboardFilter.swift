@@ -263,7 +263,7 @@ public struct DashboardFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The default value used in the filter comparison
-  public enum DefaultValueOneOf: Codable, Equatable, Sendable {
+  public enum DefaultValueOneOf: Equatable, Sendable {
     /// A variable-length string value.
     case stringValue(Swift.String)
   }

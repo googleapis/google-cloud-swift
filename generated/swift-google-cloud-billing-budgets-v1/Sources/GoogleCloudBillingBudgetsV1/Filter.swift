@@ -344,7 +344,7 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Multiple options to choose the budget's time period, specifying that only
   /// usage that occurs during this time period should be included in the budget.
   /// If not set, the <code>usage_period</code> defaults to CalendarPeriod.MONTH.
-  public enum UsagePeriodOneOf: Codable, Equatable, Sendable {
+  public enum UsagePeriodOneOf: Equatable, Sendable {
     /// Optional. Specifies to track usage for recurring calendar period.
     /// For example, assume that CalendarPeriod.QUARTER is set. The budget
     /// tracks usage from April 1 to June 30, when the current calendar month is

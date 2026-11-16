@@ -94,7 +94,7 @@ public struct DestinationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The specific destination where the audit report and evidence are stored.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// URI for the Cloud Storage bucket, in the format
     /// `gs://{bucket_name}`.
     case gcsBucketUri(Swift.String)

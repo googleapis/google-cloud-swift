@@ -471,7 +471,7 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Select the specific checkpointing mechanism the third-party API requires.
-  public enum StrategyOneOf: Codable, Equatable, Sendable {
+  public enum StrategyOneOf: Equatable, Sendable {
     /// Fetch all available data in one go without tracking progress.
     indirect case noneStrategy(CustomAPICheckpointConfig.NoneStrategy)
     /// Track the timestamp of the newest record to fetch newer ones next.

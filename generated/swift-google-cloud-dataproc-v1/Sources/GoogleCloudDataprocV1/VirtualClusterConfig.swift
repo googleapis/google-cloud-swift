@@ -123,7 +123,7 @@ public struct VirtualClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum InfrastructureConfigOneOf: Codable, Equatable, Sendable {
+  public enum InfrastructureConfigOneOf: Equatable, Sendable {
     /// Required. The configuration for running the Dataproc cluster on
     /// Kubernetes.
     indirect case kubernetesClusterConfig(KubernetesClusterConfig)

@@ -624,7 +624,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `job_config`, the API selects `templateId`; this template ID is set to
   /// `preset/web-hd` by default. When you use a `template_id` to create a job,
   /// the `Job.config` is populated by the `JobTemplate.config`.<br>
-  public enum JobConfigOneOf: Codable, Equatable, Sendable {
+  public enum JobConfigOneOf: Equatable, Sendable {
     /// Input only. Specify the `template_id` to use for populating `Job.config`.
     /// The default is `preset/web-hd`, which is the only supported preset.
     ///

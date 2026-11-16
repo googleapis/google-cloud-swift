@@ -257,7 +257,7 @@
     }
 
     /// Required. The flow to import.
-    public enum FlowOneOf: Codable, Equatable, Sendable {
+    public enum FlowOneOf: Equatable, Sendable {
       /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI
       /// to import flow from. The format of this URI must be
       /// `gs://<bucket-name>/<object-name>`.

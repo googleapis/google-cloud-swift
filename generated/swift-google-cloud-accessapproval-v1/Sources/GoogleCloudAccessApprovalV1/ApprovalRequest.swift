@@ -169,7 +169,7 @@ public struct ApprovalRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The current decision on the approval request.
-  public enum DecisionOneOf: Codable, Equatable, Sendable {
+  public enum DecisionOneOf: Equatable, Sendable {
     /// Access was approved.
     indirect case approve(ApproveDecision)
     /// The request was dismissed.

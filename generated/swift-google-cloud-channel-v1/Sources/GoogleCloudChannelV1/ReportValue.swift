@@ -135,7 +135,7 @@ public struct ReportValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A single report value.
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// A value of type `string`.
     case stringValue(Swift.String)
     /// A value of type `int`.

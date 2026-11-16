@@ -303,7 +303,7 @@ public struct UrlMap: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of handler for this URL pattern.
-  public enum HandlerTypeOneOf: Codable, Equatable, Sendable {
+  public enum HandlerTypeOneOf: Equatable, Sendable {
     /// Returns the contents of a file, such as an image, as the response.
     indirect case staticFiles(StaticFilesHandler)
     /// Executes a script to handle the requests that match this URL

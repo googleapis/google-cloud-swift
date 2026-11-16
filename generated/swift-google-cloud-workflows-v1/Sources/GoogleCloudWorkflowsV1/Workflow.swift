@@ -765,7 +765,7 @@ public struct Workflow: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. Location of the workflow source code.
   /// Modifying this field for an existing workflow results in a new workflow
   /// revision.
-  public enum SourceCodeOneOf: Codable, Equatable, Sendable {
+  public enum SourceCodeOneOf: Equatable, Sendable {
     /// Workflow code to be executed. The size limit is 128KB.
     case sourceContents(Swift.String)
   }

@@ -95,7 +95,7 @@ public struct ApprovalWorkflow: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ApprovalWorkflowOneOf: Codable, Equatable, Sendable {
+  public enum ApprovalWorkflowOneOf: Equatable, Sendable {
     /// An approval workflow where users designated as approvers review and act
     /// on the grants.
     indirect case manualApprovals(ManualApprovals)

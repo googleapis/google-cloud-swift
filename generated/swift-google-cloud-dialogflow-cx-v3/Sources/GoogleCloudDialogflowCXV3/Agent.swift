@@ -563,7 +563,7 @@
       }
 
       /// The git settings to specific systems.
-      public enum GitSettingsOneOf: Codable, Equatable, Sendable {
+      public enum GitSettingsOneOf: Equatable, Sendable {
         /// GitHub settings.
         indirect case githubSettings(Agent.GitIntegrationSettings.GithubSettings)
       }
@@ -952,7 +952,7 @@
     }
 
     /// The resource to start the conversations with for the agent.
-    public enum SessionEntryResourceOneOf: Codable, Equatable, Sendable {
+    public enum SessionEntryResourceOneOf: Equatable, Sendable {
       /// Name of the start flow in this agent. A start flow will be automatically
       /// created when the agent is created, and can only be deleted by deleting
       /// the agent.

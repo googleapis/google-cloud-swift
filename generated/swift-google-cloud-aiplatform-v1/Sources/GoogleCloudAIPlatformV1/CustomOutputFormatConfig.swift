@@ -97,7 +97,7 @@
     }
 
     /// Custom output format configuration.
-    public enum CustomOutputFormatConfigOneOf: Codable, Equatable, Sendable {
+    public enum CustomOutputFormatConfigOneOf: Equatable, Sendable {
       /// Optional. Whether to return raw output.
       case returnRawOutput(Swift.Bool)
     }

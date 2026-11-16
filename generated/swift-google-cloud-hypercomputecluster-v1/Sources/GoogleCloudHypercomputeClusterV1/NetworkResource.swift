@@ -108,7 +108,7 @@ public struct NetworkResource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Reference to the network resource in Google Cloud. Exactly one of these
   /// fields will be populated based on the configured type of network resource.
-  public enum ReferenceOneOf: Codable, Equatable, Sendable {
+  public enum ReferenceOneOf: Equatable, Sendable {
     /// Reference to a network in Google Compute Engine.
     indirect case network(NetworkReference)
   }

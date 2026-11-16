@@ -96,7 +96,7 @@ public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleWKT._
   }
 
   /// The resource to scan.
-  public enum ResourceOneOf: Codable, Equatable, Sendable {
+  public enum ResourceOneOf: Equatable, Sendable {
     /// Amazon S3 bucket.
     indirect case amazonS3Bucket(AmazonS3Bucket)
   }

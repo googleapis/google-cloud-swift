@@ -365,7 +365,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   /// overridden.
   ///
   /// [google.cloud.tasks.v2.HttpRequest.headers]: <doc:HttpRequest/headers>
-  public enum AuthorizationHeaderOneOf: Codable, Equatable, Sendable {
+  public enum AuthorizationHeaderOneOf: Equatable, Sendable {
     /// If specified, an
     /// [OAuth token](https://developers.google.com/identity/protocols/OAuth2)
     /// is generated and attached as the `Authorization` header in the HTTP

@@ -96,7 +96,7 @@ public struct TieredStorageRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Rules to specify what data is stored in this tier.
-  public enum RuleOneOf: Codable, Equatable, Sendable {
+  public enum RuleOneOf: Equatable, Sendable {
     /// Include cells older than the given age.
     /// For the infrequent access tier, this value must be at least 30 days.
     indirect case includeIfOlderThan(GoogleWKT.WKTDuration)

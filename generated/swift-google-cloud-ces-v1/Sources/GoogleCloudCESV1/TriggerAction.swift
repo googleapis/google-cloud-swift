@@ -449,7 +449,7 @@ public struct TriggerAction: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The action to take.
-  public enum ActionOneOf: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Equatable, Sendable {
     /// Optional. Immediately respond with a preconfigured response.
     indirect case respondImmediately(TriggerAction.RespondImmediately)
     /// Optional. Transfer the conversation to a different agent.

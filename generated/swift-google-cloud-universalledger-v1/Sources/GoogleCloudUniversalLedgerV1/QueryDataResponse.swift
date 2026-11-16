@@ -113,7 +113,7 @@ public struct QueryDataResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The query-specific result.
-  public enum KindOneOf: Codable, Equatable, Sendable {
+  public enum KindOneOf: Equatable, Sendable {
     /// The account information, if the query was for an account.
     indirect case account(Account)
     /// The state of a transaction, if the query was for a transaction.

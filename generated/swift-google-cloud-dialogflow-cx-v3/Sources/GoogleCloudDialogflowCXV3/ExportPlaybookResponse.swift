@@ -107,7 +107,7 @@
     }
 
     /// The exported playbook.
-    public enum PlaybookOneOf: Codable, Equatable, Sendable {
+    public enum PlaybookOneOf: Equatable, Sendable {
       /// The URI to a file containing the exported playbook. This field is
       /// populated only if `playbook_uri` is specified in
       /// [ExportPlaybookRequest][google.cloud.dialogflow.cx.v3.ExportPlaybookRequest].

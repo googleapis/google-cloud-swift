@@ -215,7 +215,7 @@ public struct OrderedJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The job definition.
-  public enum JobTypeOneOf: Codable, Equatable, Sendable {
+  public enum JobTypeOneOf: Equatable, Sendable {
     /// Optional. Job is a Hadoop job.
     indirect case hadoopJob(HadoopJob)
     /// Optional. Job is a Spark job.

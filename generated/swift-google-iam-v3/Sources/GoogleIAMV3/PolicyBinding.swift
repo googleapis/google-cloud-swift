@@ -315,7 +315,7 @@ public struct PolicyBinding: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The different types of targets that can be bound to a policy.
-    public enum TargetOneOf: Codable, Equatable, Sendable {
+    public enum TargetOneOf: Equatable, Sendable {
       /// Immutable. The full resource name that's used for principal access
       /// boundary policy bindings. The principal set must be directly parented
       /// by the policy binding's parent or same as the parent if the target is a

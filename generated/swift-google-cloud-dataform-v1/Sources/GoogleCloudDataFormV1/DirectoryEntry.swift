@@ -108,7 +108,7 @@ public struct DirectoryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The entry's contents.
-  public enum EntryOneOf: Codable, Equatable, Sendable {
+  public enum EntryOneOf: Equatable, Sendable {
     /// A file in the directory. The path is returned including the full
     /// folder structure from the root.
     case file(Swift.String)

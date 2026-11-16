@@ -371,7 +371,7 @@
       }
 
       /// Each SkillConfig will be one of the following specific skill configs.
-      public enum ConfigOneOf: Codable, Equatable, Sendable {
+      public enum ConfigOneOf: Equatable, Sendable {
         /// Optional. Guidance skill configuration.
         indirect case guidanceSkillConfig(CompanionAgent.GuidanceSkillConfig)
         /// Optional. Translation skill configuration.

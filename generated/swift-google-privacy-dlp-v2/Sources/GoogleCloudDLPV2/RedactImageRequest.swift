@@ -259,7 +259,7 @@ public struct RedactImageRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Type of information to redact from images.
-    public enum TargetOneOf: Codable, Equatable, Sendable {
+    public enum TargetOneOf: Equatable, Sendable {
       /// Only one per info_type should be provided per request. If not
       /// specified, and redact_all_text is false, the DLP API will redact all
       /// text that it matches against all info_types that are found, but not

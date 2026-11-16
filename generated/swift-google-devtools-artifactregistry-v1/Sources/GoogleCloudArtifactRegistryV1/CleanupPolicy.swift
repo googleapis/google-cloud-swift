@@ -238,7 +238,7 @@ public struct CleanupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ConditionTypeOneOf: Codable, Equatable, Sendable {
+  public enum ConditionTypeOneOf: Equatable, Sendable {
     /// Policy condition for matching versions.
     indirect case condition(CleanupPolicyCondition)
     /// Policy condition for retaining a minimum number of versions. May only be

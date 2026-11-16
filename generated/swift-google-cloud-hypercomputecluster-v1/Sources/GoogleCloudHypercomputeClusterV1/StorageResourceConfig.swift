@@ -139,7 +139,7 @@ public struct StorageResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Particular type of configuration for this storage resource.
-  public enum ConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Equatable, Sendable {
     /// Optional. Immutable. If set, indicates that a new Filestore instance
     /// should be created.
     indirect case newFilestore(NewFilestoreConfig)

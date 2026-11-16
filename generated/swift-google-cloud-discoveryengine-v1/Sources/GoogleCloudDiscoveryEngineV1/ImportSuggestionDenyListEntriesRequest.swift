@@ -201,7 +201,7 @@
     }
 
     /// The source of the updated SuggestionDenyList.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// The Inline source for the input content for suggestion deny list entries.
       indirect case inlineSource(ImportSuggestionDenyListEntriesRequest.InlineSource)
       /// Cloud Storage location for the input content.

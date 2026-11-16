@@ -366,7 +366,7 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies objects to be transformed in the BucketOperation.
-  public enum ObjectConfigurationOneOf: Codable, Equatable, Sendable {
+  public enum ObjectConfigurationOneOf: Equatable, Sendable {
     /// Specifies objects matching a prefix set.
     indirect case prefixList(PrefixList)
     /// Specifies objects in a manifest file.
@@ -374,7 +374,7 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Action to be performed on the objects.
-  public enum TransformationOneOf: Codable, Equatable, Sendable {
+  public enum TransformationOneOf: Equatable, Sendable {
     /// Changes object hold status.
     indirect case putObjectHold(PutObjectHold)
     /// Delete objects.

@@ -212,7 +212,7 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The configuration for the import data and error results.
-  public enum ConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Equatable, Sendable {
     /// The Cloud Storage location of the input content.
     indirect case gcsImport(ImportDataObjectsRequest.GcsImportConfig)
   }

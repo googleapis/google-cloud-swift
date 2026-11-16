@@ -101,7 +101,7 @@ public struct AzureAuth: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of auth used with Azure.
-  public enum AuthTypeOneOf: Codable, Equatable, Sendable {
+  public enum AuthTypeOneOf: Equatable, Sendable {
     /// Shared Key.
     case sharedKey(Swift.String)
     /// SAS Token.

@@ -154,7 +154,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ActionOneOf: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Equatable, Sendable {
     /// Action triggering access control operations.
     indirect case accessControl(AccessControlAction)
     /// Action triggering data validation operations.

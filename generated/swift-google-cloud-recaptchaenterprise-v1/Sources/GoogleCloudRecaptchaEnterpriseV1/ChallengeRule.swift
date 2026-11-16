@@ -286,7 +286,7 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The outcome to apply when this challenge rule matches.
-  public enum OutcomeOneOf: Codable, Equatable, Sendable {
+  public enum OutcomeOneOf: Equatable, Sendable {
     /// Do not present a challenge to the user.
     indirect case noChallenge(ChallengeRule.NoChallengeOutcome)
     /// Present a challenge to the user.

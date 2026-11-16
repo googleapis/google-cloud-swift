@@ -779,7 +779,7 @@
     }
 
     /// The Neural Architecture Search (NAS) algorithm specification.
-    public enum NasAlgorithmSpecOneOf: Codable, Equatable, Sendable {
+    public enum NasAlgorithmSpecOneOf: Equatable, Sendable {
       /// The spec of multi-trial algorithms.
       indirect case multiTrialAlgorithmSpec(NasJobSpec.MultiTrialAlgorithmSpec)
     }

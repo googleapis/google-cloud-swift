@@ -267,7 +267,7 @@ public struct ReleaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The result of this release attempt.
-    public enum ResultOneOf: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Equatable, Sendable {
       /// The name of the created compilation result, if one was successfully
       /// created. Must be in the format
       /// `projects/*/locations/*/repositories/*/compilationResults/*`.

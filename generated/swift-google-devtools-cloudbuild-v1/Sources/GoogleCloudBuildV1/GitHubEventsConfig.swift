@@ -142,7 +142,7 @@ public struct GitHubEventsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Filter describing the types of events to trigger a build.
   /// Currently supported event types: push, pull_request.
-  public enum EventOneOf: Codable, Equatable, Sendable {
+  public enum EventOneOf: Equatable, Sendable {
     /// filter to match changes in pull requests.
     indirect case pullRequest(PullRequestFilter)
     /// filter to match changes in refs like branches, tags.

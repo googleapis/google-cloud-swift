@@ -114,7 +114,7 @@
     }
 
     /// The data of the function response part.
-    public enum DataOneOf: Codable, Equatable, Sendable {
+    public enum DataOneOf: Equatable, Sendable {
       /// Inline media bytes.
       indirect case inlineData(FunctionResponseBlob)
       /// URI based data.

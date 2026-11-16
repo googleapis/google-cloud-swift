@@ -190,7 +190,7 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// MongoDB connection format.
   /// Must specify either srv_connection_format or standard_connection_format.
-  public enum MongodbConnectionFormatOneOf: Codable, Equatable, Sendable {
+  public enum MongodbConnectionFormatOneOf: Equatable, Sendable {
     /// Srv connection format.
     indirect case srvConnectionFormat(SrvConnectionFormat)
     /// Standard connection format.

@@ -101,7 +101,7 @@ public struct TimestampValue: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// Timestamp value
     indirect case timestampValue(GoogleWKT.WKTTimestamp)
     /// The string must represent a valid instant in UTC and is parsed using

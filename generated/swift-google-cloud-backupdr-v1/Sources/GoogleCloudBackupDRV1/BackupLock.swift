@@ -115,7 +115,7 @@ public struct BackupLock: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Metadata about the owner and reason for the lock.
-  public enum ClientLockInfoOneOf: Codable, Equatable, Sendable {
+  public enum ClientLockInfoOneOf: Equatable, Sendable {
     /// If the client is a backup and recovery appliance, this
     /// contains metadata about why the lock exists.
     indirect case backupApplianceLockInfo(BackupApplianceLockInfo)

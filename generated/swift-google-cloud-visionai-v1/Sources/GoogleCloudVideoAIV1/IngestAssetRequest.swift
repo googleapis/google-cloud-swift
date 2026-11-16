@@ -381,7 +381,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum DataTypeOneOf: Codable, Equatable, Sendable {
+    public enum DataTypeOneOf: Equatable, Sendable {
       /// Type information for video data.
       indirect case videoType(IngestAssetRequest.Config.VideoType)
     }
@@ -496,7 +496,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum StreamingRequestOneOf: Codable, Equatable, Sendable {
+  public enum StreamingRequestOneOf: Equatable, Sendable {
     /// Provides information for the data and the asset resource name that the
     /// data belongs to. The first `IngestAssetRequest` message must only contain
     /// a `Config` message.

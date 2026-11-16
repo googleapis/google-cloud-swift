@@ -529,7 +529,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     /// The type of restrictions for this `Constraint`.
     ///
     /// Immutable after creation.
-    public enum ConstraintTypeOneOf: Codable, Equatable, Sendable {
+    public enum ConstraintTypeOneOf: Equatable, Sendable {
       /// Defines this constraint as being a ListConstraint.
       indirect case listConstraint(AnalyzerOrgPolicyConstraint.Constraint.ListConstraint)
       /// Defines this constraint as being a BooleanConstraint.
@@ -965,7 +965,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public enum ConstraintDefinitionOneOf: Codable, Equatable, Sendable {
+  public enum ConstraintDefinitionOneOf: Equatable, Sendable {
     /// The definition of the canned constraint defined by Google.
     indirect case googleDefinedConstraint(AnalyzerOrgPolicyConstraint.Constraint)
     /// The definition of the custom constraint.

@@ -120,7 +120,7 @@ public struct CustomerEncryptionKey: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The key to use for encryption.
-  public enum KeyOneOf: Codable, Equatable, Sendable {
+  public enum KeyOneOf: Equatable, Sendable {
     /// Optional. Specifies a 256-bit customer-supplied
     /// encryption key.
     case rawKey(Swift.String)

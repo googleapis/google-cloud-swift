@@ -144,7 +144,7 @@ public struct RunPipelineRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The predefined pipelines.
-  public enum PipelineOneOf: Codable, Equatable, Sendable {
+  public enum PipelineOneOf: Equatable, Sendable {
     /// Cloud Storage ingestion pipeline.
     indirect case gcsIngestPipeline(GcsIngestPipeline)
     /// Use DocAI processors to process documents in Cloud Storage and ingest

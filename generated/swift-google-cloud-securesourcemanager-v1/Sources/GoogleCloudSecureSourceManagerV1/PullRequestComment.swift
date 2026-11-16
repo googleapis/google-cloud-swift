@@ -661,7 +661,7 @@ public struct PullRequestComment: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The comment detail. A comment can be a review, a general comment, or a
   /// code comment.
-  public enum CommentDetailOneOf: Codable, Equatable, Sendable {
+  public enum CommentDetailOneOf: Equatable, Sendable {
     /// Optional. The review summary comment.
     indirect case review(PullRequestComment.Review)
     /// Optional. The general pull request comment.

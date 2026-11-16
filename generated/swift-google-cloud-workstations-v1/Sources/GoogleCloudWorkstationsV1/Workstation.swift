@@ -514,7 +514,7 @@ public struct Workstation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Type of host used by the workstation.
-    public enum HostTypeOneOf: Codable, Equatable, Sendable {
+    public enum HostTypeOneOf: Equatable, Sendable {
       /// Specifies a Compute Engine instance as the host.
       indirect case gceInstanceHost(Workstation.RuntimeHost.GceInstanceHost)
     }

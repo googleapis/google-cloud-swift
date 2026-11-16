@@ -96,7 +96,7 @@ public struct Orchestrator: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Particular type of orchestrator to use in this cluster.
-  public enum OptionOneOf: Codable, Equatable, Sendable {
+  public enum OptionOneOf: Equatable, Sendable {
     /// Optional. If set, indicates that the cluster should use Slurm as the
     /// orchestrator.
     indirect case slurm(SlurmOrchestrator)

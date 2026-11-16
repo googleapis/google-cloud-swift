@@ -94,7 +94,7 @@ public struct BackupSelectionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The fully qualified URI of the source.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Required. Immutable. The fully qualified URI of the backupdr data source.
     case dataSource(Swift.String)
   }

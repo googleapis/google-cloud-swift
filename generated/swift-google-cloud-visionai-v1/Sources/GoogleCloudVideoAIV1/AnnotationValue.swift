@@ -163,7 +163,7 @@ public struct AnnotationValue: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// Value of int type annotation.
     case intValue(Swift.Int64)
     /// Value of float type annotation.

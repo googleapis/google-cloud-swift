@@ -96,7 +96,7 @@ public struct SourceStorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Source storage resource details.
-  public enum StorageResourceOneOf: Codable, Equatable, Sendable {
+  public enum StorageResourceOneOf: Equatable, Sendable {
     /// Source AWS volume details.
     indirect case awsDiskDetails(AwsSourceDiskDetails)
   }

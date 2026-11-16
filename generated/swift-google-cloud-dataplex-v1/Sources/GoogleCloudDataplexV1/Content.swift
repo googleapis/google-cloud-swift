@@ -579,13 +579,13 @@ public struct Content: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Only returned in `GetContent` requests and not in `ListContent` request.
-  public enum DataOneOf: Codable, Equatable, Sendable {
+  public enum DataOneOf: Equatable, Sendable {
     /// Required. Content data in string format.
     case dataText(Swift.String)
   }
 
   /// Types of content
-  public enum ContentOneOf: Codable, Equatable, Sendable {
+  public enum ContentOneOf: Equatable, Sendable {
     /// Sql Script related configurations.
     indirect case sqlScript(Content.SqlScript)
     /// Notebook related configurations.

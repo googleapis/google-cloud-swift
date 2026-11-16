@@ -248,7 +248,7 @@ public struct ReviewDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The document payload.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// An inline document proto.
     indirect case inlineDocument(Document)
   }

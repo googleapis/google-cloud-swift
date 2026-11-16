@@ -262,7 +262,7 @@ public struct CreateWorkspaceMetadata: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// The unwrapped request.
-  public enum RequestOneOf: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Equatable, Sendable {
     /// Output only. The CreateWorkspace requested.
     indirect case createWorkspaceRequest(CreateWorkspaceRequest)
   }

@@ -309,13 +309,13 @@ public struct ProvisioningQuota: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The quota of one asset type.
-  public enum QuotaOneOf: Codable, Equatable, Sendable {
+  public enum QuotaOneOf: Equatable, Sendable {
     /// Instance quota.
     indirect case instanceQuota(InstanceQuota)
   }
 
   /// Available quantity based on asset type.
-  public enum AvailabilityOneOf: Codable, Equatable, Sendable {
+  public enum AvailabilityOneOf: Equatable, Sendable {
     /// Server count.
     case serverCount(Swift.Int64)
     /// Network bandwidth, Gbps

@@ -104,7 +104,7 @@
     }
 
     /// The source of the dataset.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// Cloud storage source holds the dataset. Currently only one Cloud Storage
       /// file path is supported.
       indirect case gcsSource(GcsSource)

@@ -129,7 +129,7 @@ public struct BidiSessionServerMessage: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The type of the message.
-  public enum MessageTypeOneOf: Codable, Equatable, Sendable {
+  public enum MessageTypeOneOf: Equatable, Sendable {
     /// Optional. Processing result from the CES agent.
     indirect case sessionOutput(SessionOutput)
     /// Optional. Realtime speech recognition result for the audio input.

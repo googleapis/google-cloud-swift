@@ -223,7 +223,7 @@ public struct TargetArtifact: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum UriOneOf: Codable, Equatable, Sendable {
+  public enum UriOneOf: Equatable, Sendable {
     /// Output only. URI of a directory containing the artifacts. This contains
     /// deployment configuration used by Skaffold during a rollout, and all
     /// paths are relative to this location.

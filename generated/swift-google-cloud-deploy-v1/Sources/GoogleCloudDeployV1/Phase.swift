@@ -279,7 +279,7 @@ public struct Phase: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The job composition of this Phase.
-  public enum JobsOneOf: Codable, Equatable, Sendable {
+  public enum JobsOneOf: Equatable, Sendable {
     /// Output only. Deployment job composition.
     indirect case deploymentJobs(DeploymentJobs)
     /// Output only. ChildRollout job composition.

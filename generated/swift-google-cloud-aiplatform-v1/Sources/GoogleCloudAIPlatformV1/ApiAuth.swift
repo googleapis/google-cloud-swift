@@ -180,7 +180,7 @@
     }
 
     /// The auth config.
-    public enum AuthConfigOneOf: Codable, Equatable, Sendable {
+    public enum AuthConfigOneOf: Equatable, Sendable {
       /// The API secret.
       indirect case apiKeyConfig(ApiAuth.ApiKeyConfig)
     }

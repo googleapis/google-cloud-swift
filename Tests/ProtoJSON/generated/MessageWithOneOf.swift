@@ -279,20 +279,20 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum SingleStringOneOf: Codable, Equatable, Sendable {
+  public enum SingleStringOneOf: Equatable, Sendable {
     case stringContents(Swift.String)
   }
 
-  public enum TwoStringsOneOf: Codable, Equatable, Sendable {
+  public enum TwoStringsOneOf: Equatable, Sendable {
     case stringContentsOne(Swift.String)
     case stringContentsTwo(Swift.String)
   }
 
-  public enum OneMessageOneOf: Codable, Equatable, Sendable {
+  public enum OneMessageOneOf: Equatable, Sendable {
     indirect case messageValue(MessageWithOneOf.Message)
   }
 
-  public enum MixedOneOf: Codable, Equatable, Sendable {
+  public enum MixedOneOf: Equatable, Sendable {
     indirect case anotherMessage(MessageWithOneOf.Message)
     case string(Swift.String)
     indirect case duration(GoogleWKT.WKTDuration)

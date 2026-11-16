@@ -243,7 +243,7 @@ public struct ScalingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Represents either a predetermined instance size or a numeric
   /// scaling factor.
-  public enum ScalingModelOneOf: Codable, Equatable, Sendable {
+  public enum ScalingModelOneOf: Equatable, Sendable {
     /// An enum of readable instance sizes, with each instance size mapping to a
     /// float value (e.g. InstanceSize.EXTRA_SMALL = scaling_factor(0.1))
     case instanceSize(ScalingConfig.InstanceSize)

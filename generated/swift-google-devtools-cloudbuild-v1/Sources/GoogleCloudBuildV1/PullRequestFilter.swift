@@ -262,7 +262,7 @@ public struct PullRequestFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Target refs to match.
   /// A target ref is the git reference where the pull request will be applied.
-  public enum GitRefOneOf: Codable, Equatable, Sendable {
+  public enum GitRefOneOf: Equatable, Sendable {
     /// Regex of branches to match.
     ///
     /// The syntax of the regular expressions accepted is the syntax accepted by

@@ -161,7 +161,7 @@ public struct SessionInput: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the input.
-  public enum InputTypeOneOf: Codable, Equatable, Sendable {
+  public enum InputTypeOneOf: Equatable, Sendable {
     /// Optional. Text data from the end user.
     case text(Swift.String)
     /// Optional. DTMF digits from the end user.

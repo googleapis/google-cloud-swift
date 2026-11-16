@@ -151,7 +151,7 @@ public struct Probe: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ProbeTypeOneOf: Codable, Equatable, Sendable {
+  public enum ProbeTypeOneOf: Equatable, Sendable {
     /// Optional. HTTPGet specifies the http request to perform.
     /// Exactly one of httpGet, tcpSocket, or grpc must be specified.
     indirect case httpGet(HTTPGetAction)

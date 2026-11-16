@@ -654,7 +654,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Identity-Aware-Proxy (IAP) Authentication Configuration
-      public enum IapCredentialsOneOf: Codable, Equatable, Sendable {
+      public enum IapCredentialsOneOf: Equatable, Sendable {
         /// Authentication configuration when Web-Security-Scanner service
         /// account is added in Identity-Aware-Proxy (IAP) access policies.
         indirect case iapTestServiceAccountInfo(
@@ -686,7 +686,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Required.
     /// Authentication configuration
-    public enum AuthenticationOneOf: Codable, Equatable, Sendable {
+    public enum AuthenticationOneOf: Equatable, Sendable {
       /// Authentication using a Google account.
       @available(*, deprecated)
       indirect case googleAccount(ScanConfig.Authentication.GoogleAccount)

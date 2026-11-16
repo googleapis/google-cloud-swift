@@ -98,7 +98,7 @@
       }
     }
 
-    public enum TuningDataStatsOneOf: Codable, Equatable, Sendable {
+    public enum TuningDataStatsOneOf: Equatable, Sendable {
       /// The SFT Tuning data stats.
       indirect case supervisedTuningDataStats(SupervisedTuningDataStats)
     }

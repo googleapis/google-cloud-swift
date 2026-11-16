@@ -1521,7 +1521,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Specifies the namespaced resources to restore from the Backup.
   /// Only one of the entries may be specified. If not specified, NO namespaced
   /// resources will be restored.
-  public enum NamespacedResourceRestoreScopeOneOf: Codable, Equatable, Sendable {
+  public enum NamespacedResourceRestoreScopeOneOf: Equatable, Sendable {
     /// Restore all namespaced resources in the Backup if set to "True".
     /// Specifying this field to "False" is an error.
     case allNamespaces(Swift.Bool)

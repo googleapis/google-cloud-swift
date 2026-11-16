@@ -399,7 +399,7 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Principal that is be authorized in the cluster (at least of one the oneof
   /// is required). Updating one will unset the other automatically.
-  public enum PrincipalOneOf: Codable, Equatable, Sendable {
+  public enum PrincipalOneOf: Equatable, Sendable {
     /// user is the name of the user as seen by the kubernetes cluster, example
     /// "alice" or "alice@domain.tld"
     case user(Swift.String)

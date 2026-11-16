@@ -94,7 +94,7 @@ public struct FrameworkAuditDestination: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The type of destination.
-  public enum DestinationTypeOneOf: Codable, Equatable, Sendable {
+  public enum DestinationTypeOneOf: Equatable, Sendable {
     /// The Cloud Storage bucket destination.
     indirect case bucket(BucketDestination)
   }

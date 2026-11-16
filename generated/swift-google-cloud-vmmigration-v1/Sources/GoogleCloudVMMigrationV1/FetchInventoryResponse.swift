@@ -118,7 +118,7 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public enum SourceVmsOneOf: Codable, Equatable, Sendable {
+  public enum SourceVmsOneOf: Equatable, Sendable {
     /// The description of the VMs in a Source of type Vmware.
     indirect case vmwareVms(VmwareVmsDetails)
     /// The description of the VMs in a Source of type AWS.

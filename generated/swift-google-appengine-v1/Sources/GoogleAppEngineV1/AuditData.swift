@@ -111,7 +111,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// simple Get, List or Delete methods because all significant information
   /// (resource name, number of returned elements for List operations) is already
   /// included in parent audit log message.
-  public enum MethodOneOf: Codable, Equatable, Sendable {
+  public enum MethodOneOf: Equatable, Sendable {
     /// Detailed information about UpdateService call.
     indirect case updateService(UpdateServiceMethod)
     /// Detailed information about CreateVersion call.

@@ -96,7 +96,7 @@ public struct DeploymentTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Different deployment targets for the application.
-  public enum TargetOneOf: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Equatable, Sendable {
     /// Optional. The GKE deployment target.
     indirect case gkeDeploymentTarget(GKEDeploymentTarget)
   }

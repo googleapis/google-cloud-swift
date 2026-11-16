@@ -126,7 +126,7 @@ public struct SchemaBundle: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The type of this schema bundle. The oneof case cannot change after
   /// creation.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Schema for Protobufs.
     indirect case protoSchema(ProtoSchema)
     /// Optional. Schema for Avros.

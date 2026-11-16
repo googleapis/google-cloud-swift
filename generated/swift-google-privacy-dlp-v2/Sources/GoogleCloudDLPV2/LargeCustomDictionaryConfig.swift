@@ -119,7 +119,7 @@ public struct LargeCustomDictionaryConfig: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// Source of the dictionary.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Set of files containing newline-delimited lists of dictionary phrases.
     indirect case cloudStorageFileSet(CloudStorageFileSet)
     /// Field in a BigQuery table where each cell represents a dictionary phrase.

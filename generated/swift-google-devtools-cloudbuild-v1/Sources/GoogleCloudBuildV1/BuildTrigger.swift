@@ -325,7 +325,7 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Template describing the Build request to make when the trigger is matched.
   /// At least one of the template fields must be provided.
-  public enum BuildTemplateOneOf: Codable, Equatable, Sendable {
+  public enum BuildTemplateOneOf: Equatable, Sendable {
     /// Autodetect build configuration.  The following precedence is used (case
     /// insensitive):
     ///

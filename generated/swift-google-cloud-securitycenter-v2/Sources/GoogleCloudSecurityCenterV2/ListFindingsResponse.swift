@@ -336,7 +336,7 @@ public struct ListFindingsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The metadata associated with the cloud provider.
-      public enum CloudProviderMetadataOneOf: Codable, Equatable, Sendable {
+      public enum CloudProviderMetadataOneOf: Equatable, Sendable {
         /// The GCP metadata associated with the finding.
         indirect case gcpMetadata(GcpMetadata)
         /// The AWS metadata associated with the finding.

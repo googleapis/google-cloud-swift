@@ -158,7 +158,7 @@ public struct PigJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. The sequence of Pig queries to execute, specified as an HCFS
   /// file URI or a list of queries.
-  public enum QueriesOneOf: Codable, Equatable, Sendable {
+  public enum QueriesOneOf: Equatable, Sendable {
     /// The HCFS URI of the script that contains the Pig queries.
     case queryFileUri(Swift.String)
     /// A list of queries.

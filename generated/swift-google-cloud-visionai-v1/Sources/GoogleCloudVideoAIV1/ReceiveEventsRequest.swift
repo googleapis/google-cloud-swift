@@ -237,7 +237,7 @@ public struct ReceiveEventsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum RequestOneOf: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Equatable, Sendable {
     /// The setup request to setup the RPC connection.
     indirect case setupRequest(ReceiveEventsRequest.SetupRequest)
     /// This request checkpoints the consumer's read progress.

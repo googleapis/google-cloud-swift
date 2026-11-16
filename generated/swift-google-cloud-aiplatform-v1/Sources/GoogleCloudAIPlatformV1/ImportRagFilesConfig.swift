@@ -260,7 +260,7 @@
     }
 
     /// The source of the import.
-    public enum ImportSourceOneOf: Codable, Equatable, Sendable {
+    public enum ImportSourceOneOf: Equatable, Sendable {
       /// Google Cloud Storage location. Supports importing individual files as
       /// well as entire Google Cloud Storage directories. Sample formats:
       /// - `gs://bucket_name/my_directory/object_name/my_file.txt`
@@ -279,7 +279,7 @@
 
     /// Optional. If provided, all partial failures are written to the sink.
     /// Deprecated. Prefer to use the `import_result_sink`.
-    public enum PartialFailureSinkOneOf: Codable, Equatable, Sendable {
+    public enum PartialFailureSinkOneOf: Equatable, Sendable {
       /// The Cloud Storage path to write partial failures to.
       /// Deprecated. Prefer to use `import_result_gcs_sink`.
       @available(*, deprecated)
@@ -297,7 +297,7 @@
 
     /// Optional. If provided, all successfully imported files and all partial
     /// failures are written to the sink.
-    public enum ImportResultSinkOneOf: Codable, Equatable, Sendable {
+    public enum ImportResultSinkOneOf: Equatable, Sendable {
       /// The Cloud Storage path to write import result to.
       indirect case importResultGcsSink(GcsDestination)
       /// The BigQuery destination to write import result to. It should be a

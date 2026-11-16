@@ -329,7 +329,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// This captures various SSL mode supported by PostgreSQL, which includes
   /// TLS encryption with server verification, TLS encryption with both server
   /// and client verification and no TLS encryption.
-  public enum EncryptionSettingOneOf: Codable, Equatable, Sendable {
+  public enum EncryptionSettingOneOf: Equatable, Sendable {
     ///  If this field is set, the communication will be encrypted with TLS
     ///  encryption and the server identity will be authenticated.
     indirect case serverVerification(PostgresqlSslConfig.ServerVerification)

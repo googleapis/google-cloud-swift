@@ -97,7 +97,7 @@
     }
 
     /// The output location into which evaluation output is written.
-    public enum OutputLocationOneOf: Codable, Equatable, Sendable {
+    public enum OutputLocationOneOf: Equatable, Sendable {
       /// Output only. The full path of the Cloud Storage directory created, into
       /// which the evaluation results and aggregation results are written.
       case gcsOutputDirectory(Swift.String)

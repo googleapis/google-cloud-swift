@@ -313,7 +313,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Defines the granularity for repricing.
-  public enum GranularityOneOf: Codable, Equatable, Sendable {
+  public enum GranularityOneOf: Equatable, Sendable {
     /// Required. Applies the repricing configuration at the entitlement level.
     ///
     /// Note: If a

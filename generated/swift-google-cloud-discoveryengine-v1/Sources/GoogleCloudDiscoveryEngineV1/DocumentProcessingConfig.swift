@@ -308,7 +308,7 @@
       }
 
       /// Additional configs that defines the behavior of the chunking.
-      public enum ChunkModeOneOf: Codable, Equatable, Sendable {
+      public enum ChunkModeOneOf: Equatable, Sendable {
         /// Configuration for the layout based chunking.
         indirect case layoutBasedChunkingConfig(
           DocumentProcessingConfig.ChunkingConfig.LayoutBasedChunkingConfig)
@@ -773,7 +773,7 @@
       }
 
       /// Configs for document processing types.
-      public enum TypeDedicatedConfigOneOf: Codable, Equatable, Sendable {
+      public enum TypeDedicatedConfigOneOf: Equatable, Sendable {
         /// Configurations applied to digital parser.
         indirect case digitalParsingConfig(
           DocumentProcessingConfig.ParsingConfig.DigitalParsingConfig)

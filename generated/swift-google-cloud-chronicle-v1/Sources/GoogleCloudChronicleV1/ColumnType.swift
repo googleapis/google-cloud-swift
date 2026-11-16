@@ -248,7 +248,7 @@ public struct ColumnType: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Value of the column based on data type.
-    public enum ValueOneOf: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Equatable, Sendable {
       /// True if the value is NULL.
       case nullVal(Swift.Bool)
       /// Boolean value.
@@ -376,7 +376,7 @@ public struct ColumnType: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Store single value or list of values in a column.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Single value in a column.
     indirect case value(GoogleCloudChronicleV1.ColumnType.ColumnValue)
     /// List of values in a column e.g. IPs.

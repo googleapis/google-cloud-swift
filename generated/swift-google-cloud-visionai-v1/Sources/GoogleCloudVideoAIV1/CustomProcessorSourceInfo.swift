@@ -458,7 +458,7 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The path where App Platform loads the artifacts for the custom processor.
-  public enum ArtifactPathOneOf: Codable, Equatable, Sendable {
+  public enum ArtifactPathOneOf: Equatable, Sendable {
     /// The resource name original model hosted in the vertex AI platform.
     case vertexModel(Swift.String)
     /// Artifact for product recognizer.

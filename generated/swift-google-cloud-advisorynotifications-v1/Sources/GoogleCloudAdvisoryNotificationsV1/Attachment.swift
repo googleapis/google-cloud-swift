@@ -103,7 +103,7 @@ public struct Attachment: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Data type of the attachment.
-  public enum DataOneOf: Codable, Equatable, Sendable {
+  public enum DataOneOf: Equatable, Sendable {
     /// A CSV file attachment. Max size is 10 MB.
     indirect case csv(Csv)
   }

@@ -101,7 +101,7 @@ public struct RepairPhaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The repair phase to perform.
-  public enum RepairPhaseOneOf: Codable, Equatable, Sendable {
+  public enum RepairPhaseOneOf: Equatable, Sendable {
     /// Optional. Retries a failed job.
     indirect case retry(Retry)
     /// Optional. Rolls back a `Rollout`.

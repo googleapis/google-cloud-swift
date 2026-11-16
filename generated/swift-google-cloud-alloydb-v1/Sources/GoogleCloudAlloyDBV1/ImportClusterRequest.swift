@@ -342,7 +342,7 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// oneof field to support various import formats like SQL and CSV.
-  public enum ImportOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ImportOptionsOneOf: Equatable, Sendable {
     /// Options for importing data in SQL format.
     indirect case sqlImportOptions(ImportClusterRequest.SqlImportOptions)
     /// Options for importing data in CSV format.

@@ -126,7 +126,7 @@ public struct RegisterAppHubApplicationResourcesRequest: Codable, Equatable, Goo
   }
 
   /// The Terraform state (tfstate) source.
-  public enum TfstateSourceOneOf: Codable, Equatable, Sendable {
+  public enum TfstateSourceOneOf: Equatable, Sendable {
     /// Optional. The Terraform state (tfstate) content as a raw string.
     /// For large state files exceeding 10MB, use the 'tfstate_signed_gcs_uri'
     /// field instead.

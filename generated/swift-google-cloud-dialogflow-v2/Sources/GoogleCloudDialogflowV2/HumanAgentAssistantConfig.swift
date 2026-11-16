@@ -1522,7 +1522,7 @@
       }
 
       /// Source of query.
-      public enum QuerySourceOneOf: Codable, Equatable, Sendable {
+      public enum QuerySourceOneOf: Equatable, Sendable {
         /// Query from knowledgebase. It is used by:
         /// ARTICLE_SUGGESTION, FAQ.
         indirect case knowledgeBaseQuerySource(

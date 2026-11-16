@@ -327,7 +327,7 @@ public struct CertificateMap: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// A Target Proxy to which this map is attached to.
-    public enum TargetProxyOneOf: Codable, Equatable, Sendable {
+    public enum TargetProxyOneOf: Equatable, Sendable {
       /// Output only. This field returns the resource name in the following
       /// format:
       /// `//compute.googleapis.com/projects/*/global/targetHttpsProxies/*`.

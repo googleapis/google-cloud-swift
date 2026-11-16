@@ -686,7 +686,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Semantic tag that identifies what a column contains, to determine which
       /// statistical model to use to estimate the reidentifiability of each
       /// value. [required]
-      public enum TagOneOf: Codable, Equatable, Sendable {
+      public enum TagOneOf: Equatable, Sendable {
         /// A column can be tagged with a InfoType to use the relevant public
         /// dataset as a statistical model of population, if available. We
         /// currently support US ZIP codes, region codes, ages and genders.
@@ -1050,7 +1050,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Types of analysis.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// Numerical stats
     indirect case numericalStatsConfig(PrivacyMetric.NumericalStatsConfig)
     /// Categorical stats

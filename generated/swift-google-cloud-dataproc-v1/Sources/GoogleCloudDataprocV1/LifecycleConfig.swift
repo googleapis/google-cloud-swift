@@ -181,7 +181,7 @@ public struct LifecycleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Either the exact time the cluster should be deleted at or
   /// the cluster maximum age.
-  public enum TtlOneOf: Codable, Equatable, Sendable {
+  public enum TtlOneOf: Equatable, Sendable {
     /// Optional. The time when cluster will be auto-deleted (see JSON
     /// representation of
     /// [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
@@ -195,7 +195,7 @@ public struct LifecycleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Either the exact time the cluster should be stopped at or
   /// the cluster maximum age.
-  public enum StopTtlOneOf: Codable, Equatable, Sendable {
+  public enum StopTtlOneOf: Equatable, Sendable {
     /// Optional. The time when cluster will be auto-stopped (see JSON
     /// representation of
     /// [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).

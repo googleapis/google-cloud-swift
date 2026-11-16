@@ -479,7 +479,7 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// details.
   ///
   /// [google.cloud.backupdr.v1.BackupConfigDetails.type]: <doc:BackupConfigDetails/type>
-  public enum PlanSpecificConfigOneOf: Codable, Equatable, Sendable {
+  public enum PlanSpecificConfigOneOf: Equatable, Sendable {
     /// Google Cloud Backup and DR's Backup Plan specific data.
     indirect case backupDrPlanConfig(BackupDrPlanConfig)
     /// Google Cloud Backup and DR's Template specific data.

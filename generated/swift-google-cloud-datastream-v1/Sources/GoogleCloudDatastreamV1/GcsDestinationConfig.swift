@@ -133,7 +133,7 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// File Format that the data should be written in.
-  public enum FileFormatOneOf: Codable, Equatable, Sendable {
+  public enum FileFormatOneOf: Equatable, Sendable {
     /// AVRO file format configuration.
     indirect case avroFileFormat(AvroFileFormat)
     /// JSON file format configuration.

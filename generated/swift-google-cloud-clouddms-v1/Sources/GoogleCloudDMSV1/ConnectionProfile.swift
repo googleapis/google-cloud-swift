@@ -358,7 +358,7 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The connection profile definition.
-  public enum ConnectionProfileOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionProfileOneOf: Equatable, Sendable {
     /// A MySQL database connection profile.
     indirect case mysql(MySqlConnectionProfile)
     /// A PostgreSQL database connection profile.

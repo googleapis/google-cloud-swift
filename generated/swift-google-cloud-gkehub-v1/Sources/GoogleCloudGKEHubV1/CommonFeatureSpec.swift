@@ -95,7 +95,7 @@ public struct CommonFeatureSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum FeatureSpecOneOf: Codable, Equatable, Sendable {
+  public enum FeatureSpecOneOf: Equatable, Sendable {
     /// Multicluster Ingress-specific spec.
     indirect case multiclusteringress(GoogleCloudGKEHubMultiClusterIngressV1.FeatureSpec)
   }

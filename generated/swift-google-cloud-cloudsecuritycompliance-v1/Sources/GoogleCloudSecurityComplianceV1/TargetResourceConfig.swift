@@ -107,7 +107,7 @@ public struct TargetResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The resource configuration for the target resource.
-  public enum ResourceConfigOneOf: Codable, Equatable, Sendable {
+  public enum ResourceConfigOneOf: Equatable, Sendable {
     /// Optional. The resource hierarchy node, in one of the following formats:
     ///
     /// - `organizations/{organizationID}`

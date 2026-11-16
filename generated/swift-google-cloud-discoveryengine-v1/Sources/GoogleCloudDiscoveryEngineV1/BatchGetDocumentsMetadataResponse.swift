@@ -285,7 +285,7 @@
         /// [Document][google.cloud.discoveryengine.v1.Document].
         ///
         /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-        public enum MatcherValueOneOf: Codable, Equatable, Sendable {
+        public enum MatcherValueOneOf: Equatable, Sendable {
           /// If match by URI, the URI of the
           /// [Document][google.cloud.discoveryengine.v1.Document].
           ///

@@ -594,7 +594,7 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum FirewallActionOneofOneOf: Codable, Equatable, Sendable {
+  public enum FirewallActionOneofOneOf: Equatable, Sendable {
     /// The user request did not match any policy and should be allowed
     /// access to the requested resource.
     indirect case allow(FirewallAction.AllowAction)

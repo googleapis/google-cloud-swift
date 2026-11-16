@@ -232,7 +232,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// The means, either a request-based SLI or a basic SLI, by which to compute
     /// performance over a window.
-    public enum TypeOneOf: Codable, Equatable, Sendable {
+    public enum TypeOneOf: Equatable, Sendable {
       /// `RequestBasedSli` to evaluate to judge window quality.
       indirect case performance(RequestBasedSli)
       /// `BasicSli` to evaluate to judge window quality.
@@ -354,7 +354,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The criterion to use for evaluating window goodness.
-  public enum WindowCriterionOneOf: Codable, Equatable, Sendable {
+  public enum WindowCriterionOneOf: Equatable, Sendable {
     /// A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
     /// specifying a `TimeSeries` with `ValueType = BOOL`. The window is good if
     /// any `true` values appear in the window.

@@ -107,7 +107,7 @@ public struct TagFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Tag filter formats. Tags refer to Resource Manager tags bound to the
   /// resource or its ancestors.
-  public enum FormatOneOf: Codable, Equatable, Sendable {
+  public enum FormatOneOf: Equatable, Sendable {
     /// The namespaced name for the tag value. Must be in the format
     /// `{parent_id}/{tag_key_short_name}/{short_name}`, for example,
     /// "123456/environment/prod" for an organization parent, or

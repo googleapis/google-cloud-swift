@@ -257,7 +257,7 @@
     }
 
     /// Required. Input context of the generator.
-    public enum ContextOneOf: Codable, Equatable, Sendable {
+    public enum ContextOneOf: Equatable, Sendable {
       /// Input of free from generator to LLM.
       indirect case freeFormContext(FreeFormContext)
       /// Input of prebuilt Agent Coaching feature.
@@ -269,7 +269,7 @@
     /// The foundation model to use for generating suggestions. If a foundation
     /// model isn't specified here, a model specifically tuned for the feature
     /// type (and version when applicable) will be used.
-    public enum FoundationModelOneOf: Codable, Equatable, Sendable {
+    public enum FoundationModelOneOf: Equatable, Sendable {
       /// Optional. The published Large Language Model name.
       /// * To use the latest model version, specify the model name without version
       ///   number. Example: `text-bison`

@@ -327,7 +327,7 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum ReferenceOneOf: Codable, Equatable, Sendable {
+    public enum ReferenceOneOf: Equatable, Sendable {
       /// Output only. Name of the linked dataset, e.g.
       /// projects/subscriberproject/datasets/linked_dataset
       case linkedDataset(Swift.String)
@@ -645,7 +645,7 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ResourceNameOneOf: Codable, Equatable, Sendable {
+  public enum ResourceNameOneOf: Equatable, Sendable {
     /// Output only. Resource name of the source Listing.
     /// e.g. projects/123/locations/us/dataExchanges/456/listings/789
     case listing(Swift.String)

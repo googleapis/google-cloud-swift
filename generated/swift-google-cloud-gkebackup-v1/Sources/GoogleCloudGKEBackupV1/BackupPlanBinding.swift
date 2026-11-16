@@ -425,7 +425,7 @@ public struct BackupPlanBinding: Codable, Equatable, GoogleWKT._AnyPackable,
       /// This defines the "scope" of the Backup - which namespaced
       /// resources in the cluster will be included in a Backup.
       /// Exactly one of the fields of backup_scope MUST be specified.
-      public enum BackupScopeOneOf: Codable, Equatable, Sendable {
+      public enum BackupScopeOneOf: Equatable, Sendable {
         /// Output only. If True, include all namespaced resources
         case allNamespaces(Swift.Bool)
         /// Output only. If set, include just the resources in the listed

@@ -96,7 +96,7 @@ public struct FeedOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Asset feed destination.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Destination on Pub/Sub.
     indirect case pubsubDestination(PubsubDestination)
   }

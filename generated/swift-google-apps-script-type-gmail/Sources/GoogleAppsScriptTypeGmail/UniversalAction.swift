@@ -114,7 +114,7 @@ public struct UniversalAction: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The type of the action determines the behavior of Gmail when the user
   /// invokes the action.
-  public enum ActionTypeOneOf: Codable, Equatable, Sendable {
+  public enum ActionTypeOneOf: Equatable, Sendable {
     /// A link that is opened by Gmail when the user triggers the action.
     case openLink(Swift.String)
     /// An endpoint that is called when the user triggers the

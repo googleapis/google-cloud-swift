@@ -357,7 +357,7 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Credentials for Salesforce connection.
-  public enum CredentialsOneOf: Codable, Equatable, Sendable {
+  public enum CredentialsOneOf: Equatable, Sendable {
     /// Deprecated: Salesforce is retiring Username-Password authentication.
     /// Use `oauth2_client_credentials` instead.
     @available(*, deprecated)

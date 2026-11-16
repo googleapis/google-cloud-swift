@@ -389,7 +389,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum CreateExecutionOneOf: Codable, Equatable, Sendable {
+  public enum CreateExecutionOneOf: Equatable, Sendable {
     /// A unique string used as a suffix creating a new execution. The Job will
     /// become ready when the execution is successfully started.
     /// The sum of job name and token length must be fewer than 63 characters.

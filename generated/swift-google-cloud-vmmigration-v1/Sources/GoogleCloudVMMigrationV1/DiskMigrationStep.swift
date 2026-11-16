@@ -128,7 +128,7 @@ public struct DiskMigrationStep: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The step details.
-  public enum StepOneOf: Codable, Equatable, Sendable {
+  public enum StepOneOf: Equatable, Sendable {
     /// Creating source disk snapshot step.
     indirect case creatingSourceDiskSnapshot(CreatingSourceDiskSnapshotStep)
     /// Copying source disk snapshot step.

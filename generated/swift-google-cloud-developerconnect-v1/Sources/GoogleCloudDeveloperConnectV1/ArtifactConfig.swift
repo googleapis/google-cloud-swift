@@ -137,13 +137,13 @@ public struct ArtifactConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The storage location of the artifact.
-  public enum ArtifactStorageOneOf: Codable, Equatable, Sendable {
+  public enum ArtifactStorageOneOf: Equatable, Sendable {
     /// Optional. Set if the artifact is stored in Artifact registry.
     indirect case googleArtifactRegistry(GoogleArtifactRegistry)
   }
 
   /// The storage location of the artifact metadata.
-  public enum ArtifactMetadataStorageOneOf: Codable, Equatable, Sendable {
+  public enum ArtifactMetadataStorageOneOf: Equatable, Sendable {
     /// Optional. Set if the artifact metadata is stored in Artifact analysis.
     indirect case googleArtifactAnalysis(GoogleArtifactAnalysis)
   }

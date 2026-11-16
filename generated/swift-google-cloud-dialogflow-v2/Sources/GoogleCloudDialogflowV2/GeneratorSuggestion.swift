@@ -212,7 +212,7 @@
     }
 
     /// The suggestion could be one of the many types
-    public enum SuggestionOneOf: Codable, Equatable, Sendable {
+    public enum SuggestionOneOf: Equatable, Sendable {
       /// Optional. Free form suggestion.
       indirect case freeFormSuggestion(FreeFormSuggestion)
       /// Optional. Suggested summary.

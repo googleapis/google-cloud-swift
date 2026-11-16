@@ -195,7 +195,7 @@
     }
 
     /// The source of the input.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// The inline source to import identity mapping entries from.
       indirect case inlineSource(ImportIdentityMappingsRequest.InlineSource)
     }

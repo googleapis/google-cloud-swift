@@ -310,7 +310,7 @@
     }
 
     /// Specifies the type of handler to invoke.
-    public enum HandlerOneOf: Codable, Equatable, Sendable {
+    public enum HandlerOneOf: Equatable, Sendable {
       /// A handler triggered by event.
       indirect case eventHandler(Handler.EventHandler)
       /// A handler triggered during specific lifecycle of the playbook execution.

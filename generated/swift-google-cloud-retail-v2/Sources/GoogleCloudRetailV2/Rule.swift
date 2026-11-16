@@ -1450,7 +1450,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// An action must be provided.
-  public enum ActionOneOf: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Equatable, Sendable {
     /// A boost action.
     indirect case boostAction(Rule.BoostAction)
     /// Redirects a shopper to a specific page.

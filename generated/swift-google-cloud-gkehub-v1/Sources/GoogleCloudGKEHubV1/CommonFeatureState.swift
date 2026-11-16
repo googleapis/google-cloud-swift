@@ -104,7 +104,7 @@ public struct CommonFeatureState: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum FeatureStateOneOf: Codable, Equatable, Sendable {
+  public enum FeatureStateOneOf: Equatable, Sendable {
     /// RBAC Role Binding Actuation feature state
     indirect case rbacrolebindingactuation(GoogleCloudGKEHubRBACRoleBindingActuationV1.FeatureState)
   }

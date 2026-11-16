@@ -355,7 +355,7 @@ public struct FindingSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The value of the summary.
-    public enum MagnitudeOneOf: Codable, Equatable, Sendable {
+    public enum MagnitudeOneOf: Equatable, Sendable {
       /// The count of impacted resources.
       case count(Swift.Int64)
       /// The percentage of impacted resources.

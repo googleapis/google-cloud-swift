@@ -138,7 +138,7 @@ public struct StreamingRecognizeRequest: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public enum StreamingRequestOneOf: Codable, Equatable, Sendable {
+  public enum StreamingRequestOneOf: Equatable, Sendable {
     /// StreamingRecognitionConfig to be used in this recognition attempt.
     /// If provided, it will override the default RecognitionConfig stored in the
     /// Recognizer.

@@ -571,7 +571,7 @@
       }
     }
 
-    public enum ExpirationOneOf: Codable, Equatable, Sendable {
+    public enum ExpirationOneOf: Equatable, Sendable {
       /// Input only. The time-to-live (TTL) interval for this resource (in days).
       /// For example: ttlDays:7, means 7 days from the current time. The
       /// expiration time can't exceed 365 days from the time that the backup is

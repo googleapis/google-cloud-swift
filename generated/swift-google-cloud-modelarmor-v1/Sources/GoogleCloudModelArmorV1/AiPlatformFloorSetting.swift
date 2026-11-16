@@ -112,7 +112,7 @@ public struct AiPlatformFloorSetting: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// enforcement type for Model Armor filters.
-  public enum EnforcementTypeOneOf: Codable, Equatable, Sendable {
+  public enum EnforcementTypeOneOf: Equatable, Sendable {
     /// Optional. If true, Model Armor filters will be run in inspect only mode.
     /// No action will be taken on the request.
     case inspectOnly(Swift.Bool)

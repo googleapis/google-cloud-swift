@@ -178,7 +178,7 @@ public struct ExportSBOMRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The location of the SBOM export.
-  public enum TargetOneOf: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Equatable, Sendable {
     /// Optional. Empty placeholder to denote that this is a Google Cloud Storage
     /// export request.
     indirect case cloudStorageLocation(ExportSBOMRequest.CloudStorageLocation)

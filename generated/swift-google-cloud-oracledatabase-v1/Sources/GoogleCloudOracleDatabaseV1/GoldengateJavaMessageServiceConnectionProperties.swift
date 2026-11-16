@@ -618,7 +618,7 @@ public struct GoldengateJavaMessageServiceConnectionProperties: Codable, Equatab
 
   /// The password Oracle Goldengate uses to connect the associated Java Message
   /// Service.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password Oracle Goldengate uses to connect the
     /// Java Message Service in plain text.
     case password(Swift.String)
@@ -630,7 +630,7 @@ public struct GoldengateJavaMessageServiceConnectionProperties: Codable, Equatab
   }
 
   /// The TrustStore password.
-  public enum TrustStorePasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum TrustStorePasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The TrustStore password in plain text.
     case trustStorePassword(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret
@@ -640,7 +640,7 @@ public struct GoldengateJavaMessageServiceConnectionProperties: Codable, Equatab
   }
 
   /// The KeyStore password.
-  public enum KeyStorePasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum KeyStorePasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The KeyStore password in plain text.
     case keyStorePassword(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret
@@ -651,7 +651,7 @@ public struct GoldengateJavaMessageServiceConnectionProperties: Codable, Equatab
 
   /// The password for the cert inside of the KeyStore.
   /// In case it differs from the KeyStore password, it should be provided.
-  public enum SslKeyPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum SslKeyPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password for the cert inside of the KeyStore in
     /// plain text.
     case sslKeyPassword(Swift.String)

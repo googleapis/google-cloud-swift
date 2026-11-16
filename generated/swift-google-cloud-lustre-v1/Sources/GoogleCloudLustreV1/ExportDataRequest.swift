@@ -156,14 +156,14 @@ public struct ExportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the data transfer.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The root directory path to the Managed Lustre file system. Must start
     /// with `/`. Default is `/`.
     indirect case lustrePath(LustrePath)
   }
 
   /// The destination of the data transfer.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// The URI to a Cloud Storage bucket, or a path within a bucket, using
     /// the format `gs://<bucket_name>/<optional_path_inside_bucket>/`. If a
     /// path inside the bucket is specified, it must end with a forward slash

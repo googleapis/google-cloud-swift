@@ -97,7 +97,7 @@ public struct ServiceSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// System spec
-  public enum SystemSpecOneOf: Codable, Equatable, Sendable {
+  public enum SystemSpecOneOf: Equatable, Sendable {
     /// Specification that applies to Instance entries of `CLOUD_BIGTABLE`
     /// system.
     indirect case cloudBigtableInstanceSpec(CloudBigtableInstanceSpec)

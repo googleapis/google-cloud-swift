@@ -115,7 +115,7 @@ public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// File store specific conditions.
-  public enum ConditionsOneOf: Codable, Equatable, Sendable {
+  public enum ConditionsOneOf: Equatable, Sendable {
     /// Optional. Cloud Storage conditions.
     indirect case cloudStorageConditions(DiscoveryCloudStorageConditions)
   }

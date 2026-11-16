@@ -310,7 +310,7 @@
     /// is used by default.
     ///
     /// [google.cloud.aiplatform.v1.InputDataConfig.fraction_split]: <doc:InputDataConfig/SplitOneOf/fractionSplit(_:)>
-    public enum SplitOneOf: Codable, Equatable, Sendable {
+    public enum SplitOneOf: Equatable, Sendable {
       /// Split based on fractions defining the size of each set.
       indirect case fractionSplit(FractionSplit)
       /// Split based on the provided filters for each set.
@@ -344,7 +344,7 @@
     /// * AIP_TRAINING_DATA_URI : Sharded exported training data uris.
     /// * AIP_VALIDATION_DATA_URI : Sharded exported validation data uris.
     /// * AIP_TEST_DATA_URI : Sharded exported test data uris.
-    public enum DestinationOneOf: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Equatable, Sendable {
       /// The Cloud Storage location where the training data is to be
       /// written to. In the given directory a new directory is created with
       /// name:

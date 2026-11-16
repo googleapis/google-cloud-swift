@@ -260,7 +260,7 @@ public struct NewBucketConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Storage class of the bucket, which can be set automatically or explicitly.
-  public enum OptionOneOf: Codable, Equatable, Sendable {
+  public enum OptionOneOf: Equatable, Sendable {
     /// Optional. Immutable. If set, indicates that the bucket should use
     /// [Autoclass](https://cloud.google.com/storage/docs/autoclass).
     indirect case autoclass(GcsAutoclassConfig)

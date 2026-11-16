@@ -448,7 +448,7 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// Defines the intended purchase.
-  public enum PurchaseOptionOneOf: Codable, Equatable, Sendable {
+  public enum PurchaseOptionOneOf: Equatable, Sendable {
     /// List SKUs for CreateEntitlement purchase.
     indirect case createEntitlementPurchase(ListPurchasableSkusRequest.CreateEntitlementPurchase)
     /// List SKUs for ChangeOffer purchase with a new SKU.

@@ -294,7 +294,7 @@
     }
 
     /// Specifies the source of this tool call.
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// Optional. The [tool][google.cloud.dialogflow.v2.Tool] associated with
       /// this call. Format:
       /// `projects/<ProjectID>/locations/<LocationID>/tools/<ToolID>`.

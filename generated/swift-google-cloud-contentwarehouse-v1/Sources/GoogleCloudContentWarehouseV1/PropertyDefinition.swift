@@ -488,7 +488,7 @@ public struct PropertyDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of the property.
-  public enum ValueTypeOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ValueTypeOptionsOneOf: Equatable, Sendable {
     /// Integer property.
     indirect case integerTypeOptions(IntegerTypeOptions)
     /// Float property.

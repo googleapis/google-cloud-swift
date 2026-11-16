@@ -106,7 +106,7 @@ public struct CertificateProvider: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The type of certificate provider which provides the certificates and
   /// private keys.
-  public enum TypeOneOf: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Equatable, Sendable {
     /// gRPC specific configuration to access the gRPC server to
     /// obtain the cert and private key.
     indirect case grpcEndpoint(GrpcEndpoint)

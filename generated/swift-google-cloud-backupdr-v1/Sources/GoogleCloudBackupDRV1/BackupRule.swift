@@ -125,7 +125,7 @@ public struct BackupRule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The schedule that defines the automated backup workloads for this
   /// `BackupRule`.
-  public enum BackupScheduleOneofOneOf: Codable, Equatable, Sendable {
+  public enum BackupScheduleOneofOneOf: Equatable, Sendable {
     /// Optional. Defines a schedule that runs within the confines of a defined
     /// window of time.
     indirect case standardSchedule(StandardSchedule)

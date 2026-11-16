@@ -1014,7 +1014,7 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The DNS provider of the registration.
-  public enum DnsProviderOneOf: Codable, Equatable, Sendable {
+  public enum DnsProviderOneOf: Equatable, Sendable {
     /// An arbitrary DNS provider identified by its name servers.
     indirect case customDns(DnsSettings.CustomDns)
     /// The free DNS zone provided by

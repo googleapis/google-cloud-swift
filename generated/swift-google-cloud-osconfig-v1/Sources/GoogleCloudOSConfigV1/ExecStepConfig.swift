@@ -246,7 +246,7 @@ public struct ExecStepConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Location of the executable.
-  public enum ExecutableOneOf: Codable, Equatable, Sendable {
+  public enum ExecutableOneOf: Equatable, Sendable {
     /// An absolute path to the executable on the VM.
     case localPath(Swift.String)
     /// A Cloud Storage object containing the executable.

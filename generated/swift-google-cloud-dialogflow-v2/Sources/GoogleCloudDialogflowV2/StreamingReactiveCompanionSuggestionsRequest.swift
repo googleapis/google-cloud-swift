@@ -126,7 +126,7 @@
     }
 
     /// Required. The direct query input sent to the companion bot.
-    public enum InputOneOf: Codable, Equatable, Sendable {
+    public enum InputOneOf: Equatable, Sendable {
       /// The natural language text to be processed.
       case textInput(Swift.String)
       /// Signals to cancel the current ongoing reactive query processing.

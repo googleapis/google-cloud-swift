@@ -179,7 +179,7 @@ public struct PscConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Ports of the exposed endpoint.
-  public enum PortsOneOf: Codable, Equatable, Sendable {
+  public enum PortsOneOf: Equatable, Sendable {
     /// Optional. port will only be set for Primary/Reader or Discovery endpoint.
     case port(Swift.Int32)
   }

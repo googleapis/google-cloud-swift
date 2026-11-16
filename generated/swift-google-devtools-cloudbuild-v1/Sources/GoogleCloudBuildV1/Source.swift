@@ -127,7 +127,7 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Location of source.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// If provided, get the source from this location in Cloud Storage.
     indirect case storageSource(StorageSource)
     /// If provided, get the source from this location in a Cloud Source

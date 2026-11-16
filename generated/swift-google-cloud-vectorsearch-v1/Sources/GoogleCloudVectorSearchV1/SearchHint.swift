@@ -273,7 +273,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The parameters for the index.
-    public enum ParamsOneOf: Codable, Equatable, Sendable {
+    public enum ParamsOneOf: Equatable, Sendable {
       /// Optional. Dense ScaNN parameters.
       indirect case denseScannParams(SearchHint.IndexHint.DenseScannParams)
     }
@@ -371,7 +371,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of index to use.
-  public enum IndexTypeOneOf: Codable, Equatable, Sendable {
+  public enum IndexTypeOneOf: Equatable, Sendable {
     /// Optional. If set, the search will use the system's default
     /// K-Nearest Neighbor (KNN) index engine.
     indirect case knnHint(SearchHint.KnnHint)

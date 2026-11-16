@@ -170,7 +170,7 @@ public struct MetricValue: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The value. The type of value used in the request must
   /// agree with the metric definition in the service configuration, otherwise
   /// the MetricValue is rejected.
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// A boolean value.
     case boolValue(Swift.Bool)
     /// A signed 64-bit integer value.

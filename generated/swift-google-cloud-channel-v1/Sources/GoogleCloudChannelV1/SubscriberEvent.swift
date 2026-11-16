@@ -107,7 +107,7 @@ public struct SubscriberEvent: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Specifies the Pub/Sub event provided to the partners.
   /// This is a required field.
-  public enum EventOneOf: Codable, Equatable, Sendable {
+  public enum EventOneOf: Equatable, Sendable {
     /// Customer event sent as part of Pub/Sub event to partners.
     indirect case customerEvent(CustomerEvent)
     /// Entitlement event sent as part of Pub/Sub event to partners.

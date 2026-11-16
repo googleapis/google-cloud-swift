@@ -124,7 +124,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ImplementationOneOf: Codable, Equatable, Sendable {
+  public enum ImplementationOneOf: Equatable, Sendable {
     /// Optional. SHA built-in detector.
     indirect case securityHealthAnalyticsModule(SecurityHealthAnalyticsModule)
     /// Optional. SHA custom detector.

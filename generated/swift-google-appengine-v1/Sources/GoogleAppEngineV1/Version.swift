@@ -518,7 +518,7 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Controls how instances are created, scaled, and reaped.
   ///
   /// Defaults to `AutomaticScaling`.
-  public enum ScalingOneOf: Codable, Equatable, Sendable {
+  public enum ScalingOneOf: Equatable, Sendable {
     /// Automatic scaling is based on request rate, response latencies, and other
     /// application metrics. Instances are dynamically created and destroyed as
     /// needed in order to handle traffic.

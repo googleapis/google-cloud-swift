@@ -105,7 +105,7 @@ public struct ExportIaCConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration for the export based on the IaC format.
-  public enum ConfigPayloadOneOf: Codable, Equatable, Sendable {
+  public enum ConfigPayloadOneOf: Equatable, Sendable {
     /// Optional. Configuration on how to handle terraform IaC export.
     indirect case tfConfig(TerraformConfig)
   }

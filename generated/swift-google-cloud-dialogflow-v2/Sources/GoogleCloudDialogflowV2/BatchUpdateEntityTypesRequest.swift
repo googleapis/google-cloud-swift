@@ -150,7 +150,7 @@
     ///
     /// *   If `name` is specified, we update an existing entity type.
     /// *   If `name` is not specified, we create a new entity type.
-    public enum EntityTypeBatchOneOf: Codable, Equatable, Sendable {
+    public enum EntityTypeBatchOneOf: Equatable, Sendable {
       /// The URI to a Google Cloud Storage file containing entity types to update
       /// or create. The file format can either be a serialized proto (of
       /// EntityBatch type) or a JSON object. Note: The URI must start with

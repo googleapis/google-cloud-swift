@@ -307,7 +307,7 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Definition of the view.
-    public enum SourceDefinitionOneOf: Codable, Equatable, Sendable {
+    public enum SourceDefinitionOneOf: Equatable, Sendable {
       /// Name of a singular table this view reflects one to one.
       case baseTable(Swift.String)
       /// SQL query used to generate this view.

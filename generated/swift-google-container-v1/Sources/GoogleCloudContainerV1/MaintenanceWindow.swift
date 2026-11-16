@@ -124,7 +124,7 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum PolicyOneOf: Codable, Equatable, Sendable {
+  public enum PolicyOneOf: Equatable, Sendable {
     /// DailyMaintenanceWindow specifies a daily maintenance operation window.
     indirect case dailyMaintenanceWindow(DailyMaintenanceWindow)
     /// RecurringWindow specifies some number of recurring time periods for

@@ -250,7 +250,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Metadata discovered during analysis.
-  public enum MetadataOneOf: Codable, Equatable, Sendable {
+  public enum MetadataOneOf: Equatable, Sendable {
     /// Call-specific metadata created by the analysis.
     indirect case callAnalysisMetadata(AnalysisResult.CallAnalysisMetadata)
   }

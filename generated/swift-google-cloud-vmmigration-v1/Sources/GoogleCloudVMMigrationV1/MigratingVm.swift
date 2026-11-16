@@ -639,7 +639,7 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The default configuration of the target VM that will be created in Google
   /// Cloud as a result of the migration.
-  public enum TargetVmDefaultsOneOf: Codable, Equatable, Sendable {
+  public enum TargetVmDefaultsOneOf: Equatable, Sendable {
     /// Details of the target VM in Compute Engine.
     indirect case computeEngineTargetDefaults(ComputeEngineTargetDefaults)
     /// Details of the target Persistent Disks in Compute Engine.
@@ -647,7 +647,7 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Details about the source VM.
-  public enum SourceVmDetailsOneOf: Codable, Equatable, Sendable {
+  public enum SourceVmDetailsOneOf: Equatable, Sendable {
     /// Output only. Details of the VM from a Vmware source.
     indirect case vmwareSourceVmDetails(VmwareSourceVmDetails)
     /// Output only. Details of the VM from an AWS source.

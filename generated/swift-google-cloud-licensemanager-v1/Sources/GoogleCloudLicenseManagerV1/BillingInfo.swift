@@ -108,7 +108,7 @@ public struct BillingInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum CurrentBillingInfoOneOf: Codable, Equatable, Sendable {
+  public enum CurrentBillingInfoOneOf: Equatable, Sendable {
     /// Required. This type of billing uses user count for computing total
     /// charge.
     indirect case userCountBilling(UserCountBillingInfo)

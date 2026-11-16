@@ -326,7 +326,7 @@
     }
 
     /// Instances and specs for evaluation
-    public enum MetricInputsOneOf: Codable, Equatable, Sendable {
+    public enum MetricInputsOneOf: Equatable, Sendable {
       /// Auto metric instances.
       /// Instances and metric spec for exact match metric.
       indirect case exactMatchInput(ExactMatchInput)

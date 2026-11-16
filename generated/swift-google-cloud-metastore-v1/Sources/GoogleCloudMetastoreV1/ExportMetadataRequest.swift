@@ -143,7 +143,7 @@ public struct ExportMetadataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Destination that metadata is exported to.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// A Cloud Storage URI of a folder, in the format
     /// `gs://<bucket_name>/<path_inside_bucket>`. A sub-folder
     /// `<export_folder>` containing exported files will be created below it.

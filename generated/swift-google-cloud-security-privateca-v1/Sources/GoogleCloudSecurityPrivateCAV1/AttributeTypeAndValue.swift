@@ -114,7 +114,7 @@ public struct AttributeTypeAndValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The attribute type for the attribute and value pair.
-  public enum AttributeTypeOneOf: Codable, Equatable, Sendable {
+  public enum AttributeTypeOneOf: Equatable, Sendable {
     /// The attribute type of the attribute and value pair.
     case type(AttributeType)
     /// Object ID for an attribute type of an attribute and value pair.

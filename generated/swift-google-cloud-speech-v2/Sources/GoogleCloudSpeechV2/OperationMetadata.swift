@@ -316,7 +316,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The request that spawned the Operation.
-  public enum RequestOneOf: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Equatable, Sendable {
     /// The BatchRecognizeRequest that spawned the Operation.
     indirect case batchRecognizeRequest(BatchRecognizeRequest)
     /// The CreateRecognizerRequest that spawned the Operation.
@@ -349,7 +349,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specific metadata per RPC.
-  public enum MetadataOneOf: Codable, Equatable, Sendable {
+  public enum MetadataOneOf: Equatable, Sendable {
     /// Metadata specific to the BatchRecognize method.
     indirect case batchRecognizeMetadata(BatchRecognizeMetadata)
   }

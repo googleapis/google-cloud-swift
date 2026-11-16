@@ -286,7 +286,7 @@ public struct GoldengateDatabricksConnectionProperties: Codable, Equatable, Goog
 
   /// The password used to connect to Databricks.
   /// Only applicable for authentication_type == PERSONAL_ACCESS_TOKEN.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password used to connect to Databricks in plain
     /// text.
     case password(Swift.String)

@@ -697,7 +697,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum ValueSourceOneOf: Codable, Equatable, Sendable {
+    public enum ValueSourceOneOf: Equatable, Sendable {
       /// If specified, lists all the possible values for this entity.  This
       /// should not be more than a handful of values.  If the number of values
       /// is >10 or could change frequently use the `EntityType.value_ontology`

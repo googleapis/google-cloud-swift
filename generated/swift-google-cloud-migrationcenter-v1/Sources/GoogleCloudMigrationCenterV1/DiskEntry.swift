@@ -309,7 +309,7 @@ public struct DiskEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional details for specific platforms.
-  public enum PlatformSpecificOneOf: Codable, Equatable, Sendable {
+  public enum PlatformSpecificOneOf: Equatable, Sendable {
     /// VMware disk details.
     indirect case vmware(VmwareDiskConfig)
   }

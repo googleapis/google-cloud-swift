@@ -494,7 +494,7 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Required. The source code for this script runnable.
-    public enum CommandOneOf: Codable, Equatable, Sendable {
+    public enum CommandOneOf: Equatable, Sendable {
       /// The path to a script file that is accessible from the host VM(s).
       ///
       /// Unless the script file supports the default `#!/bin/sh` shell
@@ -622,7 +622,7 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The script, container, or barrier for this runnable to execute.
-  public enum ExecutableOneOf: Codable, Equatable, Sendable {
+  public enum ExecutableOneOf: Equatable, Sendable {
     /// Container runnable.
     indirect case container(Runnable.Container)
     /// Script runnable.

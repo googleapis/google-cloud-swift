@@ -433,7 +433,7 @@
     /// Required except for Large Model Deploy use cases.
     ///
     /// [google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]: <doc:Model/supportedDeploymentResourcesTypes>
-    public enum PredictionResourcesOneOf: Codable, Equatable, Sendable {
+    public enum PredictionResourcesOneOf: Equatable, Sendable {
       /// A description of resources that are dedicated to the DeployedModel, and
       /// that need a higher degree of manual configuration.
       indirect case dedicatedResources(DedicatedResources)

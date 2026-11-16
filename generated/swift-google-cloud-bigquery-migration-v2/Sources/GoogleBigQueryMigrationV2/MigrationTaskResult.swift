@@ -107,7 +107,7 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Details specific to the task type.
-  public enum DetailsOneOf: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Equatable, Sendable {
     /// Details specific to translation task types.
     indirect case translationTaskResult(TranslationTaskResult)
   }

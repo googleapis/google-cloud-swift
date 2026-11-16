@@ -134,7 +134,7 @@ public struct QueryAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ResponseOneOf: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Equatable, Sendable {
     /// Error status.
     indirect case error(GoogleRpc.Status)
     /// Result of the query.

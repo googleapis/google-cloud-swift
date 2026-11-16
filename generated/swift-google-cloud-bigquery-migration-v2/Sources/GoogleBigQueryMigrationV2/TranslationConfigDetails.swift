@@ -196,20 +196,20 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The chosen path where the source for input files will be found.
-  public enum SourceLocationOneOf: Codable, Equatable, Sendable {
+  public enum SourceLocationOneOf: Equatable, Sendable {
     /// The Cloud Storage path for a directory of files to translate in a task.
     case gcsSourcePath(Swift.String)
   }
 
   /// The chosen path where the destination for output files will be found.
-  public enum TargetLocationOneOf: Codable, Equatable, Sendable {
+  public enum TargetLocationOneOf: Equatable, Sendable {
     /// The Cloud Storage path to write back the corresponding input files to.
     case gcsTargetPath(Swift.String)
   }
 
   /// The mapping of full SQL object names from their current state to the
   /// desired output.
-  public enum OutputNameMappingOneOf: Codable, Equatable, Sendable {
+  public enum OutputNameMappingOneOf: Equatable, Sendable {
     /// The mapping of objects to their desired output names in list form.
     indirect case nameMappingList(ObjectNameMappingList)
   }

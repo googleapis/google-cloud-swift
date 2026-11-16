@@ -289,7 +289,7 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Configurations for this recurring schedule.
   /// Configurations must match frequency.
-  public enum ScheduleConfigOneOf: Codable, Equatable, Sendable {
+  public enum ScheduleConfigOneOf: Equatable, Sendable {
     /// Required. Schedule with weekly executions.
     indirect case weekly(WeeklySchedule)
     /// Required. Schedule with monthly executions.

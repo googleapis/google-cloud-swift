@@ -392,7 +392,7 @@
       }
 
       /// Choice of retrieval strategy.
-      public enum RetrievalStrategyOneOf: Codable, Equatable, Sendable {
+      public enum RetrievalStrategyOneOf: Equatable, Sendable {
         /// Performs a KNN search on RagCorpus.
         /// Default choice if not specified.
         indirect case knn(RagVectorDbConfig.RagManagedDb.KNN)
@@ -598,7 +598,7 @@
     }
 
     /// The config for the Vector DB.
-    public enum VectorDbOneOf: Codable, Equatable, Sendable {
+    public enum VectorDbOneOf: Equatable, Sendable {
       /// The config for the RAG-managed Vector DB.
       indirect case ragManagedDb(RagVectorDbConfig.RagManagedDb)
       /// The config for the Pinecone.

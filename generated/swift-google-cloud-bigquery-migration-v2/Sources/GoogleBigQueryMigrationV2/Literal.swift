@@ -112,7 +112,7 @@ public struct Literal: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The literal SQL contents.
-  public enum LiteralDataOneOf: Codable, Equatable, Sendable {
+  public enum LiteralDataOneOf: Equatable, Sendable {
     /// Literal string data.
     case literalString(Swift.String)
     /// Literal byte data.

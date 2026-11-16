@@ -116,7 +116,7 @@ public struct DataProfileFindingLocation: Codable, Equatable, GoogleWKT._AnyPack
   /// Additional location details that may be provided for some types of
   /// profiles. At this time, only findings for table data profiles include such
   /// details.
-  public enum LocationExtraDetailsOneOf: Codable, Equatable, Sendable {
+  public enum LocationExtraDetailsOneOf: Equatable, Sendable {
     /// Location of a finding within a resource that produces a table data
     /// profile.
     indirect case dataProfileFindingRecordLocation(DataProfileFindingRecordLocation)

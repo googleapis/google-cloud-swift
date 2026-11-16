@@ -96,7 +96,7 @@ public struct RepricingAdjustment: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A oneof that represents the different types for this adjustment.
-  public enum AdjustmentOneOf: Codable, Equatable, Sendable {
+  public enum AdjustmentOneOf: Equatable, Sendable {
     /// Flat markup or markdown on an entire bill.
     indirect case percentageAdjustment(PercentageAdjustment)
   }

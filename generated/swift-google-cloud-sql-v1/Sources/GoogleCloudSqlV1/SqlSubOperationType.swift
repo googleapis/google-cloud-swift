@@ -97,7 +97,7 @@
     }
 
     /// Sub operation details corresponding to the operation type.
-    public enum SubOperationDetailsOneOf: Codable, Equatable, Sendable {
+    public enum SubOperationDetailsOneOf: Equatable, Sendable {
       /// The type of maintenance to be performed on the instance.
       case maintenanceType(SqlMaintenanceType)
     }

@@ -121,7 +121,7 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Notification Event.
-  public enum EventOneOf: Codable, Equatable, Sendable {
+  public enum EventOneOf: Equatable, Sendable {
     /// If it's a Finding based notification config, this field will be
     /// populated.
     indirect case finding(Finding)

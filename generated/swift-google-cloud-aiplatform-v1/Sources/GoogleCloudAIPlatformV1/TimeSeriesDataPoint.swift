@@ -125,7 +125,7 @@
     }
 
     /// Value of this time series data point.
-    public enum ValueOneOf: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Equatable, Sendable {
       /// A scalar value.
       indirect case scalar(Scalar)
       /// A tensor value.

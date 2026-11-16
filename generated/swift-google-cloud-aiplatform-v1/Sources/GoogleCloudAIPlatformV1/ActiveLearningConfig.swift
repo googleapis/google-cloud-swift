@@ -128,7 +128,7 @@
 
     /// Required. Max human labeling DataItems. The rest part will be labeled by
     /// machine.
-    public enum HumanLabelingBudgetOneOf: Codable, Equatable, Sendable {
+    public enum HumanLabelingBudgetOneOf: Equatable, Sendable {
       /// Max number of human labeled DataItems.
       case maxDataItemCount(Swift.Int64)
       /// Max percent of total DataItems for human labeling.

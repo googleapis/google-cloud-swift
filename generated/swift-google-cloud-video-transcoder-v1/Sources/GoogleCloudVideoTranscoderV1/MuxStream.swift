@@ -263,7 +263,7 @@ public struct MuxStream: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies the container configuration.
-  public enum ContainerConfigOneOf: Codable, Equatable, Sendable {
+  public enum ContainerConfigOneOf: Equatable, Sendable {
     /// Optional. `fmp4` container configuration.
     indirect case fmp4(MuxStream.Fmp4Config)
   }

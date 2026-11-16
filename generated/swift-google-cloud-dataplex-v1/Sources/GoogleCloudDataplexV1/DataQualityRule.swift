@@ -1786,7 +1786,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The source type of the rule.
-      public enum SourceTypeOneOf: Codable, Equatable, Sendable {
+      public enum SourceTypeOneOf: Equatable, Sendable {
         /// Output only. Entry source represents information about the related
         /// source entry.
         indirect case entrySource(DataQualityRule.RuleSource.RulePathElement.EntrySource)
@@ -1951,7 +1951,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The rule-specific configuration.
-  public enum RuleTypeOneOf: Codable, Equatable, Sendable {
+  public enum RuleTypeOneOf: Equatable, Sendable {
     /// Row-level rule which evaluates whether each column value lies between a
     /// specified range.
     indirect case rangeExpectation(DataQualityRule.RangeExpectation)

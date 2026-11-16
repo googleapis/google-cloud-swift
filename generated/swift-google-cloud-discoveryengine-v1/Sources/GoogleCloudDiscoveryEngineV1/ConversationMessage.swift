@@ -110,7 +110,7 @@
       }
     }
 
-    public enum MessageOneOf: Codable, Equatable, Sendable {
+    public enum MessageOneOf: Equatable, Sendable {
       /// User text input.
       indirect case userInput(TextInput)
       /// Search reply.

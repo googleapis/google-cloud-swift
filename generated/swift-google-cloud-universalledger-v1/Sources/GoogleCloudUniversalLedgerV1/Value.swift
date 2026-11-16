@@ -160,7 +160,7 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The actual value.
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// Optional. Represents a None value.
     case noneValue(NoneValue)
     /// Optional. A boolean value.

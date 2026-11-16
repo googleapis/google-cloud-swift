@@ -98,7 +98,7 @@ public struct QueryConfigurationLicenseUsageResponse: Codable, Equatable, Google
 
   /// Depending on the type of the configuration, one of the following
   /// will be populated.
-  public enum DetailsOneOf: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Equatable, Sendable {
     /// Usage information for license types which use user-count billing.
     indirect case userCountUsage(UserCountUsage)
   }

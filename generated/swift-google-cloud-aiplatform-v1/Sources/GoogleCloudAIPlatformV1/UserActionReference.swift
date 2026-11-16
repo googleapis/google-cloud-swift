@@ -113,7 +113,7 @@
       }
     }
 
-    public enum ReferenceOneOf: Codable, Equatable, Sendable {
+    public enum ReferenceOneOf: Equatable, Sendable {
       /// For API calls that return a long running operation.
       /// Resource name of the long running operation.
       /// Format:

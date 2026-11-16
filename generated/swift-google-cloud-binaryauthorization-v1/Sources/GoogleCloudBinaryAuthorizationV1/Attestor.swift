@@ -137,7 +137,7 @@ public struct Attestor: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum AttestorTypeOneOf: Codable, Equatable, Sendable {
+  public enum AttestorTypeOneOf: Equatable, Sendable {
     /// This specifies how an attestation will be read, and how it will be used
     /// during policy enforcement.
     indirect case userOwnedGrafeasNote(UserOwnedGrafeasNote)

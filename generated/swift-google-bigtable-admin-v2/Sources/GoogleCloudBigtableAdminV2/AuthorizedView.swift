@@ -444,7 +444,7 @@ public struct AuthorizedView: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of this AuthorizedView.
-  public enum AuthorizedViewOneOf: Codable, Equatable, Sendable {
+  public enum AuthorizedViewOneOf: Equatable, Sendable {
     /// An AuthorizedView permitting access to an explicit subset of a Table.
     indirect case subsetView(AuthorizedView.SubsetView)
   }

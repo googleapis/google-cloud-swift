@@ -207,7 +207,7 @@ public struct Widget: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Content defines the component used to populate the widget.
-  public enum ContentOneOf: Codable, Equatable, Sendable {
+  public enum ContentOneOf: Equatable, Sendable {
     /// A chart of time series data.
     indirect case xyChart(XyChart)
     /// A scorecard summarizing time series data.

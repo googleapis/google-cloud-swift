@@ -608,7 +608,7 @@
 
       /// The type of Value must be consistent for all datapoints with a given
       /// name.  This is verified at runtime.
-      public enum ValueOneOf: Codable, Equatable, Sendable {
+      public enum ValueOneOf: Equatable, Sendable {
         /// int value type.
         case valueInt(Swift.Int64)
         /// float value type.
@@ -740,7 +740,7 @@
       }
     }
 
-    public enum InstanceOneOf: Codable, Equatable, Sendable {
+    public enum InstanceOneOf: Equatable, Sendable {
       /// Optional. The entity id whose similar entities should be searched for.
       /// If embedding is set, search will use embedding instead of
       /// entity_id.

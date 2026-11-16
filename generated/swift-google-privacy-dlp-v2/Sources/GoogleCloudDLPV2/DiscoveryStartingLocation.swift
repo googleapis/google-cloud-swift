@@ -103,7 +103,7 @@ public struct DiscoveryStartingLocation: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The location to be scanned.
-  public enum LocationOneOf: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Equatable, Sendable {
     /// The ID of an organization to scan.
     case organizationId(Swift.Int64)
     /// The ID of the folder within an organization to be scanned.

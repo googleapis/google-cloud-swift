@@ -128,7 +128,7 @@ public struct ForwardSshTunnelConnectivity: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// SSH authentication method.
-  public enum AuthenticationMethodOneOf: Codable, Equatable, Sendable {
+  public enum AuthenticationMethodOneOf: Equatable, Sendable {
     /// Input only. SSH password.
     case password(Swift.String)
     /// Input only. SSH private key.

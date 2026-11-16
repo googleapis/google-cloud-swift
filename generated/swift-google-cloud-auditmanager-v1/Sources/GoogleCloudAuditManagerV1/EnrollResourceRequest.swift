@@ -200,7 +200,7 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Available Cloud Storage buckets.
-    public enum EligibleDestinationsOneOf: Codable, Equatable, Sendable {
+    public enum EligibleDestinationsOneOf: Equatable, Sendable {
       /// The location of the Cloud Storage bucket where you want to upload the
       /// audit report and evidence during the
       /// [GenerateAuditReport][google.cloud.auditmanager.v1.AuditManager.GenerateAuditReport]

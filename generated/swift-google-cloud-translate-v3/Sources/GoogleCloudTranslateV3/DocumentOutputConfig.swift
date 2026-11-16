@@ -123,7 +123,7 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Whether a destination is provided or not, the translated documents will be
   /// returned within TranslateDocumentResponse.document_translation and
   /// TranslateDocumentResponse.glossary_document_translation.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Optional. Google Cloud Storage destination for the translation output,
     /// e.g., `gs://my_bucket/my_directory/`.
     ///

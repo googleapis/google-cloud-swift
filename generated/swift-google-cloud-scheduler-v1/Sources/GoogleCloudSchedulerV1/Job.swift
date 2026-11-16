@@ -445,7 +445,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required.
   ///
   /// Delivery settings containing destination and parameters.
-  public enum TargetOneOf: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Equatable, Sendable {
     /// Pub/Sub target.
     indirect case pubsubTarget(PubsubTarget)
     /// App Engine HTTP target.

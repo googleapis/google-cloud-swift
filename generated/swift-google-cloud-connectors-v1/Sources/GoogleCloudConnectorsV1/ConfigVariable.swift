@@ -125,7 +125,7 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Value type of the config variable.
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// Value is an integer
     case intValue(Swift.Int64)
     /// Value is a bool.

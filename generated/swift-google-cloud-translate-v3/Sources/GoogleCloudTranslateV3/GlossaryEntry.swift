@@ -295,7 +295,7 @@ public struct GlossaryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The different data for the glossary types (Unidirectional, Equivalent term
   /// sets).
-  public enum DataOneOf: Codable, Equatable, Sendable {
+  public enum DataOneOf: Equatable, Sendable {
     /// Used for an unidirectional glossary.
     indirect case termsPair(GlossaryEntry.GlossaryTermsPair)
     /// Used for an equivalent term sets glossary.

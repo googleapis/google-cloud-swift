@@ -197,7 +197,7 @@ public struct RolloutControl: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Setting for the action. The setting must match the action
   /// e.g.: action=RUN may only set run_params or omit all parameters.
   /// It is an error to set a setting that is not applicable to the action.
-  public enum ActionParamsOneOf: Codable, Equatable, Sendable {
+  public enum ActionParamsOneOf: Equatable, Sendable {
     /// Optional. Parameters for the RUN action. It is an error to specify this
     /// if the RolloutAction is not set to RUN. By default, the rollout will
     /// retry failed operations when resumed.

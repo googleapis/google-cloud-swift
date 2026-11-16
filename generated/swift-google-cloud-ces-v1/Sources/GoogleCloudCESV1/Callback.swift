@@ -130,7 +130,7 @@ public struct Callback: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The callback to execute.
-  public enum CallbackOneOf: Codable, Equatable, Sendable {
+  public enum CallbackOneOf: Equatable, Sendable {
     /// Required. The python code to execute for the callback.
     case pythonCode(Swift.String)
   }

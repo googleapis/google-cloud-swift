@@ -119,7 +119,7 @@ public struct ElementaryStream: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Encoding of an audio, video, or text track.
-  public enum ElementaryStreamOneOf: Codable, Equatable, Sendable {
+  public enum ElementaryStreamOneOf: Equatable, Sendable {
     /// Encoding of a video stream.
     indirect case videoStream(VideoStream)
     /// Encoding of an audio stream.

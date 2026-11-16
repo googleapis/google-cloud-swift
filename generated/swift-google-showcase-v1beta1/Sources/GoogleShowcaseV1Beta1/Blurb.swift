@@ -170,7 +170,7 @@ public struct Blurb: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ContentOneOf: Codable, Equatable, Sendable {
+  public enum ContentOneOf: Equatable, Sendable {
     /// The textual content of this blurb.
     case text(Swift.String)
     /// The image content of this blurb.
@@ -180,7 +180,7 @@ public struct Blurb: Codable, Equatable, GoogleWKT._AnyPackable,
   /// (-- aip.dev/not-precedent: This is designed for testing non-slash
   ///     resource patterns. Ordinarily, non-slash separators are discouraged.
   ///     --)
-  public enum LegacyIdOneOf: Codable, Equatable, Sendable {
+  public enum LegacyIdOneOf: Equatable, Sendable {
     /// The legacy id of the room. This field is used to signal
     /// the use of the compound resource pattern
     /// `rooms/{room}/blurbs/legacy/{legacy_room}.{blurb}`

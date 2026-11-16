@@ -104,7 +104,7 @@ public struct BidiSessionClientMessage: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The type of the message.
-  public enum MessageTypeOneOf: Codable, Equatable, Sendable {
+  public enum MessageTypeOneOf: Equatable, Sendable {
     /// Optional. The initial config message for the session.
     indirect case config(SessionConfig)
     /// Optional. Realtime input for the session.

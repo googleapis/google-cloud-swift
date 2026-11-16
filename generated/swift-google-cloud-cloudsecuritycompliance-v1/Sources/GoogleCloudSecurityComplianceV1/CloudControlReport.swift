@@ -239,7 +239,7 @@ public struct CloudControlReport: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The assessment details of the cloud control.
-  public enum AssessmentDetailsOneOf: Codable, Equatable, Sendable {
+  public enum AssessmentDetailsOneOf: Equatable, Sendable {
     /// The details of a manual cloud control assessment.
     indirect case manualCloudControlAssessmentDetails(ManualCloudControlAssessmentDetails)
     /// The details of a cloud control assessment.

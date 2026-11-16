@@ -338,7 +338,7 @@
     }
 
     /// Required. The agent to restore.
-    public enum AgentOneOf: Codable, Equatable, Sendable {
+    public enum AgentOneOf: Equatable, Sendable {
       /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI
       /// to restore agent from. The format of this URI must be
       /// `gs://<bucket-name>/<object-name>`.

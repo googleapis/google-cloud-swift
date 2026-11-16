@@ -152,7 +152,7 @@ public struct GitRepoSource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the SCM repo.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// The connected repository resource name, in the format
     /// `projects/*/locations/*/connections/*/repositories/*`. Either `uri` or
     /// `repository` can be specified and is required.
@@ -161,7 +161,7 @@ public struct GitRepoSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The resource name of the enterprise config that should be applied
   /// to this source.
-  public enum EnterpriseConfigOneOf: Codable, Equatable, Sendable {
+  public enum EnterpriseConfigOneOf: Equatable, Sendable {
     /// The full resource name of the github enterprise config.
     /// Format:
     /// `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`.

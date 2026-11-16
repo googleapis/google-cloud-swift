@@ -874,7 +874,7 @@
 
       /// The configuration with regard to the algorithms used for efficient
       /// search.
-      public enum AlgorithmConfigOneOf: Codable, Equatable, Sendable {
+      public enum AlgorithmConfigOneOf: Equatable, Sendable {
         /// Optional. Configuration options for the tree-AH algorithm (Shallow tree
         /// + Asymmetric Hashing). Please refer to this paper for more details:
         /// https://arxiv.org/abs/1908.10396
@@ -1473,7 +1473,7 @@
       }
     }
 
-    public enum SourceOneOf: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Equatable, Sendable {
       /// Optional. Configures how data is supposed to be extracted from a BigQuery
       /// source to be loaded onto the FeatureOnlineStore.
       indirect case bigQuerySource(FeatureView.BigQuerySource)

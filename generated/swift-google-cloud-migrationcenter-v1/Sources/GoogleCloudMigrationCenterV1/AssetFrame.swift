@@ -149,7 +149,7 @@ public struct AssetFrame: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The internal data of the frame is a oneof field depending on the type
   /// of asset information in the frame.
-  public enum FrameDataOneOf: Codable, Equatable, Sendable {
+  public enum FrameDataOneOf: Equatable, Sendable {
     /// Asset information specific for virtual machines.
     indirect case machineDetails(MachineDetails)
   }

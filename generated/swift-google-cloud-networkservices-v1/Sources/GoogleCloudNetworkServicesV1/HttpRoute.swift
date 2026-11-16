@@ -415,7 +415,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum MatchTypeOneOf: Codable, Equatable, Sendable {
+    public enum MatchTypeOneOf: Equatable, Sendable {
       /// The value of the header should match exactly the content of
       /// exact_match.
       case exactMatch(Swift.String)
@@ -555,7 +555,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum MatchTypeOneOf: Codable, Equatable, Sendable {
+    public enum MatchTypeOneOf: Equatable, Sendable {
       /// The value of the query parameter must exactly match the contents of
       /// exact_match.
       ///
@@ -722,7 +722,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum PathMatchOneOf: Codable, Equatable, Sendable {
+    public enum PathMatchOneOf: Equatable, Sendable {
       /// The HTTP request path value should exactly match this value.
       ///
       /// Only one of full_path_match, prefix_match, or regex_match should be
@@ -2208,7 +2208,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Body to return as part of HTTP Response.
-    public enum HttpBodyOneOf: Codable, Equatable, Sendable {
+    public enum HttpBodyOneOf: Equatable, Sendable {
       /// Optional. Response body as a string. Maximum body length is 1024
       /// characters.
       case stringBody(Swift.String)

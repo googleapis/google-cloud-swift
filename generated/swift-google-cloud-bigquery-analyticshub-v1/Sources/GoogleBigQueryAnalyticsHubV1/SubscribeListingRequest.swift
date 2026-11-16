@@ -116,7 +116,7 @@ public struct SubscribeListingRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Resulting destination of the listing that you subscribed to.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Input only. BigQuery destination dataset to create for the subscriber.
     indirect case destinationDataset(DestinationDataset)
     /// Input only. Destination Pub/Sub subscription to create for the

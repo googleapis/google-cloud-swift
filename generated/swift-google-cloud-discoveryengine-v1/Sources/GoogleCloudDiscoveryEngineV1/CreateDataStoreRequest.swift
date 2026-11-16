@@ -181,7 +181,7 @@
 
     /// CMEK options for the DataStore. Setting this field will override the
     /// default CmekConfig if one is set for the project.
-    public enum CmekOptionsOneOf: Codable, Equatable, Sendable {
+    public enum CmekOptionsOneOf: Equatable, Sendable {
       /// Resource name of the CmekConfig to use for protecting this DataStore.
       case cmekConfigName(Swift.String)
       /// DataStore without CMEK protections. If a default CmekConfig is set for

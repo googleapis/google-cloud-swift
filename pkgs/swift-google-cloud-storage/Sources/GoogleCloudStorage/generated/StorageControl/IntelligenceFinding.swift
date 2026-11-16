@@ -626,7 +626,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The details of the bucket's contribution towards the
       /// `IntelligenceFinding`.
-      public enum DetailsOneOf: Codable, Equatable, Sendable {
+      public enum DetailsOneOf: Equatable, Sendable {
         /// Output only. The details about the contribution of the bucket.
         indirect case contribution(
           IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution
@@ -1081,7 +1081,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The details of the bucket's contribution towards the
       /// `IntelligenceFinding`.
-      public enum DetailsOneOf: Codable, Equatable, Sendable {
+      public enum DetailsOneOf: Equatable, Sendable {
         /// Output only. The details about the contribution of the bucket.
         indirect case contribution(
           IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution)
@@ -1531,7 +1531,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The details of the bucket's contribution towards the
       /// `IntelligenceFinding`.
-      public enum DetailsOneOf: Codable, Equatable, Sendable {
+      public enum DetailsOneOf: Equatable, Sendable {
         /// Output only. The details about the contribution of the bucket.
         indirect case contribution(
           IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution)
@@ -1777,7 +1777,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The details of the bucket's contribution towards the
       /// `IntelligenceFinding`.
-      public enum DetailsOneOf: Codable, Equatable, Sendable {
+      public enum DetailsOneOf: Equatable, Sendable {
         /// Output only. The error related to accessing the details about the
         /// contribution of the bucket.
         indirect case error(GoogleRpc.Status)
@@ -1830,7 +1830,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The specific details of the `IntelligenceFinding`.
-  public enum IntelligenceFindingDetailsOneOf: Codable, Equatable, Sendable {
+  public enum IntelligenceFindingDetailsOneOf: Equatable, Sendable {
     /// Output only. `IntelligenceFinding` about a spike in Class A/B operations
     /// on Coldline or Archive Cloud Storage objects.
     indirect case coldlineAndArchivalStorageOperationsSpike(

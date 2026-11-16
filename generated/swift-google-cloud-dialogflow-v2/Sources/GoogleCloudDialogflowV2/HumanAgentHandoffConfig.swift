@@ -303,7 +303,7 @@
     }
 
     /// Required. Specifies which agent service to connect for human agent handoff.
-    public enum AgentServiceOneOf: Codable, Equatable, Sendable {
+    public enum AgentServiceOneOf: Equatable, Sendable {
       /// Uses [LivePerson](https://www.liveperson.com).
       indirect case livePersonConfig(HumanAgentHandoffConfig.LivePersonConfig)
       /// Uses Salesforce Live Agent.

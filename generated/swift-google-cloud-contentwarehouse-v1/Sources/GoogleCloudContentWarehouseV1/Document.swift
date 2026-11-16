@@ -333,7 +333,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum StructuredContentOneOf: Codable, Equatable, Sendable {
+  public enum StructuredContentOneOf: Equatable, Sendable {
     /// Other document format, such as PPTX, XLXS
     case plainText(Swift.String)
     /// Document AI format to save the structured content, including OCR.
@@ -341,7 +341,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Raw document file.
-  public enum RawDocumentOneOf: Codable, Equatable, Sendable {
+  public enum RawDocumentOneOf: Equatable, Sendable {
     /// Raw document file in Cloud Storage path.
     case rawDocumentPath(Swift.String)
     /// Raw document content.

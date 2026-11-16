@@ -117,7 +117,7 @@
     }
 
     /// Required. The agent to import.
-    public enum AgentOneOf: Codable, Equatable, Sendable {
+    public enum AgentOneOf: Equatable, Sendable {
       /// The URI to a Google Cloud Storage file containing the agent to import.
       /// Note: The URI must start with "gs://".
       ///

@@ -117,7 +117,7 @@ public struct DiscountComponent: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Specifies the contribution of this discount component to the total
   /// discount.
-  public enum DiscountValueOneOf: Codable, Equatable, Sendable {
+  public enum DiscountValueOneOf: Equatable, Sendable {
     /// Discount percentage, represented as decimal.
     /// For example, a 20% discount will be represented as 0.2.
     case discountPercentage(Swift.Double)

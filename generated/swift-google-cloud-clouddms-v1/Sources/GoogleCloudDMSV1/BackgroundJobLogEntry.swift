@@ -645,7 +645,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum JobDetailsOneOf: Codable, Equatable, Sendable {
+  public enum JobDetailsOneOf: Equatable, Sendable {
     /// Output only. Seed job details.
     indirect case seedJobDetails(BackgroundJobLogEntry.SeedJobDetails)
     /// Output only. Import rules job details.

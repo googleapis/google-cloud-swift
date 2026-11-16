@@ -411,7 +411,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     }
 
     /// Criteria for the root of the search.
-    public enum CriteriaOneOf: Codable, Equatable, Sendable {
+    public enum CriteriaOneOf: Equatable, Sendable {
       /// Optional. The entities to initiate the search from. Entities can be
       /// specified by FQN only, or by FQN and field. To search by FQN and all
       /// available fields for that FQN, use the wildcard `*` as the field value.

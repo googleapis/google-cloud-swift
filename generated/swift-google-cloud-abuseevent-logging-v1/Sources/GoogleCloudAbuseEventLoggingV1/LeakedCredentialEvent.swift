@@ -115,7 +115,7 @@ public struct LeakedCredentialEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Indicates the type of credential leaked.
-  public enum CredentialTypeOneOf: Codable, Equatable, Sendable {
+  public enum CredentialTypeOneOf: Equatable, Sendable {
     /// Information about leaked service accounts.
     indirect case serviceAccountCredential(ServiceAccountCredential)
     /// Information about leaked API keys.

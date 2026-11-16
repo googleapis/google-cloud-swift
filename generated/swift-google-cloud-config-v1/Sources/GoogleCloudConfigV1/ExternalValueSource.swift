@@ -96,7 +96,7 @@ public struct ExternalValueSource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the external value.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// A source from a Deployment.
     indirect case deploymentSource(DeploymentSource)
   }

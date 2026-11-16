@@ -377,7 +377,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// under *most* circumstances, without sacrificing availability. Consistency
     /// is *not* guaranteed, as requests might still fail over between clusters
     /// in the event of errors or latency.
-    public enum AffinityOneOf: Codable, Equatable, Sendable {
+    public enum AffinityOneOf: Equatable, Sendable {
       /// Row affinity sticky routing based on the row key of the request.
       /// Requests that span multiple rows are routed non-deterministically.
       indirect case rowAffinity(AppProfile.MultiClusterRoutingUseAny.RowAffinity)
@@ -986,7 +986,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The routing policy for all read/write requests that use this app profile.
   /// A value must be explicitly set.
-  public enum RoutingPolicyOneOf: Codable, Equatable, Sendable {
+  public enum RoutingPolicyOneOf: Equatable, Sendable {
     /// Use a multi-cluster routing policy.
     indirect case multiClusterRoutingUseAny(AppProfile.MultiClusterRoutingUseAny)
     /// Use a single-cluster routing policy.
@@ -994,7 +994,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Options for isolating this app profile's traffic from other use cases.
-  public enum IsolationOneOf: Codable, Equatable, Sendable {
+  public enum IsolationOneOf: Equatable, Sendable {
     /// This field has been deprecated in favor of `standard_isolation.priority`.
     /// If you set this field, `standard_isolation.priority` will be set instead.
     ///

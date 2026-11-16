@@ -771,7 +771,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// The identifier for an object in the data source.
-  public enum SourceIdentifierOneOf: Codable, Equatable, Sendable {
+  public enum SourceIdentifierOneOf: Equatable, Sendable {
     /// Oracle data source object identifier.
     indirect case oracleIdentifier(SourceObjectIdentifier.OracleObjectIdentifier)
     /// Mysql data source object identifier.

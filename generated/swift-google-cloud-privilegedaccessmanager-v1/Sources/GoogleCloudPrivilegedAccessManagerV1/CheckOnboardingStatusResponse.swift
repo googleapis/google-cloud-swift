@@ -252,7 +252,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public enum FindingTypeOneOf: Codable, Equatable, Sendable {
+    public enum FindingTypeOneOf: Equatable, Sendable {
       /// PAM's service account is being denied access by Cloud IAM.
       indirect case iamAccessDenied(CheckOnboardingStatusResponse.Finding.IAMAccessDenied)
     }

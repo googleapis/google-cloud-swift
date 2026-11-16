@@ -1679,7 +1679,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     }
 
     /// The definition for the data preparation.
-    public enum DefinitionOneOf: Codable, Equatable, Sendable {
+    public enum DefinitionOneOf: Equatable, Sendable {
       /// The data preparation definition, stored as a YAML string.
       case contentsYaml(Swift.String)
       /// SQL definition for a Data Preparation. Contains a SQL query and
@@ -1941,7 +1941,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     }
 
     /// Load mode
-    public enum ModeOneOf: Codable, Equatable, Sendable {
+    public enum ModeOneOf: Equatable, Sendable {
       /// Replace destination table
       indirect case replace(CompilationResultAction.SimpleLoadMode)
       /// Append into destination table
@@ -2127,7 +2127,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// The compiled object.
-  public enum CompiledObjectOneOf: Codable, Equatable, Sendable {
+  public enum CompiledObjectOneOf: Equatable, Sendable {
     /// The database relation created/updated by this action.
     indirect case relation(CompilationResultAction.Relation)
     /// The database operations executed by this action.

@@ -215,7 +215,7 @@
     }
 
     /// The data source for retrieving contexts.
-    public enum DataSourceOneOf: Codable, Equatable, Sendable {
+    public enum DataSourceOneOf: Equatable, Sendable {
       /// Optional. Retrieves contexts from the Vertex RagStore.
       indirect case vertexRagStore(GoogleCloudAIPlatformV1.VertexRagStore)
     }

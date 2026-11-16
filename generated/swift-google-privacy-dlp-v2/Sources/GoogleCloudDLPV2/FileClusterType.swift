@@ -268,7 +268,7 @@ public struct FileClusterType: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// File cluster type.
-  public enum FileClusterTypeOneOf: Codable, Equatable, Sendable {
+  public enum FileClusterTypeOneOf: Equatable, Sendable {
     /// Cluster type.
     case cluster(FileClusterType.Cluster)
   }

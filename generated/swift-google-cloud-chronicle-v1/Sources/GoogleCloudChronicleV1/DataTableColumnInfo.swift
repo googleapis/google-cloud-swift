@@ -280,7 +280,7 @@ public struct DataTableColumnInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum PathOrTypeOneOf: Codable, Equatable, Sendable {
+  public enum PathOrTypeOneOf: Equatable, Sendable {
     /// Entity proto field path that the column is mapped to
     case mappedColumnPath(Swift.String)
     /// Column type can be STRING, CIDR (Ex- 10.1.1.0/24), REGEX

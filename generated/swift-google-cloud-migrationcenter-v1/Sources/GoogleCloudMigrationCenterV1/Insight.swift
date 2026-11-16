@@ -103,7 +103,7 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum InsightOneOf: Codable, Equatable, Sendable {
+  public enum InsightOneOf: Equatable, Sendable {
     /// Output only. An insight about potential migrations for an asset.
     indirect case migrationInsight(MigrationInsight)
     /// Output only. A generic insight about an asset

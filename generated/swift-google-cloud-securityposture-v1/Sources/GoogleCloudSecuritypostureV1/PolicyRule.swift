@@ -237,7 +237,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum KindOneOf: Codable, Equatable, Sendable {
+  public enum KindOneOf: Equatable, Sendable {
     /// List of values to be used for this policy rule. This field can be set
     /// only in policies for list constraints.
     indirect case values(PolicyRule.StringValues)

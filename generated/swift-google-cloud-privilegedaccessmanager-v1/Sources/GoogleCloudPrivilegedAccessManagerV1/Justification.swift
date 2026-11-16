@@ -94,7 +94,7 @@ public struct Justification: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum JustificationOneOf: Codable, Equatable, Sendable {
+  public enum JustificationOneOf: Equatable, Sendable {
     /// A free form textual justification. The system only ensures that this
     /// is not empty. No other kind of validation is performed on the string.
     case unstructuredJustification(Swift.String)

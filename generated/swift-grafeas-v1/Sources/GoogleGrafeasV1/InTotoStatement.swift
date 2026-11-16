@@ -139,7 +139,7 @@ public struct InTotoStatement: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum PredicateOneOf: Codable, Equatable, Sendable {
+  public enum PredicateOneOf: Equatable, Sendable {
     indirect case provenance(InTotoProvenance)
     indirect case slsaProvenance(SlsaProvenance)
     indirect case slsaProvenanceZeroTwo(SlsaProvenanceZeroTwo)

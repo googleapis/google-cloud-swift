@@ -337,7 +337,7 @@ public struct WorkerPool: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration for the `WorkerPool`.
-  public enum ConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Equatable, Sendable {
     /// Private Pool configuration.
     indirect case privatePoolV1Config(PrivatePoolV1Config)
   }

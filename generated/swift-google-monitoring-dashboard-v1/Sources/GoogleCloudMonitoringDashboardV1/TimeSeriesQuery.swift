@@ -152,7 +152,7 @@ public struct TimeSeriesQuery: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Parameters needed to obtain data for the chart.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Filter parameters to fetch time series.
     indirect case timeSeriesFilter(TimeSeriesFilter)
     /// Parameters to fetch a ratio between two time series filters.

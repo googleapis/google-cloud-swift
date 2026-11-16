@@ -148,7 +148,7 @@ public struct EchoRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ResponseOneOf: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Equatable, Sendable {
     /// The content to be echoed by the server.
     case content(Swift.String)
     /// The error to be thrown by the server.

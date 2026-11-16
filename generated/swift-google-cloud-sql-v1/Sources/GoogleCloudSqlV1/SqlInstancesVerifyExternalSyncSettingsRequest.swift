@@ -427,7 +427,7 @@
       }
     }
 
-    public enum SyncConfigOneOf: Codable, Equatable, Sendable {
+    public enum SyncConfigOneOf: Equatable, Sendable {
       /// Optional. MySQL-specific settings for start external sync.
       indirect case mysqlSyncConfig(MySqlSyncConfig)
     }

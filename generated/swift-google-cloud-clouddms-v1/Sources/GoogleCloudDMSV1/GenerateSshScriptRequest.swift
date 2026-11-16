@@ -132,7 +132,7 @@ public struct GenerateSshScriptRequest: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The VM configuration
-  public enum VmConfigOneOf: Codable, Equatable, Sendable {
+  public enum VmConfigOneOf: Equatable, Sendable {
     /// The VM creation configuration
     indirect case vmCreationConfig(VmCreationConfig)
     /// The VM selection configuration

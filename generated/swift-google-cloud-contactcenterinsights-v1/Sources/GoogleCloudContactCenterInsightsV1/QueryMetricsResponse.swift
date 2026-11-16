@@ -549,7 +549,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The measure included in this data point.
-      public enum MeasureOneOf: Codable, Equatable, Sendable {
+      public enum MeasureOneOf: Equatable, Sendable {
         /// The measure related to conversations.
         indirect case conversationMeasure(QueryMetricsResponse.Slice.DataPoint.ConversationMeasure)
       }

@@ -1475,7 +1475,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Options for the execution client.
-    public enum ExecutionClientDetailsOneOf: Codable, Equatable, Sendable {
+    public enum ExecutionClientDetailsOneOf: Equatable, Sendable {
       /// Details for the Geth execution client.
       indirect case gethDetails(BlockchainNode.EthereumDetails.GethDetails)
     }
@@ -1774,7 +1774,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Information that is specific to a particular blockchain type.
-  public enum BlockchainTypeDetailsOneOf: Codable, Equatable, Sendable {
+  public enum BlockchainTypeDetailsOneOf: Equatable, Sendable {
     /// Ethereum-specific blockchain node details.
     indirect case ethereumDetails(BlockchainNode.EthereumDetails)
   }

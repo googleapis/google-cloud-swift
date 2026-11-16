@@ -397,7 +397,7 @@
     }
 
     /// The role of the instance in the blue-green deployment.
-    public enum RoleDetailsOneOf: Codable, Equatable, Sendable {
+    public enum RoleDetailsOneOf: Equatable, Sendable {
       /// Output only. The source instance for the Blue-Green deployment.
       indirect case source(BlueGreenDeploymentInfo.SourceRole)
       /// Output only. The target instance for the Blue-Green deployment.

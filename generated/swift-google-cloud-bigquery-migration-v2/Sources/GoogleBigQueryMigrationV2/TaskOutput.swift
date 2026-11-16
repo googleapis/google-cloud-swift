@@ -240,7 +240,7 @@ public struct TaskOutput: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The detailed output of the task.
-  public enum OutputOneOf: Codable, Equatable, Sendable {
+  public enum OutputOneOf: Equatable, Sendable {
     /// The output of the task with output type "LINEAGE".
     indirect case lineageOutput(LineageOutput)
   }

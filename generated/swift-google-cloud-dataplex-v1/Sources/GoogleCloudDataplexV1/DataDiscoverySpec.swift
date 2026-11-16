@@ -788,7 +788,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configurations of the data discovery scan resource.
-  public enum ResourceConfigOneOf: Codable, Equatable, Sendable {
+  public enum ResourceConfigOneOf: Equatable, Sendable {
     /// Cloud Storage related configurations.
     indirect case storageConfig(DataDiscoverySpec.StorageConfig)
   }

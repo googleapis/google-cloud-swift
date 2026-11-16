@@ -102,7 +102,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The details of the endpoint to be triggered for curation.
-  public enum EndpointDetailsOneOf: Codable, Equatable, Sendable {
+  public enum EndpointDetailsOneOf: Equatable, Sendable {
     /// Required. The details of the Application Integration endpoint to be
     /// triggered for curation.
     indirect case applicationIntegrationEndpointDetails(ApplicationIntegrationEndpointDetails)

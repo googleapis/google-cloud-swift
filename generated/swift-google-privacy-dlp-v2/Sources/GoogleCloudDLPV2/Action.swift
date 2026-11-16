@@ -759,7 +759,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Where to store the output.
-    public enum OutputOneOf: Codable, Equatable, Sendable {
+    public enum OutputOneOf: Equatable, Sendable {
       /// Required. User settable Cloud Storage bucket and folders to store
       /// de-identified files. This field must be set for Cloud Storage
       /// deidentification. The output Cloud Storage bucket must be different
@@ -936,7 +936,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Extra events to execute after the job has finished.
-  public enum ActionOneOf: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Equatable, Sendable {
     /// Save resulting findings in a provided location.
     indirect case saveFindings(Action.SaveFindings)
     /// Publish a notification to a Pub/Sub topic.

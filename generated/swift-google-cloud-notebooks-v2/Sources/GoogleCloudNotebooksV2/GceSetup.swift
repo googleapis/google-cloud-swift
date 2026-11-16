@@ -226,7 +226,7 @@ public struct GceSetup: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of the image; can be one of VM image, or container image.
-  public enum ImageOneOf: Codable, Equatable, Sendable {
+  public enum ImageOneOf: Equatable, Sendable {
     /// Optional. Use a Compute Engine VM image to start the notebook instance.
     indirect case vmImage(VmImage)
     /// Optional. Use a container image to start the notebook instance.

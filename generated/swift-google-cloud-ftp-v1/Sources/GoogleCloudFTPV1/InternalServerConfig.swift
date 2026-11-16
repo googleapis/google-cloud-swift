@@ -203,7 +203,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Required. Specifies the type of consumer.
-    public enum ConsumerTypeOneOf: Codable, Equatable, Sendable {
+    public enum ConsumerTypeOneOf: Equatable, Sendable {
       /// The project ID or number of the consumer project.
       /// Must be in the format: `projects/{project}`.
       case project(Swift.String)
@@ -309,7 +309,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Required. Specifies the type of consumer.
-    public enum ConsumerTypeOneOf: Codable, Equatable, Sendable {
+    public enum ConsumerTypeOneOf: Equatable, Sendable {
       /// The project ID or number of the consumer project.
       /// Must be in the format: `projects/{project}`.
       case project(Swift.String)

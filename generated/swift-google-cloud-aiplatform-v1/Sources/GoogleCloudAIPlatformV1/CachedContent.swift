@@ -327,7 +327,7 @@
     }
 
     /// Expiration time of the cached content.
-    public enum ExpirationOneOf: Codable, Equatable, Sendable {
+    public enum ExpirationOneOf: Equatable, Sendable {
       /// Timestamp of when this resource is considered expired.
       /// This is *always* provided on output, regardless of what was sent
       /// on input.

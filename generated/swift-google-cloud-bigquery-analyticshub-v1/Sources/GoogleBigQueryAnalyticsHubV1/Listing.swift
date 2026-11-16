@@ -472,7 +472,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public enum ResourceOneOf: Codable, Equatable, Sendable {
+      public enum ResourceOneOf: Equatable, Sendable {
         /// Optional. Format:
         /// For table:
         /// `projects/{projectId}/datasets/{datasetId}/tables/{tableId}`
@@ -1789,7 +1789,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Listing source.
-  public enum SourceOneOf: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Equatable, Sendable {
     /// Shared dataset i.e. BigQuery dataset source.
     indirect case bigqueryDataset(Listing.BigQueryDatasetSource)
     /// Pub/Sub topic source.

@@ -684,7 +684,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum ConfigOneOf: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Equatable, Sendable {
     /// Configuration for this cluster.
     indirect case clusterConfig(Cluster.ClusterConfig)
   }

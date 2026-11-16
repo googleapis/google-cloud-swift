@@ -834,7 +834,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Specifies the kind of destination to which traffic will be routed.
-    public enum DestinationTypeOneOf: Codable, Equatable, Sendable {
+    public enum DestinationTypeOneOf: Equatable, Sendable {
       /// Required. The URL of a destination service to which to route traffic.
       /// Must refer to either a BackendService or ServiceDirectoryService.
       case serviceName(Swift.String)

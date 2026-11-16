@@ -646,7 +646,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// A specific type of file.
-      public enum TypeOneOf: Codable, Equatable, Sendable {
+      public enum TypeOneOf: Equatable, Sendable {
         /// A generic remote file.
         indirect case remote(OSPolicy.Resource.File.Remote)
         /// A Cloud Storage object.
@@ -1545,7 +1545,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// A system package.
-      public enum SystemPackageOneOf: Codable, Equatable, Sendable {
+      public enum SystemPackageOneOf: Equatable, Sendable {
         /// A package managed by Apt.
         indirect case apt(OSPolicy.Resource.PackageResource.APT)
         /// A deb package file.
@@ -2250,7 +2250,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// A specific type of repository.
-      public enum RepositoryOneOf: Codable, Equatable, Sendable {
+      public enum RepositoryOneOf: Equatable, Sendable {
         /// An Apt Repository.
         indirect case apt(OSPolicy.Resource.RepositoryResource.AptRepository)
         /// A Yum Repository.
@@ -2626,7 +2626,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// What to execute.
-        public enum SourceOneOf: Codable, Equatable, Sendable {
+        public enum SourceOneOf: Equatable, Sendable {
           /// A remote or local file.
           indirect case file(OSPolicy.Resource.File)
           /// An inline script.
@@ -2929,7 +2929,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The source for the contents of the file.
-      public enum SourceOneOf: Codable, Equatable, Sendable {
+      public enum SourceOneOf: Equatable, Sendable {
         /// A remote or local source.
         indirect case file(OSPolicy.Resource.File)
         /// A a file with this content.
@@ -2960,7 +2960,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Resource type.
-    public enum ResourceTypeOneOf: Codable, Equatable, Sendable {
+    public enum ResourceTypeOneOf: Equatable, Sendable {
       /// Package resource
       indirect case pkg(OSPolicy.Resource.PackageResource)
       /// Package repository resource

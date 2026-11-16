@@ -284,7 +284,7 @@
     }
 
     /// The type of speculation method to use.
-    public enum SpeculationOneOf: Codable, Equatable, Sendable {
+    public enum SpeculationOneOf: Equatable, Sendable {
       /// draft model speculation.
       indirect case draftModelSpeculation(SpeculativeDecodingSpec.DraftModelSpeculation)
       /// N-Gram speculation.

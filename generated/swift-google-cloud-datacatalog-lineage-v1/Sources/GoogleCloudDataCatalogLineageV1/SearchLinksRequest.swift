@@ -154,7 +154,7 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The asset for which you want to retrieve links.
-  public enum CriteriaOneOf: Codable, Equatable, Sendable {
+  public enum CriteriaOneOf: Equatable, Sendable {
     /// Optional. Send asset information in the **source** field to retrieve all
     /// links that lead from the specified asset to downstream assets.
     indirect case source(EntityReference)

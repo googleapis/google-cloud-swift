@@ -479,7 +479,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// If not set, the schedule defaults to a weekly schedule with one backup
   /// per day and a start time chosen arbitrarily.
-  public enum ScheduleOneOf: Codable, Equatable, Sendable {
+  public enum ScheduleOneOf: Equatable, Sendable {
     /// Weekly schedule for the Backup.
     indirect case weeklySchedule(AutomatedBackupPolicy.WeeklySchedule)
   }
@@ -491,7 +491,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// policy; the retentions of existing backups remain unchanged.
   ///
   /// If no retention policy is set, a default of 14 days is used.
-  public enum RetentionOneOf: Codable, Equatable, Sendable {
+  public enum RetentionOneOf: Equatable, Sendable {
     /// Time-based Backup retention policy.
     indirect case timeBasedRetention(AutomatedBackupPolicy.TimeBasedRetention)
     /// Quantity-based Backup retention policy to retain recent backups.

@@ -1317,7 +1317,7 @@
       }
 
       /// Configuration for the data source this data store is connected to.
-      public enum DataSourceConfigOneOf: Codable, Equatable, Sendable {
+      public enum DataSourceConfigOneOf: Equatable, Sendable {
         /// AlloyDB config. If set, this DataStore is connected to AlloyDB.
         indirect case alloyDbConfig(DataStore.FederatedSearchConfig.AlloyDbConfig)
         /// Third Party OAuth config. If set, this DataStore is connected to a

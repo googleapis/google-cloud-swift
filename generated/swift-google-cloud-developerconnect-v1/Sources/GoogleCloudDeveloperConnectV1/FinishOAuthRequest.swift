@@ -305,7 +305,7 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The params returned by OAuth flow redirect.
-  public enum ParamsOneOf: Codable, Equatable, Sendable {
+  public enum ParamsOneOf: Equatable, Sendable {
     /// The params returned by non-Google OAuth 2.0 flow redirect.
     indirect case oauthParams(FinishOAuthRequest.OAuthParams)
     /// The params returned by Google OAuth flow redirects.

@@ -105,7 +105,7 @@ public struct S3AuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// auth type for S3.
-  public enum AuthTypeOneOf: Codable, Equatable, Sendable {
+  public enum AuthTypeOneOf: Equatable, Sendable {
     /// Access Key ID and Secret Access Key for an AWS account.
     indirect case accessKeySecretAuth(S3V2AccessKeySecretAuth)
     /// AWS IAM Role Auth for Identity Federation.

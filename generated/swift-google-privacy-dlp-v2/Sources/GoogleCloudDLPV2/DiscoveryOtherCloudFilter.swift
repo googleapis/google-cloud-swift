@@ -117,7 +117,7 @@ public struct DiscoveryOtherCloudFilter: Codable, Equatable, GoogleWKT._AnyPacka
   /// Whether the filter applies to a specific set of resources or all
   /// other resources. The first filter to match will be applied, regardless of
   /// the condition. Defaults to `others` if none is set.
-  public enum FilterOneOf: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Equatable, Sendable {
     /// A collection of resources for this filter to apply to.
     indirect case collection(OtherCloudResourceCollection)
     /// The resource to scan. Configs using this filter can only have one target

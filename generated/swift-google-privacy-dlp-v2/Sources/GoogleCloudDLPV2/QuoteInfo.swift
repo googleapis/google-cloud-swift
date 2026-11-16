@@ -94,7 +94,7 @@ public struct QuoteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Object representation of the quote.
-  public enum ParsedQuoteOneOf: Codable, Equatable, Sendable {
+  public enum ParsedQuoteOneOf: Equatable, Sendable {
     /// The date time indicated by the quote.
     indirect case dateTime(DateTime)
   }

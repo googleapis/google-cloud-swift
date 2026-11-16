@@ -96,7 +96,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The destination of output.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Google Cloud Storage destination for output content.
     /// For every single input file (for example, gs://a/b/c.[extension]), we
     /// generate at most 2 * n output files. (n is the # of target_language_codes

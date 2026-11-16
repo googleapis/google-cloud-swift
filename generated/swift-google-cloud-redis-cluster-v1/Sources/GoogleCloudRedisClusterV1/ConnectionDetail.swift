@@ -110,7 +110,7 @@ public struct ConnectionDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Connectivity Automation (auto-registered connection) during the cluster
   /// creation, or it could be created by customer themselves (user-registered
   /// connection).
-  public enum ConnectionOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionOneOf: Equatable, Sendable {
     /// Detailed information of a PSC connection that is created through
     /// service connectivity automation.
     indirect case pscAutoConnection(PscAutoConnection)

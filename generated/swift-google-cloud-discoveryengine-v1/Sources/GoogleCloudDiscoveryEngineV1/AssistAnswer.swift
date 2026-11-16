@@ -227,7 +227,7 @@
       }
 
       /// Alternatives for the assistant reply.
-      public enum ReplyOneOf: Codable, Equatable, Sendable {
+      public enum ReplyOneOf: Equatable, Sendable {
         /// Possibly grounded response text or media from the assistant.
         indirect case groundedContent(AssistantGroundedContent)
       }
@@ -514,7 +514,7 @@
         }
 
         /// The Model Armor policy result.
-        public enum ResultOneOf: Codable, Equatable, Sendable {
+        public enum ResultOneOf: Equatable, Sendable {
           /// The Model Armor violation that was found.
           case modelArmorViolation(Swift.String)
           /// The error returned by Model Armor if the policy enforcement failed
@@ -641,7 +641,7 @@
 
         /// The policy type specific result. It can be either an error or a
         /// detailed information about the policy enforcement result.
-        public enum EnforcementResultOneOf: Codable, Equatable, Sendable {
+        public enum EnforcementResultOneOf: Equatable, Sendable {
           /// The policy enforcement result for the banned phrase policy.
           indirect case bannedPhraseEnforcementResult(
             AssistAnswer.CustomerPolicyEnforcementResult.BannedPhraseEnforcementResult)

@@ -1044,7 +1044,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Either a specific value or a class of status codes.
-      public enum StatusCodeOneOf: Codable, Equatable, Sendable {
+      public enum StatusCodeOneOf: Equatable, Sendable {
         /// A status code to accept.
         case statusValue(Swift.Int32)
         /// A class of status codes to accept.
@@ -1516,7 +1516,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// This field is optional and should be set only by users interested in
     /// an authenticated uptime check.
     /// Do not set both `auth_method` and `auth_info`.
-    public enum AuthMethodOneOf: Codable, Equatable, Sendable {
+    public enum AuthMethodOneOf: Equatable, Sendable {
       /// If specified, Uptime will generate and attach an OIDC JWT token for the
       /// Monitoring service agent service account as an `Authorization` header
       /// in the HTTP request when probing.
@@ -2126,7 +2126,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Certain `ContentMatcherOption` types require additional information.
     /// `MATCHES_JSON_PATH` or `NOT_MATCHES_JSON_PATH` require a
     /// `JsonPathMatcher`; not used for other options.
-    public enum AdditionalMatcherInfoOneOf: Codable, Equatable, Sendable {
+    public enum AdditionalMatcherInfoOneOf: Equatable, Sendable {
       /// Matcher information for `MATCHES_JSON_PATH` and `NOT_MATCHES_JSON_PATH`
       indirect case jsonPathMatcher(UptimeCheckConfig.ContentMatcher.JsonPathMatcher)
     }
@@ -2276,7 +2276,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The resource the check is checking. Required.
-  public enum ResourceOneOf: Codable, Equatable, Sendable {
+  public enum ResourceOneOf: Equatable, Sendable {
     /// The [monitored
     /// resource](https://cloud.google.com/monitoring/api/resources) associated
     /// with the configuration.
@@ -2297,7 +2297,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of Uptime check request.
-  public enum CheckRequestTypeOneOf: Codable, Equatable, Sendable {
+  public enum CheckRequestTypeOneOf: Equatable, Sendable {
     /// Contains information needed to make an HTTP or HTTPS check.
     indirect case httpCheck(UptimeCheckConfig.HttpCheck)
     /// Contains information needed to make a TCP check.

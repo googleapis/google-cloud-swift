@@ -355,7 +355,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// Certificate access config. The following are supported:
       /// - GCPSecretManagerCertificateConfig
-      public enum CertificateConfigOneOf: Codable, Equatable, Sendable {
+      public enum CertificateConfigOneOf: Equatable, Sendable {
         /// Secret Manager certificate configuration.
         indirect case gcpSecretManagerCertificateConfig(
           ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig
@@ -647,7 +647,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// One of the methods to configure the certificate.
-      public enum CertificateOneOf: Codable, Equatable, Sendable {
+      public enum CertificateOneOf: Equatable, Sendable {
         /// The URI configures a secret from
         /// [Secret Manager](https://cloud.google.com/secret-manager)
         /// in the format

@@ -94,7 +94,7 @@ public struct ExportErrorsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Errors destination.
-  public enum DestinationOneOf: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Equatable, Sendable {
     /// Google Cloud Storage path for import errors. This must be an empty,
     /// existing Cloud Storage bucket. Export errors will be written to a file in
     /// this bucket, one per line, as a JSON-encoded

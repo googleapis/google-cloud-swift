@@ -106,7 +106,7 @@
     }
 
     /// The configuration for the speaker to use.
-    public enum VoiceConfigOneOf: Codable, Equatable, Sendable {
+    public enum VoiceConfigOneOf: Equatable, Sendable {
       /// The configuration for a prebuilt voice.
       indirect case prebuiltVoiceConfig(PrebuiltVoiceConfig)
       /// Optional. The configuration for a replicated voice. This enables users to

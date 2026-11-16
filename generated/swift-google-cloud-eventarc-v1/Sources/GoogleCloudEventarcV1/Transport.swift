@@ -93,7 +93,7 @@ public struct Transport: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum IntermediaryOneOf: Codable, Equatable, Sendable {
+  public enum IntermediaryOneOf: Equatable, Sendable {
     /// The Pub/Sub topic and subscription used by Eventarc as a transport
     /// intermediary.
     indirect case pubsub(Pubsub)

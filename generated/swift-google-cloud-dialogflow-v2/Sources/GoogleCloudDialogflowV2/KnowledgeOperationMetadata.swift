@@ -248,7 +248,7 @@
     }
 
     /// Additional metadata for the Knowledge operation.
-    public enum OperationMetadataOneOf: Codable, Equatable, Sendable {
+    public enum OperationMetadataOneOf: Equatable, Sendable {
       /// Metadata for the Export Data Operation such as the destination of export.
       indirect case exportOperationMetadata(ExportOperationMetadata)
     }

@@ -170,7 +170,7 @@
       }
     }
 
-    public enum DatabaseDetailsOneOf: Codable, Equatable, Sendable {
+    public enum DatabaseDetailsOneOf: Equatable, Sendable {
       indirect case sqlserverDatabaseDetails(SqlServerDatabaseDetails)
     }
 

@@ -728,7 +728,7 @@ public struct Preview: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Blueprint to preview.
-  public enum BlueprintOneOf: Codable, Equatable, Sendable {
+  public enum BlueprintOneOf: Equatable, Sendable {
     /// The terraform blueprint to preview.
     indirect case terraformBlueprint(TerraformBlueprint)
   }

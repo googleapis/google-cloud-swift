@@ -1843,7 +1843,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// Values associated with this metric.
-  public enum ResultOneOf: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Equatable, Sendable {
     /// Output only. Numerical stats result
     indirect case numericalStatsResult(AnalyzeDataSourceRiskDetails.NumericalStatsResult)
     /// Output only. Categorical stats result

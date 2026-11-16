@@ -105,7 +105,7 @@
 
     /// The query to retrieve contexts.
     /// Currently only text query is supported.
-    public enum QueryOneOf: Codable, Equatable, Sendable {
+    public enum QueryOneOf: Equatable, Sendable {
       /// Optional. The query in text format to get relevant contexts.
       case text(Swift.String)
     }

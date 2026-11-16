@@ -95,7 +95,7 @@
     }
 
     /// Custom output.
-    public enum CustomOutputOneOf: Codable, Equatable, Sendable {
+    public enum CustomOutputOneOf: Equatable, Sendable {
       /// Output only. List of raw output strings.
       indirect case rawOutputs(RawOutput)
     }

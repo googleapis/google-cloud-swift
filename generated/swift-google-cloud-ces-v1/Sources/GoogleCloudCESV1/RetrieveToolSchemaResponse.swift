@@ -118,7 +118,7 @@ public struct RetrieveToolSchemaResponse: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// The identifier of the tool that the schema is for.
-  public enum ToolIdentifierOneOf: Codable, Equatable, Sendable {
+  public enum ToolIdentifierOneOf: Equatable, Sendable {
     /// The name of the tool that the schema is for.
     /// Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
     case tool(Swift.String)

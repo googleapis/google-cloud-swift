@@ -291,7 +291,7 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The time period over which the objective will be evaluated.
-  public enum PeriodOneOf: Codable, Equatable, Sendable {
+  public enum PeriodOneOf: Equatable, Sendable {
     /// A rolling time period, semantically "in the past `<rolling_period>`".
     /// Must be an integer multiple of 1 day no larger than 30 days.
     indirect case rollingPeriod(GoogleWKT.WKTDuration)

@@ -403,7 +403,7 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The values associated with the config variable.
-  public enum ValueOneOf: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Equatable, Sendable {
     /// Optional. The config variable value in case of config variable of type
     /// string.
     case stringValue(Swift.String)

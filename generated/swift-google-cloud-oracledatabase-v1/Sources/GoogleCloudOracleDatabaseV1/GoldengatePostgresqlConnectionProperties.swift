@@ -490,7 +490,7 @@ public struct GoldengatePostgresqlConnectionProperties: Codable, Equatable, Goog
 
   /// The password Oracle Goldengate uses to connect the associated system of
   /// the given technology.
-  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Equatable, Sendable {
     /// Optional. Input only. The password Oracle Goldengate uses for PostgreSQL
     /// connection in plain text.
     case password(Swift.String)

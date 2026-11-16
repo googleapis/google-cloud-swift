@@ -116,7 +116,7 @@ public struct GenerateFrameworkAuditScopeReportResponse: Codable, Equatable, Goo
   }
 
   /// The set of options that the audit scope report is exported in.
-  public enum AuditReportOneOf: Codable, Equatable, Sendable {
+  public enum AuditReportOneOf: Equatable, Sendable {
     /// The audit scope report content in byte format.
     case scopeReportContents(Foundation.Data)
   }

@@ -411,7 +411,7 @@ public struct FieldType: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required.
-  public enum TypeDeclOneOf: Codable, Equatable, Sendable {
+  public enum TypeDeclOneOf: Equatable, Sendable {
     /// Primitive types, such as string, boolean, etc.
     case primitiveType(FieldType.PrimitiveType)
     /// An enum type.

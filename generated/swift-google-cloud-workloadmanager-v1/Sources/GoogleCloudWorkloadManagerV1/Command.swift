@@ -101,7 +101,7 @@ public struct Command: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of command.
-  public enum CommandTypeOneOf: Codable, Equatable, Sendable {
+  public enum CommandTypeOneOf: Equatable, Sendable {
     /// AgentCommand specifies a one-time executable program for the agent to
     /// run.
     indirect case agentCommand(AgentCommand)

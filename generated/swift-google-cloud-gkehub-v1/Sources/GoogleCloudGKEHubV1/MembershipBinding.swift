@@ -159,7 +159,7 @@ public struct MembershipBinding: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// What type of membershipbinding this is.
-  public enum TargetOneOf: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Equatable, Sendable {
     /// A Scope resource name in the format
     /// `projects/*/locations/*/scopes/*`.
     case scope(Swift.String)

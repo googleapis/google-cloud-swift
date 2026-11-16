@@ -1289,7 +1289,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Type of host to be used for the workstation's runtime.
-    public enum ConfigOneOf: Codable, Equatable, Sendable {
+    public enum ConfigOneOf: Equatable, Sendable {
       /// Specifies a Compute Engine instance as the host.
       indirect case gceInstance(WorkstationConfig.Host.GceInstance)
     }
@@ -1990,7 +1990,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// How a persistent directory should be implemented.
-    public enum DirectoryTypeOneOf: Codable, Equatable, Sendable {
+    public enum DirectoryTypeOneOf: Equatable, Sendable {
       /// A PersistentDirectory backed by a Compute Engine persistent disk.
       indirect case gcePd(WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk)
       /// A PersistentDirectory backed by a Compute Engine hyperdisk high
@@ -2259,7 +2259,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// How an ephemeral directory should be implemented.
-    public enum DirectoryTypeOneOf: Codable, Equatable, Sendable {
+    public enum DirectoryTypeOneOf: Equatable, Sendable {
       /// An EphemeralDirectory backed by a Compute Engine persistent disk.
       indirect case gcePd(WorkstationConfig.EphemeralDirectory.GcePersistentDisk)
     }

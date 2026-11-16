@@ -377,7 +377,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The config used to create a signed X.509 certificate.
-  public enum CertificateConfigOneOf: Codable, Equatable, Sendable {
+  public enum CertificateConfigOneOf: Equatable, Sendable {
     /// Immutable. A pem-encoded X.509 certificate signing request (CSR).
     case pemCsr(Swift.String)
     /// Immutable. A description of the certificate and key that does not require
