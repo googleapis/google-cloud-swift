@@ -25,6 +25,8 @@ struct ServiceAccountData: Decodable, Sendable {
   let privateKey: String
   /// The Google Cloud project ID associated with the service account.
   let projectID: String
+  /// An optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
+  let quotaProjectID: String?
   /// An optional universe domain override (defaults to `googleapis.com` if nil).
   let universeDomain: String?
 
@@ -33,12 +35,13 @@ struct ServiceAccountData: Decodable, Sendable {
     case privateKeyID = "private_key_id"
     case privateKey = "private_key"
     case projectID = "project_id"
+    case quotaProjectID = "quota_project_id"
     case universeDomain = "universe_domain"
   }
 }
 
 extension ServiceAccountData: CustomDebugStringConvertible {
   var debugDescription: String {
-    "ServiceAccountData(clientEmail: \"\(clientEmail)\", privateKeyID: \"\(privateKeyID)\", privateKey: \"[censored]\", projectID: \"\(projectID)\", universeDomain: \(universeDomain ?? "nil"))"
+    "ServiceAccountData(clientEmail: \"\(clientEmail)\", privateKeyID: \"\(privateKeyID)\", privateKey: \"[censored]\", projectID: \"\(projectID)\", quotaProjectID: \(quotaProjectID.map(String.init(reflecting:)) ?? "nil"), universeDomain: \(universeDomain ?? "nil"))"
   }
 }

@@ -172,6 +172,46 @@ import Testing
     #expect(provider is ServiceAccountCredentials)
   }
 
+  @Test func resolvesServiceAccountQuotaProjectPrecedence() async throws {
+    let json = """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "\(TestKeys.escapedPKCS8PEM)",
+        "client_email": "test@gserviceaccount.com",
+        "quota_project_id": "json-quota-project"
+      }
+      """
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try Data(json.utf8).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let fromJSON = try ADC.resolve(
+      environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path]
+    )
+    let fromJSONHeaders = try await fromJSON.headers()
+    #expect(fromJSONHeaders.values(for: "x-goog-user-project") == ["json-quota-project"])
+
+    let fromParameter = try ADC.resolve(
+      quotaProjectID: "config-quota-project",
+      environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path]
+    )
+    let fromParameterHeaders = try await fromParameter.headers()
+    #expect(fromParameterHeaders.values(for: "x-goog-user-project") == ["config-quota-project"])
+
+    let fromEnv = try ADC.resolve(
+      quotaProjectID: "config-quota-project",
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "GOOGLE_CLOUD_QUOTA_PROJECT": "env-quota-project",
+      ]
+    )
+    let fromEnvHeaders = try await fromEnv.headers()
+    #expect(fromEnvHeaders.values(for: "x-goog-user-project") == ["env-quota-project"])
+  }
+
   @Test func resolvesUserCredentialsFromFile() async throws {
     let json = """
       {
@@ -293,7 +333,8 @@ import Testing
           "project_id": "test-project-id",
           "private_key_id": "test-private-key-id",
           "private_key": "\(TestKeys.escapedPKCS8PEM)",
-          "client_email": "source@gserviceaccount.com"
+          "client_email": "source@gserviceaccount.com",
+          "quota_project_id": "source-quota-proj"
         }
       }
       """
@@ -318,6 +359,7 @@ import Testing
     #expect(impersonated.provider.sourceCredentials is ServiceAccountCredentials)
     let sourceHeaders = try await impersonated.provider.sourceCredentials.headers()
     #expect(sourceHeaders["Authorization"]?.hasPrefix("Bearer ") == true)
+    #expect(sourceHeaders.values(for: "x-goog-user-project") == ["source-quota-proj"])
   }
 
   @Test func normalizesEmptyUniverseDomainAndQuotaProjectInImpersonatedADC() async throws {
