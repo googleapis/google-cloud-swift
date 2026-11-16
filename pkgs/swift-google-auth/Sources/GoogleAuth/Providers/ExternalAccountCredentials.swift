@@ -291,17 +291,46 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
   }
 }
 
-/// Helper function to validate if the audience refers to a global workforce pool.
+/// Helper function to validate if the audience refers to a workforce identity pool.
 ///
 /// Workforce pool audience strings follow the pattern:
-/// `//iam.googleapis.com/locations/{location}/workforcePools/{pool}/providers/{provider}`
+/// `//iam.{universe_domain}/locations/{location}/workforcePools/{pool}/providers/{provider}`
+/// (for example, `//iam.googleapis.com/locations/global/workforcePools/{pool}/providers/{provider}`),
+/// or the relative resource path `locations/{location}/workforcePools/{pool}/providers/{provider}`.
 ///
 /// - Parameter audience: The audience string to validate.
 /// - Returns: `true` if the audience represents a valid workforce pool format, `false` otherwise.
 private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
-  var path = audience
-  if path.hasPrefix("//iam.googleapis.com/") {
-    path.removeFirst("//iam.googleapis.com/".count)
+  let path: Substring
+  if audience.hasPrefix("//") {
+    let withoutLeadingSlashes = audience.dropFirst(2)
+    guard let slashIndex = withoutLeadingSlashes.firstIndex(of: "/") else {
+      return false
+    }
+    let authority = withoutLeadingSlashes[..<slashIndex]
+    guard authority.lowercased().hasPrefix("iam."), !authority.contains("%") else {
+      return false
+    }
+    let universe = authority.dropFirst("iam.".count)
+    guard
+      !universe.isEmpty,
+      !universe.hasPrefix("."),
+      !universe.hasSuffix("."),
+      !universe.contains(".."),
+      let urlComponents = URLComponents(string: "https://\(authority)"),
+      urlComponents.host?.lowercased() == authority.lowercased(),
+      urlComponents.port == nil,
+      urlComponents.user == nil,
+      urlComponents.password == nil,
+      urlComponents.path.isEmpty,
+      urlComponents.query == nil,
+      urlComponents.fragment == nil
+    else {
+      return false
+    }
+    path = withoutLeadingSlashes[withoutLeadingSlashes.index(after: slashIndex)...]
+  } else {
+    path = Substring(audience)
   }
 
   let components = path.split(separator: "/", omittingEmptySubsequences: false)

@@ -192,6 +192,49 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
         workforcePoolUserProject: "billing-project"
       )
     }
+
+    // 5. Valid custom-universe workforce pool audiences
+    let validCustomAudiences = [
+      "//iam.apis-tpclp.goog/locations/global/workforcePools/pool/providers/provider",
+      "//iam.my-universe.example.com/locations/global/workforcePools/pool/providers/provider",
+      "//IAM.custom-universe.com/locations/global/workforcePools/pool/providers/provider",
+    ]
+    for customAudience in validCustomAudiences {
+      let creds = try ExternalAccountCredentials(
+        credentialSource: .programmatic(subjectTokenProvider: provider),
+        audience: customAudience,
+        subjectTokenType: .idToken,
+        tokenURL: URL(string: "https://sts.apis-tpclp.goog/v1/token")!,
+        workforcePoolUserProject: "billing-project",
+        universeDomain: "apis-tpclp.goog"
+      )
+      #expect(creds.workforcePoolUserProject == "billing-project")
+    }
+
+    // 6. Invalid custom-universe / malformed authority prefixes or workload pools
+    let invalidAudiences = [
+      "//iam./locations/global/workforcePools/pool/providers/provider",
+      "//iam..com/locations/global/workforcePools/pool/providers/provider",
+      "//iam.foo..com/locations/global/workforcePools/pool/providers/provider",
+      "//iam.com./locations/global/workforcePools/pool/providers/provider",
+      "//iam.custom.com:8443/locations/global/workforcePools/pool/providers/provider",
+      "//iam.custom%20domain.com/locations/global/workforcePools/pool/providers/provider",
+      "//sts.googleapis.com/locations/global/workforcePools/pool/providers/provider",
+      "///locations/global/workforcePools/pool/providers/provider",
+      "//iam.apis-tpclp.goog",
+      "//iam.apis-tpclp.goog/projects/123/locations/global/workloadIdentityPools/pool/providers/provider",
+    ]
+    for invalidAudience in invalidAudiences {
+      #expect(throws: CredentialsError.self, "Expected \(invalidAudience) to be rejected") {
+        _ = try ExternalAccountCredentials(
+          credentialSource: .programmatic(subjectTokenProvider: provider),
+          audience: invalidAudience,
+          subjectTokenType: .idToken,
+          tokenURL: targetURL,
+          workforcePoolUserProject: "billing-project"
+        )
+      }
+    }
   }
 
   @Test("Validates authorization and billing quota headers match outgoing requirements")
