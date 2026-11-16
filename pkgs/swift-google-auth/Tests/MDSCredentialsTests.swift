@@ -1136,6 +1136,330 @@ import Testing
     _ = provider
   }
 
+  @Test func universeDomainExplicitOverrideSkipsNetwork() async throws {
+    let mock = MockHTTPClient([])
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(
+      universeDomain: "explicit.universe.com",
+      client: client,
+      environment: [:]
+    )
+    let domain = try await provider.universeDomain()
+    #expect(domain == "explicit.universe.com")
+  }
+
+  @Test func universeDomainFetchesAndCachesFromMetadataServer() async throws {
+    let networkCalls = CallCounter()
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        networkCalls.increment()
+        #expect(request.method == .GET)
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        #expect(request.headers["Metadata-Flavor"] == ["Google"])
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "text/plain")]),
+          body: .bytes(.init(data: Data("  my-custom-universe.com\n".utf8)))
+        )
+      }
+    ])
+
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(client: client, environment: [:])
+
+    let domain1 = try await provider.universeDomain()
+    let domain2 = try await provider.universeDomain()
+    #expect(domain1 == "my-custom-universe.com")
+    #expect(domain2 == "my-custom-universe.com")
+    #expect(networkCalls.getCount() == 1)
+  }
+
+  @Test func universeDomainReturnsDefaultOn404OrEmpty() async throws {
+    let mock404 = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        return HTTPClientResponse(version: .http2, status: .notFound)
+      }
+    ])
+    let provider404 = MDSCredentials(client: AuthHTTPClient(mock: mock404), environment: [:])
+    #expect(try await provider404.universeDomain() == "googleapis.com")
+
+    let mockEmpty = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          body: .bytes(.init(data: Data("   \n ".utf8)))
+        )
+      }
+    ])
+    let providerEmpty = MDSCredentials(client: AuthHTTPClient(mock: mockEmpty), environment: [:])
+    #expect(try await providerEmpty.universeDomain() == "googleapis.com")
+  }
+
+  @Test func universeDomainPropagatesAndCachesPermanentServerError() async throws {
+    let attempts = CallCounter()
+    let mock = MockHTTPClient([
+      { _ in
+        attempts.increment()
+        return HTTPClientResponse(version: .http2, status: .forbidden)
+      }
+    ])
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 2, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+    let error1 = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    guard case let .cannotFetchToken(message, _) = error1 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error1))")
+      return
+    }
+    #expect(message.contains("universe domain"))
+    #expect(attempts.getCount() == 1)
+
+    await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    #expect(attempts.getCount() == 1)
+  }
+
+  @Test func universeDomainDoesNotCacheTransientOrCancellationErrors() async throws {
+    let attempts = CallCounter()
+    let mock = MockHTTPClient([
+      { _ in
+        attempts.increment()
+        return HTTPClientResponse(version: .http2, status: .serviceUnavailable)
+      },
+      { _ in
+        attempts.increment()
+        throw CancellationError()
+      },
+      { _ in
+        attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          body: .bytes(.init(data: Data("recovered.universe.com\n".utf8)))
+        )
+      },
+    ])
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 1, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+
+    // 1. Transient 503 error must not be cached as permanent
+    await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    #expect(attempts.getCount() == 1)
+
+    // 2. CancellationError must not be cached as permanent
+    await #expect(throws: CancellationError.self) {
+      _ = try await provider.universeDomain()
+    }
+    #expect(attempts.getCount() == 2)
+
+    // 3. Subsequent call succeeds and caches the resolved domain
+    #expect(try await provider.universeDomain() == "recovered.universe.com")
+    #expect(try await provider.universeDomain() == "recovered.universe.com")
+    #expect(attempts.getCount() == 3)
+  }
+
+  @Test func adcFallbackUniverseDomainUsesShortTimeoutAndCachesPermanentFailure() async throws {
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let mock = MockHTTPClient([
+      { request in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        #expect(request.headers["Metadata-Flavor"] == ["Google"])
+        throw URLError(.cannotConnectToHost)
+      }
+    ])
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      fromADC: true,
+      environment: [:]
+    )
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    guard case let .cannotFetchToken(message, _) = error else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+      return
+    }
+    #expect(message.contains("the universe domain"))
+    #expect(message.contains("gcloud auth application-default login"))
+    #expect(mock.recordedTimeouts == [MDSAccessTokenProvider.adcFallbackTimeout])
+
+    // Subsequent calls must throw the cached permanent failure without re-probing MDS.
+    _ = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    #expect(mock.recordedTimeouts == [MDSAccessTokenProvider.adcFallbackTimeout])
+  }
+
+  @Test func adcFallbackUniverseDomainConfirmationPromotesSubsequentRequests() async throws {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let tokenData = try encoder.encode(
+      MockResponse(accessToken: "confirmed-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+
+    let mock = MockHTTPClient([
+      { request in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        return HTTPClientResponse(
+          version: .http2,
+          status: .serviceUnavailable,
+          headers: .init([("Metadata-Flavor", "Google")])
+        )
+      },
+      { request in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        return HTTPClientResponse(
+          version: .http2,
+          status: .notFound,
+          headers: .init([("Metadata-Flavor", "Google")])
+        )
+      },
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: tokenData))
+        )
+      },
+    ])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 2, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      fromADC: true,
+      environment: [:]
+    )
+
+    #expect(try await provider.universeDomain() == "googleapis.com")
+    let headers = try await provider.headers()
+    #expect(headers["Authorization"] == "Bearer confirmed-token")
+    #expect(
+      mock.recordedTimeouts == [
+        MDSAccessTokenProvider.adcFallbackTimeout,
+        AuthHTTPClient.defaultTimeout,
+        AuthHTTPClient.defaultTimeout,
+      ]
+    )
+  }
+
+  @Test func explicitMDSRetriesAndFormatsNonADCErrorMessage() async throws {
+    let attempts = CallCounter()
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        attempts.increment()
+        throw URLError(.cannotConnectToHost)
+      },
+      { request in
+        Self.checkRequest(request)
+        attempts.increment()
+        throw URLError(.cannotConnectToHost)
+      },
+    ])
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 2, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      fromADC: false,
+      environment: [:]
+    )
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(attempts.getCount() == 2)
+
+    guard case let .cannotFetchToken(got, _) = error else {
+      Issue.record("Unexpected error type: \(String(describing: error))")
+      return
+    }
+    #expect(got.contains(MDSAccessTokenProvider.defaultEndpoint))
+    #expect(!got.contains("Application Default Credentials"))
+    #expect(!got.contains("gcloud auth application-default login"))
+  }
+
+  @Test func emptyQuotaProjectAndUniverseDomainAreNormalized() async throws {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedData = try encoder.encode(
+      MockResponse(accessToken: "mock-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData))
+        )
+      },
+      { request in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          body: .bytes(.init(data: Data("queried.universe.com\n".utf8)))
+        )
+      },
+    ])
+
+    let provider = MDSCredentials(
+      quotaProjectID: "",
+      universeDomain: "",
+      client: AuthHTTPClient(mock: mock),
+      environment: [:]
+    )
+    let headers = try await provider.headers()
+    #expect(headers["Authorization"] == "Bearer mock-token")
+    #expect(headers["x-goog-user-project"] == nil)
+    #expect(try await provider.universeDomain() == "queried.universe.com")
+  }
+
   static func checkRequest(
     _ request: HTTPClientRequest, sourceLocation: SourceLocation = #_sourceLocation
   ) {

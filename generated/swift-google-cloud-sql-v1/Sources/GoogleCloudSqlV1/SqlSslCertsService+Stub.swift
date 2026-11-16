@@ -35,6 +35,18 @@
       func list(
         request: SqlSslCertsListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SslCertsListResponse
+
+      func updateCustomerManagedCertificate(
+        request: UpdateCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation
+
+      func deleteCustomerManagedCertificate(
+        request: DeleteCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation
+
+      func listCustomerManagedCertificates(
+        request: ListCustomerManagedCertificatesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse
     }
   }
 #endif

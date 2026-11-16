@@ -107,6 +107,51 @@
             return try await self.inner.list(request: r, options: o)
           })
       }
+
+      public func updateCustomerManagedCertificate(
+        request: UpdateCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation {
+        return try await self._intercept(
+          request: request,
+          options: options,
+          idempotent: false,
+          action: {
+            (r: UpdateCustomerManagedCertificateRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudSqlV1.Operation
+            in
+            return try await self.inner.updateCustomerManagedCertificate(request: r, options: o)
+          })
+      }
+
+      public func deleteCustomerManagedCertificate(
+        request: DeleteCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation {
+        return try await self._intercept(
+          request: request,
+          options: options,
+          idempotent: false,
+          action: {
+            (r: DeleteCustomerManagedCertificateRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudSqlV1.Operation
+            in
+            return try await self.inner.deleteCustomerManagedCertificate(request: r, options: o)
+          })
+      }
+
+      public func listCustomerManagedCertificates(
+        request: ListCustomerManagedCertificatesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse {
+        return try await self._intercept(
+          request: request,
+          options: options,
+          idempotent: true,
+          action: {
+            (r: ListCustomerManagedCertificatesRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse
+            in
+            return try await self.inner.listCustomerManagedCertificates(request: r, options: o)
+          })
+      }
     }
   }
 #endif

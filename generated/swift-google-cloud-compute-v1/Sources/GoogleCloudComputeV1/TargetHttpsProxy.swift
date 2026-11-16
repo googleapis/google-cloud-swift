@@ -171,7 +171,7 @@
     /// Certificate Manager Certificates accepted formats are:
     ///
     ///    - //certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificates/{resourceName}.
-    ///    - https://certificatemanager.googleapis.com/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.
+    ///    - https://certificatemanager.{universeDomain}/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.
     public var sslCertificates: [Swift.String] = []
 
     /// URL of SslPolicy resource that will be associated with the TargetHttpsProxy

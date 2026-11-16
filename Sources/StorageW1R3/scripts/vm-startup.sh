@@ -357,7 +357,7 @@ build_benchmark() {
 
   echo "--- [${label}] Building ${product} in release mode ---"
   local pkg_dir="${workspace_dir}${pkg_path:+/${pkg_path}}"
-  local build_flags=(-c release --product "${product}" --package-path "${pkg_dir}" -Xswiftc -warnings-as-errors)
+  local build_flags=(--build-system native -c release --product "${product}" --package-path "${pkg_dir}" -Xswiftc -warnings-as-errors)
 
   if [[ -f "${workspace_dir}/ci/swift-version.sh" ]]; then
     # shellcheck source=/dev/null

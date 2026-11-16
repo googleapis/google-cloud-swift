@@ -144,6 +144,10 @@ extension Clients {
       request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Workspace
 
+    func createWorkspaceLongRunning(
+      request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func deleteWorkspace(
       request: DeleteWorkspaceRequest, options: GoogleGax.RequestOptions
     ) async throws
@@ -247,6 +251,10 @@ extension Clients {
     func createCompilationResult(
       request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CompilationResult
+
+    func createCompilationResultLongRunning(
+      request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
 
     func queryCompilationResultActions(
       request: QueryCompilationResultActionsRequest, options: GoogleGax.RequestOptions

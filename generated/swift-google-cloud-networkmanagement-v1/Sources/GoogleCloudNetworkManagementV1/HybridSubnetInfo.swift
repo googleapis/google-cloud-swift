@@ -24,7 +24,9 @@ public struct HybridSubnetInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Name of a hybrid subnet.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of a hybrid subnet.
+  /// URI of the hybrid subnet.
+  /// Format:
+  /// `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
   public var uri: Swift.String = Swift.String()
 
   /// Name of a Google Cloud region where the hybrid subnet is configured.

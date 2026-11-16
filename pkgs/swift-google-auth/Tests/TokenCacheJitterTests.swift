@@ -22,17 +22,17 @@ import Testing
 
 private actor JitterMockTokenProvider: TokenProvider {
   private var fetchCount = 0
-  private var nextToken: Token?
+  private var nextToken: AccessToken?
   private var nextError: (any Error)?
   private var fetchContinuations: [CheckedContinuation<Void, Never>] = []
   private var fetchIsStarted = false
 
-  func configure(token: Token?, error: (any Error)? = nil) {
+  func configure(token: AccessToken?, error: (any Error)? = nil) {
     self.nextToken = token
     self.nextError = error
   }
 
-  func fetchToken() async throws -> Token {
+  func fetchToken() async throws -> AccessToken {
     self.fetchCount += 1
 
     let continuationsToResume = self.fetchContinuations
@@ -132,8 +132,8 @@ private actor JitterMockTokenProvider: TokenProvider {
     // normalRefreshSlack = 2s, shortRefreshSlack = 1s.
     // minSleep = 10 - 2 = 8s (D).
     // maxSleep = 10 - 1 = 9s (T - shortRefreshSlack).
-    let initialToken = Token(
-      accessToken: "initial", expirationDate: now.addingTimeInterval(10.0))
+    let initialToken = AccessToken(
+      token: "initial", expirationDate: now.addingTimeInterval(10.0))
     await provider.configure(token: initialToken)
 
     let cache = TokenCache(
@@ -151,8 +151,8 @@ private actor JitterMockTokenProvider: TokenProvider {
     #expect(await provider.count == 1)
 
     // Prepare next token
-    let refreshedToken = Token(
-      accessToken: "refreshed", expirationDate: now.addingTimeInterval(3600.0))
+    let refreshedToken = AccessToken(
+      token: "refreshed", expirationDate: now.addingTimeInterval(3600.0))
     await provider.configure(token: refreshedToken)
 
     // Advance by 8.5 seconds (past D = 8.0s, but before upper bound = 9.0s)
@@ -172,7 +172,7 @@ private actor JitterMockTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
 
     let token = try await cache.token()
-    #expect(token.accessToken == "refreshed")
+    #expect(token.token == "refreshed")
   }
 
   @Test func normalRangeDeterministicJitterLower() async throws {
@@ -181,8 +181,8 @@ private actor JitterMockTokenProvider: TokenProvider {
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
 
-    let initialToken = Token(
-      accessToken: "initial", expirationDate: now.addingTimeInterval(10.0))
+    let initialToken = AccessToken(
+      token: "initial", expirationDate: now.addingTimeInterval(10.0))
     await provider.configure(token: initialToken)
 
     let cache = TokenCache(
@@ -198,8 +198,8 @@ private actor JitterMockTokenProvider: TokenProvider {
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
 
-    let refreshedToken = Token(
-      accessToken: "refreshed", expirationDate: now.addingTimeInterval(3600.0))
+    let refreshedToken = AccessToken(
+      token: "refreshed", expirationDate: now.addingTimeInterval(3600.0))
     await provider.configure(token: refreshedToken)
 
     // lowerBound is minSleep = 10 - 2 = 8.0s (D)
@@ -210,7 +210,7 @@ private actor JitterMockTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
 
     let token = try await cache.token()
-    #expect(token.accessToken == "refreshed")
+    #expect(token.token == "refreshed")
   }
 
   @Test func normalRangeDeterministicJitterClamping() async throws {
@@ -219,8 +219,8 @@ private actor JitterMockTokenProvider: TokenProvider {
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
 
-    let initialToken = Token(
-      accessToken: "initial", expirationDate: now.addingTimeInterval(10.0))
+    let initialToken = AccessToken(
+      token: "initial", expirationDate: now.addingTimeInterval(10.0))
     await provider.configure(token: initialToken)
 
     // Jitter returns a value far beyond upperBound (e.g. 100 seconds)
@@ -238,8 +238,8 @@ private actor JitterMockTokenProvider: TokenProvider {
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
 
-    let refreshedToken = Token(
-      accessToken: "refreshed", expirationDate: now.addingTimeInterval(3600.0))
+    let refreshedToken = AccessToken(
+      token: "refreshed", expirationDate: now.addingTimeInterval(3600.0))
     await provider.configure(token: refreshedToken)
 
     // At 8.9s, it should still be sleeping (clamped to 9.0s)
@@ -255,7 +255,7 @@ private actor JitterMockTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
 
     let token = try await cache.token()
-    #expect(token.accessToken == "refreshed")
+    #expect(token.token == "refreshed")
   }
 
   @Test func normalRangeDefaultJitterSleepsWithinExpectedRange() async throws {
@@ -265,8 +265,8 @@ private actor JitterMockTokenProvider: TokenProvider {
     let timeSource = MockTimeSource(currentDate: now)
 
     // Token expires in 10s. normalSlack = 4s (D = 6s), shortSlack = 1s (T - 1s = 9s).
-    let initialToken = Token(
-      accessToken: "initial", expirationDate: now.addingTimeInterval(10.0))
+    let initialToken = AccessToken(
+      token: "initial", expirationDate: now.addingTimeInterval(10.0))
     await provider.configure(token: initialToken)
 
     let cache = TokenCache(
@@ -282,8 +282,8 @@ private actor JitterMockTokenProvider: TokenProvider {
     await clock.sleeperWaiting()
     #expect(await provider.count == 1)
 
-    let refreshedToken = Token(
-      accessToken: "refreshed", expirationDate: now.addingTimeInterval(3600.0))
+    let refreshedToken = AccessToken(
+      token: "refreshed", expirationDate: now.addingTimeInterval(3600.0))
     await provider.configure(token: refreshedToken)
 
     // At 5.9s (before D = 6.0s), sleeper must ALWAYS still be sleeping
@@ -299,7 +299,7 @@ private actor JitterMockTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
 
     let token = try await cache.token()
-    #expect(token.accessToken == "refreshed")
+    #expect(token.token == "refreshed")
   }
 
   @Test func shortSlackRangeJitter() async throws {
@@ -312,8 +312,8 @@ private actor JitterMockTokenProvider: TokenProvider {
     // normalSlack = 4s, shortSlack = 1s.
     // Since duration (3s) <= normalSlack (4s) and duration (3s) > shortSlack (1s),
     // it enters the short-slack range with range 0...shortSlack (0...1s).
-    let initialToken = Token(
-      accessToken: "stale-initial", expirationDate: now.addingTimeInterval(3.0))
+    let initialToken = AccessToken(
+      token: "stale-initial", expirationDate: now.addingTimeInterval(3.0))
     await provider.configure(token: initialToken)
 
     let recordedRanges = Mutex<[ClosedRange<Duration>]>([])
@@ -348,8 +348,8 @@ private actor JitterMockTokenProvider: TokenProvider {
 
     // Token expires in 0.5s (< shortRefreshSlack = 1.0s).
     // It enters the near-expiry range [T - shortSlack, T].
-    let initialToken = Token(
-      accessToken: "about-to-expire", expirationDate: now.addingTimeInterval(0.5))
+    let initialToken = AccessToken(
+      token: "about-to-expire", expirationDate: now.addingTimeInterval(0.5))
     await provider.configure(token: initialToken)
 
     let recordedRanges = Mutex<[ClosedRange<Duration>]>([])
@@ -382,8 +382,8 @@ private actor JitterMockTokenProvider: TokenProvider {
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
 
-    let initialToken = Token(
-      accessToken: "valid", expirationDate: now.addingTimeInterval(10.0))
+    let initialToken = AccessToken(
+      token: "valid", expirationDate: now.addingTimeInterval(10.0))
     await provider.configure(token: initialToken)
 
     let retryJitterRanges = Mutex<[ClosedRange<Duration>]>([])
@@ -431,8 +431,8 @@ private actor JitterMockTokenProvider: TokenProvider {
     let timeSource = MockTimeSource(currentDate: now)
 
     // Initial token expires in 10 seconds.
-    let initialToken = Token(
-      accessToken: "valid", expirationDate: now.addingTimeInterval(10.0))
+    let initialToken = AccessToken(
+      token: "valid", expirationDate: now.addingTimeInterval(10.0))
     await provider.configure(token: initialToken)
 
     let cache = TokenCache(
@@ -449,8 +449,8 @@ private actor JitterMockTokenProvider: TokenProvider {
     #expect(await provider.count == 1)
 
     // Configure next token
-    let refreshedToken = Token(
-      accessToken: "refreshed", expirationDate: now.addingTimeInterval(3600.0))
+    let refreshedToken = AccessToken(
+      token: "refreshed", expirationDate: now.addingTimeInterval(3600.0))
     await provider.configure(token: refreshedToken)
 
     // Advance to 7.9s (before D = 8.0s) -> still sleeping
@@ -466,6 +466,6 @@ private actor JitterMockTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
 
     let token = try await cache.token()
-    #expect(token.accessToken == "refreshed")
+    #expect(token.token == "refreshed")
   }
 }

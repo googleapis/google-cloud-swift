@@ -36,9 +36,9 @@ public struct RaiFilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// equal to or higher than the confidence level defined in configuration.
   public var matchState: FilterMatchState = FilterMatchState()
 
-  /// The map of RAI filter results where key is RAI filter type - either of
-  /// "sexually_explicit", "hate_speech", "harassment", "dangerous", "violence",
-  /// "sexually_suggestive".
+  /// The map of RAI filter results where the key is the RAI filter type and the
+  /// value is the RAI filter's result. Allowed keys are "sexually_explicit",
+  /// "hate_speech", "harassment", and "dangerous".
   public var raiFilterTypeResults: [Swift.String: RaiFilterResult.RaiFilterTypeResult] = [:]
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

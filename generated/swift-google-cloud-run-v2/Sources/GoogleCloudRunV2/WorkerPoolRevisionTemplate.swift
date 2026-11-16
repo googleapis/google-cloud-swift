@@ -67,6 +67,9 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleWKT._AnyPack
   /// Revision.
   public var containers: [Container] = []
 
+  /// Optional. Configuration for sandboxes.
+  public var sandboxes: SandboxConfiguration? = nil
+
   /// Optional. A list of Volumes to make available to containers.
   public var volumes: [Volume] = []
 
@@ -91,6 +94,12 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleWKT._AnyPack
 
   /// Optional. True if GPU zonal redundancy is disabled on this worker pool.
   public var gpuZonalRedundancyDisabled: Swift.Bool? = nil
+
+  /// Optional. Arbitrary identifier for the API client.
+  public var client: Swift.String = Swift.String()
+
+  /// Optional. Arbitrary version identifier for the API client.
+  public var clientVersion: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -123,6 +132,7 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleWKT._AnyPack
     static let vpcAccess = CodingKeys(stringValue: "vpcAccess")
     static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
     static let containers = CodingKeys(stringValue: "containers")
+    static let sandboxes = CodingKeys(stringValue: "sandboxes")
     static let volumes = CodingKeys(stringValue: "volumes")
     static let encryptionKey = CodingKeys(stringValue: "encryptionKey")
     static let serviceMesh = CodingKeys(stringValue: "serviceMesh")
@@ -132,6 +142,8 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleWKT._AnyPack
       stringValue: "encryptionKeyShutdownDuration")
     static let nodeSelector = CodingKeys(stringValue: "nodeSelector")
     static let gpuZonalRedundancyDisabled = CodingKeys(stringValue: "gpuZonalRedundancyDisabled")
+    static let client = CodingKeys(stringValue: "client")
+    static let clientVersion = CodingKeys(stringValue: "clientVersion")
 
     static let _knownKeys: Set<Swift.String> = [
       "revision",
@@ -140,6 +152,7 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleWKT._AnyPack
       "vpcAccess",
       "serviceAccount",
       "containers",
+      "sandboxes",
       "volumes",
       "encryptionKey",
       "serviceMesh",
@@ -147,6 +160,8 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleWKT._AnyPack
       "encryptionKeyShutdownDuration",
       "nodeSelector",
       "gpuZonalRedundancyDisabled",
+      "client",
+      "clientVersion",
     ]
   }
 
@@ -171,6 +186,7 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleWKT._AnyPack
     if let value = try container.decodeIfPresent([Container].self, forKey: .containers) {
       self.containers = value
     }
+    self.sandboxes = try container.decodeIfPresent(SandboxConfiguration.self, forKey: .sandboxes)
     if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
       self.volumes = value
     }
@@ -188,6 +204,12 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleWKT._AnyPack
     self.nodeSelector = try container.decodeIfPresent(NodeSelector.self, forKey: .nodeSelector)
     self.gpuZonalRedundancyDisabled = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .gpuZonalRedundancyDisabled)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .client) {
+      self.client = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientVersion) {
+      self.clientVersion = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -202,6 +224,7 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleWKT._AnyPack
     try container.encodeIfPresent(self.vpcAccess, forKey: .vpcAccess)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.containers, forKey: .containers)
+    try container.encodeIfPresent(self.sandboxes, forKey: .sandboxes)
     try container.encode(self.volumes, forKey: .volumes)
     try container.encode(self.encryptionKey, forKey: .encryptionKey)
     try container.encodeIfPresent(self.serviceMesh, forKey: .serviceMesh)
@@ -211,6 +234,8 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleWKT._AnyPack
     try container.encodeIfPresent(self.nodeSelector, forKey: .nodeSelector)
     try container.encodeIfPresent(
       self.gpuZonalRedundancyDisabled, forKey: .gpuZonalRedundancyDisabled)
+    try container.encode(self.client, forKey: .client)
+    try container.encode(self.clientVersion, forKey: .clientVersion)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

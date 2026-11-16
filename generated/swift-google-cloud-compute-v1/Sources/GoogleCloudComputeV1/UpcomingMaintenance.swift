@@ -143,6 +143,9 @@
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum MaintenanceReasons: Codable, Equatable, Hashable, Sendable {
+      /// Maintenance due to a fault reported by the customer via the R&R
+      /// (Report-and-Replace) API.
+      case failureCustomerReported
       /// Maintenance due to disk errors.
       case failureDisk
       /// Maintenance due to GPU errors.
@@ -192,6 +195,7 @@
       /// Returns the string value (or name) associated with the enumeration.
       public var stringValue: Swift.String {
         switch self {
+        case .failureCustomerReported: return "FAILURE_CUSTOMER_REPORTED"
         case .failureDisk: return "FAILURE_DISK"
         case .failureGpu: return "FAILURE_GPU"
         case .failureGpuMultipleFaultyHostsCustomerReported:
@@ -220,6 +224,7 @@
       /// If the value is unknown, this initializes to [`unknownStringValue`](doc:MaintenanceReasons/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
+        case "FAILURE_CUSTOMER_REPORTED": self = .failureCustomerReported
         case "FAILURE_DISK": self = .failureDisk
         case "FAILURE_GPU": self = .failureGpu
         case "FAILURE_GPU_MULTIPLE_FAULTY_HOSTS_CUSTOMER_REPORTED":
@@ -252,6 +257,7 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
+        case .failureCustomerReported: return try container.encode("FAILURE_CUSTOMER_REPORTED")
         case .failureDisk: return try container.encode("FAILURE_DISK")
         case .failureGpu: return try container.encode("FAILURE_GPU")
         case .failureGpuMultipleFaultyHostsCustomerReported:

@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if ControlService || DataStoreService || EngineService || ServingConfigService
+#if ControlService || DataStoreService || EngineService || ServingConfigService || WidgetConfigService
   import Foundation
 
   /// The type of solution.
@@ -37,6 +37,8 @@
     /// It's used for Generative chat engine only, the associated data stores
     /// must enrolled with `SOLUTION_TYPE_CHAT` solution.
     case generativeChat
+    /// Used for AI Mode.
+    case aiMode
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -70,6 +72,7 @@
       case .search: return 2
       case .chat: return 3
       case .generativeChat: return 4
+      case .aiMode: return 5
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -85,6 +88,7 @@
       case .search: return "SOLUTION_TYPE_SEARCH"
       case .chat: return "SOLUTION_TYPE_CHAT"
       case .generativeChat: return "SOLUTION_TYPE_GENERATIVE_CHAT"
+      case .aiMode: return "SOLUTION_TYPE_AI_MODE"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -100,6 +104,7 @@
       case "SOLUTION_TYPE_SEARCH": self = .search
       case "SOLUTION_TYPE_CHAT": self = .chat
       case "SOLUTION_TYPE_GENERATIVE_CHAT": self = .generativeChat
+      case "SOLUTION_TYPE_AI_MODE": self = .aiMode
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -114,6 +119,7 @@
       case 2: self = .search
       case 3: self = .chat
       case 4: self = .generativeChat
+      case 5: self = .aiMode
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -144,6 +150,7 @@
       case .search: return try container.encode("SOLUTION_TYPE_SEARCH")
       case .chat: return try container.encode("SOLUTION_TYPE_CHAT")
       case .generativeChat: return try container.encode("SOLUTION_TYPE_GENERATIVE_CHAT")
+      case .aiMode: return try container.encode("SOLUTION_TYPE_AI_MODE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -131,6 +131,14 @@
     /// Insights configuration, for now relevant only for Postgres.
     public var insightsConfig: InsightsConfig? = nil
 
+    /// Optional. Enables Microsoft Distributed Transaction Coordinator (MSDTC) for
+    /// SQL Server.
+    public var msdtcEnabled: Swift.Bool? = nil
+
+    /// Optional. RPC authentication mode for Microsoft Distributed Transaction
+    /// Coordinator (MSDTC).
+    public var msdtcRpcAuthMode: Settings.MsdtcRpcAuthMode? = nil
+
     /// The local user password validation policy of the instance for PostgreSQL
     /// and MySQL.
     public var passwordValidationPolicy: PasswordValidationPolicy? = nil
@@ -224,6 +232,10 @@
     /// metrics during high load situations.
     public var performanceCaptureConfig: PerformanceCaptureConfig? = nil
 
+    /// Optional. Input only. Users to be created on the instance during instance
+    /// creation.
+    public var initialUsersConfig: InitialUsersConfig? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Settings`.
@@ -274,6 +286,8 @@
       static let collation = CodingKeys(stringValue: "collation")
       static let denyMaintenancePeriods = CodingKeys(stringValue: "denyMaintenancePeriods")
       static let insightsConfig = CodingKeys(stringValue: "insightsConfig")
+      static let msdtcEnabled = CodingKeys(stringValue: "msdtcEnabled")
+      static let msdtcRpcAuthMode = CodingKeys(stringValue: "msdtcRpcAuthMode")
       static let passwordValidationPolicy = CodingKeys(stringValue: "passwordValidationPolicy")
       static let sqlServerAuditConfig = CodingKeys(stringValue: "sqlServerAuditConfig")
       static let edition = CodingKeys(stringValue: "edition")
@@ -297,6 +311,7 @@
       static let entraidConfig = CodingKeys(stringValue: "entraidConfig")
       static let dataApiAccess = CodingKeys(stringValue: "dataApiAccess")
       static let performanceCaptureConfig = CodingKeys(stringValue: "performanceCaptureConfig")
+      static let initialUsersConfig = CodingKeys(stringValue: "initialUsersConfig")
 
       static let _knownKeys: Set<Swift.String> = [
         "settingsVersion",
@@ -323,6 +338,8 @@
         "collation",
         "denyMaintenancePeriods",
         "insightsConfig",
+        "msdtcEnabled",
+        "msdtcRpcAuthMode",
         "passwordValidationPolicy",
         "sqlServerAuditConfig",
         "edition",
@@ -345,6 +362,7 @@
         "entraidConfig",
         "dataApiAccess",
         "performanceCaptureConfig",
+        "initialUsersConfig",
       ]
     }
 
@@ -425,6 +443,9 @@
       }
       self.insightsConfig = try container.decodeIfPresent(
         InsightsConfig.self, forKey: .insightsConfig)
+      self.msdtcEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .msdtcEnabled)
+      self.msdtcRpcAuthMode = try container.decodeIfPresent(
+        Settings.MsdtcRpcAuthMode.self, forKey: .msdtcRpcAuthMode)
       self.passwordValidationPolicy = try container.decodeIfPresent(
         PasswordValidationPolicy.self, forKey: .passwordValidationPolicy)
       self.sqlServerAuditConfig = try container.decodeIfPresent(
@@ -474,6 +495,8 @@
         Settings.DataApiAccess.self, forKey: .dataApiAccess)
       self.performanceCaptureConfig = try container.decodeIfPresent(
         PerformanceCaptureConfig.self, forKey: .performanceCaptureConfig)
+      self.initialUsersConfig = try container.decodeIfPresent(
+        InitialUsersConfig.self, forKey: .initialUsersConfig)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -511,6 +534,8 @@
       try container.encode(self.collation, forKey: .collation)
       try container.encode(self.denyMaintenancePeriods, forKey: .denyMaintenancePeriods)
       try container.encodeIfPresent(self.insightsConfig, forKey: .insightsConfig)
+      try container.encodeIfPresent(self.msdtcEnabled, forKey: .msdtcEnabled)
+      try container.encodeIfPresent(self.msdtcRpcAuthMode, forKey: .msdtcRpcAuthMode)
       try container.encodeIfPresent(
         self.passwordValidationPolicy, forKey: .passwordValidationPolicy)
       try container.encodeIfPresent(self.sqlServerAuditConfig, forKey: .sqlServerAuditConfig)
@@ -540,6 +565,7 @@
       try container.encodeIfPresent(self.dataApiAccess, forKey: .dataApiAccess)
       try container.encodeIfPresent(
         self.performanceCaptureConfig, forKey: .performanceCaptureConfig)
+      try container.encodeIfPresent(self.initialUsersConfig, forKey: .initialUsersConfig)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -670,6 +696,140 @@
         case .always: return try container.encode("ALWAYS")
         case .never: return try container.encode("NEVER")
         case .onDemand: return try container.encode("ON_DEMAND")
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    /// RPC authentication modes for Microsoft Distributed Transaction Coordinator
+    /// (MSDTC).
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum MsdtcRpcAuthMode: Codable, Equatable, Hashable, Sendable {
+      /// Unspecified RPC authentication mode.
+      case unspecified
+      /// Allow only secure RPC calls. Both servers (caller and receiver) must
+      /// successfully verify each other's identities, typically using Active
+      /// Directory machine accounts and Kerberos Service Principal Names (SPNs).
+      /// This is equivalent to Mutual Authentication in Microsoft SQL Server on
+      /// Windows.
+      case allowOnlySecureRpcCalls
+      /// Similar to Incoming authentication mode in Microsoft SQL Server on
+      /// Windows, the caller authenticates to the receiver.
+      /// The receiver verifies the caller's identity, but the Receiver does not
+      /// authenticate itself back to the caller.
+      case fallbackToUnsecureRpcIfNecessary
+      /// No authentication. Highly insecure and thus should only be used on
+      /// already secure networks and never over public IP.
+      case turnOffRpcSecurity
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .unspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .unspecified: return 0
+        case .allowOnlySecureRpcCalls: return 1
+        case .fallbackToUnsecureRpcIfNecessary: return 2
+        case .turnOffRpcSecurity: return 3
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .unspecified: return "MSDTC_RPC_AUTH_MODE_UNSPECIFIED"
+        case .allowOnlySecureRpcCalls: return "ALLOW_ONLY_SECURE_RPC_CALLS"
+        case .fallbackToUnsecureRpcIfNecessary: return "FALLBACK_TO_UNSECURE_RPC_IF_NECESSARY"
+        case .turnOffRpcSecurity: return "TURN_OFF_RPC_SECURITY"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:MsdtcRpcAuthMode/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "MSDTC_RPC_AUTH_MODE_UNSPECIFIED": self = .unspecified
+        case "ALLOW_ONLY_SECURE_RPC_CALLS": self = .allowOnlySecureRpcCalls
+        case "FALLBACK_TO_UNSECURE_RPC_IF_NECESSARY": self = .fallbackToUnsecureRpcIfNecessary
+        case "TURN_OFF_RPC_SECURITY": self = .turnOffRpcSecurity
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:MsdtcRpcAuthMode/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .unspecified
+        case 1: self = .allowOnlySecureRpcCalls
+        case 2: self = .fallbackToUnsecureRpcIfNecessary
+        case 3: self = .turnOffRpcSecurity
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .unspecified: return try container.encode("MSDTC_RPC_AUTH_MODE_UNSPECIFIED")
+        case .allowOnlySecureRpcCalls: return try container.encode("ALLOW_ONLY_SECURE_RPC_CALLS")
+        case .fallbackToUnsecureRpcIfNecessary:
+          return try container.encode("FALLBACK_TO_UNSECURE_RPC_IF_NECESSARY")
+        case .turnOffRpcSecurity: return try container.encode("TURN_OFF_RPC_SECURITY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

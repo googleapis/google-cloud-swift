@@ -13,20 +13,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// snippet.show
-// snippet.imports
+// snippet.show [START swift_override_endpoint_full]
+// snippet.imports [START swift_override_endpoint_imports]
 import Foundation
 import GoogleGax
 import GoogleCloudSecretManagerV1
-// snippet.end
+// snippet.end [END swift_override_endpoint_imports]
 
 // snippet.function [START swift_override_endpoint_function]
 func sample(projectId: String, region: String) async throws {
-// snippet.end [END swift_override_endpoint_function]
+  // snippet.end [END swift_override_endpoint_function]
   // snippet.client [START swift_override_endpoint_client]
-  let client = try SecretManagerServiceClient(ClientOptions().with {
-    $0.endpoint = "https://secretmanager.\(region).rep.googleapis.com"
-  })
+  let client = try SecretManagerServiceClient(
+    ClientOptions().with {
+      $0.endpoint = "https://secretmanager.\(region).rep.googleapis.com"
+    })
   // snippet.end [END swift_override_endpoint_client]
   // snippet.list [START swift_override_endpoint_list]
   let secrets = client.listSecretsByItems(
@@ -37,7 +38,7 @@ func sample(projectId: String, region: String) async throws {
   // snippet.end [END swift_override_endpoint_list]
 }
 
-// snippet.hide
+// snippet.hide [END swift_override_endpoint_full]
 @main struct SnippetRunner {
   static func main() async throws {
     try await sample(projectId: "[placeholder]", region: "us-central1")

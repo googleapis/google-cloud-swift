@@ -13,17 +13,18 @@
 // limitations under the License.
 
 public import Foundation
-import struct GoogleAuth.Credentials
+@_spi(GoogleCloudInternal) public import GoogleAuth
 @_spi(GoogleCloudInternal) public import Logging
 
 /// Implements a HTTP-only client for the Swift SDK client libraries.
 @_spi(GoogleCloudInternal) public struct _HTTPClient: Sendable {
   let baseURL: URLComponents
-  let credentials: any _CredentialsProtocol
+  let credentials: any CredentialsProtocol
   let logger: Logger?
   let quotaProject: String?
   let inner: any _HTTPClientProtocol
   let hostHeader: String
+  let universeDomain: String
   public let clientHeader: _ApiClientHeader
 
   // Creates a new client.
@@ -32,14 +33,35 @@ import struct GoogleAuth.Credentials
     withDefaultEndpoint: String,
     clientHeader: _ApiClientHeader = .init()
   ) throws {
+    try self.init(
+      from: from,
+      withDefaultEndpoint: withDefaultEndpoint,
+      clientHeader: clientHeader,
+      environment: ProcessInfo.processInfo.environment
+    )
+  }
+
+  init(
+    from: ClientOptions,
+    withDefaultEndpoint: String,
+    clientHeader: _ApiClientHeader = .init(),
+    environment: [String: String]
+  ) throws {
+    let universeDomain = _Host.resolveUniverseDomain(options: from, environment: environment)
+    self.universeDomain = universeDomain
     self.credentials = try from.credentials ?? GoogleAuth.Credentials()
     self.logger = from.logger
     self.quotaProject = from.quotaProject
-    let endpoint = from.endpoint ?? withDefaultEndpoint
+    let endpoint = try _Host.endpoint(
+      endpoint: from.endpoint,
+      defaultEndpoint: withDefaultEndpoint,
+      universeDomain: universeDomain
+    )
     self.baseURL = try Self.validateEndpoint(endpoint)
     self.hostHeader = try _Host.header(
       endpoint: from.endpoint,
-      defaultEndpoint: withDefaultEndpoint
+      defaultEndpoint: withDefaultEndpoint,
+      universeDomain: universeDomain
     )
     self.inner = HTTPClientHolder()
     var header = clientHeader
@@ -50,20 +72,45 @@ import struct GoogleAuth.Credentials
   // Creates a new testing client.
   @_spi(GoogleCloudInternal) public init(
     _ inner: any _HTTPClientProtocol, endpoint: String,
-    credentials: (any _CredentialsProtocol)? = nil,
+    credentials: GoogleAuth.Credentials? = nil,
     logger: Logging.Logger? = nil,
     quotaProject: String? = nil,
     defaultEndpoint: String? = nil,
+    universeDomain: String = _Host.defaultUniverseDomain,
     clientHeader: _ApiClientHeader = .init()
   ) throws {
+    let resolvedCredentials = try credentials ?? GoogleAuth.Credentials(configuration: .anonymous)
+    try self.init(
+      inner,
+      endpoint: endpoint,
+      credentials: resolvedCredentials as any CredentialsProtocol,
+      logger: logger,
+      quotaProject: quotaProject,
+      defaultEndpoint: defaultEndpoint,
+      universeDomain: universeDomain,
+      clientHeader: clientHeader
+    )
+  }
+
+  init(
+    _ inner: any _HTTPClientProtocol, endpoint: String,
+    credentials: any CredentialsProtocol,
+    logger: Logging.Logger? = nil,
+    quotaProject: String? = nil,
+    defaultEndpoint: String? = nil,
+    universeDomain: String = _Host.defaultUniverseDomain,
+    clientHeader: _ApiClientHeader = .init()
+  ) throws {
+    self.universeDomain = universeDomain
     self.baseURL = try Self.validateEndpoint(endpoint)
-    self.credentials = try credentials ?? GoogleAuth.Credentials(configuration: .anonymous)
+    self.credentials = credentials
     self.logger = logger
     self.quotaProject = quotaProject
     self.inner = inner
     self.hostHeader = try _Host.header(
       endpoint: endpoint,
-      defaultEndpoint: defaultEndpoint ?? endpoint
+      defaultEndpoint: defaultEndpoint ?? endpoint,
+      universeDomain: universeDomain
     )
     var header = clientHeader
     header.setToken(.rest, version: gaxVersion())
@@ -91,7 +138,15 @@ import struct GoogleAuth.Credentials
     on request: inout _HTTPClientRequest,
     options: RequestOptions
   ) async throws {
-    let authHeaders = try await self.credentials.headers()
+    let authHeaders: AuthHeaders
+    do {
+      try await self.credentials.validateUniverseDomain(self.universeDomain)
+      authHeaders = try await self.credentials.headers()
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch {
+      throw RequestError.io(error)
+    }
     let customHeaders = _sanitizeCustomHeaders(options.headers, excluding: authHeaders)
     for (key, value) in customHeaders {
       request.addHeader(name: key, value: value)

@@ -14,15 +14,21 @@
 
 import Foundation
 
+/// Marker protocol used by internal ProtoJSON decoders to distinguish map dictionaries from
+/// ProtoJSON messages when handling `null` values in keyed containers.
+protocol _ProtoJSONMapMarker {}
+extension Dictionary: _ProtoJSONMapMarker {}
+extension Optional: _ProtoJSONMapMarker where Wrapped: _ProtoJSONMapMarker {}
+
 /// Decodes types to their default values.
 ///
-/// When ``ProtoJSONDecoder`` finds a missing key it creates an instance of this decoder to
-/// initialize the element to its default.
+/// When `_ProtoJSONDecoder` or `WKTStructDecoder` finds a missing or non-map `null` key, it
+/// creates an instance of this decoder to initialize the element to its default.
 struct DecodeToDefault {
-  func decodeGeneric(_ type: Data.Type) throws -> Data {
-    return Data()
-  }
   func decodeGeneric<T: Decodable>(_ type: T.Type) throws -> T {
+    if type == Data.self {
+      return Data() as! T
+    }
     throw ProtoJSONError.unsupportedType("\(type)")
   }
 }
@@ -51,7 +57,7 @@ extension DecodeToDefaultKeyed: KeyedDecodingContainerProtocol {
   var codingPath: [any CodingKey] { [] }
   var allKeys: [K] { [] }
 
-  func contains(_ key: K) -> Bool { return true }
+  func contains(_ key: K) -> Bool { return false }
 
   func decodeNil(forKey key: K) throws -> Bool { return true }
   func decode(_: Bool.Type, forKey key: K) throws -> Bool { return Bool() }
@@ -70,6 +76,9 @@ extension DecodeToDefaultKeyed: KeyedDecodingContainerProtocol {
   func decode(_: Double.Type, forKey key: K) throws -> Double { return Double() }
 
   func decode<T: Decodable>(_ type: T.Type, forKey key: K) throws -> T {
+    if type == Data.self {
+      return Data() as! T
+    }
     return try T(from: DecodeToDefault())
   }
 

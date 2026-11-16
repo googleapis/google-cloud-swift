@@ -17,8 +17,8 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// Represents a volume backed by a Cloud Storage bucket using Cloud Storage
-/// FUSE.
+/// Represents a volume backed by a Cloud Storage bucket (mounted via Cloud
+/// Storage FUSE or as a block device disk).
 public struct GCSVolumeSource: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {

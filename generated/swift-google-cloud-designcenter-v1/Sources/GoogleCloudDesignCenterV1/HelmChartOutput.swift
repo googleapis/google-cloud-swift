@@ -68,7 +68,9 @@ public struct HelmChartOutput: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value)
+    if container.contains(.value) {
+      self.value = try container.decode(GoogleWKT.WKTValue.self, forKey: .value)
+    }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .helmOutputVariable) {
       self.helmOutputVariable = value
     }

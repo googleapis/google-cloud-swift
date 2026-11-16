@@ -27,7 +27,8 @@ public struct NatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// IP protocol in string format, for example: "TCP", "UDP", "ICMP".
   public var `protocol`: Swift.String = Swift.String()
 
-  /// URI of the network where NAT translation takes place.
+  /// URI of the VPC network where NAT translation takes place.
+  /// Format: `projects/{project_id}/global/networks/{network_id}`
   public var networkUri: Swift.String = Swift.String()
 
   /// Source IP address before NAT translation.
@@ -56,7 +57,8 @@ public struct NatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// UDP.
   public var newDestinationPort: Swift.Int32 = Swift.Int32()
 
-  /// Uri of the Cloud Router. Only valid when type is CLOUD_NAT.
+  /// URI of the Cloud Router. Only valid when type is CLOUD_NAT.
+  /// Format: `projects/{project_id}/regions/{region}/routers/{router_id}`
   public var routerUri: Swift.String = Swift.String()
 
   /// The name of Cloud NAT Gateway. Only valid when type is CLOUD_NAT.

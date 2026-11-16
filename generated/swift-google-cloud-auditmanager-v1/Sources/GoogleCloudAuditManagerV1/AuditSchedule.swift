@@ -72,6 +72,12 @@ public struct AuditSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Describes the error if the schedule is in an error state.
   public var errorMessage: Swift.String = Swift.String()
 
+  /// Optional. Maps dynamic parameter overrides by Cloud Control resource name
+  /// at execution time. For example,
+  /// `{"organizations/123/locations/global/cloudControls/control-1":
+  /// {parameters: [...]}}`
+  public var parameterOverrides: [Swift.String: ParameterOverrides] = [:]
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `AuditSchedule`.
@@ -109,6 +115,7 @@ public struct AuditSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
     static let nextRunTime = CodingKeys(stringValue: "nextRunTime")
     static let lastTriggerTime = CodingKeys(stringValue: "lastTriggerTime")
     static let errorMessage = CodingKeys(stringValue: "errorMessage")
+    static let parameterOverrides = CodingKeys(stringValue: "parameterOverrides")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -123,6 +130,7 @@ public struct AuditSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
       "nextRunTime",
       "lastTriggerTime",
       "errorMessage",
+      "parameterOverrides",
     ]
   }
 
@@ -161,6 +169,11 @@ public struct AuditSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
       self.errorMessage = value
     }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: ParameterOverrides].self, forKey: .parameterOverrides)
+    {
+      self.parameterOverrides = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -181,6 +194,7 @@ public struct AuditSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.nextRunTime, forKey: .nextRunTime)
     try container.encodeIfPresent(self.lastTriggerTime, forKey: .lastTriggerTime)
     try container.encode(self.errorMessage, forKey: .errorMessage)
+    try container.encode(self.parameterOverrides, forKey: .parameterOverrides)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

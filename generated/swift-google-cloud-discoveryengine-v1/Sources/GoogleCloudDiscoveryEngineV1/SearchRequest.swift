@@ -121,6 +121,12 @@
     /// [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
     /// used.
     ///
+    /// On an engine with multiple data stores, this field is optional. If it's
+    /// empty, all of the engine's data stores are searched (blended search).
+    /// Unless it specifies exactly one data store, some request fields, such as
+    /// `order_by` and `query_expansion_spec`, aren't supported and return an
+    /// `INVALID_ARGUMENT` error.
+    ///
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     /// [google.cloud.discoveryengine.v1.SearchRequest]: <doc:SearchRequest>
@@ -480,6 +486,8 @@
     /// be exactly matched with
     /// [UserEvent.entity][google.cloud.discoveryengine.v1.UserEvent.entity] to get
     /// search results boosted by entity.
+    ///
+    /// [google.cloud.discoveryengine.v1.UserEvent.entity]: <doc:UserEvent/entity>
     public var entity: Swift.String = Swift.String()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

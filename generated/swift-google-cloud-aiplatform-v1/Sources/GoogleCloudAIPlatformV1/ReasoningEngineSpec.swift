@@ -486,12 +486,14 @@
 
         static let inlineSource = CodingKeys(stringValue: "inlineSource")
         static let developerConnectSource = CodingKeys(stringValue: "developerConnectSource")
+        static let gitSource = CodingKeys(stringValue: "gitSource")
         static let pythonSpec = CodingKeys(stringValue: "pythonSpec")
         static let imageSpec = CodingKeys(stringValue: "imageSpec")
 
         static let _knownKeys: Set<Swift.String> = [
           "inlineSource",
           "developerConnectSource",
+          "gitSource",
           "pythonSpec",
           "imageSpec",
         ]
@@ -520,6 +522,11 @@
           forKey: .developerConnectSource)
         {
           try sourceCheckAndSet(.developerConnectSource(developerConnectSource))
+        }
+        if let gitSource = try container.decodeIfPresent(
+          ReasoningEngineSpec.SourceCodeSpec.GitSource.self, forKey: .gitSource)
+        {
+          try sourceCheckAndSet(.gitSource(gitSource))
         }
         self.source = source
 
@@ -559,6 +566,8 @@
             try container.encode(value, forKey: .inlineSource)
           case .developerConnectSource(let value):
             try container.encode(value, forKey: .developerConnectSource)
+          case .gitSource(let value):
+            try container.encode(value, forKey: .gitSource)
           }
         }
 
@@ -932,6 +941,107 @@
         }
       }
 
+      /// Specifies source code to be fetched from a public Git repository.
+      public struct GitSource: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Required. The HTTPS URL of the public Git repository to clone.
+        public var url: Swift.String = Swift.String()
+
+        /// Optional. Directory, relative to the source root, in which to run the
+        /// build.
+        public var dir: Swift.String = Swift.String()
+
+        /// Required. The revision to fetch from the Git repository: a branch, a
+        /// tag, or a full commit SHA. Abbreviated commit SHAs are not supported.
+        public var revision: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `GitSource`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = GitSource().with { $0.url = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let url = CodingKeys(stringValue: "url")
+          static let dir = CodingKeys(stringValue: "dir")
+          static let revision = CodingKeys(stringValue: "revision")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "url",
+            "dir",
+            "revision",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .url) {
+            self.url = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dir) {
+            self.dir = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .revision) {
+            self.revision = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.url, forKey: .url)
+          try container.encode(self.dir, forKey: .dir)
+          try container.encode(self.revision, forKey: .revision)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// The type URL for `GitSource`: `"type.googleapis.com/google.cloud.aiplatform.v1.ReasoningEngineSpec.SourceCodeSpec.GitSource"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.aiplatform.v1.ReasoningEngineSpec.SourceCodeSpec.GitSource"
+        }
+
+        /// Initialize an instance of `GitSource` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.ReasoningEngineSpec.SourceCodeSpec.GitSource"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `GitSource` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
       /// Specification for running a Python application from source.
       public struct PythonSpec: Codable, Equatable, GoogleWKT._AnyPackable,
         Sendable
@@ -1060,6 +1170,8 @@
         /// Source code is in a Git repository managed by Developer Connect.
         indirect case developerConnectSource(
           ReasoningEngineSpec.SourceCodeSpec.DeveloperConnectSource)
+        /// Source code is in a public Git repository.
+        indirect case gitSource(ReasoningEngineSpec.SourceCodeSpec.GitSource)
       }
 
       /// Specifies the language-specific configuration for building and running

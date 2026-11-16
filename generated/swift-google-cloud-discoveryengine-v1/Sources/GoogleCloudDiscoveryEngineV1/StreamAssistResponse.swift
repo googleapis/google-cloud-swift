@@ -36,23 +36,38 @@
     /// see if more parts are to be expected. While the state is `IN_PROGRESS`, the
     /// [AssistAnswer.replies][google.cloud.discoveryengine.v1.AssistAnswer.replies]
     /// field in each response will contain replies (reply fragments) to be
-    /// appended to the ones received in previous responses. [AssistAnswer.name][]
+    /// appended to the ones received in previous responses.
+    /// [AssistAnswer.name][google.cloud.discoveryengine.v1.AssistAnswer.name]
     /// won't be filled.
     ///
     /// If the state is `SUCCEEDED`, `FAILED` or `SKIPPED`, the response
-    /// is the last response and [AssistAnswer.name][] will have a value.
+    /// is the last response and
+    /// [AssistAnswer.name][google.cloud.discoveryengine.v1.AssistAnswer.name] will
+    /// have a value.
     ///
-    /// [AssistAnswer.name]: <doc:AssistAnswer/name>
+    /// [google.cloud.discoveryengine.v1.AssistAnswer.name]: <doc:AssistAnswer/name>
     /// [google.cloud.discoveryengine.v1.AssistAnswer.replies]: <doc:AssistAnswer/replies>
     /// [google.cloud.discoveryengine.v1.AssistAnswer.state]: <doc:AssistAnswer/state>
     public var answer: AssistAnswer? = nil
 
-    /// Session information.
+    /// Session information. Only included in the final StreamAssistResponse of the
+    /// response stream.
     public var sessionInfo: StreamAssistResponse.SessionInfo? = nil
 
     /// A global unique ID that identifies the current pair of request and stream
     /// of responses. Used for feedback and support.
     public var assistToken: Swift.String = Swift.String()
+
+    /// The tool names of the tools that were invoked.
+    public var invocationTools: [Swift.String] = []
+
+    /// The skills executed during the turn.
+    public var invokedSkills: [StreamAssistResponse.InvokedSkill] = []
+
+    /// Per-connector authentication errors encountered during the request.
+    /// Present when one or more connectors failed authentication but the
+    /// request proceeded with the remaining connectors.
+    public var connectorAuthErrors: [StreamAssistResponse.ConnectorAuthError] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -82,11 +97,17 @@
       static let answer = CodingKeys(stringValue: "answer")
       static let sessionInfo = CodingKeys(stringValue: "sessionInfo")
       static let assistToken = CodingKeys(stringValue: "assistToken")
+      static let invocationTools = CodingKeys(stringValue: "invocationTools")
+      static let invokedSkills = CodingKeys(stringValue: "invokedSkills")
+      static let connectorAuthErrors = CodingKeys(stringValue: "connectorAuthErrors")
 
       static let _knownKeys: Set<Swift.String> = [
         "answer",
         "sessionInfo",
         "assistToken",
+        "invocationTools",
+        "invokedSkills",
+        "connectorAuthErrors",
       ]
     }
 
@@ -97,6 +118,19 @@
         StreamAssistResponse.SessionInfo.self, forKey: .sessionInfo)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .assistToken) {
         self.assistToken = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .invocationTools) {
+        self.invocationTools = value
+      }
+      if let value = try container.decodeIfPresent(
+        [StreamAssistResponse.InvokedSkill].self, forKey: .invokedSkills)
+      {
+        self.invokedSkills = value
+      }
+      if let value = try container.decodeIfPresent(
+        [StreamAssistResponse.ConnectorAuthError].self, forKey: .connectorAuthErrors)
+      {
+        self.connectorAuthErrors = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -109,6 +143,9 @@
       try container.encodeIfPresent(self.answer, forKey: .answer)
       try container.encodeIfPresent(self.sessionInfo, forKey: .sessionInfo)
       try container.encode(self.assistToken, forKey: .assistToken)
+      try container.encode(self.invocationTools, forKey: .invocationTools)
+      try container.encode(self.invokedSkills, forKey: .invokedSkills)
+      try container.encode(self.connectorAuthErrors, forKey: .connectorAuthErrors)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -191,6 +228,186 @@
       }
 
       /// Packs this `SessionInfo` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// Represents a skill used during the assist call.
+    public struct InvokedSkill: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// The resource name of the skill.
+      public var name: Swift.String = Swift.String()
+
+      /// The display name of the skill.
+      public var displayName: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `InvokedSkill`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = InvokedSkill().with { $0.name = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let name = CodingKeys(stringValue: "name")
+        static let displayName = CodingKeys(stringValue: "displayName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "name",
+          "displayName",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
+          self.name = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+          self.displayName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.displayName, forKey: .displayName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// The type URL for `InvokedSkill`: `"type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistResponse.InvokedSkill"`.
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistResponse.InvokedSkill"
+      }
+
+      /// Initialize an instance of `InvokedSkill` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistResponse.InvokedSkill"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `InvokedSkill` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// Describes an authentication error for a specific data connector.
+    public struct ConnectorAuthError: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Resource name of the data connector that failed authentication.
+      public var dataConnector: Swift.String = Swift.String()
+
+      /// Human-readable error message describing the auth failure.
+      public var errorMessage: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `ConnectorAuthError`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = ConnectorAuthError().with { $0.dataConnector = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let dataConnector = CodingKeys(stringValue: "dataConnector")
+        static let errorMessage = CodingKeys(stringValue: "errorMessage")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "dataConnector",
+          "errorMessage",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataConnector) {
+          self.dataConnector = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .errorMessage) {
+          self.errorMessage = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.dataConnector, forKey: .dataConnector)
+        try container.encode(self.errorMessage, forKey: .errorMessage)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// The type URL for `ConnectorAuthError`: `"type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistResponse.ConnectorAuthError"`.
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistResponse.ConnectorAuthError"
+      }
+
+      /// Initialize an instance of `ConnectorAuthError` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistResponse.ConnectorAuthError"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `ConnectorAuthError` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {

@@ -27,6 +27,10 @@
         request: CompleteQueryRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.CompleteQueryResponse
 
+      func advancedCompleteQuery(
+        request: AdvancedCompleteQueryRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.AdvancedCompleteQueryResponse
+
       func importSuggestionDenyListEntries(
         request: ImportSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation

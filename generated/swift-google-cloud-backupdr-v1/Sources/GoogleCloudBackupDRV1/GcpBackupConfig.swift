@@ -42,6 +42,12 @@ public struct GcpBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// E.g. v0, v1 etc.
   public var backupPlanRevisionId: Swift.String = Swift.String()
 
+  /// Output only. The resource name of the `AutoProtectionPolicyBinding` that
+  /// manages this datasource, if any.
+  /// Format:
+  /// `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
+  public var autoProtectionPolicyBinding: Swift.String = Swift.String()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `GcpBackupConfig`.
@@ -73,6 +79,7 @@ public struct GcpBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     static let backupPlanRules = CodingKeys(stringValue: "backupPlanRules")
     static let backupPlanRevisionName = CodingKeys(stringValue: "backupPlanRevisionName")
     static let backupPlanRevisionId = CodingKeys(stringValue: "backupPlanRevisionId")
+    static let autoProtectionPolicyBinding = CodingKeys(stringValue: "autoProtectionPolicyBinding")
 
     static let _knownKeys: Set<Swift.String> = [
       "backupPlan",
@@ -81,6 +88,7 @@ public struct GcpBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       "backupPlanRules",
       "backupPlanRevisionName",
       "backupPlanRevisionId",
+      "autoProtectionPolicyBinding",
     ]
   }
 
@@ -107,6 +115,11 @@ public struct GcpBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlanRevisionId) {
       self.backupPlanRevisionId = value
     }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .autoProtectionPolicyBinding)
+    {
+      self.autoProtectionPolicyBinding = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -121,6 +134,7 @@ public struct GcpBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.backupPlanRules, forKey: .backupPlanRules)
     try container.encode(self.backupPlanRevisionName, forKey: .backupPlanRevisionName)
     try container.encode(self.backupPlanRevisionId, forKey: .backupPlanRevisionId)
+    try container.encode(self.autoProtectionPolicyBinding, forKey: .autoProtectionPolicyBinding)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

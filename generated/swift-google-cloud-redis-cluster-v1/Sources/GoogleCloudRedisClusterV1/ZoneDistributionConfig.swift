@@ -31,6 +31,14 @@ public struct ZoneDistributionConfig: Codable, Equatable, GoogleWKT._AnyPackable
   /// MULTI_ZONE, and would be ignored for MULTI_ZONE clusters.
   public var zone: Swift.String = Swift.String()
 
+  /// Optional. Specify the zones of a multi-zone cluster where Redis Cluster
+  /// allocates resources. This flag isn't applicable for single-zone clusters.
+  public var zones: [Swift.String] = []
+
+  /// Output only. The exact list of zones where the cluster currently has active
+  /// VMs.
+  public var activeZones: [Swift.String] = []
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `ZoneDistributionConfig`.
@@ -58,10 +66,14 @@ public struct ZoneDistributionConfig: Codable, Equatable, GoogleWKT._AnyPackable
 
     static let mode = CodingKeys(stringValue: "mode")
     static let zone = CodingKeys(stringValue: "zone")
+    static let zones = CodingKeys(stringValue: "zones")
+    static let activeZones = CodingKeys(stringValue: "activeZones")
 
     static let _knownKeys: Set<Swift.String> = [
       "mode",
       "zone",
+      "zones",
+      "activeZones",
     ]
   }
 
@@ -75,6 +87,12 @@ public struct ZoneDistributionConfig: Codable, Equatable, GoogleWKT._AnyPackable
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
       self.zone = value
     }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .zones) {
+      self.zones = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .activeZones) {
+      self.activeZones = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -85,6 +103,8 @@ public struct ZoneDistributionConfig: Codable, Equatable, GoogleWKT._AnyPackable
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.mode, forKey: .mode)
     try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.zones, forKey: .zones)
+    try container.encode(self.activeZones, forKey: .activeZones)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

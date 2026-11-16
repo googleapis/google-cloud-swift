@@ -158,6 +158,9 @@
       case pending
       /// The consumer prohibits traffic from the producer to reach its VPC.
       case rejected
+      /// There is no traffic flowing in this state, only the address is
+      /// reserved.
+      case reserved
       case unspecified
       /// Encodes an unknown string value.
       ///
@@ -177,6 +180,7 @@
         case .needsAttention: return "NEEDS_ATTENTION"
         case .pending: return "PENDING"
         case .rejected: return "REJECTED"
+        case .reserved: return "RESERVED"
         case .unspecified: return "STATUS_UNSPECIFIED"
         case .unknownStringValue(let v): return v
         }
@@ -192,6 +196,7 @@
         case "NEEDS_ATTENTION": self = .needsAttention
         case "PENDING": self = .pending
         case "REJECTED": self = .rejected
+        case "RESERVED": self = .reserved
         case "STATUS_UNSPECIFIED": self = .unspecified
         default: self = .unknownStringValue(stringValue)
         }
@@ -211,6 +216,7 @@
         case .needsAttention: return try container.encode("NEEDS_ATTENTION")
         case .pending: return try container.encode("PENDING")
         case .rejected: return try container.encode("REJECTED")
+        case .reserved: return try container.encode("RESERVED")
         case .unspecified: return try container.encode("STATUS_UNSPECIFIED")
         case .unknownStringValue(let v): return try container.encode(v)
         }

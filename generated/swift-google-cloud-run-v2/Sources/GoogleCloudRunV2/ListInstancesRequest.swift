@@ -22,8 +22,6 @@ public struct ListInstancesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required. The location and project to list resources on.
-  /// Format: projects/{project}/locations/{location}, where {project} can be
-  /// project id or number.
   public var parent: Swift.String = Swift.String()
 
   /// Optional. Maximum number of Instances to return in this call.

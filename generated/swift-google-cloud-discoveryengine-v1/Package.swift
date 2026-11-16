@@ -25,10 +25,16 @@ let package = Package(
   ],
   traits: [
     .trait(
+      name: "AclConfigService",
+    ),
+    .trait(
       name: "AssistantService",
     ),
     .trait(
       name: "CmekConfigService",
+    ),
+    .trait(
+      name: "CollectionService",
     ),
     .trait(
       name: "CompletionService",
@@ -38,6 +44,9 @@ let package = Package(
     ),
     .trait(
       name: "ConversationalSearchService",
+    ),
+    .trait(
+      name: "DataConnectorService",
     ),
     .trait(
       name: "DataStoreService",
@@ -53,6 +62,9 @@ let package = Package(
     ),
     .trait(
       name: "IdentityMappingStoreService",
+    ),
+    .trait(
+      name: "LicenseConfigService",
     ),
     .trait(
       name: "ProjectService",
@@ -87,6 +99,12 @@ let package = Package(
     .trait(
       name: "UserLicenseService",
     ),
+    .trait(
+      name: "UserStoreService",
+    ),
+    .trait(
+      name: "WidgetConfigService",
+    ),
     .default(enabledTraits: [
       "SearchService",
       "RecommendationService",
@@ -96,37 +114,42 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-api",
       path: "generated/swift-google-api",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-auth",
       path: "pkgs/swift-google-auth",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-gax",
       path: "pkgs/swift-google-gax",
-      from: "0.6.0"
+      from: "0.7.0"
+    ),
+    localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-iam-v1",
+      path: "generated/swift-google-iam-v1",
+      from: "0.7.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-longrunning",
       path: "generated/swift-google-longrunning",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-rpc",
       path: "generated/swift-google-rpc",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-type",
       path: "generated/swift-google-type",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
@@ -137,6 +160,7 @@ let package = Package(
         .product(name: "GoogleApi", package: "swift-google-api"),
         .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
+        .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
         .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),
         .product(name: "GoogleType", package: "swift-google-type"),

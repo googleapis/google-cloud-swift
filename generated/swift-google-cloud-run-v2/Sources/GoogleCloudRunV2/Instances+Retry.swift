@@ -18,6 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
+import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
@@ -62,6 +63,21 @@ extension Clients {
             -> GoogleLongRunning.Operation
           in
           return try await self.inner.createInstance(request: r, options: o)
+        })
+    }
+
+    public func updateInstance(
+      request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateInstanceRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.updateInstance(request: r, options: o)
         })
     }
 
@@ -137,6 +153,51 @@ extension Clients {
             -> GoogleLongRunning.Operation
           in
           return try await self.inner.startInstance(request: r, options: o)
+        })
+    }
+
+    public func getIamPolicy(
+      request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GoogleIAMV1.GetIamPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleIAMV1.Policy
+          in
+          return try await self.inner.getIamPolicy(request: r, options: o)
+        })
+    }
+
+    public func setIamPolicy(
+      request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: GoogleIAMV1.SetIamPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleIAMV1.Policy
+          in
+          return try await self.inner.setIamPolicy(request: r, options: o)
+        })
+    }
+
+    public func testIamPermissions(
+      request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: GoogleIAMV1.TestIamPermissionsRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleIAMV1.TestIamPermissionsResponse
+          in
+          return try await self.inner.testIamPermissions(request: r, options: o)
         })
     }
 

@@ -52,6 +52,17 @@ extension ProtoJSONDecoderTest {
 
   static let repeatedInputs: [(String, RepeatedPrimitives)] = [
     (#"{}"#, RepeatedPrimitives()),
+    (#"{"fieldBool":   null     }"#, RepeatedPrimitives()),
+    (#"{"fieldInt":    null     }"#, RepeatedPrimitives()),
+    (#"{"fieldInt32":  null     }"#, RepeatedPrimitives()),
+    (#"{"fieldInt64":  null     }"#, RepeatedPrimitives()),
+    (#"{"fieldUInt":   null     }"#, RepeatedPrimitives()),
+    (#"{"fieldUInt32": null     }"#, RepeatedPrimitives()),
+    (#"{"fieldUInt64": null     }"#, RepeatedPrimitives()),
+    (#"{"fieldFloat":  null     }"#, RepeatedPrimitives()),
+    (#"{"fieldDouble": null     }"#, RepeatedPrimitives()),
+    (#"{"fieldString": null     }"#, RepeatedPrimitives()),
+    (#"{"fieldData":   null     }"#, RepeatedPrimitives()),
     (#"{"fieldBool":   []       }"#, RepeatedPrimitives()),
     (#"{"fieldInt":    []       }"#, RepeatedPrimitives()),
     (#"{"fieldInt32":  []       }"#, RepeatedPrimitives()),
@@ -119,6 +130,20 @@ extension ProtoJSONDecoderTest {
     #"{"fieldData":   ["-_+/"] }"#,
   ]
 
+  static let repeatedNullElementInputs: [String] = [
+    #"{"fieldBool":   [null] }"#,
+    #"{"fieldInt":    [null] }"#,
+    #"{"fieldInt32":  [null] }"#,
+    #"{"fieldInt64":  [null] }"#,
+    #"{"fieldUInt":   [null] }"#,
+    #"{"fieldUInt32": [null] }"#,
+    #"{"fieldUInt64": [null] }"#,
+    #"{"fieldFloat":  [null] }"#,
+    #"{"fieldDouble": [null] }"#,
+    #"{"fieldString": [null] }"#,
+    #"{"fieldData":   [null] }"#,
+  ]
+
   @Test("decode repeated primitives", arguments: repeatedInputs)
   func decodeRepeated(input: String, want: RepeatedPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
@@ -133,6 +158,14 @@ extension ProtoJSONDecoderTest {
       try decoder.decode(RepeatedPrimitives.self, from: Data(input.utf8))
     }
     #expect({ if case .dataCorrupted = error { true } else { false } }())
+  }
+
+  @Test("decode repeated null elements throw", arguments: repeatedNullElementInputs)
+  func decodeRepeatedNullElements(input: String) throws {
+    let decoder = _ProtoJSONDecoder()
+    #expect(throws: DecodingError.self) {
+      try decoder.decode(RepeatedPrimitives.self, from: Data(input.utf8))
+    }
   }
 
   @Test func decodeRepeatedBadString() throws {

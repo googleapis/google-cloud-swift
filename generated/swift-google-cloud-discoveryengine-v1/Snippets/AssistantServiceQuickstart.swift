@@ -20,12 +20,18 @@
   import Foundation
   import GoogleCloudDiscoveryEngineV1
   import GoogleLongRunning
+  import GoogleWKT
 
-  func sample() async throws {
+  func sample(projectId: String, locationId: String, collectionId: String, engineId: String, )
+    async throws
+  {
     let client = try GoogleCloudDiscoveryEngineV1.AssistantServiceClient()
-    let items = client.listOperationsByItems(
-      request: GoogleLongRunning.ListOperationsRequest()
-        /* set fields using .with { $0... } */
+    let items = client.listAssistantsByItems(
+      request: ListAssistantsRequest()
+        .with {
+          $0.parent =
+            "projects/\(projectId)/locations/\(locationId)/collections/\(collectionId)/engines/\(engineId)"
+        }
     )
     for try await item in items {
       print("  \(item)")
@@ -37,7 +43,9 @@
   struct SnippetRunner {
     static func main() async throws {
       do {
-        try await sample()
+        try await sample(
+          projectId: "[placeholder]", locationId: "[placeholder]", collectionId: "[placeholder]",
+          engineId: "[placeholder]", )
       } catch {
         print("Error: \(error)")
       }

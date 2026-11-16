@@ -25,6 +25,10 @@ public struct AbortInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var cause: AbortInfo.Cause = AbortInfo.Cause()
 
   /// URI of the resource that caused the abort.
+  /// Format:
+  /// * `projects/{project_id}/global/networks/{network_id}` (VPC network)
+  /// * `projects/{project_id}/zones/{zone}/instances/{instance_id}` (VM
+  /// instance)
   public var resourceUri: Swift.String = Swift.String()
 
   /// IP address that caused the abort.

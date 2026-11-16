@@ -25,6 +25,15 @@ public struct ZoneDistributionConfig: Codable, Equatable, GoogleWKT._AnyPackable
   /// SINGLE_ZONE mode. Ignored for MULTI_ZONE mode.
   public var zone: Swift.String = Swift.String()
 
+  /// Optional. Specify the zones of a multi-zone instance where Memorystore
+  /// instance allocates resources. This flag isn't applicable for single-zone
+  /// instances.
+  public var zones: [Swift.String] = []
+
+  /// Output only. The exact list of zones where the instance currently has
+  /// active VMs.
+  public var activeZones: [Swift.String] = []
+
   /// Optional. Current zone distribution mode. Defaults to MULTI_ZONE.
   public var mode: ZoneDistributionConfig.ZoneDistributionMode =
     ZoneDistributionConfig.ZoneDistributionMode()
@@ -55,10 +64,14 @@ public struct ZoneDistributionConfig: Codable, Equatable, GoogleWKT._AnyPackable
     init?(intValue: Swift.Int) { nil }
 
     static let zone = CodingKeys(stringValue: "zone")
+    static let zones = CodingKeys(stringValue: "zones")
+    static let activeZones = CodingKeys(stringValue: "activeZones")
     static let mode = CodingKeys(stringValue: "mode")
 
     static let _knownKeys: Set<Swift.String> = [
       "zone",
+      "zones",
+      "activeZones",
       "mode",
     ]
   }
@@ -67,6 +80,12 @@ public struct ZoneDistributionConfig: Codable, Equatable, GoogleWKT._AnyPackable
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
       self.zone = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .zones) {
+      self.zones = value
+    }
+    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .activeZones) {
+      self.activeZones = value
     }
     if let value = try container.decodeIfPresent(
       ZoneDistributionConfig.ZoneDistributionMode.self, forKey: .mode)
@@ -82,6 +101,8 @@ public struct ZoneDistributionConfig: Codable, Equatable, GoogleWKT._AnyPackable
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.zone, forKey: .zone)
+    try container.encode(self.zones, forKey: .zones)
+    try container.encode(self.activeZones, forKey: .activeZones)
     try container.encode(self.mode, forKey: .mode)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -176,4 +176,48 @@ import GoogleAuth
     }
     #expect(msg == input, "error=\(String(describing: error))")
   }
+
+  @Test func customUniverseDomainResolvesEndpointAndAuthority() throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with {
+      $0.credentials = credentials
+      $0.universeDomain = "my-custom-universe.com"
+    }
+    let client = try _GRPCClient(
+      from: options,
+      withDefaultEndpoint: "https://storage.googleapis.com",
+      environment: [:]
+    )
+    defer { client.close() }
+    #expect(client.universeDomain == "my-custom-universe.com")
+    #expect(client.targetHost == "storage.my-custom-universe.com")
+    #expect(client.targetPort == 443)
+    #expect(client.authority == "storage.my-custom-universe.com")
+
+    let envOptions = ClientOptions().with {
+      $0.credentials = credentials
+    }
+    let envClient = try _GRPCClient(
+      from: envOptions,
+      withDefaultEndpoint: "https://storage.googleapis.com",
+      environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com"]
+    )
+    defer { envClient.close() }
+    #expect(envClient.universeDomain == "env.universe.com")
+    #expect(envClient.targetHost == "storage.env.universe.com")
+    #expect(envClient.authority == "storage.env.universe.com")
+
+    let invalidOptions = ClientOptions().with {
+      $0.credentials = credentials
+      $0.universeDomain = "invalid/domain"
+    }
+    #expect(throws: ClientError.self) {
+      let c = try _GRPCClient(
+        from: invalidOptions,
+        withDefaultEndpoint: "https://storage.googleapis.com",
+        environment: [:]
+      )
+      c.close()
+    }
+  }
 }

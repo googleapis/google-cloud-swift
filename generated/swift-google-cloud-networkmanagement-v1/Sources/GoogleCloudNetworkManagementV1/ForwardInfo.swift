@@ -25,6 +25,11 @@ public struct ForwardInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var target: ForwardInfo.Target = ForwardInfo.Target()
 
   /// URI of the resource that the packet is forwarded to.
+  /// Format:
+  /// * `projects/{project_id}/global/networks/{network_id}` (VPC peering
+  /// network)
+  /// * `projects/{project_id}/regions/{region}/vpnGateways/{vpn_gateway_id}`
+  /// (VPN gateway)
   public var resourceUri: Swift.String = Swift.String()
 
   /// IP address of the target (if applicable).

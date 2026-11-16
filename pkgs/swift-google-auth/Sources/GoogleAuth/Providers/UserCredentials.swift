@@ -57,10 +57,11 @@ struct UserCredentialsParser: CredentialSourceParser {
 typealias UserCredentials = UserCredentialsGeneric<ContinuousClock>
 
 /// Generic implementation of authorized user credentials parameterized by clock type.
-struct UserCredentialsGeneric<C: Clock>: CredentialsProvider, Sendable
+struct UserCredentialsGeneric<C: Clock>: CredentialsProvider, AccessTokenProvider, Sendable
 where C.Instant.Duration == Duration {
   private let cache: TokenCache<C>
-  private let quotaProjectID: String?
+  let provider: UserAccountTokenProvider
+  let quotaProjectID: String?
 
   /// Dependency injection for tests
   init(
@@ -72,9 +73,17 @@ where C.Instant.Duration == Duration {
     retryConfiguration: RetryConfiguration,
     clock: C
   ) throws {
-    if let universeDomain = universeDomain, universeDomain != defaultUniverseDomain {
-      throw CredentialsError.notSupported(
-        "User accounts are not supported in custom universes: \(universeDomain)")
+    if let ud = universeDomain {
+      if ud != defaultUniverseDomain {
+        throw CredentialsError.notSupported(
+          "User accounts are only supported in the default (googleapis.com) universe: \(ud)")
+      }
+    }
+    if let userUD = nonEmpty(user.universeDomain) {
+      if userUD != defaultUniverseDomain {
+        throw CredentialsError.notSupported(
+          "User accounts are only supported in the default (googleapis.com) universe: \(userUD)")
+      }
     }
     self.quotaProjectID = quotaProjectID ?? user.quotaProjectId
 
@@ -94,6 +103,7 @@ where C.Instant.Duration == Duration {
       retryConfiguration: retryConfiguration,
       httpClient: httpClient
     )
+    self.provider = provider
 
     self.cache = TokenCache(
       provider: provider,
@@ -102,9 +112,13 @@ where C.Instant.Duration == Duration {
     )
   }
 
+  func accessToken() async throws -> AccessToken {
+    return try await cache.token()
+  }
+
   func headers() async throws -> AuthHeaders {
     let token = try await cache.token()
-    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]
+    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.token)")]
     if let quotaProjectID = quotaProjectID {
       headers.append(name: "x-goog-user-project", value: quotaProjectID)
     }

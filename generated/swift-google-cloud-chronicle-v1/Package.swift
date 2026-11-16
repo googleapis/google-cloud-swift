@@ -27,37 +27,42 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-api",
       path: "generated/swift-google-api",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-auth",
       path: "pkgs/swift-google-auth",
-      from: "0.6.0"
+      from: "0.7.0"
+    ),
+    localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-backstory",
+      path: "generated/swift-google-backstory",
+      from: "0.7.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-gax",
       path: "pkgs/swift-google-gax",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-longrunning",
       path: "generated/swift-google-longrunning",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-rpc",
       path: "generated/swift-google-rpc",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-type",
       path: "generated/swift-google-type",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
-      from: "0.6.0"
+      from: "0.7.0"
     ),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
@@ -67,6 +72,7 @@ let package = Package(
       dependencies: [
         .product(name: "GoogleApi", package: "swift-google-api"),
         .product(name: "GoogleAuth", package: "swift-google-auth"),
+        .product(name: "GoogleBackstory", package: "swift-google-backstory"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),

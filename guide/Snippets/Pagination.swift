@@ -13,12 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// snippet.show
-// snippet.imports
+// snippet.show [START swift_pagination_full]
+// snippet.imports [START swift_pagination_imports]
 import Foundation
 import GoogleGax
 import GoogleCloudSecretManagerV1
-// snippet.end
+// snippet.end [END swift_pagination_imports]
 
 // snippet.function [START swift_pagination_auto_function]
 func iterateItems(projectId: String) async throws {
@@ -60,7 +60,7 @@ func iteratePages(projectId: String) async throws {
   // snippet.end [END swift_pagination_manual]
 }
 
-// snippet.hide
+// snippet.hide [END swift_pagination_full]
 @main struct SnippetRunner {
   static func main() async throws {
     try await iterateItems(projectId: "[placeholder]")

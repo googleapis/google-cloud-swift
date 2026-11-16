@@ -146,6 +146,9 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. IAP settings on the Service.
   public var iapEnabled: Swift.Bool = Swift.Bool()
 
+  /// Optional. Enables SSH access to the Service.
+  public var sshEnabled: Swift.Bool? = nil
+
   /// Optional. Settings for multi-region deployment.
   public var multiRegionSettings: Service.MultiRegionSettings? = nil
 
@@ -202,6 +205,9 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. Configuration for building a Cloud Run function.
   public var buildConfig: BuildConfig? = nil
+
+  /// Optional. The functional type of the Service.
+  public var functionalType: FunctionalType = FunctionalType()
 
   /// Output only. Returns true if the Service is currently being acted upon by
   /// the system to bring it into the desired state.
@@ -280,6 +286,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     static let defaultUriDisabled = CodingKeys(stringValue: "defaultUriDisabled")
     static let urls = CodingKeys(stringValue: "urls")
     static let iapEnabled = CodingKeys(stringValue: "iapEnabled")
+    static let sshEnabled = CodingKeys(stringValue: "sshEnabled")
     static let multiRegionSettings = CodingKeys(stringValue: "multiRegionSettings")
     static let customAudiences = CodingKeys(stringValue: "customAudiences")
     static let observedGeneration = CodingKeys(stringValue: "observedGeneration")
@@ -292,6 +299,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
     static let threatDetectionEnabled = CodingKeys(stringValue: "threatDetectionEnabled")
     static let buildConfig = CodingKeys(stringValue: "buildConfig")
+    static let functionalType = CodingKeys(stringValue: "functionalType")
     static let reconciling = CodingKeys(stringValue: "reconciling")
     static let etag = CodingKeys(stringValue: "etag")
 
@@ -320,6 +328,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
       "defaultUriDisabled",
       "urls",
       "iapEnabled",
+      "sshEnabled",
       "multiRegionSettings",
       "customAudiences",
       "observedGeneration",
@@ -332,6 +341,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
       "satisfiesPzs",
       "threatDetectionEnabled",
       "buildConfig",
+      "functionalType",
       "reconciling",
       "etag",
     ]
@@ -405,6 +415,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .iapEnabled) {
       self.iapEnabled = value
     }
+    self.sshEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .sshEnabled)
     self.multiRegionSettings = try container.decodeIfPresent(
       Service.MultiRegionSettings.self, forKey: .multiRegionSettings)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .customAudiences) {
@@ -440,6 +451,9 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
       self.threatDetectionEnabled = value
     }
     self.buildConfig = try container.decodeIfPresent(BuildConfig.self, forKey: .buildConfig)
+    if let value = try container.decodeIfPresent(FunctionalType.self, forKey: .functionalType) {
+      self.functionalType = value
+    }
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
       self.reconciling = value
     }
@@ -478,6 +492,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.defaultUriDisabled, forKey: .defaultUriDisabled)
     try container.encode(self.urls, forKey: .urls)
     try container.encode(self.iapEnabled, forKey: .iapEnabled)
+    try container.encodeIfPresent(self.sshEnabled, forKey: .sshEnabled)
     try container.encodeIfPresent(self.multiRegionSettings, forKey: .multiRegionSettings)
     try container.encode(self.customAudiences, forKey: .customAudiences)
     try container.encode(self.observedGeneration, forKey: .observedGeneration)
@@ -490,6 +505,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encode(self.threatDetectionEnabled, forKey: .threatDetectionEnabled)
     try container.encodeIfPresent(self.buildConfig, forKey: .buildConfig)
+    try container.encode(self.functionalType, forKey: .functionalType)
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encode(self.etag, forKey: .etag)
     for (key, value) in self._unknownFields.json {

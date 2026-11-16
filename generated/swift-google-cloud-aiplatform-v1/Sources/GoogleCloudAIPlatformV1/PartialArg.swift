@@ -95,9 +95,8 @@
         }
         delta = $0
       }
-      if let nullValue = try container.decodeIfPresent(
-        GoogleWKT.WKTNullValue.self, forKey: .nullValue)
-      {
+      if container.contains(.nullValue) {
+        let nullValue = try container.decode(GoogleWKT.WKTNullValue.self, forKey: .nullValue)
         try deltaCheckAndSet(.nullValue(nullValue))
       }
       if let numberValue = try container.decodeIfPresent(Swift.Double.self, forKey: .numberValue) {

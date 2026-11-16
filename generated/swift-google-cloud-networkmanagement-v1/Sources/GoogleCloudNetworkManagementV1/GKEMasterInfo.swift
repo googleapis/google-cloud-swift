@@ -22,10 +22,16 @@ import Foundation
 public struct GKEMasterInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// URI of a GKE cluster.
+  /// URI of the GKE cluster.
+  /// Format:
+  /// * `projects/{project_id}/locations/{location}/clusters/{cluster_id}`
+  /// (regional cluster)
+  /// * `projects/{project_id}/zones/{zone}/clusters/{cluster_id}` (zonal
+  /// cluster)
   public var clusterUri: Swift.String = Swift.String()
 
-  /// URI of a GKE cluster network.
+  /// URI of the GKE cluster network.
+  /// Format: `projects/{project_id}/global/networks/{network_id}`
   public var clusterNetworkUri: Swift.String = Swift.String()
 
   /// Internal IP address of a GKE cluster control plane.

@@ -71,6 +71,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     static let declaration = CodingKeys(stringValue: "declaration")
     static let notebook = CodingKeys(stringValue: "notebook")
     static let dataPreparation = CodingKeys(stringValue: "dataPreparation")
+    static let bigqueryUnitTest = CodingKeys(stringValue: "bigqueryUnitTest")
     static let target = CodingKeys(stringValue: "target")
     static let canonicalTarget = CodingKeys(stringValue: "canonicalTarget")
     static let filePath = CodingKeys(stringValue: "filePath")
@@ -83,6 +84,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       "declaration",
       "notebook",
       "dataPreparation",
+      "bigqueryUnitTest",
       "target",
       "canonicalTarget",
       "filePath",
@@ -140,6 +142,11 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     {
       try compiledObjectCheckAndSet(.dataPreparation(dataPreparation))
     }
+    if let bigqueryUnitTest = try container.decodeIfPresent(
+      CompilationResultAction.BigQueryUnitTest.self, forKey: .bigqueryUnitTest)
+    {
+      try compiledObjectCheckAndSet(.bigqueryUnitTest(bigqueryUnitTest))
+    }
     self.compiledObject = compiledObject
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -168,6 +175,8 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
         try container.encode(value, forKey: .notebook)
       case .dataPreparation(let value):
         try container.encode(value, forKey: .dataPreparation)
+      case .bigqueryUnitTest(let value):
+        try container.encode(value, forKey: .bigqueryUnitTest)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -1700,6 +1709,132 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
+  /// Represents a BigQuery unit test.
+  public struct BigQueryUnitTest: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// A list of actions that this action depends on.
+    public var dependencyTargets: [Target] = []
+
+    /// Whether this action is disabled (i.e. should not be run).
+    public var disabled: Swift.Bool = Swift.Bool()
+
+    /// Arbitrary, user-defined tags on this action.
+    public var tags: [Swift.String] = []
+
+    /// The name of the unit test.
+    public var displayName: Swift.String = Swift.String()
+
+    /// Test query to execute.
+    public var testQuery: Swift.String = Swift.String()
+
+    /// Expected output query to compare against the test query.
+    public var expectedOutputQuery: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `BigQueryUnitTest`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = BigQueryUnitTest().with { $0.dependencyTargets = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let dependencyTargets = CodingKeys(stringValue: "dependencyTargets")
+      static let disabled = CodingKeys(stringValue: "disabled")
+      static let tags = CodingKeys(stringValue: "tags")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let testQuery = CodingKeys(stringValue: "testQuery")
+      static let expectedOutputQuery = CodingKeys(stringValue: "expectedOutputQuery")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "dependencyTargets",
+        "disabled",
+        "tags",
+        "displayName",
+        "testQuery",
+        "expectedOutputQuery",
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([Target].self, forKey: .dependencyTargets) {
+        self.dependencyTargets = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+        self.disabled = value
+      }
+      if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tags) {
+        self.tags = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .testQuery) {
+        self.testQuery = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .expectedOutputQuery)
+      {
+        self.expectedOutputQuery = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.dependencyTargets, forKey: .dependencyTargets)
+      try container.encode(self.disabled, forKey: .disabled)
+      try container.encode(self.tags, forKey: .tags)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.testQuery, forKey: .testQuery)
+      try container.encode(self.expectedOutputQuery, forKey: .expectedOutputQuery)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// The type URL for `BigQueryUnitTest`: `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.BigQueryUnitTest"`.
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.BigQueryUnitTest"
+    }
+
+    /// Initialize an instance of `BigQueryUnitTest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction.BigQueryUnitTest"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `BigQueryUnitTest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._anySerialize(message: self)
+    }
+  }
+
   /// Simplified load configuration for actions
   public struct LoadConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
@@ -2005,6 +2140,8 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     indirect case notebook(CompilationResultAction.Notebook)
     /// The data preparation executed by this action.
     indirect case dataPreparation(CompilationResultAction.DataPreparation)
+    /// The unit test executed by this action.
+    indirect case bigqueryUnitTest(CompilationResultAction.BigQueryUnitTest)
   }
 
   /// The type URL for `CompilationResultAction`: `"type.googleapis.com/google.cloud.dataform.v1.CompilationResultAction"`.

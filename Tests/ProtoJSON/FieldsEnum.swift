@@ -41,11 +41,27 @@ import Testing
       (#"{"map":{"a":2}}"#, T().with { $0.map = ["a": .green] }),
       (#"{"map":{"a":42}}"#, T().with { $0.map = ["a": .unknownIntValue(42)] }),
       (#"{"map":{"a":"MAGENTA"}}"#, T().with { $0.map = ["a": .unknownStringValue("MAGENTA")] }),
+      (#"{"singular":null}"#, T()),
+      (#"{"repeated":null}"#, T()),
+      (#"{"map":null}"#, T()),
     ])
   func deserialize(input: String, want: MessageWithEnum) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(MessageWithEnum.self, from: Data(input.utf8))
     #expect(got == want)
+  }
+
+  @Test(
+    "Enum invalid null elements throw",
+    arguments: [
+      #"{"repeated":[null]}"#,
+      #"{"map":{"a":null}}"#,
+    ])
+  func invalidNullElements(input: String) throws {
+    let decoder = _ProtoJSONDecoder()
+    #expect(throws: DecodingError.self) {
+      try decoder.decode(MessageWithEnum.self, from: Data(input.utf8))
+    }
   }
 
   @Test(

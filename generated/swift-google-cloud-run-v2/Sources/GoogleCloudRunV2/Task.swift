@@ -88,6 +88,9 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   /// task.
   public var containers: [Container] = []
 
+  /// Configuration for sandboxes.
+  public var sandboxes: SandboxConfiguration? = nil
+
   /// A list of Volumes to make available to containers.
   public var volumes: [Volume] = []
 
@@ -155,6 +158,9 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   /// task.
   public var gpuZonalRedundancyDisabled: Swift.Bool? = nil
 
+  /// Optional. The Task's workload identity settings.
+  public var workloadIdentityConfig: WorkloadIdentityConfig? = nil
+
   /// Output only. A system-generated fingerprint for this version of the
   /// resource. May be used to detect modification conflict during updates.
   public var etag: Swift.String = Swift.String()
@@ -199,6 +205,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     static let job = CodingKeys(stringValue: "job")
     static let execution = CodingKeys(stringValue: "execution")
     static let containers = CodingKeys(stringValue: "containers")
+    static let sandboxes = CodingKeys(stringValue: "sandboxes")
     static let volumes = CodingKeys(stringValue: "volumes")
     static let maxRetries = CodingKeys(stringValue: "maxRetries")
     static let timeout = CodingKeys(stringValue: "timeout")
@@ -216,6 +223,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
     static let nodeSelector = CodingKeys(stringValue: "nodeSelector")
     static let gpuZonalRedundancyDisabled = CodingKeys(stringValue: "gpuZonalRedundancyDisabled")
+    static let workloadIdentityConfig = CodingKeys(stringValue: "workloadIdentityConfig")
     static let etag = CodingKeys(stringValue: "etag")
 
     static let _knownKeys: Set<Swift.String> = [
@@ -234,6 +242,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       "job",
       "execution",
       "containers",
+      "sandboxes",
       "volumes",
       "maxRetries",
       "timeout",
@@ -251,6 +260,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       "satisfiesPzs",
       "nodeSelector",
       "gpuZonalRedundancyDisabled",
+      "workloadIdentityConfig",
       "etag",
     ]
   }
@@ -297,6 +307,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Container].self, forKey: .containers) {
       self.containers = value
     }
+    self.sandboxes = try container.decodeIfPresent(SandboxConfiguration.self, forKey: .sandboxes)
     if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
       self.volumes = value
     }
@@ -342,6 +353,8 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     self.nodeSelector = try container.decodeIfPresent(NodeSelector.self, forKey: .nodeSelector)
     self.gpuZonalRedundancyDisabled = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .gpuZonalRedundancyDisabled)
+    self.workloadIdentityConfig = try container.decodeIfPresent(
+      WorkloadIdentityConfig.self, forKey: .workloadIdentityConfig)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
       self.etag = value
     }
@@ -368,6 +381,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.job, forKey: .job)
     try container.encode(self.execution, forKey: .execution)
     try container.encode(self.containers, forKey: .containers)
+    try container.encodeIfPresent(self.sandboxes, forKey: .sandboxes)
     try container.encode(self.volumes, forKey: .volumes)
     try container.encode(self.maxRetries, forKey: .maxRetries)
     try container.encodeIfPresent(self.timeout, forKey: .timeout)
@@ -386,6 +400,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.nodeSelector, forKey: .nodeSelector)
     try container.encodeIfPresent(
       self.gpuZonalRedundancyDisabled, forKey: .gpuZonalRedundancyDisabled)
+    try container.encodeIfPresent(self.workloadIdentityConfig, forKey: .workloadIdentityConfig)
     try container.encode(self.etag, forKey: .etag)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

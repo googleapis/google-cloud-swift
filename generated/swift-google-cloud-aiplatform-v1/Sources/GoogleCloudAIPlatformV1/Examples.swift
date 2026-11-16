@@ -102,9 +102,9 @@
         }
         config = $0
       }
-      if let nearestNeighborSearchConfig = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .nearestNeighborSearchConfig)
-      {
+      if container.contains(.nearestNeighborSearchConfig) {
+        let nearestNeighborSearchConfig = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: .nearestNeighborSearchConfig)
         try configCheckAndSet(.nearestNeighborSearchConfig(nearestNeighborSearchConfig))
       }
       if let presets = try container.decodeIfPresent(Presets.self, forKey: .presets) {

@@ -318,8 +318,14 @@
       /// Optional. Specification of the web grounding tool.
       /// If field is present, enables grounding with web search. Works only if
       /// [Assistant.web_grounding_type][google.cloud.discoveryengine.v1.Assistant.web_grounding_type]
-      /// is [WEB_GROUNDING_TYPE_GOOGLE_SEARCH][] or
-      /// [WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH][].
+      /// is
+      /// [WEB_GROUNDING_TYPE_GOOGLE_SEARCH][google.cloud.discoveryengine.v1.Assistant.WebGroundingType.WEB_GROUNDING_TYPE_GOOGLE_SEARCH]
+      /// or
+      /// [WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH][google.cloud.discoveryengine.v1.Assistant.WebGroundingType.WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH].
+      ///
+      /// [google.cloud.discoveryengine.v1.Assistant.WebGroundingType.WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH]: <doc:Assistant/WebGroundingType/enterpriseWebSearch>
+      /// [google.cloud.discoveryengine.v1.Assistant.WebGroundingType.WEB_GROUNDING_TYPE_GOOGLE_SEARCH]: <doc:Assistant/WebGroundingType/googleSearch>
+      /// [google.cloud.discoveryengine.v1.Assistant.web_grounding_type]: <doc:Assistant/webGroundingType>
       public var webGroundingSpec: StreamAssistRequest.ToolsSpec.WebGroundingSpec? = nil
 
       /// Optional. Specification of the image generation tool.

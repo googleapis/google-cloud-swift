@@ -74,6 +74,21 @@
           })
       }
 
+      public func listLicenseConfigsUsageStats(
+        request: ListLicenseConfigsUsageStatsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsUsageStatsResponse {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "listLicenseConfigsUsageStats",
+          action: {
+            (r: ListLicenseConfigsUsageStatsRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsUsageStatsResponse
+            in
+            return try await self.inner.listLicenseConfigsUsageStats(request: r, options: o)
+          })
+      }
+
       public func batchUpdateUserLicenses(
         request: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {

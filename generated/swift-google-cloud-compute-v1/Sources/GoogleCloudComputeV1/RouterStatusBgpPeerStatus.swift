@@ -26,6 +26,9 @@
 
     public var bfdStatus: BfdStatus? = nil
 
+    /// Output only. [Output Only] Indicates whether the BGP peer is in a depreferenced state.
+    public var depreferenced: Swift.Bool? = nil
+
     /// Output only. Enable IPv4 traffic over BGP Peer.
     /// It is enabled by default if the peerIpAddress is version 4.
     public var enableIpv4: Swift.Bool? = nil
@@ -117,6 +120,7 @@
 
       static let advertisedRoutes = CodingKeys(stringValue: "advertisedRoutes")
       static let bfdStatus = CodingKeys(stringValue: "bfdStatus")
+      static let depreferenced = CodingKeys(stringValue: "depreferenced")
       static let enableIpv4 = CodingKeys(stringValue: "enableIpv4")
       static let enableIpv6 = CodingKeys(stringValue: "enableIpv6")
       static let ipAddress = CodingKeys(stringValue: "ipAddress")
@@ -139,6 +143,7 @@
       static let _knownKeys: Set<Swift.String> = [
         "advertisedRoutes",
         "bfdStatus",
+        "depreferenced",
         "enableIpv4",
         "enableIpv6",
         "ipAddress",
@@ -166,6 +171,7 @@
         self.advertisedRoutes = value
       }
       self.bfdStatus = try container.decodeIfPresent(BfdStatus.self, forKey: .bfdStatus)
+      self.depreferenced = try container.decodeIfPresent(Swift.Bool.self, forKey: .depreferenced)
       self.enableIpv4 = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableIpv4)
       self.enableIpv6 = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableIpv6)
       self.ipAddress = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress)
@@ -203,6 +209,7 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.advertisedRoutes, forKey: .advertisedRoutes)
       try container.encodeIfPresent(self.bfdStatus, forKey: .bfdStatus)
+      try container.encodeIfPresent(self.depreferenced, forKey: .depreferenced)
       try container.encodeIfPresent(self.enableIpv4, forKey: .enableIpv4)
       try container.encodeIfPresent(self.enableIpv6, forKey: .enableIpv6)
       try container.encodeIfPresent(self.ipAddress, forKey: .ipAddress)

@@ -235,6 +235,9 @@
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
     public enum CacheMode: Codable, Equatable, Hashable, Sendable {
+      /// Bypasses the cache for this route. All requests are forwarded to the
+      /// origin, and responses are not cached.
+      case bypassCache
       /// Automatically cache static content, including common image formats,
       /// media (video and audio), and web assets (JavaScript and CSS).
       /// Requests and responses that are marked as uncacheable, as well as
@@ -263,6 +266,7 @@
       /// Returns the string value (or name) associated with the enumeration.
       public var stringValue: Swift.String {
         switch self {
+        case .bypassCache: return "BYPASS_CACHE"
         case .cacheAllStatic: return "CACHE_ALL_STATIC"
         case .forceCacheAll: return "FORCE_CACHE_ALL"
         case .useOriginHeaders: return "USE_ORIGIN_HEADERS"
@@ -275,6 +279,7 @@
       /// If the value is unknown, this initializes to [`unknownStringValue`](doc:CacheMode/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
+        case "BYPASS_CACHE": self = .bypassCache
         case "CACHE_ALL_STATIC": self = .cacheAllStatic
         case "FORCE_CACHE_ALL": self = .forceCacheAll
         case "USE_ORIGIN_HEADERS": self = .useOriginHeaders
@@ -291,6 +296,7 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
+        case .bypassCache: return try container.encode("BYPASS_CACHE")
         case .cacheAllStatic: return try container.encode("CACHE_ALL_STATIC")
         case .forceCacheAll: return try container.encode("FORCE_CACHE_ALL")
         case .useOriginHeaders: return try container.encode("USE_ORIGIN_HEADERS")

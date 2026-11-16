@@ -18,7 +18,9 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
+@_spi(GoogleCloudInternal) public import GoogleIAMV1
 @_spi(GoogleCloudInternal) public import GoogleLongRunning
+@_spi(GoogleCloudInternal) public import GoogleWKT
 @_spi(GoogleCloudInternal) public import GoogleGax
 
 /// The Cloud Run Instances API allows you to manage Cloud Run Instances.
@@ -77,7 +79,43 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
     return try await poller.wait()
   }
 
-  /// Deletes a Instance
+  /// Updates an Instance.
+  ///
+  /// @Snippet(path: "Instances_UpdateInstance")
+  public func updateInstance(
+    request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateInstance(request: request, options: options)
+  }
+
+  /// Updates an Instance.
+  ///
+  /// @Snippet(path: "Instances_UpdateInstance")
+  public func updateInstancePollingUntilDone(
+    request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Instance {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Instance>.State in
+      return try op._extractStatus(Instance.self)
+    }
+    let rawOp = try await self.updateInstance(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Deletes an Instance
   ///
   /// @Snippet(path: "Instances_DeleteInstance")
   public func deleteInstance(
@@ -86,7 +124,7 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
     try await self.inner.deleteInstance(request: request, options: options)
   }
 
-  /// Deletes a Instance
+  /// Deletes an Instance
   ///
   /// @Snippet(path: "Instances_DeleteInstance")
   public func deleteInstancePollingUntilDone(
@@ -113,7 +151,7 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
     return try await poller.wait()
   }
 
-  /// Gets a Instance
+  /// Gets an Instance
   ///
   /// @Snippet(path: "Instances_GetInstance")
   public func getInstance(
@@ -203,6 +241,37 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
     return try await poller.wait()
   }
 
+  /// Gets the IAM Access Control policy currently in effect for the given
+  /// Instance. This result does not include any inherited policies.
+  ///
+  /// @Snippet(path: "Instances_GetIamPolicy")
+  public func getIamPolicy(
+    request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleIAMV1.Policy {
+    try await self.inner.getIamPolicy(request: request, options: options)
+  }
+
+  /// Sets the IAM Access control policy for the specified Instance. Overwrites
+  /// any existing policy.
+  ///
+  /// @Snippet(path: "Instances_SetIamPolicy")
+  public func setIamPolicy(
+    request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleIAMV1.Policy {
+    try await self.inner.setIamPolicy(request: request, options: options)
+  }
+
+  /// Returns permissions that a caller has on the specified Instance.
+  ///
+  /// There are no permissions required for making this API call.
+  ///
+  /// @Snippet(path: "Instances_TestIamPermissions")
+  public func testIamPermissions(
+    request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
+    try await self.inner.testIamPermissions(request: request, options: options)
+  }
+
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -265,6 +334,16 @@ extension Clients {
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> Instance
 
+    /// See `InstancesClient.updateInstance`.
+    func updateInstance(
+      request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `InstancesClient.updateInstance`.
+    func updateInstancePollingUntilDone(
+      request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> Instance
+
     /// See `InstancesClient.deleteInstance`.
     func deleteInstance(
       request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
@@ -304,6 +383,21 @@ extension Clients {
     func startInstancePollingUntilDone(
       request: StartInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> Instance
+
+    /// See `InstancesClient.getIamPolicy`.
+    func getIamPolicy(
+      request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy
+
+    /// See `InstancesClient.setIamPolicy`.
+    func setIamPolicy(
+      request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy
+
+    /// See `InstancesClient.testIamPermissions`.
+    func testIamPermissions(
+      request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
 
     /// See `InstancesClient.listOperations`.
     func listOperations(
@@ -357,6 +451,41 @@ extension Clients.InstancesProtocol {
       $0.instance = instance
     }
     return try await self.createInstancePollingUntilDone(request: request)
+  }
+
+  public func updateInstance(request: UpdateInstanceRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateInstance(request: request, options: .init())
+  }
+
+  public func updateInstance(
+    request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
+    -> Instance
+  {
+    return try await self.updateInstancePollingUntilDone(request: request, options: .init())
+  }
+
+  public func updateInstancePollingUntilDone(
+    request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateInstancePollingUntilDone(
+    instance: Instance?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> Instance {
+    let request = UpdateInstanceRequest().with {
+      $0.instance = instance
+      $0.updateMask = updateMask
+    }
+    return try await self.updateInstancePollingUntilDone(request: request)
   }
 
   public func deleteInstance(request: DeleteInstanceRequest) async throws
@@ -514,6 +643,42 @@ extension Clients.InstancesProtocol {
       $0.name = name
     }
     return try await self.startInstancePollingUntilDone(request: request)
+  }
+
+  public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
+    -> GoogleIAMV1.Policy
+  {
+    try await self.getIamPolicy(request: request, options: .init())
+  }
+
+  public func getIamPolicy(
+    request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleIAMV1.Policy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
+    -> GoogleIAMV1.Policy
+  {
+    try await self.setIamPolicy(request: request, options: .init())
+  }
+
+  public func setIamPolicy(
+    request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleIAMV1.Policy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
+    -> GoogleIAMV1.TestIamPermissionsResponse
+  {
+    try await self.testIamPermissions(request: request, options: .init())
+  }
+
+  public func testIamPermissions(
+    request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

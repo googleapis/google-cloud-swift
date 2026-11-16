@@ -24,7 +24,8 @@ public struct AppEngineVersionInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Name of an App Engine version.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of an App Engine version.
+  /// URI of the App Engine version.
+  /// Format: `apps/{app_id}/services/{service_id}/versions/{version_id}`
   public var uri: Swift.String = Swift.String()
 
   /// Runtime of the App Engine version.

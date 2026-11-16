@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 import GoogleAuth
 @_spi(GoogleCloudInternal) public import GoogleGax
 
@@ -44,11 +45,31 @@ public final class StorageClient: StorageProtocol, Sendable {
     )
   }
 
-  @_spi(GoogleCloudInternal) public init(
+  @_spi(GoogleCloudInternal) public convenience init(
     _ options: StorageClientOptions = .init(),
     mock: any _HTTPClientProtocol
   ) throws {
-    let endpoint = options.client.endpoint ?? Self.defaultEndpoint
+    try self.init(
+      options,
+      mock: mock,
+      environment: ProcessInfo.processInfo.environment
+    )
+  }
+
+  init(
+    _ options: StorageClientOptions = .init(),
+    mock: any _HTTPClientProtocol,
+    environment: [String: String]
+  ) throws {
+    let universeDomain = GoogleGax._Host.resolveUniverseDomain(
+      options: options.client,
+      environment: environment
+    )
+    let endpoint = try GoogleGax._Host.endpoint(
+      endpoint: options.client.endpoint,
+      defaultEndpoint: Self.defaultEndpoint,
+      universeDomain: universeDomain
+    )
     self.options = options
     self.inner = try GoogleGax._HTTPClient(
       mock,
@@ -56,6 +77,7 @@ public final class StorageClient: StorageProtocol, Sendable {
       credentials: options.client.credentials,
       quotaProject: options.client.quotaProject,
       defaultEndpoint: Self.defaultEndpoint,
+      universeDomain: universeDomain,
       clientHeader: .veneer(packageVersion: PackageVersion.version)
     )
   }

@@ -206,10 +206,10 @@ import Testing
       for: requestUrl
     )
 
-    let options = StorageClientOptions().with {
-      $0.client = .init().with {
+    let options = try StorageClientOptions().with {
+      $0.client = try .init().with {
         $0.endpoint = endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
+        $0.credentials = try Credentials(configuration: .anonymous)
       }
     }
     let client = try StorageClient(options, mock: registry)
@@ -220,26 +220,262 @@ import Testing
     #expect(request?.value(forHTTPHeaderField: "Host") == expectedHost)
   }
 
-  @Test func hostHeaderWithUniverseDomain() async throws {
+  @Test(arguments: [
+    (
+      optionUniverse: "my-universe.com" as String?,
+      environment: [:] as [String: String],
+      expectedDomain: "my-universe.com"
+    ),
+    (
+      optionUniverse: nil,
+      environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com"],
+      expectedDomain: "env.universe.com"
+    ),
+  ])
+  func hostHeaderWithUniverseDomain(
+    optionUniverse: String?,
+    environment: [String: String],
+    expectedDomain: String
+  ) async throws {
     let registry = MockRegistry.create()
     let requestUrl =
-      "https://storage.my-universe.com/storage/v1/b/test-bucket/o/test-obj?alt=media"
+      "https://storage.\(expectedDomain)/storage/v1/b/test-bucket/o/test-obj?alt=media"
     registry.register(
       response: .success(statusCode: 200, data: Data("data".utf8)),
       for: requestUrl
     )
 
-    let options = StorageClientOptions().with {
-      $0.client = .init().with {
-        $0.endpoint = "https://storage.my-universe.com"
-        $0.credentials = try! Credentials(configuration: .anonymous)
+    let options = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.universeDomain = optionUniverse
+        $0.credentials = try Credentials(configuration: .anonymous)
       }
     }
-    let client = try StorageClient(options, mock: registry)
+    let client = try StorageClient(options, mock: registry, environment: environment)
     let task = client.readObject(from: "test-bucket", object: "test-obj")
     _ = try await task.metadata
 
     let request = registry.lastRequest(for: requestUrl)
+    #expect(request?.value(forHTTPHeaderField: "Host") == "storage.\(expectedDomain)")
+  }
+
+  @Test func badUniverseDomain() throws {
+    let registry = MockRegistry.create()
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = StorageClientOptions().with {
+      $0.client = .init().with {
+        $0.universeDomain = "invalid/domain"
+        $0.credentials = credentials
+      }
+    }
+    #expect(throws: ClientError.self) {
+      _ = try StorageClient(options)
+    }
+    #expect(throws: ClientError.self) {
+      _ = try StorageClient(options, mock: registry, environment: [:])
+    }
+  }
+
+  private struct ZeroBackoff: BackoffPolicy {
+    func backoffDelay(for state: RetryState) -> Duration { .zero }
+  }
+
+  private static func unwrapIOError(_ requestError: RequestError) -> (any Error)? {
+    switch requestError {
+    case .io(let underlying):
+      return underlying
+    case .exhausted(let exhausted):
+      if case .io(let underlying) = exhausted.underlyingError {
+        return underlying
+      }
+      return nil
+    default:
+      return nil
+    }
+  }
+
+  @Test(arguments: [
+    (
+      optionUniverse: "my-universe.com" as String?,
+      environment: [:] as [String: String],
+      expectedDomain: "my-universe.com"
+    ),
+    (
+      optionUniverse: nil,
+      environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env.universe.com"],
+      expectedDomain: "env.universe.com"
+    ),
+  ])
+  func readObjectUniverseDomainMismatch(
+    optionUniverse: String?,
+    environment: [String: String],
+    expectedDomain: String
+  ) async throws {
+    let registry = MockRegistry.create()
+    let endpoint = "https://private.\(expectedDomain)"
+    let requestUrl = "\(endpoint)/storage/v1/b/test-bucket/o/test-obj?alt=media"
+    registry.register(
+      response: .success(statusCode: 200, data: Data("data".utf8)),
+      for: requestUrl
+    )
+
+    let options = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = endpoint
+        $0.universeDomain = optionUniverse
+        $0.credentials = try Credentials(configuration: .apiKey("test-api-key"))
+        $0.backoffPolicy = ZeroBackoff()
+      }
+    }
+    let client = try StorageClient(options, mock: registry, environment: environment)
+    let task = client.readObject(from: "test-bucket", object: "test-obj")
+    let error = await #expect(throws: ReadObjectError.self) {
+      _ = try await task.metadata
+    }
+    guard let error, case .requestError(let reqError) = error,
+      let underlying = Self.unwrapIOError(reqError)
+    else {
+      Issue.record(
+        "Expected ReadObjectError.requestError wrapping .io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
+    #expect(String(describing: underlying).contains(expectedDomain))
+    #expect(registry.lastRequest(for: requestUrl) == nil)
+  }
+
+  @Test(arguments: [
+    (
+      endpoint: "https://private.googleapis.com",
+      universeDomain: "googleapis.com",
+      credentials: CredentialsConfiguration.apiKey("test-api-key"),
+      expectedHost: "storage.googleapis.com"
+    ),
+    (
+      endpoint: "https://private.my-universe.com",
+      universeDomain: "my-universe.com",
+      credentials: .anonymous,
+      expectedHost: "storage.my-universe.com"
+    ),
+  ])
+  func readObjectUniverseDomainSuccess(
+    endpoint: String,
+    universeDomain: String,
+    credentials: CredentialsConfiguration,
+    expectedHost: String
+  ) async throws {
+    let registry = MockRegistry.create()
+    let requestUrl = "\(endpoint)/storage/v1/b/test-bucket/o/test-obj?alt=media"
+    registry.register(
+      response: .success(statusCode: 200, data: Data("data".utf8)),
+      for: requestUrl
+    )
+
+    let options = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = endpoint
+        $0.universeDomain = universeDomain
+        $0.credentials = try Credentials(configuration: credentials)
+      }
+    }
+    let client = try StorageClient(options, mock: registry, environment: [:])
+    let task = client.readObject(from: "test-bucket", object: "test-obj")
+    _ = try await task.metadata
+    let request = registry.lastRequest(for: requestUrl)
+    #expect(request?.value(forHTTPHeaderField: "Host") == expectedHost)
+  }
+
+  @Test(arguments: [false, true])
+  func writeObjectUniverseDomainMismatch(useResumable: Bool) async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-obj"
+    let endpoint = "https://private.my-universe.com"
+    let uploadType = useResumable ? "resumable" : "multipart"
+    let uploadUrl =
+      "\(endpoint)/upload/storage/v1/b/\(bucket)/o?uploadType=\(uploadType)&name=\(objectName)"
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: Data("{\"name\":\"\(objectName)\"}".utf8),
+        headers: [
+          "Content-Type": "application/json",
+          "Location": "\(uploadUrl)&upload_id=1",
+        ]
+      ),
+      for: uploadUrl
+    )
+
+    let clientOptions = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = endpoint
+        $0.universeDomain = "my-universe.com"
+        $0.credentials = try Credentials(configuration: .apiKey("test-api-key"))
+        $0.backoffPolicy = ZeroBackoff()
+      }
+    }
+    let writeOptions = WriteObjectOptions().with {
+      if useResumable {
+        $0.resumableUploadThreshold = 0
+      } else {
+        $0.idempotent = true
+      }
+      $0.backoffPolicy = ZeroBackoff()
+    }
+
+    let client = try StorageClient(clientOptions, mock: registry, environment: [:])
+    let error = await #expect(throws: WriteObjectError.self) {
+      _ = try await client.writeObject(
+        Data("hello world".utf8),
+        to: bucket,
+        as: objectName,
+        options: writeOptions
+      )
+    }
+    guard let error, case .requestError(let reqError) = error,
+      let underlying = Self.unwrapIOError(reqError)
+    else {
+      Issue.record(
+        "Expected WriteObjectError.requestError wrapping .io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
+    #expect(registry.lastRequest(for: uploadUrl) == nil)
+  }
+
+  @Test(arguments: [
+    (endpoint: nil as String?, expectedBase: "https://storage.my-universe.com"),
+    (endpoint: "https://private.my-universe.com", expectedBase: "https://private.my-universe.com"),
+  ])
+  func writeObjectHostHeaderWithUniverseDomain(
+    endpoint: String?,
+    expectedBase: String
+  ) async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-obj"
+    let uploadUrl =
+      "\(expectedBase)/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)"
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: Data("{\"name\":\"\(objectName)\"}".utf8),
+        headers: ["Content-Type": "application/json"]
+      ),
+      for: uploadUrl
+    )
+
+    let options = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = endpoint
+        $0.universeDomain = "my-universe.com"
+        $0.credentials = try Credentials(configuration: .anonymous)
+      }
+    }
+    let client = try StorageClient(options, mock: registry, environment: [:])
+    _ = try await client.writeObject(Data("hello world".utf8), to: bucket, as: objectName)
+
+    let request = registry.lastRequest(for: uploadUrl)
     #expect(request?.value(forHTTPHeaderField: "Host") == "storage.my-universe.com")
   }
 
@@ -258,10 +494,10 @@ import Testing
       for: uploadUrl
     )
 
-    let options = StorageClientOptions().with {
-      $0.client = .init().with {
+    let options = try StorageClientOptions().with {
+      $0.client = try .init().with {
         $0.endpoint = endpoint
-        $0.credentials = try! Credentials(configuration: .anonymous)
+        $0.credentials = try Credentials(configuration: .anonymous)
       }
     }
     let client = try StorageClient(options, mock: registry)

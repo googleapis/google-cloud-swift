@@ -108,6 +108,14 @@
         request: SqlInstancesRestartRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation
 
+      func start(
+        request: SqlInstancesStartRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation
+
+      func stop(
+        request: SqlInstancesStopRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation
+
       func restoreBackup(
         request: SqlInstancesRestoreBackupRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation
@@ -172,6 +180,10 @@
         request: SqlInstancesGetLatestRecoveryTimeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SqlInstancesGetLatestRecoveryTimeResponse
 
+      func executeSqlReadOnly(
+        request: SqlInstancesExecuteSqlReadOnlyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.SqlInstancesExecuteSqlReadOnlyResponse
+
       func executeSql(
         request: SqlInstancesExecuteSqlRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SqlInstancesExecuteSqlResponse
@@ -190,6 +202,10 @@
 
       func pointInTimeRestore(
         request: SqlInstancesPointInTimeRestoreRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation
+
+      func reconcileNetworking(
+        request: SqlInstancesReconcileNetworkingRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation
     }
   }

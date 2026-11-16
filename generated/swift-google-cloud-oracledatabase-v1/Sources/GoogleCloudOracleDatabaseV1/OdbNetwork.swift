@@ -25,7 +25,7 @@ public struct OdbNetwork: Codable, Equatable, GoogleWKT._AnyPackable,
   /// projects/{project}/locations/{region}/odbNetworks/{odb_network}
   public var name: Swift.String = Swift.String()
 
-  /// Required. The name of the VPC network in the following format:
+  /// Required. Immutable. The name of the VPC network in the following format:
   /// projects/{project}/global/networks/{network}
   public var network: Swift.String = Swift.String()
 
@@ -42,10 +42,24 @@ public struct OdbNetwork: Codable, Equatable, GoogleWKT._AnyPackable,
   /// OdbNetwork.
   public var entitlementId: Swift.String = Swift.String()
 
-  /// Optional. The GCP Oracle zone where OdbNetwork is hosted.
+  /// Optional. Immutable. The GCP Oracle zone where OdbNetwork is hosted.
   /// Example: us-east4-b-r2.
   /// If not specified, the system will pick a zone based on availability.
   public var gcpOracleZone: Swift.String = Swift.String()
+
+  /// Optional. Configuration to enable the service (Oracledatabase@Google Cloud)
+  /// to establish connectivity to the database.
+  ///
+  /// This should be specified if you intend to associate this OdbNetwork with a
+  /// DatabaseConnection resource to `ExecuteSQL` on the database, or to create a
+  /// ServiceIntegration with the Database.
+  ///
+  /// Please don't specify it otherwise to avoid complicating the network setup.
+  public var serviceConnectivityConfig: ServiceConnectivityConfig? = nil
+
+  /// Output only. Indicates whether the OdbNetwork is currently reconciling
+  /// changes.
+  public var reconciling: Swift.Bool = Swift.Bool()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,6 +93,8 @@ public struct OdbNetwork: Codable, Equatable, GoogleWKT._AnyPackable,
     static let state = CodingKeys(stringValue: "state")
     static let entitlementId = CodingKeys(stringValue: "entitlementId")
     static let gcpOracleZone = CodingKeys(stringValue: "gcpOracleZone")
+    static let serviceConnectivityConfig = CodingKeys(stringValue: "serviceConnectivityConfig")
+    static let reconciling = CodingKeys(stringValue: "reconciling")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -88,6 +104,8 @@ public struct OdbNetwork: Codable, Equatable, GoogleWKT._AnyPackable,
       "state",
       "entitlementId",
       "gcpOracleZone",
+      "serviceConnectivityConfig",
+      "reconciling",
     ]
   }
 
@@ -114,6 +132,11 @@ public struct OdbNetwork: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gcpOracleZone) {
       self.gcpOracleZone = value
     }
+    self.serviceConnectivityConfig = try container.decodeIfPresent(
+      ServiceConnectivityConfig.self, forKey: .serviceConnectivityConfig)
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .reconciling) {
+      self.reconciling = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -129,6 +152,9 @@ public struct OdbNetwork: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.state, forKey: .state)
     try container.encode(self.entitlementId, forKey: .entitlementId)
     try container.encode(self.gcpOracleZone, forKey: .gcpOracleZone)
+    try container.encodeIfPresent(
+      self.serviceConnectivityConfig, forKey: .serviceConnectivityConfig)
+    try container.encode(self.reconciling, forKey: .reconciling)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

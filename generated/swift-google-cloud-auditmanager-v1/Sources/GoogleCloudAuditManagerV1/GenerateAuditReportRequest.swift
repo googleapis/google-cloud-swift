@@ -46,6 +46,12 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// `NIST_800_53`.
   public var complianceFramework: Swift.String = Swift.String()
 
+  /// Optional. Maps dynamic parameter overrides by Cloud Control resource name
+  /// at execution time. For example,
+  /// `{"organizations/123/locations/global/cloudControls/control-1":
+  /// {parameters: [...]}}`
+  public var parameterOverrides: [Swift.String: ParameterOverrides] = [:]
+
   /// Optional. If `true`, only validates the request and does not generate the
   /// audit report. This executes standard request validation (such as schema,
   /// framework existence, scope, and IAM checks) and skips the apply phase.
@@ -94,6 +100,7 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleWKT._AnyPack
     static let complianceStandard = CodingKeys(stringValue: "complianceStandard")
     static let reportFormat = CodingKeys(stringValue: "reportFormat")
     static let complianceFramework = CodingKeys(stringValue: "complianceFramework")
+    static let parameterOverrides = CodingKeys(stringValue: "parameterOverrides")
     static let validateOnly = CodingKeys(stringValue: "validateOnly")
 
     static let _knownKeys: Set<Swift.String> = [
@@ -102,6 +109,7 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleWKT._AnyPack
       "complianceStandard",
       "reportFormat",
       "complianceFramework",
+      "parameterOverrides",
       "validateOnly",
     ]
   }
@@ -124,6 +132,11 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleWKT._AnyPack
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceFramework) {
       self.complianceFramework = value
+    }
+    if let value = try container.decodeIfPresent(
+      [Swift.String: ParameterOverrides].self, forKey: .parameterOverrides)
+    {
+      self.parameterOverrides = value
     }
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
       self.validateOnly = value
@@ -158,6 +171,7 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleWKT._AnyPack
     try container.encode(self.complianceStandard, forKey: .complianceStandard)
     try container.encode(self.reportFormat, forKey: .reportFormat)
     try container.encode(self.complianceFramework, forKey: .complianceFramework)
+    try container.encode(self.parameterOverrides, forKey: .parameterOverrides)
     try container.encode(self.validateOnly, forKey: .validateOnly)
 
     if let choice = self.destination {

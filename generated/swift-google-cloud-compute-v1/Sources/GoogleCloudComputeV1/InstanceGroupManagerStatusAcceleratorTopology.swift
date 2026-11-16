@@ -109,6 +109,8 @@
       case activating
       /// The accelerator topology is active.
       case active
+      /// The accelerator topology is active but operating in degraded mode.
+      case activeDegraded
       /// The accelerator topology is being deactivated.
       case deactivating
       /// The accelerator topology failed.
@@ -133,6 +135,7 @@
         switch self {
         case .activating: return "ACTIVATING"
         case .active: return "ACTIVE"
+        case .activeDegraded: return "ACTIVE_DEGRADED"
         case .deactivating: return "DEACTIVATING"
         case .failed: return "FAILED"
         case .incomplete: return "INCOMPLETE"
@@ -148,6 +151,7 @@
         switch stringValue {
         case "ACTIVATING": self = .activating
         case "ACTIVE": self = .active
+        case "ACTIVE_DEGRADED": self = .activeDegraded
         case "DEACTIVATING": self = .deactivating
         case "FAILED": self = .failed
         case "INCOMPLETE": self = .incomplete
@@ -167,6 +171,7 @@
         switch self {
         case .activating: return try container.encode("ACTIVATING")
         case .active: return try container.encode("ACTIVE")
+        case .activeDegraded: return try container.encode("ACTIVE_DEGRADED")
         case .deactivating: return try container.encode("DEACTIVATING")
         case .failed: return try container.encode("FAILED")
         case .incomplete: return try container.encode("INCOMPLETE")

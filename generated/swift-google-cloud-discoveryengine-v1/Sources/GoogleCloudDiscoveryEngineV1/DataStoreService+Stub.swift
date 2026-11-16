@@ -16,6 +16,7 @@
 
 #if DataStoreService
   import Foundation
+  import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
   import GoogleWKT
@@ -42,6 +43,14 @@
       func updateDataStore(
         request: UpdateDataStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore
+
+      func getIamPolicy(
+        request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy
+
+      func setIamPolicy(
+        request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleIAMV1.Policy
 
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions

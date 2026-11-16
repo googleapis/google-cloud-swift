@@ -428,6 +428,107 @@
       }
     }
 
+    /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.sslPolicies.getIamPolicy] method.
+    ///
+    /// [google.cloud.compute.v1.sslPolicies.getIamPolicy]: <doc:SslPoliciesClient/getIamPolicy(request:options:)>
+    public struct GetIamPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Requested IAM Policy version.
+      public var optionsRequestedPolicyVersion: Swift.Int32? = nil
+
+      /// Project ID for this request.
+      public var project: Swift.String = Swift.String()
+
+      /// Name or id of the resource for this request.
+      public var resource: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `GetIamPolicyRequest`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = GetIamPolicyRequest().with { $0.optionsRequestedPolicyVersion = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let optionsRequestedPolicyVersion = CodingKeys(
+          stringValue: "optionsRequestedPolicyVersion")
+        static let project = CodingKeys(stringValue: "project")
+        static let resource = CodingKeys(stringValue: "resource")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "optionsRequestedPolicyVersion",
+          "project",
+          "resource",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.optionsRequestedPolicyVersion = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .optionsRequestedPolicyVersion)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+          self.project = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+          self.resource = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(
+          self.optionsRequestedPolicyVersion, forKey: .optionsRequestedPolicyVersion)
+        try container.encode(self.project, forKey: .project)
+        try container.encode(self.resource, forKey: .resource)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// The type URL for `GetIamPolicyRequest`: `"type.googleapis.com/google.cloud.compute.v1.sslPolicies.getIamPolicyRequest"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.compute.v1.sslPolicies.getIamPolicyRequest"
+      }
+
+      /// Initialize an instance of `GetIamPolicyRequest` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.sslPolicies.getIamPolicyRequest"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `GetIamPolicyRequest` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.sslPolicies.insert] method.
     ///
     /// [google.cloud.compute.v1.sslPolicies.insert]: <doc:SslPoliciesClient/insert(request:options:)>
@@ -1018,6 +1119,206 @@
       }
 
       /// Packs this `PatchRequest` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.sslPolicies.setIamPolicy] method.
+    ///
+    /// [google.cloud.compute.v1.sslPolicies.setIamPolicy]: <doc:SslPoliciesClient/setIamPolicy(request:options:)>
+    public struct SetIamPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Project ID for this request.
+      public var project: Swift.String = Swift.String()
+
+      /// Name or id of the resource for this request.
+      public var resource: Swift.String = Swift.String()
+
+      /// Synthetic request body field for the [setIamPolicy()][google.cloud.compute.v1.sslPolicies.setIamPolicy] method.
+      ///
+      /// [google.cloud.compute.v1.sslPolicies.setIamPolicy]: <doc:SslPoliciesClient/setIamPolicy(request:options:)>
+      public var body: GlobalSetPolicyRequest? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `SetIamPolicyRequest`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = SetIamPolicyRequest().with { $0.project = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let project = CodingKeys(stringValue: "project")
+        static let resource = CodingKeys(stringValue: "resource")
+        static let body = CodingKeys(stringValue: "body")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "project",
+          "resource",
+          "body",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+          self.project = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+          self.resource = value
+        }
+        self.body = try container.decodeIfPresent(GlobalSetPolicyRequest.self, forKey: .body)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.project, forKey: .project)
+        try container.encode(self.resource, forKey: .resource)
+        try container.encodeIfPresent(self.body, forKey: .body)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// The type URL for `SetIamPolicyRequest`: `"type.googleapis.com/google.cloud.compute.v1.sslPolicies.setIamPolicyRequest"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.compute.v1.sslPolicies.setIamPolicyRequest"
+      }
+
+      /// Initialize an instance of `SetIamPolicyRequest` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.sslPolicies.setIamPolicyRequest"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `SetIamPolicyRequest` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.sslPolicies.testIamPermissions] method.
+    ///
+    /// [google.cloud.compute.v1.sslPolicies.testIamPermissions]: <doc:SslPoliciesClient/testIamPermissions(request:options:)>
+    public struct TestIamPermissionsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Project ID for this request.
+      public var project: Swift.String = Swift.String()
+
+      /// Name or id of the resource for this request.
+      public var resource: Swift.String = Swift.String()
+
+      /// Synthetic request body field for the [testIamPermissions()][google.cloud.compute.v1.sslPolicies.testIamPermissions] method.
+      ///
+      /// [google.cloud.compute.v1.sslPolicies.testIamPermissions]: <doc:SslPoliciesClient/testIamPermissions(request:options:)>
+      public var body: TestPermissionsRequest? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `TestIamPermissionsRequest`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = TestIamPermissionsRequest().with { $0.project = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let project = CodingKeys(stringValue: "project")
+        static let resource = CodingKeys(stringValue: "resource")
+        static let body = CodingKeys(stringValue: "body")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "project",
+          "resource",
+          "body",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+          self.project = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
+          self.resource = value
+        }
+        self.body = try container.decodeIfPresent(TestPermissionsRequest.self, forKey: .body)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.project, forKey: .project)
+        try container.encode(self.resource, forKey: .resource)
+        try container.encodeIfPresent(self.body, forKey: .body)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// The type URL for `TestIamPermissionsRequest`: `"type.googleapis.com/google.cloud.compute.v1.sslPolicies.testIamPermissionsRequest"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.compute.v1.sslPolicies.testIamPermissionsRequest"
+      }
+
+      /// Initialize an instance of `TestIamPermissionsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.sslPolicies.testIamPermissionsRequest"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `TestIamPermissionsRequest` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {

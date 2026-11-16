@@ -197,6 +197,9 @@
     /// Maximum number of specifications is 100.
     public var promoteControlIds: [Swift.String] = []
 
+    /// Optional. The specification for answer generation.
+    public var answerGenerationSpec: GoogleCloudDiscoveryEngineV1.AnswerGenerationSpec? = nil
+
     /// Industry vertical specific config.
     public var verticalConfig: VerticalConfigOneOf? = nil
 
@@ -244,6 +247,7 @@
       static let replacementControlIds = CodingKeys(stringValue: "replacementControlIds")
       static let ignoreControlIds = CodingKeys(stringValue: "ignoreControlIds")
       static let promoteControlIds = CodingKeys(stringValue: "promoteControlIds")
+      static let answerGenerationSpec = CodingKeys(stringValue: "answerGenerationSpec")
 
       static let _knownKeys: Set<Swift.String> = [
         "mediaConfig",
@@ -265,6 +269,7 @@
         "replacementControlIds",
         "ignoreControlIds",
         "promoteControlIds",
+        "answerGenerationSpec",
       ]
     }
 
@@ -328,6 +333,8 @@
       {
         self.promoteControlIds = value
       }
+      self.answerGenerationSpec = try container.decodeIfPresent(
+        GoogleCloudDiscoveryEngineV1.AnswerGenerationSpec.self, forKey: .answerGenerationSpec)
 
       var verticalConfig: VerticalConfigOneOf? = nil
       let verticalConfigCheckAndSet = {
@@ -375,6 +382,7 @@
       try container.encode(self.replacementControlIds, forKey: .replacementControlIds)
       try container.encode(self.ignoreControlIds, forKey: .ignoreControlIds)
       try container.encode(self.promoteControlIds, forKey: .promoteControlIds)
+      try container.encodeIfPresent(self.answerGenerationSpec, forKey: .answerGenerationSpec)
 
       if let choice = self.verticalConfig {
         switch choice {

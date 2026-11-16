@@ -115,6 +115,51 @@
             return try await self.inner.list(request: r, options: o)
           })
       }
+
+      public func updateCustomerManagedCertificate(
+        request: UpdateCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "updateCustomerManagedCertificate",
+          action: {
+            (r: UpdateCustomerManagedCertificateRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudSqlV1.Operation
+            in
+            return try await self.inner.updateCustomerManagedCertificate(request: r, options: o)
+          })
+      }
+
+      public func deleteCustomerManagedCertificate(
+        request: DeleteCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "deleteCustomerManagedCertificate",
+          action: {
+            (r: DeleteCustomerManagedCertificateRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudSqlV1.Operation
+            in
+            return try await self.inner.deleteCustomerManagedCertificate(request: r, options: o)
+          })
+      }
+
+      public func listCustomerManagedCertificates(
+        request: ListCustomerManagedCertificatesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "listCustomerManagedCertificates",
+          action: {
+            (r: ListCustomerManagedCertificatesRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse
+            in
+            return try await self.inner.listCustomerManagedCertificates(request: r, options: o)
+          })
+      }
     }
   }
 #endif

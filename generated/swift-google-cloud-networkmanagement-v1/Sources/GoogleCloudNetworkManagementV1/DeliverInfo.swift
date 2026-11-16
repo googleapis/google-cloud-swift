@@ -25,6 +25,9 @@ public struct DeliverInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var target: DeliverInfo.Target = DeliverInfo.Target()
 
   /// URI of the resource that the packet is delivered to.
+  /// For example:
+  /// * `"projects/{project}/zones/{zone}/instances/{instance}"`
+  /// * `"projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}"`
   public var resourceUri: Swift.String = Swift.String()
 
   /// IP address of the target (if applicable).
@@ -177,6 +180,8 @@ public struct DeliverInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     case cloudRunJob
     /// Target is a DMS Private Connection. Used only for return traces.
     case dmsPrivateConnection
+    /// Target is a Datastream Private Connection. Used only for return traces.
+    case datastreamPrivateConnection
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -226,6 +231,7 @@ public struct DeliverInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       case .gkePod: return 19
       case .cloudRunJob: return 20
       case .dmsPrivateConnection: return 21
+      case .datastreamPrivateConnection: return 22
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -257,6 +263,7 @@ public struct DeliverInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       case .gkePod: return "GKE_POD"
       case .cloudRunJob: return "CLOUD_RUN_JOB"
       case .dmsPrivateConnection: return "DMS_PRIVATE_CONNECTION"
+      case .datastreamPrivateConnection: return "DATASTREAM_PRIVATE_CONNECTION"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -288,6 +295,7 @@ public struct DeliverInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       case "GKE_POD": self = .gkePod
       case "CLOUD_RUN_JOB": self = .cloudRunJob
       case "DMS_PRIVATE_CONNECTION": self = .dmsPrivateConnection
+      case "DATASTREAM_PRIVATE_CONNECTION": self = .datastreamPrivateConnection
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -318,6 +326,7 @@ public struct DeliverInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       case 19: self = .gkePod
       case 20: self = .cloudRunJob
       case 21: self = .dmsPrivateConnection
+      case 22: self = .datastreamPrivateConnection
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -364,6 +373,8 @@ public struct DeliverInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       case .gkePod: return try container.encode("GKE_POD")
       case .cloudRunJob: return try container.encode("CLOUD_RUN_JOB")
       case .dmsPrivateConnection: return try container.encode("DMS_PRIVATE_CONNECTION")
+      case .datastreamPrivateConnection:
+        return try container.encode("DATASTREAM_PRIVATE_CONNECTION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

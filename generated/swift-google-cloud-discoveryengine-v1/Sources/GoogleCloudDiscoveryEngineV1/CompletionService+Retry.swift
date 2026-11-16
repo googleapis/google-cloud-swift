@@ -66,6 +66,21 @@
           })
       }
 
+      public func advancedCompleteQuery(
+        request: AdvancedCompleteQueryRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.AdvancedCompleteQueryResponse {
+        return try await self._intercept(
+          request: request,
+          options: options,
+          idempotent: false,
+          action: {
+            (r: AdvancedCompleteQueryRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudDiscoveryEngineV1.AdvancedCompleteQueryResponse
+            in
+            return try await self.inner.advancedCompleteQuery(request: r, options: o)
+          })
+      }
+
       public func importSuggestionDenyListEntries(
         request: ImportSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {

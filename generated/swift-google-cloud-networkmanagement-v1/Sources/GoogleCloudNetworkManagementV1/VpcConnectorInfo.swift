@@ -25,6 +25,8 @@ public struct VpcConnectorInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var displayName: Swift.String = Swift.String()
 
   /// URI of a VPC connector.
+  /// Format:
+  /// `projects/{project_id}/locations/{location}/connectors/{connector_id}`
   public var uri: Swift.String = Swift.String()
 
   /// Location in which the VPC connector is deployed.

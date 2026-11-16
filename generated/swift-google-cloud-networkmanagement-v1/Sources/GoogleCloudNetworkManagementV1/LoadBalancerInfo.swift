@@ -37,7 +37,12 @@ public struct LoadBalancerInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of load balancer's backend configuration.
   public var backendType: LoadBalancerInfo.BackendType = LoadBalancerInfo.BackendType()
 
-  /// Backend configuration URI.
+  /// URI of the backend associated with the load balancer.
+  /// Format:
+  /// * `projects/{project_id}/regions/{region}/backendServices/{backend_service_id}`
+  /// * `projects/{project_id}/global/backendServices/{backend_service_id}`
+  /// * `projects/{project_id}/regions/{region}/targetPools/{target_pool_id}`
+  /// * `projects/{project_id}/zones/{zone}/targetInstances/{target_instance_id}`
   public var backendUri: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

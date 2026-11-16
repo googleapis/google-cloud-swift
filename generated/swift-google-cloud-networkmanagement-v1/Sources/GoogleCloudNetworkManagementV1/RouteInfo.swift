@@ -35,8 +35,9 @@ public struct RouteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Name of a route.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of a route. SUBNET, STATIC, PEERING_SUBNET (only for peering network)
-  /// and POLICY_BASED routes only.
+  /// URI of a route in format
+  /// "projects/{project}/global/routes/{route}". SUBNET, STATIC,
+  /// PEERING_SUBNET (only for peering network) and POLICY_BASED routes only.
   public var uri: Swift.String = Swift.String()
 
   /// Region of the route. DYNAMIC, PEERING_DYNAMIC, POLICY_BASED and ADVERTISED
@@ -55,7 +56,8 @@ public struct RouteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   @available(*, deprecated)
   public var nextHop: Swift.String = Swift.String()
 
-  /// URI of a VPC network where route is located.
+  /// URI of a VPC network where route is located in format
+  /// "projects/{project}/global/networks/{network}".
   public var networkUri: Swift.String = Swift.String()
 
   /// Priority of the route.
@@ -76,16 +78,21 @@ public struct RouteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Protocols of the route. POLICY_BASED routes only.
   public var protocols: [Swift.String] = []
 
-  /// URI of the NCC Hub the route is advertised by. PEERING_SUBNET and
+  /// URI of the NCC Hub the route is advertised by in format
+  /// "projects/{project}/locations/global/hubs/{hub}". PEERING_SUBNET and
   /// PEERING_DYNAMIC routes that are advertised by NCC Hub only.
   public var nccHubUri: Swift.String? = nil
 
-  /// URI of the destination NCC Spoke. PEERING_SUBNET and PEERING_DYNAMIC routes
-  /// that are advertised by NCC Hub only.
+  /// URI of the destination NCC Spoke in format
+  /// "projects/{project}/locations/{location}/spokes/{spoke}" (regional) or
+  /// "projects/{project}/locations/global/spokes/{spoke}" (global).
+  /// PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub
+  /// only.
   public var nccSpokeUri: Swift.String? = nil
 
   /// For ADVERTISED dynamic routes, the URI of the Cloud Router that advertised
-  /// the corresponding IP prefix.
+  /// the corresponding IP prefix in format
+  /// "projects/{project}/regions/{region}/routers/{router}".
   public var advertisedRouteSourceRouterUri: Swift.String? = nil
 
   /// For ADVERTISED routes, the URI of their next hop, i.e. the URI of the
@@ -99,11 +106,13 @@ public struct RouteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// URI of the next hop resource.
   public var nextHopUri: Swift.String = Swift.String()
 
-  /// URI of a VPC network where the next hop resource is located.
+  /// URI of a VPC network where the next hop resource is located in format
+  /// "projects/{project}/global/networks/{network}".
   public var nextHopNetworkUri: Swift.String = Swift.String()
 
   /// For PEERING_SUBNET and PEERING_STATIC routes, the URI of the originating
   /// SUBNET/STATIC route.
+  /// Format: `projects/{project_id}/global/routes/{route_id}`
   public var originatingRouteUri: Swift.String = Swift.String()
 
   /// For PEERING_SUBNET, PEERING_STATIC and PEERING_DYNAMIC routes, the name of
@@ -112,6 +121,8 @@ public struct RouteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// For PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC
   /// Hub, the URI of the corresponding route in NCC Hub's routing table.
+  /// Format:
+  /// `projects/{project_id}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}/routes/{route_id}`
   public var nccHubRouteUri: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

@@ -22,9 +22,6 @@ public struct StopInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of the Instance to stop.
-  /// Format:
-  /// `projects/{project}/locations/{location}/instances/{instance}`,
-  /// where `{project}` can be project id or number.
   public var name: Swift.String = Swift.String()
 
   /// Optional. Indicates that the request should be validated without actually

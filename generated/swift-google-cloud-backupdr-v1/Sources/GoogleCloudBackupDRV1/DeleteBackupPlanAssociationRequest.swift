@@ -40,6 +40,13 @@ public struct DeleteBackupPlanAssociationRequest: Codable, Equatable, GoogleWKT.
   /// not supported (00000000-0000-0000-0000-000000000000).
   public var requestId: Swift.String = Swift.String()
 
+  /// Optional. This field is exclusively used by Backup and DR's auto-protection
+  /// feature. The resource name of the `AutoProtectionPolicyBinding` that
+  /// triggered the deletion of this association.
+  /// Format:
+  /// `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
+  public var autoProtectionPolicyBinding: Swift.String = Swift.String()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `DeleteBackupPlanAssociationRequest`.
@@ -67,10 +74,12 @@ public struct DeleteBackupPlanAssociationRequest: Codable, Equatable, GoogleWKT.
 
     static let name = CodingKeys(stringValue: "name")
     static let requestId = CodingKeys(stringValue: "requestId")
+    static let autoProtectionPolicyBinding = CodingKeys(stringValue: "autoProtectionPolicyBinding")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
       "requestId",
+      "autoProtectionPolicyBinding",
     ]
   }
 
@@ -82,6 +91,11 @@ public struct DeleteBackupPlanAssociationRequest: Codable, Equatable, GoogleWKT.
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
       self.requestId = value
     }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .autoProtectionPolicyBinding)
+    {
+      self.autoProtectionPolicyBinding = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -92,6 +106,7 @@ public struct DeleteBackupPlanAssociationRequest: Codable, Equatable, GoogleWKT.
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.requestId, forKey: .requestId)
+    try container.encode(self.autoProtectionPolicyBinding, forKey: .autoProtectionPolicyBinding)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

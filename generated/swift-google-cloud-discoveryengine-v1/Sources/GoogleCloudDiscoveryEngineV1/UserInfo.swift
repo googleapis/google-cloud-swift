@@ -14,8 +14,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if AssistantService || ConversationalSearchService || RecommendationService || SearchService || ServingConfigService || UserEventService
+#if AssistantService || CompletionService || ConversationalSearchService || RecommendationService || SearchService || ServingConfigService || UserEventService
   import Foundation
+  public import GoogleType
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// Information of an end user.
@@ -33,6 +34,10 @@
     ///
     /// The field must be a UTF-8 encoded string with a length limit of 128
     /// characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+    ///
+    /// Represents an opaque ID to the Search API. The Search API doesn't
+    /// interpret the value in any way. This field is used to associate events
+    /// with a user across sessions if the events are being uploaded.
     public var userId: Swift.String = Swift.String()
 
     /// User agent as included in the HTTP header.
@@ -53,6 +58,11 @@
 
     /// Optional. IANA time zone, e.g. Europe/Budapest.
     public var timeZone: Swift.String = Swift.String()
+
+    /// Optional. Input only. Precise location of the user.
+    /// It is used in Custom Ranking to calculate the distance between the user and
+    /// the relevant documents.
+    public var preciseLocation: UserInfo.PreciseLocation? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -82,11 +92,13 @@
       static let userId = CodingKeys(stringValue: "userId")
       static let userAgent = CodingKeys(stringValue: "userAgent")
       static let timeZone = CodingKeys(stringValue: "timeZone")
+      static let preciseLocation = CodingKeys(stringValue: "preciseLocation")
 
       static let _knownKeys: Set<Swift.String> = [
         "userId",
         "userAgent",
         "timeZone",
+        "preciseLocation",
       ]
     }
 
@@ -101,6 +113,8 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
         self.timeZone = value
       }
+      self.preciseLocation = try container.decodeIfPresent(
+        UserInfo.PreciseLocation.self, forKey: .preciseLocation)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -112,8 +126,121 @@
       try container.encode(self.userId, forKey: .userId)
       try container.encode(self.userAgent, forKey: .userAgent)
       try container.encode(self.timeZone, forKey: .timeZone)
+      try container.encodeIfPresent(self.preciseLocation, forKey: .preciseLocation)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// Precise location info with multiple representation options.
+    public struct PreciseLocation: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      public var location: LocationOneOf? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `PreciseLocation`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = PreciseLocation().with { $0.point = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let point = CodingKeys(stringValue: "point")
+        static let address = CodingKeys(stringValue: "address")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "point",
+          "address",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        var location: LocationOneOf? = nil
+        let locationCheckAndSet = {
+          if location != nil {
+            throw DecodingError.dataCorrupted(
+              DecodingError.Context(
+                codingPath: decoder.codingPath,
+                debugDescription: "Multiple values set for oneof 'location'"))
+          }
+          location = $0
+        }
+        if let point = try container.decodeIfPresent(GoogleType.LatLng.self, forKey: .point) {
+          try locationCheckAndSet(.point(point))
+        }
+        if let address = try container.decodeIfPresent(Swift.String.self, forKey: .address) {
+          try locationCheckAndSet(.address(address))
+        }
+        self.location = location
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        if let choice = self.location {
+          switch choice {
+          case .point(let value):
+            try container.encode(value, forKey: .point)
+          case .address(let value):
+            try container.encode(value, forKey: .address)
+          }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      public enum LocationOneOf: Codable, Equatable, Sendable {
+        /// Optional. Location represented by a latitude/longitude point.
+        indirect case point(GoogleType.LatLng)
+        /// Location represented by a natural language address. Will later be
+        /// geocoded and converted to either a point or a polygon.
+        case address(Swift.String)
+      }
+
+      /// The type URL for `PreciseLocation`: `"type.googleapis.com/google.cloud.discoveryengine.v1.UserInfo.PreciseLocation"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.discoveryengine.v1.UserInfo.PreciseLocation"
+      }
+
+      /// Initialize an instance of `PreciseLocation` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.UserInfo.PreciseLocation"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `PreciseLocation` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
       }
     }
 

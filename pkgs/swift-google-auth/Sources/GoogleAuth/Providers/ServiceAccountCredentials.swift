@@ -52,9 +52,10 @@ struct ServiceAccountParser: CredentialSourceParser {
 ///
 /// See [Best Practices for Managing Service Account Keys](https://cloud.google.com/iam/docs/best-practices-for-managing-service-account-keys)
 /// and [AIP-4111: Self-Signed JWTs](https://google.aip.dev/auth/4111).
-struct ServiceAccountCredentials: CredentialsProvider, Sendable {
+struct ServiceAccountCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   private let tokenProvider: TokenCache<ContinuousClock>
   private let quotaProjectID: String?
+  let universeDomain: String
 
   init(
     keyJSON: Data,
@@ -69,6 +70,8 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
       throw CredentialsError.parseError(
         "Failed to parse Service Account key JSON: \(error.localizedDescription)")
     }
+    let effectiveUniverse =
+      universeDomain ?? nonEmpty(key.universeDomain) ?? defaultUniverseDomain
     let provider = try ServiceAccountTokenProvider(key: key, accessSpecifier: accessSpecifier)
 
     self.tokenProvider = TokenCache(
@@ -76,15 +79,23 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
       isRetryable: { _ in false }
     )
     self.quotaProjectID = quotaProjectID
-    _ = universeDomain
+    self.universeDomain = effectiveUniverse
+  }
+
+  func accessToken() async throws -> AccessToken {
+    return try await tokenProvider.token()
   }
 
   func headers() async throws -> AuthHeaders {
     let token = try await tokenProvider.token()
-    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]
+    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.token)")]
     if let quotaProjectID = quotaProjectID {
       headers.append(name: "x-goog-user-project", value: quotaProjectID)
     }
     return headers
+  }
+
+  func universeDomain() async throws -> String {
+    return self.universeDomain
   }
 }

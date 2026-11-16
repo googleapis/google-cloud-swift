@@ -73,8 +73,12 @@ public struct MessageWithValue: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.singular = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .singular)
-    self.`optional` = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .`optional`)
+    if container.contains(.singular) {
+      self.singular = try container.decode(GoogleWKT.WKTValue.self, forKey: .singular)
+    }
+    if container.contains(.`optional`) {
+      self.`optional` = try container.decode(GoogleWKT.WKTValue.self, forKey: .`optional`)
+    }
     if let value = try container.decodeIfPresent([GoogleWKT.WKTValue].self, forKey: .repeated) {
       self.repeated = value
     }

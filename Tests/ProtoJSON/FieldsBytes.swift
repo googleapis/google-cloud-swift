@@ -33,11 +33,27 @@ import Testing
       (#"{"repeated":["NDI=",""]}"#, T().with { $0.repeated = [Data("42".utf8), Data()] }),
       (#"{}"#, T()),
       (#"{"map":{"a":"NDI="}}"#, T().with { $0.map = ["a": Data("42".utf8)] }),
+      (#"{"singular":null}"#, T()),
+      (#"{"repeated":null}"#, T()),
+      (#"{"map":null}"#, T()),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
+  }
+
+  @Test(
+    "bytes invalid null elements throw",
+    arguments: [
+      #"{"repeated":[null]}"#,
+      #"{"map":{"a":null}}"#,
+    ])
+  func invalidNullElements(input: String) throws {
+    let decoder = _ProtoJSONDecoder()
+    #expect(throws: DecodingError.self) {
+      try decoder.decode(T.self, from: Data(input.utf8))
+    }
   }
 
   @Test(

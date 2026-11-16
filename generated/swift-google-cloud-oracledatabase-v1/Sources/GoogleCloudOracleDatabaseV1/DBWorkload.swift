@@ -35,6 +35,8 @@ public enum DBWorkload: Codable, Equatable, Hashable, Sendable {
   /// Autonomous Database with the Oracle APEX Application Development workload
   /// type.
   case apex
+  /// Autonomous Database with the Lakehouse workload type.
+  case lh
   /// Encodes an unknown integer value.
   ///
   /// The most common cause for an unknown value is for the service to send
@@ -68,6 +70,7 @@ public enum DBWorkload: Codable, Equatable, Hashable, Sendable {
     case .dw: return 2
     case .ajd: return 3
     case .apex: return 4
+    case .lh: return 5
     case .unknownIntValue(let v): return v
     case .unknownStringValue: return nil
     }
@@ -83,6 +86,7 @@ public enum DBWorkload: Codable, Equatable, Hashable, Sendable {
     case .dw: return "DW"
     case .ajd: return "AJD"
     case .apex: return "APEX"
+    case .lh: return "LH"
     case .unknownIntValue: return nil
     case .unknownStringValue(let v): return v
     }
@@ -98,6 +102,7 @@ public enum DBWorkload: Codable, Equatable, Hashable, Sendable {
     case "DW": self = .dw
     case "AJD": self = .ajd
     case "APEX": self = .apex
+    case "LH": self = .lh
     default: self = .unknownStringValue(stringValue)
     }
   }
@@ -112,6 +117,7 @@ public enum DBWorkload: Codable, Equatable, Hashable, Sendable {
     case 2: self = .dw
     case 3: self = .ajd
     case 4: self = .apex
+    case 5: self = .lh
     default: self = .unknownIntValue(intValue)
     }
   }
@@ -142,6 +148,7 @@ public enum DBWorkload: Codable, Equatable, Hashable, Sendable {
     case .dw: return try container.encode("DW")
     case .ajd: return try container.encode("AJD")
     case .apex: return try container.encode("APEX")
+    case .lh: return try container.encode("LH")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

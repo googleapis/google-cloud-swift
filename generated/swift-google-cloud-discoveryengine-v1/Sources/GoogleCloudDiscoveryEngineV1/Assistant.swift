@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if AssistantService && CmekConfigService && CompletionService && ControlService && ConversationalSearchService && DataStoreService && DocumentService && EngineService && GroundedGenerationService && IdentityMappingStoreService && ProjectService && RankService && RecommendationService && SchemaService && SearchService && SearchTuningService && ServingConfigService && SessionService && SiteSearchEngineService && UserEventService && UserLicenseService
+#if AssistantService
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
@@ -28,6 +28,54 @@
     ///
     /// It must be a UTF-8 encoded string with a length limit of 1024 characters.
     public var name: Swift.String = Swift.String()
+
+    /// Required. The assistant display name.
+    ///
+    /// It must be a UTF-8 encoded string with a length limit of 128 characters.
+    public var displayName: Swift.String = Swift.String()
+
+    /// Optional. Description for additional information. Expected to be shown on
+    /// the configuration UI, not to the users of the assistant.
+    public var description: Swift.String = Swift.String()
+
+    /// Optional. Configuration for the generation of the assistant response.
+    public var generationConfig: Assistant.GenerationConfig? = nil
+
+    /// Optional. The type of web grounding to use.
+    public var webGroundingType: Assistant.WebGroundingType = Assistant.WebGroundingType()
+
+    /// Optional. This field controls the default web grounding toggle for end
+    /// users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH`
+    /// or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is
+    /// set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH`
+    /// or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web
+    /// grounding enabled by default on UI. If true, grounding toggle will be
+    /// disabled by default on UI. End users can still enable web grounding in
+    /// the UI if web grounding is enabled.
+    public var defaultWebGroundingToggleOff: Swift.Bool = Swift.Bool()
+
+    /// Optional. Note: not implemented yet. Use
+    /// [enabled_actions][google.cloud.discoveryengine.v1.Assistant.enabled_actions]
+    /// instead. The enabled tools on this assistant. The keys are connector name,
+    /// for example
+    /// "projects/{projectId}/locations/{locationId}/collections/{collectionId}/dataconnector
+    /// The values consist of admin enabled tools towards the connector
+    /// instance. Admin can selectively enable multiple tools on any of the
+    /// connector instances that they created in the project. For example
+    /// {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2,
+    /// "transferTicket")],
+    ///  "gmail1ConnectorName": [(toolId3, "sendEmail"),..] }
+    public var enabledTools: [Swift.String: Assistant.ToolList] = [:]
+
+    /// Optional. Customer policy for the assistant.
+    public var customerPolicy: Assistant.CustomerPolicy? = nil
+
+    /// Output only. Represents the time when this Assistant was created.
+    public var createTime: GoogleWKT.WKTTimestamp? = nil
+
+    /// Output only. Represents the time when this Assistant was most recently
+    /// updated.
+    public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -55,9 +103,28 @@
       init?(intValue: Swift.Int) { nil }
 
       static let name = CodingKeys(stringValue: "name")
+      static let displayName = CodingKeys(stringValue: "displayName")
+      static let description = CodingKeys(stringValue: "description")
+      static let generationConfig = CodingKeys(stringValue: "generationConfig")
+      static let webGroundingType = CodingKeys(stringValue: "webGroundingType")
+      static let defaultWebGroundingToggleOff = CodingKeys(
+        stringValue: "defaultWebGroundingToggleOff")
+      static let enabledTools = CodingKeys(stringValue: "enabledTools")
+      static let customerPolicy = CodingKeys(stringValue: "customerPolicy")
+      static let createTime = CodingKeys(stringValue: "createTime")
+      static let updateTime = CodingKeys(stringValue: "updateTime")
 
       static let _knownKeys: Set<Swift.String> = [
-        "name"
+        "name",
+        "displayName",
+        "description",
+        "generationConfig",
+        "webGroundingType",
+        "defaultWebGroundingToggleOff",
+        "enabledTools",
+        "customerPolicy",
+        "createTime",
+        "updateTime",
       ]
     }
 
@@ -66,6 +133,35 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
+        self.displayName = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
+        self.description = value
+      }
+      self.generationConfig = try container.decodeIfPresent(
+        Assistant.GenerationConfig.self, forKey: .generationConfig)
+      if let value = try container.decodeIfPresent(
+        Assistant.WebGroundingType.self, forKey: .webGroundingType)
+      {
+        self.webGroundingType = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .defaultWebGroundingToggleOff)
+      {
+        self.defaultWebGroundingToggleOff = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Assistant.ToolList].self, forKey: .enabledTools)
+      {
+        self.enabledTools = value
+      }
+      self.customerPolicy = try container.decodeIfPresent(
+        Assistant.CustomerPolicy.self, forKey: .customerPolicy)
+      self.createTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .createTime)
+      self.updateTime = try container.decodeIfPresent(
+        GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -75,8 +171,1070 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
+      try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.description, forKey: .description)
+      try container.encodeIfPresent(self.generationConfig, forKey: .generationConfig)
+      try container.encode(self.webGroundingType, forKey: .webGroundingType)
+      try container.encode(self.defaultWebGroundingToggleOff, forKey: .defaultWebGroundingToggleOff)
+      try container.encode(self.enabledTools, forKey: .enabledTools)
+      try container.encodeIfPresent(self.customerPolicy, forKey: .customerPolicy)
+      try container.encodeIfPresent(self.createTime, forKey: .createTime)
+      try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// Configuration for the generation of the assistant response.
+    public struct GenerationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Optional. The default model to use for assistant.
+      public var defaultModelId: Swift.String = Swift.String()
+
+      /// Optional. The list of models that are allowed to be used for assistant.
+      public var allowedModelIds: [Swift.String] = []
+
+      /// System instruction, also known as the prompt preamble for LLM calls.
+      /// See also
+      /// https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
+      public var systemInstruction: Assistant.GenerationConfig.SystemInstruction? = nil
+
+      /// The default language to use for the generation of the assistant
+      /// response.
+      /// Use an ISO 639-1 language code such as `en`.
+      /// If not specified, the language will be automatically detected.
+      public var defaultLanguage: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `GenerationConfig`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = GenerationConfig().with { $0.defaultModelId = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let defaultModelId = CodingKeys(stringValue: "defaultModelId")
+        static let allowedModelIds = CodingKeys(stringValue: "allowedModelIds")
+        static let systemInstruction = CodingKeys(stringValue: "systemInstruction")
+        static let defaultLanguage = CodingKeys(stringValue: "defaultLanguage")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "defaultModelId",
+          "allowedModelIds",
+          "systemInstruction",
+          "defaultLanguage",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultModelId) {
+          self.defaultModelId = value
+        }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedModelIds)
+        {
+          self.allowedModelIds = value
+        }
+        self.systemInstruction = try container.decodeIfPresent(
+          Assistant.GenerationConfig.SystemInstruction.self, forKey: .systemInstruction)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultLanguage) {
+          self.defaultLanguage = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.defaultModelId, forKey: .defaultModelId)
+        try container.encode(self.allowedModelIds, forKey: .allowedModelIds)
+        try container.encodeIfPresent(self.systemInstruction, forKey: .systemInstruction)
+        try container.encode(self.defaultLanguage, forKey: .defaultLanguage)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// System instruction, also known as the prompt preamble for LLM calls.
+      public struct SystemInstruction: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Optional. Additional system instruction that will be added to the
+        /// default system instruction.
+        public var additionalSystemInstruction: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `SystemInstruction`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = SystemInstruction().with { $0.additionalSystemInstruction = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let additionalSystemInstruction = CodingKeys(
+            stringValue: "additionalSystemInstruction")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "additionalSystemInstruction"
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            Swift.String.self, forKey: .additionalSystemInstruction)
+          {
+            self.additionalSystemInstruction = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(
+            self.additionalSystemInstruction, forKey: .additionalSystemInstruction)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// The type URL for `SystemInstruction`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.GenerationConfig.SystemInstruction"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.GenerationConfig.SystemInstruction"
+        }
+
+        /// Initialize an instance of `SystemInstruction` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.GenerationConfig.SystemInstruction"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `SystemInstruction` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// The type URL for `GenerationConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.GenerationConfig"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.GenerationConfig"
+      }
+
+      /// Initialize an instance of `GenerationConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.GenerationConfig"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `GenerationConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// Information to identify a tool.
+    public struct ToolInfo: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// The name of the tool as defined by
+      /// DataConnectorService.QueryAvailableActions.
+      /// Note: it's using `action` in the DataConnectorService apis, but they are
+      /// the same as the `tool` here.
+      public var toolName: Swift.String = Swift.String()
+
+      /// The display name of the tool.
+      public var toolDisplayName: Swift.String = Swift.String()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `ToolInfo`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = ToolInfo().with { $0.toolName = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let toolName = CodingKeys(stringValue: "toolName")
+        static let toolDisplayName = CodingKeys(stringValue: "toolDisplayName")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "toolName",
+          "toolDisplayName",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .toolName) {
+          self.toolName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .toolDisplayName) {
+          self.toolDisplayName = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.toolName, forKey: .toolName)
+        try container.encode(self.toolDisplayName, forKey: .toolDisplayName)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// The type URL for `ToolInfo`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.ToolInfo"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.ToolInfo"
+      }
+
+      /// Initialize an instance of `ToolInfo` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.ToolInfo"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `ToolInfo` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// The enabled tools on a connector
+    public struct ToolList: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// The list of tools with corresponding tool information.
+      public var toolInfo: [Assistant.ToolInfo] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `ToolList`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = ToolList().with { $0.toolInfo = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let toolInfo = CodingKeys(stringValue: "toolInfo")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "toolInfo"
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent([Assistant.ToolInfo].self, forKey: .toolInfo) {
+          self.toolInfo = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.toolInfo, forKey: .toolInfo)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// The type URL for `ToolList`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.ToolList"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.ToolList"
+      }
+
+      /// Initialize an instance of `ToolList` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.ToolList"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `ToolList` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// Customer-defined policy for the assistant.
+    public struct CustomerPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Optional. List of banned phrases.
+      public var bannedPhrases: [Assistant.CustomerPolicy.BannedPhrase] = []
+
+      /// Optional. Model Armor configuration to be used for sanitizing user
+      /// prompts and assistant responses.
+      public var modelArmorConfig: Assistant.CustomerPolicy.ModelArmorConfig? = nil
+
+      /// Optional. Data protection policy to be used for sanitizing file uploads.
+      public var dataProtectionPolicy: GoogleCloudDiscoveryEngineV1.DataProtectionPolicy? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `CustomerPolicy`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = CustomerPolicy().with { $0.bannedPhrases = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let bannedPhrases = CodingKeys(stringValue: "bannedPhrases")
+        static let modelArmorConfig = CodingKeys(stringValue: "modelArmorConfig")
+        static let dataProtectionPolicy = CodingKeys(stringValue: "dataProtectionPolicy")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "bannedPhrases",
+          "modelArmorConfig",
+          "dataProtectionPolicy",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          [Assistant.CustomerPolicy.BannedPhrase].self, forKey: .bannedPhrases)
+        {
+          self.bannedPhrases = value
+        }
+        self.modelArmorConfig = try container.decodeIfPresent(
+          Assistant.CustomerPolicy.ModelArmorConfig.self, forKey: .modelArmorConfig)
+        self.dataProtectionPolicy = try container.decodeIfPresent(
+          GoogleCloudDiscoveryEngineV1.DataProtectionPolicy.self, forKey: .dataProtectionPolicy)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.bannedPhrases, forKey: .bannedPhrases)
+        try container.encodeIfPresent(self.modelArmorConfig, forKey: .modelArmorConfig)
+        try container.encodeIfPresent(self.dataProtectionPolicy, forKey: .dataProtectionPolicy)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// Definition of a customer-defined banned phrase. A banned phrase is not
+      /// allowed to appear in the user query or the LLM response, or else the
+      /// answer will be refused.
+      public struct BannedPhrase: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Required. The raw string content to be banned.
+        public var phrase: Swift.String = Swift.String()
+
+        /// Optional. Match type for the banned phrase.
+        public var matchType: Assistant.CustomerPolicy.BannedPhrase.BannedPhraseMatchType =
+          Assistant.CustomerPolicy.BannedPhrase.BannedPhraseMatchType()
+
+        /// Optional. If true, diacritical marks (e.g., accents, umlauts) are
+        /// ignored when matching banned phrases. For example, "cafe" would match
+        /// "café".
+        public var ignoreDiacritics: Swift.Bool = Swift.Bool()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `BannedPhrase`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = BannedPhrase().with { $0.phrase = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let phrase = CodingKeys(stringValue: "phrase")
+          static let matchType = CodingKeys(stringValue: "matchType")
+          static let ignoreDiacritics = CodingKeys(stringValue: "ignoreDiacritics")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "phrase",
+            "matchType",
+            "ignoreDiacritics",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phrase) {
+            self.phrase = value
+          }
+          if let value = try container.decodeIfPresent(
+            Assistant.CustomerPolicy.BannedPhrase.BannedPhraseMatchType.self, forKey: .matchType)
+          {
+            self.matchType = value
+          }
+          if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignoreDiacritics) {
+            self.ignoreDiacritics = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.phrase, forKey: .phrase)
+          try container.encode(self.matchType, forKey: .matchType)
+          try container.encode(self.ignoreDiacritics, forKey: .ignoreDiacritics)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// The matching method for the banned phrase.
+        ///
+        /// - Note: Adding cases to this enumeration is not considered a breaking change.
+        ///   Always include an `@unknown default:` case when switching over this type.
+        ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+        ///   expecting specific values to remain unparsed; future releases may promote
+        ///   them to named cases.
+        public enum BannedPhraseMatchType: Codable, Equatable, Hashable, Sendable {
+          /// Defaults to SIMPLE_STRING_MATCH.
+          case unspecified
+          /// The banned phrase matches if it is found anywhere in the text as an
+          /// exact substring.
+          case simpleStringMatch
+          /// Banned phrase only matches if the pattern found in the text is
+          /// surrounded by word delimiters. The phrase itself may still contain
+          /// word delimiters.
+          case wordBoundaryStringMatch
+          /// Encodes an unknown integer value.
+          ///
+          /// The most common cause for an unknown value is for the service to send
+          /// a value unknown to the library. We recommend you update your library to
+          /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific integer values in this case;
+          ///   future releases may promote them to named enum cases.
+          case unknownIntValue(Int)
+          /// Encodes an unknown string value.
+          ///
+          /// The most common cause for an unknown value is for the service to send
+          /// a value unknown to the library. We recommend you update your library to
+          /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific string literals in this case;
+          ///   future releases may promote them to named enum cases.
+          case unknownStringValue(String)
+
+          public init() {
+            self = .unspecified
+          }
+
+          /// Returns the integer value associated with the enumeration.
+          ///
+          /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+          public var intValue: Int? {
+            switch self {
+            case .unspecified: return 0
+            case .simpleStringMatch: return 1
+            case .wordBoundaryStringMatch: return 2
+            case .unknownIntValue(let v): return v
+            case .unknownStringValue: return nil
+            }
+          }
+
+          /// Returns the string value (or name) associated with the enumeration.
+          ///
+          /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+          public var stringValue: Swift.String? {
+            switch self {
+            case .unspecified: return "BANNED_PHRASE_MATCH_TYPE_UNSPECIFIED"
+            case .simpleStringMatch: return "SIMPLE_STRING_MATCH"
+            case .wordBoundaryStringMatch: return "WORD_BOUNDARY_STRING_MATCH"
+            case .unknownIntValue: return nil
+            case .unknownStringValue(let v): return v
+            }
+          }
+
+          /// Initialize from a string value.
+          ///
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:BannedPhraseMatchType/unknownStringValue(_:)).
+          public init(stringValue: Swift.String) {
+            switch stringValue {
+            case "BANNED_PHRASE_MATCH_TYPE_UNSPECIFIED": self = .unspecified
+            case "SIMPLE_STRING_MATCH": self = .simpleStringMatch
+            case "WORD_BOUNDARY_STRING_MATCH": self = .wordBoundaryStringMatch
+            default: self = .unknownStringValue(stringValue)
+            }
+          }
+
+          /// Initialize from an integer value.
+          ///
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:BannedPhraseMatchType/unknownIntValue(_:)).
+          public init(intValue: Int) {
+            switch intValue {
+            case 0: self = .unspecified
+            case 1: self = .simpleStringMatch
+            case 2: self = .wordBoundaryStringMatch
+            default: self = .unknownIntValue(intValue)
+            }
+          }
+
+          public init(from decoder: any Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            if let v = try? container.decode(Int.self) {
+              self.init(intValue: v)
+              return
+            }
+            if let s = try? container.decode(String.self) {
+              if let v = Int(s) {
+                self.init(intValue: v)
+              } else {
+                self.init(stringValue: s)
+              }
+              return
+            }
+            throw DecodingError.dataCorruptedError(
+              in: container, debugDescription: "Expected enum value, must be integer or string.")
+          }
+
+          public func encode(to encoder: any Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .unspecified: return try container.encode("BANNED_PHRASE_MATCH_TYPE_UNSPECIFIED")
+            case .simpleStringMatch: return try container.encode("SIMPLE_STRING_MATCH")
+            case .wordBoundaryStringMatch: return try container.encode("WORD_BOUNDARY_STRING_MATCH")
+            case .unknownIntValue(let v): return try container.encode(v)
+            case .unknownStringValue(let v): return try container.encode(v)
+            }
+          }
+        }
+
+        /// The type URL for `BannedPhrase`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.CustomerPolicy.BannedPhrase"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.CustomerPolicy.BannedPhrase"
+        }
+
+        /// Initialize an instance of `BannedPhrase` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.CustomerPolicy.BannedPhrase"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `BannedPhrase` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// Configuration for customer defined Model Armor templates to be used for
+      /// sanitizing user prompts and assistant responses.
+      public struct ModelArmorConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Optional. The resource name of the Model Armor template for sanitizing
+        /// user prompts. Format:
+        /// `projects/{project}/locations/{location}/templates/{template_id}`
+        ///
+        /// If not specified, no sanitization will be applied to the user prompt.
+        public var userPromptTemplate: Swift.String = Swift.String()
+
+        /// Optional. The resource name of the Model Armor template for sanitizing
+        /// assistant responses. Format:
+        /// `projects/{project}/locations/{location}/templates/{template_id}`
+        ///
+        /// If not specified, no sanitization will be applied to the assistant
+        /// response.
+        public var responseTemplate: Swift.String = Swift.String()
+
+        /// Optional. Defines the failure mode for Model Armor sanitization.
+        public var failureMode: Assistant.CustomerPolicy.ModelArmorConfig.FailureMode = Assistant
+          .CustomerPolicy.ModelArmorConfig.FailureMode()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `ModelArmorConfig`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = ModelArmorConfig().with { $0.userPromptTemplate = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let userPromptTemplate = CodingKeys(stringValue: "userPromptTemplate")
+          static let responseTemplate = CodingKeys(stringValue: "responseTemplate")
+          static let failureMode = CodingKeys(stringValue: "failureMode")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "userPromptTemplate",
+            "responseTemplate",
+            "failureMode",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            Swift.String.self, forKey: .userPromptTemplate)
+          {
+            self.userPromptTemplate = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .responseTemplate)
+          {
+            self.responseTemplate = value
+          }
+          if let value = try container.decodeIfPresent(
+            Assistant.CustomerPolicy.ModelArmorConfig.FailureMode.self, forKey: .failureMode)
+          {
+            self.failureMode = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.userPromptTemplate, forKey: .userPromptTemplate)
+          try container.encode(self.responseTemplate, forKey: .responseTemplate)
+          try container.encode(self.failureMode, forKey: .failureMode)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// Determines the behavior when Model Armor fails to process a request.
+        ///
+        /// - Note: Adding cases to this enumeration is not considered a breaking change.
+        ///   Always include an `@unknown default:` case when switching over this type.
+        ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+        ///   expecting specific values to remain unparsed; future releases may promote
+        ///   them to named cases.
+        public enum FailureMode: Codable, Equatable, Hashable, Sendable {
+          /// Unspecified failure mode, default behavior is `FAIL_CLOSED`.
+          case unspecified
+          /// In case of a Model Armor processing failure, the request is allowed
+          /// to proceed without any changes.
+          case failOpen
+          /// In case of a Model Armor processing failure, the request is rejected.
+          case failClosed
+          /// Encodes an unknown integer value.
+          ///
+          /// The most common cause for an unknown value is for the service to send
+          /// a value unknown to the library. We recommend you update your library to
+          /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific integer values in this case;
+          ///   future releases may promote them to named enum cases.
+          case unknownIntValue(Int)
+          /// Encodes an unknown string value.
+          ///
+          /// The most common cause for an unknown value is for the service to send
+          /// a value unknown to the library. We recommend you update your library to
+          /// the latest version.
+          ///
+          /// - Warning: Do not pattern-match specific string literals in this case;
+          ///   future releases may promote them to named enum cases.
+          case unknownStringValue(String)
+
+          public init() {
+            self = .unspecified
+          }
+
+          /// Returns the integer value associated with the enumeration.
+          ///
+          /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+          public var intValue: Int? {
+            switch self {
+            case .unspecified: return 0
+            case .failOpen: return 1
+            case .failClosed: return 2
+            case .unknownIntValue(let v): return v
+            case .unknownStringValue: return nil
+            }
+          }
+
+          /// Returns the string value (or name) associated with the enumeration.
+          ///
+          /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+          public var stringValue: Swift.String? {
+            switch self {
+            case .unspecified: return "FAILURE_MODE_UNSPECIFIED"
+            case .failOpen: return "FAIL_OPEN"
+            case .failClosed: return "FAIL_CLOSED"
+            case .unknownIntValue: return nil
+            case .unknownStringValue(let v): return v
+            }
+          }
+
+          /// Initialize from a string value.
+          ///
+          /// If the value is unknown, this initializes to [`unknownStringValue`](doc:FailureMode/unknownStringValue(_:)).
+          public init(stringValue: Swift.String) {
+            switch stringValue {
+            case "FAILURE_MODE_UNSPECIFIED": self = .unspecified
+            case "FAIL_OPEN": self = .failOpen
+            case "FAIL_CLOSED": self = .failClosed
+            default: self = .unknownStringValue(stringValue)
+            }
+          }
+
+          /// Initialize from an integer value.
+          ///
+          /// If the value is unknown, this initializes to [`unknownIntValue`](doc:FailureMode/unknownIntValue(_:)).
+          public init(intValue: Int) {
+            switch intValue {
+            case 0: self = .unspecified
+            case 1: self = .failOpen
+            case 2: self = .failClosed
+            default: self = .unknownIntValue(intValue)
+            }
+          }
+
+          public init(from decoder: any Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            if let v = try? container.decode(Int.self) {
+              self.init(intValue: v)
+              return
+            }
+            if let s = try? container.decode(String.self) {
+              if let v = Int(s) {
+                self.init(intValue: v)
+              } else {
+                self.init(stringValue: s)
+              }
+              return
+            }
+            throw DecodingError.dataCorruptedError(
+              in: container, debugDescription: "Expected enum value, must be integer or string.")
+          }
+
+          public func encode(to encoder: any Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .unspecified: return try container.encode("FAILURE_MODE_UNSPECIFIED")
+            case .failOpen: return try container.encode("FAIL_OPEN")
+            case .failClosed: return try container.encode("FAIL_CLOSED")
+            case .unknownIntValue(let v): return try container.encode(v)
+            case .unknownStringValue(let v): return try container.encode(v)
+            }
+          }
+        }
+
+        /// The type URL for `ModelArmorConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.CustomerPolicy.ModelArmorConfig"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.CustomerPolicy.ModelArmorConfig"
+        }
+
+        /// Initialize an instance of `ModelArmorConfig` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.CustomerPolicy.ModelArmorConfig"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `ModelArmorConfig` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// The type URL for `CustomerPolicy`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.CustomerPolicy"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.CustomerPolicy"
+      }
+
+      /// Initialize an instance of `CustomerPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Assistant.CustomerPolicy"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `CustomerPolicy` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// The type of web grounding to use.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum WebGroundingType: Codable, Equatable, Hashable, Sendable {
+      /// Default, unspecified setting. This is the same as disabled.
+      case unspecified
+      /// Web grounding is disabled.
+      case disabled
+      /// Grounding with Google Search is enabled.
+      case googleSearch
+      /// Grounding with Enterprise Web Search is enabled.
+      case enterpriseWebSearch
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .unspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .unspecified: return 0
+        case .disabled: return 1
+        case .googleSearch: return 2
+        case .enterpriseWebSearch: return 3
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .unspecified: return "WEB_GROUNDING_TYPE_UNSPECIFIED"
+        case .disabled: return "WEB_GROUNDING_TYPE_DISABLED"
+        case .googleSearch: return "WEB_GROUNDING_TYPE_GOOGLE_SEARCH"
+        case .enterpriseWebSearch: return "WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:WebGroundingType/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "WEB_GROUNDING_TYPE_UNSPECIFIED": self = .unspecified
+        case "WEB_GROUNDING_TYPE_DISABLED": self = .disabled
+        case "WEB_GROUNDING_TYPE_GOOGLE_SEARCH": self = .googleSearch
+        case "WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH": self = .enterpriseWebSearch
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:WebGroundingType/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .unspecified
+        case 1: self = .disabled
+        case 2: self = .googleSearch
+        case 3: self = .enterpriseWebSearch
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .unspecified: return try container.encode("WEB_GROUNDING_TYPE_UNSPECIFIED")
+        case .disabled: return try container.encode("WEB_GROUNDING_TYPE_DISABLED")
+        case .googleSearch: return try container.encode("WEB_GROUNDING_TYPE_GOOGLE_SEARCH")
+        case .enterpriseWebSearch:
+          return try container.encode("WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH")
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
       }
     }
 

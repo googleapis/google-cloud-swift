@@ -24,7 +24,7 @@ public struct McpServerFloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. If true, log Model Armor filter results to Cloud Logging.
   public var enableCloudLogging: Swift.Bool = Swift.Bool()
 
-  /// Enforcement type for Model Armor filters.
+  /// enforcement type for Model Armor filters.
   public var enforcementType: EnforcementTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -111,7 +111,7 @@ public struct McpServerFloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  /// Enforcement type for Model Armor filters.
+  /// enforcement type for Model Armor filters.
   public enum EnforcementTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. If true, Model Armor filters will be run in inspect only mode.
     /// No action will be taken on the request.

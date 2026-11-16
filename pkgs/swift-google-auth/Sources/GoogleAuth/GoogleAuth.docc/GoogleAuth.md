@@ -13,7 +13,9 @@
 [Metadata Server]: https://cloud.google.com/compute/docs/metadata/overview
 [Universe Domains]: https://docs.cloud.google.com/docs/overview#universes_regions_and_zones
 [Quota Projects]: https://cloud.google.com/docs/quotas/quota-project
+[Service Account Impersonation]: https://cloud.google.com/iam/docs/service-account-impersonation
 [AIP-4111]: https://google.aip.dev/auth/4111
+[AIP-4115]: https://google.aip.dev/auth/4115
 [AIP-4117]: https://google.aip.dev/auth/4117
 
 This package provides types to authenticate calls into Google Cloud APIs.
@@ -82,11 +84,19 @@ Requests into Google Cloud can also specify contextual routing and billing setti
 
 For advanced scenarios, ``CredentialsConfiguration`` allows explicit configuration:
 
+- **[Metadata Server] (MDS)**: Explicitly fetch tokens from the Compute Engine metadata server
+  ([AIP-4115]) without probing local ADC credential files.
 - **Service Account Keys**: Sign local JWT assertions in memory using raw RSA private keys.
+- **[Service Account Impersonation]**: Exchange base credentials for short-lived access tokens acting
+  as a target service account via the IAM Credentials API.
 - **User Accounts**: Manage OAuth 2.0 refresh token exchanges for authorized users.
 - **[Workload Identity Federation]**: Authenticate workloads running outside Google Cloud
   (AWS, Azure, Apple Account, GitHub Actions, Okta) by exchanging external subject tokens for
   Google Cloud access tokens via the Security Token Service ([AIP-4117]).
+- **Static & Custom Access Tokens**: Supply a pre-obtained ``AccessToken`` or integrate a custom
+  asynchronous ``AccessTokenProvider`` via ``AccessTokenConfig``, or extract raw ``AccessToken``
+  values for non-HTTP protocols via ``Credentials/accessTokenProvider`` and
+  ``AnyAccessTokenProvider``.
 - **[API Keys]**: Associate requests with a Google Cloud project for billing and quota
   when accessing APIs that support API key authentication.
 

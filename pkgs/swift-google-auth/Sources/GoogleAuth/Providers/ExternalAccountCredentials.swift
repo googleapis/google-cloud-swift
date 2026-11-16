@@ -89,10 +89,10 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
 
   /// Fetches a fresh Google Cloud access token by retrieving a subject token and exchanging it via STS.
   ///
-  /// - Returns: A valid `Token` containing the exchanged access token string and expiration date.
+  /// - Returns: A valid `AccessToken` containing the exchanged access token string and expiration date.
   /// - Throws: `CredentialsError.cannotFetchToken` if subject token acquisition fails or STS rejects the exchange request.
   @concurrent
-  func fetchToken() async throws -> Token {
+  func fetchToken() async throws -> AccessToken {
     let subjectToken: String
     do {
       subjectToken = try await subjectTokenProvider.subjectToken()
@@ -136,8 +136,8 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
     }
 
     let expirationDate = Date().addingTimeInterval(Double(response.expiresIn))
-    return Token(
-      accessToken: response.accessToken,
+    return AccessToken(
+      token: response.accessToken,
       tokenType: response.tokenType,
       expirationDate: expirationDate
     )
@@ -161,7 +161,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
 ///
 /// - SeeAlso: [Workforce Identity Federation Documentation](https://cloud.google.com/iam/docs/workforce-identity-federation)
 /// - SeeAlso: [AIP-4117: Workforce and Workload Identity Federation](https://google.aip.dev/auth/4117)
-struct ExternalAccountCredentials: CredentialsProvider, Sendable {
+struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   /// The token cache handling proactive refresh and jittered expiration management.
   private let cache: TokenCache<ContinuousClock>
 
@@ -187,7 +187,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
   let scopes: [String]
 
   /// The target Google Cloud universe domain.
-  let universeDomain: String?
+  let universeDomain: String
 
   /// Initializes a new instance of `ExternalAccountCredentials`.
   ///
@@ -236,6 +236,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     }
 
     let effectiveScopes = scopes.isEmpty ? [ExternalAccountConfig.defaultScope] : scopes
+    let effectiveUniverse = universeDomain ?? defaultUniverseDomain
 
     self.subjectTokenProvider = subjectTokenProvider
     self.audience = audience
@@ -244,7 +245,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     self.clientAuthentication = clientAuthentication
     self.workforcePoolUserProject = workforcePoolUserProject
     self.scopes = effectiveScopes
-    self.universeDomain = universeDomain
+    self.universeDomain = effectiveUniverse
 
     let provider = ExternalAccountTokenProvider(
       subjectTokenProvider: subjectTokenProvider,
@@ -265,6 +266,10 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     )
   }
 
+  func accessToken() async throws -> AccessToken {
+    return try await cache.token()
+  }
+
   /// Returns authorization headers containing the federated access token.
   ///
   /// Includes `Authorization: <token_type> <access_token>` and, if configured,
@@ -274,11 +279,15 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
   /// - Throws: `CredentialsError.cannotFetchToken` if token resolution fails.
   func headers() async throws -> AuthHeaders {
     let token = try await cache.token()
-    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]
+    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.token)")]
     if let project = workforcePoolUserProject {
       headers.append(name: "x-goog-user-project", value: project)
     }
     return headers
+  }
+
+  func universeDomain() async throws -> String {
+    return self.universeDomain
   }
 }
 

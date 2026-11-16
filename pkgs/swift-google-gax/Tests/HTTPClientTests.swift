@@ -174,7 +174,7 @@ import NIOHTTP1
   }
 
   @Test func requestOptionsHeadersAuthPrecedence() async throws {
-    struct MockAuthCredentials: _CredentialsProtocol {
+    struct MockAuthCredentials: CredentialsProtocol {
       let authHeaders: AuthHeaders
       func headers() async throws -> AuthHeaders {
         self.authHeaders
@@ -1200,6 +1200,250 @@ import NIOHTTP1
     }
     #expect(details.statusCode == 502)
     #expect(details.payload == Data("<html>502 Bad Gateway</html>".utf8))
+  }
+
+  @Test func universeDomainResolvesEndpointAndHostHeader() async throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with {
+      $0.credentials = credentials
+      $0.universeDomain = "my-custom-universe.com"
+    }
+    let client = try _HTTPClient(
+      from: options,
+      withDefaultEndpoint: "https://secretmanager.googleapis.com",
+      environment: [:]
+    )
+    let request = try await client.newRequest(path: "/v1/projects/p/secrets", query: [])
+    #expect(
+      request.components.url?.absoluteString
+        == "https://secretmanager.my-custom-universe.com/v1/projects/p/secrets"
+    )
+    #expect(request.headers["Host"] == ["secretmanager.my-custom-universe.com"])
+  }
+
+  @Test func universeDomainFromEnvironmentVariable() async throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with {
+      $0.credentials = credentials
+    }
+    let client = try _HTTPClient(
+      from: options,
+      withDefaultEndpoint: "https://secretmanager.googleapis.com",
+      environment: ["GOOGLE_CLOUD_UNIVERSE_DOMAIN": "env-universe.com"]
+    )
+    let request = try await client.newRequest(path: "/v1/projects/p/secrets", query: [])
+    #expect(
+      request.components.url?.absoluteString
+        == "https://secretmanager.env-universe.com/v1/projects/p/secrets"
+    )
+    #expect(request.headers["Host"] == ["secretmanager.env-universe.com"])
+  }
+
+  @Test func universeDomainMismatchThrowsErrorBeforeFetchingAuthHeaders() async throws {
+    struct CustomUniverseCredentials: CredentialsProtocol {
+      let domain: String
+      func universeDomain() async throws -> String { domain }
+      func headers() async throws -> AuthHeaders {
+        Issue.record("headers() must not be called when universe domains mismatch")
+        return [("authorization", "Bearer secret-token")]
+      }
+    }
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent when universe domains mismatch")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://secretmanager.my-universe.com",
+      credentials: CustomUniverseCredentials(domain: "googleapis.com"),
+      defaultEndpoint: "https://secretmanager.googleapis.com",
+      universeDomain: "my-universe.com"
+    )
+
+    let error = await #expect(throws: RequestError.self) {
+      _ = try await client.newRequest(path: "/v1/test", query: [])
+    }
+    guard case let .io(underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(String(describing: underlying).contains("my-universe.com"))
+    #expect(String(describing: underlying).contains("googleapis.com"))
+  }
+
+  @Test func universeDomainMatchSucceeds() async throws {
+    struct CustomUniverseCredentials: CredentialsProtocol {
+      let domain: String
+      func universeDomain() async throws -> String { domain }
+      func headers() async throws -> AuthHeaders {
+        [("authorization", "Bearer valid-universe-token")]
+      }
+    }
+    let mock = MockHTTPClient { (_, _) in
+      HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://secretmanager.my-universe.com",
+      credentials: CustomUniverseCredentials(domain: "my-universe.com"),
+      defaultEndpoint: "https://secretmanager.googleapis.com",
+      universeDomain: "my-universe.com"
+    )
+
+    let request = try await client.newRequest(path: "/v1/test", query: [])
+    #expect(request.headers["authorization"] == ["Bearer valid-universe-token"])
+    #expect(request.headers["Host"] == ["secretmanager.my-universe.com"])
+  }
+
+  @Test func universeDomainMismatchIsNotRetriedByRetryLoop() async throws {
+    struct CustomUniverseCredentials: CredentialsProtocol {
+      let domain: String
+      func universeDomain() async throws -> String { domain }
+      func headers() async throws -> AuthHeaders {
+        [("authorization", "Bearer secret-token")]
+      }
+    }
+    let mock = MockHTTPClient { (_, _) in
+      HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://secretmanager.my-universe.com",
+      credentials: CustomUniverseCredentials(domain: "googleapis.com"),
+      defaultEndpoint: "https://secretmanager.googleapis.com",
+      universeDomain: "my-universe.com"
+    )
+    let retryLoop = _RetryLoop(
+      options: RequestOptions(),
+      withDefault: ClientOptions(),
+      idempotent: true
+    )
+    var attempts = 0
+    let error = await #expect(throws: RequestError.self) {
+      try await retryLoop.run(
+        inner: { _ in
+          attempts += 1
+          _ = try await client.newRequest(path: "/v1/test", query: [])
+        },
+        sleep: { _ in
+          Issue.record("RetryLoop must not sleep or retry on universe domain mismatch")
+        }
+      )
+    }
+    #expect(attempts == 1)
+    guard case .io(let underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
+  }
+
+  @Test func cancellationErrorFromCredentialsIsRethrownDirectly() async throws {
+    struct CancellingUniverseCredentials: CredentialsProtocol {
+      func universeDomain() async throws -> String {
+        throw CancellationError()
+      }
+      func headers() async throws -> AuthHeaders {
+        [("authorization", "Bearer secret-token")]
+      }
+    }
+    struct CancellingHeaderCredentials: CredentialsProtocol {
+      func universeDomain() async throws -> String {
+        "googleapis.com"
+      }
+      func headers() async throws -> AuthHeaders {
+        throw CancellationError()
+      }
+    }
+    let mock = MockHTTPClient { (_, _) in
+      HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+
+    let clientUniverseCancel = try _HTTPClient(
+      mock,
+      endpoint: "https://secretmanager.googleapis.com",
+      credentials: CancellingUniverseCredentials()
+    )
+    await #expect(throws: CancellationError.self) {
+      _ = try await clientUniverseCancel.newRequest(path: "/v1/test", query: [])
+    }
+
+    let clientHeaderCancel = try _HTTPClient(
+      mock,
+      endpoint: "https://secretmanager.googleapis.com",
+      credentials: CancellingHeaderCredentials()
+    )
+    await #expect(throws: CancellationError.self) {
+      _ = try await clientHeaderCancel.newRequest(path: "/v1/test", query: [])
+    }
+  }
+
+  @Test func invalidUniverseDomainThrowsInvalidEndpoint() throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with {
+      $0.credentials = credentials
+      $0.universeDomain = "invalid/domain"
+    }
+    let error = #expect(throws: ClientError.self) {
+      _ = try _HTTPClient(
+        from: options,
+        withDefaultEndpoint: "https://secretmanager.googleapis.com",
+        environment: [:]
+      )
+    }
+    guard case .invalidEndpoint(let msg) = error else {
+      Issue.record("Expected ClientError.invalidEndpoint, got \(String(describing: error))")
+      return
+    }
+    #expect(msg == "secretmanager.invalid/domain")
+  }
+
+  @Test func credentialsHeadersErrorWrappedInIOAndNotRetriedByRetryLoop() async throws {
+    struct FailingHeaderCredentials: CredentialsProtocol {
+      func universeDomain() async throws -> String {
+        "googleapis.com"
+      }
+      func headers() async throws -> AuthHeaders {
+        throw CredentialsError.cannotFetchToken(
+          message: "source credentials universe mismatch",
+          underlyingError: CredentialsError.parseError("universe domain mismatch")
+        )
+      }
+    }
+    let mock = MockHTTPClient { (_, _) in
+      Issue.record("HTTP request must not be sent when credentials.headers() fails")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://secretmanager.googleapis.com",
+      credentials: FailingHeaderCredentials()
+    )
+    let retryLoop = _RetryLoop(
+      options: RequestOptions(),
+      withDefault: ClientOptions(),
+      idempotent: true
+    )
+    var attempts = 0
+    let error = await #expect(throws: RequestError.self) {
+      try await retryLoop.run(
+        inner: { _ in
+          attempts += 1
+          _ = try await client.newRequest(path: "/v1/test", query: [])
+        },
+        sleep: { _ in
+          Issue.record("RetryLoop must not sleep or retry on CredentialsError from headers()")
+        }
+      )
+    }
+    #expect(attempts == 1)
+    guard case .io(let underlying) = error else {
+      Issue.record("Expected RequestError.io, got \(String(describing: error))")
+      return
+    }
+    #expect(underlying is CredentialsError)
   }
 
   /// A test response type.

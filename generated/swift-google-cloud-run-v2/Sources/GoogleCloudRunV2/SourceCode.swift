@@ -50,9 +50,11 @@ public struct SourceCode: Codable, Equatable, GoogleWKT._AnyPackable,
     init?(intValue: Swift.Int) { nil }
 
     static let cloudStorageSource = CodingKeys(stringValue: "cloudStorageSource")
+    static let inlinedSource = CodingKeys(stringValue: "inlinedSource")
 
     static let _knownKeys: Set<Swift.String> = [
-      "cloudStorageSource"
+      "cloudStorageSource",
+      "inlinedSource",
     ]
   }
 
@@ -74,6 +76,11 @@ public struct SourceCode: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try sourceTypeCheckAndSet(.cloudStorageSource(cloudStorageSource))
     }
+    if let inlinedSource = try container.decodeIfPresent(
+      SourceCode.InlinedSource.self, forKey: .inlinedSource)
+    {
+      try sourceTypeCheckAndSet(.inlinedSource(inlinedSource))
+    }
     self.sourceType = sourceType
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -88,6 +95,8 @@ public struct SourceCode: Codable, Equatable, GoogleWKT._AnyPackable,
       switch choice {
       case .cloudStorageSource(let value):
         try container.encode(value, forKey: .cloudStorageSource)
+      case .inlinedSource(let value):
+        try container.encode(value, forKey: .inlinedSource)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -193,10 +202,192 @@ public struct SourceCode: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// Source file.
+  public struct SourceFile: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Required. Input only. The file name for the source code. e.g.,
+    /// `"index.js"` or
+    /// `"node_modules/dependency.js"`. The filename must be less than 255
+    /// characters and cannot contain `..`, `./`, `//`, or end with a `/`.
+    /// Cloud Run will place the files in the container subdirectories, please
+    /// use relative path to access the file.
+    public var filename: Swift.String = Swift.String()
+
+    /// Required. Input only. Represents the exact, literal, and complete source
+    /// code of the file. Placeholders like `...` or comments such as `# [rest of
+    /// code]` should NEVER be used as omission. Every character in this field
+    /// will be built into the final container. Any omission will result in a
+    /// broken application.
+    public var content: Swift.String = Swift.String()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `SourceFile`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = SourceFile().with { $0.filename = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let filename = CodingKeys(stringValue: "filename")
+      static let content = CodingKeys(stringValue: "content")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "filename",
+        "content",
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filename) {
+        self.filename = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
+        self.content = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.filename, forKey: .filename)
+      try container.encode(self.content, forKey: .content)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// The type URL for `SourceFile`: `"type.googleapis.com/google.cloud.run.v2.SourceCode.SourceFile"`.
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.cloud.run.v2.SourceCode.SourceFile"
+    }
+
+    /// Initialize an instance of `SourceFile` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.run.v2.SourceCode.SourceFile"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `SourceFile` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._anySerialize(message: self)
+    }
+  }
+
+  /// Inlined source.
+  public struct InlinedSource: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Required. Input only. The source code.
+    public var sources: [SourceCode.SourceFile] = []
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `InlinedSource`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = InlinedSource().with { $0.sources = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let sources = CodingKeys(stringValue: "sources")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "sources"
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([SourceCode.SourceFile].self, forKey: .sources) {
+        self.sources = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.sources, forKey: .sources)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// The type URL for `InlinedSource`: `"type.googleapis.com/google.cloud.run.v2.SourceCode.InlinedSource"`.
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.cloud.run.v2.SourceCode.InlinedSource"
+    }
+
+    /// Initialize an instance of `InlinedSource` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.run.v2.SourceCode.InlinedSource"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `InlinedSource` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._anySerialize(message: self)
+    }
+  }
+
   /// The source type.
   public enum SourceTypeOneOf: Codable, Equatable, Sendable {
     /// The source is a Cloud Storage bucket.
     indirect case cloudStorageSource(SourceCode.CloudStorageSource)
+    /// Optional. Input only. Source code inlined in the request. Cloud Run will
+    /// store the inlined_source to Cloud Storage and replace the field with
+    /// cloud_storage_source. This field is only supported in Cloud Run Service.
+    indirect case inlinedSource(SourceCode.InlinedSource)
   }
 
   /// The type URL for `SourceCode`: `"type.googleapis.com/google.cloud.run.v2.SourceCode"`.

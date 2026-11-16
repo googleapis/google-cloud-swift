@@ -38,11 +38,31 @@ import Testing
       (#"{}"#, T()),
       (#"{"mapValue":{"a":true}}"#, T().with { $0.mapValue = ["a": true] }),
       (#"{"mapValue":{"a":"true"}}"#, T().with { $0.mapValue = ["a": true] }),
+      (#"{"singular":null}"#, T()),
+      (#"{"repeated":null}"#, T()),
+      (#"{"mapKey":null}"#, T()),
+      (#"{"mapKeyValue":null}"#, T()),
+      (#"{"mapValue":null}"#, T()),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
+  }
+
+  @Test(
+    "bool invalid null elements throw",
+    arguments: [
+      #"{"repeated":[null]}"#,
+      #"{"mapKey":{"true":null}}"#,
+      #"{"mapKeyValue":{"true":null}}"#,
+      #"{"mapValue":{"a":null}}"#,
+    ])
+  func invalidNullElements(input: String) throws {
+    let decoder = _ProtoJSONDecoder()
+    #expect(throws: DecodingError.self) {
+      try decoder.decode(T.self, from: Data(input.utf8))
+    }
   }
 
   @Test(

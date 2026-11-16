@@ -26,7 +26,7 @@ public struct DashboardFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   public var id: Swift.String = Swift.String()
 
   /// Datasource the filter is applicable for.
-  public var dataSource: DataSource = DataSource()
+  public var dataSource: GoogleCloudChronicleV1.DataSource = GoogleCloudChronicleV1.DataSource()
 
   /// Filter field path.
   public var fieldPath: Swift.String = Swift.String()
@@ -113,7 +113,9 @@ public struct DashboardFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
       self.id = value
     }
-    if let value = try container.decodeIfPresent(DataSource.self, forKey: .dataSource) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudChronicleV1.DataSource.self, forKey: .dataSource)
+    {
       self.dataSource = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldPath) {

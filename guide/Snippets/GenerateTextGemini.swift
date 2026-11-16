@@ -13,11 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// snippet.show
-// snippet.imports
+// snippet.show [START swift_text_prompt_full]
+// snippet.imports [START swift_text_prompt_imports]
 import Foundation
 import GoogleCloudAIPlatformV1
-// snippet.end
+// snippet.end [END swift_text_prompt_imports]
 
 // snippet.function [START swift_text_prompt]
 func sample(projectId: String) async throws {
@@ -72,7 +72,7 @@ func sample(projectId: String) async throws {
   // snippet.end [END swift_text_prompt_response]
 }
 
-// snippet.hide
+// snippet.hide [END swift_text_prompt_full]
 @main struct SnippetRunner {
   static func main() async throws {
     let projectId = CommandLine.arguments.dropFirst().first ?? "[placeholder]"

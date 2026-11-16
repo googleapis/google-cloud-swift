@@ -31,6 +31,18 @@ public struct RevisionScaling: Codable, Equatable, GoogleWKT._AnyPackable,
   /// https://cloud.google.com/run/docs/configuring/max-instances
   public var maxInstanceCount: Swift.Int32 = Swift.Int32()
 
+  /// Optional. Determines a threshold for CPU utilization before scaling begins.
+  /// Accepted values are between `0.1` and `0.90` (inclusive) or `0.0` to
+  /// disable CPU utilization as threshold for scaling. CPU and concurrency
+  /// scaling cannot both be disabled.
+  public var cpuUtilization: Swift.Float? = nil
+
+  /// Optional. Determines a threshold for concurrency utilization before scaling
+  /// begins. Accepted values are between `0.1` and `0.95` (inclusive) or `0.0`
+  /// to disable concurrency utilization as threshold for scaling. CPU and
+  /// concurrency scaling cannot both be disabled.
+  public var concurrencyUtilization: Swift.Float? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `RevisionScaling`.
@@ -58,10 +70,14 @@ public struct RevisionScaling: Codable, Equatable, GoogleWKT._AnyPackable,
 
     static let minInstanceCount = CodingKeys(stringValue: "minInstanceCount")
     static let maxInstanceCount = CodingKeys(stringValue: "maxInstanceCount")
+    static let cpuUtilization = CodingKeys(stringValue: "cpuUtilization")
+    static let concurrencyUtilization = CodingKeys(stringValue: "concurrencyUtilization")
 
     static let _knownKeys: Set<Swift.String> = [
       "minInstanceCount",
       "maxInstanceCount",
+      "cpuUtilization",
+      "concurrencyUtilization",
     ]
   }
 
@@ -73,6 +89,9 @@ public struct RevisionScaling: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxInstanceCount) {
       self.maxInstanceCount = value
     }
+    self.cpuUtilization = try container.decodeIfPresent(Swift.Float.self, forKey: .cpuUtilization)
+    self.concurrencyUtilization = try container.decodeIfPresent(
+      Swift.Float.self, forKey: .concurrencyUtilization)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -83,6 +102,8 @@ public struct RevisionScaling: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.minInstanceCount, forKey: .minInstanceCount)
     try container.encode(self.maxInstanceCount, forKey: .maxInstanceCount)
+    try container.encodeIfPresent(self.cpuUtilization, forKey: .cpuUtilization)
+    try container.encodeIfPresent(self.concurrencyUtilization, forKey: .concurrencyUtilization)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

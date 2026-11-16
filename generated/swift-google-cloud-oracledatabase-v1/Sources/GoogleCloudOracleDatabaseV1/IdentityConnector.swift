@@ -31,6 +31,22 @@ public struct IdentityConnector: Codable, Equatable, GoogleWKT._AnyPackable,
   public var connectionState: IdentityConnector.ConnectionState =
     IdentityConnector.ConnectionState()
 
+  /// Output only. The resource name of the Workload Identity Pool
+  /// configured for identity federation with OCI. This exact pool name can be
+  /// used to configure VPC Service Controls (VPC-SC) egress rules.
+  /// Format:
+  /// `projects/{project}/locations/global/workloadIdentityPools/{workload_identity_pool}`
+  public var workloadIdentityPool: Swift.String = Swift.String()
+
+  /// Output only. The unique partner identifier for the Identity Connector,
+  /// used to establish secure cross-cloud access between Google Cloud and OCI.
+  /// This corresponds directly to the ID of the OracleDbGcpIdentityConnector
+  /// resource in Oracle Cloud Infrastructure (OCI).
+  public var identityConnectorId: Swift.String = Swift.String()
+
+  /// Output only. Additional information about the current lifecycle state.
+  public var lifecycleStateDetails: Swift.String = Swift.String()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `IdentityConnector`.
@@ -58,10 +74,16 @@ public struct IdentityConnector: Codable, Equatable, GoogleWKT._AnyPackable,
 
     static let serviceAgentEmail = CodingKeys(stringValue: "serviceAgentEmail")
     static let connectionState = CodingKeys(stringValue: "connectionState")
+    static let workloadIdentityPool = CodingKeys(stringValue: "workloadIdentityPool")
+    static let identityConnectorId = CodingKeys(stringValue: "identityConnectorId")
+    static let lifecycleStateDetails = CodingKeys(stringValue: "lifecycleStateDetails")
 
     static let _knownKeys: Set<Swift.String> = [
       "serviceAgentEmail",
       "connectionState",
+      "workloadIdentityPool",
+      "identityConnectorId",
+      "lifecycleStateDetails",
     ]
   }
 
@@ -75,6 +97,16 @@ public struct IdentityConnector: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.connectionState = value
     }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workloadIdentityPool) {
+      self.workloadIdentityPool = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .identityConnectorId) {
+      self.identityConnectorId = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lifecycleStateDetails)
+    {
+      self.lifecycleStateDetails = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -85,6 +117,9 @@ public struct IdentityConnector: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.serviceAgentEmail, forKey: .serviceAgentEmail)
     try container.encode(self.connectionState, forKey: .connectionState)
+    try container.encode(self.workloadIdentityPool, forKey: .workloadIdentityPool)
+    try container.encode(self.identityConnectorId, forKey: .identityConnectorId)
+    try container.encode(self.lifecycleStateDetails, forKey: .lifecycleStateDetails)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

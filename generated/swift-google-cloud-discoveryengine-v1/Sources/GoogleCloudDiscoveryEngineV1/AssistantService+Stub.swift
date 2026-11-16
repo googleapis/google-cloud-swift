@@ -22,6 +22,26 @@
 
   extension Clients {
     protocol AssistantServiceStub: Sendable {
+      func createAssistant(
+        request: CreateAssistantRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant
+
+      func deleteAssistant(
+        request: DeleteAssistantRequest, options: GoogleGax.RequestOptions
+      ) async throws
+
+      func updateAssistant(
+        request: UpdateAssistantRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant
+
+      func getAssistant(
+        request: GetAssistantRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant
+
+      func listAssistants(
+        request: ListAssistantsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.ListAssistantsResponse
+
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse

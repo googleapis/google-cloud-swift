@@ -847,6 +847,714 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
     return try await poller.wait()
   }
 
+  /// Creates a new AutoProtectionPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicy")
+  public func createAutoProtectionPolicy(
+    request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createAutoProtectionPolicy(request: request, options: options)
+  }
+
+  /// Creates a new AutoProtectionPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicy")
+  public func createAutoProtectionPolicyPollingUntilDone(
+    request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicy {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AutoProtectionPolicy>.State in
+      return try op._extractStatus(AutoProtectionPolicy.self)
+    }
+    let rawOp = try await self.createAutoProtectionPolicy(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutoProtectionPolicy>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Lists AutoProtectionPolicies for a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicies")
+  public func listAutoProtectionPolicies(
+    request: ListAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse {
+    try await self.inner.listAutoProtectionPolicies(request: request, options: options)
+  }
+
+  /// Gets details of a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_GetAutoProtectionPolicy")
+  public func getAutoProtectionPolicy(
+    request: GetAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicy {
+    try await self.inner.getAutoProtectionPolicy(request: request, options: options)
+  }
+
+  /// Updates the parameters of a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateAutoProtectionPolicy")
+  public func updateAutoProtectionPolicy(
+    request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateAutoProtectionPolicy(request: request, options: options)
+  }
+
+  /// Updates the parameters of a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateAutoProtectionPolicy")
+  public func updateAutoProtectionPolicyPollingUntilDone(
+    request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicy {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AutoProtectionPolicy>.State in
+      return try op._extractStatus(AutoProtectionPolicy.self)
+    }
+    let rawOp = try await self.updateAutoProtectionPolicy(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutoProtectionPolicy>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Deletes a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteAutoProtectionPolicy")
+  public func deleteAutoProtectionPolicy(
+    request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteAutoProtectionPolicy(request: request, options: options)
+  }
+
+  /// Deletes a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteAutoProtectionPolicy")
+  public func deleteAutoProtectionPolicyPollingUntilDone(
+    request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteAutoProtectionPolicy(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
+  /// Creates a new AutoProtectionPolicyBinding in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicyBinding")
+  public func createAutoProtectionPolicyBinding(
+    request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createAutoProtectionPolicyBinding(request: request, options: options)
+  }
+
+  /// Creates a new AutoProtectionPolicyBinding in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicyBinding")
+  public func createAutoProtectionPolicyBindingPollingUntilDone(
+    request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicyBinding {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AutoProtectionPolicyBinding>.State in
+      return try op._extractStatus(AutoProtectionPolicyBinding.self)
+    }
+    let rawOp = try await self.createAutoProtectionPolicyBinding(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AutoProtectionPolicyBinding>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Returns the auto protection policy binding read from the CCFE tables.
+  ///
+  /// @Snippet(path: "BackupDR_GetAutoProtectionPolicyBinding")
+  public func getAutoProtectionPolicyBinding(
+    request: GetAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding {
+    try await self.inner.getAutoProtectionPolicyBinding(request: request, options: options)
+  }
+
+  /// Returns the auto protection policy bindings read from the CCFE tables.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicyBindings")
+  public func listAutoProtectionPolicyBindings(
+    request: ListAutoProtectionPolicyBindingsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse {
+    try await self.inner.listAutoProtectionPolicyBindings(request: request, options: options)
+  }
+
+  /// Lists AppliedAutoProtectionPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAppliedAutoProtectionPolicies")
+  public func listAppliedAutoProtectionPolicies(
+    request: ListAppliedAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse {
+    try await self.inner.listAppliedAutoProtectionPolicies(request: request, options: options)
+  }
+
+  /// InitiateDeleteAutoProtectionPolicyBinding initiates delete for
+  /// AutoProtectionPolicy Binding
+  ///
+  /// @Snippet(path: "BackupDR_InitiateDeleteAutoProtectionPolicyBinding")
+  public func initiateDeleteAutoProtectionPolicyBinding(
+    request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.initiateDeleteAutoProtectionPolicyBinding(
+      request: request, options: options)
+  }
+
+  /// InitiateDeleteAutoProtectionPolicyBinding initiates delete for
+  /// AutoProtectionPolicy Binding
+  ///
+  /// @Snippet(path: "BackupDR_InitiateDeleteAutoProtectionPolicyBinding")
+  public func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+    request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicyBinding {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AutoProtectionPolicyBinding>.State in
+      return try op._extractStatus(AutoProtectionPolicyBinding.self)
+    }
+    let rawOp = try await self.initiateDeleteAutoProtectionPolicyBinding(
+      request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AutoProtectionPolicyBinding>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Lists Binding Matching Resources for a given AutoProtectionPolicyBinding.
+  ///
+  /// @Snippet(path: "BackupDR_ListBindingMatchingResources")
+  public func listBindingMatchingResources(
+    request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse {
+    try await self.inner.listBindingMatchingResources(request: request, options: options)
+  }
+
+  /// Creates a new RestoreTemplate in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreTemplate")
+  public func createRestoreTemplate(
+    request: CreateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createRestoreTemplate(request: request, options: options)
+  }
+
+  /// Creates a new RestoreTemplate in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreTemplate")
+  public func createRestoreTemplatePollingUntilDone(
+    request: CreateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RestoreTemplate {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<RestoreTemplate>.State in
+      return try op._extractStatus(RestoreTemplate.self)
+    }
+    let rawOp = try await self.createRestoreTemplate(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RestoreTemplate>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Gets details of a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_GetRestoreTemplate")
+  public func getRestoreTemplate(
+    request: GetRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.RestoreTemplate {
+    try await self.inner.getRestoreTemplate(request: request, options: options)
+  }
+
+  /// Lists RestoreTemplates in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreTemplates")
+  public func listRestoreTemplates(
+    request: ListRestoreTemplatesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListRestoreTemplatesResponse {
+    try await self.inner.listRestoreTemplates(request: request, options: options)
+  }
+
+  /// Updates the settings of a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateRestoreTemplate")
+  public func updateRestoreTemplate(
+    request: UpdateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateRestoreTemplate(request: request, options: options)
+  }
+
+  /// Updates the settings of a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateRestoreTemplate")
+  public func updateRestoreTemplatePollingUntilDone(
+    request: UpdateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RestoreTemplate {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<RestoreTemplate>.State in
+      return try op._extractStatus(RestoreTemplate.self)
+    }
+    let rawOp = try await self.updateRestoreTemplate(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RestoreTemplate>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Deletes a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreTemplate")
+  public func deleteRestoreTemplate(
+    request: DeleteRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteRestoreTemplate(request: request, options: options)
+  }
+
+  /// Deletes a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreTemplate")
+  public func deleteRestoreTemplatePollingUntilDone(
+    request: DeleteRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteRestoreTemplate(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
+  /// Runs a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_RunRestoreTemplate")
+  public func runRestoreTemplate(
+    request: RunRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.runRestoreTemplate(request: request, options: options)
+  }
+
+  /// Runs a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_RunRestoreTemplate")
+  public func runRestoreTemplatePollingUntilDone(
+    request: RunRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RunRestoreTemplateResponse {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<RunRestoreTemplateResponse>.State in
+      return try op._extractStatus(RunRestoreTemplateResponse.self)
+    }
+    let rawOp = try await self.runRestoreTemplate(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<RunRestoreTemplateResponse>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Gets details of a RestoreTemplateExecution.
+  ///
+  /// @Snippet(path: "BackupDR_GetRestoreTemplateExecution")
+  public func getRestoreTemplateExecution(
+    request: GetRestoreTemplateExecutionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.RestoreTemplateExecution {
+    try await self.inner.getRestoreTemplateExecution(request: request, options: options)
+  }
+
+  /// Lists RestoreTemplateExecutions in a given project, location and restore
+  /// template.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreTemplateExecutions")
+  public func listRestoreTemplateExecutions(
+    request: ListRestoreTemplateExecutionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListRestoreTemplateExecutionsResponse {
+    try await self.inner.listRestoreTemplateExecutions(request: request, options: options)
+  }
+
+  /// Triggers cleanup of restored resources created during execution.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerRestoreCleanup")
+  public func triggerRestoreCleanup(
+    request: TriggerRestoreCleanupRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.triggerRestoreCleanup(request: request, options: options)
+  }
+
+  /// Triggers cleanup of restored resources created during execution.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerRestoreCleanup")
+  public func triggerRestoreCleanupPollingUntilDone(
+    request: TriggerRestoreCleanupRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RestoreTemplateExecution {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<RestoreTemplateExecution>.State in
+      return try op._extractStatus(RestoreTemplateExecution.self)
+    }
+    let rawOp = try await self.triggerRestoreCleanup(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RestoreTemplateExecution>.State
+      in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Creates a new RestoreVerificationPlan in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlan")
+  public func createRestoreVerificationPlan(
+    request: CreateRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createRestoreVerificationPlan(request: request, options: options)
+  }
+
+  /// Creates a new RestoreVerificationPlan in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlan")
+  public func createRestoreVerificationPlanPollingUntilDone(
+    request: CreateRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RestoreVerificationPlan {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<RestoreVerificationPlan>.State in
+      return try op._extractStatus(RestoreVerificationPlan.self)
+    }
+    let rawOp = try await self.createRestoreVerificationPlan(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RestoreVerificationPlan>.State
+      in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Creates a new RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlanAssociation")
+  public func createRestoreVerificationPlanAssociation(
+    request: CreateRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createRestoreVerificationPlanAssociation(
+      request: request, options: options)
+  }
+
+  /// Creates a new RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlanAssociation")
+  public func createRestoreVerificationPlanAssociationPollingUntilDone(
+    request: CreateRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RestoreVerificationPlanAssociation {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<RestoreVerificationPlanAssociation>.State in
+      return try op._extractStatus(RestoreVerificationPlanAssociation.self)
+    }
+    let rawOp = try await self.createRestoreVerificationPlanAssociation(
+      request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<RestoreVerificationPlanAssociation>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Gets details of a single RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_GetRestoreVerificationPlanAssociation")
+  public func getRestoreVerificationPlanAssociation(
+    request: GetRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlanAssociation {
+    try await self.inner.getRestoreVerificationPlanAssociation(request: request, options: options)
+  }
+
+  /// Lists RestoreVerificationPlanAssociations in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreVerificationPlanAssociations")
+  public func listRestoreVerificationPlanAssociations(
+    request: ListRestoreVerificationPlanAssociationsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlanAssociationsResponse {
+    try await self.inner.listRestoreVerificationPlanAssociations(request: request, options: options)
+  }
+
+  /// Deletes a single RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlanAssociation")
+  public func deleteRestoreVerificationPlanAssociation(
+    request: DeleteRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteRestoreVerificationPlanAssociation(
+      request: request, options: options)
+  }
+
+  /// Deletes a single RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlanAssociation")
+  public func deleteRestoreVerificationPlanAssociationPollingUntilDone(
+    request: DeleteRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteRestoreVerificationPlanAssociation(
+      request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
+  /// Triggers a new Restore Verification for the association in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerRestoreVerification")
+  public func triggerRestoreVerification(
+    request: TriggerRestoreVerificationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.triggerRestoreVerification(request: request, options: options)
+  }
+
+  /// Triggers a new Restore Verification for the association in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerRestoreVerification")
+  public func triggerRestoreVerificationPollingUntilDone(
+    request: TriggerRestoreVerificationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> TriggerRestoreVerificationResponse {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<TriggerRestoreVerificationResponse>.State in
+      return try op._extractStatus(TriggerRestoreVerificationResponse.self)
+    }
+    let rawOp = try await self.triggerRestoreVerification(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<TriggerRestoreVerificationResponse>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Gets details of a single RestoreVerificationPlan. Returns the requested
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_GetRestoreVerificationPlan")
+  public func getRestoreVerificationPlan(
+    request: GetRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlan {
+    try await self.inner.getRestoreVerificationPlan(request: request, options: options)
+  }
+
+  /// Lists RestoreVerificationPlans in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreVerificationPlans")
+  public func listRestoreVerificationPlans(
+    request: ListRestoreVerificationPlansRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlansResponse {
+    try await self.inner.listRestoreVerificationPlans(request: request, options: options)
+  }
+
+  /// Deletes a single RestoreVerificationPlan. If the `force` flag is set to
+  /// `true`, any RestoreVerificationPlanAssociations linked to this
+  /// RestoreVerificationPlan will also be deleted.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlan")
+  public func deleteRestoreVerificationPlan(
+    request: DeleteRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteRestoreVerificationPlan(request: request, options: options)
+  }
+
+  /// Deletes a single RestoreVerificationPlan. If the `force` flag is set to
+  /// `true`, any RestoreVerificationPlanAssociations linked to this
+  /// RestoreVerificationPlan will also be deleted.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlan")
+  public func deleteRestoreVerificationPlanPollingUntilDone(
+    request: DeleteRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteRestoreVerificationPlan(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "BackupDR_ListLocations")
@@ -1224,6 +1932,226 @@ extension Clients {
     func initializeServicePollingUntilDone(
       request: InitializeServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> InitializeServiceResponse
+
+    /// See `BackupDRClient.createAutoProtectionPolicy`.
+    func createAutoProtectionPolicy(
+      request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.createAutoProtectionPolicy`.
+    func createAutoProtectionPolicyPollingUntilDone(
+      request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> AutoProtectionPolicy
+
+    /// See `BackupDRClient.listAutoProtectionPolicies`.
+    func listAutoProtectionPolicies(
+      request: ListAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse
+
+    /// See `BackupDRClient.getAutoProtectionPolicy`.
+    func getAutoProtectionPolicy(
+      request: GetAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicy
+
+    /// See `BackupDRClient.updateAutoProtectionPolicy`.
+    func updateAutoProtectionPolicy(
+      request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.updateAutoProtectionPolicy`.
+    func updateAutoProtectionPolicyPollingUntilDone(
+      request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> AutoProtectionPolicy
+
+    /// See `BackupDRClient.deleteAutoProtectionPolicy`.
+    func deleteAutoProtectionPolicy(
+      request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.deleteAutoProtectionPolicy`.
+    func deleteAutoProtectionPolicyPollingUntilDone(
+      request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `BackupDRClient.createAutoProtectionPolicyBinding`.
+    func createAutoProtectionPolicyBinding(
+      request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.createAutoProtectionPolicyBinding`.
+    func createAutoProtectionPolicyBindingPollingUntilDone(
+      request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> AutoProtectionPolicyBinding
+
+    /// See `BackupDRClient.getAutoProtectionPolicyBinding`.
+    func getAutoProtectionPolicyBinding(
+      request: GetAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding
+
+    /// See `BackupDRClient.listAutoProtectionPolicyBindings`.
+    func listAutoProtectionPolicyBindings(
+      request: ListAutoProtectionPolicyBindingsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse
+
+    /// See `BackupDRClient.listAppliedAutoProtectionPolicies`.
+    func listAppliedAutoProtectionPolicies(
+      request: ListAppliedAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse
+
+    /// See `BackupDRClient.initiateDeleteAutoProtectionPolicyBinding`.
+    func initiateDeleteAutoProtectionPolicyBinding(
+      request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.initiateDeleteAutoProtectionPolicyBinding`.
+    func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+      request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+    ) async throws -> AutoProtectionPolicyBinding
+
+    /// See `BackupDRClient.listBindingMatchingResources`.
+    func listBindingMatchingResources(
+      request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse
+
+    /// See `BackupDRClient.createRestoreTemplate`.
+    func createRestoreTemplate(
+      request: CreateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.createRestoreTemplate`.
+    func createRestoreTemplatePollingUntilDone(
+      request: CreateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> RestoreTemplate
+
+    /// See `BackupDRClient.getRestoreTemplate`.
+    func getRestoreTemplate(
+      request: GetRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.RestoreTemplate
+
+    /// See `BackupDRClient.listRestoreTemplates`.
+    func listRestoreTemplates(
+      request: ListRestoreTemplatesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListRestoreTemplatesResponse
+
+    /// See `BackupDRClient.updateRestoreTemplate`.
+    func updateRestoreTemplate(
+      request: UpdateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.updateRestoreTemplate`.
+    func updateRestoreTemplatePollingUntilDone(
+      request: UpdateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> RestoreTemplate
+
+    /// See `BackupDRClient.deleteRestoreTemplate`.
+    func deleteRestoreTemplate(
+      request: DeleteRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.deleteRestoreTemplate`.
+    func deleteRestoreTemplatePollingUntilDone(
+      request: DeleteRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `BackupDRClient.runRestoreTemplate`.
+    func runRestoreTemplate(
+      request: RunRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.runRestoreTemplate`.
+    func runRestoreTemplatePollingUntilDone(
+      request: RunRestoreTemplateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> RunRestoreTemplateResponse
+
+    /// See `BackupDRClient.getRestoreTemplateExecution`.
+    func getRestoreTemplateExecution(
+      request: GetRestoreTemplateExecutionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.RestoreTemplateExecution
+
+    /// See `BackupDRClient.listRestoreTemplateExecutions`.
+    func listRestoreTemplateExecutions(
+      request: ListRestoreTemplateExecutionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListRestoreTemplateExecutionsResponse
+
+    /// See `BackupDRClient.triggerRestoreCleanup`.
+    func triggerRestoreCleanup(
+      request: TriggerRestoreCleanupRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.triggerRestoreCleanup`.
+    func triggerRestoreCleanupPollingUntilDone(
+      request: TriggerRestoreCleanupRequest, options: GoogleGax.RequestOptions
+    ) async throws -> RestoreTemplateExecution
+
+    /// See `BackupDRClient.createRestoreVerificationPlan`.
+    func createRestoreVerificationPlan(
+      request: CreateRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.createRestoreVerificationPlan`.
+    func createRestoreVerificationPlanPollingUntilDone(
+      request: CreateRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+    ) async throws -> RestoreVerificationPlan
+
+    /// See `BackupDRClient.createRestoreVerificationPlanAssociation`.
+    func createRestoreVerificationPlanAssociation(
+      request: CreateRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.createRestoreVerificationPlanAssociation`.
+    func createRestoreVerificationPlanAssociationPollingUntilDone(
+      request: CreateRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> RestoreVerificationPlanAssociation
+
+    /// See `BackupDRClient.getRestoreVerificationPlanAssociation`.
+    func getRestoreVerificationPlanAssociation(
+      request: GetRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlanAssociation
+
+    /// See `BackupDRClient.listRestoreVerificationPlanAssociations`.
+    func listRestoreVerificationPlanAssociations(
+      request: ListRestoreVerificationPlanAssociationsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlanAssociationsResponse
+
+    /// See `BackupDRClient.deleteRestoreVerificationPlanAssociation`.
+    func deleteRestoreVerificationPlanAssociation(
+      request: DeleteRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.deleteRestoreVerificationPlanAssociation`.
+    func deleteRestoreVerificationPlanAssociationPollingUntilDone(
+      request: DeleteRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `BackupDRClient.triggerRestoreVerification`.
+    func triggerRestoreVerification(
+      request: TriggerRestoreVerificationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.triggerRestoreVerification`.
+    func triggerRestoreVerificationPollingUntilDone(
+      request: TriggerRestoreVerificationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> TriggerRestoreVerificationResponse
+
+    /// See `BackupDRClient.getRestoreVerificationPlan`.
+    func getRestoreVerificationPlan(
+      request: GetRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlan
+
+    /// See `BackupDRClient.listRestoreVerificationPlans`.
+    func listRestoreVerificationPlans(
+      request: ListRestoreVerificationPlansRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlansResponse
+
+    /// See `BackupDRClient.deleteRestoreVerificationPlan`.
+    func deleteRestoreVerificationPlan(
+      request: DeleteRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `BackupDRClient.deleteRestoreVerificationPlan`.
+    func deleteRestoreVerificationPlanPollingUntilDone(
+      request: DeleteRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+    ) async throws
 
     /// See `BackupDRClient.listLocations`.
     func listLocations(
@@ -2542,6 +3470,1015 @@ extension Clients.BackupDRProtocol {
     request: InitializeServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> InitializeServiceResponse {
     throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAutoProtectionPolicy(request: CreateAutoProtectionPolicyRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.createAutoProtectionPolicy(request: request, options: .init())
+  }
+
+  public func createAutoProtectionPolicy(
+    request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAutoProtectionPolicyPollingUntilDone(request: CreateAutoProtectionPolicyRequest)
+    async throws -> AutoProtectionPolicy
+  {
+    return try await self.createAutoProtectionPolicyPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func createAutoProtectionPolicyPollingUntilDone(
+    request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAutoProtectionPolicyPollingUntilDone(
+    parent: Swift.String,
+    autoProtectionPolicy: AutoProtectionPolicy?,
+    autoProtectionPolicyId: Swift.String,
+  ) async throws -> AutoProtectionPolicy {
+    let request = CreateAutoProtectionPolicyRequest().with {
+      $0.parent = parent
+      $0.autoProtectionPolicy = autoProtectionPolicy
+      $0.autoProtectionPolicyId = autoProtectionPolicyId
+    }
+    return try await self.createAutoProtectionPolicyPollingUntilDone(request: request)
+  }
+
+  public func listAutoProtectionPolicies(request: ListAutoProtectionPoliciesRequest) async throws
+    -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse
+  {
+    try await self.listAutoProtectionPolicies(request: request, options: .init())
+  }
+
+  public func listAutoProtectionPolicies(
+    request: ListAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listAutoProtectionPoliciesByItems(
+    request: ListAutoProtectionPoliciesRequest
+  ) -> some AsyncSequence<AutoProtectionPolicy, any Swift.Error> & Sendable {
+    self.listAutoProtectionPoliciesByItems(request: request, options: .init())
+  }
+
+  /// Lists AutoProtectionPolicies for a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicies")
+  public func listAutoProtectionPoliciesByItems(
+    request: ListAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<AutoProtectionPolicy, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listAutoProtectionPolicies(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listAutoProtectionPoliciesByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<AutoProtectionPolicy, any Swift.Error> & Sendable {
+    let request = ListAutoProtectionPoliciesRequest().with {
+      $0.parent = parent
+    }
+    return self.listAutoProtectionPoliciesByItems(request: request)
+  }
+
+  public func getAutoProtectionPolicy(request: GetAutoProtectionPolicyRequest) async throws
+    -> GoogleCloudBackupDRV1.AutoProtectionPolicy
+  {
+    try await self.getAutoProtectionPolicy(request: request, options: .init())
+  }
+
+  public func getAutoProtectionPolicy(
+    request: GetAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getAutoProtectionPolicy(
+    name: Swift.String,
+  ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicy {
+    let request = GetAutoProtectionPolicyRequest().with {
+      $0.name = name
+    }
+    return try await self.getAutoProtectionPolicy(request: request)
+  }
+
+  public func updateAutoProtectionPolicy(request: UpdateAutoProtectionPolicyRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateAutoProtectionPolicy(request: request, options: .init())
+  }
+
+  public func updateAutoProtectionPolicy(
+    request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateAutoProtectionPolicyPollingUntilDone(request: UpdateAutoProtectionPolicyRequest)
+    async throws -> AutoProtectionPolicy
+  {
+    return try await self.updateAutoProtectionPolicyPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func updateAutoProtectionPolicyPollingUntilDone(
+    request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateAutoProtectionPolicyPollingUntilDone(
+    autoProtectionPolicy: AutoProtectionPolicy?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> AutoProtectionPolicy {
+    let request = UpdateAutoProtectionPolicyRequest().with {
+      $0.autoProtectionPolicy = autoProtectionPolicy
+      $0.updateMask = updateMask
+    }
+    return try await self.updateAutoProtectionPolicyPollingUntilDone(request: request)
+  }
+
+  public func deleteAutoProtectionPolicy(request: DeleteAutoProtectionPolicyRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.deleteAutoProtectionPolicy(request: request, options: .init())
+  }
+
+  public func deleteAutoProtectionPolicy(
+    request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteAutoProtectionPolicyPollingUntilDone(request: DeleteAutoProtectionPolicyRequest)
+    async throws
+  {
+    try await self.deleteAutoProtectionPolicyPollingUntilDone(request: request, options: .init())
+  }
+
+  public func deleteAutoProtectionPolicyPollingUntilDone(
+    request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteAutoProtectionPolicyPollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteAutoProtectionPolicyRequest().with {
+      $0.name = name
+    }
+    try await self.deleteAutoProtectionPolicyPollingUntilDone(request: request)
+  }
+
+  public func createAutoProtectionPolicyBinding(request: CreateAutoProtectionPolicyBindingRequest)
+    async throws -> GoogleLongRunning.Operation
+  {
+    try await self.createAutoProtectionPolicyBinding(request: request, options: .init())
+  }
+
+  public func createAutoProtectionPolicyBinding(
+    request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAutoProtectionPolicyBindingPollingUntilDone(
+    request: CreateAutoProtectionPolicyBindingRequest
+  ) async throws -> AutoProtectionPolicyBinding {
+    return try await self.createAutoProtectionPolicyBindingPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func createAutoProtectionPolicyBindingPollingUntilDone(
+    request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicyBinding {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAutoProtectionPolicyBindingPollingUntilDone(
+    parent: Swift.String,
+    autoProtectionPolicyBinding: AutoProtectionPolicyBinding?,
+    autoProtectionPolicyBindingId: Swift.String,
+  ) async throws -> AutoProtectionPolicyBinding {
+    let request = CreateAutoProtectionPolicyBindingRequest().with {
+      $0.parent = parent
+      $0.autoProtectionPolicyBinding = autoProtectionPolicyBinding
+      $0.autoProtectionPolicyBindingId = autoProtectionPolicyBindingId
+    }
+    return try await self.createAutoProtectionPolicyBindingPollingUntilDone(request: request)
+  }
+
+  public func getAutoProtectionPolicyBinding(request: GetAutoProtectionPolicyBindingRequest)
+    async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding
+  {
+    try await self.getAutoProtectionPolicyBinding(request: request, options: .init())
+  }
+
+  public func getAutoProtectionPolicyBinding(
+    request: GetAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getAutoProtectionPolicyBinding(
+    name: Swift.String,
+  ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding {
+    let request = GetAutoProtectionPolicyBindingRequest().with {
+      $0.name = name
+    }
+    return try await self.getAutoProtectionPolicyBinding(request: request)
+  }
+
+  public func listAutoProtectionPolicyBindings(request: ListAutoProtectionPolicyBindingsRequest)
+    async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse
+  {
+    try await self.listAutoProtectionPolicyBindings(request: request, options: .init())
+  }
+
+  public func listAutoProtectionPolicyBindings(
+    request: ListAutoProtectionPolicyBindingsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listAutoProtectionPolicyBindingsByItems(
+    request: ListAutoProtectionPolicyBindingsRequest
+  ) -> some AsyncSequence<AutoProtectionPolicyBinding, any Swift.Error> & Sendable {
+    self.listAutoProtectionPolicyBindingsByItems(request: request, options: .init())
+  }
+
+  /// Returns the auto protection policy bindings read from the CCFE tables.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicyBindings")
+  public func listAutoProtectionPolicyBindingsByItems(
+    request: ListAutoProtectionPolicyBindingsRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<AutoProtectionPolicyBinding, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listAutoProtectionPolicyBindings(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listAutoProtectionPolicyBindingsByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<AutoProtectionPolicyBinding, any Swift.Error> & Sendable {
+    let request = ListAutoProtectionPolicyBindingsRequest().with {
+      $0.parent = parent
+    }
+    return self.listAutoProtectionPolicyBindingsByItems(request: request)
+  }
+
+  public func listAppliedAutoProtectionPolicies(request: ListAppliedAutoProtectionPoliciesRequest)
+    async throws -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse
+  {
+    try await self.listAppliedAutoProtectionPolicies(request: request, options: .init())
+  }
+
+  public func listAppliedAutoProtectionPolicies(
+    request: ListAppliedAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listAppliedAutoProtectionPoliciesByItems(
+    request: ListAppliedAutoProtectionPoliciesRequest
+  ) -> some AsyncSequence<AppliedAutoProtectionPolicy, any Swift.Error> & Sendable {
+    self.listAppliedAutoProtectionPoliciesByItems(request: request, options: .init())
+  }
+
+  /// Lists AppliedAutoProtectionPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAppliedAutoProtectionPolicies")
+  public func listAppliedAutoProtectionPoliciesByItems(
+    request: ListAppliedAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<AppliedAutoProtectionPolicy, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listAppliedAutoProtectionPolicies(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listAppliedAutoProtectionPoliciesByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<AppliedAutoProtectionPolicy, any Swift.Error> & Sendable {
+    let request = ListAppliedAutoProtectionPoliciesRequest().with {
+      $0.parent = parent
+    }
+    return self.listAppliedAutoProtectionPoliciesByItems(request: request)
+  }
+
+  public func initiateDeleteAutoProtectionPolicyBinding(
+    request: InitiateDeleteAutoProtectionPolicyBindingRequest
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.initiateDeleteAutoProtectionPolicyBinding(request: request, options: .init())
+  }
+
+  public func initiateDeleteAutoProtectionPolicyBinding(
+    request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+    request: InitiateDeleteAutoProtectionPolicyBindingRequest
+  ) async throws -> AutoProtectionPolicyBinding {
+    return try await self.initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+    request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AutoProtectionPolicyBinding {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+    name: Swift.String,
+  ) async throws -> AutoProtectionPolicyBinding {
+    let request = InitiateDeleteAutoProtectionPolicyBindingRequest().with {
+      $0.name = name
+    }
+    return try await self.initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
+      request: request)
+  }
+
+  public func listBindingMatchingResources(request: ListBindingMatchingResourcesRequest)
+    async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse
+  {
+    try await self.listBindingMatchingResources(request: request, options: .init())
+  }
+
+  public func listBindingMatchingResources(
+    request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listBindingMatchingResourcesByItems(
+    request: ListBindingMatchingResourcesRequest
+  ) -> some AsyncSequence<BindingMatchingResource, any Swift.Error> & Sendable {
+    self.listBindingMatchingResourcesByItems(request: request, options: .init())
+  }
+
+  /// Lists Binding Matching Resources for a given AutoProtectionPolicyBinding.
+  ///
+  /// @Snippet(path: "BackupDR_ListBindingMatchingResources")
+  public func listBindingMatchingResourcesByItems(
+    request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<BindingMatchingResource, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listBindingMatchingResources(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listBindingMatchingResourcesByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<BindingMatchingResource, any Swift.Error> & Sendable {
+    let request = ListBindingMatchingResourcesRequest().with {
+      $0.parent = parent
+    }
+    return self.listBindingMatchingResourcesByItems(request: request)
+  }
+
+  public func createRestoreTemplate(request: CreateRestoreTemplateRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.createRestoreTemplate(request: request, options: .init())
+  }
+
+  public func createRestoreTemplate(
+    request: CreateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createRestoreTemplatePollingUntilDone(request: CreateRestoreTemplateRequest)
+    async throws -> RestoreTemplate
+  {
+    return try await self.createRestoreTemplatePollingUntilDone(request: request, options: .init())
+  }
+
+  public func createRestoreTemplatePollingUntilDone(
+    request: CreateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RestoreTemplate {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createRestoreTemplatePollingUntilDone(
+    parent: Swift.String,
+    restoreTemplate: RestoreTemplate?,
+    restoreTemplateId: Swift.String,
+  ) async throws -> RestoreTemplate {
+    let request = CreateRestoreTemplateRequest().with {
+      $0.parent = parent
+      $0.restoreTemplate = restoreTemplate
+      $0.restoreTemplateId = restoreTemplateId
+    }
+    return try await self.createRestoreTemplatePollingUntilDone(request: request)
+  }
+
+  public func getRestoreTemplate(request: GetRestoreTemplateRequest) async throws
+    -> GoogleCloudBackupDRV1.RestoreTemplate
+  {
+    try await self.getRestoreTemplate(request: request, options: .init())
+  }
+
+  public func getRestoreTemplate(
+    request: GetRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.RestoreTemplate {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getRestoreTemplate(
+    name: Swift.String,
+  ) async throws -> GoogleCloudBackupDRV1.RestoreTemplate {
+    let request = GetRestoreTemplateRequest().with {
+      $0.name = name
+    }
+    return try await self.getRestoreTemplate(request: request)
+  }
+
+  public func listRestoreTemplates(request: ListRestoreTemplatesRequest) async throws
+    -> GoogleCloudBackupDRV1.ListRestoreTemplatesResponse
+  {
+    try await self.listRestoreTemplates(request: request, options: .init())
+  }
+
+  public func listRestoreTemplates(
+    request: ListRestoreTemplatesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListRestoreTemplatesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listRestoreTemplatesByItems(
+    request: ListRestoreTemplatesRequest
+  ) -> some AsyncSequence<RestoreTemplate, any Swift.Error> & Sendable {
+    self.listRestoreTemplatesByItems(request: request, options: .init())
+  }
+
+  /// Lists RestoreTemplates in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreTemplates")
+  public func listRestoreTemplatesByItems(
+    request: ListRestoreTemplatesRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<RestoreTemplate, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListRestoreTemplatesResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listRestoreTemplates(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listRestoreTemplatesByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<RestoreTemplate, any Swift.Error> & Sendable {
+    let request = ListRestoreTemplatesRequest().with {
+      $0.parent = parent
+    }
+    return self.listRestoreTemplatesByItems(request: request)
+  }
+
+  public func updateRestoreTemplate(request: UpdateRestoreTemplateRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateRestoreTemplate(request: request, options: .init())
+  }
+
+  public func updateRestoreTemplate(
+    request: UpdateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateRestoreTemplatePollingUntilDone(request: UpdateRestoreTemplateRequest)
+    async throws -> RestoreTemplate
+  {
+    return try await self.updateRestoreTemplatePollingUntilDone(request: request, options: .init())
+  }
+
+  public func updateRestoreTemplatePollingUntilDone(
+    request: UpdateRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RestoreTemplate {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateRestoreTemplatePollingUntilDone(
+    restoreTemplate: RestoreTemplate?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> RestoreTemplate {
+    let request = UpdateRestoreTemplateRequest().with {
+      $0.restoreTemplate = restoreTemplate
+      $0.updateMask = updateMask
+    }
+    return try await self.updateRestoreTemplatePollingUntilDone(request: request)
+  }
+
+  public func deleteRestoreTemplate(request: DeleteRestoreTemplateRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.deleteRestoreTemplate(request: request, options: .init())
+  }
+
+  public func deleteRestoreTemplate(
+    request: DeleteRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteRestoreTemplatePollingUntilDone(request: DeleteRestoreTemplateRequest)
+    async throws
+  {
+    try await self.deleteRestoreTemplatePollingUntilDone(request: request, options: .init())
+  }
+
+  public func deleteRestoreTemplatePollingUntilDone(
+    request: DeleteRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteRestoreTemplatePollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteRestoreTemplateRequest().with {
+      $0.name = name
+    }
+    try await self.deleteRestoreTemplatePollingUntilDone(request: request)
+  }
+
+  public func runRestoreTemplate(request: RunRestoreTemplateRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.runRestoreTemplate(request: request, options: .init())
+  }
+
+  public func runRestoreTemplate(
+    request: RunRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func runRestoreTemplatePollingUntilDone(request: RunRestoreTemplateRequest) async throws
+    -> RunRestoreTemplateResponse
+  {
+    return try await self.runRestoreTemplatePollingUntilDone(request: request, options: .init())
+  }
+
+  public func runRestoreTemplatePollingUntilDone(
+    request: RunRestoreTemplateRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RunRestoreTemplateResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func runRestoreTemplatePollingUntilDone(
+    name: Swift.String,
+  ) async throws -> RunRestoreTemplateResponse {
+    let request = RunRestoreTemplateRequest().with {
+      $0.name = name
+    }
+    return try await self.runRestoreTemplatePollingUntilDone(request: request)
+  }
+
+  public func getRestoreTemplateExecution(request: GetRestoreTemplateExecutionRequest) async throws
+    -> GoogleCloudBackupDRV1.RestoreTemplateExecution
+  {
+    try await self.getRestoreTemplateExecution(request: request, options: .init())
+  }
+
+  public func getRestoreTemplateExecution(
+    request: GetRestoreTemplateExecutionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.RestoreTemplateExecution {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getRestoreTemplateExecution(
+    name: Swift.String,
+  ) async throws -> GoogleCloudBackupDRV1.RestoreTemplateExecution {
+    let request = GetRestoreTemplateExecutionRequest().with {
+      $0.name = name
+    }
+    return try await self.getRestoreTemplateExecution(request: request)
+  }
+
+  public func listRestoreTemplateExecutions(request: ListRestoreTemplateExecutionsRequest)
+    async throws -> GoogleCloudBackupDRV1.ListRestoreTemplateExecutionsResponse
+  {
+    try await self.listRestoreTemplateExecutions(request: request, options: .init())
+  }
+
+  public func listRestoreTemplateExecutions(
+    request: ListRestoreTemplateExecutionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListRestoreTemplateExecutionsResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listRestoreTemplateExecutionsByItems(
+    request: ListRestoreTemplateExecutionsRequest
+  ) -> some AsyncSequence<RestoreTemplateExecution, any Swift.Error> & Sendable {
+    self.listRestoreTemplateExecutionsByItems(request: request, options: .init())
+  }
+
+  /// Lists RestoreTemplateExecutions in a given project, location and restore
+  /// template.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreTemplateExecutions")
+  public func listRestoreTemplateExecutionsByItems(
+    request: ListRestoreTemplateExecutionsRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<RestoreTemplateExecution, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListRestoreTemplateExecutionsResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listRestoreTemplateExecutions(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listRestoreTemplateExecutionsByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<RestoreTemplateExecution, any Swift.Error> & Sendable {
+    let request = ListRestoreTemplateExecutionsRequest().with {
+      $0.parent = parent
+    }
+    return self.listRestoreTemplateExecutionsByItems(request: request)
+  }
+
+  public func triggerRestoreCleanup(request: TriggerRestoreCleanupRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.triggerRestoreCleanup(request: request, options: .init())
+  }
+
+  public func triggerRestoreCleanup(
+    request: TriggerRestoreCleanupRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func triggerRestoreCleanupPollingUntilDone(request: TriggerRestoreCleanupRequest)
+    async throws -> RestoreTemplateExecution
+  {
+    return try await self.triggerRestoreCleanupPollingUntilDone(request: request, options: .init())
+  }
+
+  public func triggerRestoreCleanupPollingUntilDone(
+    request: TriggerRestoreCleanupRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RestoreTemplateExecution {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func triggerRestoreCleanupPollingUntilDone(
+    name: Swift.String,
+  ) async throws -> RestoreTemplateExecution {
+    let request = TriggerRestoreCleanupRequest().with {
+      $0.name = name
+    }
+    return try await self.triggerRestoreCleanupPollingUntilDone(request: request)
+  }
+
+  public func createRestoreVerificationPlan(request: CreateRestoreVerificationPlanRequest)
+    async throws -> GoogleLongRunning.Operation
+  {
+    try await self.createRestoreVerificationPlan(request: request, options: .init())
+  }
+
+  public func createRestoreVerificationPlan(
+    request: CreateRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createRestoreVerificationPlanPollingUntilDone(
+    request: CreateRestoreVerificationPlanRequest
+  ) async throws -> RestoreVerificationPlan {
+    return try await self.createRestoreVerificationPlanPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func createRestoreVerificationPlanPollingUntilDone(
+    request: CreateRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RestoreVerificationPlan {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createRestoreVerificationPlanPollingUntilDone(
+    parent: Swift.String,
+    restoreVerificationPlan: RestoreVerificationPlan?,
+    restoreVerificationPlanId: Swift.String,
+  ) async throws -> RestoreVerificationPlan {
+    let request = CreateRestoreVerificationPlanRequest().with {
+      $0.parent = parent
+      $0.restoreVerificationPlan = restoreVerificationPlan
+      $0.restoreVerificationPlanId = restoreVerificationPlanId
+    }
+    return try await self.createRestoreVerificationPlanPollingUntilDone(request: request)
+  }
+
+  public func createRestoreVerificationPlanAssociation(
+    request: CreateRestoreVerificationPlanAssociationRequest
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.createRestoreVerificationPlanAssociation(request: request, options: .init())
+  }
+
+  public func createRestoreVerificationPlanAssociation(
+    request: CreateRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createRestoreVerificationPlanAssociationPollingUntilDone(
+    request: CreateRestoreVerificationPlanAssociationRequest
+  ) async throws -> RestoreVerificationPlanAssociation {
+    return try await self.createRestoreVerificationPlanAssociationPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func createRestoreVerificationPlanAssociationPollingUntilDone(
+    request: CreateRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RestoreVerificationPlanAssociation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createRestoreVerificationPlanAssociationPollingUntilDone(
+    parent: Swift.String,
+    restoreVerificationPlanAssociation: RestoreVerificationPlanAssociation?,
+    restoreVerificationPlanAssociationId: Swift.String,
+  ) async throws -> RestoreVerificationPlanAssociation {
+    let request = CreateRestoreVerificationPlanAssociationRequest().with {
+      $0.parent = parent
+      $0.restoreVerificationPlanAssociation = restoreVerificationPlanAssociation
+      $0.restoreVerificationPlanAssociationId = restoreVerificationPlanAssociationId
+    }
+    return try await self.createRestoreVerificationPlanAssociationPollingUntilDone(request: request)
+  }
+
+  public func getRestoreVerificationPlanAssociation(
+    request: GetRestoreVerificationPlanAssociationRequest
+  ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlanAssociation {
+    try await self.getRestoreVerificationPlanAssociation(request: request, options: .init())
+  }
+
+  public func getRestoreVerificationPlanAssociation(
+    request: GetRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlanAssociation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getRestoreVerificationPlanAssociation(
+    name: Swift.String,
+  ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlanAssociation {
+    let request = GetRestoreVerificationPlanAssociationRequest().with {
+      $0.name = name
+    }
+    return try await self.getRestoreVerificationPlanAssociation(request: request)
+  }
+
+  public func listRestoreVerificationPlanAssociations(
+    request: ListRestoreVerificationPlanAssociationsRequest
+  ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlanAssociationsResponse {
+    try await self.listRestoreVerificationPlanAssociations(request: request, options: .init())
+  }
+
+  public func listRestoreVerificationPlanAssociations(
+    request: ListRestoreVerificationPlanAssociationsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlanAssociationsResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listRestoreVerificationPlanAssociationsByItems(
+    request: ListRestoreVerificationPlanAssociationsRequest
+  ) -> some AsyncSequence<RestoreVerificationPlanAssociation, any Swift.Error> & Sendable {
+    self.listRestoreVerificationPlanAssociationsByItems(request: request, options: .init())
+  }
+
+  /// Lists RestoreVerificationPlanAssociations in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreVerificationPlanAssociations")
+  public func listRestoreVerificationPlanAssociationsByItems(
+    request: ListRestoreVerificationPlanAssociationsRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<RestoreVerificationPlanAssociation, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListRestoreVerificationPlanAssociationsResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listRestoreVerificationPlanAssociations(
+        request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listRestoreVerificationPlanAssociationsByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<RestoreVerificationPlanAssociation, any Swift.Error> & Sendable {
+    let request = ListRestoreVerificationPlanAssociationsRequest().with {
+      $0.parent = parent
+    }
+    return self.listRestoreVerificationPlanAssociationsByItems(request: request)
+  }
+
+  public func deleteRestoreVerificationPlanAssociation(
+    request: DeleteRestoreVerificationPlanAssociationRequest
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.deleteRestoreVerificationPlanAssociation(request: request, options: .init())
+  }
+
+  public func deleteRestoreVerificationPlanAssociation(
+    request: DeleteRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteRestoreVerificationPlanAssociationPollingUntilDone(
+    request: DeleteRestoreVerificationPlanAssociationRequest
+  ) async throws {
+    try await self.deleteRestoreVerificationPlanAssociationPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func deleteRestoreVerificationPlanAssociationPollingUntilDone(
+    request: DeleteRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteRestoreVerificationPlanAssociationPollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteRestoreVerificationPlanAssociationRequest().with {
+      $0.name = name
+    }
+    try await self.deleteRestoreVerificationPlanAssociationPollingUntilDone(request: request)
+  }
+
+  public func triggerRestoreVerification(request: TriggerRestoreVerificationRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.triggerRestoreVerification(request: request, options: .init())
+  }
+
+  public func triggerRestoreVerification(
+    request: TriggerRestoreVerificationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func triggerRestoreVerificationPollingUntilDone(request: TriggerRestoreVerificationRequest)
+    async throws -> TriggerRestoreVerificationResponse
+  {
+    return try await self.triggerRestoreVerificationPollingUntilDone(
+      request: request, options: .init())
+  }
+
+  public func triggerRestoreVerificationPollingUntilDone(
+    request: TriggerRestoreVerificationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> TriggerRestoreVerificationResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func triggerRestoreVerificationPollingUntilDone(
+    name: Swift.String,
+  ) async throws -> TriggerRestoreVerificationResponse {
+    let request = TriggerRestoreVerificationRequest().with {
+      $0.name = name
+    }
+    return try await self.triggerRestoreVerificationPollingUntilDone(request: request)
+  }
+
+  public func getRestoreVerificationPlan(request: GetRestoreVerificationPlanRequest) async throws
+    -> GoogleCloudBackupDRV1.RestoreVerificationPlan
+  {
+    try await self.getRestoreVerificationPlan(request: request, options: .init())
+  }
+
+  public func getRestoreVerificationPlan(
+    request: GetRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlan {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getRestoreVerificationPlan(
+    name: Swift.String,
+  ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlan {
+    let request = GetRestoreVerificationPlanRequest().with {
+      $0.name = name
+    }
+    return try await self.getRestoreVerificationPlan(request: request)
+  }
+
+  public func listRestoreVerificationPlans(request: ListRestoreVerificationPlansRequest)
+    async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlansResponse
+  {
+    try await self.listRestoreVerificationPlans(request: request, options: .init())
+  }
+
+  public func listRestoreVerificationPlans(
+    request: ListRestoreVerificationPlansRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlansResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listRestoreVerificationPlansByItems(
+    request: ListRestoreVerificationPlansRequest
+  ) -> some AsyncSequence<RestoreVerificationPlan, any Swift.Error> & Sendable {
+    self.listRestoreVerificationPlansByItems(request: request, options: .init())
+  }
+
+  /// Lists RestoreVerificationPlans in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreVerificationPlans")
+  public func listRestoreVerificationPlansByItems(
+    request: ListRestoreVerificationPlansRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<RestoreVerificationPlan, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListRestoreVerificationPlansResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listRestoreVerificationPlans(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listRestoreVerificationPlansByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<RestoreVerificationPlan, any Swift.Error> & Sendable {
+    let request = ListRestoreVerificationPlansRequest().with {
+      $0.parent = parent
+    }
+    return self.listRestoreVerificationPlansByItems(request: request)
+  }
+
+  public func deleteRestoreVerificationPlan(request: DeleteRestoreVerificationPlanRequest)
+    async throws -> GoogleLongRunning.Operation
+  {
+    try await self.deleteRestoreVerificationPlan(request: request, options: .init())
+  }
+
+  public func deleteRestoreVerificationPlan(
+    request: DeleteRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteRestoreVerificationPlanPollingUntilDone(
+    request: DeleteRestoreVerificationPlanRequest
+  ) async throws {
+    try await self.deleteRestoreVerificationPlanPollingUntilDone(request: request, options: .init())
+  }
+
+  public func deleteRestoreVerificationPlanPollingUntilDone(
+    request: DeleteRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteRestoreVerificationPlanPollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteRestoreVerificationPlanRequest().with {
+      $0.name = name
+    }
+    try await self.deleteRestoreVerificationPlanPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

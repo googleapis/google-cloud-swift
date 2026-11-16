@@ -34,7 +34,7 @@ public struct ColumnMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public var functionModule: Swift.String = Swift.String()
 
   /// Data source queried.
-  public var dataSource: DataSource = DataSource()
+  public var dataSource: GoogleCloudChronicleV1.DataSource = GoogleCloudChronicleV1.DataSource()
 
   /// Timestamp Metadata
   public var timestampMetadata: TimestampMetadata? = nil
@@ -115,7 +115,9 @@ public struct ColumnMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .functionModule) {
       self.functionModule = value
     }
-    if let value = try container.decodeIfPresent(DataSource.self, forKey: .dataSource) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudChronicleV1.DataSource.self, forKey: .dataSource)
+    {
       self.dataSource = value
     }
     self.timestampMetadata = try container.decodeIfPresent(

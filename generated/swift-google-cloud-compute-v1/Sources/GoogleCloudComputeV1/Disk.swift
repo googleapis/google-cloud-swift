@@ -312,6 +312,33 @@
     /// version of the instant snapshot that was used.
     public var sourceInstantSnapshotId: Swift.String? = nil
 
+    /// The machine image to create the disk from. You can provide this as a
+    /// partial or full URL to the resource. For example, the following are valid
+    /// values:
+    ///
+    ///
+    ///      - https://www.googleapis.com/compute/v1/projects/project/global/machineImages/machineImage
+    ///    - projects/project/global/machineImages/machineImage
+    ///      - global/machineImages/machineImage
+    public var sourceMachineImage: Swift.String? = nil
+
+    /// The device name of a disk within a given machine image. The
+    /// source_machine_image must be specified.
+    public var sourceMachineImageDiskDeviceName: Swift.String? = nil
+
+    /// Thecustomer-supplied
+    /// encryption key of the source machine image. Required if the source
+    /// machine image is protected by a customer-supplied encryption key.
+    public var sourceMachineImageEncryptionKey: CustomerEncryptionKey? = nil
+
+    /// Output only. [Output Only] The unique ID of the machine image used to create this disk.
+    /// This value identifies the exact machine image that was used to create this
+    /// persistent disk. For example, if you created the persistent disk from a
+    /// machine image that was later deleted and recreated under the same name, the
+    /// source machine image ID would identify the exact version of the machine
+    /// image that was used.
+    public var sourceMachineImageId: Swift.String? = nil
+
     /// The source snapshot used to create this disk. You can provide this as a
     /// partial or full URL to the resource. For example, the following are valid
     /// values:
@@ -446,6 +473,12 @@
       static let sourceImageId = CodingKeys(stringValue: "sourceImageId")
       static let sourceInstantSnapshot = CodingKeys(stringValue: "sourceInstantSnapshot")
       static let sourceInstantSnapshotId = CodingKeys(stringValue: "sourceInstantSnapshotId")
+      static let sourceMachineImage = CodingKeys(stringValue: "sourceMachineImage")
+      static let sourceMachineImageDiskDeviceName = CodingKeys(
+        stringValue: "sourceMachineImageDiskDeviceName")
+      static let sourceMachineImageEncryptionKey = CodingKeys(
+        stringValue: "sourceMachineImageEncryptionKey")
+      static let sourceMachineImageId = CodingKeys(stringValue: "sourceMachineImageId")
       static let sourceSnapshot = CodingKeys(stringValue: "sourceSnapshot")
       static let sourceSnapshotEncryptionKey = CodingKeys(
         stringValue: "sourceSnapshotEncryptionKey")
@@ -499,6 +532,10 @@
         "sourceImageId",
         "sourceInstantSnapshot",
         "sourceInstantSnapshotId",
+        "sourceMachineImage",
+        "sourceMachineImageDiskDeviceName",
+        "sourceMachineImageEncryptionKey",
+        "sourceMachineImageId",
         "sourceSnapshot",
         "sourceSnapshotEncryptionKey",
         "sourceSnapshotId",
@@ -597,6 +634,14 @@
         Swift.String.self, forKey: .sourceInstantSnapshot)
       self.sourceInstantSnapshotId = try container.decodeIfPresent(
         Swift.String.self, forKey: .sourceInstantSnapshotId)
+      self.sourceMachineImage = try container.decodeIfPresent(
+        Swift.String.self, forKey: .sourceMachineImage)
+      self.sourceMachineImageDiskDeviceName = try container.decodeIfPresent(
+        Swift.String.self, forKey: .sourceMachineImageDiskDeviceName)
+      self.sourceMachineImageEncryptionKey = try container.decodeIfPresent(
+        CustomerEncryptionKey.self, forKey: .sourceMachineImageEncryptionKey)
+      self.sourceMachineImageId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .sourceMachineImageId)
       self.sourceSnapshot = try container.decodeIfPresent(
         Swift.String.self, forKey: .sourceSnapshot)
       self.sourceSnapshotEncryptionKey = try container.decodeIfPresent(
@@ -669,6 +714,12 @@
       try container.encodeIfPresent(self.sourceImageId, forKey: .sourceImageId)
       try container.encodeIfPresent(self.sourceInstantSnapshot, forKey: .sourceInstantSnapshot)
       try container.encodeIfPresent(self.sourceInstantSnapshotId, forKey: .sourceInstantSnapshotId)
+      try container.encodeIfPresent(self.sourceMachineImage, forKey: .sourceMachineImage)
+      try container.encodeIfPresent(
+        self.sourceMachineImageDiskDeviceName, forKey: .sourceMachineImageDiskDeviceName)
+      try container.encodeIfPresent(
+        self.sourceMachineImageEncryptionKey, forKey: .sourceMachineImageEncryptionKey)
+      try container.encodeIfPresent(self.sourceMachineImageId, forKey: .sourceMachineImageId)
       try container.encodeIfPresent(self.sourceSnapshot, forKey: .sourceSnapshot)
       try container.encodeIfPresent(
         self.sourceSnapshotEncryptionKey, forKey: .sourceSnapshotEncryptionKey)

@@ -85,6 +85,13 @@ import Testing
       $0.endpoint = "https://private.googleapis.com"
     }
     let _ = try StorageControlClient(oddEndpointOptions)
+
+    // With custom universe domain
+    let customUniverseOptions = ClientOptions().with {
+      $0.credentials = credentials
+      $0.universeDomain = "my-universe.com"
+    }
+    let _ = try StorageControlClient(customUniverseOptions)
   }
 
   @Test(arguments: [
@@ -96,6 +103,17 @@ import Testing
     let options = ClientOptions().with {
       $0.credentials = credentials
       $0.endpoint = input
+    }
+    #expect(throws: ClientError.self) {
+      _ = try StorageControlClient(options)
+    }
+  }
+
+  @Test func badUniverseDomain() throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with {
+      $0.credentials = credentials
+      $0.universeDomain = "invalid/domain"
     }
     #expect(throws: ClientError.self) {
       _ = try StorageControlClient(options)

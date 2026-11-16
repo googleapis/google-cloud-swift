@@ -27,7 +27,7 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
-      from: "0.6.0"
+      from: "0.7.0"
     )
   ],
   targets: [

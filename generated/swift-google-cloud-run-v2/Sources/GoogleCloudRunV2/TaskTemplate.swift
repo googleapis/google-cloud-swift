@@ -26,6 +26,9 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// task.
   public var containers: [Container] = []
 
+  /// Optional. Configuration for sandboxes.
+  public var sandboxes: SandboxConfiguration? = nil
+
   /// Optional. A list of Volumes to make available to containers.
   public var volumes: [Volume] = []
 
@@ -60,6 +63,9 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. True if GPU zonal redundancy is disabled on this task template.
   public var gpuZonalRedundancyDisabled: Swift.Bool? = nil
 
+  /// Optional. The Task's workload identity settings.
+  public var workloadIdentityConfig: WorkloadIdentityConfig? = nil
+
   public var retries: RetriesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -88,6 +94,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     init?(intValue: Swift.Int) { nil }
 
     static let containers = CodingKeys(stringValue: "containers")
+    static let sandboxes = CodingKeys(stringValue: "sandboxes")
     static let volumes = CodingKeys(stringValue: "volumes")
     static let maxRetries = CodingKeys(stringValue: "maxRetries")
     static let timeout = CodingKeys(stringValue: "timeout")
@@ -97,9 +104,11 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     static let vpcAccess = CodingKeys(stringValue: "vpcAccess")
     static let nodeSelector = CodingKeys(stringValue: "nodeSelector")
     static let gpuZonalRedundancyDisabled = CodingKeys(stringValue: "gpuZonalRedundancyDisabled")
+    static let workloadIdentityConfig = CodingKeys(stringValue: "workloadIdentityConfig")
 
     static let _knownKeys: Set<Swift.String> = [
       "containers",
+      "sandboxes",
       "volumes",
       "maxRetries",
       "timeout",
@@ -109,6 +118,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
       "vpcAccess",
       "nodeSelector",
       "gpuZonalRedundancyDisabled",
+      "workloadIdentityConfig",
     ]
   }
 
@@ -117,6 +127,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Container].self, forKey: .containers) {
       self.containers = value
     }
+    self.sandboxes = try container.decodeIfPresent(SandboxConfiguration.self, forKey: .sandboxes)
     if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
       self.volumes = value
     }
@@ -136,6 +147,8 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     self.nodeSelector = try container.decodeIfPresent(NodeSelector.self, forKey: .nodeSelector)
     self.gpuZonalRedundancyDisabled = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .gpuZonalRedundancyDisabled)
+    self.workloadIdentityConfig = try container.decodeIfPresent(
+      WorkloadIdentityConfig.self, forKey: .workloadIdentityConfig)
 
     var retries: RetriesOneOf? = nil
     let retriesCheckAndSet = {
@@ -160,6 +173,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.containers, forKey: .containers)
+    try container.encodeIfPresent(self.sandboxes, forKey: .sandboxes)
     try container.encode(self.volumes, forKey: .volumes)
     try container.encodeIfPresent(self.timeout, forKey: .timeout)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
@@ -169,6 +183,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.nodeSelector, forKey: .nodeSelector)
     try container.encodeIfPresent(
       self.gpuZonalRedundancyDisabled, forKey: .gpuZonalRedundancyDisabled)
+    try container.encodeIfPresent(self.workloadIdentityConfig, forKey: .workloadIdentityConfig)
 
     if let choice = self.retries {
       switch choice {

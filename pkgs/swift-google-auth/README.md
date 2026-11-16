@@ -55,6 +55,9 @@ The primary entry point is the `Credentials` struct. A default-initialized
   Run, Cloud Functions) or from local development environments configured via
   `gcloud auth application-default login` or the `GOOGLE_APPLICATION_CREDENTIALS`
   environment variable.
+- **Metadata Server (MDS) Credentials**: Explicitly query the Google Cloud
+  Metadata Server (`http://metadata.google.internal`) on GCE, GKE, or Cloud Run
+  without probing local ADC files ([AIP-4115](https://google.aip.dev/auth/4115)).
 - **Service Account Credentials**: Authenticate with service account private key
   JSON files, supporting both OAuth 2.0 scopes and self-signed JWT assertions
   with custom audiences ([AIP-4111](https://google.aip.dev/auth/4111)).
@@ -64,6 +67,10 @@ The primary entry point is the `Credentials` struct. A default-initialized
   `gcloud` CLI.
 - **Workload / Workforce Identity Federation (WIF)**: Programmatic Security Token
   Service (STS) token exchange for federated identity providers.
+- **Static, Custom & Extracted Access Tokens**: Authenticate with pre-obtained
+  `AccessToken` instances or custom asynchronous `AccessTokenProvider`
+  implementations, and extract raw `AccessToken`s via
+  `Credentials.accessTokenProvider` for non-HTTP protocols and database drivers.
 - **Automatic Token Refresh & Caching**: Proactively and concurrently refreshes
   expiring OAuth access tokens and safely caches them in memory.
 - **Universe Domain Support**: Supports custom and multi-tenant Google Cloud
@@ -130,12 +137,10 @@ import Foundation
 import GoogleAuth
 
 let keyData = try Data(contentsOf: URL(fileURLWithPath: "/path/to/service-account.json"))
-let credentials = try Credentials(
-    configuration: .serviceAccount(
-        keyJSON: keyData,
-        accessSpecifier: .scopes(["https://www.googleapis.com/auth/cloud-platform"])
-    )
-)
+let config = ServiceAccountConfig(keyJSON: keyData).with {
+    $0.accessSpecifier = .scopes(["https://www.googleapis.com/auth/cloud-platform"])
+}
+let credentials = try Credentials(configuration: .serviceAccount(config))
 ```
 
 ### Customizing Application Default Credentials
@@ -145,11 +150,73 @@ You can customize ADC settings such as billing/quota project ID or scopes:
 ```swift
 import GoogleAuth
 
-let credentials = try Credentials(
-    configuration: .adc(
-        quotaProjectID: "my-quota-project-id",
-        scopes: ["https://www.googleapis.com/auth/cloud-platform"]
-    )
+let config = ADCConfig().with {
+    $0.quotaProjectID = "my-quota-project-id"
+    $0.scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+}
+let credentials = try Credentials(configuration: .adc(config))
+```
+
+### Explicit Metadata Server (MDS) Credentials
+
+On Compute Engine, Google Kubernetes Engine, or Cloud Run, you can configure
+credentials to query the Metadata Server directly without probing local ADC
+credential files:
+
+```swift
+import GoogleAuth
+
+let credentials = try Credentials(configuration: .mds())
+
+// Or customize quota project, universe domain, or scopes via MDSConfig:
+let customConfig = MDSConfig().with {
+    $0.quotaProjectID = "my-quota-project-id"
+    $0.scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+}
+let customCredentials = try Credentials(configuration: .mds(customConfig))
+```
+
+### Static and Custom Access Tokens
+
+You can extract a raw `AccessToken` from any OAuth 2.0 `Credentials` instance,
+or supply a pre-obtained static token or custom asynchronous `AccessTokenProvider`:
+
+```swift
+import Foundation
+import GoogleAuth
+
+// Extract a raw access token (e.g. for non-HTTP protocols or database drivers):
+let adcCredentials = try Credentials()
+if let tokenProvider = adcCredentials.accessTokenProvider {
+    let token = try await tokenProvider.accessToken()
+    _ = token
+}
+
+// Authenticate with a pre-obtained static access token:
+let staticConfig = AccessTokenConfig(token: "my-access-token").with {
+    $0.quotaProjectID = "my-quota-project-id"
+}
+let staticCredentials = try Credentials(configuration: .accessToken(staticConfig))
+
+// Or integrate a custom asynchronous AccessTokenProvider (called per request,
+// so network-backed providers should cache tokens and retry transient errors):
+actor VaultTokenProvider: AccessTokenProvider {
+    private var cached: AccessToken?
+
+    func accessToken() async throws -> AccessToken {
+        if let cached, let expiry = cached.expirationDate, expiry > Date().addingTimeInterval(60) {
+            return cached
+        }
+        let fresh = AccessToken(
+            token: "fetched-token",
+            expirationDate: Date().addingTimeInterval(3600)
+        )
+        cached = fresh
+        return fresh
+    }
+}
+let customCredentials = try Credentials(
+    configuration: .accessToken(AccessTokenConfig(provider: VaultTokenProvider()))
 )
 ```
 

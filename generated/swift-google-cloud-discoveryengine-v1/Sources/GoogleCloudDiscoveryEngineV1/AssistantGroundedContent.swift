@@ -28,6 +28,10 @@
     /// The content.
     public var content: AssistantContent? = nil
 
+    /// Source attribution of the generated content. See also
+    /// https://cloud.google.com/vertex-ai/generative-ai/docs/learn/overview#citation_check
+    public var citationMetadata: GoogleCloudDiscoveryEngineV1.CitationMetadata? = nil
+
     /// Grounding metadata for various modals. It only supports text for now.
     public var metadata: MetadataOneOf? = nil
 
@@ -58,16 +62,20 @@
 
       static let textGroundingMetadata = CodingKeys(stringValue: "textGroundingMetadata")
       static let content = CodingKeys(stringValue: "content")
+      static let citationMetadata = CodingKeys(stringValue: "citationMetadata")
 
       static let _knownKeys: Set<Swift.String> = [
         "textGroundingMetadata",
         "content",
+        "citationMetadata",
       ]
     }
 
     public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.content = try container.decodeIfPresent(AssistantContent.self, forKey: .content)
+      self.citationMetadata = try container.decodeIfPresent(
+        GoogleCloudDiscoveryEngineV1.CitationMetadata.self, forKey: .citationMetadata)
 
       var metadata: MetadataOneOf? = nil
       let metadataCheckAndSet = {
@@ -94,6 +102,7 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.content, forKey: .content)
+      try container.encodeIfPresent(self.citationMetadata, forKey: .citationMetadata)
 
       if let choice = self.metadata {
         switch choice {
@@ -112,6 +121,9 @@
     {
       /// Grounding information for parts of the text.
       public var segments: [AssistantGroundedContent.TextGroundingMetadata.Segment] = []
+
+      /// Grounding information for parts of the visual content.
+      public var visualSegments: [AssistantGroundedContent.TextGroundingMetadata.VisualSegment] = []
 
       /// References for the grounded text.
       public var references: [AssistantGroundedContent.TextGroundingMetadata.Reference] = []
@@ -142,10 +154,12 @@
         init?(intValue: Swift.Int) { nil }
 
         static let segments = CodingKeys(stringValue: "segments")
+        static let visualSegments = CodingKeys(stringValue: "visualSegments")
         static let references = CodingKeys(stringValue: "references")
 
         static let _knownKeys: Set<Swift.String> = [
           "segments",
+          "visualSegments",
           "references",
         ]
       }
@@ -156,6 +170,12 @@
           [AssistantGroundedContent.TextGroundingMetadata.Segment].self, forKey: .segments)
         {
           self.segments = value
+        }
+        if let value = try container.decodeIfPresent(
+          [AssistantGroundedContent.TextGroundingMetadata.VisualSegment].self,
+          forKey: .visualSegments)
+        {
+          self.visualSegments = value
         }
         if let value = try container.decodeIfPresent(
           [AssistantGroundedContent.TextGroundingMetadata.Reference].self, forKey: .references)
@@ -171,6 +191,7 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.segments, forKey: .segments)
+        try container.encode(self.visualSegments, forKey: .visualSegments)
         try container.encode(self.references, forKey: .references)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -298,6 +319,100 @@
         }
       }
 
+      /// Grounding information for a visual segment.
+      public struct VisualSegment: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// References for the visual segment.
+        public var referenceIndices: [Swift.Int32] = []
+
+        /// The content id of the visual segment. In order to display the citation
+        /// of the visual element, this content_id needs to match with the
+        /// `grounded_content.content_metadata.content_id` field.
+        public var contentId: Swift.String = Swift.String()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `VisualSegment`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = VisualSegment().with { $0.referenceIndices = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let referenceIndices = CodingKeys(stringValue: "referenceIndices")
+          static let contentId = CodingKeys(stringValue: "contentId")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "referenceIndices",
+            "contentId",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            [Swift.Int32].self, forKey: .referenceIndices)
+          {
+            self.referenceIndices = value
+          }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contentId) {
+            self.contentId = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.referenceIndices, forKey: .referenceIndices)
+          try container.encode(self.contentId, forKey: .contentId)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// The type URL for `VisualSegment`: `"type.googleapis.com/google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.VisualSegment"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.VisualSegment"
+        }
+
+        /// Initialize an instance of `VisualSegment` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.VisualSegment"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `VisualSegment` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
       /// Referenced content and related document metadata.
       public struct Reference: Codable, Equatable, GoogleWKT._AnyPackable,
         Sendable
@@ -305,9 +420,16 @@
         /// Referenced text content.
         public var content: Swift.String = Swift.String()
 
+        /// Chunk of code snippet from the referenced document.
+        public var codeSnippet: Swift.String = Swift.String()
+
         /// Document metadata.
         public var documentMetadata:
           AssistantGroundedContent.TextGroundingMetadata.Reference.DocumentMetadata? = nil
+
+        /// Output only. Generic structured chunk metadata from upstream data
+        /// source connectors.
+        public var chunkMetadata: GoogleWKT.WKTStruct? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -335,11 +457,15 @@
           init?(intValue: Swift.Int) { nil }
 
           static let content = CodingKeys(stringValue: "content")
+          static let codeSnippet = CodingKeys(stringValue: "codeSnippet")
           static let documentMetadata = CodingKeys(stringValue: "documentMetadata")
+          static let chunkMetadata = CodingKeys(stringValue: "chunkMetadata")
 
           static let _knownKeys: Set<Swift.String> = [
             "content",
+            "codeSnippet",
             "documentMetadata",
+            "chunkMetadata",
           ]
         }
 
@@ -348,9 +474,14 @@
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
             self.content = value
           }
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .codeSnippet) {
+            self.codeSnippet = value
+          }
           self.documentMetadata = try container.decodeIfPresent(
             AssistantGroundedContent.TextGroundingMetadata.Reference.DocumentMetadata.self,
             forKey: .documentMetadata)
+          self.chunkMetadata = try container.decodeIfPresent(
+            GoogleWKT.WKTStruct.self, forKey: .chunkMetadata)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
               GoogleWKT.WKTValue.self, forKey: key)
@@ -360,7 +491,9 @@
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.content, forKey: .content)
+          try container.encode(self.codeSnippet, forKey: .codeSnippet)
           try container.encodeIfPresent(self.documentMetadata, forKey: .documentMetadata)
+          try container.encodeIfPresent(self.chunkMetadata, forKey: .chunkMetadata)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
@@ -370,6 +503,10 @@
         public struct DocumentMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
           Sendable
         {
+          public var language:
+            AssistantGroundedContent.TextGroundingMetadata.Reference.DocumentMetadata.Language =
+              AssistantGroundedContent.TextGroundingMetadata.Reference.DocumentMetadata.Language()
+
           /// Document resource name.
           public var document: Swift.String? = nil
 
@@ -388,6 +525,10 @@
           /// this will contain the domain name of the target site.
           public var domain: Swift.String? = nil
 
+          /// The mime type of the document.
+          /// https://www.iana.org/assignments/media-types/media-types.xhtml.
+          public var mimeType: Swift.String? = nil
+
           @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
           /// Initialize a new instance of `DocumentMetadata`.
@@ -398,7 +539,7 @@
           /// Commonly used to initialize the value, for example:
           ///
           /// ```
-          /// let value = DocumentMetadata().with { $0.document = ... }
+          /// let value = DocumentMetadata().with { $0.language = ... }
           /// ```
           @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
@@ -413,29 +554,40 @@
             init(stringValue: Swift.String) { self.stringValue = stringValue }
             init?(intValue: Swift.Int) { nil }
 
+            static let language = CodingKeys(stringValue: "language")
             static let document = CodingKeys(stringValue: "document")
             static let uri = CodingKeys(stringValue: "uri")
             static let title = CodingKeys(stringValue: "title")
             static let pageIdentifier = CodingKeys(stringValue: "pageIdentifier")
             static let domain = CodingKeys(stringValue: "domain")
+            static let mimeType = CodingKeys(stringValue: "mimeType")
 
             static let _knownKeys: Set<Swift.String> = [
+              "language",
               "document",
               "uri",
               "title",
               "pageIdentifier",
               "domain",
+              "mimeType",
             ]
           }
 
           public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(
+              AssistantGroundedContent.TextGroundingMetadata.Reference.DocumentMetadata.Language
+                .self, forKey: .language)
+            {
+              self.language = value
+            }
             self.document = try container.decodeIfPresent(Swift.String.self, forKey: .document)
             self.uri = try container.decodeIfPresent(Swift.String.self, forKey: .uri)
             self.title = try container.decodeIfPresent(Swift.String.self, forKey: .title)
             self.pageIdentifier = try container.decodeIfPresent(
               Swift.String.self, forKey: .pageIdentifier)
             self.domain = try container.decodeIfPresent(Swift.String.self, forKey: .domain)
+            self.mimeType = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType)
             for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
               self._unknownFields.json[key.stringValue] = try container.decode(
                 GoogleWKT.WKTValue.self, forKey: key)
@@ -444,13 +596,130 @@
 
           public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.language, forKey: .language)
             try container.encodeIfPresent(self.document, forKey: .document)
             try container.encodeIfPresent(self.uri, forKey: .uri)
             try container.encodeIfPresent(self.title, forKey: .title)
             try container.encodeIfPresent(self.pageIdentifier, forKey: .pageIdentifier)
             try container.encodeIfPresent(self.domain, forKey: .domain)
+            try container.encodeIfPresent(self.mimeType, forKey: .mimeType)
             for (key, value) in self._unknownFields.json {
               try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
+          }
+
+          /// Language of the referenced content. For now, it is only used for
+          /// code.
+          ///
+          /// - Note: Adding cases to this enumeration is not considered a breaking change.
+          ///   Always include an `@unknown default:` case when switching over this type.
+          ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+          ///   expecting specific values to remain unparsed; future releases may promote
+          ///   them to named cases.
+          public enum Language: Codable, Equatable, Hashable, Sendable {
+            case unspecified
+            case python
+            case sql
+            /// Encodes an unknown integer value.
+            ///
+            /// The most common cause for an unknown value is for the service to send
+            /// a value unknown to the library. We recommend you update your library to
+            /// the latest version.
+            ///
+            /// - Warning: Do not pattern-match specific integer values in this case;
+            ///   future releases may promote them to named enum cases.
+            case unknownIntValue(Int)
+            /// Encodes an unknown string value.
+            ///
+            /// The most common cause for an unknown value is for the service to send
+            /// a value unknown to the library. We recommend you update your library to
+            /// the latest version.
+            ///
+            /// - Warning: Do not pattern-match specific string literals in this case;
+            ///   future releases may promote them to named enum cases.
+            case unknownStringValue(String)
+
+            public init() {
+              self = .unspecified
+            }
+
+            /// Returns the integer value associated with the enumeration.
+            ///
+            /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+            public var intValue: Int? {
+              switch self {
+              case .unspecified: return 0
+              case .python: return 1
+              case .sql: return 2
+              case .unknownIntValue(let v): return v
+              case .unknownStringValue: return nil
+              }
+            }
+
+            /// Returns the string value (or name) associated with the enumeration.
+            ///
+            /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+            public var stringValue: Swift.String? {
+              switch self {
+              case .unspecified: return "LANGUAGE_UNSPECIFIED"
+              case .python: return "PYTHON"
+              case .sql: return "SQL"
+              case .unknownIntValue: return nil
+              case .unknownStringValue(let v): return v
+              }
+            }
+
+            /// Initialize from a string value.
+            ///
+            /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Language/unknownStringValue(_:)).
+            public init(stringValue: Swift.String) {
+              switch stringValue {
+              case "LANGUAGE_UNSPECIFIED": self = .unspecified
+              case "PYTHON": self = .python
+              case "SQL": self = .sql
+              default: self = .unknownStringValue(stringValue)
+              }
+            }
+
+            /// Initialize from an integer value.
+            ///
+            /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Language/unknownIntValue(_:)).
+            public init(intValue: Int) {
+              switch intValue {
+              case 0: self = .unspecified
+              case 1: self = .python
+              case 2: self = .sql
+              default: self = .unknownIntValue(intValue)
+              }
+            }
+
+            public init(from decoder: any Decoder) throws {
+              let container = try decoder.singleValueContainer()
+              if let v = try? container.decode(Int.self) {
+                self.init(intValue: v)
+                return
+              }
+              if let s = try? container.decode(String.self) {
+                if let v = Int(s) {
+                  self.init(intValue: v)
+                } else {
+                  self.init(stringValue: s)
+                }
+                return
+              }
+              throw DecodingError.dataCorruptedError(
+                in: container, debugDescription: "Expected enum value, must be integer or string.")
+            }
+
+            public func encode(to encoder: any Encoder) throws {
+              var container = encoder.singleValueContainer()
+              switch self {
+              case .unspecified: return try container.encode("LANGUAGE_UNSPECIFIED")
+              case .python: return try container.encode("PYTHON")
+              case .sql: return try container.encode("SQL")
+              case .unknownIntValue(let v): return try container.encode(v)
+              case .unknownStringValue(let v): return try container.encode(v)
+              }
             }
           }
 

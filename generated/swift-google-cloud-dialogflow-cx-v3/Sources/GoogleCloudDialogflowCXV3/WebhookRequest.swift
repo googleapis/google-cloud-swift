@@ -464,8 +464,10 @@
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .originalValue) {
             self.originalValue = value
           }
-          self.resolvedValue = try container.decodeIfPresent(
-            GoogleWKT.WKTValue.self, forKey: .resolvedValue)
+          if container.contains(.resolvedValue) {
+            self.resolvedValue = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: .resolvedValue)
+          }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
               GoogleWKT.WKTValue.self, forKey: key)

@@ -72,7 +72,7 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// Note that this value might not be what was used
   /// as input. For example, if ALPHA was provided as input in the parent
-  /// resource, but only BETA and GA-level features are were, this field will be
+  /// resource, but only BETA and GA-level features are used, this field will be
   /// BETA.
   public var launchStage: GoogleApi.LaunchStage = GoogleApi.LaunchStage()
 
@@ -97,9 +97,12 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
   /// revision, and determines what permissions the revision has.
   public var serviceAccount: Swift.String = Swift.String()
 
-  /// Holds the single container that defines the unit of execution for this
+  /// Holds the list which define the units of execution for this
   /// Revision.
   public var containers: [Container] = []
+
+  /// Output only. Configuration for sandboxes.
+  public var sandboxes: SandboxConfiguration? = nil
 
   /// A list of Volumes to make available to containers.
   public var volumes: [Volume] = []
@@ -153,12 +156,24 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The node selector for the revision.
   public var nodeSelector: NodeSelector? = nil
 
+  /// Optional. The Revision's workload identity settings.
+  public var workloadIdentityConfig: WorkloadIdentityConfig? = nil
+
   /// Optional. Output only. True if GPU zonal redundancy is disabled on this
   /// revision.
   public var gpuZonalRedundancyDisabled: Swift.Bool? = nil
 
   /// Output only. Email address of the authenticated creator.
   public var creator: Swift.String = Swift.String()
+
+  /// Output only. Arbitrary identifier for the API client.
+  public var client: Swift.String = Swift.String()
+
+  /// Output only. Arbitrary version identifier for the API client.
+  public var clientVersion: Swift.String = Swift.String()
+
+  /// Output only. The ambient networking configuration for this revision.
+  public var ambientNetworking: AmbientNetworking? = nil
 
   /// Output only. A system-generated fingerprint for this version of the
   /// resource. May be used to detect modification conflict during updates.
@@ -207,6 +222,7 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
     static let timeout = CodingKeys(stringValue: "timeout")
     static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
     static let containers = CodingKeys(stringValue: "containers")
+    static let sandboxes = CodingKeys(stringValue: "sandboxes")
     static let volumes = CodingKeys(stringValue: "volumes")
     static let executionEnvironment = CodingKeys(stringValue: "executionEnvironment")
     static let encryptionKey = CodingKeys(stringValue: "encryptionKey")
@@ -223,8 +239,12 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
     static let sessionAffinity = CodingKeys(stringValue: "sessionAffinity")
     static let scalingStatus = CodingKeys(stringValue: "scalingStatus")
     static let nodeSelector = CodingKeys(stringValue: "nodeSelector")
+    static let workloadIdentityConfig = CodingKeys(stringValue: "workloadIdentityConfig")
     static let gpuZonalRedundancyDisabled = CodingKeys(stringValue: "gpuZonalRedundancyDisabled")
     static let creator = CodingKeys(stringValue: "creator")
+    static let client = CodingKeys(stringValue: "client")
+    static let clientVersion = CodingKeys(stringValue: "clientVersion")
+    static let ambientNetworking = CodingKeys(stringValue: "ambientNetworking")
     static let etag = CodingKeys(stringValue: "etag")
 
     static let _knownKeys: Set<Swift.String> = [
@@ -245,6 +265,7 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
       "timeout",
       "serviceAccount",
       "containers",
+      "sandboxes",
       "volumes",
       "executionEnvironment",
       "encryptionKey",
@@ -259,8 +280,12 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
       "sessionAffinity",
       "scalingStatus",
       "nodeSelector",
+      "workloadIdentityConfig",
       "gpuZonalRedundancyDisabled",
       "creator",
+      "client",
+      "clientVersion",
+      "ambientNetworking",
       "etag",
     ]
   }
@@ -313,6 +338,7 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Container].self, forKey: .containers) {
       self.containers = value
     }
+    self.sandboxes = try container.decodeIfPresent(SandboxConfiguration.self, forKey: .sandboxes)
     if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
       self.volumes = value
     }
@@ -353,11 +379,21 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
     self.scalingStatus = try container.decodeIfPresent(
       RevisionScalingStatus.self, forKey: .scalingStatus)
     self.nodeSelector = try container.decodeIfPresent(NodeSelector.self, forKey: .nodeSelector)
+    self.workloadIdentityConfig = try container.decodeIfPresent(
+      WorkloadIdentityConfig.self, forKey: .workloadIdentityConfig)
     self.gpuZonalRedundancyDisabled = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .gpuZonalRedundancyDisabled)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .creator) {
       self.creator = value
     }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .client) {
+      self.client = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientVersion) {
+      self.clientVersion = value
+    }
+    self.ambientNetworking = try container.decodeIfPresent(
+      AmbientNetworking.self, forKey: .ambientNetworking)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
       self.etag = value
     }
@@ -386,6 +422,7 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.timeout, forKey: .timeout)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.containers, forKey: .containers)
+    try container.encodeIfPresent(self.sandboxes, forKey: .sandboxes)
     try container.encode(self.volumes, forKey: .volumes)
     try container.encode(self.executionEnvironment, forKey: .executionEnvironment)
     try container.encode(self.encryptionKey, forKey: .encryptionKey)
@@ -401,9 +438,13 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.sessionAffinity, forKey: .sessionAffinity)
     try container.encodeIfPresent(self.scalingStatus, forKey: .scalingStatus)
     try container.encodeIfPresent(self.nodeSelector, forKey: .nodeSelector)
+    try container.encodeIfPresent(self.workloadIdentityConfig, forKey: .workloadIdentityConfig)
     try container.encodeIfPresent(
       self.gpuZonalRedundancyDisabled, forKey: .gpuZonalRedundancyDisabled)
     try container.encode(self.creator, forKey: .creator)
+    try container.encode(self.client, forKey: .client)
+    try container.encode(self.clientVersion, forKey: .clientVersion)
+    try container.encodeIfPresent(self.ambientNetworking, forKey: .ambientNetworking)
     try container.encode(self.etag, forKey: .etag)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -14,10 +14,10 @@
 // limitations under the License.
 
 // snippet.show [START swift_update_resource_field]
-// snippet.imports
+// snippet.imports [START swift_update_resource_imports]
 import Foundation
 import GoogleCloudSecretManagerV1
-// snippet.end
+// snippet.end [END swift_update_resource_imports]
 
 // snippet.function [START swift_update_resource_function]
 func sample(projectId: String, secretId: String) async throws {

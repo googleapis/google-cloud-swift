@@ -77,8 +77,9 @@ public struct ComponentParameterSchema: Codable, Equatable, GoogleWKT._AnyPackab
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
       self.key = value
     }
-    self.defaultValue = try container.decodeIfPresent(
-      GoogleWKT.WKTValue.self, forKey: .defaultValue)
+    if container.contains(.defaultValue) {
+      self.defaultValue = try container.decode(GoogleWKT.WKTValue.self, forKey: .defaultValue)
+    }
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isRequired) {
       self.isRequired = value
     }

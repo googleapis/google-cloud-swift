@@ -122,6 +122,16 @@
       try await self.inner.`get`(request: request, options: options)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "sslPolicies_getIamPolicy")
+    public func getIamPolicy(
+      request: SslPoliciesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Policy {
+      try await self.inner.getIamPolicy(request: request, options: options)
+    }
+
     /// Returns the specified SSL policy resource.
     ///
     /// @Snippet(path: "sslPolicies_insert")
@@ -252,6 +262,25 @@
       return try await poller.wait()
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "sslPolicies_setIamPolicy")
+    public func setIamPolicy(
+      request: SslPoliciesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Policy {
+      try await self.inner.setIamPolicy(request: request, options: options)
+    }
+
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "sslPolicies_testIamPermissions")
+    public func testIamPermissions(
+      request: SslPoliciesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
+      try await self.inner.testIamPermissions(request: request, options: options)
+    }
+
     /// Retrieves the specified Operations resource.
     ///
     /// @Snippet(path: "sslPolicies_getOperation")
@@ -294,6 +323,11 @@
         request: SslPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SslPolicy
 
+      /// See `SslPoliciesClient.getIamPolicy`.
+      func getIamPolicy(
+        request: SslPoliciesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Policy
+
       /// See `SslPoliciesClient.insert`.
       func insert(
         request: SslPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -333,6 +367,16 @@
       func patchPollingUntilDone(
         request: SslPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `SslPoliciesClient.setIamPolicy`.
+      func setIamPolicy(
+        request: SslPoliciesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Policy
+
+      /// See `SslPoliciesClient.testIamPermissions`.
+      func testIamPermissions(
+        request: SslPoliciesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     }
   }
 
@@ -442,6 +486,29 @@
         $0.sslPolicy = sslPolicy
       }
       return try await self.`get`(request: request)
+    }
+
+    public func getIamPolicy(request: SslPoliciesClient.GetIamPolicyRequest) async throws
+      -> GoogleCloudComputeV1.Policy
+    {
+      try await self.getIamPolicy(request: request, options: .init())
+    }
+
+    public func getIamPolicy(
+      request: SslPoliciesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Policy {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func getIamPolicy(
+      project: Swift.String,
+      resource: Swift.String,
+    ) async throws -> GoogleCloudComputeV1.Policy {
+      let request = SslPoliciesClient.GetIamPolicyRequest().with {
+        $0.project = project
+        $0.resource = resource
+      }
+      return try await self.getIamPolicy(request: request)
     }
 
     public func insert(request: SslPoliciesClient.InsertRequest) async throws
@@ -579,6 +646,56 @@
         $0.body = body
       }
       return try await self.patchPollingUntilDone(request: request)
+    }
+
+    public func setIamPolicy(request: SslPoliciesClient.SetIamPolicyRequest) async throws
+      -> GoogleCloudComputeV1.Policy
+    {
+      try await self.setIamPolicy(request: request, options: .init())
+    }
+
+    public func setIamPolicy(
+      request: SslPoliciesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Policy {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func setIamPolicy(
+      project: Swift.String,
+      resource: Swift.String,
+      body: GlobalSetPolicyRequest?,
+    ) async throws -> GoogleCloudComputeV1.Policy {
+      let request = SslPoliciesClient.SetIamPolicyRequest().with {
+        $0.project = project
+        $0.resource = resource
+        $0.body = body
+      }
+      return try await self.setIamPolicy(request: request)
+    }
+
+    public func testIamPermissions(request: SslPoliciesClient.TestIamPermissionsRequest)
+      async throws -> GoogleCloudComputeV1.TestPermissionsResponse
+    {
+      try await self.testIamPermissions(request: request, options: .init())
+    }
+
+    public func testIamPermissions(
+      request: SslPoliciesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func testIamPermissions(
+      project: Swift.String,
+      resource: Swift.String,
+      body: TestPermissionsRequest?,
+    ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
+      let request = SslPoliciesClient.TestIamPermissionsRequest().with {
+        $0.project = project
+        $0.resource = resource
+        $0.body = body
+      }
+      return try await self.testIamPermissions(request: request)
     }
 
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws

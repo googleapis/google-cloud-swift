@@ -42,6 +42,12 @@
     /// [google.cloud.discoveryengine.v1.Project.ServiceTerms]: <doc:Project/ServiceTerms>
     public var serviceTermsMap: [Swift.String: Project.ServiceTerms] = [:]
 
+    /// Optional. Customer provided configurations.
+    public var customerProvidedConfig: Project.CustomerProvidedConfig? = nil
+
+    /// Output only. The current status of the project's configurable billing.
+    public var configurableBillingStatus: Project.ConfigurableBillingStatus? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Project`.
@@ -71,12 +77,16 @@
       static let createTime = CodingKeys(stringValue: "createTime")
       static let provisionCompletionTime = CodingKeys(stringValue: "provisionCompletionTime")
       static let serviceTermsMap = CodingKeys(stringValue: "serviceTermsMap")
+      static let customerProvidedConfig = CodingKeys(stringValue: "customerProvidedConfig")
+      static let configurableBillingStatus = CodingKeys(stringValue: "configurableBillingStatus")
 
       static let _knownKeys: Set<Swift.String> = [
         "name",
         "createTime",
         "provisionCompletionTime",
         "serviceTermsMap",
+        "customerProvidedConfig",
+        "configurableBillingStatus",
       ]
     }
 
@@ -94,6 +104,10 @@
       {
         self.serviceTermsMap = value
       }
+      self.customerProvidedConfig = try container.decodeIfPresent(
+        Project.CustomerProvidedConfig.self, forKey: .customerProvidedConfig)
+      self.configurableBillingStatus = try container.decodeIfPresent(
+        Project.ConfigurableBillingStatus.self, forKey: .configurableBillingStatus)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -106,6 +120,9 @@
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.provisionCompletionTime, forKey: .provisionCompletionTime)
       try container.encode(self.serviceTermsMap, forKey: .serviceTermsMap)
+      try container.encodeIfPresent(self.customerProvidedConfig, forKey: .customerProvidedConfig)
+      try container.encodeIfPresent(
+        self.configurableBillingStatus, forKey: .configurableBillingStatus)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -359,6 +376,1056 @@
       }
 
       /// Packs this `ServiceTerms` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// Customer provided configurations.
+    public struct CustomerProvidedConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Optional. Configuration for NotebookLM settings.
+      public var notebooklmConfig: Project.CustomerProvidedConfig.NotebooklmConfig? = nil
+
+      /// Optional. Resource-level access control config for Gemini Enterprise
+      /// users.
+      public var resourceAccessControlConfig:
+        Project.CustomerProvidedConfig.ResourceAccessControlConfig? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `CustomerProvidedConfig`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = CustomerProvidedConfig().with { $0.notebooklmConfig = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let notebooklmConfig = CodingKeys(stringValue: "notebooklmConfig")
+        static let resourceAccessControlConfig = CodingKeys(
+          stringValue: "resourceAccessControlConfig")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "notebooklmConfig",
+          "resourceAccessControlConfig",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.notebooklmConfig = try container.decodeIfPresent(
+          Project.CustomerProvidedConfig.NotebooklmConfig.self, forKey: .notebooklmConfig)
+        self.resourceAccessControlConfig = try container.decodeIfPresent(
+          Project.CustomerProvidedConfig.ResourceAccessControlConfig.self,
+          forKey: .resourceAccessControlConfig)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.notebooklmConfig, forKey: .notebooklmConfig)
+        try container.encodeIfPresent(
+          self.resourceAccessControlConfig, forKey: .resourceAccessControlConfig)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// Configuration for NotebookLM.
+      public struct NotebooklmConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Model Armor configuration to be used for sanitizing user prompts and
+        /// LLM responses.
+        public var modelArmorConfig:
+          Project.CustomerProvidedConfig.NotebooklmConfig.ModelArmorConfig? = nil
+
+        /// Optional. Whether to disable the notebook sharing feature for the
+        /// project. Default to false if not specified.
+        public var optOutNotebookSharing: Swift.Bool = Swift.Bool()
+
+        /// Optional. Specifies the data protection policy for NotebookLM.
+        public var dataProtectionPolicy:
+          Project.CustomerProvidedConfig.NotebooklmConfig.DataProtectionPolicy? = nil
+
+        /// Optional. Observability config for NotebookLM.
+        public var observabilityConfig: ObservabilityConfig? = nil
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `NotebooklmConfig`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = NotebooklmConfig().with { $0.modelArmorConfig = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let modelArmorConfig = CodingKeys(stringValue: "modelArmorConfig")
+          static let optOutNotebookSharing = CodingKeys(stringValue: "optOutNotebookSharing")
+          static let dataProtectionPolicy = CodingKeys(stringValue: "dataProtectionPolicy")
+          static let observabilityConfig = CodingKeys(stringValue: "observabilityConfig")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "modelArmorConfig",
+            "optOutNotebookSharing",
+            "dataProtectionPolicy",
+            "observabilityConfig",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          self.modelArmorConfig = try container.decodeIfPresent(
+            Project.CustomerProvidedConfig.NotebooklmConfig.ModelArmorConfig.self,
+            forKey: .modelArmorConfig)
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .optOutNotebookSharing)
+          {
+            self.optOutNotebookSharing = value
+          }
+          self.dataProtectionPolicy = try container.decodeIfPresent(
+            Project.CustomerProvidedConfig.NotebooklmConfig.DataProtectionPolicy.self,
+            forKey: .dataProtectionPolicy)
+          self.observabilityConfig = try container.decodeIfPresent(
+            ObservabilityConfig.self, forKey: .observabilityConfig)
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encodeIfPresent(self.modelArmorConfig, forKey: .modelArmorConfig)
+          try container.encode(self.optOutNotebookSharing, forKey: .optOutNotebookSharing)
+          try container.encodeIfPresent(self.dataProtectionPolicy, forKey: .dataProtectionPolicy)
+          try container.encodeIfPresent(self.observabilityConfig, forKey: .observabilityConfig)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// Configuration for customer defined Model Armor templates to be used for
+        /// sanitizing user prompts and LLM responses.
+        public struct ModelArmorConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+          Sendable
+        {
+          /// Optional. The resource name of the Model Armor Template for
+          /// sanitizing user prompts. Format:
+          /// projects/{project}/locations/{location}/templates/{template_id}
+          /// If not specified, no sanitization will be applied to the user prompt.
+          public var userPromptTemplate: Swift.String = Swift.String()
+
+          /// Optional. The resource name of the Model Armor Template for
+          /// sanitizing LLM responses. Format:
+          /// projects/{project}/locations/{location}/templates/{template_id}
+          /// If not specified, no sanitization will be applied to the LLM
+          /// response.
+          public var responseTemplate: Swift.String = Swift.String()
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+          /// Initialize a new instance of `ModelArmorConfig`.
+          public init() {}
+
+          /// Use `config` to return a new instance of this object, with some fields updated.
+          ///
+          /// Commonly used to initialize the value, for example:
+          ///
+          /// ```
+          /// let value = ModelArmorConfig().with { $0.userPromptTemplate = ... }
+          /// ```
+          @inlinable
+          public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+            var copy = self
+            try config(&copy)
+            return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let userPromptTemplate = CodingKeys(stringValue: "userPromptTemplate")
+            static let responseTemplate = CodingKeys(stringValue: "responseTemplate")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "userPromptTemplate",
+              "responseTemplate",
+            ]
+          }
+
+          public init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(
+              Swift.String.self, forKey: .userPromptTemplate)
+            {
+              self.userPromptTemplate = value
+            }
+            if let value = try container.decodeIfPresent(
+              Swift.String.self, forKey: .responseTemplate)
+            {
+              self.responseTemplate = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleWKT.WKTValue.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.userPromptTemplate, forKey: .userPromptTemplate)
+            try container.encode(self.responseTemplate, forKey: .responseTemplate)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
+          }
+
+          /// The type URL for `ModelArmorConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.NotebooklmConfig.ModelArmorConfig"`.
+          public static var _anyTypeUrl: Swift.String {
+            return
+              "type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.NotebooklmConfig.ModelArmorConfig"
+          }
+
+          /// Initialize an instance of `ModelArmorConfig` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.NotebooklmConfig.ModelArmorConfig"`,
+          ///   or if deserialization fails.
+          public init(fromAny any: GoogleWKT.WKTAny) throws {
+            self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+          }
+
+          /// Packs this `ModelArmorConfig` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
+          public func _pack() throws -> GoogleWKT.WKTStruct {
+            return try GoogleWKT._anySerialize(message: self)
+          }
+        }
+
+        /// Data protection policy config for NotebookLM.
+        public struct DataProtectionPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
+          Sendable
+        {
+          /// Optional. The sensitive data protection policy.
+          public var sensitiveDataProtectionPolicy:
+            Project.CustomerProvidedConfig.NotebooklmConfig.DataProtectionPolicy
+              .SensitiveDataProtectionPolicy? = nil
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+          /// Initialize a new instance of `DataProtectionPolicy`.
+          public init() {}
+
+          /// Use `config` to return a new instance of this object, with some fields updated.
+          ///
+          /// Commonly used to initialize the value, for example:
+          ///
+          /// ```
+          /// let value = DataProtectionPolicy().with { $0.sensitiveDataProtectionPolicy = ... }
+          /// ```
+          @inlinable
+          public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+            var copy = self
+            try config(&copy)
+            return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let sensitiveDataProtectionPolicy = CodingKeys(
+              stringValue: "sensitiveDataProtectionPolicy")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "sensitiveDataProtectionPolicy"
+            ]
+          }
+
+          public init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.sensitiveDataProtectionPolicy = try container.decodeIfPresent(
+              Project.CustomerProvidedConfig.NotebooklmConfig.DataProtectionPolicy
+                .SensitiveDataProtectionPolicy.self, forKey: .sensitiveDataProtectionPolicy)
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleWKT.WKTValue.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encodeIfPresent(
+              self.sensitiveDataProtectionPolicy, forKey: .sensitiveDataProtectionPolicy)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
+          }
+
+          /// Specifies a Sensitive Data Protection
+          /// (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview)
+          /// policy.
+          public struct SensitiveDataProtectionPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
+            Sendable
+          {
+            /// Optional. The Sensitive Data Protection policy resource name.
+            public var policy: Swift.String = Swift.String()
+
+            @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+            /// Initialize a new instance of `SensitiveDataProtectionPolicy`.
+            public init() {}
+
+            /// Use `config` to return a new instance of this object, with some fields updated.
+            ///
+            /// Commonly used to initialize the value, for example:
+            ///
+            /// ```
+            /// let value = SensitiveDataProtectionPolicy().with { $0.policy = ... }
+            /// ```
+            @inlinable
+            public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+              var copy = self
+              try config(&copy)
+              return copy
+            }
+
+            private struct CodingKeys: CodingKey {
+              var stringValue: Swift.String
+              var intValue: Swift.Int? { nil }
+              init(stringValue: Swift.String) { self.stringValue = stringValue }
+              init?(intValue: Swift.Int) { nil }
+
+              static let policy = CodingKeys(stringValue: "policy")
+
+              static let _knownKeys: Set<Swift.String> = [
+                "policy"
+              ]
+            }
+
+            public init(from decoder: any Decoder) throws {
+              let container = try decoder.container(keyedBy: CodingKeys.self)
+              if let value = try container.decodeIfPresent(Swift.String.self, forKey: .policy) {
+                self.policy = value
+              }
+              for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+                self._unknownFields.json[key.stringValue] = try container.decode(
+                  GoogleWKT.WKTValue.self, forKey: key)
+              }
+            }
+
+            public func encode(to encoder: any Encoder) throws {
+              var container = encoder.container(keyedBy: CodingKeys.self)
+              try container.encode(self.policy, forKey: .policy)
+              for (key, value) in self._unknownFields.json {
+                try container.encode(value, forKey: CodingKeys(stringValue: key))
+              }
+            }
+
+            /// The type URL for `SensitiveDataProtectionPolicy`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.NotebooklmConfig.DataProtectionPolicy.SensitiveDataProtectionPolicy"`.
+            public static var _anyTypeUrl: Swift.String {
+              return
+                "type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.NotebooklmConfig.DataProtectionPolicy.SensitiveDataProtectionPolicy"
+            }
+
+            /// Initialize an instance of `SensitiveDataProtectionPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+            ///
+            /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+            /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.NotebooklmConfig.DataProtectionPolicy.SensitiveDataProtectionPolicy"`,
+            ///   or if deserialization fails.
+            public init(fromAny any: GoogleWKT.WKTAny) throws {
+              self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+            }
+
+            /// Packs this `SensitiveDataProtectionPolicy` into a `GoogleWKT.WKTStruct` representation.
+            ///
+            /// - Throws: An error if serialization fails.
+            public func _pack() throws -> GoogleWKT.WKTStruct {
+              return try GoogleWKT._anySerialize(message: self)
+            }
+          }
+
+          /// The type URL for `DataProtectionPolicy`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.NotebooklmConfig.DataProtectionPolicy"`.
+          public static var _anyTypeUrl: Swift.String {
+            return
+              "type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.NotebooklmConfig.DataProtectionPolicy"
+          }
+
+          /// Initialize an instance of `DataProtectionPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.NotebooklmConfig.DataProtectionPolicy"`,
+          ///   or if deserialization fails.
+          public init(fromAny any: GoogleWKT.WKTAny) throws {
+            self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+          }
+
+          /// Packs this `DataProtectionPolicy` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
+          public func _pack() throws -> GoogleWKT.WKTStruct {
+            return try GoogleWKT._anySerialize(message: self)
+          }
+        }
+
+        /// The type URL for `NotebooklmConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.NotebooklmConfig"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.NotebooklmConfig"
+        }
+
+        /// Initialize an instance of `NotebooklmConfig` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.NotebooklmConfig"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `NotebooklmConfig` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// Controls resource-level access control for Gemini Enterprise users.
+      public struct ResourceAccessControlConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Optional. If `true`, the data stores and data connectors shown to
+        /// Gemini Enterprise users are filtered to those the user has the required
+        /// resource-level `.get` IAM permission on.
+        public var dataStoreAccessControlEnabled: Swift.Bool = Swift.Bool()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `ResourceAccessControlConfig`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = ResourceAccessControlConfig().with { $0.dataStoreAccessControlEnabled = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let dataStoreAccessControlEnabled = CodingKeys(
+            stringValue: "dataStoreAccessControlEnabled")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "dataStoreAccessControlEnabled"
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .dataStoreAccessControlEnabled)
+          {
+            self.dataStoreAccessControlEnabled = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(
+            self.dataStoreAccessControlEnabled, forKey: .dataStoreAccessControlEnabled)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// The type URL for `ResourceAccessControlConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.ResourceAccessControlConfig"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.ResourceAccessControlConfig"
+        }
+
+        /// Initialize an instance of `ResourceAccessControlConfig` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig.ResourceAccessControlConfig"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `ResourceAccessControlConfig` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// The type URL for `CustomerProvidedConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig"
+      }
+
+      /// Initialize an instance of `CustomerProvidedConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.CustomerProvidedConfig"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `CustomerProvidedConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// Represents the currently effective configurable billing parameters.
+    /// These values are derived from the customer's subscription history stored
+    /// internally and reflect the thresholds actively being used for billing
+    /// purposes at the time of the GetProject call. This includes the start_time
+    /// of the subscription and may differ from the values in
+    /// `customer_provided_config` due to billing rules
+    /// (e.g., scale-downs taking effect only at the start of a new month).
+    /// We also include the update type to indicate the type of update performed on
+    /// the configurable billing configuration in the UpdateProject operation.
+    public struct ConfigurableBillingStatus: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Optional. The currently effective Search QPM threshold in queries per
+      /// minute. This is the threshold against which QPM usage is compared for
+      /// overage calculations.
+      public var effectiveSearchQpmThreshold: Swift.Int64 = Swift.Int64()
+
+      /// Optional. The currently effective Indexing Core threshold.
+      /// This is the threshold against which Indexing Core usage is compared
+      /// for overage calculations.
+      public var effectiveIndexingCoreThreshold: Swift.Int64 = Swift.Int64()
+
+      /// Optional. The start time of the currently active billing subscription.
+      public var startTime: GoogleWKT.WKTTimestamp? = nil
+
+      /// Output only. The latest terminate effective time of search qpm and
+      /// indexing core subscriptions.
+      public var terminateTime: GoogleWKT.WKTTimestamp? = nil
+
+      /// Output only. The earliest next update time for the search QPM
+      /// subscription threshold. This is based on the next_update_time returned by
+      /// the underlying Cloud Billing Subscription V3 API. This field is populated
+      /// only if an update QPM subscription threshold request is succeeded.
+      public var searchQpmThresholdNextUpdateTime: GoogleWKT.WKTTimestamp? = nil
+
+      /// Output only. The earliest next update time for the indexing core
+      /// subscription threshold. This is based on the next_update_time returned by
+      /// the underlying Cloud Billing Subscription V3 API. This field is populated
+      /// only if an update indexing core subscription threshold
+      /// request is succeeded.
+      public var indexingCoreThresholdNextUpdateTime: GoogleWKT.WKTTimestamp? = nil
+
+      /// Output only. The type of update performed in this operation.
+      /// This field is populated in the response of UpdateProject.
+      public var updateType: Project.ConfigurableBillingStatus.UpdateType = Project
+        .ConfigurableBillingStatus.UpdateType()
+
+      /// Output only. Per-model Agent Search TPM subscription status.
+      public var agentSearchTokenSubscriptionStatuses:
+        [Project.ConfigurableBillingStatus.AgentSearchTokenSubscriptionStatus] = []
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `ConfigurableBillingStatus`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = ConfigurableBillingStatus().with { $0.effectiveSearchQpmThreshold = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let effectiveSearchQpmThreshold = CodingKeys(
+          stringValue: "effectiveSearchQpmThreshold")
+        static let effectiveIndexingCoreThreshold = CodingKeys(
+          stringValue: "effectiveIndexingCoreThreshold")
+        static let startTime = CodingKeys(stringValue: "startTime")
+        static let terminateTime = CodingKeys(stringValue: "terminateTime")
+        static let searchQpmThresholdNextUpdateTime = CodingKeys(
+          stringValue: "searchQpmThresholdNextUpdateTime")
+        static let indexingCoreThresholdNextUpdateTime = CodingKeys(
+          stringValue: "indexingCoreThresholdNextUpdateTime")
+        static let updateType = CodingKeys(stringValue: "updateType")
+        static let agentSearchTokenSubscriptionStatuses = CodingKeys(
+          stringValue: "agentSearchTokenSubscriptionStatuses")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "effectiveSearchQpmThreshold",
+          "effectiveIndexingCoreThreshold",
+          "startTime",
+          "terminateTime",
+          "searchQpmThresholdNextUpdateTime",
+          "indexingCoreThresholdNextUpdateTime",
+          "updateType",
+          "agentSearchTokenSubscriptionStatuses",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .effectiveSearchQpmThreshold)
+        {
+          self.effectiveSearchQpmThreshold = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int64.self, forKey: .effectiveIndexingCoreThreshold)
+        {
+          self.effectiveIndexingCoreThreshold = value
+        }
+        self.startTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+        self.terminateTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .terminateTime)
+        self.searchQpmThresholdNextUpdateTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .searchQpmThresholdNextUpdateTime)
+        self.indexingCoreThresholdNextUpdateTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .indexingCoreThresholdNextUpdateTime)
+        if let value = try container.decodeIfPresent(
+          Project.ConfigurableBillingStatus.UpdateType.self, forKey: .updateType)
+        {
+          self.updateType = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Project.ConfigurableBillingStatus.AgentSearchTokenSubscriptionStatus].self,
+          forKey: .agentSearchTokenSubscriptionStatuses)
+        {
+          self.agentSearchTokenSubscriptionStatuses = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.effectiveSearchQpmThreshold, forKey: .effectiveSearchQpmThreshold)
+        try container.encode(
+          self.effectiveIndexingCoreThreshold, forKey: .effectiveIndexingCoreThreshold)
+        try container.encodeIfPresent(self.startTime, forKey: .startTime)
+        try container.encodeIfPresent(self.terminateTime, forKey: .terminateTime)
+        try container.encodeIfPresent(
+          self.searchQpmThresholdNextUpdateTime, forKey: .searchQpmThresholdNextUpdateTime)
+        try container.encodeIfPresent(
+          self.indexingCoreThresholdNextUpdateTime, forKey: .indexingCoreThresholdNextUpdateTime)
+        try container.encode(self.updateType, forKey: .updateType)
+        try container.encode(
+          self.agentSearchTokenSubscriptionStatuses, forKey: .agentSearchTokenSubscriptionStatuses)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// Per-model Agent Search TPM subscription status. One entry per active
+      /// `core_subscription.agent_search_token_subscriptions[*]` entry in the
+      /// customer-provided config; populated by UpdateProject and GetProject.
+      ///
+      /// The lifecycle scalars on this message (`start_time`, `terminate_time`,
+      /// `update_type`, `tpm_threshold_next_update_time`) are per (project,
+      /// model_version) — siblings of the whole-relationship `start_time` /
+      /// `terminate_time` / `update_type` on the enclosing
+      /// ConfigurableBillingStatus, but scoped to this specific Agent Search
+      /// TPM subscription instead of to the overall customer-configurable-
+      /// pricing relationship. This per-instance granularity is intentional:
+      /// the underlying SubV3 storage is per-(project, model_version), so
+      /// each model has its own activation, termination, and deferred-update
+      /// clock; surfacing that on the response gives customers the granularity
+      /// they need to manage per-model commitments independently. QPM /
+      /// IndexingCore differ — their storage is one row per (project,
+      /// location), so their lifecycle is represented only by the whole-
+      /// relationship scalars on ConfigurableBillingStatus.
+      public struct AgentSearchTokenSubscriptionStatus: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Output only. The Gemini model version this status corresponds to.
+        /// Matches CoreSubscription.AgentSearchTokenSubscription.model_version (a
+        /// stable Gemini model version from the Gemini Enterprise Agent Platform
+        /// model-versions registry; see
+        /// https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions#gemini-models).
+        public var modelVersion: Swift.String = Swift.String()
+
+        /// Output only. The currently effective TPM threshold. Reflects scale-up
+        /// immediately and scale-down at the next billing cycle, matching
+        /// `effective_search_qpm_threshold` semantics.
+        public var effectiveTpmThreshold: Swift.Int64 = Swift.Int64()
+
+        /// Output only. The earliest next update time for the TPM subscription
+        /// threshold for this (project, model_version). Populated only after a
+        /// successful update.
+        public var tpmThresholdNextUpdateTime: GoogleWKT.WKTTimestamp? = nil
+
+        /// Output only. When this (project, model_version) Agent Search TPM
+        /// subscription was first activated. Set once on first activation of this
+        /// model version and never moved by subsequent threshold updates; on
+        /// termination + re-activation a new value is recorded. Does NOT move
+        /// the whole-relationship `start_time` on the enclosing
+        /// ConfigurableBillingStatus, which continues to represent the first
+        /// activation of the overall customer-configurable-pricing
+        /// relationship.
+        public var startTime: GoogleWKT.WKTTimestamp? = nil
+
+        /// Output only. If set, the scheduled effective time at which this
+        /// (project, model_version) Agent Search TPM subscription will terminate.
+        /// Populated when the customer removes this entry from
+        /// `core_subscription.agent_search_token_subscriptions[*]`. Does NOT move
+        /// the whole-relationship `terminate_time` on the enclosing
+        /// ConfigurableBillingStatus, which is populated only when the entire
+        /// customer-configurable-pricing relationship is being torn down.
+        public var terminateTime: GoogleWKT.WKTTimestamp? = nil
+
+        /// Output only. The type of the most recent update to this (project,
+        /// model_version) subscription, as performed by the most recent
+        /// UpdateProject call. `UPDATE_TYPE_UNSPECIFIED` indicates this
+        /// model_version was not touched by the most recent UpdateProject (its
+        /// `effective_tpm_threshold` reflects an earlier update). The
+        /// whole-relationship `update_type` on the enclosing
+        /// ConfigurableBillingStatus continues to summarize the direction of
+        /// the most recent update across all surfaces in the project (QPM,
+        /// IndexingCore, and Agent Search TPM together).
+        public var updateType: Project.ConfigurableBillingStatus.UpdateType = Project
+          .ConfigurableBillingStatus.UpdateType()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `AgentSearchTokenSubscriptionStatus`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = AgentSearchTokenSubscriptionStatus().with { $0.modelVersion = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let modelVersion = CodingKeys(stringValue: "modelVersion")
+          static let effectiveTpmThreshold = CodingKeys(stringValue: "effectiveTpmThreshold")
+          static let tpmThresholdNextUpdateTime = CodingKeys(
+            stringValue: "tpmThresholdNextUpdateTime")
+          static let startTime = CodingKeys(stringValue: "startTime")
+          static let terminateTime = CodingKeys(stringValue: "terminateTime")
+          static let updateType = CodingKeys(stringValue: "updateType")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "modelVersion",
+            "effectiveTpmThreshold",
+            "tpmThresholdNextUpdateTime",
+            "startTime",
+            "terminateTime",
+            "updateType",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelVersion) {
+            self.modelVersion = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Int64.self, forKey: .effectiveTpmThreshold)
+          {
+            self.effectiveTpmThreshold = value
+          }
+          self.tpmThresholdNextUpdateTime = try container.decodeIfPresent(
+            GoogleWKT.WKTTimestamp.self, forKey: .tpmThresholdNextUpdateTime)
+          self.startTime = try container.decodeIfPresent(
+            GoogleWKT.WKTTimestamp.self, forKey: .startTime)
+          self.terminateTime = try container.decodeIfPresent(
+            GoogleWKT.WKTTimestamp.self, forKey: .terminateTime)
+          if let value = try container.decodeIfPresent(
+            Project.ConfigurableBillingStatus.UpdateType.self, forKey: .updateType)
+          {
+            self.updateType = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.modelVersion, forKey: .modelVersion)
+          try container.encode(self.effectiveTpmThreshold, forKey: .effectiveTpmThreshold)
+          try container.encodeIfPresent(
+            self.tpmThresholdNextUpdateTime, forKey: .tpmThresholdNextUpdateTime)
+          try container.encodeIfPresent(self.startTime, forKey: .startTime)
+          try container.encodeIfPresent(self.terminateTime, forKey: .terminateTime)
+          try container.encode(self.updateType, forKey: .updateType)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// The type URL for `AgentSearchTokenSubscriptionStatus`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.ConfigurableBillingStatus.AgentSearchTokenSubscriptionStatus"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.Project.ConfigurableBillingStatus.AgentSearchTokenSubscriptionStatus"
+        }
+
+        /// Initialize an instance of `AgentSearchTokenSubscriptionStatus` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.ConfigurableBillingStatus.AgentSearchTokenSubscriptionStatus"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `AgentSearchTokenSubscriptionStatus` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// The type of update performed on the configurable billing configuration.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
+      public enum UpdateType: Codable, Equatable, Hashable, Sendable {
+        /// Unspecified update type.
+        case unspecified
+        /// Configurable billing was created/enabled.
+        case create
+        /// Configurable billing was deleted/disabled.
+        case delete
+        /// Subscription was scaled up (thresholds increased).
+        case scaleUp
+        /// Subscription was scaled down (thresholds decreased).
+        case scaleDown
+        /// Encodes an unknown integer value.
+        ///
+        /// The most common cause for an unknown value is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
+        case unknownIntValue(Int)
+        /// Encodes an unknown string value.
+        ///
+        /// The most common cause for an unknown value is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
+        case unknownStringValue(String)
+
+        public init() {
+          self = .unspecified
+        }
+
+        /// Returns the integer value associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+        public var intValue: Int? {
+          switch self {
+          case .unspecified: return 0
+          case .create: return 1
+          case .delete: return 2
+          case .scaleUp: return 3
+          case .scaleDown: return 4
+          case .unknownIntValue(let v): return v
+          case .unknownStringValue: return nil
+          }
+        }
+
+        /// Returns the string value (or name) associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+        public var stringValue: Swift.String? {
+          switch self {
+          case .unspecified: return "UPDATE_TYPE_UNSPECIFIED"
+          case .create: return "CREATE"
+          case .delete: return "DELETE"
+          case .scaleUp: return "SCALE_UP"
+          case .scaleDown: return "SCALE_DOWN"
+          case .unknownIntValue: return nil
+          case .unknownStringValue(let v): return v
+          }
+        }
+
+        /// Initialize from a string value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:UpdateType/unknownStringValue(_:)).
+        public init(stringValue: Swift.String) {
+          switch stringValue {
+          case "UPDATE_TYPE_UNSPECIFIED": self = .unspecified
+          case "CREATE": self = .create
+          case "DELETE": self = .delete
+          case "SCALE_UP": self = .scaleUp
+          case "SCALE_DOWN": self = .scaleDown
+          default: self = .unknownStringValue(stringValue)
+          }
+        }
+
+        /// Initialize from an integer value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:UpdateType/unknownIntValue(_:)).
+        public init(intValue: Int) {
+          switch intValue {
+          case 0: self = .unspecified
+          case 1: self = .create
+          case 2: self = .delete
+          case 3: self = .scaleUp
+          case 4: self = .scaleDown
+          default: self = .unknownIntValue(intValue)
+          }
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.singleValueContainer()
+          if let v = try? container.decode(Int.self) {
+            self.init(intValue: v)
+            return
+          }
+          if let s = try? container.decode(String.self) {
+            if let v = Int(s) {
+              self.init(intValue: v)
+            } else {
+              self.init(stringValue: s)
+            }
+            return
+          }
+          throw DecodingError.dataCorruptedError(
+            in: container, debugDescription: "Expected enum value, must be integer or string.")
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.singleValueContainer()
+          switch self {
+          case .unspecified: return try container.encode("UPDATE_TYPE_UNSPECIFIED")
+          case .create: return try container.encode("CREATE")
+          case .delete: return try container.encode("DELETE")
+          case .scaleUp: return try container.encode("SCALE_UP")
+          case .scaleDown: return try container.encode("SCALE_DOWN")
+          case .unknownIntValue(let v): return try container.encode(v)
+          case .unknownStringValue(let v): return try container.encode(v)
+          }
+        }
+      }
+
+      /// The type URL for `ConfigurableBillingStatus`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.ConfigurableBillingStatus"`.
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.cloud.discoveryengine.v1.Project.ConfigurableBillingStatus"
+      }
+
+      /// Initialize an instance of `ConfigurableBillingStatus` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Project.ConfigurableBillingStatus"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `ConfigurableBillingStatus` into a `GoogleWKT.WKTStruct` representation.
       ///
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {

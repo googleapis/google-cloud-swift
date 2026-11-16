@@ -22,7 +22,8 @@ import Foundation
 public struct ServerlessNegInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// URI of the serverless network endpoint group.
+  /// URI of the serverless network endpoint group in format
+  /// "projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}".
   public var negUri: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

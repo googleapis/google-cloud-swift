@@ -14,6 +14,52 @@
 
 import Foundation
 
+/// Thread-safe actor caching the metadata server's universe domain response.
+actor MDSUniverseDomainCache {
+  private var cached: String?
+  private var permanentError: (any Error)?
+  private var activeTask: Task<String, any Error>?
+
+  deinit {
+    activeTask?.cancel()
+  }
+
+  func get(using provider: MDSAccessTokenProvider) async throws -> String {
+    if let cached = self.cached {
+      return cached
+    }
+    if let error = self.permanentError {
+      throw error
+    }
+    let task: Task<String, any Error>
+    if let existing = self.activeTask {
+      task = existing
+    } else {
+      let newTask = Task {
+        try await provider.fetchUniverseDomain()
+      }
+      self.activeTask = newTask
+      task = newTask
+    }
+    do {
+      let value = try await task.value
+      if self.activeTask == task {
+        self.cached = value
+        self.activeTask = nil
+      }
+      return value
+    } catch {
+      if self.activeTask == task {
+        self.activeTask = nil
+        if !(error is CancellationError) && !provider.isRetryable(error) {
+          self.permanentError = error
+        }
+      }
+      throw error
+    }
+  }
+}
+
 /// Credentials backed by the Google Cloud Metadata Service (MDS).
 ///
 /// In Google Cloud environments such as [Google Compute Engine (GCE)](https://cloud.google.com/compute),
@@ -38,12 +84,18 @@ import Foundation
 ///
 /// - SeeAlso: [Google Cloud Metadata Server Documentation](https://cloud.google.com/compute/docs/metadata/overview)
 /// - SeeAlso: [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials)
-struct MDSCredentials: CredentialsProvider, Sendable {
+struct MDSCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   /// The underlying token provider responsible for querying the metadata server endpoint.
   let provider: MDSAccessTokenProvider
 
   /// The token cache handling proactive refresh and jittered expiration management.
   let cache: TokenCache<ContinuousClock>
+
+  /// An optional explicit universe domain override. When `nil`, the metadata server is queried.
+  private let universeDomainOverride: String?
+
+  /// Lazily populated cache for the metadata server universe domain query.
+  private let universeDomainCache = MDSUniverseDomainCache()
 
   /// An optional Google Cloud project ID to attribute quota and billing to.
   var quotaProjectID: String? { provider.quotaProjectID }
@@ -54,6 +106,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
   ///   - endpoint: An optional custom URL override for the metadata server. When `nil`,
   ///     the provider checks `GCE_METADATA_HOST` or defaults to `http://metadata.google.internal`.
   ///   - quotaProjectID: An optional Google Cloud project ID for quota and billing attribution.
+  ///   - universeDomain: An optional explicit universe domain override.
   ///   - scopes: Scopes requested for the minted access tokens.
   ///   - retryConfiguration: Optional retry policy configuration for metadata server HTTP calls.
   ///   - client: The HTTP client used to execute requests against the metadata server.
@@ -64,6 +117,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
   init(
     endpoint: URL? = nil,
     quotaProjectID: String? = nil,
+    universeDomain: String? = nil,
     scopes: [String] = [],
     retryConfiguration: RetryConfiguration? = nil,
     client: AuthHTTPClient = AuthHTTPClient(),
@@ -73,7 +127,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
   ) {
     let provider = MDSAccessTokenProvider(
       endpoint: endpoint,
-      quotaProjectID: quotaProjectID,
+      quotaProjectID: nonEmpty(quotaProjectID),
       scopes: scopes,
       retryConfiguration: retryConfiguration,
       client: client,
@@ -81,6 +135,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
       environment: environment
     )
     self.provider = provider
+    self.universeDomainOverride = nonEmpty(universeDomain)
 
     self.cache = TokenCache(
       provider: provider,
@@ -91,6 +146,21 @@ struct MDSCredentials: CredentialsProvider, Sendable {
 
   // MARK: - CredentialsProvider
 
+  func accessToken() async throws -> AccessToken {
+    return try await self.cache.token()
+  }
+
+  /// Resolves the universe domain for these credentials.
+  ///
+  /// Returns the explicit `universeDomain` override if one was configured, or queries and caches
+  /// `/computeMetadata/v1/universe/universe-domain` on the metadata server.
+  func universeDomain() async throws -> String {
+    if let override = self.universeDomainOverride {
+      return override
+    }
+    return try await self.universeDomainCache.get(using: self.provider)
+  }
+
   /// Returns authorization headers containing a fresh access token obtained from the metadata server.
   ///
   /// Includes `Authorization: Bearer <token>` and, if configured, `x-goog-user-project: <quotaProjectID>`.
@@ -99,7 +169,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
   /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server cannot be reached or returns an error.
   func headers() async throws -> AuthHeaders {
     let token = try await self.cache.token()
-    var headers: AuthHeaders = [("Authorization", "Bearer \(token.accessToken)")]
+    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.token)")]
     if let quota = self.provider.quotaProjectID {
       headers.append(name: "x-goog-user-project", value: quota)
     }

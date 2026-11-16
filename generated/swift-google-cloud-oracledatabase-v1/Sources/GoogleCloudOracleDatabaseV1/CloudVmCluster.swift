@@ -26,15 +26,15 @@ public struct CloudVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// projects/{project}/locations/{region}/cloudVmClusters/{cloud_vm_cluster}
   public var name: Swift.String = Swift.String()
 
-  /// Required. The name of the Exadata Infrastructure resource on which VM
-  /// cluster resource is created, in the following format:
+  /// Required. Immutable. The name of the Exadata Infrastructure resource on
+  /// which VM cluster resource is created, in the following format:
   /// projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
   public var exadataInfrastructure: Swift.String = Swift.String()
 
-  /// Optional. User friendly name for this resource.
+  /// Optional. Immutable. User friendly name for this resource.
   public var displayName: Swift.String = Swift.String()
 
-  /// Optional. Various properties of the VM Cluster.
+  /// Optional. Immutable. Various properties of the VM Cluster.
   public var properties: CloudVmClusterProperties? = nil
 
   /// Optional. Labels or tags associated with the VM Cluster.
@@ -43,13 +43,14 @@ public struct CloudVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The date and time that the VM cluster was created.
   public var createTime: GoogleWKT.WKTTimestamp? = nil
 
-  /// Optional. Network settings. CIDR to use for cluster IP allocation.
+  /// Optional. Immutable. Network settings. CIDR to use for cluster IP
+  /// allocation.
   public var cidr: Swift.String = Swift.String()
 
-  /// Optional. CIDR range of the backup subnet.
+  /// Optional. Immutable. CIDR range of the backup subnet.
   public var backupSubnetCidr: Swift.String = Swift.String()
 
-  /// Optional. The name of the VPC network.
+  /// Optional. Immutable. The name of the VPC network.
   /// Format: projects/{project}/global/networks/{network}
   public var network: Swift.String = Swift.String()
 
@@ -58,31 +59,43 @@ public struct CloudVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// CloudExadataInfrastructure. Example: us-east4-b-r2.
   public var gcpOracleZone: Swift.String = Swift.String()
 
-  /// Optional. The name of the OdbNetwork associated with the VM Cluster.
-  /// Format:
+  /// Optional. Immutable. The name of the OdbNetwork associated with the VM
+  /// Cluster. Format:
   /// projects/{project}/locations/{location}/odbNetworks/{odb_network}
   /// It is optional but if specified, this should match the parent ODBNetwork of
   /// the odb_subnet and backup_odb_subnet.
   public var odbNetwork: Swift.String = Swift.String()
 
-  /// Optional. The name of the OdbSubnet associated with the VM Cluster for
-  /// IP allocation. Format:
+  /// Optional. Immutable. The name of the OdbSubnet associated with the VM
+  /// Cluster for IP allocation. Format:
   /// projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
   public var odbSubnet: Swift.String = Swift.String()
 
-  /// Optional. The name of the backup OdbSubnet associated with the VM Cluster.
-  /// Format:
+  /// Optional. Immutable. The name of the backup OdbSubnet associated with the
+  /// VM Cluster. Format:
   /// projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
   public var backupOdbSubnet: Swift.String = Swift.String()
+
+  /// Optional. Immutable. The name of the OdbDnsZone for using custom domain
+  /// name for the VM Cluster. Format:
+  /// projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbDnsZones/{odb_dns_zone}
+  public var odbDnsZone: Swift.String = Swift.String()
 
   /// Output only. The identity connector details which will allow OCI to
   /// securely access the resources in the customer project.
   public var identityConnector: IdentityConnector? = nil
 
-  /// Optional. The name of ExascaleDbStorageVault associated with the VM
-  /// Cluster. Format:
+  /// Optional. Immutable. The name of ExascaleDbStorageVault associated with the
+  /// VM Cluster. Format:
   /// projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
   public var exascaleDbStorageVault: Swift.String = Swift.String()
+
+  /// Optional. Input only. Immutable. If set to true, disables the automatic
+  /// provisioning of the Workload Identity Connector during creation. If set to
+  /// false or omitted, the Workload Identity Connector will be automatically
+  /// provisioned by default. Note: Provisioning the Workload Identity Connector
+  /// is a prerequisite for enabling Google Cloud CMEK.
+  public var identityConnectorDisabled: Swift.Bool = Swift.Bool()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -122,8 +135,10 @@ public struct CloudVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     static let odbNetwork = CodingKeys(stringValue: "odbNetwork")
     static let odbSubnet = CodingKeys(stringValue: "odbSubnet")
     static let backupOdbSubnet = CodingKeys(stringValue: "backupOdbSubnet")
+    static let odbDnsZone = CodingKeys(stringValue: "odbDnsZone")
     static let identityConnector = CodingKeys(stringValue: "identityConnector")
     static let exascaleDbStorageVault = CodingKeys(stringValue: "exascaleDbStorageVault")
+    static let identityConnectorDisabled = CodingKeys(stringValue: "identityConnectorDisabled")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -139,8 +154,10 @@ public struct CloudVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
       "odbNetwork",
       "odbSubnet",
       "backupOdbSubnet",
+      "odbDnsZone",
       "identityConnector",
       "exascaleDbStorageVault",
+      "identityConnectorDisabled",
     ]
   }
 
@@ -185,11 +202,19 @@ public struct CloudVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupOdbSubnet) {
       self.backupOdbSubnet = value
     }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .odbDnsZone) {
+      self.odbDnsZone = value
+    }
     self.identityConnector = try container.decodeIfPresent(
       IdentityConnector.self, forKey: .identityConnector)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .exascaleDbStorageVault)
     {
       self.exascaleDbStorageVault = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .identityConnectorDisabled)
+    {
+      self.identityConnectorDisabled = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -212,8 +237,10 @@ public struct CloudVmCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.odbNetwork, forKey: .odbNetwork)
     try container.encode(self.odbSubnet, forKey: .odbSubnet)
     try container.encode(self.backupOdbSubnet, forKey: .backupOdbSubnet)
+    try container.encode(self.odbDnsZone, forKey: .odbDnsZone)
     try container.encodeIfPresent(self.identityConnector, forKey: .identityConnector)
     try container.encode(self.exascaleDbStorageVault, forKey: .exascaleDbStorageVault)
+    try container.encode(self.identityConnectorDisabled, forKey: .identityConnectorDisabled)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

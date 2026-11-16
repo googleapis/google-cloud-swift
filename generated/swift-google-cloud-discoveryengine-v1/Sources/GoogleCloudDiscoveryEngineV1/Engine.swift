@@ -65,6 +65,7 @@
     /// one DataStore id must be provided as the system will use it for necessary
     /// initializations.
     ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
     /// [google.cloud.discoveryengine.v1.CreateEngineRequest]: <doc:CreateEngineRequest>
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     /// [google.cloud.discoveryengine.v1.Engine.solution_type]: <doc:Engine/solutionType>
@@ -87,9 +88,108 @@
     /// Common config spec that specifies the metadata of the engine.
     public var commonConfig: Engine.CommonConfig? = nil
 
+    /// Optional. Configurations for the Knowledge Graph. Only applicable if
+    /// [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type] is
+    /// [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine.solution_type]: <doc:Engine/solutionType>
+    /// [google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH]: <doc:SolutionType/search>
+    public var knowledgeGraphConfig: Engine.KnowledgeGraphConfig? = nil
+
+    /// Optional. Immutable. This the application type which this engine resource
+    /// represents. NOTE: this is a new concept independ of existing industry
+    /// vertical or solution type.
+    public var appType: Engine.AppType = Engine.AppType()
+
     /// Optional. Whether to disable analytics for searches performed on this
     /// engine.
     public var disableAnalytics: Swift.Bool = Swift.Bool()
+
+    /// Optional. Non-empty default. Session config for the engine.
+    public var sessionConfig: SessionConfig? = nil
+
+    /// Optional. Feature config for the engine to opt in or opt out of features.
+    /// Supported keys:
+    ///
+    /// * `*`: all features, if it's present, all other feature state settings are
+    ///        ignored.
+    /// * `agent-gallery`
+    /// * `no-code-agent-builder`
+    /// * `prompt-gallery`
+    /// * `model-selector`
+    /// * `notebook-lm`
+    /// * `people-search`
+    /// * `people-search-org-chart`
+    /// * `bi-directional-audio`
+    /// * `speech-to-text`
+    /// * `feedback`
+    /// * `session-sharing`
+    /// * `personalization-memory`
+    /// * `personalization-suggested-highlights`
+    /// * `mobile-app-access`
+    /// * `disable-agent-sharing`
+    /// * `disable-image-generation`
+    /// * `disable-video-generation`
+    /// * `disable-onedrive-upload`
+    /// * `disable-talk-to-content`
+    /// * `disable-google-drive-upload`
+    /// * `disable-welcome-emails`
+    /// * `disable-canvas`
+    /// * `canvas-workspace`
+    /// * `canvas-app-builder`
+    /// * `skills`
+    /// * `skill-sharing`
+    /// * `skill-sharing-without-admin-approval`
+    /// * `disable-projects`
+    /// * `sobi`
+    /// * `enable-end-user-sharing-with-groups`
+    /// * `single-agent-orchestration`
+    /// * `multi-agent-orchestration`
+    /// * `cross-product-intelligence`
+    /// * `workflow-agents`
+    /// * `in-app-notifications`
+    /// * `code-extraction`
+    public var features: [Swift.String: Engine.FeatureState] = [:]
+
+    /// Output only. CMEK-related information for the Engine.
+    public var cmekConfig: CmekConfig? = nil
+
+    /// Optional. Configuration for configurable billing approach.
+    public var configurableBillingApproach: Engine.ConfigurableBillingApproach =
+      Engine.ConfigurableBillingApproach()
+
+    /// Optional. Maps a model name to its specific configuration for this engine.
+    /// This allows admin users to turn on/off individual models. This only stores
+    /// models whose states are overridden by the admin.
+    ///
+    /// When the state is unspecified, or model_configs is empty for this
+    /// model, the system will decide if this model should be available or not
+    /// based on the default configuration. For example, a preview model
+    /// should be disabled by default if the admin has not chosen to enable it.
+    public var modelConfigs: [Swift.String: Engine.ModelState] = [:]
+
+    /// Optional. Observability config for the engine.
+    public var observabilityConfig: ObservabilityConfig? = nil
+
+    /// Optional. Maps a connector ID (e.g., "hybrid-github", "shopify") to
+    /// tenant-specific information required for that connector. The structure of
+    /// the tenant information string is connector-dependent.
+    public var connectorTenantInfo: [Swift.String: Swift.String] = [:]
+
+    /// Optional. The agent gateway setting for the engine.
+    public var agentGatewaySetting: AgentGatewaySetting? = nil
+
+    /// Optional. The visibility of marketplace agents in the agent gallery.
+    public var marketplaceAgentVisibility: Engine.MarketplaceAgentVisibility =
+      Engine.MarketplaceAgentVisibility()
+
+    /// Optional. The emails of the procurement contacts.
+    public var procurementContactEmails: [Swift.String] = []
+
+    /// Output only. The Agent registry containing the agents, MCP servers and
+    /// tools associated with this engine. Derived server-side from the linked
+    /// Agent Gateway's registry.
+    public var associatedAgentRegistry: Swift.String = Swift.String()
 
     /// Additional config specs that defines the behavior of the engine.
     public var engineConfig: EngineConfigOneOf? = nil
@@ -135,7 +235,21 @@
       static let solutionType = CodingKeys(stringValue: "solutionType")
       static let industryVertical = CodingKeys(stringValue: "industryVertical")
       static let commonConfig = CodingKeys(stringValue: "commonConfig")
+      static let knowledgeGraphConfig = CodingKeys(stringValue: "knowledgeGraphConfig")
+      static let appType = CodingKeys(stringValue: "appType")
       static let disableAnalytics = CodingKeys(stringValue: "disableAnalytics")
+      static let sessionConfig = CodingKeys(stringValue: "sessionConfig")
+      static let features = CodingKeys(stringValue: "features")
+      static let cmekConfig = CodingKeys(stringValue: "cmekConfig")
+      static let configurableBillingApproach = CodingKeys(
+        stringValue: "configurableBillingApproach")
+      static let modelConfigs = CodingKeys(stringValue: "modelConfigs")
+      static let observabilityConfig = CodingKeys(stringValue: "observabilityConfig")
+      static let connectorTenantInfo = CodingKeys(stringValue: "connectorTenantInfo")
+      static let agentGatewaySetting = CodingKeys(stringValue: "agentGatewaySetting")
+      static let marketplaceAgentVisibility = CodingKeys(stringValue: "marketplaceAgentVisibility")
+      static let procurementContactEmails = CodingKeys(stringValue: "procurementContactEmails")
+      static let associatedAgentRegistry = CodingKeys(stringValue: "associatedAgentRegistry")
 
       static let _knownKeys: Set<Swift.String> = [
         "chatEngineConfig",
@@ -150,7 +264,20 @@
         "solutionType",
         "industryVertical",
         "commonConfig",
+        "knowledgeGraphConfig",
+        "appType",
         "disableAnalytics",
+        "sessionConfig",
+        "features",
+        "cmekConfig",
+        "configurableBillingApproach",
+        "modelConfigs",
+        "observabilityConfig",
+        "connectorTenantInfo",
+        "agentGatewaySetting",
+        "marketplaceAgentVisibility",
+        "procurementContactEmails",
+        "associatedAgentRegistry",
       ]
     }
 
@@ -178,8 +305,54 @@
       }
       self.commonConfig = try container.decodeIfPresent(
         Engine.CommonConfig.self, forKey: .commonConfig)
+      self.knowledgeGraphConfig = try container.decodeIfPresent(
+        Engine.KnowledgeGraphConfig.self, forKey: .knowledgeGraphConfig)
+      if let value = try container.decodeIfPresent(Engine.AppType.self, forKey: .appType) {
+        self.appType = value
+      }
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disableAnalytics) {
         self.disableAnalytics = value
+      }
+      self.sessionConfig = try container.decodeIfPresent(SessionConfig.self, forKey: .sessionConfig)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Engine.FeatureState].self, forKey: .features)
+      {
+        self.features = value
+      }
+      self.cmekConfig = try container.decodeIfPresent(CmekConfig.self, forKey: .cmekConfig)
+      if let value = try container.decodeIfPresent(
+        Engine.ConfigurableBillingApproach.self, forKey: .configurableBillingApproach)
+      {
+        self.configurableBillingApproach = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Engine.ModelState].self, forKey: .modelConfigs)
+      {
+        self.modelConfigs = value
+      }
+      self.observabilityConfig = try container.decodeIfPresent(
+        ObservabilityConfig.self, forKey: .observabilityConfig)
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .connectorTenantInfo)
+      {
+        self.connectorTenantInfo = value
+      }
+      self.agentGatewaySetting = try container.decodeIfPresent(
+        AgentGatewaySetting.self, forKey: .agentGatewaySetting)
+      if let value = try container.decodeIfPresent(
+        Engine.MarketplaceAgentVisibility.self, forKey: .marketplaceAgentVisibility)
+      {
+        self.marketplaceAgentVisibility = value
+      }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .procurementContactEmails)
+      {
+        self.procurementContactEmails = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .associatedAgentRegistry)
+      {
+        self.associatedAgentRegistry = value
       }
 
       var engineConfig: EngineConfigOneOf? = nil
@@ -242,7 +415,20 @@
       try container.encode(self.solutionType, forKey: .solutionType)
       try container.encode(self.industryVertical, forKey: .industryVertical)
       try container.encodeIfPresent(self.commonConfig, forKey: .commonConfig)
+      try container.encodeIfPresent(self.knowledgeGraphConfig, forKey: .knowledgeGraphConfig)
+      try container.encode(self.appType, forKey: .appType)
       try container.encode(self.disableAnalytics, forKey: .disableAnalytics)
+      try container.encodeIfPresent(self.sessionConfig, forKey: .sessionConfig)
+      try container.encode(self.features, forKey: .features)
+      try container.encodeIfPresent(self.cmekConfig, forKey: .cmekConfig)
+      try container.encode(self.configurableBillingApproach, forKey: .configurableBillingApproach)
+      try container.encode(self.modelConfigs, forKey: .modelConfigs)
+      try container.encodeIfPresent(self.observabilityConfig, forKey: .observabilityConfig)
+      try container.encode(self.connectorTenantInfo, forKey: .connectorTenantInfo)
+      try container.encodeIfPresent(self.agentGatewaySetting, forKey: .agentGatewaySetting)
+      try container.encode(self.marketplaceAgentVisibility, forKey: .marketplaceAgentVisibility)
+      try container.encode(self.procurementContactEmails, forKey: .procurementContactEmails)
+      try container.encode(self.associatedAgentRegistry, forKey: .associatedAgentRegistry)
 
       if let choice = self.engineConfig {
         switch choice {
@@ -282,6 +468,18 @@
       /// [google.cloud.discoveryengine.v1.SearchTier.SEARCH_TIER_STANDARD]: <doc:SearchTier/standard>
       public var searchTier: SearchTier = SearchTier()
 
+      /// Optional. The required subscription tier of this engine.
+      ///
+      /// If the required subscription tier is search, user with higher license
+      /// tier like assist can still access the standalone app associated with this
+      /// engine.
+      ///
+      /// Web grounding feature is only available on the app if it is set as
+      /// [SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT][google.cloud.discoveryengine.v1.SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT].
+      ///
+      /// [google.cloud.discoveryengine.v1.SubscriptionTier.SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT]: <doc:SubscriptionTier/searchAndAssistant>
+      public var requiredSubscriptionTier: SubscriptionTier = SubscriptionTier()
+
       /// The add-on that this search engine enables.
       public var searchAddOns: [SearchAddOn] = []
 
@@ -311,10 +509,12 @@
         init?(intValue: Swift.Int) { nil }
 
         static let searchTier = CodingKeys(stringValue: "searchTier")
+        static let requiredSubscriptionTier = CodingKeys(stringValue: "requiredSubscriptionTier")
         static let searchAddOns = CodingKeys(stringValue: "searchAddOns")
 
         static let _knownKeys: Set<Swift.String> = [
           "searchTier",
+          "requiredSubscriptionTier",
           "searchAddOns",
         ]
       }
@@ -323,6 +523,11 @@
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(SearchTier.self, forKey: .searchTier) {
           self.searchTier = value
+        }
+        if let value = try container.decodeIfPresent(
+          SubscriptionTier.self, forKey: .requiredSubscriptionTier)
+        {
+          self.requiredSubscriptionTier = value
         }
         if let value = try container.decodeIfPresent([SearchAddOn].self, forKey: .searchAddOns) {
           self.searchAddOns = value
@@ -336,6 +541,7 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.searchTier, forKey: .searchTier)
+        try container.encode(self.requiredSubscriptionTier, forKey: .requiredSubscriptionTier)
         try container.encode(self.searchAddOns, forKey: .searchAddOns)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -602,7 +808,7 @@
       public struct EngineFeaturesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         Sendable
       {
-        /// Feature related configurations applied to a specific type of meida
+        /// Feature related configurations applied to a specific type of media
         /// recommendation engines.
         public var typeDedicatedConfig: TypeDedicatedConfigOneOf? = nil
 
@@ -688,7 +894,7 @@
           }
         }
 
-        /// Feature related configurations applied to a specific type of meida
+        /// Feature related configurations applied to a specific type of media
         /// recommendation engines.
         public enum TypeDedicatedConfigOneOf: Codable, Equatable, Sendable {
           /// Recommended for you engine feature config.
@@ -1389,6 +1595,266 @@
       }
     }
 
+    /// Configuration message for the Knowledge Graph.
+    public struct KnowledgeGraphConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Whether to enable the Cloud Knowledge Graph for the engine.
+      ///
+      /// Defaults to false if not specified.
+      public var enableCloudKnowledgeGraph: Swift.Bool = Swift.Bool()
+
+      /// Specify entity types to support.
+      public var cloudKnowledgeGraphTypes: [Swift.String] = []
+
+      /// Whether to enable the Private Knowledge Graph for the engine.
+      ///
+      /// Defaults to false if not specified.
+      public var enablePrivateKnowledgeGraph: Swift.Bool = Swift.Bool()
+
+      /// Specify entity types to support.
+      public var privateKnowledgeGraphTypes: [Swift.String] = []
+
+      /// Optional. Feature config for the Knowledge Graph.
+      public var featureConfig: Engine.KnowledgeGraphConfig.FeatureConfig? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `KnowledgeGraphConfig`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = KnowledgeGraphConfig().with { $0.enableCloudKnowledgeGraph = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let enableCloudKnowledgeGraph = CodingKeys(stringValue: "enableCloudKnowledgeGraph")
+        static let cloudKnowledgeGraphTypes = CodingKeys(stringValue: "cloudKnowledgeGraphTypes")
+        static let enablePrivateKnowledgeGraph = CodingKeys(
+          stringValue: "enablePrivateKnowledgeGraph")
+        static let privateKnowledgeGraphTypes = CodingKeys(
+          stringValue: "privateKnowledgeGraphTypes")
+        static let featureConfig = CodingKeys(stringValue: "featureConfig")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "enableCloudKnowledgeGraph",
+          "cloudKnowledgeGraphTypes",
+          "enablePrivateKnowledgeGraph",
+          "privateKnowledgeGraphTypes",
+          "featureConfig",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enableCloudKnowledgeGraph)
+        {
+          self.enableCloudKnowledgeGraph = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .cloudKnowledgeGraphTypes)
+        {
+          self.cloudKnowledgeGraphTypes = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Bool.self, forKey: .enablePrivateKnowledgeGraph)
+        {
+          self.enablePrivateKnowledgeGraph = value
+        }
+        if let value = try container.decodeIfPresent(
+          [Swift.String].self, forKey: .privateKnowledgeGraphTypes)
+        {
+          self.privateKnowledgeGraphTypes = value
+        }
+        self.featureConfig = try container.decodeIfPresent(
+          Engine.KnowledgeGraphConfig.FeatureConfig.self, forKey: .featureConfig)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.enableCloudKnowledgeGraph, forKey: .enableCloudKnowledgeGraph)
+        try container.encode(self.cloudKnowledgeGraphTypes, forKey: .cloudKnowledgeGraphTypes)
+        try container.encode(self.enablePrivateKnowledgeGraph, forKey: .enablePrivateKnowledgeGraph)
+        try container.encode(self.privateKnowledgeGraphTypes, forKey: .privateKnowledgeGraphTypes)
+        try container.encodeIfPresent(self.featureConfig, forKey: .featureConfig)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// Feature config for the Knowledge Graph.
+      public struct FeatureConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// Whether to disable the private KG query understanding for the engine.
+        ///
+        /// Defaults to false if not specified.
+        public var disablePrivateKgQueryUnderstanding: Swift.Bool = Swift.Bool()
+
+        /// Whether to disable the private KG enrichment for the engine.
+        ///
+        /// Defaults to false if not specified.
+        public var disablePrivateKgEnrichment: Swift.Bool = Swift.Bool()
+
+        /// Whether to disable the private KG auto complete for the engine.
+        ///
+        /// Defaults to false if not specified.
+        public var disablePrivateKgAutoComplete: Swift.Bool = Swift.Bool()
+
+        /// Whether to disable the private KG for query UI chips.
+        ///
+        /// Defaults to false if not specified.
+        public var disablePrivateKgQueryUiChips: Swift.Bool = Swift.Bool()
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `FeatureConfig`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = FeatureConfig().with { $0.disablePrivateKgQueryUnderstanding = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let disablePrivateKgQueryUnderstanding = CodingKeys(
+            stringValue: "disablePrivateKgQueryUnderstanding")
+          static let disablePrivateKgEnrichment = CodingKeys(
+            stringValue: "disablePrivateKgEnrichment")
+          static let disablePrivateKgAutoComplete = CodingKeys(
+            stringValue: "disablePrivateKgAutoComplete")
+          static let disablePrivateKgQueryUiChips = CodingKeys(
+            stringValue: "disablePrivateKgQueryUiChips")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "disablePrivateKgQueryUnderstanding",
+            "disablePrivateKgEnrichment",
+            "disablePrivateKgAutoComplete",
+            "disablePrivateKgQueryUiChips",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .disablePrivateKgQueryUnderstanding)
+          {
+            self.disablePrivateKgQueryUnderstanding = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .disablePrivateKgEnrichment)
+          {
+            self.disablePrivateKgEnrichment = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .disablePrivateKgAutoComplete)
+          {
+            self.disablePrivateKgAutoComplete = value
+          }
+          if let value = try container.decodeIfPresent(
+            Swift.Bool.self, forKey: .disablePrivateKgQueryUiChips)
+          {
+            self.disablePrivateKgQueryUiChips = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(
+            self.disablePrivateKgQueryUnderstanding, forKey: .disablePrivateKgQueryUnderstanding)
+          try container.encode(self.disablePrivateKgEnrichment, forKey: .disablePrivateKgEnrichment)
+          try container.encode(
+            self.disablePrivateKgAutoComplete, forKey: .disablePrivateKgAutoComplete)
+          try container.encode(
+            self.disablePrivateKgQueryUiChips, forKey: .disablePrivateKgQueryUiChips)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// The type URL for `FeatureConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Engine.KnowledgeGraphConfig.FeatureConfig"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.Engine.KnowledgeGraphConfig.FeatureConfig"
+        }
+
+        /// Initialize an instance of `FeatureConfig` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Engine.KnowledgeGraphConfig.FeatureConfig"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `FeatureConfig` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// The type URL for `KnowledgeGraphConfig`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Engine.KnowledgeGraphConfig"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.discoveryengine.v1.Engine.KnowledgeGraphConfig"
+      }
+
+      /// Initialize an instance of `KnowledgeGraphConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Engine.KnowledgeGraphConfig"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `KnowledgeGraphConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
     /// Additional information of a Chat Engine.
     /// Fields in this message are output only.
     public struct ChatEngineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
@@ -1471,6 +1937,601 @@
       /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
+    /// The app of the engine.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum AppType: Codable, Equatable, Hashable, Sendable {
+      /// All non specified apps.
+      case unspecified
+      /// App type for intranet search and Agentspace.
+      case intranet
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .unspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .unspecified: return 0
+        case .intranet: return 1
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .unspecified: return "APP_TYPE_UNSPECIFIED"
+        case .intranet: return "APP_TYPE_INTRANET"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AppType/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "APP_TYPE_UNSPECIFIED": self = .unspecified
+        case "APP_TYPE_INTRANET": self = .intranet
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AppType/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .unspecified
+        case 1: self = .intranet
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .unspecified: return try container.encode("APP_TYPE_UNSPECIFIED")
+        case .intranet: return try container.encode("APP_TYPE_INTRANET")
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    /// The state of the feature for the engine.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum FeatureState: Codable, Equatable, Hashable, Sendable {
+      /// The feature state is unspecified.
+      case unspecified
+      /// The feature is turned on to be accessible.
+      case on
+      /// The feature is turned off to be inaccessible.
+      case off
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .unspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .unspecified: return 0
+        case .on: return 1
+        case .off: return 2
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .unspecified: return "FEATURE_STATE_UNSPECIFIED"
+        case .on: return "FEATURE_STATE_ON"
+        case .off: return "FEATURE_STATE_OFF"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:FeatureState/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "FEATURE_STATE_UNSPECIFIED": self = .unspecified
+        case "FEATURE_STATE_ON": self = .on
+        case "FEATURE_STATE_OFF": self = .off
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:FeatureState/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .unspecified
+        case 1: self = .on
+        case 2: self = .off
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .unspecified: return try container.encode("FEATURE_STATE_UNSPECIFIED")
+        case .on: return try container.encode("FEATURE_STATE_ON")
+        case .off: return try container.encode("FEATURE_STATE_OFF")
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    /// Configuration for configurable billing approach.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum ConfigurableBillingApproach: Codable, Equatable, Hashable, Sendable {
+      /// Default value. For Spark and non-Spark non-configurable billing approach.
+      /// General pricing model.
+      case unspecified
+      /// The billing approach follows configurations specified by customer.
+      case enabled
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .unspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .unspecified: return 0
+        case .enabled: return 1
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .unspecified: return "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED"
+        case .enabled: return "CONFIGURABLE_BILLING_APPROACH_ENABLED"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ConfigurableBillingApproach/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED": self = .unspecified
+        case "CONFIGURABLE_BILLING_APPROACH_ENABLED": self = .enabled
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ConfigurableBillingApproach/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .unspecified
+        case 1: self = .enabled
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .unspecified: return try container.encode("CONFIGURABLE_BILLING_APPROACH_UNSPECIFIED")
+        case .enabled: return try container.encode("CONFIGURABLE_BILLING_APPROACH_ENABLED")
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    /// The status of the model for the engine.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum ModelState: Codable, Equatable, Hashable, Sendable {
+      /// The model state is unspecified.
+      case unspecified
+      /// The model is enabled by admin.
+      case modelEnabled
+      /// The model is disabled by admin.
+      case modelDisabled
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .unspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .unspecified: return 0
+        case .modelEnabled: return 1
+        case .modelDisabled: return 2
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .unspecified: return "MODEL_STATE_UNSPECIFIED"
+        case .modelEnabled: return "MODEL_ENABLED"
+        case .modelDisabled: return "MODEL_DISABLED"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ModelState/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "MODEL_STATE_UNSPECIFIED": self = .unspecified
+        case "MODEL_ENABLED": self = .modelEnabled
+        case "MODEL_DISABLED": self = .modelDisabled
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ModelState/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .unspecified
+        case 1: self = .modelEnabled
+        case 2: self = .modelDisabled
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .unspecified: return try container.encode("MODEL_STATE_UNSPECIFIED")
+        case .modelEnabled: return try container.encode("MODEL_ENABLED")
+        case .modelDisabled: return try container.encode("MODEL_DISABLED")
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    /// Represents which marketplace agents are visible to any users in agent
+    /// gallery.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum MarketplaceAgentVisibility: Codable, Equatable, Hashable, Sendable {
+      /// Defaults to `MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED`.
+      case unspecified
+      /// Only agents that are currently available for use by the user are visible.
+      case showAvailableAgentsOnly
+      /// Show marketplace agents that the user does not yet have access to but
+      /// are integrated into the engine. This level also includes all agents
+      /// visible with `SHOW_AVAILABLE_AGENTS_ONLY`.
+      case showAgentsAlreadyIntegrated
+      /// Show all agents visible with `SHOW_AGENTS_ALREADY_INTEGRATED`, plus
+      /// agents that have already been purchased by the project/organization, even
+      /// if they are not currently integrated into the engine.
+      case showAgentsAlreadyPurchased
+      /// All agents in the marketplace are visible, regardless of access or
+      /// purchase status. This level encompasses all agents shown in the previous
+      /// levels.
+      case showAllAgents
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .unspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .unspecified: return 0
+        case .showAvailableAgentsOnly: return 1
+        case .showAgentsAlreadyIntegrated: return 2
+        case .showAgentsAlreadyPurchased: return 3
+        case .showAllAgents: return 4
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .unspecified: return "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED"
+        case .showAvailableAgentsOnly: return "SHOW_AVAILABLE_AGENTS_ONLY"
+        case .showAgentsAlreadyIntegrated: return "SHOW_AGENTS_ALREADY_INTEGRATED"
+        case .showAgentsAlreadyPurchased: return "SHOW_AGENTS_ALREADY_PURCHASED"
+        case .showAllAgents: return "SHOW_ALL_AGENTS"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:MarketplaceAgentVisibility/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED": self = .unspecified
+        case "SHOW_AVAILABLE_AGENTS_ONLY": self = .showAvailableAgentsOnly
+        case "SHOW_AGENTS_ALREADY_INTEGRATED": self = .showAgentsAlreadyIntegrated
+        case "SHOW_AGENTS_ALREADY_PURCHASED": self = .showAgentsAlreadyPurchased
+        case "SHOW_ALL_AGENTS": self = .showAllAgents
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:MarketplaceAgentVisibility/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .unspecified
+        case 1: self = .showAvailableAgentsOnly
+        case 2: self = .showAgentsAlreadyIntegrated
+        case 3: self = .showAgentsAlreadyPurchased
+        case 4: self = .showAllAgents
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .unspecified: return try container.encode("MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED")
+        case .showAvailableAgentsOnly: return try container.encode("SHOW_AVAILABLE_AGENTS_ONLY")
+        case .showAgentsAlreadyIntegrated:
+          return try container.encode("SHOW_AGENTS_ALREADY_INTEGRATED")
+        case .showAgentsAlreadyPurchased:
+          return try container.encode("SHOW_AGENTS_ALREADY_PURCHASED")
+        case .showAllAgents: return try container.encode("SHOW_ALL_AGENTS")
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
       }
     }
 

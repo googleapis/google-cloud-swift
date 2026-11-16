@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
+import Foundation
 
 /// The default Google Cloud universe domain (`googleapis.com`).
 ///
@@ -21,52 +21,13 @@ public import Foundation
 /// is used to construct base URLs for Google Cloud service endpoints.
 ///
 /// See [Google Cloud Universes](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones).
-package let defaultUniverseDomain = "googleapis.com"
+let defaultUniverseDomain = "googleapis.com"
 
-/// Represents the access specifier for a service account based token,
-/// specifying either OAuth 2.0 scopes or a JWT audience.
-///
-/// A [Service Account](https://cloud.google.com/iam/docs/service-account-overview) can produce
-/// tokens scoped to specific OAuth 2.0 permissions or targeted to a specific service audience.
-/// Only one access specifier may be applied for a given credential setup.
-///
-/// See [AIP-4111: Self-Signed JWTs](https://google.aip.dev/auth/4111) and
-/// [OAuth 2.0 Scopes](https://developers.google.com/identity/protocols/oauth2/scopes).
-///
-/// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
-///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
-///   clause in `switch` statements.
-public enum AccessSpecifier: Sendable, Hashable {
-  /// Sets the target audience (`aud`) claim in the token.
-  ///
-  /// The audience is a JWT claim specifying the intended recipient of the token (i.e., a service endpoint).
-  /// The value should be the canonical URL of the target service endpoint, formatted as `https://{SERVICE}/`
-  /// (for example, `https://pubsub.googleapis.com/` or `https://bigtable.googleapis.com/`).
-  ///
-  /// Only one of audience or scopes can be specified for a credentials configuration.
-  ///
-  /// See [AIP-4111: Self-Signed JWTs](https://google.aip.dev/auth/4111).
-  case audience(String)
-
-  /// Sets the requested OAuth 2.0 permission scopes in the token.
-  ///
-  /// Scopes define the *permissions being requested* for this specific session
-  /// when interacting with a service (e.g. `https://www.googleapis.com/auth/cloud-platform`
-  /// or `https://www.googleapis.com/auth/devstorage.read_write`).
-  ///
-  /// IAM permissions, on the other hand, define the *underlying capabilities*
-  /// the service account possesses within Google Cloud (e.g. `storage.buckets.delete`).
-  /// When a token generated with specific scopes is used, the request must be permitted
-  /// by both the service account's underlying IAM permissions and the scopes requested
-  /// for the token. Therefore, scopes act as an additional restriction on what the token
-  /// can be used for.
-  ///
-  /// If empty, client libraries default to the comprehensive
-  /// `https://www.googleapis.com/auth/cloud-platform` scope.
-  ///
-  /// See [Service Account Authorization](https://cloud.google.com/compute/docs/access/service-accounts#authorization)
-  /// and [OAuth 2.0 Scopes](https://developers.google.com/identity/protocols/oauth2/scopes).
-  case scopes([String])
+func nonEmpty(_ value: String?) -> String? {
+  guard let value = value, !value.isEmpty else {
+    return nil
+  }
+  return value
 }
 
 /// Defines the configurations for authenticating Google Cloud API requests.
@@ -92,19 +53,8 @@ public enum CredentialsConfiguration: Sendable {
   /// hot path inside asynchronous request handlers; instead, initialize ``Credentials`` (or your service client) once
   /// at application startup and reuse the instance across requests.
   ///
-  /// - Parameters:
-  ///   - quotaProjectID: The Google Cloud project ID to bill and charge quota against (sent via `x-goog-user-project`).
-  ///     Requires `serviceusage.services.use` permission on the project.
-  ///     **Important Precedence**: If the `GOOGLE_CLOUD_QUOTA_PROJECT` environment variable is set,
-  ///     its value takes precedence over this parameter.
-  ///   - universeDomain: Target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) (defaults to `googleapis.com`).
-  ///     Override this if your application is operating in a custom sovereign or air-gapped cloud.
-  ///   - scopes: Scopes requested for the access token, further restricting what the token can be used for.
-  case adc(
-    quotaProjectID: String? = nil,
-    universeDomain: String? = nil,
-    scopes: [String] = []
-  )
+  /// - Parameter config: The configuration specifying optional quota project, universe domain, and scope overrides.
+  case adc(ADCConfig = ADCConfig())
 
   /// Returns a stub credential that provides no headers (unauthenticated).
   ///
@@ -129,17 +79,8 @@ public enum CredentialsConfiguration: Sendable {
   /// > in source code or check them into version control. Treat service account key files with the
   /// > same security precautions as passwords.
   ///
-  /// - Parameters:
-  ///   - keyJSON: The raw Service Account JSON key file contents.
-  ///   - quotaProjectID: A custom project ID used for billing and quota attribution.
-  ///   - universeDomain: [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
-  ///   - accessSpecifier: Access specifier (either OAuth 2.0 scopes or JWT audience). Defaults to `.scopes([])`.
-  case serviceAccount(
-    keyJSON: Data,
-    quotaProjectID: String? = nil,
-    universeDomain: String? = nil,
-    accessSpecifier: AccessSpecifier = .scopes([])
-  )
+  /// - Parameter config: The configuration specifying the Service Account JSON key and optional overrides.
+  case serviceAccount(ServiceAccountConfig)
 
   /// Credentials using Authorized User key files created from user authentication.
   ///
@@ -153,23 +94,14 @@ public enum CredentialsConfiguration: Sendable {
   ///
   /// **Universe Domain Constraint**: User accounts are only supported in the default Google [universe](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones)
   /// (`googleapis.com`). Initializing user credentials with a custom universe domain will fail with
-  /// `CredentialsError.notSupported`.
+  /// ``CredentialsError/notSupported(_:)``.
   ///
   /// > Warning: authorized user key files must be kept secure. Do not hardcode their value directly
   /// > in source code or check them into version control. Treat authorized user key files with the
   /// > same security precautions as passwords.
   ///
-  /// - Parameters:
-  ///   - keyJSON: The raw Authorized User JSON file contents.
-  ///   - quotaProjectID: An optional project ID used for billing and quota attribution (`x-goog-user-project`).
-  ///   - universeDomain: An optional universe domain (must be `googleapis.com` or nil).
-  ///   - scopes: Scopes requested for the access token.
-  case user(
-    keyJSON: Data,
-    quotaProjectID: String? = nil,
-    universeDomain: String? = nil,
-    scopes: [String] = []
-  )
+  /// - Parameter config: The configuration specifying the Authorized User JSON key and optional overrides.
+  case user(UserConfig)
 
   /// External account credentials configuration for Workload and Workforce Identity Federation.
   ///
@@ -210,221 +142,35 @@ public enum CredentialsConfiguration: Sendable {
   ///
   /// - Parameter config: The configuration specifying the source credentials, target service account, and optional delegation chain.
   case impersonatedServiceAccount(ImpersonatedServiceAccountConfig)
-}
 
-/// Configuration options for Service Account Impersonation credentials.
-///
-/// Under [AIP-4110](https://google.aip.dev/auth/4110), service account impersonation uses a base
-/// `sourceCredentials` instance to request short-lived access tokens for `targetPrincipal` via the
-/// Google Cloud IAM Service Account Credentials API (`:generateAccessToken`).
-///
-/// See [Service Account Impersonation](https://cloud.google.com/iam/docs/service-account-impersonation).
-public struct ImpersonatedServiceAccountConfig: Sendable {
-  /// The default scope requested for impersonated service account access tokens.
-  public static let defaultScope = "https://www.googleapis.com/auth/cloud-platform"
-
-  /// The base credentials used to authenticate requests to the IAM Credentials API.
-  public let sourceCredentials: Credentials
-
-  /// The email address or resource name (`projects/-/serviceAccounts/{email_or_unique_id}`) of the target service account to impersonate.
-  public let targetPrincipal: String
-
-  /// Optional ordered sequence of service account email addresses or resource names in a delegation chain.
+  /// Explicitly queries the Google Cloud Metadata Server (MDS) for the runtime's attached service account.
   ///
-  /// Each service account in the chain must be granted `roles/iam.serviceAccountTokenCreator` on the next
-  /// service account in the chain, with the final delegate granted token creator access on `targetPrincipal`.
-  public var delegates: [String] = []
-
-  /// Scopes requested for the impersonated access token. Defaults to `[defaultScope]`.
-  public var scopes: [String] = [defaultScope]
-
-  /// Desired lifetime duration of the impersonated access token (defaults to 3600 seconds / 1 hour).
-  public var lifetime: Duration = .seconds(3600)
-
-  /// Optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
-  public var quotaProjectID: String? = nil
-
-  /// Optional target Google Cloud universe domain override (defaults to `googleapis.com`).
-  public var universeDomain: String? = nil
-
-  /// Initializes a new instance of `ImpersonatedServiceAccountConfig`.
+  /// In Google Cloud environments such as [Google Compute Engine (GCE)](https://cloud.google.com/compute),
+  /// [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine), and
+  /// [Cloud Run](https://cloud.google.com/run), workloads run with an attached service account accessible
+  /// via the link-local [Metadata Server](https://cloud.google.com/compute/docs/metadata/overview)
+  /// (`http://metadata.google.internal`) according to [AIP-4115](https://google.aip.dev/auth/4115).
   ///
-  /// - Parameters:
-  ///   - sourceCredentials: The base credentials used to authenticate the impersonation request.
-  ///   - targetPrincipal: The email address or resource name of the target service account to impersonate.
-  public init(
-    sourceCredentials: Credentials,
-    targetPrincipal: String
-  ) {
-    self.sourceCredentials = sourceCredentials
-    self.targetPrincipal = targetPrincipal
-  }
-
-  /// Configures optional properties of `ImpersonatedServiceAccountConfig` using a fluent closure.
-  @inlinable
-  public func with(_ configure: (inout ImpersonatedServiceAccountConfig) throws -> Void) rethrows
-    -> ImpersonatedServiceAccountConfig
-  {
-    var copy = self
-    try configure(&copy)
-    return copy
-  }
-}
-
-/// Represents OAuth 2.0 client credentials used for client authentication via HTTP Basic Auth.
-public struct ClientAuthentication: Sendable, Equatable, Hashable {
-  /// The OAuth client ID.
-  public let clientID: String
-
-  /// The optional OAuth client secret.
-  public let clientSecret: String?
-
-  /// Initializes client authentication credentials.
+  /// Unlike ``adc(_:)``, `.mds` skips local credential file discovery
+  /// (`GOOGLE_APPLICATION_CREDENTIALS` and well-known `gcloud` files) and ignores `NO_GCE_CHECK`.
+  /// The default metadata server endpoint can be overridden via the `GCE_METADATA_HOST` environment
+  /// variable during local testing or emulation.
   ///
-  /// - Parameters:
-  ///   - clientID: The OAuth client ID.
-  ///   - clientSecret: The optional OAuth client secret.
-  public init(clientID: String, clientSecret: String? = nil) {
-    self.clientID = clientID
-    self.clientSecret = clientSecret
-  }
-}
-
-/// Configuration options for Workload and Workforce Identity Federation credentials.
-///
-/// Under [AIP-4117](https://google.aip.dev/auth/4117), external credentials exchange a third-party
-/// subject token (such as an OIDC JWT) for a short-lived Google Cloud access token using the
-/// Google Cloud Security Token Service (STS) ([RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693)).
-///
-/// See [Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation) and
-/// [Workforce Identity Federation](https://cloud.google.com/iam/docs/workforce-identity-federation).
-public struct ExternalAccountConfig: Sendable {
-  /// Defines how the external subject token is supplied.
+  /// To act as a different service account than the one attached to the compute instance, pass
+  /// `Credentials(configuration: .mds())` as the `sourceCredentials` of ``ImpersonatedServiceAccountConfig``
+  /// via ``impersonatedServiceAccount(_:)``.
   ///
-  /// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
-  ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
-  ///   clause in `switch` statements.
-  public enum CredentialSource: Sendable {
-    /// The subject token is resolved programmatically via a custom callback.
-    case programmatic(subjectTokenProvider: any SubjectTokenProvider)
-  }
+  /// - Parameter config: The configuration specifying optional quota project, universe domain, and scope overrides.
+  case mds(MDSConfig = MDSConfig())
 
-  /// The source type for external credentials.
-  public let credentialSource: CredentialSource
-
-  /// The audience parameter for the Security Token Service (STS) exchange.
+  /// Credentials backed by a static OAuth 2.0 ``AccessToken`` or a custom asynchronous ``AccessTokenProvider``.
   ///
-  /// For Workforce Identity Federation, this typically takes the form:
+  /// Useful when an access token has already been acquired out-of-band (for example, forwarded by an
+  /// API gateway or obtained via `gcloud auth print-access-token` in a CI pipeline) or when integrating
+  /// a custom token acquisition source.
   ///
-  /// ```
-  /// //iam.googleapis.com/locations/global/workforcePools/$POOL_ID/providers/$PROVIDER_ID
-  /// ```
-  ///
-  /// For Workload Identity Federation, it typically takes the form:
-  ///
-  /// ```
-  /// //iam.googleapis.com/projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/$POOL_ID/providers/$PROVIDER_ID
-  /// ```
-  public let audience: String
-
-  /// The type of the subject token being exchanged.
-  ///
-  /// Standard values defined in [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693) include:
-  /// - `.idToken`: An OIDC ID token (`urn:ietf:params:oauth:token-type:id_token`).
-  /// - `.jwt`: A generic JSON Web Token (`urn:ietf:params:oauth:token-type:jwt`).
-  public let subjectTokenType: SubjectTokenType
-
-  /// The Security Token Service (STS) token exchange endpoint.
-  ///
-  /// Defaults to `https://sts.googleapis.com/v1/token`.
-  public let tokenURL: URL
-
-  /// Optional OAuth client credentials used for client authentication via HTTP Basic Auth.
-  public var clientAuthentication: ClientAuthentication? = nil
-
-  /// Optional user project ID used to assert billing and quota constraints (`x-goog-user-project`).
-  ///
-  /// This parameter is only allowed when exchanging tokens for a global workforce pool. Setting this
-  /// for a non-workforce pool will result in a validation error.
-  public var workforcePoolUserProject: String? = nil
-
-  /// The default scope requested for Google Cloud STS token exchange.
-  public static let defaultScope = "https://www.googleapis.com/auth/cloud-platform"
-
-  /// Scopes requested for the exchanged token.
-  public var scopes: [String] = [defaultScope]
-
-  /// Google Cloud universe domain override.
-  public var universeDomain: String? = nil
-
-  /// Initializes a new instance of `ExternalAccountConfig`.
-  ///
-  /// - Parameters:
-  ///   - credentialSource: The source mechanism supplying the external subject token.
-  ///   - audience: The STS audience identifier URI.
-  ///   - subjectTokenType: The RFC 8693 token type URI of the subject token.
-  ///   - tokenURL: The STS token exchange endpoint.
-  public init(
-    credentialSource: CredentialSource,
-    audience: String,
-    subjectTokenType: SubjectTokenType,
-    tokenURL: URL
-  ) {
-    self.credentialSource = credentialSource
-    self.audience = audience
-    self.subjectTokenType = subjectTokenType
-    self.tokenURL = tokenURL
-  }
-
-  /// Configures optional properties of `ExternalAccountConfig` using a fluent closure.
-  @inlinable
-  public func with(_ configure: (inout ExternalAccountConfig) throws -> Void) rethrows
-    -> ExternalAccountConfig
-  {
-    var copy = self
-    try configure(&copy)
-    return copy
-  }
-}
-
-extension ExternalAccountConfig {
-  /// Represents the type of subject token being exchanged with Google Cloud STS.
-  ///
-  /// Standard values are defined in [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693).
-  public struct SubjectTokenType: RawRepresentable, Sendable, Hashable,
-    CustomStringConvertible, ExpressibleByStringLiteral, Codable
-  {
-    /// The raw string value representing the subject token type URN.
-    public let rawValue: String
-
-    /// Initializes a subject token type with the specified raw string value.
-    public init(rawValue: String) {
-      self.rawValue = rawValue
-    }
-
-    /// Initializes a subject token type from a string literal.
-    public init(stringLiteral value: String) {
-      self.rawValue = value
-    }
-
-    /// A Boolean value indicating whether the token type URN is empty.
-    public var isEmpty: Bool {
-      rawValue.isEmpty
-    }
-
-    /// The string description of the subject token type.
-    public var description: String {
-      rawValue
-    }
-  }
-}
-
-extension ExternalAccountConfig.SubjectTokenType {
-  /// An OIDC ID token as defined in [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693).
-  public static let idToken: Self = "urn:ietf:params:oauth:token-type:id_token"
-
-  /// A JSON Web Token as defined in [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693).
-  public static let jwt: Self = "urn:ietf:params:oauth:token-type:jwt"
+  /// - Parameter config: The configuration specifying the access token source and optional overrides.
+  case accessToken(AccessTokenConfig)
 }
 
 /// A type that can provide authentication headers for Google Cloud API requests.
@@ -436,6 +182,32 @@ protocol CredentialsProvider: Sendable {
   ///
   /// - Returns: The HTTP header fields to apply to the request.
   func headers() async throws -> AuthHeaders
+
+  /// Asynchronously retrieves the Google Cloud universe domain associated with these credentials.
+  ///
+  /// - Returns: The universe domain string (defaults to `"googleapis.com"`).
+  func universeDomain() async throws -> String
+
+  /// Validates that the universe domain of these credentials matches `expectedUniverseDomain`.
+  ///
+  /// - Parameter expectedUniverseDomain: The universe domain expected by the caller.
+  /// - Throws: A ``CredentialsError`` if the universe domain cannot be resolved or does not match `expectedUniverseDomain`.
+  func validateUniverseDomain(_ expectedUniverseDomain: String) async throws
+}
+
+extension CredentialsProvider {
+  func universeDomain() async throws -> String {
+    return defaultUniverseDomain
+  }
+
+  func validateUniverseDomain(_ expectedUniverseDomain: String) async throws {
+    let credUniverse = try await self.universeDomain()
+    guard credUniverse == expectedUniverseDomain else {
+      throw CredentialsError.parseError(
+        "The configured universe domain (\(expectedUniverseDomain)) does not match the universe domain found in the credentials (\(credUniverse))."
+      )
+    }
+  }
 }
 
 /// The public entry point to authenticate Google Cloud API requests.
@@ -451,9 +223,11 @@ protocol CredentialsProvider: Sendable {
 /// by `GOOGLE_APPLICATION_CREDENTIALS`.
 ///
 /// ### Token Caching and Proactive Refresh
-/// Access tokens generated by `Credentials` are cached in memory and automatically refreshed
-/// before expiration in a proactive background loop. Callers invoking `headers()` experience minimal
-/// latency on the fast path.
+/// Access tokens generated by built-in OAuth 2.0 credential sources are cached in memory and
+/// automatically refreshed before expiration in a proactive background loop, so callers invoking
+/// `headers()` experience minimal latency on the fast path. Credentials configured via
+/// ``CredentialsConfiguration/accessToken(_:)`` delegate directly to the configured token or
+/// ``AccessTokenProvider`` without additional caching.
 ///
 /// ### Lifecycle and Reuse
 /// ``Credentials`` instances are thread-safe (`Sendable`) and designed to be initialized once at
@@ -472,11 +246,15 @@ protocol CredentialsProvider: Sendable {
 /// let headers = try await credentials.headers()
 ///
 /// // Or use explicit configuration with a custom quota project:
-/// let customCredentials = try Credentials(
-///   configuration: .adc(quotaProjectID: "my-billing-project")
-/// )
+/// let config = ADCConfig().with {
+///   $0.quotaProjectID = "my-billing-project"
+/// }
+/// let customCredentials = try Credentials(configuration: .adc(config))
 /// ```
 public struct Credentials: Sendable {
+  /// The default Google Cloud universe domain (`"googleapis.com"`).
+  public static let defaultUniverseDomain = GoogleAuth.defaultUniverseDomain
+
   let credentialsProvider: any CredentialsProvider
 
   /// Initializes credentials using a specific configuration (defaults to automatic ADC resolution).
@@ -508,6 +286,24 @@ public struct Credentials: Sendable {
     )
   }
 
+  /// A type-erased ``AnyAccessTokenProvider`` backed by these credentials if they produce OAuth 2.0
+  /// access tokens, or `nil` if this credential type does not use access tokens (such as
+  /// ``CredentialsConfiguration/anonymous`` or ``CredentialsConfiguration/apiKey(_:)``).
+  ///
+  /// For built-in OAuth 2.0 credential sources, the returned ``AnyAccessTokenProvider`` shares
+  /// the in-memory token cache and proactive background refresh loop of this ``Credentials``
+  /// instance. For ``CredentialsConfiguration/accessToken(_:)``, it delegates directly to the
+  /// configured ``AccessTokenProvider``.
+  ///
+  /// ### Usage Example
+  /// @Snippet(path: "AccessTokenProviderSample")
+  public var accessTokenProvider: AnyAccessTokenProvider? {
+    guard let tokenProvider = self.credentialsProvider as? any AccessTokenProvider else {
+      return nil
+    }
+    return AnyAccessTokenProvider(tokenProvider)
+  }
+
   /// Asynchronously retrieves the request headers required to authenticate a request.
   ///
   /// Returns cached headers if valid, or waits for an active refresh if the token is missing or expired.
@@ -518,6 +314,35 @@ public struct Credentials: Sendable {
     return try await self.credentialsProvider.headers()
   }
 
+  /// Asynchronously retrieves the Google Cloud universe domain associated with these credentials.
+  ///
+  /// A "universe" is an isolated Google Cloud environment, such as the default universe
+  /// (`googleapis.com`) or a sovereign/air-gapped deployment. Client libraries compare the
+  /// credentials' universe domain with the client's configured universe domain before sending
+  /// requests.
+  ///
+  /// For most credential types, this returns the configured universe domain (or `"googleapis.com"`
+  /// by default) immediately. For Metadata Server (MDS) credentials without an explicit universe
+  /// domain override, this queries `/computeMetadata/v1/universe/universe-domain` on the metadata
+  /// server and caches the result.
+  ///
+  /// - Returns: The universe domain string (e.g., `"googleapis.com"`).
+  /// - Throws: A ``CredentialsError`` if resolving the universe domain from the metadata server fails.
+  public func universeDomain() async throws -> String {
+    return try await self.credentialsProvider.universeDomain()
+  }
+
+  /// Validates that the universe domain associated with these credentials matches `expectedUniverseDomain`.
+  ///
+  /// For `.anonymous` credentials, this method succeeds without performing a comparison so
+  /// unauthenticated callers can access public resources in any universe domain.
+  ///
+  /// - Parameter expectedUniverseDomain: The universe domain expected by the caller (e.g., the client's configured universe domain).
+  /// - Throws: A ``CredentialsError`` if resolving the universe domain fails or if the resolved universe domain does not match `expectedUniverseDomain`.
+  public func validateUniverseDomain(_ expectedUniverseDomain: String) async throws {
+    try await self.credentialsProvider.validateUniverseDomain(expectedUniverseDomain)
+  }
+
   private static func resolveCredentialsProvider(
     configuration: CredentialsConfiguration,
     environment: [String: String]
@@ -525,28 +350,28 @@ public struct Credentials: Sendable {
     -> any CredentialsProvider
   {
     switch configuration {
-    case let .adc(quotaProjectID, universeDomain, scopes):
+    case let .adc(config):
       return try ADC.resolve(
-        quotaProjectID: quotaProjectID,
-        universeDomain: universeDomain,
-        scopes: scopes,
+        quotaProjectID: config.quotaProjectID,
+        universeDomain: config.universeDomain,
+        scopes: config.scopes,
         environment: environment
       )
     case .anonymous:
       return AnonymousCredentials()
-    case let .serviceAccount(keyJSON, quotaProjectID, universeDomain, accessSpecifier):
+    case let .serviceAccount(config):
       return try ServiceAccountCredentials(
-        keyJSON: keyJSON,
-        quotaProjectID: quotaProjectID,
-        universeDomain: universeDomain,
-        accessSpecifier: accessSpecifier
+        keyJSON: config.keyJSON,
+        quotaProjectID: config.quotaProjectID,
+        universeDomain: config.universeDomain,
+        accessSpecifier: config.accessSpecifier
       )
-    case let .user(keyJSON, quotaProjectID, universeDomain, scopes):
+    case let .user(config):
       return try UserCredentials(
-        keyJSON: keyJSON,
-        quotaProjectID: quotaProjectID,
-        universeDomain: universeDomain,
-        scopes: scopes
+        keyJSON: config.keyJSON,
+        quotaProjectID: config.quotaProjectID,
+        universeDomain: config.universeDomain,
+        scopes: config.scopes
       )
     case let .externalAccount(config):
       return try ExternalAccountCredentials(
@@ -571,6 +396,16 @@ public struct Credentials: Sendable {
         quotaProjectID: config.quotaProjectID,
         universeDomain: config.universeDomain
       )
+    case let .mds(config):
+      return MDSCredentials(
+        quotaProjectID: config.quotaProjectID,
+        universeDomain: config.universeDomain,
+        scopes: config.scopes,
+        fromADC: false,
+        environment: environment
+      )
+    case let .accessToken(config):
+      return AccessTokenCredentials(config: config)
     }
   }
 }

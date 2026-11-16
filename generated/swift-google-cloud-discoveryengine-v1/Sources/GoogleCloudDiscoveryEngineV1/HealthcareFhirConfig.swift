@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if DataStoreService
+#if DataConnectorService || DataStoreService || WidgetConfigService
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
@@ -35,6 +35,14 @@
     /// indexing mode which is slower but more capable of handling larger
     /// volume.
     public var enableStaticIndexingForBatchIngestion: Swift.Bool = Swift.Bool()
+
+    /// Optional. Names of the Group resources to use as a basis for the initial
+    /// patient filter, in format
+    /// `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`.
+    /// The filter group must be a FHIR resource name of
+    /// type Group, and the filter will be constructed from the direct members of
+    /// the group which are Patient resources.
+    public var initialFilterGroups: [Swift.String] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,10 +72,12 @@
       static let enableConfigurableSchema = CodingKeys(stringValue: "enableConfigurableSchema")
       static let enableStaticIndexingForBatchIngestion = CodingKeys(
         stringValue: "enableStaticIndexingForBatchIngestion")
+      static let initialFilterGroups = CodingKeys(stringValue: "initialFilterGroups")
 
       static let _knownKeys: Set<Swift.String> = [
         "enableConfigurableSchema",
         "enableStaticIndexingForBatchIngestion",
+        "initialFilterGroups",
       ]
     }
 
@@ -83,6 +93,11 @@
       {
         self.enableStaticIndexingForBatchIngestion = value
       }
+      if let value = try container.decodeIfPresent(
+        [Swift.String].self, forKey: .initialFilterGroups)
+      {
+        self.initialFilterGroups = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -94,6 +109,7 @@
       try container.encode(self.enableConfigurableSchema, forKey: .enableConfigurableSchema)
       try container.encode(
         self.enableStaticIndexingForBatchIngestion, forKey: .enableStaticIndexingForBatchIngestion)
+      try container.encode(self.initialFilterGroups, forKey: .initialFilterGroups)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

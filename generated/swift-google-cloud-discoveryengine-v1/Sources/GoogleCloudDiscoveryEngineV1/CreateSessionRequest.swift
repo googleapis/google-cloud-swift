@@ -29,6 +29,14 @@
     /// Required. The session to create.
     public var session: Session? = nil
 
+    /// Optional. The ID to use for the session, which will become the final
+    /// component of the session's resource name.
+    ///
+    /// This value should be 1-63 characters, and valid characters
+    /// are /[a-z0-9][a-z0-9-]{0,61}[a-z0-9]/. If not specified, a unique ID will
+    /// be generated.
+    public var sessionId: Swift.String = Swift.String()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CreateSessionRequest`.
@@ -56,10 +64,12 @@
 
       static let parent = CodingKeys(stringValue: "parent")
       static let session = CodingKeys(stringValue: "session")
+      static let sessionId = CodingKeys(stringValue: "sessionId")
 
       static let _knownKeys: Set<Swift.String> = [
         "parent",
         "session",
+        "sessionId",
       ]
     }
 
@@ -69,6 +79,9 @@
         self.parent = value
       }
       self.session = try container.decodeIfPresent(Session.self, forKey: .session)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sessionId) {
+        self.sessionId = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -79,6 +92,7 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
       try container.encodeIfPresent(self.session, forKey: .session)
+      try container.encode(self.sessionId, forKey: .sessionId)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

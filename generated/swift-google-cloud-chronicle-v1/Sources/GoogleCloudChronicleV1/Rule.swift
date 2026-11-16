@@ -75,7 +75,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The run frequencies that are allowed for the rule.
   /// Populated in BASIC view and FULL view.
-  public var allowedRunFrequencies: [RunFrequency] = []
+  public var allowedRunFrequencies: [GoogleCloudChronicleV1.RunFrequency] = []
 
   /// The etag for this rule.
   /// If this is provided on update, the request will succeed if and only if it
@@ -214,7 +214,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
       self.referenceLists = value
     }
     if let value = try container.decodeIfPresent(
-      [RunFrequency].self, forKey: .allowedRunFrequencies)
+      [GoogleCloudChronicleV1.RunFrequency].self, forKey: .allowedRunFrequencies)
     {
       self.allowedRunFrequencies = value
     }

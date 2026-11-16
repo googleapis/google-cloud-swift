@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if CmekConfigService || DataStoreService || IdentityMappingStoreService
+#if CmekConfigService || DataStoreService || EngineService || IdentityMappingStoreService
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 

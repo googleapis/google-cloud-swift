@@ -168,7 +168,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
     public var dashboardQuery: Swift.String = Swift.String()
 
     /// Name of the datasource used in the chart.
-    public var dataSources: [DataSource] = []
+    public var dataSources: [GoogleCloudChronicleV1.DataSource] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -209,7 +209,9 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dashboardQuery) {
         self.dashboardQuery = value
       }
-      if let value = try container.decodeIfPresent([DataSource].self, forKey: .dataSources) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudChronicleV1.DataSource].self, forKey: .dataSources)
+      {
         self.dataSources = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

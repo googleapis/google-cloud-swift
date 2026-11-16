@@ -44,7 +44,7 @@
     /// The query to use.
     public var query: Swift.String = Swift.String()
 
-    /// Required. A list of records to rank. At most 200 records to rank.
+    /// Required. A list of records to rank.
     public var records: [RankingRecord] = []
 
     /// If true, the response will contain only record ID and score. By default, it

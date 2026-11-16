@@ -61,4 +61,66 @@ import Testing
       return try _anySerialize(message: self)
     }
   }
+
+  struct MessageWithEnumAndNested: Codable, Equatable, _AnyPackable, Sendable {
+    static var _anyTypeUrl: String { "type.googleapis.com/test.MessageWithEnumAndNested" }
+
+    var enumValue: WKTSyntax = WKTSyntax()
+    var repeatedEnum: [WKTSyntax] = []
+    var mapEnum: [String: WKTSyntax] = [:]
+    var mapMessage: [String: RequiredPrimitives] = [:]
+
+    init(
+      enumValue: WKTSyntax = WKTSyntax(),
+      repeatedEnum: [WKTSyntax] = [],
+      mapEnum: [String: WKTSyntax] = [:],
+      mapMessage: [String: RequiredPrimitives] = [:]
+    ) {
+      self.enumValue = enumValue
+      self.repeatedEnum = repeatedEnum
+      self.mapEnum = mapEnum
+      self.mapMessage = mapMessage
+    }
+
+    init(fromAny any: WKTAny) throws {
+      self = try _anyDeserialize(Self.self, from: any)
+    }
+
+    func _pack() throws -> WKTStruct {
+      return try _anySerialize(message: self)
+    }
+  }
+
+  static let enumAndNestedInputs: [(String, MessageWithEnumAndNested)] = [
+    (#"{}"#, MessageWithEnumAndNested()),
+    (#"{"enumValue":null}"#, MessageWithEnumAndNested()),
+    (#"{"repeatedEnum":null}"#, MessageWithEnumAndNested()),
+    (#"{"mapEnum":null}"#, MessageWithEnumAndNested()),
+    (#"{"mapMessage":null}"#, MessageWithEnumAndNested()),
+    (
+      #"{"mapMessage":{"k":{"fieldInt32":null,"fieldString":null}}}"#,
+      MessageWithEnumAndNested(mapMessage: ["k": RequiredPrimitives()])
+    ),
+  ]
+
+  static let enumAndNestedBadInputs: [String] = [
+    #"{"repeatedEnum":[null]}"#,
+    #"{"mapEnum":{"a":null}}"#,
+    #"{"mapMessage":{"k":null}}"#,
+  ]
+
+  @Test("decode enum and nested null values", arguments: enumAndNestedInputs)
+  func decodeEnumAndNested(input: String, want: MessageWithEnumAndNested) throws {
+    let decoder = _ProtoJSONDecoder()
+    let got = try decoder.decode(MessageWithEnumAndNested.self, from: Data(input.utf8))
+    #expect(got == want)
+  }
+
+  @Test("decode enum and nested invalid null elements throw", arguments: enumAndNestedBadInputs)
+  func decodeEnumAndNestedBad(input: String) throws {
+    let decoder = _ProtoJSONDecoder()
+    #expect(throws: DecodingError.self) {
+      try decoder.decode(MessageWithEnumAndNested.self, from: Data(input.utf8))
+    }
+  }
 }

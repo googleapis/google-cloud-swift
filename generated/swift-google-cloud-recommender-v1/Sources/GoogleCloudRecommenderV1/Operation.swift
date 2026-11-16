@@ -191,7 +191,8 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       pathValue = $0
     }
-    if let value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value) {
+    if container.contains(.value) {
+      let value = try container.decode(GoogleWKT.WKTValue.self, forKey: .value)
       try pathValueCheckAndSet(.value(value))
     }
     if let valueMatcher = try container.decodeIfPresent(ValueMatcher.self, forKey: .valueMatcher) {

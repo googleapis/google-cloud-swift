@@ -18,17 +18,24 @@ import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// The request for `ExadbVmCluster.Update`. We only support adding the
-/// Virtual Machine to the ExadbVmCluster. Rest of the fields in ExadbVmCluster
-/// are immutable.
+/// Virtual Machine to the ExadbVmCluster and updating labels. Rest of the fields
+/// in ExadbVmCluster are immutable.
 public struct UpdateExadbVmClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Optional. A mask specifying which fields in th VM Cluster should be
   /// updated. A field specified in the mask is overwritten. If a mask isn't
-  /// provided then all the fields in the VM Cluster are overwritten.
+  /// provided then the service treats this as an implied field mask equivalent
+  /// to all fields that are populated (have a non-empty value). To clear or
+  /// unset a field, the field must be explicitly specified in the `update_mask`.
   public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
-  /// Required. The resource being updated.
+  /// Required. The ExadbVmCluster resource being updated.
+  /// Mutable fields that can be updated include `labels` and
+  /// `properties.node_count`. For `labels`, the provided map completely
+  /// replaces existing labels; any existing keys not included will be deleted.
+  /// To clear all labels, specify `labels` in the `update_mask` and omit or
+  /// leave the `labels` field empty in the update request.
   public var exadbVmCluster: ExadbVmCluster? = nil
 
   /// Optional. An optional ID to identify the request. This value is used to

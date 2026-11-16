@@ -1490,9 +1490,9 @@
           }
           displayNameMapping = $0
         }
-        if let indexDisplayNameMapping = try container.decodeIfPresent(
-          GoogleWKT.WKTValue.self, forKey: .indexDisplayNameMapping)
-        {
+        if container.contains(.indexDisplayNameMapping) {
+          let indexDisplayNameMapping = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: .indexDisplayNameMapping)
           try displayNameMappingCheckAndSet(.indexDisplayNameMapping(indexDisplayNameMapping))
         }
         if let displayNameMappingKey = try container.decodeIfPresent(

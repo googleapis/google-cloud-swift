@@ -239,8 +239,10 @@
         self.responseMimeType = value
       }
       self.responseSchema = try container.decodeIfPresent(Schema.self, forKey: .responseSchema)
-      self.responseJsonSchema = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .responseJsonSchema)
+      if container.contains(.responseJsonSchema) {
+        self.responseJsonSchema = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: .responseJsonSchema)
+      }
       self.routingConfig = try container.decodeIfPresent(
         GenerationConfig.RoutingConfig.self, forKey: .routingConfig)
       self.audioTimestamp = try container.decodeIfPresent(Swift.Bool.self, forKey: .audioTimestamp)

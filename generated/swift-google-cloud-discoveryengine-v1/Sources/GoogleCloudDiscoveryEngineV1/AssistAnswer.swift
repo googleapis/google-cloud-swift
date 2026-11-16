@@ -16,6 +16,7 @@
 
 #if AssistantService || ConversationalSearchService || SessionService
   import Foundation
+  public import GoogleRpc
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
   /// AssistAnswer resource, main part of
@@ -23,7 +24,7 @@
   public struct AssistAnswer: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    /// Immutable. Resource name of the `AssistAnswer`.
+    /// Immutable. Identifier. Resource name of the `AssistAnswer`.
     /// Format:
     /// `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/assistAnswers/{assist_answer}`
     ///
@@ -34,11 +35,24 @@
     /// State of the answer generation.
     public var state: AssistAnswer.State = AssistAnswer.State()
 
+    /// Output only. Maps an internal connector agent name (the machine identifier
+    /// embedded in tool names, e.g. `custom_mcp_<fingerprint>_agent`) to the
+    /// connector's human-readable display name. Populated at serving time for
+    /// custom MCP / agent gateway connectors so user-facing surfaces (e.g. the
+    /// tool-call chip) can show the connector name instead of its internal
+    /// identifier. Empty when there are no such connectors.
+    public var connectorDisplayNames: [Swift.String: Swift.String] = [:]
+
     /// Replies of the assistant.
     public var replies: [AssistAnswer.Reply] = []
 
     /// Reasons for not answering the assist call.
     public var assistSkippedReasons: [AssistAnswer.AssistSkippedReason] = []
+
+    /// Optional. The field contains information about the various policy checks'
+    /// results like the banned phrases or the Model Armor checks. This field is
+    /// populated only if the assist call was skipped due to a policy violation.
+    public var customerPolicyEnforcementResult: AssistAnswer.CustomerPolicyEnforcementResult? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,14 +81,19 @@
 
       static let name = CodingKeys(stringValue: "name")
       static let state = CodingKeys(stringValue: "state")
+      static let connectorDisplayNames = CodingKeys(stringValue: "connectorDisplayNames")
       static let replies = CodingKeys(stringValue: "replies")
       static let assistSkippedReasons = CodingKeys(stringValue: "assistSkippedReasons")
+      static let customerPolicyEnforcementResult = CodingKeys(
+        stringValue: "customerPolicyEnforcementResult")
 
       static let _knownKeys: Set<Swift.String> = [
         "name",
         "state",
+        "connectorDisplayNames",
         "replies",
         "assistSkippedReasons",
+        "customerPolicyEnforcementResult",
       ]
     }
 
@@ -86,6 +105,11 @@
       if let value = try container.decodeIfPresent(AssistAnswer.State.self, forKey: .state) {
         self.state = value
       }
+      if let value = try container.decodeIfPresent(
+        [Swift.String: Swift.String].self, forKey: .connectorDisplayNames)
+      {
+        self.connectorDisplayNames = value
+      }
       if let value = try container.decodeIfPresent([AssistAnswer.Reply].self, forKey: .replies) {
         self.replies = value
       }
@@ -94,6 +118,8 @@
       {
         self.assistSkippedReasons = value
       }
+      self.customerPolicyEnforcementResult = try container.decodeIfPresent(
+        AssistAnswer.CustomerPolicyEnforcementResult.self, forKey: .customerPolicyEnforcementResult)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -104,8 +130,11 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.state, forKey: .state)
+      try container.encode(self.connectorDisplayNames, forKey: .connectorDisplayNames)
       try container.encode(self.replies, forKey: .replies)
       try container.encode(self.assistSkippedReasons, forKey: .assistSkippedReasons)
+      try container.encodeIfPresent(
+        self.customerPolicyEnforcementResult, forKey: .customerPolicyEnforcementResult)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -115,6 +144,9 @@
     public struct Reply: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
+      /// The time when the reply was created.
+      public var createTime: GoogleWKT.WKTTimestamp? = nil
+
       /// Alternatives for the assistant reply.
       public var reply: ReplyOneOf? = nil
 
@@ -144,14 +176,18 @@
         init?(intValue: Swift.Int) { nil }
 
         static let groundedContent = CodingKeys(stringValue: "groundedContent")
+        static let createTime = CodingKeys(stringValue: "createTime")
 
         static let _knownKeys: Set<Swift.String> = [
-          "groundedContent"
+          "groundedContent",
+          "createTime",
         ]
       }
 
       public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.createTime = try container.decodeIfPresent(
+          GoogleWKT.WKTTimestamp.self, forKey: .createTime)
 
         var reply: ReplyOneOf? = nil
         let replyCheckAndSet = {
@@ -177,6 +213,7 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.createTime, forKey: .createTime)
 
         if let choice = self.reply {
           switch choice {
@@ -217,6 +254,690 @@
       }
     }
 
+    /// Customer policy enforcement results. Contains the results of the various
+    /// policy checks, like the banned phrases or the Model Armor checks.
+    public struct CustomerPolicyEnforcementResult: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Final verdict of the customer policy enforcement. If only one policy
+      /// blocked the processing, the verdict is BLOCK.
+      public var verdict: AssistAnswer.CustomerPolicyEnforcementResult.Verdict = AssistAnswer
+        .CustomerPolicyEnforcementResult.Verdict()
+
+      /// Customer policy enforcement results.
+      /// Populated only if the assist call was skipped due to a policy
+      /// violation. It contains results from those filters that blocked the
+      /// processing of the query.
+      public var policyResults:
+        [AssistAnswer.CustomerPolicyEnforcementResult.PolicyEnforcementResult] = []
+
+      /// Output only. The source of the violation.
+      public var violationSource: AssistAnswer.CustomerPolicyEnforcementResult.ViolationSource =
+        AssistAnswer.CustomerPolicyEnforcementResult.ViolationSource()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `CustomerPolicyEnforcementResult`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = CustomerPolicyEnforcementResult().with { $0.verdict = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let verdict = CodingKeys(stringValue: "verdict")
+        static let policyResults = CodingKeys(stringValue: "policyResults")
+        static let violationSource = CodingKeys(stringValue: "violationSource")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "verdict",
+          "policyResults",
+          "violationSource",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(
+          AssistAnswer.CustomerPolicyEnforcementResult.Verdict.self, forKey: .verdict)
+        {
+          self.verdict = value
+        }
+        if let value = try container.decodeIfPresent(
+          [AssistAnswer.CustomerPolicyEnforcementResult.PolicyEnforcementResult].self,
+          forKey: .policyResults)
+        {
+          self.policyResults = value
+        }
+        if let value = try container.decodeIfPresent(
+          AssistAnswer.CustomerPolicyEnforcementResult.ViolationSource.self,
+          forKey: .violationSource)
+        {
+          self.violationSource = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.verdict, forKey: .verdict)
+        try container.encode(self.policyResults, forKey: .policyResults)
+        try container.encode(self.violationSource, forKey: .violationSource)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// Customer policy enforcement result for the banned phrase policy.
+      public struct BannedPhraseEnforcementResult: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// The banned phrases that were found in the query or the answer.
+        public var bannedPhrases: [Swift.String] = []
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `BannedPhraseEnforcementResult`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = BannedPhraseEnforcementResult().with { $0.bannedPhrases = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let bannedPhrases = CodingKeys(stringValue: "bannedPhrases")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "bannedPhrases"
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+          if let value = try container.decodeIfPresent([Swift.String].self, forKey: .bannedPhrases)
+          {
+            self.bannedPhrases = value
+          }
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+          try container.encode(self.bannedPhrases, forKey: .bannedPhrases)
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// The type URL for `BannedPhraseEnforcementResult`: `"type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult.BannedPhraseEnforcementResult"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult.BannedPhraseEnforcementResult"
+        }
+
+        /// Initialize an instance of `BannedPhraseEnforcementResult` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult.BannedPhraseEnforcementResult"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `BannedPhraseEnforcementResult` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// Customer policy enforcement result for the Model Armor policy.
+      public struct ModelArmorEnforcementResult: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// The Model Armor policy result.
+        public var result: ResultOneOf? = nil
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `ModelArmorEnforcementResult`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = ModelArmorEnforcementResult().with { $0.modelArmorViolation = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let modelArmorViolation = CodingKeys(stringValue: "modelArmorViolation")
+          static let error = CodingKeys(stringValue: "error")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "modelArmorViolation",
+            "error",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+
+          var result: ResultOneOf? = nil
+          let resultCheckAndSet = {
+            if result != nil {
+              throw DecodingError.dataCorrupted(
+                DecodingError.Context(
+                  codingPath: decoder.codingPath,
+                  debugDescription: "Multiple values set for oneof 'result'"))
+            }
+            result = $0
+          }
+          if let modelArmorViolation = try container.decodeIfPresent(
+            Swift.String.self, forKey: .modelArmorViolation)
+          {
+            try resultCheckAndSet(.modelArmorViolation(modelArmorViolation))
+          }
+          if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
+            try resultCheckAndSet(.error(error))
+          }
+          self.result = result
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+
+          if let choice = self.result {
+            switch choice {
+            case .modelArmorViolation(let value):
+              try container.encode(value, forKey: .modelArmorViolation)
+            case .error(let value):
+              try container.encode(value, forKey: .error)
+            }
+          }
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// The Model Armor policy result.
+        public enum ResultOneOf: Codable, Equatable, Sendable {
+          /// The Model Armor violation that was found.
+          case modelArmorViolation(Swift.String)
+          /// The error returned by Model Armor if the policy enforcement failed
+          /// for some reason.
+          indirect case error(GoogleRpc.Status)
+        }
+
+        /// The type URL for `ModelArmorEnforcementResult`: `"type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult.ModelArmorEnforcementResult"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult.ModelArmorEnforcementResult"
+        }
+
+        /// Initialize an instance of `ModelArmorEnforcementResult` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult.ModelArmorEnforcementResult"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `ModelArmorEnforcementResult` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// Customer policy enforcement result for a single policy type.
+      public struct PolicyEnforcementResult: Codable, Equatable, GoogleWKT._AnyPackable,
+        Sendable
+      {
+        /// The policy type specific result. It can be either an error or a
+        /// detailed information about the policy enforcement result.
+        public var enforcementResult: EnforcementResultOneOf? = nil
+
+        @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+        /// Initialize a new instance of `PolicyEnforcementResult`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = PolicyEnforcementResult().with { $0.bannedPhraseEnforcementResult = ... }
+        /// ```
+        @inlinable
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        private struct CodingKeys: CodingKey {
+          var stringValue: Swift.String
+          var intValue: Swift.Int? { nil }
+          init(stringValue: Swift.String) { self.stringValue = stringValue }
+          init?(intValue: Swift.Int) { nil }
+
+          static let bannedPhraseEnforcementResult = CodingKeys(
+            stringValue: "bannedPhraseEnforcementResult")
+          static let modelArmorEnforcementResult = CodingKeys(
+            stringValue: "modelArmorEnforcementResult")
+
+          static let _knownKeys: Set<Swift.String> = [
+            "bannedPhraseEnforcementResult",
+            "modelArmorEnforcementResult",
+          ]
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.container(keyedBy: CodingKeys.self)
+
+          var enforcementResult: EnforcementResultOneOf? = nil
+          let enforcementResultCheckAndSet = {
+            if enforcementResult != nil {
+              throw DecodingError.dataCorrupted(
+                DecodingError.Context(
+                  codingPath: decoder.codingPath,
+                  debugDescription: "Multiple values set for oneof 'enforcementResult'"))
+            }
+            enforcementResult = $0
+          }
+          if let bannedPhraseEnforcementResult = try container.decodeIfPresent(
+            AssistAnswer.CustomerPolicyEnforcementResult.BannedPhraseEnforcementResult.self,
+            forKey: .bannedPhraseEnforcementResult)
+          {
+            try enforcementResultCheckAndSet(
+              .bannedPhraseEnforcementResult(bannedPhraseEnforcementResult))
+          }
+          if let modelArmorEnforcementResult = try container.decodeIfPresent(
+            AssistAnswer.CustomerPolicyEnforcementResult.ModelArmorEnforcementResult.self,
+            forKey: .modelArmorEnforcementResult)
+          {
+            try enforcementResultCheckAndSet(
+              .modelArmorEnforcementResult(modelArmorEnforcementResult))
+          }
+          self.enforcementResult = enforcementResult
+          for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+            self._unknownFields.json[key.stringValue] = try container.decode(
+              GoogleWKT.WKTValue.self, forKey: key)
+          }
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.container(keyedBy: CodingKeys.self)
+
+          if let choice = self.enforcementResult {
+            switch choice {
+            case .bannedPhraseEnforcementResult(let value):
+              try container.encode(value, forKey: .bannedPhraseEnforcementResult)
+            case .modelArmorEnforcementResult(let value):
+              try container.encode(value, forKey: .modelArmorEnforcementResult)
+            }
+          }
+          for (key, value) in self._unknownFields.json {
+            try container.encode(value, forKey: CodingKeys(stringValue: key))
+          }
+        }
+
+        /// The policy type specific result. It can be either an error or a
+        /// detailed information about the policy enforcement result.
+        public enum EnforcementResultOneOf: Codable, Equatable, Sendable {
+          /// The policy enforcement result for the banned phrase policy.
+          indirect case bannedPhraseEnforcementResult(
+            AssistAnswer.CustomerPolicyEnforcementResult.BannedPhraseEnforcementResult)
+          /// The policy enforcement result for the Model Armor policy.
+          indirect case modelArmorEnforcementResult(
+            AssistAnswer.CustomerPolicyEnforcementResult.ModelArmorEnforcementResult)
+        }
+
+        /// The type URL for `PolicyEnforcementResult`: `"type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult.PolicyEnforcementResult"`.
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult.PolicyEnforcementResult"
+        }
+
+        /// Initialize an instance of `PolicyEnforcementResult` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult.PolicyEnforcementResult"`,
+        ///   or if deserialization fails.
+        public init(fromAny any: GoogleWKT.WKTAny) throws {
+          self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+        }
+
+        /// Packs this `PolicyEnforcementResult` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
+        public func _pack() throws -> GoogleWKT.WKTStruct {
+          return try GoogleWKT._anySerialize(message: self)
+        }
+      }
+
+      /// The verdict of the customer policy enforcement.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
+      public enum Verdict: Codable, Equatable, Hashable, Sendable {
+        /// Unknown value.
+        case unspecified
+        /// There was no policy violation.
+        case allow
+        /// Processing was blocked by the customer policy.
+        case block
+        /// Encodes an unknown integer value.
+        ///
+        /// The most common cause for an unknown value is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
+        case unknownIntValue(Int)
+        /// Encodes an unknown string value.
+        ///
+        /// The most common cause for an unknown value is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
+        case unknownStringValue(String)
+
+        public init() {
+          self = .unspecified
+        }
+
+        /// Returns the integer value associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+        public var intValue: Int? {
+          switch self {
+          case .unspecified: return 0
+          case .allow: return 1
+          case .block: return 2
+          case .unknownIntValue(let v): return v
+          case .unknownStringValue: return nil
+          }
+        }
+
+        /// Returns the string value (or name) associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+        public var stringValue: Swift.String? {
+          switch self {
+          case .unspecified: return "UNSPECIFIED"
+          case .allow: return "ALLOW"
+          case .block: return "BLOCK"
+          case .unknownIntValue: return nil
+          case .unknownStringValue(let v): return v
+          }
+        }
+
+        /// Initialize from a string value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Verdict/unknownStringValue(_:)).
+        public init(stringValue: Swift.String) {
+          switch stringValue {
+          case "UNSPECIFIED": self = .unspecified
+          case "ALLOW": self = .allow
+          case "BLOCK": self = .block
+          default: self = .unknownStringValue(stringValue)
+          }
+        }
+
+        /// Initialize from an integer value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Verdict/unknownIntValue(_:)).
+        public init(intValue: Int) {
+          switch intValue {
+          case 0: self = .unspecified
+          case 1: self = .allow
+          case 2: self = .block
+          default: self = .unknownIntValue(intValue)
+          }
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.singleValueContainer()
+          if let v = try? container.decode(Int.self) {
+            self.init(intValue: v)
+            return
+          }
+          if let s = try? container.decode(String.self) {
+            if let v = Int(s) {
+              self.init(intValue: v)
+            } else {
+              self.init(stringValue: s)
+            }
+            return
+          }
+          throw DecodingError.dataCorruptedError(
+            in: container, debugDescription: "Expected enum value, must be integer or string.")
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.singleValueContainer()
+          switch self {
+          case .unspecified: return try container.encode("UNSPECIFIED")
+          case .allow: return try container.encode("ALLOW")
+          case .block: return try container.encode("BLOCK")
+          case .unknownIntValue(let v): return try container.encode(v)
+          case .unknownStringValue(let v): return try container.encode(v)
+          }
+        }
+      }
+
+      /// If the assist call was skipped due to a policy violation, this contains
+      /// the source of the violation.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
+      public enum ViolationSource: Codable, Equatable, Hashable, Sendable {
+        /// Unknown value.
+        case unspecified
+        /// Violation found in the system response.
+        case system
+        /// Violation found in the user prompt.
+        case prompt
+        /// Violation found in the user attachment.
+        case attachment
+        /// Encodes an unknown integer value.
+        ///
+        /// The most common cause for an unknown value is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
+        case unknownIntValue(Int)
+        /// Encodes an unknown string value.
+        ///
+        /// The most common cause for an unknown value is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
+        case unknownStringValue(String)
+
+        public init() {
+          self = .unspecified
+        }
+
+        /// Returns the integer value associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+        public var intValue: Int? {
+          switch self {
+          case .unspecified: return 0
+          case .system: return 1
+          case .prompt: return 2
+          case .attachment: return 3
+          case .unknownIntValue(let v): return v
+          case .unknownStringValue: return nil
+          }
+        }
+
+        /// Returns the string value (or name) associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+        public var stringValue: Swift.String? {
+          switch self {
+          case .unspecified: return "VIOLATION_SOURCE_UNSPECIFIED"
+          case .system: return "SYSTEM"
+          case .prompt: return "PROMPT"
+          case .attachment: return "ATTACHMENT"
+          case .unknownIntValue: return nil
+          case .unknownStringValue(let v): return v
+          }
+        }
+
+        /// Initialize from a string value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ViolationSource/unknownStringValue(_:)).
+        public init(stringValue: Swift.String) {
+          switch stringValue {
+          case "VIOLATION_SOURCE_UNSPECIFIED": self = .unspecified
+          case "SYSTEM": self = .system
+          case "PROMPT": self = .prompt
+          case "ATTACHMENT": self = .attachment
+          default: self = .unknownStringValue(stringValue)
+          }
+        }
+
+        /// Initialize from an integer value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ViolationSource/unknownIntValue(_:)).
+        public init(intValue: Int) {
+          switch intValue {
+          case 0: self = .unspecified
+          case 1: self = .system
+          case 2: self = .prompt
+          case 3: self = .attachment
+          default: self = .unknownIntValue(intValue)
+          }
+        }
+
+        public init(from decoder: any Decoder) throws {
+          let container = try decoder.singleValueContainer()
+          if let v = try? container.decode(Int.self) {
+            self.init(intValue: v)
+            return
+          }
+          if let s = try? container.decode(String.self) {
+            if let v = Int(s) {
+              self.init(intValue: v)
+            } else {
+              self.init(stringValue: s)
+            }
+            return
+          }
+          throw DecodingError.dataCorruptedError(
+            in: container, debugDescription: "Expected enum value, must be integer or string.")
+        }
+
+        public func encode(to encoder: any Encoder) throws {
+          var container = encoder.singleValueContainer()
+          switch self {
+          case .unspecified: return try container.encode("VIOLATION_SOURCE_UNSPECIFIED")
+          case .system: return try container.encode("SYSTEM")
+          case .prompt: return try container.encode("PROMPT")
+          case .attachment: return try container.encode("ATTACHMENT")
+          case .unknownIntValue(let v): return try container.encode(v)
+          case .unknownStringValue(let v): return try container.encode(v)
+          }
+        }
+      }
+
+      /// The type URL for `CustomerPolicyEnforcementResult`: `"type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult"`.
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult"
+      }
+
+      /// Initialize an instance of `CustomerPolicyEnforcementResult` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.CustomerPolicyEnforcementResult"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `CustomerPolicyEnforcementResult` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._anySerialize(message: self)
+      }
+    }
+
     /// State of the answer generation.
     ///
     /// - Note: Adding cases to this enumeration is not considered a breaking change.
@@ -235,6 +956,9 @@
       case succeeded
       /// Assist operation has been skipped.
       case skipped
+      /// Assist operation has been cancelled (e.g. client closed the stream).
+      /// May contain a partial response.
+      case cancelled
       /// Encodes an unknown integer value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -268,6 +992,7 @@
         case .failed: return 2
         case .succeeded: return 3
         case .skipped: return 4
+        case .cancelled: return 5
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -283,6 +1008,7 @@
         case .failed: return "FAILED"
         case .succeeded: return "SUCCEEDED"
         case .skipped: return "SKIPPED"
+        case .cancelled: return "CANCELLED"
         case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
@@ -298,6 +1024,7 @@
         case "FAILED": self = .failed
         case "SUCCEEDED": self = .succeeded
         case "SKIPPED": self = .skipped
+        case "CANCELLED": self = .cancelled
         default: self = .unknownStringValue(stringValue)
         }
       }
@@ -312,6 +1039,7 @@
         case 2: self = .failed
         case 3: self = .succeeded
         case 4: self = .skipped
+        case 5: self = .cancelled
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -342,6 +1070,7 @@
         case .failed: return try container.encode("FAILED")
         case .succeeded: return try container.encode("SUCCEEDED")
         case .skipped: return try container.encode("SKIPPED")
+        case .cancelled: return try container.encode("CANCELLED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

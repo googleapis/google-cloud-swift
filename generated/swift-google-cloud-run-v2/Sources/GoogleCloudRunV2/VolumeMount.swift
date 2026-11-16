@@ -33,6 +33,8 @@ public struct VolumeMount: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. Path within the volume from which the container's volume should
   /// be mounted. Defaults to "" (volume's root).
+  ///
+  /// This field is currently rejected in Secret volume mounts.
   public var subPath: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

@@ -72,8 +72,12 @@ public struct SearchPublicKgResponse: Codable, Equatable, GoogleWKT._AnyPackable
 
   public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.context = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .context)
-    self.type = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .type)
+    if container.contains(.context) {
+      self.context = try container.decode(GoogleWKT.WKTValue.self, forKey: .context)
+    }
+    if container.contains(.type) {
+      self.type = try container.decode(GoogleWKT.WKTValue.self, forKey: .type)
+    }
     self.itemListElement = try container.decodeIfPresent(
       GoogleWKT.WKTListValue.self, forKey: .itemListElement)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

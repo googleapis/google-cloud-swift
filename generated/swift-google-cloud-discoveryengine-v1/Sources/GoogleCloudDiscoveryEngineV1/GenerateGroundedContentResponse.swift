@@ -194,6 +194,10 @@
         public var images:
           [GenerateGroundedContentResponse.Candidate.GroundingMetadata.ImageMetadata] = []
 
+        /// Videos from the web search.
+        public var videos:
+          [GenerateGroundedContentResponse.Candidate.GroundingMetadata.VideoMetadata] = []
+
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
         /// Initialize a new instance of `GroundingMetadata`.
@@ -225,6 +229,7 @@
           static let searchEntryPoint = CodingKeys(stringValue: "searchEntryPoint")
           static let groundingSupport = CodingKeys(stringValue: "groundingSupport")
           static let images = CodingKeys(stringValue: "images")
+          static let videos = CodingKeys(stringValue: "videos")
 
           static let _knownKeys: Set<Swift.String> = [
             "retrievalMetadata",
@@ -233,6 +238,7 @@
             "searchEntryPoint",
             "groundingSupport",
             "images",
+            "videos",
           ]
         }
 
@@ -267,6 +273,12 @@
           {
             self.images = value
           }
+          if let value = try container.decodeIfPresent(
+            [GenerateGroundedContentResponse.Candidate.GroundingMetadata.VideoMetadata].self,
+            forKey: .videos)
+          {
+            self.videos = value
+          }
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
               GoogleWKT.WKTValue.self, forKey: key)
@@ -281,6 +293,7 @@
           try container.encodeIfPresent(self.searchEntryPoint, forKey: .searchEntryPoint)
           try container.encode(self.groundingSupport, forKey: .groundingSupport)
           try container.encode(self.images, forKey: .images)
+          try container.encode(self.videos, forKey: .videos)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
@@ -1097,6 +1110,9 @@
             /// The title of the website.
             public var title: Swift.String = Swift.String()
 
+            /// The display name of the website.
+            public var siteDisplayName: Swift.String = Swift.String()
+
             @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
             /// Initialize a new instance of `WebsiteInfo`.
@@ -1124,10 +1140,12 @@
 
               static let uri = CodingKeys(stringValue: "uri")
               static let title = CodingKeys(stringValue: "title")
+              static let siteDisplayName = CodingKeys(stringValue: "siteDisplayName")
 
               static let _knownKeys: Set<Swift.String> = [
                 "uri",
                 "title",
+                "siteDisplayName",
               ]
             }
 
@@ -1139,6 +1157,11 @@
               if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
                 self.title = value
               }
+              if let value = try container.decodeIfPresent(
+                Swift.String.self, forKey: .siteDisplayName)
+              {
+                self.siteDisplayName = value
+              }
               for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
                 self._unknownFields.json[key.stringValue] = try container.decode(
                   GoogleWKT.WKTValue.self, forKey: key)
@@ -1149,6 +1172,7 @@
               var container = encoder.container(keyedBy: CodingKeys.self)
               try container.encode(self.uri, forKey: .uri)
               try container.encode(self.title, forKey: .title)
+              try container.encode(self.siteDisplayName, forKey: .siteDisplayName)
               for (key, value) in self._unknownFields.json {
                 try container.encode(value, forKey: CodingKeys(stringValue: key))
               }
@@ -1292,6 +1316,89 @@
           }
 
           /// Packs this `ImageMetadata` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
+          public func _pack() throws -> GoogleWKT.WKTStruct {
+            return try GoogleWKT._anySerialize(message: self)
+          }
+        }
+
+        /// Metadata about a video from the web search.
+        public struct VideoMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
+          Sendable
+        {
+          /// The external id of the video.
+          public var youtubeExternalId: Swift.String = Swift.String()
+
+          @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+          /// Initialize a new instance of `VideoMetadata`.
+          public init() {}
+
+          /// Use `config` to return a new instance of this object, with some fields updated.
+          ///
+          /// Commonly used to initialize the value, for example:
+          ///
+          /// ```
+          /// let value = VideoMetadata().with { $0.youtubeExternalId = ... }
+          /// ```
+          @inlinable
+          public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+            var copy = self
+            try config(&copy)
+            return copy
+          }
+
+          private struct CodingKeys: CodingKey {
+            var stringValue: Swift.String
+            var intValue: Swift.Int? { nil }
+            init(stringValue: Swift.String) { self.stringValue = stringValue }
+            init?(intValue: Swift.Int) { nil }
+
+            static let youtubeExternalId = CodingKeys(stringValue: "youtubeExternalId")
+
+            static let _knownKeys: Set<Swift.String> = [
+              "youtubeExternalId"
+            ]
+          }
+
+          public init(from decoder: any Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let value = try container.decodeIfPresent(
+              Swift.String.self, forKey: .youtubeExternalId)
+            {
+              self.youtubeExternalId = value
+            }
+            for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+              self._unknownFields.json[key.stringValue] = try container.decode(
+                GoogleWKT.WKTValue.self, forKey: key)
+            }
+          }
+
+          public func encode(to encoder: any Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.youtubeExternalId, forKey: .youtubeExternalId)
+            for (key, value) in self._unknownFields.json {
+              try container.encode(value, forKey: CodingKeys(stringValue: key))
+            }
+          }
+
+          /// The type URL for `VideoMetadata`: `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.VideoMetadata"`.
+          public static var _anyTypeUrl: Swift.String {
+            return
+              "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.VideoMetadata"
+          }
+
+          /// Initialize an instance of `VideoMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.VideoMetadata"`,
+          ///   or if deserialization fails.
+          public init(fromAny any: GoogleWKT.WKTAny) throws {
+            self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+          }
+
+          /// Packs this `VideoMetadata` into a `GoogleWKT.WKTStruct` representation.
           ///
           /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {

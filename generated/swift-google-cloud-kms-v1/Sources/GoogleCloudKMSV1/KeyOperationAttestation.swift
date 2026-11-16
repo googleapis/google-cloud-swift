@@ -219,6 +219,8 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
     /// Cavium HSM attestation V2 compressed with gzip. This is a new format
     /// introduced in Cavium's version 3.2-08.
     case caviumV2Compressed
+    /// Cavium HSM attestation V209, introduced in Cavium's version 2.09-0702.
+    case caviumV209
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -250,6 +252,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
       case .unspecified: return 0
       case .caviumV1Compressed: return 3
       case .caviumV2Compressed: return 4
+      case .caviumV209: return 5
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -263,6 +266,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
       case .unspecified: return "ATTESTATION_FORMAT_UNSPECIFIED"
       case .caviumV1Compressed: return "CAVIUM_V1_COMPRESSED"
       case .caviumV2Compressed: return "CAVIUM_V2_COMPRESSED"
+      case .caviumV209: return "CAVIUM_V209"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -276,6 +280,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
       case "ATTESTATION_FORMAT_UNSPECIFIED": self = .unspecified
       case "CAVIUM_V1_COMPRESSED": self = .caviumV1Compressed
       case "CAVIUM_V2_COMPRESSED": self = .caviumV2Compressed
+      case "CAVIUM_V209": self = .caviumV209
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -288,6 +293,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
       case 0: self = .unspecified
       case 3: self = .caviumV1Compressed
       case 4: self = .caviumV2Compressed
+      case 5: self = .caviumV209
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -316,6 +322,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
       case .unspecified: return try container.encode("ATTESTATION_FORMAT_UNSPECIFIED")
       case .caviumV1Compressed: return try container.encode("CAVIUM_V1_COMPRESSED")
       case .caviumV2Compressed: return try container.encode("CAVIUM_V2_COMPRESSED")
+      case .caviumV209: return try container.encode("CAVIUM_V209")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

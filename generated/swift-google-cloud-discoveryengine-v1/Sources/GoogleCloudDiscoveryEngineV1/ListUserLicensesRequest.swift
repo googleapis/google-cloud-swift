@@ -25,13 +25,16 @@
   public struct ListUserLicensesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    /// Required. The parent [UserStore][] resource name, format:
+    /// Required. The parent [UserStore][google.cloud.discoveryengine.v1.UserStore]
+    /// resource name, format:
     /// `projects/{project}/locations/{location}/userStores/{user_store_id}`.
+    ///
+    /// [google.cloud.discoveryengine.v1.UserStore]: <doc:UserStore>
     public var parent: Swift.String = Swift.String()
 
     /// Optional. Requested page size. Server may return fewer items than
-    /// requested. If unspecified, defaults to 10. The maximum value is 50; values
-    /// above 50 will be coerced to 50.
+    /// requested. If unspecified, defaults to 100. The maximum value is 1000;
+    /// values above 1000 will be coerced to 1000.
     ///
     /// If this field is negative, an INVALID_ARGUMENT error is returned.
     public var pageSize: Swift.Int32 = Swift.Int32()
@@ -48,7 +51,8 @@
     /// Supported fields:
     ///
     /// * `license_assignment_state`
-    ///
+    /// * `user_principal`
+    /// *
     /// Examples:
     ///
     /// * `license_assignment_state = ASSIGNED` to list assigned user licenses.
@@ -57,7 +61,29 @@
     /// who attempted login but no license assigned.
     /// * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter
     /// out users who attempted login but no license assigned.
+    /// * `user_principal = user1@example.com` to list user license for
+    /// `user1@example.com`.
     public var filter: Swift.String = Swift.String()
+
+    /// Optional. The order in which the
+    /// [UserLicense][google.cloud.discoveryengine.v1.UserLicense]s are listed. The
+    /// value must be a comma-separated list of fields. Default sorting order is
+    /// ascending. To specify descending order for a field, append a " desc"
+    /// suffix. Redundant space characters in the syntax are insignificant.
+    ///
+    /// Supported fields (only `user_principal` is supported for now):
+    ///
+    /// * `user_principal`
+    ///
+    /// If not set, the default ordering is by `user_principal`.
+    ///
+    /// Examples:
+    ///
+    /// * `user_principal` to order by `user_principal` in ascending order.
+    /// * `user_principal desc` to order by `user_principal` in descending order.
+    ///
+    /// [google.cloud.discoveryengine.v1.UserLicense]: <doc:UserLicense>
+    public var orderBy: Swift.String = Swift.String()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -88,12 +114,14 @@
       static let pageSize = CodingKeys(stringValue: "pageSize")
       static let pageToken = CodingKeys(stringValue: "pageToken")
       static let filter = CodingKeys(stringValue: "filter")
+      static let orderBy = CodingKeys(stringValue: "orderBy")
 
       static let _knownKeys: Set<Swift.String> = [
         "parent",
         "pageSize",
         "pageToken",
         "filter",
+        "orderBy",
       ]
     }
 
@@ -111,6 +139,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
         self.filter = value
       }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .orderBy) {
+        self.orderBy = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -123,6 +154,7 @@
       try container.encode(self.pageSize, forKey: .pageSize)
       try container.encode(self.pageToken, forKey: .pageToken)
       try container.encode(self.filter, forKey: .filter)
+      try container.encode(self.orderBy, forKey: .orderBy)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -33,6 +33,13 @@ public struct FilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. Malicious URI filter settings.
   public var maliciousUriFilterSettings: MaliciousUriFilterSettings? = nil
 
+  /// Optional. Settings for customizing filter rules.
+  /// Note: This field is not supported in FloorSetting.
+  public var filterRuleSettings: FilterRuleSettings? = nil
+
+  /// Optional. Child sexual abuse material (CSAM) filter settings.
+  public var csamFilterSettings: CsamFilterSettings? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `FilterConfig`.
@@ -63,12 +70,16 @@ public struct FilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     static let piAndJailbreakFilterSettings = CodingKeys(
       stringValue: "piAndJailbreakFilterSettings")
     static let maliciousUriFilterSettings = CodingKeys(stringValue: "maliciousUriFilterSettings")
+    static let filterRuleSettings = CodingKeys(stringValue: "filterRuleSettings")
+    static let csamFilterSettings = CodingKeys(stringValue: "csamFilterSettings")
 
     static let _knownKeys: Set<Swift.String> = [
       "raiSettings",
       "sdpSettings",
       "piAndJailbreakFilterSettings",
       "maliciousUriFilterSettings",
+      "filterRuleSettings",
+      "csamFilterSettings",
     ]
   }
 
@@ -80,6 +91,10 @@ public struct FilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       PiAndJailbreakFilterSettings.self, forKey: .piAndJailbreakFilterSettings)
     self.maliciousUriFilterSettings = try container.decodeIfPresent(
       MaliciousUriFilterSettings.self, forKey: .maliciousUriFilterSettings)
+    self.filterRuleSettings = try container.decodeIfPresent(
+      FilterRuleSettings.self, forKey: .filterRuleSettings)
+    self.csamFilterSettings = try container.decodeIfPresent(
+      CsamFilterSettings.self, forKey: .csamFilterSettings)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -94,6 +109,8 @@ public struct FilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.piAndJailbreakFilterSettings, forKey: .piAndJailbreakFilterSettings)
     try container.encodeIfPresent(
       self.maliciousUriFilterSettings, forKey: .maliciousUriFilterSettings)
+    try container.encodeIfPresent(self.filterRuleSettings, forKey: .filterRuleSettings)
+    try container.encodeIfPresent(self.csamFilterSettings, forKey: .csamFilterSettings)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

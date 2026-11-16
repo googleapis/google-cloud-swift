@@ -27,17 +27,17 @@ public struct ExascaleDbStorageVault: Codable, Equatable, GoogleWKT._AnyPackable
   /// projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
   public var name: Swift.String = Swift.String()
 
-  /// Required. The display name for the ExascaleDbStorageVault. The name does
-  /// not have to be unique within your project. The name must be 1-255
+  /// Required. Immutable. The display name for the ExascaleDbStorageVault. The
+  /// name does not have to be unique within your project. The name must be 1-255
   /// characters long and can only contain alphanumeric characters.
   public var displayName: Swift.String = Swift.String()
 
-  /// Optional. The GCP Oracle zone where Oracle ExascaleDbStorageVault is
-  /// hosted. Example: us-east4-b-r2. If not specified, the system will pick a
-  /// zone based on availability.
+  /// Optional. Immutable. The GCP Oracle zone where Oracle
+  /// ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not specified,
+  /// the system will pick a zone based on availability.
   public var gcpOracleZone: Swift.String = Swift.String()
 
-  /// Required. The properties of the ExascaleDbStorageVault.
+  /// Required. Immutable. The properties of the ExascaleDbStorageVault.
   public var properties: ExascaleDbStorageVaultProperties? = nil
 
   /// Output only. The date and time when the ExascaleDbStorageVault was created.
@@ -50,7 +50,7 @@ public struct ExascaleDbStorageVault: Codable, Equatable, GoogleWKT._AnyPackable
   /// Optional. The labels or tags associated with the ExascaleDbStorageVault.
   public var labels: [Swift.String: Swift.String] = [:]
 
-  /// Optional. The Exadata Infrastructure resource on which
+  /// Optional. Immutable. The Exadata Infrastructure resource on which
   /// ExascaleDbStorageVault
   /// resource is created, in the following format:
   /// projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}

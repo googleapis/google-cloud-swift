@@ -46,6 +46,10 @@
     /// Output only. The base backup ID associated with the workload capture.
     public var backupId: Swift.String? = nil
 
+    /// Output only. The capture mode of the workload capture.
+    public var captureMode: WorkloadCapture.WorkloadCaptureMode =
+      WorkloadCapture.WorkloadCaptureMode()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `WorkloadCapture`.
@@ -79,6 +83,7 @@
       static let replayInstance = CodingKeys(stringValue: "replayInstance")
       static let retentionDays = CodingKeys(stringValue: "retentionDays")
       static let backupId = CodingKeys(stringValue: "backupId")
+      static let captureMode = CodingKeys(stringValue: "captureMode")
 
       static let _knownKeys: Set<Swift.String> = [
         "workloadId",
@@ -89,6 +94,7 @@
         "replayInstance",
         "retentionDays",
         "backupId",
+        "captureMode",
       ]
     }
 
@@ -112,6 +118,11 @@
         Swift.String.self, forKey: .replayInstance)
       self.retentionDays = try container.decodeIfPresent(Swift.Int32.self, forKey: .retentionDays)
       self.backupId = try container.decodeIfPresent(Swift.String.self, forKey: .backupId)
+      if let value = try container.decodeIfPresent(
+        WorkloadCapture.WorkloadCaptureMode.self, forKey: .captureMode)
+      {
+        self.captureMode = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -128,6 +139,7 @@
       try container.encodeIfPresent(self.replayInstance, forKey: .replayInstance)
       try container.encodeIfPresent(self.retentionDays, forKey: .retentionDays)
       try container.encodeIfPresent(self.backupId, forKey: .backupId)
+      try container.encode(self.captureMode, forKey: .captureMode)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -261,6 +273,124 @@
         case .completed: return try container.encode("COMPLETED")
         case .failed: return try container.encode("FAILED")
         case .terminated: return try container.encode("TERMINATED")
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    /// Specifies the mode of the workload capture.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum WorkloadCaptureMode: Codable, Equatable, Hashable, Sendable {
+      /// Default value. This value is unused.
+      case unspecified
+      /// Records and stores the workload without live replay.
+      case captureOnly
+      /// Records the workload and simultaneously replays it on a live replay
+      /// instance.
+      case captureAndLiveReplay
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .unspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .unspecified: return 0
+        case .captureOnly: return 1
+        case .captureAndLiveReplay: return 2
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .unspecified: return "WORKLOAD_CAPTURE_MODE_UNSPECIFIED"
+        case .captureOnly: return "CAPTURE_ONLY"
+        case .captureAndLiveReplay: return "CAPTURE_AND_LIVE_REPLAY"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:WorkloadCaptureMode/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "WORKLOAD_CAPTURE_MODE_UNSPECIFIED": self = .unspecified
+        case "CAPTURE_ONLY": self = .captureOnly
+        case "CAPTURE_AND_LIVE_REPLAY": self = .captureAndLiveReplay
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:WorkloadCaptureMode/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .unspecified
+        case 1: self = .captureOnly
+        case 2: self = .captureAndLiveReplay
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .unspecified: return try container.encode("WORKLOAD_CAPTURE_MODE_UNSPECIFIED")
+        case .captureOnly: return try container.encode("CAPTURE_ONLY")
+        case .captureAndLiveReplay: return try container.encode("CAPTURE_AND_LIVE_REPLAY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

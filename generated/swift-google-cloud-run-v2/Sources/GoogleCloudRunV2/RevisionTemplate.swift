@@ -69,9 +69,12 @@ public struct RevisionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// provided, the revision will use the project's default service account.
   public var serviceAccount: Swift.String = Swift.String()
 
-  /// Holds the single container that defines the unit of execution for this
+  /// Holds the list which define the units of execution for this
   /// Revision.
   public var containers: [Container] = []
+
+  /// Optional. Configuration for sandboxes.
+  public var sandboxes: SandboxConfiguration? = nil
 
   /// Optional. A list of Volumes to make available to containers.
   public var volumes: [Volume] = []
@@ -109,8 +112,20 @@ public struct RevisionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. The node selector for the revision template.
   public var nodeSelector: NodeSelector? = nil
 
+  /// Optional. The Revision's workload identity settings.
+  public var workloadIdentityConfig: WorkloadIdentityConfig? = nil
+
   /// Optional. True if GPU zonal redundancy is disabled on this revision.
   public var gpuZonalRedundancyDisabled: Swift.Bool? = nil
+
+  /// Optional. Arbitrary identifier for the API client.
+  public var client: Swift.String = Swift.String()
+
+  /// Optional. Arbitrary version identifier for the API client.
+  public var clientVersion: Swift.String = Swift.String()
+
+  /// Optional. The ambient networking configuration for this revision.
+  public var ambientNetworking: AmbientNetworking? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -145,6 +160,7 @@ public struct RevisionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     static let timeout = CodingKeys(stringValue: "timeout")
     static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
     static let containers = CodingKeys(stringValue: "containers")
+    static let sandboxes = CodingKeys(stringValue: "sandboxes")
     static let volumes = CodingKeys(stringValue: "volumes")
     static let executionEnvironment = CodingKeys(stringValue: "executionEnvironment")
     static let encryptionKey = CodingKeys(stringValue: "encryptionKey")
@@ -158,7 +174,11 @@ public struct RevisionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     static let sessionAffinity = CodingKeys(stringValue: "sessionAffinity")
     static let healthCheckDisabled = CodingKeys(stringValue: "healthCheckDisabled")
     static let nodeSelector = CodingKeys(stringValue: "nodeSelector")
+    static let workloadIdentityConfig = CodingKeys(stringValue: "workloadIdentityConfig")
     static let gpuZonalRedundancyDisabled = CodingKeys(stringValue: "gpuZonalRedundancyDisabled")
+    static let client = CodingKeys(stringValue: "client")
+    static let clientVersion = CodingKeys(stringValue: "clientVersion")
+    static let ambientNetworking = CodingKeys(stringValue: "ambientNetworking")
 
     static let _knownKeys: Set<Swift.String> = [
       "revision",
@@ -169,6 +189,7 @@ public struct RevisionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
       "timeout",
       "serviceAccount",
       "containers",
+      "sandboxes",
       "volumes",
       "executionEnvironment",
       "encryptionKey",
@@ -179,7 +200,11 @@ public struct RevisionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
       "sessionAffinity",
       "healthCheckDisabled",
       "nodeSelector",
+      "workloadIdentityConfig",
       "gpuZonalRedundancyDisabled",
+      "client",
+      "clientVersion",
+      "ambientNetworking",
     ]
   }
 
@@ -206,6 +231,7 @@ public struct RevisionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Container].self, forKey: .containers) {
       self.containers = value
     }
+    self.sandboxes = try container.decodeIfPresent(SandboxConfiguration.self, forKey: .sandboxes)
     if let value = try container.decodeIfPresent([Volume].self, forKey: .volumes) {
       self.volumes = value
     }
@@ -237,8 +263,18 @@ public struct RevisionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
       self.healthCheckDisabled = value
     }
     self.nodeSelector = try container.decodeIfPresent(NodeSelector.self, forKey: .nodeSelector)
+    self.workloadIdentityConfig = try container.decodeIfPresent(
+      WorkloadIdentityConfig.self, forKey: .workloadIdentityConfig)
     self.gpuZonalRedundancyDisabled = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .gpuZonalRedundancyDisabled)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .client) {
+      self.client = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientVersion) {
+      self.clientVersion = value
+    }
+    self.ambientNetworking = try container.decodeIfPresent(
+      AmbientNetworking.self, forKey: .ambientNetworking)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -255,6 +291,7 @@ public struct RevisionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.timeout, forKey: .timeout)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.containers, forKey: .containers)
+    try container.encodeIfPresent(self.sandboxes, forKey: .sandboxes)
     try container.encode(self.volumes, forKey: .volumes)
     try container.encode(self.executionEnvironment, forKey: .executionEnvironment)
     try container.encode(self.encryptionKey, forKey: .encryptionKey)
@@ -266,8 +303,12 @@ public struct RevisionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.sessionAffinity, forKey: .sessionAffinity)
     try container.encode(self.healthCheckDisabled, forKey: .healthCheckDisabled)
     try container.encodeIfPresent(self.nodeSelector, forKey: .nodeSelector)
+    try container.encodeIfPresent(self.workloadIdentityConfig, forKey: .workloadIdentityConfig)
     try container.encodeIfPresent(
       self.gpuZonalRedundancyDisabled, forKey: .gpuZonalRedundancyDisabled)
+    try container.encode(self.client, forKey: .client)
+    try container.encode(self.clientVersion, forKey: .clientVersion)
+    try container.encodeIfPresent(self.ambientNetworking, forKey: .ambientNetworking)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

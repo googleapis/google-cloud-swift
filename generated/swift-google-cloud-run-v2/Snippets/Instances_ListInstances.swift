@@ -18,7 +18,9 @@
 // snippet.show
 import Foundation
 import GoogleCloudRunV2
+import GoogleIAMV1
 import GoogleLongRunning
+import GoogleWKT
 
 func sample(client: InstancesClient, projectId: String, locationId: String) async throws {
   let items = client.listInstancesByItems(

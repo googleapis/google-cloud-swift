@@ -24,10 +24,12 @@ public struct RedisInstanceInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Name of a Cloud Redis Instance.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of a Cloud Redis Instance.
+  /// URI of a Cloud Redis Instance in format
+  /// "projects/{project}/locations/{location}/instances/{instance}"
   public var uri: Swift.String = Swift.String()
 
-  /// URI of a Cloud Redis Instance network.
+  /// URI of a Cloud Redis Instance network in format
+  /// "projects/{project}/global/networks/{network}".
   public var networkUri: Swift.String = Swift.String()
 
   /// Primary endpoint IP address of a Cloud Redis Instance.

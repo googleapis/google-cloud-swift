@@ -21,7 +21,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-apps-script-type` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-apps-script-type.git --from 0.6.0
+swift package add-dependency https://github.com/googleapis/swift-google-apps-script-type.git --from 0.7.0
 ```
 
 Then add `GoogleAppsScriptType` to your target's dependencies:

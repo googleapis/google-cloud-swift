@@ -12,21 +12,25 @@ The following traits are enabled by default:
 To enable additional traits alongside the defaults, specify them in `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/googleapis/swift-google-cloud-discoveryengine-v1.git", from: "0.6.0", traits: [".defaults", "<TraitName>"])
+.package(url: "https://github.com/googleapis/swift-google-cloud-discoveryengine-v1.git", from: "0.7.0", traits: [".defaults", "<TraitName>"])
 ```
 
 | Trait | Default | Enabled Client |
 |---|:---:|---|
+| `AclConfigService` | No | ``AclConfigServiceClient`` |
 | `AssistantService` | No | ``AssistantServiceClient`` |
 | `CmekConfigService` | No | ``CmekConfigServiceClient`` |
+| `CollectionService` | No | ``CollectionServiceClient`` |
 | `CompletionService` | No | ``CompletionServiceClient`` |
 | `ControlService` | No | ``ControlServiceClient`` |
 | `ConversationalSearchService` | No | ``ConversationalSearchServiceClient`` |
+| `DataConnectorService` | No | ``DataConnectorServiceClient`` |
 | `DataStoreService` | No | ``DataStoreServiceClient`` |
 | `DocumentService` | No | ``DocumentServiceClient`` |
 | `EngineService` | No | ``EngineServiceClient`` |
 | `GroundedGenerationService` | No | ``GroundedGenerationServiceClient`` |
 | `IdentityMappingStoreService` | No | ``IdentityMappingStoreServiceClient`` |
+| `LicenseConfigService` | No | ``LicenseConfigServiceClient`` |
 | `ProjectService` | No | ``ProjectServiceClient`` |
 | `RankService` | No | ``RankServiceClient`` |
 | `RecommendationService` | Yes | ``RecommendationServiceClient`` |
@@ -38,3 +42,5 @@ To enable additional traits alongside the defaults, specify them in `Package.swi
 | `SiteSearchEngineService` | No | ``SiteSearchEngineServiceClient`` |
 | `UserEventService` | No | ``UserEventServiceClient`` |
 | `UserLicenseService` | No | ``UserLicenseServiceClient`` |
+| `UserStoreService` | No | ``UserStoreServiceClient`` |
+| `WidgetConfigService` | No | ``WidgetConfigServiceClient`` |

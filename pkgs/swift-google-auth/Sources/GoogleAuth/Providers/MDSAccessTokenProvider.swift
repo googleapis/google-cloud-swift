@@ -120,7 +120,10 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   /// - Parameter hostEnv: The value of `GCE_METADATA_HOST`, if set.
   /// - Returns: The base URL to use for metadata server requests.
   /// - Throws: `CredentialsError.cannotFetchToken` if `GCE_METADATA_HOST` is not a valid URL.
-  private func resolveBaseEndpoint(hostEnv: String?) throws -> URL {
+  private func resolveBaseEndpoint(
+    hostEnv: String?,
+    resource: String = "an access token"
+  ) throws -> URL {
     if let endpoint = self.endpoint {
       return endpoint
     }
@@ -143,7 +146,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
         // `.cannotFetchToken` from `fetchToken()`, while `AuthHTTPError.isRetryable(_:)` unwraps
         // the underlying `.parseError` and treats invalid configuration as a permanent failure.
         throw CredentialsError.cannotFetchToken(
-          message: "Could not fetch an access token from the metadata server.",
+          message: "Could not fetch \(resource) from the metadata server.",
           underlyingError: CredentialsError.parseError(
             "Invalid GCE_METADATA_HOST URL: '\(hostEnv)'")
         )
@@ -160,9 +163,13 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   ///     Application Default Credentials discovery, rather than by explicit configuration.
   ///   - endpoint: The metadata server endpoint that was contacted.
   /// - Returns: A human-readable message describing the failure and what to verify next.
-  private static func errorMessage(isADCFallback: Bool, endpoint: URL) -> String {
+  private static func errorMessage(
+    isADCFallback: Bool,
+    endpoint: URL,
+    resource: String = "an access token"
+  ) -> String {
     let summary =
-      "Could not fetch an access token from the metadata server at \(endpoint.absoluteString)."
+      "Could not fetch \(resource) from the metadata server at \(endpoint.absoluteString)."
     if isADCFallback {
       return """
         \(summary)
@@ -181,12 +188,13 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       """
   }
 
-  /// Evaluates whether an error from `fetchToken()` is transient and eligible for retry.
+  /// Evaluates whether an error from `fetchToken()` or `fetchUniverseDomain()` is transient and
+  /// eligible for retry.
   ///
   /// While an implicit ADC fallback probe has not yet confirmed that a metadata server is present,
-  /// failures are treated as permanent so `RetryEngine` and `TokenCache` neither retry in the
-  /// background nor stall subsequent `headers()` calls outside Google Cloud. Once MDS reachability
-  /// is confirmed, standard `AuthHTTPError.isRetryable(_:)` semantics apply for token refreshes.
+  /// failures are treated as permanent so `RetryEngine`, `TokenCache`, and `MDSUniverseDomainCache`
+  /// neither retry in the background nor stall subsequent calls outside Google Cloud. Once MDS
+  /// reachability is confirmed, standard `AuthHTTPError.isRetryable(_:)` semantics apply.
   func isRetryable(_ error: any Error) -> Bool {
     if self.isUnconfirmedADCFallback {
       return false
@@ -212,10 +220,10 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   /// Resolves the base URL using `endpoint`, `GCE_METADATA_HOST`, or `defaultEndpoint`, Appends the token path
   /// `/computeMetadata/v1/instance/service-accounts/default/token`, and includes the required `Metadata-Flavor: Google` header.
   ///
-  /// - Returns: A valid `Token` containing the access token string and expiration date.
+  /// - Returns: A valid `AccessToken` containing the access token string and expiration date.
   /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server is unreachable or returns an error.
   @concurrent
-  func fetchToken() async throws -> Token {
+  func fetchToken() async throws -> AccessToken {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
     let baseEndpoint = try self.resolveBaseEndpoint(hostEnv: hostEnv)
 
@@ -256,14 +264,18 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       let tokenType: String
     }
 
-    let fetchOperation: @Sendable () async throws -> Token = {
+    let fetchOperation: @Sendable () async throws -> AccessToken = {
       let timeout: Duration? = self.isUnconfirmedADCFallback ? Self.adcFallbackTimeout : nil
       do {
         let response: TokenResponse = try await self.client.get(
           url: url, headers: headers, timeout: timeout)
         self.probeState.confirm()
         let expiration = Date().addingTimeInterval(TimeInterval(response.expiresIn))
-        return Token(accessToken: response.accessToken, expirationDate: expiration)
+        return AccessToken(
+          token: response.accessToken,
+          tokenType: response.tokenType,
+          expirationDate: expiration
+        )
       } catch {
         if Self.hasMetadataFlavorGoogle(error) {
           self.probeState.confirm()
@@ -284,10 +296,105 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       )
     } catch is CancellationError {
       throw CancellationError()
+    } catch let AuthHTTPError.unknown(inner) where inner is CancellationError {
+      throw CancellationError()
     } catch {
       throw CredentialsError.cannotFetchToken(
         message: Self.errorMessage(
           isADCFallback: self.isUnconfirmedADCFallback, endpoint: baseEndpoint),
+        underlyingError: error
+      )
+    }
+  }
+
+  /// Queries the metadata server for the attached environment's universe domain.
+  ///
+  /// Requests `/computeMetadata/v1/universe/universe-domain` with `Metadata-Flavor: Google`.
+  /// Standard Google Default Universe (`googleapis.com`) metadata servers may return HTTP 404
+  /// or an empty body for this endpoint; both are treated as `googleapis.com`.
+  ///
+  /// - Returns: The resolved and validated universe domain string.
+  /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server is unreachable or returns an unexpected error.
+  @concurrent
+  func fetchUniverseDomain() async throws -> String {
+    let hostEnv = self.environment["GCE_METADATA_HOST"]
+    let baseEndpoint = try self.resolveBaseEndpoint(
+      hostEnv: hostEnv,
+      resource: "the universe domain"
+    )
+
+    guard
+      var urlComponents = URLComponents(url: baseEndpoint, resolvingAgainstBaseURL: false),
+      let host = urlComponents.host,
+      !host.isEmpty
+    else {
+      throw CredentialsError.cannotFetchToken(
+        message: Self.errorMessage(
+          isADCFallback: self.isUnconfirmedADCFallback,
+          endpoint: baseEndpoint,
+          resource: "the universe domain"
+        ),
+        underlyingError: CredentialsError.parseError(
+          "Invalid metadata server endpoint URL: '\(baseEndpoint.absoluteString)'")
+      )
+    }
+    urlComponents.path = "/computeMetadata/v1/universe/universe-domain"
+
+    guard let url = urlComponents.url else {
+      throw CredentialsError.cannotFetchToken(
+        message: Self.errorMessage(
+          isADCFallback: self.isUnconfirmedADCFallback,
+          endpoint: baseEndpoint,
+          resource: "the universe domain"
+        ),
+        underlyingError: CredentialsError.parseError(
+          "Invalid metadata server endpoint URL: '\(baseEndpoint.absoluteString)'")
+      )
+    }
+
+    let headers = ["Metadata-Flavor": "Google"]
+
+    let fetchOperation: @Sendable () async throws -> String = {
+      let timeout: Duration? = self.isUnconfirmedADCFallback ? Self.adcFallbackTimeout : nil
+      do {
+        let response = try await self.client.getString(
+          url: url, headers: headers, timeout: timeout)
+        self.probeState.confirm()
+        let trimmed = response.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty {
+          return defaultUniverseDomain
+        }
+        return trimmed
+      } catch let error as AuthHTTPError where error.statusCode == 404 {
+        if Self.hasMetadataFlavorGoogle(error) {
+          self.probeState.confirm()
+        }
+        return defaultUniverseDomain
+      } catch {
+        if Self.hasMetadataFlavorGoogle(error) {
+          self.probeState.confirm()
+        }
+        throw error
+      }
+    }
+
+    do {
+      return try await RetryEngine.retry(
+        configuration: self.retryConfiguration ?? .defaultConfiguration,
+        isRetryable: self.isRetryable,
+        operation: fetchOperation
+      )
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch let AuthHTTPError.unknown(inner) where inner is CancellationError {
+      throw CancellationError()
+    } catch {
+      throw CredentialsError.cannotFetchToken(
+        message: Self.errorMessage(
+          isADCFallback: self.isUnconfirmedADCFallback,
+          endpoint: baseEndpoint,
+          resource: "the universe domain"
+        ),
         underlyingError: error
       )
     }

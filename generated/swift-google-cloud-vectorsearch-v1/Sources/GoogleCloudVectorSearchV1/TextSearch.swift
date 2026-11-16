@@ -36,7 +36,28 @@ public struct TextSearch: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. A JSON filter expression, e.g. `{"genre": {"$eq": "sci-fi"}}`,
   /// represented as a `google.protobuf.Struct`.
+  ///
+  /// An empty filter (`{}`) matches all data objects. Otherwise, each JSON
+  /// object in the filter must have exactly one key: either a field name mapped
+  /// to one operator (`{"price": {"$lt": 100}}`), or a logical operator: `$and`
+  /// or `$or` with a list of filters, or `$not` with one filter. Field
+  /// operators and their values: `$eq` and `$ne` take a string, number or bool;
+  /// `$lt`, `$lte`, `$gt` and `$gte` take a number; `$in`, `$nin` and `$all`
+  /// take a list of strings; `$exists` takes a bool. Several keys in one object
+  /// (implicit AND) and implicit equality (`{"genre": "sci-fi"}`) are rejected;
+  /// use `$and` and `$eq` instead.
+  ///
+  /// Logical operators can be nested at most 2 levels deep, e.g.
+  /// `{"$and": [{"$or": [{"a": {"$eq": 1}}, {"b": {"$eq": 2}}]}]}`. Deeper
+  /// filters are rejected with `INVALID_ARGUMENT`.
   public var filter: GoogleWKT.WKTStruct? = nil
+
+  /// Optional. Structured query definition. When set, `search_text` and
+  /// `data_field_names` must be left empty; otherwise the request will be
+  /// rejected with an `INVALID_ARGUMENT` error. Conversely, when
+  /// `structured_query` is unset, both `search_text` and `data_field_names`
+  /// are required.
+  public var structuredQuery: StructuredQuery? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,6 +89,7 @@ public struct TextSearch: Codable, Equatable, GoogleWKT._AnyPackable,
     static let outputFields = CodingKeys(stringValue: "outputFields")
     static let topK = CodingKeys(stringValue: "topK")
     static let filter = CodingKeys(stringValue: "filter")
+    static let structuredQuery = CodingKeys(stringValue: "structuredQuery")
 
     static let _knownKeys: Set<Swift.String> = [
       "searchText",
@@ -75,6 +97,7 @@ public struct TextSearch: Codable, Equatable, GoogleWKT._AnyPackable,
       "outputFields",
       "topK",
       "filter",
+      "structuredQuery",
     ]
   }
 
@@ -89,6 +112,8 @@ public struct TextSearch: Codable, Equatable, GoogleWKT._AnyPackable,
     self.outputFields = try container.decodeIfPresent(OutputFields.self, forKey: .outputFields)
     self.topK = try container.decodeIfPresent(Swift.Int32.self, forKey: .topK)
     self.filter = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .filter)
+    self.structuredQuery = try container.decodeIfPresent(
+      StructuredQuery.self, forKey: .structuredQuery)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -102,6 +127,7 @@ public struct TextSearch: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.outputFields, forKey: .outputFields)
     try container.encodeIfPresent(self.topK, forKey: .topK)
     try container.encodeIfPresent(self.filter, forKey: .filter)
+    try container.encodeIfPresent(self.structuredQuery, forKey: .structuredQuery)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

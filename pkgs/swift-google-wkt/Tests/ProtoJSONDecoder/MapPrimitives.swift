@@ -52,6 +52,17 @@ extension ProtoJSONDecoderTest {
 
   static let mapInputs: [(String, MapPrimitives)] = [
     (#"{}"#, MapPrimitives()),
+    (#"{"fieldBool":   null     }"#, MapPrimitives()),
+    (#"{"fieldInt":    null     }"#, MapPrimitives()),
+    (#"{"fieldInt32":  null     }"#, MapPrimitives()),
+    (#"{"fieldInt64":  null     }"#, MapPrimitives()),
+    (#"{"fieldUInt":   null     }"#, MapPrimitives()),
+    (#"{"fieldUInt32": null     }"#, MapPrimitives()),
+    (#"{"fieldUInt64": null     }"#, MapPrimitives()),
+    (#"{"fieldFloat":  null     }"#, MapPrimitives()),
+    (#"{"fieldDouble": null     }"#, MapPrimitives()),
+    (#"{"fieldString": null     }"#, MapPrimitives()),
+    (#"{"fieldData":   null     }"#, MapPrimitives()),
     (#"{"fieldBool":   {}       }"#, MapPrimitives()),
     (#"{"fieldInt":    {}       }"#, MapPrimitives()),
     (#"{"fieldInt32":  {}       }"#, MapPrimitives()),
@@ -119,6 +130,20 @@ extension ProtoJSONDecoderTest {
     #"{"fieldData":   {"a": "-_+/"} }"#,
   ]
 
+  static let mapNullValueInputs: [String] = [
+    #"{"fieldBool":   {"a": null} }"#,
+    #"{"fieldInt":    {"a": null} }"#,
+    #"{"fieldInt32":  {"a": null} }"#,
+    #"{"fieldInt64":  {"a": null} }"#,
+    #"{"fieldUInt":   {"a": null} }"#,
+    #"{"fieldUInt32": {"a": null} }"#,
+    #"{"fieldUInt64": {"a": null} }"#,
+    #"{"fieldFloat":  {"a": null} }"#,
+    #"{"fieldDouble": {"a": null} }"#,
+    #"{"fieldString": {"a": null} }"#,
+    #"{"fieldData":   {"a": null} }"#,
+  ]
+
   @Test("decode map primitives", arguments: mapInputs)
   func decodeRepeated(input: String, want: MapPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
@@ -133,6 +158,14 @@ extension ProtoJSONDecoderTest {
       try decoder.decode(MapPrimitives.self, from: Data(input.utf8))
     }
     #expect({ if case .dataCorrupted = error { true } else { false } }())
+  }
+
+  @Test("decode map null values throw", arguments: mapNullValueInputs)
+  func decodeMapNullValues(input: String) throws {
+    let decoder = _ProtoJSONDecoder()
+    #expect(throws: DecodingError.self) {
+      try decoder.decode(MapPrimitives.self, from: Data(input.utf8))
+    }
   }
 
   @Test func decodeMapBadString() throws {

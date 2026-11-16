@@ -51,6 +51,15 @@
       try await self.inner.completeQuery(request: request, options: options)
     }
 
+    /// Completes the user input with advanced keyword suggestions.
+    ///
+    /// @Snippet(path: "CompletionService_AdvancedCompleteQuery")
+    public func advancedCompleteQuery(
+      request: AdvancedCompleteQueryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.AdvancedCompleteQueryResponse {
+      try await self.inner.advancedCompleteQuery(request: request, options: options)
+    }
+
     /// Imports all
     /// [SuggestionDenyListEntry][google.cloud.discoveryengine.v1.SuggestionDenyListEntry]
     /// for a DataStore.
@@ -281,6 +290,11 @@
         request: CompleteQueryRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.CompleteQueryResponse
 
+      /// See `CompletionServiceClient.advancedCompleteQuery`.
+      func advancedCompleteQuery(
+        request: AdvancedCompleteQueryRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudDiscoveryEngineV1.AdvancedCompleteQueryResponse
+
       /// See `CompletionServiceClient.importSuggestionDenyListEntries`.
       func importSuggestionDenyListEntries(
         request: ImportSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
@@ -344,6 +358,18 @@
     public func completeQuery(
       request: CompleteQueryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.CompleteQueryResponse {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func advancedCompleteQuery(request: AdvancedCompleteQueryRequest) async throws
+      -> GoogleCloudDiscoveryEngineV1.AdvancedCompleteQueryResponse
+    {
+      try await self.advancedCompleteQuery(request: request, options: .init())
+    }
+
+    public func advancedCompleteQuery(
+      request: AdvancedCompleteQueryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudDiscoveryEngineV1.AdvancedCompleteQueryResponse {
       throw GoogleGax.RequestError.unimplemented
     }
 

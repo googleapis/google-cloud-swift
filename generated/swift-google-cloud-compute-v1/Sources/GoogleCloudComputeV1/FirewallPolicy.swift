@@ -77,6 +77,18 @@
     /// This field is not applicable to network firewall policies.
     public var parent: Swift.String? = nil
 
+    /// Indicates the source of this Firewall Policy. This field is optional on
+    /// creation and defaults to USER_DEFINED.
+    ///
+    /// The USER_DEFINED value indicates a regular firewall policy.
+    ///
+    /// The SYSTEM value indicates a system-level policy managed by an
+    /// internal service like GKE. This SYSTEM value is reserved for
+    /// internal services and cannot be set by users during policy creation.
+    /// Policies with a SYSTEM source cannot be modified or deleted by
+    /// users.
+    public var policySource: FirewallPolicy.PolicySource? = nil
+
     /// The type of the firewall policy. This field can be one of
     /// VPC_POLICY, RDMA_ROCE_POLICY or ULL_POLICY.
     ///
@@ -152,6 +164,7 @@
       static let name = CodingKeys(stringValue: "name")
       static let packetMirroringRules = CodingKeys(stringValue: "packetMirroringRules")
       static let parent = CodingKeys(stringValue: "parent")
+      static let policySource = CodingKeys(stringValue: "policySource")
       static let policyType = CodingKeys(stringValue: "policyType")
       static let region = CodingKeys(stringValue: "region")
       static let ruleTupleCount = CodingKeys(stringValue: "ruleTupleCount")
@@ -171,6 +184,7 @@
         "name",
         "packetMirroringRules",
         "parent",
+        "policySource",
         "policyType",
         "region",
         "ruleTupleCount",
@@ -213,6 +227,8 @@
         self.packetMirroringRules = value
       }
       self.parent = try container.decodeIfPresent(Swift.String.self, forKey: .parent)
+      self.policySource = try container.decodeIfPresent(
+        FirewallPolicy.PolicySource.self, forKey: .policySource)
       self.policyType = try container.decodeIfPresent(
         FirewallPolicy.PolicyType.self, forKey: .policyType)
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
@@ -249,6 +265,7 @@
       try container.encodeIfPresent(self.name, forKey: .name)
       try container.encode(self.packetMirroringRules, forKey: .packetMirroringRules)
       try container.encodeIfPresent(self.parent, forKey: .parent)
+      try container.encodeIfPresent(self.policySource, forKey: .policySource)
       try container.encodeIfPresent(self.policyType, forKey: .policyType)
       try container.encodeIfPresent(self.region, forKey: .region)
       try container.encodeIfPresent(self.ruleTupleCount, forKey: .ruleTupleCount)
@@ -258,6 +275,69 @@
       try container.encodeIfPresent(self.shortName, forKey: .shortName)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// The enumerated type for the [policySource][google.cloud.compute.v1.FirewallPolicy.policySource] field.
+    ///
+    /// [google.cloud.compute.v1.FirewallPolicy.policySource]: <doc:FirewallPolicy/PolicySource>
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum PolicySource: Codable, Equatable, Hashable, Sendable {
+      /// A system-level policy managed by an internal service like GKE. This value
+      /// is reserved for internal services and cannot be set by users during
+      /// policy creation. Policies with a SYSTEM source cannot be modified or
+      /// deleted by users.
+      case system
+      /// A regular firewall policy.
+      case userDefined
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(Swift.String)
+
+      /// Returns the string value (or name) associated with the enumeration.
+      public var stringValue: Swift.String {
+        switch self {
+        case .system: return "SYSTEM"
+        case .userDefined: return "USER_DEFINED"
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:PolicySource/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "SYSTEM": self = .system
+        case "USER_DEFINED": self = .userDefined
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let s = try container.decode(Swift.String.self)
+        self.init(stringValue: s)
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .system: return try container.encode("SYSTEM")
+        case .userDefined: return try container.encode("USER_DEFINED")
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
       }
     }
 

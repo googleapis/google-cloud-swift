@@ -30,10 +30,11 @@ public struct CreateWorkerPoolRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// Required. The WorkerPool instance to create.
   public var workerPool: WorkerPool? = nil
 
-  /// Required. The unique identifier for the WorkerPool. It must begin with
+  /// Optional. The unique identifier for the WorkerPool. It must begin with
   /// letter, and cannot end with hyphen; must contain fewer than 50 characters.
   /// The name of the worker pool becomes
   /// `{parent}/workerPools/{worker_pool_id}`.
+  /// If not provided, the server will generate a unique `worker_pool_id`.
   public var workerPoolId: Swift.String = Swift.String()
 
   /// Optional. Indicates that the request should be validated and default values

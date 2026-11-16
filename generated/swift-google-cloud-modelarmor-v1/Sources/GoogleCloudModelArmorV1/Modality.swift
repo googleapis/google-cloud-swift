@@ -16,8 +16,8 @@
 
 import Foundation
 
-/// This enum is used in the TemplateMetadata message to indicate the modality
-/// supported for sanitize API calls.
+/// This enum is used in the TemplateMetadata and FloorSettingMetadata messages
+/// to indicate the modality supported for sanitize API calls.
 ///
 /// - Note: Adding cases to this enumeration is not considered a breaking change.
 ///   Always include an `@unknown default:` case when switching over this type.

@@ -23,13 +23,14 @@ import Testing
     "Value fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular":null}"#, T()),
+      (#"{"singular":null}"#, T().with { $0.singular = .null(WKTNullValue()) }),
       (#"{"singular":42}"#, T().with { $0.singular = .number(42) }),
       (#"{"singular":"42"}"#, T().with { $0.singular = .string("42") }),
       (#"{"singular":"hello"}"#, T().with { $0.singular = .string("hello") }),
       (#"{"singular":true}"#, T().with { $0.singular = .bool(true) }),
       (#"{"singular":{}}"#, T().with { $0.singular = .object([:]) }),
       (#"{"singular":[]}"#, T().with { $0.singular = .array([]) }),
+      (#"{"optional":null}"#, T().with { $0.optional = .null(WKTNullValue()) }),
       (#"{"optional":42}"#, T().with { $0.optional = .number(42) }),
       (#"{}"#, T()),
       (#"{"repeated":[null]}"#, T().with { $0.repeated = [.null(WKTNullValue())] }),
@@ -51,6 +52,10 @@ import Testing
     arguments: [
       (#"{}"#, T()),
       (
+        #"{"singular":null}"#,
+        T().with { $0.singular = .null(WKTNullValue()) }
+      ),
+      (
         #"{"singular":42}"#,
         T().with { $0.singular = .number(42) }
       ),
@@ -69,6 +74,10 @@ import Testing
       (
         #"{"singular":[]}"#,
         T().with { $0.singular = .array([]) }
+      ),
+      (
+        #"{"optional":null}"#,
+        T().with { $0.optional = .null(WKTNullValue()) }
       ),
       (
         #"{"optional":42}"#,
@@ -102,5 +111,43 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let roundtrip = try decoder.decode(T.self, from: data)
     #expect(input == roundtrip)
+  }
+
+  @Test(
+    "Value null fields roundtrip through WKTAny",
+    arguments: [
+      T(),
+      T().with { $0.singular = .null(WKTNullValue()) },
+      T().with { $0.optional = .null(WKTNullValue()) },
+    ]
+  )
+  func anyRoundtrip(input: T) throws {
+    let any = try WKTAny(fromMessage: input)
+    let encoder = _ProtoJSONEncoder()
+    let data = try encoder.encode(any)
+    let decoder = _ProtoJSONDecoder()
+    let decodedAny = try decoder.decode(WKTAny.self, from: data)
+    let roundtrip = try T(fromAny: decodedAny)
+    #expect(roundtrip == input)
+  }
+
+  @Test(
+    "Value null fields decode and roundtrip with Foundation JSONDecoder",
+    arguments: [
+      (#"{}"#, T()),
+      (#"{"singular":null}"#, T().with { $0.singular = .null(WKTNullValue()) }),
+      (#"{"optional":null}"#, T().with { $0.optional = .null(WKTNullValue()) }),
+      (#"{"repeated":[null]}"#, T().with { $0.repeated = [.null(WKTNullValue())] }),
+      (#"{"map":{"a":null}}"#, T().with { $0.map = ["a": .null(WKTNullValue())] }),
+    ]
+  )
+  func foundationJSONDecoderNulls(input: String, want: T) throws {
+    let decoder = JSONDecoder()
+    let got = try decoder.decode(T.self, from: Data(input.utf8))
+    #expect(got == want)
+
+    let encoded = try JSONEncoder().encode(got)
+    let roundtrip = try decoder.decode(T.self, from: encoded)
+    #expect(roundtrip == want)
   }
 }

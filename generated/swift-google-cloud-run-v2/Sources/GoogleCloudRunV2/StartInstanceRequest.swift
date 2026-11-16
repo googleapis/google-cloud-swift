@@ -21,10 +21,7 @@ import Foundation
 public struct StartInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Required. The name of the Instance to stop.
-  /// Format:
-  /// `projects/{project}/locations/{location}/instances/{instance}`,
-  /// where `{project}` can be project id or number.
+  /// Required. The name of the Instance to start.
   public var name: Swift.String = Swift.String()
 
   /// Optional. Indicates that the request should be validated without actually

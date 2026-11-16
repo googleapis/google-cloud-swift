@@ -121,6 +121,10 @@ public struct RunJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// replace existing timeout_seconds value.
     public var timeout: GoogleWKT.WKTDuration? = nil
 
+    /// Optional. If true, the system will start the execution within the next 12
+    /// hours depending on available capacity.
+    public var delayExecution: Swift.Bool? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `Overrides`.
@@ -149,11 +153,13 @@ public struct RunJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       static let containerOverrides = CodingKeys(stringValue: "containerOverrides")
       static let taskCount = CodingKeys(stringValue: "taskCount")
       static let timeout = CodingKeys(stringValue: "timeout")
+      static let delayExecution = CodingKeys(stringValue: "delayExecution")
 
       static let _knownKeys: Set<Swift.String> = [
         "containerOverrides",
         "taskCount",
         "timeout",
+        "delayExecution",
       ]
     }
 
@@ -168,6 +174,7 @@ public struct RunJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
         self.taskCount = value
       }
       self.timeout = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .timeout)
+      self.delayExecution = try container.decodeIfPresent(Swift.Bool.self, forKey: .delayExecution)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -179,6 +186,7 @@ public struct RunJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.containerOverrides, forKey: .containerOverrides)
       try container.encode(self.taskCount, forKey: .taskCount)
       try container.encodeIfPresent(self.timeout, forKey: .timeout)
+      try container.encodeIfPresent(self.delayExecution, forKey: .delayExecution)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

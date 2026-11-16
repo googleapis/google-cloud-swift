@@ -23,7 +23,7 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The resource name of BackupPlanAssociation in
-  /// below format Format :
+  /// below format Format:
   /// projects/{project}/locations/{location}/backupPlanAssociations/{backupPlanAssociationId}
   public var name: Swift.String = Swift.String()
 
@@ -73,6 +73,11 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision_id}`
   public var backupPlanRevisionName: Swift.String = Swift.String()
 
+  /// Output only. The resource name of the `AutoProtectionPolicyBinding` that
+  /// manages this association, if any. Format:
+  /// `projects/{project}/locations/{location}/autoProtectionPolicies/{policy}/bindings/{binding}`.
+  public var autoProtectionPolicyBinding: Swift.String = Swift.String()
+
   /// Properties of the protected GCP resource.
   public var resourceProperties: ResourcePropertiesOneOf? = nil
 
@@ -116,6 +121,7 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
       stringValue: "alloydbClusterBackupPlanAssociationProperties")
     static let backupPlanRevisionId = CodingKeys(stringValue: "backupPlanRevisionId")
     static let backupPlanRevisionName = CodingKeys(stringValue: "backupPlanRevisionName")
+    static let autoProtectionPolicyBinding = CodingKeys(stringValue: "autoProtectionPolicyBinding")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -131,6 +137,7 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
       "alloydbClusterBackupPlanAssociationProperties",
       "backupPlanRevisionId",
       "backupPlanRevisionName",
+      "autoProtectionPolicyBinding",
     ]
   }
 
@@ -167,6 +174,11 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .backupPlanRevisionName)
     {
       self.backupPlanRevisionName = value
+    }
+    if let value = try container.decodeIfPresent(
+      Swift.String.self, forKey: .autoProtectionPolicyBinding)
+    {
+      self.autoProtectionPolicyBinding = value
     }
 
     var resourceProperties: ResourcePropertiesOneOf? = nil
@@ -215,6 +227,7 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.dataSource, forKey: .dataSource)
     try container.encode(self.backupPlanRevisionId, forKey: .backupPlanRevisionId)
     try container.encode(self.backupPlanRevisionName, forKey: .backupPlanRevisionName)
+    try container.encode(self.autoProtectionPolicyBinding, forKey: .autoProtectionPolicyBinding)
 
     if let choice = self.resourceProperties {
       switch choice {

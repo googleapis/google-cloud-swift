@@ -32,7 +32,7 @@
     public var userProfile: Swift.String = Swift.String()
 
     /// Output only. License assignment state of the user.
-    /// If the user is assigned with a license config, the user loggin will be
+    /// If the user is assigned with a license config, the user login will be
     /// assigned with the license;
     /// If the user's license assignment state is unassigned or unspecified, no
     /// license config will be associated to the user;
@@ -162,6 +162,8 @@
       /// Users already logged in but cannot get license assigned will be assigned
       /// NO_LICENSE state(License could be unassigned by admin).
       case noLicenseAttemptedLogin
+      /// User is blocked from assigning a license.
+      case blocked
       /// Encodes an unknown integer value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -195,6 +197,7 @@
         case .unassigned: return 2
         case .noLicense: return 3
         case .noLicenseAttemptedLogin: return 4
+        case .blocked: return 5
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -210,6 +213,7 @@
         case .unassigned: return "UNASSIGNED"
         case .noLicense: return "NO_LICENSE"
         case .noLicenseAttemptedLogin: return "NO_LICENSE_ATTEMPTED_LOGIN"
+        case .blocked: return "BLOCKED"
         case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
@@ -225,6 +229,7 @@
         case "UNASSIGNED": self = .unassigned
         case "NO_LICENSE": self = .noLicense
         case "NO_LICENSE_ATTEMPTED_LOGIN": self = .noLicenseAttemptedLogin
+        case "BLOCKED": self = .blocked
         default: self = .unknownStringValue(stringValue)
         }
       }
@@ -239,6 +244,7 @@
         case 2: self = .unassigned
         case 3: self = .noLicense
         case 4: self = .noLicenseAttemptedLogin
+        case 5: self = .blocked
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -269,6 +275,7 @@
         case .unassigned: return try container.encode("UNASSIGNED")
         case .noLicense: return try container.encode("NO_LICENSE")
         case .noLicenseAttemptedLogin: return try container.encode("NO_LICENSE_ATTEMPTED_LOGIN")
+        case .blocked: return try container.encode("BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

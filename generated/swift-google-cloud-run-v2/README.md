@@ -21,6 +21,7 @@ to learn about this library.
 - `JobsClient`: Cloud Run Job Control Plane API.
 - `RevisionsClient`: Cloud Run Revision Control Plane API.
 - `ServicesClient`: Cloud Run Service Control Plane API.
+- `SourceUploadClient`: The Cloud Run Source Upload API allows you to upload source code to deploy Cloud Run resources.
 - `TasksClient`: Cloud Run Task Control Plane API.
 - `WorkerPoolsClient`: Cloud Run WorkerPool Control Plane API.
 
@@ -58,7 +59,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-run-v2` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-run-v2.git --from 0.6.0
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-run-v2.git --from 0.7.0
 ```
 
 Then add `GoogleCloudRunV2` to your target's dependencies:

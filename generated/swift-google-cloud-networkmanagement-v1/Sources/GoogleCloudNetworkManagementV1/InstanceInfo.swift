@@ -24,13 +24,15 @@ public struct InstanceInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Name of a Compute Engine instance.
   public var displayName: Swift.String = Swift.String()
 
-  /// URI of a Compute Engine instance.
+  /// URI of a Compute Engine instance in format
+  /// "projects/{project}/zones/{zone}/instances/{instance}"
   public var uri: Swift.String = Swift.String()
 
   /// Name of the network interface of a Compute Engine instance.
   public var interface: Swift.String = Swift.String()
 
-  /// URI of a Compute Engine network.
+  /// URI of a Compute Engine network in format
+  /// "projects/{project}/global/networks/{network}"
   public var networkUri: Swift.String = Swift.String()
 
   /// Internal IP address of the network interface.
@@ -46,7 +48,9 @@ public struct InstanceInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   @available(*, deprecated)
   public var serviceAccount: Swift.String = Swift.String()
 
-  /// URI of the PSC network attachment the NIC is attached to (if relevant).
+  /// URI of the PSC network attachment the NIC is attached to (if relevant) in
+  /// format
+  /// "projects/{project}/regions/{region}/networkAttachments/{network_attachment}"
   public var pscNetworkAttachmentUri: Swift.String = Swift.String()
 
   /// Indicates whether the Compute Engine instance is running.

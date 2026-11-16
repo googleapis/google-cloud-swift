@@ -39,9 +39,11 @@ public struct EndpointInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var destinationPort: Swift.Int32 = Swift.Int32()
 
   /// URI of the network where this packet originates from.
+  /// Format: `projects/{project_id}/global/networks/{network_id}`
   public var sourceNetworkUri: Swift.String = Swift.String()
 
   /// URI of the network where this packet is sent to.
+  /// Format: `projects/{project_id}/global/networks/{network_id}`
   public var destinationNetworkUri: Swift.String = Swift.String()
 
   /// URI of the source telemetry agent this packet originates from.

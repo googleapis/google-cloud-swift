@@ -86,6 +86,21 @@
           })
       }
 
+      public func getIamPolicy(
+        request: RegionSslPoliciesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Policy {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "getIamPolicy",
+          action: {
+            (r: RegionSslPoliciesClient.GetIamPolicyRequest, o: GoogleGax.RequestOptions)
+              async throws -> GoogleCloudComputeV1.Policy
+            in
+            return try await self.inner.getIamPolicy(request: r, options: o)
+          })
+      }
+
       public func insert(
         request: RegionSslPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -144,6 +159,37 @@
               -> GoogleCloudComputeV1.Operation
             in
             return try await self.inner.patch(request: r, options: o)
+          })
+      }
+
+      public func setIamPolicy(
+        request: RegionSslPoliciesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Policy {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "setIamPolicy",
+          action: {
+            (r: RegionSslPoliciesClient.SetIamPolicyRequest, o: GoogleGax.RequestOptions)
+              async throws -> GoogleCloudComputeV1.Policy
+            in
+            return try await self.inner.setIamPolicy(request: r, options: o)
+          })
+      }
+
+      public func testIamPermissions(
+        request: RegionSslPoliciesClient.TestIamPermissionsRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "testIamPermissions",
+          action: {
+            (r: RegionSslPoliciesClient.TestIamPermissionsRequest, o: GoogleGax.RequestOptions)
+              async throws -> GoogleCloudComputeV1.TestPermissionsResponse
+            in
+            return try await self.inner.testIamPermissions(request: r, options: o)
           })
       }
 

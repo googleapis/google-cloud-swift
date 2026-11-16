@@ -256,6 +256,8 @@
       case cloudIamWorkforceIdentity
       /// Microsoft Entra ID user.
       case entraidUser
+      /// Active Directory user.
+      case activeDirectoryUser
       /// Encodes an unknown integer value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -292,6 +294,7 @@
         case .cloudIamGroupServiceAccount: return 5
         case .cloudIamWorkforceIdentity: return 6
         case .entraidUser: return 7
+        case .activeDirectoryUser: return 8
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -310,6 +313,7 @@
         case .cloudIamGroupServiceAccount: return "CLOUD_IAM_GROUP_SERVICE_ACCOUNT"
         case .cloudIamWorkforceIdentity: return "CLOUD_IAM_WORKFORCE_IDENTITY"
         case .entraidUser: return "ENTRAID_USER"
+        case .activeDirectoryUser: return "ACTIVE_DIRECTORY_USER"
         case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
@@ -328,6 +332,7 @@
         case "CLOUD_IAM_GROUP_SERVICE_ACCOUNT": self = .cloudIamGroupServiceAccount
         case "CLOUD_IAM_WORKFORCE_IDENTITY": self = .cloudIamWorkforceIdentity
         case "ENTRAID_USER": self = .entraidUser
+        case "ACTIVE_DIRECTORY_USER": self = .activeDirectoryUser
         default: self = .unknownStringValue(stringValue)
         }
       }
@@ -345,6 +350,7 @@
         case 5: self = .cloudIamGroupServiceAccount
         case 6: self = .cloudIamWorkforceIdentity
         case 7: self = .entraidUser
+        case 8: self = .activeDirectoryUser
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -379,6 +385,7 @@
           return try container.encode("CLOUD_IAM_GROUP_SERVICE_ACCOUNT")
         case .cloudIamWorkforceIdentity: return try container.encode("CLOUD_IAM_WORKFORCE_IDENTITY")
         case .entraidUser: return try container.encode("ENTRAID_USER")
+        case .activeDirectoryUser: return try container.encode("ACTIVE_DIRECTORY_USER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

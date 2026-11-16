@@ -22,10 +22,13 @@ import Foundation
 public struct DirectVpcEgressConnectionInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// URI of direct access network.
+  /// URI of the VPC network for direct egress.
+  /// Format: `projects/{project_id}/global/networks/{network_id}`
   public var networkUri: Swift.String = Swift.String()
 
-  /// URI of direct access subnetwork.
+  /// URI of the subnetwork for direct egress.
+  /// Format:
+  /// `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
   public var subnetworkUri: Swift.String = Swift.String()
 
   /// Selected IP range.

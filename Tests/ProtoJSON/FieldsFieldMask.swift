@@ -43,11 +43,28 @@ import Testing
         #"{"map":{"a":"userDisplayName,photo"}}"#,
         T().with { $0.map = ["a": mask(["user_display_name", "photo"])] }
       ),
+      (#"{"singular":null}"#, T()),
+      (#"{"optional":null}"#, T()),
+      (#"{"repeated":null}"#, T()),
+      (#"{"map":null}"#, T()),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
+  }
+
+  @Test(
+    "FieldMask invalid null elements throw",
+    arguments: [
+      #"{"repeated":[null]}"#,
+      #"{"map":{"a":null}}"#,
+    ])
+  func invalidNullElements(input: String) throws {
+    let decoder = _ProtoJSONDecoder()
+    #expect(throws: DecodingError.self) {
+      try decoder.decode(T.self, from: Data(input.utf8))
+    }
   }
 
   @Test(

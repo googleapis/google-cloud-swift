@@ -164,8 +164,10 @@
       {
         self.groundTruths = value
       }
-      self.dataItemPayload = try container.decodeIfPresent(
-        GoogleWKT.WKTValue.self, forKey: .dataItemPayload)
+      if container.contains(.dataItemPayload) {
+        self.dataItemPayload = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: .dataItemPayload)
+      }
       if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .evaluatedDataItemViewId)
       {

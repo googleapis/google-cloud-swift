@@ -80,6 +80,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     static let bigqueryAction = CodingKeys(stringValue: "bigqueryAction")
     static let notebookAction = CodingKeys(stringValue: "notebookAction")
     static let dataPreparationAction = CodingKeys(stringValue: "dataPreparationAction")
+    static let bigqueryUnitTestAction = CodingKeys(stringValue: "bigqueryUnitTestAction")
     static let target = CodingKeys(stringValue: "target")
     static let canonicalTarget = CodingKeys(stringValue: "canonicalTarget")
     static let state = CodingKeys(stringValue: "state")
@@ -91,6 +92,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       "bigqueryAction",
       "notebookAction",
       "dataPreparationAction",
+      "bigqueryUnitTestAction",
       "target",
       "canonicalTarget",
       "state",
@@ -142,6 +144,11 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     {
       try actionCheckAndSet(.dataPreparationAction(dataPreparationAction))
     }
+    if let bigqueryUnitTestAction = try container.decodeIfPresent(
+      WorkflowInvocationAction.BigQueryUnitTestAction.self, forKey: .bigqueryUnitTestAction)
+    {
+      try actionCheckAndSet(.bigqueryUnitTestAction(bigqueryUnitTestAction))
+    }
     self.action = action
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -166,6 +173,8 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
         try container.encode(value, forKey: .notebookAction)
       case .dataPreparationAction(let value):
         try container.encode(value, forKey: .dataPreparationAction)
+      case .bigqueryUnitTestAction(let value):
+        try container.encode(value, forKey: .bigqueryUnitTestAction)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -989,6 +998,139 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// Represents a workflow action that will run a BigQuery unit test.
+  public struct BigQueryUnitTestAction: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Output only. Job ID for the actual results.
+    public var actualResultsJobId: Swift.String = Swift.String()
+
+    /// Output only. SQL script for the actual results.
+    public var actualResultsSqlScript: Swift.String = Swift.String()
+
+    /// Output only. Job ID for the expected results.
+    public var expectedResultsJobId: Swift.String = Swift.String()
+
+    /// Output only. SQL script for the expected results.
+    public var expectedResultsSqlScript: Swift.String = Swift.String()
+
+    /// Output only. Total bytes processed for this action. Combined total for
+    /// actual and expected jobs.
+    public var totalProcessedBytes: Swift.Int64 = Swift.Int64()
+
+    /// Output only. Total bytes billed for this action. Combined total for
+    /// actual and expected jobs.
+    public var totalBilledBytes: Swift.Int64 = Swift.Int64()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `BigQueryUnitTestAction`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = BigQueryUnitTestAction().with { $0.actualResultsJobId = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let actualResultsJobId = CodingKeys(stringValue: "actualResultsJobId")
+      static let actualResultsSqlScript = CodingKeys(stringValue: "actualResultsSqlScript")
+      static let expectedResultsJobId = CodingKeys(stringValue: "expectedResultsJobId")
+      static let expectedResultsSqlScript = CodingKeys(stringValue: "expectedResultsSqlScript")
+      static let totalProcessedBytes = CodingKeys(stringValue: "totalProcessedBytes")
+      static let totalBilledBytes = CodingKeys(stringValue: "totalBilledBytes")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "actualResultsJobId",
+        "actualResultsSqlScript",
+        "expectedResultsJobId",
+        "expectedResultsSqlScript",
+        "totalProcessedBytes",
+        "totalBilledBytes",
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .actualResultsJobId) {
+        self.actualResultsJobId = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .actualResultsSqlScript)
+      {
+        self.actualResultsSqlScript = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .expectedResultsJobId)
+      {
+        self.expectedResultsJobId = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.String.self, forKey: .expectedResultsSqlScript)
+      {
+        self.expectedResultsSqlScript = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalProcessedBytes) {
+        self.totalProcessedBytes = value
+      }
+      if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalBilledBytes) {
+        self.totalBilledBytes = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.actualResultsJobId, forKey: .actualResultsJobId)
+      try container.encode(self.actualResultsSqlScript, forKey: .actualResultsSqlScript)
+      try container.encode(self.expectedResultsJobId, forKey: .expectedResultsJobId)
+      try container.encode(self.expectedResultsSqlScript, forKey: .expectedResultsSqlScript)
+      try container.encode(self.totalProcessedBytes, forKey: .totalProcessedBytes)
+      try container.encode(self.totalBilledBytes, forKey: .totalBilledBytes)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// The type URL for `BigQueryUnitTestAction`: `"type.googleapis.com/google.cloud.dataform.v1.WorkflowInvocationAction.BigQueryUnitTestAction"`.
+    public static var _anyTypeUrl: Swift.String {
+      return
+        "type.googleapis.com/google.cloud.dataform.v1.WorkflowInvocationAction.BigQueryUnitTestAction"
+    }
+
+    /// Initialize an instance of `BigQueryUnitTestAction` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.WorkflowInvocationAction.BigQueryUnitTestAction"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._anyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `BigQueryUnitTestAction` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._anySerialize(message: self)
+    }
+  }
+
   /// Represents the current state of a workflow invocation action.
   ///
   /// - Note: Adding cases to this enumeration is not considered a breaking change.
@@ -1013,6 +1155,9 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     case cancelled
     /// The action failed. A terminal state.
     case failed
+    /// Execution of the action was queued waiting for an available concurrency
+    /// slot.
+    case queued
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -1048,6 +1193,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       case .succeeded: return 4
       case .cancelled: return 5
       case .failed: return 6
+      case .queued: return 7
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -1065,6 +1211,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       case .succeeded: return "SUCCEEDED"
       case .cancelled: return "CANCELLED"
       case .failed: return "FAILED"
+      case .queued: return "QUEUED"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -1082,6 +1229,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       case "SUCCEEDED": self = .succeeded
       case "CANCELLED": self = .cancelled
       case "FAILED": self = .failed
+      case "QUEUED": self = .queued
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -1098,6 +1246,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       case 4: self = .succeeded
       case 5: self = .cancelled
       case 6: self = .failed
+      case 7: self = .queued
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -1130,6 +1279,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       case .succeeded: return try container.encode("SUCCEEDED")
       case .cancelled: return try container.encode("CANCELLED")
       case .failed: return try container.encode("FAILED")
+      case .queued: return try container.encode("QUEUED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1144,6 +1294,8 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     indirect case notebookAction(WorkflowInvocationAction.NotebookAction)
     /// Output only. The workflow action's data preparation action details.
     indirect case dataPreparationAction(WorkflowInvocationAction.DataPreparationAction)
+    /// Output only. The workflow action's unit test details.
+    indirect case bigqueryUnitTestAction(WorkflowInvocationAction.BigQueryUnitTestAction)
   }
 
   /// The type URL for `WorkflowInvocationAction`: `"type.googleapis.com/google.cloud.dataform.v1.WorkflowInvocationAction"`.

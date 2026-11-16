@@ -218,6 +218,8 @@ extension Clients {
           query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
           query.append(contentsOf: try encoder.encode(request.validateOnly, prefix: "validateOnly"))
           query.append(contentsOf: try encoder.encode(request.allowMissing, prefix: "allowMissing"))
+          query.append(
+            contentsOf: try encoder.encode(request.forceNewRevision, prefix: "forceNewRevision"))
           return (path, query)
         }() {
           return (candidate.0, candidate.1, { $0.setMethod(.PATCH) })

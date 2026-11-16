@@ -25,6 +25,9 @@ public struct DropInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var cause: DropInfo.Cause = DropInfo.Cause()
 
   /// URI of the resource that caused the drop.
+  /// Format:
+  /// * `projects/{project_id}/global/firewalls/{firewall_id}` (firewall rule)
+  /// * `projects/{project_id}/global/routes/{route_id}` (route)
   public var resourceUri: Swift.String = Swift.String()
 
   /// Source IP address of the dropped packet (if relevant).
@@ -457,6 +460,8 @@ public struct DropInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     case cloudRunJobNotReady
     /// Packet was dropped inside DMS Private Connection.
     case droppedInsideDmsPrivateConnection
+    /// Packet was dropped inside Datastream Private Connection.
+    case droppedInsideDatastreamPrivateConnection
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -593,6 +598,7 @@ public struct DropInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       case .privateConnectionNoRunningInstance: return 111
       case .cloudRunJobNotReady: return 113
       case .droppedInsideDmsPrivateConnection: return 114
+      case .droppedInsideDatastreamPrivateConnection: return 115
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -735,6 +741,8 @@ public struct DropInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       case .privateConnectionNoRunningInstance: return "PRIVATE_CONNECTION_NO_RUNNING_INSTANCE"
       case .cloudRunJobNotReady: return "CLOUD_RUN_JOB_NOT_READY"
       case .droppedInsideDmsPrivateConnection: return "DROPPED_INSIDE_DMS_PRIVATE_CONNECTION"
+      case .droppedInsideDatastreamPrivateConnection:
+        return "DROPPED_INSIDE_DATASTREAM_PRIVATE_CONNECTION"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -793,6 +801,8 @@ public struct DropInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       case "DROPPED_INSIDE_GKE_SERVICE": self = .droppedInsideGkeService
       case "DROPPED_INSIDE_CLOUD_SQL_SERVICE": self = .droppedInsideCloudSqlService
       case "DROPPED_INSIDE_DMS_PRIVATE_CONNECTION": self = .droppedInsideDmsPrivateConnection
+      case "DROPPED_INSIDE_DATASTREAM_PRIVATE_CONNECTION":
+        self = .droppedInsideDatastreamPrivateConnection
       case "GOOGLE_MANAGED_SERVICE_NO_PEERING": self = .googleManagedServiceNoPeering
       case "GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT": self = .googleManagedServiceNoPscEndpoint
       case "GKE_PSC_ENDPOINT_MISSING": self = .gkePscEndpointMissing
@@ -994,6 +1004,7 @@ public struct DropInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       case 111: self = .privateConnectionNoRunningInstance
       case 113: self = .cloudRunJobNotReady
       case 114: self = .droppedInsideDmsPrivateConnection
+      case 115: self = .droppedInsideDatastreamPrivateConnection
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -1197,6 +1208,8 @@ public struct DropInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       case .cloudRunJobNotReady: return try container.encode("CLOUD_RUN_JOB_NOT_READY")
       case .droppedInsideDmsPrivateConnection:
         return try container.encode("DROPPED_INSIDE_DMS_PRIVATE_CONNECTION")
+      case .droppedInsideDatastreamPrivateConnection:
+        return try container.encode("DROPPED_INSIDE_DATASTREAM_PRIVATE_CONNECTION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

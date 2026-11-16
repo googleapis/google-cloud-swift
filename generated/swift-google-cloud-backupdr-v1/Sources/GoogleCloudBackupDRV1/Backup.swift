@@ -85,6 +85,9 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   /// backup.
   public var kmsKeyVersions: [Swift.String] = []
 
+  /// Output only. The restore verification status of the backup.
+  public var verificationSummary: VerificationSummary? = nil
+
   /// Workload specific backup properties.
   public var backupProperties: BackupPropertiesOneOf? = nil
 
@@ -147,6 +150,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
     static let gcpResource = CodingKeys(stringValue: "gcpResource")
     static let kmsKeyVersions = CodingKeys(stringValue: "kmsKeyVersions")
+    static let verificationSummary = CodingKeys(stringValue: "verificationSummary")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -174,6 +178,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       "satisfiesPzi",
       "gcpResource",
       "kmsKeyVersions",
+      "verificationSummary",
     ]
   }
 
@@ -220,6 +225,8 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .kmsKeyVersions) {
       self.kmsKeyVersions = value
     }
+    self.verificationSummary = try container.decodeIfPresent(
+      VerificationSummary.self, forKey: .verificationSummary)
 
     var backupProperties: BackupPropertiesOneOf? = nil
     let backupPropertiesCheckAndSet = {
@@ -320,6 +327,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
     try container.encode(self.kmsKeyVersions, forKey: .kmsKeyVersions)
+    try container.encodeIfPresent(self.verificationSummary, forKey: .verificationSummary)
 
     if let choice = self.backupProperties {
       switch choice {

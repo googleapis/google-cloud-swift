@@ -15,7 +15,7 @@
 extension ContinueOnIO: RetryPolicy where P: RetryPolicy & Sendable {
   public func onError(state: RetryState, error: RequestError) -> RetryResult {
     if case .io = error {
-      return .retry(error)
+      return error.isPermanentIOError ? .permanent(error) : .retry(error)
     }
     return inner.onError(state: state, error: error)
   }
@@ -32,8 +32,10 @@ extension ContinueOnIO: RetryPolicy where P: RetryPolicy & Sendable {
 extension RetryPolicy {
   /// Decorate a `RetryPolicy` to continue on I/O errors.
   ///
-  /// This policy decorates an inner policy and retries any errors that are I/O errors. Typically
-  /// this decorator is combined with ``StrictIdempotency`` to only retry idempotent requests.
+  /// This policy decorates an inner policy and retries any errors that are I/O errors, except
+  /// when the underlying error is a `CredentialsError` or `CancellationError`, which are treated as
+  /// permanent. Typically this decorator is combined with ``StrictIdempotency`` to only retry
+  /// idempotent requests.
   ///
   /// For other errors it returns the same value as the inner policy.
   public func retryOnIO() -> ContinueOnIO<Self> {

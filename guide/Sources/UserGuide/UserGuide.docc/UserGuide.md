@@ -13,26 +13,26 @@ best-practices to retry transient RPC errors.
 
 ## Discover
 
-- <doc:overview>
-- <doc:supported-versions>
+- [Swift on Google Cloud overview](https://docs.cloud.google.com/swift/overview)
+- [Supported Swift versions](https://docs.cloud.google.com/swift/supported-versions)
+- [Post-quantum cryptography (PQC) support](https://docs.cloud.google.com/swift/post-quantum-cryptography)
 
 ## Get started
 
-- <doc:quickstart>
+- [Quickstart: Get started with Swift](https://docs.cloud.google.com/swift/quickstart)
 
 ## Develop
 
-- <doc:override-endpoint>
-- <doc:override-credentials>
-- <doc:enable-logging>
-- <doc:override-retry-policy>
-- <doc:override-polling-policy>
-- <doc:long-running-operations>
-- <doc:pagination>
-- <doc:update-resource>
-- <doc:optimistic-concurrency-control-iam>
-- <doc:package-traits>
-- <doc:generate-text-using-the-vertex-ai-gemini-api>
-- <doc:deploy-to-cloud-run>
-- <doc:deploy-to-gke>
-- <doc:post-quantum-cryptography>
+- [Override the default endpoint](https://docs.cloud.google.com/swift/override-endpoint)
+- [Override the default authentication credentials](https://docs.cloud.google.com/swift/override-credentials)
+- [Enable logging](https://docs.cloud.google.com/swift/enable-logging)
+- [Override the default retry policies](https://docs.cloud.google.com/swift/override-retry-policy)
+- [Override the default polling policies](https://docs.cloud.google.com/swift/override-polling-policy)
+- [Long-running operations](https://docs.cloud.google.com/swift/long-running-operations)
+- [Paginated operations](https://docs.cloud.google.com/swift/pagination)
+- [Update a resource using a field mask](https://docs.cloud.google.com/swift/update-resource)
+- [Update IAM policies using optimistic concurrency control](https://docs.cloud.google.com/swift/optimistic-concurrency-control-iam)
+- [Package traits](https://docs.cloud.google.com/swift/package-traits)
+- [Generate text using the Vertex AI Gemini API](https://docs.cloud.google.com/swift/generate-text-using-the-vertex-ai-gemini-api)
+- [Deploy a Swift service to Cloud Run](https://docs.cloud.google.com/swift/deploy-to-cloud-run)
+- [Deploy a Swift service to Google Kubernetes Engine](https://docs.cloud.google.com/swift/deploy-to-gke)

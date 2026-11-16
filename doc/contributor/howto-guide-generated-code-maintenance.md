@@ -84,7 +84,7 @@ env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift build --build-tests -Xswiftc -warni
 ```
 
 If the storage library fails to compile because of a missing idempotency hook:
-- You can fix the problem in the same PR by implementing the missing `resolveIdempotency(options:)` hook in `pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/StorageIdempotency.swift` and tests in `pkgs/swift-google-cloud-storage/Tests/StorageIdempotencyTests.swift` using the rules in `pkgs/swift-google-cloud-storage/GEMINI.md`.
+- You can fix the problem in the same PR by implementing the missing `resolveIdempotency(options:)` hook in `pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/StorageIdempotency.swift` and tests in `pkgs/swift-google-cloud-storage/Tests/StorageIdempotencyTests.swift` using the rules in `pkgs/swift-google-cloud-storage/AGENTS.md`.
 - Alternatively, add `skip_release: true` to the `google-cloud-storage` entry in `librarian.yaml`, run `librarian tidy`, and create a GitHub tracking issue to fix the hooks in a separate PR.
 
 Once validated, commit all changes and send a PR:

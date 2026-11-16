@@ -78,6 +78,36 @@
     ) async throws -> GoogleCloudSqlV1.SslCertsListResponse {
       try await self.inner.list(request: request, options: options)
     }
+
+    /// Upload and update customer managed certificate bundle for an existing Cloud
+    /// SQL instance.
+    ///
+    /// @Snippet(path: "SqlSslCertsService_UpdateCustomerManagedCertificate")
+    public func updateCustomerManagedCertificate(
+      request: UpdateCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.Operation {
+      try await self.inner.updateCustomerManagedCertificate(request: request, options: options)
+    }
+
+    /// Delete customer managed certificate bundle for an existing Cloud SQL
+    /// instance.
+    ///
+    /// @Snippet(path: "SqlSslCertsService_DeleteCustomerManagedCertificate")
+    public func deleteCustomerManagedCertificate(
+      request: DeleteCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.Operation {
+      try await self.inner.deleteCustomerManagedCertificate(request: request, options: options)
+    }
+
+    /// List all customer managed certificate bundles for an existing Cloud SQL
+    /// instance.
+    ///
+    /// @Snippet(path: "SqlSslCertsService_ListCustomerManagedCertificates")
+    public func listCustomerManagedCertificates(
+      request: ListCustomerManagedCertificatesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse {
+      try await self.inner.listCustomerManagedCertificates(request: request, options: options)
+    }
   }
 
   extension Clients {
@@ -106,6 +136,21 @@
       func list(
         request: SqlSslCertsListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SslCertsListResponse
+
+      /// See `SqlSslCertsServiceClient.updateCustomerManagedCertificate`.
+      func updateCustomerManagedCertificate(
+        request: UpdateCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation
+
+      /// See `SqlSslCertsServiceClient.deleteCustomerManagedCertificate`.
+      func deleteCustomerManagedCertificate(
+        request: DeleteCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.Operation
+
+      /// See `SqlSslCertsServiceClient.listCustomerManagedCertificates`.
+      func listCustomerManagedCertificates(
+        request: ListCustomerManagedCertificatesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse
     }
   }
 
@@ -153,6 +198,42 @@
     public func list(
       request: SqlSslCertsListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.SslCertsListResponse {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func updateCustomerManagedCertificate(request: UpdateCustomerManagedCertificateRequest)
+      async throws -> GoogleCloudSqlV1.Operation
+    {
+      try await self.updateCustomerManagedCertificate(request: request, options: .init())
+    }
+
+    public func updateCustomerManagedCertificate(
+      request: UpdateCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func deleteCustomerManagedCertificate(request: DeleteCustomerManagedCertificateRequest)
+      async throws -> GoogleCloudSqlV1.Operation
+    {
+      try await self.deleteCustomerManagedCertificate(request: request, options: .init())
+    }
+
+    public func deleteCustomerManagedCertificate(
+      request: DeleteCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func listCustomerManagedCertificates(request: ListCustomerManagedCertificatesRequest)
+      async throws -> GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse
+    {
+      try await self.listCustomerManagedCertificates(request: request, options: .init())
+    }
+
+    public func listCustomerManagedCertificates(
+      request: ListCustomerManagedCertificatesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse {
       throw GoogleGax.RequestError.unimplemented
     }
   }

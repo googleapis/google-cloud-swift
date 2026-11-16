@@ -21,7 +21,7 @@ import Foundation
 public struct FileSearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// File system path relative to the workspace root.
+  /// File system path relative to the file tree root.
   public var path: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
