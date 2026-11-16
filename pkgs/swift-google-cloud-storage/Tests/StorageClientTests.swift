@@ -539,7 +539,15 @@ import Testing
       $0.connectionPoolSize = configuredPoolSize
       $0.loadBalancer = loadBalancer
     }
-    let client = try StorageClient(options, mocks: [m0, m1], environment: [:])
+    var requestedPoolSize: Int?
+    let client = try StorageClient(
+      options,
+      credentials: options.client.credentials,
+      environment: [:]
+    ) { poolSize in
+      requestedPoolSize = poolSize
+      return (0..<poolSize).map { $0 == 0 ? m0 : m1 }
+    }
     let writeOptions = WriteObjectOptions().with { $0.idempotent = true }
 
     for _ in 0..<3 {
@@ -551,6 +559,7 @@ import Testing
       )
     }
 
+    #expect(requestedPoolSize == 1)
     #expect(m0.recordedRequests().count == 3)
     #expect(m1.recordedRequests().isEmpty)
   }

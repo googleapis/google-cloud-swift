@@ -37,37 +37,11 @@ public final class StorageClient: StorageProtocol, Sendable {
   /// files from disk). Prefer initializing the client at application startup and reusing it across
   /// requests.
   public convenience init(_ options: StorageClientOptions = .init()) throws {
-    try self.init(options, environment: ProcessInfo.processInfo.environment)
-  }
-
-  init(
-    _ options: StorageClientOptions = .init(),
-    environment: [String: String]
-  ) throws {
-    let universeDomain = GoogleGax._Host.resolveUniverseDomain(
-      options: options.client,
-      environment: environment
-    )
     let credentials = try options.client.credentials ?? GoogleAuth.Credentials()
-    let endpoint = try GoogleGax._Host.endpoint(
-      endpoint: options.client.endpoint,
-      defaultEndpoint: Self.defaultEndpoint,
-      universeDomain: universeDomain
-    )
-    _ = try GoogleGax._HTTPClient.validateEndpoint(endpoint)
-    let poolSize = StorageClientOptions.resolveConnectionPoolSize(options.connectionPoolSize)
-    let clients = (0..<poolSize).map { _ in StorageHTTPClientHolder() }
-    let transport = Self.makeTransport(clients: clients, loadBalancer: options.loadBalancer)
-    self.options = options
-    self.inner = try GoogleGax._HTTPClient(
-      transport,
-      endpoint: endpoint,
+    try self.init(
+      options,
       credentials: credentials,
-      logger: options.client.logger,
-      quotaProject: options.client.quotaProject,
-      defaultEndpoint: Self.defaultEndpoint,
-      universeDomain: universeDomain,
-      clientHeader: .veneer(packageVersion: PackageVersion.version)
+      makeClients: { poolSize in (0..<poolSize).map { _ in StorageHTTPClientHolder() } }
     )
   }
 
@@ -89,18 +63,35 @@ public final class StorageClient: StorageProtocol, Sendable {
   ) throws {
     try self.init(
       options,
-      mocks: [mock],
-      environment: environment
+      credentials: options.client.credentials,
+      environment: environment,
+      makeClients: { _ in [mock] }
     )
   }
 
-  init(
+  convenience init(
     _ options: StorageClientOptions = .init(),
     mocks: [any _HTTPClientProtocol],
     seed: UInt64? = nil,
     environment: [String: String] = ProcessInfo.processInfo.environment
   ) throws {
     precondition(!mocks.isEmpty, "StorageClient requires at least one mock HTTP client")
+    try self.init(
+      options,
+      credentials: options.client.credentials,
+      seed: seed,
+      environment: environment,
+      makeClients: { _ in mocks }
+    )
+  }
+
+  convenience init(
+    _ options: StorageClientOptions = .init(),
+    credentials: GoogleAuth.Credentials?,
+    seed: UInt64? = nil,
+    environment: [String: String] = ProcessInfo.processInfo.environment,
+    makeClients: (Int) -> [any _HTTPClientProtocol]
+  ) throws {
     let universeDomain = GoogleGax._Host.resolveUniverseDomain(
       options: options.client,
       environment: environment
@@ -112,23 +103,22 @@ public final class StorageClient: StorageProtocol, Sendable {
     )
     _ = try GoogleGax._HTTPClient.validateEndpoint(endpoint)
     let poolSize = StorageClientOptions.resolveConnectionPoolSize(options.connectionPoolSize)
-    let selectedMocks = Array(mocks.prefix(poolSize))
     let transport = Self.makeTransport(
-      clients: selectedMocks,
+      clients: makeClients(poolSize),
       loadBalancer: options.loadBalancer,
       seed: seed
     )
-    self.options = options
-    self.inner = try GoogleGax._HTTPClient(
+    let client = try GoogleGax._HTTPClient(
       transport,
       endpoint: endpoint,
-      credentials: options.client.credentials,
+      credentials: credentials,
       logger: options.client.logger,
       quotaProject: options.client.quotaProject,
       defaultEndpoint: Self.defaultEndpoint,
       universeDomain: universeDomain,
       clientHeader: .veneer(packageVersion: PackageVersion.version)
     )
+    self.init(options, client: client)
   }
 
   @_spi(GoogleCloudInternal) public init(
