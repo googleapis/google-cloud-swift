@@ -77,15 +77,26 @@ go run github.com/googleapis/librarian/cmd/librarian@${V} generate --all
 go run github.com/googleapis/librarian/cmd/librarian@${V} tidy
 ```
 
-Verify that `pkgs/swift-google-cloud-storage` compiles with the updated generated code:
+Verify that any hand-written packages embedding generated code or
+`idempotency_hook`s (such as `pkgs/swift-google-cloud-storage`) compile with the
+updated generated code:
 
 ```bash
 env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift build --build-tests -Xswiftc -warnings-as-errors --package-path pkgs/swift-google-cloud-storage
 ```
 
-If the storage library fails to compile because of a missing idempotency hook:
-- You can fix the problem in the same PR by implementing the missing `resolveIdempotency(options:)` hook in `pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/StorageIdempotency.swift` and tests in `pkgs/swift-google-cloud-storage/Tests/StorageIdempotencyTests.swift` using the rules in `pkgs/swift-google-cloud-storage/AGENTS.md`.
-- Alternatively, add `skip_release: true` to the `google-cloud-storage` entry in `librarian.yaml`, run `librarian tidy`, and create a GitHub tracking issue to fix the hooks in a separate PR.
+If a hand-written library fails to compile because of a missing idempotency
+hook (for example in `pkgs/swift-google-cloud-storage`):
+- You can fix the problem in the same PR by implementing the missing hook (for
+  example `resolveIdempotency(options:)` in
+  `pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/StorageIdempotency.swift`
+  and tests in
+  `pkgs/swift-google-cloud-storage/Tests/StorageIdempotencyTests.swift`,
+  following `pkgs/swift-google-cloud-storage/AGENTS.md` or the package's
+  idempotency conventions).
+- Alternatively, add `skip_release: true` to that library's entry in
+  `librarian.yaml` (such as `google-cloud-storage`), run `librarian tidy`, and
+  create a GitHub tracking issue to fix the hooks in a separate PR.
 
 Once validated, commit all changes and send a PR:
 

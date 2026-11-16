@@ -389,6 +389,13 @@ limits are `Int` in the hand-written API, converted at the wire boundary.
 Changing the type later is a breaking change. Opaque server values (versions,
 identifiers) may stay `Int64`.
 
+Avoid overloading the same method or factory on both `Int`/`Int64` and `Double`
+(for example, `increment(_:by: Int64)` alongside `increment(_:by: Double)`):
+bare integer literals such as `1` match both `ExpressibleByIntegerLiteral` and
+`ExpressibleByFloatLiteral`, making unannotated calls fail with overload
+ambiguity (forcing callers to write `Int64(1)`). Prefer distinct labels,
+distinct method names, or an explicit scalar enum instead (see also **I4**).
+
 ### I4: Avoid overloads that differ only subtly
 
 Do not add overloads that differ only by the return type of a closure parameter
@@ -396,6 +403,12 @@ Do not add overloads that differ only by the return type of a closure parameter
 runner), or only by `inout`. The overload that applies depends on details of the
 call site, such as whether a single-expression closure returns a
 `@discardableResult` value.
+
+Likewise, do not define a `static func` factory on a struct with the same base
+name and argument shape as a case on a nested or associated `enum` (for example,
+`Mutation.delete(_:)` alongside `Mutation.Operation.delete(_)`), or
+numeric-literal-ambiguous `Int64`/`Double` overloads (see **I3**), as type
+inference at call sites using leading-dot syntax becomes ambiguous.
 
 ### I5: Use one level of options
 
@@ -473,6 +486,43 @@ same pull request as the API:
 - **Doc7:** Service limits are quoted from the proto comments, not restated from
   memory (see **E3**).
 
+## Concurrency, `StrictMemorySafety`, and GAX/WKT internals
+
+### Enforce `StrictMemorySafety` with `Synchronization.Mutex`
+
+Hand-written packages in this repository compile with `.strictMemorySafety()`.
+Do not fall back to `@unchecked Sendable` in library implementations,
+`Snippets/`, or `Tests/`:
+
+- Store `Synchronization.Mutex` (`~Copyable`) on a `final class` (the client,
+  handle, or a `private final class StateBox: Sendable`) rather than directly on
+  a `Copyable` `struct`, and keep closure/helper parameters free of copied
+  `Mutex` values.
+- In unit tests under `.strictMemorySafety()`, avoid `withUnsafeCurrentTask`
+  (for example, when coordinating in-flight cancellation); coordinate using
+  `AsyncStream` or `withTaskCancellationHandler` instead.
+
+### `GoogleGax` and `GoogleWKT` `@_spi(GoogleCloudInternal)` contracts
+
+When implementing REST veneers or internal wire tests over `GoogleGax` and
+`GoogleWKT`:
+
+- `GoogleGax._HTTPClientRequest.rpc(_:timeout:)` returns
+  `Result<R, RequestError>` and wraps non-`RequestError` errors thrown by
+  `execute`—including an in-flight `CancellationError`—into
+  `RequestError.io(CancellationError())` (which `ContinueOnIO` treats as
+  permanent). Operations and async streams that distinguish task cancellation
+  from transport errors must unwrap
+  `case .io(let inner) where inner is CancellationError` alongside
+  `error is CancellationError` before logging terminal errors or rethrowing.
+- `GoogleGax._HTTPClientResponse.decode(_:)` decodes via
+  `GoogleWKT._ProtoJSONDecoder` and maps any decode failure—including a `0`-byte
+  HTTP `200 OK` response body when `{}` was expected—to
+  `RequestError.malformedResponse`. Unit tests decoding generated ProtoJSON wire
+  messages containing `Int64` strings, `WKTTimestamp`, or `WKTDuration` fields
+  should import `@_spi(GoogleCloudInternal) GoogleWKT` and use `_ProtoJSONDecoder`
+  rather than `Foundation.JSONDecoder`.
+
 ## Design documents
 
 If the package has a design document in `doc/design/`, a change that diverges
@@ -481,6 +531,36 @@ the design document (for example, "transactions are rolled back when the closure
 throws") must have a test. If the design document conflicts with this guide, the
 guide wins for new public APIs: update the design document, or record the
 exception and its rationale there.
+
+## Integrating a new hand-written package
+
+When onboarding a new hand-written package under `pkgs/swift-<name>/`, wire all
+monorepo entry points in the same PR (or track deferred CI live-resource steps
+explicitly):
+
+- **Package layout & metadata:** Create `pkgs/swift-<name>/Package.swift`
+  (aligning `Package.name` with DocC target expectations or configuring discovery),
+  `pkgs/swift-<name>/.spi.yml` (`macos-spm` and `linux` DocC targets), and
+  `pkgs/swift-<name>/README.md` with Swift Package Index badges, quickstart, and
+  standard Contributing/License footer matching existing `pkgs/` packages.
+- **`librarian.yaml` & `generated/_libraries.json`:** Use canonical
+  `swift-<name>` package naming (avoid mismatched `package_name_override`),
+  configure any internal generated wire/logging modules or `idempotency_hook`
+  settings, and run `librarian generate <lib>` and `librarian tidy`.
+- **Root `Package.swift`:** Add the package to `baseDependencies` and
+  `baseModules`, and add `Sources/<Service>Samples` +
+  `Tests/<Service>SamplesDriver` sample and driver targets.
+- **CI & documentation workflows:** Add the library module to `clean_targets` in
+  `ci/gcb/scripts/docs.sh`, add hosted documentation targets to
+  `.github/workflows/user-guide.yml`, and wire live test opt-in gating in
+  `ci/gcb/scripts/integration-tests.sh` once GCP test resources and IAM bindings
+  are provisioned.
+- **Repository inventory & release docs:** Update the package list in
+  `ARCHITECTURE.md` ("Where is the code?"), add `pkgs/swift-<name>/Package.swift`
+  to Step 3 of `doc/contributor/howto-guide-releases.md` and
+  `.agents/skills/create-release/SKILL.md`, and note any `idempotency_hook`
+  maintenance expectations in `doc/contributor/howto-guide-generated-code-maintenance.md`
+  and `doc/contributor/librarian-playbook.md`.
 
 ## Review checklist
 
