@@ -124,6 +124,10 @@ public struct ClientOptions: Sendable {
   /// [swift-log]: https://swiftpackageindex.com/apple/swift-log/
   public var logger: Logger? = nil
 
+  /// Overrides the underlying HTTP transport client for internal testing.
+  @_spi(GoogleCloudInternal)
+  public var _httpClient: (any _HTTPClientProtocol)? = nil
+
   /// Configures the client's per-attempt timeout for all requests.
   ///
   /// By default the clients use a per-attempt timeout of 15 seconds (approximately 1/4 of the

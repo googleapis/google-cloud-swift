@@ -46,6 +46,19 @@ export EXTERNAL_ACCOUNT_SERVICE_ACCOUNT_EMAIL="testsa@${EXTERNAL_ACCOUNT_PROJECT
 #   - PROVIDER_ID: google-idp
 export GOOGLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE="//iam.googleapis.com/projects/1092239828259/locations/global/workloadIdentityPools/google-idp/providers/google-idp"
 
+SHOWCASE_VERSION="0.44.2"
+SHOWCASE_DIR="${HOME}/.cache/gapic-showcase/${SHOWCASE_VERSION}"
+SHOWCASE_BIN="${SHOWCASE_DIR}/gapic-showcase"
+if [[ ! -x "${SHOWCASE_BIN}" ]]; then
+    echo "--- Downloading gapic-showcase v${SHOWCASE_VERSION} ---"
+    mkdir -p "${SHOWCASE_DIR}"
+    curl -fsSL --retry 5 --retry-delay 15 \
+        "https://github.com/googleapis/gapic-showcase/releases/download/v${SHOWCASE_VERSION}/gapic-showcase-${SHOWCASE_VERSION}-linux-amd64.tar.gz" \
+        | tar -C "${SHOWCASE_DIR}" -xzf -
+fi
+
+export GOOGLE_CLOUD_SWIFT_SHOWCASE_PATH="${SHOWCASE_BIN}"
+
 errors=0
 count=1
 echo "--- Running top-level integration tests ---"
