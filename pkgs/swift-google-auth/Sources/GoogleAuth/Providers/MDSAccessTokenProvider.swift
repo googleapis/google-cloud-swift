@@ -265,6 +265,9 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     }
 
     let fetchOperation: @Sendable () async throws -> AccessToken = {
+      // Evaluate the timeout inside each attempt: an unconfirmed ADC fallback starts with the
+      // short 3s probe timeout, and if an attempt confirms MDS reachability below, any retry
+      // automatically switches to `nil` (the standard 30s client timeout).
       let timeout: Duration? = self.isUnconfirmedADCFallback ? Self.adcFallbackTimeout : nil
       do {
         let response: TokenResponse = try await self.client.get(
@@ -277,6 +280,10 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
           expirationDate: expiration
         )
       } catch {
+        // Confirm MDS before rethrowing if an HTTP error carries `Metadata-Flavor: Google`
+        // (e.g., a transient 503 during VM/pod startup) so `RetryEngine` and `TokenCache` treat
+        // subsequent retries and error messages as talking to a real metadata server. Transport
+        // timeouts and non-MDS responses leave `probeState` unconfirmed and fail after 1 attempt.
         if Self.hasMetadataFlavorGoogle(error) {
           self.probeState.confirm()
         }
@@ -355,6 +362,8 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     let headers = ["Metadata-Flavor": "Google"]
 
     let fetchOperation: @Sendable () async throws -> String = {
+      // Re-evaluate per attempt so an unconfirmed 3s ADC fallback probe upgrades to the standard
+      // 30s timeout once a response confirms MDS reachability.
       let timeout: Duration? = self.isUnconfirmedADCFallback ? Self.adcFallbackTimeout : nil
       do {
         let response = try await self.client.getString(
@@ -366,11 +375,16 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
         }
         return trimmed
       } catch let error as AuthHTTPError where error.statusCode == 404 {
+        // Metadata servers predating universe domains return 404 on `/universe/universe-domain`
+        // (meaning `googleapis.com`), but only confirm `probeState` when `Metadata-Flavor: Google`
+        // is present so a generic 404 from a non-GCP host does not mark MDS as reachable.
         if Self.hasMetadataFlavorGoogle(error) {
           self.probeState.confirm()
         }
         return defaultUniverseDomain
       } catch {
+        // Confirm MDS before rethrowing when `Metadata-Flavor: Google` is present so `self.isRetryable`
+        // allows `RetryEngine` to retry transient MDS startup errors.
         if Self.hasMetadataFlavorGoogle(error) {
           self.probeState.confirm()
         }
