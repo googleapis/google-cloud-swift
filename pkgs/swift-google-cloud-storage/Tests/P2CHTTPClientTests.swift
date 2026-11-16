@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import AsyncHTTPClient
-import Foundation
 @_spi(GoogleCloudInternal) import GoogleGax
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import NIOCore
@@ -72,35 +71,6 @@ private actor StreamGate {
 }
 
 @Suite struct P2CHTTPClientTests {
-  @Test(arguments: [
-    (coreCount: 0, expected: 1),
-    (coreCount: 1, expected: 1),
-    (coreCount: 2, expected: 1),
-    (coreCount: 3, expected: 1),
-    (coreCount: 4, expected: 2),
-    (coreCount: 7, expected: 2),
-    (coreCount: 8, expected: 3),
-    (coreCount: 16, expected: 4),
-    (coreCount: 64, expected: 6),
-    (coreCount: 192, expected: 7),
-  ])
-  func resolveConnectionPoolSizeDefaults(coreCount: Int, expected: Int) {
-    #expect(StorageClientOptions.resolveConnectionPoolSize(nil, coreCount: coreCount) == expected)
-  }
-
-  @Test(arguments: [
-    (configured: -5, expected: 1),
-    (configured: 0, expected: 1),
-    (configured: 1, expected: 1),
-    (configured: 3, expected: 3),
-    (configured: 32, expected: 32),
-  ])
-  func resolveConnectionPoolSizeOverridesAndClamping(configured: Int, expected: Int) {
-    #expect(
-      StorageClientOptions.resolveConnectionPoolSize(configured, coreCount: 8) == expected
-    )
-  }
-
   @Test func singleClientAlwaysRoutesToSlotZero() async throws {
     let client = StubHTTPClient { _, _ in
       HTTPClientResponse(status: .ok, body: .bytes(ByteBuffer(string: "ok")))

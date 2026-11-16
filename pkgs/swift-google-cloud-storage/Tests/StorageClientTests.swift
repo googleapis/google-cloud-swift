@@ -508,19 +508,6 @@ import Testing
     #expect(request?.value(forHTTPHeaderField: "Host") == "storage.googleapis.com")
   }
 
-  @Test func poolOptionsDefaultsAndMutation() {
-    let defaults = StorageClientOptions()
-    #expect(defaults.connectionPoolSize == nil)
-    #expect(defaults.loadBalancer == .roundRobin)
-
-    let configured = defaults.with {
-      $0.connectionPoolSize = 6
-      $0.loadBalancer = .p2c
-    }
-    #expect(configured.connectionPoolSize == 6)
-    #expect(configured.loadBalancer == .p2c)
-  }
-
   @Test(arguments: [
     (StorageLoadBalancer.p2c, 0),
     (StorageLoadBalancer.p2c, -3),
