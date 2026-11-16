@@ -816,5 +816,35 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       universeDomain: "custom.universe.com"
     )
     #expect(try await creds.universeDomain() == "custom.universe.com")
+
+    let defaultCreds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL
+    )
+    #expect(try await defaultCreds.universeDomain() == "googleapis.com")
+
+    let emptyCreds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL,
+      universeDomain: ""
+    )
+    #expect(try await emptyCreds.universeDomain() == "googleapis.com")
+    try await emptyCreds.validateUniverseDomain("googleapis.com")
+
+    let emptyConfig = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: .idToken,
+      tokenURL: targetURL
+    ).with {
+      $0.universeDomain = ""
+    }
+    let publicCreds = try Credentials(configuration: .externalAccount(emptyConfig))
+    #expect(try await publicCreds.universeDomain() == "googleapis.com")
+    try await publicCreds.validateUniverseDomain("googleapis.com")
   }
 }
