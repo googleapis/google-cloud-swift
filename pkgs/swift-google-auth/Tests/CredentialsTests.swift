@@ -273,7 +273,7 @@ import Testing
     let credentials = try Credentials(configuration: .user(UserConfig(keyJSON: keyData)))
 
     let userCreds = try #require(
-      credentials.credentialsProvider as? UserCredentialsGeneric<ContinuousClock>
+      credentials.credentialsProvider as? UserCredentials
     )
     #expect(userCreds.quotaProjectID == nil)
     #expect(userCreds.provider.scopes.isEmpty)
@@ -298,7 +298,7 @@ import Testing
     let credentials = try Credentials(configuration: .user(config))
 
     let userCreds = try #require(
-      credentials.credentialsProvider as? UserCredentialsGeneric<ContinuousClock>
+      credentials.credentialsProvider as? UserCredentials
     )
     #expect(userCreds.quotaProjectID == "user-quota-project")
     #expect(userCreds.provider.scopes == ["scope-a", "scope-b"])

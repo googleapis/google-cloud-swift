@@ -54,24 +54,18 @@ struct UserCredentialsParser: CredentialSourceParser {
 /// **Quota Projects**: Because user credentials are not associated with a specific Google Cloud project,
 /// APIs typically require a quota project ID to attribute billing and rate limits. The project ID is sent
 /// via the `x-goog-user-project` HTTP header.
-typealias UserCredentials = UserCredentialsGeneric<ContinuousClock>
-
-/// Generic implementation of authorized user credentials parameterized by clock type.
-struct UserCredentialsGeneric<C: Clock>: CredentialsProvider, AccessTokenProvider, Sendable
-where C.Instant.Duration == Duration {
-  private let cache: TokenCache<C>
+struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
+  private let cache: TokenCache<ContinuousClock>
   let provider: UserAccountTokenProvider
   let quotaProjectID: String?
 
-  /// Dependency injection for tests
   init(
     user: UserAccountData,
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
     scopes: [String] = [],
-    httpClient: AuthHTTPClient,
-    retryConfiguration: RetryConfiguration,
-    clock: C
+    httpClient: AuthHTTPClient = AuthHTTPClient(),
+    retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
     if let ud = universeDomain {
       if ud != defaultUniverseDomain {
@@ -107,26 +101,10 @@ where C.Instant.Duration == Duration {
 
     self.cache = TokenCache(
       provider: provider,
-      clock: clock,
       isRetryable: AuthHTTPError.isRetryable
     )
   }
 
-  func accessToken() async throws -> AccessToken {
-    return try await cache.token()
-  }
-
-  func headers() async throws -> AuthHeaders {
-    let token = try await cache.token()
-    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.token)")]
-    if let quotaProjectID = quotaProjectID {
-      headers.append(name: "x-goog-user-project", value: quotaProjectID)
-    }
-    return headers
-  }
-}
-
-extension UserCredentialsGeneric where C == ContinuousClock {
   /// Initializes `UserCredentials` from a raw JSON data payload.
   ///
   /// - Parameters:
@@ -156,10 +134,20 @@ extension UserCredentialsGeneric where C == ContinuousClock {
       user: key,
       quotaProjectID: quotaProjectID,
       universeDomain: universeDomain,
-      scopes: scopes,
-      httpClient: AuthHTTPClient(),
-      retryConfiguration: .defaultConfiguration,
-      clock: ContinuousClock()
+      scopes: scopes
     )
+  }
+
+  func accessToken() async throws -> AccessToken {
+    return try await cache.token()
+  }
+
+  func headers() async throws -> AuthHeaders {
+    let token = try await cache.token()
+    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.token)")]
+    if let quotaProjectID = quotaProjectID {
+      headers.append(name: "x-goog-user-project", value: quotaProjectID)
+    }
+    return headers
   }
 }

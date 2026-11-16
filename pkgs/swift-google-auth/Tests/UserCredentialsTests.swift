@@ -20,11 +20,9 @@ import NIOHTTP1
 import Testing
 @testable import GoogleAuth
 
-typealias UserCredentials = UserCredentialsGeneric<TestClock>
-
 @Suite struct UserCredentialsTest {
   /// Verifies that initializing `UserCredentials` does not eagerly make a token refresh
-  /// network request or schedule a background refresh sleep before `headers()` is called.
+  /// network request before `headers()` is called.
   @Test func userProviderInitializationDoesNotMakeNetworkRequests() async throws {
     let targetURL = URL(string: "https://mock.example.com")!
     let mock = MockHTTPClient([])
@@ -38,17 +36,14 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       quotaProjectId: "mock-project"
     )
 
-    let clock = TestClock()
     let provider = try UserCredentials(
       user: mockData,
       universeDomain: defaultUniverseDomain,
-      httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
-      clock: clock
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     await Task.yield()
-    #expect(!clock.hasSleepers)
+    #expect(mock.recordedTimeouts.isEmpty)
     _ = provider
   }
 
@@ -88,9 +83,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let headers = try await source.headers()
@@ -169,9 +162,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       scopes: ["scope1", "scope2"],
-      httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let headers = try await source.headers()
@@ -241,9 +232,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       scopes: [],
-      httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let headers = try await source.headers()
@@ -284,8 +273,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: retryConfig,
-      clock: TestClock()
+      retryConfiguration: retryConfig
     )
 
     let error = await #expect(throws: CredentialsError.self) {
@@ -320,9 +308,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let error = await #expect(throws: CredentialsError.self) {
@@ -369,8 +355,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: retryConfig,
-      clock: TestClock()
+      retryConfiguration: retryConfig
     )
 
     let error1 = await #expect(throws: CredentialsError.self) {
@@ -455,9 +440,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     // Spawn 10 concurrent headers() fetches
@@ -516,36 +499,33 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       maxDelay: .seconds(0.1)
     )
 
-    let clock = TestClock()
-
     let source = try UserCredentials(
       user: data,
       httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: retryConfig,
-      clock: clock
+      retryConfiguration: retryConfig
     )
 
-    let error = await #expect(throws: CredentialsError.self) {
+    let error1 = await #expect(throws: CredentialsError.self) {
       _ = try await source.headers()
     }
-    guard case let .cannotFetchToken(_, underlyingError) = error else {
-      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error))")
+    guard case let .cannotFetchToken(_, underlyingError1) = error1 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error1))")
       return
     }
-    #expect(underlyingError is AuthHTTPError)
-
-    // Give the background task a moment to run and either sleep or terminate.
-    try? await Task.sleep(for: .milliseconds(100))
-
-    // Real-time sleeps are necessary because background refresh loops and the mock execute
-    // asynchronously across thread boundaries.
-    if clock.hasSleepers {
-      clock.advance(by: .seconds(11))
-      // Wait for the async retry attempt to complete
-      try? await Task.sleep(for: .milliseconds(100))
-    }
-
+    #expect(underlyingError1 is AuthHTTPError)
     #expect(attempts.getCount() == 1)
+    #expect(mock.recordedTimeouts.count == 1)
+
+    let error2 = await #expect(throws: CredentialsError.self) {
+      _ = try await source.headers()
+    }
+    guard case let .cannotFetchToken(_, underlyingError2) = error2 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error2))")
+      return
+    }
+    #expect(underlyingError2 is AuthHTTPError)
+    #expect(attempts.getCount() == 1)
+    #expect(mock.recordedTimeouts.count == 1)
   }
 
   @Test func initializerRejectsNonDefaultUniverse() async throws {
@@ -561,9 +541,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       try UserCredentials(
         user: mockData,
         universeDomain: "custom.com",
-        httpClient: AuthHTTPClient(mock: mock),
-        retryConfiguration: .defaultConfiguration,
-        clock: TestClock()
+        httpClient: AuthHTTPClient(mock: mock)
       )
     } throws: { error in
       guard let credError = error as? CredentialsError else { return false }
@@ -615,22 +593,16 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       maxDelay: .seconds(0.1)
     )
 
-    let clock = TestClock()
-
     let source = try UserCredentials(
       user: data,
       httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: retryConfig,
-      clock: clock
+      retryConfiguration: retryConfig
     )
 
     // Calling headers() triggers the lazy token fetch, which retries the transient timeout and succeeds
     let headers = try await source.headers()
     #expect(headers["Authorization"] == "Bearer recovered-timeout-token")
     #expect(attempts.getCount() == 2)
-
-    await clock.sleeperWaiting()
-    #expect(clock.hasSleepers == true)
   }
 
   @Test func headersIncludesQuotaProjectFromUserAccountData() async throws {
@@ -664,9 +636,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let headers = try await source.headers()
@@ -705,9 +675,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     let source = try UserCredentials(
       user: data,
       quotaProjectID: "override-quota-proj",
-      httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let headers = try await source.headers()
@@ -739,9 +707,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     let error = try #require(
@@ -778,9 +744,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     )
     let creds = try UserCredentials(
       user: defaultUniverseData,
-      httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
     #expect(try await creds.universeDomain() == "googleapis.com")
 
@@ -794,9 +758,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     #expect {
       _ = try UserCredentials(
         user: customUniverseData,
-        httpClient: AuthHTTPClient(mock: mock),
-        retryConfiguration: .defaultConfiguration,
-        clock: TestClock()
+        httpClient: AuthHTTPClient(mock: mock)
       )
     } throws: { error in
       guard case let CredentialsError.notSupported(message) = error else { return false }

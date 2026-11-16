@@ -519,11 +519,9 @@ private actor MockCustomAccessTokenProvider: AccessTokenProvider {
       refreshToken: "test-refresh-token"
     )
 
-    let userCreds = try UserCredentialsGeneric(
+    let userCreds = try UserCredentials(
       user: data,
-      httpClient: AuthHTTPClient(mock: mock),
-      retryConfiguration: .defaultConfiguration,
-      clock: TestClock()
+      httpClient: AuthHTTPClient(mock: mock)
     )
 
     // MockHTTPClient only has 1 response queued; calling both AnyAccessTokenProvider and headers()
