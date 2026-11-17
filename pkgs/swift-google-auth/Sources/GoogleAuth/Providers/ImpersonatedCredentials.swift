@@ -211,7 +211,7 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     let normalizedDelegates = try delegates.map(Self.normalizeServiceAccountResourceName)
     let resolvedOverride = targetResourceName == nil ? effectiveUniverse : universeDomain
 
-    self.quotaProjectID = (quotaProjectID?.isEmpty == false) ? quotaProjectID : nil
+    self.quotaProjectID = nonEmpty(quotaProjectID)
     self.universeDomainOverride = resolvedOverride
 
     let provider = ImpersonatedTokenProvider(
