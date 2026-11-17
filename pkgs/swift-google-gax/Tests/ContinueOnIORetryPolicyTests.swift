@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleAuth
+import Foundation
+@_spi(GoogleCloudInternal) import GoogleAuth
 import GoogleGax
 import Testing
 
@@ -33,6 +34,32 @@ import Testing
     #expect(
       p.onError(state: nonIdempotentState(), error: credentialsError)
         == .permanent(credentialsError)
+    )
+
+    let permanentFetchError = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "invalid_grant",
+        underlyingError: CredentialsError.parseError("revoked")
+      )
+    )
+    #expect(
+      p.onError(state: idempotentState(), error: permanentFetchError)
+        == .permanent(permanentFetchError)
+    )
+
+    let transientCredentialsError = RequestError.io(
+      CredentialsError._transientCannotFetchToken(
+        message: "MDS 503",
+        underlyingError: URLError(.timedOut)
+      )
+    )
+    #expect(
+      p.onError(state: idempotentState(), error: transientCredentialsError)
+        == .retry(transientCredentialsError)
+    )
+    #expect(
+      p.onError(state: nonIdempotentState(), error: transientCredentialsError)
+        == .retry(transientCredentialsError)
     )
 
     let cancellationError = RequestError.io(CancellationError())
@@ -68,6 +95,32 @@ import Testing
     #expect(
       p.onError(state: nonIdempotentState(), error: credentialsError)
         == .permanent(credentialsError)
+    )
+
+    let permanentFetchError = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "invalid_grant",
+        underlyingError: CredentialsError.parseError("revoked")
+      )
+    )
+    #expect(
+      p.onError(state: idempotentState(), error: permanentFetchError)
+        == .permanent(permanentFetchError)
+    )
+
+    let transientCredentialsError = RequestError.io(
+      CredentialsError._transientCannotFetchToken(
+        message: "MDS 503",
+        underlyingError: URLError(.timedOut)
+      )
+    )
+    #expect(
+      p.onError(state: idempotentState(), error: transientCredentialsError)
+        == .retry(transientCredentialsError)
+    )
+    #expect(
+      p.onError(state: nonIdempotentState(), error: transientCredentialsError)
+        == .retry(transientCredentialsError)
     )
 
     let cancellationError = RequestError.io(CancellationError())

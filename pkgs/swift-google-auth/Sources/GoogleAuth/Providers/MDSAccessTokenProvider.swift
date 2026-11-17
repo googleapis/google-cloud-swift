@@ -229,7 +229,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     } catch {
       throw CredentialsError.cannotFetchToken(
         message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
-        underlyingError: error
+        underlyingError: isADCFallback ? NonRetryableTokenError(underlying: error) : error
       )
     }
   }
@@ -317,7 +317,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
           endpoint: baseEndpoint,
           resource: "the universe domain"
         ),
-        underlyingError: error
+        underlyingError: isADCFallback ? NonRetryableTokenError(underlying: error) : error
       )
     }
   }

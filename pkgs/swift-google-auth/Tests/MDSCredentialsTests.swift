@@ -17,7 +17,7 @@ import Foundation
 import NIOFoundationCompat
 import NIOHTTP1
 import Testing
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 @Suite struct MDSCredentialsTest {
   @Test func headersSuccessWithQuotaProject() async throws {
@@ -996,6 +996,90 @@ import Testing
     #expect(headers["Authorization"] == "Bearer mock-token")
     #expect(headers["x-goog-user-project"] == nil)
     #expect(try await provider.universeDomain() == "queried.universe.com")
+  }
+
+  @Test func adcFallbackMarksErrorsNonRetryableAndCachesPermanentFailure() async throws {
+    let tokenAttempts = CallCounter()
+    let universeAttempts = CallCounter()
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        tokenAttempts.increment()
+        throw URLError(.cannotConnectToHost)
+      },
+      { request in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        universeAttempts.increment()
+        throw URLError(.timedOut)
+      },
+    ])
+
+    let provider = MDSCredentials(
+      client: AuthHTTPClient(mock: mock),
+      fromADC: true,
+      environment: [:]
+    )
+
+    let tokenError = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    let unwrappedTokenError = try #require(tokenError)
+    #expect(unwrappedTokenError._isRetryable == false)
+    #expect(unwrappedTokenError.description.contains("Transport error:"))
+    #expect(unwrappedTokenError.debugDescription.contains("AuthHTTPError.transportError("))
+    #expect(tokenAttempts.getCount() == 1)
+
+    // TokenCache must cache the permanent failure without re-probing MDS.
+    _ = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(tokenAttempts.getCount() == 1)
+
+    let universeError = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    let unwrappedUniverseError = try #require(universeError)
+    #expect(unwrappedUniverseError._isRetryable == false)
+    #expect(universeAttempts.getCount() == 1)
+
+    // MDSUniverseDomainCache must cache the permanent failure without re-probing MDS.
+    _ = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    #expect(universeAttempts.getCount() == 1)
+  }
+
+  @Test func explicitMDSMarksTransientErrorsRetryableAndPermanentErrorsNonRetryable() async throws {
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 1, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(version: .http2, status: .serviceUnavailable)
+      },
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(version: .http2, status: .forbidden)
+      },
+    ])
+
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      fromADC: false,
+      environment: [:]
+    )
+
+    let transientError = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(transientError?._isRetryable == true)
+
+    let permanentError = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(permanentError?._isRetryable == false)
   }
 
   static func checkRequest(

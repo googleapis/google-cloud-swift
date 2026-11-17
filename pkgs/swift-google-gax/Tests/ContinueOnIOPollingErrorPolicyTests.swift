@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleAuth
+import Foundation
+@_spi(GoogleCloudInternal) import GoogleAuth
 import GoogleGax
 import Synchronization
 import Testing
@@ -29,6 +30,17 @@ import Testing
     #expect(
       policy.onError(state: PollingState(), error: credentialsError)
         == .permanent(credentialsError)
+    )
+
+    let transientCredentialsError = RequestError.io(
+      CredentialsError._transientCannotFetchToken(
+        message: "MDS 503",
+        underlyingError: URLError(.timedOut)
+      )
+    )
+    #expect(
+      policy.onError(state: PollingState(), error: transientCredentialsError)
+        == .retry(transientCredentialsError)
     )
 
     let cancellationError = RequestError.io(CancellationError())
@@ -51,6 +63,17 @@ import Testing
     #expect(
       policy.onError(state: PollingState(), error: credentialsError)
         == .permanent(credentialsError)
+    )
+
+    let transientCredentialsError = RequestError.io(
+      CredentialsError._transientCannotFetchToken(
+        message: "MDS 503",
+        underlyingError: URLError(.timedOut)
+      )
+    )
+    #expect(
+      policy.onError(state: PollingState(), error: transientCredentialsError)
+        == .retry(transientCredentialsError)
     )
 
     let cancellationError = RequestError.io(CancellationError())

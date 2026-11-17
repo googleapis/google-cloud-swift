@@ -12,13 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import GoogleGax
+@_spi(GoogleCloudInternal) public import GoogleGax
 
 /// Evaluates whether an error is considered resumable in Google Cloud Storage.
 ///
 /// In Google Cloud Storage, idempotent data transfers (most uploads and downloads) can be resumed
-/// on I/O errors, transient HTTP status codes (408, 429, and 5xx), and transient
-/// gRPC/service status codes (`unavailable`, `resourceExhausted`, `deadlineExceeded`, `internal`).
+/// on transient I/O errors (including transient token-fetch failures), transient HTTP status codes
+/// (408, 429, and 5xx), and transient gRPC/service status codes (`unavailable`,
+/// `resourceExhausted`, `deadlineExceeded`, `internal`). Non-retryable `CredentialsError` failures
+/// (such as invalid configuration, universe domain mismatch, or HTTP 4xx rejection) and
+/// `CancellationError` are treated as permanent and are not resumed.
 ///
 /// If the transfer operation is not idempotent (some single-shot uploads), errors are treated
 /// as permanent and will not be resumed or retried.
@@ -59,7 +62,7 @@ public struct StorageResumePolicy<Details: Sendable>: ResumePolicy, Sendable, Eq
 
   private static func isResumable(_ error: RequestError) -> Bool {
     if case .io = error {
-      return true
+      return !error._isPermanentIOError
     }
     return StorageRetryErrors.isRetryable(error)
   }

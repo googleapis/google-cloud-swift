@@ -57,7 +57,7 @@ For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(_:)` 
 - `_HTTPClient` stores the client's resolved `universeDomain` (defaulting to `_Host.defaultUniverseDomain`).
 - Before `_HTTPClient` calls `credentials.headers()` on a request, it calls `credentials.validateUniverseDomain(self.universeDomain)`. For non-anonymous credentials, `validateUniverseDomain(_:)` awaits `universeDomain()` and verifies that it equals the client's `universeDomain`, throwing `CredentialsError.parseError` on mismatch (which `_HTTPClient` wraps in `RequestError.io`).
 - If `Task` cancellation (`CancellationError`) occurs while validating the universe domain or resolving authentication headers, `_HTTPClient` rethrows `CancellationError` directly rather than wrapping it in `RequestError.io`.
-- `ContinueOnIO` (for both `RetryPolicy` and `PollingErrorPolicy`) inspects `RequestError.io(let underlying)` and returns `.permanent` when `underlying` is `CredentialsError` or `CancellationError`, ensuring credential and universe domain errors fail immediately on idempotent RPCs.
+- `ContinueOnIO` (for both `RetryPolicy` and `PollingErrorPolicy`) inspects `RequestError.io(let underlying)` via `RequestError._isPermanentIOError` and returns `.permanent` when `underlying` is `CancellationError` or a non-retryable `CredentialsError` (`!credentialsError._isRetryable`, including `.parseError`, `.notSupported`, `.cannotLoadFile`, `.credentialsNotFound`, HTTP 4xx token responses, expired static tokens, custom `AccessTokenProvider` errors, and implicit ADC metadata server fallback failures), while allowing transient `.cannotFetchToken` failures (HTTP 408/429/5xx and transport errors on explicit/configured auth endpoints) to be retried on idempotent RPCs.
 
 ## 3. gRPC Transport
 
@@ -71,3 +71,4 @@ For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(_:)` 
 `GoogleCloudStorage` integrates universe domain support across both the handwritten REST data-plane veneer (`StorageClient`) and the generated gRPC control-plane client (`StorageControlClient`):
 
 - `StorageClient.init(_:mock:)` resolves `universeDomain` and `endpoint` from `options.client` using `_Host.resolveUniverseDomain` and `_Host.endpoint` against `https://storage.googleapis.com` and forwards `universeDomain` and `defaultEndpoint` to `_HTTPClient` (which derives the `Host` header via `_Host.header`).
+- `StorageResumePolicy` consults `RequestError._isPermanentIOError` on `RequestError.io` failures so permanent credential and universe domain mismatch errors fail immediately without consuming upload or download resume attempts, while transient token-refresh failures mid-transfer remain resumable.
