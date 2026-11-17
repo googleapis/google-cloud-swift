@@ -308,8 +308,7 @@ private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
     url.password == nil,
     url.port == nil,
     url.query == nil,
-    url.fragment == nil,
-    !url.percentEncodedPath.contains("%")
+    url.fragment == nil
   else {
     return false
   }
@@ -317,17 +316,14 @@ private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
   let path: Substring
   if let host = url.encodedHost {
     guard
-      isValidServiceHost(host, service: "iam"),
-      url.percentEncodedPath.hasPrefix("/"),
-      audience == "//\(host)\(url.percentEncodedPath)"
+      host.lowercased().hasPrefix("iam."),
+      host.count > "iam.".count,
+      url.percentEncodedPath.hasPrefix("/")
     else {
       return false
     }
     path = url.percentEncodedPath.dropFirst()
   } else {
-    guard audience == url.percentEncodedPath else {
-      return false
-    }
     path = Substring(url.percentEncodedPath)
   }
 
@@ -335,37 +331,9 @@ private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
   guard segments.count == 6 else { return false }
 
   return segments[0] == "locations"
-    && isValidResourceSegment(segments[1])
+    && !segments[1].isEmpty
     && segments[2] == "workforcePools"
-    && isValidResourceSegment(segments[3])
+    && !segments[3].isEmpty
     && segments[4] == "providers"
-    && isValidResourceSegment(segments[5])
-}
-
-private func isValidResourceSegment(_ segment: Substring) -> Bool {
-  !segment.isEmpty && segment != "." && segment != ".."
-}
-
-private func isValidServiceHost(_ host: String, service: String) -> Bool {
-  let labels = host.split(separator: ".", omittingEmptySubsequences: false)
-  guard
-    labels.count >= 2,
-    labels.allSatisfy(isValidDNSLabel),
-    labels[0].lowercased() == service.lowercased()
-  else {
-    return false
-  }
-  return true
-}
-
-private func isValidDNSLabel(_ label: Substring) -> Bool {
-  !label.isEmpty
-    && label.first != "-"
-    && label.last != "-"
-    && label.utf8.allSatisfy {
-      ($0 >= UInt8(ascii: "a") && $0 <= UInt8(ascii: "z"))
-        || ($0 >= UInt8(ascii: "A") && $0 <= UInt8(ascii: "Z"))
-        || ($0 >= UInt8(ascii: "0") && $0 <= UInt8(ascii: "9"))
-        || $0 == UInt8(ascii: "-")
-    }
+    && !segments[5].isEmpty
 }
