@@ -1127,7 +1127,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     await provider.configure(token: recoveredToken, error: nil)
 
     clock.advance(by: .seconds(1.1))
-    for _ in 0..<1_000 where cache.hasBackgroundTask {
+    for _ in 0..<1_000 {
+      guard cache.hasBackgroundTask else { break }
       await Task.yield()
     }
 
@@ -1280,7 +1281,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     timeSource.advance(by: 8.0)
     clock.advance(by: .seconds(8))
 
-    for _ in 0..<1_000 where cache.hasBackgroundTask {
+    for _ in 0..<1_000 {
+      guard cache.hasBackgroundTask else { break }
       await Task.yield()
     }
     #expect(!cache.hasBackgroundTask)
@@ -1334,7 +1336,8 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     cache.cancelBackgroundRefresh()
     valuesContinuation.yield(.failure(CancellationError()))
 
-    for _ in 0..<1_000 where cache.hasBackgroundTask {
+    for _ in 0..<1_000 {
+      guard cache.hasBackgroundTask else { break }
       await Task.yield()
     }
     #expect(!cache.hasBackgroundTask)
