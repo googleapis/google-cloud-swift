@@ -142,8 +142,8 @@ public enum _Host {
     }
   }
 
-  private static func isValidUniverseDomain(_ lowerUniverse: String) -> Bool {
-    let labels = lowerUniverse.split(separator: ".", omittingEmptySubsequences: false).map(
+  private static func isValidUniverseDomain(_ universeDomain: String) -> Bool {
+    let labels = universeDomain.split(separator: ".", omittingEmptySubsequences: false).map(
       String.init)
     guard let tld = labels.last,
       labels.allSatisfy(isValidDNSLabel),
@@ -226,7 +226,6 @@ public enum _Host {
     let basePort = baseURL.port ?? defaultPort
     let uriHost = encodedHost.lowercased()
     let baseHost = baseEncodedHost.lowercased()
-    let lowerUniverse = universeDomain.lowercased()
 
     var out = baseURL
     let resolvedHostHeader: String
@@ -234,14 +233,14 @@ public enum _Host {
     if uriHost == baseHost && uriPort == basePort {
       resolvedHostHeader = defaultHostHeader
     } else if let service = extractService(from: defaultEndpoint),
-      isValidUniverseDomain(lowerUniverse),
-      baseHost.hasSuffix(".\(lowerUniverse)"),
-      !isRegionalServiceHost(baseHost, service: service, universeDomain: lowerUniverse),
-      uriHost == "\(service).\(lowerUniverse)"
-        || isRegionalServiceHost(uriHost, service: service, universeDomain: lowerUniverse),
+      isValidUniverseDomain(universeDomain),
+      baseHost.hasSuffix(".\(universeDomain)"),
+      !isRegionalServiceHost(baseHost, service: service, universeDomain: universeDomain),
+      uriHost == "\(service).\(universeDomain)"
+        || isRegionalServiceHost(uriHost, service: service, universeDomain: universeDomain),
       uriPort == defaultPort || uriPort == basePort
     {
-      if baseHost == "\(service).\(lowerUniverse)" {
+      if baseHost == "\(service).\(universeDomain)" {
         out.encodedHost = uriHost
       }
       resolvedHostHeader = uriHost
@@ -250,9 +249,7 @@ public enum _Host {
     }
 
     out.percentEncodedPath = parsed.percentEncodedPath
-    if let query = parsed.percentEncodedQuery {
-      out.percentEncodedQuery = query.replacingOccurrences(of: ";", with: "%3B")
-    }
+    out.percentEncodedQuery = parsed.percentEncodedQuery?.replacingOccurrences(of: ";", with: "%3B")
     guard out.url != nil else {
       throw RequestError.badURL(uri)
     }
