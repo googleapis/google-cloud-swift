@@ -879,40 +879,24 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     encoder.keyEncodingStrategy = .convertToSnakeCase
     let responseData = try encoder.encode(expectedResponse)
 
-    let mock = MockHTTPClient([
-      { (request: HTTPClientRequest) async throws in
-        let buffer = try #require(try await request.body?.collect(upTo: 1024 * 1024))
-        let bodyString = try #require(
-          try buffer.getUTF8ValidatedString(at: 0, length: buffer.readableBytes))
-        let queryItems = URLComponents(string: "?" + bodyString)?.queryItems ?? []
-        let params = Dictionary(uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
+    let expectNoOptions: @Sendable (HTTPClientRequest) async throws -> HTTPClientResponse = {
+      request in
+      let buffer = try #require(try await request.body?.collect(upTo: 1024 * 1024))
+      let bodyString = try #require(
+        try buffer.getUTF8ValidatedString(at: 0, length: buffer.readableBytes))
+      let queryItems = URLComponents(string: "?" + bodyString)?.queryItems ?? []
+      let params = Dictionary(uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
 
-        #expect(params["options"] == nil)
+      #expect(params["options"] == nil)
 
-        return HTTPClientResponse(
-          version: .http2,
-          status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
-          body: .bytes(.init(data: responseData))
-        )
-      },
-      { (request: HTTPClientRequest) async throws in
-        let buffer = try #require(try await request.body?.collect(upTo: 1024 * 1024))
-        let bodyString = try #require(
-          try buffer.getUTF8ValidatedString(at: 0, length: buffer.readableBytes))
-        let queryItems = URLComponents(string: "?" + bodyString)?.queryItems ?? []
-        let params = Dictionary(uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
-
-        #expect(params["options"] == nil)
-
-        return HTTPClientResponse(
-          version: .http2,
-          status: .ok,
-          headers: .init([("Content-Type", "application/json")]),
-          body: .bytes(.init(data: responseData))
-        )
-      },
-    ])
+      return HTTPClientResponse(
+        version: .http2,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json")]),
+        body: .bytes(.init(data: responseData))
+      )
+    }
+    let mock = MockHTTPClient([expectNoOptions, expectNoOptions])
 
     let httpClient = AuthHTTPClient(mock: mock)
     let workloadAudience =
@@ -945,7 +929,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     let token = try await tokenProvider.fetchToken()
     #expect(token.token == "ya29.sts-token")
 
-    let config = ExternalAccountConfig(
+    let workforceConfig = ExternalAccountConfig(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience: "//iam.googleapis.com/locations/global/workforcePools/wpool/providers/wprov",
       subjectTokenType: .idToken,
@@ -953,9 +937,22 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     ).with {
       $0.workforcePoolUserProject = ""
     }
-    let publicCreds = try Credentials(configuration: .externalAccount(config))
-    let resolvedProvider = try #require(
-      publicCreds.credentialsProvider as? ExternalAccountCredentials)
-    #expect(resolvedProvider.workforcePoolUserProject == nil)
+    let publicWorkforceCreds = try Credentials(configuration: .externalAccount(workforceConfig))
+    let resolvedWorkforceProvider = try #require(
+      publicWorkforceCreds.credentialsProvider as? ExternalAccountCredentials)
+    #expect(resolvedWorkforceProvider.workforcePoolUserProject == nil)
+
+    let workloadConfig = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: workloadAudience,
+      subjectTokenType: .idToken,
+      tokenURL: targetURL
+    ).with {
+      $0.workforcePoolUserProject = ""
+    }
+    let publicWorkloadCreds = try Credentials(configuration: .externalAccount(workloadConfig))
+    let resolvedWorkloadProvider = try #require(
+      publicWorkloadCreds.credentialsProvider as? ExternalAccountCredentials)
+    #expect(resolvedWorkloadProvider.workforcePoolUserProject == nil)
   }
 }
