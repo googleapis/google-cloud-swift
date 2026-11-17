@@ -189,6 +189,19 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       "locations/global/workforcePools/pool/providers/prov?foo=bar",
       "locations/global/workforcePools/pool/providers/prov#frag",
       "locations/global/workforcePools/pool/providers/prov%2Fextra",
+      "locations/global/workforcePools/pool/providers/prov%69der",
+      "locations:global/workforcePools/pool/providers/provider",
+      "//iam.googleapis.com:/locations/global/workforcePools/pool/providers/provider",
+      "//@iam.googleapis.com/locations/global/workforcePools/pool/providers/provider",
+      "//iam.foo$bar.com/locations/global/workforcePools/pool/providers/provider",
+      "//iam.-foo.com/locations/global/workforcePools/pool/providers/provider",
+      "//iam.foo-.com/locations/global/workforcePools/pool/providers/provider",
+      "//iam.google%61pis.com/locations/global/workforcePools/pool/providers/provider",
+      "//iam\u{3002}googleapis\u{3002}com/locations/global/workforcePools/pool/providers/provider",
+      "//iam.münchen.de/locations/global/workforcePools/pool/providers/provider",
+      "//iam.googleapis.com/locations/../workforcePools/pool/providers/provider",
+      "locations/global/workforcePools/./providers/provider",
+      "locations/global/workforcePools/pool/providers/..",
     ]
   )
   func rejectsInvalidWorkforcePoolAudiences(audience: String) {

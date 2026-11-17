@@ -302,7 +302,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
 /// - Returns: `true` if the audience represents a valid workforce pool format, `false` otherwise.
 private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
   guard
-    let url = URLComponents(string: audience),
+    let url = URLComponents(string: audience, encodingInvalidCharacters: false),
     url.scheme == nil,
     url.user == nil,
     url.password == nil,
@@ -315,15 +315,19 @@ private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
   }
 
   let path: Substring
-  if let host = url.percentEncodedHost {
+  if let host = url.encodedHost {
     guard
       isValidServiceHost(host, service: "iam"),
-      url.percentEncodedPath.hasPrefix("/")
+      url.percentEncodedPath.hasPrefix("/"),
+      audience == "//\(host)\(url.percentEncodedPath)"
     else {
       return false
     }
     path = url.percentEncodedPath.dropFirst()
   } else {
+    guard audience == url.percentEncodedPath else {
+      return false
+    }
     path = Substring(url.percentEncodedPath)
   }
 
@@ -331,21 +335,37 @@ private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
   guard segments.count == 6 else { return false }
 
   return segments[0] == "locations"
-    && !segments[1].isEmpty
+    && isValidResourceSegment(segments[1])
     && segments[2] == "workforcePools"
-    && !segments[3].isEmpty
+    && isValidResourceSegment(segments[3])
     && segments[4] == "providers"
-    && !segments[5].isEmpty
+    && isValidResourceSegment(segments[5])
+}
+
+private func isValidResourceSegment(_ segment: Substring) -> Bool {
+  !segment.isEmpty && segment != "." && segment != ".."
 }
 
 private func isValidServiceHost(_ host: String, service: String) -> Bool {
-  let prefix = "\(service)."
-  guard host.lowercased().hasPrefix(prefix), !host.contains("%") else {
+  let labels = host.split(separator: ".", omittingEmptySubsequences: false)
+  guard
+    labels.count >= 2,
+    labels.allSatisfy(isValidDNSLabel),
+    labels[0].lowercased() == service.lowercased()
+  else {
     return false
   }
-  let universe = host.dropFirst(prefix.count)
-  return !universe.isEmpty
-    && !universe.hasPrefix(".")
-    && !universe.hasSuffix(".")
-    && !universe.contains("..")
+  return true
+}
+
+private func isValidDNSLabel(_ label: Substring) -> Bool {
+  !label.isEmpty
+    && label.first != "-"
+    && label.last != "-"
+    && label.utf8.allSatisfy {
+      ($0 >= UInt8(ascii: "a") && $0 <= UInt8(ascii: "z"))
+        || ($0 >= UInt8(ascii: "A") && $0 <= UInt8(ascii: "Z"))
+        || ($0 >= UInt8(ascii: "0") && $0 <= UInt8(ascii: "9"))
+        || $0 == UInt8(ascii: "-")
+    }
 }
