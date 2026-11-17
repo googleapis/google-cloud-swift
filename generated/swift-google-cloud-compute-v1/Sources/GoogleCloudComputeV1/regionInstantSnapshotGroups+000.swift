@@ -24,6 +24,10 @@
   /// Service for the `regionInstantSnapshotGroups` resource.
   ///
   /// @Snippet(path: "regionInstantSnapshotGroupsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionInstantSnapshotGroupsProtocol``
   public final class RegionInstantSnapshotGroupsClient: Clients.RegionInstantSnapshotGroupsProtocol,
     Sendable
   {
@@ -47,6 +51,13 @@
     /// deletes a Regional InstantSnapshotGroup resource
     ///
     /// @Snippet(path: "regionInstantSnapshotGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:instantSnapshotGroup:)``
     public func delete(
       request: RegionInstantSnapshotGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -61,6 +72,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstantSnapshotGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:region:instantSnapshotGroup:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: RegionInstantSnapshotGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -104,6 +122,11 @@
     /// region.
     ///
     /// @Snippet(path: "regionInstantSnapshotGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:instantSnapshotGroup:)``
     public func `get`(
       request: RegionInstantSnapshotGroupsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstantSnapshotGroup {
@@ -114,6 +137,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "regionInstantSnapshotGroups_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(project:region:resource:)``
     public func getIamPolicy(
       request: RegionInstantSnapshotGroupsClient.GetIamPolicyRequest,
       options: GoogleGax.RequestOptions
@@ -124,6 +152,13 @@
     /// creates a Regional InstantSnapshotGroup resource
     ///
     /// @Snippet(path: "regionInstantSnapshotGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: RegionInstantSnapshotGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -138,6 +173,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstantSnapshotGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: RegionInstantSnapshotGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -181,6 +223,13 @@
     /// the specified region.
     ///
     /// @Snippet(path: "regionInstantSnapshotGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:region:)``
     public func list(
       request: RegionInstantSnapshotGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ListInstantSnapshotGroups {
@@ -191,6 +240,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "regionInstantSnapshotGroups_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(project:region:resource:body:)``
     public func setIamPolicy(
       request: RegionInstantSnapshotGroupsClient.SetIamPolicyRequest,
       options: GoogleGax.RequestOptions
@@ -201,6 +255,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "regionInstantSnapshotGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:region:resource:body:)``
     public func testIamPermissions(
       request: RegionInstantSnapshotGroupsClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions
@@ -287,6 +346,13 @@
 
   // Default implementations
   extension Clients.RegionInstantSnapshotGroupsProtocol {
+    /// deletes a Regional InstantSnapshotGroup resource
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/delete(request:options:)``
     public func delete(request: RegionInstantSnapshotGroupsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -299,6 +365,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// deletes a Regional InstantSnapshotGroup resource
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionInstantSnapshotGroupsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -311,6 +389,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// deletes a Regional InstantSnapshotGroup resource
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -324,6 +414,14 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// returns the specified InstantSnapshotGroup resource in the specified
+    /// region.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/get(request:options:)``
     public func `get`(request: RegionInstantSnapshotGroupsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.InstantSnapshotGroup
     {
@@ -336,6 +434,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// returns the specified InstantSnapshotGroup resource in the specified
+    /// region.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -349,6 +455,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: RegionInstantSnapshotGroupsClient.GetIamPolicyRequest)
       async throws -> GoogleCloudComputeV1.Policy
     {
@@ -362,6 +476,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -375,6 +497,13 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// creates a Regional InstantSnapshotGroup resource
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/insert(request:options:)``
     public func insert(request: RegionInstantSnapshotGroupsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -387,6 +516,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// creates a Regional InstantSnapshotGroup resource
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionInstantSnapshotGroupsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -399,6 +540,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// creates a Regional InstantSnapshotGroup resource
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -412,6 +565,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// retrieves the list of InstantSnapshotGroup resources contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/list(request:options:)``
     public func list(request: RegionInstantSnapshotGroupsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.ListInstantSnapshotGroups
     {
@@ -424,6 +585,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// retrieves the list of InstantSnapshotGroup resources contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/list(request:options:)``
     public func listByItems(
       request: RegionInstantSnapshotGroupsClient.ListRequest
     ) -> some AsyncSequence<InstantSnapshotGroup, any Swift.Error> & Sendable {
@@ -434,6 +603,10 @@
     /// the specified region.
     ///
     /// @Snippet(path: "regionInstantSnapshotGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/list(request:options:)``
     public func listByItems(
       request: RegionInstantSnapshotGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<InstantSnapshotGroup, any Swift.Error> & Sendable {
@@ -448,6 +621,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// retrieves the list of InstantSnapshotGroup resources contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -459,6 +640,14 @@
       return self.listByItems(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: RegionInstantSnapshotGroupsClient.SetIamPolicyRequest)
       async throws -> GoogleCloudComputeV1.Policy
     {
@@ -472,6 +661,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -487,6 +684,13 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       request: RegionInstantSnapshotGroupsClient.TestIamPermissionsRequest
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -500,6 +704,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionInstantSnapshotGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstantSnapshotGroupsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -515,6 +726,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

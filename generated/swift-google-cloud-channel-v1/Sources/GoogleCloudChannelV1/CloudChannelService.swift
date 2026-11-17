@@ -47,6 +47,10 @@ import Foundation
 /// [google.cloud.channel.v1.Entitlement]: <doc:Entitlement>
 ///
 /// @Snippet(path: "CloudChannelServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudChannelServiceProtocol``
 public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtocol, Sendable {
   let inner: any Clients.CloudChannelServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -80,6 +84,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.Customer]: <doc:Customer>
   ///
   /// @Snippet(path: "CloudChannelService_ListCustomers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCustomers(request:)``
+  /// - ``listCustomersByItems(request:)``
+  /// - ``listCustomersByItems(request:options:)``
   public func listCustomers(
     request: ListCustomersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListCustomersResponse {
@@ -103,6 +113,11 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.Customer]: <doc:Customer>
   ///
   /// @Snippet(path: "CloudChannelService_GetCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCustomer(request:)``
+  /// - ``getCustomer(name:)``
   public func getCustomer(
     request: GetCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.Customer {
@@ -132,6 +147,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.CloudIdentityCustomerAccount]: <doc:CloudIdentityCustomerAccount>
   ///
   /// @Snippet(path: "CloudChannelService_CheckCloudIdentityAccountsExist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``checkCloudIdentityAccountsExist(request:)``
   public func checkCloudIdentityAccountsExist(
     request: CheckCloudIdentityAccountsExistRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.CheckCloudIdentityAccountsExistResponse {
@@ -158,6 +177,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.Customer]: <doc:Customer>
   ///
   /// @Snippet(path: "CloudChannelService_CreateCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCustomer(request:)``
   public func createCustomer(
     request: CreateCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.Customer {
@@ -181,6 +204,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.Customer]: <doc:Customer>
   ///
   /// @Snippet(path: "CloudChannelService_UpdateCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCustomer(request:)``
   public func updateCustomer(
     request: UpdateCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.Customer {
@@ -201,6 +228,11 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.Customer]: <doc:Customer>
   ///
   /// @Snippet(path: "CloudChannelService_DeleteCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCustomer(request:)``
+  /// - ``deleteCustomer(name:)``
   public func deleteCustomer(
     request: DeleteCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -231,6 +263,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.Customer]: <doc:Customer>
   ///
   /// @Snippet(path: "CloudChannelService_ImportCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importCustomer(request:)``
   public func importCustomer(
     request: ImportCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.Customer {
@@ -265,6 +301,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_ProvisionCloudIdentity")
+  ///
+  /// ## See Also
+  ///
+  /// - ``provisionCloudIdentity(request:)``
+  /// - ``provisionCloudIdentityPollingUntilDone(request:)``
+  /// - ``provisionCloudIdentityPollingUntilDone(request:options:)``
   public func provisionCloudIdentity(
     request: ProvisionCloudIdentityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -299,6 +341,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_ProvisionCloudIdentity")
+  ///
+  /// ## See Also
+  ///
+  /// - ``provisionCloudIdentityPollingUntilDone(request:)``
+  /// - ``provisionCloudIdentity(request:)``
+  /// - ``provisionCloudIdentity(request:options:)``
   public func provisionCloudIdentityPollingUntilDone(
     request: ProvisionCloudIdentityRequest, options: GoogleGax.RequestOptions
   ) async throws -> Customer {
@@ -338,6 +386,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.Entitlement]: <doc:Entitlement>
   ///
   /// @Snippet(path: "CloudChannelService_ListEntitlements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEntitlements(request:)``
+  /// - ``listEntitlementsByItems(request:)``
+  /// - ``listEntitlementsByItems(request:options:)``
   public func listEntitlements(
     request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListEntitlementsResponse {
@@ -367,6 +421,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.TransferableSku]: <doc:TransferableSku>
   ///
   /// @Snippet(path: "CloudChannelService_ListTransferableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTransferableSkus(request:)``
+  /// - ``listTransferableSkusByItems(request:)``
+  /// - ``listTransferableSkusByItems(request:options:)``
   public func listTransferableSkus(
     request: ListTransferableSkusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListTransferableSkusResponse {
@@ -399,6 +459,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.TransferableOffer]: <doc:TransferableOffer>
   ///
   /// @Snippet(path: "CloudChannelService_ListTransferableOffers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTransferableOffers(request:)``
+  /// - ``listTransferableOffersByItems(request:)``
+  /// - ``listTransferableOffersByItems(request:options:)``
   public func listTransferableOffers(
     request: ListTransferableOffersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListTransferableOffersResponse {
@@ -420,6 +486,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.Entitlement]: <doc:Entitlement>
   ///
   /// @Snippet(path: "CloudChannelService_GetEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEntitlement(request:)``
   public func getEntitlement(
     request: GetEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.Entitlement {
@@ -469,6 +539,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_CreateEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEntitlement(request:)``
+  /// - ``createEntitlementPollingUntilDone(request:)``
+  /// - ``createEntitlementPollingUntilDone(request:options:)``
   public func createEntitlement(
     request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -518,6 +594,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_CreateEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEntitlementPollingUntilDone(request:)``
+  /// - ``createEntitlement(request:)``
+  /// - ``createEntitlement(request:options:)``
   public func createEntitlementPollingUntilDone(
     request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -569,6 +651,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_ChangeParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``changeParameters(request:)``
+  /// - ``changeParametersPollingUntilDone(request:)``
+  /// - ``changeParametersPollingUntilDone(request:options:)``
   public func changeParameters(
     request: ChangeParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -602,6 +690,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_ChangeParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``changeParametersPollingUntilDone(request:)``
+  /// - ``changeParameters(request:)``
+  /// - ``changeParameters(request:options:)``
   public func changeParametersPollingUntilDone(
     request: ChangeParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -653,6 +747,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_ChangeRenewalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``changeRenewalSettings(request:)``
+  /// - ``changeRenewalSettingsPollingUntilDone(request:)``
+  /// - ``changeRenewalSettingsPollingUntilDone(request:options:)``
   public func changeRenewalSettings(
     request: ChangeRenewalSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -686,6 +786,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_ChangeRenewalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``changeRenewalSettingsPollingUntilDone(request:)``
+  /// - ``changeRenewalSettings(request:)``
+  /// - ``changeRenewalSettings(request:options:)``
   public func changeRenewalSettingsPollingUntilDone(
     request: ChangeRenewalSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -735,6 +841,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_ChangeOffer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``changeOffer(request:)``
+  /// - ``changeOfferPollingUntilDone(request:)``
+  /// - ``changeOfferPollingUntilDone(request:options:)``
   public func changeOffer(
     request: ChangeOfferRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -766,6 +878,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_ChangeOffer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``changeOfferPollingUntilDone(request:)``
+  /// - ``changeOffer(request:)``
+  /// - ``changeOffer(request:options:)``
   public func changeOfferPollingUntilDone(
     request: ChangeOfferRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -818,6 +936,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_StartPaidService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startPaidService(request:)``
+  /// - ``startPaidServicePollingUntilDone(request:)``
+  /// - ``startPaidServicePollingUntilDone(request:options:)``
   public func startPaidService(
     request: StartPaidServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -852,6 +976,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_StartPaidService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startPaidServicePollingUntilDone(request:)``
+  /// - ``startPaidService(request:)``
+  /// - ``startPaidService(request:options:)``
   public func startPaidServicePollingUntilDone(
     request: StartPaidServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -901,6 +1031,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_SuspendEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``suspendEntitlement(request:)``
+  /// - ``suspendEntitlementPollingUntilDone(request:)``
+  /// - ``suspendEntitlementPollingUntilDone(request:options:)``
   public func suspendEntitlement(
     request: SuspendEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -932,6 +1068,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_SuspendEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``suspendEntitlementPollingUntilDone(request:)``
+  /// - ``suspendEntitlement(request:)``
+  /// - ``suspendEntitlement(request:options:)``
   public func suspendEntitlementPollingUntilDone(
     request: SuspendEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -986,6 +1128,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_CancelEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelEntitlement(request:)``
+  /// - ``cancelEntitlementPollingUntilDone(request:)``
+  /// - ``cancelEntitlementPollingUntilDone(request:options:)``
   public func cancelEntitlement(
     request: CancelEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1022,6 +1170,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_CancelEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelEntitlementPollingUntilDone(request:)``
+  /// - ``cancelEntitlement(request:)``
+  /// - ``cancelEntitlement(request:options:)``
   public func cancelEntitlementPollingUntilDone(
     request: CancelEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1077,6 +1231,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_ActivateEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``activateEntitlement(request:)``
+  /// - ``activateEntitlementPollingUntilDone(request:)``
+  /// - ``activateEntitlementPollingUntilDone(request:options:)``
   public func activateEntitlement(
     request: ActivateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1114,6 +1274,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_ActivateEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``activateEntitlementPollingUntilDone(request:)``
+  /// - ``activateEntitlement(request:)``
+  /// - ``activateEntitlement(request:options:)``
   public func activateEntitlementPollingUntilDone(
     request: ActivateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -1174,6 +1340,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_TransferEntitlements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``transferEntitlements(request:)``
+  /// - ``transferEntitlementsPollingUntilDone(request:)``
+  /// - ``transferEntitlementsPollingUntilDone(request:options:)``
   public func transferEntitlements(
     request: TransferEntitlementsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1216,6 +1388,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_TransferEntitlements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``transferEntitlementsPollingUntilDone(request:)``
+  /// - ``transferEntitlements(request:)``
+  /// - ``transferEntitlements(request:options:)``
   public func transferEntitlementsPollingUntilDone(
     request: TransferEntitlementsRequest, options: GoogleGax.RequestOptions
   ) async throws -> TransferEntitlementsResponse {
@@ -1275,6 +1453,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_TransferEntitlementsToGoogle")
+  ///
+  /// ## See Also
+  ///
+  /// - ``transferEntitlementsToGoogle(request:)``
+  /// - ``transferEntitlementsToGooglePollingUntilDone(request:)``
+  /// - ``transferEntitlementsToGooglePollingUntilDone(request:options:)``
   public func transferEntitlementsToGoogle(
     request: TransferEntitlementsToGoogleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1314,6 +1498,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
   ///
   /// @Snippet(path: "CloudChannelService_TransferEntitlementsToGoogle")
+  ///
+  /// ## See Also
+  ///
+  /// - ``transferEntitlementsToGooglePollingUntilDone(request:)``
+  /// - ``transferEntitlementsToGoogle(request:)``
+  /// - ``transferEntitlementsToGoogle(request:options:)``
   public func transferEntitlementsToGooglePollingUntilDone(
     request: TransferEntitlementsToGoogleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1354,6 +1544,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.ChannelPartnerLink]: <doc:ChannelPartnerLink>
   ///
   /// @Snippet(path: "CloudChannelService_ListChannelPartnerLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listChannelPartnerLinks(request:)``
+  /// - ``listChannelPartnerLinksByItems(request:)``
+  /// - ``listChannelPartnerLinksByItems(request:options:)``
   public func listChannelPartnerLinks(
     request: ListChannelPartnerLinksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListChannelPartnerLinksResponse {
@@ -1379,6 +1575,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.ChannelPartnerLink]: <doc:ChannelPartnerLink>
   ///
   /// @Snippet(path: "CloudChannelService_GetChannelPartnerLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getChannelPartnerLink(request:)``
   public func getChannelPartnerLink(
     request: GetChannelPartnerLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerLink {
@@ -1412,6 +1612,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.ChannelPartnerLink]: <doc:ChannelPartnerLink>
   ///
   /// @Snippet(path: "CloudChannelService_CreateChannelPartnerLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createChannelPartnerLink(request:)``
   public func createChannelPartnerLink(
     request: CreateChannelPartnerLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerLink {
@@ -1444,6 +1648,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.ChannelPartnerLink]: <doc:ChannelPartnerLink>
   ///
   /// @Snippet(path: "CloudChannelService_UpdateChannelPartnerLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateChannelPartnerLink(request:)``
   public func updateChannelPartnerLink(
     request: UpdateChannelPartnerLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerLink {
@@ -1471,6 +1679,11 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
   ///
   /// @Snippet(path: "CloudChannelService_GetCustomerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCustomerRepricingConfig(request:)``
+  /// - ``getCustomerRepricingConfig(name:)``
   public func getCustomerRepricingConfig(
     request: GetCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
@@ -1509,6 +1722,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
   ///
   /// @Snippet(path: "CloudChannelService_ListCustomerRepricingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCustomerRepricingConfigs(request:)``
+  /// - ``listCustomerRepricingConfigsByItems(request:)``
+  /// - ``listCustomerRepricingConfigsByItems(request:options:)``
+  /// - ``listCustomerRepricingConfigsByItems(parent:)``
   public func listCustomerRepricingConfigs(
     request: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListCustomerRepricingConfigsResponse {
@@ -1564,6 +1784,11 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
   ///
   /// @Snippet(path: "CloudChannelService_CreateCustomerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCustomerRepricingConfig(request:)``
+  /// - ``createCustomerRepricingConfig(parent:customerRepricingConfig:)``
   public func createCustomerRepricingConfig(
     request: CreateCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
@@ -1608,6 +1833,11 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
   ///
   /// @Snippet(path: "CloudChannelService_UpdateCustomerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCustomerRepricingConfig(request:)``
+  /// - ``updateCustomerRepricingConfig(customerRepricingConfig:)``
   public func updateCustomerRepricingConfig(
     request: UpdateCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
@@ -1636,6 +1866,11 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
   ///
   /// @Snippet(path: "CloudChannelService_DeleteCustomerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCustomerRepricingConfig(request:)``
+  /// - ``deleteCustomerRepricingConfig(name:)``
   public func deleteCustomerRepricingConfig(
     request: DeleteCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1663,6 +1898,11 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
   ///
   /// @Snippet(path: "CloudChannelService_GetChannelPartnerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getChannelPartnerRepricingConfig(request:)``
+  /// - ``getChannelPartnerRepricingConfig(name:)``
   public func getChannelPartnerRepricingConfig(
     request: GetChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -1699,6 +1939,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
   ///
   /// @Snippet(path: "CloudChannelService_ListChannelPartnerRepricingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listChannelPartnerRepricingConfigs(request:)``
+  /// - ``listChannelPartnerRepricingConfigsByItems(request:)``
+  /// - ``listChannelPartnerRepricingConfigsByItems(request:options:)``
+  /// - ``listChannelPartnerRepricingConfigsByItems(parent:)``
   public func listChannelPartnerRepricingConfigs(
     request: ListChannelPartnerRepricingConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListChannelPartnerRepricingConfigsResponse {
@@ -1755,6 +2002,11 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
   ///
   /// @Snippet(path: "CloudChannelService_CreateChannelPartnerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createChannelPartnerRepricingConfig(request:)``
+  /// - ``createChannelPartnerRepricingConfig(parent:channelPartnerRepricingConfig:)``
   public func createChannelPartnerRepricingConfig(
     request: CreateChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -1799,6 +2051,11 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
   ///
   /// @Snippet(path: "CloudChannelService_UpdateChannelPartnerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateChannelPartnerRepricingConfig(request:)``
+  /// - ``updateChannelPartnerRepricingConfig(channelPartnerRepricingConfig:)``
   public func updateChannelPartnerRepricingConfig(
     request: UpdateChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -1827,6 +2084,11 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
   ///
   /// @Snippet(path: "CloudChannelService_DeleteChannelPartnerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteChannelPartnerRepricingConfig(request:)``
+  /// - ``deleteChannelPartnerRepricingConfig(name:)``
   public func deleteChannelPartnerRepricingConfig(
     request: DeleteChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1857,6 +2119,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.SkuGroup.display_name]: <doc:SkuGroup/displayName>
   ///
   /// @Snippet(path: "CloudChannelService_ListSkuGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSkuGroups(request:)``
+  /// - ``listSkuGroupsByItems(request:)``
+  /// - ``listSkuGroupsByItems(request:options:)``
+  /// - ``listSkuGroupsByItems(parent:)``
   public func listSkuGroups(
     request: ListSkuGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListSkuGroupsResponse {
@@ -1888,6 +2157,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.BillableSku.sku_display_name]: <doc:BillableSku/skuDisplayName>
   ///
   /// @Snippet(path: "CloudChannelService_ListSkuGroupBillableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSkuGroupBillableSkus(request:)``
+  /// - ``listSkuGroupBillableSkusByItems(request:)``
+  /// - ``listSkuGroupBillableSkusByItems(request:options:)``
+  /// - ``listSkuGroupBillableSkusByItems(parent:)``
   public func listSkuGroupBillableSkus(
     request: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListSkuGroupBillableSkusResponse {
@@ -1908,6 +2184,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.Offer]: <doc:Offer>
   ///
   /// @Snippet(path: "CloudChannelService_LookupOffer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``lookupOffer(request:)``
   public func lookupOffer(
     request: LookupOfferRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.Offer {
@@ -1921,6 +2201,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
   ///
   /// @Snippet(path: "CloudChannelService_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listProducts(request:)``
+  /// - ``listProductsByItems(request:)``
+  /// - ``listProductsByItems(request:options:)``
   public func listProducts(
     request: ListProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListProductsResponse {
@@ -1934,6 +2220,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
   ///
   /// @Snippet(path: "CloudChannelService_ListSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSkus(request:)``
+  /// - ``listSkusByItems(request:)``
+  /// - ``listSkusByItems(request:options:)``
   public func listSkus(
     request: ListSkusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListSkusResponse {
@@ -1947,6 +2239,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
   ///
   /// @Snippet(path: "CloudChannelService_ListOffers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOffers(request:)``
+  /// - ``listOffersByItems(request:)``
+  /// - ``listOffersByItems(request:options:)``
   public func listOffers(
     request: ListOffersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListOffersResponse {
@@ -1964,6 +2262,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
   ///
   /// @Snippet(path: "CloudChannelService_ListPurchasableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPurchasableSkus(request:)``
+  /// - ``listPurchasableSkusByItems(request:)``
+  /// - ``listPurchasableSkusByItems(request:options:)``
   public func listPurchasableSkus(
     request: ListPurchasableSkusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListPurchasableSkusResponse {
@@ -1984,6 +2288,12 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
   ///
   /// @Snippet(path: "CloudChannelService_ListPurchasableOffers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPurchasableOffers(request:)``
+  /// - ``listPurchasableOffersByItems(request:)``
+  /// - ``listPurchasableOffersByItems(request:options:)``
   public func listPurchasableOffers(
     request: ListPurchasableOffersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListPurchasableOffersResponse {
@@ -2004,6 +2314,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// eligible to purchase each SKU group.
   ///
   /// @Snippet(path: "CloudChannelService_QueryEligibleBillingAccounts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryEligibleBillingAccounts(request:)``
   public func queryEligibleBillingAccounts(
     request: QueryEligibleBillingAccountsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.QueryEligibleBillingAccountsResponse {
@@ -2032,6 +2346,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.SubscriberEvent]: <doc:SubscriberEvent>
   ///
   /// @Snippet(path: "CloudChannelService_RegisterSubscriber")
+  ///
+  /// ## See Also
+  ///
+  /// - ``registerSubscriber(request:)``
   public func registerSubscriber(
     request: RegisterSubscriberRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.RegisterSubscriberResponse {
@@ -2061,6 +2379,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// with the topic.
   ///
   /// @Snippet(path: "CloudChannelService_UnregisterSubscriber")
+  ///
+  /// ## See Also
+  ///
+  /// - ``unregisterSubscriber(request:)``
   public func unregisterSubscriber(
     request: UnregisterSubscriberRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.UnregisterSubscriberResponse {
@@ -2086,6 +2408,10 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// A list of service email addresses.
   ///
   /// @Snippet(path: "CloudChannelService_ListSubscribers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSubscribers(request:)``
   public func listSubscribers(
     request: ListSubscribersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListSubscribersResponse {
@@ -2112,6 +2438,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.cloud.channel.v1.EntitlementChange]: <doc:EntitlementChange>
   ///
   /// @Snippet(path: "CloudChannelService_ListEntitlementChanges")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEntitlementChanges(request:)``
+  /// - ``listEntitlementChangesByItems(request:)``
+  /// - ``listEntitlementChangesByItems(request:options:)``
+  /// - ``listEntitlementChangesByItems(parent:)``
   public func listEntitlementChanges(
     request: ListEntitlementChangesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListEntitlementChangesResponse {
@@ -2123,6 +2456,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudChannelService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2145,6 +2485,11 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudChannelService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2156,6 +2501,11 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudChannelService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2489,6 +2839,25 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudChannelServiceProtocol {
+  /// List [Customer][google.cloud.channel.v1.Customer]s.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// List of [Customer][google.cloud.channel.v1.Customer]s, or an empty list if
+  /// there are no customers.
+  ///
+  /// [google.cloud.channel.v1.Customer]: <doc:Customer>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListCustomers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listCustomers(request:options:)``
   public func listCustomers(request: ListCustomersRequest) async throws
     -> GoogleCloudChannelV1.ListCustomersResponse
   {
@@ -2501,6 +2870,25 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List [Customer][google.cloud.channel.v1.Customer]s.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// List of [Customer][google.cloud.channel.v1.Customer]s, or an empty list if
+  /// there are no customers.
+  ///
+  /// [google.cloud.channel.v1.Customer]: <doc:Customer>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListCustomers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listCustomers(request:options:)``
   public func listCustomersByItems(
     request: ListCustomersRequest
   ) -> some AsyncSequence<Customer, any Swift.Error> & Sendable {
@@ -2522,6 +2910,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// [google.cloud.channel.v1.Customer]: <doc:Customer>
   ///
   /// @Snippet(path: "CloudChannelService_ListCustomers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listCustomers(request:options:)``
   public func listCustomersByItems(
     request: ListCustomersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Customer, any Swift.Error> & Sendable {
@@ -2535,6 +2927,27 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns the requested [Customer][google.cloud.channel.v1.Customer]
+  /// resource.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: The customer resource doesn't exist. Usually the result of an
+  /// invalid name parameter.
+  ///
+  /// Return value:
+  /// The [Customer][google.cloud.channel.v1.Customer] resource.
+  ///
+  /// [google.cloud.channel.v1.Customer]: <doc:Customer>
+  ///
+  /// @Snippet(path: "CloudChannelService_GetCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/getCustomer(request:options:)``
   public func getCustomer(request: GetCustomerRequest) async throws -> GoogleCloudChannelV1.Customer
   {
     try await self.getCustomer(request: request, options: .init())
@@ -2546,6 +2959,27 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the requested [Customer][google.cloud.channel.v1.Customer]
+  /// resource.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: The customer resource doesn't exist. Usually the result of an
+  /// invalid name parameter.
+  ///
+  /// Return value:
+  /// The [Customer][google.cloud.channel.v1.Customer] resource.
+  ///
+  /// [google.cloud.channel.v1.Customer]: <doc:Customer>
+  ///
+  /// @Snippet(path: "CloudChannelService_GetCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/getCustomer(request:options:)``
   public func getCustomer(
     name: Swift.String,
   ) async throws -> GoogleCloudChannelV1.Customer {
@@ -2555,6 +2989,33 @@ extension Clients.CloudChannelServiceProtocol {
     return try await self.getCustomer(request: request)
   }
 
+  /// Confirms the existence of Cloud Identity accounts based on the domain and
+  /// if the Cloud Identity accounts are owned by the reseller.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * INVALID_VALUE: Invalid domain value in the request.
+  ///
+  /// Return value:
+  /// A list of
+  /// [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount]
+  /// resources for the domain (may be empty)
+  ///
+  /// Note: in the v1alpha1 version of the API, a NOT_FOUND error returns if
+  /// no
+  /// [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount]
+  /// resources match the domain.
+  ///
+  /// [google.cloud.channel.v1.CloudIdentityCustomerAccount]: <doc:CloudIdentityCustomerAccount>
+  ///
+  /// @Snippet(path: "CloudChannelService_CheckCloudIdentityAccountsExist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/checkCloudIdentityAccountsExist(request:options:)``
   public func checkCloudIdentityAccountsExist(request: CheckCloudIdentityAccountsExistRequest)
     async throws -> GoogleCloudChannelV1.CheckCloudIdentityAccountsExistResponse
   {
@@ -2567,6 +3028,30 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new [Customer][google.cloud.channel.v1.Customer] resource under
+  /// the reseller or distributor account.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The reseller account making the request is different from the
+  ///     reseller account in the API request.
+  ///     * You are not authorized to create a customer. See
+  ///     https://support.google.com/channelservices/answer/9759265
+  /// * INVALID_ARGUMENT:
+  ///     * Required request parameters are missing or invalid.
+  ///     * Domain field value doesn't match the primary email domain.
+  ///
+  /// Return value:
+  /// The newly created [Customer][google.cloud.channel.v1.Customer] resource.
+  ///
+  /// [google.cloud.channel.v1.Customer]: <doc:Customer>
+  ///
+  /// @Snippet(path: "CloudChannelService_CreateCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/createCustomer(request:options:)``
   public func createCustomer(request: CreateCustomerRequest) async throws
     -> GoogleCloudChannelV1.Customer
   {
@@ -2579,6 +3064,27 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing [Customer][google.cloud.channel.v1.Customer] resource
+  /// for the reseller or distributor.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
+  /// for the name in the request.
+  ///
+  /// Return value:
+  /// The updated [Customer][google.cloud.channel.v1.Customer] resource.
+  ///
+  /// [google.cloud.channel.v1.Customer]: <doc:Customer>
+  ///
+  /// @Snippet(path: "CloudChannelService_UpdateCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/updateCustomer(request:options:)``
   public func updateCustomer(request: UpdateCustomerRequest) async throws
     -> GoogleCloudChannelV1.Customer
   {
@@ -2591,6 +3097,24 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the given [Customer][google.cloud.channel.v1.Customer] permanently.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The account making the request does not own
+  /// this customer.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * FAILED_PRECONDITION: The customer has existing entitlements.
+  /// * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
+  /// for the name in the request.
+  ///
+  /// [google.cloud.channel.v1.Customer]: <doc:Customer>
+  ///
+  /// @Snippet(path: "CloudChannelService_DeleteCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/deleteCustomer(request:options:)``
   public func deleteCustomer(request: DeleteCustomerRequest) async throws {
     try await self.deleteCustomer(request: request, options: .init())
   }
@@ -2601,6 +3125,24 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the given [Customer][google.cloud.channel.v1.Customer] permanently.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The account making the request does not own
+  /// this customer.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * FAILED_PRECONDITION: The customer has existing entitlements.
+  /// * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
+  /// for the name in the request.
+  ///
+  /// [google.cloud.channel.v1.Customer]: <doc:Customer>
+  ///
+  /// @Snippet(path: "CloudChannelService_DeleteCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/deleteCustomer(request:options:)``
   public func deleteCustomer(
     name: Swift.String,
   ) async throws {
@@ -2610,6 +3152,34 @@ extension Clients.CloudChannelServiceProtocol {
     try await self.deleteCustomer(request: request)
   }
 
+  /// Imports a [Customer][google.cloud.channel.v1.Customer] from the Cloud
+  /// Identity associated with the provided Cloud Identity ID or domain before a
+  /// TransferEntitlements call. If a linked Customer already exists and
+  /// overwrite_if_exists is true, it will update that Customer's data.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The reseller account making the request is different from the
+  ///     reseller account in the API request.
+  ///     * You are not authorized to import the customer. See
+  ///     https://support.google.com/channelservices/answer/9759265
+  /// * NOT_FOUND: Cloud Identity doesn't exist or was deleted.
+  /// * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is
+  /// expired or invalid.
+  /// * ALREADY_EXISTS: A customer already exists and has conflicting critical
+  /// fields. Requires an overwrite.
+  ///
+  /// Return value:
+  /// The [Customer][google.cloud.channel.v1.Customer].
+  ///
+  /// [google.cloud.channel.v1.Customer]: <doc:Customer>
+  ///
+  /// @Snippet(path: "CloudChannelService_ImportCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/importCustomer(request:options:)``
   public func importCustomer(request: ImportCustomerRequest) async throws
     -> GoogleCloudChannelV1.Customer
   {
@@ -2622,6 +3192,38 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Cloud Identity for the given customer using the customer's
+  /// information, or the information provided here.
+  ///
+  /// Possible error codes:
+  ///
+  /// *  PERMISSION_DENIED:
+  ///      * The customer doesn't belong to the reseller.
+  ///      * You are not authorized to provision cloud identity id. See
+  ///      https://support.google.com/channelservices/answer/9759265
+  /// *  INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// *  NOT_FOUND: The customer was not found.
+  /// *  ALREADY_EXISTS: The customer's primary email already exists. Retry
+  ///    after changing the customer's primary contact email.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata contains an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_ProvisionCloudIdentity")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/provisionCloudIdentity(request:options:)``
   public func provisionCloudIdentity(request: ProvisionCloudIdentityRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2634,6 +3236,38 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Cloud Identity for the given customer using the customer's
+  /// information, or the information provided here.
+  ///
+  /// Possible error codes:
+  ///
+  /// *  PERMISSION_DENIED:
+  ///      * The customer doesn't belong to the reseller.
+  ///      * You are not authorized to provision cloud identity id. See
+  ///      https://support.google.com/channelservices/answer/9759265
+  /// *  INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// *  NOT_FOUND: The customer was not found.
+  /// *  ALREADY_EXISTS: The customer's primary email already exists. Retry
+  ///    after changing the customer's primary contact email.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata contains an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_ProvisionCloudIdentity")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/provisionCloudIdentityPollingUntilDone(request:options:)``
   public func provisionCloudIdentityPollingUntilDone(request: ProvisionCloudIdentityRequest)
     async throws -> Customer
   {
@@ -2646,6 +3280,25 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists [Entitlement][google.cloud.channel.v1.Entitlement]s belonging to a
+  /// customer.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// A list of the customer's
+  /// [Entitlement][google.cloud.channel.v1.Entitlement]s.
+  ///
+  /// [google.cloud.channel.v1.Entitlement]: <doc:Entitlement>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListEntitlements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listEntitlements(request:options:)``
   public func listEntitlements(request: ListEntitlementsRequest) async throws
     -> GoogleCloudChannelV1.ListEntitlementsResponse
   {
@@ -2658,6 +3311,25 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists [Entitlement][google.cloud.channel.v1.Entitlement]s belonging to a
+  /// customer.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// A list of the customer's
+  /// [Entitlement][google.cloud.channel.v1.Entitlement]s.
+  ///
+  /// [google.cloud.channel.v1.Entitlement]: <doc:Entitlement>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListEntitlements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listEntitlements(request:options:)``
   public func listEntitlementsByItems(
     request: ListEntitlementsRequest
   ) -> some AsyncSequence<Entitlement, any Swift.Error> & Sendable {
@@ -2679,6 +3351,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// [google.cloud.channel.v1.Entitlement]: <doc:Entitlement>
   ///
   /// @Snippet(path: "CloudChannelService_ListEntitlements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listEntitlements(request:options:)``
   public func listEntitlementsByItems(
     request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Entitlement, any Swift.Error> & Sendable {
@@ -2693,6 +3369,33 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List [TransferableSku][google.cloud.channel.v1.TransferableSku]s of a
+  /// customer based on the Cloud Identity ID or Customer Name in the request.
+  ///
+  /// Use this method to list the entitlements information of an
+  /// unowned customer. You should provide the customer's
+  /// Cloud Identity ID or Customer Name.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller and has no auth token.
+  ///     * The supplied auth token is invalid.
+  ///     * The reseller account making the request is different
+  ///     from the reseller account in the query.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// A list of the customer's
+  /// [TransferableSku][google.cloud.channel.v1.TransferableSku].
+  ///
+  /// [google.cloud.channel.v1.TransferableSku]: <doc:TransferableSku>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListTransferableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listTransferableSkus(request:options:)``
   public func listTransferableSkus(request: ListTransferableSkusRequest) async throws
     -> GoogleCloudChannelV1.ListTransferableSkusResponse
   {
@@ -2705,6 +3408,33 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List [TransferableSku][google.cloud.channel.v1.TransferableSku]s of a
+  /// customer based on the Cloud Identity ID or Customer Name in the request.
+  ///
+  /// Use this method to list the entitlements information of an
+  /// unowned customer. You should provide the customer's
+  /// Cloud Identity ID or Customer Name.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller and has no auth token.
+  ///     * The supplied auth token is invalid.
+  ///     * The reseller account making the request is different
+  ///     from the reseller account in the query.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// A list of the customer's
+  /// [TransferableSku][google.cloud.channel.v1.TransferableSku].
+  ///
+  /// [google.cloud.channel.v1.TransferableSku]: <doc:TransferableSku>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListTransferableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listTransferableSkus(request:options:)``
   public func listTransferableSkusByItems(
     request: ListTransferableSkusRequest
   ) -> some AsyncSequence<TransferableSku, any Swift.Error> & Sendable {
@@ -2734,6 +3464,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// [google.cloud.channel.v1.TransferableSku]: <doc:TransferableSku>
   ///
   /// @Snippet(path: "CloudChannelService_ListTransferableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listTransferableSkus(request:options:)``
   public func listTransferableSkusByItems(
     request: ListTransferableSkusRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TransferableSku, any Swift.Error> & Sendable {
@@ -2748,6 +3482,36 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List [TransferableOffer][google.cloud.channel.v1.TransferableOffer]s of a
+  /// customer based on Cloud Identity ID or Customer Name in the request.
+  ///
+  /// Use this method when a reseller gets the entitlement information of an
+  /// unowned customer. The reseller should provide the customer's
+  /// Cloud Identity ID or Customer Name.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller and has no auth token.
+  ///     * The customer provided incorrect reseller information when generating
+  ///     auth token.
+  ///     * The reseller account making the request is different
+  ///     from the reseller account in the query.
+  ///     * The reseller is not authorized to transact on this Product. See
+  ///     https://support.google.com/channelservices/answer/9759265
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// List of [TransferableOffer][google.cloud.channel.v1.TransferableOffer] for
+  /// the given customer and SKU.
+  ///
+  /// [google.cloud.channel.v1.TransferableOffer]: <doc:TransferableOffer>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListTransferableOffers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listTransferableOffers(request:options:)``
   public func listTransferableOffers(request: ListTransferableOffersRequest) async throws
     -> GoogleCloudChannelV1.ListTransferableOffersResponse
   {
@@ -2760,6 +3524,36 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List [TransferableOffer][google.cloud.channel.v1.TransferableOffer]s of a
+  /// customer based on Cloud Identity ID or Customer Name in the request.
+  ///
+  /// Use this method when a reseller gets the entitlement information of an
+  /// unowned customer. The reseller should provide the customer's
+  /// Cloud Identity ID or Customer Name.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller and has no auth token.
+  ///     * The customer provided incorrect reseller information when generating
+  ///     auth token.
+  ///     * The reseller account making the request is different
+  ///     from the reseller account in the query.
+  ///     * The reseller is not authorized to transact on this Product. See
+  ///     https://support.google.com/channelservices/answer/9759265
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// List of [TransferableOffer][google.cloud.channel.v1.TransferableOffer] for
+  /// the given customer and SKU.
+  ///
+  /// [google.cloud.channel.v1.TransferableOffer]: <doc:TransferableOffer>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListTransferableOffers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listTransferableOffers(request:options:)``
   public func listTransferableOffersByItems(
     request: ListTransferableOffersRequest
   ) -> some AsyncSequence<TransferableOffer, any Swift.Error> & Sendable {
@@ -2792,6 +3586,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// [google.cloud.channel.v1.TransferableOffer]: <doc:TransferableOffer>
   ///
   /// @Snippet(path: "CloudChannelService_ListTransferableOffers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listTransferableOffers(request:options:)``
   public func listTransferableOffersByItems(
     request: ListTransferableOffersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TransferableOffer, any Swift.Error> & Sendable {
@@ -2806,6 +3604,25 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns the requested [Entitlement][google.cloud.channel.v1.Entitlement]
+  /// resource.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: The customer entitlement was not found.
+  ///
+  /// Return value:
+  /// The requested [Entitlement][google.cloud.channel.v1.Entitlement] resource.
+  ///
+  /// [google.cloud.channel.v1.Entitlement]: <doc:Entitlement>
+  ///
+  /// @Snippet(path: "CloudChannelService_GetEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/getEntitlement(request:options:)``
   public func getEntitlement(request: GetEntitlementRequest) async throws
     -> GoogleCloudChannelV1.Entitlement
   {
@@ -2818,6 +3635,53 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an entitlement for a customer.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller.
+  ///     * The reseller is not authorized to transact on this Product. See
+  ///     https://support.google.com/channelservices/answer/9759265
+  /// * INVALID_ARGUMENT:
+  ///     * Required request parameters are missing or invalid.
+  ///     * There is already a customer entitlement for a SKU from the same
+  ///     product family.
+  /// * INVALID_VALUE: Make sure the OfferId is valid. If it is, contact
+  /// Google Channel support for further troubleshooting.
+  /// * NOT_FOUND: The customer or offer resource was not found.
+  /// * ALREADY_EXISTS:
+  ///     * The SKU was already purchased for the customer.
+  ///     * The customer's primary email already exists. Retry
+  ///     after changing the customer's primary contact email.
+  /// * CONDITION_NOT_MET or FAILED_PRECONDITION:
+  ///     * The domain required for purchasing a SKU has not been verified.
+  ///     * A pre-requisite SKU required to purchase an Add-On SKU is missing.
+  ///     For example, Google Workspace Business Starter is required to purchase
+  ///     Vault or Drive.
+  ///     * (Developer accounts only) Reseller and resold domain must meet the
+  ///     following naming requirements:
+  ///         * Domain names must start with goog-test.
+  ///         * Domain names must include the reseller domain.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_CreateEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/createEntitlement(request:options:)``
   public func createEntitlement(request: CreateEntitlementRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2830,6 +3694,53 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an entitlement for a customer.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller.
+  ///     * The reseller is not authorized to transact on this Product. See
+  ///     https://support.google.com/channelservices/answer/9759265
+  /// * INVALID_ARGUMENT:
+  ///     * Required request parameters are missing or invalid.
+  ///     * There is already a customer entitlement for a SKU from the same
+  ///     product family.
+  /// * INVALID_VALUE: Make sure the OfferId is valid. If it is, contact
+  /// Google Channel support for further troubleshooting.
+  /// * NOT_FOUND: The customer or offer resource was not found.
+  /// * ALREADY_EXISTS:
+  ///     * The SKU was already purchased for the customer.
+  ///     * The customer's primary email already exists. Retry
+  ///     after changing the customer's primary contact email.
+  /// * CONDITION_NOT_MET or FAILED_PRECONDITION:
+  ///     * The domain required for purchasing a SKU has not been verified.
+  ///     * A pre-requisite SKU required to purchase an Add-On SKU is missing.
+  ///     For example, Google Workspace Business Starter is required to purchase
+  ///     Vault or Drive.
+  ///     * (Developer accounts only) Reseller and resold domain must meet the
+  ///     following naming requirements:
+  ///         * Domain names must start with goog-test.
+  ///         * Domain names must include the reseller domain.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_CreateEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/createEntitlementPollingUntilDone(request:options:)``
   public func createEntitlementPollingUntilDone(request: CreateEntitlementRequest) async throws
     -> Entitlement
   {
@@ -2842,6 +3753,37 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Change parameters of the entitlement.
+  ///
+  /// An entitlement update is a long-running operation and it updates the
+  /// entitlement as a result of fulfillment.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// For example, the number of seats being changed is greater than the allowed
+  /// number of max seats, or decreasing seats for a commitment based plan.
+  /// * NOT_FOUND: Entitlement resource not found.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_ChangeParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/changeParameters(request:options:)``
   public func changeParameters(request: ChangeParametersRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2854,6 +3796,37 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Change parameters of the entitlement.
+  ///
+  /// An entitlement update is a long-running operation and it updates the
+  /// entitlement as a result of fulfillment.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// For example, the number of seats being changed is greater than the allowed
+  /// number of max seats, or decreasing seats for a commitment based plan.
+  /// * NOT_FOUND: Entitlement resource not found.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_ChangeParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/changeParametersPollingUntilDone(request:options:)``
   public func changeParametersPollingUntilDone(request: ChangeParametersRequest) async throws
     -> Entitlement
   {
@@ -2866,6 +3839,37 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the renewal settings for an existing customer entitlement.
+  ///
+  /// An entitlement update is a long-running operation and it updates the
+  /// entitlement as a result of fulfillment.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Entitlement resource not found.
+  /// * NOT_COMMITMENT_PLAN: Renewal Settings are only applicable for a
+  /// commitment plan. Can't enable or disable renewals for non-commitment plans.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  ///   Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_ChangeRenewalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/changeRenewalSettings(request:options:)``
   public func changeRenewalSettings(request: ChangeRenewalSettingsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2878,6 +3882,37 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the renewal settings for an existing customer entitlement.
+  ///
+  /// An entitlement update is a long-running operation and it updates the
+  /// entitlement as a result of fulfillment.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Entitlement resource not found.
+  /// * NOT_COMMITMENT_PLAN: Renewal Settings are only applicable for a
+  /// commitment plan. Can't enable or disable renewals for non-commitment plans.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  ///   Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_ChangeRenewalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/changeRenewalSettingsPollingUntilDone(request:options:)``
   public func changeRenewalSettingsPollingUntilDone(request: ChangeRenewalSettingsRequest)
     async throws -> Entitlement
   {
@@ -2890,6 +3925,35 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the Offer for an existing customer entitlement.
+  ///
+  /// An entitlement update is a long-running operation and it updates the
+  /// entitlement as a result of fulfillment.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Offer or Entitlement resource not found.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_ChangeOffer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/changeOffer(request:options:)``
   public func changeOffer(request: ChangeOfferRequest) async throws -> GoogleLongRunning.Operation {
     try await self.changeOffer(request: request, options: .init())
   }
@@ -2900,6 +3964,35 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the Offer for an existing customer entitlement.
+  ///
+  /// An entitlement update is a long-running operation and it updates the
+  /// entitlement as a result of fulfillment.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Offer or Entitlement resource not found.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_ChangeOffer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/changeOfferPollingUntilDone(request:options:)``
   public func changeOfferPollingUntilDone(request: ChangeOfferRequest) async throws -> Entitlement {
     return try await self.changeOfferPollingUntilDone(request: request, options: .init())
   }
@@ -2910,6 +4003,38 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts paid service for a trial entitlement.
+  ///
+  /// Starts paid service for a trial entitlement immediately. This method is
+  /// only applicable if a plan is set up for a trial entitlement but has some
+  /// trial days remaining.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Entitlement resource not found.
+  /// * FAILED_PRECONDITION/NOT_IN_TRIAL: This method only works for
+  /// entitlement on trial plans.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_StartPaidService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/startPaidService(request:options:)``
   public func startPaidService(request: StartPaidServiceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2922,6 +4047,38 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts paid service for a trial entitlement.
+  ///
+  /// Starts paid service for a trial entitlement immediately. This method is
+  /// only applicable if a plan is set up for a trial entitlement but has some
+  /// trial days remaining.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Entitlement resource not found.
+  /// * FAILED_PRECONDITION/NOT_IN_TRIAL: This method only works for
+  /// entitlement on trial plans.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_StartPaidService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/startPaidServicePollingUntilDone(request:options:)``
   public func startPaidServicePollingUntilDone(request: StartPaidServiceRequest) async throws
     -> Entitlement
   {
@@ -2934,6 +4091,35 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Suspends a previously fulfilled entitlement.
+  ///
+  /// An entitlement suspension is a long-running operation.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Entitlement resource not found.
+  /// * NOT_ACTIVE: Entitlement is not active.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_SuspendEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/suspendEntitlement(request:options:)``
   public func suspendEntitlement(request: SuspendEntitlementRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2946,6 +4132,35 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Suspends a previously fulfilled entitlement.
+  ///
+  /// An entitlement suspension is a long-running operation.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Entitlement resource not found.
+  /// * NOT_ACTIVE: Entitlement is not active.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_SuspendEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/suspendEntitlementPollingUntilDone(request:options:)``
   public func suspendEntitlementPollingUntilDone(request: SuspendEntitlementRequest) async throws
     -> Entitlement
   {
@@ -2958,6 +4173,40 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancels a previously fulfilled entitlement.
+  ///
+  /// An entitlement cancellation is a long-running operation.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * FAILED_PRECONDITION: There are Google Cloud projects linked to the
+  /// Google Cloud entitlement's Cloud Billing subaccount.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Entitlement resource not found.
+  /// * DELETION_TYPE_NOT_ALLOWED: Cancel is only allowed for Google Workspace
+  /// add-ons, or entitlements for Google Cloud's development platform.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The response will contain
+  /// google.protobuf.Empty on success. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_CancelEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/cancelEntitlement(request:options:)``
   public func cancelEntitlement(request: CancelEntitlementRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2970,6 +4219,40 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancels a previously fulfilled entitlement.
+  ///
+  /// An entitlement cancellation is a long-running operation.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * FAILED_PRECONDITION: There are Google Cloud projects linked to the
+  /// Google Cloud entitlement's Cloud Billing subaccount.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Entitlement resource not found.
+  /// * DELETION_TYPE_NOT_ALLOWED: Cancel is only allowed for Google Workspace
+  /// add-ons, or entitlements for Google Cloud's development platform.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The response will contain
+  /// google.protobuf.Empty on success. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_CancelEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/cancelEntitlementPollingUntilDone(request:options:)``
   public func cancelEntitlementPollingUntilDone(request: CancelEntitlementRequest) async throws {
     try await self.cancelEntitlementPollingUntilDone(request: request, options: .init())
   }
@@ -2980,6 +4263,41 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Activates a previously suspended entitlement. Entitlements suspended for
+  /// pending ToS acceptance can't be activated using this method.
+  ///
+  /// An entitlement activation is a long-running operation and it updates
+  /// the state of the customer entitlement.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Entitlement resource not found.
+  /// * SUSPENSION_NOT_RESELLER_INITIATED: Can only activate reseller-initiated
+  /// suspensions and entitlements that have accepted the TOS.
+  /// * NOT_SUSPENDED: Can only activate suspended entitlements not in an ACTIVE
+  /// state.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_ActivateEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/activateEntitlement(request:options:)``
   public func activateEntitlement(request: ActivateEntitlementRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2992,6 +4310,41 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Activates a previously suspended entitlement. Entitlements suspended for
+  /// pending ToS acceptance can't be activated using this method.
+  ///
+  /// An entitlement activation is a long-running operation and it updates
+  /// the state of the customer entitlement.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Entitlement resource not found.
+  /// * SUSPENSION_NOT_RESELLER_INITIATED: Can only activate reseller-initiated
+  /// suspensions and entitlements that have accepted the TOS.
+  /// * NOT_SUSPENDED: Can only activate suspended entitlements not in an ACTIVE
+  /// state.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_ActivateEntitlement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/activateEntitlementPollingUntilDone(request:options:)``
   public func activateEntitlementPollingUntilDone(request: ActivateEntitlementRequest) async throws
     -> Entitlement
   {
@@ -3004,6 +4357,46 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Transfers customer entitlements to new reseller.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller.
+  ///     * The reseller is not authorized to transact on this Product. See
+  ///     https://support.google.com/channelservices/answer/9759265
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: The customer or offer resource was not found.
+  /// * ALREADY_EXISTS: The SKU was already transferred for the customer.
+  /// * CONDITION_NOT_MET or FAILED_PRECONDITION:
+  ///     * The SKU requires domain verification to transfer, but the domain is
+  ///     not verified.
+  ///     * An Add-On SKU (example, Vault or Drive) is missing the
+  ///     pre-requisite SKU (example, G Suite Basic).
+  ///     * (Developer accounts only) Reseller and resold domain must meet the
+  ///     following naming requirements:
+  ///         * Domain names must start with goog-test.
+  ///         * Domain names must include the reseller domain.
+  ///     * Specify all transferring entitlements.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_TransferEntitlements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/transferEntitlements(request:options:)``
   public func transferEntitlements(request: TransferEntitlementsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3016,6 +4409,46 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Transfers customer entitlements to new reseller.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller.
+  ///     * The reseller is not authorized to transact on this Product. See
+  ///     https://support.google.com/channelservices/answer/9759265
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: The customer or offer resource was not found.
+  /// * ALREADY_EXISTS: The SKU was already transferred for the customer.
+  /// * CONDITION_NOT_MET or FAILED_PRECONDITION:
+  ///     * The SKU requires domain verification to transfer, but the domain is
+  ///     not verified.
+  ///     * An Add-On SKU (example, Vault or Drive) is missing the
+  ///     pre-requisite SKU (example, G Suite Basic).
+  ///     * (Developer accounts only) Reseller and resold domain must meet the
+  ///     following naming requirements:
+  ///         * Domain names must start with goog-test.
+  ///         * Domain names must include the reseller domain.
+  ///     * Specify all transferring entitlements.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_TransferEntitlements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/transferEntitlementsPollingUntilDone(request:options:)``
   public func transferEntitlementsPollingUntilDone(request: TransferEntitlementsRequest)
     async throws -> TransferEntitlementsResponse
   {
@@ -3028,6 +4461,43 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Transfers customer entitlements from their current reseller to Google.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: The customer or offer resource was not found.
+  /// * ALREADY_EXISTS: The SKU was already transferred for the customer.
+  /// * CONDITION_NOT_MET or FAILED_PRECONDITION:
+  ///     * The SKU requires domain verification to transfer, but the domain is
+  ///     not verified.
+  ///     * An Add-On SKU (example, Vault or Drive) is missing the
+  ///     pre-requisite SKU (example, G Suite Basic).
+  ///     * (Developer accounts only) Reseller and resold domain must meet the
+  ///     following naming requirements:
+  ///         * Domain names must start with goog-test.
+  ///         * Domain names must include the reseller domain.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The response will contain
+  /// google.protobuf.Empty on success. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_TransferEntitlementsToGoogle")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/transferEntitlementsToGoogle(request:options:)``
   public func transferEntitlementsToGoogle(request: TransferEntitlementsToGoogleRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -3040,6 +4510,43 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Transfers customer entitlements from their current reseller to Google.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: The customer or offer resource was not found.
+  /// * ALREADY_EXISTS: The SKU was already transferred for the customer.
+  /// * CONDITION_NOT_MET or FAILED_PRECONDITION:
+  ///     * The SKU requires domain verification to transfer, but the domain is
+  ///     not verified.
+  ///     * An Add-On SKU (example, Vault or Drive) is missing the
+  ///     pre-requisite SKU (example, G Suite Basic).
+  ///     * (Developer accounts only) Reseller and resold domain must meet the
+  ///     following naming requirements:
+  ///         * Domain names must start with goog-test.
+  ///         * Domain names must include the reseller domain.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The response will contain
+  /// google.protobuf.Empty on success. The Operation metadata will contain an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  ///
+  /// @Snippet(path: "CloudChannelService_TransferEntitlementsToGoogle")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/transferEntitlementsToGooglePollingUntilDone(request:options:)``
   public func transferEntitlementsToGooglePollingUntilDone(
     request: TransferEntitlementsToGoogleRequest
   ) async throws {
@@ -3052,6 +4559,26 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s
+  /// belonging to a distributor. You must be a distributor to call this method.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// The list of the distributor account's
+  /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resources.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerLink]: <doc:ChannelPartnerLink>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListChannelPartnerLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listChannelPartnerLinks(request:options:)``
   public func listChannelPartnerLinks(request: ListChannelPartnerLinksRequest) async throws
     -> GoogleCloudChannelV1.ListChannelPartnerLinksResponse
   {
@@ -3064,6 +4591,26 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]s
+  /// belonging to a distributor. You must be a distributor to call this method.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// The list of the distributor account's
+  /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resources.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerLink]: <doc:ChannelPartnerLink>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListChannelPartnerLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listChannelPartnerLinks(request:options:)``
   public func listChannelPartnerLinksByItems(
     request: ListChannelPartnerLinksRequest
   ) -> some AsyncSequence<ChannelPartnerLink, any Swift.Error> & Sendable {
@@ -3086,6 +4633,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// [google.cloud.channel.v1.ChannelPartnerLink]: <doc:ChannelPartnerLink>
   ///
   /// @Snippet(path: "CloudChannelService_ListChannelPartnerLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listChannelPartnerLinks(request:options:)``
   public func listChannelPartnerLinksByItems(
     request: ListChannelPartnerLinksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ChannelPartnerLink, any Swift.Error> & Sendable {
@@ -3100,6 +4651,29 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns the requested
+  /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
+  /// You must be a distributor to call this method.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: ChannelPartnerLink resource not found because of an
+  /// invalid channel partner link name.
+  ///
+  /// Return value:
+  /// The [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]
+  /// resource.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerLink]: <doc:ChannelPartnerLink>
+  ///
+  /// @Snippet(path: "CloudChannelService_GetChannelPartnerLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/getChannelPartnerLink(request:options:)``
   public func getChannelPartnerLink(request: GetChannelPartnerLinkRequest) async throws
     -> GoogleCloudChannelV1.ChannelPartnerLink
   {
@@ -3112,6 +4686,37 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Initiates a channel partner link between a distributor and a reseller, or
+  /// between resellers in an n-tier reseller channel.
+  /// Invited partners need to follow the invite_link_uri provided in the
+  /// response to accept. After accepting the invitation, a link is set up
+  /// between the two parties.
+  /// You must be a distributor to call this method.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * ALREADY_EXISTS: The ChannelPartnerLink sent in the request already
+  /// exists.
+  /// * NOT_FOUND: No Cloud Identity customer exists for provided domain.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The new [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]
+  /// resource.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerLink]: <doc:ChannelPartnerLink>
+  ///
+  /// @Snippet(path: "CloudChannelService_CreateChannelPartnerLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/createChannelPartnerLink(request:options:)``
   public func createChannelPartnerLink(request: CreateChannelPartnerLinkRequest) async throws
     -> GoogleCloudChannelV1.ChannelPartnerLink
   {
@@ -3124,6 +4729,36 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a channel partner link. Distributors call this method to change a
+  /// link's status. For example, to suspend a partner link.
+  /// You must be a distributor to call this method.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request is different
+  /// from the reseller account in the API request.
+  /// * INVALID_ARGUMENT:
+  ///     * Required request parameters are missing or invalid.
+  ///     * Link state cannot change from invited to active or suspended.
+  ///     * Cannot send reseller_cloud_identity_id, invite_url, or name in update
+  ///     mask.
+  /// * NOT_FOUND: ChannelPartnerLink resource not found.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The updated
+  /// [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerLink]: <doc:ChannelPartnerLink>
+  ///
+  /// @Snippet(path: "CloudChannelService_UpdateChannelPartnerLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/updateChannelPartnerLink(request:options:)``
   public func updateChannelPartnerLink(request: UpdateChannelPartnerLinkRequest) async throws
     -> GoogleCloudChannelV1.ChannelPartnerLink
   {
@@ -3136,6 +4771,31 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information about how a Reseller modifies their bill before sending
+  /// it to a Customer.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * NOT_FOUND: The
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// was not found.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// resource, otherwise returns an error.
+  ///
+  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
+  ///
+  /// @Snippet(path: "CloudChannelService_GetCustomerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/getCustomerRepricingConfig(request:options:)``
   public func getCustomerRepricingConfig(request: GetCustomerRepricingConfigRequest) async throws
     -> GoogleCloudChannelV1.CustomerRepricingConfig
   {
@@ -3148,6 +4808,31 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information about how a Reseller modifies their bill before sending
+  /// it to a Customer.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * NOT_FOUND: The
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// was not found.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// resource, otherwise returns an error.
+  ///
+  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
+  ///
+  /// @Snippet(path: "CloudChannelService_GetCustomerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/getCustomerRepricingConfig(request:options:)``
   public func getCustomerRepricingConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
@@ -3157,6 +4842,42 @@ extension Clients.CloudChannelServiceProtocol {
     return try await self.getCustomerRepricingConfig(request: request)
   }
 
+  /// Lists information about how a Reseller modifies their bill before sending
+  /// it to a Customer.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * NOT_FOUND: The
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// resources. The data for each resource is displayed in the ascending order
+  /// of:
+  ///
+  /// * Customer ID
+  /// * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
+  /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// * [CustomerRepricingConfig.update_time][google.cloud.channel.v1.CustomerRepricingConfig.update_time]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
+  /// [google.cloud.channel.v1.CustomerRepricingConfig.update_time]: <doc:CustomerRepricingConfig/updateTime>
+  /// [google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]: <doc:RepricingConfig/EntitlementGranularity/entitlement>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListCustomerRepricingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listCustomerRepricingConfigs(request:options:)``
   public func listCustomerRepricingConfigs(request: ListCustomerRepricingConfigsRequest)
     async throws -> GoogleCloudChannelV1.ListCustomerRepricingConfigsResponse
   {
@@ -3169,6 +4890,42 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about how a Reseller modifies their bill before sending
+  /// it to a Customer.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * NOT_FOUND: The
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// resources. The data for each resource is displayed in the ascending order
+  /// of:
+  ///
+  /// * Customer ID
+  /// * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
+  /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// * [CustomerRepricingConfig.update_time][google.cloud.channel.v1.CustomerRepricingConfig.update_time]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
+  /// [google.cloud.channel.v1.CustomerRepricingConfig.update_time]: <doc:CustomerRepricingConfig/updateTime>
+  /// [google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]: <doc:RepricingConfig/EntitlementGranularity/entitlement>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListCustomerRepricingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listCustomerRepricingConfigs(request:options:)``
   public func listCustomerRepricingConfigsByItems(
     request: ListCustomerRepricingConfigsRequest
   ) -> some AsyncSequence<CustomerRepricingConfig, any Swift.Error> & Sendable {
@@ -3207,6 +4964,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
   ///
   /// @Snippet(path: "CloudChannelService_ListCustomerRepricingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listCustomerRepricingConfigs(request:options:)``
   public func listCustomerRepricingConfigsByItems(
     request: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CustomerRepricingConfig, any Swift.Error> & Sendable {
@@ -3221,6 +4982,42 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists information about how a Reseller modifies their bill before sending
+  /// it to a Customer.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * NOT_FOUND: The
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// resources. The data for each resource is displayed in the ascending order
+  /// of:
+  ///
+  /// * Customer ID
+  /// * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
+  /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// * [CustomerRepricingConfig.update_time][google.cloud.channel.v1.CustomerRepricingConfig.update_time]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
+  /// [google.cloud.channel.v1.CustomerRepricingConfig.update_time]: <doc:CustomerRepricingConfig/updateTime>
+  /// [google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]: <doc:RepricingConfig/EntitlementGranularity/entitlement>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListCustomerRepricingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listCustomerRepricingConfigs(request:options:)``
   public func listCustomerRepricingConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<CustomerRepricingConfig, any Swift.Error> & Sendable {
@@ -3230,6 +5027,59 @@ extension Clients.CloudChannelServiceProtocol {
     return self.listCustomerRepricingConfigsByItems(request: request)
   }
 
+  /// Creates a CustomerRepricingConfig. Call this method to set modifications
+  /// for a specific customer's bill. You can only create configs if the
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// is a future month. If needed, you can create a config for the current
+  /// month, with some restrictions.
+  ///
+  /// When creating a config for a future month, make sure there are no existing
+  /// configs for that
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+  ///
+  /// The following restrictions are for creating configs in the current month.
+  ///
+  /// * This functionality is reserved for recovering from an erroneous config,
+  /// and should not be used for regular business cases.
+  /// * The new config will not modify exports used with other configs.
+  /// Changes to the config may be immediate, but may take up to 24 hours.
+  /// * There is a limit of ten configs for any
+  /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
+  /// for any
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+  /// * The contained
+  /// [CustomerRepricingConfig.repricing_config][google.cloud.channel.v1.CustomerRepricingConfig.repricing_config]
+  /// value must be different from the value used in the current config for a
+  /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
+  /// request. Also displays if the updated config is for the current month or
+  /// past months.
+  /// * NOT_FOUND: The
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the updated
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// resource, otherwise returns an error.
+  ///
+  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
+  /// [google.cloud.channel.v1.CustomerRepricingConfig.repricing_config]: <doc:CustomerRepricingConfig/repricingConfig>
+  /// [google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]: <doc:RepricingConfig/EntitlementGranularity/entitlement>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_CreateCustomerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/createCustomerRepricingConfig(request:options:)``
   public func createCustomerRepricingConfig(request: CreateCustomerRepricingConfigRequest)
     async throws -> GoogleCloudChannelV1.CustomerRepricingConfig
   {
@@ -3242,6 +5092,59 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a CustomerRepricingConfig. Call this method to set modifications
+  /// for a specific customer's bill. You can only create configs if the
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// is a future month. If needed, you can create a config for the current
+  /// month, with some restrictions.
+  ///
+  /// When creating a config for a future month, make sure there are no existing
+  /// configs for that
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+  ///
+  /// The following restrictions are for creating configs in the current month.
+  ///
+  /// * This functionality is reserved for recovering from an erroneous config,
+  /// and should not be used for regular business cases.
+  /// * The new config will not modify exports used with other configs.
+  /// Changes to the config may be immediate, but may take up to 24 hours.
+  /// * There is a limit of ten configs for any
+  /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
+  /// for any
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+  /// * The contained
+  /// [CustomerRepricingConfig.repricing_config][google.cloud.channel.v1.CustomerRepricingConfig.repricing_config]
+  /// value must be different from the value used in the current config for a
+  /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
+  /// request. Also displays if the updated config is for the current month or
+  /// past months.
+  /// * NOT_FOUND: The
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the updated
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// resource, otherwise returns an error.
+  ///
+  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
+  /// [google.cloud.channel.v1.CustomerRepricingConfig.repricing_config]: <doc:CustomerRepricingConfig/repricingConfig>
+  /// [google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]: <doc:RepricingConfig/EntitlementGranularity/entitlement>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_CreateCustomerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/createCustomerRepricingConfig(request:options:)``
   public func createCustomerRepricingConfig(
     parent: Swift.String,
     customerRepricingConfig: CustomerRepricingConfig?,
@@ -3253,6 +5156,48 @@ extension Clients.CloudChannelServiceProtocol {
     return try await self.createCustomerRepricingConfig(request: request)
   }
 
+  /// Updates a CustomerRepricingConfig. Call this method to set modifications
+  /// for a specific customer's bill. This method overwrites the existing
+  /// CustomerRepricingConfig.
+  ///
+  /// You can only update configs if the
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// is a future month. To make changes to configs for the current month, use
+  /// [CreateCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig],
+  /// taking note of its restrictions. You cannot update the
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+  ///
+  /// When updating a config in the future:
+  ///
+  /// * This config must already exist.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
+  /// request. Also displays if the updated config is for the current month or
+  /// past months.
+  /// * NOT_FOUND: The
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the updated
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// resource, otherwise returns an error.
+  ///
+  /// [google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig]: <doc:CloudChannelServiceClient/createCustomerRepricingConfig(request:options:)>
+  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_UpdateCustomerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/updateCustomerRepricingConfig(request:options:)``
   public func updateCustomerRepricingConfig(request: UpdateCustomerRepricingConfigRequest)
     async throws -> GoogleCloudChannelV1.CustomerRepricingConfig
   {
@@ -3265,6 +5210,48 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a CustomerRepricingConfig. Call this method to set modifications
+  /// for a specific customer's bill. This method overwrites the existing
+  /// CustomerRepricingConfig.
+  ///
+  /// You can only update configs if the
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// is a future month. To make changes to configs for the current month, use
+  /// [CreateCustomerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig],
+  /// taking note of its restrictions. You cannot update the
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+  ///
+  /// When updating a config in the future:
+  ///
+  /// * This config must already exist.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
+  /// request. Also displays if the updated config is for the current month or
+  /// past months.
+  /// * NOT_FOUND: The
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the updated
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// resource, otherwise returns an error.
+  ///
+  /// [google.cloud.channel.v1.CloudChannelService.CreateCustomerRepricingConfig]: <doc:CloudChannelServiceClient/createCustomerRepricingConfig(request:options:)>
+  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_UpdateCustomerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/updateCustomerRepricingConfig(request:options:)``
   public func updateCustomerRepricingConfig(
     customerRepricingConfig: CustomerRepricingConfig?,
   ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
@@ -3274,6 +5261,32 @@ extension Clients.CloudChannelServiceProtocol {
     return try await self.updateCustomerRepricingConfig(request: request)
   }
 
+  /// Deletes the given
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// permanently. You can only delete configs if their
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// is set to a date after the current month.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The account making the request does not own
+  /// this customer.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * FAILED_PRECONDITION: The
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// is active or in the past.
+  /// * NOT_FOUND: No
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// found for the name in the request.
+  ///
+  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_DeleteCustomerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/deleteCustomerRepricingConfig(request:options:)``
   public func deleteCustomerRepricingConfig(request: DeleteCustomerRepricingConfigRequest)
     async throws
   {
@@ -3286,6 +5299,32 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the given
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// permanently. You can only delete configs if their
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// is set to a date after the current month.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The account making the request does not own
+  /// this customer.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * FAILED_PRECONDITION: The
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// is active or in the past.
+  /// * NOT_FOUND: No
+  /// [CustomerRepricingConfig][google.cloud.channel.v1.CustomerRepricingConfig]
+  /// found for the name in the request.
+  ///
+  /// [google.cloud.channel.v1.CustomerRepricingConfig]: <doc:CustomerRepricingConfig>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_DeleteCustomerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/deleteCustomerRepricingConfig(request:options:)``
   public func deleteCustomerRepricingConfig(
     name: Swift.String,
   ) async throws {
@@ -3295,6 +5334,31 @@ extension Clients.CloudChannelServiceProtocol {
     try await self.deleteCustomerRepricingConfig(request: request)
   }
 
+  /// Gets information about how a Distributor modifies their bill before sending
+  /// it to a ChannelPartner.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * NOT_FOUND: The
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// was not found.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// resource, otherwise returns an error.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
+  ///
+  /// @Snippet(path: "CloudChannelService_GetChannelPartnerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/getChannelPartnerRepricingConfig(request:options:)``
   public func getChannelPartnerRepricingConfig(request: GetChannelPartnerRepricingConfigRequest)
     async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig
   {
@@ -3307,6 +5371,31 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information about how a Distributor modifies their bill before sending
+  /// it to a ChannelPartner.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * NOT_FOUND: The
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// was not found.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// resource, otherwise returns an error.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
+  ///
+  /// @Snippet(path: "CloudChannelService_GetChannelPartnerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/getChannelPartnerRepricingConfig(request:options:)``
   public func getChannelPartnerRepricingConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -3316,6 +5405,40 @@ extension Clients.CloudChannelServiceProtocol {
     return try await self.getChannelPartnerRepricingConfig(request: request)
   }
 
+  /// Lists information about how a Reseller modifies their bill before sending
+  /// it to a ChannelPartner.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * NOT_FOUND: The
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// resources. The data for each resource is displayed in the ascending order
+  /// of:
+  ///
+  /// * Channel Partner ID
+  /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// * [ChannelPartnerRepricingConfig.update_time][google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]: <doc:ChannelPartnerRepricingConfig/updateTime>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListChannelPartnerRepricingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listChannelPartnerRepricingConfigs(request:options:)``
   public func listChannelPartnerRepricingConfigs(request: ListChannelPartnerRepricingConfigsRequest)
     async throws -> GoogleCloudChannelV1.ListChannelPartnerRepricingConfigsResponse
   {
@@ -3328,6 +5451,40 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about how a Reseller modifies their bill before sending
+  /// it to a ChannelPartner.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * NOT_FOUND: The
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// resources. The data for each resource is displayed in the ascending order
+  /// of:
+  ///
+  /// * Channel Partner ID
+  /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// * [ChannelPartnerRepricingConfig.update_time][google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]: <doc:ChannelPartnerRepricingConfig/updateTime>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListChannelPartnerRepricingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listChannelPartnerRepricingConfigs(request:options:)``
   public func listChannelPartnerRepricingConfigsByItems(
     request: ListChannelPartnerRepricingConfigsRequest
   ) -> some AsyncSequence<ChannelPartnerRepricingConfig, any Swift.Error> & Sendable {
@@ -3364,6 +5521,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
   ///
   /// @Snippet(path: "CloudChannelService_ListChannelPartnerRepricingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listChannelPartnerRepricingConfigs(request:options:)``
   public func listChannelPartnerRepricingConfigsByItems(
     request: ListChannelPartnerRepricingConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ChannelPartnerRepricingConfig, any Swift.Error> & Sendable {
@@ -3378,6 +5539,40 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists information about how a Reseller modifies their bill before sending
+  /// it to a ChannelPartner.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * NOT_FOUND: The
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// resources. The data for each resource is displayed in the ascending order
+  /// of:
+  ///
+  /// * Channel Partner ID
+  /// * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// * [ChannelPartnerRepricingConfig.update_time][google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig.update_time]: <doc:ChannelPartnerRepricingConfig/updateTime>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListChannelPartnerRepricingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listChannelPartnerRepricingConfigs(request:options:)``
   public func listChannelPartnerRepricingConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ChannelPartnerRepricingConfig, any Swift.Error> & Sendable {
@@ -3387,6 +5582,60 @@ extension Clients.CloudChannelServiceProtocol {
     return self.listChannelPartnerRepricingConfigsByItems(request: request)
   }
 
+  /// Creates a ChannelPartnerRepricingConfig. Call this method to set
+  /// modifications for a specific ChannelPartner's bill. You can only create
+  /// configs if the
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// is a future month. If needed, you can create a config for the current
+  /// month, with some restrictions.
+  ///
+  /// When creating a config for a future month, make sure there are no existing
+  /// configs for that
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+  ///
+  /// The following restrictions are for creating configs in the current month.
+  ///
+  /// * This functionality is reserved for recovering from an erroneous config,
+  /// and should not be used for regular business cases.
+  /// * The new config will not modify exports used with other configs.
+  /// Changes to the config may be immediate, but may take up to 24 hours.
+  /// * There is a limit of ten configs for any ChannelPartner or
+  /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
+  /// for any
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+  /// * The contained
+  /// [ChannelPartnerRepricingConfig.repricing_config][google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config]
+  /// value must be different from the value used in the current config for a
+  /// ChannelPartner.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
+  /// request. Also displays if the updated config is for the current month or
+  /// past months.
+  /// * NOT_FOUND: The
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the updated
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// resource, otherwise returns an error.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config]: <doc:ChannelPartnerRepricingConfig/repricingConfig>
+  /// [google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]: <doc:RepricingConfig/EntitlementGranularity/entitlement>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_CreateChannelPartnerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/createChannelPartnerRepricingConfig(request:options:)``
   public func createChannelPartnerRepricingConfig(
     request: CreateChannelPartnerRepricingConfigRequest
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -3399,6 +5648,60 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a ChannelPartnerRepricingConfig. Call this method to set
+  /// modifications for a specific ChannelPartner's bill. You can only create
+  /// configs if the
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// is a future month. If needed, you can create a config for the current
+  /// month, with some restrictions.
+  ///
+  /// When creating a config for a future month, make sure there are no existing
+  /// configs for that
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+  ///
+  /// The following restrictions are for creating configs in the current month.
+  ///
+  /// * This functionality is reserved for recovering from an erroneous config,
+  /// and should not be used for regular business cases.
+  /// * The new config will not modify exports used with other configs.
+  /// Changes to the config may be immediate, but may take up to 24 hours.
+  /// * There is a limit of ten configs for any ChannelPartner or
+  /// [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
+  /// for any
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+  /// * The contained
+  /// [ChannelPartnerRepricingConfig.repricing_config][google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config]
+  /// value must be different from the value used in the current config for a
+  /// ChannelPartner.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
+  /// request. Also displays if the updated config is for the current month or
+  /// past months.
+  /// * NOT_FOUND: The
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the updated
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// resource, otherwise returns an error.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig.repricing_config]: <doc:ChannelPartnerRepricingConfig/repricingConfig>
+  /// [google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]: <doc:RepricingConfig/EntitlementGranularity/entitlement>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_CreateChannelPartnerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/createChannelPartnerRepricingConfig(request:options:)``
   public func createChannelPartnerRepricingConfig(
     parent: Swift.String,
     channelPartnerRepricingConfig: ChannelPartnerRepricingConfig?,
@@ -3410,6 +5713,48 @@ extension Clients.CloudChannelServiceProtocol {
     return try await self.createChannelPartnerRepricingConfig(request: request)
   }
 
+  /// Updates a ChannelPartnerRepricingConfig. Call this method to set
+  /// modifications for a specific ChannelPartner's bill. This method overwrites
+  /// the existing CustomerRepricingConfig.
+  ///
+  /// You can only update configs if the
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// is a future month. To make changes to configs for the current month, use
+  /// [CreateChannelPartnerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig],
+  /// taking note of its restrictions. You cannot update the
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+  ///
+  /// When updating a config in the future:
+  ///
+  /// * This config must already exist.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
+  /// request. Also displays if the updated config is for the current month or
+  /// past months.
+  /// * NOT_FOUND: The
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the updated
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// resource, otherwise returns an error.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
+  /// [google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig]: <doc:CloudChannelServiceClient/createChannelPartnerRepricingConfig(request:options:)>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_UpdateChannelPartnerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/updateChannelPartnerRepricingConfig(request:options:)``
   public func updateChannelPartnerRepricingConfig(
     request: UpdateChannelPartnerRepricingConfigRequest
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -3422,6 +5767,48 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a ChannelPartnerRepricingConfig. Call this method to set
+  /// modifications for a specific ChannelPartner's bill. This method overwrites
+  /// the existing CustomerRepricingConfig.
+  ///
+  /// You can only update configs if the
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// is a future month. To make changes to configs for the current month, use
+  /// [CreateChannelPartnerRepricingConfig][google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig],
+  /// taking note of its restrictions. You cannot update the
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
+  ///
+  /// When updating a config in the future:
+  ///
+  /// * This config must already exist.
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different.
+  /// * INVALID_ARGUMENT: Missing or invalid required parameters in the
+  /// request. Also displays if the updated config is for the current month or
+  /// past months.
+  /// * NOT_FOUND: The
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// specified does not exist or is not associated with the given account.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the updated
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// resource, otherwise returns an error.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
+  /// [google.cloud.channel.v1.CloudChannelService.CreateChannelPartnerRepricingConfig]: <doc:CloudChannelServiceClient/createChannelPartnerRepricingConfig(request:options:)>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_UpdateChannelPartnerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/updateChannelPartnerRepricingConfig(request:options:)``
   public func updateChannelPartnerRepricingConfig(
     channelPartnerRepricingConfig: ChannelPartnerRepricingConfig?,
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -3431,6 +5818,32 @@ extension Clients.CloudChannelServiceProtocol {
     return try await self.updateChannelPartnerRepricingConfig(request: request)
   }
 
+  /// Deletes the given
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// permanently. You can only delete configs if their
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// is set to a date after the current month.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The account making the request does not own
+  /// this customer.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * FAILED_PRECONDITION: The
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// is active or in the past.
+  /// * NOT_FOUND: No
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// found for the name in the request.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_DeleteChannelPartnerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/deleteChannelPartnerRepricingConfig(request:options:)``
   public func deleteChannelPartnerRepricingConfig(
     request: DeleteChannelPartnerRepricingConfigRequest
   ) async throws {
@@ -3443,6 +5856,32 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the given
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// permanently. You can only delete configs if their
+  /// [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month]
+  /// is set to a date after the current month.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The account making the request does not own
+  /// this customer.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * FAILED_PRECONDITION: The
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// is active or in the past.
+  /// * NOT_FOUND: No
+  /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
+  /// found for the name in the request.
+  ///
+  /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
+  /// [google.cloud.channel.v1.RepricingConfig.effective_invoice_month]: <doc:RepricingConfig/effectiveInvoiceMonth>
+  ///
+  /// @Snippet(path: "CloudChannelService_DeleteChannelPartnerRepricingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/deleteChannelPartnerRepricingConfig(request:options:)``
   public func deleteChannelPartnerRepricingConfig(
     name: Swift.String,
   ) async throws {
@@ -3452,6 +5891,34 @@ extension Clients.CloudChannelServiceProtocol {
     try await self.deleteChannelPartnerRepricingConfig(request: request)
   }
 
+  /// Lists the Rebilling supported SKU groups the account is authorized to
+  /// sell.
+  /// Reference: https://cloud.google.com/skus/sku-groups
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different, or the account doesn't exist.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the [SkuGroup][google.cloud.channel.v1.SkuGroup] resources.
+  /// The data for each resource is displayed in the alphabetical order of SKU
+  /// group display name.
+  /// The data for each resource is displayed in the ascending order of
+  /// [SkuGroup.display_name][google.cloud.channel.v1.SkuGroup.display_name]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.SkuGroup]: <doc:SkuGroup>
+  /// [google.cloud.channel.v1.SkuGroup.display_name]: <doc:SkuGroup/displayName>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListSkuGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listSkuGroups(request:options:)``
   public func listSkuGroups(request: ListSkuGroupsRequest) async throws
     -> GoogleCloudChannelV1.ListSkuGroupsResponse
   {
@@ -3464,6 +5931,34 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the Rebilling supported SKU groups the account is authorized to
+  /// sell.
+  /// Reference: https://cloud.google.com/skus/sku-groups
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different, or the account doesn't exist.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the [SkuGroup][google.cloud.channel.v1.SkuGroup] resources.
+  /// The data for each resource is displayed in the alphabetical order of SKU
+  /// group display name.
+  /// The data for each resource is displayed in the ascending order of
+  /// [SkuGroup.display_name][google.cloud.channel.v1.SkuGroup.display_name]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.SkuGroup]: <doc:SkuGroup>
+  /// [google.cloud.channel.v1.SkuGroup.display_name]: <doc:SkuGroup/displayName>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListSkuGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listSkuGroups(request:options:)``
   public func listSkuGroupsByItems(
     request: ListSkuGroupsRequest
   ) -> some AsyncSequence<SkuGroup, any Swift.Error> & Sendable {
@@ -3494,6 +5989,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// [google.cloud.channel.v1.SkuGroup.display_name]: <doc:SkuGroup/displayName>
   ///
   /// @Snippet(path: "CloudChannelService_ListSkuGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listSkuGroups(request:options:)``
   public func listSkuGroupsByItems(
     request: ListSkuGroupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SkuGroup, any Swift.Error> & Sendable {
@@ -3507,6 +6006,34 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the Rebilling supported SKU groups the account is authorized to
+  /// sell.
+  /// Reference: https://cloud.google.com/skus/sku-groups
+  ///
+  /// Possible Error Codes:
+  ///
+  /// * PERMISSION_DENIED: If the account making the request and the account
+  /// being queried are different, or the account doesn't exist.
+  /// * INTERNAL: Any non-user error related to technical issues in the
+  /// backend. In this case, contact Cloud Channel support.
+  ///
+  /// Return Value:
+  /// If successful, the [SkuGroup][google.cloud.channel.v1.SkuGroup] resources.
+  /// The data for each resource is displayed in the alphabetical order of SKU
+  /// group display name.
+  /// The data for each resource is displayed in the ascending order of
+  /// [SkuGroup.display_name][google.cloud.channel.v1.SkuGroup.display_name]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.SkuGroup]: <doc:SkuGroup>
+  /// [google.cloud.channel.v1.SkuGroup.display_name]: <doc:SkuGroup/displayName>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListSkuGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listSkuGroups(request:options:)``
   public func listSkuGroupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SkuGroup, any Swift.Error> & Sendable {
@@ -3516,6 +6043,35 @@ extension Clients.CloudChannelServiceProtocol {
     return self.listSkuGroupsByItems(request: request)
   }
 
+  /// Lists the Billable SKUs in a given SKU group.
+  ///
+  /// Possible error codes:
+  /// PERMISSION_DENIED: If the account making the request and the account
+  /// being queried for are different, or the account doesn't exist.
+  /// INVALID_ARGUMENT: Missing or invalid required parameters in the
+  /// request.
+  /// INTERNAL: Any non-user error related to technical issue in the
+  /// backend. In this case, contact cloud channel support.
+  ///
+  /// Return Value:
+  /// If successful, the [BillableSku][google.cloud.channel.v1.BillableSku]
+  /// resources. The data for each resource is displayed in the ascending order
+  /// of:
+  ///
+  /// * [BillableSku.service_display_name][google.cloud.channel.v1.BillableSku.service_display_name]
+  /// * [BillableSku.sku_display_name][google.cloud.channel.v1.BillableSku.sku_display_name]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.BillableSku]: <doc:BillableSku>
+  /// [google.cloud.channel.v1.BillableSku.service_display_name]: <doc:BillableSku/serviceDisplayName>
+  /// [google.cloud.channel.v1.BillableSku.sku_display_name]: <doc:BillableSku/skuDisplayName>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListSkuGroupBillableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listSkuGroupBillableSkus(request:options:)``
   public func listSkuGroupBillableSkus(request: ListSkuGroupBillableSkusRequest) async throws
     -> GoogleCloudChannelV1.ListSkuGroupBillableSkusResponse
   {
@@ -3528,6 +6084,35 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the Billable SKUs in a given SKU group.
+  ///
+  /// Possible error codes:
+  /// PERMISSION_DENIED: If the account making the request and the account
+  /// being queried for are different, or the account doesn't exist.
+  /// INVALID_ARGUMENT: Missing or invalid required parameters in the
+  /// request.
+  /// INTERNAL: Any non-user error related to technical issue in the
+  /// backend. In this case, contact cloud channel support.
+  ///
+  /// Return Value:
+  /// If successful, the [BillableSku][google.cloud.channel.v1.BillableSku]
+  /// resources. The data for each resource is displayed in the ascending order
+  /// of:
+  ///
+  /// * [BillableSku.service_display_name][google.cloud.channel.v1.BillableSku.service_display_name]
+  /// * [BillableSku.sku_display_name][google.cloud.channel.v1.BillableSku.sku_display_name]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.BillableSku]: <doc:BillableSku>
+  /// [google.cloud.channel.v1.BillableSku.service_display_name]: <doc:BillableSku/serviceDisplayName>
+  /// [google.cloud.channel.v1.BillableSku.sku_display_name]: <doc:BillableSku/skuDisplayName>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListSkuGroupBillableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listSkuGroupBillableSkus(request:options:)``
   public func listSkuGroupBillableSkusByItems(
     request: ListSkuGroupBillableSkusRequest
   ) -> some AsyncSequence<BillableSku, any Swift.Error> & Sendable {
@@ -3559,6 +6144,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// [google.cloud.channel.v1.BillableSku.sku_display_name]: <doc:BillableSku/skuDisplayName>
   ///
   /// @Snippet(path: "CloudChannelService_ListSkuGroupBillableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listSkuGroupBillableSkus(request:options:)``
   public func listSkuGroupBillableSkusByItems(
     request: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BillableSku, any Swift.Error> & Sendable {
@@ -3573,6 +6162,35 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the Billable SKUs in a given SKU group.
+  ///
+  /// Possible error codes:
+  /// PERMISSION_DENIED: If the account making the request and the account
+  /// being queried for are different, or the account doesn't exist.
+  /// INVALID_ARGUMENT: Missing or invalid required parameters in the
+  /// request.
+  /// INTERNAL: Any non-user error related to technical issue in the
+  /// backend. In this case, contact cloud channel support.
+  ///
+  /// Return Value:
+  /// If successful, the [BillableSku][google.cloud.channel.v1.BillableSku]
+  /// resources. The data for each resource is displayed in the ascending order
+  /// of:
+  ///
+  /// * [BillableSku.service_display_name][google.cloud.channel.v1.BillableSku.service_display_name]
+  /// * [BillableSku.sku_display_name][google.cloud.channel.v1.BillableSku.sku_display_name]
+  ///
+  /// If unsuccessful, returns an error.
+  ///
+  /// [google.cloud.channel.v1.BillableSku]: <doc:BillableSku>
+  /// [google.cloud.channel.v1.BillableSku.service_display_name]: <doc:BillableSku/serviceDisplayName>
+  /// [google.cloud.channel.v1.BillableSku.sku_display_name]: <doc:BillableSku/skuDisplayName>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListSkuGroupBillableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listSkuGroupBillableSkus(request:options:)``
   public func listSkuGroupBillableSkusByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BillableSku, any Swift.Error> & Sendable {
@@ -3582,6 +6200,24 @@ extension Clients.CloudChannelServiceProtocol {
     return self.listSkuGroupBillableSkusByItems(request: request)
   }
 
+  /// Returns the requested [Offer][google.cloud.channel.v1.Offer] resource.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The entitlement doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: Entitlement or offer was not found.
+  ///
+  /// Return value:
+  /// The [Offer][google.cloud.channel.v1.Offer] resource.
+  ///
+  /// [google.cloud.channel.v1.Offer]: <doc:Offer>
+  ///
+  /// @Snippet(path: "CloudChannelService_LookupOffer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/lookupOffer(request:options:)``
   public func lookupOffer(request: LookupOfferRequest) async throws -> GoogleCloudChannelV1.Offer {
     try await self.lookupOffer(request: request, options: .init())
   }
@@ -3592,6 +6228,17 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the Products the reseller is authorized to sell.
+  ///
+  /// Possible error codes:
+  ///
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listProducts(request:options:)``
   public func listProducts(request: ListProductsRequest) async throws
     -> GoogleCloudChannelV1.ListProductsResponse
   {
@@ -3604,6 +6251,17 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the Products the reseller is authorized to sell.
+  ///
+  /// Possible error codes:
+  ///
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listProducts(request:options:)``
   public func listProductsByItems(
     request: ListProductsRequest
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -3617,6 +6275,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
   ///
   /// @Snippet(path: "CloudChannelService_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listProducts(request:options:)``
   public func listProductsByItems(
     request: ListProductsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -3630,6 +6292,17 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the SKUs for a product the reseller is authorized to sell.
+  ///
+  /// Possible error codes:
+  ///
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listSkus(request:options:)``
   public func listSkus(request: ListSkusRequest) async throws
     -> GoogleCloudChannelV1.ListSkusResponse
   {
@@ -3642,6 +6315,17 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the SKUs for a product the reseller is authorized to sell.
+  ///
+  /// Possible error codes:
+  ///
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listSkus(request:options:)``
   public func listSkusByItems(
     request: ListSkusRequest
   ) -> some AsyncSequence<Sku, any Swift.Error> & Sendable {
@@ -3655,6 +6339,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
   ///
   /// @Snippet(path: "CloudChannelService_ListSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listSkus(request:options:)``
   public func listSkusByItems(
     request: ListSkusRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Sku, any Swift.Error> & Sendable {
@@ -3668,6 +6356,17 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the Offers the reseller can sell.
+  ///
+  /// Possible error codes:
+  ///
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListOffers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listOffers(request:options:)``
   public func listOffers(request: ListOffersRequest) async throws
     -> GoogleCloudChannelV1.ListOffersResponse
   {
@@ -3680,6 +6379,17 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the Offers the reseller can sell.
+  ///
+  /// Possible error codes:
+  ///
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListOffers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listOffers(request:options:)``
   public func listOffersByItems(
     request: ListOffersRequest
   ) -> some AsyncSequence<Offer, any Swift.Error> & Sendable {
@@ -3693,6 +6403,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
   ///
   /// @Snippet(path: "CloudChannelService_ListOffers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listOffers(request:options:)``
   public func listOffersByItems(
     request: ListOffersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Offer, any Swift.Error> & Sendable {
@@ -3706,6 +6420,21 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the following:
+  ///
+  /// * SKUs that you can purchase for a customer
+  /// * SKUs that you can upgrade or downgrade for an entitlement.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListPurchasableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listPurchasableSkus(request:options:)``
   public func listPurchasableSkus(request: ListPurchasableSkusRequest) async throws
     -> GoogleCloudChannelV1.ListPurchasableSkusResponse
   {
@@ -3718,6 +6447,21 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the following:
+  ///
+  /// * SKUs that you can purchase for a customer
+  /// * SKUs that you can upgrade or downgrade for an entitlement.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListPurchasableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listPurchasableSkus(request:options:)``
   public func listPurchasableSkusByItems(
     request: ListPurchasableSkusRequest
   ) -> some AsyncSequence<PurchasableSku, any Swift.Error> & Sendable {
@@ -3735,6 +6479,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
   ///
   /// @Snippet(path: "CloudChannelService_ListPurchasableSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listPurchasableSkus(request:options:)``
   public func listPurchasableSkusByItems(
     request: ListPurchasableSkusRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PurchasableSku, any Swift.Error> & Sendable {
@@ -3749,6 +6497,24 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the following:
+  ///
+  /// * Offers that you can purchase for a customer.
+  /// * Offers that you can change for an entitlement.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller
+  ///     * The reseller is not authorized to transact on this Product. See
+  ///     https://support.google.com/channelservices/answer/9759265
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListPurchasableOffers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listPurchasableOffers(request:options:)``
   public func listPurchasableOffers(request: ListPurchasableOffersRequest) async throws
     -> GoogleCloudChannelV1.ListPurchasableOffersResponse
   {
@@ -3761,6 +6527,24 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the following:
+  ///
+  /// * Offers that you can purchase for a customer.
+  /// * Offers that you can change for an entitlement.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED:
+  ///     * The customer doesn't belong to the reseller
+  ///     * The reseller is not authorized to transact on this Product. See
+  ///     https://support.google.com/channelservices/answer/9759265
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListPurchasableOffers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listPurchasableOffers(request:options:)``
   public func listPurchasableOffersByItems(
     request: ListPurchasableOffersRequest
   ) -> some AsyncSequence<PurchasableOffer, any Swift.Error> & Sendable {
@@ -3781,6 +6565,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
   ///
   /// @Snippet(path: "CloudChannelService_ListPurchasableOffers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listPurchasableOffers(request:options:)``
   public func listPurchasableOffersByItems(
     request: ListPurchasableOffersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PurchasableOffer, any Swift.Error> & Sendable {
@@ -3795,6 +6583,24 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the billing accounts that are eligible to purchase particular SKUs
+  /// for a given customer.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  ///
+  /// Return value:
+  /// Based on the provided list of SKUs, returns a list of SKU groups that must
+  /// be purchased using the same billing account and the billing accounts
+  /// eligible to purchase each SKU group.
+  ///
+  /// @Snippet(path: "CloudChannelService_QueryEligibleBillingAccounts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/queryEligibleBillingAccounts(request:options:)``
   public func queryEligibleBillingAccounts(request: QueryEligibleBillingAccountsRequest)
     async throws -> GoogleCloudChannelV1.QueryEligibleBillingAccountsResponse
   {
@@ -3807,6 +6613,32 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Registers a service account with subscriber privileges on the Pub/Sub
+  /// topic for this Channel Services account or integrator. After you create a
+  /// subscriber, you get the events through
+  /// [SubscriberEvent][google.cloud.channel.v1.SubscriberEvent]
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request and the
+  /// provided reseller account are different, or the impersonated user
+  /// is not a super admin.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The topic name with the registered service email address.
+  ///
+  /// [google.cloud.channel.v1.SubscriberEvent]: <doc:SubscriberEvent>
+  ///
+  /// @Snippet(path: "CloudChannelService_RegisterSubscriber")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/registerSubscriber(request:options:)``
   public func registerSubscriber(request: RegisterSubscriberRequest) async throws
     -> GoogleCloudChannelV1.RegisterSubscriberResponse
   {
@@ -3819,6 +6651,33 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Unregisters a service account with subscriber privileges on the Pub/Sub
+  /// topic created for this Channel Services account or integrator. If there are
+  /// no service accounts left with subscriber privileges, this deletes the
+  /// topic. You can call ListSubscribers to check for these accounts.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request and the
+  /// provided reseller account are different, or the impersonated user
+  /// is not a super admin.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: The topic resource doesn't exist.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The topic name that unregistered the service email address.
+  /// Returns a success response if the service email address wasn't registered
+  /// with the topic.
+  ///
+  /// @Snippet(path: "CloudChannelService_UnregisterSubscriber")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/unregisterSubscriber(request:options:)``
   public func unregisterSubscriber(request: UnregisterSubscriberRequest) async throws
     -> GoogleCloudChannelV1.UnregisterSubscriberResponse
   {
@@ -3831,6 +6690,29 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists service accounts with subscriber privileges on the Pub/Sub topic
+  /// created for this Channel Services account or integrator.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request and the
+  /// provided reseller account are different, or the impersonated user
+  /// is not a super admin.
+  /// * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+  /// * NOT_FOUND: The topic resource doesn't exist.
+  /// * INTERNAL: Any non-user error related to a technical issue in the
+  /// backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// A list of service email addresses.
+  ///
+  /// @Snippet(path: "CloudChannelService_ListSubscribers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listSubscribers(request:options:)``
   public func listSubscribers(request: ListSubscribersRequest) async throws
     -> GoogleCloudChannelV1.ListSubscribersResponse
   {
@@ -3843,6 +6725,30 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List entitlement history.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request and the
+  /// provided reseller account are different.
+  /// * INVALID_ARGUMENT: Missing or invalid required fields in the request.
+  /// * NOT_FOUND: The parent resource doesn't exist. Usually the result of an
+  /// invalid name parameter.
+  /// * INTERNAL: Any non-user error related to a technical issue in the backend.
+  /// In this case, contact CloudChannel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// In this case, contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// List of [EntitlementChange][google.cloud.channel.v1.EntitlementChange]s.
+  ///
+  /// [google.cloud.channel.v1.EntitlementChange]: <doc:EntitlementChange>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListEntitlementChanges")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listEntitlementChanges(request:options:)``
   public func listEntitlementChanges(request: ListEntitlementChangesRequest) async throws
     -> GoogleCloudChannelV1.ListEntitlementChangesResponse
   {
@@ -3855,6 +6761,30 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List entitlement history.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request and the
+  /// provided reseller account are different.
+  /// * INVALID_ARGUMENT: Missing or invalid required fields in the request.
+  /// * NOT_FOUND: The parent resource doesn't exist. Usually the result of an
+  /// invalid name parameter.
+  /// * INTERNAL: Any non-user error related to a technical issue in the backend.
+  /// In this case, contact CloudChannel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// In this case, contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// List of [EntitlementChange][google.cloud.channel.v1.EntitlementChange]s.
+  ///
+  /// [google.cloud.channel.v1.EntitlementChange]: <doc:EntitlementChange>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListEntitlementChanges")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listEntitlementChanges(request:options:)``
   public func listEntitlementChangesByItems(
     request: ListEntitlementChangesRequest
   ) -> some AsyncSequence<EntitlementChange, any Swift.Error> & Sendable {
@@ -3881,6 +6811,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// [google.cloud.channel.v1.EntitlementChange]: <doc:EntitlementChange>
   ///
   /// @Snippet(path: "CloudChannelService_ListEntitlementChanges")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listEntitlementChanges(request:options:)``
   public func listEntitlementChangesByItems(
     request: ListEntitlementChangesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<EntitlementChange, any Swift.Error> & Sendable {
@@ -3895,6 +6829,30 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List entitlement history.
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The reseller account making the request and the
+  /// provided reseller account are different.
+  /// * INVALID_ARGUMENT: Missing or invalid required fields in the request.
+  /// * NOT_FOUND: The parent resource doesn't exist. Usually the result of an
+  /// invalid name parameter.
+  /// * INTERNAL: Any non-user error related to a technical issue in the backend.
+  /// In this case, contact CloudChannel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue in the backend.
+  /// In this case, contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// List of [EntitlementChange][google.cloud.channel.v1.EntitlementChange]s.
+  ///
+  /// [google.cloud.channel.v1.EntitlementChange]: <doc:EntitlementChange>
+  ///
+  /// @Snippet(path: "CloudChannelService_ListEntitlementChanges")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listEntitlementChanges(request:options:)``
   public func listEntitlementChangesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<EntitlementChange, any Swift.Error> & Sendable {
@@ -3904,6 +6862,15 @@ extension Clients.CloudChannelServiceProtocol {
     return self.listEntitlementChangesByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -3916,6 +6883,15 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -3927,6 +6903,10 @@ extension Clients.CloudChannelServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudChannelService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -3940,6 +6920,15 @@ extension Clients.CloudChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -3951,6 +6940,9 @@ extension Clients.CloudChannelServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3963,6 +6955,9 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -3972,6 +6967,15 @@ extension Clients.CloudChannelServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -3982,6 +6986,15 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -3991,6 +7004,15 @@ extension Clients.CloudChannelServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -4001,6 +7023,15 @@ extension Clients.CloudChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

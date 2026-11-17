@@ -28,6 +28,10 @@ import Foundation
 /// correctly.
 ///
 /// @Snippet(path: "ComplianceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ComplianceProtocol``
 public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   let inner: any Clients.ComplianceStub
 
@@ -45,6 +49,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// sending the entire request object in the REST body.
   ///
   /// @Snippet(path: "Compliance_RepeatDataBody")
+  ///
+  /// ## See Also
+  ///
+  /// - ``repeatDataBody(request:)``
   public func repeatDataBody(
     request: RepeatRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.RepeatResponse {
@@ -56,6 +64,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// top-level, non-repeated fields can be sent this way.
   ///
   /// @Snippet(path: "Compliance_RepeatDataBodyInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``repeatDataBodyInfo(request:)``
   public func repeatDataBodyInfo(
     request: RepeatRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.RepeatResponse {
@@ -66,6 +78,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// sending all request fields as query parameters.
   ///
   /// @Snippet(path: "Compliance_RepeatDataQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``repeatDataQuery(request:)``
   public func repeatDataQuery(
     request: RepeatRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.RepeatResponse {
@@ -77,6 +93,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// "/bar/{foo}" rather than "/{foo=bar/*}"), and the rest as query parameters.
   ///
   /// @Snippet(path: "Compliance_RepeatDataSimplePath")
+  ///
+  /// ## See Also
+  ///
+  /// - ``repeatDataSimplePath(request:)``
   public func repeatDataSimplePath(
     request: RepeatRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.RepeatResponse {
@@ -86,6 +106,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// Same as RepeatDataSimplePath, but with a path resource.
   ///
   /// @Snippet(path: "Compliance_RepeatDataPathResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``repeatDataPathResource(request:)``
   public func repeatDataPathResource(
     request: RepeatRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.RepeatResponse {
@@ -95,6 +119,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// Same as RepeatDataSimplePath, but with a trailing resource.
   ///
   /// @Snippet(path: "Compliance_RepeatDataPathTrailingResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``repeatDataPathTrailingResource(request:)``
   public func repeatDataPathTrailingResource(
     request: RepeatRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.RepeatResponse {
@@ -104,6 +132,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// This method echoes the ComplianceData request, using the HTTP PUT method.
   ///
   /// @Snippet(path: "Compliance_RepeatDataBodyPut")
+  ///
+  /// ## See Also
+  ///
+  /// - ``repeatDataBodyPut(request:)``
   public func repeatDataBodyPut(
     request: RepeatRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.RepeatResponse {
@@ -113,6 +145,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// This method echoes the ComplianceData request, using the HTTP PATCH method.
   ///
   /// @Snippet(path: "Compliance_RepeatDataBodyPatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``repeatDataBodyPatch(request:)``
   public func repeatDataBodyPatch(
     request: RepeatRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.RepeatResponse {
@@ -127,6 +163,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// VerifyEnum() to work) but are not guaranteed to be the same across separate Showcase server runs.
   ///
   /// @Snippet(path: "Compliance_GetEnum")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEnum(request:)``
   public func getEnum(
     request: EnumRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.EnumResponse {
@@ -141,6 +181,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// although they are not guaranteed to be the same across separate Showcase server runs.
   ///
   /// @Snippet(path: "Compliance_VerifyEnum")
+  ///
+  /// ## See Also
+  ///
+  /// - ``verifyEnum(request:)``
   public func verifyEnum(
     request: EnumResponse, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.EnumResponse {
@@ -152,6 +196,12 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Compliance_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -163,6 +213,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Compliance_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -174,6 +228,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "Compliance_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -185,6 +243,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "Compliance_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -196,6 +258,10 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "Compliance_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -207,6 +273,13 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Compliance_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -229,6 +302,11 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Compliance_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -240,6 +318,11 @@ public final class ComplianceClient: Clients.ComplianceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Compliance_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -348,6 +431,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.ComplianceProtocol {
+  /// This method echoes the ComplianceData request. This method exercises
+  /// sending the entire request object in the REST body.
+  ///
+  /// @Snippet(path: "Compliance_RepeatDataBody")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/repeatDataBody(request:options:)``
   public func repeatDataBody(request: RepeatRequest) async throws
     -> GoogleShowcaseV1Beta1.RepeatResponse
   {
@@ -360,6 +451,15 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method echoes the ComplianceData request. This method exercises
+  /// sending the a message-type field in the REST body. Per AIP-127, only
+  /// top-level, non-repeated fields can be sent this way.
+  ///
+  /// @Snippet(path: "Compliance_RepeatDataBodyInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/repeatDataBodyInfo(request:options:)``
   public func repeatDataBodyInfo(request: RepeatRequest) async throws
     -> GoogleShowcaseV1Beta1.RepeatResponse
   {
@@ -372,6 +472,14 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method echoes the ComplianceData request. This method exercises
+  /// sending all request fields as query parameters.
+  ///
+  /// @Snippet(path: "Compliance_RepeatDataQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/repeatDataQuery(request:options:)``
   public func repeatDataQuery(request: RepeatRequest) async throws
     -> GoogleShowcaseV1Beta1.RepeatResponse
   {
@@ -384,6 +492,15 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method echoes the ComplianceData request. This method exercises
+  /// sending some parameters as "simple" path variables (i.e., of the form
+  /// "/bar/{foo}" rather than "/{foo=bar/*}"), and the rest as query parameters.
+  ///
+  /// @Snippet(path: "Compliance_RepeatDataSimplePath")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/repeatDataSimplePath(request:options:)``
   public func repeatDataSimplePath(request: RepeatRequest) async throws
     -> GoogleShowcaseV1Beta1.RepeatResponse
   {
@@ -396,6 +513,13 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Same as RepeatDataSimplePath, but with a path resource.
+  ///
+  /// @Snippet(path: "Compliance_RepeatDataPathResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/repeatDataPathResource(request:options:)``
   public func repeatDataPathResource(request: RepeatRequest) async throws
     -> GoogleShowcaseV1Beta1.RepeatResponse
   {
@@ -408,6 +532,13 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Same as RepeatDataSimplePath, but with a trailing resource.
+  ///
+  /// @Snippet(path: "Compliance_RepeatDataPathTrailingResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/repeatDataPathTrailingResource(request:options:)``
   public func repeatDataPathTrailingResource(request: RepeatRequest) async throws
     -> GoogleShowcaseV1Beta1.RepeatResponse
   {
@@ -420,6 +551,13 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method echoes the ComplianceData request, using the HTTP PUT method.
+  ///
+  /// @Snippet(path: "Compliance_RepeatDataBodyPut")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/repeatDataBodyPut(request:options:)``
   public func repeatDataBodyPut(request: RepeatRequest) async throws
     -> GoogleShowcaseV1Beta1.RepeatResponse
   {
@@ -432,6 +570,13 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method echoes the ComplianceData request, using the HTTP PATCH method.
+  ///
+  /// @Snippet(path: "Compliance_RepeatDataBodyPatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/repeatDataBodyPatch(request:options:)``
   public func repeatDataBodyPatch(request: RepeatRequest) async throws
     -> GoogleShowcaseV1Beta1.RepeatResponse
   {
@@ -444,6 +589,18 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method requests an enum value from the server. Depending on the contents of EnumRequest, the enum value returned will be a known enum declared in the
+  /// .proto file, or a made-up enum value the is unknown to the client. To verify that clients can round-trip unknown enum values they receive, use the
+  /// response from this RPC as the request to VerifyEnum()
+  ///
+  /// The values of enums sent by the server when a known or unknown value is requested will be the same within a single Showcase server run (this is needed for
+  /// VerifyEnum() to work) but are not guaranteed to be the same across separate Showcase server runs.
+  ///
+  /// @Snippet(path: "Compliance_GetEnum")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/getEnum(request:options:)``
   public func getEnum(request: EnumRequest) async throws -> GoogleShowcaseV1Beta1.EnumResponse {
     try await self.getEnum(request: request, options: .init())
   }
@@ -454,6 +611,18 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method is used to verify that clients can round-trip enum values, which is particularly important for unknown enum values over REST. VerifyEnum()
+  /// verifies that its request, which is presumably the response that the client previously got to a GetEnum(), contains the correct data. If so, it responds
+  /// with the same EnumResponse; otherwise, the RPC errors.
+  ///
+  /// This works because the values of enums sent by the server when a known or unknown value is requested will be the same within a single Showcase server run,
+  /// although they are not guaranteed to be the same across separate Showcase server runs.
+  ///
+  /// @Snippet(path: "Compliance_VerifyEnum")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/verifyEnum(request:options:)``
   public func verifyEnum(request: EnumResponse) async throws -> GoogleShowcaseV1Beta1.EnumResponse {
     try await self.verifyEnum(request: request, options: .init())
   }
@@ -464,6 +633,15 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Compliance_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -476,6 +654,15 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Compliance_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -487,6 +674,10 @@ extension Clients.ComplianceProtocol {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Compliance_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -500,6 +691,15 @@ extension Clients.ComplianceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Compliance_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -512,6 +712,15 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "Compliance_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -524,6 +733,15 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "Compliance_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -536,6 +754,15 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "Compliance_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -548,6 +775,15 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Compliance_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -560,6 +796,15 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Compliance_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -571,6 +816,10 @@ extension Clients.ComplianceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Compliance_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -584,6 +833,15 @@ extension Clients.ComplianceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Compliance_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -595,6 +853,9 @@ extension Clients.ComplianceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -607,6 +868,9 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -616,6 +880,15 @@ extension Clients.ComplianceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Compliance_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -626,6 +899,15 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Compliance_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -635,6 +917,15 @@ extension Clients.ComplianceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Compliance_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -645,6 +936,15 @@ extension Clients.ComplianceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Compliance_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ComplianceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

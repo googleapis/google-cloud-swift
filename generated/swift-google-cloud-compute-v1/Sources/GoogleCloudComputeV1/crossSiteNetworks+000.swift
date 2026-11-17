@@ -24,6 +24,10 @@
   /// Service for the `crossSiteNetworks` resource.
   ///
   /// @Snippet(path: "crossSiteNetworksQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/CrossSiteNetworksProtocol``
   public final class CrossSiteNetworksClient: Clients.CrossSiteNetworksProtocol, Sendable {
     let inner: any Clients.CrossSiteNetworksStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Deletes the specified cross-site network in the given scope.
     ///
     /// @Snippet(path: "crossSiteNetworks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:crossSiteNetwork:)``
     public func delete(
       request: CrossSiteNetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "crossSiteNetworks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:crossSiteNetwork:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: CrossSiteNetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -99,6 +117,11 @@
     /// Returns the specified cross-site network in the given scope.
     ///
     /// @Snippet(path: "crossSiteNetworks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:crossSiteNetwork:)``
     public func `get`(
       request: CrossSiteNetworksClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CrossSiteNetwork {
@@ -109,6 +132,13 @@
     /// using the parameters that are included in the request.
     ///
     /// @Snippet(path: "crossSiteNetworks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: CrossSiteNetworksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -124,6 +154,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "crossSiteNetworks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: CrossSiteNetworksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -165,6 +202,13 @@
     /// Lists the cross-site networks for a project in the given scope.
     ///
     /// @Snippet(path: "crossSiteNetworks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:)``
     public func list(
       request: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CrossSiteNetworkList {
@@ -177,6 +221,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "crossSiteNetworks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:crossSiteNetwork:body:)``
     public func patch(
       request: CrossSiteNetworksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -194,6 +245,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "crossSiteNetworks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:crossSiteNetwork:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: CrossSiteNetworksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -308,6 +366,13 @@
 
   // Default implementations
   extension Clients.CrossSiteNetworksProtocol {
+    /// Deletes the specified cross-site network in the given scope.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/delete(request:options:)``
     public func delete(request: CrossSiteNetworksClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -320,6 +385,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified cross-site network in the given scope.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: CrossSiteNetworksClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -332,6 +409,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified cross-site network in the given scope.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
@@ -343,6 +432,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified cross-site network in the given scope.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/get(request:options:)``
     public func `get`(request: CrossSiteNetworksClient.GetRequest) async throws
       -> GoogleCloudComputeV1.CrossSiteNetwork
     {
@@ -355,6 +451,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified cross-site network in the given scope.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
@@ -366,6 +469,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a cross-site network in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/insert(request:options:)``
     public func insert(request: CrossSiteNetworksClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -378,6 +489,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a cross-site network in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: CrossSiteNetworksClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -390,6 +514,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a cross-site network in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: CrossSiteNetwork?,
@@ -401,6 +538,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists the cross-site networks for a project in the given scope.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/list(request:options:)``
     public func list(request: CrossSiteNetworksClient.ListRequest) async throws
       -> GoogleCloudComputeV1.CrossSiteNetworkList
     {
@@ -413,6 +557,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the cross-site networks for a project in the given scope.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/list(request:options:)``
     public func listByItems(
       request: CrossSiteNetworksClient.ListRequest
     ) -> some AsyncSequence<CrossSiteNetwork, any Swift.Error> & Sendable {
@@ -422,6 +573,10 @@
     /// Lists the cross-site networks for a project in the given scope.
     ///
     /// @Snippet(path: "crossSiteNetworks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/list(request:options:)``
     public func listByItems(
       request: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<CrossSiteNetwork, any Swift.Error> & Sendable {
@@ -435,6 +590,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the cross-site networks for a project in the given scope.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<CrossSiteNetwork, any Swift.Error> & Sendable {
@@ -444,6 +606,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Updates the specified cross-site network with the data included in
+    /// the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/patch(request:options:)``
     public func patch(request: CrossSiteNetworksClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -456,6 +628,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified cross-site network with the data included in
+    /// the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: CrossSiteNetworksClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -468,6 +655,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified cross-site network with the data included in
+    /// the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "crossSiteNetworks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CrossSiteNetworksClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
@@ -481,6 +683,7 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

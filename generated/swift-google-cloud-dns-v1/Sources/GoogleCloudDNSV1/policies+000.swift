@@ -23,6 +23,10 @@ import Foundation
 /// Service for the `policies` resource.
 ///
 /// @Snippet(path: "policiesQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/PoliciesProtocol``
 public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   let inner: any Clients.PoliciesStub
 
@@ -39,6 +43,11 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// Creates a new policy.
   ///
   /// @Snippet(path: "policies_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``create(request:)``
+  /// - ``create(project:body:)``
   public func create(
     request: PoliciesClient.CreateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Policy {
@@ -48,6 +57,11 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// Deletes a previously created policy. Fails if the policy is still being referenced by a network.
   ///
   /// @Snippet(path: "policies_delete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``delete(request:)``
+  /// - ``delete(project:policy:)``
   public func delete(
     request: PoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -57,6 +71,11 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// Fetches the representation of an existing policy.
   ///
   /// @Snippet(path: "policies_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``get(request:)``
+  /// - ``get(project:policy:)``
   public func `get`(
     request: PoliciesClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Policy {
@@ -66,6 +85,13 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// Enumerates all policies associated with a project.
   ///
   /// @Snippet(path: "policies_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``list(request:)``
+  /// - ``listByItems(request:)``
+  /// - ``listByItems(request:options:)``
+  /// - ``listByItems(project:)``
   public func list(
     request: PoliciesClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> PoliciesListResponse {
@@ -75,6 +101,11 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// Applies a partial update to an existing policy.
   ///
   /// @Snippet(path: "policies_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``patch(request:)``
+  /// - ``patch(project:policy:body:)``
   public func patch(
     request: PoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> PoliciesPatchResponse {
@@ -84,6 +115,11 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// Updates an existing policy.
   ///
   /// @Snippet(path: "policies_update")
+  ///
+  /// ## See Also
+  ///
+  /// - ``update(request:)``
+  /// - ``update(project:policy:body:)``
   public func update(
     request: PoliciesClient.UpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> PoliciesUpdateResponse {
@@ -132,6 +168,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.PoliciesProtocol {
+  /// Creates a new policy.
+  ///
+  /// @Snippet(path: "policies_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/create(request:options:)``
   public func create(request: PoliciesClient.CreateRequest) async throws -> Policy {
     try await self.create(request: request, options: .init())
   }
@@ -142,6 +185,13 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new policy.
+  ///
+  /// @Snippet(path: "policies_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/create(request:options:)``
   public func create(
     project: Swift.String,
     body: Policy?,
@@ -153,6 +203,13 @@ extension Clients.PoliciesProtocol {
     return try await self.create(request: request)
   }
 
+  /// Deletes a previously created policy. Fails if the policy is still being referenced by a network.
+  ///
+  /// @Snippet(path: "policies_delete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/delete(request:options:)``
   public func delete(request: PoliciesClient.DeleteRequest) async throws {
     try await self.delete(request: request, options: .init())
   }
@@ -163,6 +220,13 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a previously created policy. Fails if the policy is still being referenced by a network.
+  ///
+  /// @Snippet(path: "policies_delete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/delete(request:options:)``
   public func delete(
     project: Swift.String,
     policy: Swift.String,
@@ -174,6 +238,13 @@ extension Clients.PoliciesProtocol {
     try await self.delete(request: request)
   }
 
+  /// Fetches the representation of an existing policy.
+  ///
+  /// @Snippet(path: "policies_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/get(request:options:)``
   public func `get`(request: PoliciesClient.GetRequest) async throws -> Policy {
     try await self.`get`(request: request, options: .init())
   }
@@ -184,6 +255,13 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches the representation of an existing policy.
+  ///
+  /// @Snippet(path: "policies_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/get(request:options:)``
   public func `get`(
     project: Swift.String,
     policy: Swift.String,
@@ -195,6 +273,13 @@ extension Clients.PoliciesProtocol {
     return try await self.`get`(request: request)
   }
 
+  /// Enumerates all policies associated with a project.
+  ///
+  /// @Snippet(path: "policies_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/list(request:options:)``
   public func list(request: PoliciesClient.ListRequest) async throws -> PoliciesListResponse {
     try await self.list(request: request, options: .init())
   }
@@ -205,6 +290,13 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enumerates all policies associated with a project.
+  ///
+  /// @Snippet(path: "policies_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/list(request:options:)``
   public func listByItems(
     request: PoliciesClient.ListRequest
   ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
@@ -214,6 +306,10 @@ extension Clients.PoliciesProtocol {
   /// Enumerates all policies associated with a project.
   ///
   /// @Snippet(path: "policies_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/list(request:options:)``
   public func listByItems(
     request: PoliciesClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
@@ -226,6 +322,13 @@ extension Clients.PoliciesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Enumerates all policies associated with a project.
+  ///
+  /// @Snippet(path: "policies_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/list(request:options:)``
   public func listByItems(
     project: Swift.String,
   ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
@@ -235,6 +338,13 @@ extension Clients.PoliciesProtocol {
     return self.listByItems(request: request)
   }
 
+  /// Applies a partial update to an existing policy.
+  ///
+  /// @Snippet(path: "policies_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/patch(request:options:)``
   public func patch(request: PoliciesClient.PatchRequest) async throws -> PoliciesPatchResponse {
     try await self.patch(request: request, options: .init())
   }
@@ -245,6 +355,13 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Applies a partial update to an existing policy.
+  ///
+  /// @Snippet(path: "policies_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/patch(request:options:)``
   public func patch(
     project: Swift.String,
     policy: Swift.String,
@@ -258,6 +375,13 @@ extension Clients.PoliciesProtocol {
     return try await self.patch(request: request)
   }
 
+  /// Updates an existing policy.
+  ///
+  /// @Snippet(path: "policies_update")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/update(request:options:)``
   public func update(request: PoliciesClient.UpdateRequest) async throws -> PoliciesUpdateResponse {
     try await self.update(request: request, options: .init())
   }
@@ -268,6 +392,13 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing policy.
+  ///
+  /// @Snippet(path: "policies_update")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/update(request:options:)``
   public func update(
     project: Swift.String,
     policy: Swift.String,

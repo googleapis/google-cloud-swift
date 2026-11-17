@@ -51,6 +51,10 @@ import Foundation
 /// Publisher allows an event provider to publish events to Eventarc.
 ///
 /// @Snippet(path: "PublisherQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/PublisherProtocol``
 public final class PublisherClient: Clients.PublisherProtocol, Sendable {
   let inner: any Clients.PublisherStub
 
@@ -67,6 +71,10 @@ public final class PublisherClient: Clients.PublisherProtocol, Sendable {
   /// Publish events to a ChannelConnection in a partner's project.
   ///
   /// @Snippet(path: "Publisher_PublishChannelConnectionEvents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``publishChannelConnectionEvents(request:)``
   public func publishChannelConnectionEvents(
     request: PublishChannelConnectionEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcPublishingV1.PublishChannelConnectionEventsResponse {
@@ -76,6 +84,10 @@ public final class PublisherClient: Clients.PublisherProtocol, Sendable {
   /// Publish events to a subscriber's channel.
   ///
   /// @Snippet(path: "Publisher_PublishEvents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``publishEvents(request:)``
   public func publishEvents(
     request: PublishEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcPublishingV1.PublishEventsResponse {
@@ -85,6 +97,10 @@ public final class PublisherClient: Clients.PublisherProtocol, Sendable {
   /// Publish events to a message bus.
   ///
   /// @Snippet(path: "Publisher_Publish")
+  ///
+  /// ## See Also
+  ///
+  /// - ``publish(request:)``
   public func publish(
     request: PublishRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcPublishingV1.PublishResponse {
@@ -118,6 +134,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.PublisherProtocol {
+  /// Publish events to a ChannelConnection in a partner's project.
+  ///
+  /// @Snippet(path: "Publisher_PublishChannelConnectionEvents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PublisherClient/publishChannelConnectionEvents(request:options:)``
   public func publishChannelConnectionEvents(request: PublishChannelConnectionEventsRequest)
     async throws -> GoogleCloudEventarcPublishingV1.PublishChannelConnectionEventsResponse
   {
@@ -130,6 +153,13 @@ extension Clients.PublisherProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Publish events to a subscriber's channel.
+  ///
+  /// @Snippet(path: "Publisher_PublishEvents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PublisherClient/publishEvents(request:options:)``
   public func publishEvents(request: PublishEventsRequest) async throws
     -> GoogleCloudEventarcPublishingV1.PublishEventsResponse
   {
@@ -142,6 +172,13 @@ extension Clients.PublisherProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Publish events to a message bus.
+  ///
+  /// @Snippet(path: "Publisher_Publish")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PublisherClient/publish(request:options:)``
   public func publish(request: PublishRequest) async throws
     -> GoogleCloudEventarcPublishingV1.PublishResponse
   {

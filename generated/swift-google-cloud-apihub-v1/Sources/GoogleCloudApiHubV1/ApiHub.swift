@@ -26,6 +26,10 @@ import Foundation
 /// This service provides all methods related to the API hub.
 ///
 /// @Snippet(path: "ApiHubQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ApiHubProtocol``
 public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   let inner: any Clients.ApiHubStub
 
@@ -43,6 +47,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Once an API resource is created, versions can be added to it.
   ///
   /// @Snippet(path: "ApiHub_CreateApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createApi(request:)``
+  /// - ``createApi(parent:api:apiId:)``
   public func createApi(
     request: CreateApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Api {
@@ -52,6 +61,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Get API resource details including the API versions contained in it.
   ///
   /// @Snippet(path: "ApiHub_GetApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getApi(request:)``
+  /// - ``getApi(name:)``
   public func getApi(
     request: GetApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Api {
@@ -61,6 +75,13 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// List API resources in the API hub.
   ///
   /// @Snippet(path: "ApiHub_ListApis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listApis(request:)``
+  /// - ``listApisByItems(request:)``
+  /// - ``listApisByItems(request:options:)``
+  /// - ``listApisByItems(parent:)``
   public func listApis(
     request: ListApisRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListApisResponse {
@@ -102,6 +123,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.cloud.apihub.v1.UpdateApiRequest.update_mask]: <doc:UpdateApiRequest/updateMask>
   ///
   /// @Snippet(path: "ApiHub_UpdateApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateApi(request:)``
+  /// - ``updateApi(api:updateMask:)``
   public func updateApi(
     request: UpdateApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Api {
@@ -112,6 +138,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// underlying versions are deleted.
   ///
   /// @Snippet(path: "ApiHub_DeleteApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteApi(request:)``
+  /// - ``deleteApi(name:)``
   public func deleteApi(
     request: DeleteApiRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -121,6 +152,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Create an API version for an API resource in the API hub.
   ///
   /// @Snippet(path: "ApiHub_CreateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createVersion(request:)``
+  /// - ``createVersion(parent:version:versionId:)``
   public func createVersion(
     request: CreateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Version {
@@ -132,6 +168,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// version as well as the deployments linked to it.
   ///
   /// @Snippet(path: "ApiHub_GetVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getVersion(request:)``
+  /// - ``getVersion(name:)``
   public func getVersion(
     request: GetVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Version {
@@ -141,6 +182,13 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// List API versions of an API resource in the API hub.
   ///
   /// @Snippet(path: "ApiHub_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listVersions(request:)``
+  /// - ``listVersionsByItems(request:)``
+  /// - ``listVersionsByItems(request:options:)``
+  /// - ``listVersionsByItems(parent:)``
   public func listVersions(
     request: ListVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListVersionsResponse {
@@ -175,6 +223,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.cloud.apihub.v1.Version.lifecycle]: <doc:Version/lifecycle>
   ///
   /// @Snippet(path: "ApiHub_UpdateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateVersion(request:)``
+  /// - ``updateVersion(version:updateMask:)``
   public func updateVersion(
     request: UpdateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Version {
@@ -185,6 +238,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// operations, definitions and linked deployments are deleted.
   ///
   /// @Snippet(path: "ApiHub_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteVersion(request:)``
+  /// - ``deleteVersion(name:)``
   public func deleteVersion(
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -218,6 +276,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHubClient/listApiOperations(request:options:)>
   ///
   /// @Snippet(path: "ApiHub_CreateSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSpec(request:)``
+  /// - ``createSpec(parent:spec:specId:)``
   public func createSpec(
     request: CreateSpecRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Spec {
@@ -232,6 +295,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHubClient/getSpecContents(request:options:)>
   ///
   /// @Snippet(path: "ApiHub_GetSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSpec(request:)``
+  /// - ``getSpec(name:)``
   public func getSpec(
     request: GetSpecRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Spec {
@@ -241,6 +309,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Get spec contents.
   ///
   /// @Snippet(path: "ApiHub_GetSpecContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSpecContents(request:)``
+  /// - ``getSpecContents(name:)``
   public func getSpecContents(
     request: GetSpecContentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.SpecContents {
@@ -250,6 +323,13 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// List specs corresponding to a particular API resource.
   ///
   /// @Snippet(path: "ApiHub_ListSpecs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSpecs(request:)``
+  /// - ``listSpecsByItems(request:)``
+  /// - ``listSpecsByItems(request:options:)``
+  /// - ``listSpecsByItems(parent:)``
   public func listSpecs(
     request: ListSpecsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListSpecsResponse {
@@ -289,6 +369,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.cloud.apihub.v1.UpdateSpecRequest.update_mask]: <doc:UpdateSpecRequest/updateMask>
   ///
   /// @Snippet(path: "ApiHub_UpdateSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSpec(request:)``
+  /// - ``updateSpec(spec:updateMask:)``
   public func updateSpec(
     request: UpdateSpecRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Spec {
@@ -300,6 +385,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// version.
   ///
   /// @Snippet(path: "ApiHub_DeleteSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSpec(request:)``
+  /// - ``deleteSpec(name:)``
   public func deleteSpec(
     request: DeleteSpecRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -311,6 +401,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// which were created by parsing a spec.
   ///
   /// @Snippet(path: "ApiHub_CreateApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createApiOperation(request:)``
+  /// - ``createApiOperation(parent:apiOperation:apiOperationId:)``
   public func createApiOperation(
     request: CreateApiOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ApiOperation {
@@ -320,6 +415,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Get details about a particular operation in API version.
   ///
   /// @Snippet(path: "ApiHub_GetApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getApiOperation(request:)``
+  /// - ``getApiOperation(name:)``
   public func getApiOperation(
     request: GetApiOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ApiOperation {
@@ -329,6 +429,13 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// List operations in an API version.
   ///
   /// @Snippet(path: "ApiHub_ListApiOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listApiOperations(request:)``
+  /// - ``listApiOperationsByItems(request:)``
+  /// - ``listApiOperationsByItems(request:options:)``
+  /// - ``listApiOperationsByItems(parent:)``
   public func listApiOperations(
     request: ListApiOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListApiOperationsResponse {
@@ -361,6 +468,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.cloud.apihub.v1.UpdateApiOperationRequest.update_mask]: <doc:UpdateApiOperationRequest/updateMask>
   ///
   /// @Snippet(path: "ApiHub_UpdateApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateApiOperation(request:)``
+  /// - ``updateApiOperation(apiOperation:updateMask:)``
   public func updateApiOperation(
     request: UpdateApiOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ApiOperation {
@@ -372,6 +484,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// the spec, then it can be deleted by editing or deleting the spec.
   ///
   /// @Snippet(path: "ApiHub_DeleteApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteApiOperation(request:)``
+  /// - ``deleteApiOperation(name:)``
   public func deleteApiOperation(
     request: DeleteApiOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -381,6 +498,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Get details about a definition in an API version.
   ///
   /// @Snippet(path: "ApiHub_GetDefinition")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDefinition(request:)``
+  /// - ``getDefinition(name:)``
   public func getDefinition(
     request: GetDefinitionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Definition {
@@ -392,6 +514,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// versions.
   ///
   /// @Snippet(path: "ApiHub_CreateDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDeployment(request:)``
+  /// - ``createDeployment(parent:deployment:deploymentId:)``
   public func createDeployment(
     request: CreateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Deployment {
@@ -401,6 +528,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Get details about a deployment and the API versions linked to it.
   ///
   /// @Snippet(path: "ApiHub_GetDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDeployment(request:)``
+  /// - ``getDeployment(name:)``
   public func getDeployment(
     request: GetDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Deployment {
@@ -410,6 +542,13 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// List deployment resources in the API hub.
   ///
   /// @Snippet(path: "ApiHub_ListDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDeployments(request:)``
+  /// - ``listDeploymentsByItems(request:)``
+  /// - ``listDeploymentsByItems(request:options:)``
+  /// - ``listDeploymentsByItems(parent:)``
   public func listDeployments(
     request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListDeploymentsResponse {
@@ -453,6 +592,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.cloud.apihub.v1.UpdateDeploymentRequest.update_mask]: <doc:UpdateDeploymentRequest/updateMask>
   ///
   /// @Snippet(path: "ApiHub_UpdateDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDeployment(request:)``
+  /// - ``updateDeployment(deployment:updateMask:)``
   public func updateDeployment(
     request: UpdateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Deployment {
@@ -462,6 +606,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Delete a deployment resource in the API hub.
   ///
   /// @Snippet(path: "ApiHub_DeleteDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDeployment(request:)``
+  /// - ``deleteDeployment(name:)``
   public func deleteDeployment(
     request: DeleteDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -480,6 +629,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.cloud.apihub.v1.ApiHub.UpdateAttribute]: <doc:ApiHubClient/updateAttribute(request:options:)>
   ///
   /// @Snippet(path: "ApiHub_CreateAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAttribute(request:)``
+  /// - ``createAttribute(parent:attribute:attributeId:)``
   public func createAttribute(
     request: CreateAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Attribute {
@@ -489,6 +643,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Get details about the attribute.
   ///
   /// @Snippet(path: "ApiHub_GetAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAttribute(request:)``
+  /// - ``getAttribute(name:)``
   public func getAttribute(
     request: GetAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Attribute {
@@ -527,6 +686,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.cloud.apihub.v1.UpdateAttributeRequest.update_mask]: <doc:UpdateAttributeRequest/updateMask>
   ///
   /// @Snippet(path: "ApiHub_UpdateAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAttribute(request:)``
+  /// - ``updateAttribute(attribute:updateMask:)``
   public func updateAttribute(
     request: UpdateAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Attribute {
@@ -540,6 +704,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// also get deleted.
   ///
   /// @Snippet(path: "ApiHub_DeleteAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAttribute(request:)``
+  /// - ``deleteAttribute(name:)``
   public func deleteAttribute(
     request: DeleteAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -549,6 +718,13 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// List all attributes.
   ///
   /// @Snippet(path: "ApiHub_ListAttributes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAttributes(request:)``
+  /// - ``listAttributesByItems(request:)``
+  /// - ``listAttributesByItems(request:options:)``
+  /// - ``listAttributesByItems(parent:)``
   public func listAttributes(
     request: ListAttributesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListAttributesResponse {
@@ -558,6 +734,13 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Search across API-Hub resources.
   ///
   /// @Snippet(path: "ApiHub_SearchResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchResources(request:)``
+  /// - ``searchResourcesByItems(request:)``
+  /// - ``searchResourcesByItems(request:options:)``
+  /// - ``searchResourcesByItems(location:query:)``
   public func searchResources(
     request: SearchResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.SearchResourcesResponse {
@@ -567,6 +750,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Create an External API resource in the API hub.
   ///
   /// @Snippet(path: "ApiHub_CreateExternalApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createExternalApi(request:)``
+  /// - ``createExternalApi(parent:externalApi:externalApiId:)``
   public func createExternalApi(
     request: CreateExternalApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ExternalApi {
@@ -576,6 +764,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Get details about an External API resource in the API hub.
   ///
   /// @Snippet(path: "ApiHub_GetExternalApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getExternalApi(request:)``
+  /// - ``getExternalApi(name:)``
   public func getExternalApi(
     request: GetExternalApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ExternalApi {
@@ -603,6 +796,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.cloud.apihub.v1.UpdateExternalApiRequest.update_mask]: <doc:UpdateExternalApiRequest/updateMask>
   ///
   /// @Snippet(path: "ApiHub_UpdateExternalApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateExternalApi(request:)``
+  /// - ``updateExternalApi(externalApi:updateMask:)``
   public func updateExternalApi(
     request: UpdateExternalApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ExternalApi {
@@ -612,6 +810,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Delete an External API resource in the API hub.
   ///
   /// @Snippet(path: "ApiHub_DeleteExternalApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteExternalApi(request:)``
+  /// - ``deleteExternalApi(name:)``
   public func deleteExternalApi(
     request: DeleteExternalApiRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -621,6 +824,13 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// List External API resources in the API hub.
   ///
   /// @Snippet(path: "ApiHub_ListExternalApis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listExternalApis(request:)``
+  /// - ``listExternalApisByItems(request:)``
+  /// - ``listExternalApisByItems(request:options:)``
+  /// - ``listExternalApisByItems(parent:)``
   public func listExternalApis(
     request: ListExternalApisRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListExternalApisResponse {
@@ -630,6 +840,12 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ApiHub_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -639,6 +855,10 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ApiHub_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -650,6 +870,13 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHub_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -672,6 +899,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHub_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -683,6 +915,11 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHub_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -916,6 +1153,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.ApiHubProtocol {
+  /// Create an API resource in the API hub.
+  /// Once an API resource is created, versions can be added to it.
+  ///
+  /// @Snippet(path: "ApiHub_CreateApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createApi(request:options:)``
   public func createApi(request: CreateApiRequest) async throws -> GoogleCloudApiHubV1.Api {
     try await self.createApi(request: request, options: .init())
   }
@@ -926,6 +1171,14 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create an API resource in the API hub.
+  /// Once an API resource is created, versions can be added to it.
+  ///
+  /// @Snippet(path: "ApiHub_CreateApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createApi(request:options:)``
   public func createApi(
     parent: Swift.String,
     api: Api?,
@@ -939,6 +1192,13 @@ extension Clients.ApiHubProtocol {
     return try await self.createApi(request: request)
   }
 
+  /// Get API resource details including the API versions contained in it.
+  ///
+  /// @Snippet(path: "ApiHub_GetApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getApi(request:options:)``
   public func getApi(request: GetApiRequest) async throws -> GoogleCloudApiHubV1.Api {
     try await self.getApi(request: request, options: .init())
   }
@@ -949,6 +1209,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get API resource details including the API versions contained in it.
+  ///
+  /// @Snippet(path: "ApiHub_GetApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getApi(request:options:)``
   public func getApi(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.Api {
@@ -958,6 +1225,13 @@ extension Clients.ApiHubProtocol {
     return try await self.getApi(request: request)
   }
 
+  /// List API resources in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_ListApis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listApis(request:options:)``
   public func listApis(request: ListApisRequest) async throws
     -> GoogleCloudApiHubV1.ListApisResponse
   {
@@ -970,6 +1244,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List API resources in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_ListApis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listApis(request:options:)``
   public func listApisByItems(
     request: ListApisRequest
   ) -> some AsyncSequence<Api, any Swift.Error> & Sendable {
@@ -979,6 +1260,10 @@ extension Clients.ApiHubProtocol {
   /// List API resources in the API hub.
   ///
   /// @Snippet(path: "ApiHub_ListApis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listApis(request:options:)``
   public func listApisByItems(
     request: ListApisRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Api, any Swift.Error> & Sendable {
@@ -992,6 +1277,13 @@ extension Clients.ApiHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List API resources in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_ListApis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listApis(request:options:)``
   public func listApisByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Api, any Swift.Error> & Sendable {
@@ -1001,6 +1293,45 @@ extension Clients.ApiHubProtocol {
     return self.listApisByItems(request: request)
   }
 
+  /// Update an API resource in the API hub. The following fields in the
+  /// [API][google.cloud.apihub.v1.Api] can be updated:
+  ///
+  /// * [display_name][google.cloud.apihub.v1.Api.display_name]
+  /// * [description][google.cloud.apihub.v1.Api.description]
+  /// * [owner][google.cloud.apihub.v1.Api.owner]
+  /// * [documentation][google.cloud.apihub.v1.Api.documentation]
+  /// * [target_user][google.cloud.apihub.v1.Api.target_user]
+  /// * [team][google.cloud.apihub.v1.Api.team]
+  /// * [business_unit][google.cloud.apihub.v1.Api.business_unit]
+  /// * [maturity_level][google.cloud.apihub.v1.Api.maturity_level]
+  /// * [api_style][google.cloud.apihub.v1.Api.api_style]
+  /// * [attributes][google.cloud.apihub.v1.Api.attributes]
+  ///
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateApiRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// Updating the owner field requires complete owner message
+  /// and updates both owner and email fields.
+  ///
+  /// [google.cloud.apihub.v1.Api]: <doc:Api>
+  /// [google.cloud.apihub.v1.Api.api_style]: <doc:Api/apiStyle>
+  /// [google.cloud.apihub.v1.Api.attributes]: <doc:Api/attributes>
+  /// [google.cloud.apihub.v1.Api.business_unit]: <doc:Api/businessUnit>
+  /// [google.cloud.apihub.v1.Api.description]: <doc:Api/description>
+  /// [google.cloud.apihub.v1.Api.display_name]: <doc:Api/displayName>
+  /// [google.cloud.apihub.v1.Api.documentation]: <doc:Api/documentation>
+  /// [google.cloud.apihub.v1.Api.maturity_level]: <doc:Api/maturityLevel>
+  /// [google.cloud.apihub.v1.Api.owner]: <doc:Api/owner>
+  /// [google.cloud.apihub.v1.Api.target_user]: <doc:Api/targetUser>
+  /// [google.cloud.apihub.v1.Api.team]: <doc:Api/team>
+  /// [google.cloud.apihub.v1.UpdateApiRequest.update_mask]: <doc:UpdateApiRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateApi(request:options:)``
   public func updateApi(request: UpdateApiRequest) async throws -> GoogleCloudApiHubV1.Api {
     try await self.updateApi(request: request, options: .init())
   }
@@ -1011,6 +1342,45 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update an API resource in the API hub. The following fields in the
+  /// [API][google.cloud.apihub.v1.Api] can be updated:
+  ///
+  /// * [display_name][google.cloud.apihub.v1.Api.display_name]
+  /// * [description][google.cloud.apihub.v1.Api.description]
+  /// * [owner][google.cloud.apihub.v1.Api.owner]
+  /// * [documentation][google.cloud.apihub.v1.Api.documentation]
+  /// * [target_user][google.cloud.apihub.v1.Api.target_user]
+  /// * [team][google.cloud.apihub.v1.Api.team]
+  /// * [business_unit][google.cloud.apihub.v1.Api.business_unit]
+  /// * [maturity_level][google.cloud.apihub.v1.Api.maturity_level]
+  /// * [api_style][google.cloud.apihub.v1.Api.api_style]
+  /// * [attributes][google.cloud.apihub.v1.Api.attributes]
+  ///
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateApiRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// Updating the owner field requires complete owner message
+  /// and updates both owner and email fields.
+  ///
+  /// [google.cloud.apihub.v1.Api]: <doc:Api>
+  /// [google.cloud.apihub.v1.Api.api_style]: <doc:Api/apiStyle>
+  /// [google.cloud.apihub.v1.Api.attributes]: <doc:Api/attributes>
+  /// [google.cloud.apihub.v1.Api.business_unit]: <doc:Api/businessUnit>
+  /// [google.cloud.apihub.v1.Api.description]: <doc:Api/description>
+  /// [google.cloud.apihub.v1.Api.display_name]: <doc:Api/displayName>
+  /// [google.cloud.apihub.v1.Api.documentation]: <doc:Api/documentation>
+  /// [google.cloud.apihub.v1.Api.maturity_level]: <doc:Api/maturityLevel>
+  /// [google.cloud.apihub.v1.Api.owner]: <doc:Api/owner>
+  /// [google.cloud.apihub.v1.Api.target_user]: <doc:Api/targetUser>
+  /// [google.cloud.apihub.v1.Api.team]: <doc:Api/team>
+  /// [google.cloud.apihub.v1.UpdateApiRequest.update_mask]: <doc:UpdateApiRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateApi(request:options:)``
   public func updateApi(
     api: Api?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1022,6 +1392,14 @@ extension Clients.ApiHubProtocol {
     return try await self.updateApi(request: request)
   }
 
+  /// Delete an API resource in the API hub. API can only be deleted if all
+  /// underlying versions are deleted.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteApi(request:options:)``
   public func deleteApi(request: DeleteApiRequest) async throws {
     try await self.deleteApi(request: request, options: .init())
   }
@@ -1032,6 +1410,14 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete an API resource in the API hub. API can only be deleted if all
+  /// underlying versions are deleted.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteApi(request:options:)``
   public func deleteApi(
     name: Swift.String,
   ) async throws {
@@ -1041,6 +1427,13 @@ extension Clients.ApiHubProtocol {
     try await self.deleteApi(request: request)
   }
 
+  /// Create an API version for an API resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_CreateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createVersion(request:options:)``
   public func createVersion(request: CreateVersionRequest) async throws
     -> GoogleCloudApiHubV1.Version
   {
@@ -1053,6 +1446,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create an API version for an API resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_CreateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createVersion(request:options:)``
   public func createVersion(
     parent: Swift.String,
     version: Version?,
@@ -1066,6 +1466,15 @@ extension Clients.ApiHubProtocol {
     return try await self.createVersion(request: request)
   }
 
+  /// Get details about the API version of an API resource. This will include
+  /// information about the specs and operations present in the API
+  /// version as well as the deployments linked to it.
+  ///
+  /// @Snippet(path: "ApiHub_GetVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getVersion(request:options:)``
   public func getVersion(request: GetVersionRequest) async throws -> GoogleCloudApiHubV1.Version {
     try await self.getVersion(request: request, options: .init())
   }
@@ -1076,6 +1485,15 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get details about the API version of an API resource. This will include
+  /// information about the specs and operations present in the API
+  /// version as well as the deployments linked to it.
+  ///
+  /// @Snippet(path: "ApiHub_GetVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getVersion(request:options:)``
   public func getVersion(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.Version {
@@ -1085,6 +1503,13 @@ extension Clients.ApiHubProtocol {
     return try await self.getVersion(request: request)
   }
 
+  /// List API versions of an API resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listVersions(request:options:)``
   public func listVersions(request: ListVersionsRequest) async throws
     -> GoogleCloudApiHubV1.ListVersionsResponse
   {
@@ -1097,6 +1522,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List API versions of an API resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listVersions(request:options:)``
   public func listVersionsByItems(
     request: ListVersionsRequest
   ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -1106,6 +1538,10 @@ extension Clients.ApiHubProtocol {
   /// List API versions of an API resource in the API hub.
   ///
   /// @Snippet(path: "ApiHub_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listVersions(request:options:)``
   public func listVersionsByItems(
     request: ListVersionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -1119,6 +1555,13 @@ extension Clients.ApiHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List API versions of an API resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listVersions(request:options:)``
   public func listVersionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -1128,6 +1571,38 @@ extension Clients.ApiHubProtocol {
     return self.listVersionsByItems(request: request)
   }
 
+  /// Update API version. The following fields in the
+  /// [version][google.cloud.apihub.v1.Version] can be updated currently:
+  ///
+  /// * [display_name][google.cloud.apihub.v1.Version.display_name]
+  /// * [description][google.cloud.apihub.v1.Version.description]
+  /// * [documentation][google.cloud.apihub.v1.Version.documentation]
+  /// * [deployments][google.cloud.apihub.v1.Version.deployments]
+  /// * [lifecycle][google.cloud.apihub.v1.Version.lifecycle]
+  /// * [compliance][google.cloud.apihub.v1.Version.compliance]
+  /// * [accreditation][google.cloud.apihub.v1.Version.accreditation]
+  /// * [attributes][google.cloud.apihub.v1.Version.attributes]
+  ///
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateVersionRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// [google.cloud.apihub.v1.UpdateVersionRequest.update_mask]: <doc:UpdateVersionRequest/updateMask>
+  /// [google.cloud.apihub.v1.Version]: <doc:Version>
+  /// [google.cloud.apihub.v1.Version.accreditation]: <doc:Version/accreditation>
+  /// [google.cloud.apihub.v1.Version.attributes]: <doc:Version/attributes>
+  /// [google.cloud.apihub.v1.Version.compliance]: <doc:Version/compliance>
+  /// [google.cloud.apihub.v1.Version.deployments]: <doc:Version/deployments>
+  /// [google.cloud.apihub.v1.Version.description]: <doc:Version/description>
+  /// [google.cloud.apihub.v1.Version.display_name]: <doc:Version/displayName>
+  /// [google.cloud.apihub.v1.Version.documentation]: <doc:Version/documentation>
+  /// [google.cloud.apihub.v1.Version.lifecycle]: <doc:Version/lifecycle>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateVersion(request:options:)``
   public func updateVersion(request: UpdateVersionRequest) async throws
     -> GoogleCloudApiHubV1.Version
   {
@@ -1140,6 +1615,38 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update API version. The following fields in the
+  /// [version][google.cloud.apihub.v1.Version] can be updated currently:
+  ///
+  /// * [display_name][google.cloud.apihub.v1.Version.display_name]
+  /// * [description][google.cloud.apihub.v1.Version.description]
+  /// * [documentation][google.cloud.apihub.v1.Version.documentation]
+  /// * [deployments][google.cloud.apihub.v1.Version.deployments]
+  /// * [lifecycle][google.cloud.apihub.v1.Version.lifecycle]
+  /// * [compliance][google.cloud.apihub.v1.Version.compliance]
+  /// * [accreditation][google.cloud.apihub.v1.Version.accreditation]
+  /// * [attributes][google.cloud.apihub.v1.Version.attributes]
+  ///
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateVersionRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// [google.cloud.apihub.v1.UpdateVersionRequest.update_mask]: <doc:UpdateVersionRequest/updateMask>
+  /// [google.cloud.apihub.v1.Version]: <doc:Version>
+  /// [google.cloud.apihub.v1.Version.accreditation]: <doc:Version/accreditation>
+  /// [google.cloud.apihub.v1.Version.attributes]: <doc:Version/attributes>
+  /// [google.cloud.apihub.v1.Version.compliance]: <doc:Version/compliance>
+  /// [google.cloud.apihub.v1.Version.deployments]: <doc:Version/deployments>
+  /// [google.cloud.apihub.v1.Version.description]: <doc:Version/description>
+  /// [google.cloud.apihub.v1.Version.display_name]: <doc:Version/displayName>
+  /// [google.cloud.apihub.v1.Version.documentation]: <doc:Version/documentation>
+  /// [google.cloud.apihub.v1.Version.lifecycle]: <doc:Version/lifecycle>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateVersion(request:options:)``
   public func updateVersion(
     version: Version?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1151,6 +1658,14 @@ extension Clients.ApiHubProtocol {
     return try await self.updateVersion(request: request)
   }
 
+  /// Delete an API version. Version can only be deleted if all underlying specs,
+  /// operations, definitions and linked deployments are deleted.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteVersion(request:options:)``
   public func deleteVersion(request: DeleteVersionRequest) async throws {
     try await self.deleteVersion(request: request, options: .init())
   }
@@ -1161,6 +1676,14 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete an API version. Version can only be deleted if all underlying specs,
+  /// operations, definitions and linked deployments are deleted.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteVersion(request:options:)``
   public func deleteVersion(
     name: Swift.String,
   ) async throws {
@@ -1170,6 +1693,37 @@ extension Clients.ApiHubProtocol {
     try await self.deleteVersion(request: request)
   }
 
+  /// Add a spec to an API version in the API hub.
+  /// Multiple specs can be added to an API version.
+  /// Note, while adding a spec, at least one of `contents` or `source_uri` must
+  /// be provided. If `contents` is provided, then `spec_type` must also be
+  /// provided.
+  ///
+  /// On adding a spec with contents to the version, the operations present in it
+  /// will be added to the version.Note that the file contents in the spec should
+  /// be of the same type as defined in the
+  /// `projects/{project}/locations/{location}/attributes/system-spec-type`
+  /// attribute associated with spec resource. Note that specs of various types
+  /// can be uploaded, however parsing of details is supported for OpenAPI spec
+  /// currently.
+  ///
+  /// In order to access the information parsed from the spec, use the
+  /// [GetSpec][google.cloud.apihub.v1.ApiHub.GetSpec] method.
+  /// In order to access the raw contents for a particular spec, use the
+  /// [GetSpecContents][google.cloud.apihub.v1.ApiHub.GetSpecContents] method.
+  /// In order to access the operations parsed from the spec, use the
+  /// [ListAPIOperations][google.cloud.apihub.v1.ApiHub.ListApiOperations]
+  /// method.
+  ///
+  /// [google.cloud.apihub.v1.ApiHub.GetSpec]: <doc:ApiHubClient/getSpec(request:options:)>
+  /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHubClient/getSpecContents(request:options:)>
+  /// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHubClient/listApiOperations(request:options:)>
+  ///
+  /// @Snippet(path: "ApiHub_CreateSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createSpec(request:options:)``
   public func createSpec(request: CreateSpecRequest) async throws -> GoogleCloudApiHubV1.Spec {
     try await self.createSpec(request: request, options: .init())
   }
@@ -1180,6 +1734,37 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Add a spec to an API version in the API hub.
+  /// Multiple specs can be added to an API version.
+  /// Note, while adding a spec, at least one of `contents` or `source_uri` must
+  /// be provided. If `contents` is provided, then `spec_type` must also be
+  /// provided.
+  ///
+  /// On adding a spec with contents to the version, the operations present in it
+  /// will be added to the version.Note that the file contents in the spec should
+  /// be of the same type as defined in the
+  /// `projects/{project}/locations/{location}/attributes/system-spec-type`
+  /// attribute associated with spec resource. Note that specs of various types
+  /// can be uploaded, however parsing of details is supported for OpenAPI spec
+  /// currently.
+  ///
+  /// In order to access the information parsed from the spec, use the
+  /// [GetSpec][google.cloud.apihub.v1.ApiHub.GetSpec] method.
+  /// In order to access the raw contents for a particular spec, use the
+  /// [GetSpecContents][google.cloud.apihub.v1.ApiHub.GetSpecContents] method.
+  /// In order to access the operations parsed from the spec, use the
+  /// [ListAPIOperations][google.cloud.apihub.v1.ApiHub.ListApiOperations]
+  /// method.
+  ///
+  /// [google.cloud.apihub.v1.ApiHub.GetSpec]: <doc:ApiHubClient/getSpec(request:options:)>
+  /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHubClient/getSpecContents(request:options:)>
+  /// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHubClient/listApiOperations(request:options:)>
+  ///
+  /// @Snippet(path: "ApiHub_CreateSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createSpec(request:options:)``
   public func createSpec(
     parent: Swift.String,
     spec: Spec?,
@@ -1193,6 +1778,18 @@ extension Clients.ApiHubProtocol {
     return try await self.createSpec(request: request)
   }
 
+  /// Get details about the information parsed from a spec.
+  /// Note that this method does not return the raw spec contents.
+  /// Use [GetSpecContents][google.cloud.apihub.v1.ApiHub.GetSpecContents] method
+  /// to retrieve the same.
+  ///
+  /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHubClient/getSpecContents(request:options:)>
+  ///
+  /// @Snippet(path: "ApiHub_GetSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getSpec(request:options:)``
   public func getSpec(request: GetSpecRequest) async throws -> GoogleCloudApiHubV1.Spec {
     try await self.getSpec(request: request, options: .init())
   }
@@ -1203,6 +1800,18 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get details about the information parsed from a spec.
+  /// Note that this method does not return the raw spec contents.
+  /// Use [GetSpecContents][google.cloud.apihub.v1.ApiHub.GetSpecContents] method
+  /// to retrieve the same.
+  ///
+  /// [google.cloud.apihub.v1.ApiHub.GetSpecContents]: <doc:ApiHubClient/getSpecContents(request:options:)>
+  ///
+  /// @Snippet(path: "ApiHub_GetSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getSpec(request:options:)``
   public func getSpec(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.Spec {
@@ -1212,6 +1821,13 @@ extension Clients.ApiHubProtocol {
     return try await self.getSpec(request: request)
   }
 
+  /// Get spec contents.
+  ///
+  /// @Snippet(path: "ApiHub_GetSpecContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getSpecContents(request:options:)``
   public func getSpecContents(request: GetSpecContentsRequest) async throws
     -> GoogleCloudApiHubV1.SpecContents
   {
@@ -1224,6 +1840,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get spec contents.
+  ///
+  /// @Snippet(path: "ApiHub_GetSpecContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getSpecContents(request:options:)``
   public func getSpecContents(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.SpecContents {
@@ -1233,6 +1856,13 @@ extension Clients.ApiHubProtocol {
     return try await self.getSpecContents(request: request)
   }
 
+  /// List specs corresponding to a particular API resource.
+  ///
+  /// @Snippet(path: "ApiHub_ListSpecs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listSpecs(request:options:)``
   public func listSpecs(request: ListSpecsRequest) async throws
     -> GoogleCloudApiHubV1.ListSpecsResponse
   {
@@ -1245,6 +1875,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List specs corresponding to a particular API resource.
+  ///
+  /// @Snippet(path: "ApiHub_ListSpecs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listSpecs(request:options:)``
   public func listSpecsByItems(
     request: ListSpecsRequest
   ) -> some AsyncSequence<Spec, any Swift.Error> & Sendable {
@@ -1254,6 +1891,10 @@ extension Clients.ApiHubProtocol {
   /// List specs corresponding to a particular API resource.
   ///
   /// @Snippet(path: "ApiHub_ListSpecs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listSpecs(request:options:)``
   public func listSpecsByItems(
     request: ListSpecsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Spec, any Swift.Error> & Sendable {
@@ -1267,6 +1908,13 @@ extension Clients.ApiHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List specs corresponding to a particular API resource.
+  ///
+  /// @Snippet(path: "ApiHub_ListSpecs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listSpecs(request:options:)``
   public func listSpecsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Spec, any Swift.Error> & Sendable {
@@ -1276,6 +1924,43 @@ extension Clients.ApiHubProtocol {
     return self.listSpecsByItems(request: request)
   }
 
+  /// Update spec. The following fields in the
+  /// [spec][google.cloud.apihub.v1.Spec] can be updated:
+  ///
+  /// * [display_name][google.cloud.apihub.v1.Spec.display_name]
+  /// * [source_uri][google.cloud.apihub.v1.Spec.source_uri]
+  /// * [lint_response][google.cloud.apihub.v1.Spec.lint_response]
+  /// * [attributes][google.cloud.apihub.v1.Spec.attributes]
+  /// * [contents][google.cloud.apihub.v1.Spec.contents]
+  /// * [spec_type][google.cloud.apihub.v1.Spec.spec_type]
+  ///
+  /// In case of an OAS spec, updating spec contents can lead to:
+  /// 1. Creation, deletion and update of operations.
+  /// 2. Creation, deletion and update of definitions.
+  /// 3. Update of other info parsed out from the new spec.
+  ///
+  /// In case of contents or source_uri being present in update mask, spec_type
+  /// must also be present. Also, spec_type can not be present in update mask if
+  /// contents or source_uri is not present.
+  ///
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateSpecRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// [google.cloud.apihub.v1.Spec]: <doc:Spec>
+  /// [google.cloud.apihub.v1.Spec.attributes]: <doc:Spec/attributes>
+  /// [google.cloud.apihub.v1.Spec.contents]: <doc:Spec/contents>
+  /// [google.cloud.apihub.v1.Spec.display_name]: <doc:Spec/displayName>
+  /// [google.cloud.apihub.v1.Spec.lint_response]: <doc:Spec/lintResponse>
+  /// [google.cloud.apihub.v1.Spec.source_uri]: <doc:Spec/sourceUri>
+  /// [google.cloud.apihub.v1.Spec.spec_type]: <doc:Spec/specType>
+  /// [google.cloud.apihub.v1.UpdateSpecRequest.update_mask]: <doc:UpdateSpecRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateSpec(request:options:)``
   public func updateSpec(request: UpdateSpecRequest) async throws -> GoogleCloudApiHubV1.Spec {
     try await self.updateSpec(request: request, options: .init())
   }
@@ -1286,6 +1971,43 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update spec. The following fields in the
+  /// [spec][google.cloud.apihub.v1.Spec] can be updated:
+  ///
+  /// * [display_name][google.cloud.apihub.v1.Spec.display_name]
+  /// * [source_uri][google.cloud.apihub.v1.Spec.source_uri]
+  /// * [lint_response][google.cloud.apihub.v1.Spec.lint_response]
+  /// * [attributes][google.cloud.apihub.v1.Spec.attributes]
+  /// * [contents][google.cloud.apihub.v1.Spec.contents]
+  /// * [spec_type][google.cloud.apihub.v1.Spec.spec_type]
+  ///
+  /// In case of an OAS spec, updating spec contents can lead to:
+  /// 1. Creation, deletion and update of operations.
+  /// 2. Creation, deletion and update of definitions.
+  /// 3. Update of other info parsed out from the new spec.
+  ///
+  /// In case of contents or source_uri being present in update mask, spec_type
+  /// must also be present. Also, spec_type can not be present in update mask if
+  /// contents or source_uri is not present.
+  ///
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateSpecRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// [google.cloud.apihub.v1.Spec]: <doc:Spec>
+  /// [google.cloud.apihub.v1.Spec.attributes]: <doc:Spec/attributes>
+  /// [google.cloud.apihub.v1.Spec.contents]: <doc:Spec/contents>
+  /// [google.cloud.apihub.v1.Spec.display_name]: <doc:Spec/displayName>
+  /// [google.cloud.apihub.v1.Spec.lint_response]: <doc:Spec/lintResponse>
+  /// [google.cloud.apihub.v1.Spec.source_uri]: <doc:Spec/sourceUri>
+  /// [google.cloud.apihub.v1.Spec.spec_type]: <doc:Spec/specType>
+  /// [google.cloud.apihub.v1.UpdateSpecRequest.update_mask]: <doc:UpdateSpecRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateSpec(request:options:)``
   public func updateSpec(
     spec: Spec?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1297,6 +2019,15 @@ extension Clients.ApiHubProtocol {
     return try await self.updateSpec(request: request)
   }
 
+  /// Delete a spec.
+  /// Deleting a spec will also delete the associated operations from the
+  /// version.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteSpec(request:options:)``
   public func deleteSpec(request: DeleteSpecRequest) async throws {
     try await self.deleteSpec(request: request, options: .init())
   }
@@ -1307,6 +2038,15 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a spec.
+  /// Deleting a spec will also delete the associated operations from the
+  /// version.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteSpec(request:options:)``
   public func deleteSpec(
     name: Swift.String,
   ) async throws {
@@ -1316,6 +2056,15 @@ extension Clients.ApiHubProtocol {
     try await self.deleteSpec(request: request)
   }
 
+  /// Create an apiOperation in an API version.
+  /// An apiOperation can be created only if the version has no apiOperations
+  /// which were created by parsing a spec.
+  ///
+  /// @Snippet(path: "ApiHub_CreateApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createApiOperation(request:options:)``
   public func createApiOperation(request: CreateApiOperationRequest) async throws
     -> GoogleCloudApiHubV1.ApiOperation
   {
@@ -1328,6 +2077,15 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create an apiOperation in an API version.
+  /// An apiOperation can be created only if the version has no apiOperations
+  /// which were created by parsing a spec.
+  ///
+  /// @Snippet(path: "ApiHub_CreateApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createApiOperation(request:options:)``
   public func createApiOperation(
     parent: Swift.String,
     apiOperation: ApiOperation?,
@@ -1341,6 +2099,13 @@ extension Clients.ApiHubProtocol {
     return try await self.createApiOperation(request: request)
   }
 
+  /// Get details about a particular operation in API version.
+  ///
+  /// @Snippet(path: "ApiHub_GetApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getApiOperation(request:options:)``
   public func getApiOperation(request: GetApiOperationRequest) async throws
     -> GoogleCloudApiHubV1.ApiOperation
   {
@@ -1353,6 +2118,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get details about a particular operation in API version.
+  ///
+  /// @Snippet(path: "ApiHub_GetApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getApiOperation(request:options:)``
   public func getApiOperation(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.ApiOperation {
@@ -1362,6 +2134,13 @@ extension Clients.ApiHubProtocol {
     return try await self.getApiOperation(request: request)
   }
 
+  /// List operations in an API version.
+  ///
+  /// @Snippet(path: "ApiHub_ListApiOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listApiOperations(request:options:)``
   public func listApiOperations(request: ListApiOperationsRequest) async throws
     -> GoogleCloudApiHubV1.ListApiOperationsResponse
   {
@@ -1374,6 +2153,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List operations in an API version.
+  ///
+  /// @Snippet(path: "ApiHub_ListApiOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listApiOperations(request:options:)``
   public func listApiOperationsByItems(
     request: ListApiOperationsRequest
   ) -> some AsyncSequence<ApiOperation, any Swift.Error> & Sendable {
@@ -1383,6 +2169,10 @@ extension Clients.ApiHubProtocol {
   /// List operations in an API version.
   ///
   /// @Snippet(path: "ApiHub_ListApiOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listApiOperations(request:options:)``
   public func listApiOperationsByItems(
     request: ListApiOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ApiOperation, any Swift.Error> & Sendable {
@@ -1397,6 +2187,13 @@ extension Clients.ApiHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List operations in an API version.
+  ///
+  /// @Snippet(path: "ApiHub_ListApiOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listApiOperations(request:options:)``
   public func listApiOperationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ApiOperation, any Swift.Error> & Sendable {
@@ -1406,6 +2203,36 @@ extension Clients.ApiHubProtocol {
     return self.listApiOperationsByItems(request: request)
   }
 
+  /// Update an operation in an API version. The following fields in the
+  /// [ApiOperation resource][google.cloud.apihub.v1.ApiOperation] can be
+  /// updated:
+  ///
+  /// * [details.description][ApiOperation.details.description]
+  /// * [details.documentation][ApiOperation.details.documentation]
+  /// * [details.http_operation.path][ApiOperation.details.http_operation.path.path]
+  /// * [details.http_operation.method][ApiOperation.details.http_operation.method]
+  /// * [details.deprecated][ApiOperation.details.deprecated]
+  /// * [attributes][google.cloud.apihub.v1.ApiOperation.attributes]
+  ///
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateApiOperationRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// An operation can be updated only if the operation was created via
+  /// [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation] API.
+  /// If the operation was created by parsing the spec, then it can be edited by
+  /// updating the spec.
+  ///
+  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHubClient/createApiOperation(request:options:)>
+  /// [google.cloud.apihub.v1.ApiOperation]: <doc:ApiOperation>
+  /// [google.cloud.apihub.v1.ApiOperation.attributes]: <doc:ApiOperation/attributes>
+  /// [google.cloud.apihub.v1.UpdateApiOperationRequest.update_mask]: <doc:UpdateApiOperationRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateApiOperation(request:options:)``
   public func updateApiOperation(request: UpdateApiOperationRequest) async throws
     -> GoogleCloudApiHubV1.ApiOperation
   {
@@ -1418,6 +2245,36 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update an operation in an API version. The following fields in the
+  /// [ApiOperation resource][google.cloud.apihub.v1.ApiOperation] can be
+  /// updated:
+  ///
+  /// * [details.description][ApiOperation.details.description]
+  /// * [details.documentation][ApiOperation.details.documentation]
+  /// * [details.http_operation.path][ApiOperation.details.http_operation.path.path]
+  /// * [details.http_operation.method][ApiOperation.details.http_operation.method]
+  /// * [details.deprecated][ApiOperation.details.deprecated]
+  /// * [attributes][google.cloud.apihub.v1.ApiOperation.attributes]
+  ///
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateApiOperationRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// An operation can be updated only if the operation was created via
+  /// [CreateApiOperation][google.cloud.apihub.v1.ApiHub.CreateApiOperation] API.
+  /// If the operation was created by parsing the spec, then it can be edited by
+  /// updating the spec.
+  ///
+  /// [google.cloud.apihub.v1.ApiHub.CreateApiOperation]: <doc:ApiHubClient/createApiOperation(request:options:)>
+  /// [google.cloud.apihub.v1.ApiOperation]: <doc:ApiOperation>
+  /// [google.cloud.apihub.v1.ApiOperation.attributes]: <doc:ApiOperation/attributes>
+  /// [google.cloud.apihub.v1.UpdateApiOperationRequest.update_mask]: <doc:UpdateApiOperationRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateApiOperation(request:options:)``
   public func updateApiOperation(
     apiOperation: ApiOperation?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1429,6 +2286,15 @@ extension Clients.ApiHubProtocol {
     return try await self.updateApiOperation(request: request)
   }
 
+  /// Delete an operation in an API version and we can delete only the
+  /// operations created via create API. If the operation was created by parsing
+  /// the spec, then it can be deleted by editing or deleting the spec.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteApiOperation(request:options:)``
   public func deleteApiOperation(request: DeleteApiOperationRequest) async throws {
     try await self.deleteApiOperation(request: request, options: .init())
   }
@@ -1439,6 +2305,15 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete an operation in an API version and we can delete only the
+  /// operations created via create API. If the operation was created by parsing
+  /// the spec, then it can be deleted by editing or deleting the spec.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteApiOperation(request:options:)``
   public func deleteApiOperation(
     name: Swift.String,
   ) async throws {
@@ -1448,6 +2323,13 @@ extension Clients.ApiHubProtocol {
     try await self.deleteApiOperation(request: request)
   }
 
+  /// Get details about a definition in an API version.
+  ///
+  /// @Snippet(path: "ApiHub_GetDefinition")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getDefinition(request:options:)``
   public func getDefinition(request: GetDefinitionRequest) async throws
     -> GoogleCloudApiHubV1.Definition
   {
@@ -1460,6 +2342,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get details about a definition in an API version.
+  ///
+  /// @Snippet(path: "ApiHub_GetDefinition")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getDefinition(request:options:)``
   public func getDefinition(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.Definition {
@@ -1469,6 +2358,15 @@ extension Clients.ApiHubProtocol {
     return try await self.getDefinition(request: request)
   }
 
+  /// Create a deployment resource in the API hub.
+  /// Once a deployment resource is created, it can be associated with API
+  /// versions.
+  ///
+  /// @Snippet(path: "ApiHub_CreateDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createDeployment(request:options:)``
   public func createDeployment(request: CreateDeploymentRequest) async throws
     -> GoogleCloudApiHubV1.Deployment
   {
@@ -1481,6 +2379,15 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a deployment resource in the API hub.
+  /// Once a deployment resource is created, it can be associated with API
+  /// versions.
+  ///
+  /// @Snippet(path: "ApiHub_CreateDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createDeployment(request:options:)``
   public func createDeployment(
     parent: Swift.String,
     deployment: Deployment?,
@@ -1494,6 +2401,13 @@ extension Clients.ApiHubProtocol {
     return try await self.createDeployment(request: request)
   }
 
+  /// Get details about a deployment and the API versions linked to it.
+  ///
+  /// @Snippet(path: "ApiHub_GetDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getDeployment(request:options:)``
   public func getDeployment(request: GetDeploymentRequest) async throws
     -> GoogleCloudApiHubV1.Deployment
   {
@@ -1506,6 +2420,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get details about a deployment and the API versions linked to it.
+  ///
+  /// @Snippet(path: "ApiHub_GetDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getDeployment(request:options:)``
   public func getDeployment(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.Deployment {
@@ -1515,6 +2436,13 @@ extension Clients.ApiHubProtocol {
     return try await self.getDeployment(request: request)
   }
 
+  /// List deployment resources in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_ListDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listDeployments(request:options:)``
   public func listDeployments(request: ListDeploymentsRequest) async throws
     -> GoogleCloudApiHubV1.ListDeploymentsResponse
   {
@@ -1527,6 +2455,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List deployment resources in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_ListDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listDeployments(request:options:)``
   public func listDeploymentsByItems(
     request: ListDeploymentsRequest
   ) -> some AsyncSequence<Deployment, any Swift.Error> & Sendable {
@@ -1536,6 +2471,10 @@ extension Clients.ApiHubProtocol {
   /// List deployment resources in the API hub.
   ///
   /// @Snippet(path: "ApiHub_ListDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listDeployments(request:options:)``
   public func listDeploymentsByItems(
     request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Deployment, any Swift.Error> & Sendable {
@@ -1549,6 +2488,13 @@ extension Clients.ApiHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List deployment resources in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_ListDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listDeployments(request:options:)``
   public func listDeploymentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Deployment, any Swift.Error> & Sendable {
@@ -1558,6 +2504,47 @@ extension Clients.ApiHubProtocol {
     return self.listDeploymentsByItems(request: request)
   }
 
+  /// Update a deployment resource in the API hub. The following fields in the
+  /// [deployment resource][google.cloud.apihub.v1.Deployment] can be
+  /// updated:
+  ///
+  /// * [display_name][google.cloud.apihub.v1.Deployment.display_name]
+  /// * [description][google.cloud.apihub.v1.Deployment.description]
+  /// * [documentation][google.cloud.apihub.v1.Deployment.documentation]
+  /// * [deployment_type][google.cloud.apihub.v1.Deployment.deployment_type]
+  /// * [resource_uri][google.cloud.apihub.v1.Deployment.resource_uri]
+  /// * [endpoints][google.cloud.apihub.v1.Deployment.endpoints]
+  /// * [slo][google.cloud.apihub.v1.Deployment.slo]
+  /// * [environment][google.cloud.apihub.v1.Deployment.environment]
+  /// * [attributes][google.cloud.apihub.v1.Deployment.attributes]
+  /// * [source_project] [google.cloud.apihub.v1.Deployment.source_project]
+  /// * [source_environment]
+  /// [google.cloud.apihub.v1.Deployment.source_environment]
+  /// * [management_url][google.cloud.apihub.v1.Deployment.management_url]
+  /// * [source_uri][google.cloud.apihub.v1.Deployment.source_uri]
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateDeploymentRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// [google.cloud.apihub.v1.Deployment]: <doc:Deployment>
+  /// [google.cloud.apihub.v1.Deployment.attributes]: <doc:Deployment/attributes>
+  /// [google.cloud.apihub.v1.Deployment.deployment_type]: <doc:Deployment/deploymentType>
+  /// [google.cloud.apihub.v1.Deployment.description]: <doc:Deployment/description>
+  /// [google.cloud.apihub.v1.Deployment.display_name]: <doc:Deployment/displayName>
+  /// [google.cloud.apihub.v1.Deployment.documentation]: <doc:Deployment/documentation>
+  /// [google.cloud.apihub.v1.Deployment.endpoints]: <doc:Deployment/endpoints>
+  /// [google.cloud.apihub.v1.Deployment.environment]: <doc:Deployment/environment>
+  /// [google.cloud.apihub.v1.Deployment.management_url]: <doc:Deployment/managementUrl>
+  /// [google.cloud.apihub.v1.Deployment.resource_uri]: <doc:Deployment/resourceUri>
+  /// [google.cloud.apihub.v1.Deployment.slo]: <doc:Deployment/slo>
+  /// [google.cloud.apihub.v1.Deployment.source_uri]: <doc:Deployment/sourceUri>
+  /// [google.cloud.apihub.v1.UpdateDeploymentRequest.update_mask]: <doc:UpdateDeploymentRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateDeployment(request:options:)``
   public func updateDeployment(request: UpdateDeploymentRequest) async throws
     -> GoogleCloudApiHubV1.Deployment
   {
@@ -1570,6 +2557,47 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a deployment resource in the API hub. The following fields in the
+  /// [deployment resource][google.cloud.apihub.v1.Deployment] can be
+  /// updated:
+  ///
+  /// * [display_name][google.cloud.apihub.v1.Deployment.display_name]
+  /// * [description][google.cloud.apihub.v1.Deployment.description]
+  /// * [documentation][google.cloud.apihub.v1.Deployment.documentation]
+  /// * [deployment_type][google.cloud.apihub.v1.Deployment.deployment_type]
+  /// * [resource_uri][google.cloud.apihub.v1.Deployment.resource_uri]
+  /// * [endpoints][google.cloud.apihub.v1.Deployment.endpoints]
+  /// * [slo][google.cloud.apihub.v1.Deployment.slo]
+  /// * [environment][google.cloud.apihub.v1.Deployment.environment]
+  /// * [attributes][google.cloud.apihub.v1.Deployment.attributes]
+  /// * [source_project] [google.cloud.apihub.v1.Deployment.source_project]
+  /// * [source_environment]
+  /// [google.cloud.apihub.v1.Deployment.source_environment]
+  /// * [management_url][google.cloud.apihub.v1.Deployment.management_url]
+  /// * [source_uri][google.cloud.apihub.v1.Deployment.source_uri]
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateDeploymentRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// [google.cloud.apihub.v1.Deployment]: <doc:Deployment>
+  /// [google.cloud.apihub.v1.Deployment.attributes]: <doc:Deployment/attributes>
+  /// [google.cloud.apihub.v1.Deployment.deployment_type]: <doc:Deployment/deploymentType>
+  /// [google.cloud.apihub.v1.Deployment.description]: <doc:Deployment/description>
+  /// [google.cloud.apihub.v1.Deployment.display_name]: <doc:Deployment/displayName>
+  /// [google.cloud.apihub.v1.Deployment.documentation]: <doc:Deployment/documentation>
+  /// [google.cloud.apihub.v1.Deployment.endpoints]: <doc:Deployment/endpoints>
+  /// [google.cloud.apihub.v1.Deployment.environment]: <doc:Deployment/environment>
+  /// [google.cloud.apihub.v1.Deployment.management_url]: <doc:Deployment/managementUrl>
+  /// [google.cloud.apihub.v1.Deployment.resource_uri]: <doc:Deployment/resourceUri>
+  /// [google.cloud.apihub.v1.Deployment.slo]: <doc:Deployment/slo>
+  /// [google.cloud.apihub.v1.Deployment.source_uri]: <doc:Deployment/sourceUri>
+  /// [google.cloud.apihub.v1.UpdateDeploymentRequest.update_mask]: <doc:UpdateDeploymentRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateDeployment(request:options:)``
   public func updateDeployment(
     deployment: Deployment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1581,6 +2609,13 @@ extension Clients.ApiHubProtocol {
     return try await self.updateDeployment(request: request)
   }
 
+  /// Delete a deployment resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteDeployment(request:options:)``
   public func deleteDeployment(request: DeleteDeploymentRequest) async throws {
     try await self.deleteDeployment(request: request, options: .init())
   }
@@ -1591,6 +2626,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a deployment resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteDeployment(request:options:)``
   public func deleteDeployment(
     name: Swift.String,
   ) async throws {
@@ -1600,6 +2642,22 @@ extension Clients.ApiHubProtocol {
     try await self.deleteDeployment(request: request)
   }
 
+  /// Create a user defined attribute.
+  ///
+  /// Certain pre defined attributes are already created by the API hub. These
+  /// attributes will have type as `SYSTEM_DEFINED` and can be listed via
+  /// [ListAttributes][google.cloud.apihub.v1.ApiHub.ListAttributes] method.
+  /// Allowed values for the same can be updated via
+  /// [UpdateAttribute][google.cloud.apihub.v1.ApiHub.UpdateAttribute] method.
+  ///
+  /// [google.cloud.apihub.v1.ApiHub.ListAttributes]: <doc:ApiHubClient/listAttributes(request:options:)>
+  /// [google.cloud.apihub.v1.ApiHub.UpdateAttribute]: <doc:ApiHubClient/updateAttribute(request:options:)>
+  ///
+  /// @Snippet(path: "ApiHub_CreateAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createAttribute(request:options:)``
   public func createAttribute(request: CreateAttributeRequest) async throws
     -> GoogleCloudApiHubV1.Attribute
   {
@@ -1612,6 +2670,22 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a user defined attribute.
+  ///
+  /// Certain pre defined attributes are already created by the API hub. These
+  /// attributes will have type as `SYSTEM_DEFINED` and can be listed via
+  /// [ListAttributes][google.cloud.apihub.v1.ApiHub.ListAttributes] method.
+  /// Allowed values for the same can be updated via
+  /// [UpdateAttribute][google.cloud.apihub.v1.ApiHub.UpdateAttribute] method.
+  ///
+  /// [google.cloud.apihub.v1.ApiHub.ListAttributes]: <doc:ApiHubClient/listAttributes(request:options:)>
+  /// [google.cloud.apihub.v1.ApiHub.UpdateAttribute]: <doc:ApiHubClient/updateAttribute(request:options:)>
+  ///
+  /// @Snippet(path: "ApiHub_CreateAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createAttribute(request:options:)``
   public func createAttribute(
     parent: Swift.String,
     attribute: Attribute?,
@@ -1625,6 +2699,13 @@ extension Clients.ApiHubProtocol {
     return try await self.createAttribute(request: request)
   }
 
+  /// Get details about the attribute.
+  ///
+  /// @Snippet(path: "ApiHub_GetAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getAttribute(request:options:)``
   public func getAttribute(request: GetAttributeRequest) async throws
     -> GoogleCloudApiHubV1.Attribute
   {
@@ -1637,6 +2718,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get details about the attribute.
+  ///
+  /// @Snippet(path: "ApiHub_GetAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getAttribute(request:options:)``
   public func getAttribute(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.Attribute {
@@ -1646,6 +2734,42 @@ extension Clients.ApiHubProtocol {
     return try await self.getAttribute(request: request)
   }
 
+  /// Update the attribute.  The following fields in the
+  /// [Attribute resource][google.cloud.apihub.v1.Attribute] can be updated:
+  ///
+  /// * [display_name][google.cloud.apihub.v1.Attribute.display_name]
+  /// The display name can be updated for user defined attributes only.
+  /// * [description][google.cloud.apihub.v1.Attribute.description]
+  /// The description can be updated for user defined attributes only.
+  /// * [allowed_values][google.cloud.apihub.v1.Attribute.allowed_values]
+  /// To update the list of allowed values, clients need to use the fetched list
+  /// of allowed values and add or remove values to or from the same list.
+  /// The mutable allowed values can be updated for both user defined and System
+  /// defined attributes. The immutable allowed values cannot be updated or
+  /// deleted. The updated list of allowed values cannot be empty. If an allowed
+  /// value that is already used by some resource's attribute is deleted, then
+  /// the association between the resource and the attribute value will also be
+  /// deleted.
+  /// * [cardinality][google.cloud.apihub.v1.Attribute.cardinality]
+  /// The cardinality can be updated for user defined attributes only.
+  /// Cardinality can only be increased during an update.
+  ///
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateAttributeRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// [google.cloud.apihub.v1.Attribute]: <doc:Attribute>
+  /// [google.cloud.apihub.v1.Attribute.allowed_values]: <doc:Attribute/allowedValues>
+  /// [google.cloud.apihub.v1.Attribute.cardinality]: <doc:Attribute/cardinality>
+  /// [google.cloud.apihub.v1.Attribute.description]: <doc:Attribute/description>
+  /// [google.cloud.apihub.v1.Attribute.display_name]: <doc:Attribute/displayName>
+  /// [google.cloud.apihub.v1.UpdateAttributeRequest.update_mask]: <doc:UpdateAttributeRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateAttribute(request:options:)``
   public func updateAttribute(request: UpdateAttributeRequest) async throws
     -> GoogleCloudApiHubV1.Attribute
   {
@@ -1658,6 +2782,42 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update the attribute.  The following fields in the
+  /// [Attribute resource][google.cloud.apihub.v1.Attribute] can be updated:
+  ///
+  /// * [display_name][google.cloud.apihub.v1.Attribute.display_name]
+  /// The display name can be updated for user defined attributes only.
+  /// * [description][google.cloud.apihub.v1.Attribute.description]
+  /// The description can be updated for user defined attributes only.
+  /// * [allowed_values][google.cloud.apihub.v1.Attribute.allowed_values]
+  /// To update the list of allowed values, clients need to use the fetched list
+  /// of allowed values and add or remove values to or from the same list.
+  /// The mutable allowed values can be updated for both user defined and System
+  /// defined attributes. The immutable allowed values cannot be updated or
+  /// deleted. The updated list of allowed values cannot be empty. If an allowed
+  /// value that is already used by some resource's attribute is deleted, then
+  /// the association between the resource and the attribute value will also be
+  /// deleted.
+  /// * [cardinality][google.cloud.apihub.v1.Attribute.cardinality]
+  /// The cardinality can be updated for user defined attributes only.
+  /// Cardinality can only be increased during an update.
+  ///
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateAttributeRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// [google.cloud.apihub.v1.Attribute]: <doc:Attribute>
+  /// [google.cloud.apihub.v1.Attribute.allowed_values]: <doc:Attribute/allowedValues>
+  /// [google.cloud.apihub.v1.Attribute.cardinality]: <doc:Attribute/cardinality>
+  /// [google.cloud.apihub.v1.Attribute.description]: <doc:Attribute/description>
+  /// [google.cloud.apihub.v1.Attribute.display_name]: <doc:Attribute/displayName>
+  /// [google.cloud.apihub.v1.UpdateAttributeRequest.update_mask]: <doc:UpdateAttributeRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateAttribute(request:options:)``
   public func updateAttribute(
     attribute: Attribute?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1669,6 +2829,17 @@ extension Clients.ApiHubProtocol {
     return try await self.updateAttribute(request: request)
   }
 
+  /// Delete an attribute.
+  ///
+  /// Note: System defined attributes cannot be deleted. All
+  /// associations of the attribute being deleted with any API hub resource will
+  /// also get deleted.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteAttribute(request:options:)``
   public func deleteAttribute(request: DeleteAttributeRequest) async throws {
     try await self.deleteAttribute(request: request, options: .init())
   }
@@ -1679,6 +2850,17 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete an attribute.
+  ///
+  /// Note: System defined attributes cannot be deleted. All
+  /// associations of the attribute being deleted with any API hub resource will
+  /// also get deleted.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteAttribute(request:options:)``
   public func deleteAttribute(
     name: Swift.String,
   ) async throws {
@@ -1688,6 +2870,13 @@ extension Clients.ApiHubProtocol {
     try await self.deleteAttribute(request: request)
   }
 
+  /// List all attributes.
+  ///
+  /// @Snippet(path: "ApiHub_ListAttributes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listAttributes(request:options:)``
   public func listAttributes(request: ListAttributesRequest) async throws
     -> GoogleCloudApiHubV1.ListAttributesResponse
   {
@@ -1700,6 +2889,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List all attributes.
+  ///
+  /// @Snippet(path: "ApiHub_ListAttributes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listAttributes(request:options:)``
   public func listAttributesByItems(
     request: ListAttributesRequest
   ) -> some AsyncSequence<Attribute, any Swift.Error> & Sendable {
@@ -1709,6 +2905,10 @@ extension Clients.ApiHubProtocol {
   /// List all attributes.
   ///
   /// @Snippet(path: "ApiHub_ListAttributes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listAttributes(request:options:)``
   public func listAttributesByItems(
     request: ListAttributesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Attribute, any Swift.Error> & Sendable {
@@ -1722,6 +2922,13 @@ extension Clients.ApiHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List all attributes.
+  ///
+  /// @Snippet(path: "ApiHub_ListAttributes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listAttributes(request:options:)``
   public func listAttributesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Attribute, any Swift.Error> & Sendable {
@@ -1731,6 +2938,13 @@ extension Clients.ApiHubProtocol {
     return self.listAttributesByItems(request: request)
   }
 
+  /// Search across API-Hub resources.
+  ///
+  /// @Snippet(path: "ApiHub_SearchResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/searchResources(request:options:)``
   public func searchResources(request: SearchResourcesRequest) async throws
     -> GoogleCloudApiHubV1.SearchResourcesResponse
   {
@@ -1743,6 +2957,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Search across API-Hub resources.
+  ///
+  /// @Snippet(path: "ApiHub_SearchResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/searchResources(request:options:)``
   public func searchResourcesByItems(
     request: SearchResourcesRequest
   ) -> some AsyncSequence<SearchResult, any Swift.Error> & Sendable {
@@ -1752,6 +2973,10 @@ extension Clients.ApiHubProtocol {
   /// Search across API-Hub resources.
   ///
   /// @Snippet(path: "ApiHub_SearchResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/searchResources(request:options:)``
   public func searchResourcesByItems(
     request: SearchResourcesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SearchResult, any Swift.Error> & Sendable {
@@ -1765,6 +2990,13 @@ extension Clients.ApiHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Search across API-Hub resources.
+  ///
+  /// @Snippet(path: "ApiHub_SearchResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/searchResources(request:options:)``
   public func searchResourcesByItems(
     location: Swift.String,
     query: Swift.String,
@@ -1776,6 +3008,13 @@ extension Clients.ApiHubProtocol {
     return self.searchResourcesByItems(request: request)
   }
 
+  /// Create an External API resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_CreateExternalApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createExternalApi(request:options:)``
   public func createExternalApi(request: CreateExternalApiRequest) async throws
     -> GoogleCloudApiHubV1.ExternalApi
   {
@@ -1788,6 +3027,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create an External API resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_CreateExternalApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/createExternalApi(request:options:)``
   public func createExternalApi(
     parent: Swift.String,
     externalApi: ExternalApi?,
@@ -1801,6 +3047,13 @@ extension Clients.ApiHubProtocol {
     return try await self.createExternalApi(request: request)
   }
 
+  /// Get details about an External API resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_GetExternalApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getExternalApi(request:options:)``
   public func getExternalApi(request: GetExternalApiRequest) async throws
     -> GoogleCloudApiHubV1.ExternalApi
   {
@@ -1813,6 +3066,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get details about an External API resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_GetExternalApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getExternalApi(request:options:)``
   public func getExternalApi(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.ExternalApi {
@@ -1822,6 +3082,31 @@ extension Clients.ApiHubProtocol {
     return try await self.getExternalApi(request: request)
   }
 
+  /// Update an External API resource in the API hub. The following fields can be
+  /// updated:
+  ///
+  /// * [display_name][google.cloud.apihub.v1.ExternalApi.display_name]
+  /// * [description][google.cloud.apihub.v1.ExternalApi.description]
+  /// * [documentation][google.cloud.apihub.v1.ExternalApi.documentation]
+  /// * [endpoints][google.cloud.apihub.v1.ExternalApi.endpoints]
+  /// * [paths][google.cloud.apihub.v1.ExternalApi.paths]
+  ///
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateExternalApiRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// [google.cloud.apihub.v1.ExternalApi.description]: <doc:ExternalApi/description>
+  /// [google.cloud.apihub.v1.ExternalApi.display_name]: <doc:ExternalApi/displayName>
+  /// [google.cloud.apihub.v1.ExternalApi.documentation]: <doc:ExternalApi/documentation>
+  /// [google.cloud.apihub.v1.ExternalApi.endpoints]: <doc:ExternalApi/endpoints>
+  /// [google.cloud.apihub.v1.ExternalApi.paths]: <doc:ExternalApi/paths>
+  /// [google.cloud.apihub.v1.UpdateExternalApiRequest.update_mask]: <doc:UpdateExternalApiRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateExternalApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateExternalApi(request:options:)``
   public func updateExternalApi(request: UpdateExternalApiRequest) async throws
     -> GoogleCloudApiHubV1.ExternalApi
   {
@@ -1834,6 +3119,31 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update an External API resource in the API hub. The following fields can be
+  /// updated:
+  ///
+  /// * [display_name][google.cloud.apihub.v1.ExternalApi.display_name]
+  /// * [description][google.cloud.apihub.v1.ExternalApi.description]
+  /// * [documentation][google.cloud.apihub.v1.ExternalApi.documentation]
+  /// * [endpoints][google.cloud.apihub.v1.ExternalApi.endpoints]
+  /// * [paths][google.cloud.apihub.v1.ExternalApi.paths]
+  ///
+  /// The
+  /// [update_mask][google.cloud.apihub.v1.UpdateExternalApiRequest.update_mask]
+  /// should be used to specify the fields being updated.
+  ///
+  /// [google.cloud.apihub.v1.ExternalApi.description]: <doc:ExternalApi/description>
+  /// [google.cloud.apihub.v1.ExternalApi.display_name]: <doc:ExternalApi/displayName>
+  /// [google.cloud.apihub.v1.ExternalApi.documentation]: <doc:ExternalApi/documentation>
+  /// [google.cloud.apihub.v1.ExternalApi.endpoints]: <doc:ExternalApi/endpoints>
+  /// [google.cloud.apihub.v1.ExternalApi.paths]: <doc:ExternalApi/paths>
+  /// [google.cloud.apihub.v1.UpdateExternalApiRequest.update_mask]: <doc:UpdateExternalApiRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHub_UpdateExternalApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/updateExternalApi(request:options:)``
   public func updateExternalApi(
     externalApi: ExternalApi?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1845,6 +3155,13 @@ extension Clients.ApiHubProtocol {
     return try await self.updateExternalApi(request: request)
   }
 
+  /// Delete an External API resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteExternalApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteExternalApi(request:options:)``
   public func deleteExternalApi(request: DeleteExternalApiRequest) async throws {
     try await self.deleteExternalApi(request: request, options: .init())
   }
@@ -1855,6 +3172,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete an External API resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_DeleteExternalApi")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteExternalApi(request:options:)``
   public func deleteExternalApi(
     name: Swift.String,
   ) async throws {
@@ -1864,6 +3188,13 @@ extension Clients.ApiHubProtocol {
     try await self.deleteExternalApi(request: request)
   }
 
+  /// List External API resources in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_ListExternalApis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listExternalApis(request:options:)``
   public func listExternalApis(request: ListExternalApisRequest) async throws
     -> GoogleCloudApiHubV1.ListExternalApisResponse
   {
@@ -1876,6 +3207,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List External API resources in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_ListExternalApis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listExternalApis(request:options:)``
   public func listExternalApisByItems(
     request: ListExternalApisRequest
   ) -> some AsyncSequence<ExternalApi, any Swift.Error> & Sendable {
@@ -1885,6 +3223,10 @@ extension Clients.ApiHubProtocol {
   /// List External API resources in the API hub.
   ///
   /// @Snippet(path: "ApiHub_ListExternalApis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listExternalApis(request:options:)``
   public func listExternalApisByItems(
     request: ListExternalApisRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ExternalApi, any Swift.Error> & Sendable {
@@ -1899,6 +3241,13 @@ extension Clients.ApiHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List External API resources in the API hub.
+  ///
+  /// @Snippet(path: "ApiHub_ListExternalApis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listExternalApis(request:options:)``
   public func listExternalApisByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ExternalApi, any Swift.Error> & Sendable {
@@ -1908,6 +3257,13 @@ extension Clients.ApiHubProtocol {
     return self.listExternalApisByItems(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ApiHub_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1920,6 +3276,13 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ApiHub_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1929,6 +3292,10 @@ extension Clients.ApiHubProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ApiHub_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1942,6 +3309,13 @@ extension Clients.ApiHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "ApiHub_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1954,6 +3328,15 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHub_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1966,6 +3349,15 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHub_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1977,6 +3369,10 @@ extension Clients.ApiHubProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHub_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1990,6 +3386,15 @@ extension Clients.ApiHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHub_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -2001,6 +3406,9 @@ extension Clients.ApiHubProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2013,6 +3421,9 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -2022,6 +3433,15 @@ extension Clients.ApiHubProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHub_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -2032,6 +3452,15 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHub_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -2041,6 +3470,15 @@ extension Clients.ApiHubProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHub_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -2051,6 +3489,15 @@ extension Clients.ApiHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHub_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -25,6 +25,10 @@ import Foundation
 /// errors.
 ///
 /// @Snippet(path: "RuleExecutionErrorServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/RuleExecutionErrorServiceProtocol``
 public final class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorServiceProtocol,
   Sendable
 {
@@ -44,6 +48,13 @@ public final class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorSe
   /// Lists rule execution errors.
   ///
   /// @Snippet(path: "RuleExecutionErrorService_ListRuleExecutionErrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRuleExecutionErrors(request:)``
+  /// - ``listRuleExecutionErrorsByItems(request:)``
+  /// - ``listRuleExecutionErrorsByItems(request:options:)``
+  /// - ``listRuleExecutionErrorsByItems(parent:)``
   public func listRuleExecutionErrors(
     request: ListRuleExecutionErrorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListRuleExecutionErrorsResponse {
@@ -55,6 +66,13 @@ public final class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorSe
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuleExecutionErrorService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -77,6 +95,11 @@ public final class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorSe
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuleExecutionErrorService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -88,6 +111,11 @@ public final class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorSe
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuleExecutionErrorService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -126,6 +154,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.RuleExecutionErrorServiceProtocol {
+  /// Lists rule execution errors.
+  ///
+  /// @Snippet(path: "RuleExecutionErrorService_ListRuleExecutionErrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleExecutionErrorServiceClient/listRuleExecutionErrors(request:options:)``
   public func listRuleExecutionErrors(request: ListRuleExecutionErrorsRequest) async throws
     -> GoogleCloudChronicleV1.ListRuleExecutionErrorsResponse
   {
@@ -138,6 +173,13 @@ extension Clients.RuleExecutionErrorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists rule execution errors.
+  ///
+  /// @Snippet(path: "RuleExecutionErrorService_ListRuleExecutionErrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleExecutionErrorServiceClient/listRuleExecutionErrors(request:options:)``
   public func listRuleExecutionErrorsByItems(
     request: ListRuleExecutionErrorsRequest
   ) -> some AsyncSequence<RuleExecutionError, any Swift.Error> & Sendable {
@@ -147,6 +189,10 @@ extension Clients.RuleExecutionErrorServiceProtocol {
   /// Lists rule execution errors.
   ///
   /// @Snippet(path: "RuleExecutionErrorService_ListRuleExecutionErrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleExecutionErrorServiceClient/listRuleExecutionErrors(request:options:)``
   public func listRuleExecutionErrorsByItems(
     request: ListRuleExecutionErrorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<RuleExecutionError, any Swift.Error> & Sendable {
@@ -161,6 +207,13 @@ extension Clients.RuleExecutionErrorServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists rule execution errors.
+  ///
+  /// @Snippet(path: "RuleExecutionErrorService_ListRuleExecutionErrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleExecutionErrorServiceClient/listRuleExecutionErrors(request:options:)``
   public func listRuleExecutionErrorsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<RuleExecutionError, any Swift.Error> & Sendable {
@@ -170,6 +223,15 @@ extension Clients.RuleExecutionErrorServiceProtocol {
     return self.listRuleExecutionErrorsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuleExecutionErrorService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleExecutionErrorServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -182,6 +244,15 @@ extension Clients.RuleExecutionErrorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuleExecutionErrorService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleExecutionErrorServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -193,6 +264,10 @@ extension Clients.RuleExecutionErrorServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuleExecutionErrorService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleExecutionErrorServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -206,6 +281,15 @@ extension Clients.RuleExecutionErrorServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuleExecutionErrorService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleExecutionErrorServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -217,6 +301,9 @@ extension Clients.RuleExecutionErrorServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -229,6 +316,9 @@ extension Clients.RuleExecutionErrorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -238,6 +328,15 @@ extension Clients.RuleExecutionErrorServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuleExecutionErrorService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleExecutionErrorServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -248,6 +347,15 @@ extension Clients.RuleExecutionErrorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuleExecutionErrorService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleExecutionErrorServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -257,6 +365,15 @@ extension Clients.RuleExecutionErrorServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuleExecutionErrorService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleExecutionErrorServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -267,6 +384,15 @@ extension Clients.RuleExecutionErrorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuleExecutionErrorService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleExecutionErrorServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

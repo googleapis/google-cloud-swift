@@ -31,6 +31,10 @@ import Foundation
 /// systems including Cloud Storage and BigQuery.
 ///
 /// @Snippet(path: "DataplexServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DataplexServiceProtocol``
 public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Sendable {
   let inner: any Clients.DataplexServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -51,6 +55,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Creates a lake resource.
   ///
   /// @Snippet(path: "DataplexService_CreateLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLake(request:)``
+  /// - ``createLakePollingUntilDone(request:)``
+  /// - ``createLakePollingUntilDone(request:options:)``
+  /// - ``createLakePollingUntilDone(parent:lake:lakeId:)``
   public func createLake(
     request: CreateLakeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -60,6 +71,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Creates a lake resource.
   ///
   /// @Snippet(path: "DataplexService_CreateLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLakePollingUntilDone(request:)``
+  /// - ``createLakePollingUntilDone(parent:lake:lakeId:)``
+  /// - ``createLake(request:)``
+  /// - ``createLake(request:options:)``
   public func createLakePollingUntilDone(
     request: CreateLakeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Lake {
@@ -87,6 +105,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Updates a lake resource.
   ///
   /// @Snippet(path: "DataplexService_UpdateLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateLake(request:)``
+  /// - ``updateLakePollingUntilDone(request:)``
+  /// - ``updateLakePollingUntilDone(request:options:)``
+  /// - ``updateLakePollingUntilDone(lake:updateMask:)``
   public func updateLake(
     request: UpdateLakeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -96,6 +121,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Updates a lake resource.
   ///
   /// @Snippet(path: "DataplexService_UpdateLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateLakePollingUntilDone(request:)``
+  /// - ``updateLakePollingUntilDone(lake:updateMask:)``
+  /// - ``updateLake(request:)``
+  /// - ``updateLake(request:options:)``
   public func updateLakePollingUntilDone(
     request: UpdateLakeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Lake {
@@ -124,6 +156,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// the lake can be deleted.
   ///
   /// @Snippet(path: "DataplexService_DeleteLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLake(request:)``
+  /// - ``deleteLakePollingUntilDone(request:)``
+  /// - ``deleteLakePollingUntilDone(request:options:)``
+  /// - ``deleteLakePollingUntilDone(name:)``
   public func deleteLake(
     request: DeleteLakeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -134,6 +173,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// the lake can be deleted.
   ///
   /// @Snippet(path: "DataplexService_DeleteLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLakePollingUntilDone(request:)``
+  /// - ``deleteLakePollingUntilDone(name:)``
+  /// - ``deleteLake(request:)``
+  /// - ``deleteLake(request:options:)``
   public func deleteLakePollingUntilDone(
     request: DeleteLakeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -161,6 +207,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Lists lake resources in a project and location.
   ///
   /// @Snippet(path: "DataplexService_ListLakes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLakes(request:)``
+  /// - ``listLakesByItems(request:)``
+  /// - ``listLakesByItems(request:options:)``
+  /// - ``listLakesByItems(parent:)``
   public func listLakes(
     request: ListLakesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListLakesResponse {
@@ -170,6 +223,11 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Retrieves a lake resource.
   ///
   /// @Snippet(path: "DataplexService_GetLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLake(request:)``
+  /// - ``getLake(name:)``
   public func getLake(
     request: GetLakeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Lake {
@@ -179,6 +237,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Lists action resources in a lake.
   ///
   /// @Snippet(path: "DataplexService_ListLakeActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLakeActions(request:)``
+  /// - ``listLakeActionsByItems(request:)``
+  /// - ``listLakeActionsByItems(request:options:)``
+  /// - ``listLakeActionsByItems(parent:)``
   public func listLakeActions(
     request: ListLakeActionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListActionsResponse {
@@ -188,6 +253,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Creates a zone resource within a lake.
   ///
   /// @Snippet(path: "DataplexService_CreateZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createZone(request:)``
+  /// - ``createZonePollingUntilDone(request:)``
+  /// - ``createZonePollingUntilDone(request:options:)``
+  /// - ``createZonePollingUntilDone(parent:zone:zoneId:)``
   public func createZone(
     request: CreateZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -197,6 +269,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Creates a zone resource within a lake.
   ///
   /// @Snippet(path: "DataplexService_CreateZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createZonePollingUntilDone(request:)``
+  /// - ``createZonePollingUntilDone(parent:zone:zoneId:)``
+  /// - ``createZone(request:)``
+  /// - ``createZone(request:options:)``
   public func createZonePollingUntilDone(
     request: CreateZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> Zone {
@@ -224,6 +303,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Updates a zone resource.
   ///
   /// @Snippet(path: "DataplexService_UpdateZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateZone(request:)``
+  /// - ``updateZonePollingUntilDone(request:)``
+  /// - ``updateZonePollingUntilDone(request:options:)``
+  /// - ``updateZonePollingUntilDone(zone:updateMask:)``
   public func updateZone(
     request: UpdateZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -233,6 +319,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Updates a zone resource.
   ///
   /// @Snippet(path: "DataplexService_UpdateZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateZonePollingUntilDone(request:)``
+  /// - ``updateZonePollingUntilDone(zone:updateMask:)``
+  /// - ``updateZone(request:)``
+  /// - ``updateZone(request:options:)``
   public func updateZonePollingUntilDone(
     request: UpdateZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> Zone {
@@ -261,6 +354,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// the zone can be deleted.
   ///
   /// @Snippet(path: "DataplexService_DeleteZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteZone(request:)``
+  /// - ``deleteZonePollingUntilDone(request:)``
+  /// - ``deleteZonePollingUntilDone(request:options:)``
+  /// - ``deleteZonePollingUntilDone(name:)``
   public func deleteZone(
     request: DeleteZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -271,6 +371,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// the zone can be deleted.
   ///
   /// @Snippet(path: "DataplexService_DeleteZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteZonePollingUntilDone(request:)``
+  /// - ``deleteZonePollingUntilDone(name:)``
+  /// - ``deleteZone(request:)``
+  /// - ``deleteZone(request:options:)``
   public func deleteZonePollingUntilDone(
     request: DeleteZoneRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -298,6 +405,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Lists zone resources in a lake.
   ///
   /// @Snippet(path: "DataplexService_ListZones")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listZones(request:)``
+  /// - ``listZonesByItems(request:)``
+  /// - ``listZonesByItems(request:options:)``
+  /// - ``listZonesByItems(parent:)``
   public func listZones(
     request: ListZonesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListZonesResponse {
@@ -307,6 +421,11 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Retrieves a zone resource.
   ///
   /// @Snippet(path: "DataplexService_GetZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getZone(request:)``
+  /// - ``getZone(name:)``
   public func getZone(
     request: GetZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Zone {
@@ -316,6 +435,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Lists action resources in a zone.
   ///
   /// @Snippet(path: "DataplexService_ListZoneActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listZoneActions(request:)``
+  /// - ``listZoneActionsByItems(request:)``
+  /// - ``listZoneActionsByItems(request:options:)``
+  /// - ``listZoneActionsByItems(parent:)``
   public func listZoneActions(
     request: ListZoneActionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListActionsResponse {
@@ -325,6 +451,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Creates an asset resource.
   ///
   /// @Snippet(path: "DataplexService_CreateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAsset(request:)``
+  /// - ``createAssetPollingUntilDone(request:)``
+  /// - ``createAssetPollingUntilDone(request:options:)``
+  /// - ``createAssetPollingUntilDone(parent:asset:assetId:)``
   public func createAsset(
     request: CreateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -334,6 +467,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Creates an asset resource.
   ///
   /// @Snippet(path: "DataplexService_CreateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAssetPollingUntilDone(request:)``
+  /// - ``createAssetPollingUntilDone(parent:asset:assetId:)``
+  /// - ``createAsset(request:)``
+  /// - ``createAsset(request:options:)``
   public func createAssetPollingUntilDone(
     request: CreateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Asset {
@@ -361,6 +501,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Updates an asset resource.
   ///
   /// @Snippet(path: "DataplexService_UpdateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAsset(request:)``
+  /// - ``updateAssetPollingUntilDone(request:)``
+  /// - ``updateAssetPollingUntilDone(request:options:)``
+  /// - ``updateAssetPollingUntilDone(asset:updateMask:)``
   public func updateAsset(
     request: UpdateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -370,6 +517,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Updates an asset resource.
   ///
   /// @Snippet(path: "DataplexService_UpdateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAssetPollingUntilDone(request:)``
+  /// - ``updateAssetPollingUntilDone(asset:updateMask:)``
+  /// - ``updateAsset(request:)``
+  /// - ``updateAsset(request:options:)``
   public func updateAssetPollingUntilDone(
     request: UpdateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Asset {
@@ -398,6 +552,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// (default) or deleted based on the associated Lifecycle policy.
   ///
   /// @Snippet(path: "DataplexService_DeleteAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAsset(request:)``
+  /// - ``deleteAssetPollingUntilDone(request:)``
+  /// - ``deleteAssetPollingUntilDone(request:options:)``
+  /// - ``deleteAssetPollingUntilDone(name:)``
   public func deleteAsset(
     request: DeleteAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -408,6 +569,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// (default) or deleted based on the associated Lifecycle policy.
   ///
   /// @Snippet(path: "DataplexService_DeleteAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAssetPollingUntilDone(request:)``
+  /// - ``deleteAssetPollingUntilDone(name:)``
+  /// - ``deleteAsset(request:)``
+  /// - ``deleteAsset(request:options:)``
   public func deleteAssetPollingUntilDone(
     request: DeleteAssetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -435,6 +603,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Lists asset resources in a zone.
   ///
   /// @Snippet(path: "DataplexService_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAssets(request:)``
+  /// - ``listAssetsByItems(request:)``
+  /// - ``listAssetsByItems(request:options:)``
+  /// - ``listAssetsByItems(parent:)``
   public func listAssets(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListAssetsResponse {
@@ -444,6 +619,11 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Retrieves an asset resource.
   ///
   /// @Snippet(path: "DataplexService_GetAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAsset(request:)``
+  /// - ``getAsset(name:)``
   public func getAsset(
     request: GetAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Asset {
@@ -453,6 +633,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Lists action resources in an asset.
   ///
   /// @Snippet(path: "DataplexService_ListAssetActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAssetActions(request:)``
+  /// - ``listAssetActionsByItems(request:)``
+  /// - ``listAssetActionsByItems(request:options:)``
+  /// - ``listAssetActionsByItems(parent:)``
   public func listAssetActions(
     request: ListAssetActionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListActionsResponse {
@@ -462,6 +649,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Creates a task resource within a lake.
   ///
   /// @Snippet(path: "DataplexService_CreateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTask(request:)``
+  /// - ``createTaskPollingUntilDone(request:)``
+  /// - ``createTaskPollingUntilDone(request:options:)``
+  /// - ``createTaskPollingUntilDone(parent:task:taskId:)``
   public func createTask(
     request: CreateTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -471,6 +665,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Creates a task resource within a lake.
   ///
   /// @Snippet(path: "DataplexService_CreateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTaskPollingUntilDone(request:)``
+  /// - ``createTaskPollingUntilDone(parent:task:taskId:)``
+  /// - ``createTask(request:)``
+  /// - ``createTask(request:options:)``
   public func createTaskPollingUntilDone(
     request: CreateTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> Task {
@@ -498,6 +699,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Update the task resource.
   ///
   /// @Snippet(path: "DataplexService_UpdateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTask(request:)``
+  /// - ``updateTaskPollingUntilDone(request:)``
+  /// - ``updateTaskPollingUntilDone(request:options:)``
+  /// - ``updateTaskPollingUntilDone(task:updateMask:)``
   public func updateTask(
     request: UpdateTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -507,6 +715,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Update the task resource.
   ///
   /// @Snippet(path: "DataplexService_UpdateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTaskPollingUntilDone(request:)``
+  /// - ``updateTaskPollingUntilDone(task:updateMask:)``
+  /// - ``updateTask(request:)``
+  /// - ``updateTask(request:options:)``
   public func updateTaskPollingUntilDone(
     request: UpdateTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> Task {
@@ -534,6 +749,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Delete the task resource.
   ///
   /// @Snippet(path: "DataplexService_DeleteTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTask(request:)``
+  /// - ``deleteTaskPollingUntilDone(request:)``
+  /// - ``deleteTaskPollingUntilDone(request:options:)``
+  /// - ``deleteTaskPollingUntilDone(name:)``
   public func deleteTask(
     request: DeleteTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -543,6 +765,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Delete the task resource.
   ///
   /// @Snippet(path: "DataplexService_DeleteTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTaskPollingUntilDone(request:)``
+  /// - ``deleteTaskPollingUntilDone(name:)``
+  /// - ``deleteTask(request:)``
+  /// - ``deleteTask(request:options:)``
   public func deleteTaskPollingUntilDone(
     request: DeleteTaskRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -570,6 +799,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Lists tasks under the given lake.
   ///
   /// @Snippet(path: "DataplexService_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTasks(request:)``
+  /// - ``listTasksByItems(request:)``
+  /// - ``listTasksByItems(request:options:)``
+  /// - ``listTasksByItems(parent:)``
   public func listTasks(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListTasksResponse {
@@ -579,6 +815,11 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Get task resource.
   ///
   /// @Snippet(path: "DataplexService_GetTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTask(request:)``
+  /// - ``getTask(name:)``
   public func getTask(
     request: GetTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Task {
@@ -588,6 +829,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Lists Jobs under the given task.
   ///
   /// @Snippet(path: "DataplexService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(request:)``
+  /// - ``listJobsByItems(request:options:)``
+  /// - ``listJobsByItems(parent:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListJobsResponse {
@@ -597,6 +845,11 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Run an on demand execution of a Task.
   ///
   /// @Snippet(path: "DataplexService_RunTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runTask(request:)``
+  /// - ``runTask(name:)``
   public func runTask(
     request: RunTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.RunTaskResponse {
@@ -606,6 +859,11 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Get job resource.
   ///
   /// @Snippet(path: "DataplexService_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getJob(request:)``
+  /// - ``getJob(name:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Job {
@@ -615,6 +873,11 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Cancel jobs running for the task resource.
   ///
   /// @Snippet(path: "DataplexService_CancelJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelJob(request:)``
+  /// - ``cancelJob(name:)``
   public func cancelJob(
     request: CancelJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -641,6 +904,12 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DataplexService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -650,6 +919,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// Gets information about a location.
   ///
   /// @Snippet(path: "DataplexService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -663,6 +936,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// errors.
   ///
   /// @Snippet(path: "DataplexService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -673,6 +950,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "DataplexService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -688,6 +969,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "DataplexService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -699,6 +984,13 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataplexService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -721,6 +1013,11 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataplexService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -732,6 +1029,11 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataplexService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -985,6 +1287,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DataplexServiceProtocol {
+  /// Creates a lake resource.
+  ///
+  /// @Snippet(path: "DataplexService_CreateLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/createLake(request:options:)``
   public func createLake(request: CreateLakeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createLake(request: request, options: .init())
   }
@@ -995,6 +1304,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a lake resource.
+  ///
+  /// @Snippet(path: "DataplexService_CreateLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/createLakePollingUntilDone(request:options:)``
   public func createLakePollingUntilDone(request: CreateLakeRequest) async throws -> Lake {
     return try await self.createLakePollingUntilDone(request: request, options: .init())
   }
@@ -1005,6 +1321,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a lake resource.
+  ///
+  /// @Snippet(path: "DataplexService_CreateLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/createLakePollingUntilDone(request:options:)``
   public func createLakePollingUntilDone(
     parent: Swift.String,
     lake: Lake?,
@@ -1018,6 +1341,13 @@ extension Clients.DataplexServiceProtocol {
     return try await self.createLakePollingUntilDone(request: request)
   }
 
+  /// Updates a lake resource.
+  ///
+  /// @Snippet(path: "DataplexService_UpdateLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/updateLake(request:options:)``
   public func updateLake(request: UpdateLakeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateLake(request: request, options: .init())
   }
@@ -1028,6 +1358,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a lake resource.
+  ///
+  /// @Snippet(path: "DataplexService_UpdateLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/updateLakePollingUntilDone(request:options:)``
   public func updateLakePollingUntilDone(request: UpdateLakeRequest) async throws -> Lake {
     return try await self.updateLakePollingUntilDone(request: request, options: .init())
   }
@@ -1038,6 +1375,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a lake resource.
+  ///
+  /// @Snippet(path: "DataplexService_UpdateLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/updateLakePollingUntilDone(request:options:)``
   public func updateLakePollingUntilDone(
     lake: Lake?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1049,6 +1393,14 @@ extension Clients.DataplexServiceProtocol {
     return try await self.updateLakePollingUntilDone(request: request)
   }
 
+  /// Deletes a lake resource. All zones within the lake must be deleted before
+  /// the lake can be deleted.
+  ///
+  /// @Snippet(path: "DataplexService_DeleteLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteLake(request:options:)``
   public func deleteLake(request: DeleteLakeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteLake(request: request, options: .init())
   }
@@ -1059,6 +1411,14 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a lake resource. All zones within the lake must be deleted before
+  /// the lake can be deleted.
+  ///
+  /// @Snippet(path: "DataplexService_DeleteLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteLakePollingUntilDone(request:options:)``
   public func deleteLakePollingUntilDone(request: DeleteLakeRequest) async throws {
     try await self.deleteLakePollingUntilDone(request: request, options: .init())
   }
@@ -1069,6 +1429,14 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a lake resource. All zones within the lake must be deleted before
+  /// the lake can be deleted.
+  ///
+  /// @Snippet(path: "DataplexService_DeleteLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteLakePollingUntilDone(request:options:)``
   public func deleteLakePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1078,6 +1446,13 @@ extension Clients.DataplexServiceProtocol {
     try await self.deleteLakePollingUntilDone(request: request)
   }
 
+  /// Lists lake resources in a project and location.
+  ///
+  /// @Snippet(path: "DataplexService_ListLakes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listLakes(request:options:)``
   public func listLakes(request: ListLakesRequest) async throws
     -> GoogleCloudDataplexV1.ListLakesResponse
   {
@@ -1090,6 +1465,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists lake resources in a project and location.
+  ///
+  /// @Snippet(path: "DataplexService_ListLakes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listLakes(request:options:)``
   public func listLakesByItems(
     request: ListLakesRequest
   ) -> some AsyncSequence<Lake, any Swift.Error> & Sendable {
@@ -1099,6 +1481,10 @@ extension Clients.DataplexServiceProtocol {
   /// Lists lake resources in a project and location.
   ///
   /// @Snippet(path: "DataplexService_ListLakes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listLakes(request:options:)``
   public func listLakesByItems(
     request: ListLakesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Lake, any Swift.Error> & Sendable {
@@ -1112,6 +1498,13 @@ extension Clients.DataplexServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists lake resources in a project and location.
+  ///
+  /// @Snippet(path: "DataplexService_ListLakes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listLakes(request:options:)``
   public func listLakesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Lake, any Swift.Error> & Sendable {
@@ -1121,6 +1514,13 @@ extension Clients.DataplexServiceProtocol {
     return self.listLakesByItems(request: request)
   }
 
+  /// Retrieves a lake resource.
+  ///
+  /// @Snippet(path: "DataplexService_GetLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/getLake(request:options:)``
   public func getLake(request: GetLakeRequest) async throws -> GoogleCloudDataplexV1.Lake {
     try await self.getLake(request: request, options: .init())
   }
@@ -1131,6 +1531,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a lake resource.
+  ///
+  /// @Snippet(path: "DataplexService_GetLake")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/getLake(request:options:)``
   public func getLake(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.Lake {
@@ -1140,6 +1547,13 @@ extension Clients.DataplexServiceProtocol {
     return try await self.getLake(request: request)
   }
 
+  /// Lists action resources in a lake.
+  ///
+  /// @Snippet(path: "DataplexService_ListLakeActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listLakeActions(request:options:)``
   public func listLakeActions(request: ListLakeActionsRequest) async throws
     -> GoogleCloudDataplexV1.ListActionsResponse
   {
@@ -1152,6 +1566,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists action resources in a lake.
+  ///
+  /// @Snippet(path: "DataplexService_ListLakeActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listLakeActions(request:options:)``
   public func listLakeActionsByItems(
     request: ListLakeActionsRequest
   ) -> some AsyncSequence<GoogleCloudDataplexV1.Action, any Swift.Error> & Sendable {
@@ -1161,6 +1582,10 @@ extension Clients.DataplexServiceProtocol {
   /// Lists action resources in a lake.
   ///
   /// @Snippet(path: "DataplexService_ListLakeActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listLakeActions(request:options:)``
   public func listLakeActionsByItems(
     request: ListLakeActionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudDataplexV1.Action, any Swift.Error> & Sendable {
@@ -1174,6 +1599,13 @@ extension Clients.DataplexServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists action resources in a lake.
+  ///
+  /// @Snippet(path: "DataplexService_ListLakeActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listLakeActions(request:options:)``
   public func listLakeActionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GoogleCloudDataplexV1.Action, any Swift.Error> & Sendable {
@@ -1183,6 +1615,13 @@ extension Clients.DataplexServiceProtocol {
     return self.listLakeActionsByItems(request: request)
   }
 
+  /// Creates a zone resource within a lake.
+  ///
+  /// @Snippet(path: "DataplexService_CreateZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/createZone(request:options:)``
   public func createZone(request: CreateZoneRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createZone(request: request, options: .init())
   }
@@ -1193,6 +1632,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a zone resource within a lake.
+  ///
+  /// @Snippet(path: "DataplexService_CreateZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/createZonePollingUntilDone(request:options:)``
   public func createZonePollingUntilDone(request: CreateZoneRequest) async throws -> Zone {
     return try await self.createZonePollingUntilDone(request: request, options: .init())
   }
@@ -1203,6 +1649,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a zone resource within a lake.
+  ///
+  /// @Snippet(path: "DataplexService_CreateZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/createZonePollingUntilDone(request:options:)``
   public func createZonePollingUntilDone(
     parent: Swift.String,
     zone: Zone?,
@@ -1216,6 +1669,13 @@ extension Clients.DataplexServiceProtocol {
     return try await self.createZonePollingUntilDone(request: request)
   }
 
+  /// Updates a zone resource.
+  ///
+  /// @Snippet(path: "DataplexService_UpdateZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/updateZone(request:options:)``
   public func updateZone(request: UpdateZoneRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateZone(request: request, options: .init())
   }
@@ -1226,6 +1686,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a zone resource.
+  ///
+  /// @Snippet(path: "DataplexService_UpdateZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/updateZonePollingUntilDone(request:options:)``
   public func updateZonePollingUntilDone(request: UpdateZoneRequest) async throws -> Zone {
     return try await self.updateZonePollingUntilDone(request: request, options: .init())
   }
@@ -1236,6 +1703,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a zone resource.
+  ///
+  /// @Snippet(path: "DataplexService_UpdateZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/updateZonePollingUntilDone(request:options:)``
   public func updateZonePollingUntilDone(
     zone: Zone?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1247,6 +1721,14 @@ extension Clients.DataplexServiceProtocol {
     return try await self.updateZonePollingUntilDone(request: request)
   }
 
+  /// Deletes a zone resource. All assets within a zone must be deleted before
+  /// the zone can be deleted.
+  ///
+  /// @Snippet(path: "DataplexService_DeleteZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteZone(request:options:)``
   public func deleteZone(request: DeleteZoneRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteZone(request: request, options: .init())
   }
@@ -1257,6 +1739,14 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a zone resource. All assets within a zone must be deleted before
+  /// the zone can be deleted.
+  ///
+  /// @Snippet(path: "DataplexService_DeleteZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteZonePollingUntilDone(request:options:)``
   public func deleteZonePollingUntilDone(request: DeleteZoneRequest) async throws {
     try await self.deleteZonePollingUntilDone(request: request, options: .init())
   }
@@ -1267,6 +1757,14 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a zone resource. All assets within a zone must be deleted before
+  /// the zone can be deleted.
+  ///
+  /// @Snippet(path: "DataplexService_DeleteZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteZonePollingUntilDone(request:options:)``
   public func deleteZonePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1276,6 +1774,13 @@ extension Clients.DataplexServiceProtocol {
     try await self.deleteZonePollingUntilDone(request: request)
   }
 
+  /// Lists zone resources in a lake.
+  ///
+  /// @Snippet(path: "DataplexService_ListZones")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listZones(request:options:)``
   public func listZones(request: ListZonesRequest) async throws
     -> GoogleCloudDataplexV1.ListZonesResponse
   {
@@ -1288,6 +1793,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists zone resources in a lake.
+  ///
+  /// @Snippet(path: "DataplexService_ListZones")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listZones(request:options:)``
   public func listZonesByItems(
     request: ListZonesRequest
   ) -> some AsyncSequence<Zone, any Swift.Error> & Sendable {
@@ -1297,6 +1809,10 @@ extension Clients.DataplexServiceProtocol {
   /// Lists zone resources in a lake.
   ///
   /// @Snippet(path: "DataplexService_ListZones")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listZones(request:options:)``
   public func listZonesByItems(
     request: ListZonesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Zone, any Swift.Error> & Sendable {
@@ -1310,6 +1826,13 @@ extension Clients.DataplexServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists zone resources in a lake.
+  ///
+  /// @Snippet(path: "DataplexService_ListZones")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listZones(request:options:)``
   public func listZonesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Zone, any Swift.Error> & Sendable {
@@ -1319,6 +1842,13 @@ extension Clients.DataplexServiceProtocol {
     return self.listZonesByItems(request: request)
   }
 
+  /// Retrieves a zone resource.
+  ///
+  /// @Snippet(path: "DataplexService_GetZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/getZone(request:options:)``
   public func getZone(request: GetZoneRequest) async throws -> GoogleCloudDataplexV1.Zone {
     try await self.getZone(request: request, options: .init())
   }
@@ -1329,6 +1859,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a zone resource.
+  ///
+  /// @Snippet(path: "DataplexService_GetZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/getZone(request:options:)``
   public func getZone(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.Zone {
@@ -1338,6 +1875,13 @@ extension Clients.DataplexServiceProtocol {
     return try await self.getZone(request: request)
   }
 
+  /// Lists action resources in a zone.
+  ///
+  /// @Snippet(path: "DataplexService_ListZoneActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listZoneActions(request:options:)``
   public func listZoneActions(request: ListZoneActionsRequest) async throws
     -> GoogleCloudDataplexV1.ListActionsResponse
   {
@@ -1350,6 +1894,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists action resources in a zone.
+  ///
+  /// @Snippet(path: "DataplexService_ListZoneActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listZoneActions(request:options:)``
   public func listZoneActionsByItems(
     request: ListZoneActionsRequest
   ) -> some AsyncSequence<GoogleCloudDataplexV1.Action, any Swift.Error> & Sendable {
@@ -1359,6 +1910,10 @@ extension Clients.DataplexServiceProtocol {
   /// Lists action resources in a zone.
   ///
   /// @Snippet(path: "DataplexService_ListZoneActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listZoneActions(request:options:)``
   public func listZoneActionsByItems(
     request: ListZoneActionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudDataplexV1.Action, any Swift.Error> & Sendable {
@@ -1372,6 +1927,13 @@ extension Clients.DataplexServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists action resources in a zone.
+  ///
+  /// @Snippet(path: "DataplexService_ListZoneActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listZoneActions(request:options:)``
   public func listZoneActionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GoogleCloudDataplexV1.Action, any Swift.Error> & Sendable {
@@ -1381,6 +1943,13 @@ extension Clients.DataplexServiceProtocol {
     return self.listZoneActionsByItems(request: request)
   }
 
+  /// Creates an asset resource.
+  ///
+  /// @Snippet(path: "DataplexService_CreateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/createAsset(request:options:)``
   public func createAsset(request: CreateAssetRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createAsset(request: request, options: .init())
   }
@@ -1391,6 +1960,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an asset resource.
+  ///
+  /// @Snippet(path: "DataplexService_CreateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/createAssetPollingUntilDone(request:options:)``
   public func createAssetPollingUntilDone(request: CreateAssetRequest) async throws -> Asset {
     return try await self.createAssetPollingUntilDone(request: request, options: .init())
   }
@@ -1401,6 +1977,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an asset resource.
+  ///
+  /// @Snippet(path: "DataplexService_CreateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/createAssetPollingUntilDone(request:options:)``
   public func createAssetPollingUntilDone(
     parent: Swift.String,
     asset: Asset?,
@@ -1414,6 +1997,13 @@ extension Clients.DataplexServiceProtocol {
     return try await self.createAssetPollingUntilDone(request: request)
   }
 
+  /// Updates an asset resource.
+  ///
+  /// @Snippet(path: "DataplexService_UpdateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/updateAsset(request:options:)``
   public func updateAsset(request: UpdateAssetRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateAsset(request: request, options: .init())
   }
@@ -1424,6 +2014,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an asset resource.
+  ///
+  /// @Snippet(path: "DataplexService_UpdateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/updateAssetPollingUntilDone(request:options:)``
   public func updateAssetPollingUntilDone(request: UpdateAssetRequest) async throws -> Asset {
     return try await self.updateAssetPollingUntilDone(request: request, options: .init())
   }
@@ -1434,6 +2031,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an asset resource.
+  ///
+  /// @Snippet(path: "DataplexService_UpdateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/updateAssetPollingUntilDone(request:options:)``
   public func updateAssetPollingUntilDone(
     asset: Asset?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1445,6 +2049,14 @@ extension Clients.DataplexServiceProtocol {
     return try await self.updateAssetPollingUntilDone(request: request)
   }
 
+  /// Deletes an asset resource. The referenced storage resource is detached
+  /// (default) or deleted based on the associated Lifecycle policy.
+  ///
+  /// @Snippet(path: "DataplexService_DeleteAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteAsset(request:options:)``
   public func deleteAsset(request: DeleteAssetRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteAsset(request: request, options: .init())
   }
@@ -1455,6 +2067,14 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an asset resource. The referenced storage resource is detached
+  /// (default) or deleted based on the associated Lifecycle policy.
+  ///
+  /// @Snippet(path: "DataplexService_DeleteAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteAssetPollingUntilDone(request:options:)``
   public func deleteAssetPollingUntilDone(request: DeleteAssetRequest) async throws {
     try await self.deleteAssetPollingUntilDone(request: request, options: .init())
   }
@@ -1465,6 +2085,14 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an asset resource. The referenced storage resource is detached
+  /// (default) or deleted based on the associated Lifecycle policy.
+  ///
+  /// @Snippet(path: "DataplexService_DeleteAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteAssetPollingUntilDone(request:options:)``
   public func deleteAssetPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1474,6 +2102,13 @@ extension Clients.DataplexServiceProtocol {
     try await self.deleteAssetPollingUntilDone(request: request)
   }
 
+  /// Lists asset resources in a zone.
+  ///
+  /// @Snippet(path: "DataplexService_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listAssets(request:options:)``
   public func listAssets(request: ListAssetsRequest) async throws
     -> GoogleCloudDataplexV1.ListAssetsResponse
   {
@@ -1486,6 +2121,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists asset resources in a zone.
+  ///
+  /// @Snippet(path: "DataplexService_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listAssets(request:options:)``
   public func listAssetsByItems(
     request: ListAssetsRequest
   ) -> some AsyncSequence<Asset, any Swift.Error> & Sendable {
@@ -1495,6 +2137,10 @@ extension Clients.DataplexServiceProtocol {
   /// Lists asset resources in a zone.
   ///
   /// @Snippet(path: "DataplexService_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listAssets(request:options:)``
   public func listAssetsByItems(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Asset, any Swift.Error> & Sendable {
@@ -1508,6 +2154,13 @@ extension Clients.DataplexServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists asset resources in a zone.
+  ///
+  /// @Snippet(path: "DataplexService_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listAssets(request:options:)``
   public func listAssetsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Asset, any Swift.Error> & Sendable {
@@ -1517,6 +2170,13 @@ extension Clients.DataplexServiceProtocol {
     return self.listAssetsByItems(request: request)
   }
 
+  /// Retrieves an asset resource.
+  ///
+  /// @Snippet(path: "DataplexService_GetAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/getAsset(request:options:)``
   public func getAsset(request: GetAssetRequest) async throws -> GoogleCloudDataplexV1.Asset {
     try await self.getAsset(request: request, options: .init())
   }
@@ -1527,6 +2187,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves an asset resource.
+  ///
+  /// @Snippet(path: "DataplexService_GetAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/getAsset(request:options:)``
   public func getAsset(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.Asset {
@@ -1536,6 +2203,13 @@ extension Clients.DataplexServiceProtocol {
     return try await self.getAsset(request: request)
   }
 
+  /// Lists action resources in an asset.
+  ///
+  /// @Snippet(path: "DataplexService_ListAssetActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listAssetActions(request:options:)``
   public func listAssetActions(request: ListAssetActionsRequest) async throws
     -> GoogleCloudDataplexV1.ListActionsResponse
   {
@@ -1548,6 +2222,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists action resources in an asset.
+  ///
+  /// @Snippet(path: "DataplexService_ListAssetActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listAssetActions(request:options:)``
   public func listAssetActionsByItems(
     request: ListAssetActionsRequest
   ) -> some AsyncSequence<GoogleCloudDataplexV1.Action, any Swift.Error> & Sendable {
@@ -1557,6 +2238,10 @@ extension Clients.DataplexServiceProtocol {
   /// Lists action resources in an asset.
   ///
   /// @Snippet(path: "DataplexService_ListAssetActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listAssetActions(request:options:)``
   public func listAssetActionsByItems(
     request: ListAssetActionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudDataplexV1.Action, any Swift.Error> & Sendable {
@@ -1570,6 +2255,13 @@ extension Clients.DataplexServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists action resources in an asset.
+  ///
+  /// @Snippet(path: "DataplexService_ListAssetActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listAssetActions(request:options:)``
   public func listAssetActionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GoogleCloudDataplexV1.Action, any Swift.Error> & Sendable {
@@ -1579,6 +2271,13 @@ extension Clients.DataplexServiceProtocol {
     return self.listAssetActionsByItems(request: request)
   }
 
+  /// Creates a task resource within a lake.
+  ///
+  /// @Snippet(path: "DataplexService_CreateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/createTask(request:options:)``
   public func createTask(request: CreateTaskRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createTask(request: request, options: .init())
   }
@@ -1589,6 +2288,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a task resource within a lake.
+  ///
+  /// @Snippet(path: "DataplexService_CreateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/createTaskPollingUntilDone(request:options:)``
   public func createTaskPollingUntilDone(request: CreateTaskRequest) async throws -> Task {
     return try await self.createTaskPollingUntilDone(request: request, options: .init())
   }
@@ -1599,6 +2305,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a task resource within a lake.
+  ///
+  /// @Snippet(path: "DataplexService_CreateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/createTaskPollingUntilDone(request:options:)``
   public func createTaskPollingUntilDone(
     parent: Swift.String,
     task: Task?,
@@ -1612,6 +2325,13 @@ extension Clients.DataplexServiceProtocol {
     return try await self.createTaskPollingUntilDone(request: request)
   }
 
+  /// Update the task resource.
+  ///
+  /// @Snippet(path: "DataplexService_UpdateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/updateTask(request:options:)``
   public func updateTask(request: UpdateTaskRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateTask(request: request, options: .init())
   }
@@ -1622,6 +2342,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update the task resource.
+  ///
+  /// @Snippet(path: "DataplexService_UpdateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/updateTaskPollingUntilDone(request:options:)``
   public func updateTaskPollingUntilDone(request: UpdateTaskRequest) async throws -> Task {
     return try await self.updateTaskPollingUntilDone(request: request, options: .init())
   }
@@ -1632,6 +2359,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update the task resource.
+  ///
+  /// @Snippet(path: "DataplexService_UpdateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/updateTaskPollingUntilDone(request:options:)``
   public func updateTaskPollingUntilDone(
     task: Task?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1643,6 +2377,13 @@ extension Clients.DataplexServiceProtocol {
     return try await self.updateTaskPollingUntilDone(request: request)
   }
 
+  /// Delete the task resource.
+  ///
+  /// @Snippet(path: "DataplexService_DeleteTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteTask(request:options:)``
   public func deleteTask(request: DeleteTaskRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteTask(request: request, options: .init())
   }
@@ -1653,6 +2394,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete the task resource.
+  ///
+  /// @Snippet(path: "DataplexService_DeleteTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteTaskPollingUntilDone(request:options:)``
   public func deleteTaskPollingUntilDone(request: DeleteTaskRequest) async throws {
     try await self.deleteTaskPollingUntilDone(request: request, options: .init())
   }
@@ -1663,6 +2411,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete the task resource.
+  ///
+  /// @Snippet(path: "DataplexService_DeleteTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteTaskPollingUntilDone(request:options:)``
   public func deleteTaskPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1672,6 +2427,13 @@ extension Clients.DataplexServiceProtocol {
     try await self.deleteTaskPollingUntilDone(request: request)
   }
 
+  /// Lists tasks under the given lake.
+  ///
+  /// @Snippet(path: "DataplexService_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listTasks(request:options:)``
   public func listTasks(request: ListTasksRequest) async throws
     -> GoogleCloudDataplexV1.ListTasksResponse
   {
@@ -1684,6 +2446,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists tasks under the given lake.
+  ///
+  /// @Snippet(path: "DataplexService_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listTasks(request:options:)``
   public func listTasksByItems(
     request: ListTasksRequest
   ) -> some AsyncSequence<Task, any Swift.Error> & Sendable {
@@ -1693,6 +2462,10 @@ extension Clients.DataplexServiceProtocol {
   /// Lists tasks under the given lake.
   ///
   /// @Snippet(path: "DataplexService_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listTasks(request:options:)``
   public func listTasksByItems(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Task, any Swift.Error> & Sendable {
@@ -1706,6 +2479,13 @@ extension Clients.DataplexServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists tasks under the given lake.
+  ///
+  /// @Snippet(path: "DataplexService_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listTasks(request:options:)``
   public func listTasksByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Task, any Swift.Error> & Sendable {
@@ -1715,6 +2495,13 @@ extension Clients.DataplexServiceProtocol {
     return self.listTasksByItems(request: request)
   }
 
+  /// Get task resource.
+  ///
+  /// @Snippet(path: "DataplexService_GetTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/getTask(request:options:)``
   public func getTask(request: GetTaskRequest) async throws -> GoogleCloudDataplexV1.Task {
     try await self.getTask(request: request, options: .init())
   }
@@ -1725,6 +2512,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get task resource.
+  ///
+  /// @Snippet(path: "DataplexService_GetTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/getTask(request:options:)``
   public func getTask(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.Task {
@@ -1734,6 +2528,13 @@ extension Clients.DataplexServiceProtocol {
     return try await self.getTask(request: request)
   }
 
+  /// Lists Jobs under the given task.
+  ///
+  /// @Snippet(path: "DataplexService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listJobs(request:options:)``
   public func listJobs(request: ListJobsRequest) async throws
     -> GoogleCloudDataplexV1.ListJobsResponse
   {
@@ -1746,6 +2547,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Jobs under the given task.
+  ///
+  /// @Snippet(path: "DataplexService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -1755,6 +2563,10 @@ extension Clients.DataplexServiceProtocol {
   /// Lists Jobs under the given task.
   ///
   /// @Snippet(path: "DataplexService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -1768,6 +2580,13 @@ extension Clients.DataplexServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Jobs under the given task.
+  ///
+  /// @Snippet(path: "DataplexService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listJobs(request:options:)``
   public func listJobsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -1777,6 +2596,13 @@ extension Clients.DataplexServiceProtocol {
     return self.listJobsByItems(request: request)
   }
 
+  /// Run an on demand execution of a Task.
+  ///
+  /// @Snippet(path: "DataplexService_RunTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/runTask(request:options:)``
   public func runTask(request: RunTaskRequest) async throws -> GoogleCloudDataplexV1.RunTaskResponse
   {
     try await self.runTask(request: request, options: .init())
@@ -1788,6 +2614,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Run an on demand execution of a Task.
+  ///
+  /// @Snippet(path: "DataplexService_RunTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/runTask(request:options:)``
   public func runTask(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.RunTaskResponse {
@@ -1797,6 +2630,13 @@ extension Clients.DataplexServiceProtocol {
     return try await self.runTask(request: request)
   }
 
+  /// Get job resource.
+  ///
+  /// @Snippet(path: "DataplexService_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/getJob(request:options:)``
   public func getJob(request: GetJobRequest) async throws -> GoogleCloudDataplexV1.Job {
     try await self.getJob(request: request, options: .init())
   }
@@ -1807,6 +2647,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get job resource.
+  ///
+  /// @Snippet(path: "DataplexService_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/getJob(request:options:)``
   public func getJob(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.Job {
@@ -1816,6 +2663,13 @@ extension Clients.DataplexServiceProtocol {
     return try await self.getJob(request: request)
   }
 
+  /// Cancel jobs running for the task resource.
+  ///
+  /// @Snippet(path: "DataplexService_CancelJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/cancelJob(request:options:)``
   public func cancelJob(request: CancelJobRequest) async throws {
     try await self.cancelJob(request: request, options: .init())
   }
@@ -1826,6 +2680,13 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancel jobs running for the task resource.
+  ///
+  /// @Snippet(path: "DataplexService_CancelJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/cancelJob(request:options:)``
   public func cancelJob(
     name: Swift.String,
   ) async throws {
@@ -1835,6 +2696,30 @@ extension Clients.DataplexServiceProtocol {
     try await self.cancelJob(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DataplexService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1847,6 +2732,30 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DataplexService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1873,6 +2782,10 @@ extension Clients.DataplexServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DataplexService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1886,6 +2799,13 @@ extension Clients.DataplexServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "DataplexService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1898,6 +2818,17 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "DataplexService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1910,6 +2841,14 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "DataplexService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1922,6 +2861,19 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "DataplexService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -1934,6 +2886,15 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataplexService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1946,6 +2907,15 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataplexService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1957,6 +2927,10 @@ extension Clients.DataplexServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataplexService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1970,6 +2944,15 @@ extension Clients.DataplexServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataplexService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1981,6 +2964,9 @@ extension Clients.DataplexServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1993,6 +2979,9 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -2002,6 +2991,15 @@ extension Clients.DataplexServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataplexService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -2012,6 +3010,15 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataplexService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -2021,6 +3028,15 @@ extension Clients.DataplexServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataplexService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -2031,6 +3047,15 @@ extension Clients.DataplexServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataplexService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataplexServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

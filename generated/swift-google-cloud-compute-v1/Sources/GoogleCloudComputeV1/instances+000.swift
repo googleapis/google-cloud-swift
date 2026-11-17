@@ -24,6 +24,10 @@
   /// Service for the `instances` resource.
   ///
   /// @Snippet(path: "instancesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/InstancesProtocol``
   public final class InstancesClient: Clients.InstancesProtocol, Sendable {
     let inner: any Clients.InstancesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Adds an access config to an instance's network interface.
     ///
     /// @Snippet(path: "instances_addAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addAccessConfig(request:)``
+    /// - ``addAccessConfigPollingUntilDone(request:)``
+    /// - ``addAccessConfigPollingUntilDone(request:options:)``
+    /// - ``addAccessConfigPollingUntilDone(project:zone:instance:networkInterface:body:)``
     public func addAccessConfig(
       request: InstancesClient.AddAccessConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_addAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addAccessConfigPollingUntilDone(request:)``
+    /// - ``addAccessConfigPollingUntilDone(project:zone:instance:networkInterface:body:)``
+    /// - ``addAccessConfig(request:)``
+    /// - ``addAccessConfig(request:options:)``
     public func addAccessConfigPollingUntilDone(
       request: InstancesClient.AddAccessConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -100,6 +118,13 @@
     /// Adds one dynamic network interface to an active instance.
     ///
     /// @Snippet(path: "instances_addNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addNetworkInterface(request:)``
+    /// - ``addNetworkInterfacePollingUntilDone(request:)``
+    /// - ``addNetworkInterfacePollingUntilDone(request:options:)``
+    /// - ``addNetworkInterfacePollingUntilDone(project:zone:instance:body:)``
     public func addNetworkInterface(
       request: InstancesClient.AddNetworkInterfaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -114,6 +139,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_addNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addNetworkInterfacePollingUntilDone(request:)``
+    /// - ``addNetworkInterfacePollingUntilDone(project:zone:instance:body:)``
+    /// - ``addNetworkInterface(request:)``
+    /// - ``addNetworkInterface(request:options:)``
     public func addNetworkInterfacePollingUntilDone(
       request: InstancesClient.AddNetworkInterfaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -158,6 +190,13 @@
     /// migrations.
     ///
     /// @Snippet(path: "instances_addResourcePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addResourcePolicies(request:)``
+    /// - ``addResourcePoliciesPollingUntilDone(request:)``
+    /// - ``addResourcePoliciesPollingUntilDone(request:options:)``
+    /// - ``addResourcePoliciesPollingUntilDone(project:zone:instance:body:)``
     public func addResourcePolicies(
       request: InstancesClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -174,6 +213,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_addResourcePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addResourcePoliciesPollingUntilDone(request:)``
+    /// - ``addResourcePoliciesPollingUntilDone(project:zone:instance:body:)``
+    /// - ``addResourcePolicies(request:)``
+    /// - ``addResourcePolicies(request:options:)``
     public func addResourcePoliciesPollingUntilDone(
       request: InstancesClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -223,6 +269,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "instances_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
+    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceAggregatedList {
@@ -235,6 +288,13 @@
     /// persistent disk to your instance.
     ///
     /// @Snippet(path: "instances_attachDisk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``attachDisk(request:)``
+    /// - ``attachDiskPollingUntilDone(request:)``
+    /// - ``attachDiskPollingUntilDone(request:options:)``
+    /// - ``attachDiskPollingUntilDone(project:zone:instance:body:)``
     public func attachDisk(
       request: InstancesClient.AttachDiskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -252,6 +312,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_attachDisk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``attachDiskPollingUntilDone(request:)``
+    /// - ``attachDiskPollingUntilDone(project:zone:instance:body:)``
+    /// - ``attachDisk(request:)``
+    /// - ``attachDisk(request:options:)``
     public func attachDiskPollingUntilDone(
       request: InstancesClient.AttachDiskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -296,6 +363,13 @@
     /// creation of VMs.
     ///
     /// @Snippet(path: "instances_bulkInsert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``bulkInsert(request:)``
+    /// - ``bulkInsertPollingUntilDone(request:)``
+    /// - ``bulkInsertPollingUntilDone(request:options:)``
+    /// - ``bulkInsertPollingUntilDone(project:zone:body:)``
     public func bulkInsert(
       request: InstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -312,6 +386,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_bulkInsert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``bulkInsertPollingUntilDone(request:)``
+    /// - ``bulkInsertPollingUntilDone(project:zone:body:)``
+    /// - ``bulkInsert(request:)``
+    /// - ``bulkInsert(request:options:)``
     public func bulkInsertPollingUntilDone(
       request: InstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -355,6 +436,13 @@
     /// an instance.
     ///
     /// @Snippet(path: "instances_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:zone:instance:)``
     public func delete(
       request: InstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -370,6 +458,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:zone:instance:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: InstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -412,6 +507,13 @@
     /// Deletes an access config from an instance's network interface.
     ///
     /// @Snippet(path: "instances_deleteAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteAccessConfig(request:)``
+    /// - ``deleteAccessConfigPollingUntilDone(request:)``
+    /// - ``deleteAccessConfigPollingUntilDone(request:options:)``
+    /// - ``deleteAccessConfigPollingUntilDone(project:zone:instance:accessConfig:networkInterface:)``
     public func deleteAccessConfig(
       request: InstancesClient.DeleteAccessConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -426,6 +528,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_deleteAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteAccessConfigPollingUntilDone(request:)``
+    /// - ``deleteAccessConfigPollingUntilDone(project:zone:instance:accessConfig:networkInterface:)``
+    /// - ``deleteAccessConfig(request:)``
+    /// - ``deleteAccessConfig(request:options:)``
     public func deleteAccessConfigPollingUntilDone(
       request: InstancesClient.DeleteAccessConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -472,6 +581,13 @@
     /// field;
     ///
     /// @Snippet(path: "instances_deleteNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteNetworkInterface(request:)``
+    /// - ``deleteNetworkInterfacePollingUntilDone(request:)``
+    /// - ``deleteNetworkInterfacePollingUntilDone(request:options:)``
+    /// - ``deleteNetworkInterfacePollingUntilDone(project:zone:instance:networkInterfaceName:)``
     public func deleteNetworkInterface(
       request: InstancesClient.DeleteNetworkInterfaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -490,6 +606,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_deleteNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteNetworkInterfacePollingUntilDone(request:)``
+    /// - ``deleteNetworkInterfacePollingUntilDone(project:zone:instance:networkInterfaceName:)``
+    /// - ``deleteNetworkInterface(request:)``
+    /// - ``deleteNetworkInterface(request:options:)``
     public func deleteNetworkInterfacePollingUntilDone(
       request: InstancesClient.DeleteNetworkInterfaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -532,6 +655,13 @@
     /// Detaches a disk from an instance.
     ///
     /// @Snippet(path: "instances_detachDisk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``detachDisk(request:)``
+    /// - ``detachDiskPollingUntilDone(request:)``
+    /// - ``detachDiskPollingUntilDone(request:options:)``
+    /// - ``detachDiskPollingUntilDone(project:zone:instance:deviceName:)``
     public func detachDisk(
       request: InstancesClient.DetachDiskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -546,6 +676,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_detachDisk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``detachDiskPollingUntilDone(request:)``
+    /// - ``detachDiskPollingUntilDone(project:zone:instance:deviceName:)``
+    /// - ``detachDisk(request:)``
+    /// - ``detachDisk(request:options:)``
     public func detachDiskPollingUntilDone(
       request: InstancesClient.DetachDiskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -588,6 +725,11 @@
     /// Returns the specified Instance resource.
     ///
     /// @Snippet(path: "instances_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:zone:instance:)``
     public func `get`(
       request: InstancesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Instance {
@@ -597,6 +739,11 @@
     /// Returns effective firewalls applied to an interface of the instance.
     ///
     /// @Snippet(path: "instances_getEffectiveFirewalls")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getEffectiveFirewalls(request:)``
+    /// - ``getEffectiveFirewalls(project:zone:instance:networkInterface:)``
     public func getEffectiveFirewalls(
       request: InstancesClient.GetEffectiveFirewallsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstancesGetEffectiveFirewallsResponse {
@@ -606,6 +753,11 @@
     /// Returns the specified guest attributes entry.
     ///
     /// @Snippet(path: "instances_getGuestAttributes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getGuestAttributes(request:)``
+    /// - ``getGuestAttributes(project:zone:instance:)``
     public func getGuestAttributes(
       request: InstancesClient.GetGuestAttributesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.GuestAttributes {
@@ -616,6 +768,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "instances_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(project:zone:resource:)``
     public func getIamPolicy(
       request: InstancesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -625,6 +782,11 @@
     /// Returns the screenshot from the specified instance.
     ///
     /// @Snippet(path: "instances_getScreenshot")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getScreenshot(request:)``
+    /// - ``getScreenshot(project:zone:instance:)``
     public func getScreenshot(
       request: InstancesClient.GetScreenshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Screenshot {
@@ -634,6 +796,11 @@
     /// Returns the last 1 MB of serial port output from the specified instance.
     ///
     /// @Snippet(path: "instances_getSerialPortOutput")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getSerialPortOutput(request:)``
+    /// - ``getSerialPortOutput(project:zone:instance:)``
     public func getSerialPortOutput(
       request: InstancesClient.GetSerialPortOutputRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SerialPortOutput {
@@ -643,6 +810,11 @@
     /// Returns the Shielded Instance Identity of an instance
     ///
     /// @Snippet(path: "instances_getShieldedInstanceIdentity")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getShieldedInstanceIdentity(request:)``
+    /// - ``getShieldedInstanceIdentity(project:zone:instance:)``
     public func getShieldedInstanceIdentity(
       request: InstancesClient.GetShieldedInstanceIdentityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ShieldedInstanceIdentity {
@@ -653,6 +825,13 @@
     /// included in the request.
     ///
     /// @Snippet(path: "instances_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
     public func insert(
       request: InstancesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -668,6 +847,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: InstancesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -711,6 +897,13 @@
     /// the specified zone.
     ///
     /// @Snippet(path: "instances_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:zone:)``
     public func list(
       request: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceList {
@@ -724,6 +917,13 @@
     /// referrers to VM instances.
     ///
     /// @Snippet(path: "instances_listReferrers")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listReferrers(request:)``
+    /// - ``listReferrersByItems(request:)``
+    /// - ``listReferrersByItems(request:options:)``
+    /// - ``listReferrersByItems(project:zone:instance:)``
     public func listReferrers(
       request: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceListReferrers {
@@ -733,6 +933,13 @@
     /// Perform a manual maintenance on the instance.
     ///
     /// @Snippet(path: "instances_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``performMaintenance(request:)``
+    /// - ``performMaintenancePollingUntilDone(request:)``
+    /// - ``performMaintenancePollingUntilDone(request:options:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:instance:)``
     public func performMaintenance(
       request: InstancesClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -747,6 +954,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``performMaintenancePollingUntilDone(request:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:instance:)``
+    /// - ``performMaintenance(request:)``
+    /// - ``performMaintenance(request:options:)``
     public func performMaintenancePollingUntilDone(
       request: InstancesClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -789,6 +1003,13 @@
     /// Removes resource policies from an instance.
     ///
     /// @Snippet(path: "instances_removeResourcePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeResourcePolicies(request:)``
+    /// - ``removeResourcePoliciesPollingUntilDone(request:)``
+    /// - ``removeResourcePoliciesPollingUntilDone(request:options:)``
+    /// - ``removeResourcePoliciesPollingUntilDone(project:zone:instance:body:)``
     public func removeResourcePolicies(
       request: InstancesClient.RemoveResourcePoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -803,6 +1024,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_removeResourcePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeResourcePoliciesPollingUntilDone(request:)``
+    /// - ``removeResourcePoliciesPollingUntilDone(project:zone:instance:body:)``
+    /// - ``removeResourcePolicies(request:)``
+    /// - ``removeResourcePolicies(request:options:)``
     public func removeResourcePoliciesPollingUntilDone(
       request: InstancesClient.RemoveResourcePoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -845,6 +1073,13 @@
     /// Mark the host as faulty and try to restart the instance on a new host.
     ///
     /// @Snippet(path: "instances_reportHostAsFaulty")
+    ///
+    /// ## See Also
+    ///
+    /// - ``reportHostAsFaulty(request:)``
+    /// - ``reportHostAsFaultyPollingUntilDone(request:)``
+    /// - ``reportHostAsFaultyPollingUntilDone(request:options:)``
+    /// - ``reportHostAsFaultyPollingUntilDone(project:zone:instance:body:)``
     public func reportHostAsFaulty(
       request: InstancesClient.ReportHostAsFaultyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -859,6 +1094,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_reportHostAsFaulty")
+    ///
+    /// ## See Also
+    ///
+    /// - ``reportHostAsFaultyPollingUntilDone(request:)``
+    /// - ``reportHostAsFaultyPollingUntilDone(project:zone:instance:body:)``
+    /// - ``reportHostAsFaulty(request:)``
+    /// - ``reportHostAsFaulty(request:options:)``
     public func reportHostAsFaultyPollingUntilDone(
       request: InstancesClient.ReportHostAsFaultyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -903,6 +1145,13 @@
     /// an instance.
     ///
     /// @Snippet(path: "instances_reset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``reset(request:)``
+    /// - ``resetPollingUntilDone(request:)``
+    /// - ``resetPollingUntilDone(request:options:)``
+    /// - ``resetPollingUntilDone(project:zone:instance:)``
     public func reset(
       request: InstancesClient.ResetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -919,6 +1168,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_reset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``resetPollingUntilDone(request:)``
+    /// - ``resetPollingUntilDone(project:zone:instance:)``
+    /// - ``reset(request:)``
+    /// - ``reset(request:options:)``
     public func resetPollingUntilDone(
       request: InstancesClient.ResetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -962,6 +1218,13 @@
     /// method.
     ///
     /// @Snippet(path: "instances_resume")
+    ///
+    /// ## See Also
+    ///
+    /// - ``resume(request:)``
+    /// - ``resumePollingUntilDone(request:)``
+    /// - ``resumePollingUntilDone(request:options:)``
+    /// - ``resumePollingUntilDone(project:zone:instance:)``
     public func resume(
       request: InstancesClient.ResumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -977,6 +1240,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_resume")
+    ///
+    /// ## See Also
+    ///
+    /// - ``resumePollingUntilDone(request:)``
+    /// - ``resumePollingUntilDone(project:zone:instance:)``
+    /// - ``resume(request:)``
+    /// - ``resume(request:options:)``
     public func resumePollingUntilDone(
       request: InstancesClient.ResumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1019,6 +1289,11 @@
     /// Sends diagnostic interrupt to the instance.
     ///
     /// @Snippet(path: "instances_sendDiagnosticInterrupt")
+    ///
+    /// ## See Also
+    ///
+    /// - ``sendDiagnosticInterrupt(request:)``
+    /// - ``sendDiagnosticInterrupt(project:zone:instance:)``
     public func sendDiagnosticInterrupt(
       request: InstancesClient.SendDiagnosticInterruptRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1028,6 +1303,13 @@
     /// Sets deletion protection on the instance.
     ///
     /// @Snippet(path: "instances_setDeletionProtection")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setDeletionProtection(request:)``
+    /// - ``setDeletionProtectionPollingUntilDone(request:)``
+    /// - ``setDeletionProtectionPollingUntilDone(request:options:)``
+    /// - ``setDeletionProtectionPollingUntilDone(project:zone:resource:)``
     public func setDeletionProtection(
       request: InstancesClient.SetDeletionProtectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1042,6 +1324,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setDeletionProtection")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setDeletionProtectionPollingUntilDone(request:)``
+    /// - ``setDeletionProtectionPollingUntilDone(project:zone:resource:)``
+    /// - ``setDeletionProtection(request:)``
+    /// - ``setDeletionProtection(request:options:)``
     public func setDeletionProtectionPollingUntilDone(
       request: InstancesClient.SetDeletionProtectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1084,6 +1373,13 @@
     /// Sets the auto-delete flag for a disk attached to an instance.
     ///
     /// @Snippet(path: "instances_setDiskAutoDelete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setDiskAutoDelete(request:)``
+    /// - ``setDiskAutoDeletePollingUntilDone(request:)``
+    /// - ``setDiskAutoDeletePollingUntilDone(request:options:)``
+    /// - ``setDiskAutoDeletePollingUntilDone(project:zone:instance:autoDelete:deviceName:)``
     public func setDiskAutoDelete(
       request: InstancesClient.SetDiskAutoDeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1098,6 +1394,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setDiskAutoDelete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setDiskAutoDeletePollingUntilDone(request:)``
+    /// - ``setDiskAutoDeletePollingUntilDone(project:zone:instance:autoDelete:deviceName:)``
+    /// - ``setDiskAutoDelete(request:)``
+    /// - ``setDiskAutoDelete(request:options:)``
     public func setDiskAutoDeletePollingUntilDone(
       request: InstancesClient.SetDiskAutoDeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1141,6 +1444,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "instances_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(project:zone:resource:body:)``
     public func setIamPolicy(
       request: InstancesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -1151,6 +1459,13 @@
     /// Resources documentation.
     ///
     /// @Snippet(path: "instances_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabels(request:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
+    /// - ``setLabelsPollingUntilDone(request:options:)``
+    /// - ``setLabelsPollingUntilDone(project:zone:instance:body:)``
     public func setLabels(
       request: InstancesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1166,6 +1481,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabelsPollingUntilDone(request:)``
+    /// - ``setLabelsPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setLabels(request:)``
+    /// - ``setLabels(request:options:)``
     public func setLabelsPollingUntilDone(
       request: InstancesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1209,6 +1531,13 @@
     /// values specified in the request.
     ///
     /// @Snippet(path: "instances_setMachineResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setMachineResources(request:)``
+    /// - ``setMachineResourcesPollingUntilDone(request:)``
+    /// - ``setMachineResourcesPollingUntilDone(request:options:)``
+    /// - ``setMachineResourcesPollingUntilDone(project:zone:instance:body:)``
     public func setMachineResources(
       request: InstancesClient.SetMachineResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1224,6 +1553,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setMachineResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setMachineResourcesPollingUntilDone(request:)``
+    /// - ``setMachineResourcesPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setMachineResources(request:)``
+    /// - ``setMachineResources(request:options:)``
     public func setMachineResourcesPollingUntilDone(
       request: InstancesClient.SetMachineResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1267,6 +1603,13 @@
     /// type specified in the request.
     ///
     /// @Snippet(path: "instances_setMachineType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setMachineType(request:)``
+    /// - ``setMachineTypePollingUntilDone(request:)``
+    /// - ``setMachineTypePollingUntilDone(request:options:)``
+    /// - ``setMachineTypePollingUntilDone(project:zone:instance:body:)``
     public func setMachineType(
       request: InstancesClient.SetMachineTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1282,6 +1625,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setMachineType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setMachineTypePollingUntilDone(request:)``
+    /// - ``setMachineTypePollingUntilDone(project:zone:instance:body:)``
+    /// - ``setMachineType(request:)``
+    /// - ``setMachineType(request:options:)``
     public func setMachineTypePollingUntilDone(
       request: InstancesClient.SetMachineTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1325,6 +1675,13 @@
     /// in the request.
     ///
     /// @Snippet(path: "instances_setMetadata")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setMetadata(request:)``
+    /// - ``setMetadataPollingUntilDone(request:)``
+    /// - ``setMetadataPollingUntilDone(request:options:)``
+    /// - ``setMetadataPollingUntilDone(project:zone:instance:body:)``
     public func setMetadata(
       request: InstancesClient.SetMetadataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1340,6 +1697,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setMetadata")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setMetadataPollingUntilDone(request:)``
+    /// - ``setMetadataPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setMetadata(request:)``
+    /// - ``setMetadata(request:options:)``
     public func setMetadataPollingUntilDone(
       request: InstancesClient.SetMetadataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1385,6 +1749,13 @@
     /// Minimum CPU Platform.
     ///
     /// @Snippet(path: "instances_setMinCpuPlatform")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setMinCpuPlatform(request:)``
+    /// - ``setMinCpuPlatformPollingUntilDone(request:)``
+    /// - ``setMinCpuPlatformPollingUntilDone(request:options:)``
+    /// - ``setMinCpuPlatformPollingUntilDone(project:zone:instance:body:)``
     public func setMinCpuPlatform(
       request: InstancesClient.SetMinCpuPlatformRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1402,6 +1773,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setMinCpuPlatform")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setMinCpuPlatformPollingUntilDone(request:)``
+    /// - ``setMinCpuPlatformPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setMinCpuPlatform(request:)``
+    /// - ``setMinCpuPlatform(request:options:)``
     public func setMinCpuPlatformPollingUntilDone(
       request: InstancesClient.SetMinCpuPlatformRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1444,6 +1822,13 @@
     /// Sets name of an instance.
     ///
     /// @Snippet(path: "instances_setName")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setName(request:)``
+    /// - ``setNamePollingUntilDone(request:)``
+    /// - ``setNamePollingUntilDone(request:options:)``
+    /// - ``setNamePollingUntilDone(project:zone:instance:body:)``
     public func setName(
       request: InstancesClient.SetNameRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1458,6 +1843,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setName")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setNamePollingUntilDone(request:)``
+    /// - ``setNamePollingUntilDone(project:zone:instance:body:)``
+    /// - ``setName(request:)``
+    /// - ``setName(request:options:)``
     public func setNamePollingUntilDone(
       request: InstancesClient.SetNameRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1504,6 +1896,13 @@
     /// VM host maintenance policy.
     ///
     /// @Snippet(path: "instances_setScheduling")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setScheduling(request:)``
+    /// - ``setSchedulingPollingUntilDone(request:)``
+    /// - ``setSchedulingPollingUntilDone(request:options:)``
+    /// - ``setSchedulingPollingUntilDone(project:zone:instance:body:)``
     public func setScheduling(
       request: InstancesClient.SetSchedulingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1522,6 +1921,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setScheduling")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSchedulingPollingUntilDone(request:)``
+    /// - ``setSchedulingPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setScheduling(request:)``
+    /// - ``setScheduling(request:options:)``
     public func setSchedulingPollingUntilDone(
       request: InstancesClient.SetSchedulingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1566,6 +1972,13 @@
     /// Cloud Armor Overview
     ///
     /// @Snippet(path: "instances_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSecurityPolicy(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:options:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:zone:instance:body:)``
     public func setSecurityPolicy(
       request: InstancesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1582,6 +1995,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSecurityPolicyPollingUntilDone(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setSecurityPolicy(request:)``
+    /// - ``setSecurityPolicy(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       request: InstancesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1626,6 +2046,13 @@
     /// the service account and access scopes for an instance.
     ///
     /// @Snippet(path: "instances_setServiceAccount")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setServiceAccount(request:)``
+    /// - ``setServiceAccountPollingUntilDone(request:)``
+    /// - ``setServiceAccountPollingUntilDone(request:options:)``
+    /// - ``setServiceAccountPollingUntilDone(project:zone:instance:body:)``
     public func setServiceAccount(
       request: InstancesClient.SetServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1642,6 +2069,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setServiceAccount")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setServiceAccountPollingUntilDone(request:)``
+    /// - ``setServiceAccountPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setServiceAccount(request:)``
+    /// - ``setServiceAccount(request:options:)``
     public func setServiceAccountPollingUntilDone(
       request: InstancesClient.SetServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1687,6 +2121,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "instances_setShieldedInstanceIntegrityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setShieldedInstanceIntegrityPolicy(request:)``
+    /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(request:)``
+    /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(request:options:)``
+    /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(project:zone:instance:body:)``
     public func setShieldedInstanceIntegrityPolicy(
       request: InstancesClient.SetShieldedInstanceIntegrityPolicyRequest,
       options: GoogleGax.RequestOptions
@@ -1705,6 +2146,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setShieldedInstanceIntegrityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(request:)``
+    /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setShieldedInstanceIntegrityPolicy(request:)``
+    /// - ``setShieldedInstanceIntegrityPolicy(request:options:)``
     public func setShieldedInstanceIntegrityPolicyPollingUntilDone(
       request: InstancesClient.SetShieldedInstanceIntegrityPolicyRequest,
       options: GoogleGax.RequestOptions
@@ -1750,6 +2198,13 @@
     /// for the specified instance to the data included in the request.
     ///
     /// @Snippet(path: "instances_setTags")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setTags(request:)``
+    /// - ``setTagsPollingUntilDone(request:)``
+    /// - ``setTagsPollingUntilDone(request:options:)``
+    /// - ``setTagsPollingUntilDone(project:zone:instance:body:)``
     public func setTags(
       request: InstancesClient.SetTagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1765,6 +2220,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_setTags")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setTagsPollingUntilDone(request:)``
+    /// - ``setTagsPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setTags(request:)``
+    /// - ``setTags(request:options:)``
     public func setTagsPollingUntilDone(
       request: InstancesClient.SetTagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1808,6 +2270,13 @@
     /// Simulate a host maintenance event.
     ///
     /// @Snippet(path: "instances_simulateMaintenanceEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``simulateMaintenanceEvent(request:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(request:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(request:options:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(project:zone:instance:)``
     public func simulateMaintenanceEvent(
       request: InstancesClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1823,6 +2292,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_simulateMaintenanceEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``simulateMaintenanceEventPollingUntilDone(request:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(project:zone:instance:)``
+    /// - ``simulateMaintenanceEvent(request:)``
+    /// - ``simulateMaintenanceEvent(request:options:)``
     public func simulateMaintenanceEventPollingUntilDone(
       request: InstancesClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1867,6 +2343,13 @@
     /// instance.
     ///
     /// @Snippet(path: "instances_start")
+    ///
+    /// ## See Also
+    ///
+    /// - ``start(request:)``
+    /// - ``startPollingUntilDone(request:)``
+    /// - ``startPollingUntilDone(request:options:)``
+    /// - ``startPollingUntilDone(project:zone:instance:)``
     public func start(
       request: InstancesClient.StartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1883,6 +2366,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_start")
+    ///
+    /// ## See Also
+    ///
+    /// - ``startPollingUntilDone(request:)``
+    /// - ``startPollingUntilDone(project:zone:instance:)``
+    /// - ``start(request:)``
+    /// - ``start(request:options:)``
     public func startPollingUntilDone(
       request: InstancesClient.StartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1927,6 +2417,13 @@
     /// instance.
     ///
     /// @Snippet(path: "instances_startWithEncryptionKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``startWithEncryptionKey(request:)``
+    /// - ``startWithEncryptionKeyPollingUntilDone(request:)``
+    /// - ``startWithEncryptionKeyPollingUntilDone(request:options:)``
+    /// - ``startWithEncryptionKeyPollingUntilDone(project:zone:instance:body:)``
     public func startWithEncryptionKey(
       request: InstancesClient.StartWithEncryptionKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1943,6 +2440,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_startWithEncryptionKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``startWithEncryptionKeyPollingUntilDone(request:)``
+    /// - ``startWithEncryptionKeyPollingUntilDone(project:zone:instance:body:)``
+    /// - ``startWithEncryptionKey(request:)``
+    /// - ``startWithEncryptionKey(request:options:)``
     public func startWithEncryptionKeyPollingUntilDone(
       request: InstancesClient.StartWithEncryptionKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1990,6 +2494,13 @@
     /// an instance.
     ///
     /// @Snippet(path: "instances_stop")
+    ///
+    /// ## See Also
+    ///
+    /// - ``stop(request:)``
+    /// - ``stopPollingUntilDone(request:)``
+    /// - ``stopPollingUntilDone(request:options:)``
+    /// - ``stopPollingUntilDone(project:zone:instance:)``
     public func stop(
       request: InstancesClient.StopRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2009,6 +2520,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_stop")
+    ///
+    /// ## See Also
+    ///
+    /// - ``stopPollingUntilDone(request:)``
+    /// - ``stopPollingUntilDone(project:zone:instance:)``
+    /// - ``stop(request:)``
+    /// - ``stop(request:options:)``
     public func stopPollingUntilDone(
       request: InstancesClient.StopRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2058,6 +2576,13 @@
     /// Suspending and resuming an instance.
     ///
     /// @Snippet(path: "instances_suspend")
+    ///
+    /// ## See Also
+    ///
+    /// - ``suspend(request:)``
+    /// - ``suspendPollingUntilDone(request:)``
+    /// - ``suspendPollingUntilDone(request:options:)``
+    /// - ``suspendPollingUntilDone(project:zone:instance:)``
     public func suspend(
       request: InstancesClient.SuspendRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2079,6 +2604,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_suspend")
+    ///
+    /// ## See Also
+    ///
+    /// - ``suspendPollingUntilDone(request:)``
+    /// - ``suspendPollingUntilDone(project:zone:instance:)``
+    /// - ``suspend(request:)``
+    /// - ``suspend(request:options:)``
     public func suspendPollingUntilDone(
       request: InstancesClient.SuspendRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2121,6 +2653,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "instances_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:zone:resource:body:)``
     public func testIamPermissions(
       request: InstancesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -2133,6 +2670,13 @@
     /// properties.
     ///
     /// @Snippet(path: "instances_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
+    /// - ``updatePollingUntilDone(project:zone:instance:body:)``
     public func update(
       request: InstancesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2150,6 +2694,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(project:zone:instance:body:)``
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
     public func updatePollingUntilDone(
       request: InstancesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2195,6 +2746,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "instances_updateAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateAccessConfig(request:)``
+    /// - ``updateAccessConfigPollingUntilDone(request:)``
+    /// - ``updateAccessConfigPollingUntilDone(request:options:)``
+    /// - ``updateAccessConfigPollingUntilDone(project:zone:instance:networkInterface:body:)``
     public func updateAccessConfig(
       request: InstancesClient.UpdateAccessConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2212,6 +2770,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_updateAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateAccessConfigPollingUntilDone(request:)``
+    /// - ``updateAccessConfigPollingUntilDone(project:zone:instance:networkInterface:body:)``
+    /// - ``updateAccessConfig(request:)``
+    /// - ``updateAccessConfig(request:options:)``
     public func updateAccessConfigPollingUntilDone(
       request: InstancesClient.UpdateAccessConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2257,6 +2822,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "instances_updateDisplayDevice")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateDisplayDevice(request:)``
+    /// - ``updateDisplayDevicePollingUntilDone(request:)``
+    /// - ``updateDisplayDevicePollingUntilDone(request:options:)``
+    /// - ``updateDisplayDevicePollingUntilDone(project:zone:instance:body:)``
     public func updateDisplayDevice(
       request: InstancesClient.UpdateDisplayDeviceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2274,6 +2846,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_updateDisplayDevice")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateDisplayDevicePollingUntilDone(request:)``
+    /// - ``updateDisplayDevicePollingUntilDone(project:zone:instance:body:)``
+    /// - ``updateDisplayDevice(request:)``
+    /// - ``updateDisplayDevice(request:options:)``
     public func updateDisplayDevicePollingUntilDone(
       request: InstancesClient.UpdateDisplayDeviceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2321,6 +2900,13 @@
     /// This method follows PATCH semantics.
     ///
     /// @Snippet(path: "instances_updateNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateNetworkInterface(request:)``
+    /// - ``updateNetworkInterfacePollingUntilDone(request:)``
+    /// - ``updateNetworkInterfacePollingUntilDone(request:options:)``
+    /// - ``updateNetworkInterfacePollingUntilDone(project:zone:instance:networkInterface:body:)``
     public func updateNetworkInterface(
       request: InstancesClient.UpdateNetworkInterfaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2340,6 +2926,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_updateNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateNetworkInterfacePollingUntilDone(request:)``
+    /// - ``updateNetworkInterfacePollingUntilDone(project:zone:instance:networkInterface:body:)``
+    /// - ``updateNetworkInterface(request:)``
+    /// - ``updateNetworkInterface(request:options:)``
     public func updateNetworkInterfacePollingUntilDone(
       request: InstancesClient.UpdateNetworkInterfaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2385,6 +2978,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "instances_updateShieldedInstanceConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateShieldedInstanceConfig(request:)``
+    /// - ``updateShieldedInstanceConfigPollingUntilDone(request:)``
+    /// - ``updateShieldedInstanceConfigPollingUntilDone(request:options:)``
+    /// - ``updateShieldedInstanceConfigPollingUntilDone(project:zone:instance:body:)``
     public func updateShieldedInstanceConfig(
       request: InstancesClient.UpdateShieldedInstanceConfigRequest,
       options: GoogleGax.RequestOptions
@@ -2403,6 +3003,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instances_updateShieldedInstanceConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateShieldedInstanceConfigPollingUntilDone(request:)``
+    /// - ``updateShieldedInstanceConfigPollingUntilDone(project:zone:instance:body:)``
+    /// - ``updateShieldedInstanceConfig(request:)``
+    /// - ``updateShieldedInstanceConfig(request:options:)``
     public func updateShieldedInstanceConfigPollingUntilDone(
       request: InstancesClient.UpdateShieldedInstanceConfigRequest,
       options: GoogleGax.RequestOptions
@@ -3104,6 +3711,13 @@
 
   // Default implementations
   extension Clients.InstancesProtocol {
+    /// Adds an access config to an instance's network interface.
+    ///
+    /// @Snippet(path: "instances_addAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/addAccessConfig(request:options:)``
     public func addAccessConfig(request: InstancesClient.AddAccessConfigRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -3116,6 +3730,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds an access config to an instance's network interface.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_addAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/addAccessConfigPollingUntilDone(request:options:)``
     public func addAccessConfigPollingUntilDone(
       request: InstancesClient.AddAccessConfigRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3128,6 +3754,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds an access config to an instance's network interface.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_addAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/addAccessConfigPollingUntilDone(request:options:)``
     public func addAccessConfigPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3145,6 +3783,13 @@
       return try await self.addAccessConfigPollingUntilDone(request: request)
     }
 
+    /// Adds one dynamic network interface to an active instance.
+    ///
+    /// @Snippet(path: "instances_addNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/addNetworkInterface(request:options:)``
     public func addNetworkInterface(request: InstancesClient.AddNetworkInterfaceRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -3157,6 +3802,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds one dynamic network interface to an active instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_addNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/addNetworkInterfacePollingUntilDone(request:options:)``
     public func addNetworkInterfacePollingUntilDone(
       request: InstancesClient.AddNetworkInterfaceRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3169,6 +3826,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds one dynamic network interface to an active instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_addNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/addNetworkInterfacePollingUntilDone(request:options:)``
     public func addNetworkInterfacePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3184,6 +3853,15 @@
       return try await self.addNetworkInterfacePollingUntilDone(request: request)
     }
 
+    /// Adds existing resource policies to an instance. You can only add one
+    /// policy right now which will be applied to this instance for scheduling live
+    /// migrations.
+    ///
+    /// @Snippet(path: "instances_addResourcePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/addResourcePolicies(request:options:)``
     public func addResourcePolicies(request: InstancesClient.AddResourcePoliciesRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -3196,6 +3874,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds existing resource policies to an instance. You can only add one
+    /// policy right now which will be applied to this instance for scheduling live
+    /// migrations.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_addResourcePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/addResourcePoliciesPollingUntilDone(request:options:)``
     public func addResourcePoliciesPollingUntilDone(
       request: InstancesClient.AddResourcePoliciesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3208,6 +3900,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds existing resource policies to an instance. You can only add one
+    /// policy right now which will be applied to this instance for scheduling live
+    /// migrations.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_addResourcePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/addResourcePoliciesPollingUntilDone(request:options:)``
     public func addResourcePoliciesPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3223,6 +3929,20 @@
       return try await self.addResourcePoliciesPollingUntilDone(request: request)
     }
 
+    /// Retrieves an aggregated list of all of the instances in your project
+    /// across all regions and zones.
+    ///
+    /// The performance of this method degrades when a filter is specified on a
+    /// project that has a very large number of instances.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "instances_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: InstancesClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.InstanceAggregatedList
     {
@@ -3235,6 +3955,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of all of the instances in your project
+    /// across all regions and zones.
+    ///
+    /// The performance of this method degrades when a filter is specified on a
+    /// project that has a very large number of instances.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "instances_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: InstancesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, InstancesScopedList), any Swift.Error> & Sendable {
@@ -3251,6 +3985,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "instances_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, InstancesScopedList), any Swift.Error> & Sendable {
@@ -3265,6 +4003,20 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of all of the instances in your project
+    /// across all regions and zones.
+    ///
+    /// The performance of this method degrades when a filter is specified on a
+    /// project that has a very large number of instances.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "instances_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, InstancesScopedList), any Swift.Error> & Sendable {
@@ -3274,6 +4026,16 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Attaches an existing Disk resource to an instance. You must first
+    /// create the disk before you can attach it. It is not possible to create
+    /// and attach a disk at the same time. For more information, readAdding a
+    /// persistent disk to your instance.
+    ///
+    /// @Snippet(path: "instances_attachDisk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/attachDisk(request:options:)``
     public func attachDisk(request: InstancesClient.AttachDiskRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -3286,6 +4048,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Attaches an existing Disk resource to an instance. You must first
+    /// create the disk before you can attach it. It is not possible to create
+    /// and attach a disk at the same time. For more information, readAdding a
+    /// persistent disk to your instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_attachDisk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/attachDiskPollingUntilDone(request:options:)``
     public func attachDiskPollingUntilDone(
       request: InstancesClient.AttachDiskRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3298,6 +4075,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Attaches an existing Disk resource to an instance. You must first
+    /// create the disk before you can attach it. It is not possible to create
+    /// and attach a disk at the same time. For more information, readAdding a
+    /// persistent disk to your instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_attachDisk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/attachDiskPollingUntilDone(request:options:)``
     public func attachDiskPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3313,6 +4105,15 @@
       return try await self.attachDiskPollingUntilDone(request: request)
     }
 
+    /// Creates multiple instances. Count specifies the number of instances to
+    /// create. For more information, seeAbout bulk
+    /// creation of VMs.
+    ///
+    /// @Snippet(path: "instances_bulkInsert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/bulkInsert(request:options:)``
     public func bulkInsert(request: InstancesClient.BulkInsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -3325,6 +4126,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates multiple instances. Count specifies the number of instances to
+    /// create. For more information, seeAbout bulk
+    /// creation of VMs.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_bulkInsert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/bulkInsertPollingUntilDone(request:options:)``
     public func bulkInsertPollingUntilDone(
       request: InstancesClient.BulkInsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3337,6 +4152,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates multiple instances. Count specifies the number of instances to
+    /// create. For more information, seeAbout bulk
+    /// creation of VMs.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_bulkInsert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/bulkInsertPollingUntilDone(request:options:)``
     public func bulkInsertPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3350,6 +4179,14 @@
       return try await self.bulkInsertPollingUntilDone(request: request)
     }
 
+    /// Deletes the specified Instance resource. For more information, seeDeleting
+    /// an instance.
+    ///
+    /// @Snippet(path: "instances_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/delete(request:options:)``
     public func delete(request: InstancesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -3362,6 +4199,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified Instance resource. For more information, seeDeleting
+    /// an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: InstancesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3374,6 +4224,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified Instance resource. For more information, seeDeleting
+    /// an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3387,6 +4250,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Deletes an access config from an instance's network interface.
+    ///
+    /// @Snippet(path: "instances_deleteAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/deleteAccessConfig(request:options:)``
     public func deleteAccessConfig(request: InstancesClient.DeleteAccessConfigRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -3399,6 +4269,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an access config from an instance's network interface.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_deleteAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/deleteAccessConfigPollingUntilDone(request:options:)``
     public func deleteAccessConfigPollingUntilDone(
       request: InstancesClient.DeleteAccessConfigRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3411,6 +4293,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an access config from an instance's network interface.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_deleteAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/deleteAccessConfigPollingUntilDone(request:options:)``
     public func deleteAccessConfigPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3428,6 +4322,17 @@
       return try await self.deleteAccessConfigPollingUntilDone(request: request)
     }
 
+    /// Deletes one dynamic network interface from an active instance.
+    /// InstancesDeleteNetworkInterfaceRequest indicates:
+    /// - instance from which to delete, using project+zone+resource_id fields;
+    /// - dynamic network interface to be deleted, using network_interface_name
+    /// field;
+    ///
+    /// @Snippet(path: "instances_deleteNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/deleteNetworkInterface(request:options:)``
     public func deleteNetworkInterface(request: InstancesClient.DeleteNetworkInterfaceRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -3440,6 +4345,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes one dynamic network interface from an active instance.
+    /// InstancesDeleteNetworkInterfaceRequest indicates:
+    /// - instance from which to delete, using project+zone+resource_id fields;
+    /// - dynamic network interface to be deleted, using network_interface_name
+    /// field;
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_deleteNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/deleteNetworkInterfacePollingUntilDone(request:options:)``
     public func deleteNetworkInterfacePollingUntilDone(
       request: InstancesClient.DeleteNetworkInterfaceRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3453,6 +4374,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes one dynamic network interface from an active instance.
+    /// InstancesDeleteNetworkInterfaceRequest indicates:
+    /// - instance from which to delete, using project+zone+resource_id fields;
+    /// - dynamic network interface to be deleted, using network_interface_name
+    /// field;
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_deleteNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/deleteNetworkInterfacePollingUntilDone(request:options:)``
     public func deleteNetworkInterfacePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3468,6 +4405,13 @@
       return try await self.deleteNetworkInterfacePollingUntilDone(request: request)
     }
 
+    /// Detaches a disk from an instance.
+    ///
+    /// @Snippet(path: "instances_detachDisk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/detachDisk(request:options:)``
     public func detachDisk(request: InstancesClient.DetachDiskRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -3480,6 +4424,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Detaches a disk from an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_detachDisk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/detachDiskPollingUntilDone(request:options:)``
     public func detachDiskPollingUntilDone(
       request: InstancesClient.DetachDiskRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3492,6 +4448,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Detaches a disk from an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_detachDisk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/detachDiskPollingUntilDone(request:options:)``
     public func detachDiskPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3507,6 +4475,13 @@
       return try await self.detachDiskPollingUntilDone(request: request)
     }
 
+    /// Returns the specified Instance resource.
+    ///
+    /// @Snippet(path: "instances_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/get(request:options:)``
     public func `get`(request: InstancesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Instance
     {
@@ -3519,6 +4494,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified Instance resource.
+    ///
+    /// @Snippet(path: "instances_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -3532,6 +4514,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Returns effective firewalls applied to an interface of the instance.
+    ///
+    /// @Snippet(path: "instances_getEffectiveFirewalls")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/getEffectiveFirewalls(request:options:)``
     public func getEffectiveFirewalls(request: InstancesClient.GetEffectiveFirewallsRequest)
       async throws -> GoogleCloudComputeV1.InstancesGetEffectiveFirewallsResponse
     {
@@ -3544,6 +4533,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns effective firewalls applied to an interface of the instance.
+    ///
+    /// @Snippet(path: "instances_getEffectiveFirewalls")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/getEffectiveFirewalls(request:options:)``
     public func getEffectiveFirewalls(
       project: Swift.String,
       zone: Swift.String,
@@ -3559,6 +4555,13 @@
       return try await self.getEffectiveFirewalls(request: request)
     }
 
+    /// Returns the specified guest attributes entry.
+    ///
+    /// @Snippet(path: "instances_getGuestAttributes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/getGuestAttributes(request:options:)``
     public func getGuestAttributes(request: InstancesClient.GetGuestAttributesRequest) async throws
       -> GoogleCloudComputeV1.GuestAttributes
     {
@@ -3571,6 +4574,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified guest attributes entry.
+    ///
+    /// @Snippet(path: "instances_getGuestAttributes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/getGuestAttributes(request:options:)``
     public func getGuestAttributes(
       project: Swift.String,
       zone: Swift.String,
@@ -3584,6 +4594,14 @@
       return try await self.getGuestAttributes(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "instances_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: InstancesClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -3596,6 +4614,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "instances_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       zone: Swift.String,
@@ -3609,6 +4635,13 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Returns the screenshot from the specified instance.
+    ///
+    /// @Snippet(path: "instances_getScreenshot")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/getScreenshot(request:options:)``
     public func getScreenshot(request: InstancesClient.GetScreenshotRequest) async throws
       -> GoogleCloudComputeV1.Screenshot
     {
@@ -3621,6 +4654,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the screenshot from the specified instance.
+    ///
+    /// @Snippet(path: "instances_getScreenshot")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/getScreenshot(request:options:)``
     public func getScreenshot(
       project: Swift.String,
       zone: Swift.String,
@@ -3634,6 +4674,13 @@
       return try await self.getScreenshot(request: request)
     }
 
+    /// Returns the last 1 MB of serial port output from the specified instance.
+    ///
+    /// @Snippet(path: "instances_getSerialPortOutput")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/getSerialPortOutput(request:options:)``
     public func getSerialPortOutput(request: InstancesClient.GetSerialPortOutputRequest)
       async throws -> GoogleCloudComputeV1.SerialPortOutput
     {
@@ -3646,6 +4693,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the last 1 MB of serial port output from the specified instance.
+    ///
+    /// @Snippet(path: "instances_getSerialPortOutput")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/getSerialPortOutput(request:options:)``
     public func getSerialPortOutput(
       project: Swift.String,
       zone: Swift.String,
@@ -3659,6 +4713,13 @@
       return try await self.getSerialPortOutput(request: request)
     }
 
+    /// Returns the Shielded Instance Identity of an instance
+    ///
+    /// @Snippet(path: "instances_getShieldedInstanceIdentity")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/getShieldedInstanceIdentity(request:options:)``
     public func getShieldedInstanceIdentity(
       request: InstancesClient.GetShieldedInstanceIdentityRequest
     ) async throws -> GoogleCloudComputeV1.ShieldedInstanceIdentity {
@@ -3671,6 +4732,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the Shielded Instance Identity of an instance
+    ///
+    /// @Snippet(path: "instances_getShieldedInstanceIdentity")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/getShieldedInstanceIdentity(request:options:)``
     public func getShieldedInstanceIdentity(
       project: Swift.String,
       zone: Swift.String,
@@ -3684,6 +4752,14 @@
       return try await self.getShieldedInstanceIdentity(request: request)
     }
 
+    /// Creates an instance resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// @Snippet(path: "instances_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/insert(request:options:)``
     public func insert(request: InstancesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -3696,6 +4772,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an instance resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: InstancesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3708,6 +4797,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an instance resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3721,6 +4823,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of instances contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "instances_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/list(request:options:)``
     public func list(request: InstancesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.InstanceList
     {
@@ -3733,6 +4843,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of instances contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "instances_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/list(request:options:)``
     public func listByItems(
       request: InstancesClient.ListRequest
     ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -3743,6 +4861,10 @@
     /// the specified zone.
     ///
     /// @Snippet(path: "instances_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/list(request:options:)``
     public func listByItems(
       request: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -3756,6 +4878,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of instances contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "instances_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -3767,6 +4897,17 @@
       return self.listByItems(request: request)
     }
 
+    /// Retrieves a list of resources that refer to the VM instance specified in
+    /// the request. For example, if the VM instance is part of a managed or
+    /// unmanaged instance group, the referrers list includes the instance group.
+    /// For more information, readViewing
+    /// referrers to VM instances.
+    ///
+    /// @Snippet(path: "instances_listReferrers")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/listReferrers(request:options:)``
     public func listReferrers(request: InstancesClient.ListReferrersRequest) async throws
       -> GoogleCloudComputeV1.InstanceListReferrers
     {
@@ -3779,6 +4920,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of resources that refer to the VM instance specified in
+    /// the request. For example, if the VM instance is part of a managed or
+    /// unmanaged instance group, the referrers list includes the instance group.
+    /// For more information, readViewing
+    /// referrers to VM instances.
+    ///
+    /// @Snippet(path: "instances_listReferrers")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/listReferrers(request:options:)``
     public func listReferrersByItems(
       request: InstancesClient.ListReferrersRequest
     ) -> some AsyncSequence<Reference, any Swift.Error> & Sendable {
@@ -3792,6 +4944,10 @@
     /// referrers to VM instances.
     ///
     /// @Snippet(path: "instances_listReferrers")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/listReferrers(request:options:)``
     public func listReferrersByItems(
       request: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Reference, any Swift.Error> & Sendable {
@@ -3806,6 +4962,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of resources that refer to the VM instance specified in
+    /// the request. For example, if the VM instance is part of a managed or
+    /// unmanaged instance group, the referrers list includes the instance group.
+    /// For more information, readViewing
+    /// referrers to VM instances.
+    ///
+    /// @Snippet(path: "instances_listReferrers")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/listReferrers(request:options:)``
     public func listReferrersByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -3819,6 +4986,13 @@
       return self.listReferrersByItems(request: request)
     }
 
+    /// Perform a manual maintenance on the instance.
+    ///
+    /// @Snippet(path: "instances_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/performMaintenance(request:options:)``
     public func performMaintenance(request: InstancesClient.PerformMaintenanceRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -3831,6 +5005,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Perform a manual maintenance on the instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/performMaintenancePollingUntilDone(request:options:)``
     public func performMaintenancePollingUntilDone(
       request: InstancesClient.PerformMaintenanceRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3843,6 +5029,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Perform a manual maintenance on the instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/performMaintenancePollingUntilDone(request:options:)``
     public func performMaintenancePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3856,6 +5054,13 @@
       return try await self.performMaintenancePollingUntilDone(request: request)
     }
 
+    /// Removes resource policies from an instance.
+    ///
+    /// @Snippet(path: "instances_removeResourcePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/removeResourcePolicies(request:options:)``
     public func removeResourcePolicies(request: InstancesClient.RemoveResourcePoliciesRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -3868,6 +5073,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes resource policies from an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_removeResourcePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/removeResourcePoliciesPollingUntilDone(request:options:)``
     public func removeResourcePoliciesPollingUntilDone(
       request: InstancesClient.RemoveResourcePoliciesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3881,6 +5098,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes resource policies from an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_removeResourcePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/removeResourcePoliciesPollingUntilDone(request:options:)``
     public func removeResourcePoliciesPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3896,6 +5125,13 @@
       return try await self.removeResourcePoliciesPollingUntilDone(request: request)
     }
 
+    /// Mark the host as faulty and try to restart the instance on a new host.
+    ///
+    /// @Snippet(path: "instances_reportHostAsFaulty")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/reportHostAsFaulty(request:options:)``
     public func reportHostAsFaulty(request: InstancesClient.ReportHostAsFaultyRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -3908,6 +5144,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Mark the host as faulty and try to restart the instance on a new host.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_reportHostAsFaulty")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/reportHostAsFaultyPollingUntilDone(request:options:)``
     public func reportHostAsFaultyPollingUntilDone(
       request: InstancesClient.ReportHostAsFaultyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3920,6 +5168,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Mark the host as faulty and try to restart the instance on a new host.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_reportHostAsFaulty")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/reportHostAsFaultyPollingUntilDone(request:options:)``
     public func reportHostAsFaultyPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3935,6 +5195,15 @@
       return try await self.reportHostAsFaultyPollingUntilDone(request: request)
     }
 
+    /// Performs a reset on the instance. This is a hard reset. The VM
+    /// does not do a graceful shutdown. For more information, seeResetting
+    /// an instance.
+    ///
+    /// @Snippet(path: "instances_reset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/reset(request:options:)``
     public func reset(request: InstancesClient.ResetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -3947,6 +5216,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Performs a reset on the instance. This is a hard reset. The VM
+    /// does not do a graceful shutdown. For more information, seeResetting
+    /// an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_reset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/resetPollingUntilDone(request:options:)``
     public func resetPollingUntilDone(
       request: InstancesClient.ResetRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3959,6 +5242,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Performs a reset on the instance. This is a hard reset. The VM
+    /// does not do a graceful shutdown. For more information, seeResetting
+    /// an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_reset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/resetPollingUntilDone(request:options:)``
     public func resetPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -3972,6 +5269,14 @@
       return try await self.resetPollingUntilDone(request: request)
     }
 
+    /// Resumes an instance that was suspended using theinstances().suspend
+    /// method.
+    ///
+    /// @Snippet(path: "instances_resume")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/resume(request:options:)``
     public func resume(request: InstancesClient.ResumeRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -3984,6 +5289,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Resumes an instance that was suspended using theinstances().suspend
+    /// method.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_resume")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/resumePollingUntilDone(request:options:)``
     public func resumePollingUntilDone(
       request: InstancesClient.ResumeRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -3996,6 +5314,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Resumes an instance that was suspended using theinstances().suspend
+    /// method.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_resume")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/resumePollingUntilDone(request:options:)``
     public func resumePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4009,6 +5340,13 @@
       return try await self.resumePollingUntilDone(request: request)
     }
 
+    /// Sends diagnostic interrupt to the instance.
+    ///
+    /// @Snippet(path: "instances_sendDiagnosticInterrupt")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/sendDiagnosticInterrupt(request:options:)``
     public func sendDiagnosticInterrupt(request: InstancesClient.SendDiagnosticInterruptRequest)
       async throws
     {
@@ -4021,6 +5359,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sends diagnostic interrupt to the instance.
+    ///
+    /// @Snippet(path: "instances_sendDiagnosticInterrupt")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/sendDiagnosticInterrupt(request:options:)``
     public func sendDiagnosticInterrupt(
       project: Swift.String,
       zone: Swift.String,
@@ -4034,6 +5379,13 @@
       try await self.sendDiagnosticInterrupt(request: request)
     }
 
+    /// Sets deletion protection on the instance.
+    ///
+    /// @Snippet(path: "instances_setDeletionProtection")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setDeletionProtection(request:options:)``
     public func setDeletionProtection(request: InstancesClient.SetDeletionProtectionRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -4046,6 +5398,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets deletion protection on the instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setDeletionProtection")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setDeletionProtectionPollingUntilDone(request:options:)``
     public func setDeletionProtectionPollingUntilDone(
       request: InstancesClient.SetDeletionProtectionRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4059,6 +5423,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets deletion protection on the instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setDeletionProtection")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setDeletionProtectionPollingUntilDone(request:options:)``
     public func setDeletionProtectionPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4072,6 +5448,13 @@
       return try await self.setDeletionProtectionPollingUntilDone(request: request)
     }
 
+    /// Sets the auto-delete flag for a disk attached to an instance.
+    ///
+    /// @Snippet(path: "instances_setDiskAutoDelete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setDiskAutoDelete(request:options:)``
     public func setDiskAutoDelete(request: InstancesClient.SetDiskAutoDeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4084,6 +5467,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the auto-delete flag for a disk attached to an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setDiskAutoDelete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setDiskAutoDeletePollingUntilDone(request:options:)``
     public func setDiskAutoDeletePollingUntilDone(
       request: InstancesClient.SetDiskAutoDeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4096,6 +5491,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the auto-delete flag for a disk attached to an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setDiskAutoDelete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setDiskAutoDeletePollingUntilDone(request:options:)``
     public func setDiskAutoDeletePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4113,6 +5520,14 @@
       return try await self.setDiskAutoDeletePollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "instances_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: InstancesClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -4125,6 +5540,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "instances_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       zone: Swift.String,
@@ -4140,6 +5563,14 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Sets labels on an instance.  To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// @Snippet(path: "instances_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setLabels(request:options:)``
     public func setLabels(request: InstancesClient.SetLabelsRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4152,6 +5583,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets labels on an instance.  To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       request: InstancesClient.SetLabelsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4164,6 +5608,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets labels on an instance.  To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4179,6 +5636,14 @@
       return try await self.setLabelsPollingUntilDone(request: request)
     }
 
+    /// Changes the number and/or type of accelerator for a stopped instance to the
+    /// values specified in the request.
+    ///
+    /// @Snippet(path: "instances_setMachineResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setMachineResources(request:options:)``
     public func setMachineResources(request: InstancesClient.SetMachineResourcesRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -4191,6 +5656,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes the number and/or type of accelerator for a stopped instance to the
+    /// values specified in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setMachineResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setMachineResourcesPollingUntilDone(request:options:)``
     public func setMachineResourcesPollingUntilDone(
       request: InstancesClient.SetMachineResourcesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4203,6 +5681,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes the number and/or type of accelerator for a stopped instance to the
+    /// values specified in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setMachineResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setMachineResourcesPollingUntilDone(request:options:)``
     public func setMachineResourcesPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4218,6 +5709,14 @@
       return try await self.setMachineResourcesPollingUntilDone(request: request)
     }
 
+    /// Changes the machine type for a stopped instance to the machine
+    /// type specified in the request.
+    ///
+    /// @Snippet(path: "instances_setMachineType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setMachineType(request:options:)``
     public func setMachineType(request: InstancesClient.SetMachineTypeRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4230,6 +5729,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes the machine type for a stopped instance to the machine
+    /// type specified in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setMachineType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setMachineTypePollingUntilDone(request:options:)``
     public func setMachineTypePollingUntilDone(
       request: InstancesClient.SetMachineTypeRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4242,6 +5754,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes the machine type for a stopped instance to the machine
+    /// type specified in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setMachineType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setMachineTypePollingUntilDone(request:options:)``
     public func setMachineTypePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4257,6 +5782,14 @@
       return try await self.setMachineTypePollingUntilDone(request: request)
     }
 
+    /// Sets metadata for the specified instance to the data included
+    /// in the request.
+    ///
+    /// @Snippet(path: "instances_setMetadata")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setMetadata(request:options:)``
     public func setMetadata(request: InstancesClient.SetMetadataRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4269,6 +5802,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets metadata for the specified instance to the data included
+    /// in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setMetadata")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setMetadataPollingUntilDone(request:options:)``
     public func setMetadataPollingUntilDone(
       request: InstancesClient.SetMetadataRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4281,6 +5827,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets metadata for the specified instance to the data included
+    /// in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setMetadata")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setMetadataPollingUntilDone(request:options:)``
     public func setMetadataPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4296,6 +5855,16 @@
       return try await self.setMetadataPollingUntilDone(request: request)
     }
 
+    /// Changes the minimum CPU platform that this instance should use.
+    /// This method can only
+    /// be called on a stopped instance. For more information, readSpecifying a
+    /// Minimum CPU Platform.
+    ///
+    /// @Snippet(path: "instances_setMinCpuPlatform")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setMinCpuPlatform(request:options:)``
     public func setMinCpuPlatform(request: InstancesClient.SetMinCpuPlatformRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4308,6 +5877,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes the minimum CPU platform that this instance should use.
+    /// This method can only
+    /// be called on a stopped instance. For more information, readSpecifying a
+    /// Minimum CPU Platform.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setMinCpuPlatform")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setMinCpuPlatformPollingUntilDone(request:options:)``
     public func setMinCpuPlatformPollingUntilDone(
       request: InstancesClient.SetMinCpuPlatformRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4320,6 +5904,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes the minimum CPU platform that this instance should use.
+    /// This method can only
+    /// be called on a stopped instance. For more information, readSpecifying a
+    /// Minimum CPU Platform.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setMinCpuPlatform")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setMinCpuPlatformPollingUntilDone(request:options:)``
     public func setMinCpuPlatformPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4335,6 +5934,13 @@
       return try await self.setMinCpuPlatformPollingUntilDone(request: request)
     }
 
+    /// Sets name of an instance.
+    ///
+    /// @Snippet(path: "instances_setName")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setName(request:options:)``
     public func setName(request: InstancesClient.SetNameRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4347,6 +5953,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets name of an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setName")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setNamePollingUntilDone(request:options:)``
     public func setNamePollingUntilDone(
       request: InstancesClient.SetNameRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4359,6 +5977,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets name of an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setName")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setNamePollingUntilDone(request:options:)``
     public func setNamePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4374,6 +6004,17 @@
       return try await self.setNamePollingUntilDone(request: request)
     }
 
+    /// Sets an instance's scheduling options. You can only call this method on astopped instance,
+    /// that is, a VM instance that is in a `TERMINATED` state. SeeInstance Life
+    /// Cycle for more information on the possible instance states.
+    /// For more information about setting scheduling options for a VM, seeSet
+    /// VM host maintenance policy.
+    ///
+    /// @Snippet(path: "instances_setScheduling")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setScheduling(request:options:)``
     public func setScheduling(request: InstancesClient.SetSchedulingRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4386,6 +6027,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets an instance's scheduling options. You can only call this method on astopped instance,
+    /// that is, a VM instance that is in a `TERMINATED` state. SeeInstance Life
+    /// Cycle for more information on the possible instance states.
+    /// For more information about setting scheduling options for a VM, seeSet
+    /// VM host maintenance policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setScheduling")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setSchedulingPollingUntilDone(request:options:)``
     public func setSchedulingPollingUntilDone(
       request: InstancesClient.SetSchedulingRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4398,6 +6055,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets an instance's scheduling options. You can only call this method on astopped instance,
+    /// that is, a VM instance that is in a `TERMINATED` state. SeeInstance Life
+    /// Cycle for more information on the possible instance states.
+    /// For more information about setting scheduling options for a VM, seeSet
+    /// VM host maintenance policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setScheduling")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setSchedulingPollingUntilDone(request:options:)``
     public func setSchedulingPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4413,6 +6086,15 @@
       return try await self.setSchedulingPollingUntilDone(request: request)
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified instance.
+    /// For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// @Snippet(path: "instances_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setSecurityPolicy(request:options:)``
     public func setSecurityPolicy(request: InstancesClient.SetSecurityPolicyRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4425,6 +6107,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified instance.
+    /// For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setSecurityPolicyPollingUntilDone(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       request: InstancesClient.SetSecurityPolicyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4437,6 +6133,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified instance.
+    /// For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setSecurityPolicyPollingUntilDone(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4452,6 +6162,15 @@
       return try await self.setSecurityPolicyPollingUntilDone(request: request)
     }
 
+    /// Sets the service account on the instance. For more information,
+    /// readChanging
+    /// the service account and access scopes for an instance.
+    ///
+    /// @Snippet(path: "instances_setServiceAccount")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setServiceAccount(request:options:)``
     public func setServiceAccount(request: InstancesClient.SetServiceAccountRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4464,6 +6183,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the service account on the instance. For more information,
+    /// readChanging
+    /// the service account and access scopes for an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setServiceAccount")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setServiceAccountPollingUntilDone(request:options:)``
     public func setServiceAccountPollingUntilDone(
       request: InstancesClient.SetServiceAccountRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4476,6 +6209,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the service account on the instance. For more information,
+    /// readChanging
+    /// the service account and access scopes for an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setServiceAccount")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setServiceAccountPollingUntilDone(request:options:)``
     public func setServiceAccountPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4491,6 +6238,16 @@
       return try await self.setServiceAccountPollingUntilDone(request: request)
     }
 
+    /// Sets the Shielded Instance integrity policy for an instance. You can
+    /// only use this method on a running instance. This method
+    /// supports PATCH semantics and uses the JSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "instances_setShieldedInstanceIntegrityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setShieldedInstanceIntegrityPolicy(request:options:)``
     public func setShieldedInstanceIntegrityPolicy(
       request: InstancesClient.SetShieldedInstanceIntegrityPolicyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4504,6 +6261,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the Shielded Instance integrity policy for an instance. You can
+    /// only use this method on a running instance. This method
+    /// supports PATCH semantics and uses the JSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setShieldedInstanceIntegrityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setShieldedInstanceIntegrityPolicyPollingUntilDone(request:options:)``
     public func setShieldedInstanceIntegrityPolicyPollingUntilDone(
       request: InstancesClient.SetShieldedInstanceIntegrityPolicyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4518,6 +6290,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the Shielded Instance integrity policy for an instance. You can
+    /// only use this method on a running instance. This method
+    /// supports PATCH semantics and uses the JSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setShieldedInstanceIntegrityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setShieldedInstanceIntegrityPolicyPollingUntilDone(request:options:)``
     public func setShieldedInstanceIntegrityPolicyPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4533,6 +6320,14 @@
       return try await self.setShieldedInstanceIntegrityPolicyPollingUntilDone(request: request)
     }
 
+    /// Sets network tags
+    /// for the specified instance to the data included in the request.
+    ///
+    /// @Snippet(path: "instances_setTags")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setTags(request:options:)``
     public func setTags(request: InstancesClient.SetTagsRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4545,6 +6340,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets network tags
+    /// for the specified instance to the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setTags")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setTagsPollingUntilDone(request:options:)``
     public func setTagsPollingUntilDone(
       request: InstancesClient.SetTagsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4557,6 +6365,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets network tags
+    /// for the specified instance to the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_setTags")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/setTagsPollingUntilDone(request:options:)``
     public func setTagsPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4572,6 +6393,14 @@
       return try await self.setTagsPollingUntilDone(request: request)
     }
 
+    /// Simulates a host maintenance event on a VM. For more information, see
+    /// Simulate a host maintenance event.
+    ///
+    /// @Snippet(path: "instances_simulateMaintenanceEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/simulateMaintenanceEvent(request:options:)``
     public func simulateMaintenanceEvent(request: InstancesClient.SimulateMaintenanceEventRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -4584,6 +6413,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Simulates a host maintenance event on a VM. For more information, see
+    /// Simulate a host maintenance event.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_simulateMaintenanceEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/simulateMaintenanceEventPollingUntilDone(request:options:)``
     public func simulateMaintenanceEventPollingUntilDone(
       request: InstancesClient.SimulateMaintenanceEventRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4597,6 +6439,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Simulates a host maintenance event on a VM. For more information, see
+    /// Simulate a host maintenance event.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_simulateMaintenanceEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/simulateMaintenanceEventPollingUntilDone(request:options:)``
     public func simulateMaintenanceEventPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4610,6 +6465,15 @@
       return try await self.simulateMaintenanceEventPollingUntilDone(request: request)
     }
 
+    /// Starts an instance that was stopped using theinstances().stop
+    /// method. For more information, seeRestart an
+    /// instance.
+    ///
+    /// @Snippet(path: "instances_start")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/start(request:options:)``
     public func start(request: InstancesClient.StartRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4622,6 +6486,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Starts an instance that was stopped using theinstances().stop
+    /// method. For more information, seeRestart an
+    /// instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_start")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/startPollingUntilDone(request:options:)``
     public func startPollingUntilDone(
       request: InstancesClient.StartRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4634,6 +6512,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Starts an instance that was stopped using theinstances().stop
+    /// method. For more information, seeRestart an
+    /// instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_start")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/startPollingUntilDone(request:options:)``
     public func startPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4647,6 +6539,15 @@
       return try await self.startPollingUntilDone(request: request)
     }
 
+    /// Starts an instance that was stopped using theinstances().stop
+    /// method. For more information, seeRestart an
+    /// instance.
+    ///
+    /// @Snippet(path: "instances_startWithEncryptionKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/startWithEncryptionKey(request:options:)``
     public func startWithEncryptionKey(request: InstancesClient.StartWithEncryptionKeyRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -4659,6 +6560,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Starts an instance that was stopped using theinstances().stop
+    /// method. For more information, seeRestart an
+    /// instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_startWithEncryptionKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/startWithEncryptionKeyPollingUntilDone(request:options:)``
     public func startWithEncryptionKeyPollingUntilDone(
       request: InstancesClient.StartWithEncryptionKeyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4672,6 +6587,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Starts an instance that was stopped using theinstances().stop
+    /// method. For more information, seeRestart an
+    /// instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_startWithEncryptionKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/startWithEncryptionKeyPollingUntilDone(request:options:)``
     public func startWithEncryptionKeyPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4687,6 +6616,18 @@
       return try await self.startWithEncryptionKeyPollingUntilDone(request: request)
     }
 
+    /// Stops a running instance, shutting it down cleanly, and allows
+    /// you to restart the instance at a later time. Stopped instances do not incur
+    /// VM usage charges while they are stopped. However, resources that the VM is
+    /// using, such as persistent disks and static IP addresses, will continue to
+    /// be charged until they are deleted. For more information, seeStopping
+    /// an instance.
+    ///
+    /// @Snippet(path: "instances_stop")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/stop(request:options:)``
     public func stop(request: InstancesClient.StopRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4699,6 +6640,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Stops a running instance, shutting it down cleanly, and allows
+    /// you to restart the instance at a later time. Stopped instances do not incur
+    /// VM usage charges while they are stopped. However, resources that the VM is
+    /// using, such as persistent disks and static IP addresses, will continue to
+    /// be charged until they are deleted. For more information, seeStopping
+    /// an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_stop")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/stopPollingUntilDone(request:options:)``
     public func stopPollingUntilDone(
       request: InstancesClient.StopRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4711,6 +6669,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Stops a running instance, shutting it down cleanly, and allows
+    /// you to restart the instance at a later time. Stopped instances do not incur
+    /// VM usage charges while they are stopped. However, resources that the VM is
+    /// using, such as persistent disks and static IP addresses, will continue to
+    /// be charged until they are deleted. For more information, seeStopping
+    /// an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_stop")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/stopPollingUntilDone(request:options:)``
     public func stopPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4724,6 +6699,20 @@
       return try await self.stopPollingUntilDone(request: request)
     }
 
+    /// This method suspends a running instance, saving its state to persistent
+    /// storage, and allows you to resume the instance at a later time. Suspended
+    /// instances have no compute costs (cores or RAM), and incur only storage
+    /// charges for the saved VM memory and localSSD data. Any charged resources
+    /// the virtual machine was using, such as persistent disks and static IP
+    /// addresses, will continue to be charged while the instance is suspended.
+    /// For more information, see
+    /// Suspending and resuming an instance.
+    ///
+    /// @Snippet(path: "instances_suspend")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/suspend(request:options:)``
     public func suspend(request: InstancesClient.SuspendRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4736,6 +6725,25 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// This method suspends a running instance, saving its state to persistent
+    /// storage, and allows you to resume the instance at a later time. Suspended
+    /// instances have no compute costs (cores or RAM), and incur only storage
+    /// charges for the saved VM memory and localSSD data. Any charged resources
+    /// the virtual machine was using, such as persistent disks and static IP
+    /// addresses, will continue to be charged while the instance is suspended.
+    /// For more information, see
+    /// Suspending and resuming an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_suspend")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/suspendPollingUntilDone(request:options:)``
     public func suspendPollingUntilDone(
       request: InstancesClient.SuspendRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4748,6 +6756,25 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// This method suspends a running instance, saving its state to persistent
+    /// storage, and allows you to resume the instance at a later time. Suspended
+    /// instances have no compute costs (cores or RAM), and incur only storage
+    /// charges for the saved VM memory and localSSD data. Any charged resources
+    /// the virtual machine was using, such as persistent disks and static IP
+    /// addresses, will continue to be charged while the instance is suspended.
+    /// For more information, see
+    /// Suspending and resuming an instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_suspend")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/suspendPollingUntilDone(request:options:)``
     public func suspendPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4761,6 +6788,13 @@
       return try await self.suspendPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "instances_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: InstancesClient.TestIamPermissionsRequest) async throws
       -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -4773,6 +6807,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "instances_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       zone: Swift.String,
@@ -4788,6 +6829,16 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Updates an instance only if the necessary resources are available. This
+    /// method can update only a specific set of instance properties. See
+    /// Updating a running instance for a list of updatable instance
+    /// properties.
+    ///
+    /// @Snippet(path: "instances_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/update(request:options:)``
     public func update(request: InstancesClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4800,6 +6851,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an instance only if the necessary resources are available. This
+    /// method can update only a specific set of instance properties. See
+    /// Updating a running instance for a list of updatable instance
+    /// properties.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: InstancesClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4812,6 +6878,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an instance only if the necessary resources are available. This
+    /// method can update only a specific set of instance properties. See
+    /// Updating a running instance for a list of updatable instance
+    /// properties.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4827,6 +6908,16 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Updates the specified access config from an instance's network interface
+    /// with the data included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "instances_updateAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updateAccessConfig(request:options:)``
     public func updateAccessConfig(request: InstancesClient.UpdateAccessConfigRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -4839,6 +6930,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified access config from an instance's network interface
+    /// with the data included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_updateAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updateAccessConfigPollingUntilDone(request:options:)``
     public func updateAccessConfigPollingUntilDone(
       request: InstancesClient.UpdateAccessConfigRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4851,6 +6957,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified access config from an instance's network interface
+    /// with the data included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_updateAccessConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updateAccessConfigPollingUntilDone(request:options:)``
     public func updateAccessConfigPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4868,6 +6989,16 @@
       return try await self.updateAccessConfigPollingUntilDone(request: request)
     }
 
+    /// Updates the Display config for a VM instance. You can
+    /// only use this method on a stopped VM instance. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "instances_updateDisplayDevice")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updateDisplayDevice(request:options:)``
     public func updateDisplayDevice(request: InstancesClient.UpdateDisplayDeviceRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -4880,6 +7011,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the Display config for a VM instance. You can
+    /// only use this method on a stopped VM instance. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_updateDisplayDevice")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updateDisplayDevicePollingUntilDone(request:options:)``
     public func updateDisplayDevicePollingUntilDone(
       request: InstancesClient.UpdateDisplayDeviceRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4892,6 +7038,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the Display config for a VM instance. You can
+    /// only use this method on a stopped VM instance. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_updateDisplayDevice")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updateDisplayDevicePollingUntilDone(request:options:)``
     public func updateDisplayDevicePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4907,6 +7068,18 @@
       return try await self.updateDisplayDevicePollingUntilDone(request: request)
     }
 
+    /// Updates an instance's network interface. This method can only update an
+    /// interface's alias IP range and attached network. See Modifying
+    /// alias IP ranges for an existing instance for instructions on
+    /// changing alias IP ranges. See Migrating
+    /// a VM between networks for instructions on migrating an interface.
+    /// This method follows PATCH semantics.
+    ///
+    /// @Snippet(path: "instances_updateNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updateNetworkInterface(request:options:)``
     public func updateNetworkInterface(request: InstancesClient.UpdateNetworkInterfaceRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -4919,6 +7092,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an instance's network interface. This method can only update an
+    /// interface's alias IP range and attached network. See Modifying
+    /// alias IP ranges for an existing instance for instructions on
+    /// changing alias IP ranges. See Migrating
+    /// a VM between networks for instructions on migrating an interface.
+    /// This method follows PATCH semantics.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_updateNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updateNetworkInterfacePollingUntilDone(request:options:)``
     public func updateNetworkInterfacePollingUntilDone(
       request: InstancesClient.UpdateNetworkInterfaceRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4932,6 +7122,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an instance's network interface. This method can only update an
+    /// interface's alias IP range and attached network. See Modifying
+    /// alias IP ranges for an existing instance for instructions on
+    /// changing alias IP ranges. See Migrating
+    /// a VM between networks for instructions on migrating an interface.
+    /// This method follows PATCH semantics.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_updateNetworkInterface")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updateNetworkInterfacePollingUntilDone(request:options:)``
     public func updateNetworkInterfacePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4949,6 +7156,16 @@
       return try await self.updateNetworkInterfacePollingUntilDone(request: request)
     }
 
+    /// Updates the Shielded Instance config for an instance. You can
+    /// only use this method on a stopped instance. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "instances_updateShieldedInstanceConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updateShieldedInstanceConfig(request:options:)``
     public func updateShieldedInstanceConfig(
       request: InstancesClient.UpdateShieldedInstanceConfigRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4962,6 +7179,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the Shielded Instance config for an instance. You can
+    /// only use this method on a stopped instance. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_updateShieldedInstanceConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updateShieldedInstanceConfigPollingUntilDone(request:options:)``
     public func updateShieldedInstanceConfigPollingUntilDone(
       request: InstancesClient.UpdateShieldedInstanceConfigRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -4976,6 +7208,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the Shielded Instance config for an instance. You can
+    /// only use this method on a stopped instance. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instances_updateShieldedInstanceConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstancesClient/updateShieldedInstanceConfigPollingUntilDone(request:options:)``
     public func updateShieldedInstanceConfigPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -4991,6 +7238,7 @@
       return try await self.updateShieldedInstanceConfigPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified zone-specific Operations resource.
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

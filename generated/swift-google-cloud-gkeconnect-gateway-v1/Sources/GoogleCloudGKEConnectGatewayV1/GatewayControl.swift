@@ -23,6 +23,10 @@ import Foundation
 /// GatewayControl is the control plane API for Connect Gateway.
 ///
 /// @Snippet(path: "GatewayControlQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/GatewayControlProtocol``
 public final class GatewayControlClient: Clients.GatewayControlProtocol, Sendable {
   let inner: any Clients.GatewayControlStub
 
@@ -40,6 +44,10 @@ public final class GatewayControlClient: Clients.GatewayControlProtocol, Sendabl
   /// access the specified membership using Connect Gateway.
   ///
   /// @Snippet(path: "GatewayControl_GenerateCredentials")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateCredentials(request:)``
   public func generateCredentials(
     request: GenerateCredentialsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse {
@@ -63,6 +71,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.GatewayControlProtocol {
+  /// GenerateCredentials provides connection information that allows a user to
+  /// access the specified membership using Connect Gateway.
+  ///
+  /// @Snippet(path: "GatewayControl_GenerateCredentials")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GatewayControlClient/generateCredentials(request:options:)``
   public func generateCredentials(request: GenerateCredentialsRequest) async throws
     -> GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse
   {

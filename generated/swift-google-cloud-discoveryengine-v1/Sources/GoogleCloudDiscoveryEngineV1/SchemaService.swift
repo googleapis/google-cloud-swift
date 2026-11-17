@@ -27,6 +27,10 @@
   /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
   ///
   /// @Snippet(path: "SchemaServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SchemaServiceProtocol``
   public final class SchemaServiceClient: Clients.SchemaServiceProtocol, Sendable {
     let inner: any Clients.SchemaServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -49,6 +53,11 @@
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     ///
     /// @Snippet(path: "SchemaService_GetSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getSchema(request:)``
+    /// - ``getSchema(name:)``
     public func getSchema(
       request: GetSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Schema {
@@ -60,6 +69,13 @@
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     ///
     /// @Snippet(path: "SchemaService_ListSchemas")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listSchemas(request:)``
+    /// - ``listSchemasByItems(request:)``
+    /// - ``listSchemasByItems(request:options:)``
+    /// - ``listSchemasByItems(parent:)``
     public func listSchemas(
       request: ListSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListSchemasResponse {
@@ -71,6 +87,13 @@
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     ///
     /// @Snippet(path: "SchemaService_CreateSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createSchema(request:)``
+    /// - ``createSchemaPollingUntilDone(request:)``
+    /// - ``createSchemaPollingUntilDone(request:options:)``
+    /// - ``createSchemaPollingUntilDone(parent:schema:schemaId:)``
     public func createSchema(
       request: CreateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -82,6 +105,13 @@
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     ///
     /// @Snippet(path: "SchemaService_CreateSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createSchemaPollingUntilDone(request:)``
+    /// - ``createSchemaPollingUntilDone(parent:schema:schemaId:)``
+    /// - ``createSchema(request:)``
+    /// - ``createSchema(request:options:)``
     public func createSchemaPollingUntilDone(
       request: CreateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> Schema {
@@ -111,6 +141,12 @@
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     ///
     /// @Snippet(path: "SchemaService_UpdateSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateSchema(request:)``
+    /// - ``updateSchemaPollingUntilDone(request:)``
+    /// - ``updateSchemaPollingUntilDone(request:options:)``
     public func updateSchema(
       request: UpdateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -122,6 +158,12 @@
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     ///
     /// @Snippet(path: "SchemaService_UpdateSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateSchemaPollingUntilDone(request:)``
+    /// - ``updateSchema(request:)``
+    /// - ``updateSchema(request:options:)``
     public func updateSchemaPollingUntilDone(
       request: UpdateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> Schema {
@@ -151,6 +193,13 @@
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     ///
     /// @Snippet(path: "SchemaService_DeleteSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteSchema(request:)``
+    /// - ``deleteSchemaPollingUntilDone(request:)``
+    /// - ``deleteSchemaPollingUntilDone(request:options:)``
+    /// - ``deleteSchemaPollingUntilDone(name:)``
     public func deleteSchema(
       request: DeleteSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -162,6 +211,13 @@
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     ///
     /// @Snippet(path: "SchemaService_DeleteSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteSchemaPollingUntilDone(request:)``
+    /// - ``deleteSchemaPollingUntilDone(name:)``
+    /// - ``deleteSchema(request:)``
+    /// - ``deleteSchema(request:options:)``
     public func deleteSchemaPollingUntilDone(
       request: DeleteSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -192,6 +248,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SchemaService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -214,6 +277,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SchemaService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -282,6 +350,15 @@
 
   // Default implementations
   extension Clients.SchemaServiceProtocol {
+    /// Gets a [Schema][google.cloud.discoveryengine.v1.Schema].
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_GetSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/getSchema(request:options:)``
     public func getSchema(request: GetSchemaRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Schema
     {
@@ -294,6 +371,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a [Schema][google.cloud.discoveryengine.v1.Schema].
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_GetSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/getSchema(request:options:)``
     public func getSchema(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Schema {
@@ -303,6 +389,15 @@
       return try await self.getSchema(request: request)
     }
 
+    /// Gets a list of [Schema][google.cloud.discoveryengine.v1.Schema]s.
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_ListSchemas")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/listSchemas(request:options:)``
     public func listSchemas(request: ListSchemasRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListSchemasResponse
     {
@@ -315,6 +410,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a list of [Schema][google.cloud.discoveryengine.v1.Schema]s.
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_ListSchemas")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/listSchemas(request:options:)``
     public func listSchemasByItems(
       request: ListSchemasRequest
     ) -> some AsyncSequence<Schema, any Swift.Error> & Sendable {
@@ -326,6 +430,10 @@
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     ///
     /// @Snippet(path: "SchemaService_ListSchemas")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/listSchemas(request:options:)``
     public func listSchemasByItems(
       request: ListSchemasRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Schema, any Swift.Error> & Sendable {
@@ -340,6 +448,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets a list of [Schema][google.cloud.discoveryengine.v1.Schema]s.
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_ListSchemas")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/listSchemas(request:options:)``
     public func listSchemasByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Schema, any Swift.Error> & Sendable {
@@ -349,6 +466,15 @@
       return self.listSchemasByItems(request: request)
     }
 
+    /// Creates a [Schema][google.cloud.discoveryengine.v1.Schema].
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_CreateSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/createSchema(request:options:)``
     public func createSchema(request: CreateSchemaRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -361,6 +487,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [Schema][google.cloud.discoveryengine.v1.Schema].
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_CreateSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/createSchemaPollingUntilDone(request:options:)``
     public func createSchemaPollingUntilDone(request: CreateSchemaRequest) async throws -> Schema {
       return try await self.createSchemaPollingUntilDone(request: request, options: .init())
     }
@@ -371,6 +506,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [Schema][google.cloud.discoveryengine.v1.Schema].
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_CreateSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/createSchemaPollingUntilDone(request:options:)``
     public func createSchemaPollingUntilDone(
       parent: Swift.String,
       schema: Schema?,
@@ -384,6 +528,15 @@
       return try await self.createSchemaPollingUntilDone(request: request)
     }
 
+    /// Updates a [Schema][google.cloud.discoveryengine.v1.Schema].
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_UpdateSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/updateSchema(request:options:)``
     public func updateSchema(request: UpdateSchemaRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -396,6 +549,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a [Schema][google.cloud.discoveryengine.v1.Schema].
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_UpdateSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/updateSchemaPollingUntilDone(request:options:)``
     public func updateSchemaPollingUntilDone(request: UpdateSchemaRequest) async throws -> Schema {
       return try await self.updateSchemaPollingUntilDone(request: request, options: .init())
     }
@@ -406,6 +568,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a [Schema][google.cloud.discoveryengine.v1.Schema].
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_DeleteSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/deleteSchema(request:options:)``
     public func deleteSchema(request: DeleteSchemaRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -418,6 +589,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a [Schema][google.cloud.discoveryengine.v1.Schema].
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_DeleteSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/deleteSchemaPollingUntilDone(request:options:)``
     public func deleteSchemaPollingUntilDone(request: DeleteSchemaRequest) async throws {
       try await self.deleteSchemaPollingUntilDone(request: request, options: .init())
     }
@@ -428,6 +608,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a [Schema][google.cloud.discoveryengine.v1.Schema].
+    ///
+    /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
+    ///
+    /// @Snippet(path: "SchemaService_DeleteSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/deleteSchemaPollingUntilDone(request:options:)``
     public func deleteSchemaPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -437,6 +626,15 @@
       try await self.deleteSchemaPollingUntilDone(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SchemaService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -449,6 +647,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SchemaService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -460,6 +667,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SchemaService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -473,6 +684,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SchemaService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -484,6 +704,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -496,6 +719,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -505,6 +731,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SchemaService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -515,6 +750,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SchemaService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SchemaServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

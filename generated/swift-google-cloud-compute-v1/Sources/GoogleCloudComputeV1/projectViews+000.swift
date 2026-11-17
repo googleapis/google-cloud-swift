@@ -24,6 +24,10 @@
   /// Service for the `projectViews` resource.
   ///
   /// @Snippet(path: "projectViewsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ProjectViewsProtocol``
   public final class ProjectViewsClient: Clients.ProjectViewsProtocol, Sendable {
     let inner: any Clients.ProjectViewsStub
 
@@ -47,6 +51,11 @@
     /// endpoint.
     ///
     /// @Snippet(path: "projectViews_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:)``
     public func `get`(
       request: ProjectViewsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ProjectView {
@@ -70,6 +79,20 @@
 
   // Default implementations
   extension Clients.ProjectViewsProtocol {
+    /// Returns the specified global ProjectViews resource, with a regional
+    /// context.
+    /// This regional API endpoint reads resource metadata from regional
+    /// read-only replicas. Because changes are copied to these regional replicas
+    /// asynchronously, for real-time resource reads or any write operations
+    /// (creating, updating, or deleting resources), use the global
+    /// [projects.get](https://cloud.google.com/compute/docs/reference/rest/v1/projects/get)
+    /// endpoint.
+    ///
+    /// @Snippet(path: "projectViews_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ProjectViewsClient/get(request:options:)``
     public func `get`(request: ProjectViewsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.ProjectView
     {
@@ -82,6 +105,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified global ProjectViews resource, with a regional
+    /// context.
+    /// This regional API endpoint reads resource metadata from regional
+    /// read-only replicas. Because changes are copied to these regional replicas
+    /// asynchronously, for real-time resource reads or any write operations
+    /// (creating, updating, or deleting resources), use the global
+    /// [projects.get](https://cloud.google.com/compute/docs/reference/rest/v1/projects/get)
+    /// endpoint.
+    ///
+    /// @Snippet(path: "projectViews_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ProjectViewsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,

@@ -25,6 +25,10 @@ import Foundation
 /// administer any SSL certificates applicable to their authorized domains.
 ///
 /// @Snippet(path: "AuthorizedCertificatesQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AuthorizedCertificatesProtocol``
 public final class AuthorizedCertificatesClient: Clients.AuthorizedCertificatesProtocol, Sendable {
   let inner: any Clients.AuthorizedCertificatesStub
 
@@ -42,6 +46,12 @@ public final class AuthorizedCertificatesClient: Clients.AuthorizedCertificatesP
   /// Lists all SSL certificates the user is authorized to administer.
   ///
   /// @Snippet(path: "AuthorizedCertificates_ListAuthorizedCertificates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAuthorizedCertificates(request:)``
+  /// - ``listAuthorizedCertificatesByItems(request:)``
+  /// - ``listAuthorizedCertificatesByItems(request:options:)``
   public func listAuthorizedCertificates(
     request: ListAuthorizedCertificatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.ListAuthorizedCertificatesResponse {
@@ -51,6 +61,10 @@ public final class AuthorizedCertificatesClient: Clients.AuthorizedCertificatesP
   /// Gets the specified SSL certificate.
   ///
   /// @Snippet(path: "AuthorizedCertificates_GetAuthorizedCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAuthorizedCertificate(request:)``
   public func getAuthorizedCertificate(
     request: GetAuthorizedCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.AuthorizedCertificate {
@@ -60,6 +74,10 @@ public final class AuthorizedCertificatesClient: Clients.AuthorizedCertificatesP
   /// Uploads the specified SSL certificate.
   ///
   /// @Snippet(path: "AuthorizedCertificates_CreateAuthorizedCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAuthorizedCertificate(request:)``
   public func createAuthorizedCertificate(
     request: CreateAuthorizedCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.AuthorizedCertificate {
@@ -73,6 +91,10 @@ public final class AuthorizedCertificatesClient: Clients.AuthorizedCertificatesP
   /// updated.
   ///
   /// @Snippet(path: "AuthorizedCertificates_UpdateAuthorizedCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAuthorizedCertificate(request:)``
   public func updateAuthorizedCertificate(
     request: UpdateAuthorizedCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.AuthorizedCertificate {
@@ -82,6 +104,10 @@ public final class AuthorizedCertificatesClient: Clients.AuthorizedCertificatesP
   /// Deletes the specified SSL certificate.
   ///
   /// @Snippet(path: "AuthorizedCertificates_DeleteAuthorizedCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAuthorizedCertificate(request:)``
   public func deleteAuthorizedCertificate(
     request: DeleteAuthorizedCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -93,6 +119,13 @@ public final class AuthorizedCertificatesClient: Clients.AuthorizedCertificatesP
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AuthorizedCertificates_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -152,6 +185,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.AuthorizedCertificatesProtocol {
+  /// Lists all SSL certificates the user is authorized to administer.
+  ///
+  /// @Snippet(path: "AuthorizedCertificates_ListAuthorizedCertificates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedCertificatesClient/listAuthorizedCertificates(request:options:)``
   public func listAuthorizedCertificates(request: ListAuthorizedCertificatesRequest) async throws
     -> GoogleAppEngineV1.ListAuthorizedCertificatesResponse
   {
@@ -164,6 +204,13 @@ extension Clients.AuthorizedCertificatesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all SSL certificates the user is authorized to administer.
+  ///
+  /// @Snippet(path: "AuthorizedCertificates_ListAuthorizedCertificates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedCertificatesClient/listAuthorizedCertificates(request:options:)``
   public func listAuthorizedCertificatesByItems(
     request: ListAuthorizedCertificatesRequest
   ) -> some AsyncSequence<AuthorizedCertificate, any Swift.Error> & Sendable {
@@ -173,6 +220,10 @@ extension Clients.AuthorizedCertificatesProtocol {
   /// Lists all SSL certificates the user is authorized to administer.
   ///
   /// @Snippet(path: "AuthorizedCertificates_ListAuthorizedCertificates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedCertificatesClient/listAuthorizedCertificates(request:options:)``
   public func listAuthorizedCertificatesByItems(
     request: ListAuthorizedCertificatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AuthorizedCertificate, any Swift.Error> & Sendable {
@@ -187,6 +238,13 @@ extension Clients.AuthorizedCertificatesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets the specified SSL certificate.
+  ///
+  /// @Snippet(path: "AuthorizedCertificates_GetAuthorizedCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedCertificatesClient/getAuthorizedCertificate(request:options:)``
   public func getAuthorizedCertificate(request: GetAuthorizedCertificateRequest) async throws
     -> GoogleAppEngineV1.AuthorizedCertificate
   {
@@ -199,6 +257,13 @@ extension Clients.AuthorizedCertificatesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Uploads the specified SSL certificate.
+  ///
+  /// @Snippet(path: "AuthorizedCertificates_CreateAuthorizedCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedCertificatesClient/createAuthorizedCertificate(request:options:)``
   public func createAuthorizedCertificate(request: CreateAuthorizedCertificateRequest) async throws
     -> GoogleAppEngineV1.AuthorizedCertificate
   {
@@ -211,6 +276,17 @@ extension Clients.AuthorizedCertificatesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified SSL certificate. To renew a certificate and maintain
+  /// its existing domain mappings, update `certificate_data` with a new
+  /// certificate. The new certificate must be applicable to the same domains as
+  /// the original certificate. The certificate `display_name` may also be
+  /// updated.
+  ///
+  /// @Snippet(path: "AuthorizedCertificates_UpdateAuthorizedCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedCertificatesClient/updateAuthorizedCertificate(request:options:)``
   public func updateAuthorizedCertificate(request: UpdateAuthorizedCertificateRequest) async throws
     -> GoogleAppEngineV1.AuthorizedCertificate
   {
@@ -223,6 +299,13 @@ extension Clients.AuthorizedCertificatesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified SSL certificate.
+  ///
+  /// @Snippet(path: "AuthorizedCertificates_DeleteAuthorizedCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedCertificatesClient/deleteAuthorizedCertificate(request:options:)``
   public func deleteAuthorizedCertificate(request: DeleteAuthorizedCertificateRequest) async throws
   {
     try await self.deleteAuthorizedCertificate(request: request, options: .init())
@@ -234,6 +317,15 @@ extension Clients.AuthorizedCertificatesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuthorizedCertificates_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedCertificatesClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -246,6 +338,15 @@ extension Clients.AuthorizedCertificatesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuthorizedCertificates_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedCertificatesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -257,6 +358,10 @@ extension Clients.AuthorizedCertificatesProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AuthorizedCertificates_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedCertificatesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -270,6 +375,15 @@ extension Clients.AuthorizedCertificatesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuthorizedCertificates_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedCertificatesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -281,6 +395,9 @@ extension Clients.AuthorizedCertificatesProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -293,6 +410,9 @@ extension Clients.AuthorizedCertificatesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

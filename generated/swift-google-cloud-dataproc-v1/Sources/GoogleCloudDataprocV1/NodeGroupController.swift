@@ -26,6 +26,10 @@ import Foundation
 /// of Compute Engine managed instances.
 ///
 /// @Snippet(path: "NodeGroupControllerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/NodeGroupControllerProtocol``
 public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtocol, Sendable {
   let inner: any Clients.NodeGroupControllerStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -51,6 +55,13 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "NodeGroupController_CreateNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createNodeGroup(request:)``
+  /// - ``createNodeGroupPollingUntilDone(request:)``
+  /// - ``createNodeGroupPollingUntilDone(request:options:)``
+  /// - ``createNodeGroupPollingUntilDone(parent:nodeGroup:nodeGroupId:)``
   public func createNodeGroup(
     request: CreateNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -64,6 +75,13 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "NodeGroupController_CreateNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createNodeGroupPollingUntilDone(request:)``
+  /// - ``createNodeGroupPollingUntilDone(parent:nodeGroup:nodeGroupId:)``
+  /// - ``createNodeGroup(request:)``
+  /// - ``createNodeGroup(request:options:)``
   public func createNodeGroupPollingUntilDone(
     request: CreateNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> NodeGroup {
@@ -95,6 +113,13 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "NodeGroupController_ResizeNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resizeNodeGroup(request:)``
+  /// - ``resizeNodeGroupPollingUntilDone(request:)``
+  /// - ``resizeNodeGroupPollingUntilDone(request:options:)``
+  /// - ``resizeNodeGroupPollingUntilDone(name:size:)``
   public func resizeNodeGroup(
     request: ResizeNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -108,6 +133,13 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "NodeGroupController_ResizeNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resizeNodeGroupPollingUntilDone(request:)``
+  /// - ``resizeNodeGroupPollingUntilDone(name:size:)``
+  /// - ``resizeNodeGroup(request:)``
+  /// - ``resizeNodeGroup(request:options:)``
   public func resizeNodeGroupPollingUntilDone(
     request: ResizeNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> NodeGroup {
@@ -136,6 +168,11 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// cluster.
   ///
   /// @Snippet(path: "NodeGroupController_GetNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getNodeGroup(request:)``
+  /// - ``getNodeGroup(name:)``
   public func getNodeGroup(
     request: GetNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.NodeGroup {
@@ -149,6 +186,10 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// errors.
   ///
   /// @Snippet(path: "NodeGroupController_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -159,6 +200,10 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "NodeGroupController_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -174,6 +219,10 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "NodeGroupController_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -185,6 +234,13 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NodeGroupController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -207,6 +263,11 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NodeGroupController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -218,6 +279,11 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NodeGroupController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -291,6 +357,17 @@ extension Clients {
 
 // Default implementations
 extension Clients.NodeGroupControllerProtocol {
+  /// Creates a node group in a cluster. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] is
+  /// [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "NodeGroupController_CreateNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/createNodeGroup(request:options:)``
   public func createNodeGroup(request: CreateNodeGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -303,6 +380,17 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a node group in a cluster. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] is
+  /// [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "NodeGroupController_CreateNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/createNodeGroupPollingUntilDone(request:options:)``
   public func createNodeGroupPollingUntilDone(request: CreateNodeGroupRequest) async throws
     -> NodeGroup
   {
@@ -315,6 +403,17 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a node group in a cluster. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] is
+  /// [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "NodeGroupController_CreateNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/createNodeGroupPollingUntilDone(request:options:)``
   public func createNodeGroupPollingUntilDone(
     parent: Swift.String,
     nodeGroup: NodeGroup?,
@@ -328,6 +427,17 @@ extension Clients.NodeGroupControllerProtocol {
     return try await self.createNodeGroupPollingUntilDone(request: request)
   }
 
+  /// Resizes a node group in a cluster. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] is
+  /// [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "NodeGroupController_ResizeNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/resizeNodeGroup(request:options:)``
   public func resizeNodeGroup(request: ResizeNodeGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -340,6 +450,17 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resizes a node group in a cluster. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] is
+  /// [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "NodeGroupController_ResizeNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/resizeNodeGroupPollingUntilDone(request:options:)``
   public func resizeNodeGroupPollingUntilDone(request: ResizeNodeGroupRequest) async throws
     -> NodeGroup
   {
@@ -352,6 +473,17 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resizes a node group in a cluster. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] is
+  /// [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "NodeGroupController_ResizeNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/resizeNodeGroupPollingUntilDone(request:options:)``
   public func resizeNodeGroupPollingUntilDone(
     name: Swift.String,
     size: Swift.Int32,
@@ -363,6 +495,14 @@ extension Clients.NodeGroupControllerProtocol {
     return try await self.resizeNodeGroupPollingUntilDone(request: request)
   }
 
+  /// Gets the resource representation for a node group in a
+  /// cluster.
+  ///
+  /// @Snippet(path: "NodeGroupController_GetNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/getNodeGroup(request:options:)``
   public func getNodeGroup(request: GetNodeGroupRequest) async throws
     -> GoogleCloudDataprocV1.NodeGroup
   {
@@ -375,6 +515,14 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the resource representation for a node group in a
+  /// cluster.
+  ///
+  /// @Snippet(path: "NodeGroupController_GetNodeGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/getNodeGroup(request:options:)``
   public func getNodeGroup(
     name: Swift.String,
   ) async throws -> GoogleCloudDataprocV1.NodeGroup {
@@ -384,6 +532,17 @@ extension Clients.NodeGroupControllerProtocol {
     return try await self.getNodeGroup(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "NodeGroupController_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -396,6 +555,14 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "NodeGroupController_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -408,6 +575,19 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "NodeGroupController_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -420,6 +600,15 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NodeGroupController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -432,6 +621,15 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NodeGroupController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -443,6 +641,10 @@ extension Clients.NodeGroupControllerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NodeGroupController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -456,6 +658,15 @@ extension Clients.NodeGroupControllerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NodeGroupController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -467,6 +678,9 @@ extension Clients.NodeGroupControllerProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -479,6 +693,9 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -488,6 +705,15 @@ extension Clients.NodeGroupControllerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NodeGroupController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -498,6 +724,15 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NodeGroupController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -507,6 +742,15 @@ extension Clients.NodeGroupControllerProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NodeGroupController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -517,6 +761,15 @@ extension Clients.NodeGroupControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NodeGroupController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NodeGroupControllerClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

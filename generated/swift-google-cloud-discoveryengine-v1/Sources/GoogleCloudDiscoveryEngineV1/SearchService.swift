@@ -25,6 +25,10 @@
   /// Service for search.
   ///
   /// @Snippet(path: "SearchServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SearchServiceProtocol``
   public final class SearchServiceClient: Clients.SearchServiceProtocol, Sendable {
     let inner: any Clients.SearchServiceStub
 
@@ -41,6 +45,12 @@
     /// Performs a search.
     ///
     /// @Snippet(path: "SearchService_Search")
+    ///
+    /// ## See Also
+    ///
+    /// - ``search(request:)``
+    /// - ``searchByItems(request:)``
+    /// - ``searchByItems(request:options:)``
     public func search(
       request: SearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse {
@@ -64,6 +74,12 @@
     /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
     ///
     /// @Snippet(path: "SearchService_SearchLite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``searchLite(request:)``
+    /// - ``searchLiteByItems(request:)``
+    /// - ``searchLiteByItems(request:options:)``
     public func searchLite(
       request: SearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse {
@@ -75,6 +91,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SearchService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -97,6 +120,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SearchService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -135,6 +163,13 @@
 
   // Default implementations
   extension Clients.SearchServiceProtocol {
+    /// Performs a search.
+    ///
+    /// @Snippet(path: "SearchService_Search")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchServiceClient/search(request:options:)``
     public func search(request: SearchRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.SearchResponse
     {
@@ -147,6 +182,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Performs a search.
+    ///
+    /// @Snippet(path: "SearchService_Search")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchServiceClient/search(request:options:)``
     public func searchByItems(
       request: SearchRequest
     ) -> some AsyncSequence<SearchResponse.SearchResult, any Swift.Error> & Sendable {
@@ -156,6 +198,10 @@
     /// Performs a search.
     ///
     /// @Snippet(path: "SearchService_Search")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchServiceClient/search(request:options:)``
     public func searchByItems(
       request: SearchRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<SearchResponse.SearchResult, any Swift.Error> & Sendable {
@@ -170,6 +216,27 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Performs a search. Similar to the
+    /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+    /// method, but a lite version that allows API key for authentication, where
+    /// OAuth and IAM checks are not required.
+    ///
+    /// Only public website search is supported by this method. If data stores and
+    /// engines not associated with public website search are specified, a
+    /// `FAILED_PRECONDITION` error is returned.
+    ///
+    /// This method can be used for easy onboarding without having to implement an
+    /// authentication backend. However, it is strongly recommended to use
+    /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+    /// instead with required OAuth and IAM checks to provide better data security.
+    ///
+    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
+    ///
+    /// @Snippet(path: "SearchService_SearchLite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchServiceClient/searchLite(request:options:)``
     public func searchLite(request: SearchRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.SearchResponse
     {
@@ -182,6 +249,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Performs a search. Similar to the
+    /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+    /// method, but a lite version that allows API key for authentication, where
+    /// OAuth and IAM checks are not required.
+    ///
+    /// Only public website search is supported by this method. If data stores and
+    /// engines not associated with public website search are specified, a
+    /// `FAILED_PRECONDITION` error is returned.
+    ///
+    /// This method can be used for easy onboarding without having to implement an
+    /// authentication backend. However, it is strongly recommended to use
+    /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+    /// instead with required OAuth and IAM checks to provide better data security.
+    ///
+    /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
+    ///
+    /// @Snippet(path: "SearchService_SearchLite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchServiceClient/searchLite(request:options:)``
     public func searchLiteByItems(
       request: SearchRequest
     ) -> some AsyncSequence<SearchResponse.SearchResult, any Swift.Error> & Sendable {
@@ -205,6 +293,10 @@
     /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
     ///
     /// @Snippet(path: "SearchService_SearchLite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchServiceClient/searchLite(request:options:)``
     public func searchLiteByItems(
       request: SearchRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<SearchResponse.SearchResult, any Swift.Error> & Sendable {
@@ -219,6 +311,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SearchService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -231,6 +332,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SearchService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -242,6 +352,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SearchService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -255,6 +369,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SearchService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -266,6 +389,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -278,6 +404,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -287,6 +416,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SearchService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -297,6 +435,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SearchService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

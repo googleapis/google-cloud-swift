@@ -24,6 +24,10 @@
   /// Service for the `imageFamilyViews` resource.
   ///
   /// @Snippet(path: "imageFamilyViewsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ImageFamilyViewsProtocol``
   public final class ImageFamilyViewsClient: Clients.ImageFamilyViewsProtocol, Sendable {
     let inner: any Clients.ImageFamilyViewsStub
 
@@ -41,6 +45,11 @@
     /// deprecated and is rolled out in the specified zone.
     ///
     /// @Snippet(path: "imageFamilyViews_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:zone:family:)``
     public func `get`(
       request: ImageFamilyViewsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ImageFamilyView {
@@ -64,6 +73,14 @@
 
   // Default implementations
   extension Clients.ImageFamilyViewsProtocol {
+    /// Returns the latest image that is part of an image family, is not
+    /// deprecated and is rolled out in the specified zone.
+    ///
+    /// @Snippet(path: "imageFamilyViews_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImageFamilyViewsClient/get(request:options:)``
     public func `get`(request: ImageFamilyViewsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.ImageFamilyView
     {
@@ -76,6 +93,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the latest image that is part of an image family, is not
+    /// deprecated and is rolled out in the specified zone.
+    ///
+    /// @Snippet(path: "imageFamilyViews_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImageFamilyViewsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,

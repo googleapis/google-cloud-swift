@@ -34,6 +34,10 @@ import Foundation
 /// to troubleshoot connectivity issues.
 ///
 /// @Snippet(path: "ReachabilityServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ReachabilityServiceProtocol``
 public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtocol, Sendable {
   let inner: any Clients.ReachabilityServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -55,6 +59,13 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// Lists all Connectivity Tests owned by a project.
   ///
   /// @Snippet(path: "ReachabilityService_ListConnectivityTests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listConnectivityTests(request:)``
+  /// - ``listConnectivityTestsByItems(request:)``
+  /// - ``listConnectivityTestsByItems(request:options:)``
+  /// - ``listConnectivityTestsByItems(parent:)``
   public func listConnectivityTests(
     request: ListConnectivityTestsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkManagementV1.ListConnectivityTestsResponse {
@@ -64,6 +75,11 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// Gets the details of a specific Connectivity Test.
   ///
   /// @Snippet(path: "ReachabilityService_GetConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getConnectivityTest(request:)``
+  /// - ``getConnectivityTest(name:)``
   public func getConnectivityTest(
     request: GetConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkManagementV1.ConnectivityTest {
@@ -85,6 +101,13 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// see the Connectivity Test documentation.
   ///
   /// @Snippet(path: "ReachabilityService_CreateConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConnectivityTest(request:)``
+  /// - ``createConnectivityTestPollingUntilDone(request:)``
+  /// - ``createConnectivityTestPollingUntilDone(request:options:)``
+  /// - ``createConnectivityTestPollingUntilDone(parent:testId:resource:)``
   public func createConnectivityTest(
     request: CreateConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -106,6 +129,13 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// see the Connectivity Test documentation.
   ///
   /// @Snippet(path: "ReachabilityService_CreateConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConnectivityTestPollingUntilDone(request:)``
+  /// - ``createConnectivityTestPollingUntilDone(parent:testId:resource:)``
+  /// - ``createConnectivityTest(request:)``
+  /// - ``createConnectivityTest(request:options:)``
   public func createConnectivityTestPollingUntilDone(
     request: CreateConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectivityTest {
@@ -147,6 +177,13 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// in `ConnectivityTest` for more details.
   ///
   /// @Snippet(path: "ReachabilityService_UpdateConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConnectivityTest(request:)``
+  /// - ``updateConnectivityTestPollingUntilDone(request:)``
+  /// - ``updateConnectivityTestPollingUntilDone(request:options:)``
+  /// - ``updateConnectivityTestPollingUntilDone(updateMask:resource:)``
   public func updateConnectivityTest(
     request: UpdateConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -169,6 +206,13 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// in `ConnectivityTest` for more details.
   ///
   /// @Snippet(path: "ReachabilityService_UpdateConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConnectivityTestPollingUntilDone(request:)``
+  /// - ``updateConnectivityTestPollingUntilDone(updateMask:resource:)``
+  /// - ``updateConnectivityTest(request:)``
+  /// - ``updateConnectivityTest(request:options:)``
   public func updateConnectivityTestPollingUntilDone(
     request: UpdateConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectivityTest {
@@ -208,6 +252,12 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// the reachability result returns a value of `UNKNOWN`.
   ///
   /// @Snippet(path: "ReachabilityService_RerunConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rerunConnectivityTest(request:)``
+  /// - ``rerunConnectivityTestPollingUntilDone(request:)``
+  /// - ``rerunConnectivityTestPollingUntilDone(request:options:)``
   public func rerunConnectivityTest(
     request: RerunConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -228,6 +278,12 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// the reachability result returns a value of `UNKNOWN`.
   ///
   /// @Snippet(path: "ReachabilityService_RerunConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rerunConnectivityTestPollingUntilDone(request:)``
+  /// - ``rerunConnectivityTest(request:)``
+  /// - ``rerunConnectivityTest(request:options:)``
   public func rerunConnectivityTestPollingUntilDone(
     request: RerunConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectivityTest {
@@ -256,6 +312,13 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// Deletes a specific `ConnectivityTest`.
   ///
   /// @Snippet(path: "ReachabilityService_DeleteConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConnectivityTest(request:)``
+  /// - ``deleteConnectivityTestPollingUntilDone(request:)``
+  /// - ``deleteConnectivityTestPollingUntilDone(request:options:)``
+  /// - ``deleteConnectivityTestPollingUntilDone(name:)``
   public func deleteConnectivityTest(
     request: DeleteConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -265,6 +328,13 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// Deletes a specific `ConnectivityTest`.
   ///
   /// @Snippet(path: "ReachabilityService_DeleteConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConnectivityTestPollingUntilDone(request:)``
+  /// - ``deleteConnectivityTestPollingUntilDone(name:)``
+  /// - ``deleteConnectivityTest(request:)``
+  /// - ``deleteConnectivityTest(request:options:)``
   public func deleteConnectivityTestPollingUntilDone(
     request: DeleteConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -299,6 +369,12 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// to the project.
   ///
   /// @Snippet(path: "ReachabilityService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -308,6 +384,10 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ReachabilityService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -321,6 +401,10 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// errors.
   ///
   /// @Snippet(path: "ReachabilityService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -331,6 +415,10 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "ReachabilityService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -346,6 +434,10 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "ReachabilityService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -357,6 +449,13 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ReachabilityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -379,6 +478,11 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ReachabilityService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -390,6 +494,11 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ReachabilityService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -498,6 +607,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ReachabilityServiceProtocol {
+  /// Lists all Connectivity Tests owned by a project.
+  ///
+  /// @Snippet(path: "ReachabilityService_ListConnectivityTests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/listConnectivityTests(request:options:)``
   public func listConnectivityTests(request: ListConnectivityTestsRequest) async throws
     -> GoogleCloudNetworkManagementV1.ListConnectivityTestsResponse
   {
@@ -510,6 +626,13 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all Connectivity Tests owned by a project.
+  ///
+  /// @Snippet(path: "ReachabilityService_ListConnectivityTests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/listConnectivityTests(request:options:)``
   public func listConnectivityTestsByItems(
     request: ListConnectivityTestsRequest
   ) -> some AsyncSequence<ConnectivityTest, any Swift.Error> & Sendable {
@@ -519,6 +642,10 @@ extension Clients.ReachabilityServiceProtocol {
   /// Lists all Connectivity Tests owned by a project.
   ///
   /// @Snippet(path: "ReachabilityService_ListConnectivityTests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/listConnectivityTests(request:options:)``
   public func listConnectivityTestsByItems(
     request: ListConnectivityTestsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ConnectivityTest, any Swift.Error> & Sendable {
@@ -533,6 +660,13 @@ extension Clients.ReachabilityServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all Connectivity Tests owned by a project.
+  ///
+  /// @Snippet(path: "ReachabilityService_ListConnectivityTests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/listConnectivityTests(request:options:)``
   public func listConnectivityTestsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ConnectivityTest, any Swift.Error> & Sendable {
@@ -542,6 +676,13 @@ extension Clients.ReachabilityServiceProtocol {
     return self.listConnectivityTestsByItems(request: request)
   }
 
+  /// Gets the details of a specific Connectivity Test.
+  ///
+  /// @Snippet(path: "ReachabilityService_GetConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/getConnectivityTest(request:options:)``
   public func getConnectivityTest(request: GetConnectivityTestRequest) async throws
     -> GoogleCloudNetworkManagementV1.ConnectivityTest
   {
@@ -554,6 +695,13 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a specific Connectivity Test.
+  ///
+  /// @Snippet(path: "ReachabilityService_GetConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/getConnectivityTest(request:options:)``
   public func getConnectivityTest(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkManagementV1.ConnectivityTest {
@@ -563,6 +711,25 @@ extension Clients.ReachabilityServiceProtocol {
     return try await self.getConnectivityTest(request: request)
   }
 
+  /// Creates a new Connectivity Test.
+  /// After you create a test, the reachability analysis is performed as part
+  /// of the long running operation, which completes when the analysis completes.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` are invalid
+  /// (for example, containing non-existent resources in the network, or you
+  /// don't have read permissions to the network configurations of listed
+  /// projects), then the reachability result returns a value of `UNKNOWN`.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` are
+  /// incomplete, the reachability result returns a value of
+  /// <code>AMBIGUOUS</code>. For more information,
+  /// see the Connectivity Test documentation.
+  ///
+  /// @Snippet(path: "ReachabilityService_CreateConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/createConnectivityTest(request:options:)``
   public func createConnectivityTest(request: CreateConnectivityTestRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -575,6 +742,25 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Connectivity Test.
+  /// After you create a test, the reachability analysis is performed as part
+  /// of the long running operation, which completes when the analysis completes.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` are invalid
+  /// (for example, containing non-existent resources in the network, or you
+  /// don't have read permissions to the network configurations of listed
+  /// projects), then the reachability result returns a value of `UNKNOWN`.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` are
+  /// incomplete, the reachability result returns a value of
+  /// <code>AMBIGUOUS</code>. For more information,
+  /// see the Connectivity Test documentation.
+  ///
+  /// @Snippet(path: "ReachabilityService_CreateConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/createConnectivityTestPollingUntilDone(request:options:)``
   public func createConnectivityTestPollingUntilDone(request: CreateConnectivityTestRequest)
     async throws -> ConnectivityTest
   {
@@ -587,6 +773,25 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Connectivity Test.
+  /// After you create a test, the reachability analysis is performed as part
+  /// of the long running operation, which completes when the analysis completes.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` are invalid
+  /// (for example, containing non-existent resources in the network, or you
+  /// don't have read permissions to the network configurations of listed
+  /// projects), then the reachability result returns a value of `UNKNOWN`.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` are
+  /// incomplete, the reachability result returns a value of
+  /// <code>AMBIGUOUS</code>. For more information,
+  /// see the Connectivity Test documentation.
+  ///
+  /// @Snippet(path: "ReachabilityService_CreateConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/createConnectivityTestPollingUntilDone(request:options:)``
   public func createConnectivityTestPollingUntilDone(
     parent: Swift.String,
     testId: Swift.String,
@@ -600,6 +805,26 @@ extension Clients.ReachabilityServiceProtocol {
     return try await self.createConnectivityTestPollingUntilDone(request: request)
   }
 
+  /// Updates the configuration of an existing `ConnectivityTest`.
+  /// After you update a test, the reachability analysis is performed as part
+  /// of the long running operation, which completes when the analysis completes.
+  /// The Reachability state in the test resource is updated with the new result.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` are invalid
+  /// (for example, they contain non-existent resources in the network, or the
+  /// user does not have read permissions to the network configurations of
+  /// listed projects), then the reachability result returns a value of
+  /// <code>UNKNOWN</code>.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` are incomplete, the
+  /// reachability result returns a value of `AMBIGUOUS`. See the documentation
+  /// in `ConnectivityTest` for more details.
+  ///
+  /// @Snippet(path: "ReachabilityService_UpdateConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/updateConnectivityTest(request:options:)``
   public func updateConnectivityTest(request: UpdateConnectivityTestRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -612,6 +837,26 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the configuration of an existing `ConnectivityTest`.
+  /// After you update a test, the reachability analysis is performed as part
+  /// of the long running operation, which completes when the analysis completes.
+  /// The Reachability state in the test resource is updated with the new result.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` are invalid
+  /// (for example, they contain non-existent resources in the network, or the
+  /// user does not have read permissions to the network configurations of
+  /// listed projects), then the reachability result returns a value of
+  /// <code>UNKNOWN</code>.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` are incomplete, the
+  /// reachability result returns a value of `AMBIGUOUS`. See the documentation
+  /// in `ConnectivityTest` for more details.
+  ///
+  /// @Snippet(path: "ReachabilityService_UpdateConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/updateConnectivityTestPollingUntilDone(request:options:)``
   public func updateConnectivityTestPollingUntilDone(request: UpdateConnectivityTestRequest)
     async throws -> ConnectivityTest
   {
@@ -624,6 +869,26 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the configuration of an existing `ConnectivityTest`.
+  /// After you update a test, the reachability analysis is performed as part
+  /// of the long running operation, which completes when the analysis completes.
+  /// The Reachability state in the test resource is updated with the new result.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` are invalid
+  /// (for example, they contain non-existent resources in the network, or the
+  /// user does not have read permissions to the network configurations of
+  /// listed projects), then the reachability result returns a value of
+  /// <code>UNKNOWN</code>.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` are incomplete, the
+  /// reachability result returns a value of `AMBIGUOUS`. See the documentation
+  /// in `ConnectivityTest` for more details.
+  ///
+  /// @Snippet(path: "ReachabilityService_UpdateConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/updateConnectivityTestPollingUntilDone(request:options:)``
   public func updateConnectivityTestPollingUntilDone(
     updateMask: GoogleWKT.WKTFieldMask?,
     resource: ConnectivityTest?,
@@ -635,6 +900,24 @@ extension Clients.ReachabilityServiceProtocol {
     return try await self.updateConnectivityTestPollingUntilDone(request: request)
   }
 
+  /// Rerun an existing `ConnectivityTest`.
+  /// After the user triggers the rerun, the reachability analysis is performed
+  /// as part of the long running operation, which completes when the analysis
+  /// completes.
+  ///
+  /// Even though the test configuration remains the same, the reachability
+  /// result may change due to underlying network configuration changes.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` become invalid (for
+  /// example, specified resources are deleted in the network, or you lost
+  /// read permissions to the network configurations of listed projects), then
+  /// the reachability result returns a value of `UNKNOWN`.
+  ///
+  /// @Snippet(path: "ReachabilityService_RerunConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/rerunConnectivityTest(request:options:)``
   public func rerunConnectivityTest(request: RerunConnectivityTestRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -647,6 +930,24 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Rerun an existing `ConnectivityTest`.
+  /// After the user triggers the rerun, the reachability analysis is performed
+  /// as part of the long running operation, which completes when the analysis
+  /// completes.
+  ///
+  /// Even though the test configuration remains the same, the reachability
+  /// result may change due to underlying network configuration changes.
+  ///
+  /// If the endpoint specifications in `ConnectivityTest` become invalid (for
+  /// example, specified resources are deleted in the network, or you lost
+  /// read permissions to the network configurations of listed projects), then
+  /// the reachability result returns a value of `UNKNOWN`.
+  ///
+  /// @Snippet(path: "ReachabilityService_RerunConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/rerunConnectivityTestPollingUntilDone(request:options:)``
   public func rerunConnectivityTestPollingUntilDone(request: RerunConnectivityTestRequest)
     async throws -> ConnectivityTest
   {
@@ -659,6 +960,13 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific `ConnectivityTest`.
+  ///
+  /// @Snippet(path: "ReachabilityService_DeleteConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/deleteConnectivityTest(request:options:)``
   public func deleteConnectivityTest(request: DeleteConnectivityTestRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -671,6 +979,13 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific `ConnectivityTest`.
+  ///
+  /// @Snippet(path: "ReachabilityService_DeleteConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/deleteConnectivityTestPollingUntilDone(request:options:)``
   public func deleteConnectivityTestPollingUntilDone(request: DeleteConnectivityTestRequest)
     async throws
   {
@@ -683,6 +998,13 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific `ConnectivityTest`.
+  ///
+  /// @Snippet(path: "ReachabilityService_DeleteConnectivityTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/deleteConnectivityTestPollingUntilDone(request:options:)``
   public func deleteConnectivityTestPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -692,6 +1014,20 @@ extension Clients.ReachabilityServiceProtocol {
     try await self.deleteConnectivityTestPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  /// This method can be called in two ways:
+  ///
+  /// *   **List all public locations:** Use the path `GET /v1/locations`.
+  /// *   **List project-visible locations:** Use the path
+  /// `GET /v1/projects/{project_id}/locations`. This may include public
+  /// locations as well as private or other locations specifically visible
+  /// to the project.
+  ///
+  /// @Snippet(path: "ReachabilityService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -704,6 +1040,20 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  /// This method can be called in two ways:
+  ///
+  /// *   **List all public locations:** Use the path `GET /v1/locations`.
+  /// *   **List project-visible locations:** Use the path
+  /// `GET /v1/projects/{project_id}/locations`. This may include public
+  /// locations as well as private or other locations specifically visible
+  /// to the project.
+  ///
+  /// @Snippet(path: "ReachabilityService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -720,6 +1070,10 @@ extension Clients.ReachabilityServiceProtocol {
   /// to the project.
   ///
   /// @Snippet(path: "ReachabilityService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -733,6 +1087,13 @@ extension Clients.ReachabilityServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "ReachabilityService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -745,6 +1106,17 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "ReachabilityService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -757,6 +1129,14 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "ReachabilityService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -769,6 +1149,19 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "ReachabilityService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -781,6 +1174,15 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReachabilityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -793,6 +1195,15 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReachabilityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -804,6 +1215,10 @@ extension Clients.ReachabilityServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ReachabilityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -817,6 +1232,15 @@ extension Clients.ReachabilityServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReachabilityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -828,6 +1252,9 @@ extension Clients.ReachabilityServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -840,6 +1267,9 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -849,6 +1279,15 @@ extension Clients.ReachabilityServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReachabilityService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -859,6 +1298,15 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReachabilityService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -868,6 +1316,15 @@ extension Clients.ReachabilityServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReachabilityService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -878,6 +1335,15 @@ extension Clients.ReachabilityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReachabilityService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReachabilityServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

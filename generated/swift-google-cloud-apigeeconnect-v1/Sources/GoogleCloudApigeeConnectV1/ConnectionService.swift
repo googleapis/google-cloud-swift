@@ -23,6 +23,10 @@ import Foundation
 /// Service Interface for the Apigee Connect connection management APIs.
 ///
 /// @Snippet(path: "ConnectionServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ConnectionServiceProtocol``
 public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, Sendable {
   let inner: any Clients.ConnectionServiceStub
 
@@ -40,6 +44,13 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   /// endpoint.
   ///
   /// @Snippet(path: "ConnectionService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listConnections(request:)``
+  /// - ``listConnectionsByItems(request:)``
+  /// - ``listConnectionsByItems(request:options:)``
+  /// - ``listConnectionsByItems(parent:)``
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApigeeConnectV1.ListConnectionsResponse {
@@ -63,6 +74,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.ConnectionServiceProtocol {
+  /// Lists connections that are currently active for the given Apigee Connect
+  /// endpoint.
+  ///
+  /// @Snippet(path: "ConnectionService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/listConnections(request:options:)``
   public func listConnections(request: ListConnectionsRequest) async throws
     -> GoogleCloudApigeeConnectV1.ListConnectionsResponse
   {
@@ -75,6 +94,14 @@ extension Clients.ConnectionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists connections that are currently active for the given Apigee Connect
+  /// endpoint.
+  ///
+  /// @Snippet(path: "ConnectionService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/listConnections(request:options:)``
   public func listConnectionsByItems(
     request: ListConnectionsRequest
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -85,6 +112,10 @@ extension Clients.ConnectionServiceProtocol {
   /// endpoint.
   ///
   /// @Snippet(path: "ConnectionService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/listConnections(request:options:)``
   public func listConnectionsByItems(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -99,6 +130,14 @@ extension Clients.ConnectionServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists connections that are currently active for the given Apigee Connect
+  /// endpoint.
+  ///
+  /// @Snippet(path: "ConnectionService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/listConnections(request:options:)``
   public func listConnectionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {

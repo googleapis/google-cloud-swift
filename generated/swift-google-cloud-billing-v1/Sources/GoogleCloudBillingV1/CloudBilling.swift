@@ -25,6 +25,10 @@ import Foundation
 /// projects.
 ///
 /// @Snippet(path: "CloudBillingQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudBillingProtocol``
 public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   let inner: any Clients.CloudBillingStub
 
@@ -43,6 +47,11 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// account](https://cloud.google.com/billing/docs/how-to/billing-access).
   ///
   /// @Snippet(path: "CloudBilling_GetBillingAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBillingAccount(request:)``
+  /// - ``getBillingAccount(name:)``
   public func getBillingAccount(
     request: GetBillingAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.BillingAccount {
@@ -54,6 +63,13 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// [view](https://cloud.google.com/billing/docs/how-to/billing-access).
   ///
   /// @Snippet(path: "CloudBilling_ListBillingAccounts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBillingAccounts(request:)``
+  /// - ``listBillingAccountsByItems(request:)``
+  /// - ``listBillingAccountsByItems(request:options:)``
+  /// - ``listBillingAccountsByItems(parent:)``
   public func listBillingAccounts(
     request: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.ListBillingAccountsResponse {
@@ -68,6 +84,11 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// of the billing account.
   ///
   /// @Snippet(path: "CloudBilling_UpdateBillingAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBillingAccount(request:)``
+  /// - ``updateBillingAccount(name:account:)``
   public func updateBillingAccount(
     request: UpdateBillingAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.BillingAccount {
@@ -91,6 +112,12 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// provisioned for subaccounts.
   ///
   /// @Snippet(path: "CloudBilling_CreateBillingAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBillingAccount(request:)``
+  /// - ``createBillingAccount(billingAccount:)``
+  /// - ``createBillingAccount(billingAccount:parent:)``
   public func createBillingAccount(
     request: CreateBillingAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.BillingAccount {
@@ -103,6 +130,13 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
   ///
   /// @Snippet(path: "CloudBilling_ListProjectBillingInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listProjectBillingInfo(request:)``
+  /// - ``listProjectBillingInfoByItems(request:)``
+  /// - ``listProjectBillingInfoByItems(request:options:)``
+  /// - ``listProjectBillingInfoByItems(name:)``
   public func listProjectBillingInfo(
     request: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.ListProjectBillingInfoResponse {
@@ -116,6 +150,11 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// role.
   ///
   /// @Snippet(path: "CloudBilling_GetProjectBillingInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getProjectBillingInfo(request:)``
+  /// - ``getProjectBillingInfo(name:)``
   public func getProjectBillingInfo(
     request: GetProjectBillingInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.ProjectBillingInfo {
@@ -156,6 +195,11 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// *open* billing account.
   ///
   /// @Snippet(path: "CloudBilling_UpdateProjectBillingInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateProjectBillingInfo(request:)``
+  /// - ``updateProjectBillingInfo(name:projectBillingInfo:)``
   public func updateProjectBillingInfo(
     request: UpdateProjectBillingInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.ProjectBillingInfo {
@@ -168,6 +212,11 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
   ///
   /// @Snippet(path: "CloudBilling_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
+  /// - ``getIamPolicy(resource:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -181,6 +230,11 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
   ///
   /// @Snippet(path: "CloudBilling_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
+  /// - ``setIamPolicy(resource:policy:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -192,6 +246,11 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// the input permissions that the caller is allowed for that resource.
   ///
   /// @Snippet(path: "CloudBilling_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
+  /// - ``testIamPermissions(resource:permissions:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -201,6 +260,10 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// Changes which parent organization a billing account belongs to.
   ///
   /// @Snippet(path: "CloudBilling_MoveBillingAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``moveBillingAccount(request:)``
   public func moveBillingAccount(
     request: MoveBillingAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.BillingAccount {
@@ -274,6 +337,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudBillingProtocol {
+  /// Gets information about a billing account. The current authenticated user
+  /// must be a [viewer of the billing
+  /// account](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_GetBillingAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/getBillingAccount(request:options:)``
   public func getBillingAccount(request: GetBillingAccountRequest) async throws
     -> GoogleCloudBillingV1.BillingAccount
   {
@@ -286,6 +358,15 @@ extension Clients.CloudBillingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information about a billing account. The current authenticated user
+  /// must be a [viewer of the billing
+  /// account](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_GetBillingAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/getBillingAccount(request:options:)``
   public func getBillingAccount(
     name: Swift.String,
   ) async throws -> GoogleCloudBillingV1.BillingAccount {
@@ -295,6 +376,15 @@ extension Clients.CloudBillingProtocol {
     return try await self.getBillingAccount(request: request)
   }
 
+  /// Lists the billing accounts that the current authenticated user has
+  /// permission to
+  /// [view](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_ListBillingAccounts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/listBillingAccounts(request:options:)``
   public func listBillingAccounts(request: ListBillingAccountsRequest) async throws
     -> GoogleCloudBillingV1.ListBillingAccountsResponse
   {
@@ -307,6 +397,15 @@ extension Clients.CloudBillingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the billing accounts that the current authenticated user has
+  /// permission to
+  /// [view](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_ListBillingAccounts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/listBillingAccounts(request:options:)``
   public func listBillingAccountsByItems(
     request: ListBillingAccountsRequest
   ) -> some AsyncSequence<BillingAccount, any Swift.Error> & Sendable {
@@ -318,6 +417,10 @@ extension Clients.CloudBillingProtocol {
   /// [view](https://cloud.google.com/billing/docs/how-to/billing-access).
   ///
   /// @Snippet(path: "CloudBilling_ListBillingAccounts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/listBillingAccounts(request:options:)``
   public func listBillingAccountsByItems(
     request: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BillingAccount, any Swift.Error> & Sendable {
@@ -332,6 +435,15 @@ extension Clients.CloudBillingProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the billing accounts that the current authenticated user has
+  /// permission to
+  /// [view](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_ListBillingAccounts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/listBillingAccounts(request:options:)``
   public func listBillingAccountsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BillingAccount, any Swift.Error> & Sendable {
@@ -341,6 +453,18 @@ extension Clients.CloudBillingProtocol {
     return self.listBillingAccountsByItems(request: request)
   }
 
+  /// Updates a billing account's fields.
+  /// Currently the only field that can be edited is `display_name`.
+  /// The current authenticated user must have the `billing.accounts.update`
+  /// IAM permission, which is typically given to the
+  /// [administrator](https://cloud.google.com/billing/docs/how-to/billing-access)
+  /// of the billing account.
+  ///
+  /// @Snippet(path: "CloudBilling_UpdateBillingAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/updateBillingAccount(request:options:)``
   public func updateBillingAccount(request: UpdateBillingAccountRequest) async throws
     -> GoogleCloudBillingV1.BillingAccount
   {
@@ -353,6 +477,18 @@ extension Clients.CloudBillingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a billing account's fields.
+  /// Currently the only field that can be edited is `display_name`.
+  /// The current authenticated user must have the `billing.accounts.update`
+  /// IAM permission, which is typically given to the
+  /// [administrator](https://cloud.google.com/billing/docs/how-to/billing-access)
+  /// of the billing account.
+  ///
+  /// @Snippet(path: "CloudBilling_UpdateBillingAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/updateBillingAccount(request:options:)``
   public func updateBillingAccount(
     name: Swift.String,
     account: BillingAccount?,
@@ -364,6 +500,27 @@ extension Clients.CloudBillingProtocol {
     return try await self.updateBillingAccount(request: request)
   }
 
+  /// This method creates [billing
+  /// subaccounts](https://cloud.google.com/billing/docs/concepts#subaccounts).
+  ///
+  /// Google Cloud resellers should use the
+  /// Channel Services APIs,
+  /// [accounts.customers.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers/create)
+  /// and
+  /// [accounts.customers.entitlements.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers.entitlements/create).
+  ///
+  /// When creating a subaccount, the current authenticated user must have the
+  /// `billing.accounts.update` IAM permission on the parent account, which is
+  /// typically given to billing account
+  /// [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
+  /// This method will return an error if the parent account has not been
+  /// provisioned for subaccounts.
+  ///
+  /// @Snippet(path: "CloudBilling_CreateBillingAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/createBillingAccount(request:options:)``
   public func createBillingAccount(request: CreateBillingAccountRequest) async throws
     -> GoogleCloudBillingV1.BillingAccount
   {
@@ -376,6 +533,27 @@ extension Clients.CloudBillingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method creates [billing
+  /// subaccounts](https://cloud.google.com/billing/docs/concepts#subaccounts).
+  ///
+  /// Google Cloud resellers should use the
+  /// Channel Services APIs,
+  /// [accounts.customers.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers/create)
+  /// and
+  /// [accounts.customers.entitlements.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers.entitlements/create).
+  ///
+  /// When creating a subaccount, the current authenticated user must have the
+  /// `billing.accounts.update` IAM permission on the parent account, which is
+  /// typically given to billing account
+  /// [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
+  /// This method will return an error if the parent account has not been
+  /// provisioned for subaccounts.
+  ///
+  /// @Snippet(path: "CloudBilling_CreateBillingAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/createBillingAccount(request:options:)``
   public func createBillingAccount(
     billingAccount: BillingAccount?,
   ) async throws -> GoogleCloudBillingV1.BillingAccount {
@@ -385,6 +563,27 @@ extension Clients.CloudBillingProtocol {
     return try await self.createBillingAccount(request: request)
   }
 
+  /// This method creates [billing
+  /// subaccounts](https://cloud.google.com/billing/docs/concepts#subaccounts).
+  ///
+  /// Google Cloud resellers should use the
+  /// Channel Services APIs,
+  /// [accounts.customers.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers/create)
+  /// and
+  /// [accounts.customers.entitlements.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers.entitlements/create).
+  ///
+  /// When creating a subaccount, the current authenticated user must have the
+  /// `billing.accounts.update` IAM permission on the parent account, which is
+  /// typically given to billing account
+  /// [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
+  /// This method will return an error if the parent account has not been
+  /// provisioned for subaccounts.
+  ///
+  /// @Snippet(path: "CloudBilling_CreateBillingAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/createBillingAccount(request:options:)``
   public func createBillingAccount(
     billingAccount: BillingAccount?,
     parent: Swift.String,
@@ -396,6 +595,16 @@ extension Clients.CloudBillingProtocol {
     return try await self.createBillingAccount(request: request)
   }
 
+  /// Lists the projects associated with a billing account. The current
+  /// authenticated user must have the `billing.resourceAssociations.list` IAM
+  /// permission, which is often given to billing account
+  /// [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_ListProjectBillingInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/listProjectBillingInfo(request:options:)``
   public func listProjectBillingInfo(request: ListProjectBillingInfoRequest) async throws
     -> GoogleCloudBillingV1.ListProjectBillingInfoResponse
   {
@@ -408,6 +617,16 @@ extension Clients.CloudBillingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the projects associated with a billing account. The current
+  /// authenticated user must have the `billing.resourceAssociations.list` IAM
+  /// permission, which is often given to billing account
+  /// [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_ListProjectBillingInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/listProjectBillingInfo(request:options:)``
   public func listProjectBillingInfoByItems(
     request: ListProjectBillingInfoRequest
   ) -> some AsyncSequence<ProjectBillingInfo, any Swift.Error> & Sendable {
@@ -420,6 +639,10 @@ extension Clients.CloudBillingProtocol {
   /// [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
   ///
   /// @Snippet(path: "CloudBilling_ListProjectBillingInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/listProjectBillingInfo(request:options:)``
   public func listProjectBillingInfoByItems(
     request: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ProjectBillingInfo, any Swift.Error> & Sendable {
@@ -434,6 +657,16 @@ extension Clients.CloudBillingProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the projects associated with a billing account. The current
+  /// authenticated user must have the `billing.resourceAssociations.list` IAM
+  /// permission, which is often given to billing account
+  /// [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_ListProjectBillingInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/listProjectBillingInfo(request:options:)``
   public func listProjectBillingInfoByItems(
     name: Swift.String,
   ) -> some AsyncSequence<ProjectBillingInfo, any Swift.Error> & Sendable {
@@ -443,6 +676,17 @@ extension Clients.CloudBillingProtocol {
     return self.listProjectBillingInfoByItems(request: request)
   }
 
+  /// Gets the billing information for a project. The current authenticated user
+  /// must have the `resourcemanager.projects.get` permission for the project,
+  /// which can be granted by assigning the [Project
+  /// Viewer](https://cloud.google.com/iam/docs/understanding-roles#predefined_roles)
+  /// role.
+  ///
+  /// @Snippet(path: "CloudBilling_GetProjectBillingInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/getProjectBillingInfo(request:options:)``
   public func getProjectBillingInfo(request: GetProjectBillingInfoRequest) async throws
     -> GoogleCloudBillingV1.ProjectBillingInfo
   {
@@ -455,6 +699,17 @@ extension Clients.CloudBillingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the billing information for a project. The current authenticated user
+  /// must have the `resourcemanager.projects.get` permission for the project,
+  /// which can be granted by assigning the [Project
+  /// Viewer](https://cloud.google.com/iam/docs/understanding-roles#predefined_roles)
+  /// role.
+  ///
+  /// @Snippet(path: "CloudBilling_GetProjectBillingInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/getProjectBillingInfo(request:options:)``
   public func getProjectBillingInfo(
     name: Swift.String,
   ) async throws -> GoogleCloudBillingV1.ProjectBillingInfo {
@@ -464,6 +719,44 @@ extension Clients.CloudBillingProtocol {
     return try await self.getProjectBillingInfo(request: request)
   }
 
+  /// Sets or updates the billing account associated with a project. You specify
+  /// the new billing account by setting the `billing_account_name` in the
+  /// `ProjectBillingInfo` resource to the resource name of a billing account.
+  /// Associating a project with an open billing account enables billing on the
+  /// project and allows charges for resource usage. If the project already had a
+  /// billing account, this method changes the billing account used for resource
+  /// usage charges.
+  ///
+  /// *Note:* Incurred charges that have not yet been reported in the transaction
+  /// history of the Google Cloud Console might be billed to the new billing
+  /// account, even if the charge occurred before the new billing account was
+  /// assigned to the project.
+  ///
+  /// The current authenticated user must have ownership privileges for both
+  /// the
+  /// [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
+  /// ) and the [billing
+  /// account](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// You can disable billing on the project by setting the
+  /// `billing_account_name` field to empty. This action disassociates the
+  /// current billing account from the project. Any billable activity of your
+  /// in-use services will stop, and your application could stop functioning as
+  /// expected. Any unbilled charges to date will be billed to the previously
+  /// associated account. The current authenticated user must be either an owner
+  /// of the project or an owner of the billing account for the project.
+  ///
+  /// Note that associating a project with a *closed* billing account will have
+  /// much the same effect as disabling billing on the project: any paid
+  /// resources used by the project will be shut down. Thus, unless you wish to
+  /// disable billing, you should always call this method with the name of an
+  /// *open* billing account.
+  ///
+  /// @Snippet(path: "CloudBilling_UpdateProjectBillingInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/updateProjectBillingInfo(request:options:)``
   public func updateProjectBillingInfo(request: UpdateProjectBillingInfoRequest) async throws
     -> GoogleCloudBillingV1.ProjectBillingInfo
   {
@@ -476,6 +769,44 @@ extension Clients.CloudBillingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets or updates the billing account associated with a project. You specify
+  /// the new billing account by setting the `billing_account_name` in the
+  /// `ProjectBillingInfo` resource to the resource name of a billing account.
+  /// Associating a project with an open billing account enables billing on the
+  /// project and allows charges for resource usage. If the project already had a
+  /// billing account, this method changes the billing account used for resource
+  /// usage charges.
+  ///
+  /// *Note:* Incurred charges that have not yet been reported in the transaction
+  /// history of the Google Cloud Console might be billed to the new billing
+  /// account, even if the charge occurred before the new billing account was
+  /// assigned to the project.
+  ///
+  /// The current authenticated user must have ownership privileges for both
+  /// the
+  /// [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
+  /// ) and the [billing
+  /// account](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// You can disable billing on the project by setting the
+  /// `billing_account_name` field to empty. This action disassociates the
+  /// current billing account from the project. Any billable activity of your
+  /// in-use services will stop, and your application could stop functioning as
+  /// expected. Any unbilled charges to date will be billed to the previously
+  /// associated account. The current authenticated user must be either an owner
+  /// of the project or an owner of the billing account for the project.
+  ///
+  /// Note that associating a project with a *closed* billing account will have
+  /// much the same effect as disabling billing on the project: any paid
+  /// resources used by the project will be shut down. Thus, unless you wish to
+  /// disable billing, you should always call this method with the name of an
+  /// *open* billing account.
+  ///
+  /// @Snippet(path: "CloudBilling_UpdateProjectBillingInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/updateProjectBillingInfo(request:options:)``
   public func updateProjectBillingInfo(
     name: Swift.String,
     projectBillingInfo: ProjectBillingInfo?,
@@ -487,6 +818,16 @@ extension Clients.CloudBillingProtocol {
     return try await self.updateProjectBillingInfo(request: request)
   }
 
+  /// Gets the access control policy for a billing account.
+  /// The caller must have the `billing.accounts.getIamPolicy` permission on the
+  /// account, which is often given to billing account
+  /// [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -499,6 +840,16 @@ extension Clients.CloudBillingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a billing account.
+  /// The caller must have the `billing.accounts.getIamPolicy` permission on the
+  /// account, which is often given to billing account
+  /// [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/getIamPolicy(request:options:)``
   public func getIamPolicy(
     resource: Swift.String,
   ) async throws -> GoogleIAMV1.Policy {
@@ -508,6 +859,17 @@ extension Clients.CloudBillingProtocol {
     return try await self.getIamPolicy(request: request)
   }
 
+  /// Sets the access control policy for a billing account. Replaces any existing
+  /// policy.
+  /// The caller must have the `billing.accounts.setIamPolicy` permission on the
+  /// account, which is often given to billing account
+  /// [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -520,6 +882,17 @@ extension Clients.CloudBillingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy for a billing account. Replaces any existing
+  /// policy.
+  /// The caller must have the `billing.accounts.setIamPolicy` permission on the
+  /// account, which is often given to billing account
+  /// [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
+  ///
+  /// @Snippet(path: "CloudBilling_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/setIamPolicy(request:options:)``
   public func setIamPolicy(
     resource: Swift.String,
     policy: GoogleIAMV1.Policy?,
@@ -531,6 +904,15 @@ extension Clients.CloudBillingProtocol {
     return try await self.setIamPolicy(request: request)
   }
 
+  /// Tests the access control policy for a billing account. This method takes
+  /// the resource and a set of permissions as input and returns the subset of
+  /// the input permissions that the caller is allowed for that resource.
+  ///
+  /// @Snippet(path: "CloudBilling_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -543,6 +925,15 @@ extension Clients.CloudBillingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Tests the access control policy for a billing account. This method takes
+  /// the resource and a set of permissions as input and returns the subset of
+  /// the input permissions that the caller is allowed for that resource.
+  ///
+  /// @Snippet(path: "CloudBilling_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/testIamPermissions(request:options:)``
   public func testIamPermissions(
     resource: Swift.String,
     permissions: [Swift.String],
@@ -554,6 +945,13 @@ extension Clients.CloudBillingProtocol {
     return try await self.testIamPermissions(request: request)
   }
 
+  /// Changes which parent organization a billing account belongs to.
+  ///
+  /// @Snippet(path: "CloudBilling_MoveBillingAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBillingClient/moveBillingAccount(request:options:)``
   public func moveBillingAccount(request: MoveBillingAccountRequest) async throws
     -> GoogleCloudBillingV1.BillingAccount
   {

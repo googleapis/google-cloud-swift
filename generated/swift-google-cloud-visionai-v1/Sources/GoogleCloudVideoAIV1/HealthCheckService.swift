@@ -26,6 +26,10 @@ import Foundation
 /// Check.
 ///
 /// @Snippet(path: "HealthCheckServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/HealthCheckServiceProtocol``
 public final class HealthCheckServiceClient: Clients.HealthCheckServiceProtocol, Sendable {
   let inner: any Clients.HealthCheckServiceStub
 
@@ -42,6 +46,10 @@ public final class HealthCheckServiceClient: Clients.HealthCheckServiceProtocol,
   /// HealthCheck method checks the health status of the cluster.
   ///
   /// @Snippet(path: "HealthCheckService_HealthCheck")
+  ///
+  /// ## See Also
+  ///
+  /// - ``healthCheck(request:)``
   public func healthCheck(
     request: HealthCheckRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.HealthCheckResponse {
@@ -51,6 +59,12 @@ public final class HealthCheckServiceClient: Clients.HealthCheckServiceProtocol,
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "HealthCheckService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -60,6 +74,10 @@ public final class HealthCheckServiceClient: Clients.HealthCheckServiceProtocol,
   /// Gets information about a location.
   ///
   /// @Snippet(path: "HealthCheckService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -71,6 +89,13 @@ public final class HealthCheckServiceClient: Clients.HealthCheckServiceProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "HealthCheckService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -93,6 +118,11 @@ public final class HealthCheckServiceClient: Clients.HealthCheckServiceProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "HealthCheckService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -104,6 +134,11 @@ public final class HealthCheckServiceClient: Clients.HealthCheckServiceProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "HealthCheckService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -152,6 +187,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.HealthCheckServiceProtocol {
+  /// HealthCheck method checks the health status of the cluster.
+  ///
+  /// @Snippet(path: "HealthCheckService_HealthCheck")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/healthCheck(request:options:)``
   public func healthCheck(request: HealthCheckRequest) async throws
     -> GoogleCloudVideoAIV1.HealthCheckResponse
   {
@@ -164,6 +206,13 @@ extension Clients.HealthCheckServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "HealthCheckService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -176,6 +225,13 @@ extension Clients.HealthCheckServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "HealthCheckService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -185,6 +241,10 @@ extension Clients.HealthCheckServiceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "HealthCheckService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -198,6 +258,13 @@ extension Clients.HealthCheckServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "HealthCheckService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -210,6 +277,15 @@ extension Clients.HealthCheckServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HealthCheckService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -222,6 +298,15 @@ extension Clients.HealthCheckServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HealthCheckService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -233,6 +318,10 @@ extension Clients.HealthCheckServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "HealthCheckService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -246,6 +335,15 @@ extension Clients.HealthCheckServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HealthCheckService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -257,6 +355,9 @@ extension Clients.HealthCheckServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -269,6 +370,9 @@ extension Clients.HealthCheckServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -278,6 +382,15 @@ extension Clients.HealthCheckServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HealthCheckService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -288,6 +401,15 @@ extension Clients.HealthCheckServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HealthCheckService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -297,6 +419,15 @@ extension Clients.HealthCheckServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HealthCheckService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -307,6 +438,15 @@ extension Clients.HealthCheckServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HealthCheckService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HealthCheckServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -27,6 +27,10 @@ import Foundation
 /// [google.cloud.location.Location.metadata]: <doc:Location/metadata>
 ///
 /// @Snippet(path: "LocationsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/LocationsProtocol``
 public final class LocationsClient: Clients.LocationsProtocol, Sendable {
   let inner: any Clients.LocationsStub
 
@@ -43,6 +47,12 @@ public final class LocationsClient: Clients.LocationsProtocol, Sendable {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Locations_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -52,6 +62,10 @@ public final class LocationsClient: Clients.LocationsProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Locations_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -80,6 +94,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.LocationsProtocol {
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Locations_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LocationsClient/listLocations(request:options:)``
   public func listLocations(request: ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -92,6 +113,13 @@ extension Clients.LocationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Locations_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LocationsClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -101,6 +129,10 @@ extension Clients.LocationsProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Locations_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LocationsClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -114,6 +146,13 @@ extension Clients.LocationsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "Locations_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LocationsClient/getLocation(request:options:)``
   public func getLocation(request: GetLocationRequest) async throws -> GoogleCloudLocation.Location
   {
     try await self.getLocation(request: request, options: .init())

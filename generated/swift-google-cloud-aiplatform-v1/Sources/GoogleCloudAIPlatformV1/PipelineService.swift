@@ -29,6 +29,10 @@
   /// `PipelineJob` resources (used for Vertex AI Pipelines).
   ///
   /// @Snippet(path: "PipelineServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/PipelineServiceProtocol``
   public final class PipelineServiceClient: Clients.PipelineServiceProtocol, Sendable {
     let inner: any Clients.PipelineServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -50,6 +54,11 @@
     /// attempted to be run.
     ///
     /// @Snippet(path: "PipelineService_CreateTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createTrainingPipeline(request:)``
+    /// - ``createTrainingPipeline(parent:trainingPipeline:)``
     public func createTrainingPipeline(
       request: CreateTrainingPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TrainingPipeline {
@@ -59,6 +68,11 @@
     /// Gets a TrainingPipeline.
     ///
     /// @Snippet(path: "PipelineService_GetTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getTrainingPipeline(request:)``
+    /// - ``getTrainingPipeline(name:)``
     public func getTrainingPipeline(
       request: GetTrainingPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TrainingPipeline {
@@ -68,6 +82,13 @@
     /// Lists TrainingPipelines in a Location.
     ///
     /// @Snippet(path: "PipelineService_ListTrainingPipelines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listTrainingPipelines(request:)``
+    /// - ``listTrainingPipelinesByItems(request:)``
+    /// - ``listTrainingPipelinesByItems(request:options:)``
+    /// - ``listTrainingPipelinesByItems(parent:)``
     public func listTrainingPipelines(
       request: ListTrainingPipelinesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTrainingPipelinesResponse {
@@ -77,6 +98,13 @@
     /// Deletes a TrainingPipeline.
     ///
     /// @Snippet(path: "PipelineService_DeleteTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTrainingPipeline(request:)``
+    /// - ``deleteTrainingPipelinePollingUntilDone(request:)``
+    /// - ``deleteTrainingPipelinePollingUntilDone(request:options:)``
+    /// - ``deleteTrainingPipelinePollingUntilDone(name:)``
     public func deleteTrainingPipeline(
       request: DeleteTrainingPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -86,6 +114,13 @@
     /// Deletes a TrainingPipeline.
     ///
     /// @Snippet(path: "PipelineService_DeleteTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTrainingPipelinePollingUntilDone(request:)``
+    /// - ``deleteTrainingPipelinePollingUntilDone(name:)``
+    /// - ``deleteTrainingPipeline(request:)``
+    /// - ``deleteTrainingPipeline(request:options:)``
     public func deleteTrainingPipelinePollingUntilDone(
       request: DeleteTrainingPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -132,6 +167,11 @@
     /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
     ///
     /// @Snippet(path: "PipelineService_CancelTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelTrainingPipeline(request:)``
+    /// - ``cancelTrainingPipeline(name:)``
     public func cancelTrainingPipeline(
       request: CancelTrainingPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -141,6 +181,11 @@
     /// Creates a PipelineJob. A PipelineJob will run immediately when created.
     ///
     /// @Snippet(path: "PipelineService_CreatePipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createPipelineJob(request:)``
+    /// - ``createPipelineJob(parent:pipelineJob:pipelineJobId:)``
     public func createPipelineJob(
       request: CreatePipelineJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.PipelineJob {
@@ -150,6 +195,11 @@
     /// Gets a PipelineJob.
     ///
     /// @Snippet(path: "PipelineService_GetPipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getPipelineJob(request:)``
+    /// - ``getPipelineJob(name:)``
     public func getPipelineJob(
       request: GetPipelineJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.PipelineJob {
@@ -159,6 +209,13 @@
     /// Lists PipelineJobs in a Location.
     ///
     /// @Snippet(path: "PipelineService_ListPipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listPipelineJobs(request:)``
+    /// - ``listPipelineJobsByItems(request:)``
+    /// - ``listPipelineJobsByItems(request:options:)``
+    /// - ``listPipelineJobsByItems(parent:)``
     public func listPipelineJobs(
       request: ListPipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListPipelineJobsResponse {
@@ -168,6 +225,13 @@
     /// Deletes a PipelineJob.
     ///
     /// @Snippet(path: "PipelineService_DeletePipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePipelineJob(request:)``
+    /// - ``deletePipelineJobPollingUntilDone(request:)``
+    /// - ``deletePipelineJobPollingUntilDone(request:options:)``
+    /// - ``deletePipelineJobPollingUntilDone(name:)``
     public func deletePipelineJob(
       request: DeletePipelineJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -177,6 +241,13 @@
     /// Deletes a PipelineJob.
     ///
     /// @Snippet(path: "PipelineService_DeletePipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePipelineJobPollingUntilDone(request:)``
+    /// - ``deletePipelineJobPollingUntilDone(name:)``
+    /// - ``deletePipelineJob(request:)``
+    /// - ``deletePipelineJob(request:options:)``
     public func deletePipelineJobPollingUntilDone(
       request: DeletePipelineJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -207,6 +278,13 @@
     /// If it succeeds, all of the PipelineJobs are deleted.
     ///
     /// @Snippet(path: "PipelineService_BatchDeletePipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchDeletePipelineJobs(request:)``
+    /// - ``batchDeletePipelineJobsPollingUntilDone(request:)``
+    /// - ``batchDeletePipelineJobsPollingUntilDone(request:options:)``
+    /// - ``batchDeletePipelineJobsPollingUntilDone(parent:names:)``
     public func batchDeletePipelineJobs(
       request: BatchDeletePipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -218,6 +296,13 @@
     /// If it succeeds, all of the PipelineJobs are deleted.
     ///
     /// @Snippet(path: "PipelineService_BatchDeletePipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchDeletePipelineJobsPollingUntilDone(request:)``
+    /// - ``batchDeletePipelineJobsPollingUntilDone(parent:names:)``
+    /// - ``batchDeletePipelineJobs(request:)``
+    /// - ``batchDeletePipelineJobs(request:options:)``
     public func batchDeletePipelineJobsPollingUntilDone(
       request: BatchDeletePipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchDeletePipelineJobsResponse {
@@ -264,6 +349,11 @@
     /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
     ///
     /// @Snippet(path: "PipelineService_CancelPipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelPipelineJob(request:)``
+    /// - ``cancelPipelineJob(name:)``
     public func cancelPipelineJob(
       request: CancelPipelineJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -279,6 +369,13 @@
     /// This operation will return an LRO.
     ///
     /// @Snippet(path: "PipelineService_BatchCancelPipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchCancelPipelineJobs(request:)``
+    /// - ``batchCancelPipelineJobsPollingUntilDone(request:)``
+    /// - ``batchCancelPipelineJobsPollingUntilDone(request:options:)``
+    /// - ``batchCancelPipelineJobsPollingUntilDone(parent:names:)``
     public func batchCancelPipelineJobs(
       request: BatchCancelPipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -294,6 +391,13 @@
     /// This operation will return an LRO.
     ///
     /// @Snippet(path: "PipelineService_BatchCancelPipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchCancelPipelineJobsPollingUntilDone(request:)``
+    /// - ``batchCancelPipelineJobsPollingUntilDone(parent:names:)``
+    /// - ``batchCancelPipelineJobs(request:)``
+    /// - ``batchCancelPipelineJobs(request:options:)``
     public func batchCancelPipelineJobsPollingUntilDone(
       request: BatchCancelPipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchCancelPipelineJobsResponse {
@@ -323,6 +427,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "PipelineService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -332,6 +442,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "PipelineService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -345,6 +459,10 @@
     /// errors.
     ///
     /// @Snippet(path: "PipelineService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -355,6 +473,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "PipelineService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -370,6 +492,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "PipelineService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -381,6 +507,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PipelineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -403,6 +536,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PipelineService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(request:)``
+    /// - ``deleteOperation(name:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -414,6 +552,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PipelineService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -425,6 +568,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PipelineService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -568,6 +715,14 @@
 
   // Default implementations
   extension Clients.PipelineServiceProtocol {
+    /// Creates a TrainingPipeline. A created TrainingPipeline right away will be
+    /// attempted to be run.
+    ///
+    /// @Snippet(path: "PipelineService_CreateTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/createTrainingPipeline(request:options:)``
     public func createTrainingPipeline(request: CreateTrainingPipelineRequest) async throws
       -> GoogleCloudAIPlatformV1.TrainingPipeline
     {
@@ -580,6 +735,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a TrainingPipeline. A created TrainingPipeline right away will be
+    /// attempted to be run.
+    ///
+    /// @Snippet(path: "PipelineService_CreateTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/createTrainingPipeline(request:options:)``
     public func createTrainingPipeline(
       parent: Swift.String,
       trainingPipeline: TrainingPipeline?,
@@ -591,6 +754,13 @@
       return try await self.createTrainingPipeline(request: request)
     }
 
+    /// Gets a TrainingPipeline.
+    ///
+    /// @Snippet(path: "PipelineService_GetTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/getTrainingPipeline(request:options:)``
     public func getTrainingPipeline(request: GetTrainingPipelineRequest) async throws
       -> GoogleCloudAIPlatformV1.TrainingPipeline
     {
@@ -603,6 +773,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a TrainingPipeline.
+    ///
+    /// @Snippet(path: "PipelineService_GetTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/getTrainingPipeline(request:options:)``
     public func getTrainingPipeline(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.TrainingPipeline {
@@ -612,6 +789,13 @@
       return try await self.getTrainingPipeline(request: request)
     }
 
+    /// Lists TrainingPipelines in a Location.
+    ///
+    /// @Snippet(path: "PipelineService_ListTrainingPipelines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listTrainingPipelines(request:options:)``
     public func listTrainingPipelines(request: ListTrainingPipelinesRequest) async throws
       -> GoogleCloudAIPlatformV1.ListTrainingPipelinesResponse
     {
@@ -624,6 +808,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists TrainingPipelines in a Location.
+    ///
+    /// @Snippet(path: "PipelineService_ListTrainingPipelines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listTrainingPipelines(request:options:)``
     public func listTrainingPipelinesByItems(
       request: ListTrainingPipelinesRequest
     ) -> some AsyncSequence<TrainingPipeline, any Swift.Error> & Sendable {
@@ -633,6 +824,10 @@
     /// Lists TrainingPipelines in a Location.
     ///
     /// @Snippet(path: "PipelineService_ListTrainingPipelines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listTrainingPipelines(request:options:)``
     public func listTrainingPipelinesByItems(
       request: ListTrainingPipelinesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TrainingPipeline, any Swift.Error> & Sendable {
@@ -647,6 +842,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists TrainingPipelines in a Location.
+    ///
+    /// @Snippet(path: "PipelineService_ListTrainingPipelines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listTrainingPipelines(request:options:)``
     public func listTrainingPipelinesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<TrainingPipeline, any Swift.Error> & Sendable {
@@ -656,6 +858,13 @@
       return self.listTrainingPipelinesByItems(request: request)
     }
 
+    /// Deletes a TrainingPipeline.
+    ///
+    /// @Snippet(path: "PipelineService_DeleteTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/deleteTrainingPipeline(request:options:)``
     public func deleteTrainingPipeline(request: DeleteTrainingPipelineRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -668,6 +877,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a TrainingPipeline.
+    ///
+    /// @Snippet(path: "PipelineService_DeleteTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/deleteTrainingPipelinePollingUntilDone(request:options:)``
     public func deleteTrainingPipelinePollingUntilDone(request: DeleteTrainingPipelineRequest)
       async throws
     {
@@ -680,6 +896,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a TrainingPipeline.
+    ///
+    /// @Snippet(path: "PipelineService_DeleteTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/deleteTrainingPipelinePollingUntilDone(request:options:)``
     public func deleteTrainingPipelinePollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -689,6 +912,31 @@
       try await self.deleteTrainingPipelinePollingUntilDone(request: request)
     }
 
+    /// Cancels a TrainingPipeline.
+    /// Starts asynchronous cancellation on the TrainingPipeline. The server
+    /// makes a best effort to cancel the pipeline, but success is not
+    /// guaranteed. Clients can use
+    /// [PipelineService.GetTrainingPipeline][google.cloud.aiplatform.v1.PipelineService.GetTrainingPipeline]
+    /// or other methods to check whether the cancellation succeeded or whether the
+    /// pipeline completed despite cancellation. On successful cancellation,
+    /// the TrainingPipeline is not deleted; instead it becomes a pipeline with
+    /// a
+    /// [TrainingPipeline.error][google.cloud.aiplatform.v1.TrainingPipeline.error]
+    /// value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+    /// corresponding to `Code.CANCELLED`, and
+    /// [TrainingPipeline.state][google.cloud.aiplatform.v1.TrainingPipeline.state]
+    /// is set to `CANCELLED`.
+    ///
+    /// [google.cloud.aiplatform.v1.PipelineService.GetTrainingPipeline]: <doc:PipelineServiceClient/getTrainingPipeline(request:options:)>
+    /// [google.cloud.aiplatform.v1.TrainingPipeline.error]: <doc:TrainingPipeline/error>
+    /// [google.cloud.aiplatform.v1.TrainingPipeline.state]: <doc:TrainingPipeline/state>
+    /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
+    ///
+    /// @Snippet(path: "PipelineService_CancelTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/cancelTrainingPipeline(request:options:)``
     public func cancelTrainingPipeline(request: CancelTrainingPipelineRequest) async throws {
       try await self.cancelTrainingPipeline(request: request, options: .init())
     }
@@ -699,6 +947,31 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Cancels a TrainingPipeline.
+    /// Starts asynchronous cancellation on the TrainingPipeline. The server
+    /// makes a best effort to cancel the pipeline, but success is not
+    /// guaranteed. Clients can use
+    /// [PipelineService.GetTrainingPipeline][google.cloud.aiplatform.v1.PipelineService.GetTrainingPipeline]
+    /// or other methods to check whether the cancellation succeeded or whether the
+    /// pipeline completed despite cancellation. On successful cancellation,
+    /// the TrainingPipeline is not deleted; instead it becomes a pipeline with
+    /// a
+    /// [TrainingPipeline.error][google.cloud.aiplatform.v1.TrainingPipeline.error]
+    /// value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+    /// corresponding to `Code.CANCELLED`, and
+    /// [TrainingPipeline.state][google.cloud.aiplatform.v1.TrainingPipeline.state]
+    /// is set to `CANCELLED`.
+    ///
+    /// [google.cloud.aiplatform.v1.PipelineService.GetTrainingPipeline]: <doc:PipelineServiceClient/getTrainingPipeline(request:options:)>
+    /// [google.cloud.aiplatform.v1.TrainingPipeline.error]: <doc:TrainingPipeline/error>
+    /// [google.cloud.aiplatform.v1.TrainingPipeline.state]: <doc:TrainingPipeline/state>
+    /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
+    ///
+    /// @Snippet(path: "PipelineService_CancelTrainingPipeline")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/cancelTrainingPipeline(request:options:)``
     public func cancelTrainingPipeline(
       name: Swift.String,
     ) async throws {
@@ -708,6 +981,13 @@
       try await self.cancelTrainingPipeline(request: request)
     }
 
+    /// Creates a PipelineJob. A PipelineJob will run immediately when created.
+    ///
+    /// @Snippet(path: "PipelineService_CreatePipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/createPipelineJob(request:options:)``
     public func createPipelineJob(request: CreatePipelineJobRequest) async throws
       -> GoogleCloudAIPlatformV1.PipelineJob
     {
@@ -720,6 +1000,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a PipelineJob. A PipelineJob will run immediately when created.
+    ///
+    /// @Snippet(path: "PipelineService_CreatePipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/createPipelineJob(request:options:)``
     public func createPipelineJob(
       parent: Swift.String,
       pipelineJob: PipelineJob?,
@@ -733,6 +1020,13 @@
       return try await self.createPipelineJob(request: request)
     }
 
+    /// Gets a PipelineJob.
+    ///
+    /// @Snippet(path: "PipelineService_GetPipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/getPipelineJob(request:options:)``
     public func getPipelineJob(request: GetPipelineJobRequest) async throws
       -> GoogleCloudAIPlatformV1.PipelineJob
     {
@@ -745,6 +1039,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a PipelineJob.
+    ///
+    /// @Snippet(path: "PipelineService_GetPipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/getPipelineJob(request:options:)``
     public func getPipelineJob(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.PipelineJob {
@@ -754,6 +1055,13 @@
       return try await self.getPipelineJob(request: request)
     }
 
+    /// Lists PipelineJobs in a Location.
+    ///
+    /// @Snippet(path: "PipelineService_ListPipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listPipelineJobs(request:options:)``
     public func listPipelineJobs(request: ListPipelineJobsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListPipelineJobsResponse
     {
@@ -766,6 +1074,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists PipelineJobs in a Location.
+    ///
+    /// @Snippet(path: "PipelineService_ListPipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listPipelineJobs(request:options:)``
     public func listPipelineJobsByItems(
       request: ListPipelineJobsRequest
     ) -> some AsyncSequence<PipelineJob, any Swift.Error> & Sendable {
@@ -775,6 +1090,10 @@
     /// Lists PipelineJobs in a Location.
     ///
     /// @Snippet(path: "PipelineService_ListPipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listPipelineJobs(request:options:)``
     public func listPipelineJobsByItems(
       request: ListPipelineJobsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<PipelineJob, any Swift.Error> & Sendable {
@@ -789,6 +1108,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists PipelineJobs in a Location.
+    ///
+    /// @Snippet(path: "PipelineService_ListPipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listPipelineJobs(request:options:)``
     public func listPipelineJobsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<PipelineJob, any Swift.Error> & Sendable {
@@ -798,6 +1124,13 @@
       return self.listPipelineJobsByItems(request: request)
     }
 
+    /// Deletes a PipelineJob.
+    ///
+    /// @Snippet(path: "PipelineService_DeletePipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/deletePipelineJob(request:options:)``
     public func deletePipelineJob(request: DeletePipelineJobRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -810,6 +1143,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a PipelineJob.
+    ///
+    /// @Snippet(path: "PipelineService_DeletePipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/deletePipelineJobPollingUntilDone(request:options:)``
     public func deletePipelineJobPollingUntilDone(request: DeletePipelineJobRequest) async throws {
       try await self.deletePipelineJobPollingUntilDone(request: request, options: .init())
     }
@@ -820,6 +1160,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a PipelineJob.
+    ///
+    /// @Snippet(path: "PipelineService_DeletePipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/deletePipelineJobPollingUntilDone(request:options:)``
     public func deletePipelineJobPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -829,6 +1176,15 @@
       try await self.deletePipelineJobPollingUntilDone(request: request)
     }
 
+    /// Batch deletes PipelineJobs
+    /// The Operation is atomic. If it fails, none of the PipelineJobs are deleted.
+    /// If it succeeds, all of the PipelineJobs are deleted.
+    ///
+    /// @Snippet(path: "PipelineService_BatchDeletePipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/batchDeletePipelineJobs(request:options:)``
     public func batchDeletePipelineJobs(request: BatchDeletePipelineJobsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -841,6 +1197,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Batch deletes PipelineJobs
+    /// The Operation is atomic. If it fails, none of the PipelineJobs are deleted.
+    /// If it succeeds, all of the PipelineJobs are deleted.
+    ///
+    /// @Snippet(path: "PipelineService_BatchDeletePipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/batchDeletePipelineJobsPollingUntilDone(request:options:)``
     public func batchDeletePipelineJobsPollingUntilDone(request: BatchDeletePipelineJobsRequest)
       async throws -> BatchDeletePipelineJobsResponse
     {
@@ -854,6 +1219,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Batch deletes PipelineJobs
+    /// The Operation is atomic. If it fails, none of the PipelineJobs are deleted.
+    /// If it succeeds, all of the PipelineJobs are deleted.
+    ///
+    /// @Snippet(path: "PipelineService_BatchDeletePipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/batchDeletePipelineJobsPollingUntilDone(request:options:)``
     public func batchDeletePipelineJobsPollingUntilDone(
       parent: Swift.String,
       names: [Swift.String],
@@ -865,6 +1239,30 @@
       return try await self.batchDeletePipelineJobsPollingUntilDone(request: request)
     }
 
+    /// Cancels a PipelineJob.
+    /// Starts asynchronous cancellation on the PipelineJob. The server
+    /// makes a best effort to cancel the pipeline, but success is not
+    /// guaranteed. Clients can use
+    /// [PipelineService.GetPipelineJob][google.cloud.aiplatform.v1.PipelineService.GetPipelineJob]
+    /// or other methods to check whether the cancellation succeeded or whether the
+    /// pipeline completed despite cancellation. On successful cancellation,
+    /// the PipelineJob is not deleted; instead it becomes a pipeline with
+    /// a [PipelineJob.error][google.cloud.aiplatform.v1.PipelineJob.error] value
+    /// with a [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding
+    /// to `Code.CANCELLED`, and
+    /// [PipelineJob.state][google.cloud.aiplatform.v1.PipelineJob.state] is set to
+    /// `CANCELLED`.
+    ///
+    /// [google.cloud.aiplatform.v1.PipelineJob.error]: <doc:PipelineJob/error>
+    /// [google.cloud.aiplatform.v1.PipelineJob.state]: <doc:PipelineJob/state>
+    /// [google.cloud.aiplatform.v1.PipelineService.GetPipelineJob]: <doc:PipelineServiceClient/getPipelineJob(request:options:)>
+    /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
+    ///
+    /// @Snippet(path: "PipelineService_CancelPipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/cancelPipelineJob(request:options:)``
     public func cancelPipelineJob(request: CancelPipelineJobRequest) async throws {
       try await self.cancelPipelineJob(request: request, options: .init())
     }
@@ -875,6 +1273,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Cancels a PipelineJob.
+    /// Starts asynchronous cancellation on the PipelineJob. The server
+    /// makes a best effort to cancel the pipeline, but success is not
+    /// guaranteed. Clients can use
+    /// [PipelineService.GetPipelineJob][google.cloud.aiplatform.v1.PipelineService.GetPipelineJob]
+    /// or other methods to check whether the cancellation succeeded or whether the
+    /// pipeline completed despite cancellation. On successful cancellation,
+    /// the PipelineJob is not deleted; instead it becomes a pipeline with
+    /// a [PipelineJob.error][google.cloud.aiplatform.v1.PipelineJob.error] value
+    /// with a [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding
+    /// to `Code.CANCELLED`, and
+    /// [PipelineJob.state][google.cloud.aiplatform.v1.PipelineJob.state] is set to
+    /// `CANCELLED`.
+    ///
+    /// [google.cloud.aiplatform.v1.PipelineJob.error]: <doc:PipelineJob/error>
+    /// [google.cloud.aiplatform.v1.PipelineJob.state]: <doc:PipelineJob/state>
+    /// [google.cloud.aiplatform.v1.PipelineService.GetPipelineJob]: <doc:PipelineServiceClient/getPipelineJob(request:options:)>
+    /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
+    ///
+    /// @Snippet(path: "PipelineService_CancelPipelineJob")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/cancelPipelineJob(request:options:)``
     public func cancelPipelineJob(
       name: Swift.String,
     ) async throws {
@@ -884,6 +1306,19 @@
       try await self.cancelPipelineJob(request: request)
     }
 
+    /// Batch cancel PipelineJobs.
+    /// Firstly the server will check if all the jobs are in non-terminal states,
+    /// and skip the jobs that are already terminated.
+    /// If the operation failed, none of the pipeline jobs are cancelled.
+    /// The server will poll the states of all the pipeline jobs periodically
+    /// to check the cancellation status.
+    /// This operation will return an LRO.
+    ///
+    /// @Snippet(path: "PipelineService_BatchCancelPipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/batchCancelPipelineJobs(request:options:)``
     public func batchCancelPipelineJobs(request: BatchCancelPipelineJobsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -896,6 +1331,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Batch cancel PipelineJobs.
+    /// Firstly the server will check if all the jobs are in non-terminal states,
+    /// and skip the jobs that are already terminated.
+    /// If the operation failed, none of the pipeline jobs are cancelled.
+    /// The server will poll the states of all the pipeline jobs periodically
+    /// to check the cancellation status.
+    /// This operation will return an LRO.
+    ///
+    /// @Snippet(path: "PipelineService_BatchCancelPipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/batchCancelPipelineJobsPollingUntilDone(request:options:)``
     public func batchCancelPipelineJobsPollingUntilDone(request: BatchCancelPipelineJobsRequest)
       async throws -> BatchCancelPipelineJobsResponse
     {
@@ -909,6 +1357,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Batch cancel PipelineJobs.
+    /// Firstly the server will check if all the jobs are in non-terminal states,
+    /// and skip the jobs that are already terminated.
+    /// If the operation failed, none of the pipeline jobs are cancelled.
+    /// The server will poll the states of all the pipeline jobs periodically
+    /// to check the cancellation status.
+    /// This operation will return an LRO.
+    ///
+    /// @Snippet(path: "PipelineService_BatchCancelPipelineJobs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/batchCancelPipelineJobsPollingUntilDone(request:options:)``
     public func batchCancelPipelineJobsPollingUntilDone(
       parent: Swift.String,
       names: [Swift.String],
@@ -920,6 +1381,13 @@
       return try await self.batchCancelPipelineJobsPollingUntilDone(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "PipelineService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -932,6 +1400,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "PipelineService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -941,6 +1416,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "PipelineService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -954,6 +1433,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "PipelineService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -966,6 +1452,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "PipelineService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -978,6 +1475,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "PipelineService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -990,6 +1495,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "PipelineService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -1002,6 +1520,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PipelineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -1014,6 +1541,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PipelineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1025,6 +1561,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PipelineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1038,6 +1578,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PipelineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -1049,6 +1598,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1061,6 +1613,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -1070,6 +1625,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PipelineService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -1080,6 +1644,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PipelineService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -1089,6 +1662,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PipelineService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -1099,6 +1681,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PipelineService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -1108,6 +1699,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PipelineService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PipelineServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

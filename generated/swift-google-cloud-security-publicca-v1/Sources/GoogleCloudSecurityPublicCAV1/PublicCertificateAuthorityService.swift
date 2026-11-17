@@ -25,6 +25,10 @@ import Foundation
 /// the public certificate authority service.
 ///
 /// @Snippet(path: "PublicCertificateAuthorityServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/PublicCertificateAuthorityServiceProtocol``
 public final class PublicCertificateAuthorityServiceClient: Clients
     .PublicCertificateAuthorityServiceProtocol, Sendable
 {
@@ -48,6 +52,11 @@ public final class PublicCertificateAuthorityServiceClient: Clients
   /// [google.cloud.security.publicca.v1.ExternalAccountKey]: <doc:ExternalAccountKey>
   ///
   /// @Snippet(path: "PublicCertificateAuthorityService_CreateExternalAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createExternalAccountKey(request:)``
+  /// - ``createExternalAccountKey(parent:externalAccountKey:)``
   public func createExternalAccountKey(
     request: CreateExternalAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey {
@@ -71,6 +80,17 @@ extension Clients {
 
 // Default implementations
 extension Clients.PublicCertificateAuthorityServiceProtocol {
+  /// Creates a new
+  /// [ExternalAccountKey][google.cloud.security.publicca.v1.ExternalAccountKey]
+  /// bound to the project.
+  ///
+  /// [google.cloud.security.publicca.v1.ExternalAccountKey]: <doc:ExternalAccountKey>
+  ///
+  /// @Snippet(path: "PublicCertificateAuthorityService_CreateExternalAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PublicCertificateAuthorityServiceClient/createExternalAccountKey(request:options:)``
   public func createExternalAccountKey(request: CreateExternalAccountKeyRequest) async throws
     -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey
   {
@@ -83,6 +103,17 @@ extension Clients.PublicCertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new
+  /// [ExternalAccountKey][google.cloud.security.publicca.v1.ExternalAccountKey]
+  /// bound to the project.
+  ///
+  /// [google.cloud.security.publicca.v1.ExternalAccountKey]: <doc:ExternalAccountKey>
+  ///
+  /// @Snippet(path: "PublicCertificateAuthorityService_CreateExternalAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PublicCertificateAuthorityServiceClient/createExternalAccountKey(request:options:)``
   public func createExternalAccountKey(
     parent: Swift.String,
     externalAccountKey: ExternalAccountKey?,

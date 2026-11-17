@@ -58,6 +58,10 @@ import Foundation
 /// [google.cloud.accessapproval.v1.ApprovalRequest]: <doc:ApprovalRequest>
 ///
 /// @Snippet(path: "AccessApprovalQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AccessApprovalProtocol``
 public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendable {
   let inner: any Clients.AccessApprovalStub
 
@@ -76,6 +80,13 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   /// The order is reverse chronological.
   ///
   /// @Snippet(path: "AccessApproval_ListApprovalRequests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listApprovalRequests(request:)``
+  /// - ``listApprovalRequestsByItems(request:)``
+  /// - ``listApprovalRequestsByItems(request:options:)``
+  /// - ``listApprovalRequestsByItems(parent:)``
   public func listApprovalRequests(
     request: ListApprovalRequestsMessage, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAccessApprovalV1.ListApprovalRequestsResponse {
@@ -85,6 +96,11 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   /// Gets an approval request. Returns NOT_FOUND if the request does not exist.
   ///
   /// @Snippet(path: "AccessApproval_GetApprovalRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getApprovalRequest(request:)``
+  /// - ``getApprovalRequest(name:)``
   public func getApprovalRequest(
     request: GetApprovalRequestMessage, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAccessApprovalV1.ApprovalRequest {
@@ -97,6 +113,10 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   /// FAILED_PRECONDITION if the request exists but is not in a pending state.
   ///
   /// @Snippet(path: "AccessApproval_ApproveApprovalRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``approveApprovalRequest(request:)``
   public func approveApprovalRequest(
     request: ApproveApprovalRequestMessage, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAccessApprovalV1.ApprovalRequest {
@@ -115,6 +135,10 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   /// state.
   ///
   /// @Snippet(path: "AccessApproval_DismissApprovalRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``dismissApprovalRequest(request:)``
   public func dismissApprovalRequest(
     request: DismissApprovalRequestMessage, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAccessApprovalV1.ApprovalRequest {
@@ -131,6 +155,10 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   /// state.
   ///
   /// @Snippet(path: "AccessApproval_InvalidateApprovalRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``invalidateApprovalRequest(request:)``
   public func invalidateApprovalRequest(
     request: InvalidateApprovalRequestMessage, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAccessApprovalV1.ApprovalRequest {
@@ -140,6 +168,11 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   /// Gets the settings associated with a project, folder, or organization.
   ///
   /// @Snippet(path: "AccessApproval_GetAccessApprovalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAccessApprovalSettings(request:)``
+  /// - ``getAccessApprovalSettings(name:)``
   public func getAccessApprovalSettings(
     request: GetAccessApprovalSettingsMessage, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalSettings {
@@ -150,6 +183,11 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   /// Settings to update are determined by the value of field_mask.
   ///
   /// @Snippet(path: "AccessApproval_UpdateAccessApprovalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAccessApprovalSettings(request:)``
+  /// - ``updateAccessApprovalSettings(settings:updateMask:)``
   public func updateAccessApprovalSettings(
     request: UpdateAccessApprovalSettingsMessage, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalSettings {
@@ -164,6 +202,11 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   /// the settings are inherited.
   ///
   /// @Snippet(path: "AccessApproval_DeleteAccessApprovalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAccessApprovalSettings(request:)``
+  /// - ``deleteAccessApprovalSettings(name:)``
   public func deleteAccessApprovalSettings(
     request: DeleteAccessApprovalSettingsMessage, options: GoogleGax.RequestOptions
   ) async throws {
@@ -174,6 +217,11 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   /// keys for signing approved approval requests.
   ///
   /// @Snippet(path: "AccessApproval_GetAccessApprovalServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAccessApprovalServiceAccount(request:)``
+  /// - ``getAccessApprovalServiceAccount(name:)``
   public func getAccessApprovalServiceAccount(
     request: GetAccessApprovalServiceAccountMessage, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalServiceAccount {
@@ -237,6 +285,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.AccessApprovalProtocol {
+  /// Lists approval requests associated with a project, folder, or organization.
+  /// Approval requests can be filtered by state (pending, active, dismissed).
+  /// The order is reverse chronological.
+  ///
+  /// @Snippet(path: "AccessApproval_ListApprovalRequests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/listApprovalRequests(request:options:)``
   public func listApprovalRequests(request: ListApprovalRequestsMessage) async throws
     -> GoogleCloudAccessApprovalV1.ListApprovalRequestsResponse
   {
@@ -249,6 +306,15 @@ extension Clients.AccessApprovalProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists approval requests associated with a project, folder, or organization.
+  /// Approval requests can be filtered by state (pending, active, dismissed).
+  /// The order is reverse chronological.
+  ///
+  /// @Snippet(path: "AccessApproval_ListApprovalRequests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/listApprovalRequests(request:options:)``
   public func listApprovalRequestsByItems(
     request: ListApprovalRequestsMessage
   ) -> some AsyncSequence<ApprovalRequest, any Swift.Error> & Sendable {
@@ -260,6 +326,10 @@ extension Clients.AccessApprovalProtocol {
   /// The order is reverse chronological.
   ///
   /// @Snippet(path: "AccessApproval_ListApprovalRequests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/listApprovalRequests(request:options:)``
   public func listApprovalRequestsByItems(
     request: ListApprovalRequestsMessage, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ApprovalRequest, any Swift.Error> & Sendable {
@@ -274,6 +344,15 @@ extension Clients.AccessApprovalProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists approval requests associated with a project, folder, or organization.
+  /// Approval requests can be filtered by state (pending, active, dismissed).
+  /// The order is reverse chronological.
+  ///
+  /// @Snippet(path: "AccessApproval_ListApprovalRequests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/listApprovalRequests(request:options:)``
   public func listApprovalRequestsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ApprovalRequest, any Swift.Error> & Sendable {
@@ -283,6 +362,13 @@ extension Clients.AccessApprovalProtocol {
     return self.listApprovalRequestsByItems(request: request)
   }
 
+  /// Gets an approval request. Returns NOT_FOUND if the request does not exist.
+  ///
+  /// @Snippet(path: "AccessApproval_GetApprovalRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/getApprovalRequest(request:options:)``
   public func getApprovalRequest(request: GetApprovalRequestMessage) async throws
     -> GoogleCloudAccessApprovalV1.ApprovalRequest
   {
@@ -295,6 +381,13 @@ extension Clients.AccessApprovalProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an approval request. Returns NOT_FOUND if the request does not exist.
+  ///
+  /// @Snippet(path: "AccessApproval_GetApprovalRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/getApprovalRequest(request:options:)``
   public func getApprovalRequest(
     name: Swift.String,
   ) async throws -> GoogleCloudAccessApprovalV1.ApprovalRequest {
@@ -304,6 +397,16 @@ extension Clients.AccessApprovalProtocol {
     return try await self.getApprovalRequest(request: request)
   }
 
+  /// Approves a request and returns the updated ApprovalRequest.
+  ///
+  /// Returns NOT_FOUND if the request does not exist. Returns
+  /// FAILED_PRECONDITION if the request exists but is not in a pending state.
+  ///
+  /// @Snippet(path: "AccessApproval_ApproveApprovalRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/approveApprovalRequest(request:options:)``
   public func approveApprovalRequest(request: ApproveApprovalRequestMessage) async throws
     -> GoogleCloudAccessApprovalV1.ApprovalRequest
   {
@@ -316,6 +419,22 @@ extension Clients.AccessApprovalProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Dismisses a request. Returns the updated ApprovalRequest.
+  ///
+  /// NOTE: This does not deny access to the resource if another request has been
+  /// made and approved. It is equivalent in effect to ignoring the request
+  /// altogether.
+  ///
+  /// Returns NOT_FOUND if the request does not exist.
+  ///
+  /// Returns FAILED_PRECONDITION if the request exists but is not in a pending
+  /// state.
+  ///
+  /// @Snippet(path: "AccessApproval_DismissApprovalRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/dismissApprovalRequest(request:options:)``
   public func dismissApprovalRequest(request: DismissApprovalRequestMessage) async throws
     -> GoogleCloudAccessApprovalV1.ApprovalRequest
   {
@@ -328,6 +447,20 @@ extension Clients.AccessApprovalProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Invalidates an existing ApprovalRequest. Returns the updated
+  /// ApprovalRequest.
+  ///
+  /// NOTE: This does not deny access to the resource if another request has been
+  /// made and approved. It only invalidates a single approval.
+  ///
+  /// Returns FAILED_PRECONDITION if the request exists but is not in an approved
+  /// state.
+  ///
+  /// @Snippet(path: "AccessApproval_InvalidateApprovalRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/invalidateApprovalRequest(request:options:)``
   public func invalidateApprovalRequest(request: InvalidateApprovalRequestMessage) async throws
     -> GoogleCloudAccessApprovalV1.ApprovalRequest
   {
@@ -340,6 +473,13 @@ extension Clients.AccessApprovalProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the settings associated with a project, folder, or organization.
+  ///
+  /// @Snippet(path: "AccessApproval_GetAccessApprovalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/getAccessApprovalSettings(request:options:)``
   public func getAccessApprovalSettings(request: GetAccessApprovalSettingsMessage) async throws
     -> GoogleCloudAccessApprovalV1.AccessApprovalSettings
   {
@@ -352,6 +492,13 @@ extension Clients.AccessApprovalProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the settings associated with a project, folder, or organization.
+  ///
+  /// @Snippet(path: "AccessApproval_GetAccessApprovalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/getAccessApprovalSettings(request:options:)``
   public func getAccessApprovalSettings(
     name: Swift.String,
   ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalSettings {
@@ -361,6 +508,14 @@ extension Clients.AccessApprovalProtocol {
     return try await self.getAccessApprovalSettings(request: request)
   }
 
+  /// Updates the settings associated with a project, folder, or organization.
+  /// Settings to update are determined by the value of field_mask.
+  ///
+  /// @Snippet(path: "AccessApproval_UpdateAccessApprovalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/updateAccessApprovalSettings(request:options:)``
   public func updateAccessApprovalSettings(request: UpdateAccessApprovalSettingsMessage)
     async throws -> GoogleCloudAccessApprovalV1.AccessApprovalSettings
   {
@@ -373,6 +528,14 @@ extension Clients.AccessApprovalProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings associated with a project, folder, or organization.
+  /// Settings to update are determined by the value of field_mask.
+  ///
+  /// @Snippet(path: "AccessApproval_UpdateAccessApprovalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/updateAccessApprovalSettings(request:options:)``
   public func updateAccessApprovalSettings(
     settings: AccessApprovalSettings?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -384,6 +547,18 @@ extension Clients.AccessApprovalProtocol {
     return try await self.updateAccessApprovalSettings(request: request)
   }
 
+  /// Deletes the settings associated with a project, folder, or organization.
+  /// This will have the effect of disabling Access Approval for the project,
+  /// folder, or organization, but only if all ancestors also have Access
+  /// Approval disabled. If Access Approval is enabled at a higher level of the
+  /// hierarchy, then Access Approval will still be enabled at this level as
+  /// the settings are inherited.
+  ///
+  /// @Snippet(path: "AccessApproval_DeleteAccessApprovalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/deleteAccessApprovalSettings(request:options:)``
   public func deleteAccessApprovalSettings(request: DeleteAccessApprovalSettingsMessage)
     async throws
   {
@@ -396,6 +571,18 @@ extension Clients.AccessApprovalProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the settings associated with a project, folder, or organization.
+  /// This will have the effect of disabling Access Approval for the project,
+  /// folder, or organization, but only if all ancestors also have Access
+  /// Approval disabled. If Access Approval is enabled at a higher level of the
+  /// hierarchy, then Access Approval will still be enabled at this level as
+  /// the settings are inherited.
+  ///
+  /// @Snippet(path: "AccessApproval_DeleteAccessApprovalSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/deleteAccessApprovalSettings(request:options:)``
   public func deleteAccessApprovalSettings(
     name: Swift.String,
   ) async throws {
@@ -405,6 +592,14 @@ extension Clients.AccessApprovalProtocol {
     try await self.deleteAccessApprovalSettings(request: request)
   }
 
+  /// Retrieves the service account that is used by Access Approval to access KMS
+  /// keys for signing approved approval requests.
+  ///
+  /// @Snippet(path: "AccessApproval_GetAccessApprovalServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/getAccessApprovalServiceAccount(request:options:)``
   public func getAccessApprovalServiceAccount(request: GetAccessApprovalServiceAccountMessage)
     async throws -> GoogleCloudAccessApprovalV1.AccessApprovalServiceAccount
   {
@@ -417,6 +612,14 @@ extension Clients.AccessApprovalProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the service account that is used by Access Approval to access KMS
+  /// keys for signing approved approval requests.
+  ///
+  /// @Snippet(path: "AccessApproval_GetAccessApprovalServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessApprovalClient/getAccessApprovalServiceAccount(request:options:)``
   public func getAccessApprovalServiceAccount(
     name: Swift.String,
   ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalServiceAccount {

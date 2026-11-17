@@ -24,6 +24,10 @@ import Foundation
 /// Manages domains serving an application.
 ///
 /// @Snippet(path: "DomainMappingsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DomainMappingsProtocol``
 public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendable {
   let inner: any Clients.DomainMappingsStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,12 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   /// Lists the domain mappings on an application.
   ///
   /// @Snippet(path: "DomainMappings_ListDomainMappings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDomainMappings(request:)``
+  /// - ``listDomainMappingsByItems(request:)``
+  /// - ``listDomainMappingsByItems(request:options:)``
   public func listDomainMappings(
     request: ListDomainMappingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.ListDomainMappingsResponse {
@@ -53,6 +63,10 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   /// Gets the specified domain mapping.
   ///
   /// @Snippet(path: "DomainMappings_GetDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDomainMapping(request:)``
   public func getDomainMapping(
     request: GetDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.DomainMapping {
@@ -64,6 +78,12 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   /// authorized domains, see [`AuthorizedDomains.ListAuthorizedDomains`]().
   ///
   /// @Snippet(path: "DomainMappings_CreateDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDomainMapping(request:)``
+  /// - ``createDomainMappingPollingUntilDone(request:)``
+  /// - ``createDomainMappingPollingUntilDone(request:options:)``
   public func createDomainMapping(
     request: CreateDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -75,6 +95,12 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   /// authorized domains, see [`AuthorizedDomains.ListAuthorizedDomains`]().
   ///
   /// @Snippet(path: "DomainMappings_CreateDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDomainMappingPollingUntilDone(request:)``
+  /// - ``createDomainMapping(request:)``
+  /// - ``createDomainMapping(request:options:)``
   public func createDomainMappingPollingUntilDone(
     request: CreateDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> DomainMapping {
@@ -106,6 +132,12 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   /// in order to update a `DomainMapping` resource.
   ///
   /// @Snippet(path: "DomainMappings_UpdateDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDomainMapping(request:)``
+  /// - ``updateDomainMappingPollingUntilDone(request:)``
+  /// - ``updateDomainMappingPollingUntilDone(request:options:)``
   public func updateDomainMapping(
     request: UpdateDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -118,6 +150,12 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   /// in order to update a `DomainMapping` resource.
   ///
   /// @Snippet(path: "DomainMappings_UpdateDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDomainMappingPollingUntilDone(request:)``
+  /// - ``updateDomainMapping(request:)``
+  /// - ``updateDomainMapping(request:options:)``
   public func updateDomainMappingPollingUntilDone(
     request: UpdateDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> DomainMapping {
@@ -148,6 +186,12 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   /// resource.
   ///
   /// @Snippet(path: "DomainMappings_DeleteDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDomainMapping(request:)``
+  /// - ``deleteDomainMappingPollingUntilDone(request:)``
+  /// - ``deleteDomainMappingPollingUntilDone(request:options:)``
   public func deleteDomainMapping(
     request: DeleteDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -159,6 +203,12 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   /// resource.
   ///
   /// @Snippet(path: "DomainMappings_DeleteDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDomainMappingPollingUntilDone(request:)``
+  /// - ``deleteDomainMapping(request:)``
+  /// - ``deleteDomainMapping(request:options:)``
   public func deleteDomainMappingPollingUntilDone(
     request: DeleteDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -188,6 +238,13 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DomainMappings_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -262,6 +319,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DomainMappingsProtocol {
+  /// Lists the domain mappings on an application.
+  ///
+  /// @Snippet(path: "DomainMappings_ListDomainMappings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/listDomainMappings(request:options:)``
   public func listDomainMappings(request: ListDomainMappingsRequest) async throws
     -> GoogleAppEngineV1.ListDomainMappingsResponse
   {
@@ -274,6 +338,13 @@ extension Clients.DomainMappingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the domain mappings on an application.
+  ///
+  /// @Snippet(path: "DomainMappings_ListDomainMappings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/listDomainMappings(request:options:)``
   public func listDomainMappingsByItems(
     request: ListDomainMappingsRequest
   ) -> some AsyncSequence<DomainMapping, any Swift.Error> & Sendable {
@@ -283,6 +354,10 @@ extension Clients.DomainMappingsProtocol {
   /// Lists the domain mappings on an application.
   ///
   /// @Snippet(path: "DomainMappings_ListDomainMappings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/listDomainMappings(request:options:)``
   public func listDomainMappingsByItems(
     request: ListDomainMappingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DomainMapping, any Swift.Error> & Sendable {
@@ -297,6 +372,13 @@ extension Clients.DomainMappingsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets the specified domain mapping.
+  ///
+  /// @Snippet(path: "DomainMappings_GetDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/getDomainMapping(request:options:)``
   public func getDomainMapping(request: GetDomainMappingRequest) async throws
     -> GoogleAppEngineV1.DomainMapping
   {
@@ -309,6 +391,15 @@ extension Clients.DomainMappingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Maps a domain to an application. A user must be authorized to administer a
+  /// domain in order to map it to an application. For a list of available
+  /// authorized domains, see [`AuthorizedDomains.ListAuthorizedDomains`]().
+  ///
+  /// @Snippet(path: "DomainMappings_CreateDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/createDomainMapping(request:options:)``
   public func createDomainMapping(request: CreateDomainMappingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -321,6 +412,15 @@ extension Clients.DomainMappingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Maps a domain to an application. A user must be authorized to administer a
+  /// domain in order to map it to an application. For a list of available
+  /// authorized domains, see [`AuthorizedDomains.ListAuthorizedDomains`]().
+  ///
+  /// @Snippet(path: "DomainMappings_CreateDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/createDomainMappingPollingUntilDone(request:options:)``
   public func createDomainMappingPollingUntilDone(request: CreateDomainMappingRequest) async throws
     -> DomainMapping
   {
@@ -333,6 +433,16 @@ extension Clients.DomainMappingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified domain mapping. To map an SSL certificate to a
+  /// domain mapping, update `certificate_id` to point to an `AuthorizedCertificate`
+  /// resource. A user must be authorized to administer the associated domain
+  /// in order to update a `DomainMapping` resource.
+  ///
+  /// @Snippet(path: "DomainMappings_UpdateDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/updateDomainMapping(request:options:)``
   public func updateDomainMapping(request: UpdateDomainMappingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -345,6 +455,16 @@ extension Clients.DomainMappingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified domain mapping. To map an SSL certificate to a
+  /// domain mapping, update `certificate_id` to point to an `AuthorizedCertificate`
+  /// resource. A user must be authorized to administer the associated domain
+  /// in order to update a `DomainMapping` resource.
+  ///
+  /// @Snippet(path: "DomainMappings_UpdateDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/updateDomainMappingPollingUntilDone(request:options:)``
   public func updateDomainMappingPollingUntilDone(request: UpdateDomainMappingRequest) async throws
     -> DomainMapping
   {
@@ -357,6 +477,15 @@ extension Clients.DomainMappingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified domain mapping. A user must be authorized to
+  /// administer the associated domain in order to delete a `DomainMapping`
+  /// resource.
+  ///
+  /// @Snippet(path: "DomainMappings_DeleteDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/deleteDomainMapping(request:options:)``
   public func deleteDomainMapping(request: DeleteDomainMappingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -369,6 +498,15 @@ extension Clients.DomainMappingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified domain mapping. A user must be authorized to
+  /// administer the associated domain in order to delete a `DomainMapping`
+  /// resource.
+  ///
+  /// @Snippet(path: "DomainMappings_DeleteDomainMapping")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/deleteDomainMappingPollingUntilDone(request:options:)``
   public func deleteDomainMappingPollingUntilDone(request: DeleteDomainMappingRequest) async throws
   {
     try await self.deleteDomainMappingPollingUntilDone(request: request, options: .init())
@@ -380,6 +518,15 @@ extension Clients.DomainMappingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DomainMappings_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -392,6 +539,15 @@ extension Clients.DomainMappingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DomainMappings_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -403,6 +559,10 @@ extension Clients.DomainMappingsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DomainMappings_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -416,6 +576,15 @@ extension Clients.DomainMappingsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DomainMappings_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainMappingsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -427,6 +596,9 @@ extension Clients.DomainMappingsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -439,6 +611,9 @@ extension Clients.DomainMappingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

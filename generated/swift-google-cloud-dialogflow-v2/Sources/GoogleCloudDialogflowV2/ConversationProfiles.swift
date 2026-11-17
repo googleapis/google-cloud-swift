@@ -30,6 +30,10 @@
   /// [google.cloud.dialogflow.v2.ConversationProfile]: <doc:ConversationProfile>
   ///
   /// @Snippet(path: "ConversationProfilesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ConversationProfilesProtocol``
   public final class ConversationProfilesClient: Clients.ConversationProfilesProtocol, Sendable {
     let inner: any Clients.ConversationProfilesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -51,6 +55,13 @@
     /// Returns the list of all conversation profiles in the specified project.
     ///
     /// @Snippet(path: "ConversationProfiles_ListConversationProfiles")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listConversationProfiles(request:)``
+    /// - ``listConversationProfilesByItems(request:)``
+    /// - ``listConversationProfilesByItems(request:options:)``
+    /// - ``listConversationProfilesByItems(parent:)``
     public func listConversationProfiles(
       request: ListConversationProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListConversationProfilesResponse {
@@ -60,6 +71,11 @@
     /// Retrieves the specified conversation profile.
     ///
     /// @Snippet(path: "ConversationProfiles_GetConversationProfile")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getConversationProfile(request:)``
+    /// - ``getConversationProfile(name:)``
     public func getConversationProfile(
       request: GetConversationProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ConversationProfile {
@@ -80,6 +96,11 @@
     /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfilesClient/getConversationProfile(request:options:)>
     ///
     /// @Snippet(path: "ConversationProfiles_CreateConversationProfile")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createConversationProfile(request:)``
+    /// - ``createConversationProfile(parent:conversationProfile:)``
     public func createConversationProfile(
       request: CreateConversationProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ConversationProfile {
@@ -100,6 +121,11 @@
     /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfilesClient/getConversationProfile(request:options:)>
     ///
     /// @Snippet(path: "ConversationProfiles_UpdateConversationProfile")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateConversationProfile(request:)``
+    /// - ``updateConversationProfile(conversationProfile:updateMask:)``
     public func updateConversationProfile(
       request: UpdateConversationProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ConversationProfile {
@@ -109,6 +135,11 @@
     /// Deletes the specified conversation profile.
     ///
     /// @Snippet(path: "ConversationProfiles_DeleteConversationProfile")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteConversationProfile(request:)``
+    /// - ``deleteConversationProfile(name:)``
     public func deleteConversationProfile(
       request: DeleteConversationProfileRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -138,6 +169,14 @@
     /// [google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]: <doc:SetSuggestionFeatureConfigOperationMetadata>
     ///
     /// @Snippet(path: "ConversationProfiles_SetSuggestionFeatureConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSuggestionFeatureConfig(request:)``
+    /// - ``setSuggestionFeatureConfigPollingUntilDone(request:)``
+    /// - ``setSuggestionFeatureConfigPollingUntilDone(request:options:)``
+    /// - ``setSuggestionFeatureConfigPollingUntilDone(conversationProfile:)``
+    /// - ``setSuggestionFeatureConfigPollingUntilDone(conversationProfile:participantRole:suggestionFeatureConfig:)``
     public func setSuggestionFeatureConfig(
       request: SetSuggestionFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -167,6 +206,14 @@
     /// [google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]: <doc:SetSuggestionFeatureConfigOperationMetadata>
     ///
     /// @Snippet(path: "ConversationProfiles_SetSuggestionFeatureConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSuggestionFeatureConfigPollingUntilDone(request:)``
+    /// - ``setSuggestionFeatureConfigPollingUntilDone(conversationProfile:)``
+    /// - ``setSuggestionFeatureConfigPollingUntilDone(conversationProfile:participantRole:suggestionFeatureConfig:)``
+    /// - ``setSuggestionFeatureConfig(request:)``
+    /// - ``setSuggestionFeatureConfig(request:options:)``
     public func setSuggestionFeatureConfigPollingUntilDone(
       request: SetSuggestionFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> ConversationProfile {
@@ -208,6 +255,14 @@
     /// [google.cloud.dialogflow.v2.ConversationProfile]: <doc:ConversationProfile>
     ///
     /// @Snippet(path: "ConversationProfiles_ClearSuggestionFeatureConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``clearSuggestionFeatureConfig(request:)``
+    /// - ``clearSuggestionFeatureConfigPollingUntilDone(request:)``
+    /// - ``clearSuggestionFeatureConfigPollingUntilDone(request:options:)``
+    /// - ``clearSuggestionFeatureConfigPollingUntilDone(conversationProfile:)``
+    /// - ``clearSuggestionFeatureConfigPollingUntilDone(conversationProfile:participantRole:suggestionFeatureType:)``
     public func clearSuggestionFeatureConfig(
       request: ClearSuggestionFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -230,6 +285,14 @@
     /// [google.cloud.dialogflow.v2.ConversationProfile]: <doc:ConversationProfile>
     ///
     /// @Snippet(path: "ConversationProfiles_ClearSuggestionFeatureConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``clearSuggestionFeatureConfigPollingUntilDone(request:)``
+    /// - ``clearSuggestionFeatureConfigPollingUntilDone(conversationProfile:)``
+    /// - ``clearSuggestionFeatureConfigPollingUntilDone(conversationProfile:participantRole:suggestionFeatureType:)``
+    /// - ``clearSuggestionFeatureConfig(request:)``
+    /// - ``clearSuggestionFeatureConfig(request:options:)``
     public func clearSuggestionFeatureConfigPollingUntilDone(
       request: ClearSuggestionFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> ConversationProfile {
@@ -275,6 +338,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "ConversationProfiles_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -284,6 +353,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "ConversationProfiles_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -295,6 +368,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationProfiles_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -317,6 +397,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationProfiles_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -400,6 +485,13 @@
 
   // Default implementations
   extension Clients.ConversationProfilesProtocol {
+    /// Returns the list of all conversation profiles in the specified project.
+    ///
+    /// @Snippet(path: "ConversationProfiles_ListConversationProfiles")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/listConversationProfiles(request:options:)``
     public func listConversationProfiles(request: ListConversationProfilesRequest) async throws
       -> GoogleCloudDialogflowV2.ListConversationProfilesResponse
     {
@@ -412,6 +504,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of all conversation profiles in the specified project.
+    ///
+    /// @Snippet(path: "ConversationProfiles_ListConversationProfiles")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/listConversationProfiles(request:options:)``
     public func listConversationProfilesByItems(
       request: ListConversationProfilesRequest
     ) -> some AsyncSequence<ConversationProfile, any Swift.Error> & Sendable {
@@ -421,6 +520,10 @@
     /// Returns the list of all conversation profiles in the specified project.
     ///
     /// @Snippet(path: "ConversationProfiles_ListConversationProfiles")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/listConversationProfiles(request:options:)``
     public func listConversationProfilesByItems(
       request: ListConversationProfilesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ConversationProfile, any Swift.Error> & Sendable {
@@ -435,6 +538,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of all conversation profiles in the specified project.
+    ///
+    /// @Snippet(path: "ConversationProfiles_ListConversationProfiles")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/listConversationProfiles(request:options:)``
     public func listConversationProfilesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<ConversationProfile, any Swift.Error> & Sendable {
@@ -444,6 +554,13 @@
       return self.listConversationProfilesByItems(request: request)
     }
 
+    /// Retrieves the specified conversation profile.
+    ///
+    /// @Snippet(path: "ConversationProfiles_GetConversationProfile")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/getConversationProfile(request:options:)``
     public func getConversationProfile(request: GetConversationProfileRequest) async throws
       -> GoogleCloudDialogflowV2.ConversationProfile
     {
@@ -456,6 +573,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified conversation profile.
+    ///
+    /// @Snippet(path: "ConversationProfiles_GetConversationProfile")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/getConversationProfile(request:options:)``
     public func getConversationProfile(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.ConversationProfile {
@@ -465,6 +589,24 @@
       return try await self.getConversationProfile(request: request)
     }
 
+    /// Creates a conversation profile in the specified project.
+    ///
+    /// [ConversationProfile.create_time][google.cloud.dialogflow.v2.ConversationProfile.create_time]
+    /// and
+    /// [ConversationProfile.update_time][google.cloud.dialogflow.v2.ConversationProfile.update_time]
+    /// aren't populated in the response. You can retrieve them via
+    /// [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
+    /// API.
+    ///
+    /// [google.cloud.dialogflow.v2.ConversationProfile.create_time]: <doc:ConversationProfile/createTime>
+    /// [google.cloud.dialogflow.v2.ConversationProfile.update_time]: <doc:ConversationProfile/updateTime>
+    /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfilesClient/getConversationProfile(request:options:)>
+    ///
+    /// @Snippet(path: "ConversationProfiles_CreateConversationProfile")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/createConversationProfile(request:options:)``
     public func createConversationProfile(request: CreateConversationProfileRequest) async throws
       -> GoogleCloudDialogflowV2.ConversationProfile
     {
@@ -477,6 +619,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a conversation profile in the specified project.
+    ///
+    /// [ConversationProfile.create_time][google.cloud.dialogflow.v2.ConversationProfile.create_time]
+    /// and
+    /// [ConversationProfile.update_time][google.cloud.dialogflow.v2.ConversationProfile.update_time]
+    /// aren't populated in the response. You can retrieve them via
+    /// [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
+    /// API.
+    ///
+    /// [google.cloud.dialogflow.v2.ConversationProfile.create_time]: <doc:ConversationProfile/createTime>
+    /// [google.cloud.dialogflow.v2.ConversationProfile.update_time]: <doc:ConversationProfile/updateTime>
+    /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfilesClient/getConversationProfile(request:options:)>
+    ///
+    /// @Snippet(path: "ConversationProfiles_CreateConversationProfile")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/createConversationProfile(request:options:)``
     public func createConversationProfile(
       parent: Swift.String,
       conversationProfile: ConversationProfile?,
@@ -488,6 +648,24 @@
       return try await self.createConversationProfile(request: request)
     }
 
+    /// Updates the specified conversation profile.
+    ///
+    /// [ConversationProfile.create_time][google.cloud.dialogflow.v2.ConversationProfile.create_time]
+    /// and
+    /// [ConversationProfile.update_time][google.cloud.dialogflow.v2.ConversationProfile.update_time]
+    /// aren't populated in the response. You can retrieve them via
+    /// [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
+    /// API.
+    ///
+    /// [google.cloud.dialogflow.v2.ConversationProfile.create_time]: <doc:ConversationProfile/createTime>
+    /// [google.cloud.dialogflow.v2.ConversationProfile.update_time]: <doc:ConversationProfile/updateTime>
+    /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfilesClient/getConversationProfile(request:options:)>
+    ///
+    /// @Snippet(path: "ConversationProfiles_UpdateConversationProfile")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/updateConversationProfile(request:options:)``
     public func updateConversationProfile(request: UpdateConversationProfileRequest) async throws
       -> GoogleCloudDialogflowV2.ConversationProfile
     {
@@ -500,6 +678,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified conversation profile.
+    ///
+    /// [ConversationProfile.create_time][google.cloud.dialogflow.v2.ConversationProfile.create_time]
+    /// and
+    /// [ConversationProfile.update_time][google.cloud.dialogflow.v2.ConversationProfile.update_time]
+    /// aren't populated in the response. You can retrieve them via
+    /// [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
+    /// API.
+    ///
+    /// [google.cloud.dialogflow.v2.ConversationProfile.create_time]: <doc:ConversationProfile/createTime>
+    /// [google.cloud.dialogflow.v2.ConversationProfile.update_time]: <doc:ConversationProfile/updateTime>
+    /// [google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]: <doc:ConversationProfilesClient/getConversationProfile(request:options:)>
+    ///
+    /// @Snippet(path: "ConversationProfiles_UpdateConversationProfile")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/updateConversationProfile(request:options:)``
     public func updateConversationProfile(
       conversationProfile: ConversationProfile?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -511,6 +707,13 @@
       return try await self.updateConversationProfile(request: request)
     }
 
+    /// Deletes the specified conversation profile.
+    ///
+    /// @Snippet(path: "ConversationProfiles_DeleteConversationProfile")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/deleteConversationProfile(request:options:)``
     public func deleteConversationProfile(request: DeleteConversationProfileRequest) async throws {
       try await self.deleteConversationProfile(request: request, options: .init())
     }
@@ -521,6 +724,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified conversation profile.
+    ///
+    /// @Snippet(path: "ConversationProfiles_DeleteConversationProfile")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/deleteConversationProfile(request:options:)``
     public func deleteConversationProfile(
       name: Swift.String,
     ) async throws {
@@ -530,6 +740,33 @@
       try await self.deleteConversationProfile(request: request)
     }
 
+    /// Adds or updates a suggestion feature in a conversation profile.
+    /// If the conversation profile contains the type of suggestion feature for
+    /// the participant role, it will update it. Otherwise it will insert the
+    /// suggestion feature.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [SetSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]
+    /// - `response`:
+    /// [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+    ///
+    /// If a long running operation to add or update suggestion feature
+    /// config for the same conversation profile, participant role and suggestion
+    /// feature type exists, please cancel the existing long running operation
+    /// before sending such request, otherwise the request will be rejected.
+    ///
+    /// [google.cloud.dialogflow.v2.ConversationProfile]: <doc:ConversationProfile>
+    /// [google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]: <doc:SetSuggestionFeatureConfigOperationMetadata>
+    ///
+    /// @Snippet(path: "ConversationProfiles_SetSuggestionFeatureConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/setSuggestionFeatureConfig(request:options:)``
     public func setSuggestionFeatureConfig(request: SetSuggestionFeatureConfigRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -542,6 +779,33 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds or updates a suggestion feature in a conversation profile.
+    /// If the conversation profile contains the type of suggestion feature for
+    /// the participant role, it will update it. Otherwise it will insert the
+    /// suggestion feature.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [SetSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]
+    /// - `response`:
+    /// [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+    ///
+    /// If a long running operation to add or update suggestion feature
+    /// config for the same conversation profile, participant role and suggestion
+    /// feature type exists, please cancel the existing long running operation
+    /// before sending such request, otherwise the request will be rejected.
+    ///
+    /// [google.cloud.dialogflow.v2.ConversationProfile]: <doc:ConversationProfile>
+    /// [google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]: <doc:SetSuggestionFeatureConfigOperationMetadata>
+    ///
+    /// @Snippet(path: "ConversationProfiles_SetSuggestionFeatureConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/setSuggestionFeatureConfigPollingUntilDone(request:options:)``
     public func setSuggestionFeatureConfigPollingUntilDone(
       request: SetSuggestionFeatureConfigRequest
     ) async throws -> ConversationProfile {
@@ -555,6 +819,33 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds or updates a suggestion feature in a conversation profile.
+    /// If the conversation profile contains the type of suggestion feature for
+    /// the participant role, it will update it. Otherwise it will insert the
+    /// suggestion feature.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [SetSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]
+    /// - `response`:
+    /// [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+    ///
+    /// If a long running operation to add or update suggestion feature
+    /// config for the same conversation profile, participant role and suggestion
+    /// feature type exists, please cancel the existing long running operation
+    /// before sending such request, otherwise the request will be rejected.
+    ///
+    /// [google.cloud.dialogflow.v2.ConversationProfile]: <doc:ConversationProfile>
+    /// [google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]: <doc:SetSuggestionFeatureConfigOperationMetadata>
+    ///
+    /// @Snippet(path: "ConversationProfiles_SetSuggestionFeatureConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/setSuggestionFeatureConfigPollingUntilDone(request:options:)``
     public func setSuggestionFeatureConfigPollingUntilDone(
       conversationProfile: Swift.String,
     ) async throws -> ConversationProfile {
@@ -564,6 +855,33 @@
       return try await self.setSuggestionFeatureConfigPollingUntilDone(request: request)
     }
 
+    /// Adds or updates a suggestion feature in a conversation profile.
+    /// If the conversation profile contains the type of suggestion feature for
+    /// the participant role, it will update it. Otherwise it will insert the
+    /// suggestion feature.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [SetSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]
+    /// - `response`:
+    /// [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+    ///
+    /// If a long running operation to add or update suggestion feature
+    /// config for the same conversation profile, participant role and suggestion
+    /// feature type exists, please cancel the existing long running operation
+    /// before sending such request, otherwise the request will be rejected.
+    ///
+    /// [google.cloud.dialogflow.v2.ConversationProfile]: <doc:ConversationProfile>
+    /// [google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]: <doc:SetSuggestionFeatureConfigOperationMetadata>
+    ///
+    /// @Snippet(path: "ConversationProfiles_SetSuggestionFeatureConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/setSuggestionFeatureConfigPollingUntilDone(request:options:)``
     public func setSuggestionFeatureConfigPollingUntilDone(
       conversationProfile: Swift.String,
       participantRole: Participant.Role,
@@ -577,6 +895,26 @@
       return try await self.setSuggestionFeatureConfigPollingUntilDone(request: request)
     }
 
+    /// Clears a suggestion feature from a conversation profile for the given
+    /// participant role.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [ClearSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]
+    /// - `response`:
+    /// [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+    ///
+    /// [google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]: <doc:ClearSuggestionFeatureConfigOperationMetadata>
+    /// [google.cloud.dialogflow.v2.ConversationProfile]: <doc:ConversationProfile>
+    ///
+    /// @Snippet(path: "ConversationProfiles_ClearSuggestionFeatureConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/clearSuggestionFeatureConfig(request:options:)``
     public func clearSuggestionFeatureConfig(request: ClearSuggestionFeatureConfigRequest)
       async throws -> GoogleLongRunning.Operation
     {
@@ -589,6 +927,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Clears a suggestion feature from a conversation profile for the given
+    /// participant role.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [ClearSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]
+    /// - `response`:
+    /// [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+    ///
+    /// [google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]: <doc:ClearSuggestionFeatureConfigOperationMetadata>
+    /// [google.cloud.dialogflow.v2.ConversationProfile]: <doc:ConversationProfile>
+    ///
+    /// @Snippet(path: "ConversationProfiles_ClearSuggestionFeatureConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/clearSuggestionFeatureConfigPollingUntilDone(request:options:)``
     public func clearSuggestionFeatureConfigPollingUntilDone(
       request: ClearSuggestionFeatureConfigRequest
     ) async throws -> ConversationProfile {
@@ -602,6 +960,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Clears a suggestion feature from a conversation profile for the given
+    /// participant role.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [ClearSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]
+    /// - `response`:
+    /// [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+    ///
+    /// [google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]: <doc:ClearSuggestionFeatureConfigOperationMetadata>
+    /// [google.cloud.dialogflow.v2.ConversationProfile]: <doc:ConversationProfile>
+    ///
+    /// @Snippet(path: "ConversationProfiles_ClearSuggestionFeatureConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/clearSuggestionFeatureConfigPollingUntilDone(request:options:)``
     public func clearSuggestionFeatureConfigPollingUntilDone(
       conversationProfile: Swift.String,
     ) async throws -> ConversationProfile {
@@ -611,6 +989,26 @@
       return try await self.clearSuggestionFeatureConfigPollingUntilDone(request: request)
     }
 
+    /// Clears a suggestion feature from a conversation profile for the given
+    /// participant role.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [ClearSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]
+    /// - `response`:
+    /// [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+    ///
+    /// [google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]: <doc:ClearSuggestionFeatureConfigOperationMetadata>
+    /// [google.cloud.dialogflow.v2.ConversationProfile]: <doc:ConversationProfile>
+    ///
+    /// @Snippet(path: "ConversationProfiles_ClearSuggestionFeatureConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/clearSuggestionFeatureConfigPollingUntilDone(request:options:)``
     public func clearSuggestionFeatureConfigPollingUntilDone(
       conversationProfile: Swift.String,
       participantRole: Participant.Role,
@@ -624,6 +1022,30 @@
       return try await self.clearSuggestionFeatureConfigPollingUntilDone(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "ConversationProfiles_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -636,6 +1058,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "ConversationProfiles_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -662,6 +1108,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "ConversationProfiles_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -675,6 +1125,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "ConversationProfiles_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -687,6 +1144,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationProfiles_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -699,6 +1165,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationProfiles_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -710,6 +1185,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationProfiles_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -723,6 +1202,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationProfiles_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -734,6 +1222,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -746,6 +1237,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -755,6 +1249,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationProfiles_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -765,6 +1268,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationProfiles_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationProfilesClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

@@ -24,6 +24,10 @@
   /// Service for the `regionHealthCheckServices` resource.
   ///
   /// @Snippet(path: "regionHealthCheckServicesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionHealthCheckServicesProtocol``
   public final class RegionHealthCheckServicesClient: Clients.RegionHealthCheckServicesProtocol,
     Sendable
   {
@@ -51,6 +55,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "regionHealthCheckServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
+    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: RegionHealthCheckServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -61,6 +72,13 @@
     /// Deletes the specified regional HealthCheckService.
     ///
     /// @Snippet(path: "regionHealthCheckServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:healthCheckService:)``
     public func delete(
       request: RegionHealthCheckServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -75,6 +93,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionHealthCheckServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:region:healthCheckService:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: RegionHealthCheckServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -117,6 +142,11 @@
     /// Returns the specified regional HealthCheckService resource.
     ///
     /// @Snippet(path: "regionHealthCheckServices_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:healthCheckService:)``
     public func `get`(
       request: RegionHealthCheckServicesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.HealthCheckService {
@@ -127,6 +157,13 @@
     /// specified project and region using the data included in the request.
     ///
     /// @Snippet(path: "regionHealthCheckServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: RegionHealthCheckServicesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -142,6 +179,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionHealthCheckServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: RegionHealthCheckServicesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -185,6 +229,13 @@
     /// configured for the specified project in the given region.
     ///
     /// @Snippet(path: "regionHealthCheckServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:region:)``
     public func list(
       request: RegionHealthCheckServicesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.HealthCheckServicesList {
@@ -197,6 +248,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "regionHealthCheckServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:healthCheckService:body:)``
     public func patch(
       request: RegionHealthCheckServicesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -214,6 +272,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionHealthCheckServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:region:healthCheckService:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: RegionHealthCheckServicesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -256,6 +321,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "regionHealthCheckServices_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:region:resource:body:)``
     public func testIamPermissions(
       request: RegionHealthCheckServicesClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions
@@ -351,6 +421,17 @@
 
   // Default implementations
   extension Clients.RegionHealthCheckServicesProtocol {
+    /// Retrieves the list of all HealthCheckService resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: RegionHealthCheckServicesClient.AggregatedListRequest)
       async throws -> GoogleCloudComputeV1.HealthCheckServiceAggregatedList
     {
@@ -364,6 +445,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of all HealthCheckService resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: RegionHealthCheckServicesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, HealthCheckServicesScopedList), any Swift.Error>
@@ -379,6 +471,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "regionHealthCheckServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: RegionHealthCheckServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -396,6 +492,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of all HealthCheckService resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, HealthCheckServicesScopedList), any Swift.Error>
@@ -407,6 +514,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified regional HealthCheckService.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/delete(request:options:)``
     public func delete(request: RegionHealthCheckServicesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -419,6 +533,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified regional HealthCheckService.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionHealthCheckServicesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -431,6 +557,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified regional HealthCheckService.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -444,6 +582,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified regional HealthCheckService resource.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/get(request:options:)``
     public func `get`(request: RegionHealthCheckServicesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.HealthCheckService
     {
@@ -456,6 +601,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified regional HealthCheckService resource.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -469,6 +621,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a regional HealthCheckService resource in the
+    /// specified project and region using the data included in the request.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/insert(request:options:)``
     public func insert(request: RegionHealthCheckServicesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -481,6 +641,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a regional HealthCheckService resource in the
+    /// specified project and region using the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionHealthCheckServicesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -493,6 +666,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a regional HealthCheckService resource in the
+    /// specified project and region using the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -506,6 +692,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists all the HealthCheckService resources that have been
+    /// configured for the specified project in the given region.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/list(request:options:)``
     public func list(request: RegionHealthCheckServicesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.HealthCheckServicesList
     {
@@ -518,6 +712,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all the HealthCheckService resources that have been
+    /// configured for the specified project in the given region.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/list(request:options:)``
     public func listByItems(
       request: RegionHealthCheckServicesClient.ListRequest
     ) -> some AsyncSequence<HealthCheckService, any Swift.Error> & Sendable {
@@ -528,6 +730,10 @@
     /// configured for the specified project in the given region.
     ///
     /// @Snippet(path: "regionHealthCheckServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/list(request:options:)``
     public func listByItems(
       request: RegionHealthCheckServicesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<HealthCheckService, any Swift.Error> & Sendable {
@@ -542,6 +748,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all the HealthCheckService resources that have been
+    /// configured for the specified project in the given region.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -553,6 +767,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Updates the specified regional HealthCheckService resource
+    /// with the data included in the request.  This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/patch(request:options:)``
     public func patch(request: RegionHealthCheckServicesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -565,6 +789,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified regional HealthCheckService resource
+    /// with the data included in the request.  This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: RegionHealthCheckServicesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -577,6 +816,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified regional HealthCheckService resource
+    /// with the data included in the request.  This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -592,6 +846,13 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       request: RegionHealthCheckServicesClient.TestIamPermissionsRequest
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -605,6 +866,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionHealthCheckServices_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthCheckServicesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -620,6 +888,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

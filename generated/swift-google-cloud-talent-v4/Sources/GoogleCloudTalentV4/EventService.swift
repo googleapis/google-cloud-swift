@@ -24,6 +24,10 @@ import Foundation
 /// A service handles client event report.
 ///
 /// @Snippet(path: "EventServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/EventServiceProtocol``
 public final class EventServiceClient: Clients.EventServiceProtocol, Sendable {
   let inner: any Clients.EventServiceStub
 
@@ -46,6 +50,11 @@ public final class EventServiceClient: Clients.EventServiceProtocol, Sendable {
   /// about self service tools.
   ///
   /// @Snippet(path: "EventService_CreateClientEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createClientEvent(request:)``
+  /// - ``createClientEvent(parent:clientEvent:)``
   public func createClientEvent(
     request: CreateClientEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.ClientEvent {
@@ -80,6 +89,19 @@ extension Clients {
 
 // Default implementations
 extension Clients.EventServiceProtocol {
+  /// Report events issued when end user interacts with customer's application
+  /// that uses Cloud Talent Solution. You may inspect the created events in
+  /// [self service
+  /// tools](https://console.cloud.google.com/talent-solution/overview).
+  /// [Learn
+  /// more](https://cloud.google.com/talent-solution/docs/management-tools)
+  /// about self service tools.
+  ///
+  /// @Snippet(path: "EventService_CreateClientEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventServiceClient/createClientEvent(request:options:)``
   public func createClientEvent(request: CreateClientEventRequest) async throws
     -> GoogleCloudTalentV4.ClientEvent
   {
@@ -92,6 +114,19 @@ extension Clients.EventServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Report events issued when end user interacts with customer's application
+  /// that uses Cloud Talent Solution. You may inspect the created events in
+  /// [self service
+  /// tools](https://console.cloud.google.com/talent-solution/overview).
+  /// [Learn
+  /// more](https://cloud.google.com/talent-solution/docs/management-tools)
+  /// about self service tools.
+  ///
+  /// @Snippet(path: "EventService_CreateClientEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventServiceClient/createClientEvent(request:options:)``
   public func createClientEvent(
     parent: Swift.String,
     clientEvent: ClientEvent?,
@@ -103,6 +138,9 @@ extension Clients.EventServiceProtocol {
     return try await self.createClientEvent(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -115,6 +153,9 @@ extension Clients.EventServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

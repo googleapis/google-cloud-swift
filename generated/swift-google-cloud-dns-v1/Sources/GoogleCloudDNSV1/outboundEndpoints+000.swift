@@ -23,6 +23,10 @@ import Foundation
 /// Service for the `outboundEndpoints` resource.
 ///
 /// @Snippet(path: "outboundEndpointsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/OutboundEndpointsProtocol``
 public final class OutboundEndpointsClient: Clients.OutboundEndpointsProtocol, Sendable {
   let inner: any Clients.OutboundEndpointsStub
 
@@ -39,6 +43,11 @@ public final class OutboundEndpointsClient: Clients.OutboundEndpointsProtocol, S
   /// Creates a new Outbound Endpoint.
   ///
   /// @Snippet(path: "outboundEndpoints_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``create(request:)``
+  /// - ``create(parent:body:)``
   public func create(
     request: OutboundEndpointsClient.CreateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongrunningOperation {
@@ -48,6 +57,11 @@ public final class OutboundEndpointsClient: Clients.OutboundEndpointsProtocol, S
   /// Deletes a previously created Outbound Endpoint.
   ///
   /// @Snippet(path: "outboundEndpoints_delete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``delete(request:)``
+  /// - ``delete(name:)``
   public func delete(
     request: OutboundEndpointsClient.DeleteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongrunningOperation {
@@ -57,6 +71,11 @@ public final class OutboundEndpointsClient: Clients.OutboundEndpointsProtocol, S
   /// Fetches the representation of an existing Outbound Endpoint.
   ///
   /// @Snippet(path: "outboundEndpoints_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``get(request:)``
+  /// - ``get(name:)``
   public func `get`(
     request: OutboundEndpointsClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> OutboundEndpoint {
@@ -66,6 +85,13 @@ public final class OutboundEndpointsClient: Clients.OutboundEndpointsProtocol, S
   /// Enumerates all Outbound Endpoints associated with a project.
   ///
   /// @Snippet(path: "outboundEndpoints_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``list(request:)``
+  /// - ``listByItems(request:)``
+  /// - ``listByItems(request:options:)``
+  /// - ``listByItems(parent:)``
   public func list(
     request: OutboundEndpointsClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListOutboundEndpointsResponse {
@@ -75,6 +101,11 @@ public final class OutboundEndpointsClient: Clients.OutboundEndpointsProtocol, S
   /// Updates an existing Outbound Endpoint.
   ///
   /// @Snippet(path: "outboundEndpoints_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``patch(request:)``
+  /// - ``patch(name:body:)``
   public func patch(
     request: OutboundEndpointsClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongrunningOperation {
@@ -118,6 +149,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.OutboundEndpointsProtocol {
+  /// Creates a new Outbound Endpoint.
+  ///
+  /// @Snippet(path: "outboundEndpoints_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OutboundEndpointsClient/create(request:options:)``
   public func create(request: OutboundEndpointsClient.CreateRequest) async throws
     -> GoogleLongrunningOperation
   {
@@ -130,6 +168,13 @@ extension Clients.OutboundEndpointsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Outbound Endpoint.
+  ///
+  /// @Snippet(path: "outboundEndpoints_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OutboundEndpointsClient/create(request:options:)``
   public func create(
     parent: Swift.String,
     body: OutboundEndpoint?,
@@ -141,6 +186,13 @@ extension Clients.OutboundEndpointsProtocol {
     return try await self.create(request: request)
   }
 
+  /// Deletes a previously created Outbound Endpoint.
+  ///
+  /// @Snippet(path: "outboundEndpoints_delete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OutboundEndpointsClient/delete(request:options:)``
   public func delete(request: OutboundEndpointsClient.DeleteRequest) async throws
     -> GoogleLongrunningOperation
   {
@@ -153,6 +205,13 @@ extension Clients.OutboundEndpointsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a previously created Outbound Endpoint.
+  ///
+  /// @Snippet(path: "outboundEndpoints_delete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OutboundEndpointsClient/delete(request:options:)``
   public func delete(
     name: Swift.String,
   ) async throws -> GoogleLongrunningOperation {
@@ -162,6 +221,13 @@ extension Clients.OutboundEndpointsProtocol {
     return try await self.delete(request: request)
   }
 
+  /// Fetches the representation of an existing Outbound Endpoint.
+  ///
+  /// @Snippet(path: "outboundEndpoints_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OutboundEndpointsClient/get(request:options:)``
   public func `get`(request: OutboundEndpointsClient.GetRequest) async throws -> OutboundEndpoint {
     try await self.`get`(request: request, options: .init())
   }
@@ -172,6 +238,13 @@ extension Clients.OutboundEndpointsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches the representation of an existing Outbound Endpoint.
+  ///
+  /// @Snippet(path: "outboundEndpoints_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OutboundEndpointsClient/get(request:options:)``
   public func `get`(
     name: Swift.String,
   ) async throws -> OutboundEndpoint {
@@ -181,6 +254,13 @@ extension Clients.OutboundEndpointsProtocol {
     return try await self.`get`(request: request)
   }
 
+  /// Enumerates all Outbound Endpoints associated with a project.
+  ///
+  /// @Snippet(path: "outboundEndpoints_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OutboundEndpointsClient/list(request:options:)``
   public func list(request: OutboundEndpointsClient.ListRequest) async throws
     -> ListOutboundEndpointsResponse
   {
@@ -193,6 +273,13 @@ extension Clients.OutboundEndpointsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enumerates all Outbound Endpoints associated with a project.
+  ///
+  /// @Snippet(path: "outboundEndpoints_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OutboundEndpointsClient/list(request:options:)``
   public func listByItems(
     request: OutboundEndpointsClient.ListRequest
   ) -> some AsyncSequence<OutboundEndpoint, any Swift.Error> & Sendable {
@@ -202,6 +289,10 @@ extension Clients.OutboundEndpointsProtocol {
   /// Enumerates all Outbound Endpoints associated with a project.
   ///
   /// @Snippet(path: "outboundEndpoints_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OutboundEndpointsClient/list(request:options:)``
   public func listByItems(
     request: OutboundEndpointsClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<OutboundEndpoint, any Swift.Error> & Sendable {
@@ -214,6 +305,13 @@ extension Clients.OutboundEndpointsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Enumerates all Outbound Endpoints associated with a project.
+  ///
+  /// @Snippet(path: "outboundEndpoints_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OutboundEndpointsClient/list(request:options:)``
   public func listByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<OutboundEndpoint, any Swift.Error> & Sendable {
@@ -223,6 +321,13 @@ extension Clients.OutboundEndpointsProtocol {
     return self.listByItems(request: request)
   }
 
+  /// Updates an existing Outbound Endpoint.
+  ///
+  /// @Snippet(path: "outboundEndpoints_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OutboundEndpointsClient/patch(request:options:)``
   public func patch(request: OutboundEndpointsClient.PatchRequest) async throws
     -> GoogleLongrunningOperation
   {
@@ -235,6 +340,13 @@ extension Clients.OutboundEndpointsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing Outbound Endpoint.
+  ///
+  /// @Snippet(path: "outboundEndpoints_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OutboundEndpointsClient/patch(request:options:)``
   public func patch(
     name: Swift.String,
     body: OutboundEndpoint?,

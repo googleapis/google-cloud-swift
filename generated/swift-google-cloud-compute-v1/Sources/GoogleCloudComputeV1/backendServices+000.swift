@@ -24,6 +24,10 @@
   /// Service for the `backendServices` resource.
   ///
   /// @Snippet(path: "backendServicesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/BackendServicesProtocol``
   public final class BackendServicesClient: Clients.BackendServicesProtocol, Sendable {
     let inner: any Clients.BackendServicesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -45,6 +49,13 @@
     /// service.
     ///
     /// @Snippet(path: "backendServices_addSignedUrlKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addSignedUrlKey(request:)``
+    /// - ``addSignedUrlKeyPollingUntilDone(request:)``
+    /// - ``addSignedUrlKeyPollingUntilDone(request:options:)``
+    /// - ``addSignedUrlKeyPollingUntilDone(project:backendService:body:)``
     public func addSignedUrlKey(
       request: BackendServicesClient.AddSignedUrlKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -60,6 +71,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "backendServices_addSignedUrlKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addSignedUrlKeyPollingUntilDone(request:)``
+    /// - ``addSignedUrlKeyPollingUntilDone(project:backendService:body:)``
+    /// - ``addSignedUrlKey(request:)``
+    /// - ``addSignedUrlKey(request:options:)``
     public func addSignedUrlKeyPollingUntilDone(
       request: BackendServicesClient.AddSignedUrlKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -105,6 +123,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "backendServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
+    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: BackendServicesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendServiceAggregatedList {
@@ -114,6 +139,13 @@
     /// Deletes the specified BackendService resource.
     ///
     /// @Snippet(path: "backendServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:backendService:)``
     public func delete(
       request: BackendServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -128,6 +160,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "backendServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:backendService:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: BackendServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -170,6 +209,13 @@
     /// service.
     ///
     /// @Snippet(path: "backendServices_deleteSignedUrlKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteSignedUrlKey(request:)``
+    /// - ``deleteSignedUrlKeyPollingUntilDone(request:)``
+    /// - ``deleteSignedUrlKeyPollingUntilDone(request:options:)``
+    /// - ``deleteSignedUrlKeyPollingUntilDone(project:backendService:keyName:)``
     public func deleteSignedUrlKey(
       request: BackendServicesClient.DeleteSignedUrlKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -185,6 +231,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "backendServices_deleteSignedUrlKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteSignedUrlKeyPollingUntilDone(request:)``
+    /// - ``deleteSignedUrlKeyPollingUntilDone(project:backendService:keyName:)``
+    /// - ``deleteSignedUrlKey(request:)``
+    /// - ``deleteSignedUrlKey(request:options:)``
     public func deleteSignedUrlKeyPollingUntilDone(
       request: BackendServicesClient.DeleteSignedUrlKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -226,6 +279,11 @@
     /// Returns the specified BackendService resource.
     ///
     /// @Snippet(path: "backendServices_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:backendService:)``
     public func `get`(
       request: BackendServicesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendService {
@@ -235,6 +293,11 @@
     /// Returns effective security policies applied to this backend service.
     ///
     /// @Snippet(path: "backendServices_getEffectiveSecurityPolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getEffectiveSecurityPolicies(request:)``
+    /// - ``getEffectiveSecurityPolicies(project:backendService:)``
     public func getEffectiveSecurityPolicies(
       request: BackendServicesClient.GetEffectiveSecurityPoliciesRequest,
       options: GoogleGax.RequestOptions
@@ -252,6 +315,11 @@
     /// }
     ///
     /// @Snippet(path: "backendServices_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getHealth(request:)``
+    /// - ``getHealth(project:backendService:body:)``
     public func getHealth(
       request: BackendServicesClient.GetHealthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendServiceGroupHealth {
@@ -262,6 +330,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "backendServices_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(project:resource:)``
     public func getIamPolicy(
       request: BackendServicesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -273,6 +346,13 @@
     /// Backend services overview.
     ///
     /// @Snippet(path: "backendServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: BackendServicesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -289,6 +369,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "backendServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: BackendServicesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -331,6 +418,13 @@
     /// project.
     ///
     /// @Snippet(path: "backendServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:)``
     public func list(
       request: BackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendServiceList {
@@ -343,6 +437,13 @@
     /// Balancers are not included in the response.
     ///
     /// @Snippet(path: "backendServices_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listUsable(request:)``
+    /// - ``listUsableByItems(request:)``
+    /// - ``listUsableByItems(request:options:)``
+    /// - ``listUsableByItems(project:)``
     public func listUsable(
       request: BackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendServiceListUsable {
@@ -356,6 +457,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "backendServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:backendService:body:)``
     public func patch(
       request: BackendServicesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -374,6 +482,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "backendServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:backendService:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: BackendServicesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -415,6 +530,13 @@
     /// Sets the edge security policy for the specified backend service.
     ///
     /// @Snippet(path: "backendServices_setEdgeSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setEdgeSecurityPolicy(request:)``
+    /// - ``setEdgeSecurityPolicyPollingUntilDone(request:)``
+    /// - ``setEdgeSecurityPolicyPollingUntilDone(request:options:)``
+    /// - ``setEdgeSecurityPolicyPollingUntilDone(project:backendService:body:)``
     public func setEdgeSecurityPolicy(
       request: BackendServicesClient.SetEdgeSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -429,6 +551,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "backendServices_setEdgeSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setEdgeSecurityPolicyPollingUntilDone(request:)``
+    /// - ``setEdgeSecurityPolicyPollingUntilDone(project:backendService:body:)``
+    /// - ``setEdgeSecurityPolicy(request:)``
+    /// - ``setEdgeSecurityPolicy(request:options:)``
     public func setEdgeSecurityPolicyPollingUntilDone(
       request: BackendServicesClient.SetEdgeSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -471,6 +600,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "backendServices_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(project:resource:body:)``
     public func setIamPolicy(
       request: BackendServicesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -482,6 +616,13 @@
     /// Cloud Armor Overview
     ///
     /// @Snippet(path: "backendServices_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSecurityPolicy(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:options:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:backendService:body:)``
     public func setSecurityPolicy(
       request: BackendServicesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -498,6 +639,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "backendServices_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSecurityPolicyPollingUntilDone(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:backendService:body:)``
+    /// - ``setSecurityPolicy(request:)``
+    /// - ``setSecurityPolicy(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       request: BackendServicesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -539,6 +687,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "backendServices_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:resource:body:)``
     public func testIamPermissions(
       request: BackendServicesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -550,6 +703,13 @@
     /// services overview.
     ///
     /// @Snippet(path: "backendServices_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
+    /// - ``updatePollingUntilDone(project:backendService:body:)``
     public func update(
       request: BackendServicesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -566,6 +726,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "backendServices_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(project:backendService:body:)``
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
     public func updatePollingUntilDone(
       request: BackendServicesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -793,6 +960,14 @@
 
   // Default implementations
   extension Clients.BackendServicesProtocol {
+    /// Adds a key for validating requests with signed URLs for this backend
+    /// service.
+    ///
+    /// @Snippet(path: "backendServices_addSignedUrlKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/addSignedUrlKey(request:options:)``
     public func addSignedUrlKey(request: BackendServicesClient.AddSignedUrlKeyRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -805,6 +980,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds a key for validating requests with signed URLs for this backend
+    /// service.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_addSignedUrlKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/addSignedUrlKeyPollingUntilDone(request:options:)``
     public func addSignedUrlKeyPollingUntilDone(
       request: BackendServicesClient.AddSignedUrlKeyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -817,6 +1005,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds a key for validating requests with signed URLs for this backend
+    /// service.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_addSignedUrlKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/addSignedUrlKeyPollingUntilDone(request:options:)``
     public func addSignedUrlKeyPollingUntilDone(
       project: Swift.String,
       backendService: Swift.String,
@@ -830,6 +1031,17 @@
       return try await self.addSignedUrlKeyPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of all BackendService resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "backendServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: BackendServicesClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.BackendServiceAggregatedList
     {
@@ -842,6 +1054,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of all BackendService resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "backendServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: BackendServicesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, BackendServicesScopedList), any Swift.Error> & Sendable {
@@ -855,6 +1078,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "backendServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: BackendServicesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, BackendServicesScopedList), any Swift.Error> & Sendable {
@@ -869,6 +1096,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of all BackendService resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "backendServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, BackendServicesScopedList), any Swift.Error> & Sendable {
@@ -878,6 +1116,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified BackendService resource.
+    ///
+    /// @Snippet(path: "backendServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/delete(request:options:)``
     public func delete(request: BackendServicesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -890,6 +1135,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified BackendService resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: BackendServicesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -902,6 +1159,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified BackendService resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       backendService: Swift.String,
@@ -913,6 +1182,14 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Deletes a key for validating requests with signed URLs for this backend
+    /// service.
+    ///
+    /// @Snippet(path: "backendServices_deleteSignedUrlKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/deleteSignedUrlKey(request:options:)``
     public func deleteSignedUrlKey(request: BackendServicesClient.DeleteSignedUrlKeyRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -925,6 +1202,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a key for validating requests with signed URLs for this backend
+    /// service.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_deleteSignedUrlKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/deleteSignedUrlKeyPollingUntilDone(request:options:)``
     public func deleteSignedUrlKeyPollingUntilDone(
       request: BackendServicesClient.DeleteSignedUrlKeyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -937,6 +1227,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a key for validating requests with signed URLs for this backend
+    /// service.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_deleteSignedUrlKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/deleteSignedUrlKeyPollingUntilDone(request:options:)``
     public func deleteSignedUrlKeyPollingUntilDone(
       project: Swift.String,
       backendService: Swift.String,
@@ -950,6 +1253,13 @@
       return try await self.deleteSignedUrlKeyPollingUntilDone(request: request)
     }
 
+    /// Returns the specified BackendService resource.
+    ///
+    /// @Snippet(path: "backendServices_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/get(request:options:)``
     public func `get`(request: BackendServicesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.BackendService
     {
@@ -962,6 +1272,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified BackendService resource.
+    ///
+    /// @Snippet(path: "backendServices_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       backendService: Swift.String,
@@ -973,6 +1290,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Returns effective security policies applied to this backend service.
+    ///
+    /// @Snippet(path: "backendServices_getEffectiveSecurityPolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/getEffectiveSecurityPolicies(request:options:)``
     public func getEffectiveSecurityPolicies(
       request: BackendServicesClient.GetEffectiveSecurityPoliciesRequest
     ) async throws {
@@ -986,6 +1310,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns effective security policies applied to this backend service.
+    ///
+    /// @Snippet(path: "backendServices_getEffectiveSecurityPolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/getEffectiveSecurityPolicies(request:options:)``
     public func getEffectiveSecurityPolicies(
       project: Swift.String,
       backendService: Swift.String,
@@ -997,6 +1328,20 @@
       try await self.getEffectiveSecurityPolicies(request: request)
     }
 
+    /// Gets the most recent health check results for this
+    /// BackendService.
+    ///
+    /// Example request body:
+    ///
+    /// {
+    ///   "group": "/zones/us-east1-b/instanceGroups/lb-backend-example"
+    /// }
+    ///
+    /// @Snippet(path: "backendServices_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/getHealth(request:options:)``
     public func getHealth(request: BackendServicesClient.GetHealthRequest) async throws
       -> GoogleCloudComputeV1.BackendServiceGroupHealth
     {
@@ -1009,6 +1354,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the most recent health check results for this
+    /// BackendService.
+    ///
+    /// Example request body:
+    ///
+    /// {
+    ///   "group": "/zones/us-east1-b/instanceGroups/lb-backend-example"
+    /// }
+    ///
+    /// @Snippet(path: "backendServices_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/getHealth(request:options:)``
     public func getHealth(
       project: Swift.String,
       backendService: Swift.String,
@@ -1022,6 +1381,14 @@
       return try await self.getHealth(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "backendServices_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: BackendServicesClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -1034,6 +1401,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "backendServices_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -1045,6 +1420,15 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates a BackendService resource in the specified project using
+    /// the data included in the request. For more information, see
+    /// Backend services overview.
+    ///
+    /// @Snippet(path: "backendServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/insert(request:options:)``
     public func insert(request: BackendServicesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1057,6 +1441,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a BackendService resource in the specified project using
+    /// the data included in the request. For more information, see
+    /// Backend services overview.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: BackendServicesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1069,6 +1467,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a BackendService resource in the specified project using
+    /// the data included in the request. For more information, see
+    /// Backend services overview.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: BackendService?,
@@ -1080,6 +1492,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of BackendService resources available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "backendServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/list(request:options:)``
     public func list(request: BackendServicesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.BackendServiceList
     {
@@ -1092,6 +1512,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of BackendService resources available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "backendServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/list(request:options:)``
     public func listByItems(
       request: BackendServicesClient.ListRequest
     ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
@@ -1102,6 +1530,10 @@
     /// project.
     ///
     /// @Snippet(path: "backendServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/list(request:options:)``
     public func listByItems(
       request: BackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
@@ -1115,6 +1547,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of BackendService resources available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "backendServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
@@ -1124,6 +1564,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Retrieves a list of all usable backend services for Application Load
+    /// Balancers and Proxy Network Load Balancers in the specified project.
+    /// Backend services for external and internal passthrough Network Load
+    /// Balancers are not included in the response.
+    ///
+    /// @Snippet(path: "backendServices_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/listUsable(request:options:)``
     public func listUsable(request: BackendServicesClient.ListUsableRequest) async throws
       -> GoogleCloudComputeV1.BackendServiceListUsable
     {
@@ -1136,6 +1586,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of all usable backend services for Application Load
+    /// Balancers and Proxy Network Load Balancers in the specified project.
+    /// Backend services for external and internal passthrough Network Load
+    /// Balancers are not included in the response.
+    ///
+    /// @Snippet(path: "backendServices_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/listUsable(request:options:)``
     public func listUsableByItems(
       request: BackendServicesClient.ListUsableRequest
     ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
@@ -1148,6 +1608,10 @@
     /// Balancers are not included in the response.
     ///
     /// @Snippet(path: "backendServices_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/listUsable(request:options:)``
     public func listUsableByItems(
       request: BackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
@@ -1162,6 +1626,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of all usable backend services for Application Load
+    /// Balancers and Proxy Network Load Balancers in the specified project.
+    /// Backend services for external and internal passthrough Network Load
+    /// Balancers are not included in the response.
+    ///
+    /// @Snippet(path: "backendServices_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/listUsable(request:options:)``
     public func listUsableByItems(
       project: Swift.String,
     ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
@@ -1171,6 +1645,17 @@
       return self.listUsableByItems(request: request)
     }
 
+    /// Patches the specified BackendService resource with the data included in the
+    /// request. For more information, see
+    /// Backend services overview. This method
+    /// supports PATCH semantics and uses the JSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "backendServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/patch(request:options:)``
     public func patch(request: BackendServicesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1183,6 +1668,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified BackendService resource with the data included in the
+    /// request. For more information, see
+    /// Backend services overview. This method
+    /// supports PATCH semantics and uses the JSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: BackendServicesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1195,6 +1696,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified BackendService resource with the data included in the
+    /// request. For more information, see
+    /// Backend services overview. This method
+    /// supports PATCH semantics and uses the JSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       backendService: Swift.String,
@@ -1208,6 +1725,13 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Sets the edge security policy for the specified backend service.
+    ///
+    /// @Snippet(path: "backendServices_setEdgeSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/setEdgeSecurityPolicy(request:options:)``
     public func setEdgeSecurityPolicy(request: BackendServicesClient.SetEdgeSecurityPolicyRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -1220,6 +1744,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the edge security policy for the specified backend service.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_setEdgeSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/setEdgeSecurityPolicyPollingUntilDone(request:options:)``
     public func setEdgeSecurityPolicyPollingUntilDone(
       request: BackendServicesClient.SetEdgeSecurityPolicyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1233,6 +1769,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the edge security policy for the specified backend service.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_setEdgeSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/setEdgeSecurityPolicyPollingUntilDone(request:options:)``
     public func setEdgeSecurityPolicyPollingUntilDone(
       project: Swift.String,
       backendService: Swift.String,
@@ -1246,6 +1794,14 @@
       return try await self.setEdgeSecurityPolicyPollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "backendServices_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: BackendServicesClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -1258,6 +1814,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "backendServices_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -1271,6 +1835,15 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified backend
+    /// service. For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// @Snippet(path: "backendServices_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/setSecurityPolicy(request:options:)``
     public func setSecurityPolicy(request: BackendServicesClient.SetSecurityPolicyRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -1283,6 +1856,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified backend
+    /// service. For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/setSecurityPolicyPollingUntilDone(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       request: BackendServicesClient.SetSecurityPolicyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1295,6 +1882,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified backend
+    /// service. For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/setSecurityPolicyPollingUntilDone(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       project: Swift.String,
       backendService: Swift.String,
@@ -1308,6 +1909,13 @@
       return try await self.setSecurityPolicyPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "backendServices_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: BackendServicesClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -1320,6 +1928,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "backendServices_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       resource: Swift.String,
@@ -1333,6 +1948,15 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Updates the specified BackendService resource with the data included in the
+    /// request. For more information, seeBackend
+    /// services overview.
+    ///
+    /// @Snippet(path: "backendServices_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/update(request:options:)``
     public func update(request: BackendServicesClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1345,6 +1969,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified BackendService resource with the data included in the
+    /// request. For more information, seeBackend
+    /// services overview.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: BackendServicesClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1357,6 +1995,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified BackendService resource with the data included in the
+    /// request. For more information, seeBackend
+    /// services overview.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "backendServices_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BackendServicesClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       backendService: Swift.String,
@@ -1370,6 +2022,7 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

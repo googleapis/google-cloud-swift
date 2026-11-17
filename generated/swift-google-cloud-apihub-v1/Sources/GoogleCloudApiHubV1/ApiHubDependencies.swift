@@ -29,6 +29,10 @@ import Foundation
 /// [google.cloud.apihub.v1.Dependency]: <doc:Dependency>
 ///
 /// @Snippet(path: "ApiHubDependenciesQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ApiHubDependenciesProtocol``
 public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol, Sendable {
   let inner: any Clients.ApiHubDependenciesStub
 
@@ -45,6 +49,11 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   /// Create a dependency between two entities in the API hub.
   ///
   /// @Snippet(path: "ApiHubDependencies_CreateDependency")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDependency(request:)``
+  /// - ``createDependency(parent:dependency:dependencyId:)``
   public func createDependency(
     request: CreateDependencyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Dependency {
@@ -54,6 +63,11 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   /// Get details about a dependency resource in the API hub.
   ///
   /// @Snippet(path: "ApiHubDependencies_GetDependency")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDependency(request:)``
+  /// - ``getDependency(name:)``
   public func getDependency(
     request: GetDependencyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Dependency {
@@ -73,6 +87,11 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   /// [google.cloud.apihub.v1.UpdateDependencyRequest.update_mask]: <doc:UpdateDependencyRequest/updateMask>
   ///
   /// @Snippet(path: "ApiHubDependencies_UpdateDependency")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDependency(request:)``
+  /// - ``updateDependency(dependency:updateMask:)``
   public func updateDependency(
     request: UpdateDependencyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Dependency {
@@ -82,6 +101,11 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   /// Delete the dependency resource.
   ///
   /// @Snippet(path: "ApiHubDependencies_DeleteDependency")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDependency(request:)``
+  /// - ``deleteDependency(name:)``
   public func deleteDependency(
     request: DeleteDependencyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -91,6 +115,13 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   /// List dependencies based on the provided filter and pagination parameters.
   ///
   /// @Snippet(path: "ApiHubDependencies_ListDependencies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDependencies(request:)``
+  /// - ``listDependenciesByItems(request:)``
+  /// - ``listDependenciesByItems(request:options:)``
+  /// - ``listDependenciesByItems(parent:)``
   public func listDependencies(
     request: ListDependenciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListDependenciesResponse {
@@ -100,6 +131,12 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ApiHubDependencies_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -109,6 +146,10 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ApiHubDependencies_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -120,6 +161,13 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHubDependencies_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -142,6 +190,11 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHubDependencies_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -153,6 +206,11 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHubDependencies_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -221,6 +279,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ApiHubDependenciesProtocol {
+  /// Create a dependency between two entities in the API hub.
+  ///
+  /// @Snippet(path: "ApiHubDependencies_CreateDependency")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/createDependency(request:options:)``
   public func createDependency(request: CreateDependencyRequest) async throws
     -> GoogleCloudApiHubV1.Dependency
   {
@@ -233,6 +298,13 @@ extension Clients.ApiHubDependenciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a dependency between two entities in the API hub.
+  ///
+  /// @Snippet(path: "ApiHubDependencies_CreateDependency")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/createDependency(request:options:)``
   public func createDependency(
     parent: Swift.String,
     dependency: Dependency?,
@@ -246,6 +318,13 @@ extension Clients.ApiHubDependenciesProtocol {
     return try await self.createDependency(request: request)
   }
 
+  /// Get details about a dependency resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHubDependencies_GetDependency")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/getDependency(request:options:)``
   public func getDependency(request: GetDependencyRequest) async throws
     -> GoogleCloudApiHubV1.Dependency
   {
@@ -258,6 +337,13 @@ extension Clients.ApiHubDependenciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get details about a dependency resource in the API hub.
+  ///
+  /// @Snippet(path: "ApiHubDependencies_GetDependency")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/getDependency(request:options:)``
   public func getDependency(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.Dependency {
@@ -267,6 +353,23 @@ extension Clients.ApiHubDependenciesProtocol {
     return try await self.getDependency(request: request)
   }
 
+  /// Update a dependency based on the
+  /// [update_mask][google.cloud.apihub.v1.UpdateDependencyRequest.update_mask]
+  /// provided in the request.
+  ///
+  /// The following fields in the [dependency][google.cloud.apihub.v1.Dependency]
+  /// can be updated:
+  /// * [description][google.cloud.apihub.v1.Dependency.description]
+  ///
+  /// [google.cloud.apihub.v1.Dependency]: <doc:Dependency>
+  /// [google.cloud.apihub.v1.Dependency.description]: <doc:Dependency/description>
+  /// [google.cloud.apihub.v1.UpdateDependencyRequest.update_mask]: <doc:UpdateDependencyRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHubDependencies_UpdateDependency")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/updateDependency(request:options:)``
   public func updateDependency(request: UpdateDependencyRequest) async throws
     -> GoogleCloudApiHubV1.Dependency
   {
@@ -279,6 +382,23 @@ extension Clients.ApiHubDependenciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a dependency based on the
+  /// [update_mask][google.cloud.apihub.v1.UpdateDependencyRequest.update_mask]
+  /// provided in the request.
+  ///
+  /// The following fields in the [dependency][google.cloud.apihub.v1.Dependency]
+  /// can be updated:
+  /// * [description][google.cloud.apihub.v1.Dependency.description]
+  ///
+  /// [google.cloud.apihub.v1.Dependency]: <doc:Dependency>
+  /// [google.cloud.apihub.v1.Dependency.description]: <doc:Dependency/description>
+  /// [google.cloud.apihub.v1.UpdateDependencyRequest.update_mask]: <doc:UpdateDependencyRequest/updateMask>
+  ///
+  /// @Snippet(path: "ApiHubDependencies_UpdateDependency")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/updateDependency(request:options:)``
   public func updateDependency(
     dependency: Dependency?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -290,6 +410,13 @@ extension Clients.ApiHubDependenciesProtocol {
     return try await self.updateDependency(request: request)
   }
 
+  /// Delete the dependency resource.
+  ///
+  /// @Snippet(path: "ApiHubDependencies_DeleteDependency")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/deleteDependency(request:options:)``
   public func deleteDependency(request: DeleteDependencyRequest) async throws {
     try await self.deleteDependency(request: request, options: .init())
   }
@@ -300,6 +427,13 @@ extension Clients.ApiHubDependenciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete the dependency resource.
+  ///
+  /// @Snippet(path: "ApiHubDependencies_DeleteDependency")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/deleteDependency(request:options:)``
   public func deleteDependency(
     name: Swift.String,
   ) async throws {
@@ -309,6 +443,13 @@ extension Clients.ApiHubDependenciesProtocol {
     try await self.deleteDependency(request: request)
   }
 
+  /// List dependencies based on the provided filter and pagination parameters.
+  ///
+  /// @Snippet(path: "ApiHubDependencies_ListDependencies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/listDependencies(request:options:)``
   public func listDependencies(request: ListDependenciesRequest) async throws
     -> GoogleCloudApiHubV1.ListDependenciesResponse
   {
@@ -321,6 +462,13 @@ extension Clients.ApiHubDependenciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List dependencies based on the provided filter and pagination parameters.
+  ///
+  /// @Snippet(path: "ApiHubDependencies_ListDependencies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/listDependencies(request:options:)``
   public func listDependenciesByItems(
     request: ListDependenciesRequest
   ) -> some AsyncSequence<Dependency, any Swift.Error> & Sendable {
@@ -330,6 +478,10 @@ extension Clients.ApiHubDependenciesProtocol {
   /// List dependencies based on the provided filter and pagination parameters.
   ///
   /// @Snippet(path: "ApiHubDependencies_ListDependencies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/listDependencies(request:options:)``
   public func listDependenciesByItems(
     request: ListDependenciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Dependency, any Swift.Error> & Sendable {
@@ -344,6 +496,13 @@ extension Clients.ApiHubDependenciesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List dependencies based on the provided filter and pagination parameters.
+  ///
+  /// @Snippet(path: "ApiHubDependencies_ListDependencies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/listDependencies(request:options:)``
   public func listDependenciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Dependency, any Swift.Error> & Sendable {
@@ -353,6 +512,13 @@ extension Clients.ApiHubDependenciesProtocol {
     return self.listDependenciesByItems(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ApiHubDependencies_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -365,6 +531,13 @@ extension Clients.ApiHubDependenciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ApiHubDependencies_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -374,6 +547,10 @@ extension Clients.ApiHubDependenciesProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ApiHubDependencies_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -387,6 +564,13 @@ extension Clients.ApiHubDependenciesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "ApiHubDependencies_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -399,6 +583,15 @@ extension Clients.ApiHubDependenciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDependencies_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -411,6 +604,15 @@ extension Clients.ApiHubDependenciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDependencies_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -422,6 +624,10 @@ extension Clients.ApiHubDependenciesProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHubDependencies_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -435,6 +641,15 @@ extension Clients.ApiHubDependenciesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDependencies_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -446,6 +661,9 @@ extension Clients.ApiHubDependenciesProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -458,6 +676,9 @@ extension Clients.ApiHubDependenciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -467,6 +688,15 @@ extension Clients.ApiHubDependenciesProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDependencies_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -477,6 +707,15 @@ extension Clients.ApiHubDependenciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDependencies_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -486,6 +725,15 @@ extension Clients.ApiHubDependenciesProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDependencies_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -496,6 +744,15 @@ extension Clients.ApiHubDependenciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDependencies_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDependenciesClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

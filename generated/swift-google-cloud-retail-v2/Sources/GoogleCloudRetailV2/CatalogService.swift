@@ -25,6 +25,10 @@ import Foundation
 /// Service for managing catalog configuration.
 ///
 /// @Snippet(path: "CatalogServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CatalogServiceProtocol``
 public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendable {
   let inner: any Clients.CatalogServiceStub
 
@@ -44,6 +48,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.Catalog]: <doc:Catalog>
   ///
   /// @Snippet(path: "CatalogService_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCatalogs(request:)``
+  /// - ``listCatalogsByItems(request:)``
+  /// - ``listCatalogsByItems(request:options:)``
+  /// - ``listCatalogsByItems(parent:)``
   public func listCatalogs(
     request: ListCatalogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ListCatalogsResponse {
@@ -55,6 +66,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.Catalog]: <doc:Catalog>
   ///
   /// @Snippet(path: "CatalogService_UpdateCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCatalog(request:)``
+  /// - ``updateCatalog(catalog:updateMask:)``
   public func updateCatalog(
     request: UpdateCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Catalog {
@@ -102,6 +118,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
   ///
   /// @Snippet(path: "CatalogService_SetDefaultBranch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setDefaultBranch(request:)``
+  /// - ``setDefaultBranch(catalog:)``
   public func setDefaultBranch(
     request: SetDefaultBranchRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -115,6 +136,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.CatalogService.SetDefaultBranch]: <doc:CatalogServiceClient/setDefaultBranch(request:options:)>
   ///
   /// @Snippet(path: "CatalogService_GetDefaultBranch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDefaultBranch(request:)``
+  /// - ``getDefaultBranch(catalog:)``
   public func getDefaultBranch(
     request: GetDefaultBranchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.GetDefaultBranchResponse {
@@ -126,6 +152,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.CompletionConfig]: <doc:CompletionConfig>
   ///
   /// @Snippet(path: "CatalogService_GetCompletionConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCompletionConfig(request:)``
+  /// - ``getCompletionConfig(name:)``
   public func getCompletionConfig(
     request: GetCompletionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.CompletionConfig {
@@ -137,6 +168,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.CompletionConfig]: <doc:CompletionConfig>
   ///
   /// @Snippet(path: "CatalogService_UpdateCompletionConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCompletionConfig(request:)``
+  /// - ``updateCompletionConfig(completionConfig:updateMask:)``
   public func updateCompletionConfig(
     request: UpdateCompletionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.CompletionConfig {
@@ -148,6 +184,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.AttributesConfig]: <doc:AttributesConfig>
   ///
   /// @Snippet(path: "CatalogService_GetAttributesConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAttributesConfig(request:)``
+  /// - ``getAttributesConfig(name:)``
   public func getAttributesConfig(
     request: GetAttributesConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -166,6 +207,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.AttributesConfig]: <doc:AttributesConfig>
   ///
   /// @Snippet(path: "CatalogService_UpdateAttributesConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAttributesConfig(request:)``
+  /// - ``updateAttributesConfig(attributesConfig:updateMask:)``
   public func updateAttributesConfig(
     request: UpdateAttributesConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -183,6 +229,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.CatalogAttribute]: <doc:CatalogAttribute>
   ///
   /// @Snippet(path: "CatalogService_AddCatalogAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addCatalogAttribute(request:)``
   public func addCatalogAttribute(
     request: AddCatalogAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -200,6 +250,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.CatalogAttribute]: <doc:CatalogAttribute>
   ///
   /// @Snippet(path: "CatalogService_RemoveCatalogAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeCatalogAttribute(request:)``
   public func removeCatalogAttribute(
     request: RemoveCatalogAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -220,6 +274,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.CatalogAttribute.key]: <doc:CatalogAttribute/key>
   ///
   /// @Snippet(path: "CatalogService_ReplaceCatalogAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``replaceCatalogAttribute(request:)``
   public func replaceCatalogAttribute(
     request: ReplaceCatalogAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -231,6 +289,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CatalogService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -320,6 +385,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.CatalogServiceProtocol {
+  /// Lists all the [Catalog][google.cloud.retail.v2.Catalog]s associated with
+  /// the project.
+  ///
+  /// [google.cloud.retail.v2.Catalog]: <doc:Catalog>
+  ///
+  /// @Snippet(path: "CatalogService_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listCatalogs(request:options:)``
   public func listCatalogs(request: ListCatalogsRequest) async throws
     -> GoogleCloudRetailV2.ListCatalogsResponse
   {
@@ -332,6 +407,16 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the [Catalog][google.cloud.retail.v2.Catalog]s associated with
+  /// the project.
+  ///
+  /// [google.cloud.retail.v2.Catalog]: <doc:Catalog>
+  ///
+  /// @Snippet(path: "CatalogService_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listCatalogs(request:options:)``
   public func listCatalogsByItems(
     request: ListCatalogsRequest
   ) -> some AsyncSequence<Catalog, any Swift.Error> & Sendable {
@@ -344,6 +429,10 @@ extension Clients.CatalogServiceProtocol {
   /// [google.cloud.retail.v2.Catalog]: <doc:Catalog>
   ///
   /// @Snippet(path: "CatalogService_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listCatalogs(request:options:)``
   public func listCatalogsByItems(
     request: ListCatalogsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Catalog, any Swift.Error> & Sendable {
@@ -357,6 +446,16 @@ extension Clients.CatalogServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the [Catalog][google.cloud.retail.v2.Catalog]s associated with
+  /// the project.
+  ///
+  /// [google.cloud.retail.v2.Catalog]: <doc:Catalog>
+  ///
+  /// @Snippet(path: "CatalogService_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listCatalogs(request:options:)``
   public func listCatalogsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Catalog, any Swift.Error> & Sendable {
@@ -366,6 +465,15 @@ extension Clients.CatalogServiceProtocol {
     return self.listCatalogsByItems(request: request)
   }
 
+  /// Updates the [Catalog][google.cloud.retail.v2.Catalog]s.
+  ///
+  /// [google.cloud.retail.v2.Catalog]: <doc:Catalog>
+  ///
+  /// @Snippet(path: "CatalogService_UpdateCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateCatalog(request:options:)``
   public func updateCatalog(request: UpdateCatalogRequest) async throws
     -> GoogleCloudRetailV2.Catalog
   {
@@ -378,6 +486,15 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the [Catalog][google.cloud.retail.v2.Catalog]s.
+  ///
+  /// [google.cloud.retail.v2.Catalog]: <doc:Catalog>
+  ///
+  /// @Snippet(path: "CatalogService_UpdateCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateCatalog(request:options:)``
   public func updateCatalog(
     catalog: Catalog?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -389,6 +506,51 @@ extension Clients.CatalogServiceProtocol {
     return try await self.updateCatalog(request: request)
   }
 
+  /// Set a specified branch id as default branch. API methods such as
+  /// [SearchService.Search][google.cloud.retail.v2.SearchService.Search],
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct],
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts]
+  /// will treat requests using "default_branch" to the actual branch id set as
+  /// default.
+  ///
+  /// For example, if `projects/*/locations/*/catalogs/*/branches/1` is set as
+  /// default, setting
+  /// [SearchRequest.branch][google.cloud.retail.v2.SearchRequest.branch] to
+  /// `projects/*/locations/*/catalogs/*/branches/default_branch` is equivalent
+  /// to setting
+  /// [SearchRequest.branch][google.cloud.retail.v2.SearchRequest.branch] to
+  /// `projects/*/locations/*/catalogs/*/branches/1`.
+  ///
+  /// Using multiple branches can be useful when developers would like
+  /// to have a staging branch to test and verify for future usage. When it
+  /// becomes ready, developers switch on the staging branch using this API
+  /// while keeping using
+  /// `projects/*/locations/*/catalogs/*/branches/default_branch` as
+  /// [SearchRequest.branch][google.cloud.retail.v2.SearchRequest.branch] to
+  /// route the traffic to this staging branch.
+  ///
+  /// CAUTION: If you have live predict/search traffic, switching the default
+  /// branch could potentially cause outages if the ID space of the new branch
+  /// is very different from the old one.
+  ///
+  /// More specifically:
+  ///
+  /// * PredictionService will only return product IDs from branch {newBranch}.
+  /// * SearchService will only return product IDs from branch {newBranch}
+  ///   (if branch is not explicitly set).
+  /// * UserEventService will only join events with products from branch
+  ///   {newBranch}.
+  ///
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.SearchRequest.branch]: <doc:SearchRequest/branch>
+  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
+  ///
+  /// @Snippet(path: "CatalogService_SetDefaultBranch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/setDefaultBranch(request:options:)``
   public func setDefaultBranch(request: SetDefaultBranchRequest) async throws {
     try await self.setDefaultBranch(request: request, options: .init())
   }
@@ -399,6 +561,51 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Set a specified branch id as default branch. API methods such as
+  /// [SearchService.Search][google.cloud.retail.v2.SearchService.Search],
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct],
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts]
+  /// will treat requests using "default_branch" to the actual branch id set as
+  /// default.
+  ///
+  /// For example, if `projects/*/locations/*/catalogs/*/branches/1` is set as
+  /// default, setting
+  /// [SearchRequest.branch][google.cloud.retail.v2.SearchRequest.branch] to
+  /// `projects/*/locations/*/catalogs/*/branches/default_branch` is equivalent
+  /// to setting
+  /// [SearchRequest.branch][google.cloud.retail.v2.SearchRequest.branch] to
+  /// `projects/*/locations/*/catalogs/*/branches/1`.
+  ///
+  /// Using multiple branches can be useful when developers would like
+  /// to have a staging branch to test and verify for future usage. When it
+  /// becomes ready, developers switch on the staging branch using this API
+  /// while keeping using
+  /// `projects/*/locations/*/catalogs/*/branches/default_branch` as
+  /// [SearchRequest.branch][google.cloud.retail.v2.SearchRequest.branch] to
+  /// route the traffic to this staging branch.
+  ///
+  /// CAUTION: If you have live predict/search traffic, switching the default
+  /// branch could potentially cause outages if the ID space of the new branch
+  /// is very different from the old one.
+  ///
+  /// More specifically:
+  ///
+  /// * PredictionService will only return product IDs from branch {newBranch}.
+  /// * SearchService will only return product IDs from branch {newBranch}
+  ///   (if branch is not explicitly set).
+  /// * UserEventService will only join events with products from branch
+  ///   {newBranch}.
+  ///
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.SearchRequest.branch]: <doc:SearchRequest/branch>
+  /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
+  ///
+  /// @Snippet(path: "CatalogService_SetDefaultBranch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/setDefaultBranch(request:options:)``
   public func setDefaultBranch(
     catalog: Swift.String,
   ) async throws {
@@ -408,6 +615,17 @@ extension Clients.CatalogServiceProtocol {
     try await self.setDefaultBranch(request: request)
   }
 
+  /// Get which branch is currently default branch set by
+  /// [CatalogService.SetDefaultBranch][google.cloud.retail.v2.CatalogService.SetDefaultBranch]
+  /// method under a specified parent catalog.
+  ///
+  /// [google.cloud.retail.v2.CatalogService.SetDefaultBranch]: <doc:CatalogServiceClient/setDefaultBranch(request:options:)>
+  ///
+  /// @Snippet(path: "CatalogService_GetDefaultBranch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getDefaultBranch(request:options:)``
   public func getDefaultBranch(request: GetDefaultBranchRequest) async throws
     -> GoogleCloudRetailV2.GetDefaultBranchResponse
   {
@@ -420,6 +638,17 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get which branch is currently default branch set by
+  /// [CatalogService.SetDefaultBranch][google.cloud.retail.v2.CatalogService.SetDefaultBranch]
+  /// method under a specified parent catalog.
+  ///
+  /// [google.cloud.retail.v2.CatalogService.SetDefaultBranch]: <doc:CatalogServiceClient/setDefaultBranch(request:options:)>
+  ///
+  /// @Snippet(path: "CatalogService_GetDefaultBranch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getDefaultBranch(request:options:)``
   public func getDefaultBranch(
     catalog: Swift.String,
   ) async throws -> GoogleCloudRetailV2.GetDefaultBranchResponse {
@@ -429,6 +658,15 @@ extension Clients.CatalogServiceProtocol {
     return try await self.getDefaultBranch(request: request)
   }
 
+  /// Gets a [CompletionConfig][google.cloud.retail.v2.CompletionConfig].
+  ///
+  /// [google.cloud.retail.v2.CompletionConfig]: <doc:CompletionConfig>
+  ///
+  /// @Snippet(path: "CatalogService_GetCompletionConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getCompletionConfig(request:options:)``
   public func getCompletionConfig(request: GetCompletionConfigRequest) async throws
     -> GoogleCloudRetailV2.CompletionConfig
   {
@@ -441,6 +679,15 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a [CompletionConfig][google.cloud.retail.v2.CompletionConfig].
+  ///
+  /// [google.cloud.retail.v2.CompletionConfig]: <doc:CompletionConfig>
+  ///
+  /// @Snippet(path: "CatalogService_GetCompletionConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getCompletionConfig(request:options:)``
   public func getCompletionConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudRetailV2.CompletionConfig {
@@ -450,6 +697,15 @@ extension Clients.CatalogServiceProtocol {
     return try await self.getCompletionConfig(request: request)
   }
 
+  /// Updates the [CompletionConfig][google.cloud.retail.v2.CompletionConfig]s.
+  ///
+  /// [google.cloud.retail.v2.CompletionConfig]: <doc:CompletionConfig>
+  ///
+  /// @Snippet(path: "CatalogService_UpdateCompletionConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateCompletionConfig(request:options:)``
   public func updateCompletionConfig(request: UpdateCompletionConfigRequest) async throws
     -> GoogleCloudRetailV2.CompletionConfig
   {
@@ -462,6 +718,15 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the [CompletionConfig][google.cloud.retail.v2.CompletionConfig]s.
+  ///
+  /// [google.cloud.retail.v2.CompletionConfig]: <doc:CompletionConfig>
+  ///
+  /// @Snippet(path: "CatalogService_UpdateCompletionConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateCompletionConfig(request:options:)``
   public func updateCompletionConfig(
     completionConfig: CompletionConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -473,6 +738,15 @@ extension Clients.CatalogServiceProtocol {
     return try await self.updateCompletionConfig(request: request)
   }
 
+  /// Gets an [AttributesConfig][google.cloud.retail.v2.AttributesConfig].
+  ///
+  /// [google.cloud.retail.v2.AttributesConfig]: <doc:AttributesConfig>
+  ///
+  /// @Snippet(path: "CatalogService_GetAttributesConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getAttributesConfig(request:options:)``
   public func getAttributesConfig(request: GetAttributesConfigRequest) async throws
     -> GoogleCloudRetailV2.AttributesConfig
   {
@@ -485,6 +759,15 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an [AttributesConfig][google.cloud.retail.v2.AttributesConfig].
+  ///
+  /// [google.cloud.retail.v2.AttributesConfig]: <doc:AttributesConfig>
+  ///
+  /// @Snippet(path: "CatalogService_GetAttributesConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getAttributesConfig(request:options:)``
   public func getAttributesConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -494,6 +777,22 @@ extension Clients.CatalogServiceProtocol {
     return try await self.getAttributesConfig(request: request)
   }
 
+  /// Updates the [AttributesConfig][google.cloud.retail.v2.AttributesConfig].
+  ///
+  /// The catalog attributes in the request will be updated in the catalog, or
+  /// inserted if they do not exist. Existing catalog attributes not included in
+  /// the request will remain unchanged. Attributes that are assigned to
+  /// products, but do not exist at the catalog level, are always included in the
+  /// response. The product attribute is assigned default values for missing
+  /// catalog attribute fields, e.g., searchable and dynamic facetable options.
+  ///
+  /// [google.cloud.retail.v2.AttributesConfig]: <doc:AttributesConfig>
+  ///
+  /// @Snippet(path: "CatalogService_UpdateAttributesConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateAttributesConfig(request:options:)``
   public func updateAttributesConfig(request: UpdateAttributesConfigRequest) async throws
     -> GoogleCloudRetailV2.AttributesConfig
   {
@@ -506,6 +805,22 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the [AttributesConfig][google.cloud.retail.v2.AttributesConfig].
+  ///
+  /// The catalog attributes in the request will be updated in the catalog, or
+  /// inserted if they do not exist. Existing catalog attributes not included in
+  /// the request will remain unchanged. Attributes that are assigned to
+  /// products, but do not exist at the catalog level, are always included in the
+  /// response. The product attribute is assigned default values for missing
+  /// catalog attribute fields, e.g., searchable and dynamic facetable options.
+  ///
+  /// [google.cloud.retail.v2.AttributesConfig]: <doc:AttributesConfig>
+  ///
+  /// @Snippet(path: "CatalogService_UpdateAttributesConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateAttributesConfig(request:options:)``
   public func updateAttributesConfig(
     attributesConfig: AttributesConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -517,6 +832,21 @@ extension Clients.CatalogServiceProtocol {
     return try await self.updateAttributesConfig(request: request)
   }
 
+  /// Adds the specified
+  /// [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to the
+  /// [AttributesConfig][google.cloud.retail.v2.AttributesConfig].
+  ///
+  /// If the [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to add
+  /// already exists, an ALREADY_EXISTS error is returned.
+  ///
+  /// [google.cloud.retail.v2.AttributesConfig]: <doc:AttributesConfig>
+  /// [google.cloud.retail.v2.CatalogAttribute]: <doc:CatalogAttribute>
+  ///
+  /// @Snippet(path: "CatalogService_AddCatalogAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/addCatalogAttribute(request:options:)``
   public func addCatalogAttribute(request: AddCatalogAttributeRequest) async throws
     -> GoogleCloudRetailV2.AttributesConfig
   {
@@ -529,6 +859,21 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes the specified
+  /// [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] from the
+  /// [AttributesConfig][google.cloud.retail.v2.AttributesConfig].
+  ///
+  /// If the [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to
+  /// remove does not exist, a NOT_FOUND error is returned.
+  ///
+  /// [google.cloud.retail.v2.AttributesConfig]: <doc:AttributesConfig>
+  /// [google.cloud.retail.v2.CatalogAttribute]: <doc:CatalogAttribute>
+  ///
+  /// @Snippet(path: "CatalogService_RemoveCatalogAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/removeCatalogAttribute(request:options:)``
   public func removeCatalogAttribute(request: RemoveCatalogAttributeRequest) async throws
     -> GoogleCloudRetailV2.AttributesConfig
   {
@@ -541,6 +886,24 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Replaces the specified
+  /// [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] in the
+  /// [AttributesConfig][google.cloud.retail.v2.AttributesConfig] by updating the
+  /// catalog attribute with the same
+  /// [CatalogAttribute.key][google.cloud.retail.v2.CatalogAttribute.key].
+  ///
+  /// If the [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to
+  /// replace does not exist, a NOT_FOUND error is returned.
+  ///
+  /// [google.cloud.retail.v2.AttributesConfig]: <doc:AttributesConfig>
+  /// [google.cloud.retail.v2.CatalogAttribute]: <doc:CatalogAttribute>
+  /// [google.cloud.retail.v2.CatalogAttribute.key]: <doc:CatalogAttribute/key>
+  ///
+  /// @Snippet(path: "CatalogService_ReplaceCatalogAttribute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/replaceCatalogAttribute(request:options:)``
   public func replaceCatalogAttribute(request: ReplaceCatalogAttributeRequest) async throws
     -> GoogleCloudRetailV2.AttributesConfig
   {
@@ -553,6 +916,15 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CatalogService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -565,6 +937,15 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CatalogService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -576,6 +957,10 @@ extension Clients.CatalogServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CatalogService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -589,6 +974,15 @@ extension Clients.CatalogServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CatalogService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -600,6 +994,9 @@ extension Clients.CatalogServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -612,6 +1009,9 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

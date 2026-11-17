@@ -24,6 +24,10 @@ import Foundation
 /// Manages Identity and Access Management (IAM) access policies.
 ///
 /// @Snippet(path: "AccessPoliciesQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AccessPoliciesProtocol``
 public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendable {
   let inner: any Clients.AccessPoliciesStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// Creates an access policy, and returns a long running operation.
   ///
   /// @Snippet(path: "AccessPolicies_CreateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAccessPolicy(request:)``
+  /// - ``createAccessPolicyPollingUntilDone(request:)``
+  /// - ``createAccessPolicyPollingUntilDone(request:options:)``
+  /// - ``createAccessPolicyPollingUntilDone(parent:accessPolicy:accessPolicyId:)``
   public func createAccessPolicy(
     request: CreateAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -53,6 +64,13 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// Creates an access policy, and returns a long running operation.
   ///
   /// @Snippet(path: "AccessPolicies_CreateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAccessPolicyPollingUntilDone(request:)``
+  /// - ``createAccessPolicyPollingUntilDone(parent:accessPolicy:accessPolicyId:)``
+  /// - ``createAccessPolicy(request:)``
+  /// - ``createAccessPolicy(request:options:)``
   public func createAccessPolicyPollingUntilDone(
     request: CreateAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AccessPolicy {
@@ -81,6 +99,11 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// Gets an access policy.
   ///
   /// @Snippet(path: "AccessPolicies_GetAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAccessPolicy(request:)``
+  /// - ``getAccessPolicy(name:)``
   public func getAccessPolicy(
     request: GetAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.AccessPolicy {
@@ -90,6 +113,12 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// Updates an access policy.
   ///
   /// @Snippet(path: "AccessPolicies_UpdateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAccessPolicy(request:)``
+  /// - ``updateAccessPolicyPollingUntilDone(request:)``
+  /// - ``updateAccessPolicyPollingUntilDone(request:options:)``
   public func updateAccessPolicy(
     request: UpdateAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -99,6 +128,12 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// Updates an access policy.
   ///
   /// @Snippet(path: "AccessPolicies_UpdateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAccessPolicyPollingUntilDone(request:)``
+  /// - ``updateAccessPolicy(request:)``
+  /// - ``updateAccessPolicy(request:options:)``
   public func updateAccessPolicyPollingUntilDone(
     request: UpdateAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AccessPolicy {
@@ -127,6 +162,13 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// Deletes an access policy.
   ///
   /// @Snippet(path: "AccessPolicies_DeleteAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAccessPolicy(request:)``
+  /// - ``deleteAccessPolicyPollingUntilDone(request:)``
+  /// - ``deleteAccessPolicyPollingUntilDone(request:options:)``
+  /// - ``deleteAccessPolicyPollingUntilDone(name:)``
   public func deleteAccessPolicy(
     request: DeleteAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -136,6 +178,13 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// Deletes an access policy.
   ///
   /// @Snippet(path: "AccessPolicies_DeleteAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAccessPolicyPollingUntilDone(request:)``
+  /// - ``deleteAccessPolicyPollingUntilDone(name:)``
+  /// - ``deleteAccessPolicy(request:)``
+  /// - ``deleteAccessPolicy(request:options:)``
   public func deleteAccessPolicyPollingUntilDone(
     request: DeleteAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -163,6 +212,13 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// Lists access policies.
   ///
   /// @Snippet(path: "AccessPolicies_ListAccessPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAccessPolicies(request:)``
+  /// - ``listAccessPoliciesByItems(request:)``
+  /// - ``listAccessPoliciesByItems(request:options:)``
+  /// - ``listAccessPoliciesByItems(parent:)``
   public func listAccessPolicies(
     request: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.ListAccessPoliciesResponse {
@@ -173,6 +229,13 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// searchPolicyBindings permission on that policy.
   ///
   /// @Snippet(path: "AccessPolicies_SearchAccessPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchAccessPolicyBindings(request:)``
+  /// - ``searchAccessPolicyBindingsByItems(request:)``
+  /// - ``searchAccessPolicyBindingsByItems(request:options:)``
+  /// - ``searchAccessPolicyBindingsByItems(name:)``
   public func searchAccessPolicyBindings(
     request: SearchAccessPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.SearchAccessPolicyBindingsResponse {
@@ -247,6 +310,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.AccessPoliciesProtocol {
+  /// Creates an access policy, and returns a long running operation.
+  ///
+  /// @Snippet(path: "AccessPolicies_CreateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/createAccessPolicy(request:options:)``
   public func createAccessPolicy(request: CreateAccessPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -259,6 +329,13 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an access policy, and returns a long running operation.
+  ///
+  /// @Snippet(path: "AccessPolicies_CreateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/createAccessPolicyPollingUntilDone(request:options:)``
   public func createAccessPolicyPollingUntilDone(request: CreateAccessPolicyRequest) async throws
     -> AccessPolicy
   {
@@ -271,6 +348,13 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an access policy, and returns a long running operation.
+  ///
+  /// @Snippet(path: "AccessPolicies_CreateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/createAccessPolicyPollingUntilDone(request:options:)``
   public func createAccessPolicyPollingUntilDone(
     parent: Swift.String,
     accessPolicy: AccessPolicy?,
@@ -284,6 +368,13 @@ extension Clients.AccessPoliciesProtocol {
     return try await self.createAccessPolicyPollingUntilDone(request: request)
   }
 
+  /// Gets an access policy.
+  ///
+  /// @Snippet(path: "AccessPolicies_GetAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/getAccessPolicy(request:options:)``
   public func getAccessPolicy(request: GetAccessPolicyRequest) async throws
     -> GoogleIAMV3.AccessPolicy
   {
@@ -296,6 +387,13 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an access policy.
+  ///
+  /// @Snippet(path: "AccessPolicies_GetAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/getAccessPolicy(request:options:)``
   public func getAccessPolicy(
     name: Swift.String,
   ) async throws -> GoogleIAMV3.AccessPolicy {
@@ -305,6 +403,13 @@ extension Clients.AccessPoliciesProtocol {
     return try await self.getAccessPolicy(request: request)
   }
 
+  /// Updates an access policy.
+  ///
+  /// @Snippet(path: "AccessPolicies_UpdateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/updateAccessPolicy(request:options:)``
   public func updateAccessPolicy(request: UpdateAccessPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -317,6 +422,13 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an access policy.
+  ///
+  /// @Snippet(path: "AccessPolicies_UpdateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/updateAccessPolicyPollingUntilDone(request:options:)``
   public func updateAccessPolicyPollingUntilDone(request: UpdateAccessPolicyRequest) async throws
     -> AccessPolicy
   {
@@ -329,6 +441,13 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an access policy.
+  ///
+  /// @Snippet(path: "AccessPolicies_DeleteAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/deleteAccessPolicy(request:options:)``
   public func deleteAccessPolicy(request: DeleteAccessPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -341,6 +460,13 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an access policy.
+  ///
+  /// @Snippet(path: "AccessPolicies_DeleteAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/deleteAccessPolicyPollingUntilDone(request:options:)``
   public func deleteAccessPolicyPollingUntilDone(request: DeleteAccessPolicyRequest) async throws {
     try await self.deleteAccessPolicyPollingUntilDone(request: request, options: .init())
   }
@@ -351,6 +477,13 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an access policy.
+  ///
+  /// @Snippet(path: "AccessPolicies_DeleteAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/deleteAccessPolicyPollingUntilDone(request:options:)``
   public func deleteAccessPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -360,6 +493,13 @@ extension Clients.AccessPoliciesProtocol {
     try await self.deleteAccessPolicyPollingUntilDone(request: request)
   }
 
+  /// Lists access policies.
+  ///
+  /// @Snippet(path: "AccessPolicies_ListAccessPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/listAccessPolicies(request:options:)``
   public func listAccessPolicies(request: ListAccessPoliciesRequest) async throws
     -> GoogleIAMV3.ListAccessPoliciesResponse
   {
@@ -372,6 +512,13 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists access policies.
+  ///
+  /// @Snippet(path: "AccessPolicies_ListAccessPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/listAccessPolicies(request:options:)``
   public func listAccessPoliciesByItems(
     request: ListAccessPoliciesRequest
   ) -> some AsyncSequence<AccessPolicy, any Swift.Error> & Sendable {
@@ -381,6 +528,10 @@ extension Clients.AccessPoliciesProtocol {
   /// Lists access policies.
   ///
   /// @Snippet(path: "AccessPolicies_ListAccessPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/listAccessPolicies(request:options:)``
   public func listAccessPoliciesByItems(
     request: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AccessPolicy, any Swift.Error> & Sendable {
@@ -394,6 +545,13 @@ extension Clients.AccessPoliciesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists access policies.
+  ///
+  /// @Snippet(path: "AccessPolicies_ListAccessPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/listAccessPolicies(request:options:)``
   public func listAccessPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AccessPolicy, any Swift.Error> & Sendable {
@@ -403,6 +561,14 @@ extension Clients.AccessPoliciesProtocol {
     return self.listAccessPoliciesByItems(request: request)
   }
 
+  /// Returns all policy bindings that bind a specific policy if a user has
+  /// searchPolicyBindings permission on that policy.
+  ///
+  /// @Snippet(path: "AccessPolicies_SearchAccessPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/searchAccessPolicyBindings(request:options:)``
   public func searchAccessPolicyBindings(request: SearchAccessPolicyBindingsRequest) async throws
     -> GoogleIAMV3.SearchAccessPolicyBindingsResponse
   {
@@ -415,6 +581,14 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns all policy bindings that bind a specific policy if a user has
+  /// searchPolicyBindings permission on that policy.
+  ///
+  /// @Snippet(path: "AccessPolicies_SearchAccessPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/searchAccessPolicyBindings(request:options:)``
   public func searchAccessPolicyBindingsByItems(
     request: SearchAccessPolicyBindingsRequest
   ) -> some AsyncSequence<PolicyBinding, any Swift.Error> & Sendable {
@@ -425,6 +599,10 @@ extension Clients.AccessPoliciesProtocol {
   /// searchPolicyBindings permission on that policy.
   ///
   /// @Snippet(path: "AccessPolicies_SearchAccessPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/searchAccessPolicyBindings(request:options:)``
   public func searchAccessPolicyBindingsByItems(
     request: SearchAccessPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PolicyBinding, any Swift.Error> & Sendable {
@@ -439,6 +617,14 @@ extension Clients.AccessPoliciesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns all policy bindings that bind a specific policy if a user has
+  /// searchPolicyBindings permission on that policy.
+  ///
+  /// @Snippet(path: "AccessPolicies_SearchAccessPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessPoliciesClient/searchAccessPolicyBindings(request:options:)``
   public func searchAccessPolicyBindingsByItems(
     name: Swift.String,
   ) -> some AsyncSequence<PolicyBinding, any Swift.Error> & Sendable {
@@ -448,6 +634,9 @@ extension Clients.AccessPoliciesProtocol {
     return self.searchAccessPolicyBindingsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -460,6 +649,9 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

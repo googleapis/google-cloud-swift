@@ -27,6 +27,10 @@ import Foundation
 /// Database Migration service
 ///
 /// @Snippet(path: "DataMigrationServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DataMigrationServiceProtocol``
 public final class DataMigrationServiceClient: Clients.DataMigrationServiceProtocol, Sendable {
   let inner: any Clients.DataMigrationServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Lists migration jobs in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_ListMigrationJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMigrationJobs(request:)``
+  /// - ``listMigrationJobsByItems(request:)``
+  /// - ``listMigrationJobsByItems(request:options:)``
+  /// - ``listMigrationJobsByItems(parent:)``
   public func listMigrationJobs(
     request: ListMigrationJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ListMigrationJobsResponse {
@@ -57,6 +68,11 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Gets details of a single migration job.
   ///
   /// @Snippet(path: "DataMigrationService_GetMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMigrationJob(request:)``
+  /// - ``getMigrationJob(name:)``
   public func getMigrationJob(
     request: GetMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.MigrationJob {
@@ -66,6 +82,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Creates a new migration job in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_CreateMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMigrationJob(request:)``
+  /// - ``createMigrationJobPollingUntilDone(request:)``
+  /// - ``createMigrationJobPollingUntilDone(request:options:)``
+  /// - ``createMigrationJobPollingUntilDone(parent:migrationJob:migrationJobId:)``
   public func createMigrationJob(
     request: CreateMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -75,6 +98,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Creates a new migration job in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_CreateMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMigrationJobPollingUntilDone(request:)``
+  /// - ``createMigrationJobPollingUntilDone(parent:migrationJob:migrationJobId:)``
+  /// - ``createMigrationJob(request:)``
+  /// - ``createMigrationJob(request:options:)``
   public func createMigrationJobPollingUntilDone(
     request: CreateMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -103,6 +133,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Updates the parameters of a single migration job.
   ///
   /// @Snippet(path: "DataMigrationService_UpdateMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMigrationJob(request:)``
+  /// - ``updateMigrationJobPollingUntilDone(request:)``
+  /// - ``updateMigrationJobPollingUntilDone(request:options:)``
+  /// - ``updateMigrationJobPollingUntilDone(migrationJob:updateMask:)``
   public func updateMigrationJob(
     request: UpdateMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -112,6 +149,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Updates the parameters of a single migration job.
   ///
   /// @Snippet(path: "DataMigrationService_UpdateMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMigrationJobPollingUntilDone(request:)``
+  /// - ``updateMigrationJobPollingUntilDone(migrationJob:updateMask:)``
+  /// - ``updateMigrationJob(request:)``
+  /// - ``updateMigrationJob(request:options:)``
   public func updateMigrationJobPollingUntilDone(
     request: UpdateMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -140,6 +184,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Deletes a single migration job.
   ///
   /// @Snippet(path: "DataMigrationService_DeleteMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMigrationJob(request:)``
+  /// - ``deleteMigrationJobPollingUntilDone(request:)``
+  /// - ``deleteMigrationJobPollingUntilDone(request:options:)``
+  /// - ``deleteMigrationJobPollingUntilDone(name:)``
   public func deleteMigrationJob(
     request: DeleteMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -149,6 +200,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Deletes a single migration job.
   ///
   /// @Snippet(path: "DataMigrationService_DeleteMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMigrationJobPollingUntilDone(request:)``
+  /// - ``deleteMigrationJobPollingUntilDone(name:)``
+  /// - ``deleteMigrationJob(request:)``
+  /// - ``deleteMigrationJob(request:options:)``
   public func deleteMigrationJobPollingUntilDone(
     request: DeleteMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -176,6 +234,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Start an already created migration job.
   ///
   /// @Snippet(path: "DataMigrationService_StartMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startMigrationJob(request:)``
+  /// - ``startMigrationJobPollingUntilDone(request:)``
+  /// - ``startMigrationJobPollingUntilDone(request:options:)``
   public func startMigrationJob(
     request: StartMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -185,6 +249,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Start an already created migration job.
   ///
   /// @Snippet(path: "DataMigrationService_StartMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startMigrationJobPollingUntilDone(request:)``
+  /// - ``startMigrationJob(request:)``
+  /// - ``startMigrationJob(request:options:)``
   public func startMigrationJobPollingUntilDone(
     request: StartMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -213,6 +283,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Stops a running migration job.
   ///
   /// @Snippet(path: "DataMigrationService_StopMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``stopMigrationJob(request:)``
+  /// - ``stopMigrationJobPollingUntilDone(request:)``
+  /// - ``stopMigrationJobPollingUntilDone(request:options:)``
   public func stopMigrationJob(
     request: StopMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -222,6 +298,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Stops a running migration job.
   ///
   /// @Snippet(path: "DataMigrationService_StopMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``stopMigrationJobPollingUntilDone(request:)``
+  /// - ``stopMigrationJob(request:)``
+  /// - ``stopMigrationJob(request:options:)``
   public func stopMigrationJobPollingUntilDone(
     request: StopMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -251,6 +333,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// stopped during CDC phase).
   ///
   /// @Snippet(path: "DataMigrationService_ResumeMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resumeMigrationJob(request:)``
+  /// - ``resumeMigrationJobPollingUntilDone(request:)``
+  /// - ``resumeMigrationJobPollingUntilDone(request:options:)``
   public func resumeMigrationJob(
     request: ResumeMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -261,6 +349,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// stopped during CDC phase).
   ///
   /// @Snippet(path: "DataMigrationService_ResumeMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resumeMigrationJobPollingUntilDone(request:)``
+  /// - ``resumeMigrationJob(request:)``
+  /// - ``resumeMigrationJob(request:options:)``
   public func resumeMigrationJobPollingUntilDone(
     request: ResumeMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -290,6 +384,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// promoting the destination to be a standalone database.
   ///
   /// @Snippet(path: "DataMigrationService_PromoteMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``promoteMigrationJob(request:)``
+  /// - ``promoteMigrationJobPollingUntilDone(request:)``
+  /// - ``promoteMigrationJobPollingUntilDone(request:options:)``
   public func promoteMigrationJob(
     request: PromoteMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -300,6 +400,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// promoting the destination to be a standalone database.
   ///
   /// @Snippet(path: "DataMigrationService_PromoteMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``promoteMigrationJobPollingUntilDone(request:)``
+  /// - ``promoteMigrationJob(request:)``
+  /// - ``promoteMigrationJob(request:options:)``
   public func promoteMigrationJobPollingUntilDone(
     request: PromoteMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -329,6 +435,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// and that all configuration and prerequisites are met.
   ///
   /// @Snippet(path: "DataMigrationService_VerifyMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``verifyMigrationJob(request:)``
+  /// - ``verifyMigrationJobPollingUntilDone(request:)``
+  /// - ``verifyMigrationJobPollingUntilDone(request:options:)``
   public func verifyMigrationJob(
     request: VerifyMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -339,6 +451,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// and that all configuration and prerequisites are met.
   ///
   /// @Snippet(path: "DataMigrationService_VerifyMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``verifyMigrationJobPollingUntilDone(request:)``
+  /// - ``verifyMigrationJob(request:)``
+  /// - ``verifyMigrationJob(request:options:)``
   public func verifyMigrationJobPollingUntilDone(
     request: VerifyMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -369,6 +487,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// scratch.
   ///
   /// @Snippet(path: "DataMigrationService_RestartMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restartMigrationJob(request:)``
+  /// - ``restartMigrationJobPollingUntilDone(request:)``
+  /// - ``restartMigrationJobPollingUntilDone(request:options:)``
   public func restartMigrationJob(
     request: RestartMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -380,6 +504,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// scratch.
   ///
   /// @Snippet(path: "DataMigrationService_RestartMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restartMigrationJobPollingUntilDone(request:)``
+  /// - ``restartMigrationJob(request:)``
+  /// - ``restartMigrationJob(request:options:)``
   public func restartMigrationJobPollingUntilDone(
     request: RestartMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -409,6 +539,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// connectivity.
   ///
   /// @Snippet(path: "DataMigrationService_GenerateSshScript")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateSshScript(request:)``
   public func generateSshScript(
     request: GenerateSshScriptRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.SshScript {
@@ -419,6 +553,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// running a TCP Proxy.
   ///
   /// @Snippet(path: "DataMigrationService_GenerateTcpProxyScript")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateTcpProxyScript(request:)``
   public func generateTcpProxyScript(
     request: GenerateTcpProxyScriptRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.TcpProxyScript {
@@ -429,6 +567,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// location.
   ///
   /// @Snippet(path: "DataMigrationService_ListConnectionProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listConnectionProfiles(request:)``
+  /// - ``listConnectionProfilesByItems(request:)``
+  /// - ``listConnectionProfilesByItems(request:options:)``
+  /// - ``listConnectionProfilesByItems(parent:)``
   public func listConnectionProfiles(
     request: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ListConnectionProfilesResponse {
@@ -438,6 +583,11 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Gets details of a single connection profile.
   ///
   /// @Snippet(path: "DataMigrationService_GetConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getConnectionProfile(request:)``
+  /// - ``getConnectionProfile(name:)``
   public func getConnectionProfile(
     request: GetConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ConnectionProfile {
@@ -447,6 +597,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Creates a new connection profile in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_CreateConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConnectionProfile(request:)``
+  /// - ``createConnectionProfilePollingUntilDone(request:)``
+  /// - ``createConnectionProfilePollingUntilDone(request:options:)``
+  /// - ``createConnectionProfilePollingUntilDone(parent:connectionProfile:connectionProfileId:)``
   public func createConnectionProfile(
     request: CreateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -456,6 +613,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Creates a new connection profile in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_CreateConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConnectionProfilePollingUntilDone(request:)``
+  /// - ``createConnectionProfilePollingUntilDone(parent:connectionProfile:connectionProfileId:)``
+  /// - ``createConnectionProfile(request:)``
+  /// - ``createConnectionProfile(request:options:)``
   public func createConnectionProfilePollingUntilDone(
     request: CreateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectionProfile {
@@ -484,6 +648,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Update the configuration of a single connection profile.
   ///
   /// @Snippet(path: "DataMigrationService_UpdateConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConnectionProfile(request:)``
+  /// - ``updateConnectionProfilePollingUntilDone(request:)``
+  /// - ``updateConnectionProfilePollingUntilDone(request:options:)``
+  /// - ``updateConnectionProfilePollingUntilDone(connectionProfile:updateMask:)``
   public func updateConnectionProfile(
     request: UpdateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -493,6 +664,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Update the configuration of a single connection profile.
   ///
   /// @Snippet(path: "DataMigrationService_UpdateConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConnectionProfilePollingUntilDone(request:)``
+  /// - ``updateConnectionProfilePollingUntilDone(connectionProfile:updateMask:)``
+  /// - ``updateConnectionProfile(request:)``
+  /// - ``updateConnectionProfile(request:options:)``
   public func updateConnectionProfilePollingUntilDone(
     request: UpdateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectionProfile {
@@ -523,6 +701,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// active migration jobs.
   ///
   /// @Snippet(path: "DataMigrationService_DeleteConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConnectionProfile(request:)``
+  /// - ``deleteConnectionProfilePollingUntilDone(request:)``
+  /// - ``deleteConnectionProfilePollingUntilDone(request:options:)``
+  /// - ``deleteConnectionProfilePollingUntilDone(name:)``
   public func deleteConnectionProfile(
     request: DeleteConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -534,6 +719,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// active migration jobs.
   ///
   /// @Snippet(path: "DataMigrationService_DeleteConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConnectionProfilePollingUntilDone(request:)``
+  /// - ``deleteConnectionProfilePollingUntilDone(name:)``
+  /// - ``deleteConnectionProfile(request:)``
+  /// - ``deleteConnectionProfile(request:options:)``
   public func deleteConnectionProfilePollingUntilDone(
     request: DeleteConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -561,6 +753,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Creates a new private connection in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_CreatePrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPrivateConnection(request:)``
+  /// - ``createPrivateConnectionPollingUntilDone(request:)``
+  /// - ``createPrivateConnectionPollingUntilDone(request:options:)``
+  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
   public func createPrivateConnection(
     request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -570,6 +769,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Creates a new private connection in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_CreatePrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPrivateConnectionPollingUntilDone(request:)``
+  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
+  /// - ``createPrivateConnection(request:)``
+  /// - ``createPrivateConnection(request:options:)``
   public func createPrivateConnectionPollingUntilDone(
     request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrivateConnection {
@@ -598,6 +804,11 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Gets details of a single private connection.
   ///
   /// @Snippet(path: "DataMigrationService_GetPrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPrivateConnection(request:)``
+  /// - ``getPrivateConnection(name:)``
   public func getPrivateConnection(
     request: GetPrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.PrivateConnection {
@@ -607,6 +818,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Retrieves a list of private connections in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_ListPrivateConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPrivateConnections(request:)``
+  /// - ``listPrivateConnectionsByItems(request:)``
+  /// - ``listPrivateConnectionsByItems(request:options:)``
+  /// - ``listPrivateConnectionsByItems(parent:)``
   public func listPrivateConnections(
     request: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ListPrivateConnectionsResponse {
@@ -616,6 +834,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Deletes a single Database Migration Service private connection.
   ///
   /// @Snippet(path: "DataMigrationService_DeletePrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePrivateConnection(request:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(request:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(request:options:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
   public func deletePrivateConnection(
     request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -625,6 +850,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Deletes a single Database Migration Service private connection.
   ///
   /// @Snippet(path: "DataMigrationService_DeletePrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePrivateConnectionPollingUntilDone(request:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
+  /// - ``deletePrivateConnection(request:)``
+  /// - ``deletePrivateConnection(request:options:)``
   public func deletePrivateConnectionPollingUntilDone(
     request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -652,6 +884,11 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Gets details of a single conversion workspace.
   ///
   /// @Snippet(path: "DataMigrationService_GetConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getConversionWorkspace(request:)``
+  /// - ``getConversionWorkspace(name:)``
   public func getConversionWorkspace(
     request: GetConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ConversionWorkspace {
@@ -661,6 +898,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Lists conversion workspaces in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_ListConversionWorkspaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listConversionWorkspaces(request:)``
+  /// - ``listConversionWorkspacesByItems(request:)``
+  /// - ``listConversionWorkspacesByItems(request:options:)``
+  /// - ``listConversionWorkspacesByItems(parent:)``
   public func listConversionWorkspaces(
     request: ListConversionWorkspacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ListConversionWorkspacesResponse {
@@ -670,6 +914,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Creates a new conversion workspace in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_CreateConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConversionWorkspace(request:)``
+  /// - ``createConversionWorkspacePollingUntilDone(request:)``
+  /// - ``createConversionWorkspacePollingUntilDone(request:options:)``
+  /// - ``createConversionWorkspacePollingUntilDone(parent:conversionWorkspace:conversionWorkspaceId:)``
   public func createConversionWorkspace(
     request: CreateConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -679,6 +930,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Creates a new conversion workspace in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_CreateConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConversionWorkspacePollingUntilDone(request:)``
+  /// - ``createConversionWorkspacePollingUntilDone(parent:conversionWorkspace:conversionWorkspaceId:)``
+  /// - ``createConversionWorkspace(request:)``
+  /// - ``createConversionWorkspace(request:options:)``
   public func createConversionWorkspacePollingUntilDone(
     request: CreateConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -707,6 +965,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Updates the parameters of a single conversion workspace.
   ///
   /// @Snippet(path: "DataMigrationService_UpdateConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConversionWorkspace(request:)``
+  /// - ``updateConversionWorkspacePollingUntilDone(request:)``
+  /// - ``updateConversionWorkspacePollingUntilDone(request:options:)``
+  /// - ``updateConversionWorkspacePollingUntilDone(conversionWorkspace:updateMask:)``
   public func updateConversionWorkspace(
     request: UpdateConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -716,6 +981,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Updates the parameters of a single conversion workspace.
   ///
   /// @Snippet(path: "DataMigrationService_UpdateConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConversionWorkspacePollingUntilDone(request:)``
+  /// - ``updateConversionWorkspacePollingUntilDone(conversionWorkspace:updateMask:)``
+  /// - ``updateConversionWorkspace(request:)``
+  /// - ``updateConversionWorkspace(request:options:)``
   public func updateConversionWorkspacePollingUntilDone(
     request: UpdateConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -744,6 +1016,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Deletes a single conversion workspace.
   ///
   /// @Snippet(path: "DataMigrationService_DeleteConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConversionWorkspace(request:)``
+  /// - ``deleteConversionWorkspacePollingUntilDone(request:)``
+  /// - ``deleteConversionWorkspacePollingUntilDone(request:options:)``
+  /// - ``deleteConversionWorkspacePollingUntilDone(name:)``
   public func deleteConversionWorkspace(
     request: DeleteConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -753,6 +1032,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Deletes a single conversion workspace.
   ///
   /// @Snippet(path: "DataMigrationService_DeleteConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConversionWorkspacePollingUntilDone(request:)``
+  /// - ``deleteConversionWorkspacePollingUntilDone(name:)``
+  /// - ``deleteConversionWorkspace(request:)``
+  /// - ``deleteConversionWorkspace(request:options:)``
   public func deleteConversionWorkspacePollingUntilDone(
     request: DeleteConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -780,6 +1066,11 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Creates a new mapping rule for a given conversion workspace.
   ///
   /// @Snippet(path: "DataMigrationService_CreateMappingRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMappingRule(request:)``
+  /// - ``createMappingRule(parent:mappingRule:mappingRuleId:)``
   public func createMappingRule(
     request: CreateMappingRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.MappingRule {
@@ -789,6 +1080,11 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Deletes a single mapping rule.
   ///
   /// @Snippet(path: "DataMigrationService_DeleteMappingRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMappingRule(request:)``
+  /// - ``deleteMappingRule(name:)``
   public func deleteMappingRule(
     request: DeleteMappingRuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -798,6 +1094,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Lists the mapping rules for a specific conversion workspace.
   ///
   /// @Snippet(path: "DataMigrationService_ListMappingRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMappingRules(request:)``
+  /// - ``listMappingRulesByItems(request:)``
+  /// - ``listMappingRulesByItems(request:options:)``
+  /// - ``listMappingRulesByItems(parent:)``
   public func listMappingRules(
     request: ListMappingRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ListMappingRulesResponse {
@@ -807,6 +1110,11 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Gets the details of a mapping rule.
   ///
   /// @Snippet(path: "DataMigrationService_GetMappingRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMappingRule(request:)``
+  /// - ``getMappingRule(name:)``
   public func getMappingRule(
     request: GetMappingRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.MappingRule {
@@ -817,6 +1125,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// conversion workspace.
   ///
   /// @Snippet(path: "DataMigrationService_SeedConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``seedConversionWorkspace(request:)``
+  /// - ``seedConversionWorkspacePollingUntilDone(request:)``
+  /// - ``seedConversionWorkspacePollingUntilDone(request:options:)``
   public func seedConversionWorkspace(
     request: SeedConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -827,6 +1141,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// conversion workspace.
   ///
   /// @Snippet(path: "DataMigrationService_SeedConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``seedConversionWorkspacePollingUntilDone(request:)``
+  /// - ``seedConversionWorkspace(request:)``
+  /// - ``seedConversionWorkspace(request:options:)``
   public func seedConversionWorkspacePollingUntilDone(
     request: SeedConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -856,6 +1176,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Supports various formats of external rules files.
   ///
   /// @Snippet(path: "DataMigrationService_ImportMappingRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importMappingRules(request:)``
+  /// - ``importMappingRulesPollingUntilDone(request:)``
+  /// - ``importMappingRulesPollingUntilDone(request:options:)``
   public func importMappingRules(
     request: ImportMappingRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -866,6 +1192,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Supports various formats of external rules files.
   ///
   /// @Snippet(path: "DataMigrationService_ImportMappingRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importMappingRulesPollingUntilDone(request:)``
+  /// - ``importMappingRules(request:)``
+  /// - ``importMappingRules(request:options:)``
   public func importMappingRulesPollingUntilDone(
     request: ImportMappingRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -894,6 +1226,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Creates a draft tree schema for the destination database.
   ///
   /// @Snippet(path: "DataMigrationService_ConvertConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``convertConversionWorkspace(request:)``
+  /// - ``convertConversionWorkspacePollingUntilDone(request:)``
+  /// - ``convertConversionWorkspacePollingUntilDone(request:options:)``
   public func convertConversionWorkspace(
     request: ConvertConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -903,6 +1241,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Creates a draft tree schema for the destination database.
   ///
   /// @Snippet(path: "DataMigrationService_ConvertConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``convertConversionWorkspacePollingUntilDone(request:)``
+  /// - ``convertConversionWorkspace(request:)``
+  /// - ``convertConversionWorkspace(request:options:)``
   public func convertConversionWorkspacePollingUntilDone(
     request: ConvertConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -931,6 +1275,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Marks all the data in the conversion workspace as committed.
   ///
   /// @Snippet(path: "DataMigrationService_CommitConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``commitConversionWorkspace(request:)``
+  /// - ``commitConversionWorkspacePollingUntilDone(request:)``
+  /// - ``commitConversionWorkspacePollingUntilDone(request:options:)``
   public func commitConversionWorkspace(
     request: CommitConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -940,6 +1290,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Marks all the data in the conversion workspace as committed.
   ///
   /// @Snippet(path: "DataMigrationService_CommitConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``commitConversionWorkspacePollingUntilDone(request:)``
+  /// - ``commitConversionWorkspace(request:)``
+  /// - ``commitConversionWorkspace(request:options:)``
   public func commitConversionWorkspacePollingUntilDone(
     request: CommitConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -968,6 +1324,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Rolls back a conversion workspace to the last committed snapshot.
   ///
   /// @Snippet(path: "DataMigrationService_RollbackConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rollbackConversionWorkspace(request:)``
+  /// - ``rollbackConversionWorkspacePollingUntilDone(request:)``
+  /// - ``rollbackConversionWorkspacePollingUntilDone(request:options:)``
   public func rollbackConversionWorkspace(
     request: RollbackConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -977,6 +1339,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Rolls back a conversion workspace to the last committed snapshot.
   ///
   /// @Snippet(path: "DataMigrationService_RollbackConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rollbackConversionWorkspacePollingUntilDone(request:)``
+  /// - ``rollbackConversionWorkspace(request:)``
+  /// - ``rollbackConversionWorkspace(request:options:)``
   public func rollbackConversionWorkspacePollingUntilDone(
     request: RollbackConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -1005,6 +1373,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Applies draft tree onto a specific destination database.
   ///
   /// @Snippet(path: "DataMigrationService_ApplyConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``applyConversionWorkspace(request:)``
+  /// - ``applyConversionWorkspacePollingUntilDone(request:)``
+  /// - ``applyConversionWorkspacePollingUntilDone(request:options:)``
   public func applyConversionWorkspace(
     request: ApplyConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1014,6 +1388,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Applies draft tree onto a specific destination database.
   ///
   /// @Snippet(path: "DataMigrationService_ApplyConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``applyConversionWorkspacePollingUntilDone(request:)``
+  /// - ``applyConversionWorkspace(request:)``
+  /// - ``applyConversionWorkspace(request:options:)``
   public func applyConversionWorkspacePollingUntilDone(
     request: ApplyConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -1047,6 +1427,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// simple data objects describing the structure of the client database.
   ///
   /// @Snippet(path: "DataMigrationService_DescribeDatabaseEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``describeDatabaseEntities(request:)``
+  /// - ``describeDatabaseEntitiesByItems(request:)``
+  /// - ``describeDatabaseEntitiesByItems(request:options:)``
   public func describeDatabaseEntities(
     request: DescribeDatabaseEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.DescribeDatabaseEntitiesResponse {
@@ -1061,6 +1447,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Instead, they are a way to expose the data plane jobs log.
   ///
   /// @Snippet(path: "DataMigrationService_SearchBackgroundJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchBackgroundJobs(request:)``
   public func searchBackgroundJobs(
     request: SearchBackgroundJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.SearchBackgroundJobsResponse {
@@ -1071,6 +1461,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// workspace.
   ///
   /// @Snippet(path: "DataMigrationService_DescribeConversionWorkspaceRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``describeConversionWorkspaceRevisions(request:)``
   public func describeConversionWorkspaceRevisions(
     request: DescribeConversionWorkspaceRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.DescribeConversionWorkspaceRevisionsResponse {
@@ -1081,6 +1475,11 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// customer when using the static-IP connectivity method.
   ///
   /// @Snippet(path: "DataMigrationService_FetchStaticIps")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchStaticIps(request:)``
+  /// - ``fetchStaticIps(name:)``
   public func fetchStaticIps(
     request: FetchStaticIpsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.FetchStaticIpsResponse {
@@ -1090,6 +1489,12 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "DataMigrationService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1099,6 +1504,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// Gets information about a location.
   ///
   /// @Snippet(path: "DataMigrationService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -1112,6 +1521,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// errors.
   ///
   /// @Snippet(path: "DataMigrationService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -1122,6 +1535,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "DataMigrationService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -1137,6 +1554,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "DataMigrationService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1148,6 +1569,13 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataMigrationService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1170,6 +1598,11 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataMigrationService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1181,6 +1614,11 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataMigrationService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1559,6 +1997,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DataMigrationServiceProtocol {
+  /// Lists migration jobs in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListMigrationJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listMigrationJobs(request:options:)``
   public func listMigrationJobs(request: ListMigrationJobsRequest) async throws
     -> GoogleCloudDMSV1.ListMigrationJobsResponse
   {
@@ -1571,6 +2016,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists migration jobs in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListMigrationJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listMigrationJobs(request:options:)``
   public func listMigrationJobsByItems(
     request: ListMigrationJobsRequest
   ) -> some AsyncSequence<MigrationJob, any Swift.Error> & Sendable {
@@ -1580,6 +2032,10 @@ extension Clients.DataMigrationServiceProtocol {
   /// Lists migration jobs in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_ListMigrationJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listMigrationJobs(request:options:)``
   public func listMigrationJobsByItems(
     request: ListMigrationJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MigrationJob, any Swift.Error> & Sendable {
@@ -1593,6 +2049,13 @@ extension Clients.DataMigrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists migration jobs in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListMigrationJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listMigrationJobs(request:options:)``
   public func listMigrationJobsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MigrationJob, any Swift.Error> & Sendable {
@@ -1602,6 +2065,13 @@ extension Clients.DataMigrationServiceProtocol {
     return self.listMigrationJobsByItems(request: request)
   }
 
+  /// Gets details of a single migration job.
+  ///
+  /// @Snippet(path: "DataMigrationService_GetMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/getMigrationJob(request:options:)``
   public func getMigrationJob(request: GetMigrationJobRequest) async throws
     -> GoogleCloudDMSV1.MigrationJob
   {
@@ -1614,6 +2084,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single migration job.
+  ///
+  /// @Snippet(path: "DataMigrationService_GetMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/getMigrationJob(request:options:)``
   public func getMigrationJob(
     name: Swift.String,
   ) async throws -> GoogleCloudDMSV1.MigrationJob {
@@ -1623,6 +2100,13 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.getMigrationJob(request: request)
   }
 
+  /// Creates a new migration job in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreateMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createMigrationJob(request:options:)``
   public func createMigrationJob(request: CreateMigrationJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1635,6 +2119,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new migration job in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreateMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createMigrationJobPollingUntilDone(request:options:)``
   public func createMigrationJobPollingUntilDone(request: CreateMigrationJobRequest) async throws
     -> MigrationJob
   {
@@ -1647,6 +2138,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new migration job in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreateMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createMigrationJobPollingUntilDone(request:options:)``
   public func createMigrationJobPollingUntilDone(
     parent: Swift.String,
     migrationJob: MigrationJob?,
@@ -1660,6 +2158,13 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.createMigrationJobPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single migration job.
+  ///
+  /// @Snippet(path: "DataMigrationService_UpdateMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/updateMigrationJob(request:options:)``
   public func updateMigrationJob(request: UpdateMigrationJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1672,6 +2177,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single migration job.
+  ///
+  /// @Snippet(path: "DataMigrationService_UpdateMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/updateMigrationJobPollingUntilDone(request:options:)``
   public func updateMigrationJobPollingUntilDone(request: UpdateMigrationJobRequest) async throws
     -> MigrationJob
   {
@@ -1684,6 +2196,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single migration job.
+  ///
+  /// @Snippet(path: "DataMigrationService_UpdateMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/updateMigrationJobPollingUntilDone(request:options:)``
   public func updateMigrationJobPollingUntilDone(
     migrationJob: MigrationJob?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1695,6 +2214,13 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.updateMigrationJobPollingUntilDone(request: request)
   }
 
+  /// Deletes a single migration job.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteMigrationJob(request:options:)``
   public func deleteMigrationJob(request: DeleteMigrationJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1707,6 +2233,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single migration job.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteMigrationJobPollingUntilDone(request:options:)``
   public func deleteMigrationJobPollingUntilDone(request: DeleteMigrationJobRequest) async throws {
     try await self.deleteMigrationJobPollingUntilDone(request: request, options: .init())
   }
@@ -1717,6 +2250,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single migration job.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteMigrationJobPollingUntilDone(request:options:)``
   public func deleteMigrationJobPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1726,6 +2266,13 @@ extension Clients.DataMigrationServiceProtocol {
     try await self.deleteMigrationJobPollingUntilDone(request: request)
   }
 
+  /// Start an already created migration job.
+  ///
+  /// @Snippet(path: "DataMigrationService_StartMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/startMigrationJob(request:options:)``
   public func startMigrationJob(request: StartMigrationJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1738,6 +2285,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Start an already created migration job.
+  ///
+  /// @Snippet(path: "DataMigrationService_StartMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/startMigrationJobPollingUntilDone(request:options:)``
   public func startMigrationJobPollingUntilDone(request: StartMigrationJobRequest) async throws
     -> MigrationJob
   {
@@ -1750,6 +2304,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Stops a running migration job.
+  ///
+  /// @Snippet(path: "DataMigrationService_StopMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/stopMigrationJob(request:options:)``
   public func stopMigrationJob(request: StopMigrationJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1762,6 +2323,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Stops a running migration job.
+  ///
+  /// @Snippet(path: "DataMigrationService_StopMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/stopMigrationJobPollingUntilDone(request:options:)``
   public func stopMigrationJobPollingUntilDone(request: StopMigrationJobRequest) async throws
     -> MigrationJob
   {
@@ -1774,6 +2342,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resume a migration job that is currently stopped and is resumable (was
+  /// stopped during CDC phase).
+  ///
+  /// @Snippet(path: "DataMigrationService_ResumeMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/resumeMigrationJob(request:options:)``
   public func resumeMigrationJob(request: ResumeMigrationJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1786,6 +2362,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resume a migration job that is currently stopped and is resumable (was
+  /// stopped during CDC phase).
+  ///
+  /// @Snippet(path: "DataMigrationService_ResumeMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/resumeMigrationJobPollingUntilDone(request:options:)``
   public func resumeMigrationJobPollingUntilDone(request: ResumeMigrationJobRequest) async throws
     -> MigrationJob
   {
@@ -1798,6 +2382,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Promote a migration job, stopping replication to the destination and
+  /// promoting the destination to be a standalone database.
+  ///
+  /// @Snippet(path: "DataMigrationService_PromoteMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/promoteMigrationJob(request:options:)``
   public func promoteMigrationJob(request: PromoteMigrationJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1810,6 +2402,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Promote a migration job, stopping replication to the destination and
+  /// promoting the destination to be a standalone database.
+  ///
+  /// @Snippet(path: "DataMigrationService_PromoteMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/promoteMigrationJobPollingUntilDone(request:options:)``
   public func promoteMigrationJobPollingUntilDone(request: PromoteMigrationJobRequest) async throws
     -> MigrationJob
   {
@@ -1822,6 +2422,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Verify a migration job, making sure the destination can reach the source
+  /// and that all configuration and prerequisites are met.
+  ///
+  /// @Snippet(path: "DataMigrationService_VerifyMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/verifyMigrationJob(request:options:)``
   public func verifyMigrationJob(request: VerifyMigrationJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1834,6 +2442,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Verify a migration job, making sure the destination can reach the source
+  /// and that all configuration and prerequisites are met.
+  ///
+  /// @Snippet(path: "DataMigrationService_VerifyMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/verifyMigrationJobPollingUntilDone(request:options:)``
   public func verifyMigrationJobPollingUntilDone(request: VerifyMigrationJobRequest) async throws
     -> MigrationJob
   {
@@ -1846,6 +2462,15 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restart a stopped or failed migration job, resetting the destination
+  /// instance to its original state and starting the migration process from
+  /// scratch.
+  ///
+  /// @Snippet(path: "DataMigrationService_RestartMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/restartMigrationJob(request:options:)``
   public func restartMigrationJob(request: RestartMigrationJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1858,6 +2483,15 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restart a stopped or failed migration job, resetting the destination
+  /// instance to its original state and starting the migration process from
+  /// scratch.
+  ///
+  /// @Snippet(path: "DataMigrationService_RestartMigrationJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/restartMigrationJobPollingUntilDone(request:options:)``
   public func restartMigrationJobPollingUntilDone(request: RestartMigrationJobRequest) async throws
     -> MigrationJob
   {
@@ -1870,6 +2504,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generate a SSH configuration script to configure the reverse SSH
+  /// connectivity.
+  ///
+  /// @Snippet(path: "DataMigrationService_GenerateSshScript")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/generateSshScript(request:options:)``
   public func generateSshScript(request: GenerateSshScriptRequest) async throws
     -> GoogleCloudDMSV1.SshScript
   {
@@ -1882,6 +2524,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generate a TCP Proxy configuration script to configure a cloud-hosted VM
+  /// running a TCP Proxy.
+  ///
+  /// @Snippet(path: "DataMigrationService_GenerateTcpProxyScript")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/generateTcpProxyScript(request:options:)``
   public func generateTcpProxyScript(request: GenerateTcpProxyScriptRequest) async throws
     -> GoogleCloudDMSV1.TcpProxyScript
   {
@@ -1894,6 +2544,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a list of all connection profiles in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListConnectionProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listConnectionProfiles(request:options:)``
   public func listConnectionProfiles(request: ListConnectionProfilesRequest) async throws
     -> GoogleCloudDMSV1.ListConnectionProfilesResponse
   {
@@ -1906,6 +2564,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a list of all connection profiles in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListConnectionProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listConnectionProfiles(request:options:)``
   public func listConnectionProfilesByItems(
     request: ListConnectionProfilesRequest
   ) -> some AsyncSequence<ConnectionProfile, any Swift.Error> & Sendable {
@@ -1916,6 +2582,10 @@ extension Clients.DataMigrationServiceProtocol {
   /// location.
   ///
   /// @Snippet(path: "DataMigrationService_ListConnectionProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listConnectionProfiles(request:options:)``
   public func listConnectionProfilesByItems(
     request: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ConnectionProfile, any Swift.Error> & Sendable {
@@ -1930,6 +2600,14 @@ extension Clients.DataMigrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieves a list of all connection profiles in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListConnectionProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listConnectionProfiles(request:options:)``
   public func listConnectionProfilesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ConnectionProfile, any Swift.Error> & Sendable {
@@ -1939,6 +2617,13 @@ extension Clients.DataMigrationServiceProtocol {
     return self.listConnectionProfilesByItems(request: request)
   }
 
+  /// Gets details of a single connection profile.
+  ///
+  /// @Snippet(path: "DataMigrationService_GetConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/getConnectionProfile(request:options:)``
   public func getConnectionProfile(request: GetConnectionProfileRequest) async throws
     -> GoogleCloudDMSV1.ConnectionProfile
   {
@@ -1951,6 +2636,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single connection profile.
+  ///
+  /// @Snippet(path: "DataMigrationService_GetConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/getConnectionProfile(request:options:)``
   public func getConnectionProfile(
     name: Swift.String,
   ) async throws -> GoogleCloudDMSV1.ConnectionProfile {
@@ -1960,6 +2652,13 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.getConnectionProfile(request: request)
   }
 
+  /// Creates a new connection profile in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreateConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createConnectionProfile(request:options:)``
   public func createConnectionProfile(request: CreateConnectionProfileRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1972,6 +2671,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new connection profile in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreateConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createConnectionProfilePollingUntilDone(request:options:)``
   public func createConnectionProfilePollingUntilDone(request: CreateConnectionProfileRequest)
     async throws -> ConnectionProfile
   {
@@ -1985,6 +2691,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new connection profile in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreateConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createConnectionProfilePollingUntilDone(request:options:)``
   public func createConnectionProfilePollingUntilDone(
     parent: Swift.String,
     connectionProfile: ConnectionProfile?,
@@ -1998,6 +2711,13 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.createConnectionProfilePollingUntilDone(request: request)
   }
 
+  /// Update the configuration of a single connection profile.
+  ///
+  /// @Snippet(path: "DataMigrationService_UpdateConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/updateConnectionProfile(request:options:)``
   public func updateConnectionProfile(request: UpdateConnectionProfileRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2010,6 +2730,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update the configuration of a single connection profile.
+  ///
+  /// @Snippet(path: "DataMigrationService_UpdateConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/updateConnectionProfilePollingUntilDone(request:options:)``
   public func updateConnectionProfilePollingUntilDone(request: UpdateConnectionProfileRequest)
     async throws -> ConnectionProfile
   {
@@ -2023,6 +2750,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update the configuration of a single connection profile.
+  ///
+  /// @Snippet(path: "DataMigrationService_UpdateConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/updateConnectionProfilePollingUntilDone(request:options:)``
   public func updateConnectionProfilePollingUntilDone(
     connectionProfile: ConnectionProfile?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2034,6 +2768,15 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.updateConnectionProfilePollingUntilDone(request: request)
   }
 
+  /// Deletes a single Database Migration Service connection profile.
+  /// A connection profile can only be deleted if it is not in use by any
+  /// active migration jobs.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteConnectionProfile(request:options:)``
   public func deleteConnectionProfile(request: DeleteConnectionProfileRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2046,6 +2789,15 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Database Migration Service connection profile.
+  /// A connection profile can only be deleted if it is not in use by any
+  /// active migration jobs.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteConnectionProfilePollingUntilDone(request:options:)``
   public func deleteConnectionProfilePollingUntilDone(request: DeleteConnectionProfileRequest)
     async throws
   {
@@ -2058,6 +2810,15 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Database Migration Service connection profile.
+  /// A connection profile can only be deleted if it is not in use by any
+  /// active migration jobs.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteConnectionProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteConnectionProfilePollingUntilDone(request:options:)``
   public func deleteConnectionProfilePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2067,6 +2828,13 @@ extension Clients.DataMigrationServiceProtocol {
     try await self.deleteConnectionProfilePollingUntilDone(request: request)
   }
 
+  /// Creates a new private connection in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreatePrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createPrivateConnection(request:options:)``
   public func createPrivateConnection(request: CreatePrivateConnectionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2079,6 +2847,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new private connection in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreatePrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createPrivateConnectionPollingUntilDone(request:options:)``
   public func createPrivateConnectionPollingUntilDone(request: CreatePrivateConnectionRequest)
     async throws -> PrivateConnection
   {
@@ -2092,6 +2867,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new private connection in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreatePrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createPrivateConnectionPollingUntilDone(request:options:)``
   public func createPrivateConnectionPollingUntilDone(
     parent: Swift.String,
     privateConnection: PrivateConnection?,
@@ -2105,6 +2887,13 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.createPrivateConnectionPollingUntilDone(request: request)
   }
 
+  /// Gets details of a single private connection.
+  ///
+  /// @Snippet(path: "DataMigrationService_GetPrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/getPrivateConnection(request:options:)``
   public func getPrivateConnection(request: GetPrivateConnectionRequest) async throws
     -> GoogleCloudDMSV1.PrivateConnection
   {
@@ -2117,6 +2906,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single private connection.
+  ///
+  /// @Snippet(path: "DataMigrationService_GetPrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/getPrivateConnection(request:options:)``
   public func getPrivateConnection(
     name: Swift.String,
   ) async throws -> GoogleCloudDMSV1.PrivateConnection {
@@ -2126,6 +2922,13 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.getPrivateConnection(request: request)
   }
 
+  /// Retrieves a list of private connections in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListPrivateConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listPrivateConnections(request:options:)``
   public func listPrivateConnections(request: ListPrivateConnectionsRequest) async throws
     -> GoogleCloudDMSV1.ListPrivateConnectionsResponse
   {
@@ -2138,6 +2941,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a list of private connections in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListPrivateConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listPrivateConnections(request:options:)``
   public func listPrivateConnectionsByItems(
     request: ListPrivateConnectionsRequest
   ) -> some AsyncSequence<PrivateConnection, any Swift.Error> & Sendable {
@@ -2147,6 +2957,10 @@ extension Clients.DataMigrationServiceProtocol {
   /// Retrieves a list of private connections in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_ListPrivateConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listPrivateConnections(request:options:)``
   public func listPrivateConnectionsByItems(
     request: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PrivateConnection, any Swift.Error> & Sendable {
@@ -2161,6 +2975,13 @@ extension Clients.DataMigrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieves a list of private connections in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListPrivateConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listPrivateConnections(request:options:)``
   public func listPrivateConnectionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<PrivateConnection, any Swift.Error> & Sendable {
@@ -2170,6 +2991,13 @@ extension Clients.DataMigrationServiceProtocol {
     return self.listPrivateConnectionsByItems(request: request)
   }
 
+  /// Deletes a single Database Migration Service private connection.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeletePrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deletePrivateConnection(request:options:)``
   public func deletePrivateConnection(request: DeletePrivateConnectionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2182,6 +3010,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Database Migration Service private connection.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeletePrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deletePrivateConnectionPollingUntilDone(request:options:)``
   public func deletePrivateConnectionPollingUntilDone(request: DeletePrivateConnectionRequest)
     async throws
   {
@@ -2194,6 +3029,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Database Migration Service private connection.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeletePrivateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deletePrivateConnectionPollingUntilDone(request:options:)``
   public func deletePrivateConnectionPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2203,6 +3045,13 @@ extension Clients.DataMigrationServiceProtocol {
     try await self.deletePrivateConnectionPollingUntilDone(request: request)
   }
 
+  /// Gets details of a single conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_GetConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/getConversionWorkspace(request:options:)``
   public func getConversionWorkspace(request: GetConversionWorkspaceRequest) async throws
     -> GoogleCloudDMSV1.ConversionWorkspace
   {
@@ -2215,6 +3064,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_GetConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/getConversionWorkspace(request:options:)``
   public func getConversionWorkspace(
     name: Swift.String,
   ) async throws -> GoogleCloudDMSV1.ConversionWorkspace {
@@ -2224,6 +3080,13 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.getConversionWorkspace(request: request)
   }
 
+  /// Lists conversion workspaces in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListConversionWorkspaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listConversionWorkspaces(request:options:)``
   public func listConversionWorkspaces(request: ListConversionWorkspacesRequest) async throws
     -> GoogleCloudDMSV1.ListConversionWorkspacesResponse
   {
@@ -2236,6 +3099,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists conversion workspaces in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListConversionWorkspaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listConversionWorkspaces(request:options:)``
   public func listConversionWorkspacesByItems(
     request: ListConversionWorkspacesRequest
   ) -> some AsyncSequence<ConversionWorkspace, any Swift.Error> & Sendable {
@@ -2245,6 +3115,10 @@ extension Clients.DataMigrationServiceProtocol {
   /// Lists conversion workspaces in a given project and location.
   ///
   /// @Snippet(path: "DataMigrationService_ListConversionWorkspaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listConversionWorkspaces(request:options:)``
   public func listConversionWorkspacesByItems(
     request: ListConversionWorkspacesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ConversionWorkspace, any Swift.Error> & Sendable {
@@ -2259,6 +3133,13 @@ extension Clients.DataMigrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists conversion workspaces in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListConversionWorkspaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listConversionWorkspaces(request:options:)``
   public func listConversionWorkspacesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ConversionWorkspace, any Swift.Error> & Sendable {
@@ -2268,6 +3149,13 @@ extension Clients.DataMigrationServiceProtocol {
     return self.listConversionWorkspacesByItems(request: request)
   }
 
+  /// Creates a new conversion workspace in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreateConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createConversionWorkspace(request:options:)``
   public func createConversionWorkspace(request: CreateConversionWorkspaceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2280,6 +3168,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new conversion workspace in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreateConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createConversionWorkspacePollingUntilDone(request:options:)``
   public func createConversionWorkspacePollingUntilDone(request: CreateConversionWorkspaceRequest)
     async throws -> ConversionWorkspace
   {
@@ -2293,6 +3188,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new conversion workspace in a given project and location.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreateConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createConversionWorkspacePollingUntilDone(request:options:)``
   public func createConversionWorkspacePollingUntilDone(
     parent: Swift.String,
     conversionWorkspace: ConversionWorkspace?,
@@ -2306,6 +3208,13 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.createConversionWorkspacePollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_UpdateConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/updateConversionWorkspace(request:options:)``
   public func updateConversionWorkspace(request: UpdateConversionWorkspaceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2318,6 +3227,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_UpdateConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/updateConversionWorkspacePollingUntilDone(request:options:)``
   public func updateConversionWorkspacePollingUntilDone(request: UpdateConversionWorkspaceRequest)
     async throws -> ConversionWorkspace
   {
@@ -2331,6 +3247,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_UpdateConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/updateConversionWorkspacePollingUntilDone(request:options:)``
   public func updateConversionWorkspacePollingUntilDone(
     conversionWorkspace: ConversionWorkspace?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2342,6 +3265,13 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.updateConversionWorkspacePollingUntilDone(request: request)
   }
 
+  /// Deletes a single conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteConversionWorkspace(request:options:)``
   public func deleteConversionWorkspace(request: DeleteConversionWorkspaceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2354,6 +3284,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteConversionWorkspacePollingUntilDone(request:options:)``
   public func deleteConversionWorkspacePollingUntilDone(request: DeleteConversionWorkspaceRequest)
     async throws
   {
@@ -2366,6 +3303,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteConversionWorkspacePollingUntilDone(request:options:)``
   public func deleteConversionWorkspacePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2375,6 +3319,13 @@ extension Clients.DataMigrationServiceProtocol {
     try await self.deleteConversionWorkspacePollingUntilDone(request: request)
   }
 
+  /// Creates a new mapping rule for a given conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreateMappingRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createMappingRule(request:options:)``
   public func createMappingRule(request: CreateMappingRuleRequest) async throws
     -> GoogleCloudDMSV1.MappingRule
   {
@@ -2387,6 +3338,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new mapping rule for a given conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_CreateMappingRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/createMappingRule(request:options:)``
   public func createMappingRule(
     parent: Swift.String,
     mappingRule: MappingRule?,
@@ -2400,6 +3358,13 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.createMappingRule(request: request)
   }
 
+  /// Deletes a single mapping rule.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteMappingRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteMappingRule(request:options:)``
   public func deleteMappingRule(request: DeleteMappingRuleRequest) async throws {
     try await self.deleteMappingRule(request: request, options: .init())
   }
@@ -2410,6 +3375,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single mapping rule.
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteMappingRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteMappingRule(request:options:)``
   public func deleteMappingRule(
     name: Swift.String,
   ) async throws {
@@ -2419,6 +3391,13 @@ extension Clients.DataMigrationServiceProtocol {
     try await self.deleteMappingRule(request: request)
   }
 
+  /// Lists the mapping rules for a specific conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListMappingRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listMappingRules(request:options:)``
   public func listMappingRules(request: ListMappingRulesRequest) async throws
     -> GoogleCloudDMSV1.ListMappingRulesResponse
   {
@@ -2431,6 +3410,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the mapping rules for a specific conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListMappingRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listMappingRules(request:options:)``
   public func listMappingRulesByItems(
     request: ListMappingRulesRequest
   ) -> some AsyncSequence<MappingRule, any Swift.Error> & Sendable {
@@ -2440,6 +3426,10 @@ extension Clients.DataMigrationServiceProtocol {
   /// Lists the mapping rules for a specific conversion workspace.
   ///
   /// @Snippet(path: "DataMigrationService_ListMappingRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listMappingRules(request:options:)``
   public func listMappingRulesByItems(
     request: ListMappingRulesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MappingRule, any Swift.Error> & Sendable {
@@ -2453,6 +3443,13 @@ extension Clients.DataMigrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the mapping rules for a specific conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListMappingRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listMappingRules(request:options:)``
   public func listMappingRulesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MappingRule, any Swift.Error> & Sendable {
@@ -2462,6 +3459,13 @@ extension Clients.DataMigrationServiceProtocol {
     return self.listMappingRulesByItems(request: request)
   }
 
+  /// Gets the details of a mapping rule.
+  ///
+  /// @Snippet(path: "DataMigrationService_GetMappingRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/getMappingRule(request:options:)``
   public func getMappingRule(request: GetMappingRuleRequest) async throws
     -> GoogleCloudDMSV1.MappingRule
   {
@@ -2474,6 +3478,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a mapping rule.
+  ///
+  /// @Snippet(path: "DataMigrationService_GetMappingRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/getMappingRule(request:options:)``
   public func getMappingRule(
     name: Swift.String,
   ) async throws -> GoogleCloudDMSV1.MappingRule {
@@ -2483,6 +3494,14 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.getMappingRule(request: request)
   }
 
+  /// Imports a snapshot of the source database into the
+  /// conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_SeedConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/seedConversionWorkspace(request:options:)``
   public func seedConversionWorkspace(request: SeedConversionWorkspaceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2495,6 +3514,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports a snapshot of the source database into the
+  /// conversion workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_SeedConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/seedConversionWorkspacePollingUntilDone(request:options:)``
   public func seedConversionWorkspacePollingUntilDone(request: SeedConversionWorkspaceRequest)
     async throws -> ConversionWorkspace
   {
@@ -2508,6 +3535,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports the mapping rules for a given conversion workspace.
+  /// Supports various formats of external rules files.
+  ///
+  /// @Snippet(path: "DataMigrationService_ImportMappingRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/importMappingRules(request:options:)``
   public func importMappingRules(request: ImportMappingRulesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2520,6 +3555,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports the mapping rules for a given conversion workspace.
+  /// Supports various formats of external rules files.
+  ///
+  /// @Snippet(path: "DataMigrationService_ImportMappingRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/importMappingRulesPollingUntilDone(request:options:)``
   public func importMappingRulesPollingUntilDone(request: ImportMappingRulesRequest) async throws
     -> ConversionWorkspace
   {
@@ -2532,6 +3575,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a draft tree schema for the destination database.
+  ///
+  /// @Snippet(path: "DataMigrationService_ConvertConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/convertConversionWorkspace(request:options:)``
   public func convertConversionWorkspace(request: ConvertConversionWorkspaceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2544,6 +3594,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a draft tree schema for the destination database.
+  ///
+  /// @Snippet(path: "DataMigrationService_ConvertConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/convertConversionWorkspacePollingUntilDone(request:options:)``
   public func convertConversionWorkspacePollingUntilDone(request: ConvertConversionWorkspaceRequest)
     async throws -> ConversionWorkspace
   {
@@ -2557,6 +3614,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Marks all the data in the conversion workspace as committed.
+  ///
+  /// @Snippet(path: "DataMigrationService_CommitConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/commitConversionWorkspace(request:options:)``
   public func commitConversionWorkspace(request: CommitConversionWorkspaceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2569,6 +3633,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Marks all the data in the conversion workspace as committed.
+  ///
+  /// @Snippet(path: "DataMigrationService_CommitConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/commitConversionWorkspacePollingUntilDone(request:options:)``
   public func commitConversionWorkspacePollingUntilDone(request: CommitConversionWorkspaceRequest)
     async throws -> ConversionWorkspace
   {
@@ -2582,6 +3653,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Rolls back a conversion workspace to the last committed snapshot.
+  ///
+  /// @Snippet(path: "DataMigrationService_RollbackConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/rollbackConversionWorkspace(request:options:)``
   public func rollbackConversionWorkspace(request: RollbackConversionWorkspaceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2594,6 +3672,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Rolls back a conversion workspace to the last committed snapshot.
+  ///
+  /// @Snippet(path: "DataMigrationService_RollbackConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/rollbackConversionWorkspacePollingUntilDone(request:options:)``
   public func rollbackConversionWorkspacePollingUntilDone(
     request: RollbackConversionWorkspaceRequest
   ) async throws -> ConversionWorkspace {
@@ -2607,6 +3692,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Applies draft tree onto a specific destination database.
+  ///
+  /// @Snippet(path: "DataMigrationService_ApplyConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/applyConversionWorkspace(request:options:)``
   public func applyConversionWorkspace(request: ApplyConversionWorkspaceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2619,6 +3711,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Applies draft tree onto a specific destination database.
+  ///
+  /// @Snippet(path: "DataMigrationService_ApplyConversionWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/applyConversionWorkspacePollingUntilDone(request:options:)``
   public func applyConversionWorkspacePollingUntilDone(request: ApplyConversionWorkspaceRequest)
     async throws -> ConversionWorkspace
   {
@@ -2632,6 +3731,18 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Describes the database entities tree for a specific conversion workspace
+  /// and a specific tree type.
+  ///
+  /// Database entities are not resources like conversion workspaces or mapping
+  /// rules, and they can't be created, updated or deleted. Instead, they are
+  /// simple data objects describing the structure of the client database.
+  ///
+  /// @Snippet(path: "DataMigrationService_DescribeDatabaseEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/describeDatabaseEntities(request:options:)``
   public func describeDatabaseEntities(request: DescribeDatabaseEntitiesRequest) async throws
     -> GoogleCloudDMSV1.DescribeDatabaseEntitiesResponse
   {
@@ -2644,6 +3755,18 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Describes the database entities tree for a specific conversion workspace
+  /// and a specific tree type.
+  ///
+  /// Database entities are not resources like conversion workspaces or mapping
+  /// rules, and they can't be created, updated or deleted. Instead, they are
+  /// simple data objects describing the structure of the client database.
+  ///
+  /// @Snippet(path: "DataMigrationService_DescribeDatabaseEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/describeDatabaseEntities(request:options:)``
   public func describeDatabaseEntitiesByItems(
     request: DescribeDatabaseEntitiesRequest
   ) -> some AsyncSequence<DatabaseEntity, any Swift.Error> & Sendable {
@@ -2658,6 +3781,10 @@ extension Clients.DataMigrationServiceProtocol {
   /// simple data objects describing the structure of the client database.
   ///
   /// @Snippet(path: "DataMigrationService_DescribeDatabaseEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/describeDatabaseEntities(request:options:)``
   public func describeDatabaseEntitiesByItems(
     request: DescribeDatabaseEntitiesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DatabaseEntity, any Swift.Error> & Sendable {
@@ -2672,6 +3799,18 @@ extension Clients.DataMigrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Searches/lists the background jobs for a specific
+  /// conversion workspace.
+  ///
+  /// The background jobs are not resources like conversion workspaces or
+  /// mapping rules, and they can't be created, updated or deleted.
+  /// Instead, they are a way to expose the data plane jobs log.
+  ///
+  /// @Snippet(path: "DataMigrationService_SearchBackgroundJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/searchBackgroundJobs(request:options:)``
   public func searchBackgroundJobs(request: SearchBackgroundJobsRequest) async throws
     -> GoogleCloudDMSV1.SearchBackgroundJobsResponse
   {
@@ -2684,6 +3823,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a list of committed revisions of a specific conversion
+  /// workspace.
+  ///
+  /// @Snippet(path: "DataMigrationService_DescribeConversionWorkspaceRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/describeConversionWorkspaceRevisions(request:options:)``
   public func describeConversionWorkspaceRevisions(
     request: DescribeConversionWorkspaceRevisionsRequest
   ) async throws -> GoogleCloudDMSV1.DescribeConversionWorkspaceRevisionsResponse {
@@ -2696,6 +3843,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a set of static IP addresses that need to be allowlisted by the
+  /// customer when using the static-IP connectivity method.
+  ///
+  /// @Snippet(path: "DataMigrationService_FetchStaticIps")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/fetchStaticIps(request:options:)``
   public func fetchStaticIps(request: FetchStaticIpsRequest) async throws
     -> GoogleCloudDMSV1.FetchStaticIpsResponse
   {
@@ -2708,6 +3863,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a set of static IP addresses that need to be allowlisted by the
+  /// customer when using the static-IP connectivity method.
+  ///
+  /// @Snippet(path: "DataMigrationService_FetchStaticIps")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/fetchStaticIps(request:options:)``
   public func fetchStaticIps(
     name: Swift.String,
   ) async throws -> GoogleCloudDMSV1.FetchStaticIpsResponse {
@@ -2717,6 +3880,13 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.fetchStaticIps(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -2729,6 +3899,13 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "DataMigrationService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2738,6 +3915,10 @@ extension Clients.DataMigrationServiceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "DataMigrationService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2751,6 +3932,13 @@ extension Clients.DataMigrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "DataMigrationService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -2763,6 +3951,17 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "DataMigrationService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -2775,6 +3974,14 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "DataMigrationService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -2787,6 +3994,19 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "DataMigrationService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -2799,6 +4019,15 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataMigrationService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -2811,6 +4040,15 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataMigrationService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2822,6 +4060,10 @@ extension Clients.DataMigrationServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataMigrationService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2835,6 +4077,15 @@ extension Clients.DataMigrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataMigrationService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -2846,6 +4097,9 @@ extension Clients.DataMigrationServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2858,6 +4112,9 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -2867,6 +4124,15 @@ extension Clients.DataMigrationServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -2877,6 +4143,15 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataMigrationService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -2886,6 +4161,15 @@ extension Clients.DataMigrationServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataMigrationService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -2896,6 +4180,15 @@ extension Clients.DataMigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataMigrationService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataMigrationServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

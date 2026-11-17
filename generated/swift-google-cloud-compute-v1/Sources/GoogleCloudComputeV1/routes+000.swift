@@ -24,6 +24,10 @@
   /// Service for the `routes` resource.
   ///
   /// @Snippet(path: "routesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RoutesProtocol``
   public final class RoutesClient: Clients.RoutesProtocol, Sendable {
     let inner: any Clients.RoutesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Deletes the specified Route resource.
     ///
     /// @Snippet(path: "routes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:route:)``
     public func delete(
       request: RoutesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "routes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:route:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: RoutesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -99,6 +117,11 @@
     /// Returns the specified Route resource.
     ///
     /// @Snippet(path: "routes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:route:)``
     public func `get`(
       request: RoutesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Route {
@@ -109,6 +132,13 @@
     /// in the request.
     ///
     /// @Snippet(path: "routes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: RoutesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -124,6 +154,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "routes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: RoutesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -165,6 +202,13 @@
     /// Retrieves the list of Route resources available to the specified project.
     ///
     /// @Snippet(path: "routes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:)``
     public func list(
       request: RoutesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RouteList {
@@ -174,6 +218,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "routes_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:resource:body:)``
     public func testIamPermissions(
       request: RoutesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -246,6 +295,13 @@
 
   // Default implementations
   extension Clients.RoutesProtocol {
+    /// Deletes the specified Route resource.
+    ///
+    /// @Snippet(path: "routes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/delete(request:options:)``
     public func delete(request: RoutesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -258,6 +314,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified Route resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RoutesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -270,6 +338,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified Route resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       route: Swift.String,
@@ -281,6 +361,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified Route resource.
+    ///
+    /// @Snippet(path: "routes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/get(request:options:)``
     public func `get`(request: RoutesClient.GetRequest) async throws -> GoogleCloudComputeV1.Route {
       try await self.`get`(request: request, options: .init())
     }
@@ -291,6 +378,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified Route resource.
+    ///
+    /// @Snippet(path: "routes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       route: Swift.String,
@@ -302,6 +396,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a Route resource in the specified project using the data included
+    /// in the request.
+    ///
+    /// @Snippet(path: "routes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/insert(request:options:)``
     public func insert(request: RoutesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -314,6 +416,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Route resource in the specified project using the data included
+    /// in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RoutesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -326,6 +441,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Route resource in the specified project using the data included
+    /// in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: Route?,
@@ -337,6 +465,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of Route resources available to the specified project.
+    ///
+    /// @Snippet(path: "routes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/list(request:options:)``
     public func list(request: RoutesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.RouteList
     {
@@ -349,6 +484,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of Route resources available to the specified project.
+    ///
+    /// @Snippet(path: "routes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/list(request:options:)``
     public func listByItems(
       request: RoutesClient.ListRequest
     ) -> some AsyncSequence<Route, any Swift.Error> & Sendable {
@@ -358,6 +500,10 @@
     /// Retrieves the list of Route resources available to the specified project.
     ///
     /// @Snippet(path: "routes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/list(request:options:)``
     public func listByItems(
       request: RoutesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Route, any Swift.Error> & Sendable {
@@ -371,6 +517,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of Route resources available to the specified project.
+    ///
+    /// @Snippet(path: "routes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<Route, any Swift.Error> & Sendable {
@@ -380,6 +533,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "routes_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: RoutesClient.TestIamPermissionsRequest) async throws
       -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -392,6 +552,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "routes_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       resource: Swift.String,
@@ -405,6 +572,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

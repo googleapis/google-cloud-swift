@@ -30,6 +30,10 @@ import Foundation
 /// within a Collection.
 ///
 /// @Snippet(path: "VectorSearchServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/VectorSearchServiceProtocol``
 public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtocol, Sendable {
   let inner: any Clients.VectorSearchServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -51,6 +55,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Lists Collections in a given project and location.
   ///
   /// @Snippet(path: "VectorSearchService_ListCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCollections(request:)``
+  /// - ``listCollectionsByItems(request:)``
+  /// - ``listCollectionsByItems(request:options:)``
+  /// - ``listCollectionsByItems(parent:)``
   public func listCollections(
     request: ListCollectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.ListCollectionsResponse {
@@ -60,6 +71,11 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Gets details of a single Collection.
   ///
   /// @Snippet(path: "VectorSearchService_GetCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCollection(request:)``
+  /// - ``getCollection(name:)``
   public func getCollection(
     request: GetCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.Collection {
@@ -69,6 +85,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Creates a new Collection in a given project and location.
   ///
   /// @Snippet(path: "VectorSearchService_CreateCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCollection(request:)``
+  /// - ``createCollectionPollingUntilDone(request:)``
+  /// - ``createCollectionPollingUntilDone(request:options:)``
+  /// - ``createCollectionPollingUntilDone(parent:collection:collectionId:)``
   public func createCollection(
     request: CreateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -78,6 +101,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Creates a new Collection in a given project and location.
   ///
   /// @Snippet(path: "VectorSearchService_CreateCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCollectionPollingUntilDone(request:)``
+  /// - ``createCollectionPollingUntilDone(parent:collection:collectionId:)``
+  /// - ``createCollection(request:)``
+  /// - ``createCollection(request:options:)``
   public func createCollectionPollingUntilDone(
     request: CreateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Collection {
@@ -105,6 +135,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Updates the parameters of a single Collection.
   ///
   /// @Snippet(path: "VectorSearchService_UpdateCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCollection(request:)``
+  /// - ``updateCollectionPollingUntilDone(request:)``
+  /// - ``updateCollectionPollingUntilDone(request:options:)``
+  /// - ``updateCollectionPollingUntilDone(collection:updateMask:)``
   public func updateCollection(
     request: UpdateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -114,6 +151,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Updates the parameters of a single Collection.
   ///
   /// @Snippet(path: "VectorSearchService_UpdateCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCollectionPollingUntilDone(request:)``
+  /// - ``updateCollectionPollingUntilDone(collection:updateMask:)``
+  /// - ``updateCollection(request:)``
+  /// - ``updateCollection(request:options:)``
   public func updateCollectionPollingUntilDone(
     request: UpdateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Collection {
@@ -141,6 +185,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Deletes a single Collection.
   ///
   /// @Snippet(path: "VectorSearchService_DeleteCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCollection(request:)``
+  /// - ``deleteCollectionPollingUntilDone(request:)``
+  /// - ``deleteCollectionPollingUntilDone(request:options:)``
+  /// - ``deleteCollectionPollingUntilDone(name:)``
   public func deleteCollection(
     request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,6 +201,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Deletes a single Collection.
   ///
   /// @Snippet(path: "VectorSearchService_DeleteCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCollectionPollingUntilDone(request:)``
+  /// - ``deleteCollectionPollingUntilDone(name:)``
+  /// - ``deleteCollection(request:)``
+  /// - ``deleteCollection(request:options:)``
   public func deleteCollectionPollingUntilDone(
     request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -177,6 +235,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Lists Indexes in a given project and location.
   ///
   /// @Snippet(path: "VectorSearchService_ListIndexes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listIndexes(request:)``
+  /// - ``listIndexesByItems(request:)``
+  /// - ``listIndexesByItems(request:options:)``
+  /// - ``listIndexesByItems(parent:)``
   public func listIndexes(
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.ListIndexesResponse {
@@ -186,6 +251,11 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Gets details of a single Index.
   ///
   /// @Snippet(path: "VectorSearchService_GetIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIndex(request:)``
+  /// - ``getIndex(name:)``
   public func getIndex(
     request: GetIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.Index {
@@ -195,6 +265,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Creates a new Index in a given project and location.
   ///
   /// @Snippet(path: "VectorSearchService_CreateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createIndex(request:)``
+  /// - ``createIndexPollingUntilDone(request:)``
+  /// - ``createIndexPollingUntilDone(request:options:)``
+  /// - ``createIndexPollingUntilDone(parent:index:indexId:)``
   public func createIndex(
     request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -204,6 +281,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Creates a new Index in a given project and location.
   ///
   /// @Snippet(path: "VectorSearchService_CreateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createIndexPollingUntilDone(request:)``
+  /// - ``createIndexPollingUntilDone(parent:index:indexId:)``
+  /// - ``createIndex(request:)``
+  /// - ``createIndex(request:options:)``
   public func createIndexPollingUntilDone(
     request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> Index {
@@ -231,6 +315,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Updates the parameters of a single Index.
   ///
   /// @Snippet(path: "VectorSearchService_UpdateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateIndex(request:)``
+  /// - ``updateIndexPollingUntilDone(request:)``
+  /// - ``updateIndexPollingUntilDone(request:options:)``
+  /// - ``updateIndexPollingUntilDone(index:updateMask:)``
   public func updateIndex(
     request: UpdateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -240,6 +331,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Updates the parameters of a single Index.
   ///
   /// @Snippet(path: "VectorSearchService_UpdateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateIndexPollingUntilDone(request:)``
+  /// - ``updateIndexPollingUntilDone(index:updateMask:)``
+  /// - ``updateIndex(request:)``
+  /// - ``updateIndex(request:options:)``
   public func updateIndexPollingUntilDone(
     request: UpdateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> Index {
@@ -267,6 +365,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Deletes a single Index.
   ///
   /// @Snippet(path: "VectorSearchService_DeleteIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteIndex(request:)``
+  /// - ``deleteIndexPollingUntilDone(request:)``
+  /// - ``deleteIndexPollingUntilDone(request:options:)``
+  /// - ``deleteIndexPollingUntilDone(name:)``
   public func deleteIndex(
     request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -276,6 +381,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Deletes a single Index.
   ///
   /// @Snippet(path: "VectorSearchService_DeleteIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteIndexPollingUntilDone(request:)``
+  /// - ``deleteIndexPollingUntilDone(name:)``
+  /// - ``deleteIndex(request:)``
+  /// - ``deleteIndex(request:options:)``
   public func deleteIndexPollingUntilDone(
     request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -303,6 +415,12 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Initiates a Long-Running Operation to import DataObjects into a Collection.
   ///
   /// @Snippet(path: "VectorSearchService_ImportDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importDataObjects(request:)``
+  /// - ``importDataObjectsPollingUntilDone(request:)``
+  /// - ``importDataObjectsPollingUntilDone(request:options:)``
   public func importDataObjects(
     request: ImportDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -312,6 +430,12 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Initiates a Long-Running Operation to import DataObjects into a Collection.
   ///
   /// @Snippet(path: "VectorSearchService_ImportDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importDataObjectsPollingUntilDone(request:)``
+  /// - ``importDataObjects(request:)``
+  /// - ``importDataObjects(request:options:)``
   public func importDataObjectsPollingUntilDone(
     request: ImportDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportDataObjectsResponse {
@@ -341,6 +465,12 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Initiates a Long-Running Operation to export DataObjects from a Collection.
   ///
   /// @Snippet(path: "VectorSearchService_ExportDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportDataObjects(request:)``
+  /// - ``exportDataObjectsPollingUntilDone(request:)``
+  /// - ``exportDataObjectsPollingUntilDone(request:options:)``
   public func exportDataObjects(
     request: ExportDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -350,6 +480,12 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Initiates a Long-Running Operation to export DataObjects from a Collection.
   ///
   /// @Snippet(path: "VectorSearchService_ExportDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportDataObjectsPollingUntilDone(request:)``
+  /// - ``exportDataObjects(request:)``
+  /// - ``exportDataObjects(request:options:)``
   public func exportDataObjectsPollingUntilDone(
     request: ExportDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportDataObjectsResponse {
@@ -396,6 +532,12 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "VectorSearchService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -405,6 +547,10 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// Gets information about a location.
   ///
   /// @Snippet(path: "VectorSearchService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -416,6 +562,13 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VectorSearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -438,6 +591,11 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VectorSearchService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -449,6 +607,11 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VectorSearchService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -592,6 +755,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.VectorSearchServiceProtocol {
+  /// Lists Collections in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_ListCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listCollections(request:options:)``
   public func listCollections(request: ListCollectionsRequest) async throws
     -> GoogleCloudVectorSearchV1.ListCollectionsResponse
   {
@@ -604,6 +774,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Collections in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_ListCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listCollections(request:options:)``
   public func listCollectionsByItems(
     request: ListCollectionsRequest
   ) -> some AsyncSequence<Collection, any Swift.Error> & Sendable {
@@ -613,6 +790,10 @@ extension Clients.VectorSearchServiceProtocol {
   /// Lists Collections in a given project and location.
   ///
   /// @Snippet(path: "VectorSearchService_ListCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listCollections(request:options:)``
   public func listCollectionsByItems(
     request: ListCollectionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Collection, any Swift.Error> & Sendable {
@@ -627,6 +808,13 @@ extension Clients.VectorSearchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Collections in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_ListCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listCollections(request:options:)``
   public func listCollectionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Collection, any Swift.Error> & Sendable {
@@ -636,6 +824,13 @@ extension Clients.VectorSearchServiceProtocol {
     return self.listCollectionsByItems(request: request)
   }
 
+  /// Gets details of a single Collection.
+  ///
+  /// @Snippet(path: "VectorSearchService_GetCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/getCollection(request:options:)``
   public func getCollection(request: GetCollectionRequest) async throws
     -> GoogleCloudVectorSearchV1.Collection
   {
@@ -648,6 +843,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Collection.
+  ///
+  /// @Snippet(path: "VectorSearchService_GetCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/getCollection(request:options:)``
   public func getCollection(
     name: Swift.String,
   ) async throws -> GoogleCloudVectorSearchV1.Collection {
@@ -657,6 +859,13 @@ extension Clients.VectorSearchServiceProtocol {
     return try await self.getCollection(request: request)
   }
 
+  /// Creates a new Collection in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_CreateCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/createCollection(request:options:)``
   public func createCollection(request: CreateCollectionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -669,6 +878,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Collection in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_CreateCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/createCollectionPollingUntilDone(request:options:)``
   public func createCollectionPollingUntilDone(request: CreateCollectionRequest) async throws
     -> Collection
   {
@@ -681,6 +897,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Collection in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_CreateCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/createCollectionPollingUntilDone(request:options:)``
   public func createCollectionPollingUntilDone(
     parent: Swift.String,
     collection: Collection?,
@@ -694,6 +917,13 @@ extension Clients.VectorSearchServiceProtocol {
     return try await self.createCollectionPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Collection.
+  ///
+  /// @Snippet(path: "VectorSearchService_UpdateCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/updateCollection(request:options:)``
   public func updateCollection(request: UpdateCollectionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -706,6 +936,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Collection.
+  ///
+  /// @Snippet(path: "VectorSearchService_UpdateCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/updateCollectionPollingUntilDone(request:options:)``
   public func updateCollectionPollingUntilDone(request: UpdateCollectionRequest) async throws
     -> Collection
   {
@@ -718,6 +955,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Collection.
+  ///
+  /// @Snippet(path: "VectorSearchService_UpdateCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/updateCollectionPollingUntilDone(request:options:)``
   public func updateCollectionPollingUntilDone(
     collection: Collection?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -729,6 +973,13 @@ extension Clients.VectorSearchServiceProtocol {
     return try await self.updateCollectionPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Collection.
+  ///
+  /// @Snippet(path: "VectorSearchService_DeleteCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/deleteCollection(request:options:)``
   public func deleteCollection(request: DeleteCollectionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -741,6 +992,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Collection.
+  ///
+  /// @Snippet(path: "VectorSearchService_DeleteCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/deleteCollectionPollingUntilDone(request:options:)``
   public func deleteCollectionPollingUntilDone(request: DeleteCollectionRequest) async throws {
     try await self.deleteCollectionPollingUntilDone(request: request, options: .init())
   }
@@ -751,6 +1009,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Collection.
+  ///
+  /// @Snippet(path: "VectorSearchService_DeleteCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/deleteCollectionPollingUntilDone(request:options:)``
   public func deleteCollectionPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -760,6 +1025,13 @@ extension Clients.VectorSearchServiceProtocol {
     try await self.deleteCollectionPollingUntilDone(request: request)
   }
 
+  /// Lists Indexes in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_ListIndexes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listIndexes(request:options:)``
   public func listIndexes(request: ListIndexesRequest) async throws
     -> GoogleCloudVectorSearchV1.ListIndexesResponse
   {
@@ -772,6 +1044,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Indexes in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_ListIndexes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listIndexes(request:options:)``
   public func listIndexesByItems(
     request: ListIndexesRequest
   ) -> some AsyncSequence<Index, any Swift.Error> & Sendable {
@@ -781,6 +1060,10 @@ extension Clients.VectorSearchServiceProtocol {
   /// Lists Indexes in a given project and location.
   ///
   /// @Snippet(path: "VectorSearchService_ListIndexes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listIndexes(request:options:)``
   public func listIndexesByItems(
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Index, any Swift.Error> & Sendable {
@@ -795,6 +1078,13 @@ extension Clients.VectorSearchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Indexes in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_ListIndexes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listIndexes(request:options:)``
   public func listIndexesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Index, any Swift.Error> & Sendable {
@@ -804,6 +1094,13 @@ extension Clients.VectorSearchServiceProtocol {
     return self.listIndexesByItems(request: request)
   }
 
+  /// Gets details of a single Index.
+  ///
+  /// @Snippet(path: "VectorSearchService_GetIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/getIndex(request:options:)``
   public func getIndex(request: GetIndexRequest) async throws -> GoogleCloudVectorSearchV1.Index {
     try await self.getIndex(request: request, options: .init())
   }
@@ -814,6 +1111,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Index.
+  ///
+  /// @Snippet(path: "VectorSearchService_GetIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/getIndex(request:options:)``
   public func getIndex(
     name: Swift.String,
   ) async throws -> GoogleCloudVectorSearchV1.Index {
@@ -823,6 +1127,13 @@ extension Clients.VectorSearchServiceProtocol {
     return try await self.getIndex(request: request)
   }
 
+  /// Creates a new Index in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_CreateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/createIndex(request:options:)``
   public func createIndex(request: CreateIndexRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createIndex(request: request, options: .init())
   }
@@ -833,6 +1144,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Index in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_CreateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/createIndexPollingUntilDone(request:options:)``
   public func createIndexPollingUntilDone(request: CreateIndexRequest) async throws -> Index {
     return try await self.createIndexPollingUntilDone(request: request, options: .init())
   }
@@ -843,6 +1161,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Index in a given project and location.
+  ///
+  /// @Snippet(path: "VectorSearchService_CreateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/createIndexPollingUntilDone(request:options:)``
   public func createIndexPollingUntilDone(
     parent: Swift.String,
     index: Index?,
@@ -856,6 +1181,13 @@ extension Clients.VectorSearchServiceProtocol {
     return try await self.createIndexPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Index.
+  ///
+  /// @Snippet(path: "VectorSearchService_UpdateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/updateIndex(request:options:)``
   public func updateIndex(request: UpdateIndexRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateIndex(request: request, options: .init())
   }
@@ -866,6 +1198,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Index.
+  ///
+  /// @Snippet(path: "VectorSearchService_UpdateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/updateIndexPollingUntilDone(request:options:)``
   public func updateIndexPollingUntilDone(request: UpdateIndexRequest) async throws -> Index {
     return try await self.updateIndexPollingUntilDone(request: request, options: .init())
   }
@@ -876,6 +1215,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Index.
+  ///
+  /// @Snippet(path: "VectorSearchService_UpdateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/updateIndexPollingUntilDone(request:options:)``
   public func updateIndexPollingUntilDone(
     index: Index?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -887,6 +1233,13 @@ extension Clients.VectorSearchServiceProtocol {
     return try await self.updateIndexPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Index.
+  ///
+  /// @Snippet(path: "VectorSearchService_DeleteIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/deleteIndex(request:options:)``
   public func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteIndex(request: request, options: .init())
   }
@@ -897,6 +1250,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Index.
+  ///
+  /// @Snippet(path: "VectorSearchService_DeleteIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/deleteIndexPollingUntilDone(request:options:)``
   public func deleteIndexPollingUntilDone(request: DeleteIndexRequest) async throws {
     try await self.deleteIndexPollingUntilDone(request: request, options: .init())
   }
@@ -907,6 +1267,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Index.
+  ///
+  /// @Snippet(path: "VectorSearchService_DeleteIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/deleteIndexPollingUntilDone(request:options:)``
   public func deleteIndexPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -916,6 +1283,13 @@ extension Clients.VectorSearchServiceProtocol {
     try await self.deleteIndexPollingUntilDone(request: request)
   }
 
+  /// Initiates a Long-Running Operation to import DataObjects into a Collection.
+  ///
+  /// @Snippet(path: "VectorSearchService_ImportDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/importDataObjects(request:options:)``
   public func importDataObjects(request: ImportDataObjectsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -928,6 +1302,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Initiates a Long-Running Operation to import DataObjects into a Collection.
+  ///
+  /// @Snippet(path: "VectorSearchService_ImportDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/importDataObjectsPollingUntilDone(request:options:)``
   public func importDataObjectsPollingUntilDone(request: ImportDataObjectsRequest) async throws
     -> ImportDataObjectsResponse
   {
@@ -940,6 +1321,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Initiates a Long-Running Operation to export DataObjects from a Collection.
+  ///
+  /// @Snippet(path: "VectorSearchService_ExportDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/exportDataObjects(request:options:)``
   public func exportDataObjects(request: ExportDataObjectsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -952,6 +1340,13 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Initiates a Long-Running Operation to export DataObjects from a Collection.
+  ///
+  /// @Snippet(path: "VectorSearchService_ExportDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/exportDataObjectsPollingUntilDone(request:options:)``
   public func exportDataObjectsPollingUntilDone(request: ExportDataObjectsRequest) async throws
     -> ExportDataObjectsResponse
   {
@@ -964,6 +1359,30 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "VectorSearchService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -976,6 +1395,30 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "VectorSearchService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1002,6 +1445,10 @@ extension Clients.VectorSearchServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "VectorSearchService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1015,6 +1462,13 @@ extension Clients.VectorSearchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "VectorSearchService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1027,6 +1481,15 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VectorSearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1039,6 +1502,15 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VectorSearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1050,6 +1522,10 @@ extension Clients.VectorSearchServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VectorSearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1063,6 +1539,15 @@ extension Clients.VectorSearchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VectorSearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1074,6 +1559,9 @@ extension Clients.VectorSearchServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1086,6 +1574,9 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1095,6 +1586,15 @@ extension Clients.VectorSearchServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VectorSearchService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1105,6 +1605,15 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VectorSearchService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1114,6 +1623,15 @@ extension Clients.VectorSearchServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VectorSearchService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1124,6 +1642,15 @@ extension Clients.VectorSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VectorSearchService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VectorSearchServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

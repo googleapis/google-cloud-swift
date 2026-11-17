@@ -26,6 +26,10 @@
   /// Service for conversational search.
   ///
   /// @Snippet(path: "ConversationalSearchServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ConversationalSearchServiceProtocol``
   public final class ConversationalSearchServiceClient: Clients.ConversationalSearchServiceProtocol,
     Sendable
   {
@@ -45,6 +49,11 @@
     /// Converses a conversation.
     ///
     /// @Snippet(path: "ConversationalSearchService_ConverseConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``converseConversation(request:)``
+    /// - ``converseConversation(name:query:)``
     public func converseConversation(
       request: ConverseConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ConverseConversationResponse {
@@ -59,6 +68,11 @@
     /// [google.cloud.discoveryengine.v1.Conversation]: <doc:Conversation>
     ///
     /// @Snippet(path: "ConversationalSearchService_CreateConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createConversation(request:)``
+    /// - ``createConversation(parent:conversation:)``
     public func createConversation(
       request: CreateConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation {
@@ -73,6 +87,11 @@
     /// [google.cloud.discoveryengine.v1.Conversation]: <doc:Conversation>
     ///
     /// @Snippet(path: "ConversationalSearchService_DeleteConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteConversation(request:)``
+    /// - ``deleteConversation(name:)``
     public func deleteConversation(
       request: DeleteConversationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -89,6 +108,11 @@
     /// [google.cloud.discoveryengine.v1.Conversation]: <doc:Conversation>
     ///
     /// @Snippet(path: "ConversationalSearchService_UpdateConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateConversation(request:)``
+    /// - ``updateConversation(conversation:updateMask:)``
     public func updateConversation(
       request: UpdateConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation {
@@ -98,6 +122,11 @@
     /// Gets a Conversation.
     ///
     /// @Snippet(path: "ConversationalSearchService_GetConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getConversation(request:)``
+    /// - ``getConversation(name:)``
     public func getConversation(
       request: GetConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation {
@@ -110,6 +139,13 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "ConversationalSearchService_ListConversations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listConversations(request:)``
+    /// - ``listConversationsByItems(request:)``
+    /// - ``listConversationsByItems(request:options:)``
+    /// - ``listConversationsByItems(parent:)``
     public func listConversations(
       request: ListConversationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListConversationsResponse {
@@ -119,6 +155,10 @@
     /// Answer query method.
     ///
     /// @Snippet(path: "ConversationalSearchService_AnswerQuery")
+    ///
+    /// ## See Also
+    ///
+    /// - ``answerQuery(request:)``
     public func answerQuery(
       request: AnswerQueryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse {
@@ -128,6 +168,11 @@
     /// Gets a Answer.
     ///
     /// @Snippet(path: "ConversationalSearchService_GetAnswer")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getAnswer(request:)``
+    /// - ``getAnswer(name:)``
     public func getAnswer(
       request: GetAnswerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Answer {
@@ -142,6 +187,11 @@
     /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
     ///
     /// @Snippet(path: "ConversationalSearchService_CreateSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createSession(request:)``
+    /// - ``createSession(parent:session:)``
     public func createSession(
       request: CreateSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -156,6 +206,11 @@
     /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
     ///
     /// @Snippet(path: "ConversationalSearchService_DeleteSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteSession(request:)``
+    /// - ``deleteSession(name:)``
     public func deleteSession(
       request: DeleteSessionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -171,6 +226,11 @@
     /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
     ///
     /// @Snippet(path: "ConversationalSearchService_UpdateSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateSession(request:)``
+    /// - ``updateSession(session:updateMask:)``
     public func updateSession(
       request: UpdateSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -180,6 +240,11 @@
     /// Gets a Session.
     ///
     /// @Snippet(path: "ConversationalSearchService_GetSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getSession(request:)``
+    /// - ``getSession(name:)``
     public func getSession(
       request: GetSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -192,6 +257,13 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "ConversationalSearchService_ListSessions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listSessions(request:)``
+    /// - ``listSessionsByItems(request:)``
+    /// - ``listSessionsByItems(request:options:)``
+    /// - ``listSessionsByItems(parent:)``
     public func listSessions(
       request: ListSessionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse {
@@ -203,6 +275,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationalSearchService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -225,6 +304,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationalSearchService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -318,6 +402,13 @@
 
   // Default implementations
   extension Clients.ConversationalSearchServiceProtocol {
+    /// Converses a conversation.
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ConverseConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/converseConversation(request:options:)``
     public func converseConversation(request: ConverseConversationRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ConverseConversationResponse
     {
@@ -330,6 +421,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Converses a conversation.
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ConverseConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/converseConversation(request:options:)``
     public func converseConversation(
       name: Swift.String,
       query: TextInput?,
@@ -341,6 +439,18 @@
       return try await self.converseConversation(request: request)
     }
 
+    /// Creates a Conversation.
+    ///
+    /// If the [Conversation][google.cloud.discoveryengine.v1.Conversation] to
+    /// create already exists, an ALREADY_EXISTS error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Conversation]: <doc:Conversation>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_CreateConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/createConversation(request:options:)``
     public func createConversation(request: CreateConversationRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Conversation
     {
@@ -353,6 +463,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Conversation.
+    ///
+    /// If the [Conversation][google.cloud.discoveryengine.v1.Conversation] to
+    /// create already exists, an ALREADY_EXISTS error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Conversation]: <doc:Conversation>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_CreateConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/createConversation(request:options:)``
     public func createConversation(
       parent: Swift.String,
       conversation: Conversation?,
@@ -364,6 +486,18 @@
       return try await self.createConversation(request: request)
     }
 
+    /// Deletes a Conversation.
+    ///
+    /// If the [Conversation][google.cloud.discoveryengine.v1.Conversation] to
+    /// delete does not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Conversation]: <doc:Conversation>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_DeleteConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/deleteConversation(request:options:)``
     public func deleteConversation(request: DeleteConversationRequest) async throws {
       try await self.deleteConversation(request: request, options: .init())
     }
@@ -374,6 +508,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Conversation.
+    ///
+    /// If the [Conversation][google.cloud.discoveryengine.v1.Conversation] to
+    /// delete does not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Conversation]: <doc:Conversation>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_DeleteConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/deleteConversation(request:options:)``
     public func deleteConversation(
       name: Swift.String,
     ) async throws {
@@ -383,6 +529,20 @@
       try await self.deleteConversation(request: request)
     }
 
+    /// Updates a Conversation.
+    ///
+    /// [Conversation][google.cloud.discoveryengine.v1.Conversation] action type
+    /// cannot be changed. If the
+    /// [Conversation][google.cloud.discoveryengine.v1.Conversation] to update does
+    /// not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Conversation]: <doc:Conversation>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_UpdateConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/updateConversation(request:options:)``
     public func updateConversation(request: UpdateConversationRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Conversation
     {
@@ -395,6 +555,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a Conversation.
+    ///
+    /// [Conversation][google.cloud.discoveryengine.v1.Conversation] action type
+    /// cannot be changed. If the
+    /// [Conversation][google.cloud.discoveryengine.v1.Conversation] to update does
+    /// not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Conversation]: <doc:Conversation>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_UpdateConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/updateConversation(request:options:)``
     public func updateConversation(
       conversation: Conversation?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -406,6 +580,13 @@
       return try await self.updateConversation(request: request)
     }
 
+    /// Gets a Conversation.
+    ///
+    /// @Snippet(path: "ConversationalSearchService_GetConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/getConversation(request:options:)``
     public func getConversation(request: GetConversationRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Conversation
     {
@@ -418,6 +599,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a Conversation.
+    ///
+    /// @Snippet(path: "ConversationalSearchService_GetConversation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/getConversation(request:options:)``
     public func getConversation(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation {
@@ -427,6 +615,16 @@
       return try await self.getConversation(request: request)
     }
 
+    /// Lists all Conversations by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ListConversations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/listConversations(request:options:)``
     public func listConversations(request: ListConversationsRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListConversationsResponse
     {
@@ -439,6 +637,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all Conversations by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ListConversations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/listConversations(request:options:)``
     public func listConversationsByItems(
       request: ListConversationsRequest
     ) -> some AsyncSequence<Conversation, any Swift.Error> & Sendable {
@@ -451,6 +659,10 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "ConversationalSearchService_ListConversations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/listConversations(request:options:)``
     public func listConversationsByItems(
       request: ListConversationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Conversation, any Swift.Error> & Sendable {
@@ -465,6 +677,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all Conversations by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ListConversations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/listConversations(request:options:)``
     public func listConversationsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Conversation, any Swift.Error> & Sendable {
@@ -474,6 +696,13 @@
       return self.listConversationsByItems(request: request)
     }
 
+    /// Answer query method.
+    ///
+    /// @Snippet(path: "ConversationalSearchService_AnswerQuery")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/answerQuery(request:options:)``
     public func answerQuery(request: AnswerQueryRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse
     {
@@ -486,6 +715,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a Answer.
+    ///
+    /// @Snippet(path: "ConversationalSearchService_GetAnswer")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/getAnswer(request:options:)``
     public func getAnswer(request: GetAnswerRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Answer
     {
@@ -498,6 +734,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a Answer.
+    ///
+    /// @Snippet(path: "ConversationalSearchService_GetAnswer")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/getAnswer(request:options:)``
     public func getAnswer(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Answer {
@@ -507,6 +750,18 @@
       return try await self.getAnswer(request: request)
     }
 
+    /// Creates a Session.
+    ///
+    /// If the [Session][google.cloud.discoveryengine.v1.Session] to create already
+    /// exists, an ALREADY_EXISTS error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_CreateSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/createSession(request:options:)``
     public func createSession(request: CreateSessionRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Session
     {
@@ -519,6 +774,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Session.
+    ///
+    /// If the [Session][google.cloud.discoveryengine.v1.Session] to create already
+    /// exists, an ALREADY_EXISTS error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_CreateSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/createSession(request:options:)``
     public func createSession(
       parent: Swift.String,
       session: Session?,
@@ -530,6 +797,18 @@
       return try await self.createSession(request: request)
     }
 
+    /// Deletes a Session.
+    ///
+    /// If the [Session][google.cloud.discoveryengine.v1.Session] to delete does
+    /// not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_DeleteSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/deleteSession(request:options:)``
     public func deleteSession(request: DeleteSessionRequest) async throws {
       try await self.deleteSession(request: request, options: .init())
     }
@@ -540,6 +819,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Session.
+    ///
+    /// If the [Session][google.cloud.discoveryengine.v1.Session] to delete does
+    /// not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_DeleteSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/deleteSession(request:options:)``
     public func deleteSession(
       name: Swift.String,
     ) async throws {
@@ -549,6 +840,19 @@
       try await self.deleteSession(request: request)
     }
 
+    /// Updates a Session.
+    ///
+    /// [Session][google.cloud.discoveryengine.v1.Session] action type cannot be
+    /// changed. If the [Session][google.cloud.discoveryengine.v1.Session] to
+    /// update does not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_UpdateSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/updateSession(request:options:)``
     public func updateSession(request: UpdateSessionRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Session
     {
@@ -561,6 +865,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a Session.
+    ///
+    /// [Session][google.cloud.discoveryengine.v1.Session] action type cannot be
+    /// changed. If the [Session][google.cloud.discoveryengine.v1.Session] to
+    /// update does not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_UpdateSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/updateSession(request:options:)``
     public func updateSession(
       session: Session?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -572,6 +889,13 @@
       return try await self.updateSession(request: request)
     }
 
+    /// Gets a Session.
+    ///
+    /// @Snippet(path: "ConversationalSearchService_GetSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/getSession(request:options:)``
     public func getSession(request: GetSessionRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Session
     {
@@ -584,6 +908,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a Session.
+    ///
+    /// @Snippet(path: "ConversationalSearchService_GetSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/getSession(request:options:)``
     public func getSession(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -593,6 +924,16 @@
       return try await self.getSession(request: request)
     }
 
+    /// Lists all Sessions by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ListSessions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/listSessions(request:options:)``
     public func listSessions(request: ListSessionsRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse
     {
@@ -605,6 +946,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all Sessions by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ListSessions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/listSessions(request:options:)``
     public func listSessionsByItems(
       request: ListSessionsRequest
     ) -> some AsyncSequence<Session, any Swift.Error> & Sendable {
@@ -617,6 +968,10 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "ConversationalSearchService_ListSessions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/listSessions(request:options:)``
     public func listSessionsByItems(
       request: ListSessionsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Session, any Swift.Error> & Sendable {
@@ -631,6 +986,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all Sessions by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ListSessions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/listSessions(request:options:)``
     public func listSessionsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Session, any Swift.Error> & Sendable {
@@ -640,6 +1005,15 @@
       return self.listSessionsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -652,6 +1026,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -663,6 +1046,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationalSearchService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -676,6 +1063,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationalSearchService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -687,6 +1083,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -699,6 +1098,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -708,6 +1110,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationalSearchService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -718,6 +1129,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationalSearchService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationalSearchServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

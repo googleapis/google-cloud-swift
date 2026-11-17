@@ -24,6 +24,10 @@
   /// Service for the `forwardingRules` resource.
   ///
   /// @Snippet(path: "forwardingRulesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ForwardingRulesProtocol``
   public final class ForwardingRulesClient: Clients.ForwardingRulesProtocol, Sendable {
     let inner: any Clients.ForwardingRulesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "forwardingRules_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
+    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: ForwardingRulesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ForwardingRuleAggregatedList {
@@ -56,6 +67,13 @@
     /// Deletes the specified ForwardingRule resource.
     ///
     /// @Snippet(path: "forwardingRules_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:forwardingRule:)``
     public func delete(
       request: ForwardingRulesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -70,6 +88,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "forwardingRules_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:region:forwardingRule:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: ForwardingRulesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -112,6 +137,11 @@
     /// Returns the specified ForwardingRule resource.
     ///
     /// @Snippet(path: "forwardingRules_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:forwardingRule:)``
     public func `get`(
       request: ForwardingRulesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ForwardingRule {
@@ -122,6 +152,13 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "forwardingRules_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: ForwardingRulesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -137,6 +174,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "forwardingRules_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: ForwardingRulesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -180,6 +224,13 @@
     /// project and region.
     ///
     /// @Snippet(path: "forwardingRules_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:region:)``
     public func list(
       request: ForwardingRulesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ForwardingRuleList {
@@ -193,6 +244,13 @@
     /// patch the network_tier field.
     ///
     /// @Snippet(path: "forwardingRules_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:forwardingRule:body:)``
     public func patch(
       request: ForwardingRulesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -211,6 +269,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "forwardingRules_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:region:forwardingRule:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: ForwardingRulesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -255,6 +320,13 @@
     /// Labeling Resources documentation.
     ///
     /// @Snippet(path: "forwardingRules_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabels(request:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
+    /// - ``setLabelsPollingUntilDone(request:options:)``
+    /// - ``setLabelsPollingUntilDone(project:region:resource:body:)``
     public func setLabels(
       request: ForwardingRulesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -271,6 +343,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "forwardingRules_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabelsPollingUntilDone(request:)``
+    /// - ``setLabelsPollingUntilDone(project:region:resource:body:)``
+    /// - ``setLabels(request:)``
+    /// - ``setLabels(request:options:)``
     public func setLabelsPollingUntilDone(
       request: ForwardingRulesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -314,6 +393,13 @@
     /// same type as the old target.
     ///
     /// @Snippet(path: "forwardingRules_setTarget")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setTarget(request:)``
+    /// - ``setTargetPollingUntilDone(request:)``
+    /// - ``setTargetPollingUntilDone(request:options:)``
+    /// - ``setTargetPollingUntilDone(project:region:forwardingRule:body:)``
     public func setTarget(
       request: ForwardingRulesClient.SetTargetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -329,6 +415,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "forwardingRules_setTarget")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setTargetPollingUntilDone(request:)``
+    /// - ``setTargetPollingUntilDone(project:region:forwardingRule:body:)``
+    /// - ``setTarget(request:)``
+    /// - ``setTarget(request:options:)``
     public func setTargetPollingUntilDone(
       request: ForwardingRulesClient.SetTargetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -479,6 +572,16 @@
 
   // Default implementations
   extension Clients.ForwardingRulesProtocol {
+    /// Retrieves an aggregated list of forwarding rules.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "forwardingRules_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: ForwardingRulesClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.ForwardingRuleAggregatedList
     {
@@ -491,6 +594,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of forwarding rules.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "forwardingRules_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: ForwardingRulesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, ForwardingRulesScopedList), any Swift.Error> & Sendable {
@@ -503,6 +616,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "forwardingRules_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: ForwardingRulesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, ForwardingRulesScopedList), any Swift.Error> & Sendable {
@@ -517,6 +634,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of forwarding rules.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "forwardingRules_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, ForwardingRulesScopedList), any Swift.Error> & Sendable {
@@ -526,6 +653,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified ForwardingRule resource.
+    ///
+    /// @Snippet(path: "forwardingRules_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/delete(request:options:)``
     public func delete(request: ForwardingRulesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -538,6 +672,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified ForwardingRule resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "forwardingRules_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: ForwardingRulesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -550,6 +696,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified ForwardingRule resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "forwardingRules_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -563,6 +721,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified ForwardingRule resource.
+    ///
+    /// @Snippet(path: "forwardingRules_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/get(request:options:)``
     public func `get`(request: ForwardingRulesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.ForwardingRule
     {
@@ -575,6 +740,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified ForwardingRule resource.
+    ///
+    /// @Snippet(path: "forwardingRules_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -588,6 +760,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a ForwardingRule resource in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// @Snippet(path: "forwardingRules_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/insert(request:options:)``
     public func insert(request: ForwardingRulesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -600,6 +780,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a ForwardingRule resource in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "forwardingRules_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: ForwardingRulesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -612,6 +805,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a ForwardingRule resource in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "forwardingRules_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -625,6 +831,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of ForwardingRule resources available to the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "forwardingRules_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/list(request:options:)``
     public func list(request: ForwardingRulesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.ForwardingRuleList
     {
@@ -637,6 +851,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of ForwardingRule resources available to the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "forwardingRules_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/list(request:options:)``
     public func listByItems(
       request: ForwardingRulesClient.ListRequest
     ) -> some AsyncSequence<ForwardingRule, any Swift.Error> & Sendable {
@@ -647,6 +869,10 @@
     /// project and region.
     ///
     /// @Snippet(path: "forwardingRules_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/list(request:options:)``
     public func listByItems(
       request: ForwardingRulesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ForwardingRule, any Swift.Error> & Sendable {
@@ -660,6 +886,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of ForwardingRule resources available to the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "forwardingRules_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -671,6 +905,17 @@
       return self.listByItems(request: request)
     }
 
+    /// Updates the specified forwarding rule with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules. Currently, you can only
+    /// patch the network_tier field.
+    ///
+    /// @Snippet(path: "forwardingRules_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/patch(request:options:)``
     public func patch(request: ForwardingRulesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -683,6 +928,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified forwarding rule with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules. Currently, you can only
+    /// patch the network_tier field.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "forwardingRules_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: ForwardingRulesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -695,6 +956,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified forwarding rule with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules. Currently, you can only
+    /// patch the network_tier field.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "forwardingRules_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -710,6 +987,15 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Sets the labels on the specified resource. To learn more about labels,
+    /// read the
+    /// Labeling Resources documentation.
+    ///
+    /// @Snippet(path: "forwardingRules_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/setLabels(request:options:)``
     public func setLabels(request: ForwardingRulesClient.SetLabelsRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -722,6 +1008,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on the specified resource. To learn more about labels,
+    /// read the
+    /// Labeling Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "forwardingRules_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       request: ForwardingRulesClient.SetLabelsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -734,6 +1034,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on the specified resource. To learn more about labels,
+    /// read the
+    /// Labeling Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "forwardingRules_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -749,6 +1063,14 @@
       return try await self.setLabelsPollingUntilDone(request: request)
     }
 
+    /// Changes target URL for forwarding rule. The new target should be of the
+    /// same type as the old target.
+    ///
+    /// @Snippet(path: "forwardingRules_setTarget")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/setTarget(request:options:)``
     public func setTarget(request: ForwardingRulesClient.SetTargetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -761,6 +1083,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes target URL for forwarding rule. The new target should be of the
+    /// same type as the old target.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "forwardingRules_setTarget")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/setTargetPollingUntilDone(request:options:)``
     public func setTargetPollingUntilDone(
       request: ForwardingRulesClient.SetTargetRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -773,6 +1108,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes target URL for forwarding rule. The new target should be of the
+    /// same type as the old target.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "forwardingRules_setTarget")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ForwardingRulesClient/setTargetPollingUntilDone(request:options:)``
     public func setTargetPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -788,6 +1136,7 @@
       return try await self.setTargetPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

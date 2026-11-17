@@ -24,6 +24,10 @@
   /// Service for the `regionInstanceGroups` resource.
   ///
   /// @Snippet(path: "regionInstanceGroupsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionInstanceGroupsProtocol``
   public final class RegionInstanceGroupsClient: Clients.RegionInstanceGroupsProtocol, Sendable {
     let inner: any Clients.RegionInstanceGroupsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -45,6 +49,11 @@
     /// Returns the specified instance group resource.
     ///
     /// @Snippet(path: "regionInstanceGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:instanceGroup:)``
     public func `get`(
       request: RegionInstanceGroupsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceGroup {
@@ -55,6 +64,13 @@
     /// the specified region.
     ///
     /// @Snippet(path: "regionInstanceGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:region:)``
     public func list(
       request: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RegionInstanceGroupList {
@@ -67,6 +83,13 @@
     /// The orderBy query parameter is not supported.
     ///
     /// @Snippet(path: "regionInstanceGroups_listInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listInstances(request:)``
+    /// - ``listInstancesByItems(request:)``
+    /// - ``listInstancesByItems(request:options:)``
+    /// - ``listInstancesByItems(project:region:instanceGroup:body:)``
     public func listInstances(
       request: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances {
@@ -76,6 +99,13 @@
     /// Sets the named ports for the specified regional instance group.
     ///
     /// @Snippet(path: "regionInstanceGroups_setNamedPorts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setNamedPorts(request:)``
+    /// - ``setNamedPortsPollingUntilDone(request:)``
+    /// - ``setNamedPortsPollingUntilDone(request:options:)``
+    /// - ``setNamedPortsPollingUntilDone(project:region:instanceGroup:body:)``
     public func setNamedPorts(
       request: RegionInstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -90,6 +120,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroups_setNamedPorts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setNamedPortsPollingUntilDone(request:)``
+    /// - ``setNamedPortsPollingUntilDone(project:region:instanceGroup:body:)``
+    /// - ``setNamedPorts(request:)``
+    /// - ``setNamedPorts(request:options:)``
     public func setNamedPortsPollingUntilDone(
       request: RegionInstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -132,6 +169,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "regionInstanceGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:region:resource:body:)``
     public func testIamPermissions(
       request: RegionInstanceGroupsClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions
@@ -196,6 +238,13 @@
 
   // Default implementations
   extension Clients.RegionInstanceGroupsProtocol {
+    /// Returns the specified instance group resource.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/get(request:options:)``
     public func `get`(request: RegionInstanceGroupsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.InstanceGroup
     {
@@ -208,6 +257,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified instance group resource.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -221,6 +277,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Retrieves the list of instance group resources contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/list(request:options:)``
     public func list(request: RegionInstanceGroupsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.RegionInstanceGroupList
     {
@@ -233,6 +297,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of instance group resources contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/list(request:options:)``
     public func listByItems(
       request: RegionInstanceGroupsClient.ListRequest
     ) -> some AsyncSequence<InstanceGroup, any Swift.Error> & Sendable {
@@ -243,6 +315,10 @@
     /// the specified region.
     ///
     /// @Snippet(path: "regionInstanceGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/list(request:options:)``
     public func listByItems(
       request: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<InstanceGroup, any Swift.Error> & Sendable {
@@ -257,6 +333,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of instance group resources contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -268,6 +352,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Lists the instances in the specified instance group and displays
+    /// information about the named ports. Depending on the specified options, this
+    /// method can list all instances or only the instances that are running.
+    /// The orderBy query parameter is not supported.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_listInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/listInstances(request:options:)``
     public func listInstances(request: RegionInstanceGroupsClient.ListInstancesRequest) async throws
       -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances
     {
@@ -280,6 +374,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the instances in the specified instance group and displays
+    /// information about the named ports. Depending on the specified options, this
+    /// method can list all instances or only the instances that are running.
+    /// The orderBy query parameter is not supported.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_listInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/listInstances(request:options:)``
     public func listInstancesByItems(
       request: RegionInstanceGroupsClient.ListInstancesRequest
     ) -> some AsyncSequence<InstanceWithNamedPorts, any Swift.Error> & Sendable {
@@ -292,6 +396,10 @@
     /// The orderBy query parameter is not supported.
     ///
     /// @Snippet(path: "regionInstanceGroups_listInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/listInstances(request:options:)``
     public func listInstancesByItems(
       request: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<InstanceWithNamedPorts, any Swift.Error> & Sendable {
@@ -306,6 +414,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the instances in the specified instance group and displays
+    /// information about the named ports. Depending on the specified options, this
+    /// method can list all instances or only the instances that are running.
+    /// The orderBy query parameter is not supported.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_listInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/listInstances(request:options:)``
     public func listInstancesByItems(
       project: Swift.String,
       region: Swift.String,
@@ -321,6 +439,13 @@
       return self.listInstancesByItems(request: request)
     }
 
+    /// Sets the named ports for the specified regional instance group.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_setNamedPorts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/setNamedPorts(request:options:)``
     public func setNamedPorts(request: RegionInstanceGroupsClient.SetNamedPortsRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -333,6 +458,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the named ports for the specified regional instance group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_setNamedPorts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/setNamedPortsPollingUntilDone(request:options:)``
     public func setNamedPortsPollingUntilDone(
       request: RegionInstanceGroupsClient.SetNamedPortsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -345,6 +482,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the named ports for the specified regional instance group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_setNamedPorts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/setNamedPortsPollingUntilDone(request:options:)``
     public func setNamedPortsPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -360,6 +509,13 @@
       return try await self.setNamedPortsPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: RegionInstanceGroupsClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -373,6 +529,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionInstanceGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -388,6 +551,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

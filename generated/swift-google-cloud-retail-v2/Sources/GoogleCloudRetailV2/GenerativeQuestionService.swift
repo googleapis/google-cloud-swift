@@ -25,6 +25,10 @@ import Foundation
 /// Service for managing LLM generated questions in search serving.
 ///
 /// @Snippet(path: "GenerativeQuestionServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/GenerativeQuestionServiceProtocol``
 public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionServiceProtocol,
   Sendable
 {
@@ -45,6 +49,11 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   /// feature on and off.
   ///
   /// @Snippet(path: "GenerativeQuestionService_UpdateGenerativeQuestionsFeatureConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGenerativeQuestionsFeatureConfig(request:)``
+  /// - ``updateGenerativeQuestionsFeatureConfig(generativeQuestionsFeatureConfig:updateMask:)``
   public func updateGenerativeQuestionsFeatureConfig(
     request: UpdateGenerativeQuestionsFeatureConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig {
@@ -55,6 +64,11 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   /// feature on and off.
   ///
   /// @Snippet(path: "GenerativeQuestionService_GetGenerativeQuestionsFeatureConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGenerativeQuestionsFeatureConfig(request:)``
+  /// - ``getGenerativeQuestionsFeatureConfig(catalog:)``
   public func getGenerativeQuestionsFeatureConfig(
     request: GetGenerativeQuestionsFeatureConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig {
@@ -64,6 +78,11 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   /// Returns all questions for a given catalog.
   ///
   /// @Snippet(path: "GenerativeQuestionService_ListGenerativeQuestionConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listGenerativeQuestionConfigs(request:)``
+  /// - ``listGenerativeQuestionConfigs(parent:)``
   public func listGenerativeQuestionConfigs(
     request: ListGenerativeQuestionConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ListGenerativeQuestionConfigsResponse {
@@ -73,6 +92,11 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   /// Allows management of individual questions.
   ///
   /// @Snippet(path: "GenerativeQuestionService_UpdateGenerativeQuestionConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGenerativeQuestionConfig(request:)``
+  /// - ``updateGenerativeQuestionConfig(generativeQuestionConfig:updateMask:)``
   public func updateGenerativeQuestionConfig(
     request: UpdateGenerativeQuestionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionConfig {
@@ -82,6 +106,11 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   /// Allows management of multiple questions.
   ///
   /// @Snippet(path: "GenerativeQuestionService_BatchUpdateGenerativeQuestionConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchUpdateGenerativeQuestionConfigs(request:)``
+  /// - ``batchUpdateGenerativeQuestionConfigs(parent:requests:)``
   public func batchUpdateGenerativeQuestionConfigs(
     request: BatchUpdateGenerativeQuestionConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.BatchUpdateGenerativeQuestionConfigsResponse {
@@ -93,6 +122,13 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "GenerativeQuestionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -152,6 +188,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.GenerativeQuestionServiceProtocol {
+  /// Manages overal generative question feature state -- enables toggling
+  /// feature on and off.
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_UpdateGenerativeQuestionsFeatureConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/updateGenerativeQuestionsFeatureConfig(request:options:)``
   public func updateGenerativeQuestionsFeatureConfig(
     request: UpdateGenerativeQuestionsFeatureConfigRequest
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig {
@@ -164,6 +208,14 @@ extension Clients.GenerativeQuestionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Manages overal generative question feature state -- enables toggling
+  /// feature on and off.
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_UpdateGenerativeQuestionsFeatureConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/updateGenerativeQuestionsFeatureConfig(request:options:)``
   public func updateGenerativeQuestionsFeatureConfig(
     generativeQuestionsFeatureConfig: GenerativeQuestionsFeatureConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -175,6 +227,14 @@ extension Clients.GenerativeQuestionServiceProtocol {
     return try await self.updateGenerativeQuestionsFeatureConfig(request: request)
   }
 
+  /// Manages overal generative question feature state -- enables toggling
+  /// feature on and off.
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_GetGenerativeQuestionsFeatureConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/getGenerativeQuestionsFeatureConfig(request:options:)``
   public func getGenerativeQuestionsFeatureConfig(
     request: GetGenerativeQuestionsFeatureConfigRequest
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig {
@@ -187,6 +247,14 @@ extension Clients.GenerativeQuestionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Manages overal generative question feature state -- enables toggling
+  /// feature on and off.
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_GetGenerativeQuestionsFeatureConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/getGenerativeQuestionsFeatureConfig(request:options:)``
   public func getGenerativeQuestionsFeatureConfig(
     catalog: Swift.String,
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig {
@@ -196,6 +264,13 @@ extension Clients.GenerativeQuestionServiceProtocol {
     return try await self.getGenerativeQuestionsFeatureConfig(request: request)
   }
 
+  /// Returns all questions for a given catalog.
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_ListGenerativeQuestionConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/listGenerativeQuestionConfigs(request:options:)``
   public func listGenerativeQuestionConfigs(request: ListGenerativeQuestionConfigsRequest)
     async throws -> GoogleCloudRetailV2.ListGenerativeQuestionConfigsResponse
   {
@@ -208,6 +283,13 @@ extension Clients.GenerativeQuestionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns all questions for a given catalog.
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_ListGenerativeQuestionConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/listGenerativeQuestionConfigs(request:options:)``
   public func listGenerativeQuestionConfigs(
     parent: Swift.String,
   ) async throws -> GoogleCloudRetailV2.ListGenerativeQuestionConfigsResponse {
@@ -217,6 +299,13 @@ extension Clients.GenerativeQuestionServiceProtocol {
     return try await self.listGenerativeQuestionConfigs(request: request)
   }
 
+  /// Allows management of individual questions.
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_UpdateGenerativeQuestionConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/updateGenerativeQuestionConfig(request:options:)``
   public func updateGenerativeQuestionConfig(request: UpdateGenerativeQuestionConfigRequest)
     async throws -> GoogleCloudRetailV2.GenerativeQuestionConfig
   {
@@ -229,6 +318,13 @@ extension Clients.GenerativeQuestionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Allows management of individual questions.
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_UpdateGenerativeQuestionConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/updateGenerativeQuestionConfig(request:options:)``
   public func updateGenerativeQuestionConfig(
     generativeQuestionConfig: GenerativeQuestionConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -240,6 +336,13 @@ extension Clients.GenerativeQuestionServiceProtocol {
     return try await self.updateGenerativeQuestionConfig(request: request)
   }
 
+  /// Allows management of multiple questions.
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_BatchUpdateGenerativeQuestionConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/batchUpdateGenerativeQuestionConfigs(request:options:)``
   public func batchUpdateGenerativeQuestionConfigs(
     request: BatchUpdateGenerativeQuestionConfigsRequest
   ) async throws -> GoogleCloudRetailV2.BatchUpdateGenerativeQuestionConfigsResponse {
@@ -252,6 +355,13 @@ extension Clients.GenerativeQuestionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Allows management of multiple questions.
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_BatchUpdateGenerativeQuestionConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/batchUpdateGenerativeQuestionConfigs(request:options:)``
   public func batchUpdateGenerativeQuestionConfigs(
     parent: Swift.String,
     requests: [UpdateGenerativeQuestionConfigRequest],
@@ -263,6 +373,15 @@ extension Clients.GenerativeQuestionServiceProtocol {
     return try await self.batchUpdateGenerativeQuestionConfigs(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -275,6 +394,15 @@ extension Clients.GenerativeQuestionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -286,6 +414,10 @@ extension Clients.GenerativeQuestionServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "GenerativeQuestionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -299,6 +431,15 @@ extension Clients.GenerativeQuestionServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "GenerativeQuestionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GenerativeQuestionServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -310,6 +451,9 @@ extension Clients.GenerativeQuestionServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -322,6 +466,9 @@ extension Clients.GenerativeQuestionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

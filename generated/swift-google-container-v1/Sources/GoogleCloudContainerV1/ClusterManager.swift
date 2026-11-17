@@ -23,6 +23,10 @@ import Foundation
 /// Google Kubernetes Engine Cluster Manager v1
 ///
 /// @Snippet(path: "ClusterManagerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ClusterManagerProtocol``
 public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendable {
   let inner: any Clients.ClusterManagerStub
 
@@ -40,6 +44,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// zones.
   ///
   /// @Snippet(path: "ClusterManager_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listClusters(request:)``
+  /// - ``listClusters(projectId:zone:)``
+  /// - ``listClusters(parent:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.ListClustersResponse {
@@ -49,6 +59,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Gets the details of a specific cluster.
   ///
   /// @Snippet(path: "ClusterManager_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCluster(request:)``
+  /// - ``getCluster(projectId:zone:clusterId:)``
+  /// - ``getCluster(name:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Cluster {
@@ -71,6 +87,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// which CIDR range the cluster is using.
   ///
   /// @Snippet(path: "ClusterManager_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCluster(request:)``
+  /// - ``createCluster(projectId:zone:cluster:)``
+  /// - ``createCluster(parent:cluster:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -80,6 +102,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Updates the settings of a specific cluster.
   ///
   /// @Snippet(path: "ClusterManager_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCluster(request:)``
+  /// - ``updateCluster(projectId:zone:clusterId:update:)``
+  /// - ``updateCluster(name:update:)``
   public func updateCluster(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -89,6 +117,10 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Updates the version and/or image type for the specified node pool.
   ///
   /// @Snippet(path: "ClusterManager_UpdateNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateNodePool(request:)``
   public func updateNodePool(
     request: UpdateNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -98,6 +130,10 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Sets the autoscaling settings for the specified node pool.
   ///
   /// @Snippet(path: "ClusterManager_SetNodePoolAutoscaling")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setNodePoolAutoscaling(request:)``
   public func setNodePoolAutoscaling(
     request: SetNodePoolAutoscalingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -107,6 +143,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Sets the logging service for a specific cluster.
   ///
   /// @Snippet(path: "ClusterManager_SetLoggingService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setLoggingService(request:)``
+  /// - ``setLoggingService(projectId:zone:clusterId:loggingService:)``
+  /// - ``setLoggingService(name:loggingService:)``
   public func setLoggingService(
     request: SetLoggingServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -116,6 +158,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Sets the monitoring service for a specific cluster.
   ///
   /// @Snippet(path: "ClusterManager_SetMonitoringService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setMonitoringService(request:)``
+  /// - ``setMonitoringService(projectId:zone:clusterId:monitoringService:)``
+  /// - ``setMonitoringService(name:monitoringService:)``
   public func setMonitoringService(
     request: SetMonitoringServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -125,6 +173,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Sets the addons for a specific cluster.
   ///
   /// @Snippet(path: "ClusterManager_SetAddonsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setAddonsConfig(request:)``
+  /// - ``setAddonsConfig(projectId:zone:clusterId:addonsConfig:)``
+  /// - ``setAddonsConfig(name:addonsConfig:)``
   public func setAddonsConfig(
     request: SetAddonsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -137,6 +191,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// instead.
   ///
   /// @Snippet(path: "ClusterManager_SetLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setLocations(request:)``
+  /// - ``setLocations(projectId:zone:clusterId:locations:)``
+  /// - ``setLocations(name:locations:)``
   @available(*, deprecated)
   public func setLocations(
     request: SetLocationsRequest, options: GoogleGax.RequestOptions
@@ -147,6 +207,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Updates the master for a specific cluster.
   ///
   /// @Snippet(path: "ClusterManager_UpdateMaster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMaster(request:)``
+  /// - ``updateMaster(projectId:zone:clusterId:masterVersion:)``
+  /// - ``updateMaster(name:masterVersion:)``
   public func updateMaster(
     request: UpdateMasterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -158,6 +224,10 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// the password.
   ///
   /// @Snippet(path: "ClusterManager_SetMasterAuth")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setMasterAuth(request:)``
   public func setMasterAuth(
     request: SetMasterAuthRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -175,6 +245,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// when the cluster was initially created.
   ///
   /// @Snippet(path: "ClusterManager_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCluster(request:)``
+  /// - ``deleteCluster(projectId:zone:clusterId:)``
+  /// - ``deleteCluster(name:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -184,6 +260,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Lists all operations in a project in a specific zone or all zones.
   ///
   /// @Snippet(path: "ClusterManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperations(projectId:zone:)``
+  /// - ``listOperations(parent:)``
   public func listOperations(
     request: ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.ListOperationsResponse {
@@ -193,6 +275,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Gets the specified operation.
   ///
   /// @Snippet(path: "ClusterManager_GetOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getOperation(request:)``
+  /// - ``getOperation(projectId:zone:operationId:)``
+  /// - ``getOperation(name:)``
   public func getOperation(
     request: GetOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -202,6 +290,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Cancels the specified operation.
   ///
   /// @Snippet(path: "ClusterManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(projectId:zone:operationId:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -211,6 +305,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Returns configuration info about the Google Kubernetes Engine service.
   ///
   /// @Snippet(path: "ClusterManager_GetServerConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getServerConfig(request:)``
+  /// - ``getServerConfig(projectId:zone:)``
+  /// - ``getServerConfig(name:)``
   public func getServerConfig(
     request: GetServerConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.ServerConfig {
@@ -221,6 +321,10 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// JSON Web Key format.
   ///
   /// @Snippet(path: "ClusterManager_GetJSONWebKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getJsonwebKeys(request:)``
   public func getJsonwebKeys(
     request: GetJSONWebKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.GetJSONWebKeysResponse {
@@ -230,6 +334,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Lists the node pools for a cluster.
   ///
   /// @Snippet(path: "ClusterManager_ListNodePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listNodePools(request:)``
+  /// - ``listNodePools(projectId:zone:clusterId:)``
+  /// - ``listNodePools(parent:)``
   public func listNodePools(
     request: ListNodePoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.ListNodePoolsResponse {
@@ -239,6 +349,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Retrieves the requested node pool.
   ///
   /// @Snippet(path: "ClusterManager_GetNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getNodePool(request:)``
+  /// - ``getNodePool(projectId:zone:clusterId:nodePoolId:)``
+  /// - ``getNodePool(name:)``
   public func getNodePool(
     request: GetNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.NodePool {
@@ -248,6 +364,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Creates a node pool for a cluster.
   ///
   /// @Snippet(path: "ClusterManager_CreateNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createNodePool(request:)``
+  /// - ``createNodePool(projectId:zone:clusterId:nodePool:)``
+  /// - ``createNodePool(parent:nodePool:)``
   public func createNodePool(
     request: CreateNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -257,6 +379,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Deletes a node pool from a cluster.
   ///
   /// @Snippet(path: "ClusterManager_DeleteNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteNodePool(request:)``
+  /// - ``deleteNodePool(projectId:zone:clusterId:nodePoolId:)``
+  /// - ``deleteNodePool(name:)``
   public func deleteNodePool(
     request: DeleteNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -267,6 +395,10 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// complete.
   ///
   /// @Snippet(path: "ClusterManager_CompleteNodePoolUpgrade")
+  ///
+  /// ## See Also
+  ///
+  /// - ``completeNodePoolUpgrade(request:)``
   public func completeNodePoolUpgrade(
     request: CompleteNodePoolUpgradeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -277,6 +409,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// This makes no changes if the last upgrade successfully completed.
   ///
   /// @Snippet(path: "ClusterManager_RollbackNodePoolUpgrade")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rollbackNodePoolUpgrade(request:)``
+  /// - ``rollbackNodePoolUpgrade(projectId:zone:clusterId:nodePoolId:)``
+  /// - ``rollbackNodePoolUpgrade(name:)``
   public func rollbackNodePoolUpgrade(
     request: RollbackNodePoolUpgradeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -286,6 +424,10 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Sets the NodeManagement options for a node pool.
   ///
   /// @Snippet(path: "ClusterManager_SetNodePoolManagement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setNodePoolManagement(request:)``
   public func setNodePoolManagement(
     request: SetNodePoolManagementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -295,6 +437,10 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Sets labels on a cluster.
   ///
   /// @Snippet(path: "ClusterManager_SetLabels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setLabels(request:)``
   public func setLabels(
     request: SetLabelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -304,6 +450,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Enables or disables the ABAC authorization mechanism on a cluster.
   ///
   /// @Snippet(path: "ClusterManager_SetLegacyAbac")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setLegacyAbac(request:)``
+  /// - ``setLegacyAbac(projectId:zone:clusterId:enabled:)``
+  /// - ``setLegacyAbac(name:enabled:)``
   public func setLegacyAbac(
     request: SetLegacyAbacRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -313,6 +465,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Starts master IP rotation.
   ///
   /// @Snippet(path: "ClusterManager_StartIPRotation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startIprotation(request:)``
+  /// - ``startIprotation(projectId:zone:clusterId:)``
+  /// - ``startIprotation(name:)``
   public func startIprotation(
     request: StartIPRotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -322,6 +480,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Completes master IP rotation.
   ///
   /// @Snippet(path: "ClusterManager_CompleteIPRotation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``completeIprotation(request:)``
+  /// - ``completeIprotation(projectId:zone:clusterId:)``
+  /// - ``completeIprotation(name:)``
   public func completeIprotation(
     request: CompleteIPRotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -335,6 +499,10 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// [google.container.v1.NodePool.locations]: <doc:NodePool/locations>
   ///
   /// @Snippet(path: "ClusterManager_SetNodePoolSize")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setNodePoolSize(request:)``
   public func setNodePoolSize(
     request: SetNodePoolSizeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -344,6 +512,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Enables or disables Network Policy for a cluster.
   ///
   /// @Snippet(path: "ClusterManager_SetNetworkPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setNetworkPolicy(request:)``
+  /// - ``setNetworkPolicy(projectId:zone:clusterId:networkPolicy:)``
+  /// - ``setNetworkPolicy(name:networkPolicy:)``
   public func setNetworkPolicy(
     request: SetNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -353,6 +527,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Sets the maintenance policy for a cluster.
   ///
   /// @Snippet(path: "ClusterManager_SetMaintenancePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setMaintenancePolicy(request:)``
+  /// - ``setMaintenancePolicy(projectId:zone:clusterId:maintenancePolicy:)``
+  /// - ``setMaintenancePolicy(name:maintenancePolicy:)``
   public func setMaintenancePolicy(
     request: SetMaintenancePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -362,6 +542,12 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Lists subnetworks that are usable for creating clusters in a project.
   ///
   /// @Snippet(path: "ClusterManager_ListUsableSubnetworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listUsableSubnetworks(request:)``
+  /// - ``listUsableSubnetworksByItems(request:)``
+  /// - ``listUsableSubnetworksByItems(request:options:)``
   public func listUsableSubnetworks(
     request: ListUsableSubnetworksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.ListUsableSubnetworksResponse {
@@ -372,6 +558,10 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// compatibility issues.
   ///
   /// @Snippet(path: "ClusterManager_CheckAutopilotCompatibility")
+  ///
+  /// ## See Also
+  ///
+  /// - ``checkAutopilotCompatibility(request:)``
   public func checkAutopilotCompatibility(
     request: CheckAutopilotCompatibilityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.CheckAutopilotCompatibilityResponse {
@@ -381,6 +571,11 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Fetch upgrade information of a specific cluster.
   ///
   /// @Snippet(path: "ClusterManager_FetchClusterUpgradeInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchClusterUpgradeInfo(request:)``
+  /// - ``fetchClusterUpgradeInfo(name:)``
   public func fetchClusterUpgradeInfo(
     request: FetchClusterUpgradeInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.ClusterUpgradeInfo {
@@ -390,6 +585,11 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// Fetch upgrade information of a specific node pool.
   ///
   /// @Snippet(path: "ClusterManager_FetchNodePoolUpgradeInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchNodePoolUpgradeInfo(request:)``
+  /// - ``fetchNodePoolUpgradeInfo(name:)``
   public func fetchNodePoolUpgradeInfo(
     request: FetchNodePoolUpgradeInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.NodePoolUpgradeInfo {
@@ -400,6 +600,10 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   /// performing the step two upgrade for a specific cluster.
   ///
   /// @Snippet(path: "ClusterManager_CompleteControlPlaneUpgrade")
+  ///
+  /// ## See Also
+  ///
+  /// - ``completeControlPlaneUpgrade(request:)``
   public func completeControlPlaneUpgrade(
     request: CompleteControlPlaneUpgradeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -604,6 +808,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.ClusterManagerProtocol {
+  /// Lists all clusters owned by a project in either the specified zone or all
+  /// zones.
+  ///
+  /// @Snippet(path: "ClusterManager_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/listClusters(request:options:)``
   public func listClusters(request: ListClustersRequest) async throws
     -> GoogleCloudContainerV1.ListClustersResponse
   {
@@ -616,6 +828,14 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all clusters owned by a project in either the specified zone or all
+  /// zones.
+  ///
+  /// @Snippet(path: "ClusterManager_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/listClusters(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -630,6 +850,14 @@ extension Clients.ClusterManagerProtocol {
     return try await self.listClusters(request: request)
   }
 
+  /// Lists all clusters owned by a project in either the specified zone or all
+  /// zones.
+  ///
+  /// @Snippet(path: "ClusterManager_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/listClusters(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -642,6 +870,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.listClusters(request: request)
   }
 
+  /// Gets the details of a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getCluster(request:options:)``
   public func getCluster(request: GetClusterRequest) async throws -> GoogleCloudContainerV1.Cluster
   {
     try await self.getCluster(request: request, options: .init())
@@ -653,6 +888,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getCluster(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -669,6 +911,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.getCluster(request: request)
   }
 
+  /// Gets the details of a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getCluster(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -681,6 +930,26 @@ extension Clients.ClusterManagerProtocol {
     return try await self.getCluster(request: request)
   }
 
+  /// Creates a cluster, consisting of the specified number and type of Google
+  /// Compute Engine instances.
+  ///
+  /// By default, the cluster is created in the project's
+  /// [default
+  /// network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
+  ///
+  /// One firewall is added for the cluster. After cluster creation,
+  /// the kubelet creates routes for each node to allow the containers
+  /// on that node to communicate with all other instances in the
+  /// cluster.
+  ///
+  /// Finally, an entry is added to the project's global metadata indicating
+  /// which CIDR range the cluster is using.
+  ///
+  /// @Snippet(path: "ClusterManager_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/createCluster(request:options:)``
   public func createCluster(request: CreateClusterRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -693,6 +962,26 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a cluster, consisting of the specified number and type of Google
+  /// Compute Engine instances.
+  ///
+  /// By default, the cluster is created in the project's
+  /// [default
+  /// network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
+  ///
+  /// One firewall is added for the cluster. After cluster creation,
+  /// the kubelet creates routes for each node to allow the containers
+  /// on that node to communicate with all other instances in the
+  /// cluster.
+  ///
+  /// Finally, an entry is added to the project's global metadata indicating
+  /// which CIDR range the cluster is using.
+  ///
+  /// @Snippet(path: "ClusterManager_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/createCluster(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -709,6 +998,26 @@ extension Clients.ClusterManagerProtocol {
     return try await self.createCluster(request: request)
   }
 
+  /// Creates a cluster, consisting of the specified number and type of Google
+  /// Compute Engine instances.
+  ///
+  /// By default, the cluster is created in the project's
+  /// [default
+  /// network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
+  ///
+  /// One firewall is added for the cluster. After cluster creation,
+  /// the kubelet creates routes for each node to allow the containers
+  /// on that node to communicate with all other instances in the
+  /// cluster.
+  ///
+  /// Finally, an entry is added to the project's global metadata indicating
+  /// which CIDR range the cluster is using.
+  ///
+  /// @Snippet(path: "ClusterManager_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/createCluster(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -723,6 +1032,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.createCluster(request: request)
   }
 
+  /// Updates the settings of a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/updateCluster(request:options:)``
   public func updateCluster(request: UpdateClusterRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -735,6 +1051,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/updateCluster(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -753,6 +1076,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.updateCluster(request: request)
   }
 
+  /// Updates the settings of a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/updateCluster(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -767,6 +1097,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.updateCluster(request: request)
   }
 
+  /// Updates the version and/or image type for the specified node pool.
+  ///
+  /// @Snippet(path: "ClusterManager_UpdateNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/updateNodePool(request:options:)``
   public func updateNodePool(request: UpdateNodePoolRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -779,6 +1116,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the autoscaling settings for the specified node pool.
+  ///
+  /// @Snippet(path: "ClusterManager_SetNodePoolAutoscaling")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setNodePoolAutoscaling(request:options:)``
   public func setNodePoolAutoscaling(request: SetNodePoolAutoscalingRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -791,6 +1135,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the logging service for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetLoggingService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setLoggingService(request:options:)``
   public func setLoggingService(request: SetLoggingServiceRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -803,6 +1154,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the logging service for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetLoggingService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setLoggingService(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -821,6 +1179,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setLoggingService(request: request)
   }
 
+  /// Sets the logging service for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetLoggingService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setLoggingService(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -835,6 +1200,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setLoggingService(request: request)
   }
 
+  /// Sets the monitoring service for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetMonitoringService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setMonitoringService(request:options:)``
   public func setMonitoringService(request: SetMonitoringServiceRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -847,6 +1219,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the monitoring service for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetMonitoringService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setMonitoringService(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -865,6 +1244,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setMonitoringService(request: request)
   }
 
+  /// Sets the monitoring service for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetMonitoringService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setMonitoringService(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -879,6 +1265,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setMonitoringService(request: request)
   }
 
+  /// Sets the addons for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetAddonsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setAddonsConfig(request:options:)``
   public func setAddonsConfig(request: SetAddonsConfigRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -891,6 +1284,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the addons for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetAddonsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setAddonsConfig(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -909,6 +1309,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setAddonsConfig(request: request)
   }
 
+  /// Sets the addons for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetAddonsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setAddonsConfig(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -923,6 +1330,16 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setAddonsConfig(request: request)
   }
 
+  /// Sets the locations for a specific cluster.
+  /// Deprecated. Use
+  /// [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update)
+  /// instead.
+  ///
+  /// @Snippet(path: "ClusterManager_SetLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setLocations(request:options:)``
   @available(*, deprecated)
   public func setLocations(request: SetLocationsRequest) async throws
     -> GoogleCloudContainerV1.Operation
@@ -937,6 +1354,16 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the locations for a specific cluster.
+  /// Deprecated. Use
+  /// [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update)
+  /// instead.
+  ///
+  /// @Snippet(path: "ClusterManager_SetLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setLocations(request:options:)``
   @available(*, deprecated)
   public func setLocations(
     projectId: Swift.String,
@@ -953,6 +1380,16 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setLocations(request: request)
   }
 
+  /// Sets the locations for a specific cluster.
+  /// Deprecated. Use
+  /// [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update)
+  /// instead.
+  ///
+  /// @Snippet(path: "ClusterManager_SetLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setLocations(request:options:)``
   @available(*, deprecated)
   public func setLocations(
     name: Swift.String,
@@ -965,6 +1402,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setLocations(request: request)
   }
 
+  /// Updates the master for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_UpdateMaster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/updateMaster(request:options:)``
   public func updateMaster(request: UpdateMasterRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -977,6 +1421,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the master for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_UpdateMaster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/updateMaster(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -995,6 +1446,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.updateMaster(request: request)
   }
 
+  /// Updates the master for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_UpdateMaster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/updateMaster(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1009,6 +1467,15 @@ extension Clients.ClusterManagerProtocol {
     return try await self.updateMaster(request: request)
   }
 
+  /// Sets master auth materials. Currently supports changing the admin password
+  /// or a specific cluster, either via password generation or explicitly setting
+  /// the password.
+  ///
+  /// @Snippet(path: "ClusterManager_SetMasterAuth")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setMasterAuth(request:options:)``
   public func setMasterAuth(request: SetMasterAuthRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1021,6 +1488,21 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the cluster, including the Kubernetes endpoint and all worker
+  /// nodes.
+  ///
+  /// Firewalls and routes that were configured during cluster creation
+  /// are also deleted.
+  ///
+  /// Other Google Compute Engine resources that might be in use by the cluster,
+  /// such as load balancer resources, are not deleted if they weren't present
+  /// when the cluster was initially created.
+  ///
+  /// @Snippet(path: "ClusterManager_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/deleteCluster(request:options:)``
   public func deleteCluster(request: DeleteClusterRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1033,6 +1515,21 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the cluster, including the Kubernetes endpoint and all worker
+  /// nodes.
+  ///
+  /// Firewalls and routes that were configured during cluster creation
+  /// are also deleted.
+  ///
+  /// Other Google Compute Engine resources that might be in use by the cluster,
+  /// such as load balancer resources, are not deleted if they weren't present
+  /// when the cluster was initially created.
+  ///
+  /// @Snippet(path: "ClusterManager_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/deleteCluster(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1049,6 +1546,21 @@ extension Clients.ClusterManagerProtocol {
     return try await self.deleteCluster(request: request)
   }
 
+  /// Deletes the cluster, including the Kubernetes endpoint and all worker
+  /// nodes.
+  ///
+  /// Firewalls and routes that were configured during cluster creation
+  /// are also deleted.
+  ///
+  /// Other Google Compute Engine resources that might be in use by the cluster,
+  /// such as load balancer resources, are not deleted if they weren't present
+  /// when the cluster was initially created.
+  ///
+  /// @Snippet(path: "ClusterManager_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/deleteCluster(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1061,6 +1573,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.deleteCluster(request: request)
   }
 
+  /// Lists all operations in a project in a specific zone or all zones.
+  ///
+  /// @Snippet(path: "ClusterManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/listOperations(request:options:)``
   public func listOperations(request: ListOperationsRequest) async throws
     -> GoogleCloudContainerV1.ListOperationsResponse
   {
@@ -1073,6 +1592,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all operations in a project in a specific zone or all zones.
+  ///
+  /// @Snippet(path: "ClusterManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/listOperations(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1087,6 +1613,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.listOperations(request: request)
   }
 
+  /// Lists all operations in a project in a specific zone or all zones.
+  ///
+  /// @Snippet(path: "ClusterManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/listOperations(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1099,6 +1632,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.listOperations(request: request)
   }
 
+  /// Gets the specified operation.
+  ///
+  /// @Snippet(path: "ClusterManager_GetOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getOperation(request:options:)``
   public func getOperation(request: GetOperationRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1111,6 +1651,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the specified operation.
+  ///
+  /// @Snippet(path: "ClusterManager_GetOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getOperation(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1127,6 +1674,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Gets the specified operation.
+  ///
+  /// @Snippet(path: "ClusterManager_GetOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getOperation(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1139,6 +1693,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Cancels the specified operation.
+  ///
+  /// @Snippet(path: "ClusterManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/cancelOperation(request:options:)``
   public func cancelOperation(request: CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1149,6 +1710,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancels the specified operation.
+  ///
+  /// @Snippet(path: "ClusterManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/cancelOperation(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1165,6 +1733,13 @@ extension Clients.ClusterManagerProtocol {
     try await self.cancelOperation(request: request)
   }
 
+  /// Cancels the specified operation.
+  ///
+  /// @Snippet(path: "ClusterManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/cancelOperation(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1177,6 +1752,13 @@ extension Clients.ClusterManagerProtocol {
     try await self.cancelOperation(request: request)
   }
 
+  /// Returns configuration info about the Google Kubernetes Engine service.
+  ///
+  /// @Snippet(path: "ClusterManager_GetServerConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getServerConfig(request:options:)``
   public func getServerConfig(request: GetServerConfigRequest) async throws
     -> GoogleCloudContainerV1.ServerConfig
   {
@@ -1189,6 +1771,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns configuration info about the Google Kubernetes Engine service.
+  ///
+  /// @Snippet(path: "ClusterManager_GetServerConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getServerConfig(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1203,6 +1792,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.getServerConfig(request: request)
   }
 
+  /// Returns configuration info about the Google Kubernetes Engine service.
+  ///
+  /// @Snippet(path: "ClusterManager_GetServerConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getServerConfig(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1215,6 +1811,14 @@ extension Clients.ClusterManagerProtocol {
     return try await self.getServerConfig(request: request)
   }
 
+  /// Gets the public component of the cluster signing keys in
+  /// JSON Web Key format.
+  ///
+  /// @Snippet(path: "ClusterManager_GetJSONWebKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getJsonwebKeys(request:options:)``
   public func getJsonwebKeys(request: GetJSONWebKeysRequest) async throws
     -> GoogleCloudContainerV1.GetJSONWebKeysResponse
   {
@@ -1227,6 +1831,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the node pools for a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_ListNodePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/listNodePools(request:options:)``
   public func listNodePools(request: ListNodePoolsRequest) async throws
     -> GoogleCloudContainerV1.ListNodePoolsResponse
   {
@@ -1239,6 +1850,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the node pools for a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_ListNodePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/listNodePools(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1255,6 +1873,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.listNodePools(request: request)
   }
 
+  /// Lists the node pools for a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_ListNodePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/listNodePools(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1267,6 +1892,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.listNodePools(request: request)
   }
 
+  /// Retrieves the requested node pool.
+  ///
+  /// @Snippet(path: "ClusterManager_GetNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getNodePool(request:options:)``
   public func getNodePool(request: GetNodePoolRequest) async throws
     -> GoogleCloudContainerV1.NodePool
   {
@@ -1279,6 +1911,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the requested node pool.
+  ///
+  /// @Snippet(path: "ClusterManager_GetNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getNodePool(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1297,6 +1936,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.getNodePool(request: request)
   }
 
+  /// Retrieves the requested node pool.
+  ///
+  /// @Snippet(path: "ClusterManager_GetNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/getNodePool(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1309,6 +1955,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.getNodePool(request: request)
   }
 
+  /// Creates a node pool for a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_CreateNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/createNodePool(request:options:)``
   public func createNodePool(request: CreateNodePoolRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1321,6 +1974,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a node pool for a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_CreateNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/createNodePool(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1339,6 +1999,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.createNodePool(request: request)
   }
 
+  /// Creates a node pool for a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_CreateNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/createNodePool(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1353,6 +2020,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.createNodePool(request: request)
   }
 
+  /// Deletes a node pool from a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_DeleteNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/deleteNodePool(request:options:)``
   public func deleteNodePool(request: DeleteNodePoolRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1365,6 +2039,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a node pool from a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_DeleteNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/deleteNodePool(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1383,6 +2064,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.deleteNodePool(request: request)
   }
 
+  /// Deletes a node pool from a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_DeleteNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/deleteNodePool(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1395,6 +2083,14 @@ extension Clients.ClusterManagerProtocol {
     return try await self.deleteNodePool(request: request)
   }
 
+  /// CompleteNodePoolUpgrade will signal an on-going node pool upgrade to
+  /// complete.
+  ///
+  /// @Snippet(path: "ClusterManager_CompleteNodePoolUpgrade")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/completeNodePoolUpgrade(request:options:)``
   public func completeNodePoolUpgrade(request: CompleteNodePoolUpgradeRequest) async throws {
     try await self.completeNodePoolUpgrade(request: request, options: .init())
   }
@@ -1405,6 +2101,14 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Rolls back a previously Aborted or Failed NodePool upgrade.
+  /// This makes no changes if the last upgrade successfully completed.
+  ///
+  /// @Snippet(path: "ClusterManager_RollbackNodePoolUpgrade")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/rollbackNodePoolUpgrade(request:options:)``
   public func rollbackNodePoolUpgrade(request: RollbackNodePoolUpgradeRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1417,6 +2121,14 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Rolls back a previously Aborted or Failed NodePool upgrade.
+  /// This makes no changes if the last upgrade successfully completed.
+  ///
+  /// @Snippet(path: "ClusterManager_RollbackNodePoolUpgrade")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/rollbackNodePoolUpgrade(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1435,6 +2147,14 @@ extension Clients.ClusterManagerProtocol {
     return try await self.rollbackNodePoolUpgrade(request: request)
   }
 
+  /// Rolls back a previously Aborted or Failed NodePool upgrade.
+  /// This makes no changes if the last upgrade successfully completed.
+  ///
+  /// @Snippet(path: "ClusterManager_RollbackNodePoolUpgrade")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/rollbackNodePoolUpgrade(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1447,6 +2167,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.rollbackNodePoolUpgrade(request: request)
   }
 
+  /// Sets the NodeManagement options for a node pool.
+  ///
+  /// @Snippet(path: "ClusterManager_SetNodePoolManagement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setNodePoolManagement(request:options:)``
   public func setNodePoolManagement(request: SetNodePoolManagementRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1459,6 +2186,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets labels on a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetLabels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setLabels(request:options:)``
   public func setLabels(request: SetLabelsRequest) async throws -> GoogleCloudContainerV1.Operation
   {
     try await self.setLabels(request: request, options: .init())
@@ -1470,6 +2204,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enables or disables the ABAC authorization mechanism on a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetLegacyAbac")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setLegacyAbac(request:options:)``
   public func setLegacyAbac(request: SetLegacyAbacRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1482,6 +2223,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enables or disables the ABAC authorization mechanism on a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetLegacyAbac")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setLegacyAbac(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1500,6 +2248,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setLegacyAbac(request: request)
   }
 
+  /// Enables or disables the ABAC authorization mechanism on a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetLegacyAbac")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setLegacyAbac(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1514,6 +2269,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setLegacyAbac(request: request)
   }
 
+  /// Starts master IP rotation.
+  ///
+  /// @Snippet(path: "ClusterManager_StartIPRotation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/startIprotation(request:options:)``
   public func startIprotation(request: StartIPRotationRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1526,6 +2288,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts master IP rotation.
+  ///
+  /// @Snippet(path: "ClusterManager_StartIPRotation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/startIprotation(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1542,6 +2311,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.startIprotation(request: request)
   }
 
+  /// Starts master IP rotation.
+  ///
+  /// @Snippet(path: "ClusterManager_StartIPRotation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/startIprotation(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1554,6 +2330,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.startIprotation(request: request)
   }
 
+  /// Completes master IP rotation.
+  ///
+  /// @Snippet(path: "ClusterManager_CompleteIPRotation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/completeIprotation(request:options:)``
   public func completeIprotation(request: CompleteIPRotationRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1566,6 +2349,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Completes master IP rotation.
+  ///
+  /// @Snippet(path: "ClusterManager_CompleteIPRotation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/completeIprotation(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1582,6 +2372,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.completeIprotation(request: request)
   }
 
+  /// Completes master IP rotation.
+  ///
+  /// @Snippet(path: "ClusterManager_CompleteIPRotation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/completeIprotation(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1594,6 +2391,17 @@ extension Clients.ClusterManagerProtocol {
     return try await self.completeIprotation(request: request)
   }
 
+  /// Sets the size for a specific node pool. The new size will be used for all
+  /// replicas, including future replicas created by modifying
+  /// [NodePool.locations][google.container.v1.NodePool.locations].
+  ///
+  /// [google.container.v1.NodePool.locations]: <doc:NodePool/locations>
+  ///
+  /// @Snippet(path: "ClusterManager_SetNodePoolSize")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setNodePoolSize(request:options:)``
   public func setNodePoolSize(request: SetNodePoolSizeRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1606,6 +2414,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enables or disables Network Policy for a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetNetworkPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setNetworkPolicy(request:options:)``
   public func setNetworkPolicy(request: SetNetworkPolicyRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1618,6 +2433,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enables or disables Network Policy for a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetNetworkPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setNetworkPolicy(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1636,6 +2458,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setNetworkPolicy(request: request)
   }
 
+  /// Enables or disables Network Policy for a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetNetworkPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setNetworkPolicy(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -1650,6 +2479,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setNetworkPolicy(request: request)
   }
 
+  /// Sets the maintenance policy for a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetMaintenancePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setMaintenancePolicy(request:options:)``
   public func setMaintenancePolicy(request: SetMaintenancePolicyRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
@@ -1662,6 +2498,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the maintenance policy for a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetMaintenancePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setMaintenancePolicy(request:options:)``
   public func setMaintenancePolicy(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1677,6 +2520,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setMaintenancePolicy(request: request)
   }
 
+  /// Sets the maintenance policy for a cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_SetMaintenancePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/setMaintenancePolicy(request:options:)``
   public func setMaintenancePolicy(
     name: Swift.String,
     maintenancePolicy: MaintenancePolicy?,
@@ -1688,6 +2538,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setMaintenancePolicy(request: request)
   }
 
+  /// Lists subnetworks that are usable for creating clusters in a project.
+  ///
+  /// @Snippet(path: "ClusterManager_ListUsableSubnetworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/listUsableSubnetworks(request:options:)``
   public func listUsableSubnetworks(request: ListUsableSubnetworksRequest) async throws
     -> GoogleCloudContainerV1.ListUsableSubnetworksResponse
   {
@@ -1700,6 +2557,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists subnetworks that are usable for creating clusters in a project.
+  ///
+  /// @Snippet(path: "ClusterManager_ListUsableSubnetworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/listUsableSubnetworks(request:options:)``
   public func listUsableSubnetworksByItems(
     request: ListUsableSubnetworksRequest
   ) -> some AsyncSequence<UsableSubnetwork, any Swift.Error> & Sendable {
@@ -1709,6 +2573,10 @@ extension Clients.ClusterManagerProtocol {
   /// Lists subnetworks that are usable for creating clusters in a project.
   ///
   /// @Snippet(path: "ClusterManager_ListUsableSubnetworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/listUsableSubnetworks(request:options:)``
   public func listUsableSubnetworksByItems(
     request: ListUsableSubnetworksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<UsableSubnetwork, any Swift.Error> & Sendable {
@@ -1723,6 +2591,14 @@ extension Clients.ClusterManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Checks the cluster compatibility with Autopilot mode, and returns a list of
+  /// compatibility issues.
+  ///
+  /// @Snippet(path: "ClusterManager_CheckAutopilotCompatibility")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/checkAutopilotCompatibility(request:options:)``
   public func checkAutopilotCompatibility(request: CheckAutopilotCompatibilityRequest) async throws
     -> GoogleCloudContainerV1.CheckAutopilotCompatibilityResponse
   {
@@ -1735,6 +2611,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetch upgrade information of a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_FetchClusterUpgradeInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/fetchClusterUpgradeInfo(request:options:)``
   public func fetchClusterUpgradeInfo(request: FetchClusterUpgradeInfoRequest) async throws
     -> GoogleCloudContainerV1.ClusterUpgradeInfo
   {
@@ -1747,6 +2630,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetch upgrade information of a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_FetchClusterUpgradeInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/fetchClusterUpgradeInfo(request:options:)``
   public func fetchClusterUpgradeInfo(
     name: Swift.String,
   ) async throws -> GoogleCloudContainerV1.ClusterUpgradeInfo {
@@ -1756,6 +2646,13 @@ extension Clients.ClusterManagerProtocol {
     return try await self.fetchClusterUpgradeInfo(request: request)
   }
 
+  /// Fetch upgrade information of a specific node pool.
+  ///
+  /// @Snippet(path: "ClusterManager_FetchNodePoolUpgradeInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/fetchNodePoolUpgradeInfo(request:options:)``
   public func fetchNodePoolUpgradeInfo(request: FetchNodePoolUpgradeInfoRequest) async throws
     -> GoogleCloudContainerV1.NodePoolUpgradeInfo
   {
@@ -1768,6 +2665,13 @@ extension Clients.ClusterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetch upgrade information of a specific node pool.
+  ///
+  /// @Snippet(path: "ClusterManager_FetchNodePoolUpgradeInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/fetchNodePoolUpgradeInfo(request:options:)``
   public func fetchNodePoolUpgradeInfo(
     name: Swift.String,
   ) async throws -> GoogleCloudContainerV1.NodePoolUpgradeInfo {
@@ -1777,6 +2681,14 @@ extension Clients.ClusterManagerProtocol {
     return try await self.fetchNodePoolUpgradeInfo(request: request)
   }
 
+  /// CompleteControlPlaneUpgrade completes the rollback-safe upgrade by
+  /// performing the step two upgrade for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_CompleteControlPlaneUpgrade")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterManagerClient/completeControlPlaneUpgrade(request:options:)``
   public func completeControlPlaneUpgrade(request: CompleteControlPlaneUpgradeRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {

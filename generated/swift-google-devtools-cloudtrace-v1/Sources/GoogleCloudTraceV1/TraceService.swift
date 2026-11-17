@@ -27,6 +27,10 @@ import Foundation
 /// may span multiple services.
 ///
 /// @Snippet(path: "TraceServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/TraceServiceProtocol``
 public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
   let inner: any Clients.TraceServiceStub
 
@@ -43,6 +47,13 @@ public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
   /// Returns of a list of traces that match the specified filter conditions.
   ///
   /// @Snippet(path: "TraceService_ListTraces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTraces(request:)``
+  /// - ``listTracesByItems(request:)``
+  /// - ``listTracesByItems(request:options:)``
+  /// - ``listTracesByItems(projectId:)``
   public func listTraces(
     request: ListTracesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTraceV1.ListTracesResponse {
@@ -52,6 +63,11 @@ public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
   /// Gets a single trace by its ID.
   ///
   /// @Snippet(path: "TraceService_GetTrace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTrace(request:)``
+  /// - ``getTrace(projectId:traceId:)``
   public func getTrace(
     request: GetTraceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTraceV1.Trace {
@@ -65,6 +81,11 @@ public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
   /// ID does not match, a new trace is created.
   ///
   /// @Snippet(path: "TraceService_PatchTraces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``patchTraces(request:)``
+  /// - ``patchTraces(projectId:traces:)``
   public func patchTraces(
     request: PatchTracesRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -98,6 +119,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.TraceServiceProtocol {
+  /// Returns of a list of traces that match the specified filter conditions.
+  ///
+  /// @Snippet(path: "TraceService_ListTraces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TraceServiceClient/listTraces(request:options:)``
   public func listTraces(request: ListTracesRequest) async throws
     -> GoogleCloudTraceV1.ListTracesResponse
   {
@@ -110,6 +138,13 @@ extension Clients.TraceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns of a list of traces that match the specified filter conditions.
+  ///
+  /// @Snippet(path: "TraceService_ListTraces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TraceServiceClient/listTraces(request:options:)``
   public func listTracesByItems(
     request: ListTracesRequest
   ) -> some AsyncSequence<Trace, any Swift.Error> & Sendable {
@@ -119,6 +154,10 @@ extension Clients.TraceServiceProtocol {
   /// Returns of a list of traces that match the specified filter conditions.
   ///
   /// @Snippet(path: "TraceService_ListTraces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TraceServiceClient/listTraces(request:options:)``
   public func listTracesByItems(
     request: ListTracesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Trace, any Swift.Error> & Sendable {
@@ -132,6 +171,13 @@ extension Clients.TraceServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns of a list of traces that match the specified filter conditions.
+  ///
+  /// @Snippet(path: "TraceService_ListTraces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TraceServiceClient/listTraces(request:options:)``
   public func listTracesByItems(
     projectId: Swift.String,
   ) -> some AsyncSequence<Trace, any Swift.Error> & Sendable {
@@ -141,6 +187,13 @@ extension Clients.TraceServiceProtocol {
     return self.listTracesByItems(request: request)
   }
 
+  /// Gets a single trace by its ID.
+  ///
+  /// @Snippet(path: "TraceService_GetTrace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TraceServiceClient/getTrace(request:options:)``
   public func getTrace(request: GetTraceRequest) async throws -> GoogleCloudTraceV1.Trace {
     try await self.getTrace(request: request, options: .init())
   }
@@ -151,6 +204,13 @@ extension Clients.TraceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a single trace by its ID.
+  ///
+  /// @Snippet(path: "TraceService_GetTrace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TraceServiceClient/getTrace(request:options:)``
   public func getTrace(
     projectId: Swift.String,
     traceId: Swift.String,
@@ -162,6 +222,17 @@ extension Clients.TraceServiceProtocol {
     return try await self.getTrace(request: request)
   }
 
+  /// Sends new traces to Stackdriver Trace or updates existing traces. If the ID
+  /// of a trace that you send matches that of an existing trace, any fields
+  /// in the existing trace and its spans are overwritten by the provided values,
+  /// and any new fields provided are merged with the existing trace data. If the
+  /// ID does not match, a new trace is created.
+  ///
+  /// @Snippet(path: "TraceService_PatchTraces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TraceServiceClient/patchTraces(request:options:)``
   public func patchTraces(request: PatchTracesRequest) async throws {
     try await self.patchTraces(request: request, options: .init())
   }
@@ -172,6 +243,17 @@ extension Clients.TraceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sends new traces to Stackdriver Trace or updates existing traces. If the ID
+  /// of a trace that you send matches that of an existing trace, any fields
+  /// in the existing trace and its spans are overwritten by the provided values,
+  /// and any new fields provided are merged with the existing trace data. If the
+  /// ID does not match, a new trace is created.
+  ///
+  /// @Snippet(path: "TraceService_PatchTraces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TraceServiceClient/patchTraces(request:options:)``
   public func patchTraces(
     projectId: Swift.String,
     traces: Traces?,

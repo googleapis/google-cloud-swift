@@ -26,6 +26,10 @@
   /// Service for ingesting end user actions on a website to Discovery Engine API.
   ///
   /// @Snippet(path: "UserEventServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/UserEventServiceProtocol``
   public final class UserEventServiceClient: Clients.UserEventServiceProtocol, Sendable {
     let inner: any Clients.UserEventServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,10 @@
     /// Writes a single user event.
     ///
     /// @Snippet(path: "UserEventService_WriteUserEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``writeUserEvent(request:)``
     public func writeUserEvent(
       request: WriteUserEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.UserEvent {
@@ -59,6 +67,10 @@
     /// Google Tag Manager. Users should not call this method directly.
     ///
     /// @Snippet(path: "UserEventService_CollectUserEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``collectUserEvent(request:)``
     public func collectUserEvent(
       request: CollectUserEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -71,6 +83,12 @@
     /// command first.
     ///
     /// @Snippet(path: "UserEventService_PurgeUserEvents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeUserEvents(request:)``
+    /// - ``purgeUserEventsPollingUntilDone(request:)``
+    /// - ``purgeUserEventsPollingUntilDone(request:options:)``
     public func purgeUserEvents(
       request: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -83,6 +101,12 @@
     /// command first.
     ///
     /// @Snippet(path: "UserEventService_PurgeUserEvents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeUserEventsPollingUntilDone(request:)``
+    /// - ``purgeUserEvents(request:)``
+    /// - ``purgeUserEvents(request:options:)``
     public func purgeUserEventsPollingUntilDone(
       request: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeUserEventsResponse {
@@ -118,6 +142,12 @@
     /// Operation.metadata is of type ImportMetadata.
     ///
     /// @Snippet(path: "UserEventService_ImportUserEvents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importUserEvents(request:)``
+    /// - ``importUserEventsPollingUntilDone(request:)``
+    /// - ``importUserEventsPollingUntilDone(request:options:)``
     public func importUserEvents(
       request: ImportUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -133,6 +163,12 @@
     /// Operation.metadata is of type ImportMetadata.
     ///
     /// @Snippet(path: "UserEventService_ImportUserEvents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importUserEventsPollingUntilDone(request:)``
+    /// - ``importUserEvents(request:)``
+    /// - ``importUserEvents(request:options:)``
     public func importUserEventsPollingUntilDone(
       request: ImportUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportUserEventsResponse {
@@ -164,6 +200,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "UserEventService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -186,6 +229,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "UserEventService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -244,6 +292,13 @@
 
   // Default implementations
   extension Clients.UserEventServiceProtocol {
+    /// Writes a single user event.
+    ///
+    /// @Snippet(path: "UserEventService_WriteUserEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserEventServiceClient/writeUserEvent(request:options:)``
     public func writeUserEvent(request: WriteUserEventRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.UserEvent
     {
@@ -256,6 +311,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Writes a single user event from the browser. This uses a GET request to
+    /// due to browser restriction of POST-ing to a third-party domain.
+    ///
+    /// This method is used only by the Discovery Engine API JavaScript pixel and
+    /// Google Tag Manager. Users should not call this method directly.
+    ///
+    /// @Snippet(path: "UserEventService_CollectUserEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserEventServiceClient/collectUserEvent(request:options:)``
     public func collectUserEvent(request: CollectUserEventRequest) async throws
       -> GoogleApi.HttpBody
     {
@@ -268,6 +334,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes permanently all user events specified by the filter provided.
+    /// Depending on the number of events specified by the filter, this operation
+    /// could take hours or days to complete. To test a filter, use the list
+    /// command first.
+    ///
+    /// @Snippet(path: "UserEventService_PurgeUserEvents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserEventServiceClient/purgeUserEvents(request:options:)``
     public func purgeUserEvents(request: PurgeUserEventsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -280,6 +356,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes permanently all user events specified by the filter provided.
+    /// Depending on the number of events specified by the filter, this operation
+    /// could take hours or days to complete. To test a filter, use the list
+    /// command first.
+    ///
+    /// @Snippet(path: "UserEventService_PurgeUserEvents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserEventServiceClient/purgeUserEventsPollingUntilDone(request:options:)``
     public func purgeUserEventsPollingUntilDone(request: PurgeUserEventsRequest) async throws
       -> PurgeUserEventsResponse
     {
@@ -292,6 +378,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Bulk import of user events. Request processing might be
+    /// synchronous. Events that already exist are skipped.
+    /// Use this method for backfilling historical user events.
+    ///
+    /// Operation.response is of type ImportResponse. Note that it is
+    /// possible for a subset of the items to be successfully inserted.
+    /// Operation.metadata is of type ImportMetadata.
+    ///
+    /// @Snippet(path: "UserEventService_ImportUserEvents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserEventServiceClient/importUserEvents(request:options:)``
     public func importUserEvents(request: ImportUserEventsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -304,6 +403,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Bulk import of user events. Request processing might be
+    /// synchronous. Events that already exist are skipped.
+    /// Use this method for backfilling historical user events.
+    ///
+    /// Operation.response is of type ImportResponse. Note that it is
+    /// possible for a subset of the items to be successfully inserted.
+    /// Operation.metadata is of type ImportMetadata.
+    ///
+    /// @Snippet(path: "UserEventService_ImportUserEvents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserEventServiceClient/importUserEventsPollingUntilDone(request:options:)``
     public func importUserEventsPollingUntilDone(request: ImportUserEventsRequest) async throws
       -> ImportUserEventsResponse
     {
@@ -316,6 +428,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserEventService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserEventServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -328,6 +449,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserEventService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserEventServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -339,6 +469,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "UserEventService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserEventServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -352,6 +486,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserEventService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserEventServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -363,6 +506,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -375,6 +521,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -384,6 +533,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserEventService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserEventServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -394,6 +552,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserEventService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserEventServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

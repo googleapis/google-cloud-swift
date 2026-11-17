@@ -26,6 +26,10 @@ import Foundation
 /// The Protection Summary service.
 ///
 /// @Snippet(path: "BackupDrProtectionSummaryQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/BackupDrProtectionSummaryProtocol``
 public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSummaryProtocol,
   Sendable
 {
@@ -45,6 +49,13 @@ public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSu
   /// Lists ResourceBackupConfigs.
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_ListResourceBackupConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listResourceBackupConfigs(request:)``
+  /// - ``listResourceBackupConfigsByItems(request:)``
+  /// - ``listResourceBackupConfigsByItems(request:options:)``
+  /// - ``listResourceBackupConfigsByItems(parent:)``
   public func listResourceBackupConfigs(
     request: ListResourceBackupConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListResourceBackupConfigsResponse {
@@ -54,6 +65,12 @@ public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSu
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -63,6 +80,10 @@ public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSu
   /// Gets information about a location.
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -76,6 +97,10 @@ public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSu
   /// errors.
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -86,6 +111,10 @@ public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSu
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -101,6 +130,10 @@ public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSu
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -112,6 +145,13 @@ public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSu
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -134,6 +174,11 @@ public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSu
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -145,6 +190,11 @@ public final class BackupDrProtectionSummaryClient: Clients.BackupDrProtectionSu
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -208,6 +258,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.BackupDrProtectionSummaryProtocol {
+  /// Lists ResourceBackupConfigs.
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_ListResourceBackupConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/listResourceBackupConfigs(request:options:)``
   public func listResourceBackupConfigs(request: ListResourceBackupConfigsRequest) async throws
     -> GoogleCloudBackupDRV1.ListResourceBackupConfigsResponse
   {
@@ -220,6 +277,13 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ResourceBackupConfigs.
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_ListResourceBackupConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/listResourceBackupConfigs(request:options:)``
   public func listResourceBackupConfigsByItems(
     request: ListResourceBackupConfigsRequest
   ) -> some AsyncSequence<ResourceBackupConfig, any Swift.Error> & Sendable {
@@ -229,6 +293,10 @@ extension Clients.BackupDrProtectionSummaryProtocol {
   /// Lists ResourceBackupConfigs.
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_ListResourceBackupConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/listResourceBackupConfigs(request:options:)``
   public func listResourceBackupConfigsByItems(
     request: ListResourceBackupConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ResourceBackupConfig, any Swift.Error> & Sendable {
@@ -243,6 +311,13 @@ extension Clients.BackupDrProtectionSummaryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ResourceBackupConfigs.
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_ListResourceBackupConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/listResourceBackupConfigs(request:options:)``
   public func listResourceBackupConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ResourceBackupConfig, any Swift.Error> & Sendable {
@@ -252,6 +327,13 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     return self.listResourceBackupConfigsByItems(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -264,6 +346,13 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -273,6 +362,10 @@ extension Clients.BackupDrProtectionSummaryProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -286,6 +379,13 @@ extension Clients.BackupDrProtectionSummaryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -298,6 +398,17 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -310,6 +421,14 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -322,6 +441,19 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -334,6 +466,15 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -346,6 +487,15 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -357,6 +507,10 @@ extension Clients.BackupDrProtectionSummaryProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BackupDrProtectionSummary_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -370,6 +524,15 @@ extension Clients.BackupDrProtectionSummaryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -381,6 +544,9 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -393,6 +559,9 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -402,6 +571,15 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -412,6 +590,15 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -421,6 +608,15 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -431,6 +627,15 @@ extension Clients.BackupDrProtectionSummaryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDrProtectionSummary_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDrProtectionSummaryClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

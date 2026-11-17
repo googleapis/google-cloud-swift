@@ -28,6 +28,10 @@ import Foundation
 /// so that TagHolds can be managed in the same location as their usage.
 ///
 /// @Snippet(path: "TagHoldsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/TagHoldsProtocol``
 public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   let inner: any Clients.TagHoldsStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -49,6 +53,13 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   /// resource and origin exists under the same TagValue.
   ///
   /// @Snippet(path: "TagHolds_CreateTagHold")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTagHold(request:)``
+  /// - ``createTagHoldPollingUntilDone(request:)``
+  /// - ``createTagHoldPollingUntilDone(request:options:)``
+  /// - ``createTagHoldPollingUntilDone(parent:tagHold:)``
   public func createTagHold(
     request: CreateTagHoldRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -59,6 +70,13 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   /// resource and origin exists under the same TagValue.
   ///
   /// @Snippet(path: "TagHolds_CreateTagHold")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTagHoldPollingUntilDone(request:)``
+  /// - ``createTagHoldPollingUntilDone(parent:tagHold:)``
+  /// - ``createTagHold(request:)``
+  /// - ``createTagHold(request:options:)``
   public func createTagHoldPollingUntilDone(
     request: CreateTagHoldRequest, options: GoogleGax.RequestOptions
   ) async throws -> TagHold {
@@ -86,6 +104,13 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   /// Deletes a TagHold.
   ///
   /// @Snippet(path: "TagHolds_DeleteTagHold")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTagHold(request:)``
+  /// - ``deleteTagHoldPollingUntilDone(request:)``
+  /// - ``deleteTagHoldPollingUntilDone(request:options:)``
+  /// - ``deleteTagHoldPollingUntilDone(name:)``
   public func deleteTagHold(
     request: DeleteTagHoldRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -95,6 +120,13 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   /// Deletes a TagHold.
   ///
   /// @Snippet(path: "TagHolds_DeleteTagHold")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTagHoldPollingUntilDone(request:)``
+  /// - ``deleteTagHoldPollingUntilDone(name:)``
+  /// - ``deleteTagHold(request:)``
+  /// - ``deleteTagHold(request:options:)``
   public func deleteTagHoldPollingUntilDone(
     request: DeleteTagHoldRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -122,6 +154,13 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   /// Lists TagHolds under a TagValue.
   ///
   /// @Snippet(path: "TagHolds_ListTagHolds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTagHolds(request:)``
+  /// - ``listTagHoldsByItems(request:)``
+  /// - ``listTagHoldsByItems(request:options:)``
+  /// - ``listTagHoldsByItems(parent:)``
   public func listTagHolds(
     request: ListTagHoldsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.ListTagHoldsResponse {
@@ -176,6 +215,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.TagHoldsProtocol {
+  /// Creates a TagHold. Returns ALREADY_EXISTS if a TagHold with the same
+  /// resource and origin exists under the same TagValue.
+  ///
+  /// @Snippet(path: "TagHolds_CreateTagHold")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TagHoldsClient/createTagHold(request:options:)``
   public func createTagHold(request: CreateTagHoldRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -188,6 +235,14 @@ extension Clients.TagHoldsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a TagHold. Returns ALREADY_EXISTS if a TagHold with the same
+  /// resource and origin exists under the same TagValue.
+  ///
+  /// @Snippet(path: "TagHolds_CreateTagHold")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TagHoldsClient/createTagHoldPollingUntilDone(request:options:)``
   public func createTagHoldPollingUntilDone(request: CreateTagHoldRequest) async throws -> TagHold {
     return try await self.createTagHoldPollingUntilDone(request: request, options: .init())
   }
@@ -198,6 +253,14 @@ extension Clients.TagHoldsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a TagHold. Returns ALREADY_EXISTS if a TagHold with the same
+  /// resource and origin exists under the same TagValue.
+  ///
+  /// @Snippet(path: "TagHolds_CreateTagHold")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TagHoldsClient/createTagHoldPollingUntilDone(request:options:)``
   public func createTagHoldPollingUntilDone(
     parent: Swift.String,
     tagHold: TagHold?,
@@ -209,6 +272,13 @@ extension Clients.TagHoldsProtocol {
     return try await self.createTagHoldPollingUntilDone(request: request)
   }
 
+  /// Deletes a TagHold.
+  ///
+  /// @Snippet(path: "TagHolds_DeleteTagHold")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TagHoldsClient/deleteTagHold(request:options:)``
   public func deleteTagHold(request: DeleteTagHoldRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -221,6 +291,13 @@ extension Clients.TagHoldsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a TagHold.
+  ///
+  /// @Snippet(path: "TagHolds_DeleteTagHold")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TagHoldsClient/deleteTagHoldPollingUntilDone(request:options:)``
   public func deleteTagHoldPollingUntilDone(request: DeleteTagHoldRequest) async throws {
     try await self.deleteTagHoldPollingUntilDone(request: request, options: .init())
   }
@@ -231,6 +308,13 @@ extension Clients.TagHoldsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a TagHold.
+  ///
+  /// @Snippet(path: "TagHolds_DeleteTagHold")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TagHoldsClient/deleteTagHoldPollingUntilDone(request:options:)``
   public func deleteTagHoldPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -240,6 +324,13 @@ extension Clients.TagHoldsProtocol {
     try await self.deleteTagHoldPollingUntilDone(request: request)
   }
 
+  /// Lists TagHolds under a TagValue.
+  ///
+  /// @Snippet(path: "TagHolds_ListTagHolds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TagHoldsClient/listTagHolds(request:options:)``
   public func listTagHolds(request: ListTagHoldsRequest) async throws
     -> GoogleCloudResourceManagerV3.ListTagHoldsResponse
   {
@@ -252,6 +343,13 @@ extension Clients.TagHoldsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists TagHolds under a TagValue.
+  ///
+  /// @Snippet(path: "TagHolds_ListTagHolds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TagHoldsClient/listTagHolds(request:options:)``
   public func listTagHoldsByItems(
     request: ListTagHoldsRequest
   ) -> some AsyncSequence<TagHold, any Swift.Error> & Sendable {
@@ -261,6 +359,10 @@ extension Clients.TagHoldsProtocol {
   /// Lists TagHolds under a TagValue.
   ///
   /// @Snippet(path: "TagHolds_ListTagHolds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TagHoldsClient/listTagHolds(request:options:)``
   public func listTagHoldsByItems(
     request: ListTagHoldsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TagHold, any Swift.Error> & Sendable {
@@ -275,6 +377,13 @@ extension Clients.TagHoldsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists TagHolds under a TagValue.
+  ///
+  /// @Snippet(path: "TagHolds_ListTagHolds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TagHoldsClient/listTagHolds(request:options:)``
   public func listTagHoldsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<TagHold, any Swift.Error> & Sendable {
@@ -284,6 +393,9 @@ extension Clients.TagHoldsProtocol {
     return self.listTagHoldsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -296,6 +408,9 @@ extension Clients.TagHoldsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

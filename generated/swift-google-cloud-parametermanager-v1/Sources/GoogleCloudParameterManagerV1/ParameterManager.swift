@@ -25,6 +25,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "ParameterManagerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ParameterManagerProtocol``
 public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sendable {
   let inner: any Clients.ParameterManagerStub
 
@@ -41,6 +45,13 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Lists Parameters in a given project and location.
   ///
   /// @Snippet(path: "ParameterManager_ListParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listParameters(request:)``
+  /// - ``listParametersByItems(request:)``
+  /// - ``listParametersByItems(request:options:)``
+  /// - ``listParametersByItems(parent:)``
   public func listParameters(
     request: ListParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ListParametersResponse {
@@ -50,6 +61,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Gets details of a single Parameter.
   ///
   /// @Snippet(path: "ParameterManager_GetParameter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getParameter(request:)``
+  /// - ``getParameter(name:)``
   public func getParameter(
     request: GetParameterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.Parameter {
@@ -59,6 +75,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Creates a new Parameter in a given project and location.
   ///
   /// @Snippet(path: "ParameterManager_CreateParameter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createParameter(request:)``
+  /// - ``createParameter(parent:parameter:parameterId:)``
   public func createParameter(
     request: CreateParameterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.Parameter {
@@ -68,6 +89,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Updates a single Parameter.
   ///
   /// @Snippet(path: "ParameterManager_UpdateParameter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateParameter(request:)``
+  /// - ``updateParameter(parameter:updateMask:)``
   public func updateParameter(
     request: UpdateParameterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.Parameter {
@@ -77,6 +103,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Deletes a single Parameter.
   ///
   /// @Snippet(path: "ParameterManager_DeleteParameter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteParameter(request:)``
+  /// - ``deleteParameter(name:)``
   public func deleteParameter(
     request: DeleteParameterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -86,6 +117,13 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Lists ParameterVersions in a given project, location, and parameter.
   ///
   /// @Snippet(path: "ParameterManager_ListParameterVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listParameterVersions(request:)``
+  /// - ``listParameterVersionsByItems(request:)``
+  /// - ``listParameterVersionsByItems(request:options:)``
+  /// - ``listParameterVersionsByItems(parent:)``
   public func listParameterVersions(
     request: ListParameterVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ListParameterVersionsResponse {
@@ -95,6 +133,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Gets details of a single ParameterVersion.
   ///
   /// @Snippet(path: "ParameterManager_GetParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getParameterVersion(request:)``
+  /// - ``getParameterVersion(name:)``
   public func getParameterVersion(
     request: GetParameterVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
@@ -104,6 +147,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Gets rendered version of a ParameterVersion.
   ///
   /// @Snippet(path: "ParameterManager_RenderParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``renderParameterVersion(request:)``
+  /// - ``renderParameterVersion(name:)``
   public func renderParameterVersion(
     request: RenderParameterVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.RenderParameterVersionResponse {
@@ -113,6 +161,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Creates a new ParameterVersion in a given project, location, and parameter.
   ///
   /// @Snippet(path: "ParameterManager_CreateParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createParameterVersion(request:)``
+  /// - ``createParameterVersion(parent:parameterVersion:parameterVersionId:)``
   public func createParameterVersion(
     request: CreateParameterVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
@@ -122,6 +175,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Updates a single ParameterVersion.
   ///
   /// @Snippet(path: "ParameterManager_UpdateParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateParameterVersion(request:)``
+  /// - ``updateParameterVersion(parameterVersion:updateMask:)``
   public func updateParameterVersion(
     request: UpdateParameterVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
@@ -131,6 +189,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Deletes a single ParameterVersion.
   ///
   /// @Snippet(path: "ParameterManager_DeleteParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteParameterVersion(request:)``
+  /// - ``deleteParameterVersion(name:)``
   public func deleteParameterVersion(
     request: DeleteParameterVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -140,6 +203,13 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Lists Templates in a given project and location.
   ///
   /// @Snippet(path: "ParameterManager_ListTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTemplates(request:)``
+  /// - ``listTemplatesByItems(request:)``
+  /// - ``listTemplatesByItems(request:options:)``
+  /// - ``listTemplatesByItems(parent:)``
   public func listTemplates(
     request: ListTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ListTemplatesResponse {
@@ -149,6 +219,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Gets details of a single Template.
   ///
   /// @Snippet(path: "ParameterManager_GetTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTemplate(request:)``
+  /// - ``getTemplate(name:)``
   public func getTemplate(
     request: GetTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.Template {
@@ -158,6 +233,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Creates a new Template in a given project and location.
   ///
   /// @Snippet(path: "ParameterManager_CreateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTemplate(request:)``
+  /// - ``createTemplate(parent:template:templateId:)``
   public func createTemplate(
     request: CreateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.Template {
@@ -167,6 +247,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Updates a single Template.
   ///
   /// @Snippet(path: "ParameterManager_UpdateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTemplate(request:)``
+  /// - ``updateTemplate(template:updateMask:)``
   public func updateTemplate(
     request: UpdateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.Template {
@@ -176,6 +261,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Deletes a single Template.
   ///
   /// @Snippet(path: "ParameterManager_DeleteTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTemplate(request:)``
+  /// - ``deleteTemplate(name:)``
   public func deleteTemplate(
     request: DeleteTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -185,6 +275,13 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Lists TemplateVersions in a given project, location, and template.
   ///
   /// @Snippet(path: "ParameterManager_ListTemplateVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTemplateVersions(request:)``
+  /// - ``listTemplateVersionsByItems(request:)``
+  /// - ``listTemplateVersionsByItems(request:options:)``
+  /// - ``listTemplateVersionsByItems(parent:)``
   public func listTemplateVersions(
     request: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse {
@@ -194,6 +291,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Gets details of a single TemplateVersion.
   ///
   /// @Snippet(path: "ParameterManager_GetTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTemplateVersion(request:)``
+  /// - ``getTemplateVersion(name:)``
   public func getTemplateVersion(
     request: GetTemplateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
@@ -203,6 +305,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Creates a new TemplateVersion in a given project, location, and template.
   ///
   /// @Snippet(path: "ParameterManager_CreateTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTemplateVersion(request:)``
+  /// - ``createTemplateVersion(parent:templateVersion:templateVersionId:)``
   public func createTemplateVersion(
     request: CreateTemplateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
@@ -212,6 +319,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Updates a single TemplateVersion.
   ///
   /// @Snippet(path: "ParameterManager_UpdateTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTemplateVersion(request:)``
+  /// - ``updateTemplateVersion(templateVersion:updateMask:)``
   public func updateTemplateVersion(
     request: UpdateTemplateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
@@ -221,6 +333,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Deletes a single TemplateVersion.
   ///
   /// @Snippet(path: "ParameterManager_DeleteTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTemplateVersion(request:)``
+  /// - ``deleteTemplateVersion(name:)``
   public func deleteTemplateVersion(
     request: DeleteTemplateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -230,6 +347,11 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Gets rendered version of a TemplateVersion.
   ///
   /// @Snippet(path: "ParameterManager_RenderTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``renderTemplateVersion(request:)``
+  /// - ``renderTemplateVersion(name:)``
   public func renderTemplateVersion(
     request: RenderTemplateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse {
@@ -256,6 +378,12 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "ParameterManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -265,6 +393,10 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ParameterManager_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -403,6 +535,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ParameterManagerProtocol {
+  /// Lists Parameters in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_ListParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listParameters(request:options:)``
   public func listParameters(request: ListParametersRequest) async throws
     -> GoogleCloudParameterManagerV1.ListParametersResponse
   {
@@ -415,6 +554,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Parameters in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_ListParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listParameters(request:options:)``
   public func listParametersByItems(
     request: ListParametersRequest
   ) -> some AsyncSequence<Parameter, any Swift.Error> & Sendable {
@@ -424,6 +570,10 @@ extension Clients.ParameterManagerProtocol {
   /// Lists Parameters in a given project and location.
   ///
   /// @Snippet(path: "ParameterManager_ListParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listParameters(request:options:)``
   public func listParametersByItems(
     request: ListParametersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Parameter, any Swift.Error> & Sendable {
@@ -438,6 +588,13 @@ extension Clients.ParameterManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Parameters in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_ListParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listParameters(request:options:)``
   public func listParametersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Parameter, any Swift.Error> & Sendable {
@@ -447,6 +604,13 @@ extension Clients.ParameterManagerProtocol {
     return self.listParametersByItems(request: request)
   }
 
+  /// Gets details of a single Parameter.
+  ///
+  /// @Snippet(path: "ParameterManager_GetParameter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/getParameter(request:options:)``
   public func getParameter(request: GetParameterRequest) async throws
     -> GoogleCloudParameterManagerV1.Parameter
   {
@@ -459,6 +623,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Parameter.
+  ///
+  /// @Snippet(path: "ParameterManager_GetParameter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/getParameter(request:options:)``
   public func getParameter(
     name: Swift.String,
   ) async throws -> GoogleCloudParameterManagerV1.Parameter {
@@ -468,6 +639,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.getParameter(request: request)
   }
 
+  /// Creates a new Parameter in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_CreateParameter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/createParameter(request:options:)``
   public func createParameter(request: CreateParameterRequest) async throws
     -> GoogleCloudParameterManagerV1.Parameter
   {
@@ -480,6 +658,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Parameter in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_CreateParameter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/createParameter(request:options:)``
   public func createParameter(
     parent: Swift.String,
     parameter: Parameter?,
@@ -493,6 +678,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.createParameter(request: request)
   }
 
+  /// Updates a single Parameter.
+  ///
+  /// @Snippet(path: "ParameterManager_UpdateParameter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/updateParameter(request:options:)``
   public func updateParameter(request: UpdateParameterRequest) async throws
     -> GoogleCloudParameterManagerV1.Parameter
   {
@@ -505,6 +697,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a single Parameter.
+  ///
+  /// @Snippet(path: "ParameterManager_UpdateParameter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/updateParameter(request:options:)``
   public func updateParameter(
     parameter: Parameter?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -516,6 +715,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.updateParameter(request: request)
   }
 
+  /// Deletes a single Parameter.
+  ///
+  /// @Snippet(path: "ParameterManager_DeleteParameter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/deleteParameter(request:options:)``
   public func deleteParameter(request: DeleteParameterRequest) async throws {
     try await self.deleteParameter(request: request, options: .init())
   }
@@ -526,6 +732,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Parameter.
+  ///
+  /// @Snippet(path: "ParameterManager_DeleteParameter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/deleteParameter(request:options:)``
   public func deleteParameter(
     name: Swift.String,
   ) async throws {
@@ -535,6 +748,13 @@ extension Clients.ParameterManagerProtocol {
     try await self.deleteParameter(request: request)
   }
 
+  /// Lists ParameterVersions in a given project, location, and parameter.
+  ///
+  /// @Snippet(path: "ParameterManager_ListParameterVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listParameterVersions(request:options:)``
   public func listParameterVersions(request: ListParameterVersionsRequest) async throws
     -> GoogleCloudParameterManagerV1.ListParameterVersionsResponse
   {
@@ -547,6 +767,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ParameterVersions in a given project, location, and parameter.
+  ///
+  /// @Snippet(path: "ParameterManager_ListParameterVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listParameterVersions(request:options:)``
   public func listParameterVersionsByItems(
     request: ListParameterVersionsRequest
   ) -> some AsyncSequence<ParameterVersion, any Swift.Error> & Sendable {
@@ -556,6 +783,10 @@ extension Clients.ParameterManagerProtocol {
   /// Lists ParameterVersions in a given project, location, and parameter.
   ///
   /// @Snippet(path: "ParameterManager_ListParameterVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listParameterVersions(request:options:)``
   public func listParameterVersionsByItems(
     request: ListParameterVersionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ParameterVersion, any Swift.Error> & Sendable {
@@ -570,6 +801,13 @@ extension Clients.ParameterManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ParameterVersions in a given project, location, and parameter.
+  ///
+  /// @Snippet(path: "ParameterManager_ListParameterVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listParameterVersions(request:options:)``
   public func listParameterVersionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ParameterVersion, any Swift.Error> & Sendable {
@@ -579,6 +817,13 @@ extension Clients.ParameterManagerProtocol {
     return self.listParameterVersionsByItems(request: request)
   }
 
+  /// Gets details of a single ParameterVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_GetParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/getParameterVersion(request:options:)``
   public func getParameterVersion(request: GetParameterVersionRequest) async throws
     -> GoogleCloudParameterManagerV1.ParameterVersion
   {
@@ -591,6 +836,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single ParameterVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_GetParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/getParameterVersion(request:options:)``
   public func getParameterVersion(
     name: Swift.String,
   ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
@@ -600,6 +852,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.getParameterVersion(request: request)
   }
 
+  /// Gets rendered version of a ParameterVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_RenderParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/renderParameterVersion(request:options:)``
   public func renderParameterVersion(request: RenderParameterVersionRequest) async throws
     -> GoogleCloudParameterManagerV1.RenderParameterVersionResponse
   {
@@ -612,6 +871,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets rendered version of a ParameterVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_RenderParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/renderParameterVersion(request:options:)``
   public func renderParameterVersion(
     name: Swift.String,
   ) async throws -> GoogleCloudParameterManagerV1.RenderParameterVersionResponse {
@@ -621,6 +887,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.renderParameterVersion(request: request)
   }
 
+  /// Creates a new ParameterVersion in a given project, location, and parameter.
+  ///
+  /// @Snippet(path: "ParameterManager_CreateParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/createParameterVersion(request:options:)``
   public func createParameterVersion(request: CreateParameterVersionRequest) async throws
     -> GoogleCloudParameterManagerV1.ParameterVersion
   {
@@ -633,6 +906,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ParameterVersion in a given project, location, and parameter.
+  ///
+  /// @Snippet(path: "ParameterManager_CreateParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/createParameterVersion(request:options:)``
   public func createParameterVersion(
     parent: Swift.String,
     parameterVersion: ParameterVersion?,
@@ -646,6 +926,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.createParameterVersion(request: request)
   }
 
+  /// Updates a single ParameterVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_UpdateParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/updateParameterVersion(request:options:)``
   public func updateParameterVersion(request: UpdateParameterVersionRequest) async throws
     -> GoogleCloudParameterManagerV1.ParameterVersion
   {
@@ -658,6 +945,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a single ParameterVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_UpdateParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/updateParameterVersion(request:options:)``
   public func updateParameterVersion(
     parameterVersion: ParameterVersion?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -669,6 +963,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.updateParameterVersion(request: request)
   }
 
+  /// Deletes a single ParameterVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_DeleteParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/deleteParameterVersion(request:options:)``
   public func deleteParameterVersion(request: DeleteParameterVersionRequest) async throws {
     try await self.deleteParameterVersion(request: request, options: .init())
   }
@@ -679,6 +980,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ParameterVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_DeleteParameterVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/deleteParameterVersion(request:options:)``
   public func deleteParameterVersion(
     name: Swift.String,
   ) async throws {
@@ -688,6 +996,13 @@ extension Clients.ParameterManagerProtocol {
     try await self.deleteParameterVersion(request: request)
   }
 
+  /// Lists Templates in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_ListTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listTemplates(request:options:)``
   public func listTemplates(request: ListTemplatesRequest) async throws
     -> GoogleCloudParameterManagerV1.ListTemplatesResponse
   {
@@ -700,6 +1015,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Templates in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_ListTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listTemplates(request:options:)``
   public func listTemplatesByItems(
     request: ListTemplatesRequest
   ) -> some AsyncSequence<Template, any Swift.Error> & Sendable {
@@ -709,6 +1031,10 @@ extension Clients.ParameterManagerProtocol {
   /// Lists Templates in a given project and location.
   ///
   /// @Snippet(path: "ParameterManager_ListTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listTemplates(request:options:)``
   public func listTemplatesByItems(
     request: ListTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Template, any Swift.Error> & Sendable {
@@ -723,6 +1049,13 @@ extension Clients.ParameterManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Templates in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_ListTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listTemplates(request:options:)``
   public func listTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Template, any Swift.Error> & Sendable {
@@ -732,6 +1065,13 @@ extension Clients.ParameterManagerProtocol {
     return self.listTemplatesByItems(request: request)
   }
 
+  /// Gets details of a single Template.
+  ///
+  /// @Snippet(path: "ParameterManager_GetTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/getTemplate(request:options:)``
   public func getTemplate(request: GetTemplateRequest) async throws
     -> GoogleCloudParameterManagerV1.Template
   {
@@ -744,6 +1084,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Template.
+  ///
+  /// @Snippet(path: "ParameterManager_GetTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/getTemplate(request:options:)``
   public func getTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudParameterManagerV1.Template {
@@ -753,6 +1100,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.getTemplate(request: request)
   }
 
+  /// Creates a new Template in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_CreateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/createTemplate(request:options:)``
   public func createTemplate(request: CreateTemplateRequest) async throws
     -> GoogleCloudParameterManagerV1.Template
   {
@@ -765,6 +1119,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Template in a given project and location.
+  ///
+  /// @Snippet(path: "ParameterManager_CreateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/createTemplate(request:options:)``
   public func createTemplate(
     parent: Swift.String,
     template: Template?,
@@ -778,6 +1139,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.createTemplate(request: request)
   }
 
+  /// Updates a single Template.
+  ///
+  /// @Snippet(path: "ParameterManager_UpdateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/updateTemplate(request:options:)``
   public func updateTemplate(request: UpdateTemplateRequest) async throws
     -> GoogleCloudParameterManagerV1.Template
   {
@@ -790,6 +1158,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a single Template.
+  ///
+  /// @Snippet(path: "ParameterManager_UpdateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/updateTemplate(request:options:)``
   public func updateTemplate(
     template: Template?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -801,6 +1176,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.updateTemplate(request: request)
   }
 
+  /// Deletes a single Template.
+  ///
+  /// @Snippet(path: "ParameterManager_DeleteTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/deleteTemplate(request:options:)``
   public func deleteTemplate(request: DeleteTemplateRequest) async throws {
     try await self.deleteTemplate(request: request, options: .init())
   }
@@ -811,6 +1193,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Template.
+  ///
+  /// @Snippet(path: "ParameterManager_DeleteTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/deleteTemplate(request:options:)``
   public func deleteTemplate(
     name: Swift.String,
   ) async throws {
@@ -820,6 +1209,13 @@ extension Clients.ParameterManagerProtocol {
     try await self.deleteTemplate(request: request)
   }
 
+  /// Lists TemplateVersions in a given project, location, and template.
+  ///
+  /// @Snippet(path: "ParameterManager_ListTemplateVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listTemplateVersions(request:options:)``
   public func listTemplateVersions(request: ListTemplateVersionsRequest) async throws
     -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse
   {
@@ -832,6 +1228,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists TemplateVersions in a given project, location, and template.
+  ///
+  /// @Snippet(path: "ParameterManager_ListTemplateVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listTemplateVersions(request:options:)``
   public func listTemplateVersionsByItems(
     request: ListTemplateVersionsRequest
   ) -> some AsyncSequence<TemplateVersion, any Swift.Error> & Sendable {
@@ -841,6 +1244,10 @@ extension Clients.ParameterManagerProtocol {
   /// Lists TemplateVersions in a given project, location, and template.
   ///
   /// @Snippet(path: "ParameterManager_ListTemplateVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listTemplateVersions(request:options:)``
   public func listTemplateVersionsByItems(
     request: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TemplateVersion, any Swift.Error> & Sendable {
@@ -855,6 +1262,13 @@ extension Clients.ParameterManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists TemplateVersions in a given project, location, and template.
+  ///
+  /// @Snippet(path: "ParameterManager_ListTemplateVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listTemplateVersions(request:options:)``
   public func listTemplateVersionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<TemplateVersion, any Swift.Error> & Sendable {
@@ -864,6 +1278,13 @@ extension Clients.ParameterManagerProtocol {
     return self.listTemplateVersionsByItems(request: request)
   }
 
+  /// Gets details of a single TemplateVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_GetTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/getTemplateVersion(request:options:)``
   public func getTemplateVersion(request: GetTemplateVersionRequest) async throws
     -> GoogleCloudParameterManagerV1.TemplateVersion
   {
@@ -876,6 +1297,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single TemplateVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_GetTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/getTemplateVersion(request:options:)``
   public func getTemplateVersion(
     name: Swift.String,
   ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
@@ -885,6 +1313,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.getTemplateVersion(request: request)
   }
 
+  /// Creates a new TemplateVersion in a given project, location, and template.
+  ///
+  /// @Snippet(path: "ParameterManager_CreateTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/createTemplateVersion(request:options:)``
   public func createTemplateVersion(request: CreateTemplateVersionRequest) async throws
     -> GoogleCloudParameterManagerV1.TemplateVersion
   {
@@ -897,6 +1332,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new TemplateVersion in a given project, location, and template.
+  ///
+  /// @Snippet(path: "ParameterManager_CreateTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/createTemplateVersion(request:options:)``
   public func createTemplateVersion(
     parent: Swift.String,
     templateVersion: TemplateVersion?,
@@ -910,6 +1352,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.createTemplateVersion(request: request)
   }
 
+  /// Updates a single TemplateVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_UpdateTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/updateTemplateVersion(request:options:)``
   public func updateTemplateVersion(request: UpdateTemplateVersionRequest) async throws
     -> GoogleCloudParameterManagerV1.TemplateVersion
   {
@@ -922,6 +1371,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a single TemplateVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_UpdateTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/updateTemplateVersion(request:options:)``
   public func updateTemplateVersion(
     templateVersion: TemplateVersion?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -933,6 +1389,13 @@ extension Clients.ParameterManagerProtocol {
     return try await self.updateTemplateVersion(request: request)
   }
 
+  /// Deletes a single TemplateVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_DeleteTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/deleteTemplateVersion(request:options:)``
   public func deleteTemplateVersion(request: DeleteTemplateVersionRequest) async throws {
     try await self.deleteTemplateVersion(request: request, options: .init())
   }
@@ -943,6 +1406,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single TemplateVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_DeleteTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/deleteTemplateVersion(request:options:)``
   public func deleteTemplateVersion(
     name: Swift.String,
   ) async throws {
@@ -952,6 +1422,13 @@ extension Clients.ParameterManagerProtocol {
     try await self.deleteTemplateVersion(request: request)
   }
 
+  /// Gets rendered version of a TemplateVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_RenderTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/renderTemplateVersion(request:options:)``
   public func renderTemplateVersion(request: RenderTemplateVersionRequest) async throws
     -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse
   {
@@ -964,6 +1441,13 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets rendered version of a TemplateVersion.
+  ///
+  /// @Snippet(path: "ParameterManager_RenderTemplateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/renderTemplateVersion(request:options:)``
   public func renderTemplateVersion(
     name: Swift.String,
   ) async throws -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse {
@@ -973,6 +1457,30 @@ extension Clients.ParameterManagerProtocol {
     return try await self.renderTemplateVersion(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "ParameterManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -985,6 +1493,30 @@ extension Clients.ParameterManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "ParameterManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1011,6 +1543,10 @@ extension Clients.ParameterManagerProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "ParameterManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1024,6 +1560,13 @@ extension Clients.ParameterManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "ParameterManager_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ParameterManagerClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {

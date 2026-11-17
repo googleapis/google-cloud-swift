@@ -33,6 +33,10 @@ import Foundation
 /// * Each database has a collection of tables: `/tables/*`
 ///
 /// @Snippet(path: "MetastoreServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/MetastoreServiceProtocol``
 public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sendable {
   let inner: any Clients.MetastoreServiceStub
 
@@ -49,6 +53,11 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// Creates a new catalog.
   ///
   /// @Snippet(path: "MetastoreService_CreateCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCatalog(request:)``
+  /// - ``createCatalog(parent:catalog:catalogId:)``
   public func createCatalog(
     request: CreateCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
@@ -58,6 +67,11 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// Deletes an existing catalog specified by the catalog ID.
   ///
   /// @Snippet(path: "MetastoreService_DeleteCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCatalog(request:)``
+  /// - ``deleteCatalog(name:)``
   public func deleteCatalog(
     request: DeleteCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
@@ -67,6 +81,11 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// Gets the catalog specified by the resource name.
   ///
   /// @Snippet(path: "MetastoreService_GetCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCatalog(request:)``
+  /// - ``getCatalog(name:)``
   public func getCatalog(
     request: GetCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
@@ -76,6 +95,13 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// List all catalogs in a specified project.
   ///
   /// @Snippet(path: "MetastoreService_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCatalogs(request:)``
+  /// - ``listCatalogsByItems(request:)``
+  /// - ``listCatalogsByItems(request:options:)``
+  /// - ``listCatalogsByItems(parent:)``
   public func listCatalogs(
     request: ListCatalogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.ListCatalogsResponse {
@@ -85,6 +111,11 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// Creates a new database.
   ///
   /// @Snippet(path: "MetastoreService_CreateDatabase")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDatabase(request:)``
+  /// - ``createDatabase(parent:database:databaseId:)``
   public func createDatabase(
     request: CreateDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -94,6 +125,11 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// Deletes an existing database specified by the database ID.
   ///
   /// @Snippet(path: "MetastoreService_DeleteDatabase")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDatabase(request:)``
+  /// - ``deleteDatabase(name:)``
   public func deleteDatabase(
     request: DeleteDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -103,6 +139,11 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// Updates an existing database specified by the database ID.
   ///
   /// @Snippet(path: "MetastoreService_UpdateDatabase")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDatabase(request:)``
+  /// - ``updateDatabase(database:updateMask:)``
   public func updateDatabase(
     request: UpdateDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -112,6 +153,11 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// Gets the database specified by the resource name.
   ///
   /// @Snippet(path: "MetastoreService_GetDatabase")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDatabase(request:)``
+  /// - ``getDatabase(name:)``
   public func getDatabase(
     request: GetDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -121,6 +167,13 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// List all databases in a specified catalog.
   ///
   /// @Snippet(path: "MetastoreService_ListDatabases")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDatabases(request:)``
+  /// - ``listDatabasesByItems(request:)``
+  /// - ``listDatabasesByItems(request:options:)``
+  /// - ``listDatabasesByItems(parent:)``
   public func listDatabases(
     request: ListDatabasesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.ListDatabasesResponse {
@@ -130,6 +183,11 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// Creates a new table.
   ///
   /// @Snippet(path: "MetastoreService_CreateTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTable(request:)``
+  /// - ``createTable(parent:table:tableId:)``
   public func createTable(
     request: CreateTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -139,6 +197,11 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// Deletes an existing table specified by the table ID.
   ///
   /// @Snippet(path: "MetastoreService_DeleteTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTable(request:)``
+  /// - ``deleteTable(name:)``
   public func deleteTable(
     request: DeleteTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -148,6 +211,11 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// Updates an existing table specified by the table ID.
   ///
   /// @Snippet(path: "MetastoreService_UpdateTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTable(request:)``
+  /// - ``updateTable(table:updateMask:)``
   public func updateTable(
     request: UpdateTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -157,6 +225,11 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// Renames an existing table specified by the table ID.
   ///
   /// @Snippet(path: "MetastoreService_RenameTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``renameTable(request:)``
+  /// - ``renameTable(name:newName:)``
   public func renameTable(
     request: RenameTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -166,6 +239,11 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// Gets the table specified by the resource name.
   ///
   /// @Snippet(path: "MetastoreService_GetTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTable(request:)``
+  /// - ``getTable(name:)``
   public func getTable(
     request: GetTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -175,6 +253,13 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// List all tables in a specified database.
   ///
   /// @Snippet(path: "MetastoreService_ListTables")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTables(request:)``
+  /// - ``listTablesByItems(request:)``
+  /// - ``listTablesByItems(request:options:)``
+  /// - ``listTablesByItems(parent:)``
   public func listTables(
     request: ListTablesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.ListTablesResponse {
@@ -268,6 +353,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.MetastoreServiceProtocol {
+  /// Creates a new catalog.
+  ///
+  /// @Snippet(path: "MetastoreService_CreateCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/createCatalog(request:options:)``
   public func createCatalog(request: CreateCatalogRequest) async throws
     -> GoogleBigQueryBigLakeV1.Catalog
   {
@@ -280,6 +372,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new catalog.
+  ///
+  /// @Snippet(path: "MetastoreService_CreateCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/createCatalog(request:options:)``
   public func createCatalog(
     parent: Swift.String,
     catalog: Catalog?,
@@ -293,6 +392,13 @@ extension Clients.MetastoreServiceProtocol {
     return try await self.createCatalog(request: request)
   }
 
+  /// Deletes an existing catalog specified by the catalog ID.
+  ///
+  /// @Snippet(path: "MetastoreService_DeleteCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/deleteCatalog(request:options:)``
   public func deleteCatalog(request: DeleteCatalogRequest) async throws
     -> GoogleBigQueryBigLakeV1.Catalog
   {
@@ -305,6 +411,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an existing catalog specified by the catalog ID.
+  ///
+  /// @Snippet(path: "MetastoreService_DeleteCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/deleteCatalog(request:options:)``
   public func deleteCatalog(
     name: Swift.String,
   ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
@@ -314,6 +427,13 @@ extension Clients.MetastoreServiceProtocol {
     return try await self.deleteCatalog(request: request)
   }
 
+  /// Gets the catalog specified by the resource name.
+  ///
+  /// @Snippet(path: "MetastoreService_GetCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/getCatalog(request:options:)``
   public func getCatalog(request: GetCatalogRequest) async throws -> GoogleBigQueryBigLakeV1.Catalog
   {
     try await self.getCatalog(request: request, options: .init())
@@ -325,6 +445,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the catalog specified by the resource name.
+  ///
+  /// @Snippet(path: "MetastoreService_GetCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/getCatalog(request:options:)``
   public func getCatalog(
     name: Swift.String,
   ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
@@ -334,6 +461,13 @@ extension Clients.MetastoreServiceProtocol {
     return try await self.getCatalog(request: request)
   }
 
+  /// List all catalogs in a specified project.
+  ///
+  /// @Snippet(path: "MetastoreService_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/listCatalogs(request:options:)``
   public func listCatalogs(request: ListCatalogsRequest) async throws
     -> GoogleBigQueryBigLakeV1.ListCatalogsResponse
   {
@@ -346,6 +480,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List all catalogs in a specified project.
+  ///
+  /// @Snippet(path: "MetastoreService_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/listCatalogs(request:options:)``
   public func listCatalogsByItems(
     request: ListCatalogsRequest
   ) -> some AsyncSequence<Catalog, any Swift.Error> & Sendable {
@@ -355,6 +496,10 @@ extension Clients.MetastoreServiceProtocol {
   /// List all catalogs in a specified project.
   ///
   /// @Snippet(path: "MetastoreService_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/listCatalogs(request:options:)``
   public func listCatalogsByItems(
     request: ListCatalogsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Catalog, any Swift.Error> & Sendable {
@@ -369,6 +514,13 @@ extension Clients.MetastoreServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List all catalogs in a specified project.
+  ///
+  /// @Snippet(path: "MetastoreService_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/listCatalogs(request:options:)``
   public func listCatalogsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Catalog, any Swift.Error> & Sendable {
@@ -378,6 +530,13 @@ extension Clients.MetastoreServiceProtocol {
     return self.listCatalogsByItems(request: request)
   }
 
+  /// Creates a new database.
+  ///
+  /// @Snippet(path: "MetastoreService_CreateDatabase")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/createDatabase(request:options:)``
   public func createDatabase(request: CreateDatabaseRequest) async throws
     -> GoogleBigQueryBigLakeV1.Database
   {
@@ -390,6 +549,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new database.
+  ///
+  /// @Snippet(path: "MetastoreService_CreateDatabase")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/createDatabase(request:options:)``
   public func createDatabase(
     parent: Swift.String,
     database: Database?,
@@ -403,6 +569,13 @@ extension Clients.MetastoreServiceProtocol {
     return try await self.createDatabase(request: request)
   }
 
+  /// Deletes an existing database specified by the database ID.
+  ///
+  /// @Snippet(path: "MetastoreService_DeleteDatabase")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/deleteDatabase(request:options:)``
   public func deleteDatabase(request: DeleteDatabaseRequest) async throws
     -> GoogleBigQueryBigLakeV1.Database
   {
@@ -415,6 +588,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an existing database specified by the database ID.
+  ///
+  /// @Snippet(path: "MetastoreService_DeleteDatabase")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/deleteDatabase(request:options:)``
   public func deleteDatabase(
     name: Swift.String,
   ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -424,6 +604,13 @@ extension Clients.MetastoreServiceProtocol {
     return try await self.deleteDatabase(request: request)
   }
 
+  /// Updates an existing database specified by the database ID.
+  ///
+  /// @Snippet(path: "MetastoreService_UpdateDatabase")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/updateDatabase(request:options:)``
   public func updateDatabase(request: UpdateDatabaseRequest) async throws
     -> GoogleBigQueryBigLakeV1.Database
   {
@@ -436,6 +623,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing database specified by the database ID.
+  ///
+  /// @Snippet(path: "MetastoreService_UpdateDatabase")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/updateDatabase(request:options:)``
   public func updateDatabase(
     database: Database?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -447,6 +641,13 @@ extension Clients.MetastoreServiceProtocol {
     return try await self.updateDatabase(request: request)
   }
 
+  /// Gets the database specified by the resource name.
+  ///
+  /// @Snippet(path: "MetastoreService_GetDatabase")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/getDatabase(request:options:)``
   public func getDatabase(request: GetDatabaseRequest) async throws
     -> GoogleBigQueryBigLakeV1.Database
   {
@@ -459,6 +660,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the database specified by the resource name.
+  ///
+  /// @Snippet(path: "MetastoreService_GetDatabase")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/getDatabase(request:options:)``
   public func getDatabase(
     name: Swift.String,
   ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -468,6 +676,13 @@ extension Clients.MetastoreServiceProtocol {
     return try await self.getDatabase(request: request)
   }
 
+  /// List all databases in a specified catalog.
+  ///
+  /// @Snippet(path: "MetastoreService_ListDatabases")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/listDatabases(request:options:)``
   public func listDatabases(request: ListDatabasesRequest) async throws
     -> GoogleBigQueryBigLakeV1.ListDatabasesResponse
   {
@@ -480,6 +695,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List all databases in a specified catalog.
+  ///
+  /// @Snippet(path: "MetastoreService_ListDatabases")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/listDatabases(request:options:)``
   public func listDatabasesByItems(
     request: ListDatabasesRequest
   ) -> some AsyncSequence<Database, any Swift.Error> & Sendable {
@@ -489,6 +711,10 @@ extension Clients.MetastoreServiceProtocol {
   /// List all databases in a specified catalog.
   ///
   /// @Snippet(path: "MetastoreService_ListDatabases")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/listDatabases(request:options:)``
   public func listDatabasesByItems(
     request: ListDatabasesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Database, any Swift.Error> & Sendable {
@@ -503,6 +729,13 @@ extension Clients.MetastoreServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List all databases in a specified catalog.
+  ///
+  /// @Snippet(path: "MetastoreService_ListDatabases")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/listDatabases(request:options:)``
   public func listDatabasesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Database, any Swift.Error> & Sendable {
@@ -512,6 +745,13 @@ extension Clients.MetastoreServiceProtocol {
     return self.listDatabasesByItems(request: request)
   }
 
+  /// Creates a new table.
+  ///
+  /// @Snippet(path: "MetastoreService_CreateTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/createTable(request:options:)``
   public func createTable(request: CreateTableRequest) async throws -> GoogleBigQueryBigLakeV1.Table
   {
     try await self.createTable(request: request, options: .init())
@@ -523,6 +763,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new table.
+  ///
+  /// @Snippet(path: "MetastoreService_CreateTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/createTable(request:options:)``
   public func createTable(
     parent: Swift.String,
     table: Table?,
@@ -536,6 +783,13 @@ extension Clients.MetastoreServiceProtocol {
     return try await self.createTable(request: request)
   }
 
+  /// Deletes an existing table specified by the table ID.
+  ///
+  /// @Snippet(path: "MetastoreService_DeleteTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/deleteTable(request:options:)``
   public func deleteTable(request: DeleteTableRequest) async throws -> GoogleBigQueryBigLakeV1.Table
   {
     try await self.deleteTable(request: request, options: .init())
@@ -547,6 +801,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an existing table specified by the table ID.
+  ///
+  /// @Snippet(path: "MetastoreService_DeleteTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/deleteTable(request:options:)``
   public func deleteTable(
     name: Swift.String,
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -556,6 +817,13 @@ extension Clients.MetastoreServiceProtocol {
     return try await self.deleteTable(request: request)
   }
 
+  /// Updates an existing table specified by the table ID.
+  ///
+  /// @Snippet(path: "MetastoreService_UpdateTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/updateTable(request:options:)``
   public func updateTable(request: UpdateTableRequest) async throws -> GoogleBigQueryBigLakeV1.Table
   {
     try await self.updateTable(request: request, options: .init())
@@ -567,6 +835,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing table specified by the table ID.
+  ///
+  /// @Snippet(path: "MetastoreService_UpdateTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/updateTable(request:options:)``
   public func updateTable(
     table: Table?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -578,6 +853,13 @@ extension Clients.MetastoreServiceProtocol {
     return try await self.updateTable(request: request)
   }
 
+  /// Renames an existing table specified by the table ID.
+  ///
+  /// @Snippet(path: "MetastoreService_RenameTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/renameTable(request:options:)``
   public func renameTable(request: RenameTableRequest) async throws -> GoogleBigQueryBigLakeV1.Table
   {
     try await self.renameTable(request: request, options: .init())
@@ -589,6 +871,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Renames an existing table specified by the table ID.
+  ///
+  /// @Snippet(path: "MetastoreService_RenameTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/renameTable(request:options:)``
   public func renameTable(
     name: Swift.String,
     newName: Swift.String,
@@ -600,6 +889,13 @@ extension Clients.MetastoreServiceProtocol {
     return try await self.renameTable(request: request)
   }
 
+  /// Gets the table specified by the resource name.
+  ///
+  /// @Snippet(path: "MetastoreService_GetTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/getTable(request:options:)``
   public func getTable(request: GetTableRequest) async throws -> GoogleBigQueryBigLakeV1.Table {
     try await self.getTable(request: request, options: .init())
   }
@@ -610,6 +906,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the table specified by the resource name.
+  ///
+  /// @Snippet(path: "MetastoreService_GetTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/getTable(request:options:)``
   public func getTable(
     name: Swift.String,
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -619,6 +922,13 @@ extension Clients.MetastoreServiceProtocol {
     return try await self.getTable(request: request)
   }
 
+  /// List all tables in a specified database.
+  ///
+  /// @Snippet(path: "MetastoreService_ListTables")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/listTables(request:options:)``
   public func listTables(request: ListTablesRequest) async throws
     -> GoogleBigQueryBigLakeV1.ListTablesResponse
   {
@@ -631,6 +941,13 @@ extension Clients.MetastoreServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List all tables in a specified database.
+  ///
+  /// @Snippet(path: "MetastoreService_ListTables")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/listTables(request:options:)``
   public func listTablesByItems(
     request: ListTablesRequest
   ) -> some AsyncSequence<Table, any Swift.Error> & Sendable {
@@ -640,6 +957,10 @@ extension Clients.MetastoreServiceProtocol {
   /// List all tables in a specified database.
   ///
   /// @Snippet(path: "MetastoreService_ListTables")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/listTables(request:options:)``
   public func listTablesByItems(
     request: ListTablesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Table, any Swift.Error> & Sendable {
@@ -653,6 +974,13 @@ extension Clients.MetastoreServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List all tables in a specified database.
+  ///
+  /// @Snippet(path: "MetastoreService_ListTables")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetastoreServiceClient/listTables(request:options:)``
   public func listTablesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Table, any Swift.Error> & Sendable {

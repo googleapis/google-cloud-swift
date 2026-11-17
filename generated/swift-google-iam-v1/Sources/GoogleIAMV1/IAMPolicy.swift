@@ -47,6 +47,10 @@ import Foundation
 /// attached.
 ///
 /// @Snippet(path: "IAMPolicyQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/IAMPolicyProtocol``
 public final class IAMPolicyClient: Clients.IAMPolicyProtocol, Sendable {
   let inner: any Clients.IAMPolicyStub
 
@@ -66,6 +70,10 @@ public final class IAMPolicyClient: Clients.IAMPolicyProtocol, Sendable {
   /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
   ///
   /// @Snippet(path: "IAMPolicy_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -77,6 +85,10 @@ public final class IAMPolicyClient: Clients.IAMPolicyProtocol, Sendable {
   /// set.
   ///
   /// @Snippet(path: "IAMPolicy_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -92,6 +104,10 @@ public final class IAMPolicyClient: Clients.IAMPolicyProtocol, Sendable {
   /// may "fail open" without warning.
   ///
   /// @Snippet(path: "IAMPolicy_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -125,6 +141,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.IAMPolicyProtocol {
+  /// Sets the access control policy on the specified resource. Replaces any
+  /// existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+  ///
+  /// @Snippet(path: "IAMPolicy_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMPolicyClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy {
     try await self.setIamPolicy(request: request, options: .init())
   }
@@ -135,6 +161,15 @@ extension Clients.IAMPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource.
+  /// Returns an empty policy if the resource exists and does not have a policy
+  /// set.
+  ///
+  /// @Snippet(path: "IAMPolicy_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMPolicyClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy {
     try await self.getIamPolicy(request: request, options: .init())
   }
@@ -145,6 +180,19 @@ extension Clients.IAMPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource.
+  /// If the resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building permission-aware
+  /// UIs and command-line tools, not for authorization checking. This operation
+  /// may "fail open" without warning.
+  ///
+  /// @Snippet(path: "IAMPolicy_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMPolicyClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {

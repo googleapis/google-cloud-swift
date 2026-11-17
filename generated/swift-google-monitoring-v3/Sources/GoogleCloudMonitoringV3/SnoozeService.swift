@@ -26,6 +26,10 @@ import Foundation
 /// or more alert policies should not fire alerts for the specified duration.
 ///
 /// @Snippet(path: "SnoozeServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SnoozeServiceProtocol``
 public final class SnoozeServiceClient: Clients.SnoozeServiceProtocol, Sendable {
   let inner: any Clients.SnoozeServiceStub
 
@@ -44,6 +48,11 @@ public final class SnoozeServiceClient: Clients.SnoozeServiceProtocol, Sendable 
   /// interval.
   ///
   /// @Snippet(path: "SnoozeService_CreateSnooze")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSnooze(request:)``
+  /// - ``createSnooze(parent:snooze:)``
   public func createSnooze(
     request: CreateSnoozeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Snooze {
@@ -54,6 +63,13 @@ public final class SnoozeServiceClient: Clients.SnoozeServiceProtocol, Sendable 
   /// `filter`, which specifies predicates to match `Snooze`s.
   ///
   /// @Snippet(path: "SnoozeService_ListSnoozes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSnoozes(request:)``
+  /// - ``listSnoozesByItems(request:)``
+  /// - ``listSnoozesByItems(request:options:)``
+  /// - ``listSnoozesByItems(parent:)``
   public func listSnoozes(
     request: ListSnoozesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListSnoozesResponse {
@@ -63,6 +79,11 @@ public final class SnoozeServiceClient: Clients.SnoozeServiceProtocol, Sendable 
   /// Retrieves a `Snooze` by `name`.
   ///
   /// @Snippet(path: "SnoozeService_GetSnooze")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSnooze(request:)``
+  /// - ``getSnooze(name:)``
   public func getSnooze(
     request: GetSnoozeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Snooze {
@@ -73,6 +94,11 @@ public final class SnoozeServiceClient: Clients.SnoozeServiceProtocol, Sendable 
   /// given `Snooze` object.
   ///
   /// @Snippet(path: "SnoozeService_UpdateSnooze")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSnooze(request:)``
+  /// - ``updateSnooze(snooze:updateMask:)``
   public func updateSnooze(
     request: UpdateSnoozeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Snooze {
@@ -111,6 +137,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.SnoozeServiceProtocol {
+  /// Creates a `Snooze` that will prevent alerts, which match the provided
+  /// criteria, from being opened. The `Snooze` applies for a specific time
+  /// interval.
+  ///
+  /// @Snippet(path: "SnoozeService_CreateSnooze")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SnoozeServiceClient/createSnooze(request:options:)``
   public func createSnooze(request: CreateSnoozeRequest) async throws
     -> GoogleCloudMonitoringV3.Snooze
   {
@@ -123,6 +158,15 @@ extension Clients.SnoozeServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a `Snooze` that will prevent alerts, which match the provided
+  /// criteria, from being opened. The `Snooze` applies for a specific time
+  /// interval.
+  ///
+  /// @Snippet(path: "SnoozeService_CreateSnooze")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SnoozeServiceClient/createSnooze(request:options:)``
   public func createSnooze(
     parent: Swift.String,
     snooze: Snooze?,
@@ -134,6 +178,14 @@ extension Clients.SnoozeServiceProtocol {
     return try await self.createSnooze(request: request)
   }
 
+  /// Lists the `Snooze`s associated with a project. Can optionally pass in
+  /// `filter`, which specifies predicates to match `Snooze`s.
+  ///
+  /// @Snippet(path: "SnoozeService_ListSnoozes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SnoozeServiceClient/listSnoozes(request:options:)``
   public func listSnoozes(request: ListSnoozesRequest) async throws
     -> GoogleCloudMonitoringV3.ListSnoozesResponse
   {
@@ -146,6 +198,14 @@ extension Clients.SnoozeServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the `Snooze`s associated with a project. Can optionally pass in
+  /// `filter`, which specifies predicates to match `Snooze`s.
+  ///
+  /// @Snippet(path: "SnoozeService_ListSnoozes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SnoozeServiceClient/listSnoozes(request:options:)``
   public func listSnoozesByItems(
     request: ListSnoozesRequest
   ) -> some AsyncSequence<Snooze, any Swift.Error> & Sendable {
@@ -156,6 +216,10 @@ extension Clients.SnoozeServiceProtocol {
   /// `filter`, which specifies predicates to match `Snooze`s.
   ///
   /// @Snippet(path: "SnoozeService_ListSnoozes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SnoozeServiceClient/listSnoozes(request:options:)``
   public func listSnoozesByItems(
     request: ListSnoozesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Snooze, any Swift.Error> & Sendable {
@@ -169,6 +233,14 @@ extension Clients.SnoozeServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the `Snooze`s associated with a project. Can optionally pass in
+  /// `filter`, which specifies predicates to match `Snooze`s.
+  ///
+  /// @Snippet(path: "SnoozeService_ListSnoozes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SnoozeServiceClient/listSnoozes(request:options:)``
   public func listSnoozesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Snooze, any Swift.Error> & Sendable {
@@ -178,6 +250,13 @@ extension Clients.SnoozeServiceProtocol {
     return self.listSnoozesByItems(request: request)
   }
 
+  /// Retrieves a `Snooze` by `name`.
+  ///
+  /// @Snippet(path: "SnoozeService_GetSnooze")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SnoozeServiceClient/getSnooze(request:options:)``
   public func getSnooze(request: GetSnoozeRequest) async throws -> GoogleCloudMonitoringV3.Snooze {
     try await self.getSnooze(request: request, options: .init())
   }
@@ -188,6 +267,13 @@ extension Clients.SnoozeServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a `Snooze` by `name`.
+  ///
+  /// @Snippet(path: "SnoozeService_GetSnooze")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SnoozeServiceClient/getSnooze(request:options:)``
   public func getSnooze(
     name: Swift.String,
   ) async throws -> GoogleCloudMonitoringV3.Snooze {
@@ -197,6 +283,14 @@ extension Clients.SnoozeServiceProtocol {
     return try await self.getSnooze(request: request)
   }
 
+  /// Updates a `Snooze`, identified by its `name`, with the parameters in the
+  /// given `Snooze` object.
+  ///
+  /// @Snippet(path: "SnoozeService_UpdateSnooze")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SnoozeServiceClient/updateSnooze(request:options:)``
   public func updateSnooze(request: UpdateSnoozeRequest) async throws
     -> GoogleCloudMonitoringV3.Snooze
   {
@@ -209,6 +303,14 @@ extension Clients.SnoozeServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a `Snooze`, identified by its `name`, with the parameters in the
+  /// given `Snooze` object.
+  ///
+  /// @Snippet(path: "SnoozeService_UpdateSnooze")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SnoozeServiceClient/updateSnooze(request:options:)``
   public func updateSnooze(
     snooze: Snooze?,
     updateMask: GoogleWKT.WKTFieldMask?,

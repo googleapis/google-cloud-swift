@@ -28,6 +28,10 @@ import Foundation
 /// [google.cloud.retail.v2.Product]: <doc:Product>
 ///
 /// @Snippet(path: "ProductServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ProductServiceProtocol``
 public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendable {
   let inner: any Clients.ProductServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -50,6 +54,11 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   ///
   /// @Snippet(path: "ProductService_CreateProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createProduct(request:)``
+  /// - ``createProduct(parent:product:productId:)``
   public func createProduct(
     request: CreateProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Product {
@@ -61,6 +70,11 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   ///
   /// @Snippet(path: "ProductService_GetProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getProduct(request:)``
+  /// - ``getProduct(name:)``
   public func getProduct(
     request: GetProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Product {
@@ -72,6 +86,13 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   ///
   /// @Snippet(path: "ProductService_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listProducts(request:)``
+  /// - ``listProductsByItems(request:)``
+  /// - ``listProductsByItems(request:options:)``
+  /// - ``listProductsByItems(parent:)``
   public func listProducts(
     request: ListProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ListProductsResponse {
@@ -83,6 +104,11 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   ///
   /// @Snippet(path: "ProductService_UpdateProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateProduct(request:)``
+  /// - ``updateProduct(product:updateMask:)``
   public func updateProduct(
     request: UpdateProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Product {
@@ -94,6 +120,11 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   ///
   /// @Snippet(path: "ProductService_DeleteProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteProduct(request:)``
+  /// - ``deleteProduct(name:)``
   public func deleteProduct(
     request: DeleteProductRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -124,6 +155,12 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.PurgeProductsRequest.force]: <doc:PurgeProductsRequest/force>
   ///
   /// @Snippet(path: "ProductService_PurgeProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``purgeProducts(request:)``
+  /// - ``purgeProductsPollingUntilDone(request:)``
+  /// - ``purgeProductsPollingUntilDone(request:options:)``
   public func purgeProducts(
     request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -154,6 +191,12 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.PurgeProductsRequest.force]: <doc:PurgeProductsRequest/force>
   ///
   /// @Snippet(path: "ProductService_PurgeProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``purgeProductsPollingUntilDone(request:)``
+  /// - ``purgeProducts(request:)``
+  /// - ``purgeProducts(request:options:)``
   public func purgeProductsPollingUntilDone(
     request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> PurgeProductsResponse {
@@ -190,6 +233,12 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   ///
   /// @Snippet(path: "ProductService_ImportProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importProducts(request:)``
+  /// - ``importProductsPollingUntilDone(request:)``
+  /// - ``importProductsPollingUntilDone(request:options:)``
   public func importProducts(
     request: ImportProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -207,6 +256,12 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   ///
   /// @Snippet(path: "ProductService_ImportProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importProductsPollingUntilDone(request:)``
+  /// - ``importProducts(request:)``
+  /// - ``importProducts(request:options:)``
   public func importProductsPollingUntilDone(
     request: ImportProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportProductsResponse {
@@ -296,6 +351,13 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
   /// @Snippet(path: "ProductService_SetInventory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setInventory(request:)``
+  /// - ``setInventoryPollingUntilDone(request:)``
+  /// - ``setInventoryPollingUntilDone(request:options:)``
+  /// - ``setInventoryPollingUntilDone(inventory:setMask:)``
   public func setInventory(
     request: SetInventoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -366,6 +428,13 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
   /// @Snippet(path: "ProductService_SetInventory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setInventoryPollingUntilDone(request:)``
+  /// - ``setInventoryPollingUntilDone(inventory:setMask:)``
+  /// - ``setInventory(request:)``
+  /// - ``setInventory(request:options:)``
   public func setInventoryPollingUntilDone(
     request: SetInventoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> SetInventoryResponse {
@@ -432,6 +501,13 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
   /// @Snippet(path: "ProductService_AddFulfillmentPlaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addFulfillmentPlaces(request:)``
+  /// - ``addFulfillmentPlacesPollingUntilDone(request:)``
+  /// - ``addFulfillmentPlacesPollingUntilDone(request:options:)``
+  /// - ``addFulfillmentPlacesPollingUntilDone(product:)``
   public func addFulfillmentPlaces(
     request: AddFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -479,6 +555,13 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
   /// @Snippet(path: "ProductService_AddFulfillmentPlaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addFulfillmentPlacesPollingUntilDone(request:)``
+  /// - ``addFulfillmentPlacesPollingUntilDone(product:)``
+  /// - ``addFulfillmentPlaces(request:)``
+  /// - ``addFulfillmentPlaces(request:options:)``
   public func addFulfillmentPlacesPollingUntilDone(
     request: AddFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddFulfillmentPlacesResponse {
@@ -546,6 +629,13 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
   /// @Snippet(path: "ProductService_RemoveFulfillmentPlaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeFulfillmentPlaces(request:)``
+  /// - ``removeFulfillmentPlacesPollingUntilDone(request:)``
+  /// - ``removeFulfillmentPlacesPollingUntilDone(request:options:)``
+  /// - ``removeFulfillmentPlacesPollingUntilDone(product:)``
   public func removeFulfillmentPlaces(
     request: RemoveFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -593,6 +683,13 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
   /// @Snippet(path: "ProductService_RemoveFulfillmentPlaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeFulfillmentPlacesPollingUntilDone(request:)``
+  /// - ``removeFulfillmentPlacesPollingUntilDone(product:)``
+  /// - ``removeFulfillmentPlaces(request:)``
+  /// - ``removeFulfillmentPlaces(request:options:)``
   public func removeFulfillmentPlacesPollingUntilDone(
     request: RemoveFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> RemoveFulfillmentPlacesResponse {
@@ -657,6 +754,13 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
   /// @Snippet(path: "ProductService_AddLocalInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addLocalInventories(request:)``
+  /// - ``addLocalInventoriesPollingUntilDone(request:)``
+  /// - ``addLocalInventoriesPollingUntilDone(request:options:)``
+  /// - ``addLocalInventoriesPollingUntilDone(product:)``
   public func addLocalInventories(
     request: AddLocalInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -701,6 +805,13 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
   /// @Snippet(path: "ProductService_AddLocalInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addLocalInventoriesPollingUntilDone(request:)``
+  /// - ``addLocalInventoriesPollingUntilDone(product:)``
+  /// - ``addLocalInventories(request:)``
+  /// - ``addLocalInventories(request:options:)``
   public func addLocalInventoriesPollingUntilDone(
     request: AddLocalInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddLocalInventoriesResponse {
@@ -763,6 +874,13 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
   /// @Snippet(path: "ProductService_RemoveLocalInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeLocalInventories(request:)``
+  /// - ``removeLocalInventoriesPollingUntilDone(request:)``
+  /// - ``removeLocalInventoriesPollingUntilDone(request:options:)``
+  /// - ``removeLocalInventoriesPollingUntilDone(product:)``
   public func removeLocalInventories(
     request: RemoveLocalInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -805,6 +923,13 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
   ///
   /// @Snippet(path: "ProductService_RemoveLocalInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeLocalInventoriesPollingUntilDone(request:)``
+  /// - ``removeLocalInventoriesPollingUntilDone(product:)``
+  /// - ``removeLocalInventories(request:)``
+  /// - ``removeLocalInventories(request:options:)``
   public func removeLocalInventoriesPollingUntilDone(
     request: RemoveLocalInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> RemoveLocalInventoriesResponse {
@@ -836,6 +961,13 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ProductService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -965,6 +1097,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.ProductServiceProtocol {
+  /// Creates a [Product][google.cloud.retail.v2.Product].
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_CreateProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/createProduct(request:options:)``
   public func createProduct(request: CreateProductRequest) async throws
     -> GoogleCloudRetailV2.Product
   {
@@ -977,6 +1118,15 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a [Product][google.cloud.retail.v2.Product].
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_CreateProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/createProduct(request:options:)``
   public func createProduct(
     parent: Swift.String,
     product: Product?,
@@ -990,6 +1140,15 @@ extension Clients.ProductServiceProtocol {
     return try await self.createProduct(request: request)
   }
 
+  /// Gets a [Product][google.cloud.retail.v2.Product].
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_GetProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/getProduct(request:options:)``
   public func getProduct(request: GetProductRequest) async throws -> GoogleCloudRetailV2.Product {
     try await self.getProduct(request: request, options: .init())
   }
@@ -1000,6 +1159,15 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a [Product][google.cloud.retail.v2.Product].
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_GetProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/getProduct(request:options:)``
   public func getProduct(
     name: Swift.String,
   ) async throws -> GoogleCloudRetailV2.Product {
@@ -1009,6 +1177,15 @@ extension Clients.ProductServiceProtocol {
     return try await self.getProduct(request: request)
   }
 
+  /// Gets a list of [Product][google.cloud.retail.v2.Product]s.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/listProducts(request:options:)``
   public func listProducts(request: ListProductsRequest) async throws
     -> GoogleCloudRetailV2.ListProductsResponse
   {
@@ -1021,6 +1198,15 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a list of [Product][google.cloud.retail.v2.Product]s.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/listProducts(request:options:)``
   public func listProductsByItems(
     request: ListProductsRequest
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -1032,6 +1218,10 @@ extension Clients.ProductServiceProtocol {
   /// [google.cloud.retail.v2.Product]: <doc:Product>
   ///
   /// @Snippet(path: "ProductService_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/listProducts(request:options:)``
   public func listProductsByItems(
     request: ListProductsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -1045,6 +1235,15 @@ extension Clients.ProductServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets a list of [Product][google.cloud.retail.v2.Product]s.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/listProducts(request:options:)``
   public func listProductsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -1054,6 +1253,15 @@ extension Clients.ProductServiceProtocol {
     return self.listProductsByItems(request: request)
   }
 
+  /// Updates a [Product][google.cloud.retail.v2.Product].
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_UpdateProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/updateProduct(request:options:)``
   public func updateProduct(request: UpdateProductRequest) async throws
     -> GoogleCloudRetailV2.Product
   {
@@ -1066,6 +1274,15 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a [Product][google.cloud.retail.v2.Product].
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_UpdateProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/updateProduct(request:options:)``
   public func updateProduct(
     product: Product?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1077,6 +1294,15 @@ extension Clients.ProductServiceProtocol {
     return try await self.updateProduct(request: request)
   }
 
+  /// Deletes a [Product][google.cloud.retail.v2.Product].
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_DeleteProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/deleteProduct(request:options:)``
   public func deleteProduct(request: DeleteProductRequest) async throws {
     try await self.deleteProduct(request: request, options: .init())
   }
@@ -1087,6 +1313,15 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a [Product][google.cloud.retail.v2.Product].
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_DeleteProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/deleteProduct(request:options:)``
   public func deleteProduct(
     name: Swift.String,
   ) async throws {
@@ -1096,6 +1331,34 @@ extension Clients.ProductServiceProtocol {
     try await self.deleteProduct(request: request)
   }
 
+  /// Permanently deletes all selected [Product][google.cloud.retail.v2.Product]s
+  /// under a branch.
+  ///
+  /// This process is asynchronous. If the request is valid, the removal will be
+  /// enqueued and processed offline. Depending on the number of
+  /// [Product][google.cloud.retail.v2.Product]s, this operation could take hours
+  /// to complete. Before the operation completes, some
+  /// [Product][google.cloud.retail.v2.Product]s may still be returned by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// Depending on the number of [Product][google.cloud.retail.v2.Product]s, this
+  /// operation could take hours to complete. To get a sample of
+  /// [Product][google.cloud.retail.v2.Product]s that would be deleted, set
+  /// [PurgeProductsRequest.force][google.cloud.retail.v2.PurgeProductsRequest.force]
+  /// to false.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.PurgeProductsRequest.force]: <doc:PurgeProductsRequest/force>
+  ///
+  /// @Snippet(path: "ProductService_PurgeProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/purgeProducts(request:options:)``
   public func purgeProducts(request: PurgeProductsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1108,6 +1371,34 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Permanently deletes all selected [Product][google.cloud.retail.v2.Product]s
+  /// under a branch.
+  ///
+  /// This process is asynchronous. If the request is valid, the removal will be
+  /// enqueued and processed offline. Depending on the number of
+  /// [Product][google.cloud.retail.v2.Product]s, this operation could take hours
+  /// to complete. Before the operation completes, some
+  /// [Product][google.cloud.retail.v2.Product]s may still be returned by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// Depending on the number of [Product][google.cloud.retail.v2.Product]s, this
+  /// operation could take hours to complete. To get a sample of
+  /// [Product][google.cloud.retail.v2.Product]s that would be deleted, set
+  /// [PurgeProductsRequest.force][google.cloud.retail.v2.PurgeProductsRequest.force]
+  /// to false.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.PurgeProductsRequest.force]: <doc:PurgeProductsRequest/force>
+  ///
+  /// @Snippet(path: "ProductService_PurgeProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/purgeProductsPollingUntilDone(request:options:)``
   public func purgeProductsPollingUntilDone(request: PurgeProductsRequest) async throws
     -> PurgeProductsResponse
   {
@@ -1120,6 +1411,21 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Bulk import of multiple [Product][google.cloud.retail.v2.Product]s.
+  ///
+  /// Request processing may be synchronous.
+  /// Non-existing items are created.
+  ///
+  /// Note that it is possible for a subset of the
+  /// [Product][google.cloud.retail.v2.Product]s to be successfully updated.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_ImportProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/importProducts(request:options:)``
   public func importProducts(request: ImportProductsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1132,6 +1438,21 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Bulk import of multiple [Product][google.cloud.retail.v2.Product]s.
+  ///
+  /// Request processing may be synchronous.
+  /// Non-existing items are created.
+  ///
+  /// Note that it is possible for a subset of the
+  /// [Product][google.cloud.retail.v2.Product]s to be successfully updated.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  ///
+  /// @Snippet(path: "ProductService_ImportProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/importProductsPollingUntilDone(request:options:)``
   public func importProductsPollingUntilDone(request: ImportProductsRequest) async throws
     -> ImportProductsResponse
   {
@@ -1144,6 +1465,74 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates inventory information for a
+  /// [Product][google.cloud.retail.v2.Product] while respecting the last update
+  /// timestamps of each inventory field.
+  ///
+  /// This process is asynchronous and does not require the
+  /// [Product][google.cloud.retail.v2.Product] to exist before updating
+  /// fulfillment information. If the request is valid, the update is enqueued
+  /// and processed downstream. As a consequence, when a response is returned,
+  /// updates are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// When inventory is updated with
+  /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+  /// and
+  /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct],
+  /// the specified inventory field value(s) overwrite any existing value(s)
+  /// while ignoring the last update time for this field. Furthermore, the last
+  /// update times for the specified inventory fields are overwritten by the
+  /// times of the
+  /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+  /// or
+  /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+  /// request.
+  ///
+  /// If no inventory fields are set in
+  /// [CreateProductRequest.product][google.cloud.retail.v2.CreateProductRequest.product],
+  /// then any pre-existing inventory information for this product is used.
+  ///
+  /// If no inventory fields are set in
+  /// [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask],
+  /// then any existing inventory information is preserved.
+  ///
+  /// Pre-existing inventory information can only be updated with
+  /// [ProductService.SetInventory][google.cloud.retail.v2.ProductService.SetInventory],
+  /// [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces],
+  /// and
+  /// [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s is obsolete after
+  /// one day, and the [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API returns `NOT_FOUND` afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates are not marked as [done][google.longrunning.Operation.done] until
+  /// they are obsolete.
+  ///
+  /// [google.cloud.retail.v2.CreateProductRequest.product]: <doc:CreateProductRequest/product>
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductServiceClient/removeFulfillmentPlaces(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.SetInventory]: <doc:ProductServiceClient/setInventory(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:options:)>
+  /// [google.cloud.retail.v2.SetInventoryRequest.set_mask]: <doc:SetInventoryRequest/setMask>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_SetInventory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/setInventory(request:options:)``
   public func setInventory(request: SetInventoryRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.setInventory(request: request, options: .init())
@@ -1155,6 +1544,74 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates inventory information for a
+  /// [Product][google.cloud.retail.v2.Product] while respecting the last update
+  /// timestamps of each inventory field.
+  ///
+  /// This process is asynchronous and does not require the
+  /// [Product][google.cloud.retail.v2.Product] to exist before updating
+  /// fulfillment information. If the request is valid, the update is enqueued
+  /// and processed downstream. As a consequence, when a response is returned,
+  /// updates are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// When inventory is updated with
+  /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+  /// and
+  /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct],
+  /// the specified inventory field value(s) overwrite any existing value(s)
+  /// while ignoring the last update time for this field. Furthermore, the last
+  /// update times for the specified inventory fields are overwritten by the
+  /// times of the
+  /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+  /// or
+  /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+  /// request.
+  ///
+  /// If no inventory fields are set in
+  /// [CreateProductRequest.product][google.cloud.retail.v2.CreateProductRequest.product],
+  /// then any pre-existing inventory information for this product is used.
+  ///
+  /// If no inventory fields are set in
+  /// [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask],
+  /// then any existing inventory information is preserved.
+  ///
+  /// Pre-existing inventory information can only be updated with
+  /// [ProductService.SetInventory][google.cloud.retail.v2.ProductService.SetInventory],
+  /// [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces],
+  /// and
+  /// [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s is obsolete after
+  /// one day, and the [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API returns `NOT_FOUND` afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates are not marked as [done][google.longrunning.Operation.done] until
+  /// they are obsolete.
+  ///
+  /// [google.cloud.retail.v2.CreateProductRequest.product]: <doc:CreateProductRequest/product>
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductServiceClient/removeFulfillmentPlaces(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.SetInventory]: <doc:ProductServiceClient/setInventory(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:options:)>
+  /// [google.cloud.retail.v2.SetInventoryRequest.set_mask]: <doc:SetInventoryRequest/setMask>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_SetInventory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/setInventoryPollingUntilDone(request:options:)``
   public func setInventoryPollingUntilDone(request: SetInventoryRequest) async throws
     -> SetInventoryResponse
   {
@@ -1167,6 +1624,74 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates inventory information for a
+  /// [Product][google.cloud.retail.v2.Product] while respecting the last update
+  /// timestamps of each inventory field.
+  ///
+  /// This process is asynchronous and does not require the
+  /// [Product][google.cloud.retail.v2.Product] to exist before updating
+  /// fulfillment information. If the request is valid, the update is enqueued
+  /// and processed downstream. As a consequence, when a response is returned,
+  /// updates are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// When inventory is updated with
+  /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+  /// and
+  /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct],
+  /// the specified inventory field value(s) overwrite any existing value(s)
+  /// while ignoring the last update time for this field. Furthermore, the last
+  /// update times for the specified inventory fields are overwritten by the
+  /// times of the
+  /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+  /// or
+  /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+  /// request.
+  ///
+  /// If no inventory fields are set in
+  /// [CreateProductRequest.product][google.cloud.retail.v2.CreateProductRequest.product],
+  /// then any pre-existing inventory information for this product is used.
+  ///
+  /// If no inventory fields are set in
+  /// [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask],
+  /// then any existing inventory information is preserved.
+  ///
+  /// Pre-existing inventory information can only be updated with
+  /// [ProductService.SetInventory][google.cloud.retail.v2.ProductService.SetInventory],
+  /// [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces],
+  /// and
+  /// [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s is obsolete after
+  /// one day, and the [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API returns `NOT_FOUND` afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates are not marked as [done][google.longrunning.Operation.done] until
+  /// they are obsolete.
+  ///
+  /// [google.cloud.retail.v2.CreateProductRequest.product]: <doc:CreateProductRequest/product>
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductServiceClient/removeFulfillmentPlaces(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.SetInventory]: <doc:ProductServiceClient/setInventory(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:options:)>
+  /// [google.cloud.retail.v2.SetInventoryRequest.set_mask]: <doc:SetInventoryRequest/setMask>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_SetInventory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/setInventoryPollingUntilDone(request:options:)``
   public func setInventoryPollingUntilDone(
     inventory: Product?,
     setMask: GoogleWKT.WKTFieldMask?,
@@ -1178,6 +1703,51 @@ extension Clients.ProductServiceProtocol {
     return try await self.setInventoryPollingUntilDone(request: request)
   }
 
+  /// We recommend that you use the
+  /// [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+  /// method instead of the
+  /// [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]
+  /// method.
+  /// [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+  /// achieves the same results but provides more fine-grained control over
+  /// ingesting local inventory data.
+  ///
+  /// Incrementally adds place IDs to
+  /// [Product.fulfillment_info.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids].
+  ///
+  /// This process is asynchronous and does not require the
+  /// [Product][google.cloud.retail.v2.Product] to exist before updating
+  /// fulfillment information. If the request is valid, the update will be
+  /// enqueued and processed downstream. As a consequence, when a response is
+  /// returned, the added place IDs are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s will be obsolete
+  /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API will return NOT_FOUND afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates will not be marked as [done][google.longrunning.Operation.done]
+  /// until being obsolete.
+  ///
+  /// [google.cloud.retail.v2.FulfillmentInfo.place_ids]: <doc:FulfillmentInfo/placeIds>
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductServiceClient/addLocalInventories(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_AddFulfillmentPlaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/addFulfillmentPlaces(request:options:)``
   public func addFulfillmentPlaces(request: AddFulfillmentPlacesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1190,6 +1760,51 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// We recommend that you use the
+  /// [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+  /// method instead of the
+  /// [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]
+  /// method.
+  /// [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+  /// achieves the same results but provides more fine-grained control over
+  /// ingesting local inventory data.
+  ///
+  /// Incrementally adds place IDs to
+  /// [Product.fulfillment_info.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids].
+  ///
+  /// This process is asynchronous and does not require the
+  /// [Product][google.cloud.retail.v2.Product] to exist before updating
+  /// fulfillment information. If the request is valid, the update will be
+  /// enqueued and processed downstream. As a consequence, when a response is
+  /// returned, the added place IDs are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s will be obsolete
+  /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API will return NOT_FOUND afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates will not be marked as [done][google.longrunning.Operation.done]
+  /// until being obsolete.
+  ///
+  /// [google.cloud.retail.v2.FulfillmentInfo.place_ids]: <doc:FulfillmentInfo/placeIds>
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductServiceClient/addLocalInventories(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_AddFulfillmentPlaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/addFulfillmentPlacesPollingUntilDone(request:options:)``
   public func addFulfillmentPlacesPollingUntilDone(request: AddFulfillmentPlacesRequest)
     async throws -> AddFulfillmentPlacesResponse
   {
@@ -1202,6 +1817,51 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// We recommend that you use the
+  /// [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+  /// method instead of the
+  /// [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]
+  /// method.
+  /// [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+  /// achieves the same results but provides more fine-grained control over
+  /// ingesting local inventory data.
+  ///
+  /// Incrementally adds place IDs to
+  /// [Product.fulfillment_info.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids].
+  ///
+  /// This process is asynchronous and does not require the
+  /// [Product][google.cloud.retail.v2.Product] to exist before updating
+  /// fulfillment information. If the request is valid, the update will be
+  /// enqueued and processed downstream. As a consequence, when a response is
+  /// returned, the added place IDs are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s will be obsolete
+  /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API will return NOT_FOUND afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates will not be marked as [done][google.longrunning.Operation.done]
+  /// until being obsolete.
+  ///
+  /// [google.cloud.retail.v2.FulfillmentInfo.place_ids]: <doc:FulfillmentInfo/placeIds>
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductServiceClient/addLocalInventories(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_AddFulfillmentPlaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/addFulfillmentPlacesPollingUntilDone(request:options:)``
   public func addFulfillmentPlacesPollingUntilDone(
     product: Swift.String,
   ) async throws -> AddFulfillmentPlacesResponse {
@@ -1211,6 +1871,51 @@ extension Clients.ProductServiceProtocol {
     return try await self.addFulfillmentPlacesPollingUntilDone(request: request)
   }
 
+  /// We recommend that you use the
+  /// [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+  /// method instead of the
+  /// [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]
+  /// method.
+  /// [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+  /// achieves the same results but provides more fine-grained control over
+  /// ingesting local inventory data.
+  ///
+  /// Incrementally removes place IDs from a
+  /// [Product.fulfillment_info.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids].
+  ///
+  /// This process is asynchronous and does not require the
+  /// [Product][google.cloud.retail.v2.Product] to exist before updating
+  /// fulfillment information. If the request is valid, the update will be
+  /// enqueued and processed downstream. As a consequence, when a response is
+  /// returned, the removed place IDs are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s will be obsolete
+  /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API will return NOT_FOUND afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates will not be marked as [done][google.longrunning.Operation.done]
+  /// until being obsolete.
+  ///
+  /// [google.cloud.retail.v2.FulfillmentInfo.place_ids]: <doc:FulfillmentInfo/placeIds>
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductServiceClient/removeFulfillmentPlaces(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductServiceClient/removeLocalInventories(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_RemoveFulfillmentPlaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/removeFulfillmentPlaces(request:options:)``
   public func removeFulfillmentPlaces(request: RemoveFulfillmentPlacesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1223,6 +1928,51 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// We recommend that you use the
+  /// [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+  /// method instead of the
+  /// [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]
+  /// method.
+  /// [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+  /// achieves the same results but provides more fine-grained control over
+  /// ingesting local inventory data.
+  ///
+  /// Incrementally removes place IDs from a
+  /// [Product.fulfillment_info.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids].
+  ///
+  /// This process is asynchronous and does not require the
+  /// [Product][google.cloud.retail.v2.Product] to exist before updating
+  /// fulfillment information. If the request is valid, the update will be
+  /// enqueued and processed downstream. As a consequence, when a response is
+  /// returned, the removed place IDs are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s will be obsolete
+  /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API will return NOT_FOUND afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates will not be marked as [done][google.longrunning.Operation.done]
+  /// until being obsolete.
+  ///
+  /// [google.cloud.retail.v2.FulfillmentInfo.place_ids]: <doc:FulfillmentInfo/placeIds>
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductServiceClient/removeFulfillmentPlaces(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductServiceClient/removeLocalInventories(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_RemoveFulfillmentPlaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/removeFulfillmentPlacesPollingUntilDone(request:options:)``
   public func removeFulfillmentPlacesPollingUntilDone(request: RemoveFulfillmentPlacesRequest)
     async throws -> RemoveFulfillmentPlacesResponse
   {
@@ -1236,6 +1986,51 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// We recommend that you use the
+  /// [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+  /// method instead of the
+  /// [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]
+  /// method.
+  /// [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+  /// achieves the same results but provides more fine-grained control over
+  /// ingesting local inventory data.
+  ///
+  /// Incrementally removes place IDs from a
+  /// [Product.fulfillment_info.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids].
+  ///
+  /// This process is asynchronous and does not require the
+  /// [Product][google.cloud.retail.v2.Product] to exist before updating
+  /// fulfillment information. If the request is valid, the update will be
+  /// enqueued and processed downstream. As a consequence, when a response is
+  /// returned, the removed place IDs are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s will be obsolete
+  /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API will return NOT_FOUND afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates will not be marked as [done][google.longrunning.Operation.done]
+  /// until being obsolete.
+  ///
+  /// [google.cloud.retail.v2.FulfillmentInfo.place_ids]: <doc:FulfillmentInfo/placeIds>
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]: <doc:ProductServiceClient/removeFulfillmentPlaces(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductServiceClient/removeLocalInventories(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_RemoveFulfillmentPlaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/removeFulfillmentPlacesPollingUntilDone(request:options:)``
   public func removeFulfillmentPlacesPollingUntilDone(
     product: Swift.String,
   ) async throws -> RemoveFulfillmentPlacesResponse {
@@ -1245,6 +2040,48 @@ extension Clients.ProductServiceProtocol {
     return try await self.removeFulfillmentPlacesPollingUntilDone(request: request)
   }
 
+  /// Updates local inventory information for a
+  /// [Product][google.cloud.retail.v2.Product] at a list of places, while
+  /// respecting the last update timestamps of each inventory field.
+  ///
+  /// This process is asynchronous and does not require the
+  /// [Product][google.cloud.retail.v2.Product] to exist before updating
+  /// inventory information. If the request is valid, the update will be enqueued
+  /// and processed downstream. As a consequence, when a response is returned,
+  /// updates are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// Local inventory information can only be modified using this method.
+  /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+  /// and
+  /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+  /// has no effect on local inventories.
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s will be obsolete
+  /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API will return NOT_FOUND afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates will not be marked as [done][google.longrunning.Operation.done]
+  /// until being obsolete.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_AddLocalInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/addLocalInventories(request:options:)``
   public func addLocalInventories(request: AddLocalInventoriesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1257,6 +2094,48 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates local inventory information for a
+  /// [Product][google.cloud.retail.v2.Product] at a list of places, while
+  /// respecting the last update timestamps of each inventory field.
+  ///
+  /// This process is asynchronous and does not require the
+  /// [Product][google.cloud.retail.v2.Product] to exist before updating
+  /// inventory information. If the request is valid, the update will be enqueued
+  /// and processed downstream. As a consequence, when a response is returned,
+  /// updates are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// Local inventory information can only be modified using this method.
+  /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+  /// and
+  /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+  /// has no effect on local inventories.
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s will be obsolete
+  /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API will return NOT_FOUND afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates will not be marked as [done][google.longrunning.Operation.done]
+  /// until being obsolete.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_AddLocalInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/addLocalInventoriesPollingUntilDone(request:options:)``
   public func addLocalInventoriesPollingUntilDone(request: AddLocalInventoriesRequest) async throws
     -> AddLocalInventoriesResponse
   {
@@ -1269,6 +2148,48 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates local inventory information for a
+  /// [Product][google.cloud.retail.v2.Product] at a list of places, while
+  /// respecting the last update timestamps of each inventory field.
+  ///
+  /// This process is asynchronous and does not require the
+  /// [Product][google.cloud.retail.v2.Product] to exist before updating
+  /// inventory information. If the request is valid, the update will be enqueued
+  /// and processed downstream. As a consequence, when a response is returned,
+  /// updates are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// Local inventory information can only be modified using this method.
+  /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+  /// and
+  /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+  /// has no effect on local inventories.
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s will be obsolete
+  /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API will return NOT_FOUND afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates will not be marked as [done][google.longrunning.Operation.done]
+  /// until being obsolete.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_AddLocalInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/addLocalInventoriesPollingUntilDone(request:options:)``
   public func addLocalInventoriesPollingUntilDone(
     product: Swift.String,
   ) async throws -> AddLocalInventoriesResponse {
@@ -1278,6 +2199,46 @@ extension Clients.ProductServiceProtocol {
     return try await self.addLocalInventoriesPollingUntilDone(request: request)
   }
 
+  /// Remove local inventory information for a
+  /// [Product][google.cloud.retail.v2.Product] at a list of places at a removal
+  /// timestamp.
+  ///
+  /// This process is asynchronous. If the request is valid, the removal will be
+  /// enqueued and processed downstream. As a consequence, when a response is
+  /// returned, removals are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// Local inventory information can only be removed using this method.
+  /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+  /// and
+  /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+  /// has no effect on local inventories.
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s will be obsolete
+  /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API will return NOT_FOUND afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates will not be marked as [done][google.longrunning.Operation.done]
+  /// until being obsolete.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_RemoveLocalInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/removeLocalInventories(request:options:)``
   public func removeLocalInventories(request: RemoveLocalInventoriesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1290,6 +2251,46 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Remove local inventory information for a
+  /// [Product][google.cloud.retail.v2.Product] at a list of places at a removal
+  /// timestamp.
+  ///
+  /// This process is asynchronous. If the request is valid, the removal will be
+  /// enqueued and processed downstream. As a consequence, when a response is
+  /// returned, removals are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// Local inventory information can only be removed using this method.
+  /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+  /// and
+  /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+  /// has no effect on local inventories.
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s will be obsolete
+  /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API will return NOT_FOUND afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates will not be marked as [done][google.longrunning.Operation.done]
+  /// until being obsolete.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_RemoveLocalInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/removeLocalInventoriesPollingUntilDone(request:options:)``
   public func removeLocalInventoriesPollingUntilDone(request: RemoveLocalInventoriesRequest)
     async throws -> RemoveLocalInventoriesResponse
   {
@@ -1302,6 +2303,46 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Remove local inventory information for a
+  /// [Product][google.cloud.retail.v2.Product] at a list of places at a removal
+  /// timestamp.
+  ///
+  /// This process is asynchronous. If the request is valid, the removal will be
+  /// enqueued and processed downstream. As a consequence, when a response is
+  /// returned, removals are not immediately manifested in the
+  /// [Product][google.cloud.retail.v2.Product] queried by
+  /// [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+  /// or
+  /// [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+  ///
+  /// Local inventory information can only be removed using this method.
+  /// [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+  /// and
+  /// [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+  /// has no effect on local inventories.
+  ///
+  /// The returned [Operation][google.longrunning.Operation]s will be obsolete
+  /// after 1 day, and [GetOperation][google.longrunning.Operations.GetOperation]
+  /// API will return NOT_FOUND afterwards.
+  ///
+  /// If conflicting updates are issued, the
+  /// [Operation][google.longrunning.Operation]s associated with the stale
+  /// updates will not be marked as [done][google.longrunning.Operation.done]
+  /// until being obsolete.
+  ///
+  /// [google.cloud.retail.v2.Product]: <doc:Product>
+  /// [google.cloud.retail.v2.ProductService.CreateProduct]: <doc:ProductServiceClient/createProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
+  /// [google.cloud.retail.v2.ProductService.UpdateProduct]: <doc:ProductServiceClient/updateProduct(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
+  ///
+  /// @Snippet(path: "ProductService_RemoveLocalInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/removeLocalInventoriesPollingUntilDone(request:options:)``
   public func removeLocalInventoriesPollingUntilDone(
     product: Swift.String,
   ) async throws -> RemoveLocalInventoriesResponse {
@@ -1311,6 +2352,15 @@ extension Clients.ProductServiceProtocol {
     return try await self.removeLocalInventoriesPollingUntilDone(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ProductService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1323,6 +2373,15 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ProductService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1334,6 +2393,10 @@ extension Clients.ProductServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ProductService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1347,6 +2410,15 @@ extension Clients.ProductServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ProductService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1358,6 +2430,9 @@ extension Clients.ProductServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1370,6 +2445,9 @@ extension Clients.ProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

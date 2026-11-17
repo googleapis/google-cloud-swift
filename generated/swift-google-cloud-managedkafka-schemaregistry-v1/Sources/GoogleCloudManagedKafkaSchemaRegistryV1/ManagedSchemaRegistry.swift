@@ -74,6 +74,10 @@ import Foundation
 /// operations on the schema for data importing purposes.
 ///
 /// @Snippet(path: "ManagedSchemaRegistryQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ManagedSchemaRegistryProtocol``
 public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryProtocol, Sendable {
   let inner: any Clients.ManagedSchemaRegistryStub
 
@@ -91,6 +95,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Get the schema registry instance.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_GetSchemaRegistry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSchemaRegistry(request:)``
+  /// - ``getSchemaRegistry(name:)``
   public func getSchemaRegistry(
     request: GetSchemaRegistryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry {
@@ -100,6 +109,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// List schema registries.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_ListSchemaRegistries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSchemaRegistries(request:)``
+  /// - ``listSchemaRegistries(parent:)``
   public func listSchemaRegistries(
     request: ListSchemaRegistriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.ListSchemaRegistriesResponse {
@@ -109,6 +123,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Create a schema registry instance.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_CreateSchemaRegistry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSchemaRegistry(request:)``
+  /// - ``createSchemaRegistry(parent:schemaRegistry:)``
   public func createSchemaRegistry(
     request: CreateSchemaRegistryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry {
@@ -118,6 +137,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Delete a schema registry instance.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_DeleteSchemaRegistry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSchemaRegistry(request:)``
+  /// - ``deleteSchemaRegistry(name:)``
   public func deleteSchemaRegistry(
     request: DeleteSchemaRegistryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -127,6 +151,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Get the context.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_GetContext")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getContext(request:)``
+  /// - ``getContext(name:)``
   public func getContext(
     request: GetContextRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.Context {
@@ -136,6 +165,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// List contexts for a schema registry.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_ListContexts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listContexts(request:)``
+  /// - ``listContexts(parent:)``
   public func listContexts(
     request: ListContextsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -145,6 +179,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Get the schema for the given schema id.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_GetSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSchema(request:)``
+  /// - ``getSchema(name:)``
   public func getSchema(
     request: GetSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.Schema {
@@ -155,6 +194,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// The response will be the schema string.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_GetRawSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRawSchema(request:)``
+  /// - ``getRawSchema(name:)``
   public func getRawSchema(
     request: GetSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -166,6 +210,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// [{"subject":"subject1", "version":1}, {"subject":"subject2", "version":2}].
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_ListSchemaVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSchemaVersions(request:)``
+  /// - ``listSchemaVersions(parent:)``
   public func listSchemaVersions(
     request: ListSchemaVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -176,6 +225,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// The response will be an array of schema types.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_ListSchemaTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSchemaTypes(request:)``
+  /// - ``listSchemaTypes(parent:)``
   public func listSchemaTypes(
     request: ListSchemaTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -186,6 +240,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// The response will be an array of subject names.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_ListSubjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSubjects(request:)``
+  /// - ``listSubjects(parent:subjectPrefix:deleted:)``
   public func listSubjects(
     request: ListSubjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -196,6 +255,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// The response will be an array of subject names.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_ListSubjectsBySchemaId")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSubjectsBySchemaId(request:)``
+  /// - ``listSubjectsBySchemaId(parent:subject:deleted:)``
   public func listSubjectsBySchemaId(
     request: ListSubjectsBySchemaIdRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -206,6 +270,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// The response will be an array of versions of the deleted subject.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_DeleteSubject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSubject(request:)``
+  /// - ``deleteSubject(name:)``
   public func deleteSubject(
     request: DeleteSubjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -215,6 +284,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Lookup a schema under the specified subject.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_LookupVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``lookupVersion(request:)``
+  /// - ``lookupVersion(parent:schema:)``
   public func lookupVersion(
     request: LookupVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion {
@@ -224,6 +298,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Get a versioned schema (schema with subject/version) of a subject.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_GetVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getVersion(request:)``
+  /// - ``getVersion(name:)``
   public func getVersion(
     request: GetVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion {
@@ -234,6 +313,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// The response will be the schema string.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_GetRawSchemaVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRawSchemaVersion(request:)``
+  /// - ``getRawSchemaVersion(name:)``
   public func getRawSchemaVersion(
     request: GetVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -244,6 +328,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// The response will be an array of versions of the subject.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listVersions(request:)``
+  /// - ``listVersions(parent:)``
   public func listVersions(
     request: ListVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -253,6 +342,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Register a new version under a given subject with the given schema.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_CreateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createVersion(request:)``
+  /// - ``createVersion(parent:version:id:schemaType:schema:references:normalize:)``
   public func createVersion(
     request: CreateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.CreateVersionResponse {
@@ -263,6 +357,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// The response will be the deleted version id.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteVersion(request:)``
+  /// - ``deleteVersion(name:)``
   public func deleteVersion(
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -273,6 +372,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// subject and version.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_ListReferencedSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReferencedSchemas(request:)``
+  /// - ``listReferencedSchemas(parent:)``
   public func listReferencedSchemas(
     request: ListReferencedSchemasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -283,6 +387,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// a subject.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_CheckCompatibility")
+  ///
+  /// ## See Also
+  ///
+  /// - ``checkCompatibility(request:)``
+  /// - ``checkCompatibility(name:schema:)``
   public func checkCompatibility(
     request: CheckCompatibilityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.CheckCompatibilityResponse {
@@ -292,6 +401,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Get schema config at global level or for a subject.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_GetSchemaConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSchemaConfig(request:)``
+  /// - ``getSchemaConfig(name:)``
   public func getSchemaConfig(
     request: GetSchemaConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
@@ -302,6 +416,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Creates a SchemaSubject-level SchemaConfig if it does not exist.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_UpdateSchemaConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSchemaConfig(request:)``
+  /// - ``updateSchemaConfig(name:compatibility:)``
   public func updateSchemaConfig(
     request: UpdateSchemaConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
@@ -311,6 +430,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Delete schema config for a subject.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_DeleteSchemaConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSchemaConfig(request:)``
+  /// - ``deleteSchemaConfig(name:)``
   public func deleteSchemaConfig(
     request: DeleteSchemaConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
@@ -320,6 +444,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Get mode at global level or for a subject.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_GetSchemaMode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSchemaMode(request:)``
+  /// - ``getSchemaMode(name:)``
   public func getSchemaMode(
     request: GetSchemaModeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
@@ -329,6 +458,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Update mode at global level or for a subject.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_UpdateSchemaMode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSchemaMode(request:)``
+  /// - ``updateSchemaMode(name:mode:)``
   public func updateSchemaMode(
     request: UpdateSchemaModeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
@@ -338,6 +472,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Delete schema mode for a subject.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_DeleteSchemaMode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSchemaMode(request:)``
+  /// - ``deleteSchemaMode(name:)``
   public func deleteSchemaMode(
     request: DeleteSchemaModeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
@@ -347,6 +486,12 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -356,6 +501,10 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -367,6 +516,13 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -389,6 +545,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -400,6 +561,11 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -578,6 +744,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ManagedSchemaRegistryProtocol {
+  /// Get the schema registry instance.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetSchemaRegistry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getSchemaRegistry(request:options:)``
   public func getSchemaRegistry(request: GetSchemaRegistryRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry
   {
@@ -590,6 +763,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the schema registry instance.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetSchemaRegistry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getSchemaRegistry(request:options:)``
   public func getSchemaRegistry(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry {
@@ -599,6 +779,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.getSchemaRegistry(request: request)
   }
 
+  /// List schema registries.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListSchemaRegistries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listSchemaRegistries(request:options:)``
   public func listSchemaRegistries(request: ListSchemaRegistriesRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.ListSchemaRegistriesResponse
   {
@@ -611,6 +798,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List schema registries.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListSchemaRegistries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listSchemaRegistries(request:options:)``
   public func listSchemaRegistries(
     parent: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.ListSchemaRegistriesResponse {
@@ -620,6 +814,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.listSchemaRegistries(request: request)
   }
 
+  /// Create a schema registry instance.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_CreateSchemaRegistry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/createSchemaRegistry(request:options:)``
   public func createSchemaRegistry(request: CreateSchemaRegistryRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry
   {
@@ -632,6 +833,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a schema registry instance.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_CreateSchemaRegistry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/createSchemaRegistry(request:options:)``
   public func createSchemaRegistry(
     parent: Swift.String,
     schemaRegistry: SchemaRegistry?,
@@ -643,6 +851,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.createSchemaRegistry(request: request)
   }
 
+  /// Delete a schema registry instance.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_DeleteSchemaRegistry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/deleteSchemaRegistry(request:options:)``
   public func deleteSchemaRegistry(request: DeleteSchemaRegistryRequest) async throws {
     try await self.deleteSchemaRegistry(request: request, options: .init())
   }
@@ -653,6 +868,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a schema registry instance.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_DeleteSchemaRegistry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/deleteSchemaRegistry(request:options:)``
   public func deleteSchemaRegistry(
     name: Swift.String,
   ) async throws {
@@ -662,6 +884,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     try await self.deleteSchemaRegistry(request: request)
   }
 
+  /// Get the context.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetContext")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getContext(request:options:)``
   public func getContext(request: GetContextRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.Context
   {
@@ -674,6 +903,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the context.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetContext")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getContext(request:options:)``
   public func getContext(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.Context {
@@ -683,6 +919,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.getContext(request: request)
   }
 
+  /// List contexts for a schema registry.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListContexts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listContexts(request:options:)``
   public func listContexts(request: ListContextsRequest) async throws -> GoogleApi.HttpBody {
     try await self.listContexts(request: request, options: .init())
   }
@@ -693,6 +936,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List contexts for a schema registry.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListContexts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listContexts(request:options:)``
   public func listContexts(
     parent: Swift.String,
   ) async throws -> GoogleApi.HttpBody {
@@ -702,6 +952,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.listContexts(request: request)
   }
 
+  /// Get the schema for the given schema id.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getSchema(request:options:)``
   public func getSchema(request: GetSchemaRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.Schema
   {
@@ -714,6 +971,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the schema for the given schema id.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getSchema(request:options:)``
   public func getSchema(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.Schema {
@@ -723,6 +987,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.getSchema(request: request)
   }
 
+  /// Get the schema string for the given schema id.
+  /// The response will be the schema string.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetRawSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getRawSchema(request:options:)``
   public func getRawSchema(request: GetSchemaRequest) async throws -> GoogleApi.HttpBody {
     try await self.getRawSchema(request: request, options: .init())
   }
@@ -733,6 +1005,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the schema string for the given schema id.
+  /// The response will be the schema string.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetRawSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getRawSchema(request:options:)``
   public func getRawSchema(
     name: Swift.String,
   ) async throws -> GoogleApi.HttpBody {
@@ -742,6 +1022,15 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.getRawSchema(request: request)
   }
 
+  /// List the schema versions for the given schema id.
+  /// The response will be an array of subject-version pairs as:
+  /// [{"subject":"subject1", "version":1}, {"subject":"subject2", "version":2}].
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListSchemaVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listSchemaVersions(request:options:)``
   public func listSchemaVersions(request: ListSchemaVersionsRequest) async throws
     -> GoogleApi.HttpBody
   {
@@ -754,6 +1043,15 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List the schema versions for the given schema id.
+  /// The response will be an array of subject-version pairs as:
+  /// [{"subject":"subject1", "version":1}, {"subject":"subject2", "version":2}].
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListSchemaVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listSchemaVersions(request:options:)``
   public func listSchemaVersions(
     parent: Swift.String,
   ) async throws -> GoogleApi.HttpBody {
@@ -763,6 +1061,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.listSchemaVersions(request: request)
   }
 
+  /// List the supported schema types.
+  /// The response will be an array of schema types.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListSchemaTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listSchemaTypes(request:options:)``
   public func listSchemaTypes(request: ListSchemaTypesRequest) async throws -> GoogleApi.HttpBody {
     try await self.listSchemaTypes(request: request, options: .init())
   }
@@ -773,6 +1079,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List the supported schema types.
+  /// The response will be an array of schema types.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListSchemaTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listSchemaTypes(request:options:)``
   public func listSchemaTypes(
     parent: Swift.String,
   ) async throws -> GoogleApi.HttpBody {
@@ -782,6 +1096,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.listSchemaTypes(request: request)
   }
 
+  /// List subjects in the schema registry.
+  /// The response will be an array of subject names.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListSubjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listSubjects(request:options:)``
   public func listSubjects(request: ListSubjectsRequest) async throws -> GoogleApi.HttpBody {
     try await self.listSubjects(request: request, options: .init())
   }
@@ -792,6 +1114,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List subjects in the schema registry.
+  /// The response will be an array of subject names.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListSubjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listSubjects(request:options:)``
   public func listSubjects(
     parent: Swift.String,
     subjectPrefix: Swift.String?,
@@ -805,6 +1135,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.listSubjects(request: request)
   }
 
+  /// List subjects which reference a particular schema id.
+  /// The response will be an array of subject names.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListSubjectsBySchemaId")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listSubjectsBySchemaId(request:options:)``
   public func listSubjectsBySchemaId(request: ListSubjectsBySchemaIdRequest) async throws
     -> GoogleApi.HttpBody
   {
@@ -817,6 +1155,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List subjects which reference a particular schema id.
+  /// The response will be an array of subject names.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListSubjectsBySchemaId")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listSubjectsBySchemaId(request:options:)``
   public func listSubjectsBySchemaId(
     parent: Swift.String,
     subject: Swift.String?,
@@ -830,6 +1176,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.listSubjectsBySchemaId(request: request)
   }
 
+  /// Delete a subject.
+  /// The response will be an array of versions of the deleted subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_DeleteSubject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/deleteSubject(request:options:)``
   public func deleteSubject(request: DeleteSubjectRequest) async throws -> GoogleApi.HttpBody {
     try await self.deleteSubject(request: request, options: .init())
   }
@@ -840,6 +1194,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a subject.
+  /// The response will be an array of versions of the deleted subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_DeleteSubject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/deleteSubject(request:options:)``
   public func deleteSubject(
     name: Swift.String,
   ) async throws -> GoogleApi.HttpBody {
@@ -849,6 +1211,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.deleteSubject(request: request)
   }
 
+  /// Lookup a schema under the specified subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_LookupVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/lookupVersion(request:options:)``
   public func lookupVersion(request: LookupVersionRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion
   {
@@ -861,6 +1230,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lookup a schema under the specified subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_LookupVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/lookupVersion(request:options:)``
   public func lookupVersion(
     parent: Swift.String,
     schema: Swift.String,
@@ -872,6 +1248,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.lookupVersion(request: request)
   }
 
+  /// Get a versioned schema (schema with subject/version) of a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getVersion(request:options:)``
   public func getVersion(request: GetVersionRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion
   {
@@ -884,6 +1267,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a versioned schema (schema with subject/version) of a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getVersion(request:options:)``
   public func getVersion(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion {
@@ -893,6 +1283,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.getVersion(request: request)
   }
 
+  /// Get the schema string only for a version of a subject.
+  /// The response will be the schema string.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetRawSchemaVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getRawSchemaVersion(request:options:)``
   public func getRawSchemaVersion(request: GetVersionRequest) async throws -> GoogleApi.HttpBody {
     try await self.getRawSchemaVersion(request: request, options: .init())
   }
@@ -903,6 +1301,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the schema string only for a version of a subject.
+  /// The response will be the schema string.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetRawSchemaVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getRawSchemaVersion(request:options:)``
   public func getRawSchemaVersion(
     name: Swift.String,
   ) async throws -> GoogleApi.HttpBody {
@@ -912,6 +1318,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.getRawSchemaVersion(request: request)
   }
 
+  /// Get all versions of a subject.
+  /// The response will be an array of versions of the subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listVersions(request:options:)``
   public func listVersions(request: ListVersionsRequest) async throws -> GoogleApi.HttpBody {
     try await self.listVersions(request: request, options: .init())
   }
@@ -922,6 +1336,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get all versions of a subject.
+  /// The response will be an array of versions of the subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listVersions(request:options:)``
   public func listVersions(
     parent: Swift.String,
   ) async throws -> GoogleApi.HttpBody {
@@ -931,6 +1353,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.listVersions(request: request)
   }
 
+  /// Register a new version under a given subject with the given schema.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_CreateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/createVersion(request:options:)``
   public func createVersion(request: CreateVersionRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.CreateVersionResponse
   {
@@ -943,6 +1372,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Register a new version under a given subject with the given schema.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_CreateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/createVersion(request:options:)``
   public func createVersion(
     parent: Swift.String,
     version: Swift.Int32?,
@@ -964,6 +1400,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.createVersion(request: request)
   }
 
+  /// Delete a version of a subject.
+  /// The response will be the deleted version id.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/deleteVersion(request:options:)``
   public func deleteVersion(request: DeleteVersionRequest) async throws -> GoogleApi.HttpBody {
     try await self.deleteVersion(request: request, options: .init())
   }
@@ -974,6 +1418,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a version of a subject.
+  /// The response will be the deleted version id.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/deleteVersion(request:options:)``
   public func deleteVersion(
     name: Swift.String,
   ) async throws -> GoogleApi.HttpBody {
@@ -983,6 +1435,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.deleteVersion(request: request)
   }
 
+  /// Get a list of IDs of schemas that reference the schema with the given
+  /// subject and version.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListReferencedSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listReferencedSchemas(request:options:)``
   public func listReferencedSchemas(request: ListReferencedSchemasRequest) async throws
     -> GoogleApi.HttpBody
   {
@@ -995,6 +1455,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a list of IDs of schemas that reference the schema with the given
+  /// subject and version.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListReferencedSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listReferencedSchemas(request:options:)``
   public func listReferencedSchemas(
     parent: Swift.String,
   ) async throws -> GoogleApi.HttpBody {
@@ -1004,6 +1472,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.listReferencedSchemas(request: request)
   }
 
+  /// Check compatibility of a schema with all versions or a specific version of
+  /// a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_CheckCompatibility")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/checkCompatibility(request:options:)``
   public func checkCompatibility(request: CheckCompatibilityRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.CheckCompatibilityResponse
   {
@@ -1016,6 +1492,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Check compatibility of a schema with all versions or a specific version of
+  /// a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_CheckCompatibility")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/checkCompatibility(request:options:)``
   public func checkCompatibility(
     name: Swift.String,
     schema: Swift.String,
@@ -1027,6 +1511,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.checkCompatibility(request: request)
   }
 
+  /// Get schema config at global level or for a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetSchemaConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getSchemaConfig(request:options:)``
   public func getSchemaConfig(request: GetSchemaConfigRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig
   {
@@ -1039,6 +1530,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get schema config at global level or for a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetSchemaConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getSchemaConfig(request:options:)``
   public func getSchemaConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
@@ -1048,6 +1546,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.getSchemaConfig(request: request)
   }
 
+  /// Update config at global level or for a subject.
+  /// Creates a SchemaSubject-level SchemaConfig if it does not exist.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_UpdateSchemaConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/updateSchemaConfig(request:options:)``
   public func updateSchemaConfig(request: UpdateSchemaConfigRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig
   {
@@ -1060,6 +1566,14 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update config at global level or for a subject.
+  /// Creates a SchemaSubject-level SchemaConfig if it does not exist.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_UpdateSchemaConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/updateSchemaConfig(request:options:)``
   public func updateSchemaConfig(
     name: Swift.String,
     compatibility: SchemaConfig.CompatibilityType?,
@@ -1071,6 +1585,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.updateSchemaConfig(request: request)
   }
 
+  /// Delete schema config for a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_DeleteSchemaConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/deleteSchemaConfig(request:options:)``
   public func deleteSchemaConfig(request: DeleteSchemaConfigRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig
   {
@@ -1083,6 +1604,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete schema config for a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_DeleteSchemaConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/deleteSchemaConfig(request:options:)``
   public func deleteSchemaConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
@@ -1092,6 +1620,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.deleteSchemaConfig(request: request)
   }
 
+  /// Get mode at global level or for a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetSchemaMode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getSchemaMode(request:options:)``
   public func getSchemaMode(request: GetSchemaModeRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode
   {
@@ -1104,6 +1639,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get mode at global level or for a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetSchemaMode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getSchemaMode(request:options:)``
   public func getSchemaMode(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
@@ -1113,6 +1655,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.getSchemaMode(request: request)
   }
 
+  /// Update mode at global level or for a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_UpdateSchemaMode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/updateSchemaMode(request:options:)``
   public func updateSchemaMode(request: UpdateSchemaModeRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode
   {
@@ -1125,6 +1674,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update mode at global level or for a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_UpdateSchemaMode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/updateSchemaMode(request:options:)``
   public func updateSchemaMode(
     name: Swift.String,
     mode: SchemaMode.ModeType,
@@ -1136,6 +1692,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.updateSchemaMode(request: request)
   }
 
+  /// Delete schema mode for a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_DeleteSchemaMode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/deleteSchemaMode(request:options:)``
   public func deleteSchemaMode(request: DeleteSchemaModeRequest) async throws
     -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode
   {
@@ -1148,6 +1711,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete schema mode for a subject.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_DeleteSchemaMode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/deleteSchemaMode(request:options:)``
   public func deleteSchemaMode(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
@@ -1157,6 +1727,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.deleteSchemaMode(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1169,6 +1746,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1178,6 +1762,10 @@ extension Clients.ManagedSchemaRegistryProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1191,6 +1779,13 @@ extension Clients.ManagedSchemaRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1203,6 +1798,15 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1215,6 +1819,15 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1226,6 +1839,10 @@ extension Clients.ManagedSchemaRegistryProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedSchemaRegistry_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1239,6 +1856,15 @@ extension Clients.ManagedSchemaRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1250,6 +1876,9 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1262,6 +1891,9 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1271,6 +1903,15 @@ extension Clients.ManagedSchemaRegistryProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1281,6 +1922,15 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1290,6 +1940,15 @@ extension Clients.ManagedSchemaRegistryProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1300,6 +1959,15 @@ extension Clients.ManagedSchemaRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedSchemaRegistry_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedSchemaRegistryClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

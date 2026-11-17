@@ -24,6 +24,10 @@
   /// Service for providing IAM Meta APIs for Cloud SQL.
   ///
   /// @Snippet(path: "SqlIamPoliciesServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlIamPoliciesServiceProtocol``
   public final class SqlIamPoliciesServiceClient: Clients.SqlIamPoliciesServiceProtocol, Sendable {
     let inner: any Clients.SqlIamPoliciesServiceStub
 

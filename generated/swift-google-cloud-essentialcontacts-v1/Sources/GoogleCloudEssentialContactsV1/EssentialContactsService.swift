@@ -24,6 +24,10 @@ import Foundation
 /// Manages contacts for important Google Cloud notifications.
 ///
 /// @Snippet(path: "EssentialContactsServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/EssentialContactsServiceProtocol``
 public final class EssentialContactsServiceClient: Clients.EssentialContactsServiceProtocol,
   Sendable
 {
@@ -43,6 +47,11 @@ public final class EssentialContactsServiceClient: Clients.EssentialContactsServ
   /// Adds a new contact for a resource.
   ///
   /// @Snippet(path: "EssentialContactsService_CreateContact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createContact(request:)``
+  /// - ``createContact(parent:contact:)``
   public func createContact(
     request: CreateContactRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEssentialContactsV1.Contact {
@@ -53,6 +62,11 @@ public final class EssentialContactsServiceClient: Clients.EssentialContactsServ
   /// Note: A contact's email address cannot be changed.
   ///
   /// @Snippet(path: "EssentialContactsService_UpdateContact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateContact(request:)``
+  /// - ``updateContact(contact:updateMask:)``
   public func updateContact(
     request: UpdateContactRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEssentialContactsV1.Contact {
@@ -62,6 +76,13 @@ public final class EssentialContactsServiceClient: Clients.EssentialContactsServ
   /// Lists the contacts that have been set on a resource.
   ///
   /// @Snippet(path: "EssentialContactsService_ListContacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listContacts(request:)``
+  /// - ``listContactsByItems(request:)``
+  /// - ``listContactsByItems(request:options:)``
+  /// - ``listContactsByItems(parent:)``
   public func listContacts(
     request: ListContactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEssentialContactsV1.ListContactsResponse {
@@ -71,6 +92,11 @@ public final class EssentialContactsServiceClient: Clients.EssentialContactsServ
   /// Gets a single contact.
   ///
   /// @Snippet(path: "EssentialContactsService_GetContact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getContact(request:)``
+  /// - ``getContact(name:)``
   public func getContact(
     request: GetContactRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEssentialContactsV1.Contact {
@@ -80,6 +106,11 @@ public final class EssentialContactsServiceClient: Clients.EssentialContactsServ
   /// Deletes a contact.
   ///
   /// @Snippet(path: "EssentialContactsService_DeleteContact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteContact(request:)``
+  /// - ``deleteContact(name:)``
   public func deleteContact(
     request: DeleteContactRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -91,6 +122,12 @@ public final class EssentialContactsServiceClient: Clients.EssentialContactsServ
   /// any parent resources.
   ///
   /// @Snippet(path: "EssentialContactsService_ComputeContacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``computeContacts(request:)``
+  /// - ``computeContactsByItems(request:)``
+  /// - ``computeContactsByItems(request:options:)``
   public func computeContacts(
     request: ComputeContactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEssentialContactsV1.ComputeContactsResponse {
@@ -101,6 +138,10 @@ public final class EssentialContactsServiceClient: Clients.EssentialContactsServ
   /// has been configured correctly.
   ///
   /// @Snippet(path: "EssentialContactsService_SendTestMessage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``sendTestMessage(request:)``
   public func sendTestMessage(
     request: SendTestMessageRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -154,6 +195,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.EssentialContactsServiceProtocol {
+  /// Adds a new contact for a resource.
+  ///
+  /// @Snippet(path: "EssentialContactsService_CreateContact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/createContact(request:options:)``
   public func createContact(request: CreateContactRequest) async throws
     -> GoogleCloudEssentialContactsV1.Contact
   {
@@ -166,6 +214,13 @@ extension Clients.EssentialContactsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a new contact for a resource.
+  ///
+  /// @Snippet(path: "EssentialContactsService_CreateContact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/createContact(request:options:)``
   public func createContact(
     parent: Swift.String,
     contact: Contact?,
@@ -177,6 +232,14 @@ extension Clients.EssentialContactsServiceProtocol {
     return try await self.createContact(request: request)
   }
 
+  /// Updates a contact.
+  /// Note: A contact's email address cannot be changed.
+  ///
+  /// @Snippet(path: "EssentialContactsService_UpdateContact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/updateContact(request:options:)``
   public func updateContact(request: UpdateContactRequest) async throws
     -> GoogleCloudEssentialContactsV1.Contact
   {
@@ -189,6 +252,14 @@ extension Clients.EssentialContactsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a contact.
+  /// Note: A contact's email address cannot be changed.
+  ///
+  /// @Snippet(path: "EssentialContactsService_UpdateContact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/updateContact(request:options:)``
   public func updateContact(
     contact: Contact?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -200,6 +271,13 @@ extension Clients.EssentialContactsServiceProtocol {
     return try await self.updateContact(request: request)
   }
 
+  /// Lists the contacts that have been set on a resource.
+  ///
+  /// @Snippet(path: "EssentialContactsService_ListContacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/listContacts(request:options:)``
   public func listContacts(request: ListContactsRequest) async throws
     -> GoogleCloudEssentialContactsV1.ListContactsResponse
   {
@@ -212,6 +290,13 @@ extension Clients.EssentialContactsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the contacts that have been set on a resource.
+  ///
+  /// @Snippet(path: "EssentialContactsService_ListContacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/listContacts(request:options:)``
   public func listContactsByItems(
     request: ListContactsRequest
   ) -> some AsyncSequence<Contact, any Swift.Error> & Sendable {
@@ -221,6 +306,10 @@ extension Clients.EssentialContactsServiceProtocol {
   /// Lists the contacts that have been set on a resource.
   ///
   /// @Snippet(path: "EssentialContactsService_ListContacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/listContacts(request:options:)``
   public func listContactsByItems(
     request: ListContactsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Contact, any Swift.Error> & Sendable {
@@ -235,6 +324,13 @@ extension Clients.EssentialContactsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the contacts that have been set on a resource.
+  ///
+  /// @Snippet(path: "EssentialContactsService_ListContacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/listContacts(request:options:)``
   public func listContactsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Contact, any Swift.Error> & Sendable {
@@ -244,6 +340,13 @@ extension Clients.EssentialContactsServiceProtocol {
     return self.listContactsByItems(request: request)
   }
 
+  /// Gets a single contact.
+  ///
+  /// @Snippet(path: "EssentialContactsService_GetContact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/getContact(request:options:)``
   public func getContact(request: GetContactRequest) async throws
     -> GoogleCloudEssentialContactsV1.Contact
   {
@@ -256,6 +359,13 @@ extension Clients.EssentialContactsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a single contact.
+  ///
+  /// @Snippet(path: "EssentialContactsService_GetContact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/getContact(request:options:)``
   public func getContact(
     name: Swift.String,
   ) async throws -> GoogleCloudEssentialContactsV1.Contact {
@@ -265,6 +375,13 @@ extension Clients.EssentialContactsServiceProtocol {
     return try await self.getContact(request: request)
   }
 
+  /// Deletes a contact.
+  ///
+  /// @Snippet(path: "EssentialContactsService_DeleteContact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/deleteContact(request:options:)``
   public func deleteContact(request: DeleteContactRequest) async throws {
     try await self.deleteContact(request: request, options: .init())
   }
@@ -275,6 +392,13 @@ extension Clients.EssentialContactsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a contact.
+  ///
+  /// @Snippet(path: "EssentialContactsService_DeleteContact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/deleteContact(request:options:)``
   public func deleteContact(
     name: Swift.String,
   ) async throws {
@@ -284,6 +408,15 @@ extension Clients.EssentialContactsServiceProtocol {
     try await self.deleteContact(request: request)
   }
 
+  /// Lists all contacts for the resource that are subscribed to the
+  /// specified notification categories, including contacts inherited from
+  /// any parent resources.
+  ///
+  /// @Snippet(path: "EssentialContactsService_ComputeContacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/computeContacts(request:options:)``
   public func computeContacts(request: ComputeContactsRequest) async throws
     -> GoogleCloudEssentialContactsV1.ComputeContactsResponse
   {
@@ -296,6 +429,15 @@ extension Clients.EssentialContactsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all contacts for the resource that are subscribed to the
+  /// specified notification categories, including contacts inherited from
+  /// any parent resources.
+  ///
+  /// @Snippet(path: "EssentialContactsService_ComputeContacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/computeContacts(request:options:)``
   public func computeContactsByItems(
     request: ComputeContactsRequest
   ) -> some AsyncSequence<Contact, any Swift.Error> & Sendable {
@@ -307,6 +449,10 @@ extension Clients.EssentialContactsServiceProtocol {
   /// any parent resources.
   ///
   /// @Snippet(path: "EssentialContactsService_ComputeContacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/computeContacts(request:options:)``
   public func computeContactsByItems(
     request: ComputeContactsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Contact, any Swift.Error> & Sendable {
@@ -321,6 +467,14 @@ extension Clients.EssentialContactsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Allows a contact admin to send a test message to contact to verify that it
+  /// has been configured correctly.
+  ///
+  /// @Snippet(path: "EssentialContactsService_SendTestMessage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EssentialContactsServiceClient/sendTestMessage(request:options:)``
   public func sendTestMessage(request: SendTestMessageRequest) async throws {
     try await self.sendTestMessage(request: request, options: .init())
   }

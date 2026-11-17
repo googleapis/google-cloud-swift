@@ -24,6 +24,10 @@ import Foundation
 /// Manages App Engine applications.
 ///
 /// @Snippet(path: "ApplicationsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ApplicationsProtocol``
 public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   let inner: any Clients.ApplicationsStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,11 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   /// Gets information about an application.
   ///
   /// @Snippet(path: "Applications_GetApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getApplication(request:)``
+  /// - ``getApplication(name:)``
   public func getApplication(
     request: GetApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.Application {
@@ -59,6 +68,12 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   /// For more information about App Engine applications, see [Managing Projects, Applications, and Billing](https://cloud.google.com/appengine/docs/standard/python/console/).
   ///
   /// @Snippet(path: "Applications_CreateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createApplication(request:)``
+  /// - ``createApplicationPollingUntilDone(request:)``
+  /// - ``createApplicationPollingUntilDone(request:options:)``
   public func createApplication(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -74,6 +89,12 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   /// For more information about App Engine applications, see [Managing Projects, Applications, and Billing](https://cloud.google.com/appengine/docs/standard/python/console/).
   ///
   /// @Snippet(path: "Applications_CreateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createApplicationPollingUntilDone(request:)``
+  /// - ``createApplication(request:)``
+  /// - ``createApplication(request:options:)``
   public func createApplicationPollingUntilDone(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Application {
@@ -106,6 +127,12 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   /// * `iap` - Identity-Aware Proxy properties for the application.
   ///
   /// @Snippet(path: "Applications_UpdateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateApplication(request:)``
+  /// - ``updateApplicationPollingUntilDone(request:)``
+  /// - ``updateApplicationPollingUntilDone(request:options:)``
   public func updateApplication(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -120,6 +147,12 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   /// * `iap` - Identity-Aware Proxy properties for the application.
   ///
   /// @Snippet(path: "Applications_UpdateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateApplicationPollingUntilDone(request:)``
+  /// - ``updateApplication(request:)``
+  /// - ``updateApplication(request:options:)``
   public func updateApplicationPollingUntilDone(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Application {
@@ -156,6 +189,12 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   /// Console Activity Log.
   ///
   /// @Snippet(path: "Applications_RepairApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``repairApplication(request:)``
+  /// - ``repairApplicationPollingUntilDone(request:)``
+  /// - ``repairApplicationPollingUntilDone(request:options:)``
   public func repairApplication(
     request: RepairApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -174,6 +213,12 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   /// Console Activity Log.
   ///
   /// @Snippet(path: "Applications_RepairApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``repairApplicationPollingUntilDone(request:)``
+  /// - ``repairApplication(request:)``
+  /// - ``repairApplication(request:options:)``
   public func repairApplicationPollingUntilDone(
     request: RepairApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Application {
@@ -203,6 +248,13 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Applications_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -272,6 +324,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ApplicationsProtocol {
+  /// Gets information about an application.
+  ///
+  /// @Snippet(path: "Applications_GetApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApplicationsClient/getApplication(request:options:)``
   public func getApplication(request: GetApplicationRequest) async throws
     -> GoogleAppEngineV1.Application
   {
@@ -284,6 +343,13 @@ extension Clients.ApplicationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information about an application.
+  ///
+  /// @Snippet(path: "Applications_GetApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApplicationsClient/getApplication(request:options:)``
   public func getApplication(
     name: Swift.String,
   ) async throws -> GoogleAppEngineV1.Application {
@@ -293,6 +359,19 @@ extension Clients.ApplicationsProtocol {
     return try await self.getApplication(request: request)
   }
 
+  /// Creates an App Engine application for a Google Cloud Platform project.
+  /// Required fields:
+  ///
+  /// * `id` - The ID of the target Cloud Platform project.
+  /// * *location* - The [region](https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.
+  ///
+  /// For more information about App Engine applications, see [Managing Projects, Applications, and Billing](https://cloud.google.com/appengine/docs/standard/python/console/).
+  ///
+  /// @Snippet(path: "Applications_CreateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApplicationsClient/createApplication(request:options:)``
   public func createApplication(request: CreateApplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -305,6 +384,19 @@ extension Clients.ApplicationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an App Engine application for a Google Cloud Platform project.
+  /// Required fields:
+  ///
+  /// * `id` - The ID of the target Cloud Platform project.
+  /// * *location* - The [region](https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.
+  ///
+  /// For more information about App Engine applications, see [Managing Projects, Applications, and Billing](https://cloud.google.com/appengine/docs/standard/python/console/).
+  ///
+  /// @Snippet(path: "Applications_CreateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApplicationsClient/createApplicationPollingUntilDone(request:options:)``
   public func createApplicationPollingUntilDone(request: CreateApplicationRequest) async throws
     -> Application
   {
@@ -317,6 +409,18 @@ extension Clients.ApplicationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified Application resource.
+  /// You can update the following fields:
+  ///
+  /// * `auth_domain` - Google authentication domain for controlling user access to the application.
+  /// * `default_cookie_expiration` - Cookie expiration policy for the application.
+  /// * `iap` - Identity-Aware Proxy properties for the application.
+  ///
+  /// @Snippet(path: "Applications_UpdateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApplicationsClient/updateApplication(request:options:)``
   public func updateApplication(request: UpdateApplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -329,6 +433,18 @@ extension Clients.ApplicationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified Application resource.
+  /// You can update the following fields:
+  ///
+  /// * `auth_domain` - Google authentication domain for controlling user access to the application.
+  /// * `default_cookie_expiration` - Cookie expiration policy for the application.
+  /// * `iap` - Identity-Aware Proxy properties for the application.
+  ///
+  /// @Snippet(path: "Applications_UpdateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApplicationsClient/updateApplicationPollingUntilDone(request:options:)``
   public func updateApplicationPollingUntilDone(request: UpdateApplicationRequest) async throws
     -> Application
   {
@@ -341,6 +457,22 @@ extension Clients.ApplicationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Recreates the required App Engine features for the specified App Engine
+  /// application, for example a Cloud Storage bucket or App Engine service
+  /// account.
+  /// Use this method if you receive an error message about a missing feature,
+  /// for example, *Error retrieving the App Engine service account*.
+  /// If you have deleted your App Engine service account, this will
+  /// not be able to recreate it. Instead, you should attempt to use the
+  /// IAM undelete API if possible at https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts/undelete?apix_params=%7B"name"%3A"projects%2F-%2FserviceAccounts%2Funique_id"%2C"resource"%3A%7B%7D%7D .
+  /// If the deletion was recent, the numeric ID can be found in the Cloud
+  /// Console Activity Log.
+  ///
+  /// @Snippet(path: "Applications_RepairApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApplicationsClient/repairApplication(request:options:)``
   public func repairApplication(request: RepairApplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -353,6 +485,22 @@ extension Clients.ApplicationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Recreates the required App Engine features for the specified App Engine
+  /// application, for example a Cloud Storage bucket or App Engine service
+  /// account.
+  /// Use this method if you receive an error message about a missing feature,
+  /// for example, *Error retrieving the App Engine service account*.
+  /// If you have deleted your App Engine service account, this will
+  /// not be able to recreate it. Instead, you should attempt to use the
+  /// IAM undelete API if possible at https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts/undelete?apix_params=%7B"name"%3A"projects%2F-%2FserviceAccounts%2Funique_id"%2C"resource"%3A%7B%7D%7D .
+  /// If the deletion was recent, the numeric ID can be found in the Cloud
+  /// Console Activity Log.
+  ///
+  /// @Snippet(path: "Applications_RepairApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApplicationsClient/repairApplicationPollingUntilDone(request:options:)``
   public func repairApplicationPollingUntilDone(request: RepairApplicationRequest) async throws
     -> Application
   {
@@ -365,6 +513,15 @@ extension Clients.ApplicationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Applications_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApplicationsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -377,6 +534,15 @@ extension Clients.ApplicationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Applications_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApplicationsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -388,6 +554,10 @@ extension Clients.ApplicationsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Applications_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApplicationsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -401,6 +571,15 @@ extension Clients.ApplicationsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Applications_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApplicationsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -412,6 +591,9 @@ extension Clients.ApplicationsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -424,6 +606,9 @@ extension Clients.ApplicationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

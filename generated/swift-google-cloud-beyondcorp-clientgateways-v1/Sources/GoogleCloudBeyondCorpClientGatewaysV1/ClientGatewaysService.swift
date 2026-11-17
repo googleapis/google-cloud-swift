@@ -36,6 +36,10 @@ import Foundation
 ///   `projects/{project_id}/locations/{location_id}/clientGateways/{client_gateway_id}`.
 ///
 /// @Snippet(path: "ClientGatewaysServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ClientGatewaysServiceProtocol``
 public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServiceProtocol, Sendable {
   let inner: any Clients.ClientGatewaysServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -57,6 +61,13 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// Lists ClientGateways in a given project and location.
   ///
   /// @Snippet(path: "ClientGatewaysService_ListClientGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listClientGateways(request:)``
+  /// - ``listClientGatewaysByItems(request:)``
+  /// - ``listClientGatewaysByItems(request:options:)``
+  /// - ``listClientGatewaysByItems(parent:)``
   public func listClientGateways(
     request: ListClientGatewaysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpClientGatewaysV1.ListClientGatewaysResponse {
@@ -66,6 +77,11 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// Gets details of a single ClientGateway.
   ///
   /// @Snippet(path: "ClientGatewaysService_GetClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getClientGateway(request:)``
+  /// - ``getClientGateway(name:)``
   public func getClientGateway(
     request: GetClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpClientGatewaysV1.ClientGateway {
@@ -75,6 +91,13 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// Creates a new ClientGateway in a given project and location.
   ///
   /// @Snippet(path: "ClientGatewaysService_CreateClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createClientGateway(request:)``
+  /// - ``createClientGatewayPollingUntilDone(request:)``
+  /// - ``createClientGatewayPollingUntilDone(request:options:)``
+  /// - ``createClientGatewayPollingUntilDone(parent:clientGateway:clientGatewayId:)``
   public func createClientGateway(
     request: CreateClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -84,6 +107,13 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// Creates a new ClientGateway in a given project and location.
   ///
   /// @Snippet(path: "ClientGatewaysService_CreateClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createClientGatewayPollingUntilDone(request:)``
+  /// - ``createClientGatewayPollingUntilDone(parent:clientGateway:clientGatewayId:)``
+  /// - ``createClientGateway(request:)``
+  /// - ``createClientGateway(request:options:)``
   public func createClientGatewayPollingUntilDone(
     request: CreateClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> ClientGateway {
@@ -112,6 +142,13 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// Deletes a single ClientGateway.
   ///
   /// @Snippet(path: "ClientGatewaysService_DeleteClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteClientGateway(request:)``
+  /// - ``deleteClientGatewayPollingUntilDone(request:)``
+  /// - ``deleteClientGatewayPollingUntilDone(request:options:)``
+  /// - ``deleteClientGatewayPollingUntilDone(name:)``
   public func deleteClientGateway(
     request: DeleteClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -121,6 +158,13 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// Deletes a single ClientGateway.
   ///
   /// @Snippet(path: "ClientGatewaysService_DeleteClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteClientGatewayPollingUntilDone(request:)``
+  /// - ``deleteClientGatewayPollingUntilDone(name:)``
+  /// - ``deleteClientGateway(request:)``
+  /// - ``deleteClientGateway(request:options:)``
   public func deleteClientGatewayPollingUntilDone(
     request: DeleteClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -148,6 +192,12 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ClientGatewaysService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -157,6 +207,10 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ClientGatewaysService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -170,6 +224,10 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// errors.
   ///
   /// @Snippet(path: "ClientGatewaysService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -180,6 +238,10 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "ClientGatewaysService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -195,6 +257,10 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "ClientGatewaysService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -206,6 +272,13 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ClientGatewaysService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -228,6 +301,11 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ClientGatewaysService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -239,6 +317,11 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ClientGatewaysService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -327,6 +410,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ClientGatewaysServiceProtocol {
+  /// Lists ClientGateways in a given project and location.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_ListClientGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/listClientGateways(request:options:)``
   public func listClientGateways(request: ListClientGatewaysRequest) async throws
     -> GoogleCloudBeyondCorpClientGatewaysV1.ListClientGatewaysResponse
   {
@@ -339,6 +429,13 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ClientGateways in a given project and location.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_ListClientGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/listClientGateways(request:options:)``
   public func listClientGatewaysByItems(
     request: ListClientGatewaysRequest
   ) -> some AsyncSequence<ClientGateway, any Swift.Error> & Sendable {
@@ -348,6 +445,10 @@ extension Clients.ClientGatewaysServiceProtocol {
   /// Lists ClientGateways in a given project and location.
   ///
   /// @Snippet(path: "ClientGatewaysService_ListClientGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/listClientGateways(request:options:)``
   public func listClientGatewaysByItems(
     request: ListClientGatewaysRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ClientGateway, any Swift.Error> & Sendable {
@@ -362,6 +463,13 @@ extension Clients.ClientGatewaysServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ClientGateways in a given project and location.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_ListClientGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/listClientGateways(request:options:)``
   public func listClientGatewaysByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ClientGateway, any Swift.Error> & Sendable {
@@ -371,6 +479,13 @@ extension Clients.ClientGatewaysServiceProtocol {
     return self.listClientGatewaysByItems(request: request)
   }
 
+  /// Gets details of a single ClientGateway.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_GetClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/getClientGateway(request:options:)``
   public func getClientGateway(request: GetClientGatewayRequest) async throws
     -> GoogleCloudBeyondCorpClientGatewaysV1.ClientGateway
   {
@@ -383,6 +498,13 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single ClientGateway.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_GetClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/getClientGateway(request:options:)``
   public func getClientGateway(
     name: Swift.String,
   ) async throws -> GoogleCloudBeyondCorpClientGatewaysV1.ClientGateway {
@@ -392,6 +514,13 @@ extension Clients.ClientGatewaysServiceProtocol {
     return try await self.getClientGateway(request: request)
   }
 
+  /// Creates a new ClientGateway in a given project and location.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_CreateClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/createClientGateway(request:options:)``
   public func createClientGateway(request: CreateClientGatewayRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -404,6 +533,13 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ClientGateway in a given project and location.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_CreateClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/createClientGatewayPollingUntilDone(request:options:)``
   public func createClientGatewayPollingUntilDone(request: CreateClientGatewayRequest) async throws
     -> ClientGateway
   {
@@ -416,6 +552,13 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ClientGateway in a given project and location.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_CreateClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/createClientGatewayPollingUntilDone(request:options:)``
   public func createClientGatewayPollingUntilDone(
     parent: Swift.String,
     clientGateway: ClientGateway?,
@@ -429,6 +572,13 @@ extension Clients.ClientGatewaysServiceProtocol {
     return try await self.createClientGatewayPollingUntilDone(request: request)
   }
 
+  /// Deletes a single ClientGateway.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_DeleteClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/deleteClientGateway(request:options:)``
   public func deleteClientGateway(request: DeleteClientGatewayRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -441,6 +591,13 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ClientGateway.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_DeleteClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/deleteClientGatewayPollingUntilDone(request:options:)``
   public func deleteClientGatewayPollingUntilDone(request: DeleteClientGatewayRequest) async throws
   {
     try await self.deleteClientGatewayPollingUntilDone(request: request, options: .init())
@@ -452,6 +609,13 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ClientGateway.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_DeleteClientGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/deleteClientGatewayPollingUntilDone(request:options:)``
   public func deleteClientGatewayPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -461,6 +625,13 @@ extension Clients.ClientGatewaysServiceProtocol {
     try await self.deleteClientGatewayPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -473,6 +644,13 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -482,6 +660,10 @@ extension Clients.ClientGatewaysServiceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ClientGatewaysService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -495,6 +677,13 @@ extension Clients.ClientGatewaysServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -507,6 +696,17 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -519,6 +719,14 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -531,6 +739,19 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "ClientGatewaysService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -543,6 +764,15 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClientGatewaysService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -555,6 +785,15 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClientGatewaysService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -566,6 +805,10 @@ extension Clients.ClientGatewaysServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ClientGatewaysService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -579,6 +822,15 @@ extension Clients.ClientGatewaysServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClientGatewaysService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -590,6 +842,9 @@ extension Clients.ClientGatewaysServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -602,6 +857,9 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -611,6 +869,15 @@ extension Clients.ClientGatewaysServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClientGatewaysService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -621,6 +888,15 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClientGatewaysService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -630,6 +906,15 @@ extension Clients.ClientGatewaysServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClientGatewaysService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -640,6 +925,15 @@ extension Clients.ClientGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClientGatewaysService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClientGatewaysServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -27,6 +27,10 @@ import Foundation
 /// by specifying a specific, predictable sequence of responses from the service
 ///
 /// @Snippet(path: "SequenceServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SequenceServiceProtocol``
 public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Sendable {
   let inner: any Clients.SequenceServiceStub
 
@@ -43,6 +47,11 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// Create a sequence of responses to be returned as unary calls
   ///
   /// @Snippet(path: "SequenceService_CreateSequence")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSequence(request:)``
+  /// - ``createSequence(sequence:)``
   public func createSequence(
     request: CreateSequenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.Sequence {
@@ -52,6 +61,11 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// Creates a sequence of responses to be returned in a server streaming call
   ///
   /// @Snippet(path: "SequenceService_CreateStreamingSequence")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createStreamingSequence(request:)``
+  /// - ``createStreamingSequence(streamingSequence:)``
   public func createStreamingSequence(
     request: CreateStreamingSequenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.StreamingSequence {
@@ -62,6 +76,11 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// sequence of unary calls.
   ///
   /// @Snippet(path: "SequenceService_GetSequenceReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSequenceReport(request:)``
+  /// - ``getSequenceReport(name:)``
   public func getSequenceReport(
     request: GetSequenceReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.SequenceReport {
@@ -72,6 +91,11 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// about a sequences of responses in a server streaming call.
   ///
   /// @Snippet(path: "SequenceService_GetStreamingSequenceReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getStreamingSequenceReport(request:)``
+  /// - ``getStreamingSequenceReport(name:)``
   public func getStreamingSequenceReport(
     request: GetStreamingSequenceReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.StreamingSequenceReport {
@@ -81,6 +105,11 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// Attempts a sequence of unary responses.
   ///
   /// @Snippet(path: "SequenceService_AttemptSequence")
+  ///
+  /// ## See Also
+  ///
+  /// - ``attemptSequence(request:)``
+  /// - ``attemptSequence(name:)``
   public func attemptSequence(
     request: AttemptSequenceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -92,6 +121,12 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "SequenceService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -103,6 +138,10 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "SequenceService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -114,6 +153,10 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "SequenceService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -125,6 +168,10 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "SequenceService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -136,6 +183,10 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "SequenceService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -147,6 +198,13 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SequenceService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -169,6 +227,11 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SequenceService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -180,6 +243,11 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SequenceService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -263,6 +331,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.SequenceServiceProtocol {
+  /// Create a sequence of responses to be returned as unary calls
+  ///
+  /// @Snippet(path: "SequenceService_CreateSequence")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/createSequence(request:options:)``
   public func createSequence(request: CreateSequenceRequest) async throws
     -> GoogleShowcaseV1Beta1.Sequence
   {
@@ -275,6 +350,13 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a sequence of responses to be returned as unary calls
+  ///
+  /// @Snippet(path: "SequenceService_CreateSequence")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/createSequence(request:options:)``
   public func createSequence(
     sequence: Sequence?,
   ) async throws -> GoogleShowcaseV1Beta1.Sequence {
@@ -284,6 +366,13 @@ extension Clients.SequenceServiceProtocol {
     return try await self.createSequence(request: request)
   }
 
+  /// Creates a sequence of responses to be returned in a server streaming call
+  ///
+  /// @Snippet(path: "SequenceService_CreateStreamingSequence")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/createStreamingSequence(request:options:)``
   public func createStreamingSequence(request: CreateStreamingSequenceRequest) async throws
     -> GoogleShowcaseV1Beta1.StreamingSequence
   {
@@ -296,6 +385,13 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a sequence of responses to be returned in a server streaming call
+  ///
+  /// @Snippet(path: "SequenceService_CreateStreamingSequence")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/createStreamingSequence(request:options:)``
   public func createStreamingSequence(
     streamingSequence: StreamingSequence?,
   ) async throws -> GoogleShowcaseV1Beta1.StreamingSequence {
@@ -305,6 +401,14 @@ extension Clients.SequenceServiceProtocol {
     return try await self.createStreamingSequence(request: request)
   }
 
+  /// Retrieves a sequence report which can be used to retrieve information about a
+  /// sequence of unary calls.
+  ///
+  /// @Snippet(path: "SequenceService_GetSequenceReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/getSequenceReport(request:options:)``
   public func getSequenceReport(request: GetSequenceReportRequest) async throws
     -> GoogleShowcaseV1Beta1.SequenceReport
   {
@@ -317,6 +421,14 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a sequence report which can be used to retrieve information about a
+  /// sequence of unary calls.
+  ///
+  /// @Snippet(path: "SequenceService_GetSequenceReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/getSequenceReport(request:options:)``
   public func getSequenceReport(
     name: Swift.String,
   ) async throws -> GoogleShowcaseV1Beta1.SequenceReport {
@@ -326,6 +438,14 @@ extension Clients.SequenceServiceProtocol {
     return try await self.getSequenceReport(request: request)
   }
 
+  /// Retrieves a sequence report which can be used to retrieve information
+  /// about a sequences of responses in a server streaming call.
+  ///
+  /// @Snippet(path: "SequenceService_GetStreamingSequenceReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/getStreamingSequenceReport(request:options:)``
   public func getStreamingSequenceReport(request: GetStreamingSequenceReportRequest) async throws
     -> GoogleShowcaseV1Beta1.StreamingSequenceReport
   {
@@ -338,6 +458,14 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a sequence report which can be used to retrieve information
+  /// about a sequences of responses in a server streaming call.
+  ///
+  /// @Snippet(path: "SequenceService_GetStreamingSequenceReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/getStreamingSequenceReport(request:options:)``
   public func getStreamingSequenceReport(
     name: Swift.String,
   ) async throws -> GoogleShowcaseV1Beta1.StreamingSequenceReport {
@@ -347,6 +475,13 @@ extension Clients.SequenceServiceProtocol {
     return try await self.getStreamingSequenceReport(request: request)
   }
 
+  /// Attempts a sequence of unary responses.
+  ///
+  /// @Snippet(path: "SequenceService_AttemptSequence")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/attemptSequence(request:options:)``
   public func attemptSequence(request: AttemptSequenceRequest) async throws {
     try await self.attemptSequence(request: request, options: .init())
   }
@@ -357,6 +492,13 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Attempts a sequence of unary responses.
+  ///
+  /// @Snippet(path: "SequenceService_AttemptSequence")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/attemptSequence(request:options:)``
   public func attemptSequence(
     name: Swift.String,
   ) async throws {
@@ -366,6 +508,15 @@ extension Clients.SequenceServiceProtocol {
     try await self.attemptSequence(request: request)
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "SequenceService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -378,6 +529,15 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "SequenceService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -389,6 +549,10 @@ extension Clients.SequenceServiceProtocol {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "SequenceService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -402,6 +566,15 @@ extension Clients.SequenceServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "SequenceService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -414,6 +587,15 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "SequenceService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -426,6 +608,15 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "SequenceService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -438,6 +629,15 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "SequenceService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -450,6 +650,15 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SequenceService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -462,6 +671,15 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SequenceService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -473,6 +691,10 @@ extension Clients.SequenceServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SequenceService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -486,6 +708,15 @@ extension Clients.SequenceServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SequenceService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -497,6 +728,9 @@ extension Clients.SequenceServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -509,6 +743,9 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -518,6 +755,15 @@ extension Clients.SequenceServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SequenceService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -528,6 +774,15 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SequenceService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -537,6 +792,15 @@ extension Clients.SequenceServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SequenceService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -547,6 +811,15 @@ extension Clients.SequenceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SequenceService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SequenceServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -23,6 +23,10 @@ import Foundation
 /// Service for the `dnsKeys` resource.
 ///
 /// @Snippet(path: "dnsKeysQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DnsKeysProtocol``
 public final class DnsKeysClient: Clients.DnsKeysProtocol, Sendable {
   let inner: any Clients.DnsKeysStub
 
@@ -39,6 +43,11 @@ public final class DnsKeysClient: Clients.DnsKeysProtocol, Sendable {
   /// Fetches the representation of an existing DnsKey.
   ///
   /// @Snippet(path: "dnsKeys_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``get(request:)``
+  /// - ``get(project:managedZone:dnsKeyId:)``
   public func `get`(
     request: DnsKeysClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> DnsKey {
@@ -48,6 +57,13 @@ public final class DnsKeysClient: Clients.DnsKeysProtocol, Sendable {
   /// Enumerates DnsKeys to a ResourceRecordSet collection.
   ///
   /// @Snippet(path: "dnsKeys_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``list(request:)``
+  /// - ``listByItems(request:)``
+  /// - ``listByItems(request:options:)``
+  /// - ``listByItems(project:managedZone:)``
   public func list(
     request: DnsKeysClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> DnsKeysListResponse {
@@ -76,6 +92,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DnsKeysProtocol {
+  /// Fetches the representation of an existing DnsKey.
+  ///
+  /// @Snippet(path: "dnsKeys_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsKeysClient/get(request:options:)``
   public func `get`(request: DnsKeysClient.GetRequest) async throws -> DnsKey {
     try await self.`get`(request: request, options: .init())
   }
@@ -86,6 +109,13 @@ extension Clients.DnsKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches the representation of an existing DnsKey.
+  ///
+  /// @Snippet(path: "dnsKeys_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsKeysClient/get(request:options:)``
   public func `get`(
     project: Swift.String,
     managedZone: Swift.String,
@@ -99,6 +129,13 @@ extension Clients.DnsKeysProtocol {
     return try await self.`get`(request: request)
   }
 
+  /// Enumerates DnsKeys to a ResourceRecordSet collection.
+  ///
+  /// @Snippet(path: "dnsKeys_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsKeysClient/list(request:options:)``
   public func list(request: DnsKeysClient.ListRequest) async throws -> DnsKeysListResponse {
     try await self.list(request: request, options: .init())
   }
@@ -109,6 +146,13 @@ extension Clients.DnsKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enumerates DnsKeys to a ResourceRecordSet collection.
+  ///
+  /// @Snippet(path: "dnsKeys_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsKeysClient/list(request:options:)``
   public func listByItems(
     request: DnsKeysClient.ListRequest
   ) -> some AsyncSequence<DnsKey, any Swift.Error> & Sendable {
@@ -118,6 +162,10 @@ extension Clients.DnsKeysProtocol {
   /// Enumerates DnsKeys to a ResourceRecordSet collection.
   ///
   /// @Snippet(path: "dnsKeys_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsKeysClient/list(request:options:)``
   public func listByItems(
     request: DnsKeysClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DnsKey, any Swift.Error> & Sendable {
@@ -130,6 +178,13 @@ extension Clients.DnsKeysProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Enumerates DnsKeys to a ResourceRecordSet collection.
+  ///
+  /// @Snippet(path: "dnsKeys_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsKeysClient/list(request:options:)``
   public func listByItems(
     project: Swift.String,
     managedZone: Swift.String,

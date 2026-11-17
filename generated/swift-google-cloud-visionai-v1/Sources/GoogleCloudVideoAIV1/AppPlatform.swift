@@ -26,6 +26,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "AppPlatformQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AppPlatformProtocol``
 public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   let inner: any Clients.AppPlatformStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Lists Applications in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_ListApplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listApplications(request:)``
+  /// - ``listApplicationsByItems(request:)``
+  /// - ``listApplicationsByItems(request:options:)``
+  /// - ``listApplicationsByItems(parent:)``
   public func listApplications(
     request: ListApplicationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListApplicationsResponse {
@@ -55,6 +66,11 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Gets details of a single Application.
   ///
   /// @Snippet(path: "AppPlatform_GetApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getApplication(request:)``
+  /// - ``getApplication(name:)``
   public func getApplication(
     request: GetApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Application {
@@ -64,6 +80,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Creates a new Application in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_CreateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createApplication(request:)``
+  /// - ``createApplicationPollingUntilDone(request:)``
+  /// - ``createApplicationPollingUntilDone(request:options:)``
+  /// - ``createApplicationPollingUntilDone(parent:application:)``
   public func createApplication(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -73,6 +96,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Creates a new Application in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_CreateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createApplicationPollingUntilDone(request:)``
+  /// - ``createApplicationPollingUntilDone(parent:application:)``
+  /// - ``createApplication(request:)``
+  /// - ``createApplication(request:options:)``
   public func createApplicationPollingUntilDone(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Application {
@@ -100,6 +130,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Updates the parameters of a single Application.
   ///
   /// @Snippet(path: "AppPlatform_UpdateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateApplication(request:)``
+  /// - ``updateApplicationPollingUntilDone(request:)``
+  /// - ``updateApplicationPollingUntilDone(request:options:)``
+  /// - ``updateApplicationPollingUntilDone(application:updateMask:)``
   public func updateApplication(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -109,6 +146,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Updates the parameters of a single Application.
   ///
   /// @Snippet(path: "AppPlatform_UpdateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateApplicationPollingUntilDone(request:)``
+  /// - ``updateApplicationPollingUntilDone(application:updateMask:)``
+  /// - ``updateApplication(request:)``
+  /// - ``updateApplication(request:options:)``
   public func updateApplicationPollingUntilDone(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Application {
@@ -136,6 +180,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Deletes a single Application.
   ///
   /// @Snippet(path: "AppPlatform_DeleteApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteApplication(request:)``
+  /// - ``deleteApplicationPollingUntilDone(request:)``
+  /// - ``deleteApplicationPollingUntilDone(request:options:)``
+  /// - ``deleteApplicationPollingUntilDone(name:)``
   public func deleteApplication(
     request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -145,6 +196,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Deletes a single Application.
   ///
   /// @Snippet(path: "AppPlatform_DeleteApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteApplicationPollingUntilDone(request:)``
+  /// - ``deleteApplicationPollingUntilDone(name:)``
+  /// - ``deleteApplication(request:)``
+  /// - ``deleteApplication(request:options:)``
   public func deleteApplicationPollingUntilDone(
     request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -172,6 +230,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Deploys a single Application.
   ///
   /// @Snippet(path: "AppPlatform_DeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deployApplication(request:)``
+  /// - ``deployApplicationPollingUntilDone(request:)``
+  /// - ``deployApplicationPollingUntilDone(request:options:)``
+  /// - ``deployApplicationPollingUntilDone(name:)``
   public func deployApplication(
     request: DeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -181,6 +246,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Deploys a single Application.
   ///
   /// @Snippet(path: "AppPlatform_DeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deployApplicationPollingUntilDone(request:)``
+  /// - ``deployApplicationPollingUntilDone(name:)``
+  /// - ``deployApplication(request:)``
+  /// - ``deployApplication(request:options:)``
   public func deployApplicationPollingUntilDone(
     request: DeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> DeployApplicationResponse {
@@ -210,6 +282,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Undeploys a single Application.
   ///
   /// @Snippet(path: "AppPlatform_UndeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``undeployApplication(request:)``
+  /// - ``undeployApplicationPollingUntilDone(request:)``
+  /// - ``undeployApplicationPollingUntilDone(request:options:)``
+  /// - ``undeployApplicationPollingUntilDone(name:)``
   public func undeployApplication(
     request: UndeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -219,6 +298,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Undeploys a single Application.
   ///
   /// @Snippet(path: "AppPlatform_UndeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``undeployApplicationPollingUntilDone(request:)``
+  /// - ``undeployApplicationPollingUntilDone(name:)``
+  /// - ``undeployApplication(request:)``
+  /// - ``undeployApplication(request:options:)``
   public func undeployApplicationPollingUntilDone(
     request: UndeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> UndeployApplicationResponse {
@@ -251,6 +337,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// will fail.
   ///
   /// @Snippet(path: "AppPlatform_AddApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addApplicationStreamInput(request:)``
+  /// - ``addApplicationStreamInputPollingUntilDone(request:)``
+  /// - ``addApplicationStreamInputPollingUntilDone(request:options:)``
+  /// - ``addApplicationStreamInputPollingUntilDone(name:)``
   public func addApplicationStreamInput(
     request: AddApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -263,6 +356,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// will fail.
   ///
   /// @Snippet(path: "AppPlatform_AddApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addApplicationStreamInputPollingUntilDone(request:)``
+  /// - ``addApplicationStreamInputPollingUntilDone(name:)``
+  /// - ``addApplicationStreamInput(request:)``
+  /// - ``addApplicationStreamInput(request:options:)``
   public func addApplicationStreamInputPollingUntilDone(
     request: AddApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddApplicationStreamInputResponse {
@@ -294,6 +394,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// is not in the Application, the RPC will fail.
   ///
   /// @Snippet(path: "AppPlatform_RemoveApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeApplicationStreamInput(request:)``
+  /// - ``removeApplicationStreamInputPollingUntilDone(request:)``
+  /// - ``removeApplicationStreamInputPollingUntilDone(request:options:)``
+  /// - ``removeApplicationStreamInputPollingUntilDone(name:)``
   public func removeApplicationStreamInput(
     request: RemoveApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -305,6 +412,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// is not in the Application, the RPC will fail.
   ///
   /// @Snippet(path: "AppPlatform_RemoveApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeApplicationStreamInputPollingUntilDone(request:)``
+  /// - ``removeApplicationStreamInputPollingUntilDone(name:)``
+  /// - ``removeApplicationStreamInput(request:)``
+  /// - ``removeApplicationStreamInput(request:options:)``
   public func removeApplicationStreamInputPollingUntilDone(
     request: RemoveApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> RemoveApplicationStreamInputResponse {
@@ -336,6 +450,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// CreateOrUpdate behavior, set allow_missing to true.
   ///
   /// @Snippet(path: "AppPlatform_UpdateApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateApplicationStreamInput(request:)``
+  /// - ``updateApplicationStreamInputPollingUntilDone(request:)``
+  /// - ``updateApplicationStreamInputPollingUntilDone(request:options:)``
+  /// - ``updateApplicationStreamInputPollingUntilDone(name:)``
   public func updateApplicationStreamInput(
     request: UpdateApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -347,6 +468,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// CreateOrUpdate behavior, set allow_missing to true.
   ///
   /// @Snippet(path: "AppPlatform_UpdateApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateApplicationStreamInputPollingUntilDone(request:)``
+  /// - ``updateApplicationStreamInputPollingUntilDone(name:)``
+  /// - ``updateApplicationStreamInput(request:)``
+  /// - ``updateApplicationStreamInput(request:options:)``
   public func updateApplicationStreamInputPollingUntilDone(
     request: UpdateApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> UpdateApplicationStreamInputResponse {
@@ -376,6 +504,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Lists Instances in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(request:)``
+  /// - ``listInstancesByItems(request:options:)``
+  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListInstancesResponse {
@@ -385,6 +520,11 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Gets details of a single Instance.
   ///
   /// @Snippet(path: "AppPlatform_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInstance(request:)``
+  /// - ``getInstance(name:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Instance {
@@ -397,6 +537,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// will fail.
   ///
   /// @Snippet(path: "AppPlatform_CreateApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createApplicationInstances(request:)``
+  /// - ``createApplicationInstancesPollingUntilDone(request:)``
+  /// - ``createApplicationInstancesPollingUntilDone(request:options:)``
+  /// - ``createApplicationInstancesPollingUntilDone(name:)``
   public func createApplicationInstances(
     request: CreateApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -409,6 +556,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// will fail.
   ///
   /// @Snippet(path: "AppPlatform_CreateApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createApplicationInstancesPollingUntilDone(request:)``
+  /// - ``createApplicationInstancesPollingUntilDone(name:)``
+  /// - ``createApplicationInstances(request:)``
+  /// - ``createApplicationInstances(request:options:)``
   public func createApplicationInstancesPollingUntilDone(
     request: CreateApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> CreateApplicationInstancesResponse {
@@ -440,6 +594,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// is not in the Application, the RPC will fail.
   ///
   /// @Snippet(path: "AppPlatform_DeleteApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteApplicationInstances(request:)``
+  /// - ``deleteApplicationInstancesPollingUntilDone(request:)``
+  /// - ``deleteApplicationInstancesPollingUntilDone(request:options:)``
+  /// - ``deleteApplicationInstancesPollingUntilDone(name:)``
   public func deleteApplicationInstances(
     request: DeleteApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -451,6 +612,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// is not in the Application, the RPC will fail.
   ///
   /// @Snippet(path: "AppPlatform_DeleteApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteApplicationInstancesPollingUntilDone(request:)``
+  /// - ``deleteApplicationInstancesPollingUntilDone(name:)``
+  /// - ``deleteApplicationInstances(request:)``
+  /// - ``deleteApplicationInstances(request:options:)``
   public func deleteApplicationInstancesPollingUntilDone(
     request: DeleteApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -481,6 +649,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// will fail.
   ///
   /// @Snippet(path: "AppPlatform_UpdateApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateApplicationInstances(request:)``
+  /// - ``updateApplicationInstancesPollingUntilDone(request:)``
+  /// - ``updateApplicationInstancesPollingUntilDone(request:options:)``
+  /// - ``updateApplicationInstancesPollingUntilDone(name:applicationInstances:)``
   public func updateApplicationInstances(
     request: UpdateApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -493,6 +668,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// will fail.
   ///
   /// @Snippet(path: "AppPlatform_UpdateApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateApplicationInstancesPollingUntilDone(request:)``
+  /// - ``updateApplicationInstancesPollingUntilDone(name:applicationInstances:)``
+  /// - ``updateApplicationInstances(request:)``
+  /// - ``updateApplicationInstances(request:options:)``
   public func updateApplicationInstancesPollingUntilDone(
     request: UpdateApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> UpdateApplicationInstancesResponse {
@@ -522,6 +704,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Lists Drafts in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_ListDrafts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDrafts(request:)``
+  /// - ``listDraftsByItems(request:)``
+  /// - ``listDraftsByItems(request:options:)``
+  /// - ``listDraftsByItems(parent:)``
   public func listDrafts(
     request: ListDraftsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListDraftsResponse {
@@ -531,6 +720,11 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Gets details of a single Draft.
   ///
   /// @Snippet(path: "AppPlatform_GetDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDraft(request:)``
+  /// - ``getDraft(name:)``
   public func getDraft(
     request: GetDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Draft {
@@ -540,6 +734,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Creates a new Draft in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_CreateDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDraft(request:)``
+  /// - ``createDraftPollingUntilDone(request:)``
+  /// - ``createDraftPollingUntilDone(request:options:)``
+  /// - ``createDraftPollingUntilDone(parent:draft:draftId:)``
   public func createDraft(
     request: CreateDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -549,6 +750,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Creates a new Draft in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_CreateDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDraftPollingUntilDone(request:)``
+  /// - ``createDraftPollingUntilDone(parent:draft:draftId:)``
+  /// - ``createDraft(request:)``
+  /// - ``createDraft(request:options:)``
   public func createDraftPollingUntilDone(
     request: CreateDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> Draft {
@@ -576,6 +784,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Updates the parameters of a single Draft.
   ///
   /// @Snippet(path: "AppPlatform_UpdateDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDraft(request:)``
+  /// - ``updateDraftPollingUntilDone(request:)``
+  /// - ``updateDraftPollingUntilDone(request:options:)``
+  /// - ``updateDraftPollingUntilDone(draft:updateMask:)``
   public func updateDraft(
     request: UpdateDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -585,6 +800,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Updates the parameters of a single Draft.
   ///
   /// @Snippet(path: "AppPlatform_UpdateDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDraftPollingUntilDone(request:)``
+  /// - ``updateDraftPollingUntilDone(draft:updateMask:)``
+  /// - ``updateDraft(request:)``
+  /// - ``updateDraft(request:options:)``
   public func updateDraftPollingUntilDone(
     request: UpdateDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> Draft {
@@ -612,6 +834,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Deletes a single Draft.
   ///
   /// @Snippet(path: "AppPlatform_DeleteDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDraft(request:)``
+  /// - ``deleteDraftPollingUntilDone(request:)``
+  /// - ``deleteDraftPollingUntilDone(request:options:)``
+  /// - ``deleteDraftPollingUntilDone(name:)``
   public func deleteDraft(
     request: DeleteDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -621,6 +850,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Deletes a single Draft.
   ///
   /// @Snippet(path: "AppPlatform_DeleteDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDraftPollingUntilDone(request:)``
+  /// - ``deleteDraftPollingUntilDone(name:)``
+  /// - ``deleteDraft(request:)``
+  /// - ``deleteDraft(request:options:)``
   public func deleteDraftPollingUntilDone(
     request: DeleteDraftRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -648,6 +884,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Lists Processors in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_ListProcessors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listProcessors(request:)``
+  /// - ``listProcessorsByItems(request:)``
+  /// - ``listProcessorsByItems(request:options:)``
+  /// - ``listProcessorsByItems(parent:)``
   public func listProcessors(
     request: ListProcessorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListProcessorsResponse {
@@ -658,6 +901,11 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Processors.
   ///
   /// @Snippet(path: "AppPlatform_ListPrebuiltProcessors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPrebuiltProcessors(request:)``
+  /// - ``listPrebuiltProcessors(parent:)``
   public func listPrebuiltProcessors(
     request: ListPrebuiltProcessorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListPrebuiltProcessorsResponse {
@@ -667,6 +915,11 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Gets details of a single Processor.
   ///
   /// @Snippet(path: "AppPlatform_GetProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getProcessor(request:)``
+  /// - ``getProcessor(name:)``
   public func getProcessor(
     request: GetProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Processor {
@@ -676,6 +929,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Creates a new Processor in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_CreateProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createProcessor(request:)``
+  /// - ``createProcessorPollingUntilDone(request:)``
+  /// - ``createProcessorPollingUntilDone(request:options:)``
+  /// - ``createProcessorPollingUntilDone(parent:processor:processorId:)``
   public func createProcessor(
     request: CreateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -685,6 +945,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Creates a new Processor in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_CreateProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createProcessorPollingUntilDone(request:)``
+  /// - ``createProcessorPollingUntilDone(parent:processor:processorId:)``
+  /// - ``createProcessor(request:)``
+  /// - ``createProcessor(request:options:)``
   public func createProcessorPollingUntilDone(
     request: CreateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Processor {
@@ -712,6 +979,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Updates the parameters of a single Processor.
   ///
   /// @Snippet(path: "AppPlatform_UpdateProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateProcessor(request:)``
+  /// - ``updateProcessorPollingUntilDone(request:)``
+  /// - ``updateProcessorPollingUntilDone(request:options:)``
+  /// - ``updateProcessorPollingUntilDone(processor:updateMask:)``
   public func updateProcessor(
     request: UpdateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -721,6 +995,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Updates the parameters of a single Processor.
   ///
   /// @Snippet(path: "AppPlatform_UpdateProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateProcessorPollingUntilDone(request:)``
+  /// - ``updateProcessorPollingUntilDone(processor:updateMask:)``
+  /// - ``updateProcessor(request:)``
+  /// - ``updateProcessor(request:options:)``
   public func updateProcessorPollingUntilDone(
     request: UpdateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Processor {
@@ -748,6 +1029,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Deletes a single Processor.
   ///
   /// @Snippet(path: "AppPlatform_DeleteProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteProcessor(request:)``
+  /// - ``deleteProcessorPollingUntilDone(request:)``
+  /// - ``deleteProcessorPollingUntilDone(request:options:)``
+  /// - ``deleteProcessorPollingUntilDone(name:)``
   public func deleteProcessor(
     request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -757,6 +1045,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Deletes a single Processor.
   ///
   /// @Snippet(path: "AppPlatform_DeleteProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteProcessorPollingUntilDone(request:)``
+  /// - ``deleteProcessorPollingUntilDone(name:)``
+  /// - ``deleteProcessor(request:)``
+  /// - ``deleteProcessor(request:options:)``
   public func deleteProcessorPollingUntilDone(
     request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -784,6 +1079,12 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "AppPlatform_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -793,6 +1094,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AppPlatform_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -804,6 +1109,13 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppPlatform_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -826,6 +1138,11 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppPlatform_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -837,6 +1154,11 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppPlatform_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1095,6 +1417,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.AppPlatformProtocol {
+  /// Lists Applications in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListApplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listApplications(request:options:)``
   public func listApplications(request: ListApplicationsRequest) async throws
     -> GoogleCloudVideoAIV1.ListApplicationsResponse
   {
@@ -1107,6 +1436,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Applications in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListApplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listApplications(request:options:)``
   public func listApplicationsByItems(
     request: ListApplicationsRequest
   ) -> some AsyncSequence<Application, any Swift.Error> & Sendable {
@@ -1116,6 +1452,10 @@ extension Clients.AppPlatformProtocol {
   /// Lists Applications in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_ListApplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listApplications(request:options:)``
   public func listApplicationsByItems(
     request: ListApplicationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Application, any Swift.Error> & Sendable {
@@ -1130,6 +1470,13 @@ extension Clients.AppPlatformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Applications in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListApplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listApplications(request:options:)``
   public func listApplicationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Application, any Swift.Error> & Sendable {
@@ -1139,6 +1486,13 @@ extension Clients.AppPlatformProtocol {
     return self.listApplicationsByItems(request: request)
   }
 
+  /// Gets details of a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_GetApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/getApplication(request:options:)``
   public func getApplication(request: GetApplicationRequest) async throws
     -> GoogleCloudVideoAIV1.Application
   {
@@ -1151,6 +1505,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_GetApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/getApplication(request:options:)``
   public func getApplication(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.Application {
@@ -1160,6 +1521,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.getApplication(request: request)
   }
 
+  /// Creates a new Application in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_CreateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/createApplication(request:options:)``
   public func createApplication(request: CreateApplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1172,6 +1540,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Application in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_CreateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/createApplicationPollingUntilDone(request:options:)``
   public func createApplicationPollingUntilDone(request: CreateApplicationRequest) async throws
     -> Application
   {
@@ -1184,6 +1559,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Application in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_CreateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/createApplicationPollingUntilDone(request:options:)``
   public func createApplicationPollingUntilDone(
     parent: Swift.String,
     application: Application?,
@@ -1195,6 +1577,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.createApplicationPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateApplication(request:options:)``
   public func updateApplication(request: UpdateApplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1207,6 +1596,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateApplicationPollingUntilDone(request:options:)``
   public func updateApplicationPollingUntilDone(request: UpdateApplicationRequest) async throws
     -> Application
   {
@@ -1219,6 +1615,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateApplicationPollingUntilDone(request:options:)``
   public func updateApplicationPollingUntilDone(
     application: Application?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1230,6 +1633,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.updateApplicationPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteApplication(request:options:)``
   public func deleteApplication(request: DeleteApplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1242,6 +1652,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteApplicationPollingUntilDone(request:options:)``
   public func deleteApplicationPollingUntilDone(request: DeleteApplicationRequest) async throws {
     try await self.deleteApplicationPollingUntilDone(request: request, options: .init())
   }
@@ -1252,6 +1669,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteApplicationPollingUntilDone(request:options:)``
   public func deleteApplicationPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1261,6 +1685,13 @@ extension Clients.AppPlatformProtocol {
     try await self.deleteApplicationPollingUntilDone(request: request)
   }
 
+  /// Deploys a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_DeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deployApplication(request:options:)``
   public func deployApplication(request: DeployApplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1273,6 +1704,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deploys a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_DeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deployApplicationPollingUntilDone(request:options:)``
   public func deployApplicationPollingUntilDone(request: DeployApplicationRequest) async throws
     -> DeployApplicationResponse
   {
@@ -1285,6 +1723,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deploys a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_DeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deployApplicationPollingUntilDone(request:options:)``
   public func deployApplicationPollingUntilDone(
     name: Swift.String,
   ) async throws -> DeployApplicationResponse {
@@ -1294,6 +1739,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.deployApplicationPollingUntilDone(request: request)
   }
 
+  /// Undeploys a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_UndeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/undeployApplication(request:options:)``
   public func undeployApplication(request: UndeployApplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1306,6 +1758,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Undeploys a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_UndeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/undeployApplicationPollingUntilDone(request:options:)``
   public func undeployApplicationPollingUntilDone(request: UndeployApplicationRequest) async throws
     -> UndeployApplicationResponse
   {
@@ -1318,6 +1777,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Undeploys a single Application.
+  ///
+  /// @Snippet(path: "AppPlatform_UndeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/undeployApplicationPollingUntilDone(request:options:)``
   public func undeployApplicationPollingUntilDone(
     name: Swift.String,
   ) async throws -> UndeployApplicationResponse {
@@ -1327,6 +1793,16 @@ extension Clients.AppPlatformProtocol {
     return try await self.undeployApplicationPollingUntilDone(request: request)
   }
 
+  /// Adds target stream input to the Application.
+  /// If the Application is deployed, the corresponding new Application instance
+  /// will be created. If the stream has already been in the Application, the RPC
+  /// will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_AddApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/addApplicationStreamInput(request:options:)``
   public func addApplicationStreamInput(request: AddApplicationStreamInputRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1339,6 +1815,16 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds target stream input to the Application.
+  /// If the Application is deployed, the corresponding new Application instance
+  /// will be created. If the stream has already been in the Application, the RPC
+  /// will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_AddApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/addApplicationStreamInputPollingUntilDone(request:options:)``
   public func addApplicationStreamInputPollingUntilDone(request: AddApplicationStreamInputRequest)
     async throws -> AddApplicationStreamInputResponse
   {
@@ -1352,6 +1838,16 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds target stream input to the Application.
+  /// If the Application is deployed, the corresponding new Application instance
+  /// will be created. If the stream has already been in the Application, the RPC
+  /// will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_AddApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/addApplicationStreamInputPollingUntilDone(request:options:)``
   public func addApplicationStreamInputPollingUntilDone(
     name: Swift.String,
   ) async throws -> AddApplicationStreamInputResponse {
@@ -1361,6 +1857,15 @@ extension Clients.AppPlatformProtocol {
     return try await self.addApplicationStreamInputPollingUntilDone(request: request)
   }
 
+  /// Remove target stream input to the Application, if the Application is
+  /// deployed, the corresponding instance based will be deleted. If the stream
+  /// is not in the Application, the RPC will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_RemoveApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/removeApplicationStreamInput(request:options:)``
   public func removeApplicationStreamInput(request: RemoveApplicationStreamInputRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1373,6 +1878,15 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Remove target stream input to the Application, if the Application is
+  /// deployed, the corresponding instance based will be deleted. If the stream
+  /// is not in the Application, the RPC will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_RemoveApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/removeApplicationStreamInputPollingUntilDone(request:options:)``
   public func removeApplicationStreamInputPollingUntilDone(
     request: RemoveApplicationStreamInputRequest
   ) async throws -> RemoveApplicationStreamInputResponse {
@@ -1386,6 +1900,15 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Remove target stream input to the Application, if the Application is
+  /// deployed, the corresponding instance based will be deleted. If the stream
+  /// is not in the Application, the RPC will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_RemoveApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/removeApplicationStreamInputPollingUntilDone(request:options:)``
   public func removeApplicationStreamInputPollingUntilDone(
     name: Swift.String,
   ) async throws -> RemoveApplicationStreamInputResponse {
@@ -1395,6 +1918,15 @@ extension Clients.AppPlatformProtocol {
     return try await self.removeApplicationStreamInputPollingUntilDone(request: request)
   }
 
+  /// Update target stream input to the Application, if the Application is
+  /// deployed, the corresponding instance based will be deployed. For
+  /// CreateOrUpdate behavior, set allow_missing to true.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateApplicationStreamInput(request:options:)``
   public func updateApplicationStreamInput(request: UpdateApplicationStreamInputRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1407,6 +1939,15 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update target stream input to the Application, if the Application is
+  /// deployed, the corresponding instance based will be deployed. For
+  /// CreateOrUpdate behavior, set allow_missing to true.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateApplicationStreamInputPollingUntilDone(request:options:)``
   public func updateApplicationStreamInputPollingUntilDone(
     request: UpdateApplicationStreamInputRequest
   ) async throws -> UpdateApplicationStreamInputResponse {
@@ -1420,6 +1961,15 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update target stream input to the Application, if the Application is
+  /// deployed, the corresponding instance based will be deployed. For
+  /// CreateOrUpdate behavior, set allow_missing to true.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateApplicationStreamInput")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateApplicationStreamInputPollingUntilDone(request:options:)``
   public func updateApplicationStreamInputPollingUntilDone(
     name: Swift.String,
   ) async throws -> UpdateApplicationStreamInputResponse {
@@ -1429,6 +1979,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.updateApplicationStreamInputPollingUntilDone(request: request)
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listInstances(request:options:)``
   public func listInstances(request: ListInstancesRequest) async throws
     -> GoogleCloudVideoAIV1.ListInstancesResponse
   {
@@ -1441,6 +1998,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -1450,6 +2014,10 @@ extension Clients.AppPlatformProtocol {
   /// Lists Instances in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -1463,6 +2031,13 @@ extension Clients.AppPlatformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listInstances(request:options:)``
   public func listInstancesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -1472,6 +2047,13 @@ extension Clients.AppPlatformProtocol {
     return self.listInstancesByItems(request: request)
   }
 
+  /// Gets details of a single Instance.
+  ///
+  /// @Snippet(path: "AppPlatform_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/getInstance(request:options:)``
   public func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudVideoAIV1.Instance
   {
     try await self.getInstance(request: request, options: .init())
@@ -1483,6 +2065,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Instance.
+  ///
+  /// @Snippet(path: "AppPlatform_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/getInstance(request:options:)``
   public func getInstance(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.Instance {
@@ -1492,6 +2081,16 @@ extension Clients.AppPlatformProtocol {
     return try await self.getInstance(request: request)
   }
 
+  /// Adds target stream input to the Application.
+  /// If the Application is deployed, the corresponding new Application instance
+  /// will be created. If the stream has already been in the Application, the RPC
+  /// will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_CreateApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/createApplicationInstances(request:options:)``
   public func createApplicationInstances(request: CreateApplicationInstancesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1504,6 +2103,16 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds target stream input to the Application.
+  /// If the Application is deployed, the corresponding new Application instance
+  /// will be created. If the stream has already been in the Application, the RPC
+  /// will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_CreateApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/createApplicationInstancesPollingUntilDone(request:options:)``
   public func createApplicationInstancesPollingUntilDone(request: CreateApplicationInstancesRequest)
     async throws -> CreateApplicationInstancesResponse
   {
@@ -1517,6 +2126,16 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds target stream input to the Application.
+  /// If the Application is deployed, the corresponding new Application instance
+  /// will be created. If the stream has already been in the Application, the RPC
+  /// will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_CreateApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/createApplicationInstancesPollingUntilDone(request:options:)``
   public func createApplicationInstancesPollingUntilDone(
     name: Swift.String,
   ) async throws -> CreateApplicationInstancesResponse {
@@ -1526,6 +2145,15 @@ extension Clients.AppPlatformProtocol {
     return try await self.createApplicationInstancesPollingUntilDone(request: request)
   }
 
+  /// Remove target stream input to the Application, if the Application is
+  /// deployed, the corresponding instance based will be deleted. If the stream
+  /// is not in the Application, the RPC will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteApplicationInstances(request:options:)``
   public func deleteApplicationInstances(request: DeleteApplicationInstancesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1538,6 +2166,15 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Remove target stream input to the Application, if the Application is
+  /// deployed, the corresponding instance based will be deleted. If the stream
+  /// is not in the Application, the RPC will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteApplicationInstancesPollingUntilDone(request:options:)``
   public func deleteApplicationInstancesPollingUntilDone(request: DeleteApplicationInstancesRequest)
     async throws -> Instance
   {
@@ -1551,6 +2188,15 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Remove target stream input to the Application, if the Application is
+  /// deployed, the corresponding instance based will be deleted. If the stream
+  /// is not in the Application, the RPC will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteApplicationInstancesPollingUntilDone(request:options:)``
   public func deleteApplicationInstancesPollingUntilDone(
     name: Swift.String,
   ) async throws -> Instance {
@@ -1560,6 +2206,16 @@ extension Clients.AppPlatformProtocol {
     return try await self.deleteApplicationInstancesPollingUntilDone(request: request)
   }
 
+  /// Adds target stream input to the Application.
+  /// If the Application is deployed, the corresponding new Application instance
+  /// will be created. If the stream has already been in the Application, the RPC
+  /// will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateApplicationInstances(request:options:)``
   public func updateApplicationInstances(request: UpdateApplicationInstancesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1572,6 +2228,16 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds target stream input to the Application.
+  /// If the Application is deployed, the corresponding new Application instance
+  /// will be created. If the stream has already been in the Application, the RPC
+  /// will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateApplicationInstancesPollingUntilDone(request:options:)``
   public func updateApplicationInstancesPollingUntilDone(request: UpdateApplicationInstancesRequest)
     async throws -> UpdateApplicationInstancesResponse
   {
@@ -1585,6 +2251,16 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds target stream input to the Application.
+  /// If the Application is deployed, the corresponding new Application instance
+  /// will be created. If the stream has already been in the Application, the RPC
+  /// will fail.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateApplicationInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateApplicationInstancesPollingUntilDone(request:options:)``
   public func updateApplicationInstancesPollingUntilDone(
     name: Swift.String,
     applicationInstances: [UpdateApplicationInstancesRequest.UpdateApplicationInstance],
@@ -1596,6 +2272,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.updateApplicationInstancesPollingUntilDone(request: request)
   }
 
+  /// Lists Drafts in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListDrafts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listDrafts(request:options:)``
   public func listDrafts(request: ListDraftsRequest) async throws
     -> GoogleCloudVideoAIV1.ListDraftsResponse
   {
@@ -1608,6 +2291,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Drafts in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListDrafts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listDrafts(request:options:)``
   public func listDraftsByItems(
     request: ListDraftsRequest
   ) -> some AsyncSequence<Draft, any Swift.Error> & Sendable {
@@ -1617,6 +2307,10 @@ extension Clients.AppPlatformProtocol {
   /// Lists Drafts in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_ListDrafts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listDrafts(request:options:)``
   public func listDraftsByItems(
     request: ListDraftsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Draft, any Swift.Error> & Sendable {
@@ -1630,6 +2324,13 @@ extension Clients.AppPlatformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Drafts in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListDrafts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listDrafts(request:options:)``
   public func listDraftsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Draft, any Swift.Error> & Sendable {
@@ -1639,6 +2340,13 @@ extension Clients.AppPlatformProtocol {
     return self.listDraftsByItems(request: request)
   }
 
+  /// Gets details of a single Draft.
+  ///
+  /// @Snippet(path: "AppPlatform_GetDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/getDraft(request:options:)``
   public func getDraft(request: GetDraftRequest) async throws -> GoogleCloudVideoAIV1.Draft {
     try await self.getDraft(request: request, options: .init())
   }
@@ -1649,6 +2357,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Draft.
+  ///
+  /// @Snippet(path: "AppPlatform_GetDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/getDraft(request:options:)``
   public func getDraft(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.Draft {
@@ -1658,6 +2373,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.getDraft(request: request)
   }
 
+  /// Creates a new Draft in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_CreateDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/createDraft(request:options:)``
   public func createDraft(request: CreateDraftRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createDraft(request: request, options: .init())
   }
@@ -1668,6 +2390,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Draft in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_CreateDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/createDraftPollingUntilDone(request:options:)``
   public func createDraftPollingUntilDone(request: CreateDraftRequest) async throws -> Draft {
     return try await self.createDraftPollingUntilDone(request: request, options: .init())
   }
@@ -1678,6 +2407,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Draft in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_CreateDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/createDraftPollingUntilDone(request:options:)``
   public func createDraftPollingUntilDone(
     parent: Swift.String,
     draft: Draft?,
@@ -1691,6 +2427,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.createDraftPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Draft.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateDraft(request:options:)``
   public func updateDraft(request: UpdateDraftRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateDraft(request: request, options: .init())
   }
@@ -1701,6 +2444,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Draft.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateDraftPollingUntilDone(request:options:)``
   public func updateDraftPollingUntilDone(request: UpdateDraftRequest) async throws -> Draft {
     return try await self.updateDraftPollingUntilDone(request: request, options: .init())
   }
@@ -1711,6 +2461,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Draft.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateDraftPollingUntilDone(request:options:)``
   public func updateDraftPollingUntilDone(
     draft: Draft?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1722,6 +2479,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.updateDraftPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Draft.
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteDraft(request:options:)``
   public func deleteDraft(request: DeleteDraftRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteDraft(request: request, options: .init())
   }
@@ -1732,6 +2496,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Draft.
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteDraftPollingUntilDone(request:options:)``
   public func deleteDraftPollingUntilDone(request: DeleteDraftRequest) async throws {
     try await self.deleteDraftPollingUntilDone(request: request, options: .init())
   }
@@ -1742,6 +2513,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Draft.
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteDraft")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteDraftPollingUntilDone(request:options:)``
   public func deleteDraftPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1751,6 +2529,13 @@ extension Clients.AppPlatformProtocol {
     try await self.deleteDraftPollingUntilDone(request: request)
   }
 
+  /// Lists Processors in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListProcessors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listProcessors(request:options:)``
   public func listProcessors(request: ListProcessorsRequest) async throws
     -> GoogleCloudVideoAIV1.ListProcessorsResponse
   {
@@ -1763,6 +2548,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Processors in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListProcessors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listProcessors(request:options:)``
   public func listProcessorsByItems(
     request: ListProcessorsRequest
   ) -> some AsyncSequence<Processor, any Swift.Error> & Sendable {
@@ -1772,6 +2564,10 @@ extension Clients.AppPlatformProtocol {
   /// Lists Processors in a given project and location.
   ///
   /// @Snippet(path: "AppPlatform_ListProcessors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listProcessors(request:options:)``
   public func listProcessorsByItems(
     request: ListProcessorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Processor, any Swift.Error> & Sendable {
@@ -1785,6 +2581,13 @@ extension Clients.AppPlatformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Processors in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_ListProcessors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listProcessors(request:options:)``
   public func listProcessorsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Processor, any Swift.Error> & Sendable {
@@ -1794,6 +2597,14 @@ extension Clients.AppPlatformProtocol {
     return self.listProcessorsByItems(request: request)
   }
 
+  /// ListPrebuiltProcessors is a custom pass-through verb that Lists Prebuilt
+  /// Processors.
+  ///
+  /// @Snippet(path: "AppPlatform_ListPrebuiltProcessors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listPrebuiltProcessors(request:options:)``
   public func listPrebuiltProcessors(request: ListPrebuiltProcessorsRequest) async throws
     -> GoogleCloudVideoAIV1.ListPrebuiltProcessorsResponse
   {
@@ -1806,6 +2617,14 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// ListPrebuiltProcessors is a custom pass-through verb that Lists Prebuilt
+  /// Processors.
+  ///
+  /// @Snippet(path: "AppPlatform_ListPrebuiltProcessors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listPrebuiltProcessors(request:options:)``
   public func listPrebuiltProcessors(
     parent: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.ListPrebuiltProcessorsResponse {
@@ -1815,6 +2634,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.listPrebuiltProcessors(request: request)
   }
 
+  /// Gets details of a single Processor.
+  ///
+  /// @Snippet(path: "AppPlatform_GetProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/getProcessor(request:options:)``
   public func getProcessor(request: GetProcessorRequest) async throws
     -> GoogleCloudVideoAIV1.Processor
   {
@@ -1827,6 +2653,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Processor.
+  ///
+  /// @Snippet(path: "AppPlatform_GetProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/getProcessor(request:options:)``
   public func getProcessor(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.Processor {
@@ -1836,6 +2669,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.getProcessor(request: request)
   }
 
+  /// Creates a new Processor in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_CreateProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/createProcessor(request:options:)``
   public func createProcessor(request: CreateProcessorRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1848,6 +2688,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Processor in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_CreateProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/createProcessorPollingUntilDone(request:options:)``
   public func createProcessorPollingUntilDone(request: CreateProcessorRequest) async throws
     -> Processor
   {
@@ -1860,6 +2707,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Processor in a given project and location.
+  ///
+  /// @Snippet(path: "AppPlatform_CreateProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/createProcessorPollingUntilDone(request:options:)``
   public func createProcessorPollingUntilDone(
     parent: Swift.String,
     processor: Processor?,
@@ -1873,6 +2727,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.createProcessorPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Processor.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateProcessor(request:options:)``
   public func updateProcessor(request: UpdateProcessorRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1885,6 +2746,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Processor.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateProcessorPollingUntilDone(request:options:)``
   public func updateProcessorPollingUntilDone(request: UpdateProcessorRequest) async throws
     -> Processor
   {
@@ -1897,6 +2765,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Processor.
+  ///
+  /// @Snippet(path: "AppPlatform_UpdateProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/updateProcessorPollingUntilDone(request:options:)``
   public func updateProcessorPollingUntilDone(
     processor: Processor?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1908,6 +2783,13 @@ extension Clients.AppPlatformProtocol {
     return try await self.updateProcessorPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Processor.
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteProcessor(request:options:)``
   public func deleteProcessor(request: DeleteProcessorRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1920,6 +2802,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Processor.
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteProcessorPollingUntilDone(request:options:)``
   public func deleteProcessorPollingUntilDone(request: DeleteProcessorRequest) async throws {
     try await self.deleteProcessorPollingUntilDone(request: request, options: .init())
   }
@@ -1930,6 +2819,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Processor.
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteProcessor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteProcessorPollingUntilDone(request:options:)``
   public func deleteProcessorPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1939,6 +2835,13 @@ extension Clients.AppPlatformProtocol {
     try await self.deleteProcessorPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "AppPlatform_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1951,6 +2854,13 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "AppPlatform_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1960,6 +2870,10 @@ extension Clients.AppPlatformProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "AppPlatform_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1973,6 +2887,13 @@ extension Clients.AppPlatformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "AppPlatform_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1985,6 +2906,15 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppPlatform_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1997,6 +2927,15 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppPlatform_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2008,6 +2947,10 @@ extension Clients.AppPlatformProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppPlatform_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2021,6 +2964,15 @@ extension Clients.AppPlatformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppPlatform_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -2032,6 +2984,9 @@ extension Clients.AppPlatformProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2044,6 +2999,9 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -2053,6 +3011,15 @@ extension Clients.AppPlatformProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -2063,6 +3030,15 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppPlatform_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -2072,6 +3048,15 @@ extension Clients.AppPlatformProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppPlatform_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -2082,6 +3067,15 @@ extension Clients.AppPlatformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppPlatform_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppPlatformClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

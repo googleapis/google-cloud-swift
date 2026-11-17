@@ -23,6 +23,10 @@ import Foundation
 /// Service for the `resourceRecordSets` resource.
 ///
 /// @Snippet(path: "resourceRecordSetsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ResourceRecordSetsProtocol``
 public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol, Sendable {
   let inner: any Clients.ResourceRecordSetsStub
 
@@ -39,6 +43,11 @@ public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol,
   /// Creates a new ResourceRecordSet.
   ///
   /// @Snippet(path: "resourceRecordSets_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``create(request:)``
+  /// - ``create(project:managedZone:body:)``
   public func create(
     request: ResourceRecordSetsClient.CreateRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResourceRecordSet {
@@ -48,6 +57,11 @@ public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol,
   /// Deletes a previously created ResourceRecordSet.
   ///
   /// @Snippet(path: "resourceRecordSets_delete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``delete(request:)``
+  /// - ``delete(project:managedZone:name:type:)``
   public func delete(
     request: ResourceRecordSetsClient.DeleteRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResourceRecordSetsDeleteResponse {
@@ -57,6 +71,11 @@ public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol,
   /// Fetches the representation of an existing ResourceRecordSet.
   ///
   /// @Snippet(path: "resourceRecordSets_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``get(request:)``
+  /// - ``get(project:managedZone:name:type:)``
   public func `get`(
     request: ResourceRecordSetsClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResourceRecordSet {
@@ -66,6 +85,13 @@ public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol,
   /// Enumerates ResourceRecordSets that you have created but not yet deleted.
   ///
   /// @Snippet(path: "resourceRecordSets_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``list(request:)``
+  /// - ``listByItems(request:)``
+  /// - ``listByItems(request:options:)``
+  /// - ``listByItems(project:managedZone:)``
   public func list(
     request: ResourceRecordSetsClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResourceRecordSetsListResponse {
@@ -75,6 +101,11 @@ public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol,
   /// Applies a partial update to an existing ResourceRecordSet.
   ///
   /// @Snippet(path: "resourceRecordSets_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``patch(request:)``
+  /// - ``patch(project:managedZone:name:type:body:)``
   public func patch(
     request: ResourceRecordSetsClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResourceRecordSet {
@@ -118,6 +149,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ResourceRecordSetsProtocol {
+  /// Creates a new ResourceRecordSet.
+  ///
+  /// @Snippet(path: "resourceRecordSets_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ResourceRecordSetsClient/create(request:options:)``
   public func create(request: ResourceRecordSetsClient.CreateRequest) async throws
     -> ResourceRecordSet
   {
@@ -130,6 +168,13 @@ extension Clients.ResourceRecordSetsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ResourceRecordSet.
+  ///
+  /// @Snippet(path: "resourceRecordSets_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ResourceRecordSetsClient/create(request:options:)``
   public func create(
     project: Swift.String,
     managedZone: Swift.String,
@@ -143,6 +188,13 @@ extension Clients.ResourceRecordSetsProtocol {
     return try await self.create(request: request)
   }
 
+  /// Deletes a previously created ResourceRecordSet.
+  ///
+  /// @Snippet(path: "resourceRecordSets_delete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ResourceRecordSetsClient/delete(request:options:)``
   public func delete(request: ResourceRecordSetsClient.DeleteRequest) async throws
     -> ResourceRecordSetsDeleteResponse
   {
@@ -155,6 +207,13 @@ extension Clients.ResourceRecordSetsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a previously created ResourceRecordSet.
+  ///
+  /// @Snippet(path: "resourceRecordSets_delete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ResourceRecordSetsClient/delete(request:options:)``
   public func delete(
     project: Swift.String,
     managedZone: Swift.String,
@@ -170,6 +229,13 @@ extension Clients.ResourceRecordSetsProtocol {
     return try await self.delete(request: request)
   }
 
+  /// Fetches the representation of an existing ResourceRecordSet.
+  ///
+  /// @Snippet(path: "resourceRecordSets_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ResourceRecordSetsClient/get(request:options:)``
   public func `get`(request: ResourceRecordSetsClient.GetRequest) async throws -> ResourceRecordSet
   {
     try await self.`get`(request: request, options: .init())
@@ -181,6 +247,13 @@ extension Clients.ResourceRecordSetsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches the representation of an existing ResourceRecordSet.
+  ///
+  /// @Snippet(path: "resourceRecordSets_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ResourceRecordSetsClient/get(request:options:)``
   public func `get`(
     project: Swift.String,
     managedZone: Swift.String,
@@ -196,6 +269,13 @@ extension Clients.ResourceRecordSetsProtocol {
     return try await self.`get`(request: request)
   }
 
+  /// Enumerates ResourceRecordSets that you have created but not yet deleted.
+  ///
+  /// @Snippet(path: "resourceRecordSets_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ResourceRecordSetsClient/list(request:options:)``
   public func list(request: ResourceRecordSetsClient.ListRequest) async throws
     -> ResourceRecordSetsListResponse
   {
@@ -208,6 +288,13 @@ extension Clients.ResourceRecordSetsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enumerates ResourceRecordSets that you have created but not yet deleted.
+  ///
+  /// @Snippet(path: "resourceRecordSets_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ResourceRecordSetsClient/list(request:options:)``
   public func listByItems(
     request: ResourceRecordSetsClient.ListRequest
   ) -> some AsyncSequence<ResourceRecordSet, any Swift.Error> & Sendable {
@@ -217,6 +304,10 @@ extension Clients.ResourceRecordSetsProtocol {
   /// Enumerates ResourceRecordSets that you have created but not yet deleted.
   ///
   /// @Snippet(path: "resourceRecordSets_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ResourceRecordSetsClient/list(request:options:)``
   public func listByItems(
     request: ResourceRecordSetsClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ResourceRecordSet, any Swift.Error> & Sendable {
@@ -230,6 +321,13 @@ extension Clients.ResourceRecordSetsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Enumerates ResourceRecordSets that you have created but not yet deleted.
+  ///
+  /// @Snippet(path: "resourceRecordSets_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ResourceRecordSetsClient/list(request:options:)``
   public func listByItems(
     project: Swift.String,
     managedZone: Swift.String,
@@ -241,6 +339,13 @@ extension Clients.ResourceRecordSetsProtocol {
     return self.listByItems(request: request)
   }
 
+  /// Applies a partial update to an existing ResourceRecordSet.
+  ///
+  /// @Snippet(path: "resourceRecordSets_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ResourceRecordSetsClient/patch(request:options:)``
   public func patch(request: ResourceRecordSetsClient.PatchRequest) async throws
     -> ResourceRecordSet
   {
@@ -253,6 +358,13 @@ extension Clients.ResourceRecordSetsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Applies a partial update to an existing ResourceRecordSet.
+  ///
+  /// @Snippet(path: "resourceRecordSets_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ResourceRecordSetsClient/patch(request:options:)``
   public func patch(
     project: Swift.String,
     managedZone: Swift.String,

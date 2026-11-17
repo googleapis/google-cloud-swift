@@ -24,6 +24,10 @@ import Foundation
 /// Service for managing customer support event subscriptions.
 ///
 /// @Snippet(path: "SupportEventSubscriptionServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SupportEventSubscriptionServiceProtocol``
 public final class SupportEventSubscriptionServiceClient: Clients
     .SupportEventSubscriptionServiceProtocol, Sendable
 {
@@ -43,6 +47,11 @@ public final class SupportEventSubscriptionServiceClient: Clients
   /// Creates a support event subscription for an organization.
   ///
   /// @Snippet(path: "SupportEventSubscriptionService_CreateSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSupportEventSubscription(request:)``
+  /// - ``createSupportEventSubscription(parent:supportEventSubscription:)``
   public func createSupportEventSubscription(
     request: CreateSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -52,6 +61,11 @@ public final class SupportEventSubscriptionServiceClient: Clients
   /// Gets a support event subscription.
   ///
   /// @Snippet(path: "SupportEventSubscriptionService_GetSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSupportEventSubscription(request:)``
+  /// - ``getSupportEventSubscription(name:)``
   public func getSupportEventSubscription(
     request: GetSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -61,6 +75,13 @@ public final class SupportEventSubscriptionServiceClient: Clients
   /// Lists support event subscriptions for an organization.
   ///
   /// @Snippet(path: "SupportEventSubscriptionService_ListSupportEventSubscriptions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSupportEventSubscriptions(request:)``
+  /// - ``listSupportEventSubscriptionsByItems(request:)``
+  /// - ``listSupportEventSubscriptionsByItems(request:options:)``
+  /// - ``listSupportEventSubscriptionsByItems(parent:)``
   public func listSupportEventSubscriptions(
     request: ListSupportEventSubscriptionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.ListSupportEventSubscriptionsResponse {
@@ -70,6 +91,11 @@ public final class SupportEventSubscriptionServiceClient: Clients
   /// Updates a support event subscription.
   ///
   /// @Snippet(path: "SupportEventSubscriptionService_UpdateSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSupportEventSubscription(request:)``
+  /// - ``updateSupportEventSubscription(supportEventSubscription:updateMask:)``
   public func updateSupportEventSubscription(
     request: UpdateSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -79,6 +105,11 @@ public final class SupportEventSubscriptionServiceClient: Clients
   /// Soft deletes a support event subscription.
   ///
   /// @Snippet(path: "SupportEventSubscriptionService_DeleteSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSupportEventSubscription(request:)``
+  /// - ``deleteSupportEventSubscription(name:)``
   public func deleteSupportEventSubscription(
     request: DeleteSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -88,6 +119,10 @@ public final class SupportEventSubscriptionServiceClient: Clients
   /// Undeletes a support event subscription.
   ///
   /// @Snippet(path: "SupportEventSubscriptionService_UndeleteSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``undeleteSupportEventSubscription(request:)``
   public func undeleteSupportEventSubscription(
     request: UndeleteSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -127,6 +162,11 @@ public final class SupportEventSubscriptionServiceClient: Clients
   /// ```
   ///
   /// @Snippet(path: "SupportEventSubscriptionService_ExpungeSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``expungeSupportEventSubscription(request:)``
+  /// - ``expungeSupportEventSubscription(name:)``
   public func expungeSupportEventSubscription(
     request: ExpungeSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -180,6 +220,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.SupportEventSubscriptionServiceProtocol {
+  /// Creates a support event subscription for an organization.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_CreateSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/createSupportEventSubscription(request:options:)``
   public func createSupportEventSubscription(request: CreateSupportEventSubscriptionRequest)
     async throws -> GoogleCloudSupportV2.SupportEventSubscription
   {
@@ -192,6 +239,13 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a support event subscription for an organization.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_CreateSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/createSupportEventSubscription(request:options:)``
   public func createSupportEventSubscription(
     parent: Swift.String,
     supportEventSubscription: SupportEventSubscription?,
@@ -203,6 +257,13 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     return try await self.createSupportEventSubscription(request: request)
   }
 
+  /// Gets a support event subscription.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_GetSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/getSupportEventSubscription(request:options:)``
   public func getSupportEventSubscription(request: GetSupportEventSubscriptionRequest) async throws
     -> GoogleCloudSupportV2.SupportEventSubscription
   {
@@ -215,6 +276,13 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a support event subscription.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_GetSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/getSupportEventSubscription(request:options:)``
   public func getSupportEventSubscription(
     name: Swift.String,
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -224,6 +292,13 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     return try await self.getSupportEventSubscription(request: request)
   }
 
+  /// Lists support event subscriptions for an organization.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_ListSupportEventSubscriptions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/listSupportEventSubscriptions(request:options:)``
   public func listSupportEventSubscriptions(request: ListSupportEventSubscriptionsRequest)
     async throws -> GoogleCloudSupportV2.ListSupportEventSubscriptionsResponse
   {
@@ -236,6 +311,13 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists support event subscriptions for an organization.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_ListSupportEventSubscriptions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/listSupportEventSubscriptions(request:options:)``
   public func listSupportEventSubscriptionsByItems(
     request: ListSupportEventSubscriptionsRequest
   ) -> some AsyncSequence<SupportEventSubscription, any Swift.Error> & Sendable {
@@ -245,6 +327,10 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
   /// Lists support event subscriptions for an organization.
   ///
   /// @Snippet(path: "SupportEventSubscriptionService_ListSupportEventSubscriptions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/listSupportEventSubscriptions(request:options:)``
   public func listSupportEventSubscriptionsByItems(
     request: ListSupportEventSubscriptionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SupportEventSubscription, any Swift.Error> & Sendable {
@@ -259,6 +345,13 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists support event subscriptions for an organization.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_ListSupportEventSubscriptions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/listSupportEventSubscriptions(request:options:)``
   public func listSupportEventSubscriptionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SupportEventSubscription, any Swift.Error> & Sendable {
@@ -268,6 +361,13 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     return self.listSupportEventSubscriptionsByItems(request: request)
   }
 
+  /// Updates a support event subscription.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_UpdateSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/updateSupportEventSubscription(request:options:)``
   public func updateSupportEventSubscription(request: UpdateSupportEventSubscriptionRequest)
     async throws -> GoogleCloudSupportV2.SupportEventSubscription
   {
@@ -280,6 +380,13 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a support event subscription.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_UpdateSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/updateSupportEventSubscription(request:options:)``
   public func updateSupportEventSubscription(
     supportEventSubscription: SupportEventSubscription?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -291,6 +398,13 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     return try await self.updateSupportEventSubscription(request: request)
   }
 
+  /// Soft deletes a support event subscription.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_DeleteSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/deleteSupportEventSubscription(request:options:)``
   public func deleteSupportEventSubscription(request: DeleteSupportEventSubscriptionRequest)
     async throws -> GoogleCloudSupportV2.SupportEventSubscription
   {
@@ -303,6 +417,13 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Soft deletes a support event subscription.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_DeleteSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/deleteSupportEventSubscription(request:options:)``
   public func deleteSupportEventSubscription(
     name: Swift.String,
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -312,6 +433,13 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     return try await self.deleteSupportEventSubscription(request: request)
   }
 
+  /// Undeletes a support event subscription.
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_UndeleteSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/undeleteSupportEventSubscription(request:options:)``
   public func undeleteSupportEventSubscription(request: UndeleteSupportEventSubscriptionRequest)
     async throws -> GoogleCloudSupportV2.SupportEventSubscription
   {
@@ -324,6 +452,43 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Expunges a support event subscription.
+  ///
+  /// EXAMPLES:
+  ///
+  /// cURL:
+  ///
+  /// ```shell
+  /// support_event_subscription="organizations/123456789/supportEventSubscriptions/abcdef123456"
+  /// curl \
+  ///   --request POST \
+  ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+  ///   "https://cloudsupport.googleapis.com/v2/$support_event_subscription:expunge"
+  /// ```
+  ///
+  /// Python:
+  ///
+  /// ```python
+  /// import googleapiclient.discovery
+  ///
+  /// api_version = "v2"
+  /// supportApiService = googleapiclient.discovery.build(
+  ///     serviceName="cloudsupport",
+  ///     version=api_version,
+  ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+  /// )
+  ///
+  /// request = supportApiService.supportEventSubscriptions().expunge(
+  ///     name="organizations/123456789/supportEventSubscriptions/abcdef123456"
+  /// )
+  /// print(request.execute())
+  /// ```
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_ExpungeSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/expungeSupportEventSubscription(request:options:)``
   public func expungeSupportEventSubscription(request: ExpungeSupportEventSubscriptionRequest)
     async throws
   {
@@ -336,6 +501,43 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Expunges a support event subscription.
+  ///
+  /// EXAMPLES:
+  ///
+  /// cURL:
+  ///
+  /// ```shell
+  /// support_event_subscription="organizations/123456789/supportEventSubscriptions/abcdef123456"
+  /// curl \
+  ///   --request POST \
+  ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+  ///   "https://cloudsupport.googleapis.com/v2/$support_event_subscription:expunge"
+  /// ```
+  ///
+  /// Python:
+  ///
+  /// ```python
+  /// import googleapiclient.discovery
+  ///
+  /// api_version = "v2"
+  /// supportApiService = googleapiclient.discovery.build(
+  ///     serviceName="cloudsupport",
+  ///     version=api_version,
+  ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+  /// )
+  ///
+  /// request = supportApiService.supportEventSubscriptions().expunge(
+  ///     name="organizations/123456789/supportEventSubscriptions/abcdef123456"
+  /// )
+  /// print(request.execute())
+  /// ```
+  ///
+  /// @Snippet(path: "SupportEventSubscriptionService_ExpungeSupportEventSubscription")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SupportEventSubscriptionServiceClient/expungeSupportEventSubscription(request:options:)``
   public func expungeSupportEventSubscription(
     name: Swift.String,
   ) async throws {

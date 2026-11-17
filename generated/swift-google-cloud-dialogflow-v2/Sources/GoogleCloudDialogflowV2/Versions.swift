@@ -29,6 +29,10 @@
   /// [google.cloud.dialogflow.v2.Version]: <doc:Version>
   ///
   /// @Snippet(path: "VersionsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/VersionsProtocol``
   public final class VersionsClient: Clients.VersionsProtocol, Sendable {
     let inner: any Clients.VersionsStub
 
@@ -45,6 +49,13 @@
     /// Returns the list of all versions of the specified agent.
     ///
     /// @Snippet(path: "Versions_ListVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listVersions(request:)``
+    /// - ``listVersionsByItems(request:)``
+    /// - ``listVersionsByItems(request:options:)``
+    /// - ``listVersionsByItems(parent:)``
     public func listVersions(
       request: ListVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListVersionsResponse {
@@ -54,6 +65,11 @@
     /// Retrieves the specified agent version.
     ///
     /// @Snippet(path: "Versions_GetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getVersion(request:)``
+    /// - ``getVersion(name:)``
     public func getVersion(
       request: GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Version {
@@ -65,6 +81,11 @@
     /// The new version points to the agent instance in the "default" environment.
     ///
     /// @Snippet(path: "Versions_CreateVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createVersion(request:)``
+    /// - ``createVersion(parent:version:)``
     public func createVersion(
       request: CreateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Version {
@@ -78,6 +99,11 @@
     /// properties of the version resource.
     ///
     /// @Snippet(path: "Versions_UpdateVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateVersion(request:)``
+    /// - ``updateVersion(version:updateMask:)``
     public func updateVersion(
       request: UpdateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Version {
@@ -87,6 +113,11 @@
     /// Delete the specified agent version.
     ///
     /// @Snippet(path: "Versions_DeleteVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteVersion(request:)``
+    /// - ``deleteVersion(name:)``
     public func deleteVersion(
       request: DeleteVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -113,6 +144,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Versions_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -122,6 +159,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Versions_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -133,6 +174,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Versions_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -155,6 +203,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Versions_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -218,6 +271,13 @@
 
   // Default implementations
   extension Clients.VersionsProtocol {
+    /// Returns the list of all versions of the specified agent.
+    ///
+    /// @Snippet(path: "Versions_ListVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/listVersions(request:options:)``
     public func listVersions(request: ListVersionsRequest) async throws
       -> GoogleCloudDialogflowV2.ListVersionsResponse
     {
@@ -230,6 +290,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of all versions of the specified agent.
+    ///
+    /// @Snippet(path: "Versions_ListVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/listVersions(request:options:)``
     public func listVersionsByItems(
       request: ListVersionsRequest
     ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -239,6 +306,10 @@
     /// Returns the list of all versions of the specified agent.
     ///
     /// @Snippet(path: "Versions_ListVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/listVersions(request:options:)``
     public func listVersionsByItems(
       request: ListVersionsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -253,6 +324,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of all versions of the specified agent.
+    ///
+    /// @Snippet(path: "Versions_ListVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/listVersions(request:options:)``
     public func listVersionsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -262,6 +340,13 @@
       return self.listVersionsByItems(request: request)
     }
 
+    /// Retrieves the specified agent version.
+    ///
+    /// @Snippet(path: "Versions_GetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/getVersion(request:options:)``
     public func getVersion(request: GetVersionRequest) async throws
       -> GoogleCloudDialogflowV2.Version
     {
@@ -274,6 +359,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified agent version.
+    ///
+    /// @Snippet(path: "Versions_GetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/getVersion(request:options:)``
     public func getVersion(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.Version {
@@ -283,6 +375,15 @@
       return try await self.getVersion(request: request)
     }
 
+    /// Creates an agent version.
+    ///
+    /// The new version points to the agent instance in the "default" environment.
+    ///
+    /// @Snippet(path: "Versions_CreateVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/createVersion(request:options:)``
     public func createVersion(request: CreateVersionRequest) async throws
       -> GoogleCloudDialogflowV2.Version
     {
@@ -295,6 +396,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an agent version.
+    ///
+    /// The new version points to the agent instance in the "default" environment.
+    ///
+    /// @Snippet(path: "Versions_CreateVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/createVersion(request:options:)``
     public func createVersion(
       parent: Swift.String,
       version: Version?,
@@ -306,6 +416,17 @@
       return try await self.createVersion(request: request)
     }
 
+    /// Updates the specified agent version.
+    ///
+    /// Note that this method does not allow you to update the state of the agent
+    /// the given version points to. It allows you to update only mutable
+    /// properties of the version resource.
+    ///
+    /// @Snippet(path: "Versions_UpdateVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/updateVersion(request:options:)``
     public func updateVersion(request: UpdateVersionRequest) async throws
       -> GoogleCloudDialogflowV2.Version
     {
@@ -318,6 +439,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified agent version.
+    ///
+    /// Note that this method does not allow you to update the state of the agent
+    /// the given version points to. It allows you to update only mutable
+    /// properties of the version resource.
+    ///
+    /// @Snippet(path: "Versions_UpdateVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/updateVersion(request:options:)``
     public func updateVersion(
       version: Version?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -329,6 +461,13 @@
       return try await self.updateVersion(request: request)
     }
 
+    /// Delete the specified agent version.
+    ///
+    /// @Snippet(path: "Versions_DeleteVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/deleteVersion(request:options:)``
     public func deleteVersion(request: DeleteVersionRequest) async throws {
       try await self.deleteVersion(request: request, options: .init())
     }
@@ -339,6 +478,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Delete the specified agent version.
+    ///
+    /// @Snippet(path: "Versions_DeleteVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/deleteVersion(request:options:)``
     public func deleteVersion(
       name: Swift.String,
     ) async throws {
@@ -348,6 +494,30 @@
       try await self.deleteVersion(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Versions_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -360,6 +530,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Versions_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -386,6 +580,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Versions_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -399,6 +597,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "Versions_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -411,6 +616,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Versions_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -423,6 +637,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Versions_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -434,6 +657,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Versions_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -447,6 +674,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Versions_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -458,6 +694,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -470,6 +709,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -479,6 +721,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Versions_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -489,6 +740,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Versions_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VersionsClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

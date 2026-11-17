@@ -24,6 +24,10 @@
   /// Service for the `networkProfiles` resource.
   ///
   /// @Snippet(path: "networkProfilesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/NetworkProfilesProtocol``
   public final class NetworkProfilesClient: Clients.NetworkProfilesProtocol, Sendable {
     let inner: any Clients.NetworkProfilesStub
 
@@ -40,6 +44,11 @@
     /// Returns the specified network profile.
     ///
     /// @Snippet(path: "networkProfiles_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:networkProfile:)``
     public func `get`(
       request: NetworkProfilesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkProfile {
@@ -50,6 +59,13 @@
     /// project.
     ///
     /// @Snippet(path: "networkProfiles_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:)``
     public func list(
       request: NetworkProfilesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkProfilesListResponse {
@@ -78,6 +94,13 @@
 
   // Default implementations
   extension Clients.NetworkProfilesProtocol {
+    /// Returns the specified network profile.
+    ///
+    /// @Snippet(path: "networkProfiles_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkProfilesClient/get(request:options:)``
     public func `get`(request: NetworkProfilesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.NetworkProfile
     {
@@ -90,6 +113,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified network profile.
+    ///
+    /// @Snippet(path: "networkProfiles_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkProfilesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       networkProfile: Swift.String,
@@ -101,6 +131,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Retrieves a list of network profiles available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "networkProfiles_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkProfilesClient/list(request:options:)``
     public func list(request: NetworkProfilesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.NetworkProfilesListResponse
     {
@@ -113,6 +151,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of network profiles available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "networkProfiles_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkProfilesClient/list(request:options:)``
     public func listByItems(
       request: NetworkProfilesClient.ListRequest
     ) -> some AsyncSequence<NetworkProfile, any Swift.Error> & Sendable {
@@ -123,6 +169,10 @@
     /// project.
     ///
     /// @Snippet(path: "networkProfiles_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkProfilesClient/list(request:options:)``
     public func listByItems(
       request: NetworkProfilesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<NetworkProfile, any Swift.Error> & Sendable {
@@ -137,6 +187,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of network profiles available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "networkProfiles_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkProfilesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<NetworkProfile, any Swift.Error> & Sendable {

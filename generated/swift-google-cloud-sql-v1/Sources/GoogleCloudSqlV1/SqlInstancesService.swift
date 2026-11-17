@@ -24,6 +24,10 @@
   /// Service to manage Cloud SQL instances.
   ///
   /// @Snippet(path: "SqlInstancesServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlInstancesServiceProtocol``
   public final class SqlInstancesServiceClient: Clients.SqlInstancesServiceProtocol, Sendable {
     let inner: any Clients.SqlInstancesServiceStub
 
@@ -47,6 +51,10 @@
     /// new server certificate.
     ///
     /// @Snippet(path: "SqlInstancesService_AddServerCa")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addServerCa(request:)``
     public func addServerCa(
       request: SqlInstancesAddServerCaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -62,6 +70,10 @@
     /// instead.
     ///
     /// @Snippet(path: "SqlInstancesService_AddServerCertificate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addServerCertificate(request:)``
     public func addServerCertificate(
       request: SqlInstancesAddServerCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -73,6 +85,10 @@
     /// this operation replaces that version.
     ///
     /// @Snippet(path: "SqlInstancesService_AddEntraIdCertificate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addEntraIdCertificate(request:)``
     public func addEntraIdCertificate(
       request: SqlInstancesAddEntraIdCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -83,6 +99,10 @@
     /// operation might cause your instance to restart.
     ///
     /// @Snippet(path: "SqlInstancesService_Clone")
+    ///
+    /// ## See Also
+    ///
+    /// - ``clone(request:)``
     public func clone(
       request: SqlInstancesCloneRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -92,6 +112,10 @@
     /// Deletes a Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlInstancesService_Delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
     public func delete(
       request: SqlInstancesDeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -102,6 +126,10 @@
     /// external database server.
     ///
     /// @Snippet(path: "SqlInstancesService_DemoteMaster")
+    ///
+    /// ## See Also
+    ///
+    /// - ``demoteMaster(request:)``
     public func demoteMaster(
       request: SqlInstancesDemoteMasterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -112,6 +140,10 @@
     /// for an external database server.
     ///
     /// @Snippet(path: "SqlInstancesService_Demote")
+    ///
+    /// ## See Also
+    ///
+    /// - ``demote(request:)``
     public func demote(
       request: SqlInstancesDemoteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -122,6 +154,10 @@
     /// dump or CSV file.
     ///
     /// @Snippet(path: "SqlInstancesService_Export")
+    ///
+    /// ## See Also
+    ///
+    /// - ``export(request:)``
     public func export(
       request: SqlInstancesExportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -138,6 +174,10 @@
     /// its failover replica instance.
     ///
     /// @Snippet(path: "SqlInstancesService_Failover")
+    ///
+    /// ## See Also
+    ///
+    /// - ``failover(request:)``
     public func failover(
       request: SqlInstancesFailoverRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -147,6 +187,10 @@
     /// Reencrypt CMEK instance with latest key version.
     ///
     /// @Snippet(path: "SqlInstancesService_Reencrypt")
+    ///
+    /// ## See Also
+    ///
+    /// - ``reencrypt(request:)``
     public func reencrypt(
       request: SqlInstancesReencryptRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -156,6 +200,10 @@
     /// Retrieves a resource containing information about a Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlInstancesService_Get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
     public func `get`(
       request: SqlInstancesGetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.DatabaseInstance {
@@ -166,6 +214,10 @@
     /// Cloud Storage.
     ///
     /// @Snippet(path: "SqlInstancesService_Import")
+    ///
+    /// ## See Also
+    ///
+    /// - ``import(request:)``
     public func `import`(
       request: SqlInstancesImportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -175,6 +227,10 @@
     /// Creates a new Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlInstancesService_Insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
     public func insert(
       request: SqlInstancesInsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -184,6 +240,12 @@
     /// Lists instances under a given project.
     ///
     /// @Snippet(path: "SqlInstancesService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: SqlInstancesListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.InstancesListResponse {
@@ -197,6 +259,10 @@
     /// has previously rotated out.
     ///
     /// @Snippet(path: "SqlInstancesService_ListServerCas")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listServerCas(request:)``
     public func listServerCas(
       request: SqlInstancesListServerCasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.InstancesListServerCasResponse {
@@ -211,6 +277,10 @@
     /// use ListServerCas instead.
     ///
     /// @Snippet(path: "SqlInstancesService_ListServerCertificates")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listServerCertificates(request:)``
     public func listServerCertificates(
       request: SqlInstancesListServerCertificatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.InstancesListServerCertificatesResponse {
@@ -223,6 +293,10 @@
     /// a certificate, and a certificate that has been rotated out.
     ///
     /// @Snippet(path: "SqlInstancesService_ListEntraIdCertificates")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listEntraIdCertificates(request:)``
     public func listEntraIdCertificates(
       request: SqlInstancesListEntraIdCertificatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.InstancesListEntraIdCertificatesResponse {
@@ -233,6 +307,10 @@
     /// with the current configuration. This method supports patch semantics.
     ///
     /// @Snippet(path: "SqlInstancesService_Patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
     public func patch(
       request: SqlInstancesPatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -244,6 +322,10 @@
     /// Using this operation might cause your instance to restart.
     ///
     /// @Snippet(path: "SqlInstancesService_PromoteReplica")
+    ///
+    /// ## See Also
+    ///
+    /// - ``promoteReplica(request:)``
     public func promoteReplica(
       request: SqlInstancesPromoteReplicaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -254,6 +336,10 @@
     /// instance.
     ///
     /// @Snippet(path: "SqlInstancesService_Switchover")
+    ///
+    /// ## See Also
+    ///
+    /// - ``switchover(request:)``
     public func switchover(
       request: SqlInstancesSwitchoverRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -264,6 +350,10 @@
     /// for the instance.
     ///
     /// @Snippet(path: "SqlInstancesService_ResetSslConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``resetSslConfig(request:)``
     public func resetSslConfig(
       request: SqlInstancesResetSslConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -273,6 +363,10 @@
     /// Restarts a Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlInstancesService_Restart")
+    ///
+    /// ## See Also
+    ///
+    /// - ``restart(request:)``
     public func restart(
       request: SqlInstancesRestartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -282,6 +376,10 @@
     /// Starts a Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlInstancesService_Start")
+    ///
+    /// ## See Also
+    ///
+    /// - ``start(request:)``
     public func start(
       request: SqlInstancesStartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -291,6 +389,10 @@
     /// Stops a Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlInstancesService_Stop")
+    ///
+    /// ## See Also
+    ///
+    /// - ``stop(request:)``
     public func stop(
       request: SqlInstancesStopRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -301,6 +403,10 @@
     /// your instance to restart.
     ///
     /// @Snippet(path: "SqlInstancesService_RestoreBackup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``restoreBackup(request:)``
     public func restoreBackup(
       request: SqlInstancesRestoreBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -313,6 +419,10 @@
     /// use RotateServerCertificate to rotate the server certificate.
     ///
     /// @Snippet(path: "SqlInstancesService_RotateServerCa")
+    ///
+    /// ## See Also
+    ///
+    /// - ``rotateServerCa(request:)``
     public func rotateServerCa(
       request: SqlInstancesRotateServerCaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -324,6 +434,10 @@
     /// Service (CAS) server CA, use RotateServerCa instead.
     ///
     /// @Snippet(path: "SqlInstancesService_RotateServerCertificate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``rotateServerCertificate(request:)``
     public func rotateServerCertificate(
       request: SqlInstancesRotateServerCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -334,6 +448,10 @@
     /// addEntraIdCertificate method.
     ///
     /// @Snippet(path: "SqlInstancesService_RotateEntraIdCertificate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``rotateEntraIdCertificate(request:)``
     public func rotateEntraIdCertificate(
       request: SqlInstancesRotateEntraIdCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -343,6 +461,10 @@
     /// Starts the replication in the read replica instance.
     ///
     /// @Snippet(path: "SqlInstancesService_StartReplica")
+    ///
+    /// ## See Also
+    ///
+    /// - ``startReplica(request:)``
     public func startReplica(
       request: SqlInstancesStartReplicaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -352,6 +474,10 @@
     /// Stops the replication in the read replica instance.
     ///
     /// @Snippet(path: "SqlInstancesService_StopReplica")
+    ///
+    /// ## See Also
+    ///
+    /// - ``stopReplica(request:)``
     public func stopReplica(
       request: SqlInstancesStopReplicaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -362,6 +488,10 @@
     /// MySQL only.
     ///
     /// @Snippet(path: "SqlInstancesService_TruncateLog")
+    ///
+    /// ## See Also
+    ///
+    /// - ``truncateLog(request:)``
     public func truncateLog(
       request: SqlInstancesTruncateLogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -372,6 +502,10 @@
     /// your instance to restart.
     ///
     /// @Snippet(path: "SqlInstancesService_Update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
     public func update(
       request: SqlInstancesUpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -384,6 +518,10 @@
     /// database.
     ///
     /// @Snippet(path: "SqlInstancesService_CreateEphemeral")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createEphemeral(request:)``
     public func createEphemeral(
       request: SqlInstancesCreateEphemeralCertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.SslCert {
@@ -393,6 +531,10 @@
     /// Reschedules the maintenance on the given instance.
     ///
     /// @Snippet(path: "SqlInstancesService_RescheduleMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``rescheduleMaintenance(request:)``
     public func rescheduleMaintenance(
       request: SqlInstancesRescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -402,6 +544,10 @@
     /// Verify External primary instance external sync settings.
     ///
     /// @Snippet(path: "SqlInstancesService_VerifyExternalSyncSettings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``verifyExternalSyncSettings(request:)``
     public func verifyExternalSyncSettings(
       request: SqlInstancesVerifyExternalSyncSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.SqlInstancesVerifyExternalSyncSettingsResponse {
@@ -411,6 +557,10 @@
     /// Start External primary instance migration.
     ///
     /// @Snippet(path: "SqlInstancesService_StartExternalSync")
+    ///
+    /// ## See Also
+    ///
+    /// - ``startExternalSync(request:)``
     public func startExternalSync(
       request: SqlInstancesStartExternalSyncRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -420,6 +570,10 @@
     /// Perform Disk Shrink on primary instance.
     ///
     /// @Snippet(path: "SqlInstancesService_PerformDiskShrink")
+    ///
+    /// ## See Also
+    ///
+    /// - ``performDiskShrink(request:)``
     public func performDiskShrink(
       request: SqlInstancesPerformDiskShrinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -429,6 +583,10 @@
     /// Get Disk Shrink Config for a given instance.
     ///
     /// @Snippet(path: "SqlInstancesService_GetDiskShrinkConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getDiskShrinkConfig(request:)``
     public func getDiskShrinkConfig(
       request: SqlInstancesGetDiskShrinkConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.SqlInstancesGetDiskShrinkConfigResponse {
@@ -438,6 +596,10 @@
     /// Reset Replica Size to primary instance disk size.
     ///
     /// @Snippet(path: "SqlInstancesService_ResetReplicaSize")
+    ///
+    /// ## See Also
+    ///
+    /// - ``resetReplicaSize(request:)``
     public func resetReplicaSize(
       request: SqlInstancesResetReplicaSizeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -447,6 +609,10 @@
     /// Get Latest Recovery Time for a given instance.
     ///
     /// @Snippet(path: "SqlInstancesService_GetLatestRecoveryTime")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLatestRecoveryTime(request:)``
     public func getLatestRecoveryTime(
       request: SqlInstancesGetLatestRecoveryTimeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.SqlInstancesGetLatestRecoveryTimeResponse {
@@ -456,6 +622,10 @@
     /// Execute SQL statements in read-only mode.
     ///
     /// @Snippet(path: "SqlInstancesService_ExecuteSqlReadOnly")
+    ///
+    /// ## See Also
+    ///
+    /// - ``executeSqlReadOnly(request:)``
     public func executeSqlReadOnly(
       request: SqlInstancesExecuteSqlReadOnlyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.SqlInstancesExecuteSqlReadOnlyResponse {
@@ -465,6 +635,10 @@
     /// Execute SQL statements.
     ///
     /// @Snippet(path: "SqlInstancesService_ExecuteSql")
+    ///
+    /// ## See Also
+    ///
+    /// - ``executeSql(request:)``
     public func executeSql(
       request: SqlInstancesExecuteSqlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.SqlInstancesExecuteSqlResponse {
@@ -474,6 +648,10 @@
     /// Acquire a lease for the setup of SQL Server Reporting Services (SSRS).
     ///
     /// @Snippet(path: "SqlInstancesService_AcquireSsrsLease")
+    ///
+    /// ## See Also
+    ///
+    /// - ``acquireSsrsLease(request:)``
     public func acquireSsrsLease(
       request: SqlInstancesAcquireSsrsLeaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.SqlInstancesAcquireSsrsLeaseResponse {
@@ -483,6 +661,10 @@
     /// Release a lease for the setup of SQL Server Reporting Services (SSRS).
     ///
     /// @Snippet(path: "SqlInstancesService_ReleaseSsrsLease")
+    ///
+    /// ## See Also
+    ///
+    /// - ``releaseSsrsLease(request:)``
     public func releaseSsrsLease(
       request: SqlInstancesReleaseSsrsLeaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.SqlInstancesReleaseSsrsLeaseResponse {
@@ -492,6 +674,10 @@
     /// Execute MVU Pre-checks
     ///
     /// @Snippet(path: "SqlInstancesService_PreCheckMajorVersionUpgrade")
+    ///
+    /// ## See Also
+    ///
+    /// - ``preCheckMajorVersionUpgrade(request:)``
     public func preCheckMajorVersionUpgrade(
       request: SqlInstancesPreCheckMajorVersionUpgradeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -502,6 +688,10 @@
     /// Disaster Recovery.
     ///
     /// @Snippet(path: "SqlInstancesService_PointInTimeRestore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``pointInTimeRestore(request:)``
     public func pointInTimeRestore(
       request: SqlInstancesPointInTimeRestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -514,6 +704,10 @@
     /// connectivity infrastructure for the instance.
     ///
     /// @Snippet(path: "SqlInstancesService_ReconcileNetworking")
+    ///
+    /// ## See Also
+    ///
+    /// - ``reconcileNetworking(request:)``
     public func reconcileNetworking(
       request: SqlInstancesReconcileNetworkingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -767,6 +961,19 @@
 
   // Default implementations
   extension Clients.SqlInstancesServiceProtocol {
+    /// Adds a new trusted Certificate Authority (CA) version for the specified
+    /// instance. Required to prepare for a certificate rotation. If a CA version
+    /// was previously added but never used in a certificate rotation, this
+    /// operation replaces that version. There cannot be more than one CA version
+    /// waiting to be rotated in. For instances that have enabled Certificate
+    /// Authority Service (CAS) based server CA, use AddServerCertificate to add a
+    /// new server certificate.
+    ///
+    /// @Snippet(path: "SqlInstancesService_AddServerCa")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/addServerCa(request:options:)``
     public func addServerCa(request: SqlInstancesAddServerCaRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -779,6 +986,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Add a new trusted server certificate version for the specified instance
+    /// using Certificate Authority Service (CAS) server CA. Required to prepare
+    /// for a certificate rotation. If a server certificate version was previously
+    /// added but never used in a certificate rotation, this operation replaces
+    /// that version. There cannot be more than one certificate version waiting to
+    /// be rotated in. For instances not using CAS server CA, use AddServerCa
+    /// instead.
+    ///
+    /// @Snippet(path: "SqlInstancesService_AddServerCertificate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/addServerCertificate(request:options:)``
     public func addServerCertificate(request: SqlInstancesAddServerCertificateRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -791,6 +1011,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds a new Entra ID certificate for the specified instance. If an Entra ID
+    /// certificate was previously added but never used in a certificate rotation,
+    /// this operation replaces that version.
+    ///
+    /// @Snippet(path: "SqlInstancesService_AddEntraIdCertificate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/addEntraIdCertificate(request:options:)``
     public func addEntraIdCertificate(request: SqlInstancesAddEntraIdCertificateRequest)
       async throws -> GoogleCloudSqlV1.Operation
     {
@@ -803,6 +1032,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Cloud SQL instance as a clone of the source instance. Using this
+    /// operation might cause your instance to restart.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Clone")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/clone(request:options:)``
     public func clone(request: SqlInstancesCloneRequest) async throws -> GoogleCloudSqlV1.Operation
     {
       try await self.clone(request: request, options: .init())
@@ -814,6 +1051,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/delete(request:options:)``
     public func delete(request: SqlInstancesDeleteRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -826,6 +1070,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Demotes the stand-alone instance to be a Cloud SQL read replica for an
+    /// external database server.
+    ///
+    /// @Snippet(path: "SqlInstancesService_DemoteMaster")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/demoteMaster(request:options:)``
     public func demoteMaster(request: SqlInstancesDemoteMasterRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -838,6 +1090,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Demotes an existing standalone instance to be a Cloud SQL read replica
+    /// for an external database server.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Demote")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/demote(request:options:)``
     public func demote(request: SqlInstancesDemoteRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -850,6 +1110,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports data from a Cloud SQL instance to a Cloud Storage bucket as a SQL
+    /// dump or CSV file.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Export")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/export(request:options:)``
     public func export(request: SqlInstancesExportRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -862,6 +1130,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Initiates a manual failover of a high availability (HA) primary instance
+    /// to a standby instance, which becomes the primary instance. Users are
+    /// then rerouted to the new primary. For more information, see the
+    /// [Overview of high
+    /// availability](https://cloud.google.com/sql/docs/mysql/high-availability)
+    /// page in the Cloud SQL documentation.
+    /// If using Legacy HA (MySQL only), this causes the instance to failover to
+    /// its failover replica instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Failover")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/failover(request:options:)``
     public func failover(request: SqlInstancesFailoverRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -874,6 +1156,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Reencrypt CMEK instance with latest key version.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Reencrypt")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/reencrypt(request:options:)``
     public func reencrypt(request: SqlInstancesReencryptRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -886,6 +1175,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a resource containing information about a Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/get(request:options:)``
     public func `get`(request: SqlInstancesGetRequest) async throws
       -> GoogleCloudSqlV1.DatabaseInstance
     {
@@ -898,6 +1194,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports data into a Cloud SQL instance from a SQL dump  or CSV file in
+    /// Cloud Storage.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Import")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/import(request:options:)``
     public func `import`(request: SqlInstancesImportRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -910,6 +1214,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/insert(request:options:)``
     public func insert(request: SqlInstancesInsertRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -922,6 +1233,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists instances under a given project.
+    ///
+    /// @Snippet(path: "SqlInstancesService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/list(request:options:)``
     public func list(request: SqlInstancesListRequest) async throws
       -> GoogleCloudSqlV1.InstancesListResponse
     {
@@ -934,6 +1252,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists instances under a given project.
+    ///
+    /// @Snippet(path: "SqlInstancesService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/list(request:options:)``
     public func listByItems(
       request: SqlInstancesListRequest
     ) -> some AsyncSequence<ApiWarning, any Swift.Error> & Sendable {
@@ -943,6 +1268,10 @@
     /// Lists instances under a given project.
     ///
     /// @Snippet(path: "SqlInstancesService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/list(request:options:)``
     public func listByItems(
       request: SqlInstancesListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ApiWarning, any Swift.Error> & Sendable {
@@ -956,6 +1285,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all of the trusted Certificate Authorities (CAs) for the specified
+    /// instance. There can be up to three CAs listed: the CA that was used to sign
+    /// the certificate that is currently in use, a CA that has been added but not
+    /// yet used to sign a certificate, and a CA used to sign a certificate that
+    /// has previously rotated out.
+    ///
+    /// @Snippet(path: "SqlInstancesService_ListServerCas")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/listServerCas(request:options:)``
     public func listServerCas(request: SqlInstancesListServerCasRequest) async throws
       -> GoogleCloudSqlV1.InstancesListServerCasResponse
     {
@@ -968,6 +1308,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all versions of server certificates and certificate authorities (CAs)
+    /// for the specified instance. There can be up to three sets of certs listed:
+    /// the certificate that is currently in use, a future that has been added but
+    /// not yet used to sign a certificate, and a certificate that has been rotated
+    /// out. For instances not using Certificate Authority Service (CAS) server CA,
+    /// use ListServerCas instead.
+    ///
+    /// @Snippet(path: "SqlInstancesService_ListServerCertificates")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/listServerCertificates(request:options:)``
     public func listServerCertificates(request: SqlInstancesListServerCertificatesRequest)
       async throws -> GoogleCloudSqlV1.InstancesListServerCertificatesResponse
     {
@@ -980,6 +1332,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all versions of EntraID certificates for the specified instance.
+    /// There can be up to three sets of certificates listed: the certificate that
+    /// is currently in use, a future that has been added but not yet used to sign
+    /// a certificate, and a certificate that has been rotated out.
+    ///
+    /// @Snippet(path: "SqlInstancesService_ListEntraIdCertificates")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/listEntraIdCertificates(request:options:)``
     public func listEntraIdCertificates(request: SqlInstancesListEntraIdCertificatesRequest)
       async throws -> GoogleCloudSqlV1.InstancesListEntraIdCertificatesResponse
     {
@@ -992,6 +1354,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Partially updates settings of a Cloud SQL instance by merging the request
+    /// with the current configuration. This method supports patch semantics.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/patch(request:options:)``
     public func patch(request: SqlInstancesPatchRequest) async throws -> GoogleCloudSqlV1.Operation
     {
       try await self.patch(request: request, options: .init())
@@ -1003,6 +1373,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Promotes the read replica instance to be an independent Cloud SQL
+    /// primary instance.
+    /// Using this operation might cause your instance to restart.
+    ///
+    /// @Snippet(path: "SqlInstancesService_PromoteReplica")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/promoteReplica(request:options:)``
     public func promoteReplica(request: SqlInstancesPromoteReplicaRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1015,6 +1394,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Switches over from the primary instance to the DR replica
+    /// instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Switchover")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/switchover(request:options:)``
     public func switchover(request: SqlInstancesSwitchoverRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1027,6 +1414,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes all client certificates and generates a new server SSL certificate
+    /// for the instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_ResetSslConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/resetSslConfig(request:options:)``
     public func resetSslConfig(request: SqlInstancesResetSslConfigRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1039,6 +1434,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Restarts a Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Restart")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/restart(request:options:)``
     public func restart(request: SqlInstancesRestartRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1051,6 +1453,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Starts a Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Start")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/start(request:options:)``
     public func start(request: SqlInstancesStartRequest) async throws -> GoogleCloudSqlV1.Operation
     {
       try await self.start(request: request, options: .init())
@@ -1062,6 +1471,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Stops a Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Stop")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/stop(request:options:)``
     public func stop(request: SqlInstancesStopRequest) async throws -> GoogleCloudSqlV1.Operation {
       try await self.stop(request: request, options: .init())
     }
@@ -1072,6 +1488,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Restores a backup of a Cloud SQL instance. Using this operation might cause
+    /// your instance to restart.
+    ///
+    /// @Snippet(path: "SqlInstancesService_RestoreBackup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/restoreBackup(request:options:)``
     public func restoreBackup(request: SqlInstancesRestoreBackupRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1084,6 +1508,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Rotates the server certificate to one signed by the Certificate Authority
+    /// (CA) version previously added with the addServerCA method. For instances
+    /// that have enabled Certificate Authority Service (CAS) based server CA,
+    /// use RotateServerCertificate to rotate the server certificate.
+    ///
+    /// @Snippet(path: "SqlInstancesService_RotateServerCa")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/rotateServerCa(request:options:)``
     public func rotateServerCa(request: SqlInstancesRotateServerCaRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1096,6 +1530,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Rotates the server certificate version to one previously added with the
+    /// addServerCertificate method. For instances not using Certificate Authority
+    /// Service (CAS) server CA, use RotateServerCa instead.
+    ///
+    /// @Snippet(path: "SqlInstancesService_RotateServerCertificate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/rotateServerCertificate(request:options:)``
     public func rotateServerCertificate(request: SqlInstancesRotateServerCertificateRequest)
       async throws -> GoogleCloudSqlV1.Operation
     {
@@ -1108,6 +1551,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Rotates the server certificate version to one previously added with the
+    /// addEntraIdCertificate method.
+    ///
+    /// @Snippet(path: "SqlInstancesService_RotateEntraIdCertificate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/rotateEntraIdCertificate(request:options:)``
     public func rotateEntraIdCertificate(request: SqlInstancesRotateEntraIdCertificateRequest)
       async throws -> GoogleCloudSqlV1.Operation
     {
@@ -1120,6 +1571,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Starts the replication in the read replica instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_StartReplica")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/startReplica(request:options:)``
     public func startReplica(request: SqlInstancesStartReplicaRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1132,6 +1590,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Stops the replication in the read replica instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_StopReplica")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/stopReplica(request:options:)``
     public func stopReplica(request: SqlInstancesStopReplicaRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1144,6 +1609,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Truncate MySQL general and slow query log tables
+    /// MySQL only.
+    ///
+    /// @Snippet(path: "SqlInstancesService_TruncateLog")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/truncateLog(request:options:)``
     public func truncateLog(request: SqlInstancesTruncateLogRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1156,6 +1629,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates settings of a Cloud SQL instance. Using this operation might cause
+    /// your instance to restart.
+    ///
+    /// @Snippet(path: "SqlInstancesService_Update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/update(request:options:)``
     public func update(request: SqlInstancesUpdateRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1168,6 +1649,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Generates a short-lived X509 certificate containing the provided public key
+    /// and signed by a private key specific to the target instance. Users may use
+    /// the certificate to authenticate as themselves when connecting to the
+    /// database.
+    ///
+    /// @Snippet(path: "SqlInstancesService_CreateEphemeral")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/createEphemeral(request:options:)``
     public func createEphemeral(request: SqlInstancesCreateEphemeralCertRequest) async throws
       -> GoogleCloudSqlV1.SslCert
     {
@@ -1180,6 +1671,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Reschedules the maintenance on the given instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_RescheduleMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/rescheduleMaintenance(request:options:)``
     public func rescheduleMaintenance(request: SqlInstancesRescheduleMaintenanceRequest)
       async throws -> GoogleCloudSqlV1.Operation
     {
@@ -1192,6 +1690,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Verify External primary instance external sync settings.
+    ///
+    /// @Snippet(path: "SqlInstancesService_VerifyExternalSyncSettings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/verifyExternalSyncSettings(request:options:)``
     public func verifyExternalSyncSettings(request: SqlInstancesVerifyExternalSyncSettingsRequest)
       async throws -> GoogleCloudSqlV1.SqlInstancesVerifyExternalSyncSettingsResponse
     {
@@ -1204,6 +1709,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Start External primary instance migration.
+    ///
+    /// @Snippet(path: "SqlInstancesService_StartExternalSync")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/startExternalSync(request:options:)``
     public func startExternalSync(request: SqlInstancesStartExternalSyncRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1216,6 +1728,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Perform Disk Shrink on primary instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_PerformDiskShrink")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/performDiskShrink(request:options:)``
     public func performDiskShrink(request: SqlInstancesPerformDiskShrinkRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1228,6 +1747,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Get Disk Shrink Config for a given instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_GetDiskShrinkConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/getDiskShrinkConfig(request:options:)``
     public func getDiskShrinkConfig(request: SqlInstancesGetDiskShrinkConfigRequest) async throws
       -> GoogleCloudSqlV1.SqlInstancesGetDiskShrinkConfigResponse
     {
@@ -1240,6 +1766,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Reset Replica Size to primary instance disk size.
+    ///
+    /// @Snippet(path: "SqlInstancesService_ResetReplicaSize")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/resetReplicaSize(request:options:)``
     public func resetReplicaSize(request: SqlInstancesResetReplicaSizeRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1252,6 +1785,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Get Latest Recovery Time for a given instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_GetLatestRecoveryTime")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/getLatestRecoveryTime(request:options:)``
     public func getLatestRecoveryTime(request: SqlInstancesGetLatestRecoveryTimeRequest)
       async throws -> GoogleCloudSqlV1.SqlInstancesGetLatestRecoveryTimeResponse
     {
@@ -1264,6 +1804,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Execute SQL statements in read-only mode.
+    ///
+    /// @Snippet(path: "SqlInstancesService_ExecuteSqlReadOnly")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/executeSqlReadOnly(request:options:)``
     public func executeSqlReadOnly(request: SqlInstancesExecuteSqlReadOnlyRequest) async throws
       -> GoogleCloudSqlV1.SqlInstancesExecuteSqlReadOnlyResponse
     {
@@ -1276,6 +1823,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Execute SQL statements.
+    ///
+    /// @Snippet(path: "SqlInstancesService_ExecuteSql")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/executeSql(request:options:)``
     public func executeSql(request: SqlInstancesExecuteSqlRequest) async throws
       -> GoogleCloudSqlV1.SqlInstancesExecuteSqlResponse
     {
@@ -1288,6 +1842,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Acquire a lease for the setup of SQL Server Reporting Services (SSRS).
+    ///
+    /// @Snippet(path: "SqlInstancesService_AcquireSsrsLease")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/acquireSsrsLease(request:options:)``
     public func acquireSsrsLease(request: SqlInstancesAcquireSsrsLeaseRequest) async throws
       -> GoogleCloudSqlV1.SqlInstancesAcquireSsrsLeaseResponse
     {
@@ -1300,6 +1861,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Release a lease for the setup of SQL Server Reporting Services (SSRS).
+    ///
+    /// @Snippet(path: "SqlInstancesService_ReleaseSsrsLease")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/releaseSsrsLease(request:options:)``
     public func releaseSsrsLease(request: SqlInstancesReleaseSsrsLeaseRequest) async throws
       -> GoogleCloudSqlV1.SqlInstancesReleaseSsrsLeaseResponse
     {
@@ -1312,6 +1880,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Execute MVU Pre-checks
+    ///
+    /// @Snippet(path: "SqlInstancesService_PreCheckMajorVersionUpgrade")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/preCheckMajorVersionUpgrade(request:options:)``
     public func preCheckMajorVersionUpgrade(request: SqlInstancesPreCheckMajorVersionUpgradeRequest)
       async throws -> GoogleCloudSqlV1.Operation
     {
@@ -1324,6 +1899,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Point in time restore for an instance managed by Google Cloud Backup and
+    /// Disaster Recovery.
+    ///
+    /// @Snippet(path: "SqlInstancesService_PointInTimeRestore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/pointInTimeRestore(request:options:)``
     public func pointInTimeRestore(request: SqlInstancesPointInTimeRestoreRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -1336,6 +1919,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Repairs and recreates networking resources for a Cloud SQL instance. For
+    /// Private Service Connect (PSC), this operation recreates PSC DNS write
+    /// endpoints on specified VPC networks and reconciles Private Service Connect
+    /// connectivity infrastructure for the instance.
+    ///
+    /// @Snippet(path: "SqlInstancesService_ReconcileNetworking")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlInstancesServiceClient/reconcileNetworking(request:options:)``
     public func reconcileNetworking(request: SqlInstancesReconcileNetworkingRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {

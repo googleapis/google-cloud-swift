@@ -26,6 +26,10 @@ import Foundation
 /// Dataproc API.
 ///
 /// @Snippet(path: "WorkflowTemplateServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/WorkflowTemplateServiceProtocol``
 public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServiceProtocol, Sendable
 {
   let inner: any Clients.WorkflowTemplateServiceStub
@@ -48,6 +52,11 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// Creates new workflow template.
   ///
   /// @Snippet(path: "WorkflowTemplateService_CreateWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkflowTemplate(request:)``
+  /// - ``createWorkflowTemplate(parent:template:)``
   public func createWorkflowTemplate(
     request: CreateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.WorkflowTemplate {
@@ -60,6 +69,11 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// version parameter.
   ///
   /// @Snippet(path: "WorkflowTemplateService_GetWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getWorkflowTemplate(request:)``
+  /// - ``getWorkflowTemplate(name:)``
   public func getWorkflowTemplate(
     request: GetWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.WorkflowTemplate {
@@ -92,6 +106,14 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
   ///
   /// @Snippet(path: "WorkflowTemplateService_InstantiateWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``instantiateWorkflowTemplate(request:)``
+  /// - ``instantiateWorkflowTemplatePollingUntilDone(request:)``
+  /// - ``instantiateWorkflowTemplatePollingUntilDone(request:options:)``
+  /// - ``instantiateWorkflowTemplatePollingUntilDone(name:)``
+  /// - ``instantiateWorkflowTemplatePollingUntilDone(name:parameters:)``
   public func instantiateWorkflowTemplate(
     request: InstantiateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -124,6 +146,14 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
   ///
   /// @Snippet(path: "WorkflowTemplateService_InstantiateWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``instantiateWorkflowTemplatePollingUntilDone(request:)``
+  /// - ``instantiateWorkflowTemplatePollingUntilDone(name:)``
+  /// - ``instantiateWorkflowTemplatePollingUntilDone(name:parameters:)``
+  /// - ``instantiateWorkflowTemplate(request:)``
+  /// - ``instantiateWorkflowTemplate(request:options:)``
   public func instantiateWorkflowTemplatePollingUntilDone(
     request: InstantiateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -182,6 +212,13 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
   ///
   /// @Snippet(path: "WorkflowTemplateService_InstantiateInlineWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``instantiateInlineWorkflowTemplate(request:)``
+  /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(request:)``
+  /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(request:options:)``
+  /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(parent:template:)``
   public func instantiateInlineWorkflowTemplate(
     request: InstantiateInlineWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -222,6 +259,13 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
   ///
   /// @Snippet(path: "WorkflowTemplateService_InstantiateInlineWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(request:)``
+  /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(parent:template:)``
+  /// - ``instantiateInlineWorkflowTemplate(request:)``
+  /// - ``instantiateInlineWorkflowTemplate(request:options:)``
   public func instantiateInlineWorkflowTemplatePollingUntilDone(
     request: InstantiateInlineWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -250,6 +294,11 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// must contain version that matches the current server version.
   ///
   /// @Snippet(path: "WorkflowTemplateService_UpdateWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateWorkflowTemplate(request:)``
+  /// - ``updateWorkflowTemplate(template:)``
   public func updateWorkflowTemplate(
     request: UpdateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.WorkflowTemplate {
@@ -259,6 +308,13 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// Lists workflows that match the specified filter in the request.
   ///
   /// @Snippet(path: "WorkflowTemplateService_ListWorkflowTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listWorkflowTemplates(request:)``
+  /// - ``listWorkflowTemplatesByItems(request:)``
+  /// - ``listWorkflowTemplatesByItems(request:options:)``
+  /// - ``listWorkflowTemplatesByItems(parent:)``
   public func listWorkflowTemplates(
     request: ListWorkflowTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.ListWorkflowTemplatesResponse {
@@ -268,6 +324,11 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// Deletes a workflow template. It does not cancel in-progress workflows.
   ///
   /// @Snippet(path: "WorkflowTemplateService_DeleteWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWorkflowTemplate(request:)``
+  /// - ``deleteWorkflowTemplate(name:)``
   public func deleteWorkflowTemplate(
     request: DeleteWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -281,6 +342,10 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// errors.
   ///
   /// @Snippet(path: "WorkflowTemplateService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -291,6 +356,10 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "WorkflowTemplateService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -306,6 +375,10 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "WorkflowTemplateService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -317,6 +390,13 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkflowTemplateService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -339,6 +419,11 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkflowTemplateService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -350,6 +435,11 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkflowTemplateService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -443,6 +533,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.WorkflowTemplateServiceProtocol {
+  /// Creates new workflow template.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_CreateWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/createWorkflowTemplate(request:options:)``
   public func createWorkflowTemplate(request: CreateWorkflowTemplateRequest) async throws
     -> GoogleCloudDataprocV1.WorkflowTemplate
   {
@@ -455,6 +552,13 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates new workflow template.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_CreateWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/createWorkflowTemplate(request:options:)``
   public func createWorkflowTemplate(
     parent: Swift.String,
     template: WorkflowTemplate?,
@@ -466,6 +570,16 @@ extension Clients.WorkflowTemplateServiceProtocol {
     return try await self.createWorkflowTemplate(request: request)
   }
 
+  /// Retrieves the latest workflow template.
+  ///
+  /// Can retrieve previously instantiated template by specifying optional
+  /// version parameter.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_GetWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/getWorkflowTemplate(request:options:)``
   public func getWorkflowTemplate(request: GetWorkflowTemplateRequest) async throws
     -> GoogleCloudDataprocV1.WorkflowTemplate
   {
@@ -478,6 +592,16 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the latest workflow template.
+  ///
+  /// Can retrieve previously instantiated template by specifying optional
+  /// version parameter.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_GetWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/getWorkflowTemplate(request:options:)``
   public func getWorkflowTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudDataprocV1.WorkflowTemplate {
@@ -487,6 +611,36 @@ extension Clients.WorkflowTemplateServiceProtocol {
     return try await self.getWorkflowTemplate(request: request)
   }
 
+  /// Instantiates a template and begins execution.
+  ///
+  /// The returned Operation can be used to track execution of
+  /// workflow by polling
+  /// [operations.get][google.longrunning.Operations.GetOperation].
+  /// The Operation will complete when entire workflow is finished.
+  ///
+  /// The running workflow can be aborted via
+  /// [operations.cancel][google.longrunning.Operations.CancelOperation].
+  /// This will cause any inflight jobs to be cancelled and workflow-owned
+  /// clusters to be deleted.
+  ///
+  /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
+  /// Also see [Using
+  /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
+  ///
+  /// On successful completion,
+  /// [Operation.response][google.longrunning.Operation.response] will be
+  /// [Empty][google.protobuf.Empty].
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
+  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_InstantiateWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:options:)``
   public func instantiateWorkflowTemplate(request: InstantiateWorkflowTemplateRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -499,6 +653,36 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Instantiates a template and begins execution.
+  ///
+  /// The returned Operation can be used to track execution of
+  /// workflow by polling
+  /// [operations.get][google.longrunning.Operations.GetOperation].
+  /// The Operation will complete when entire workflow is finished.
+  ///
+  /// The running workflow can be aborted via
+  /// [operations.cancel][google.longrunning.Operations.CancelOperation].
+  /// This will cause any inflight jobs to be cancelled and workflow-owned
+  /// clusters to be deleted.
+  ///
+  /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
+  /// Also see [Using
+  /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
+  ///
+  /// On successful completion,
+  /// [Operation.response][google.longrunning.Operation.response] will be
+  /// [Empty][google.protobuf.Empty].
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
+  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_InstantiateWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/instantiateWorkflowTemplatePollingUntilDone(request:options:)``
   public func instantiateWorkflowTemplatePollingUntilDone(
     request: InstantiateWorkflowTemplateRequest
   ) async throws {
@@ -511,6 +695,36 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Instantiates a template and begins execution.
+  ///
+  /// The returned Operation can be used to track execution of
+  /// workflow by polling
+  /// [operations.get][google.longrunning.Operations.GetOperation].
+  /// The Operation will complete when entire workflow is finished.
+  ///
+  /// The running workflow can be aborted via
+  /// [operations.cancel][google.longrunning.Operations.CancelOperation].
+  /// This will cause any inflight jobs to be cancelled and workflow-owned
+  /// clusters to be deleted.
+  ///
+  /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
+  /// Also see [Using
+  /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
+  ///
+  /// On successful completion,
+  /// [Operation.response][google.longrunning.Operation.response] will be
+  /// [Empty][google.protobuf.Empty].
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
+  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_InstantiateWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/instantiateWorkflowTemplatePollingUntilDone(request:options:)``
   public func instantiateWorkflowTemplatePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -520,6 +734,36 @@ extension Clients.WorkflowTemplateServiceProtocol {
     try await self.instantiateWorkflowTemplatePollingUntilDone(request: request)
   }
 
+  /// Instantiates a template and begins execution.
+  ///
+  /// The returned Operation can be used to track execution of
+  /// workflow by polling
+  /// [operations.get][google.longrunning.Operations.GetOperation].
+  /// The Operation will complete when entire workflow is finished.
+  ///
+  /// The running workflow can be aborted via
+  /// [operations.cancel][google.longrunning.Operations.CancelOperation].
+  /// This will cause any inflight jobs to be cancelled and workflow-owned
+  /// clusters to be deleted.
+  ///
+  /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
+  /// Also see [Using
+  /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
+  ///
+  /// On successful completion,
+  /// [Operation.response][google.longrunning.Operation.response] will be
+  /// [Empty][google.protobuf.Empty].
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
+  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_InstantiateWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/instantiateWorkflowTemplatePollingUntilDone(request:options:)``
   public func instantiateWorkflowTemplatePollingUntilDone(
     name: Swift.String,
     parameters: [Swift.String: Swift.String],
@@ -531,6 +775,44 @@ extension Clients.WorkflowTemplateServiceProtocol {
     try await self.instantiateWorkflowTemplatePollingUntilDone(request: request)
   }
 
+  /// Instantiates a template and begins execution.
+  ///
+  /// This method is equivalent to executing the sequence
+  /// [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate],
+  /// [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
+  /// [DeleteWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate].
+  ///
+  /// The returned Operation can be used to track execution of
+  /// workflow by polling
+  /// [operations.get][google.longrunning.Operations.GetOperation].
+  /// The Operation will complete when entire workflow is finished.
+  ///
+  /// The running workflow can be aborted via
+  /// [operations.cancel][google.longrunning.Operations.CancelOperation].
+  /// This will cause any inflight jobs to be cancelled and workflow-owned
+  /// clusters to be deleted.
+  ///
+  /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
+  /// Also see [Using
+  /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
+  ///
+  /// On successful completion,
+  /// [Operation.response][google.longrunning.Operation.response] will be
+  /// [Empty][google.protobuf.Empty].
+  ///
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/createWorkflowTemplate(request:options:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:options:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:options:)>
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
+  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_InstantiateInlineWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/instantiateInlineWorkflowTemplate(request:options:)``
   public func instantiateInlineWorkflowTemplate(request: InstantiateInlineWorkflowTemplateRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -543,6 +825,44 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Instantiates a template and begins execution.
+  ///
+  /// This method is equivalent to executing the sequence
+  /// [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate],
+  /// [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
+  /// [DeleteWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate].
+  ///
+  /// The returned Operation can be used to track execution of
+  /// workflow by polling
+  /// [operations.get][google.longrunning.Operations.GetOperation].
+  /// The Operation will complete when entire workflow is finished.
+  ///
+  /// The running workflow can be aborted via
+  /// [operations.cancel][google.longrunning.Operations.CancelOperation].
+  /// This will cause any inflight jobs to be cancelled and workflow-owned
+  /// clusters to be deleted.
+  ///
+  /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
+  /// Also see [Using
+  /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
+  ///
+  /// On successful completion,
+  /// [Operation.response][google.longrunning.Operation.response] will be
+  /// [Empty][google.protobuf.Empty].
+  ///
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/createWorkflowTemplate(request:options:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:options:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:options:)>
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
+  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_InstantiateInlineWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/instantiateInlineWorkflowTemplatePollingUntilDone(request:options:)``
   public func instantiateInlineWorkflowTemplatePollingUntilDone(
     request: InstantiateInlineWorkflowTemplateRequest
   ) async throws {
@@ -556,6 +876,44 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Instantiates a template and begins execution.
+  ///
+  /// This method is equivalent to executing the sequence
+  /// [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate],
+  /// [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
+  /// [DeleteWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate].
+  ///
+  /// The returned Operation can be used to track execution of
+  /// workflow by polling
+  /// [operations.get][google.longrunning.Operations.GetOperation].
+  /// The Operation will complete when entire workflow is finished.
+  ///
+  /// The running workflow can be aborted via
+  /// [operations.cancel][google.longrunning.Operations.CancelOperation].
+  /// This will cause any inflight jobs to be cancelled and workflow-owned
+  /// clusters to be deleted.
+  ///
+  /// The [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
+  /// Also see [Using
+  /// WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
+  ///
+  /// On successful completion,
+  /// [Operation.response][google.longrunning.Operation.response] will be
+  /// [Empty][google.protobuf.Empty].
+  ///
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/createWorkflowTemplate(request:options:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:options:)>
+  /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:options:)>
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
+  /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_InstantiateInlineWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/instantiateInlineWorkflowTemplatePollingUntilDone(request:options:)``
   public func instantiateInlineWorkflowTemplatePollingUntilDone(
     parent: Swift.String,
     template: WorkflowTemplate?,
@@ -567,6 +925,14 @@ extension Clients.WorkflowTemplateServiceProtocol {
     try await self.instantiateInlineWorkflowTemplatePollingUntilDone(request: request)
   }
 
+  /// Updates (replaces) workflow template. The updated template
+  /// must contain version that matches the current server version.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_UpdateWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/updateWorkflowTemplate(request:options:)``
   public func updateWorkflowTemplate(request: UpdateWorkflowTemplateRequest) async throws
     -> GoogleCloudDataprocV1.WorkflowTemplate
   {
@@ -579,6 +945,14 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates (replaces) workflow template. The updated template
+  /// must contain version that matches the current server version.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_UpdateWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/updateWorkflowTemplate(request:options:)``
   public func updateWorkflowTemplate(
     template: WorkflowTemplate?,
   ) async throws -> GoogleCloudDataprocV1.WorkflowTemplate {
@@ -588,6 +962,13 @@ extension Clients.WorkflowTemplateServiceProtocol {
     return try await self.updateWorkflowTemplate(request: request)
   }
 
+  /// Lists workflows that match the specified filter in the request.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_ListWorkflowTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/listWorkflowTemplates(request:options:)``
   public func listWorkflowTemplates(request: ListWorkflowTemplatesRequest) async throws
     -> GoogleCloudDataprocV1.ListWorkflowTemplatesResponse
   {
@@ -600,6 +981,13 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists workflows that match the specified filter in the request.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_ListWorkflowTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/listWorkflowTemplates(request:options:)``
   public func listWorkflowTemplatesByItems(
     request: ListWorkflowTemplatesRequest
   ) -> some AsyncSequence<WorkflowTemplate, any Swift.Error> & Sendable {
@@ -609,6 +997,10 @@ extension Clients.WorkflowTemplateServiceProtocol {
   /// Lists workflows that match the specified filter in the request.
   ///
   /// @Snippet(path: "WorkflowTemplateService_ListWorkflowTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/listWorkflowTemplates(request:options:)``
   public func listWorkflowTemplatesByItems(
     request: ListWorkflowTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<WorkflowTemplate, any Swift.Error> & Sendable {
@@ -623,6 +1015,13 @@ extension Clients.WorkflowTemplateServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists workflows that match the specified filter in the request.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_ListWorkflowTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/listWorkflowTemplates(request:options:)``
   public func listWorkflowTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<WorkflowTemplate, any Swift.Error> & Sendable {
@@ -632,6 +1031,13 @@ extension Clients.WorkflowTemplateServiceProtocol {
     return self.listWorkflowTemplatesByItems(request: request)
   }
 
+  /// Deletes a workflow template. It does not cancel in-progress workflows.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_DeleteWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:options:)``
   public func deleteWorkflowTemplate(request: DeleteWorkflowTemplateRequest) async throws {
     try await self.deleteWorkflowTemplate(request: request, options: .init())
   }
@@ -642,6 +1048,13 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a workflow template. It does not cancel in-progress workflows.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_DeleteWorkflowTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:options:)``
   public func deleteWorkflowTemplate(
     name: Swift.String,
   ) async throws {
@@ -651,6 +1064,17 @@ extension Clients.WorkflowTemplateServiceProtocol {
     try await self.deleteWorkflowTemplate(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -663,6 +1087,14 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -675,6 +1107,19 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -687,6 +1132,15 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -699,6 +1153,15 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -710,6 +1173,10 @@ extension Clients.WorkflowTemplateServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkflowTemplateService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -723,6 +1190,15 @@ extension Clients.WorkflowTemplateServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -734,6 +1210,9 @@ extension Clients.WorkflowTemplateServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -746,6 +1225,9 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -755,6 +1237,15 @@ extension Clients.WorkflowTemplateServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -765,6 +1256,15 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -774,6 +1274,15 @@ extension Clients.WorkflowTemplateServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -784,6 +1293,15 @@ extension Clients.WorkflowTemplateServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkflowTemplateService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowTemplateServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

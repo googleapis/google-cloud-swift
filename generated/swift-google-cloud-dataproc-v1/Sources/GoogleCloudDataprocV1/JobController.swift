@@ -25,6 +25,10 @@ import Foundation
 /// The JobController provides methods to manage jobs.
 ///
 /// @Snippet(path: "JobControllerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/JobControllerProtocol``
 public final class JobControllerClient: Clients.JobControllerProtocol, Sendable {
   let inner: any Clients.JobControllerStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -45,6 +49,11 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// Submits a job to a cluster.
   ///
   /// @Snippet(path: "JobController_SubmitJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``submitJob(request:)``
+  /// - ``submitJob(projectId:region:job:)``
   public func submitJob(
     request: SubmitJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.Job {
@@ -54,6 +63,13 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// Submits job to a cluster.
   ///
   /// @Snippet(path: "JobController_SubmitJobAsOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``submitJobAsOperation(request:)``
+  /// - ``submitJobAsOperationPollingUntilDone(request:)``
+  /// - ``submitJobAsOperationPollingUntilDone(request:options:)``
+  /// - ``submitJobAsOperationPollingUntilDone(projectId:region:job:)``
   public func submitJobAsOperation(
     request: SubmitJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -63,6 +79,13 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// Submits job to a cluster.
   ///
   /// @Snippet(path: "JobController_SubmitJobAsOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``submitJobAsOperationPollingUntilDone(request:)``
+  /// - ``submitJobAsOperationPollingUntilDone(projectId:region:job:)``
+  /// - ``submitJobAsOperation(request:)``
+  /// - ``submitJobAsOperation(request:options:)``
   public func submitJobAsOperationPollingUntilDone(
     request: SubmitJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> Job {
@@ -90,6 +113,11 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// Gets the resource representation for a job in a project.
   ///
   /// @Snippet(path: "JobController_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getJob(request:)``
+  /// - ``getJob(projectId:region:jobId:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.Job {
@@ -99,6 +127,14 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// Lists regions/{region}/jobs in a project.
   ///
   /// @Snippet(path: "JobController_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(request:)``
+  /// - ``listJobsByItems(request:options:)``
+  /// - ``listJobsByItems(projectId:region:)``
+  /// - ``listJobsByItems(projectId:region:filter:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.ListJobsResponse {
@@ -108,6 +144,10 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// Updates a job in a project.
   ///
   /// @Snippet(path: "JobController_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateJob(request:)``
   public func updateJob(
     request: UpdateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.Job {
@@ -121,6 +161,11 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// [regions/{region}/jobs.get](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.jobs/get).
   ///
   /// @Snippet(path: "JobController_CancelJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelJob(request:)``
+  /// - ``cancelJob(projectId:region:jobId:)``
   public func cancelJob(
     request: CancelJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.Job {
@@ -131,6 +176,11 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// and the response returns `FAILED_PRECONDITION`.
   ///
   /// @Snippet(path: "JobController_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteJob(request:)``
+  /// - ``deleteJob(projectId:region:jobId:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -144,6 +194,10 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// errors.
   ///
   /// @Snippet(path: "JobController_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -154,6 +208,10 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "JobController_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -169,6 +227,10 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "JobController_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -180,6 +242,13 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "JobController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -202,6 +271,11 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "JobController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -213,6 +287,11 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "JobController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -301,6 +380,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.JobControllerProtocol {
+  /// Submits a job to a cluster.
+  ///
+  /// @Snippet(path: "JobController_SubmitJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/submitJob(request:options:)``
   public func submitJob(request: SubmitJobRequest) async throws -> GoogleCloudDataprocV1.Job {
     try await self.submitJob(request: request, options: .init())
   }
@@ -311,6 +397,13 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Submits a job to a cluster.
+  ///
+  /// @Snippet(path: "JobController_SubmitJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/submitJob(request:options:)``
   public func submitJob(
     projectId: Swift.String,
     region: Swift.String,
@@ -324,6 +417,13 @@ extension Clients.JobControllerProtocol {
     return try await self.submitJob(request: request)
   }
 
+  /// Submits job to a cluster.
+  ///
+  /// @Snippet(path: "JobController_SubmitJobAsOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/submitJobAsOperation(request:options:)``
   public func submitJobAsOperation(request: SubmitJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -336,6 +436,13 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Submits job to a cluster.
+  ///
+  /// @Snippet(path: "JobController_SubmitJobAsOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/submitJobAsOperationPollingUntilDone(request:options:)``
   public func submitJobAsOperationPollingUntilDone(request: SubmitJobRequest) async throws -> Job {
     return try await self.submitJobAsOperationPollingUntilDone(request: request, options: .init())
   }
@@ -346,6 +453,13 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Submits job to a cluster.
+  ///
+  /// @Snippet(path: "JobController_SubmitJobAsOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/submitJobAsOperationPollingUntilDone(request:options:)``
   public func submitJobAsOperationPollingUntilDone(
     projectId: Swift.String,
     region: Swift.String,
@@ -359,6 +473,13 @@ extension Clients.JobControllerProtocol {
     return try await self.submitJobAsOperationPollingUntilDone(request: request)
   }
 
+  /// Gets the resource representation for a job in a project.
+  ///
+  /// @Snippet(path: "JobController_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/getJob(request:options:)``
   public func getJob(request: GetJobRequest) async throws -> GoogleCloudDataprocV1.Job {
     try await self.getJob(request: request, options: .init())
   }
@@ -369,6 +490,13 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the resource representation for a job in a project.
+  ///
+  /// @Snippet(path: "JobController_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/getJob(request:options:)``
   public func getJob(
     projectId: Swift.String,
     region: Swift.String,
@@ -382,6 +510,13 @@ extension Clients.JobControllerProtocol {
     return try await self.getJob(request: request)
   }
 
+  /// Lists regions/{region}/jobs in a project.
+  ///
+  /// @Snippet(path: "JobController_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/listJobs(request:options:)``
   public func listJobs(request: ListJobsRequest) async throws
     -> GoogleCloudDataprocV1.ListJobsResponse
   {
@@ -394,6 +529,13 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists regions/{region}/jobs in a project.
+  ///
+  /// @Snippet(path: "JobController_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -403,6 +545,10 @@ extension Clients.JobControllerProtocol {
   /// Lists regions/{region}/jobs in a project.
   ///
   /// @Snippet(path: "JobController_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -416,6 +562,13 @@ extension Clients.JobControllerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists regions/{region}/jobs in a project.
+  ///
+  /// @Snippet(path: "JobController_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/listJobs(request:options:)``
   public func listJobsByItems(
     projectId: Swift.String,
     region: Swift.String,
@@ -427,6 +580,13 @@ extension Clients.JobControllerProtocol {
     return self.listJobsByItems(request: request)
   }
 
+  /// Lists regions/{region}/jobs in a project.
+  ///
+  /// @Snippet(path: "JobController_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/listJobs(request:options:)``
   public func listJobsByItems(
     projectId: Swift.String,
     region: Swift.String,
@@ -440,6 +600,13 @@ extension Clients.JobControllerProtocol {
     return self.listJobsByItems(request: request)
   }
 
+  /// Updates a job in a project.
+  ///
+  /// @Snippet(path: "JobController_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/updateJob(request:options:)``
   public func updateJob(request: UpdateJobRequest) async throws -> GoogleCloudDataprocV1.Job {
     try await self.updateJob(request: request, options: .init())
   }
@@ -450,6 +617,17 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a job cancellation request. To access the job resource
+  /// after cancellation, call
+  /// [regions/{region}/jobs.list](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.jobs/list)
+  /// or
+  /// [regions/{region}/jobs.get](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.jobs/get).
+  ///
+  /// @Snippet(path: "JobController_CancelJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/cancelJob(request:options:)``
   public func cancelJob(request: CancelJobRequest) async throws -> GoogleCloudDataprocV1.Job {
     try await self.cancelJob(request: request, options: .init())
   }
@@ -460,6 +638,17 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a job cancellation request. To access the job resource
+  /// after cancellation, call
+  /// [regions/{region}/jobs.list](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.jobs/list)
+  /// or
+  /// [regions/{region}/jobs.get](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.jobs/get).
+  ///
+  /// @Snippet(path: "JobController_CancelJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/cancelJob(request:options:)``
   public func cancelJob(
     projectId: Swift.String,
     region: Swift.String,
@@ -473,6 +662,14 @@ extension Clients.JobControllerProtocol {
     return try await self.cancelJob(request: request)
   }
 
+  /// Deletes the job from the project. If the job is active, the delete fails,
+  /// and the response returns `FAILED_PRECONDITION`.
+  ///
+  /// @Snippet(path: "JobController_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/deleteJob(request:options:)``
   public func deleteJob(request: DeleteJobRequest) async throws {
     try await self.deleteJob(request: request, options: .init())
   }
@@ -483,6 +680,14 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the job from the project. If the job is active, the delete fails,
+  /// and the response returns `FAILED_PRECONDITION`.
+  ///
+  /// @Snippet(path: "JobController_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/deleteJob(request:options:)``
   public func deleteJob(
     projectId: Swift.String,
     region: Swift.String,
@@ -496,6 +701,17 @@ extension Clients.JobControllerProtocol {
     try await self.deleteJob(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "JobController_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -508,6 +724,14 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "JobController_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -520,6 +744,19 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "JobController_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -532,6 +769,15 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "JobController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -544,6 +790,15 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "JobController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -555,6 +810,10 @@ extension Clients.JobControllerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "JobController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -568,6 +827,15 @@ extension Clients.JobControllerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "JobController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -579,6 +847,9 @@ extension Clients.JobControllerProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -591,6 +862,9 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -600,6 +874,15 @@ extension Clients.JobControllerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "JobController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -610,6 +893,15 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "JobController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -619,6 +911,15 @@ extension Clients.JobControllerProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "JobController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -629,6 +930,15 @@ extension Clients.JobControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "JobController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobControllerClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

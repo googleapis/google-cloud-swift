@@ -24,6 +24,10 @@
   /// Service for the `networkAttachments` resource.
   ///
   /// @Snippet(path: "networkAttachmentsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/NetworkAttachmentsProtocol``
   public final class NetworkAttachmentsClient: Clients.NetworkAttachmentsProtocol, Sendable {
     let inner: any Clients.NetworkAttachmentsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -49,6 +53,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "networkAttachments_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
+    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: NetworkAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkAttachmentAggregatedList {
@@ -58,6 +69,13 @@
     /// Deletes the specified NetworkAttachment in the given scope
     ///
     /// @Snippet(path: "networkAttachments_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:networkAttachment:)``
     public func delete(
       request: NetworkAttachmentsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -72,6 +90,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "networkAttachments_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:region:networkAttachment:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: NetworkAttachmentsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -114,6 +139,11 @@
     /// Returns the specified NetworkAttachment resource in the given scope.
     ///
     /// @Snippet(path: "networkAttachments_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:networkAttachment:)``
     public func `get`(
       request: NetworkAttachmentsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkAttachment {
@@ -124,6 +154,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "networkAttachments_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(project:region:resource:)``
     public func getIamPolicy(
       request: NetworkAttachmentsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -134,6 +169,13 @@
     /// using the parameters that are included in the request.
     ///
     /// @Snippet(path: "networkAttachments_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: NetworkAttachmentsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -149,6 +191,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "networkAttachments_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: NetworkAttachmentsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -191,6 +240,13 @@
     /// Lists the NetworkAttachments for a project in the given scope.
     ///
     /// @Snippet(path: "networkAttachments_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:region:)``
     public func list(
       request: NetworkAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkAttachmentList {
@@ -203,6 +259,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "networkAttachments_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:networkAttachment:body:)``
     public func patch(
       request: NetworkAttachmentsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -220,6 +283,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "networkAttachments_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:region:networkAttachment:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: NetworkAttachmentsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -263,6 +333,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "networkAttachments_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(project:region:resource:body:)``
     public func setIamPolicy(
       request: NetworkAttachmentsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -272,6 +347,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "networkAttachments_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:region:resource:body:)``
     public func testIamPermissions(
       request: NetworkAttachmentsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -375,6 +455,17 @@
 
   // Default implementations
   extension Clients.NetworkAttachmentsProtocol {
+    /// Retrieves the list of all NetworkAttachment resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "networkAttachments_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/aggregatedList(request:options:)``
     public func aggregatedList(request: NetworkAttachmentsClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.NetworkAttachmentAggregatedList
     {
@@ -387,6 +478,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of all NetworkAttachment resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "networkAttachments_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: NetworkAttachmentsClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), any Swift.Error>
@@ -402,6 +504,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "networkAttachments_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: NetworkAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), any Swift.Error>
@@ -418,6 +524,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of all NetworkAttachment resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "networkAttachments_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), any Swift.Error>
@@ -429,6 +546,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified NetworkAttachment in the given scope
+    ///
+    /// @Snippet(path: "networkAttachments_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/delete(request:options:)``
     public func delete(request: NetworkAttachmentsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -441,6 +565,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified NetworkAttachment in the given scope
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkAttachments_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: NetworkAttachmentsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -453,6 +589,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified NetworkAttachment in the given scope
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkAttachments_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -466,6 +614,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified NetworkAttachment resource in the given scope.
+    ///
+    /// @Snippet(path: "networkAttachments_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/get(request:options:)``
     public func `get`(request: NetworkAttachmentsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.NetworkAttachment
     {
@@ -478,6 +633,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified NetworkAttachment resource in the given scope.
+    ///
+    /// @Snippet(path: "networkAttachments_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -491,6 +653,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "networkAttachments_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: NetworkAttachmentsClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -503,6 +673,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "networkAttachments_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -516,6 +694,14 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates a NetworkAttachment in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// @Snippet(path: "networkAttachments_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/insert(request:options:)``
     public func insert(request: NetworkAttachmentsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -528,6 +714,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a NetworkAttachment in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkAttachments_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: NetworkAttachmentsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -540,6 +739,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a NetworkAttachment in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkAttachments_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -553,6 +765,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists the NetworkAttachments for a project in the given scope.
+    ///
+    /// @Snippet(path: "networkAttachments_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/list(request:options:)``
     public func list(request: NetworkAttachmentsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.NetworkAttachmentList
     {
@@ -565,6 +784,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the NetworkAttachments for a project in the given scope.
+    ///
+    /// @Snippet(path: "networkAttachments_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/list(request:options:)``
     public func listByItems(
       request: NetworkAttachmentsClient.ListRequest
     ) -> some AsyncSequence<NetworkAttachment, any Swift.Error> & Sendable {
@@ -574,6 +800,10 @@
     /// Lists the NetworkAttachments for a project in the given scope.
     ///
     /// @Snippet(path: "networkAttachments_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/list(request:options:)``
     public func listByItems(
       request: NetworkAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<NetworkAttachment, any Swift.Error> & Sendable {
@@ -588,6 +818,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the NetworkAttachments for a project in the given scope.
+    ///
+    /// @Snippet(path: "networkAttachments_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -599,6 +836,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Patches the specified NetworkAttachment resource with the data included in
+    /// the request. This method supports PATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "networkAttachments_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/patch(request:options:)``
     public func patch(request: NetworkAttachmentsClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -611,6 +858,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified NetworkAttachment resource with the data included in
+    /// the request. This method supports PATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkAttachments_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: NetworkAttachmentsClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -623,6 +885,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified NetworkAttachment resource with the data included in
+    /// the request. This method supports PATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkAttachments_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -638,6 +915,14 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "networkAttachments_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: NetworkAttachmentsClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -650,6 +935,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "networkAttachments_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -665,6 +958,13 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "networkAttachments_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: NetworkAttachmentsClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -677,6 +977,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "networkAttachments_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkAttachmentsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -692,6 +999,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

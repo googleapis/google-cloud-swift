@@ -26,6 +26,10 @@ import Foundation
 /// This service provides all methods related to the 1p Linter.
 ///
 /// @Snippet(path: "LintingServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/LintingServiceProtocol``
 public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendable {
   let inner: any Clients.LintingServiceStub
 
@@ -42,6 +46,11 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   /// Get the style guide being used for linting.
   ///
   /// @Snippet(path: "LintingService_GetStyleGuide")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getStyleGuide(request:)``
+  /// - ``getStyleGuide(name:)``
   public func getStyleGuide(
     request: GetStyleGuideRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.StyleGuide {
@@ -51,6 +60,11 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   /// Update the styleGuide to be used for liniting in by API hub.
   ///
   /// @Snippet(path: "LintingService_UpdateStyleGuide")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateStyleGuide(request:)``
+  /// - ``updateStyleGuide(styleGuide:updateMask:)``
   public func updateStyleGuide(
     request: UpdateStyleGuideRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.StyleGuide {
@@ -60,6 +74,11 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   /// Get the contents of the style guide.
   ///
   /// @Snippet(path: "LintingService_GetStyleGuideContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getStyleGuideContents(request:)``
+  /// - ``getStyleGuideContents(name:)``
   public func getStyleGuideContents(
     request: GetStyleGuideContentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.StyleGuideContents {
@@ -71,6 +90,10 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   /// Get and List Spec calls to Core service.
   ///
   /// @Snippet(path: "LintingService_LintSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``lintSpec(request:)``
   public func lintSpec(
     request: LintSpecRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -80,6 +103,12 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "LintingService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -89,6 +118,10 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   /// Gets information about a location.
   ///
   /// @Snippet(path: "LintingService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -100,6 +133,13 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LintingService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -122,6 +162,11 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LintingService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -133,6 +178,11 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LintingService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -196,6 +246,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.LintingServiceProtocol {
+  /// Get the style guide being used for linting.
+  ///
+  /// @Snippet(path: "LintingService_GetStyleGuide")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/getStyleGuide(request:options:)``
   public func getStyleGuide(request: GetStyleGuideRequest) async throws
     -> GoogleCloudApiHubV1.StyleGuide
   {
@@ -208,6 +265,13 @@ extension Clients.LintingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the style guide being used for linting.
+  ///
+  /// @Snippet(path: "LintingService_GetStyleGuide")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/getStyleGuide(request:options:)``
   public func getStyleGuide(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.StyleGuide {
@@ -217,6 +281,13 @@ extension Clients.LintingServiceProtocol {
     return try await self.getStyleGuide(request: request)
   }
 
+  /// Update the styleGuide to be used for liniting in by API hub.
+  ///
+  /// @Snippet(path: "LintingService_UpdateStyleGuide")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/updateStyleGuide(request:options:)``
   public func updateStyleGuide(request: UpdateStyleGuideRequest) async throws
     -> GoogleCloudApiHubV1.StyleGuide
   {
@@ -229,6 +300,13 @@ extension Clients.LintingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update the styleGuide to be used for liniting in by API hub.
+  ///
+  /// @Snippet(path: "LintingService_UpdateStyleGuide")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/updateStyleGuide(request:options:)``
   public func updateStyleGuide(
     styleGuide: StyleGuide?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -240,6 +318,13 @@ extension Clients.LintingServiceProtocol {
     return try await self.updateStyleGuide(request: request)
   }
 
+  /// Get the contents of the style guide.
+  ///
+  /// @Snippet(path: "LintingService_GetStyleGuideContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/getStyleGuideContents(request:options:)``
   public func getStyleGuideContents(request: GetStyleGuideContentsRequest) async throws
     -> GoogleCloudApiHubV1.StyleGuideContents
   {
@@ -252,6 +337,13 @@ extension Clients.LintingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the contents of the style guide.
+  ///
+  /// @Snippet(path: "LintingService_GetStyleGuideContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/getStyleGuideContents(request:options:)``
   public func getStyleGuideContents(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.StyleGuideContents {
@@ -261,6 +353,15 @@ extension Clients.LintingServiceProtocol {
     return try await self.getStyleGuideContents(request: request)
   }
 
+  /// Lints the requested spec and updates the corresponding API Spec with the
+  /// lint response. This lint response will be available in all subsequent
+  /// Get and List Spec calls to Core service.
+  ///
+  /// @Snippet(path: "LintingService_LintSpec")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/lintSpec(request:options:)``
   public func lintSpec(request: LintSpecRequest) async throws {
     try await self.lintSpec(request: request, options: .init())
   }
@@ -271,6 +372,13 @@ extension Clients.LintingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "LintingService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -283,6 +391,13 @@ extension Clients.LintingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "LintingService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -292,6 +407,10 @@ extension Clients.LintingServiceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "LintingService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -305,6 +424,13 @@ extension Clients.LintingServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "LintingService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -317,6 +443,15 @@ extension Clients.LintingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LintingService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -329,6 +464,15 @@ extension Clients.LintingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LintingService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -340,6 +484,10 @@ extension Clients.LintingServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LintingService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -353,6 +501,15 @@ extension Clients.LintingServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LintingService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -364,6 +521,9 @@ extension Clients.LintingServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -376,6 +536,9 @@ extension Clients.LintingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -385,6 +548,15 @@ extension Clients.LintingServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LintingService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -395,6 +567,15 @@ extension Clients.LintingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LintingService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -404,6 +585,15 @@ extension Clients.LintingServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LintingService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -414,6 +604,15 @@ extension Clients.LintingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LintingService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LintingServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

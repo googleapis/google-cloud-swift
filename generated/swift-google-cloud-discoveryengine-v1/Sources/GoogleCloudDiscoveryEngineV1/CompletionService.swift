@@ -25,6 +25,10 @@
   /// Service for Auto-Completion.
   ///
   /// @Snippet(path: "CompletionServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/CompletionServiceProtocol``
   public final class CompletionServiceClient: Clients.CompletionServiceProtocol, Sendable {
     let inner: any Clients.CompletionServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -45,6 +49,10 @@
     /// Completes the specified user input with keyword suggestions.
     ///
     /// @Snippet(path: "CompletionService_CompleteQuery")
+    ///
+    /// ## See Also
+    ///
+    /// - ``completeQuery(request:)``
     public func completeQuery(
       request: CompleteQueryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.CompleteQueryResponse {
@@ -54,6 +62,10 @@
     /// Completes the user input with advanced keyword suggestions.
     ///
     /// @Snippet(path: "CompletionService_AdvancedCompleteQuery")
+    ///
+    /// ## See Also
+    ///
+    /// - ``advancedCompleteQuery(request:)``
     public func advancedCompleteQuery(
       request: AdvancedCompleteQueryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.AdvancedCompleteQueryResponse {
@@ -67,6 +79,12 @@
     /// [google.cloud.discoveryengine.v1.SuggestionDenyListEntry]: <doc:SuggestionDenyListEntry>
     ///
     /// @Snippet(path: "CompletionService_ImportSuggestionDenyListEntries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importSuggestionDenyListEntries(request:)``
+    /// - ``importSuggestionDenyListEntriesPollingUntilDone(request:)``
+    /// - ``importSuggestionDenyListEntriesPollingUntilDone(request:options:)``
     public func importSuggestionDenyListEntries(
       request: ImportSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -80,6 +98,12 @@
     /// [google.cloud.discoveryengine.v1.SuggestionDenyListEntry]: <doc:SuggestionDenyListEntry>
     ///
     /// @Snippet(path: "CompletionService_ImportSuggestionDenyListEntries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importSuggestionDenyListEntriesPollingUntilDone(request:)``
+    /// - ``importSuggestionDenyListEntries(request:)``
+    /// - ``importSuggestionDenyListEntries(request:options:)``
     public func importSuggestionDenyListEntriesPollingUntilDone(
       request: ImportSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportSuggestionDenyListEntriesResponse {
@@ -113,6 +137,12 @@
     /// [google.cloud.discoveryengine.v1.SuggestionDenyListEntry]: <doc:SuggestionDenyListEntry>
     ///
     /// @Snippet(path: "CompletionService_PurgeSuggestionDenyListEntries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeSuggestionDenyListEntries(request:)``
+    /// - ``purgeSuggestionDenyListEntriesPollingUntilDone(request:)``
+    /// - ``purgeSuggestionDenyListEntriesPollingUntilDone(request:options:)``
     public func purgeSuggestionDenyListEntries(
       request: PurgeSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -126,6 +156,12 @@
     /// [google.cloud.discoveryengine.v1.SuggestionDenyListEntry]: <doc:SuggestionDenyListEntry>
     ///
     /// @Snippet(path: "CompletionService_PurgeSuggestionDenyListEntries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeSuggestionDenyListEntriesPollingUntilDone(request:)``
+    /// - ``purgeSuggestionDenyListEntries(request:)``
+    /// - ``purgeSuggestionDenyListEntries(request:options:)``
     public func purgeSuggestionDenyListEntriesPollingUntilDone(
       request: PurgeSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeSuggestionDenyListEntriesResponse {
@@ -159,6 +195,12 @@
     /// [google.cloud.discoveryengine.v1.CompletionSuggestion]: <doc:CompletionSuggestion>
     ///
     /// @Snippet(path: "CompletionService_ImportCompletionSuggestions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importCompletionSuggestions(request:)``
+    /// - ``importCompletionSuggestionsPollingUntilDone(request:)``
+    /// - ``importCompletionSuggestionsPollingUntilDone(request:options:)``
     public func importCompletionSuggestions(
       request: ImportCompletionSuggestionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -172,6 +214,12 @@
     /// [google.cloud.discoveryengine.v1.CompletionSuggestion]: <doc:CompletionSuggestion>
     ///
     /// @Snippet(path: "CompletionService_ImportCompletionSuggestions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importCompletionSuggestionsPollingUntilDone(request:)``
+    /// - ``importCompletionSuggestions(request:)``
+    /// - ``importCompletionSuggestions(request:options:)``
     public func importCompletionSuggestionsPollingUntilDone(
       request: ImportCompletionSuggestionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportCompletionSuggestionsResponse {
@@ -205,6 +253,12 @@
     /// [google.cloud.discoveryengine.v1.CompletionSuggestion]: <doc:CompletionSuggestion>
     ///
     /// @Snippet(path: "CompletionService_PurgeCompletionSuggestions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeCompletionSuggestions(request:)``
+    /// - ``purgeCompletionSuggestionsPollingUntilDone(request:)``
+    /// - ``purgeCompletionSuggestionsPollingUntilDone(request:options:)``
     public func purgeCompletionSuggestions(
       request: PurgeCompletionSuggestionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -218,6 +272,12 @@
     /// [google.cloud.discoveryengine.v1.CompletionSuggestion]: <doc:CompletionSuggestion>
     ///
     /// @Snippet(path: "CompletionService_PurgeCompletionSuggestions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeCompletionSuggestionsPollingUntilDone(request:)``
+    /// - ``purgeCompletionSuggestions(request:)``
+    /// - ``purgeCompletionSuggestions(request:options:)``
     public func purgeCompletionSuggestionsPollingUntilDone(
       request: PurgeCompletionSuggestionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeCompletionSuggestionsResponse {
@@ -249,6 +309,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "CompletionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -271,6 +338,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "CompletionService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -349,6 +421,13 @@
 
   // Default implementations
   extension Clients.CompletionServiceProtocol {
+    /// Completes the specified user input with keyword suggestions.
+    ///
+    /// @Snippet(path: "CompletionService_CompleteQuery")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/completeQuery(request:options:)``
     public func completeQuery(request: CompleteQueryRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.CompleteQueryResponse
     {
@@ -361,6 +440,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Completes the user input with advanced keyword suggestions.
+    ///
+    /// @Snippet(path: "CompletionService_AdvancedCompleteQuery")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/advancedCompleteQuery(request:options:)``
     public func advancedCompleteQuery(request: AdvancedCompleteQueryRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.AdvancedCompleteQueryResponse
     {
@@ -373,6 +459,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports all
+    /// [SuggestionDenyListEntry][google.cloud.discoveryengine.v1.SuggestionDenyListEntry]
+    /// for a DataStore.
+    ///
+    /// [google.cloud.discoveryengine.v1.SuggestionDenyListEntry]: <doc:SuggestionDenyListEntry>
+    ///
+    /// @Snippet(path: "CompletionService_ImportSuggestionDenyListEntries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/importSuggestionDenyListEntries(request:options:)``
     public func importSuggestionDenyListEntries(request: ImportSuggestionDenyListEntriesRequest)
       async throws -> GoogleLongRunning.Operation
     {
@@ -385,6 +482,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports all
+    /// [SuggestionDenyListEntry][google.cloud.discoveryengine.v1.SuggestionDenyListEntry]
+    /// for a DataStore.
+    ///
+    /// [google.cloud.discoveryengine.v1.SuggestionDenyListEntry]: <doc:SuggestionDenyListEntry>
+    ///
+    /// @Snippet(path: "CompletionService_ImportSuggestionDenyListEntries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/importSuggestionDenyListEntriesPollingUntilDone(request:options:)``
     public func importSuggestionDenyListEntriesPollingUntilDone(
       request: ImportSuggestionDenyListEntriesRequest
     ) async throws -> ImportSuggestionDenyListEntriesResponse {
@@ -398,6 +506,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Permanently deletes all
+    /// [SuggestionDenyListEntry][google.cloud.discoveryengine.v1.SuggestionDenyListEntry]
+    /// for a DataStore.
+    ///
+    /// [google.cloud.discoveryengine.v1.SuggestionDenyListEntry]: <doc:SuggestionDenyListEntry>
+    ///
+    /// @Snippet(path: "CompletionService_PurgeSuggestionDenyListEntries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/purgeSuggestionDenyListEntries(request:options:)``
     public func purgeSuggestionDenyListEntries(request: PurgeSuggestionDenyListEntriesRequest)
       async throws -> GoogleLongRunning.Operation
     {
@@ -410,6 +529,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Permanently deletes all
+    /// [SuggestionDenyListEntry][google.cloud.discoveryengine.v1.SuggestionDenyListEntry]
+    /// for a DataStore.
+    ///
+    /// [google.cloud.discoveryengine.v1.SuggestionDenyListEntry]: <doc:SuggestionDenyListEntry>
+    ///
+    /// @Snippet(path: "CompletionService_PurgeSuggestionDenyListEntries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/purgeSuggestionDenyListEntriesPollingUntilDone(request:options:)``
     public func purgeSuggestionDenyListEntriesPollingUntilDone(
       request: PurgeSuggestionDenyListEntriesRequest
     ) async throws -> PurgeSuggestionDenyListEntriesResponse {
@@ -423,6 +553,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports
+    /// [CompletionSuggestion][google.cloud.discoveryengine.v1.CompletionSuggestion]s
+    /// for a DataStore.
+    ///
+    /// [google.cloud.discoveryengine.v1.CompletionSuggestion]: <doc:CompletionSuggestion>
+    ///
+    /// @Snippet(path: "CompletionService_ImportCompletionSuggestions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/importCompletionSuggestions(request:options:)``
     public func importCompletionSuggestions(request: ImportCompletionSuggestionsRequest)
       async throws -> GoogleLongRunning.Operation
     {
@@ -435,6 +576,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports
+    /// [CompletionSuggestion][google.cloud.discoveryengine.v1.CompletionSuggestion]s
+    /// for a DataStore.
+    ///
+    /// [google.cloud.discoveryengine.v1.CompletionSuggestion]: <doc:CompletionSuggestion>
+    ///
+    /// @Snippet(path: "CompletionService_ImportCompletionSuggestions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/importCompletionSuggestionsPollingUntilDone(request:options:)``
     public func importCompletionSuggestionsPollingUntilDone(
       request: ImportCompletionSuggestionsRequest
     ) async throws -> ImportCompletionSuggestionsResponse {
@@ -448,6 +600,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Permanently deletes all
+    /// [CompletionSuggestion][google.cloud.discoveryengine.v1.CompletionSuggestion]s
+    /// for a DataStore.
+    ///
+    /// [google.cloud.discoveryengine.v1.CompletionSuggestion]: <doc:CompletionSuggestion>
+    ///
+    /// @Snippet(path: "CompletionService_PurgeCompletionSuggestions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/purgeCompletionSuggestions(request:options:)``
     public func purgeCompletionSuggestions(request: PurgeCompletionSuggestionsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -460,6 +623,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Permanently deletes all
+    /// [CompletionSuggestion][google.cloud.discoveryengine.v1.CompletionSuggestion]s
+    /// for a DataStore.
+    ///
+    /// [google.cloud.discoveryengine.v1.CompletionSuggestion]: <doc:CompletionSuggestion>
+    ///
+    /// @Snippet(path: "CompletionService_PurgeCompletionSuggestions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/purgeCompletionSuggestionsPollingUntilDone(request:options:)``
     public func purgeCompletionSuggestionsPollingUntilDone(
       request: PurgeCompletionSuggestionsRequest
     ) async throws -> PurgeCompletionSuggestionsResponse {
@@ -473,6 +647,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CompletionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -485,6 +668,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CompletionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -496,6 +688,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "CompletionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -509,6 +705,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CompletionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -520,6 +725,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -532,6 +740,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -541,6 +752,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CompletionService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -551,6 +771,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CompletionService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompletionServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

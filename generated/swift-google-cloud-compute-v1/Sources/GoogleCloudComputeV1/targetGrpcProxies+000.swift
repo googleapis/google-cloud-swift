@@ -24,6 +24,10 @@
   /// Service for the `targetGrpcProxies` resource.
   ///
   /// @Snippet(path: "targetGrpcProxiesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/TargetGrpcProxiesProtocol``
   public final class TargetGrpcProxiesClient: Clients.TargetGrpcProxiesProtocol, Sendable {
     let inner: any Clients.TargetGrpcProxiesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Deletes the specified TargetGrpcProxy in the given scope
     ///
     /// @Snippet(path: "targetGrpcProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:targetGrpcProxy:)``
     public func delete(
       request: TargetGrpcProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetGrpcProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:targetGrpcProxy:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: TargetGrpcProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -99,6 +117,11 @@
     /// Returns the specified TargetGrpcProxy resource in the given scope.
     ///
     /// @Snippet(path: "targetGrpcProxies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:targetGrpcProxy:)``
     public func `get`(
       request: TargetGrpcProxiesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetGrpcProxy {
@@ -109,6 +132,13 @@
     /// using the parameters that are included in the request.
     ///
     /// @Snippet(path: "targetGrpcProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: TargetGrpcProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -124,6 +154,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetGrpcProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: TargetGrpcProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -165,6 +202,13 @@
     /// Lists the TargetGrpcProxies for a project in the given scope.
     ///
     /// @Snippet(path: "targetGrpcProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:)``
     public func list(
       request: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetGrpcProxyList {
@@ -177,6 +221,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "targetGrpcProxies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:targetGrpcProxy:body:)``
     public func patch(
       request: TargetGrpcProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -194,6 +245,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetGrpcProxies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:targetGrpcProxy:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: TargetGrpcProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -308,6 +366,13 @@
 
   // Default implementations
   extension Clients.TargetGrpcProxiesProtocol {
+    /// Deletes the specified TargetGrpcProxy in the given scope
+    ///
+    /// @Snippet(path: "targetGrpcProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/delete(request:options:)``
     public func delete(request: TargetGrpcProxiesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -320,6 +385,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified TargetGrpcProxy in the given scope
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: TargetGrpcProxiesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -332,6 +409,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified TargetGrpcProxy in the given scope
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       targetGrpcProxy: Swift.String,
@@ -343,6 +432,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified TargetGrpcProxy resource in the given scope.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/get(request:options:)``
     public func `get`(request: TargetGrpcProxiesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.TargetGrpcProxy
     {
@@ -355,6 +451,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified TargetGrpcProxy resource in the given scope.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       targetGrpcProxy: Swift.String,
@@ -366,6 +469,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a TargetGrpcProxy in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/insert(request:options:)``
     public func insert(request: TargetGrpcProxiesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -378,6 +489,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a TargetGrpcProxy in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: TargetGrpcProxiesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -390,6 +514,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a TargetGrpcProxy in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: TargetGrpcProxy?,
@@ -401,6 +538,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists the TargetGrpcProxies for a project in the given scope.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/list(request:options:)``
     public func list(request: TargetGrpcProxiesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.TargetGrpcProxyList
     {
@@ -413,6 +557,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the TargetGrpcProxies for a project in the given scope.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/list(request:options:)``
     public func listByItems(
       request: TargetGrpcProxiesClient.ListRequest
     ) -> some AsyncSequence<TargetGrpcProxy, any Swift.Error> & Sendable {
@@ -422,6 +573,10 @@
     /// Lists the TargetGrpcProxies for a project in the given scope.
     ///
     /// @Snippet(path: "targetGrpcProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/list(request:options:)``
     public func listByItems(
       request: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TargetGrpcProxy, any Swift.Error> & Sendable {
@@ -435,6 +590,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the TargetGrpcProxies for a project in the given scope.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<TargetGrpcProxy, any Swift.Error> & Sendable {
@@ -444,6 +606,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Patches the specified TargetGrpcProxy resource with the data included in
+    /// the request. This method supports PATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/patch(request:options:)``
     public func patch(request: TargetGrpcProxiesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -456,6 +628,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified TargetGrpcProxy resource with the data included in
+    /// the request. This method supports PATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: TargetGrpcProxiesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -468,6 +655,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified TargetGrpcProxy resource with the data included in
+    /// the request. This method supports PATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetGrpcProxies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetGrpcProxiesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       targetGrpcProxy: Swift.String,
@@ -481,6 +683,7 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

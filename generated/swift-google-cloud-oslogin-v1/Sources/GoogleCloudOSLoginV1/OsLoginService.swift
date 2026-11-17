@@ -28,6 +28,10 @@ import Foundation
 /// public keys for logging into virtual machines on Google Cloud Platform.
 ///
 /// @Snippet(path: "OsLoginServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/OsLoginServiceProtocol``
 public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendable {
   let inner: any Clients.OsLoginServiceStub
 
@@ -44,6 +48,11 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   /// Create an SSH public key
   ///
   /// @Snippet(path: "OsLoginService_CreateSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSshPublicKey(request:)``
+  /// - ``createSshPublicKey(parent:sshPublicKey:)``
   public func createSshPublicKey(
     request: CreateSshPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
@@ -53,6 +62,11 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   /// Deletes a POSIX account.
   ///
   /// @Snippet(path: "OsLoginService_DeletePosixAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePosixAccount(request:)``
+  /// - ``deletePosixAccount(name:)``
   public func deletePosixAccount(
     request: DeletePosixAccountRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -62,6 +76,11 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   /// Deletes an SSH public key.
   ///
   /// @Snippet(path: "OsLoginService_DeleteSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSshPublicKey(request:)``
+  /// - ``deleteSshPublicKey(name:)``
   public func deleteSshPublicKey(
     request: DeleteSshPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -72,6 +91,11 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   /// on Google Compute Engine.
   ///
   /// @Snippet(path: "OsLoginService_GetLoginProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLoginProfile(request:)``
+  /// - ``getLoginProfile(name:)``
   public func getLoginProfile(
     request: GetLoginProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSLoginV1.LoginProfile {
@@ -81,6 +105,11 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   /// Retrieves an SSH public key.
   ///
   /// @Snippet(path: "OsLoginService_GetSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSshPublicKey(request:)``
+  /// - ``getSshPublicKey(name:)``
   public func getSshPublicKey(
     request: GetSshPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
@@ -92,6 +121,12 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   /// login profile.
   ///
   /// @Snippet(path: "OsLoginService_ImportSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importSshPublicKey(request:)``
+  /// - ``importSshPublicKey(parent:sshPublicKey:)``
+  /// - ``importSshPublicKey(parent:sshPublicKey:projectId:)``
   public func importSshPublicKey(
     request: ImportSshPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSLoginV1.ImportSshPublicKeyResponse {
@@ -102,6 +137,12 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   /// supports patch semantics.
   ///
   /// @Snippet(path: "OsLoginService_UpdateSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSshPublicKey(request:)``
+  /// - ``updateSshPublicKey(name:sshPublicKey:)``
+  /// - ``updateSshPublicKey(name:sshPublicKey:updateMask:)``
   public func updateSshPublicKey(
     request: UpdateSshPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
@@ -155,6 +196,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.OsLoginServiceProtocol {
+  /// Create an SSH public key
+  ///
+  /// @Snippet(path: "OsLoginService_CreateSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/createSshPublicKey(request:options:)``
   public func createSshPublicKey(request: CreateSshPublicKeyRequest) async throws
     -> GoogleCloudOSLoginCommon.SshPublicKey
   {
@@ -167,6 +215,13 @@ extension Clients.OsLoginServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create an SSH public key
+  ///
+  /// @Snippet(path: "OsLoginService_CreateSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/createSshPublicKey(request:options:)``
   public func createSshPublicKey(
     parent: Swift.String,
     sshPublicKey: GoogleCloudOSLoginCommon.SshPublicKey?,
@@ -178,6 +233,13 @@ extension Clients.OsLoginServiceProtocol {
     return try await self.createSshPublicKey(request: request)
   }
 
+  /// Deletes a POSIX account.
+  ///
+  /// @Snippet(path: "OsLoginService_DeletePosixAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/deletePosixAccount(request:options:)``
   public func deletePosixAccount(request: DeletePosixAccountRequest) async throws {
     try await self.deletePosixAccount(request: request, options: .init())
   }
@@ -188,6 +250,13 @@ extension Clients.OsLoginServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a POSIX account.
+  ///
+  /// @Snippet(path: "OsLoginService_DeletePosixAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/deletePosixAccount(request:options:)``
   public func deletePosixAccount(
     name: Swift.String,
   ) async throws {
@@ -197,6 +266,13 @@ extension Clients.OsLoginServiceProtocol {
     try await self.deletePosixAccount(request: request)
   }
 
+  /// Deletes an SSH public key.
+  ///
+  /// @Snippet(path: "OsLoginService_DeleteSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/deleteSshPublicKey(request:options:)``
   public func deleteSshPublicKey(request: DeleteSshPublicKeyRequest) async throws {
     try await self.deleteSshPublicKey(request: request, options: .init())
   }
@@ -207,6 +283,13 @@ extension Clients.OsLoginServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an SSH public key.
+  ///
+  /// @Snippet(path: "OsLoginService_DeleteSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/deleteSshPublicKey(request:options:)``
   public func deleteSshPublicKey(
     name: Swift.String,
   ) async throws {
@@ -216,6 +299,14 @@ extension Clients.OsLoginServiceProtocol {
     try await self.deleteSshPublicKey(request: request)
   }
 
+  /// Retrieves the profile information used for logging in to a virtual machine
+  /// on Google Compute Engine.
+  ///
+  /// @Snippet(path: "OsLoginService_GetLoginProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/getLoginProfile(request:options:)``
   public func getLoginProfile(request: GetLoginProfileRequest) async throws
     -> GoogleCloudOSLoginV1.LoginProfile
   {
@@ -228,6 +319,14 @@ extension Clients.OsLoginServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the profile information used for logging in to a virtual machine
+  /// on Google Compute Engine.
+  ///
+  /// @Snippet(path: "OsLoginService_GetLoginProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/getLoginProfile(request:options:)``
   public func getLoginProfile(
     name: Swift.String,
   ) async throws -> GoogleCloudOSLoginV1.LoginProfile {
@@ -237,6 +336,13 @@ extension Clients.OsLoginServiceProtocol {
     return try await self.getLoginProfile(request: request)
   }
 
+  /// Retrieves an SSH public key.
+  ///
+  /// @Snippet(path: "OsLoginService_GetSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/getSshPublicKey(request:options:)``
   public func getSshPublicKey(request: GetSshPublicKeyRequest) async throws
     -> GoogleCloudOSLoginCommon.SshPublicKey
   {
@@ -249,6 +355,13 @@ extension Clients.OsLoginServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves an SSH public key.
+  ///
+  /// @Snippet(path: "OsLoginService_GetSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/getSshPublicKey(request:options:)``
   public func getSshPublicKey(
     name: Swift.String,
   ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
@@ -258,6 +371,15 @@ extension Clients.OsLoginServiceProtocol {
     return try await self.getSshPublicKey(request: request)
   }
 
+  /// Adds an SSH public key and returns the profile information. Default POSIX
+  /// account information is set when no username and UID exist as part of the
+  /// login profile.
+  ///
+  /// @Snippet(path: "OsLoginService_ImportSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/importSshPublicKey(request:options:)``
   public func importSshPublicKey(request: ImportSshPublicKeyRequest) async throws
     -> GoogleCloudOSLoginV1.ImportSshPublicKeyResponse
   {
@@ -270,6 +392,15 @@ extension Clients.OsLoginServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds an SSH public key and returns the profile information. Default POSIX
+  /// account information is set when no username and UID exist as part of the
+  /// login profile.
+  ///
+  /// @Snippet(path: "OsLoginService_ImportSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/importSshPublicKey(request:options:)``
   public func importSshPublicKey(
     parent: Swift.String,
     sshPublicKey: GoogleCloudOSLoginCommon.SshPublicKey?,
@@ -281,6 +412,15 @@ extension Clients.OsLoginServiceProtocol {
     return try await self.importSshPublicKey(request: request)
   }
 
+  /// Adds an SSH public key and returns the profile information. Default POSIX
+  /// account information is set when no username and UID exist as part of the
+  /// login profile.
+  ///
+  /// @Snippet(path: "OsLoginService_ImportSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/importSshPublicKey(request:options:)``
   public func importSshPublicKey(
     parent: Swift.String,
     sshPublicKey: GoogleCloudOSLoginCommon.SshPublicKey?,
@@ -294,6 +434,14 @@ extension Clients.OsLoginServiceProtocol {
     return try await self.importSshPublicKey(request: request)
   }
 
+  /// Updates an SSH public key and returns the profile information. This method
+  /// supports patch semantics.
+  ///
+  /// @Snippet(path: "OsLoginService_UpdateSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/updateSshPublicKey(request:options:)``
   public func updateSshPublicKey(request: UpdateSshPublicKeyRequest) async throws
     -> GoogleCloudOSLoginCommon.SshPublicKey
   {
@@ -306,6 +454,14 @@ extension Clients.OsLoginServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an SSH public key and returns the profile information. This method
+  /// supports patch semantics.
+  ///
+  /// @Snippet(path: "OsLoginService_UpdateSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/updateSshPublicKey(request:options:)``
   public func updateSshPublicKey(
     name: Swift.String,
     sshPublicKey: GoogleCloudOSLoginCommon.SshPublicKey?,
@@ -317,6 +473,14 @@ extension Clients.OsLoginServiceProtocol {
     return try await self.updateSshPublicKey(request: request)
   }
 
+  /// Updates an SSH public key and returns the profile information. This method
+  /// supports patch semantics.
+  ///
+  /// @Snippet(path: "OsLoginService_UpdateSshPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsLoginServiceClient/updateSshPublicKey(request:options:)``
   public func updateSshPublicKey(
     name: Swift.String,
     sshPublicKey: GoogleCloudOSLoginCommon.SshPublicKey?,

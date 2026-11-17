@@ -29,6 +29,10 @@
   /// [google.cloud.dialogflow.cx.v3.Flow]: <doc:Flow>
   ///
   /// @Snippet(path: "FlowsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/FlowsProtocol``
   public final class FlowsClient: Clients.FlowsProtocol, Sendable {
     let inner: any Clients.FlowsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -53,6 +57,11 @@
     /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
     ///
     /// @Snippet(path: "Flows_CreateFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createFlow(request:)``
+    /// - ``createFlow(parent:flow:)``
     public func createFlow(
       request: CreateFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Flow {
@@ -62,6 +71,11 @@
     /// Deletes a specified flow.
     ///
     /// @Snippet(path: "Flows_DeleteFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteFlow(request:)``
+    /// - ``deleteFlow(name:)``
     public func deleteFlow(
       request: DeleteFlowRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -71,6 +85,13 @@
     /// Returns the list of all flows in the specified agent.
     ///
     /// @Snippet(path: "Flows_ListFlows")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listFlows(request:)``
+    /// - ``listFlowsByItems(request:)``
+    /// - ``listFlowsByItems(request:options:)``
+    /// - ``listFlowsByItems(parent:)``
     public func listFlows(
       request: ListFlowsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListFlowsResponse {
@@ -80,6 +101,11 @@
     /// Retrieves the specified flow.
     ///
     /// @Snippet(path: "Flows_GetFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getFlow(request:)``
+    /// - ``getFlow(name:)``
     public func getFlow(
       request: GetFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Flow {
@@ -93,6 +119,11 @@
     /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
     ///
     /// @Snippet(path: "Flows_UpdateFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateFlow(request:)``
+    /// - ``updateFlow(flow:updateMask:)``
     public func updateFlow(
       request: UpdateFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Flow {
@@ -116,6 +147,13 @@
     /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
     ///
     /// @Snippet(path: "Flows_TrainFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``trainFlow(request:)``
+    /// - ``trainFlowPollingUntilDone(request:)``
+    /// - ``trainFlowPollingUntilDone(request:options:)``
+    /// - ``trainFlowPollingUntilDone(name:)``
     public func trainFlow(
       request: TrainFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -139,6 +177,13 @@
     /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
     ///
     /// @Snippet(path: "Flows_TrainFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``trainFlowPollingUntilDone(request:)``
+    /// - ``trainFlowPollingUntilDone(name:)``
+    /// - ``trainFlow(request:)``
+    /// - ``trainFlow(request:options:)``
     public func trainFlowPollingUntilDone(
       request: TrainFlowRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -169,6 +214,10 @@
     /// validation results.
     ///
     /// @Snippet(path: "Flows_ValidateFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``validateFlow(request:)``
     public func validateFlow(
       request: ValidateFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.FlowValidationResult {
@@ -179,6 +228,11 @@
     /// when ValidateFlow is called.
     ///
     /// @Snippet(path: "Flows_GetFlowValidationResult")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getFlowValidationResult(request:)``
+    /// - ``getFlowValidationResult(name:)``
     public func getFlowValidationResult(
       request: GetFlowValidationResultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.FlowValidationResult {
@@ -203,6 +257,12 @@
     /// [google.cloud.dialogflow.cx.v3.ImportFlowResponse]: <doc:ImportFlowResponse>
     ///
     /// @Snippet(path: "Flows_ImportFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importFlow(request:)``
+    /// - ``importFlowPollingUntilDone(request:)``
+    /// - ``importFlowPollingUntilDone(request:options:)``
     public func importFlow(
       request: ImportFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -227,6 +287,12 @@
     /// [google.cloud.dialogflow.cx.v3.ImportFlowResponse]: <doc:ImportFlowResponse>
     ///
     /// @Snippet(path: "Flows_ImportFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importFlowPollingUntilDone(request:)``
+    /// - ``importFlow(request:)``
+    /// - ``importFlow(request:options:)``
     public func importFlowPollingUntilDone(
       request: ImportFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportFlowResponse {
@@ -269,6 +335,12 @@
     /// [google.cloud.dialogflow.cx.v3.ExportFlowResponse]: <doc:ExportFlowResponse>
     ///
     /// @Snippet(path: "Flows_ExportFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportFlow(request:)``
+    /// - ``exportFlowPollingUntilDone(request:)``
+    /// - ``exportFlowPollingUntilDone(request:options:)``
     public func exportFlow(
       request: ExportFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -292,6 +364,12 @@
     /// [google.cloud.dialogflow.cx.v3.ExportFlowResponse]: <doc:ExportFlowResponse>
     ///
     /// @Snippet(path: "Flows_ExportFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportFlowPollingUntilDone(request:)``
+    /// - ``exportFlow(request:)``
+    /// - ``exportFlow(request:options:)``
     public func exportFlowPollingUntilDone(
       request: ExportFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportFlowResponse {
@@ -337,6 +415,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Flows_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -346,6 +430,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Flows_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -357,6 +445,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Flows_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -379,6 +474,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Flows_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -482,6 +582,17 @@
 
   // Default implementations
   extension Clients.FlowsProtocol {
+    /// Creates a flow in the specified agent.
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Flows_CreateFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/createFlow(request:options:)``
     public func createFlow(request: CreateFlowRequest) async throws
       -> GoogleCloudDialogflowCXV3.Flow
     {
@@ -494,6 +605,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a flow in the specified agent.
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Flows_CreateFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/createFlow(request:options:)``
     public func createFlow(
       parent: Swift.String,
       flow: Flow?,
@@ -505,6 +627,13 @@
       return try await self.createFlow(request: request)
     }
 
+    /// Deletes a specified flow.
+    ///
+    /// @Snippet(path: "Flows_DeleteFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/deleteFlow(request:options:)``
     public func deleteFlow(request: DeleteFlowRequest) async throws {
       try await self.deleteFlow(request: request, options: .init())
     }
@@ -515,6 +644,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a specified flow.
+    ///
+    /// @Snippet(path: "Flows_DeleteFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/deleteFlow(request:options:)``
     public func deleteFlow(
       name: Swift.String,
     ) async throws {
@@ -524,6 +660,13 @@
       try await self.deleteFlow(request: request)
     }
 
+    /// Returns the list of all flows in the specified agent.
+    ///
+    /// @Snippet(path: "Flows_ListFlows")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/listFlows(request:options:)``
     public func listFlows(request: ListFlowsRequest) async throws
       -> GoogleCloudDialogflowCXV3.ListFlowsResponse
     {
@@ -536,6 +679,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of all flows in the specified agent.
+    ///
+    /// @Snippet(path: "Flows_ListFlows")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/listFlows(request:options:)``
     public func listFlowsByItems(
       request: ListFlowsRequest
     ) -> some AsyncSequence<Flow, any Swift.Error> & Sendable {
@@ -545,6 +695,10 @@
     /// Returns the list of all flows in the specified agent.
     ///
     /// @Snippet(path: "Flows_ListFlows")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/listFlows(request:options:)``
     public func listFlowsByItems(
       request: ListFlowsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Flow, any Swift.Error> & Sendable {
@@ -559,6 +713,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of all flows in the specified agent.
+    ///
+    /// @Snippet(path: "Flows_ListFlows")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/listFlows(request:options:)``
     public func listFlowsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Flow, any Swift.Error> & Sendable {
@@ -568,6 +729,13 @@
       return self.listFlowsByItems(request: request)
     }
 
+    /// Retrieves the specified flow.
+    ///
+    /// @Snippet(path: "Flows_GetFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/getFlow(request:options:)``
     public func getFlow(request: GetFlowRequest) async throws -> GoogleCloudDialogflowCXV3.Flow {
       try await self.getFlow(request: request, options: .init())
     }
@@ -578,6 +746,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified flow.
+    ///
+    /// @Snippet(path: "Flows_GetFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/getFlow(request:options:)``
     public func getFlow(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.Flow {
@@ -587,6 +762,17 @@
       return try await self.getFlow(request: request)
     }
 
+    /// Updates the specified flow.
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Flows_UpdateFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/updateFlow(request:options:)``
     public func updateFlow(request: UpdateFlowRequest) async throws
       -> GoogleCloudDialogflowCXV3.Flow
     {
@@ -599,6 +785,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified flow.
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Flows_UpdateFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/updateFlow(request:options:)``
     public func updateFlow(
       flow: Flow?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -610,6 +807,27 @@
       return try await self.updateFlow(request: request)
     }
 
+    /// Trains the specified flow. Note that only the flow in 'draft' environment
+    /// is trained.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Flows_TrainFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/trainFlow(request:options:)``
     public func trainFlow(request: TrainFlowRequest) async throws -> GoogleLongRunning.Operation {
       try await self.trainFlow(request: request, options: .init())
     }
@@ -620,6 +838,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Trains the specified flow. Note that only the flow in 'draft' environment
+    /// is trained.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Flows_TrainFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/trainFlowPollingUntilDone(request:options:)``
     public func trainFlowPollingUntilDone(request: TrainFlowRequest) async throws {
       try await self.trainFlowPollingUntilDone(request: request, options: .init())
     }
@@ -630,6 +869,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Trains the specified flow. Note that only the flow in 'draft' environment
+    /// is trained.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Flows_TrainFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/trainFlowPollingUntilDone(request:options:)``
     public func trainFlowPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -639,6 +899,15 @@
       try await self.trainFlowPollingUntilDone(request: request)
     }
 
+    /// Validates the specified flow and creates or updates validation results.
+    /// Please call this API after the training is completed to get the complete
+    /// validation results.
+    ///
+    /// @Snippet(path: "Flows_ValidateFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/validateFlow(request:options:)``
     public func validateFlow(request: ValidateFlowRequest) async throws
       -> GoogleCloudDialogflowCXV3.FlowValidationResult
     {
@@ -651,6 +920,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the latest flow validation result. Flow validation is performed
+    /// when ValidateFlow is called.
+    ///
+    /// @Snippet(path: "Flows_GetFlowValidationResult")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/getFlowValidationResult(request:options:)``
     public func getFlowValidationResult(request: GetFlowValidationResultRequest) async throws
       -> GoogleCloudDialogflowCXV3.FlowValidationResult
     {
@@ -663,6 +940,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the latest flow validation result. Flow validation is performed
+    /// when ValidateFlow is called.
+    ///
+    /// @Snippet(path: "Flows_GetFlowValidationResult")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/getFlowValidationResult(request:options:)``
     public func getFlowValidationResult(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.FlowValidationResult {
@@ -672,6 +957,28 @@
       return try await self.getFlowValidationResult(request: request)
     }
 
+    /// Imports the specified flow to the specified agent from a binary file.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`:
+    /// [ImportFlowResponse][google.cloud.dialogflow.cx.v3.ImportFlowResponse]
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// [google.cloud.dialogflow.cx.v3.ImportFlowResponse]: <doc:ImportFlowResponse>
+    ///
+    /// @Snippet(path: "Flows_ImportFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/importFlow(request:options:)``
     public func importFlow(request: ImportFlowRequest) async throws -> GoogleLongRunning.Operation {
       try await self.importFlow(request: request, options: .init())
     }
@@ -682,6 +989,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports the specified flow to the specified agent from a binary file.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`:
+    /// [ImportFlowResponse][google.cloud.dialogflow.cx.v3.ImportFlowResponse]
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// [google.cloud.dialogflow.cx.v3.ImportFlowResponse]: <doc:ImportFlowResponse>
+    ///
+    /// @Snippet(path: "Flows_ImportFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/importFlowPollingUntilDone(request:options:)``
     public func importFlowPollingUntilDone(request: ImportFlowRequest) async throws
       -> ImportFlowResponse
     {
@@ -694,6 +1023,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports the specified flow to a binary file.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`:
+    /// [ExportFlowResponse][google.cloud.dialogflow.cx.v3.ExportFlowResponse]
+    ///
+    /// Note that resources (e.g. intents, entities, webhooks) that the flow
+    /// references will also be exported.
+    ///
+    /// [google.cloud.dialogflow.cx.v3.ExportFlowResponse]: <doc:ExportFlowResponse>
+    ///
+    /// @Snippet(path: "Flows_ExportFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/exportFlow(request:options:)``
     public func exportFlow(request: ExportFlowRequest) async throws -> GoogleLongRunning.Operation {
       try await self.exportFlow(request: request, options: .init())
     }
@@ -704,6 +1054,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports the specified flow to a binary file.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`:
+    /// [ExportFlowResponse][google.cloud.dialogflow.cx.v3.ExportFlowResponse]
+    ///
+    /// Note that resources (e.g. intents, entities, webhooks) that the flow
+    /// references will also be exported.
+    ///
+    /// [google.cloud.dialogflow.cx.v3.ExportFlowResponse]: <doc:ExportFlowResponse>
+    ///
+    /// @Snippet(path: "Flows_ExportFlow")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/exportFlowPollingUntilDone(request:options:)``
     public func exportFlowPollingUntilDone(request: ExportFlowRequest) async throws
       -> ExportFlowResponse
     {
@@ -716,6 +1087,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Flows_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -728,6 +1123,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Flows_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -754,6 +1173,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Flows_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -767,6 +1190,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "Flows_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -779,6 +1209,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Flows_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -791,6 +1230,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Flows_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -802,6 +1250,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Flows_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -815,6 +1267,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Flows_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -826,6 +1287,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -838,6 +1302,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -847,6 +1314,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Flows_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -857,6 +1333,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Flows_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FlowsClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

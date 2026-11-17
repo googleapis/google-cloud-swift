@@ -27,6 +27,10 @@ import Foundation
 /// The Network Security API for DNS Threat Detectors.
 ///
 /// @Snippet(path: "DnsThreatDetectorServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DnsThreatDetectorServiceProtocol``
 public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServiceProtocol,
   Sendable
 {
@@ -46,6 +50,13 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// Lists DnsThreatDetectors in a given project and location.
   ///
   /// @Snippet(path: "DnsThreatDetectorService_ListDnsThreatDetectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDnsThreatDetectors(request:)``
+  /// - ``listDnsThreatDetectorsByItems(request:)``
+  /// - ``listDnsThreatDetectorsByItems(request:options:)``
+  /// - ``listDnsThreatDetectorsByItems(parent:)``
   public func listDnsThreatDetectors(
     request: ListDnsThreatDetectorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListDnsThreatDetectorsResponse {
@@ -55,6 +66,11 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// Gets the details of a single DnsThreatDetector.
   ///
   /// @Snippet(path: "DnsThreatDetectorService_GetDnsThreatDetector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDnsThreatDetector(request:)``
+  /// - ``getDnsThreatDetector(name:)``
   public func getDnsThreatDetector(
     request: GetDnsThreatDetectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.DnsThreatDetector {
@@ -64,6 +80,11 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// Creates a new DnsThreatDetector in a given project and location.
   ///
   /// @Snippet(path: "DnsThreatDetectorService_CreateDnsThreatDetector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDnsThreatDetector(request:)``
+  /// - ``createDnsThreatDetector(parent:dnsThreatDetector:dnsThreatDetectorId:)``
   public func createDnsThreatDetector(
     request: CreateDnsThreatDetectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.DnsThreatDetector {
@@ -73,6 +94,11 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// Updates a single DnsThreatDetector.
   ///
   /// @Snippet(path: "DnsThreatDetectorService_UpdateDnsThreatDetector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDnsThreatDetector(request:)``
+  /// - ``updateDnsThreatDetector(dnsThreatDetector:updateMask:)``
   public func updateDnsThreatDetector(
     request: UpdateDnsThreatDetectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.DnsThreatDetector {
@@ -82,6 +108,11 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// Deletes a single DnsThreatDetector.
   ///
   /// @Snippet(path: "DnsThreatDetectorService_DeleteDnsThreatDetector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDnsThreatDetector(request:)``
+  /// - ``deleteDnsThreatDetector(name:)``
   public func deleteDnsThreatDetector(
     request: DeleteDnsThreatDetectorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -108,6 +139,12 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DnsThreatDetectorService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -117,6 +154,10 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// Gets information about a location.
   ///
   /// @Snippet(path: "DnsThreatDetectorService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -130,6 +171,10 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// errors.
   ///
   /// @Snippet(path: "DnsThreatDetectorService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -140,6 +185,10 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "DnsThreatDetectorService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -155,6 +204,10 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "DnsThreatDetectorService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -166,6 +219,13 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DnsThreatDetectorService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -188,6 +248,11 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DnsThreatDetectorService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -199,6 +264,11 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DnsThreatDetectorService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -282,6 +352,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DnsThreatDetectorServiceProtocol {
+  /// Lists DnsThreatDetectors in a given project and location.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_ListDnsThreatDetectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/listDnsThreatDetectors(request:options:)``
   public func listDnsThreatDetectors(request: ListDnsThreatDetectorsRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListDnsThreatDetectorsResponse
   {
@@ -294,6 +371,13 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists DnsThreatDetectors in a given project and location.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_ListDnsThreatDetectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/listDnsThreatDetectors(request:options:)``
   public func listDnsThreatDetectorsByItems(
     request: ListDnsThreatDetectorsRequest
   ) -> some AsyncSequence<DnsThreatDetector, any Swift.Error> & Sendable {
@@ -303,6 +387,10 @@ extension Clients.DnsThreatDetectorServiceProtocol {
   /// Lists DnsThreatDetectors in a given project and location.
   ///
   /// @Snippet(path: "DnsThreatDetectorService_ListDnsThreatDetectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/listDnsThreatDetectors(request:options:)``
   public func listDnsThreatDetectorsByItems(
     request: ListDnsThreatDetectorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DnsThreatDetector, any Swift.Error> & Sendable {
@@ -317,6 +405,13 @@ extension Clients.DnsThreatDetectorServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists DnsThreatDetectors in a given project and location.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_ListDnsThreatDetectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/listDnsThreatDetectors(request:options:)``
   public func listDnsThreatDetectorsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DnsThreatDetector, any Swift.Error> & Sendable {
@@ -326,6 +421,13 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     return self.listDnsThreatDetectorsByItems(request: request)
   }
 
+  /// Gets the details of a single DnsThreatDetector.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_GetDnsThreatDetector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/getDnsThreatDetector(request:options:)``
   public func getDnsThreatDetector(request: GetDnsThreatDetectorRequest) async throws
     -> GoogleCloudNetworkSecurityV1.DnsThreatDetector
   {
@@ -338,6 +440,13 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a single DnsThreatDetector.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_GetDnsThreatDetector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/getDnsThreatDetector(request:options:)``
   public func getDnsThreatDetector(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.DnsThreatDetector {
@@ -347,6 +456,13 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     return try await self.getDnsThreatDetector(request: request)
   }
 
+  /// Creates a new DnsThreatDetector in a given project and location.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_CreateDnsThreatDetector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/createDnsThreatDetector(request:options:)``
   public func createDnsThreatDetector(request: CreateDnsThreatDetectorRequest) async throws
     -> GoogleCloudNetworkSecurityV1.DnsThreatDetector
   {
@@ -359,6 +475,13 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new DnsThreatDetector in a given project and location.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_CreateDnsThreatDetector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/createDnsThreatDetector(request:options:)``
   public func createDnsThreatDetector(
     parent: Swift.String,
     dnsThreatDetector: DnsThreatDetector?,
@@ -372,6 +495,13 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     return try await self.createDnsThreatDetector(request: request)
   }
 
+  /// Updates a single DnsThreatDetector.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_UpdateDnsThreatDetector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/updateDnsThreatDetector(request:options:)``
   public func updateDnsThreatDetector(request: UpdateDnsThreatDetectorRequest) async throws
     -> GoogleCloudNetworkSecurityV1.DnsThreatDetector
   {
@@ -384,6 +514,13 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a single DnsThreatDetector.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_UpdateDnsThreatDetector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/updateDnsThreatDetector(request:options:)``
   public func updateDnsThreatDetector(
     dnsThreatDetector: DnsThreatDetector?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -395,6 +532,13 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     return try await self.updateDnsThreatDetector(request: request)
   }
 
+  /// Deletes a single DnsThreatDetector.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_DeleteDnsThreatDetector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/deleteDnsThreatDetector(request:options:)``
   public func deleteDnsThreatDetector(request: DeleteDnsThreatDetectorRequest) async throws {
     try await self.deleteDnsThreatDetector(request: request, options: .init())
   }
@@ -405,6 +549,13 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single DnsThreatDetector.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_DeleteDnsThreatDetector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/deleteDnsThreatDetector(request:options:)``
   public func deleteDnsThreatDetector(
     name: Swift.String,
   ) async throws {
@@ -414,6 +565,30 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     try await self.deleteDnsThreatDetector(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -426,6 +601,30 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -452,6 +651,10 @@ extension Clients.DnsThreatDetectorServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DnsThreatDetectorService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -465,6 +668,13 @@ extension Clients.DnsThreatDetectorServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -477,6 +687,17 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -489,6 +710,14 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -501,6 +730,19 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -513,6 +755,15 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -525,6 +776,15 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -536,6 +796,10 @@ extension Clients.DnsThreatDetectorServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DnsThreatDetectorService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -549,6 +813,15 @@ extension Clients.DnsThreatDetectorServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -560,6 +833,9 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -572,6 +848,9 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -581,6 +860,15 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -591,6 +879,15 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -600,6 +897,15 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -610,6 +916,15 @@ extension Clients.DnsThreatDetectorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DnsThreatDetectorService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DnsThreatDetectorServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

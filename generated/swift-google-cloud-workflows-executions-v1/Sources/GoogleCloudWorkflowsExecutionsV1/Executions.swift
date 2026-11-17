@@ -24,6 +24,10 @@ import Foundation
 /// [Workflows][google.cloud.workflows.v1.Workflow] called executions.
 ///
 /// @Snippet(path: "ExecutionsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ExecutionsProtocol``
 public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   let inner: any Clients.ExecutionsStub
 
@@ -43,6 +47,13 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// first).
   ///
   /// @Snippet(path: "Executions_ListExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listExecutions(request:)``
+  /// - ``listExecutionsByItems(request:)``
+  /// - ``listExecutionsByItems(request:options:)``
+  /// - ``listExecutionsByItems(parent:)``
   public func listExecutions(
     request: ListExecutionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsExecutionsV1.ListExecutionsResponse {
@@ -52,6 +63,11 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// Creates a new execution using the latest revision of the given workflow.
   ///
   /// @Snippet(path: "Executions_CreateExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createExecution(request:)``
+  /// - ``createExecution(parent:execution:)``
   public func createExecution(
     request: CreateExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsExecutionsV1.Execution {
@@ -61,6 +77,11 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// Returns an execution of the given name.
   ///
   /// @Snippet(path: "Executions_GetExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getExecution(request:)``
+  /// - ``getExecution(name:)``
   public func getExecution(
     request: GetExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsExecutionsV1.Execution {
@@ -70,6 +91,11 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// Cancels an execution of the given name.
   ///
   /// @Snippet(path: "Executions_CancelExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelExecution(request:)``
+  /// - ``cancelExecution(name:)``
   public func cancelExecution(
     request: CancelExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsExecutionsV1.Execution {
@@ -108,6 +134,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.ExecutionsProtocol {
+  /// Returns a list of executions which belong to the workflow with
+  /// the given name. The method returns executions of all workflow
+  /// revisions. Returned executions are ordered by their start time (newest
+  /// first).
+  ///
+  /// @Snippet(path: "Executions_ListExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/listExecutions(request:options:)``
   public func listExecutions(request: ListExecutionsRequest) async throws
     -> GoogleCloudWorkflowsExecutionsV1.ListExecutionsResponse
   {
@@ -120,6 +156,16 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of executions which belong to the workflow with
+  /// the given name. The method returns executions of all workflow
+  /// revisions. Returned executions are ordered by their start time (newest
+  /// first).
+  ///
+  /// @Snippet(path: "Executions_ListExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/listExecutions(request:options:)``
   public func listExecutionsByItems(
     request: ListExecutionsRequest
   ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
@@ -132,6 +178,10 @@ extension Clients.ExecutionsProtocol {
   /// first).
   ///
   /// @Snippet(path: "Executions_ListExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/listExecutions(request:options:)``
   public func listExecutionsByItems(
     request: ListExecutionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
@@ -146,6 +196,16 @@ extension Clients.ExecutionsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns a list of executions which belong to the workflow with
+  /// the given name. The method returns executions of all workflow
+  /// revisions. Returned executions are ordered by their start time (newest
+  /// first).
+  ///
+  /// @Snippet(path: "Executions_ListExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/listExecutions(request:options:)``
   public func listExecutionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
@@ -155,6 +215,13 @@ extension Clients.ExecutionsProtocol {
     return self.listExecutionsByItems(request: request)
   }
 
+  /// Creates a new execution using the latest revision of the given workflow.
+  ///
+  /// @Snippet(path: "Executions_CreateExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/createExecution(request:options:)``
   public func createExecution(request: CreateExecutionRequest) async throws
     -> GoogleCloudWorkflowsExecutionsV1.Execution
   {
@@ -167,6 +234,13 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new execution using the latest revision of the given workflow.
+  ///
+  /// @Snippet(path: "Executions_CreateExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/createExecution(request:options:)``
   public func createExecution(
     parent: Swift.String,
     execution: Execution?,
@@ -178,6 +252,13 @@ extension Clients.ExecutionsProtocol {
     return try await self.createExecution(request: request)
   }
 
+  /// Returns an execution of the given name.
+  ///
+  /// @Snippet(path: "Executions_GetExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/getExecution(request:options:)``
   public func getExecution(request: GetExecutionRequest) async throws
     -> GoogleCloudWorkflowsExecutionsV1.Execution
   {
@@ -190,6 +271,13 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns an execution of the given name.
+  ///
+  /// @Snippet(path: "Executions_GetExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/getExecution(request:options:)``
   public func getExecution(
     name: Swift.String,
   ) async throws -> GoogleCloudWorkflowsExecutionsV1.Execution {
@@ -199,6 +287,13 @@ extension Clients.ExecutionsProtocol {
     return try await self.getExecution(request: request)
   }
 
+  /// Cancels an execution of the given name.
+  ///
+  /// @Snippet(path: "Executions_CancelExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/cancelExecution(request:options:)``
   public func cancelExecution(request: CancelExecutionRequest) async throws
     -> GoogleCloudWorkflowsExecutionsV1.Execution
   {
@@ -211,6 +306,13 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancels an execution of the given name.
+  ///
+  /// @Snippet(path: "Executions_CancelExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/cancelExecution(request:options:)``
   public func cancelExecution(
     name: Swift.String,
   ) async throws -> GoogleCloudWorkflowsExecutionsV1.Execution {

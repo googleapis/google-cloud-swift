@@ -31,6 +31,10 @@ import Foundation
 /// including Cloud Storage and BigQuery.
 ///
 /// @Snippet(path: "CatalogServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CatalogServiceProtocol``
 public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendable {
   let inner: any Clients.CatalogServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -51,6 +55,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Creates an EntryType.
   ///
   /// @Snippet(path: "CatalogService_CreateEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEntryType(request:)``
+  /// - ``createEntryTypePollingUntilDone(request:)``
+  /// - ``createEntryTypePollingUntilDone(request:options:)``
+  /// - ``createEntryTypePollingUntilDone(parent:entryType:entryTypeId:)``
   public func createEntryType(
     request: CreateEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -60,6 +71,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Creates an EntryType.
   ///
   /// @Snippet(path: "CatalogService_CreateEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEntryTypePollingUntilDone(request:)``
+  /// - ``createEntryTypePollingUntilDone(parent:entryType:entryTypeId:)``
+  /// - ``createEntryType(request:)``
+  /// - ``createEntryType(request:options:)``
   public func createEntryTypePollingUntilDone(
     request: CreateEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> EntryType {
@@ -87,6 +105,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Updates an EntryType.
   ///
   /// @Snippet(path: "CatalogService_UpdateEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEntryType(request:)``
+  /// - ``updateEntryTypePollingUntilDone(request:)``
+  /// - ``updateEntryTypePollingUntilDone(request:options:)``
+  /// - ``updateEntryTypePollingUntilDone(entryType:updateMask:)``
   public func updateEntryType(
     request: UpdateEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -96,6 +121,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Updates an EntryType.
   ///
   /// @Snippet(path: "CatalogService_UpdateEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEntryTypePollingUntilDone(request:)``
+  /// - ``updateEntryTypePollingUntilDone(entryType:updateMask:)``
+  /// - ``updateEntryType(request:)``
+  /// - ``updateEntryType(request:options:)``
   public func updateEntryTypePollingUntilDone(
     request: UpdateEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> EntryType {
@@ -123,6 +155,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Deletes an EntryType.
   ///
   /// @Snippet(path: "CatalogService_DeleteEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEntryType(request:)``
+  /// - ``deleteEntryTypePollingUntilDone(request:)``
+  /// - ``deleteEntryTypePollingUntilDone(request:options:)``
+  /// - ``deleteEntryTypePollingUntilDone(name:)``
   public func deleteEntryType(
     request: DeleteEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -132,6 +171,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Deletes an EntryType.
   ///
   /// @Snippet(path: "CatalogService_DeleteEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEntryTypePollingUntilDone(request:)``
+  /// - ``deleteEntryTypePollingUntilDone(name:)``
+  /// - ``deleteEntryType(request:)``
+  /// - ``deleteEntryType(request:options:)``
   public func deleteEntryTypePollingUntilDone(
     request: DeleteEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -159,6 +205,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Lists EntryType resources in a project and location.
   ///
   /// @Snippet(path: "CatalogService_ListEntryTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEntryTypes(request:)``
+  /// - ``listEntryTypesByItems(request:)``
+  /// - ``listEntryTypesByItems(request:options:)``
+  /// - ``listEntryTypesByItems(parent:)``
   public func listEntryTypes(
     request: ListEntryTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListEntryTypesResponse {
@@ -168,6 +221,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Gets an EntryType.
   ///
   /// @Snippet(path: "CatalogService_GetEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEntryType(request:)``
+  /// - ``getEntryType(name:)``
   public func getEntryType(
     request: GetEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EntryType {
@@ -177,6 +235,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Creates an AspectType.
   ///
   /// @Snippet(path: "CatalogService_CreateAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAspectType(request:)``
+  /// - ``createAspectTypePollingUntilDone(request:)``
+  /// - ``createAspectTypePollingUntilDone(request:options:)``
+  /// - ``createAspectTypePollingUntilDone(parent:aspectType:aspectTypeId:)``
   public func createAspectType(
     request: CreateAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -186,6 +251,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Creates an AspectType.
   ///
   /// @Snippet(path: "CatalogService_CreateAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAspectTypePollingUntilDone(request:)``
+  /// - ``createAspectTypePollingUntilDone(parent:aspectType:aspectTypeId:)``
+  /// - ``createAspectType(request:)``
+  /// - ``createAspectType(request:options:)``
   public func createAspectTypePollingUntilDone(
     request: CreateAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> AspectType {
@@ -213,6 +285,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Updates an AspectType.
   ///
   /// @Snippet(path: "CatalogService_UpdateAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAspectType(request:)``
+  /// - ``updateAspectTypePollingUntilDone(request:)``
+  /// - ``updateAspectTypePollingUntilDone(request:options:)``
+  /// - ``updateAspectTypePollingUntilDone(aspectType:updateMask:)``
   public func updateAspectType(
     request: UpdateAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -222,6 +301,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Updates an AspectType.
   ///
   /// @Snippet(path: "CatalogService_UpdateAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAspectTypePollingUntilDone(request:)``
+  /// - ``updateAspectTypePollingUntilDone(aspectType:updateMask:)``
+  /// - ``updateAspectType(request:)``
+  /// - ``updateAspectType(request:options:)``
   public func updateAspectTypePollingUntilDone(
     request: UpdateAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> AspectType {
@@ -249,6 +335,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Deletes an AspectType.
   ///
   /// @Snippet(path: "CatalogService_DeleteAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAspectType(request:)``
+  /// - ``deleteAspectTypePollingUntilDone(request:)``
+  /// - ``deleteAspectTypePollingUntilDone(request:options:)``
+  /// - ``deleteAspectTypePollingUntilDone(name:)``
   public func deleteAspectType(
     request: DeleteAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -258,6 +351,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Deletes an AspectType.
   ///
   /// @Snippet(path: "CatalogService_DeleteAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAspectTypePollingUntilDone(request:)``
+  /// - ``deleteAspectTypePollingUntilDone(name:)``
+  /// - ``deleteAspectType(request:)``
+  /// - ``deleteAspectType(request:options:)``
   public func deleteAspectTypePollingUntilDone(
     request: DeleteAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -285,6 +385,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Lists AspectType resources in a project and location.
   ///
   /// @Snippet(path: "CatalogService_ListAspectTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAspectTypes(request:)``
+  /// - ``listAspectTypesByItems(request:)``
+  /// - ``listAspectTypesByItems(request:options:)``
+  /// - ``listAspectTypesByItems(parent:)``
   public func listAspectTypes(
     request: ListAspectTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListAspectTypesResponse {
@@ -294,6 +401,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Gets an AspectType.
   ///
   /// @Snippet(path: "CatalogService_GetAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAspectType(request:)``
+  /// - ``getAspectType(name:)``
   public func getAspectType(
     request: GetAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.AspectType {
@@ -303,6 +415,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Creates an EntryGroup.
   ///
   /// @Snippet(path: "CatalogService_CreateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEntryGroup(request:)``
+  /// - ``createEntryGroupPollingUntilDone(request:)``
+  /// - ``createEntryGroupPollingUntilDone(request:options:)``
+  /// - ``createEntryGroupPollingUntilDone(parent:entryGroup:entryGroupId:)``
   public func createEntryGroup(
     request: CreateEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -312,6 +431,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Creates an EntryGroup.
   ///
   /// @Snippet(path: "CatalogService_CreateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEntryGroupPollingUntilDone(request:)``
+  /// - ``createEntryGroupPollingUntilDone(parent:entryGroup:entryGroupId:)``
+  /// - ``createEntryGroup(request:)``
+  /// - ``createEntryGroup(request:options:)``
   public func createEntryGroupPollingUntilDone(
     request: CreateEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> EntryGroup {
@@ -339,6 +465,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Updates an EntryGroup.
   ///
   /// @Snippet(path: "CatalogService_UpdateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEntryGroup(request:)``
+  /// - ``updateEntryGroupPollingUntilDone(request:)``
+  /// - ``updateEntryGroupPollingUntilDone(request:options:)``
+  /// - ``updateEntryGroupPollingUntilDone(entryGroup:updateMask:)``
   public func updateEntryGroup(
     request: UpdateEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -348,6 +481,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Updates an EntryGroup.
   ///
   /// @Snippet(path: "CatalogService_UpdateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEntryGroupPollingUntilDone(request:)``
+  /// - ``updateEntryGroupPollingUntilDone(entryGroup:updateMask:)``
+  /// - ``updateEntryGroup(request:)``
+  /// - ``updateEntryGroup(request:options:)``
   public func updateEntryGroupPollingUntilDone(
     request: UpdateEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> EntryGroup {
@@ -375,6 +515,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Deletes an EntryGroup.
   ///
   /// @Snippet(path: "CatalogService_DeleteEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEntryGroup(request:)``
+  /// - ``deleteEntryGroupPollingUntilDone(request:)``
+  /// - ``deleteEntryGroupPollingUntilDone(request:options:)``
+  /// - ``deleteEntryGroupPollingUntilDone(name:)``
   public func deleteEntryGroup(
     request: DeleteEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -384,6 +531,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Deletes an EntryGroup.
   ///
   /// @Snippet(path: "CatalogService_DeleteEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEntryGroupPollingUntilDone(request:)``
+  /// - ``deleteEntryGroupPollingUntilDone(name:)``
+  /// - ``deleteEntryGroup(request:)``
+  /// - ``deleteEntryGroup(request:options:)``
   public func deleteEntryGroupPollingUntilDone(
     request: DeleteEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -411,6 +565,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Lists EntryGroup resources in a project and location.
   ///
   /// @Snippet(path: "CatalogService_ListEntryGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEntryGroups(request:)``
+  /// - ``listEntryGroupsByItems(request:)``
+  /// - ``listEntryGroupsByItems(request:options:)``
+  /// - ``listEntryGroupsByItems(parent:)``
   public func listEntryGroups(
     request: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListEntryGroupsResponse {
@@ -420,6 +581,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Gets an EntryGroup.
   ///
   /// @Snippet(path: "CatalogService_GetEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEntryGroup(request:)``
+  /// - ``getEntryGroup(name:)``
   public func getEntryGroup(
     request: GetEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EntryGroup {
@@ -429,6 +595,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Creates an Entry.
   ///
   /// @Snippet(path: "CatalogService_CreateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEntry(request:)``
+  /// - ``createEntry(parent:entry:entryId:)``
   public func createEntry(
     request: CreateEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Entry {
@@ -438,6 +609,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Updates an Entry.
   ///
   /// @Snippet(path: "CatalogService_UpdateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEntry(request:)``
+  /// - ``updateEntry(entry:updateMask:)``
   public func updateEntry(
     request: UpdateEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Entry {
@@ -447,6 +623,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Deletes an Entry.
   ///
   /// @Snippet(path: "CatalogService_DeleteEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEntry(request:)``
+  /// - ``deleteEntry(name:)``
   public func deleteEntry(
     request: DeleteEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Entry {
@@ -456,6 +637,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Lists Entries within an EntryGroup.
   ///
   /// @Snippet(path: "CatalogService_ListEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEntries(request:)``
+  /// - ``listEntriesByItems(request:)``
+  /// - ``listEntriesByItems(request:options:)``
+  /// - ``listEntriesByItems(parent:)``
   public func listEntries(
     request: ListEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListEntriesResponse {
@@ -465,6 +653,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Gets an Entry.
   ///
   /// @Snippet(path: "CatalogService_GetEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEntry(request:)``
+  /// - ``getEntry(name:)``
   public func getEntry(
     request: GetEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Entry {
@@ -474,6 +667,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Looks up an entry by name using the permission on the source system.
   ///
   /// @Snippet(path: "CatalogService_LookupEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``lookupEntry(request:)``
   public func lookupEntry(
     request: LookupEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Entry {
@@ -483,6 +680,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Modifies an entry using the permission on the source system.
   ///
   /// @Snippet(path: "CatalogService_ModifyEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``modifyEntry(request:)``
   public func modifyEntry(
     request: ModifyEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Entry {
@@ -492,6 +693,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Searches for Entries matching the given query and scope.
   ///
   /// @Snippet(path: "CatalogService_SearchEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchEntries(request:)``
+  /// - ``searchEntriesByItems(request:)``
+  /// - ``searchEntriesByItems(request:options:)``
+  /// - ``searchEntriesByItems(name:query:)``
   public func searchEntries(
     request: SearchEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.SearchEntriesResponse {
@@ -502,6 +710,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// from a third-party system into Dataplex Universal Catalog.
   ///
   /// @Snippet(path: "CatalogService_CreateMetadataJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMetadataJob(request:)``
+  /// - ``createMetadataJobPollingUntilDone(request:)``
+  /// - ``createMetadataJobPollingUntilDone(request:options:)``
+  /// - ``createMetadataJobPollingUntilDone(parent:metadataJob:metadataJobId:)``
   public func createMetadataJob(
     request: CreateMetadataJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -512,6 +727,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// from a third-party system into Dataplex Universal Catalog.
   ///
   /// @Snippet(path: "CatalogService_CreateMetadataJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMetadataJobPollingUntilDone(request:)``
+  /// - ``createMetadataJobPollingUntilDone(parent:metadataJob:metadataJobId:)``
+  /// - ``createMetadataJob(request:)``
+  /// - ``createMetadataJob(request:options:)``
   public func createMetadataJobPollingUntilDone(
     request: CreateMetadataJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MetadataJob {
@@ -539,6 +761,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Gets a metadata job.
   ///
   /// @Snippet(path: "CatalogService_GetMetadataJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMetadataJob(request:)``
+  /// - ``getMetadataJob(name:)``
   public func getMetadataJob(
     request: GetMetadataJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.MetadataJob {
@@ -548,6 +775,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Lists metadata jobs.
   ///
   /// @Snippet(path: "CatalogService_ListMetadataJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMetadataJobs(request:)``
+  /// - ``listMetadataJobsByItems(request:)``
+  /// - ``listMetadataJobsByItems(request:options:)``
+  /// - ``listMetadataJobsByItems(parent:)``
   public func listMetadataJobs(
     request: ListMetadataJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListMetadataJobsResponse {
@@ -562,6 +796,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// reverts the changes from the canceled job.
   ///
   /// @Snippet(path: "CatalogService_CancelMetadataJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelMetadataJob(request:)``
+  /// - ``cancelMetadataJob(name:)``
   public func cancelMetadataJob(
     request: CancelMetadataJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -571,6 +810,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Creates an Entry Link.
   ///
   /// @Snippet(path: "CatalogService_CreateEntryLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEntryLink(request:)``
+  /// - ``createEntryLink(parent:entryLink:entryLinkId:)``
   public func createEntryLink(
     request: CreateEntryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EntryLink {
@@ -580,6 +824,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Updates an Entry Link.
   ///
   /// @Snippet(path: "CatalogService_UpdateEntryLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEntryLink(request:)``
+  /// - ``updateEntryLink(entryLink:)``
   public func updateEntryLink(
     request: UpdateEntryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EntryLink {
@@ -589,6 +838,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Deletes an Entry Link.
   ///
   /// @Snippet(path: "CatalogService_DeleteEntryLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEntryLink(request:)``
+  /// - ``deleteEntryLink(name:)``
   public func deleteEntryLink(
     request: DeleteEntryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EntryLink {
@@ -598,6 +852,12 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Looks up Entry Links referencing the specified Entry.
   ///
   /// @Snippet(path: "CatalogService_LookupEntryLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``lookupEntryLinks(request:)``
+  /// - ``lookupEntryLinksByItems(request:)``
+  /// - ``lookupEntryLinksByItems(request:options:)``
   public func lookupEntryLinks(
     request: LookupEntryLinksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.LookupEntryLinksResponse {
@@ -607,6 +867,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Looks up LLM Context for the specified resources.
   ///
   /// @Snippet(path: "CatalogService_LookupContext")
+  ///
+  /// ## See Also
+  ///
+  /// - ``lookupContext(request:)``
   public func lookupContext(
     request: LookupContextRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.LookupContextResponse {
@@ -616,6 +880,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Gets an Entry Link.
   ///
   /// @Snippet(path: "CatalogService_GetEntryLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEntryLink(request:)``
+  /// - ``getEntryLink(name:)``
   public func getEntryLink(
     request: GetEntryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EntryLink {
@@ -625,6 +894,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Creates a MetadataFeed.
   ///
   /// @Snippet(path: "CatalogService_CreateMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMetadataFeed(request:)``
+  /// - ``createMetadataFeedPollingUntilDone(request:)``
+  /// - ``createMetadataFeedPollingUntilDone(request:options:)``
+  /// - ``createMetadataFeedPollingUntilDone(parent:metadataFeed:metadataFeedId:)``
   public func createMetadataFeed(
     request: CreateMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -634,6 +910,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Creates a MetadataFeed.
   ///
   /// @Snippet(path: "CatalogService_CreateMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMetadataFeedPollingUntilDone(request:)``
+  /// - ``createMetadataFeedPollingUntilDone(parent:metadataFeed:metadataFeedId:)``
+  /// - ``createMetadataFeed(request:)``
+  /// - ``createMetadataFeed(request:options:)``
   public func createMetadataFeedPollingUntilDone(
     request: CreateMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> MetadataFeed {
@@ -662,6 +945,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Gets a MetadataFeed.
   ///
   /// @Snippet(path: "CatalogService_GetMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMetadataFeed(request:)``
+  /// - ``getMetadataFeed(name:)``
   public func getMetadataFeed(
     request: GetMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.MetadataFeed {
@@ -671,6 +959,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Retrieve a list of MetadataFeeds.
   ///
   /// @Snippet(path: "CatalogService_ListMetadataFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMetadataFeeds(request:)``
+  /// - ``listMetadataFeedsByItems(request:)``
+  /// - ``listMetadataFeedsByItems(request:options:)``
+  /// - ``listMetadataFeedsByItems(parent:)``
   public func listMetadataFeeds(
     request: ListMetadataFeedsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListMetadataFeedsResponse {
@@ -680,6 +975,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Deletes a MetadataFeed.
   ///
   /// @Snippet(path: "CatalogService_DeleteMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMetadataFeed(request:)``
+  /// - ``deleteMetadataFeedPollingUntilDone(request:)``
+  /// - ``deleteMetadataFeedPollingUntilDone(request:options:)``
+  /// - ``deleteMetadataFeedPollingUntilDone(name:)``
   public func deleteMetadataFeed(
     request: DeleteMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -689,6 +991,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Deletes a MetadataFeed.
   ///
   /// @Snippet(path: "CatalogService_DeleteMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMetadataFeedPollingUntilDone(request:)``
+  /// - ``deleteMetadataFeedPollingUntilDone(name:)``
+  /// - ``deleteMetadataFeed(request:)``
+  /// - ``deleteMetadataFeed(request:options:)``
   public func deleteMetadataFeedPollingUntilDone(
     request: DeleteMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -716,6 +1025,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Updates a MetadataFeed.
   ///
   /// @Snippet(path: "CatalogService_UpdateMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMetadataFeed(request:)``
+  /// - ``updateMetadataFeedPollingUntilDone(request:)``
+  /// - ``updateMetadataFeedPollingUntilDone(request:options:)``
+  /// - ``updateMetadataFeedPollingUntilDone(metadataFeed:updateMask:)``
   public func updateMetadataFeed(
     request: UpdateMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -725,6 +1041,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Updates a MetadataFeed.
   ///
   /// @Snippet(path: "CatalogService_UpdateMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMetadataFeedPollingUntilDone(request:)``
+  /// - ``updateMetadataFeedPollingUntilDone(metadataFeed:updateMask:)``
+  /// - ``updateMetadataFeed(request:)``
+  /// - ``updateMetadataFeed(request:options:)``
   public func updateMetadataFeedPollingUntilDone(
     request: UpdateMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> MetadataFeed {
@@ -770,6 +1093,12 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CatalogService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -779,6 +1108,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CatalogService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -792,6 +1125,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// errors.
   ///
   /// @Snippet(path: "CatalogService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -802,6 +1139,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "CatalogService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -817,6 +1158,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "CatalogService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -828,6 +1173,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CatalogService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -850,6 +1202,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CatalogService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -861,6 +1218,11 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CatalogService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1174,6 +1536,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.CatalogServiceProtocol {
+  /// Creates an EntryType.
+  ///
+  /// @Snippet(path: "CatalogService_CreateEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createEntryType(request:options:)``
   public func createEntryType(request: CreateEntryTypeRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1186,6 +1555,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an EntryType.
+  ///
+  /// @Snippet(path: "CatalogService_CreateEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createEntryTypePollingUntilDone(request:options:)``
   public func createEntryTypePollingUntilDone(request: CreateEntryTypeRequest) async throws
     -> EntryType
   {
@@ -1198,6 +1574,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an EntryType.
+  ///
+  /// @Snippet(path: "CatalogService_CreateEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createEntryTypePollingUntilDone(request:options:)``
   public func createEntryTypePollingUntilDone(
     parent: Swift.String,
     entryType: EntryType?,
@@ -1211,6 +1594,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.createEntryTypePollingUntilDone(request: request)
   }
 
+  /// Updates an EntryType.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateEntryType(request:options:)``
   public func updateEntryType(request: UpdateEntryTypeRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1223,6 +1613,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an EntryType.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateEntryTypePollingUntilDone(request:options:)``
   public func updateEntryTypePollingUntilDone(request: UpdateEntryTypeRequest) async throws
     -> EntryType
   {
@@ -1235,6 +1632,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an EntryType.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateEntryTypePollingUntilDone(request:options:)``
   public func updateEntryTypePollingUntilDone(
     entryType: EntryType?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1246,6 +1650,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.updateEntryTypePollingUntilDone(request: request)
   }
 
+  /// Deletes an EntryType.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteEntryType(request:options:)``
   public func deleteEntryType(request: DeleteEntryTypeRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1258,6 +1669,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an EntryType.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteEntryTypePollingUntilDone(request:options:)``
   public func deleteEntryTypePollingUntilDone(request: DeleteEntryTypeRequest) async throws {
     try await self.deleteEntryTypePollingUntilDone(request: request, options: .init())
   }
@@ -1268,6 +1686,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an EntryType.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteEntryTypePollingUntilDone(request:options:)``
   public func deleteEntryTypePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1277,6 +1702,13 @@ extension Clients.CatalogServiceProtocol {
     try await self.deleteEntryTypePollingUntilDone(request: request)
   }
 
+  /// Lists EntryType resources in a project and location.
+  ///
+  /// @Snippet(path: "CatalogService_ListEntryTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listEntryTypes(request:options:)``
   public func listEntryTypes(request: ListEntryTypesRequest) async throws
     -> GoogleCloudDataplexV1.ListEntryTypesResponse
   {
@@ -1289,6 +1721,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists EntryType resources in a project and location.
+  ///
+  /// @Snippet(path: "CatalogService_ListEntryTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listEntryTypes(request:options:)``
   public func listEntryTypesByItems(
     request: ListEntryTypesRequest
   ) -> some AsyncSequence<EntryType, any Swift.Error> & Sendable {
@@ -1298,6 +1737,10 @@ extension Clients.CatalogServiceProtocol {
   /// Lists EntryType resources in a project and location.
   ///
   /// @Snippet(path: "CatalogService_ListEntryTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listEntryTypes(request:options:)``
   public func listEntryTypesByItems(
     request: ListEntryTypesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<EntryType, any Swift.Error> & Sendable {
@@ -1312,6 +1755,13 @@ extension Clients.CatalogServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists EntryType resources in a project and location.
+  ///
+  /// @Snippet(path: "CatalogService_ListEntryTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listEntryTypes(request:options:)``
   public func listEntryTypesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<EntryType, any Swift.Error> & Sendable {
@@ -1321,6 +1771,13 @@ extension Clients.CatalogServiceProtocol {
     return self.listEntryTypesByItems(request: request)
   }
 
+  /// Gets an EntryType.
+  ///
+  /// @Snippet(path: "CatalogService_GetEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getEntryType(request:options:)``
   public func getEntryType(request: GetEntryTypeRequest) async throws
     -> GoogleCloudDataplexV1.EntryType
   {
@@ -1333,6 +1790,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an EntryType.
+  ///
+  /// @Snippet(path: "CatalogService_GetEntryType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getEntryType(request:options:)``
   public func getEntryType(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.EntryType {
@@ -1342,6 +1806,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.getEntryType(request: request)
   }
 
+  /// Creates an AspectType.
+  ///
+  /// @Snippet(path: "CatalogService_CreateAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createAspectType(request:options:)``
   public func createAspectType(request: CreateAspectTypeRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1354,6 +1825,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an AspectType.
+  ///
+  /// @Snippet(path: "CatalogService_CreateAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createAspectTypePollingUntilDone(request:options:)``
   public func createAspectTypePollingUntilDone(request: CreateAspectTypeRequest) async throws
     -> AspectType
   {
@@ -1366,6 +1844,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an AspectType.
+  ///
+  /// @Snippet(path: "CatalogService_CreateAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createAspectTypePollingUntilDone(request:options:)``
   public func createAspectTypePollingUntilDone(
     parent: Swift.String,
     aspectType: AspectType?,
@@ -1379,6 +1864,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.createAspectTypePollingUntilDone(request: request)
   }
 
+  /// Updates an AspectType.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateAspectType(request:options:)``
   public func updateAspectType(request: UpdateAspectTypeRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1391,6 +1883,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an AspectType.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateAspectTypePollingUntilDone(request:options:)``
   public func updateAspectTypePollingUntilDone(request: UpdateAspectTypeRequest) async throws
     -> AspectType
   {
@@ -1403,6 +1902,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an AspectType.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateAspectTypePollingUntilDone(request:options:)``
   public func updateAspectTypePollingUntilDone(
     aspectType: AspectType?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1414,6 +1920,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.updateAspectTypePollingUntilDone(request: request)
   }
 
+  /// Deletes an AspectType.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteAspectType(request:options:)``
   public func deleteAspectType(request: DeleteAspectTypeRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1426,6 +1939,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an AspectType.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteAspectTypePollingUntilDone(request:options:)``
   public func deleteAspectTypePollingUntilDone(request: DeleteAspectTypeRequest) async throws {
     try await self.deleteAspectTypePollingUntilDone(request: request, options: .init())
   }
@@ -1436,6 +1956,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an AspectType.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteAspectTypePollingUntilDone(request:options:)``
   public func deleteAspectTypePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1445,6 +1972,13 @@ extension Clients.CatalogServiceProtocol {
     try await self.deleteAspectTypePollingUntilDone(request: request)
   }
 
+  /// Lists AspectType resources in a project and location.
+  ///
+  /// @Snippet(path: "CatalogService_ListAspectTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listAspectTypes(request:options:)``
   public func listAspectTypes(request: ListAspectTypesRequest) async throws
     -> GoogleCloudDataplexV1.ListAspectTypesResponse
   {
@@ -1457,6 +1991,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists AspectType resources in a project and location.
+  ///
+  /// @Snippet(path: "CatalogService_ListAspectTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listAspectTypes(request:options:)``
   public func listAspectTypesByItems(
     request: ListAspectTypesRequest
   ) -> some AsyncSequence<AspectType, any Swift.Error> & Sendable {
@@ -1466,6 +2007,10 @@ extension Clients.CatalogServiceProtocol {
   /// Lists AspectType resources in a project and location.
   ///
   /// @Snippet(path: "CatalogService_ListAspectTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listAspectTypes(request:options:)``
   public func listAspectTypesByItems(
     request: ListAspectTypesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AspectType, any Swift.Error> & Sendable {
@@ -1480,6 +2025,13 @@ extension Clients.CatalogServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists AspectType resources in a project and location.
+  ///
+  /// @Snippet(path: "CatalogService_ListAspectTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listAspectTypes(request:options:)``
   public func listAspectTypesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AspectType, any Swift.Error> & Sendable {
@@ -1489,6 +2041,13 @@ extension Clients.CatalogServiceProtocol {
     return self.listAspectTypesByItems(request: request)
   }
 
+  /// Gets an AspectType.
+  ///
+  /// @Snippet(path: "CatalogService_GetAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getAspectType(request:options:)``
   public func getAspectType(request: GetAspectTypeRequest) async throws
     -> GoogleCloudDataplexV1.AspectType
   {
@@ -1501,6 +2060,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an AspectType.
+  ///
+  /// @Snippet(path: "CatalogService_GetAspectType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getAspectType(request:options:)``
   public func getAspectType(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.AspectType {
@@ -1510,6 +2076,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.getAspectType(request: request)
   }
 
+  /// Creates an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_CreateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createEntryGroup(request:options:)``
   public func createEntryGroup(request: CreateEntryGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1522,6 +2095,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_CreateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createEntryGroupPollingUntilDone(request:options:)``
   public func createEntryGroupPollingUntilDone(request: CreateEntryGroupRequest) async throws
     -> EntryGroup
   {
@@ -1534,6 +2114,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_CreateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createEntryGroupPollingUntilDone(request:options:)``
   public func createEntryGroupPollingUntilDone(
     parent: Swift.String,
     entryGroup: EntryGroup?,
@@ -1547,6 +2134,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.createEntryGroupPollingUntilDone(request: request)
   }
 
+  /// Updates an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateEntryGroup(request:options:)``
   public func updateEntryGroup(request: UpdateEntryGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1559,6 +2153,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateEntryGroupPollingUntilDone(request:options:)``
   public func updateEntryGroupPollingUntilDone(request: UpdateEntryGroupRequest) async throws
     -> EntryGroup
   {
@@ -1571,6 +2172,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateEntryGroupPollingUntilDone(request:options:)``
   public func updateEntryGroupPollingUntilDone(
     entryGroup: EntryGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1582,6 +2190,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.updateEntryGroupPollingUntilDone(request: request)
   }
 
+  /// Deletes an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteEntryGroup(request:options:)``
   public func deleteEntryGroup(request: DeleteEntryGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1594,6 +2209,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteEntryGroupPollingUntilDone(request:options:)``
   public func deleteEntryGroupPollingUntilDone(request: DeleteEntryGroupRequest) async throws {
     try await self.deleteEntryGroupPollingUntilDone(request: request, options: .init())
   }
@@ -1604,6 +2226,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteEntryGroupPollingUntilDone(request:options:)``
   public func deleteEntryGroupPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1613,6 +2242,13 @@ extension Clients.CatalogServiceProtocol {
     try await self.deleteEntryGroupPollingUntilDone(request: request)
   }
 
+  /// Lists EntryGroup resources in a project and location.
+  ///
+  /// @Snippet(path: "CatalogService_ListEntryGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listEntryGroups(request:options:)``
   public func listEntryGroups(request: ListEntryGroupsRequest) async throws
     -> GoogleCloudDataplexV1.ListEntryGroupsResponse
   {
@@ -1625,6 +2261,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists EntryGroup resources in a project and location.
+  ///
+  /// @Snippet(path: "CatalogService_ListEntryGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listEntryGroups(request:options:)``
   public func listEntryGroupsByItems(
     request: ListEntryGroupsRequest
   ) -> some AsyncSequence<EntryGroup, any Swift.Error> & Sendable {
@@ -1634,6 +2277,10 @@ extension Clients.CatalogServiceProtocol {
   /// Lists EntryGroup resources in a project and location.
   ///
   /// @Snippet(path: "CatalogService_ListEntryGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listEntryGroups(request:options:)``
   public func listEntryGroupsByItems(
     request: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<EntryGroup, any Swift.Error> & Sendable {
@@ -1648,6 +2295,13 @@ extension Clients.CatalogServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists EntryGroup resources in a project and location.
+  ///
+  /// @Snippet(path: "CatalogService_ListEntryGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listEntryGroups(request:options:)``
   public func listEntryGroupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<EntryGroup, any Swift.Error> & Sendable {
@@ -1657,6 +2311,13 @@ extension Clients.CatalogServiceProtocol {
     return self.listEntryGroupsByItems(request: request)
   }
 
+  /// Gets an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_GetEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getEntryGroup(request:options:)``
   public func getEntryGroup(request: GetEntryGroupRequest) async throws
     -> GoogleCloudDataplexV1.EntryGroup
   {
@@ -1669,6 +2330,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_GetEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getEntryGroup(request:options:)``
   public func getEntryGroup(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.EntryGroup {
@@ -1678,6 +2346,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.getEntryGroup(request: request)
   }
 
+  /// Creates an Entry.
+  ///
+  /// @Snippet(path: "CatalogService_CreateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createEntry(request:options:)``
   public func createEntry(request: CreateEntryRequest) async throws -> GoogleCloudDataplexV1.Entry {
     try await self.createEntry(request: request, options: .init())
   }
@@ -1688,6 +2363,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an Entry.
+  ///
+  /// @Snippet(path: "CatalogService_CreateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createEntry(request:options:)``
   public func createEntry(
     parent: Swift.String,
     entry: Entry?,
@@ -1701,6 +2383,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.createEntry(request: request)
   }
 
+  /// Updates an Entry.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateEntry(request:options:)``
   public func updateEntry(request: UpdateEntryRequest) async throws -> GoogleCloudDataplexV1.Entry {
     try await self.updateEntry(request: request, options: .init())
   }
@@ -1711,6 +2400,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an Entry.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateEntry(request:options:)``
   public func updateEntry(
     entry: Entry?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1722,6 +2418,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.updateEntry(request: request)
   }
 
+  /// Deletes an Entry.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteEntry(request:options:)``
   public func deleteEntry(request: DeleteEntryRequest) async throws -> GoogleCloudDataplexV1.Entry {
     try await self.deleteEntry(request: request, options: .init())
   }
@@ -1732,6 +2435,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an Entry.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteEntry(request:options:)``
   public func deleteEntry(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.Entry {
@@ -1741,6 +2451,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.deleteEntry(request: request)
   }
 
+  /// Lists Entries within an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_ListEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listEntries(request:options:)``
   public func listEntries(request: ListEntriesRequest) async throws
     -> GoogleCloudDataplexV1.ListEntriesResponse
   {
@@ -1753,6 +2470,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Entries within an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_ListEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listEntries(request:options:)``
   public func listEntriesByItems(
     request: ListEntriesRequest
   ) -> some AsyncSequence<Entry, any Swift.Error> & Sendable {
@@ -1762,6 +2486,10 @@ extension Clients.CatalogServiceProtocol {
   /// Lists Entries within an EntryGroup.
   ///
   /// @Snippet(path: "CatalogService_ListEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listEntries(request:options:)``
   public func listEntriesByItems(
     request: ListEntriesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Entry, any Swift.Error> & Sendable {
@@ -1775,6 +2503,13 @@ extension Clients.CatalogServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Entries within an EntryGroup.
+  ///
+  /// @Snippet(path: "CatalogService_ListEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listEntries(request:options:)``
   public func listEntriesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Entry, any Swift.Error> & Sendable {
@@ -1784,6 +2519,13 @@ extension Clients.CatalogServiceProtocol {
     return self.listEntriesByItems(request: request)
   }
 
+  /// Gets an Entry.
+  ///
+  /// @Snippet(path: "CatalogService_GetEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getEntry(request:options:)``
   public func getEntry(request: GetEntryRequest) async throws -> GoogleCloudDataplexV1.Entry {
     try await self.getEntry(request: request, options: .init())
   }
@@ -1794,6 +2536,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an Entry.
+  ///
+  /// @Snippet(path: "CatalogService_GetEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getEntry(request:options:)``
   public func getEntry(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.Entry {
@@ -1803,6 +2552,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.getEntry(request: request)
   }
 
+  /// Looks up an entry by name using the permission on the source system.
+  ///
+  /// @Snippet(path: "CatalogService_LookupEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/lookupEntry(request:options:)``
   public func lookupEntry(request: LookupEntryRequest) async throws -> GoogleCloudDataplexV1.Entry {
     try await self.lookupEntry(request: request, options: .init())
   }
@@ -1813,6 +2569,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Modifies an entry using the permission on the source system.
+  ///
+  /// @Snippet(path: "CatalogService_ModifyEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/modifyEntry(request:options:)``
   public func modifyEntry(request: ModifyEntryRequest) async throws -> GoogleCloudDataplexV1.Entry {
     try await self.modifyEntry(request: request, options: .init())
   }
@@ -1823,6 +2586,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Searches for Entries matching the given query and scope.
+  ///
+  /// @Snippet(path: "CatalogService_SearchEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/searchEntries(request:options:)``
   public func searchEntries(request: SearchEntriesRequest) async throws
     -> GoogleCloudDataplexV1.SearchEntriesResponse
   {
@@ -1835,6 +2605,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Searches for Entries matching the given query and scope.
+  ///
+  /// @Snippet(path: "CatalogService_SearchEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/searchEntries(request:options:)``
   public func searchEntriesByItems(
     request: SearchEntriesRequest
   ) -> some AsyncSequence<SearchEntriesResult, any Swift.Error> & Sendable {
@@ -1844,6 +2621,10 @@ extension Clients.CatalogServiceProtocol {
   /// Searches for Entries matching the given query and scope.
   ///
   /// @Snippet(path: "CatalogService_SearchEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/searchEntries(request:options:)``
   public func searchEntriesByItems(
     request: SearchEntriesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SearchEntriesResult, any Swift.Error> & Sendable {
@@ -1857,6 +2638,13 @@ extension Clients.CatalogServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Searches for Entries matching the given query and scope.
+  ///
+  /// @Snippet(path: "CatalogService_SearchEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/searchEntries(request:options:)``
   public func searchEntriesByItems(
     name: Swift.String,
     query: Swift.String,
@@ -1868,6 +2656,14 @@ extension Clients.CatalogServiceProtocol {
     return self.searchEntriesByItems(request: request)
   }
 
+  /// Creates a metadata job. For example, use a metadata job to import metadata
+  /// from a third-party system into Dataplex Universal Catalog.
+  ///
+  /// @Snippet(path: "CatalogService_CreateMetadataJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createMetadataJob(request:options:)``
   public func createMetadataJob(request: CreateMetadataJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1880,6 +2676,14 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a metadata job. For example, use a metadata job to import metadata
+  /// from a third-party system into Dataplex Universal Catalog.
+  ///
+  /// @Snippet(path: "CatalogService_CreateMetadataJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createMetadataJobPollingUntilDone(request:options:)``
   public func createMetadataJobPollingUntilDone(request: CreateMetadataJobRequest) async throws
     -> MetadataJob
   {
@@ -1892,6 +2696,14 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a metadata job. For example, use a metadata job to import metadata
+  /// from a third-party system into Dataplex Universal Catalog.
+  ///
+  /// @Snippet(path: "CatalogService_CreateMetadataJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createMetadataJobPollingUntilDone(request:options:)``
   public func createMetadataJobPollingUntilDone(
     parent: Swift.String,
     metadataJob: MetadataJob?,
@@ -1905,6 +2717,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.createMetadataJobPollingUntilDone(request: request)
   }
 
+  /// Gets a metadata job.
+  ///
+  /// @Snippet(path: "CatalogService_GetMetadataJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getMetadataJob(request:options:)``
   public func getMetadataJob(request: GetMetadataJobRequest) async throws
     -> GoogleCloudDataplexV1.MetadataJob
   {
@@ -1917,6 +2736,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a metadata job.
+  ///
+  /// @Snippet(path: "CatalogService_GetMetadataJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getMetadataJob(request:options:)``
   public func getMetadataJob(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.MetadataJob {
@@ -1926,6 +2752,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.getMetadataJob(request: request)
   }
 
+  /// Lists metadata jobs.
+  ///
+  /// @Snippet(path: "CatalogService_ListMetadataJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listMetadataJobs(request:options:)``
   public func listMetadataJobs(request: ListMetadataJobsRequest) async throws
     -> GoogleCloudDataplexV1.ListMetadataJobsResponse
   {
@@ -1938,6 +2771,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists metadata jobs.
+  ///
+  /// @Snippet(path: "CatalogService_ListMetadataJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listMetadataJobs(request:options:)``
   public func listMetadataJobsByItems(
     request: ListMetadataJobsRequest
   ) -> some AsyncSequence<MetadataJob, any Swift.Error> & Sendable {
@@ -1947,6 +2787,10 @@ extension Clients.CatalogServiceProtocol {
   /// Lists metadata jobs.
   ///
   /// @Snippet(path: "CatalogService_ListMetadataJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listMetadataJobs(request:options:)``
   public func listMetadataJobsByItems(
     request: ListMetadataJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MetadataJob, any Swift.Error> & Sendable {
@@ -1961,6 +2805,13 @@ extension Clients.CatalogServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists metadata jobs.
+  ///
+  /// @Snippet(path: "CatalogService_ListMetadataJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listMetadataJobs(request:options:)``
   public func listMetadataJobsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MetadataJob, any Swift.Error> & Sendable {
@@ -1970,6 +2821,18 @@ extension Clients.CatalogServiceProtocol {
     return self.listMetadataJobsByItems(request: request)
   }
 
+  /// Cancels a metadata job.
+  ///
+  /// If you cancel a metadata import job that is in progress, the changes in the
+  /// job might be partially applied. We recommend that you reset the state of
+  /// the entry groups in your project by running another metadata job that
+  /// reverts the changes from the canceled job.
+  ///
+  /// @Snippet(path: "CatalogService_CancelMetadataJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/cancelMetadataJob(request:options:)``
   public func cancelMetadataJob(request: CancelMetadataJobRequest) async throws {
     try await self.cancelMetadataJob(request: request, options: .init())
   }
@@ -1980,6 +2843,18 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancels a metadata job.
+  ///
+  /// If you cancel a metadata import job that is in progress, the changes in the
+  /// job might be partially applied. We recommend that you reset the state of
+  /// the entry groups in your project by running another metadata job that
+  /// reverts the changes from the canceled job.
+  ///
+  /// @Snippet(path: "CatalogService_CancelMetadataJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/cancelMetadataJob(request:options:)``
   public func cancelMetadataJob(
     name: Swift.String,
   ) async throws {
@@ -1989,6 +2864,13 @@ extension Clients.CatalogServiceProtocol {
     try await self.cancelMetadataJob(request: request)
   }
 
+  /// Creates an Entry Link.
+  ///
+  /// @Snippet(path: "CatalogService_CreateEntryLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createEntryLink(request:options:)``
   public func createEntryLink(request: CreateEntryLinkRequest) async throws
     -> GoogleCloudDataplexV1.EntryLink
   {
@@ -2001,6 +2883,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an Entry Link.
+  ///
+  /// @Snippet(path: "CatalogService_CreateEntryLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createEntryLink(request:options:)``
   public func createEntryLink(
     parent: Swift.String,
     entryLink: EntryLink?,
@@ -2014,6 +2903,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.createEntryLink(request: request)
   }
 
+  /// Updates an Entry Link.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateEntryLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateEntryLink(request:options:)``
   public func updateEntryLink(request: UpdateEntryLinkRequest) async throws
     -> GoogleCloudDataplexV1.EntryLink
   {
@@ -2026,6 +2922,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an Entry Link.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateEntryLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateEntryLink(request:options:)``
   public func updateEntryLink(
     entryLink: EntryLink?,
   ) async throws -> GoogleCloudDataplexV1.EntryLink {
@@ -2035,6 +2938,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.updateEntryLink(request: request)
   }
 
+  /// Deletes an Entry Link.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteEntryLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteEntryLink(request:options:)``
   public func deleteEntryLink(request: DeleteEntryLinkRequest) async throws
     -> GoogleCloudDataplexV1.EntryLink
   {
@@ -2047,6 +2957,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an Entry Link.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteEntryLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteEntryLink(request:options:)``
   public func deleteEntryLink(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.EntryLink {
@@ -2056,6 +2973,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.deleteEntryLink(request: request)
   }
 
+  /// Looks up Entry Links referencing the specified Entry.
+  ///
+  /// @Snippet(path: "CatalogService_LookupEntryLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/lookupEntryLinks(request:options:)``
   public func lookupEntryLinks(request: LookupEntryLinksRequest) async throws
     -> GoogleCloudDataplexV1.LookupEntryLinksResponse
   {
@@ -2068,6 +2992,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Looks up Entry Links referencing the specified Entry.
+  ///
+  /// @Snippet(path: "CatalogService_LookupEntryLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/lookupEntryLinks(request:options:)``
   public func lookupEntryLinksByItems(
     request: LookupEntryLinksRequest
   ) -> some AsyncSequence<EntryLink, any Swift.Error> & Sendable {
@@ -2077,6 +3008,10 @@ extension Clients.CatalogServiceProtocol {
   /// Looks up Entry Links referencing the specified Entry.
   ///
   /// @Snippet(path: "CatalogService_LookupEntryLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/lookupEntryLinks(request:options:)``
   public func lookupEntryLinksByItems(
     request: LookupEntryLinksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<EntryLink, any Swift.Error> & Sendable {
@@ -2091,6 +3026,13 @@ extension Clients.CatalogServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Looks up LLM Context for the specified resources.
+  ///
+  /// @Snippet(path: "CatalogService_LookupContext")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/lookupContext(request:options:)``
   public func lookupContext(request: LookupContextRequest) async throws
     -> GoogleCloudDataplexV1.LookupContextResponse
   {
@@ -2103,6 +3045,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an Entry Link.
+  ///
+  /// @Snippet(path: "CatalogService_GetEntryLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getEntryLink(request:options:)``
   public func getEntryLink(request: GetEntryLinkRequest) async throws
     -> GoogleCloudDataplexV1.EntryLink
   {
@@ -2115,6 +3064,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an Entry Link.
+  ///
+  /// @Snippet(path: "CatalogService_GetEntryLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getEntryLink(request:options:)``
   public func getEntryLink(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.EntryLink {
@@ -2124,6 +3080,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.getEntryLink(request: request)
   }
 
+  /// Creates a MetadataFeed.
+  ///
+  /// @Snippet(path: "CatalogService_CreateMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createMetadataFeed(request:options:)``
   public func createMetadataFeed(request: CreateMetadataFeedRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2136,6 +3099,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a MetadataFeed.
+  ///
+  /// @Snippet(path: "CatalogService_CreateMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createMetadataFeedPollingUntilDone(request:options:)``
   public func createMetadataFeedPollingUntilDone(request: CreateMetadataFeedRequest) async throws
     -> MetadataFeed
   {
@@ -2148,6 +3118,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a MetadataFeed.
+  ///
+  /// @Snippet(path: "CatalogService_CreateMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/createMetadataFeedPollingUntilDone(request:options:)``
   public func createMetadataFeedPollingUntilDone(
     parent: Swift.String,
     metadataFeed: MetadataFeed?,
@@ -2161,6 +3138,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.createMetadataFeedPollingUntilDone(request: request)
   }
 
+  /// Gets a MetadataFeed.
+  ///
+  /// @Snippet(path: "CatalogService_GetMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getMetadataFeed(request:options:)``
   public func getMetadataFeed(request: GetMetadataFeedRequest) async throws
     -> GoogleCloudDataplexV1.MetadataFeed
   {
@@ -2173,6 +3157,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a MetadataFeed.
+  ///
+  /// @Snippet(path: "CatalogService_GetMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getMetadataFeed(request:options:)``
   public func getMetadataFeed(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.MetadataFeed {
@@ -2182,6 +3173,13 @@ extension Clients.CatalogServiceProtocol {
     return try await self.getMetadataFeed(request: request)
   }
 
+  /// Retrieve a list of MetadataFeeds.
+  ///
+  /// @Snippet(path: "CatalogService_ListMetadataFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listMetadataFeeds(request:options:)``
   public func listMetadataFeeds(request: ListMetadataFeedsRequest) async throws
     -> GoogleCloudDataplexV1.ListMetadataFeedsResponse
   {
@@ -2194,6 +3192,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a list of MetadataFeeds.
+  ///
+  /// @Snippet(path: "CatalogService_ListMetadataFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listMetadataFeeds(request:options:)``
   public func listMetadataFeedsByItems(
     request: ListMetadataFeedsRequest
   ) -> some AsyncSequence<MetadataFeed, any Swift.Error> & Sendable {
@@ -2203,6 +3208,10 @@ extension Clients.CatalogServiceProtocol {
   /// Retrieve a list of MetadataFeeds.
   ///
   /// @Snippet(path: "CatalogService_ListMetadataFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listMetadataFeeds(request:options:)``
   public func listMetadataFeedsByItems(
     request: ListMetadataFeedsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MetadataFeed, any Swift.Error> & Sendable {
@@ -2217,6 +3226,13 @@ extension Clients.CatalogServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieve a list of MetadataFeeds.
+  ///
+  /// @Snippet(path: "CatalogService_ListMetadataFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listMetadataFeeds(request:options:)``
   public func listMetadataFeedsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MetadataFeed, any Swift.Error> & Sendable {
@@ -2226,6 +3242,13 @@ extension Clients.CatalogServiceProtocol {
     return self.listMetadataFeedsByItems(request: request)
   }
 
+  /// Deletes a MetadataFeed.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteMetadataFeed(request:options:)``
   public func deleteMetadataFeed(request: DeleteMetadataFeedRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2238,6 +3261,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a MetadataFeed.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteMetadataFeedPollingUntilDone(request:options:)``
   public func deleteMetadataFeedPollingUntilDone(request: DeleteMetadataFeedRequest) async throws {
     try await self.deleteMetadataFeedPollingUntilDone(request: request, options: .init())
   }
@@ -2248,6 +3278,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a MetadataFeed.
+  ///
+  /// @Snippet(path: "CatalogService_DeleteMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteMetadataFeedPollingUntilDone(request:options:)``
   public func deleteMetadataFeedPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2257,6 +3294,13 @@ extension Clients.CatalogServiceProtocol {
     try await self.deleteMetadataFeedPollingUntilDone(request: request)
   }
 
+  /// Updates a MetadataFeed.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateMetadataFeed(request:options:)``
   public func updateMetadataFeed(request: UpdateMetadataFeedRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2269,6 +3313,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a MetadataFeed.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateMetadataFeedPollingUntilDone(request:options:)``
   public func updateMetadataFeedPollingUntilDone(request: UpdateMetadataFeedRequest) async throws
     -> MetadataFeed
   {
@@ -2281,6 +3332,13 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a MetadataFeed.
+  ///
+  /// @Snippet(path: "CatalogService_UpdateMetadataFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/updateMetadataFeedPollingUntilDone(request:options:)``
   public func updateMetadataFeedPollingUntilDone(
     metadataFeed: MetadataFeed?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2292,6 +3350,30 @@ extension Clients.CatalogServiceProtocol {
     return try await self.updateMetadataFeedPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "CatalogService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -2304,6 +3386,30 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "CatalogService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2330,6 +3436,10 @@ extension Clients.CatalogServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CatalogService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2343,6 +3453,13 @@ extension Clients.CatalogServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "CatalogService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -2355,6 +3472,17 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "CatalogService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -2367,6 +3495,14 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "CatalogService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -2379,6 +3515,19 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "CatalogService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -2391,6 +3540,15 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CatalogService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -2403,6 +3561,15 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CatalogService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2414,6 +3581,10 @@ extension Clients.CatalogServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CatalogService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2427,6 +3598,15 @@ extension Clients.CatalogServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CatalogService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -2438,6 +3618,9 @@ extension Clients.CatalogServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2450,6 +3633,9 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -2459,6 +3645,15 @@ extension Clients.CatalogServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CatalogService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -2469,6 +3664,15 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CatalogService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -2478,6 +3682,15 @@ extension Clients.CatalogServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CatalogService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -2488,6 +3701,15 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CatalogService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CatalogServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

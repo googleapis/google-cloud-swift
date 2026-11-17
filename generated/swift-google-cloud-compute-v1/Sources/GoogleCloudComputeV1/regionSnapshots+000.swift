@@ -24,6 +24,10 @@
   /// Service for the `regionSnapshots` resource.
   ///
   /// @Snippet(path: "regionSnapshotsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionSnapshotsProtocol``
   public final class RegionSnapshotsClient: Clients.RegionSnapshotsProtocol, Sendable {
     let inner: any Clients.RegionSnapshotsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -51,6 +55,13 @@
     /// snapshots.
     ///
     /// @Snippet(path: "regionSnapshots_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:snapshot:)``
     public func delete(
       request: RegionSnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -72,6 +83,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSnapshots_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:region:snapshot:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: RegionSnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -114,6 +132,11 @@
     /// Returns the specified Snapshot resource.
     ///
     /// @Snippet(path: "regionSnapshots_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:snapshot:)``
     public func `get`(
       request: RegionSnapshotsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Snapshot {
@@ -124,6 +147,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "regionSnapshots_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(project:region:resource:)``
     public func getIamPolicy(
       request: RegionSnapshotsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -134,6 +162,13 @@
     /// in the request.
     ///
     /// @Snippet(path: "regionSnapshots_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: RegionSnapshotsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -149,6 +184,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSnapshots_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: RegionSnapshotsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -192,6 +234,13 @@
     /// the specified region.
     ///
     /// @Snippet(path: "regionSnapshots_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:region:)``
     public func list(
       request: RegionSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SnapshotList {
@@ -202,6 +251,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "regionSnapshots_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(project:region:resource:body:)``
     public func setIamPolicy(
       request: RegionSnapshotsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -213,6 +267,13 @@
     /// documentation.
     ///
     /// @Snippet(path: "regionSnapshots_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabels(request:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
+    /// - ``setLabelsPollingUntilDone(request:options:)``
+    /// - ``setLabelsPollingUntilDone(project:region:resource:body:)``
     public func setLabels(
       request: RegionSnapshotsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -229,6 +290,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSnapshots_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabelsPollingUntilDone(request:)``
+    /// - ``setLabelsPollingUntilDone(project:region:resource:body:)``
+    /// - ``setLabels(request:)``
+    /// - ``setLabels(request:options:)``
     public func setLabelsPollingUntilDone(
       request: RegionSnapshotsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -271,6 +339,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "regionSnapshots_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:region:resource:body:)``
     public func testIamPermissions(
       request: RegionSnapshotsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -281,6 +354,13 @@
     /// encryption key to the latest version for the specified snapshot.
     ///
     /// @Snippet(path: "regionSnapshots_updateKmsKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateKmsKey(request:)``
+    /// - ``updateKmsKeyPollingUntilDone(request:)``
+    /// - ``updateKmsKeyPollingUntilDone(request:options:)``
+    /// - ``updateKmsKeyPollingUntilDone(project:region:snapshot:body:)``
     public func updateKmsKey(
       request: RegionSnapshotsClient.UpdateKmsKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -296,6 +376,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSnapshots_updateKmsKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateKmsKeyPollingUntilDone(request:)``
+    /// - ``updateKmsKeyPollingUntilDone(project:region:snapshot:body:)``
+    /// - ``updateKmsKey(request:)``
+    /// - ``updateKmsKey(request:options:)``
     public func updateKmsKeyPollingUntilDone(
       request: RegionSnapshotsClient.UpdateKmsKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -441,6 +528,20 @@
 
   // Default implementations
   extension Clients.RegionSnapshotsProtocol {
+    /// Deletes the specified Snapshot resource. Keep in mind that deleting
+    /// a single snapshot might not necessarily delete all the data on that
+    /// snapshot. If any data on the snapshot that is marked for deletion is
+    /// needed for subsequent snapshots, the data will be moved to the next
+    /// corresponding snapshot.
+    ///
+    /// For more information, seeDeleting
+    /// snapshots.
+    ///
+    /// @Snippet(path: "regionSnapshots_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/delete(request:options:)``
     public func delete(request: RegionSnapshotsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -453,6 +554,25 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified Snapshot resource. Keep in mind that deleting
+    /// a single snapshot might not necessarily delete all the data on that
+    /// snapshot. If any data on the snapshot that is marked for deletion is
+    /// needed for subsequent snapshots, the data will be moved to the next
+    /// corresponding snapshot.
+    ///
+    /// For more information, seeDeleting
+    /// snapshots.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSnapshots_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionSnapshotsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -465,6 +585,25 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified Snapshot resource. Keep in mind that deleting
+    /// a single snapshot might not necessarily delete all the data on that
+    /// snapshot. If any data on the snapshot that is marked for deletion is
+    /// needed for subsequent snapshots, the data will be moved to the next
+    /// corresponding snapshot.
+    ///
+    /// For more information, seeDeleting
+    /// snapshots.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSnapshots_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -478,6 +617,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified Snapshot resource.
+    ///
+    /// @Snippet(path: "regionSnapshots_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/get(request:options:)``
     public func `get`(request: RegionSnapshotsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Snapshot
     {
@@ -490,6 +636,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified Snapshot resource.
+    ///
+    /// @Snippet(path: "regionSnapshots_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -503,6 +656,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "regionSnapshots_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: RegionSnapshotsClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -515,6 +676,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "regionSnapshots_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -528,6 +697,14 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates a snapshot in the specified region using the data included
+    /// in the request.
+    ///
+    /// @Snippet(path: "regionSnapshots_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/insert(request:options:)``
     public func insert(request: RegionSnapshotsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -540,6 +717,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a snapshot in the specified region using the data included
+    /// in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSnapshots_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionSnapshotsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -552,6 +742,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a snapshot in the specified region using the data included
+    /// in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSnapshots_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -565,6 +768,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of Snapshot resources contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionSnapshots_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/list(request:options:)``
     public func list(request: RegionSnapshotsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.SnapshotList
     {
@@ -577,6 +788,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of Snapshot resources contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionSnapshots_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/list(request:options:)``
     public func listByItems(
       request: RegionSnapshotsClient.ListRequest
     ) -> some AsyncSequence<Snapshot, any Swift.Error> & Sendable {
@@ -587,6 +806,10 @@
     /// the specified region.
     ///
     /// @Snippet(path: "regionSnapshots_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/list(request:options:)``
     public func listByItems(
       request: RegionSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Snapshot, any Swift.Error> & Sendable {
@@ -600,6 +823,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of Snapshot resources contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionSnapshots_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -611,6 +842,14 @@
       return self.listByItems(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "regionSnapshots_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: RegionSnapshotsClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -623,6 +862,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "regionSnapshots_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -638,6 +885,15 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Sets the labels on a regional snapshot. To learn more about labels, read
+    /// the Labeling Resources
+    /// documentation.
+    ///
+    /// @Snippet(path: "regionSnapshots_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/setLabels(request:options:)``
     public func setLabels(request: RegionSnapshotsClient.SetLabelsRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -650,6 +906,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on a regional snapshot. To learn more about labels, read
+    /// the Labeling Resources
+    /// documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSnapshots_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       request: RegionSnapshotsClient.SetLabelsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -662,6 +932,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on a regional snapshot. To learn more about labels, read
+    /// the Labeling Resources
+    /// documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSnapshots_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -677,6 +961,13 @@
       return try await self.setLabelsPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionSnapshots_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: RegionSnapshotsClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -689,6 +980,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionSnapshots_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -704,6 +1002,14 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Rotates the customer-managed
+    /// encryption key to the latest version for the specified snapshot.
+    ///
+    /// @Snippet(path: "regionSnapshots_updateKmsKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/updateKmsKey(request:options:)``
     public func updateKmsKey(request: RegionSnapshotsClient.UpdateKmsKeyRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -716,6 +1022,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Rotates the customer-managed
+    /// encryption key to the latest version for the specified snapshot.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSnapshots_updateKmsKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/updateKmsKeyPollingUntilDone(request:options:)``
     public func updateKmsKeyPollingUntilDone(
       request: RegionSnapshotsClient.UpdateKmsKeyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -728,6 +1047,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Rotates the customer-managed
+    /// encryption key to the latest version for the specified snapshot.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSnapshots_updateKmsKey")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotsClient/updateKmsKeyPollingUntilDone(request:options:)``
     public func updateKmsKeyPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -743,6 +1075,7 @@
       return try await self.updateKmsKeyPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

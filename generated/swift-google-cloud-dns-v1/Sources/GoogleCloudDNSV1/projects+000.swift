@@ -23,6 +23,10 @@ import Foundation
 /// Service for the `projects` resource.
 ///
 /// @Snippet(path: "projectsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ProjectsProtocol``
 public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   let inner: any Clients.ProjectsStub
 
@@ -39,6 +43,11 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// Fetches the representation of an existing Project.
   ///
   /// @Snippet(path: "projects_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``get(request:)``
+  /// - ``get(project:)``
   public func `get`(
     request: ProjectsClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Project {
@@ -62,6 +71,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ProjectsProtocol {
+  /// Fetches the representation of an existing Project.
+  ///
+  /// @Snippet(path: "projects_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProjectsClient/get(request:options:)``
   public func `get`(request: ProjectsClient.GetRequest) async throws -> Project {
     try await self.`get`(request: request, options: .init())
   }
@@ -72,6 +88,13 @@ extension Clients.ProjectsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches the representation of an existing Project.
+  ///
+  /// @Snippet(path: "projects_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProjectsClient/get(request:options:)``
   public func `get`(
     project: Swift.String,
   ) async throws -> Project {

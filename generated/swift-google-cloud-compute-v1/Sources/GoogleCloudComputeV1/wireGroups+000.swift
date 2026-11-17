@@ -24,6 +24,10 @@
   /// Service for the `wireGroups` resource.
   ///
   /// @Snippet(path: "wireGroupsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/WireGroupsProtocol``
   public final class WireGroupsClient: Clients.WireGroupsProtocol, Sendable {
     let inner: any Clients.WireGroupsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Deletes the specified wire group in the given scope.
     ///
     /// @Snippet(path: "wireGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:crossSiteNetwork:wireGroup:)``
     public func delete(
       request: WireGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "wireGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:crossSiteNetwork:wireGroup:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: WireGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -99,6 +117,11 @@
     /// Gets the specified wire group resource in the given scope.
     ///
     /// @Snippet(path: "wireGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:crossSiteNetwork:wireGroup:)``
     public func `get`(
       request: WireGroupsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.WireGroup {
@@ -109,6 +132,13 @@
     /// using the parameters that are included in the request.
     ///
     /// @Snippet(path: "wireGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:crossSiteNetwork:body:)``
     public func insert(
       request: WireGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -124,6 +154,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "wireGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:crossSiteNetwork:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: WireGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -165,6 +202,13 @@
     /// Lists the wire groups for a project in the given scope.
     ///
     /// @Snippet(path: "wireGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:crossSiteNetwork:)``
     public func list(
       request: WireGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.WireGroupList {
@@ -177,6 +221,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "wireGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:crossSiteNetwork:wireGroup:body:)``
     public func patch(
       request: WireGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -194,6 +245,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "wireGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:crossSiteNetwork:wireGroup:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: WireGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -308,6 +366,13 @@
 
   // Default implementations
   extension Clients.WireGroupsProtocol {
+    /// Deletes the specified wire group in the given scope.
+    ///
+    /// @Snippet(path: "wireGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/delete(request:options:)``
     public func delete(request: WireGroupsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -320,6 +385,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified wire group in the given scope.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "wireGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: WireGroupsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -332,6 +409,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified wire group in the given scope.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "wireGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
@@ -345,6 +434,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Gets the specified wire group resource in the given scope.
+    ///
+    /// @Snippet(path: "wireGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/get(request:options:)``
     public func `get`(request: WireGroupsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.WireGroup
     {
@@ -357,6 +453,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the specified wire group resource in the given scope.
+    ///
+    /// @Snippet(path: "wireGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
@@ -370,6 +473,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a wire group in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// @Snippet(path: "wireGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/insert(request:options:)``
     public func insert(request: WireGroupsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -382,6 +493,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a wire group in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "wireGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: WireGroupsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -394,6 +518,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a wire group in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "wireGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
@@ -407,6 +544,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists the wire groups for a project in the given scope.
+    ///
+    /// @Snippet(path: "wireGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/list(request:options:)``
     public func list(request: WireGroupsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.WireGroupList
     {
@@ -419,6 +563,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the wire groups for a project in the given scope.
+    ///
+    /// @Snippet(path: "wireGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/list(request:options:)``
     public func listByItems(
       request: WireGroupsClient.ListRequest
     ) -> some AsyncSequence<WireGroup, any Swift.Error> & Sendable {
@@ -428,6 +579,10 @@
     /// Lists the wire groups for a project in the given scope.
     ///
     /// @Snippet(path: "wireGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/list(request:options:)``
     public func listByItems(
       request: WireGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<WireGroup, any Swift.Error> & Sendable {
@@ -441,6 +596,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the wire groups for a project in the given scope.
+    ///
+    /// @Snippet(path: "wireGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
@@ -452,6 +614,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Updates the specified wire group resource with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "wireGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/patch(request:options:)``
     public func patch(request: WireGroupsClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -464,6 +636,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified wire group resource with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "wireGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: WireGroupsClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -476,6 +663,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified wire group resource with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "wireGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WireGroupsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
@@ -491,6 +693,7 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

@@ -24,6 +24,10 @@ import Foundation
 /// Manages versions of a service.
 ///
 /// @Snippet(path: "VersionsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/VersionsProtocol``
 public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   let inner: any Clients.VersionsStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,12 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// Lists the versions of a service.
   ///
   /// @Snippet(path: "Versions_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listVersions(request:)``
+  /// - ``listVersionsByItems(request:)``
+  /// - ``listVersionsByItems(request:options:)``
   public func listVersions(
     request: ListVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.ListVersionsResponse {
@@ -55,6 +65,10 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// Specify the `FULL_VIEW` parameter to get the full resource.
   ///
   /// @Snippet(path: "Versions_GetVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getVersion(request:)``
   public func getVersion(
     request: GetVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.Version {
@@ -64,6 +78,12 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// Deploys code and resource files to a new version.
   ///
   /// @Snippet(path: "Versions_CreateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createVersion(request:)``
+  /// - ``createVersionPollingUntilDone(request:)``
+  /// - ``createVersionPollingUntilDone(request:options:)``
   public func createVersion(
     request: CreateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -73,6 +93,12 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// Deploys code and resource files to a new version.
   ///
   /// @Snippet(path: "Versions_CreateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createVersionPollingUntilDone(request:)``
+  /// - ``createVersion(request:)``
+  /// - ``createVersion(request:options:)``
   public func createVersionPollingUntilDone(
     request: CreateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Version {
@@ -135,6 +161,12 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
   ///
   /// @Snippet(path: "Versions_UpdateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateVersion(request:)``
+  /// - ``updateVersionPollingUntilDone(request:)``
+  /// - ``updateVersionPollingUntilDone(request:options:)``
   public func updateVersion(
     request: UpdateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -179,6 +211,12 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
   ///
   /// @Snippet(path: "Versions_UpdateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateVersionPollingUntilDone(request:)``
+  /// - ``updateVersion(request:)``
+  /// - ``updateVersion(request:options:)``
   public func updateVersionPollingUntilDone(
     request: UpdateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Version {
@@ -206,6 +244,12 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// Deletes an existing Version resource.
   ///
   /// @Snippet(path: "Versions_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteVersion(request:)``
+  /// - ``deleteVersionPollingUntilDone(request:)``
+  /// - ``deleteVersionPollingUntilDone(request:options:)``
   public func deleteVersion(
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -215,6 +259,12 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// Deletes an existing Version resource.
   ///
   /// @Snippet(path: "Versions_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteVersionPollingUntilDone(request:)``
+  /// - ``deleteVersion(request:)``
+  /// - ``deleteVersion(request:options:)``
   public func deleteVersionPollingUntilDone(
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -244,6 +294,13 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Versions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -318,6 +375,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.VersionsProtocol {
+  /// Lists the versions of a service.
+  ///
+  /// @Snippet(path: "Versions_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/listVersions(request:options:)``
   public func listVersions(request: ListVersionsRequest) async throws
     -> GoogleAppEngineV1.ListVersionsResponse
   {
@@ -330,6 +394,13 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the versions of a service.
+  ///
+  /// @Snippet(path: "Versions_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/listVersions(request:options:)``
   public func listVersionsByItems(
     request: ListVersionsRequest
   ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -339,6 +410,10 @@ extension Clients.VersionsProtocol {
   /// Lists the versions of a service.
   ///
   /// @Snippet(path: "Versions_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/listVersions(request:options:)``
   public func listVersionsByItems(
     request: ListVersionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -352,6 +427,15 @@ extension Clients.VersionsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets the specified Version resource.
+  /// By default, only a `BASIC_VIEW` will be returned.
+  /// Specify the `FULL_VIEW` parameter to get the full resource.
+  ///
+  /// @Snippet(path: "Versions_GetVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/getVersion(request:options:)``
   public func getVersion(request: GetVersionRequest) async throws -> GoogleAppEngineV1.Version {
     try await self.getVersion(request: request, options: .init())
   }
@@ -362,6 +446,13 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deploys code and resource files to a new version.
+  ///
+  /// @Snippet(path: "Versions_CreateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/createVersion(request:options:)``
   public func createVersion(request: CreateVersionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -374,6 +465,13 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deploys code and resource files to a new version.
+  ///
+  /// @Snippet(path: "Versions_CreateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/createVersionPollingUntilDone(request:options:)``
   public func createVersionPollingUntilDone(request: CreateVersionRequest) async throws -> Version {
     return try await self.createVersionPollingUntilDone(request: request, options: .init())
   }
@@ -384,6 +482,48 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified Version resource.
+  /// You can specify the following fields depending on the App Engine
+  /// environment and type of scaling that the version resource uses:
+  ///
+  /// **Standard environment**
+  ///
+  /// * [`instance_class`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.instance_class)
+  ///
+  /// *automatic scaling* in the standard environment:
+  ///
+  /// * [`automatic_scaling.min_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+  /// * [`automatic_scaling.max_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+  /// * [`automaticScaling.standard_scheduler_settings.max_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
+  /// * [`automaticScaling.standard_scheduler_settings.min_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
+  /// * [`automaticScaling.standard_scheduler_settings.target_cpu_utilization`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
+  /// * [`automaticScaling.standard_scheduler_settings.target_throughput_utilization`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
+  ///
+  /// *basic scaling* or *manual scaling* in the standard environment:
+  ///
+  /// * [`serving_status`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)
+  /// * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
+  ///
+  /// **Flexible environment**
+  ///
+  /// * [`serving_status`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)
+  ///
+  /// *automatic scaling* in the flexible environment:
+  ///
+  /// * [`automatic_scaling.min_total_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+  /// * [`automatic_scaling.max_total_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+  /// * [`automatic_scaling.cool_down_period_sec`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+  /// * [`automatic_scaling.cpu_utilization.target_utilization`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+  ///
+  /// *manual scaling* in the flexible environment:
+  ///
+  /// * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
+  ///
+  /// @Snippet(path: "Versions_UpdateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/updateVersion(request:options:)``
   public func updateVersion(request: UpdateVersionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -396,6 +536,48 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified Version resource.
+  /// You can specify the following fields depending on the App Engine
+  /// environment and type of scaling that the version resource uses:
+  ///
+  /// **Standard environment**
+  ///
+  /// * [`instance_class`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.instance_class)
+  ///
+  /// *automatic scaling* in the standard environment:
+  ///
+  /// * [`automatic_scaling.min_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+  /// * [`automatic_scaling.max_idle_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+  /// * [`automaticScaling.standard_scheduler_settings.max_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
+  /// * [`automaticScaling.standard_scheduler_settings.min_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
+  /// * [`automaticScaling.standard_scheduler_settings.target_cpu_utilization`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
+  /// * [`automaticScaling.standard_scheduler_settings.target_throughput_utilization`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)
+  ///
+  /// *basic scaling* or *manual scaling* in the standard environment:
+  ///
+  /// * [`serving_status`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)
+  /// * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
+  ///
+  /// **Flexible environment**
+  ///
+  /// * [`serving_status`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)
+  ///
+  /// *automatic scaling* in the flexible environment:
+  ///
+  /// * [`automatic_scaling.min_total_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+  /// * [`automatic_scaling.max_total_instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+  /// * [`automatic_scaling.cool_down_period_sec`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+  /// * [`automatic_scaling.cpu_utilization.target_utilization`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)
+  ///
+  /// *manual scaling* in the flexible environment:
+  ///
+  /// * [`manual_scaling.instances`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
+  ///
+  /// @Snippet(path: "Versions_UpdateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/updateVersionPollingUntilDone(request:options:)``
   public func updateVersionPollingUntilDone(request: UpdateVersionRequest) async throws -> Version {
     return try await self.updateVersionPollingUntilDone(request: request, options: .init())
   }
@@ -406,6 +588,13 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an existing Version resource.
+  ///
+  /// @Snippet(path: "Versions_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/deleteVersion(request:options:)``
   public func deleteVersion(request: DeleteVersionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -418,6 +607,13 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an existing Version resource.
+  ///
+  /// @Snippet(path: "Versions_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/deleteVersionPollingUntilDone(request:options:)``
   public func deleteVersionPollingUntilDone(request: DeleteVersionRequest) async throws {
     try await self.deleteVersionPollingUntilDone(request: request, options: .init())
   }
@@ -428,6 +624,15 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Versions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -440,6 +645,15 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Versions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -451,6 +665,10 @@ extension Clients.VersionsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Versions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -464,6 +682,15 @@ extension Clients.VersionsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Versions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VersionsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -475,6 +702,9 @@ extension Clients.VersionsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -487,6 +717,9 @@ extension Clients.VersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

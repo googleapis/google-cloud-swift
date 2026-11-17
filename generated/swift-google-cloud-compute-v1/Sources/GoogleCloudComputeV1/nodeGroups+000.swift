@@ -24,6 +24,10 @@
   /// Service for the `nodeGroups` resource.
   ///
   /// @Snippet(path: "nodeGroupsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/NodeGroupsProtocol``
   public final class NodeGroupsClient: Clients.NodeGroupsProtocol, Sendable {
     let inner: any Clients.NodeGroupsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Adds specified number of nodes to the node group.
     ///
     /// @Snippet(path: "nodeGroups_addNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addNodes(request:)``
+    /// - ``addNodesPollingUntilDone(request:)``
+    /// - ``addNodesPollingUntilDone(request:options:)``
+    /// - ``addNodesPollingUntilDone(project:zone:nodeGroup:body:)``
     public func addNodes(
       request: NodeGroupsClient.AddNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "nodeGroups_addNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addNodesPollingUntilDone(request:)``
+    /// - ``addNodesPollingUntilDone(project:zone:nodeGroup:body:)``
+    /// - ``addNodes(request:)``
+    /// - ``addNodes(request:options:)``
     public func addNodesPollingUntilDone(
       request: NodeGroupsClient.AddNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -104,6 +122,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "nodeGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
+    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: NodeGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeGroupAggregatedList {
@@ -113,6 +138,13 @@
     /// Deletes the specified NodeGroup resource.
     ///
     /// @Snippet(path: "nodeGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:zone:nodeGroup:)``
     public func delete(
       request: NodeGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -127,6 +159,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "nodeGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:zone:nodeGroup:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: NodeGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -169,6 +208,13 @@
     /// Deletes specified nodes from the node group.
     ///
     /// @Snippet(path: "nodeGroups_deleteNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteNodes(request:)``
+    /// - ``deleteNodesPollingUntilDone(request:)``
+    /// - ``deleteNodesPollingUntilDone(request:options:)``
+    /// - ``deleteNodesPollingUntilDone(project:zone:nodeGroup:body:)``
     public func deleteNodes(
       request: NodeGroupsClient.DeleteNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -183,6 +229,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "nodeGroups_deleteNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteNodesPollingUntilDone(request:)``
+    /// - ``deleteNodesPollingUntilDone(project:zone:nodeGroup:body:)``
+    /// - ``deleteNodes(request:)``
+    /// - ``deleteNodes(request:options:)``
     public func deleteNodesPollingUntilDone(
       request: NodeGroupsClient.DeleteNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -228,6 +281,11 @@
     /// instead.
     ///
     /// @Snippet(path: "nodeGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:zone:nodeGroup:)``
     public func `get`(
       request: NodeGroupsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeGroup {
@@ -238,6 +296,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "nodeGroups_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(project:zone:resource:)``
     public func getIamPolicy(
       request: NodeGroupsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -248,6 +311,13 @@
     /// included in the request.
     ///
     /// @Snippet(path: "nodeGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:zone:initialNodeCount:body:)``
     public func insert(
       request: NodeGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -263,6 +333,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "nodeGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:zone:initialNodeCount:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: NodeGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -306,6 +383,13 @@
     /// Note: use nodeGroups.listNodes for more details about each group.
     ///
     /// @Snippet(path: "nodeGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:zone:)``
     public func list(
       request: NodeGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeGroupList {
@@ -315,6 +399,13 @@
     /// Lists nodes in the node group.
     ///
     /// @Snippet(path: "nodeGroups_listNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listNodes(request:)``
+    /// - ``listNodesByItems(request:)``
+    /// - ``listNodesByItems(request:options:)``
+    /// - ``listNodesByItems(project:zone:nodeGroup:)``
     public func listNodes(
       request: NodeGroupsClient.ListNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeGroupsListNodes {
@@ -324,6 +415,13 @@
     /// Updates the specified node group.
     ///
     /// @Snippet(path: "nodeGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:zone:nodeGroup:body:)``
     public func patch(
       request: NodeGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -338,6 +436,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "nodeGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:zone:nodeGroup:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: NodeGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -380,6 +485,13 @@
     /// Perform maintenance on a subset of nodes in the node group.
     ///
     /// @Snippet(path: "nodeGroups_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``performMaintenance(request:)``
+    /// - ``performMaintenancePollingUntilDone(request:)``
+    /// - ``performMaintenancePollingUntilDone(request:options:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:nodeGroup:body:)``
     public func performMaintenance(
       request: NodeGroupsClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -394,6 +506,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "nodeGroups_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``performMaintenancePollingUntilDone(request:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:nodeGroup:body:)``
+    /// - ``performMaintenance(request:)``
+    /// - ``performMaintenance(request:options:)``
     public func performMaintenancePollingUntilDone(
       request: NodeGroupsClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -437,6 +556,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "nodeGroups_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(project:zone:resource:body:)``
     public func setIamPolicy(
       request: NodeGroupsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -446,6 +570,13 @@
     /// Updates the node template of the node group.
     ///
     /// @Snippet(path: "nodeGroups_setNodeTemplate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setNodeTemplate(request:)``
+    /// - ``setNodeTemplatePollingUntilDone(request:)``
+    /// - ``setNodeTemplatePollingUntilDone(request:options:)``
+    /// - ``setNodeTemplatePollingUntilDone(project:zone:nodeGroup:body:)``
     public func setNodeTemplate(
       request: NodeGroupsClient.SetNodeTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -460,6 +591,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "nodeGroups_setNodeTemplate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setNodeTemplatePollingUntilDone(request:)``
+    /// - ``setNodeTemplatePollingUntilDone(project:zone:nodeGroup:body:)``
+    /// - ``setNodeTemplate(request:)``
+    /// - ``setNodeTemplate(request:options:)``
     public func setNodeTemplatePollingUntilDone(
       request: NodeGroupsClient.SetNodeTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -502,6 +640,13 @@
     /// Simulates maintenance event on specified nodes from the node group.
     ///
     /// @Snippet(path: "nodeGroups_simulateMaintenanceEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``simulateMaintenanceEvent(request:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(request:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(request:options:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(project:zone:nodeGroup:body:)``
     public func simulateMaintenanceEvent(
       request: NodeGroupsClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -516,6 +661,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "nodeGroups_simulateMaintenanceEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``simulateMaintenanceEventPollingUntilDone(request:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(project:zone:nodeGroup:body:)``
+    /// - ``simulateMaintenanceEvent(request:)``
+    /// - ``simulateMaintenanceEvent(request:options:)``
     public func simulateMaintenanceEventPollingUntilDone(
       request: NodeGroupsClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -558,6 +710,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "nodeGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:zone:resource:body:)``
     public func testIamPermissions(
       request: NodeGroupsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -740,6 +897,13 @@
 
   // Default implementations
   extension Clients.NodeGroupsProtocol {
+    /// Adds specified number of nodes to the node group.
+    ///
+    /// @Snippet(path: "nodeGroups_addNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/addNodes(request:options:)``
     public func addNodes(request: NodeGroupsClient.AddNodesRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -752,6 +916,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds specified number of nodes to the node group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_addNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/addNodesPollingUntilDone(request:options:)``
     public func addNodesPollingUntilDone(
       request: NodeGroupsClient.AddNodesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -764,6 +940,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds specified number of nodes to the node group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_addNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/addNodesPollingUntilDone(request:options:)``
     public func addNodesPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -779,6 +967,17 @@
       return try await self.addNodesPollingUntilDone(request: request)
     }
 
+    /// Retrieves an aggregated list of node groups.
+    /// Note: use nodeGroups.listNodes for more details about each group.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "nodeGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/aggregatedList(request:options:)``
     public func aggregatedList(request: NodeGroupsClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.NodeGroupAggregatedList
     {
@@ -791,6 +990,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of node groups.
+    /// Note: use nodeGroups.listNodes for more details about each group.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "nodeGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: NodeGroupsClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, NodeGroupsScopedList), any Swift.Error> & Sendable {
@@ -804,6 +1014,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "nodeGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: NodeGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, NodeGroupsScopedList), any Swift.Error> & Sendable {
@@ -818,6 +1032,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of node groups.
+    /// Note: use nodeGroups.listNodes for more details about each group.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "nodeGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, NodeGroupsScopedList), any Swift.Error> & Sendable {
@@ -827,6 +1052,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified NodeGroup resource.
+    ///
+    /// @Snippet(path: "nodeGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/delete(request:options:)``
     public func delete(request: NodeGroupsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -839,6 +1071,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified NodeGroup resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: NodeGroupsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -851,6 +1095,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified NodeGroup resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -864,6 +1120,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Deletes specified nodes from the node group.
+    ///
+    /// @Snippet(path: "nodeGroups_deleteNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/deleteNodes(request:options:)``
     public func deleteNodes(request: NodeGroupsClient.DeleteNodesRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -876,6 +1139,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes specified nodes from the node group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_deleteNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/deleteNodesPollingUntilDone(request:options:)``
     public func deleteNodesPollingUntilDone(
       request: NodeGroupsClient.DeleteNodesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -888,6 +1163,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes specified nodes from the node group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_deleteNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/deleteNodesPollingUntilDone(request:options:)``
     public func deleteNodesPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -903,6 +1190,16 @@
       return try await self.deleteNodesPollingUntilDone(request: request)
     }
 
+    /// Returns the specified NodeGroup. Get a list of available NodeGroups
+    /// by making a list() request.
+    /// Note: the "nodes" field should not be used. Use nodeGroups.listNodes
+    /// instead.
+    ///
+    /// @Snippet(path: "nodeGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/get(request:options:)``
     public func `get`(request: NodeGroupsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.NodeGroup
     {
@@ -915,6 +1212,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified NodeGroup. Get a list of available NodeGroups
+    /// by making a list() request.
+    /// Note: the "nodes" field should not be used. Use nodeGroups.listNodes
+    /// instead.
+    ///
+    /// @Snippet(path: "nodeGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -928,6 +1235,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "nodeGroups_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: NodeGroupsClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -940,6 +1255,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "nodeGroups_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       zone: Swift.String,
@@ -953,6 +1276,14 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates a NodeGroup resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// @Snippet(path: "nodeGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/insert(request:options:)``
     public func insert(request: NodeGroupsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -965,6 +1296,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a NodeGroup resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: NodeGroupsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -977,6 +1321,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a NodeGroup resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -992,6 +1349,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of node groups available to the specified project.
+    /// Note: use nodeGroups.listNodes for more details about each group.
+    ///
+    /// @Snippet(path: "nodeGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/list(request:options:)``
     public func list(request: NodeGroupsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.NodeGroupList
     {
@@ -1004,6 +1369,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of node groups available to the specified project.
+    /// Note: use nodeGroups.listNodes for more details about each group.
+    ///
+    /// @Snippet(path: "nodeGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/list(request:options:)``
     public func listByItems(
       request: NodeGroupsClient.ListRequest
     ) -> some AsyncSequence<NodeGroup, any Swift.Error> & Sendable {
@@ -1014,6 +1387,10 @@
     /// Note: use nodeGroups.listNodes for more details about each group.
     ///
     /// @Snippet(path: "nodeGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/list(request:options:)``
     public func listByItems(
       request: NodeGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<NodeGroup, any Swift.Error> & Sendable {
@@ -1027,6 +1404,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of node groups available to the specified project.
+    /// Note: use nodeGroups.listNodes for more details about each group.
+    ///
+    /// @Snippet(path: "nodeGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -1038,6 +1423,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Lists nodes in the node group.
+    ///
+    /// @Snippet(path: "nodeGroups_listNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/listNodes(request:options:)``
     public func listNodes(request: NodeGroupsClient.ListNodesRequest) async throws
       -> GoogleCloudComputeV1.NodeGroupsListNodes
     {
@@ -1050,6 +1442,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists nodes in the node group.
+    ///
+    /// @Snippet(path: "nodeGroups_listNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/listNodes(request:options:)``
     public func listNodesByItems(
       request: NodeGroupsClient.ListNodesRequest
     ) -> some AsyncSequence<NodeGroupNode, any Swift.Error> & Sendable {
@@ -1059,6 +1458,10 @@
     /// Lists nodes in the node group.
     ///
     /// @Snippet(path: "nodeGroups_listNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/listNodes(request:options:)``
     public func listNodesByItems(
       request: NodeGroupsClient.ListNodesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<NodeGroupNode, any Swift.Error> & Sendable {
@@ -1072,6 +1475,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists nodes in the node group.
+    ///
+    /// @Snippet(path: "nodeGroups_listNodes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/listNodes(request:options:)``
     public func listNodesByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -1085,6 +1495,13 @@
       return self.listNodesByItems(request: request)
     }
 
+    /// Updates the specified node group.
+    ///
+    /// @Snippet(path: "nodeGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/patch(request:options:)``
     public func patch(request: NodeGroupsClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1097,6 +1514,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified node group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: NodeGroupsClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1109,6 +1538,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified node group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -1124,6 +1565,13 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Perform maintenance on a subset of nodes in the node group.
+    ///
+    /// @Snippet(path: "nodeGroups_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/performMaintenance(request:options:)``
     public func performMaintenance(request: NodeGroupsClient.PerformMaintenanceRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1136,6 +1584,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Perform maintenance on a subset of nodes in the node group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/performMaintenancePollingUntilDone(request:options:)``
     public func performMaintenancePollingUntilDone(
       request: NodeGroupsClient.PerformMaintenanceRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1148,6 +1608,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Perform maintenance on a subset of nodes in the node group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/performMaintenancePollingUntilDone(request:options:)``
     public func performMaintenancePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -1163,6 +1635,14 @@
       return try await self.performMaintenancePollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "nodeGroups_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: NodeGroupsClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -1175,6 +1655,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "nodeGroups_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       zone: Swift.String,
@@ -1190,6 +1678,13 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Updates the node template of the node group.
+    ///
+    /// @Snippet(path: "nodeGroups_setNodeTemplate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/setNodeTemplate(request:options:)``
     public func setNodeTemplate(request: NodeGroupsClient.SetNodeTemplateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1202,6 +1697,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the node template of the node group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_setNodeTemplate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/setNodeTemplatePollingUntilDone(request:options:)``
     public func setNodeTemplatePollingUntilDone(
       request: NodeGroupsClient.SetNodeTemplateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1214,6 +1721,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the node template of the node group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_setNodeTemplate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/setNodeTemplatePollingUntilDone(request:options:)``
     public func setNodeTemplatePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -1229,6 +1748,13 @@
       return try await self.setNodeTemplatePollingUntilDone(request: request)
     }
 
+    /// Simulates maintenance event on specified nodes from the node group.
+    ///
+    /// @Snippet(path: "nodeGroups_simulateMaintenanceEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/simulateMaintenanceEvent(request:options:)``
     public func simulateMaintenanceEvent(request: NodeGroupsClient.SimulateMaintenanceEventRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -1241,6 +1767,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Simulates maintenance event on specified nodes from the node group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_simulateMaintenanceEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/simulateMaintenanceEventPollingUntilDone(request:options:)``
     public func simulateMaintenanceEventPollingUntilDone(
       request: NodeGroupsClient.SimulateMaintenanceEventRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1254,6 +1792,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Simulates maintenance event on specified nodes from the node group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeGroups_simulateMaintenanceEvent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/simulateMaintenanceEventPollingUntilDone(request:options:)``
     public func simulateMaintenanceEventPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -1269,6 +1819,13 @@
       return try await self.simulateMaintenanceEventPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "nodeGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: NodeGroupsClient.TestIamPermissionsRequest) async throws
       -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -1281,6 +1838,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "nodeGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeGroupsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       zone: Swift.String,
@@ -1296,6 +1860,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified zone-specific Operations resource.
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

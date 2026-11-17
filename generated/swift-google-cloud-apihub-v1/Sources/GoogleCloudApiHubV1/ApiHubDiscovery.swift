@@ -26,6 +26,10 @@ import Foundation
 /// and DiscoveredApiOperations.
 ///
 /// @Snippet(path: "ApiHubDiscoveryQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ApiHubDiscoveryProtocol``
 public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Sendable {
   let inner: any Clients.ApiHubDiscoveryStub
 
@@ -42,6 +46,13 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// Lists all the DiscoveredAPIObservations in a given project and location.
   ///
   /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiObservations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDiscoveredApiObservations(request:)``
+  /// - ``listDiscoveredApiObservationsByItems(request:)``
+  /// - ``listDiscoveredApiObservationsByItems(request:options:)``
+  /// - ``listDiscoveredApiObservationsByItems(parent:)``
   public func listDiscoveredApiObservations(
     request: ListDiscoveredApiObservationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListDiscoveredApiObservationsResponse {
@@ -52,6 +63,11 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// ApiObservation.
   ///
   /// @Snippet(path: "ApiHubDiscovery_GetDiscoveredApiObservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDiscoveredApiObservation(request:)``
+  /// - ``getDiscoveredApiObservation(name:)``
   public func getDiscoveredApiObservation(
     request: GetDiscoveredApiObservationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.DiscoveredApiObservation {
@@ -62,6 +78,13 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// ApiObservation.
   ///
   /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDiscoveredApiOperations(request:)``
+  /// - ``listDiscoveredApiOperationsByItems(request:)``
+  /// - ``listDiscoveredApiOperationsByItems(request:options:)``
+  /// - ``listDiscoveredApiOperationsByItems(parent:)``
   public func listDiscoveredApiOperations(
     request: ListDiscoveredApiOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListDiscoveredApiOperationsResponse {
@@ -72,6 +95,11 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// ApiObservation and ApiOperation.
   ///
   /// @Snippet(path: "ApiHubDiscovery_GetDiscoveredApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDiscoveredApiOperation(request:)``
+  /// - ``getDiscoveredApiOperation(name:)``
   public func getDiscoveredApiOperation(
     request: GetDiscoveredApiOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.DiscoveredApiOperation {
@@ -81,6 +109,12 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ApiHubDiscovery_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -90,6 +124,10 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ApiHubDiscovery_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -101,6 +139,13 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHubDiscovery_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -123,6 +168,11 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHubDiscovery_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -134,6 +184,11 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHubDiscovery_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -197,6 +252,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ApiHubDiscoveryProtocol {
+  /// Lists all the DiscoveredAPIObservations in a given project and location.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiObservations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listDiscoveredApiObservations(request:options:)``
   public func listDiscoveredApiObservations(request: ListDiscoveredApiObservationsRequest)
     async throws -> GoogleCloudApiHubV1.ListDiscoveredApiObservationsResponse
   {
@@ -209,6 +271,13 @@ extension Clients.ApiHubDiscoveryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the DiscoveredAPIObservations in a given project and location.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiObservations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listDiscoveredApiObservations(request:options:)``
   public func listDiscoveredApiObservationsByItems(
     request: ListDiscoveredApiObservationsRequest
   ) -> some AsyncSequence<DiscoveredApiObservation, any Swift.Error> & Sendable {
@@ -218,6 +287,10 @@ extension Clients.ApiHubDiscoveryProtocol {
   /// Lists all the DiscoveredAPIObservations in a given project and location.
   ///
   /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiObservations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listDiscoveredApiObservations(request:options:)``
   public func listDiscoveredApiObservationsByItems(
     request: ListDiscoveredApiObservationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DiscoveredApiObservation, any Swift.Error> & Sendable {
@@ -232,6 +305,13 @@ extension Clients.ApiHubDiscoveryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the DiscoveredAPIObservations in a given project and location.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiObservations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listDiscoveredApiObservations(request:options:)``
   public func listDiscoveredApiObservationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DiscoveredApiObservation, any Swift.Error> & Sendable {
@@ -241,6 +321,14 @@ extension Clients.ApiHubDiscoveryProtocol {
     return self.listDiscoveredApiObservationsByItems(request: request)
   }
 
+  /// Gets a DiscoveredAPIObservation in a given project, location and
+  /// ApiObservation.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_GetDiscoveredApiObservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/getDiscoveredApiObservation(request:options:)``
   public func getDiscoveredApiObservation(request: GetDiscoveredApiObservationRequest) async throws
     -> GoogleCloudApiHubV1.DiscoveredApiObservation
   {
@@ -253,6 +341,14 @@ extension Clients.ApiHubDiscoveryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a DiscoveredAPIObservation in a given project, location and
+  /// ApiObservation.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_GetDiscoveredApiObservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/getDiscoveredApiObservation(request:options:)``
   public func getDiscoveredApiObservation(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.DiscoveredApiObservation {
@@ -262,6 +358,14 @@ extension Clients.ApiHubDiscoveryProtocol {
     return try await self.getDiscoveredApiObservation(request: request)
   }
 
+  /// Lists all the DiscoveredAPIOperations in a given project, location and
+  /// ApiObservation.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listDiscoveredApiOperations(request:options:)``
   public func listDiscoveredApiOperations(request: ListDiscoveredApiOperationsRequest) async throws
     -> GoogleCloudApiHubV1.ListDiscoveredApiOperationsResponse
   {
@@ -274,6 +378,14 @@ extension Clients.ApiHubDiscoveryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the DiscoveredAPIOperations in a given project, location and
+  /// ApiObservation.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listDiscoveredApiOperations(request:options:)``
   public func listDiscoveredApiOperationsByItems(
     request: ListDiscoveredApiOperationsRequest
   ) -> some AsyncSequence<DiscoveredApiOperation, any Swift.Error> & Sendable {
@@ -284,6 +396,10 @@ extension Clients.ApiHubDiscoveryProtocol {
   /// ApiObservation.
   ///
   /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listDiscoveredApiOperations(request:options:)``
   public func listDiscoveredApiOperationsByItems(
     request: ListDiscoveredApiOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DiscoveredApiOperation, any Swift.Error> & Sendable {
@@ -298,6 +414,14 @@ extension Clients.ApiHubDiscoveryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the DiscoveredAPIOperations in a given project, location and
+  /// ApiObservation.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listDiscoveredApiOperations(request:options:)``
   public func listDiscoveredApiOperationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DiscoveredApiOperation, any Swift.Error> & Sendable {
@@ -307,6 +431,14 @@ extension Clients.ApiHubDiscoveryProtocol {
     return self.listDiscoveredApiOperationsByItems(request: request)
   }
 
+  /// Gets a DiscoveredAPIOperation in a given project, location,
+  /// ApiObservation and ApiOperation.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_GetDiscoveredApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/getDiscoveredApiOperation(request:options:)``
   public func getDiscoveredApiOperation(request: GetDiscoveredApiOperationRequest) async throws
     -> GoogleCloudApiHubV1.DiscoveredApiOperation
   {
@@ -319,6 +451,14 @@ extension Clients.ApiHubDiscoveryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a DiscoveredAPIOperation in a given project, location,
+  /// ApiObservation and ApiOperation.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_GetDiscoveredApiOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/getDiscoveredApiOperation(request:options:)``
   public func getDiscoveredApiOperation(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.DiscoveredApiOperation {
@@ -328,6 +468,13 @@ extension Clients.ApiHubDiscoveryProtocol {
     return try await self.getDiscoveredApiOperation(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -340,6 +487,13 @@ extension Clients.ApiHubDiscoveryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -349,6 +503,10 @@ extension Clients.ApiHubDiscoveryProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ApiHubDiscovery_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -362,6 +520,13 @@ extension Clients.ApiHubDiscoveryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -374,6 +539,15 @@ extension Clients.ApiHubDiscoveryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -386,6 +560,15 @@ extension Clients.ApiHubDiscoveryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -397,6 +580,10 @@ extension Clients.ApiHubDiscoveryProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ApiHubDiscovery_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -410,6 +597,15 @@ extension Clients.ApiHubDiscoveryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -421,6 +617,9 @@ extension Clients.ApiHubDiscoveryProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -433,6 +632,9 @@ extension Clients.ApiHubDiscoveryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -442,6 +644,15 @@ extension Clients.ApiHubDiscoveryProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -452,6 +663,15 @@ extension Clients.ApiHubDiscoveryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -461,6 +681,15 @@ extension Clients.ApiHubDiscoveryProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -471,6 +700,15 @@ extension Clients.ApiHubDiscoveryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ApiHubDiscovery_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiHubDiscoveryClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

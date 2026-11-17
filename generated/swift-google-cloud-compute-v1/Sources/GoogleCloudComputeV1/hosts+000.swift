@@ -24,6 +24,10 @@
   /// Service for the `hosts` resource.
   ///
   /// @Snippet(path: "hostsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/HostsProtocol``
   public final class HostsClient: Clients.HostsProtocol, Sendable {
     let inner: any Clients.HostsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,11 @@
     /// Retrieves information about the specified host.
     ///
     /// @Snippet(path: "hosts_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:zone:association:host:)``
     public func `get`(
       request: HostsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Host {
@@ -53,6 +62,13 @@
     /// Allows customers to get SBOM versions of a host.
     ///
     /// @Snippet(path: "hosts_getVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getVersion(request:)``
+    /// - ``getVersionPollingUntilDone(request:)``
+    /// - ``getVersionPollingUntilDone(request:options:)``
+    /// - ``getVersionPollingUntilDone(project:zone:association:host:body:)``
     public func getVersion(
       request: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -67,6 +83,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "hosts_getVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getVersionPollingUntilDone(request:)``
+    /// - ``getVersionPollingUntilDone(project:zone:association:host:body:)``
+    /// - ``getVersion(request:)``
+    /// - ``getVersion(request:options:)``
     public func getVersionPollingUntilDone(
       request: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -109,6 +132,13 @@
     /// Retrieves a list of hosts.
     ///
     /// @Snippet(path: "hosts_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:zone:association:)``
     public func list(
       request: HostsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.HostsListResponse {
@@ -161,6 +191,13 @@
 
   // Default implementations
   extension Clients.HostsProtocol {
+    /// Retrieves information about the specified host.
+    ///
+    /// @Snippet(path: "hosts_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HostsClient/get(request:options:)``
     public func `get`(request: HostsClient.GetRequest) async throws -> GoogleCloudComputeV1.Host {
       try await self.`get`(request: request, options: .init())
     }
@@ -171,6 +208,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves information about the specified host.
+    ///
+    /// @Snippet(path: "hosts_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HostsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -186,6 +230,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Allows customers to get SBOM versions of a host.
+    ///
+    /// @Snippet(path: "hosts_getVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HostsClient/getVersion(request:options:)``
     public func getVersion(request: HostsClient.GetVersionRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -198,6 +249,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Allows customers to get SBOM versions of a host.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "hosts_getVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HostsClient/getVersionPollingUntilDone(request:options:)``
     public func getVersionPollingUntilDone(
       request: HostsClient.GetVersionRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -210,6 +273,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Allows customers to get SBOM versions of a host.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "hosts_getVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HostsClient/getVersionPollingUntilDone(request:options:)``
     public func getVersionPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -227,6 +302,13 @@
       return try await self.getVersionPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of hosts.
+    ///
+    /// @Snippet(path: "hosts_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HostsClient/list(request:options:)``
     public func list(request: HostsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.HostsListResponse
     {
@@ -239,6 +321,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of hosts.
+    ///
+    /// @Snippet(path: "hosts_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HostsClient/list(request:options:)``
     public func listByItems(
       request: HostsClient.ListRequest
     ) -> some AsyncSequence<Host, any Swift.Error> & Sendable {
@@ -248,6 +337,10 @@
     /// Retrieves a list of hosts.
     ///
     /// @Snippet(path: "hosts_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HostsClient/list(request:options:)``
     public func listByItems(
       request: HostsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Host, any Swift.Error> & Sendable {
@@ -261,6 +354,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of hosts.
+    ///
+    /// @Snippet(path: "hosts_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HostsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -274,6 +374,7 @@
       return self.listByItems(request: request)
     }
 
+    /// Retrieves the specified zone-specific Operations resource.
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

@@ -26,6 +26,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "StorageInsightsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/StorageInsightsProtocol``
 public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Sendable {
   let inner: any Clients.StorageInsightsStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Lists ReportConfigs in a given project and location.
   ///
   /// @Snippet(path: "StorageInsights_ListReportConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReportConfigs(request:)``
+  /// - ``listReportConfigsByItems(request:)``
+  /// - ``listReportConfigsByItems(request:options:)``
+  /// - ``listReportConfigsByItems(parent:)``
   public func listReportConfigs(
     request: ListReportConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ListReportConfigsResponse {
@@ -55,6 +66,11 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Gets details of a single ReportConfig.
   ///
   /// @Snippet(path: "StorageInsights_GetReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getReportConfig(request:)``
+  /// - ``getReportConfig(name:)``
   public func getReportConfig(
     request: GetReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ReportConfig {
@@ -64,6 +80,11 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Creates a new ReportConfig in a given project and location.
   ///
   /// @Snippet(path: "StorageInsights_CreateReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReportConfig(request:)``
+  /// - ``createReportConfig(parent:reportConfig:)``
   public func createReportConfig(
     request: CreateReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ReportConfig {
@@ -73,6 +94,11 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Updates the parameters of a single ReportConfig.
   ///
   /// @Snippet(path: "StorageInsights_UpdateReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateReportConfig(request:)``
+  /// - ``updateReportConfig(reportConfig:updateMask:)``
   public func updateReportConfig(
     request: UpdateReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ReportConfig {
@@ -82,6 +108,11 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Deletes a single ReportConfig.
   ///
   /// @Snippet(path: "StorageInsights_DeleteReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteReportConfig(request:)``
+  /// - ``deleteReportConfig(name:)``
   public func deleteReportConfig(
     request: DeleteReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -91,6 +122,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Lists ReportDetails in a given project and location.
   ///
   /// @Snippet(path: "StorageInsights_ListReportDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReportDetails(request:)``
+  /// - ``listReportDetailsByItems(request:)``
+  /// - ``listReportDetailsByItems(request:options:)``
+  /// - ``listReportDetailsByItems(parent:)``
   public func listReportDetails(
     request: ListReportDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ListReportDetailsResponse {
@@ -100,6 +138,11 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Gets details of a single ReportDetail.
   ///
   /// @Snippet(path: "StorageInsights_GetReportDetail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getReportDetail(request:)``
+  /// - ``getReportDetail(name:)``
   public func getReportDetail(
     request: GetReportDetailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ReportDetail {
@@ -109,6 +152,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Lists the dataset configurations in a given project for a given location.
   ///
   /// @Snippet(path: "StorageInsights_ListDatasetConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDatasetConfigs(request:)``
+  /// - ``listDatasetConfigsByItems(request:)``
+  /// - ``listDatasetConfigsByItems(request:options:)``
+  /// - ``listDatasetConfigsByItems(parent:)``
   public func listDatasetConfigs(
     request: ListDatasetConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ListDatasetConfigsResponse {
@@ -118,6 +168,11 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Gets the dataset configuration in a given project for a given location.
   ///
   /// @Snippet(path: "StorageInsights_GetDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDatasetConfig(request:)``
+  /// - ``getDatasetConfig(name:)``
   public func getDatasetConfig(
     request: GetDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.DatasetConfig {
@@ -127,6 +182,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Creates a dataset configuration in a given project for a given location.
   ///
   /// @Snippet(path: "StorageInsights_CreateDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDatasetConfig(request:)``
+  /// - ``createDatasetConfigPollingUntilDone(request:)``
+  /// - ``createDatasetConfigPollingUntilDone(request:options:)``
+  /// - ``createDatasetConfigPollingUntilDone(parent:datasetConfig:datasetConfigId:)``
   public func createDatasetConfig(
     request: CreateDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -136,6 +198,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Creates a dataset configuration in a given project for a given location.
   ///
   /// @Snippet(path: "StorageInsights_CreateDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDatasetConfigPollingUntilDone(request:)``
+  /// - ``createDatasetConfigPollingUntilDone(parent:datasetConfig:datasetConfigId:)``
+  /// - ``createDatasetConfig(request:)``
+  /// - ``createDatasetConfig(request:options:)``
   public func createDatasetConfigPollingUntilDone(
     request: CreateDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> DatasetConfig {
@@ -164,6 +233,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Updates a dataset configuration in a given project for a given location.
   ///
   /// @Snippet(path: "StorageInsights_UpdateDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDatasetConfig(request:)``
+  /// - ``updateDatasetConfigPollingUntilDone(request:)``
+  /// - ``updateDatasetConfigPollingUntilDone(request:options:)``
+  /// - ``updateDatasetConfigPollingUntilDone(datasetConfig:updateMask:)``
   public func updateDatasetConfig(
     request: UpdateDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -173,6 +249,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Updates a dataset configuration in a given project for a given location.
   ///
   /// @Snippet(path: "StorageInsights_UpdateDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDatasetConfigPollingUntilDone(request:)``
+  /// - ``updateDatasetConfigPollingUntilDone(datasetConfig:updateMask:)``
+  /// - ``updateDatasetConfig(request:)``
+  /// - ``updateDatasetConfig(request:options:)``
   public func updateDatasetConfigPollingUntilDone(
     request: UpdateDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> DatasetConfig {
@@ -201,6 +284,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Deletes a dataset configuration in a given project for a given location.
   ///
   /// @Snippet(path: "StorageInsights_DeleteDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDatasetConfig(request:)``
+  /// - ``deleteDatasetConfigPollingUntilDone(request:)``
+  /// - ``deleteDatasetConfigPollingUntilDone(request:options:)``
+  /// - ``deleteDatasetConfigPollingUntilDone(name:)``
   public func deleteDatasetConfig(
     request: DeleteDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -210,6 +300,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Deletes a dataset configuration in a given project for a given location.
   ///
   /// @Snippet(path: "StorageInsights_DeleteDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDatasetConfigPollingUntilDone(request:)``
+  /// - ``deleteDatasetConfigPollingUntilDone(name:)``
+  /// - ``deleteDatasetConfig(request:)``
+  /// - ``deleteDatasetConfig(request:options:)``
   public func deleteDatasetConfigPollingUntilDone(
     request: DeleteDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -237,6 +334,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Links a dataset to BigQuery in a given project for a given location.
   ///
   /// @Snippet(path: "StorageInsights_LinkDataset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``linkDataset(request:)``
+  /// - ``linkDatasetPollingUntilDone(request:)``
+  /// - ``linkDatasetPollingUntilDone(request:options:)``
+  /// - ``linkDatasetPollingUntilDone(name:)``
   public func linkDataset(
     request: LinkDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -246,6 +350,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Links a dataset to BigQuery in a given project for a given location.
   ///
   /// @Snippet(path: "StorageInsights_LinkDataset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``linkDatasetPollingUntilDone(request:)``
+  /// - ``linkDatasetPollingUntilDone(name:)``
+  /// - ``linkDataset(request:)``
+  /// - ``linkDataset(request:options:)``
   public func linkDatasetPollingUntilDone(
     request: LinkDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> LinkDatasetResponse {
@@ -275,6 +386,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// for a given location.
   ///
   /// @Snippet(path: "StorageInsights_UnlinkDataset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``unlinkDataset(request:)``
+  /// - ``unlinkDatasetPollingUntilDone(request:)``
+  /// - ``unlinkDatasetPollingUntilDone(request:options:)``
+  /// - ``unlinkDatasetPollingUntilDone(name:)``
   public func unlinkDataset(
     request: UnlinkDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -285,6 +403,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// for a given location.
   ///
   /// @Snippet(path: "StorageInsights_UnlinkDataset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``unlinkDatasetPollingUntilDone(request:)``
+  /// - ``unlinkDatasetPollingUntilDone(name:)``
+  /// - ``unlinkDataset(request:)``
+  /// - ``unlinkDataset(request:options:)``
   public func unlinkDatasetPollingUntilDone(
     request: UnlinkDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -312,6 +437,12 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "StorageInsights_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -321,6 +452,10 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// Gets information about a location.
   ///
   /// @Snippet(path: "StorageInsights_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -332,6 +467,13 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "StorageInsights_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -354,6 +496,11 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "StorageInsights_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -365,6 +512,11 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "StorageInsights_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -503,6 +655,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.StorageInsightsProtocol {
+  /// Lists ReportConfigs in a given project and location.
+  ///
+  /// @Snippet(path: "StorageInsights_ListReportConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listReportConfigs(request:options:)``
   public func listReportConfigs(request: ListReportConfigsRequest) async throws
     -> GoogleCloudStorageInsightsV1.ListReportConfigsResponse
   {
@@ -515,6 +674,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ReportConfigs in a given project and location.
+  ///
+  /// @Snippet(path: "StorageInsights_ListReportConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listReportConfigs(request:options:)``
   public func listReportConfigsByItems(
     request: ListReportConfigsRequest
   ) -> some AsyncSequence<ReportConfig, any Swift.Error> & Sendable {
@@ -524,6 +690,10 @@ extension Clients.StorageInsightsProtocol {
   /// Lists ReportConfigs in a given project and location.
   ///
   /// @Snippet(path: "StorageInsights_ListReportConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listReportConfigs(request:options:)``
   public func listReportConfigsByItems(
     request: ListReportConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ReportConfig, any Swift.Error> & Sendable {
@@ -538,6 +708,13 @@ extension Clients.StorageInsightsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ReportConfigs in a given project and location.
+  ///
+  /// @Snippet(path: "StorageInsights_ListReportConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listReportConfigs(request:options:)``
   public func listReportConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ReportConfig, any Swift.Error> & Sendable {
@@ -547,6 +724,13 @@ extension Clients.StorageInsightsProtocol {
     return self.listReportConfigsByItems(request: request)
   }
 
+  /// Gets details of a single ReportConfig.
+  ///
+  /// @Snippet(path: "StorageInsights_GetReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/getReportConfig(request:options:)``
   public func getReportConfig(request: GetReportConfigRequest) async throws
     -> GoogleCloudStorageInsightsV1.ReportConfig
   {
@@ -559,6 +743,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single ReportConfig.
+  ///
+  /// @Snippet(path: "StorageInsights_GetReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/getReportConfig(request:options:)``
   public func getReportConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudStorageInsightsV1.ReportConfig {
@@ -568,6 +759,13 @@ extension Clients.StorageInsightsProtocol {
     return try await self.getReportConfig(request: request)
   }
 
+  /// Creates a new ReportConfig in a given project and location.
+  ///
+  /// @Snippet(path: "StorageInsights_CreateReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/createReportConfig(request:options:)``
   public func createReportConfig(request: CreateReportConfigRequest) async throws
     -> GoogleCloudStorageInsightsV1.ReportConfig
   {
@@ -580,6 +778,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ReportConfig in a given project and location.
+  ///
+  /// @Snippet(path: "StorageInsights_CreateReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/createReportConfig(request:options:)``
   public func createReportConfig(
     parent: Swift.String,
     reportConfig: ReportConfig?,
@@ -591,6 +796,13 @@ extension Clients.StorageInsightsProtocol {
     return try await self.createReportConfig(request: request)
   }
 
+  /// Updates the parameters of a single ReportConfig.
+  ///
+  /// @Snippet(path: "StorageInsights_UpdateReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/updateReportConfig(request:options:)``
   public func updateReportConfig(request: UpdateReportConfigRequest) async throws
     -> GoogleCloudStorageInsightsV1.ReportConfig
   {
@@ -603,6 +815,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single ReportConfig.
+  ///
+  /// @Snippet(path: "StorageInsights_UpdateReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/updateReportConfig(request:options:)``
   public func updateReportConfig(
     reportConfig: ReportConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -614,6 +833,13 @@ extension Clients.StorageInsightsProtocol {
     return try await self.updateReportConfig(request: request)
   }
 
+  /// Deletes a single ReportConfig.
+  ///
+  /// @Snippet(path: "StorageInsights_DeleteReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/deleteReportConfig(request:options:)``
   public func deleteReportConfig(request: DeleteReportConfigRequest) async throws {
     try await self.deleteReportConfig(request: request, options: .init())
   }
@@ -624,6 +850,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ReportConfig.
+  ///
+  /// @Snippet(path: "StorageInsights_DeleteReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/deleteReportConfig(request:options:)``
   public func deleteReportConfig(
     name: Swift.String,
   ) async throws {
@@ -633,6 +866,13 @@ extension Clients.StorageInsightsProtocol {
     try await self.deleteReportConfig(request: request)
   }
 
+  /// Lists ReportDetails in a given project and location.
+  ///
+  /// @Snippet(path: "StorageInsights_ListReportDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listReportDetails(request:options:)``
   public func listReportDetails(request: ListReportDetailsRequest) async throws
     -> GoogleCloudStorageInsightsV1.ListReportDetailsResponse
   {
@@ -645,6 +885,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ReportDetails in a given project and location.
+  ///
+  /// @Snippet(path: "StorageInsights_ListReportDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listReportDetails(request:options:)``
   public func listReportDetailsByItems(
     request: ListReportDetailsRequest
   ) -> some AsyncSequence<ReportDetail, any Swift.Error> & Sendable {
@@ -654,6 +901,10 @@ extension Clients.StorageInsightsProtocol {
   /// Lists ReportDetails in a given project and location.
   ///
   /// @Snippet(path: "StorageInsights_ListReportDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listReportDetails(request:options:)``
   public func listReportDetailsByItems(
     request: ListReportDetailsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ReportDetail, any Swift.Error> & Sendable {
@@ -668,6 +919,13 @@ extension Clients.StorageInsightsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ReportDetails in a given project and location.
+  ///
+  /// @Snippet(path: "StorageInsights_ListReportDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listReportDetails(request:options:)``
   public func listReportDetailsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ReportDetail, any Swift.Error> & Sendable {
@@ -677,6 +935,13 @@ extension Clients.StorageInsightsProtocol {
     return self.listReportDetailsByItems(request: request)
   }
 
+  /// Gets details of a single ReportDetail.
+  ///
+  /// @Snippet(path: "StorageInsights_GetReportDetail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/getReportDetail(request:options:)``
   public func getReportDetail(request: GetReportDetailRequest) async throws
     -> GoogleCloudStorageInsightsV1.ReportDetail
   {
@@ -689,6 +954,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single ReportDetail.
+  ///
+  /// @Snippet(path: "StorageInsights_GetReportDetail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/getReportDetail(request:options:)``
   public func getReportDetail(
     name: Swift.String,
   ) async throws -> GoogleCloudStorageInsightsV1.ReportDetail {
@@ -698,6 +970,13 @@ extension Clients.StorageInsightsProtocol {
     return try await self.getReportDetail(request: request)
   }
 
+  /// Lists the dataset configurations in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_ListDatasetConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listDatasetConfigs(request:options:)``
   public func listDatasetConfigs(request: ListDatasetConfigsRequest) async throws
     -> GoogleCloudStorageInsightsV1.ListDatasetConfigsResponse
   {
@@ -710,6 +989,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the dataset configurations in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_ListDatasetConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listDatasetConfigs(request:options:)``
   public func listDatasetConfigsByItems(
     request: ListDatasetConfigsRequest
   ) -> some AsyncSequence<DatasetConfig, any Swift.Error> & Sendable {
@@ -719,6 +1005,10 @@ extension Clients.StorageInsightsProtocol {
   /// Lists the dataset configurations in a given project for a given location.
   ///
   /// @Snippet(path: "StorageInsights_ListDatasetConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listDatasetConfigs(request:options:)``
   public func listDatasetConfigsByItems(
     request: ListDatasetConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DatasetConfig, any Swift.Error> & Sendable {
@@ -733,6 +1023,13 @@ extension Clients.StorageInsightsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the dataset configurations in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_ListDatasetConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listDatasetConfigs(request:options:)``
   public func listDatasetConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DatasetConfig, any Swift.Error> & Sendable {
@@ -742,6 +1039,13 @@ extension Clients.StorageInsightsProtocol {
     return self.listDatasetConfigsByItems(request: request)
   }
 
+  /// Gets the dataset configuration in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_GetDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/getDatasetConfig(request:options:)``
   public func getDatasetConfig(request: GetDatasetConfigRequest) async throws
     -> GoogleCloudStorageInsightsV1.DatasetConfig
   {
@@ -754,6 +1058,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the dataset configuration in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_GetDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/getDatasetConfig(request:options:)``
   public func getDatasetConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudStorageInsightsV1.DatasetConfig {
@@ -763,6 +1074,13 @@ extension Clients.StorageInsightsProtocol {
     return try await self.getDatasetConfig(request: request)
   }
 
+  /// Creates a dataset configuration in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_CreateDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/createDatasetConfig(request:options:)``
   public func createDatasetConfig(request: CreateDatasetConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -775,6 +1093,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a dataset configuration in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_CreateDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/createDatasetConfigPollingUntilDone(request:options:)``
   public func createDatasetConfigPollingUntilDone(request: CreateDatasetConfigRequest) async throws
     -> DatasetConfig
   {
@@ -787,6 +1112,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a dataset configuration in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_CreateDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/createDatasetConfigPollingUntilDone(request:options:)``
   public func createDatasetConfigPollingUntilDone(
     parent: Swift.String,
     datasetConfig: DatasetConfig?,
@@ -800,6 +1132,13 @@ extension Clients.StorageInsightsProtocol {
     return try await self.createDatasetConfigPollingUntilDone(request: request)
   }
 
+  /// Updates a dataset configuration in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_UpdateDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/updateDatasetConfig(request:options:)``
   public func updateDatasetConfig(request: UpdateDatasetConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -812,6 +1151,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a dataset configuration in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_UpdateDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/updateDatasetConfigPollingUntilDone(request:options:)``
   public func updateDatasetConfigPollingUntilDone(request: UpdateDatasetConfigRequest) async throws
     -> DatasetConfig
   {
@@ -824,6 +1170,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a dataset configuration in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_UpdateDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/updateDatasetConfigPollingUntilDone(request:options:)``
   public func updateDatasetConfigPollingUntilDone(
     datasetConfig: DatasetConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -835,6 +1188,13 @@ extension Clients.StorageInsightsProtocol {
     return try await self.updateDatasetConfigPollingUntilDone(request: request)
   }
 
+  /// Deletes a dataset configuration in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_DeleteDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/deleteDatasetConfig(request:options:)``
   public func deleteDatasetConfig(request: DeleteDatasetConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -847,6 +1207,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a dataset configuration in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_DeleteDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/deleteDatasetConfigPollingUntilDone(request:options:)``
   public func deleteDatasetConfigPollingUntilDone(request: DeleteDatasetConfigRequest) async throws
   {
     try await self.deleteDatasetConfigPollingUntilDone(request: request, options: .init())
@@ -858,6 +1225,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a dataset configuration in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_DeleteDatasetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/deleteDatasetConfigPollingUntilDone(request:options:)``
   public func deleteDatasetConfigPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -867,6 +1241,13 @@ extension Clients.StorageInsightsProtocol {
     try await self.deleteDatasetConfigPollingUntilDone(request: request)
   }
 
+  /// Links a dataset to BigQuery in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_LinkDataset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/linkDataset(request:options:)``
   public func linkDataset(request: LinkDatasetRequest) async throws -> GoogleLongRunning.Operation {
     try await self.linkDataset(request: request, options: .init())
   }
@@ -877,6 +1258,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Links a dataset to BigQuery in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_LinkDataset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/linkDatasetPollingUntilDone(request:options:)``
   public func linkDatasetPollingUntilDone(request: LinkDatasetRequest) async throws
     -> LinkDatasetResponse
   {
@@ -889,6 +1277,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Links a dataset to BigQuery in a given project for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_LinkDataset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/linkDatasetPollingUntilDone(request:options:)``
   public func linkDatasetPollingUntilDone(
     name: Swift.String,
   ) async throws -> LinkDatasetResponse {
@@ -898,6 +1293,14 @@ extension Clients.StorageInsightsProtocol {
     return try await self.linkDatasetPollingUntilDone(request: request)
   }
 
+  /// Unlinks a dataset from BigQuery in a given project
+  /// for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_UnlinkDataset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/unlinkDataset(request:options:)``
   public func unlinkDataset(request: UnlinkDatasetRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -910,6 +1313,14 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Unlinks a dataset from BigQuery in a given project
+  /// for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_UnlinkDataset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/unlinkDatasetPollingUntilDone(request:options:)``
   public func unlinkDatasetPollingUntilDone(request: UnlinkDatasetRequest) async throws {
     try await self.unlinkDatasetPollingUntilDone(request: request, options: .init())
   }
@@ -920,6 +1331,14 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Unlinks a dataset from BigQuery in a given project
+  /// for a given location.
+  ///
+  /// @Snippet(path: "StorageInsights_UnlinkDataset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/unlinkDatasetPollingUntilDone(request:options:)``
   public func unlinkDatasetPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -929,6 +1348,13 @@ extension Clients.StorageInsightsProtocol {
     try await self.unlinkDatasetPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "StorageInsights_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -941,6 +1367,13 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "StorageInsights_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -950,6 +1383,10 @@ extension Clients.StorageInsightsProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "StorageInsights_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -963,6 +1400,13 @@ extension Clients.StorageInsightsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "StorageInsights_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -975,6 +1419,15 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StorageInsights_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -987,6 +1440,15 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StorageInsights_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -998,6 +1460,10 @@ extension Clients.StorageInsightsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "StorageInsights_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1011,6 +1477,15 @@ extension Clients.StorageInsightsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StorageInsights_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1022,6 +1497,9 @@ extension Clients.StorageInsightsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1034,6 +1512,9 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1043,6 +1524,15 @@ extension Clients.StorageInsightsProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StorageInsights_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1053,6 +1543,15 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StorageInsights_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1062,6 +1561,15 @@ extension Clients.StorageInsightsProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StorageInsights_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1072,6 +1580,15 @@ extension Clients.StorageInsightsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StorageInsights_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageInsightsClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

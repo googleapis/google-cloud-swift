@@ -25,6 +25,10 @@ import Foundation
 /// Manages the rollout of SaaS services.
 ///
 /// @Snippet(path: "SaasRolloutsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SaasRolloutsProtocol``
 public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   let inner: any Clients.SaasRolloutsStub
 
@@ -41,6 +45,13 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// Retrieve a collection of rollouts.
   ///
   /// @Snippet(path: "SaasRollouts_ListRollouts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRollouts(request:)``
+  /// - ``listRolloutsByItems(request:)``
+  /// - ``listRolloutsByItems(request:options:)``
+  /// - ``listRolloutsByItems(parent:)``
   public func listRollouts(
     request: ListRolloutsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListRolloutsResponse {
@@ -50,6 +61,11 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// Retrieve a single rollout.
   ///
   /// @Snippet(path: "SaasRollouts_GetRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRollout(request:)``
+  /// - ``getRollout(name:)``
   public func getRollout(
     request: GetRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Rollout {
@@ -59,6 +75,11 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// Create a new rollout.
   ///
   /// @Snippet(path: "SaasRollouts_CreateRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRollout(request:)``
+  /// - ``createRollout(parent:rollout:rolloutId:)``
   public func createRollout(
     request: CreateRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Rollout {
@@ -68,6 +89,11 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// Update a single rollout.
   ///
   /// @Snippet(path: "SaasRollouts_UpdateRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRollout(request:)``
+  /// - ``updateRollout(rollout:updateMask:)``
   public func updateRollout(
     request: UpdateRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Rollout {
@@ -77,6 +103,11 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// Delete a single rollout.
   ///
   /// @Snippet(path: "SaasRollouts_DeleteRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRollout(request:)``
+  /// - ``deleteRollout(name:)``
   public func deleteRollout(
     request: DeleteRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -86,6 +117,13 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// Retrieve a collection of rollout kinds.
   ///
   /// @Snippet(path: "SaasRollouts_ListRolloutKinds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRolloutKinds(request:)``
+  /// - ``listRolloutKindsByItems(request:)``
+  /// - ``listRolloutKindsByItems(request:options:)``
+  /// - ``listRolloutKindsByItems(parent:)``
   public func listRolloutKinds(
     request: ListRolloutKindsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListRolloutKindsResponse {
@@ -95,6 +133,11 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// Retrieve a single rollout kind.
   ///
   /// @Snippet(path: "SaasRollouts_GetRolloutKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRolloutKind(request:)``
+  /// - ``getRolloutKind(name:)``
   public func getRolloutKind(
     request: GetRolloutKindRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.RolloutKind {
@@ -104,6 +147,11 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// Create a new rollout kind.
   ///
   /// @Snippet(path: "SaasRollouts_CreateRolloutKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRolloutKind(request:)``
+  /// - ``createRolloutKind(parent:rolloutKind:rolloutKindId:)``
   public func createRolloutKind(
     request: CreateRolloutKindRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.RolloutKind {
@@ -113,6 +161,11 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// Update a single rollout kind.
   ///
   /// @Snippet(path: "SaasRollouts_UpdateRolloutKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRolloutKind(request:)``
+  /// - ``updateRolloutKind(rolloutKind:updateMask:)``
   public func updateRolloutKind(
     request: UpdateRolloutKindRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.RolloutKind {
@@ -122,6 +175,11 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// Delete a single rollout kind.
   ///
   /// @Snippet(path: "SaasRollouts_DeleteRolloutKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRolloutKind(request:)``
+  /// - ``deleteRolloutKind(name:)``
   public func deleteRolloutKind(
     request: DeleteRolloutKindRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -148,6 +206,12 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "SaasRollouts_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -157,6 +221,10 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "SaasRollouts_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -235,6 +303,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.SaasRolloutsProtocol {
+  /// Retrieve a collection of rollouts.
+  ///
+  /// @Snippet(path: "SaasRollouts_ListRollouts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/listRollouts(request:options:)``
   public func listRollouts(request: ListRolloutsRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListRolloutsResponse
   {
@@ -247,6 +322,13 @@ extension Clients.SaasRolloutsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a collection of rollouts.
+  ///
+  /// @Snippet(path: "SaasRollouts_ListRollouts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/listRollouts(request:options:)``
   public func listRolloutsByItems(
     request: ListRolloutsRequest
   ) -> some AsyncSequence<Rollout, any Swift.Error> & Sendable {
@@ -256,6 +338,10 @@ extension Clients.SaasRolloutsProtocol {
   /// Retrieve a collection of rollouts.
   ///
   /// @Snippet(path: "SaasRollouts_ListRollouts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/listRollouts(request:options:)``
   public func listRolloutsByItems(
     request: ListRolloutsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Rollout, any Swift.Error> & Sendable {
@@ -270,6 +356,13 @@ extension Clients.SaasRolloutsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieve a collection of rollouts.
+  ///
+  /// @Snippet(path: "SaasRollouts_ListRollouts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/listRollouts(request:options:)``
   public func listRolloutsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Rollout, any Swift.Error> & Sendable {
@@ -279,6 +372,13 @@ extension Clients.SaasRolloutsProtocol {
     return self.listRolloutsByItems(request: request)
   }
 
+  /// Retrieve a single rollout.
+  ///
+  /// @Snippet(path: "SaasRollouts_GetRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/getRollout(request:options:)``
   public func getRollout(request: GetRolloutRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Rollout
   {
@@ -291,6 +391,13 @@ extension Clients.SaasRolloutsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a single rollout.
+  ///
+  /// @Snippet(path: "SaasRollouts_GetRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/getRollout(request:options:)``
   public func getRollout(
     name: Swift.String,
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Rollout {
@@ -300,6 +407,13 @@ extension Clients.SaasRolloutsProtocol {
     return try await self.getRollout(request: request)
   }
 
+  /// Create a new rollout.
+  ///
+  /// @Snippet(path: "SaasRollouts_CreateRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/createRollout(request:options:)``
   public func createRollout(request: CreateRolloutRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Rollout
   {
@@ -312,6 +426,13 @@ extension Clients.SaasRolloutsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new rollout.
+  ///
+  /// @Snippet(path: "SaasRollouts_CreateRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/createRollout(request:options:)``
   public func createRollout(
     parent: Swift.String,
     rollout: Rollout?,
@@ -325,6 +446,13 @@ extension Clients.SaasRolloutsProtocol {
     return try await self.createRollout(request: request)
   }
 
+  /// Update a single rollout.
+  ///
+  /// @Snippet(path: "SaasRollouts_UpdateRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/updateRollout(request:options:)``
   public func updateRollout(request: UpdateRolloutRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Rollout
   {
@@ -337,6 +465,13 @@ extension Clients.SaasRolloutsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single rollout.
+  ///
+  /// @Snippet(path: "SaasRollouts_UpdateRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/updateRollout(request:options:)``
   public func updateRollout(
     rollout: Rollout?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -348,6 +483,13 @@ extension Clients.SaasRolloutsProtocol {
     return try await self.updateRollout(request: request)
   }
 
+  /// Delete a single rollout.
+  ///
+  /// @Snippet(path: "SaasRollouts_DeleteRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/deleteRollout(request:options:)``
   public func deleteRollout(request: DeleteRolloutRequest) async throws {
     try await self.deleteRollout(request: request, options: .init())
   }
@@ -358,6 +500,13 @@ extension Clients.SaasRolloutsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single rollout.
+  ///
+  /// @Snippet(path: "SaasRollouts_DeleteRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/deleteRollout(request:options:)``
   public func deleteRollout(
     name: Swift.String,
   ) async throws {
@@ -367,6 +516,13 @@ extension Clients.SaasRolloutsProtocol {
     try await self.deleteRollout(request: request)
   }
 
+  /// Retrieve a collection of rollout kinds.
+  ///
+  /// @Snippet(path: "SaasRollouts_ListRolloutKinds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/listRolloutKinds(request:options:)``
   public func listRolloutKinds(request: ListRolloutKindsRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListRolloutKindsResponse
   {
@@ -379,6 +535,13 @@ extension Clients.SaasRolloutsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a collection of rollout kinds.
+  ///
+  /// @Snippet(path: "SaasRollouts_ListRolloutKinds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/listRolloutKinds(request:options:)``
   public func listRolloutKindsByItems(
     request: ListRolloutKindsRequest
   ) -> some AsyncSequence<RolloutKind, any Swift.Error> & Sendable {
@@ -388,6 +551,10 @@ extension Clients.SaasRolloutsProtocol {
   /// Retrieve a collection of rollout kinds.
   ///
   /// @Snippet(path: "SaasRollouts_ListRolloutKinds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/listRolloutKinds(request:options:)``
   public func listRolloutKindsByItems(
     request: ListRolloutKindsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<RolloutKind, any Swift.Error> & Sendable {
@@ -402,6 +569,13 @@ extension Clients.SaasRolloutsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieve a collection of rollout kinds.
+  ///
+  /// @Snippet(path: "SaasRollouts_ListRolloutKinds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/listRolloutKinds(request:options:)``
   public func listRolloutKindsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<RolloutKind, any Swift.Error> & Sendable {
@@ -411,6 +585,13 @@ extension Clients.SaasRolloutsProtocol {
     return self.listRolloutKindsByItems(request: request)
   }
 
+  /// Retrieve a single rollout kind.
+  ///
+  /// @Snippet(path: "SaasRollouts_GetRolloutKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/getRolloutKind(request:options:)``
   public func getRolloutKind(request: GetRolloutKindRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.RolloutKind
   {
@@ -423,6 +604,13 @@ extension Clients.SaasRolloutsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a single rollout kind.
+  ///
+  /// @Snippet(path: "SaasRollouts_GetRolloutKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/getRolloutKind(request:options:)``
   public func getRolloutKind(
     name: Swift.String,
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.RolloutKind {
@@ -432,6 +620,13 @@ extension Clients.SaasRolloutsProtocol {
     return try await self.getRolloutKind(request: request)
   }
 
+  /// Create a new rollout kind.
+  ///
+  /// @Snippet(path: "SaasRollouts_CreateRolloutKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/createRolloutKind(request:options:)``
   public func createRolloutKind(request: CreateRolloutKindRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.RolloutKind
   {
@@ -444,6 +639,13 @@ extension Clients.SaasRolloutsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new rollout kind.
+  ///
+  /// @Snippet(path: "SaasRollouts_CreateRolloutKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/createRolloutKind(request:options:)``
   public func createRolloutKind(
     parent: Swift.String,
     rolloutKind: RolloutKind?,
@@ -457,6 +659,13 @@ extension Clients.SaasRolloutsProtocol {
     return try await self.createRolloutKind(request: request)
   }
 
+  /// Update a single rollout kind.
+  ///
+  /// @Snippet(path: "SaasRollouts_UpdateRolloutKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/updateRolloutKind(request:options:)``
   public func updateRolloutKind(request: UpdateRolloutKindRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.RolloutKind
   {
@@ -469,6 +678,13 @@ extension Clients.SaasRolloutsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single rollout kind.
+  ///
+  /// @Snippet(path: "SaasRollouts_UpdateRolloutKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/updateRolloutKind(request:options:)``
   public func updateRolloutKind(
     rolloutKind: RolloutKind?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -480,6 +696,13 @@ extension Clients.SaasRolloutsProtocol {
     return try await self.updateRolloutKind(request: request)
   }
 
+  /// Delete a single rollout kind.
+  ///
+  /// @Snippet(path: "SaasRollouts_DeleteRolloutKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/deleteRolloutKind(request:options:)``
   public func deleteRolloutKind(request: DeleteRolloutKindRequest) async throws {
     try await self.deleteRolloutKind(request: request, options: .init())
   }
@@ -490,6 +713,13 @@ extension Clients.SaasRolloutsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single rollout kind.
+  ///
+  /// @Snippet(path: "SaasRollouts_DeleteRolloutKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/deleteRolloutKind(request:options:)``
   public func deleteRolloutKind(
     name: Swift.String,
   ) async throws {
@@ -499,6 +729,30 @@ extension Clients.SaasRolloutsProtocol {
     try await self.deleteRolloutKind(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "SaasRollouts_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -511,6 +765,30 @@ extension Clients.SaasRolloutsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "SaasRollouts_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -537,6 +815,10 @@ extension Clients.SaasRolloutsProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "SaasRollouts_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -550,6 +832,13 @@ extension Clients.SaasRolloutsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "SaasRollouts_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasRolloutsClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {

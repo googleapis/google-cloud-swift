@@ -24,6 +24,10 @@
   /// Service to manage databases.
   ///
   /// @Snippet(path: "SqlDatabasesServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlDatabasesServiceProtocol``
   public final class SqlDatabasesServiceClient: Clients.SqlDatabasesServiceProtocol, Sendable {
     let inner: any Clients.SqlDatabasesServiceStub
 
@@ -41,6 +45,10 @@
     /// Deletes a database from a Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlDatabasesService_Delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
     public func delete(
       request: SqlDatabasesDeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -51,6 +59,10 @@
     /// SQL instance.
     ///
     /// @Snippet(path: "SqlDatabasesService_Get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
     public func `get`(
       request: SqlDatabasesGetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Database {
@@ -63,6 +75,10 @@
     /// **Note:** You can't modify the default character set and collation.
     ///
     /// @Snippet(path: "SqlDatabasesService_Insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
     public func insert(
       request: SqlDatabasesInsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -72,6 +88,10 @@
     /// Lists databases in the specified Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlDatabasesService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
     public func list(
       request: SqlDatabasesListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.DatabasesListResponse {
@@ -82,6 +102,10 @@
     /// a Cloud SQL instance. This method supports patch semantics.
     ///
     /// @Snippet(path: "SqlDatabasesService_Patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
     public func patch(
       request: SqlDatabasesUpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -92,6 +116,10 @@
     /// SQL instance.
     ///
     /// @Snippet(path: "SqlDatabasesService_Update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
     public func update(
       request: SqlDatabasesUpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -140,6 +168,13 @@
 
   // Default implementations
   extension Clients.SqlDatabasesServiceProtocol {
+    /// Deletes a database from a Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlDatabasesService_Delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlDatabasesServiceClient/delete(request:options:)``
     public func delete(request: SqlDatabasesDeleteRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -152,6 +187,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a resource containing information about a database inside a Cloud
+    /// SQL instance.
+    ///
+    /// @Snippet(path: "SqlDatabasesService_Get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlDatabasesServiceClient/get(request:options:)``
     public func `get`(request: SqlDatabasesGetRequest) async throws -> GoogleCloudSqlV1.Database {
       try await self.`get`(request: request, options: .init())
     }
@@ -162,6 +205,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts a resource containing information about a database inside a Cloud
+    /// SQL instance.
+    ///
+    /// **Note:** You can't modify the default character set and collation.
+    ///
+    /// @Snippet(path: "SqlDatabasesService_Insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlDatabasesServiceClient/insert(request:options:)``
     public func insert(request: SqlDatabasesInsertRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -174,6 +227,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists databases in the specified Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlDatabasesService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlDatabasesServiceClient/list(request:options:)``
     public func list(request: SqlDatabasesListRequest) async throws
       -> GoogleCloudSqlV1.DatabasesListResponse
     {
@@ -186,6 +246,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Partially updates a resource containing information about a database inside
+    /// a Cloud SQL instance. This method supports patch semantics.
+    ///
+    /// @Snippet(path: "SqlDatabasesService_Patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlDatabasesServiceClient/patch(request:options:)``
     public func patch(request: SqlDatabasesUpdateRequest) async throws -> GoogleCloudSqlV1.Operation
     {
       try await self.patch(request: request, options: .init())
@@ -197,6 +265,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a resource containing information about a database inside a Cloud
+    /// SQL instance.
+    ///
+    /// @Snippet(path: "SqlDatabasesService_Update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlDatabasesServiceClient/update(request:options:)``
     public func update(request: SqlDatabasesUpdateRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {

@@ -25,6 +25,10 @@ import Foundation
 /// clients.
 ///
 /// @Snippet(path: "IdentityAwareProxyOAuthServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/IdentityAwareProxyOAuthServiceProtocol``
 public final class IdentityAwareProxyOAuthServiceClient: Clients
     .IdentityAwareProxyOAuthServiceProtocol, Sendable
 {
@@ -44,6 +48,10 @@ public final class IdentityAwareProxyOAuthServiceClient: Clients
   /// Lists the existing brands for the project.
   ///
   /// @Snippet(path: "IdentityAwareProxyOAuthService_ListBrands")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBrands(request:)``
   public func listBrands(
     request: ListBrandsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.ListBrandsResponse {
@@ -60,6 +68,10 @@ public final class IdentityAwareProxyOAuthServiceClient: Clients
   /// caller.
   ///
   /// @Snippet(path: "IdentityAwareProxyOAuthService_CreateBrand")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBrand(request:)``
   public func createBrand(
     request: CreateBrandRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.Brand {
@@ -69,6 +81,10 @@ public final class IdentityAwareProxyOAuthServiceClient: Clients
   /// Retrieves the OAuth brand of the project.
   ///
   /// @Snippet(path: "IdentityAwareProxyOAuthService_GetBrand")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBrand(request:)``
   public func getBrand(
     request: GetBrandRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.Brand {
@@ -80,6 +96,10 @@ public final class IdentityAwareProxyOAuthServiceClient: Clients
   /// set for internal-only use.
   ///
   /// @Snippet(path: "IdentityAwareProxyOAuthService_CreateIdentityAwareProxyClient")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createIdentityAwareProxyClient(request:)``
   public func createIdentityAwareProxyClient(
     request: CreateIdentityAwareProxyClientRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.IdentityAwareProxyClient {
@@ -89,6 +109,12 @@ public final class IdentityAwareProxyOAuthServiceClient: Clients
   /// Lists the existing clients for the brand.
   ///
   /// @Snippet(path: "IdentityAwareProxyOAuthService_ListIdentityAwareProxyClients")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listIdentityAwareProxyClients(request:)``
+  /// - ``listIdentityAwareProxyClientsByItems(request:)``
+  /// - ``listIdentityAwareProxyClientsByItems(request:options:)``
   public func listIdentityAwareProxyClients(
     request: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse {
@@ -99,6 +125,10 @@ public final class IdentityAwareProxyOAuthServiceClient: Clients
   /// Requires that the client is owned by IAP.
   ///
   /// @Snippet(path: "IdentityAwareProxyOAuthService_GetIdentityAwareProxyClient")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIdentityAwareProxyClient(request:)``
   public func getIdentityAwareProxyClient(
     request: GetIdentityAwareProxyClientRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.IdentityAwareProxyClient {
@@ -109,6 +139,10 @@ public final class IdentityAwareProxyOAuthServiceClient: Clients
   /// secret was compromised. Requires that the client is owned by IAP.
   ///
   /// @Snippet(path: "IdentityAwareProxyOAuthService_ResetIdentityAwareProxyClientSecret")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resetIdentityAwareProxyClientSecret(request:)``
   public func resetIdentityAwareProxyClientSecret(
     request: ResetIdentityAwareProxyClientSecretRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.IdentityAwareProxyClient {
@@ -120,6 +154,10 @@ public final class IdentityAwareProxyOAuthServiceClient: Clients
   /// cleaning up after tests. Requires that the client is owned by IAP.
   ///
   /// @Snippet(path: "IdentityAwareProxyOAuthService_DeleteIdentityAwareProxyClient")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteIdentityAwareProxyClient(request:)``
   public func deleteIdentityAwareProxyClient(
     request: DeleteIdentityAwareProxyClientRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -178,6 +216,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.IdentityAwareProxyOAuthServiceProtocol {
+  /// Lists the existing brands for the project.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyOAuthService_ListBrands")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyOAuthServiceClient/listBrands(request:options:)``
   public func listBrands(request: ListBrandsRequest) async throws
     -> GoogleCloudIAPV1.ListBrandsResponse
   {
@@ -190,6 +235,20 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Constructs a new OAuth brand for the project if one does not exist.
+  /// The created brand is "internal only", meaning that OAuth clients created
+  /// under it only accept requests from users who belong to the same Google
+  /// Workspace organization as the project. The brand is created in an
+  /// un-reviewed status. NOTE: The "internal only" status can be manually
+  /// changed in the Google Cloud Console. Requires that a brand does not already
+  /// exist for the project, and that the specified support email is owned by the
+  /// caller.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyOAuthService_CreateBrand")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyOAuthServiceClient/createBrand(request:options:)``
   public func createBrand(request: CreateBrandRequest) async throws -> GoogleCloudIAPV1.Brand {
     try await self.createBrand(request: request, options: .init())
   }
@@ -200,6 +259,13 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the OAuth brand of the project.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyOAuthService_GetBrand")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyOAuthServiceClient/getBrand(request:options:)``
   public func getBrand(request: GetBrandRequest) async throws -> GoogleCloudIAPV1.Brand {
     try await self.getBrand(request: request, options: .init())
   }
@@ -210,6 +276,15 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an Identity Aware Proxy (IAP) OAuth client. The client is owned
+  /// by IAP. Requires that the brand for the project exists and that it is
+  /// set for internal-only use.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyOAuthService_CreateIdentityAwareProxyClient")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyOAuthServiceClient/createIdentityAwareProxyClient(request:options:)``
   public func createIdentityAwareProxyClient(request: CreateIdentityAwareProxyClientRequest)
     async throws -> GoogleCloudIAPV1.IdentityAwareProxyClient
   {
@@ -222,6 +297,13 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the existing clients for the brand.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyOAuthService_ListIdentityAwareProxyClients")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyOAuthServiceClient/listIdentityAwareProxyClients(request:options:)``
   public func listIdentityAwareProxyClients(request: ListIdentityAwareProxyClientsRequest)
     async throws -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse
   {
@@ -234,6 +316,13 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the existing clients for the brand.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyOAuthService_ListIdentityAwareProxyClients")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyOAuthServiceClient/listIdentityAwareProxyClients(request:options:)``
   public func listIdentityAwareProxyClientsByItems(
     request: ListIdentityAwareProxyClientsRequest
   ) -> some AsyncSequence<IdentityAwareProxyClient, any Swift.Error> & Sendable {
@@ -243,6 +332,10 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
   /// Lists the existing clients for the brand.
   ///
   /// @Snippet(path: "IdentityAwareProxyOAuthService_ListIdentityAwareProxyClients")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyOAuthServiceClient/listIdentityAwareProxyClients(request:options:)``
   public func listIdentityAwareProxyClientsByItems(
     request: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<IdentityAwareProxyClient, any Swift.Error> & Sendable {
@@ -257,6 +350,14 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieves an Identity Aware Proxy (IAP) OAuth client.
+  /// Requires that the client is owned by IAP.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyOAuthService_GetIdentityAwareProxyClient")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyOAuthServiceClient/getIdentityAwareProxyClient(request:options:)``
   public func getIdentityAwareProxyClient(request: GetIdentityAwareProxyClientRequest) async throws
     -> GoogleCloudIAPV1.IdentityAwareProxyClient
   {
@@ -269,6 +370,14 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resets an Identity Aware Proxy (IAP) OAuth client secret. Useful if the
+  /// secret was compromised. Requires that the client is owned by IAP.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyOAuthService_ResetIdentityAwareProxyClientSecret")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyOAuthServiceClient/resetIdentityAwareProxyClientSecret(request:options:)``
   public func resetIdentityAwareProxyClientSecret(
     request: ResetIdentityAwareProxyClientSecretRequest
   ) async throws -> GoogleCloudIAPV1.IdentityAwareProxyClient {
@@ -281,6 +390,15 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an Identity Aware Proxy (IAP) OAuth client. Useful for removing
+  /// obsolete clients, managing the number of clients in a given project, and
+  /// cleaning up after tests. Requires that the client is owned by IAP.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyOAuthService_DeleteIdentityAwareProxyClient")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyOAuthServiceClient/deleteIdentityAwareProxyClient(request:options:)``
   public func deleteIdentityAwareProxyClient(request: DeleteIdentityAwareProxyClientRequest)
     async throws
   {

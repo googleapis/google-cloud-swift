@@ -24,6 +24,10 @@
   /// Service for the `regionTargetTcpProxies` resource.
   ///
   /// @Snippet(path: "regionTargetTcpProxiesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionTargetTcpProxiesProtocol``
   public final class RegionTargetTcpProxiesClient: Clients.RegionTargetTcpProxiesProtocol, Sendable
   {
     let inner: any Clients.RegionTargetTcpProxiesStub
@@ -46,6 +50,13 @@
     /// Deletes the specified TargetTcpProxy resource.
     ///
     /// @Snippet(path: "regionTargetTcpProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:targetTcpProxy:)``
     public func delete(
       request: RegionTargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -60,6 +71,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionTargetTcpProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:region:targetTcpProxy:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: RegionTargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -102,6 +120,11 @@
     /// Returns the specified TargetTcpProxy resource.
     ///
     /// @Snippet(path: "regionTargetTcpProxies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:targetTcpProxy:)``
     public func `get`(
       request: RegionTargetTcpProxiesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetTcpProxy {
@@ -112,6 +135,13 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "regionTargetTcpProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: RegionTargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -127,6 +157,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionTargetTcpProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: RegionTargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -170,6 +207,13 @@
     /// available to the specified project in a given region.
     ///
     /// @Snippet(path: "regionTargetTcpProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:region:)``
     public func list(
       request: RegionTargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetTcpProxyList {
@@ -237,6 +281,13 @@
 
   // Default implementations
   extension Clients.RegionTargetTcpProxiesProtocol {
+    /// Deletes the specified TargetTcpProxy resource.
+    ///
+    /// @Snippet(path: "regionTargetTcpProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionTargetTcpProxiesClient/delete(request:options:)``
     public func delete(request: RegionTargetTcpProxiesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -249,6 +300,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified TargetTcpProxy resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionTargetTcpProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionTargetTcpProxiesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionTargetTcpProxiesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -261,6 +324,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified TargetTcpProxy resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionTargetTcpProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionTargetTcpProxiesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -274,6 +349,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified TargetTcpProxy resource.
+    ///
+    /// @Snippet(path: "regionTargetTcpProxies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionTargetTcpProxiesClient/get(request:options:)``
     public func `get`(request: RegionTargetTcpProxiesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.TargetTcpProxy
     {
@@ -286,6 +368,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified TargetTcpProxy resource.
+    ///
+    /// @Snippet(path: "regionTargetTcpProxies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionTargetTcpProxiesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -299,6 +388,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a TargetTcpProxy resource in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// @Snippet(path: "regionTargetTcpProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionTargetTcpProxiesClient/insert(request:options:)``
     public func insert(request: RegionTargetTcpProxiesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -311,6 +408,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a TargetTcpProxy resource in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionTargetTcpProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionTargetTcpProxiesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionTargetTcpProxiesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -323,6 +433,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a TargetTcpProxy resource in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionTargetTcpProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionTargetTcpProxiesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -336,6 +459,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of TargetTcpProxy resources
+    /// available to the specified project in a given region.
+    ///
+    /// @Snippet(path: "regionTargetTcpProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionTargetTcpProxiesClient/list(request:options:)``
     public func list(request: RegionTargetTcpProxiesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.TargetTcpProxyList
     {
@@ -348,6 +479,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of TargetTcpProxy resources
+    /// available to the specified project in a given region.
+    ///
+    /// @Snippet(path: "regionTargetTcpProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionTargetTcpProxiesClient/list(request:options:)``
     public func listByItems(
       request: RegionTargetTcpProxiesClient.ListRequest
     ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
@@ -358,6 +497,10 @@
     /// available to the specified project in a given region.
     ///
     /// @Snippet(path: "regionTargetTcpProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionTargetTcpProxiesClient/list(request:options:)``
     public func listByItems(
       request: RegionTargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
@@ -371,6 +514,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of TargetTcpProxy resources
+    /// available to the specified project in a given region.
+    ///
+    /// @Snippet(path: "regionTargetTcpProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionTargetTcpProxiesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -382,6 +533,7 @@
       return self.listByItems(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

@@ -56,6 +56,10 @@ import Foundation
 ///  * Must be unique within the customer project.
 ///
 /// @Snippet(path: "ManagedIdentitiesServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ManagedIdentitiesServiceProtocol``
 public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServiceProtocol,
   Sendable
 {
@@ -79,6 +83,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Creates a Microsoft AD domain.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_CreateMicrosoftAdDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMicrosoftAdDomain(request:)``
+  /// - ``createMicrosoftAdDomainPollingUntilDone(request:)``
+  /// - ``createMicrosoftAdDomainPollingUntilDone(request:options:)``
+  /// - ``createMicrosoftAdDomainPollingUntilDone(parent:domainName:domain:)``
   public func createMicrosoftAdDomain(
     request: CreateMicrosoftAdDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -88,6 +99,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Creates a Microsoft AD domain.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_CreateMicrosoftAdDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMicrosoftAdDomainPollingUntilDone(request:)``
+  /// - ``createMicrosoftAdDomainPollingUntilDone(parent:domainName:domain:)``
+  /// - ``createMicrosoftAdDomain(request:)``
+  /// - ``createMicrosoftAdDomain(request:options:)``
   public func createMicrosoftAdDomainPollingUntilDone(
     request: CreateMicrosoftAdDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> Domain {
@@ -115,6 +133,11 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Resets a domain's administrator password.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ResetAdminPassword")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resetAdminPassword(request:)``
+  /// - ``resetAdminPassword(name:)``
   public func resetAdminPassword(
     request: ResetAdminPasswordRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedIdentitiesV1.ResetAdminPasswordResponse {
@@ -124,6 +147,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Lists domains in a project.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ListDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDomains(request:)``
+  /// - ``listDomainsByItems(request:)``
+  /// - ``listDomainsByItems(request:options:)``
+  /// - ``listDomainsByItems(parent:)``
   public func listDomains(
     request: ListDomainsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedIdentitiesV1.ListDomainsResponse {
@@ -133,6 +163,11 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Gets information about a domain.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_GetDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDomain(request:)``
+  /// - ``getDomain(name:)``
   public func getDomain(
     request: GetDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedIdentitiesV1.Domain {
@@ -142,6 +177,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Updates the metadata and configuration of a domain.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_UpdateDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDomain(request:)``
+  /// - ``updateDomainPollingUntilDone(request:)``
+  /// - ``updateDomainPollingUntilDone(request:options:)``
+  /// - ``updateDomainPollingUntilDone(domain:updateMask:)``
   public func updateDomain(
     request: UpdateDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -151,6 +193,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Updates the metadata and configuration of a domain.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_UpdateDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDomainPollingUntilDone(request:)``
+  /// - ``updateDomainPollingUntilDone(domain:updateMask:)``
+  /// - ``updateDomain(request:)``
+  /// - ``updateDomain(request:options:)``
   public func updateDomainPollingUntilDone(
     request: UpdateDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> Domain {
@@ -178,6 +227,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Deletes a domain.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_DeleteDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDomain(request:)``
+  /// - ``deleteDomainPollingUntilDone(request:)``
+  /// - ``deleteDomainPollingUntilDone(request:options:)``
+  /// - ``deleteDomainPollingUntilDone(name:)``
   public func deleteDomain(
     request: DeleteDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -187,6 +243,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Deletes a domain.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_DeleteDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDomainPollingUntilDone(request:)``
+  /// - ``deleteDomainPollingUntilDone(name:)``
+  /// - ``deleteDomain(request:)``
+  /// - ``deleteDomain(request:options:)``
   public func deleteDomainPollingUntilDone(
     request: DeleteDomainRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -214,6 +277,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Adds an AD trust to a domain.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_AttachTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``attachTrust(request:)``
+  /// - ``attachTrustPollingUntilDone(request:)``
+  /// - ``attachTrustPollingUntilDone(request:options:)``
+  /// - ``attachTrustPollingUntilDone(name:trust:)``
   public func attachTrust(
     request: AttachTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -223,6 +293,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Adds an AD trust to a domain.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_AttachTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``attachTrustPollingUntilDone(request:)``
+  /// - ``attachTrustPollingUntilDone(name:trust:)``
+  /// - ``attachTrust(request:)``
+  /// - ``attachTrust(request:options:)``
   public func attachTrustPollingUntilDone(
     request: AttachTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> Domain {
@@ -250,6 +327,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Updates the DNS conditional forwarder.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ReconfigureTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reconfigureTrust(request:)``
+  /// - ``reconfigureTrustPollingUntilDone(request:)``
+  /// - ``reconfigureTrustPollingUntilDone(request:options:)``
+  /// - ``reconfigureTrustPollingUntilDone(name:targetDomainName:targetDnsIpAddresses:)``
   public func reconfigureTrust(
     request: ReconfigureTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -259,6 +343,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Updates the DNS conditional forwarder.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ReconfigureTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reconfigureTrustPollingUntilDone(request:)``
+  /// - ``reconfigureTrustPollingUntilDone(name:targetDomainName:targetDnsIpAddresses:)``
+  /// - ``reconfigureTrust(request:)``
+  /// - ``reconfigureTrust(request:options:)``
   public func reconfigureTrustPollingUntilDone(
     request: ReconfigureTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> Domain {
@@ -286,6 +377,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Removes an AD trust.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_DetachTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``detachTrust(request:)``
+  /// - ``detachTrustPollingUntilDone(request:)``
+  /// - ``detachTrustPollingUntilDone(request:options:)``
+  /// - ``detachTrustPollingUntilDone(name:trust:)``
   public func detachTrust(
     request: DetachTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -295,6 +393,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// Removes an AD trust.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_DetachTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``detachTrustPollingUntilDone(request:)``
+  /// - ``detachTrustPollingUntilDone(name:trust:)``
+  /// - ``detachTrust(request:)``
+  /// - ``detachTrust(request:options:)``
   public func detachTrustPollingUntilDone(
     request: DetachTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> Domain {
@@ -323,6 +428,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// target domain is able to accept incoming trust requests.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ValidateTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``validateTrust(request:)``
+  /// - ``validateTrustPollingUntilDone(request:)``
+  /// - ``validateTrustPollingUntilDone(request:options:)``
+  /// - ``validateTrustPollingUntilDone(name:trust:)``
   public func validateTrust(
     request: ValidateTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -333,6 +445,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// target domain is able to accept incoming trust requests.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ValidateTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``validateTrustPollingUntilDone(request:)``
+  /// - ``validateTrustPollingUntilDone(name:trust:)``
+  /// - ``validateTrust(request:)``
+  /// - ``validateTrust(request:options:)``
   public func validateTrustPollingUntilDone(
     request: ValidateTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> Domain {
@@ -362,6 +481,13 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -384,6 +510,11 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedIdentitiesService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -395,6 +526,11 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedIdentitiesService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -513,6 +649,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ManagedIdentitiesServiceProtocol {
+  /// Creates a Microsoft AD domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_CreateMicrosoftAdDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/createMicrosoftAdDomain(request:options:)``
   public func createMicrosoftAdDomain(request: CreateMicrosoftAdDomainRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -525,6 +668,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Microsoft AD domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_CreateMicrosoftAdDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/createMicrosoftAdDomainPollingUntilDone(request:options:)``
   public func createMicrosoftAdDomainPollingUntilDone(request: CreateMicrosoftAdDomainRequest)
     async throws -> Domain
   {
@@ -538,6 +688,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Microsoft AD domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_CreateMicrosoftAdDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/createMicrosoftAdDomainPollingUntilDone(request:options:)``
   public func createMicrosoftAdDomainPollingUntilDone(
     parent: Swift.String,
     domainName: Swift.String,
@@ -551,6 +708,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     return try await self.createMicrosoftAdDomainPollingUntilDone(request: request)
   }
 
+  /// Resets a domain's administrator password.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ResetAdminPassword")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/resetAdminPassword(request:options:)``
   public func resetAdminPassword(request: ResetAdminPasswordRequest) async throws
     -> GoogleCloudManagedIdentitiesV1.ResetAdminPasswordResponse
   {
@@ -563,6 +727,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resets a domain's administrator password.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ResetAdminPassword")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/resetAdminPassword(request:options:)``
   public func resetAdminPassword(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedIdentitiesV1.ResetAdminPasswordResponse {
@@ -572,6 +743,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     return try await self.resetAdminPassword(request: request)
   }
 
+  /// Lists domains in a project.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ListDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/listDomains(request:options:)``
   public func listDomains(request: ListDomainsRequest) async throws
     -> GoogleCloudManagedIdentitiesV1.ListDomainsResponse
   {
@@ -584,6 +762,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists domains in a project.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ListDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/listDomains(request:options:)``
   public func listDomainsByItems(
     request: ListDomainsRequest
   ) -> some AsyncSequence<Domain, any Swift.Error> & Sendable {
@@ -593,6 +778,10 @@ extension Clients.ManagedIdentitiesServiceProtocol {
   /// Lists domains in a project.
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ListDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/listDomains(request:options:)``
   public func listDomainsByItems(
     request: ListDomainsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Domain, any Swift.Error> & Sendable {
@@ -607,6 +796,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists domains in a project.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ListDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/listDomains(request:options:)``
   public func listDomainsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Domain, any Swift.Error> & Sendable {
@@ -616,6 +812,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     return self.listDomainsByItems(request: request)
   }
 
+  /// Gets information about a domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_GetDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/getDomain(request:options:)``
   public func getDomain(request: GetDomainRequest) async throws
     -> GoogleCloudManagedIdentitiesV1.Domain
   {
@@ -628,6 +831,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information about a domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_GetDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/getDomain(request:options:)``
   public func getDomain(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedIdentitiesV1.Domain {
@@ -637,6 +847,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     return try await self.getDomain(request: request)
   }
 
+  /// Updates the metadata and configuration of a domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_UpdateDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/updateDomain(request:options:)``
   public func updateDomain(request: UpdateDomainRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateDomain(request: request, options: .init())
@@ -648,6 +865,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the metadata and configuration of a domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_UpdateDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/updateDomainPollingUntilDone(request:options:)``
   public func updateDomainPollingUntilDone(request: UpdateDomainRequest) async throws -> Domain {
     return try await self.updateDomainPollingUntilDone(request: request, options: .init())
   }
@@ -658,6 +882,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the metadata and configuration of a domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_UpdateDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/updateDomainPollingUntilDone(request:options:)``
   public func updateDomainPollingUntilDone(
     domain: Domain?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -669,6 +900,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     return try await self.updateDomainPollingUntilDone(request: request)
   }
 
+  /// Deletes a domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_DeleteDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/deleteDomain(request:options:)``
   public func deleteDomain(request: DeleteDomainRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteDomain(request: request, options: .init())
@@ -680,6 +918,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_DeleteDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/deleteDomainPollingUntilDone(request:options:)``
   public func deleteDomainPollingUntilDone(request: DeleteDomainRequest) async throws {
     try await self.deleteDomainPollingUntilDone(request: request, options: .init())
   }
@@ -690,6 +935,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_DeleteDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/deleteDomainPollingUntilDone(request:options:)``
   public func deleteDomainPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -699,6 +951,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     try await self.deleteDomainPollingUntilDone(request: request)
   }
 
+  /// Adds an AD trust to a domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_AttachTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/attachTrust(request:options:)``
   public func attachTrust(request: AttachTrustRequest) async throws -> GoogleLongRunning.Operation {
     try await self.attachTrust(request: request, options: .init())
   }
@@ -709,6 +968,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds an AD trust to a domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_AttachTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/attachTrustPollingUntilDone(request:options:)``
   public func attachTrustPollingUntilDone(request: AttachTrustRequest) async throws -> Domain {
     return try await self.attachTrustPollingUntilDone(request: request, options: .init())
   }
@@ -719,6 +985,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds an AD trust to a domain.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_AttachTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/attachTrustPollingUntilDone(request:options:)``
   public func attachTrustPollingUntilDone(
     name: Swift.String,
     trust: Trust?,
@@ -730,6 +1003,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     return try await self.attachTrustPollingUntilDone(request: request)
   }
 
+  /// Updates the DNS conditional forwarder.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ReconfigureTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/reconfigureTrust(request:options:)``
   public func reconfigureTrust(request: ReconfigureTrustRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -742,6 +1022,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the DNS conditional forwarder.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ReconfigureTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/reconfigureTrustPollingUntilDone(request:options:)``
   public func reconfigureTrustPollingUntilDone(request: ReconfigureTrustRequest) async throws
     -> Domain
   {
@@ -754,6 +1041,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the DNS conditional forwarder.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ReconfigureTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/reconfigureTrustPollingUntilDone(request:options:)``
   public func reconfigureTrustPollingUntilDone(
     name: Swift.String,
     targetDomainName: Swift.String,
@@ -767,6 +1061,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     return try await self.reconfigureTrustPollingUntilDone(request: request)
   }
 
+  /// Removes an AD trust.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_DetachTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/detachTrust(request:options:)``
   public func detachTrust(request: DetachTrustRequest) async throws -> GoogleLongRunning.Operation {
     try await self.detachTrust(request: request, options: .init())
   }
@@ -777,6 +1078,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes an AD trust.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_DetachTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/detachTrustPollingUntilDone(request:options:)``
   public func detachTrustPollingUntilDone(request: DetachTrustRequest) async throws -> Domain {
     return try await self.detachTrustPollingUntilDone(request: request, options: .init())
   }
@@ -787,6 +1095,13 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes an AD trust.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_DetachTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/detachTrustPollingUntilDone(request:options:)``
   public func detachTrustPollingUntilDone(
     name: Swift.String,
     trust: Trust?,
@@ -798,6 +1113,14 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     return try await self.detachTrustPollingUntilDone(request: request)
   }
 
+  /// Validates a trust state, that the target domain is reachable, and that the
+  /// target domain is able to accept incoming trust requests.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ValidateTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/validateTrust(request:options:)``
   public func validateTrust(request: ValidateTrustRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -810,6 +1133,14 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Validates a trust state, that the target domain is reachable, and that the
+  /// target domain is able to accept incoming trust requests.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ValidateTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/validateTrustPollingUntilDone(request:options:)``
   public func validateTrustPollingUntilDone(request: ValidateTrustRequest) async throws -> Domain {
     return try await self.validateTrustPollingUntilDone(request: request, options: .init())
   }
@@ -820,6 +1151,14 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Validates a trust state, that the target domain is reachable, and that the
+  /// target domain is able to accept incoming trust requests.
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ValidateTrust")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/validateTrustPollingUntilDone(request:options:)``
   public func validateTrustPollingUntilDone(
     name: Swift.String,
     trust: Trust?,
@@ -831,6 +1170,15 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     return try await self.validateTrustPollingUntilDone(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -843,6 +1191,15 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -854,6 +1211,10 @@ extension Clients.ManagedIdentitiesServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedIdentitiesService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -867,6 +1228,15 @@ extension Clients.ManagedIdentitiesServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -878,6 +1248,9 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -890,6 +1263,9 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -899,6 +1275,15 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -909,6 +1294,15 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -918,6 +1312,15 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -928,6 +1331,15 @@ extension Clients.ManagedIdentitiesServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedIdentitiesService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedIdentitiesServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

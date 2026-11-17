@@ -28,6 +28,10 @@
   /// A service for managing Vertex AI's machine learning PersistentResource.
   ///
   /// @Snippet(path: "PersistentResourceServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/PersistentResourceServiceProtocol``
   public final class PersistentResourceServiceClient: Clients.PersistentResourceServiceProtocol,
     Sendable
   {
@@ -51,6 +55,13 @@
     /// Creates a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_CreatePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createPersistentResource(request:)``
+    /// - ``createPersistentResourcePollingUntilDone(request:)``
+    /// - ``createPersistentResourcePollingUntilDone(request:options:)``
+    /// - ``createPersistentResourcePollingUntilDone(parent:persistentResource:persistentResourceId:)``
     public func createPersistentResource(
       request: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -60,6 +71,13 @@
     /// Creates a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_CreatePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createPersistentResourcePollingUntilDone(request:)``
+    /// - ``createPersistentResourcePollingUntilDone(parent:persistentResource:persistentResourceId:)``
+    /// - ``createPersistentResource(request:)``
+    /// - ``createPersistentResource(request:options:)``
     public func createPersistentResourcePollingUntilDone(
       request: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> PersistentResource {
@@ -88,6 +106,11 @@
     /// Gets a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_GetPersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getPersistentResource(request:)``
+    /// - ``getPersistentResource(name:)``
     public func getPersistentResource(
       request: GetPersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.PersistentResource {
@@ -97,6 +120,13 @@
     /// Lists PersistentResources in a Location.
     ///
     /// @Snippet(path: "PersistentResourceService_ListPersistentResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listPersistentResources(request:)``
+    /// - ``listPersistentResourcesByItems(request:)``
+    /// - ``listPersistentResourcesByItems(request:options:)``
+    /// - ``listPersistentResourcesByItems(parent:)``
     public func listPersistentResources(
       request: ListPersistentResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListPersistentResourcesResponse {
@@ -106,6 +136,13 @@
     /// Deletes a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_DeletePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePersistentResource(request:)``
+    /// - ``deletePersistentResourcePollingUntilDone(request:)``
+    /// - ``deletePersistentResourcePollingUntilDone(request:options:)``
+    /// - ``deletePersistentResourcePollingUntilDone(name:)``
     public func deletePersistentResource(
       request: DeletePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -115,6 +152,13 @@
     /// Deletes a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_DeletePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePersistentResourcePollingUntilDone(request:)``
+    /// - ``deletePersistentResourcePollingUntilDone(name:)``
+    /// - ``deletePersistentResource(request:)``
+    /// - ``deletePersistentResource(request:options:)``
     public func deletePersistentResourcePollingUntilDone(
       request: DeletePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -143,6 +187,13 @@
     /// Updates a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_UpdatePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updatePersistentResource(request:)``
+    /// - ``updatePersistentResourcePollingUntilDone(request:)``
+    /// - ``updatePersistentResourcePollingUntilDone(request:options:)``
+    /// - ``updatePersistentResourcePollingUntilDone(persistentResource:updateMask:)``
     public func updatePersistentResource(
       request: UpdatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -152,6 +203,13 @@
     /// Updates a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_UpdatePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updatePersistentResourcePollingUntilDone(request:)``
+    /// - ``updatePersistentResourcePollingUntilDone(persistentResource:updateMask:)``
+    /// - ``updatePersistentResource(request:)``
+    /// - ``updatePersistentResource(request:options:)``
     public func updatePersistentResourcePollingUntilDone(
       request: UpdatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> PersistentResource {
@@ -180,6 +238,13 @@
     /// Reboots a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_RebootPersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``rebootPersistentResource(request:)``
+    /// - ``rebootPersistentResourcePollingUntilDone(request:)``
+    /// - ``rebootPersistentResourcePollingUntilDone(request:options:)``
+    /// - ``rebootPersistentResourcePollingUntilDone(name:)``
     public func rebootPersistentResource(
       request: RebootPersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -189,6 +254,13 @@
     /// Reboots a PersistentResource.
     ///
     /// @Snippet(path: "PersistentResourceService_RebootPersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``rebootPersistentResourcePollingUntilDone(request:)``
+    /// - ``rebootPersistentResourcePollingUntilDone(name:)``
+    /// - ``rebootPersistentResource(request:)``
+    /// - ``rebootPersistentResource(request:options:)``
     public func rebootPersistentResourcePollingUntilDone(
       request: RebootPersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> PersistentResource {
@@ -217,6 +289,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "PersistentResourceService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -226,6 +304,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "PersistentResourceService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -239,6 +321,10 @@
     /// errors.
     ///
     /// @Snippet(path: "PersistentResourceService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -249,6 +335,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "PersistentResourceService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -264,6 +354,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "PersistentResourceService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -275,6 +369,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PersistentResourceService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -297,6 +398,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PersistentResourceService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(request:)``
+    /// - ``deleteOperation(name:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -308,6 +414,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PersistentResourceService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -319,6 +430,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PersistentResourceService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -432,6 +547,13 @@
 
   // Default implementations
   extension Clients.PersistentResourceServiceProtocol {
+    /// Creates a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_CreatePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/createPersistentResource(request:options:)``
     public func createPersistentResource(request: CreatePersistentResourceRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -444,6 +566,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_CreatePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/createPersistentResourcePollingUntilDone(request:options:)``
     public func createPersistentResourcePollingUntilDone(request: CreatePersistentResourceRequest)
       async throws -> PersistentResource
     {
@@ -457,6 +586,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_CreatePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/createPersistentResourcePollingUntilDone(request:options:)``
     public func createPersistentResourcePollingUntilDone(
       parent: Swift.String,
       persistentResource: PersistentResource?,
@@ -470,6 +606,13 @@
       return try await self.createPersistentResourcePollingUntilDone(request: request)
     }
 
+    /// Gets a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_GetPersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/getPersistentResource(request:options:)``
     public func getPersistentResource(request: GetPersistentResourceRequest) async throws
       -> GoogleCloudAIPlatformV1.PersistentResource
     {
@@ -482,6 +625,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_GetPersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/getPersistentResource(request:options:)``
     public func getPersistentResource(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.PersistentResource {
@@ -491,6 +641,13 @@
       return try await self.getPersistentResource(request: request)
     }
 
+    /// Lists PersistentResources in a Location.
+    ///
+    /// @Snippet(path: "PersistentResourceService_ListPersistentResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/listPersistentResources(request:options:)``
     public func listPersistentResources(request: ListPersistentResourcesRequest) async throws
       -> GoogleCloudAIPlatformV1.ListPersistentResourcesResponse
     {
@@ -503,6 +660,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists PersistentResources in a Location.
+    ///
+    /// @Snippet(path: "PersistentResourceService_ListPersistentResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/listPersistentResources(request:options:)``
     public func listPersistentResourcesByItems(
       request: ListPersistentResourcesRequest
     ) -> some AsyncSequence<PersistentResource, any Swift.Error> & Sendable {
@@ -512,6 +676,10 @@
     /// Lists PersistentResources in a Location.
     ///
     /// @Snippet(path: "PersistentResourceService_ListPersistentResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/listPersistentResources(request:options:)``
     public func listPersistentResourcesByItems(
       request: ListPersistentResourcesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<PersistentResource, any Swift.Error> & Sendable {
@@ -526,6 +694,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists PersistentResources in a Location.
+    ///
+    /// @Snippet(path: "PersistentResourceService_ListPersistentResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/listPersistentResources(request:options:)``
     public func listPersistentResourcesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<PersistentResource, any Swift.Error> & Sendable {
@@ -535,6 +710,13 @@
       return self.listPersistentResourcesByItems(request: request)
     }
 
+    /// Deletes a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_DeletePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/deletePersistentResource(request:options:)``
     public func deletePersistentResource(request: DeletePersistentResourceRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -547,6 +729,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_DeletePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/deletePersistentResourcePollingUntilDone(request:options:)``
     public func deletePersistentResourcePollingUntilDone(request: DeletePersistentResourceRequest)
       async throws
     {
@@ -559,6 +748,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_DeletePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/deletePersistentResourcePollingUntilDone(request:options:)``
     public func deletePersistentResourcePollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -568,6 +764,13 @@
       try await self.deletePersistentResourcePollingUntilDone(request: request)
     }
 
+    /// Updates a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_UpdatePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/updatePersistentResource(request:options:)``
     public func updatePersistentResource(request: UpdatePersistentResourceRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -580,6 +783,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_UpdatePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/updatePersistentResourcePollingUntilDone(request:options:)``
     public func updatePersistentResourcePollingUntilDone(request: UpdatePersistentResourceRequest)
       async throws -> PersistentResource
     {
@@ -593,6 +803,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_UpdatePersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/updatePersistentResourcePollingUntilDone(request:options:)``
     public func updatePersistentResourcePollingUntilDone(
       persistentResource: PersistentResource?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -604,6 +821,13 @@
       return try await self.updatePersistentResourcePollingUntilDone(request: request)
     }
 
+    /// Reboots a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_RebootPersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/rebootPersistentResource(request:options:)``
     public func rebootPersistentResource(request: RebootPersistentResourceRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -616,6 +840,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Reboots a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_RebootPersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/rebootPersistentResourcePollingUntilDone(request:options:)``
     public func rebootPersistentResourcePollingUntilDone(request: RebootPersistentResourceRequest)
       async throws -> PersistentResource
     {
@@ -629,6 +860,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Reboots a PersistentResource.
+    ///
+    /// @Snippet(path: "PersistentResourceService_RebootPersistentResource")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/rebootPersistentResourcePollingUntilDone(request:options:)``
     public func rebootPersistentResourcePollingUntilDone(
       name: Swift.String,
     ) async throws -> PersistentResource {
@@ -638,6 +876,13 @@
       return try await self.rebootPersistentResourcePollingUntilDone(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "PersistentResourceService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -650,6 +895,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "PersistentResourceService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -659,6 +911,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "PersistentResourceService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -672,6 +928,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "PersistentResourceService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -684,6 +947,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "PersistentResourceService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -696,6 +970,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "PersistentResourceService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -708,6 +990,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "PersistentResourceService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -720,6 +1015,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PersistentResourceService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -732,6 +1036,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PersistentResourceService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -743,6 +1056,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PersistentResourceService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -756,6 +1073,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PersistentResourceService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -767,6 +1093,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -779,6 +1108,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -788,6 +1120,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PersistentResourceService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -798,6 +1139,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PersistentResourceService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -807,6 +1157,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PersistentResourceService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -817,6 +1176,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PersistentResourceService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -826,6 +1194,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PersistentResourceService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PersistentResourceServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

@@ -24,6 +24,10 @@
   /// Service for the `licenseCodes` resource.
   ///
   /// @Snippet(path: "licenseCodesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/LicenseCodesProtocol``
   public final class LicenseCodesClient: Clients.LicenseCodesProtocol, Sendable {
     let inner: any Clients.LicenseCodesStub
 
@@ -44,6 +48,11 @@
     /// images.
     ///
     /// @Snippet(path: "licenseCodes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:licenseCode:)``
     public func `get`(
       request: LicenseCodesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.LicenseCode {
@@ -57,6 +66,11 @@
     /// images.
     ///
     /// @Snippet(path: "licenseCodes_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(project:resource:)``
     public func getIamPolicy(
       request: LicenseCodesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -70,6 +84,11 @@
     /// images.
     ///
     /// @Snippet(path: "licenseCodes_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(project:resource:body:)``
     public func setIamPolicy(
       request: LicenseCodesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -82,6 +101,11 @@
     /// images.
     ///
     /// @Snippet(path: "licenseCodes_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:resource:body:)``
     public func testIamPermissions(
       request: LicenseCodesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -120,6 +144,17 @@
 
   // Default implementations
   extension Clients.LicenseCodesProtocol {
+    /// Return a specified license code. License codes are mirrored across
+    /// all projects that have permissions to read the License Code.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenseCodes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseCodesClient/get(request:options:)``
     public func `get`(request: LicenseCodesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.LicenseCode
     {
@@ -132,6 +167,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Return a specified license code. License codes are mirrored across
+    /// all projects that have permissions to read the License Code.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenseCodes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseCodesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       licenseCode: Swift.String,
@@ -143,6 +189,17 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenseCodes_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseCodesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: LicenseCodesClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -155,6 +212,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenseCodes_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseCodesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -166,6 +234,17 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenseCodes_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseCodesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: LicenseCodesClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -178,6 +257,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenseCodes_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseCodesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -191,6 +281,16 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenseCodes_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseCodesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: LicenseCodesClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -203,6 +303,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenseCodes_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseCodesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       resource: Swift.String,

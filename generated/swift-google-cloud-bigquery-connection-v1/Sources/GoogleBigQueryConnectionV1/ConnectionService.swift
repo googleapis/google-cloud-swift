@@ -25,6 +25,10 @@ import Foundation
 /// Manages external data source connections and credentials.
 ///
 /// @Snippet(path: "ConnectionServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ConnectionServiceProtocol``
 public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, Sendable {
   let inner: any Clients.ConnectionServiceStub
 
@@ -41,6 +45,11 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   /// Creates a new connection.
   ///
   /// @Snippet(path: "ConnectionService_CreateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConnection(request:)``
+  /// - ``createConnection(parent:connection:connectionId:)``
   public func createConnection(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryConnectionV1.Connection {
@@ -50,6 +59,11 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   /// Returns specified connection.
   ///
   /// @Snippet(path: "ConnectionService_GetConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getConnection(request:)``
+  /// - ``getConnection(name:)``
   public func getConnection(
     request: GetConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryConnectionV1.Connection {
@@ -59,6 +73,13 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   /// Returns a list of connections in the given project.
   ///
   /// @Snippet(path: "ConnectionService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listConnections(request:)``
+  /// - ``listConnectionsByItems(request:)``
+  /// - ``listConnectionsByItems(request:options:)``
+  /// - ``listConnectionsByItems(parent:)``
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryConnectionV1.ListConnectionsResponse {
@@ -69,6 +90,11 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   /// credential if connection properties are in the update field mask.
   ///
   /// @Snippet(path: "ConnectionService_UpdateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConnection(request:)``
+  /// - ``updateConnection(name:connection:updateMask:)``
   public func updateConnection(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryConnectionV1.Connection {
@@ -78,6 +104,11 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   /// Deletes connection and associated credential.
   ///
   /// @Snippet(path: "ConnectionService_DeleteConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConnection(request:)``
+  /// - ``deleteConnection(name:)``
   public func deleteConnection(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -89,6 +120,11 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   /// set.
   ///
   /// @Snippet(path: "ConnectionService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
+  /// - ``getIamPolicy(resource:options:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -101,6 +137,11 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
   ///
   /// @Snippet(path: "ConnectionService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
+  /// - ``setIamPolicy(resource:policy:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -116,6 +157,11 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   /// may "fail open" without warning.
   ///
   /// @Snippet(path: "ConnectionService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
+  /// - ``testIamPermissions(resource:permissions:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -174,6 +220,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ConnectionServiceProtocol {
+  /// Creates a new connection.
+  ///
+  /// @Snippet(path: "ConnectionService_CreateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/createConnection(request:options:)``
   public func createConnection(request: CreateConnectionRequest) async throws
     -> GoogleBigQueryConnectionV1.Connection
   {
@@ -186,6 +239,13 @@ extension Clients.ConnectionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new connection.
+  ///
+  /// @Snippet(path: "ConnectionService_CreateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/createConnection(request:options:)``
   public func createConnection(
     parent: Swift.String,
     connection: Connection?,
@@ -199,6 +259,13 @@ extension Clients.ConnectionServiceProtocol {
     return try await self.createConnection(request: request)
   }
 
+  /// Returns specified connection.
+  ///
+  /// @Snippet(path: "ConnectionService_GetConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/getConnection(request:options:)``
   public func getConnection(request: GetConnectionRequest) async throws
     -> GoogleBigQueryConnectionV1.Connection
   {
@@ -211,6 +278,13 @@ extension Clients.ConnectionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns specified connection.
+  ///
+  /// @Snippet(path: "ConnectionService_GetConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/getConnection(request:options:)``
   public func getConnection(
     name: Swift.String,
   ) async throws -> GoogleBigQueryConnectionV1.Connection {
@@ -220,6 +294,13 @@ extension Clients.ConnectionServiceProtocol {
     return try await self.getConnection(request: request)
   }
 
+  /// Returns a list of connections in the given project.
+  ///
+  /// @Snippet(path: "ConnectionService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/listConnections(request:options:)``
   public func listConnections(request: ListConnectionsRequest) async throws
     -> GoogleBigQueryConnectionV1.ListConnectionsResponse
   {
@@ -232,6 +313,13 @@ extension Clients.ConnectionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of connections in the given project.
+  ///
+  /// @Snippet(path: "ConnectionService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/listConnections(request:options:)``
   public func listConnectionsByItems(
     request: ListConnectionsRequest
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -241,6 +329,10 @@ extension Clients.ConnectionServiceProtocol {
   /// Returns a list of connections in the given project.
   ///
   /// @Snippet(path: "ConnectionService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/listConnections(request:options:)``
   public func listConnectionsByItems(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -255,6 +347,13 @@ extension Clients.ConnectionServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns a list of connections in the given project.
+  ///
+  /// @Snippet(path: "ConnectionService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/listConnections(request:options:)``
   public func listConnectionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -264,6 +363,14 @@ extension Clients.ConnectionServiceProtocol {
     return self.listConnectionsByItems(request: request)
   }
 
+  /// Updates the specified connection. For security reasons, also resets
+  /// credential if connection properties are in the update field mask.
+  ///
+  /// @Snippet(path: "ConnectionService_UpdateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/updateConnection(request:options:)``
   public func updateConnection(request: UpdateConnectionRequest) async throws
     -> GoogleBigQueryConnectionV1.Connection
   {
@@ -276,6 +383,14 @@ extension Clients.ConnectionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified connection. For security reasons, also resets
+  /// credential if connection properties are in the update field mask.
+  ///
+  /// @Snippet(path: "ConnectionService_UpdateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/updateConnection(request:options:)``
   public func updateConnection(
     name: Swift.String,
     connection: Connection?,
@@ -289,6 +404,13 @@ extension Clients.ConnectionServiceProtocol {
     return try await self.updateConnection(request: request)
   }
 
+  /// Deletes connection and associated credential.
+  ///
+  /// @Snippet(path: "ConnectionService_DeleteConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/deleteConnection(request:options:)``
   public func deleteConnection(request: DeleteConnectionRequest) async throws {
     try await self.deleteConnection(request: request, options: .init())
   }
@@ -299,6 +421,13 @@ extension Clients.ConnectionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes connection and associated credential.
+  ///
+  /// @Snippet(path: "ConnectionService_DeleteConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/deleteConnection(request:options:)``
   public func deleteConnection(
     name: Swift.String,
   ) async throws {
@@ -308,6 +437,15 @@ extension Clients.ConnectionServiceProtocol {
     try await self.deleteConnection(request: request)
   }
 
+  /// Gets the access control policy for a resource.
+  /// Returns an empty policy if the resource exists and does not have a policy
+  /// set.
+  ///
+  /// @Snippet(path: "ConnectionService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -320,6 +458,15 @@ extension Clients.ConnectionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource.
+  /// Returns an empty policy if the resource exists and does not have a policy
+  /// set.
+  ///
+  /// @Snippet(path: "ConnectionService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(
     resource: Swift.String,
     options: GoogleIAMV1.GetPolicyOptions?,
@@ -331,6 +478,16 @@ extension Clients.ConnectionServiceProtocol {
     return try await self.getIamPolicy(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces any
+  /// existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+  ///
+  /// @Snippet(path: "ConnectionService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -343,6 +500,16 @@ extension Clients.ConnectionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces any
+  /// existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+  ///
+  /// @Snippet(path: "ConnectionService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(
     resource: Swift.String,
     policy: GoogleIAMV1.Policy?,
@@ -354,6 +521,19 @@ extension Clients.ConnectionServiceProtocol {
     return try await self.setIamPolicy(request: request)
   }
 
+  /// Returns permissions that a caller has on the specified resource.
+  /// If the resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building permission-aware
+  /// UIs and command-line tools, not for authorization checking. This operation
+  /// may "fail open" without warning.
+  ///
+  /// @Snippet(path: "ConnectionService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -366,6 +546,19 @@ extension Clients.ConnectionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource.
+  /// If the resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building permission-aware
+  /// UIs and command-line tools, not for authorization checking. This operation
+  /// may "fail open" without warning.
+  ///
+  /// @Snippet(path: "ConnectionService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConnectionServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(
     resource: Swift.String,
     permissions: [Swift.String],

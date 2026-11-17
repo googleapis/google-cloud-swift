@@ -24,6 +24,10 @@
   /// Service for the `regionHealthAggregationPolicies` resource.
   ///
   /// @Snippet(path: "regionHealthAggregationPoliciesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionHealthAggregationPoliciesProtocol``
   public final class RegionHealthAggregationPoliciesClient: Clients
       .RegionHealthAggregationPoliciesProtocol, Sendable
   {
@@ -51,6 +55,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
+    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: RegionHealthAggregationPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -61,6 +72,13 @@
     /// Deletes the specified HealthAggregationPolicy in the given region.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:healthAggregationPolicy:)``
     public func delete(
       request: RegionHealthAggregationPoliciesClient.DeleteRequest,
       options: GoogleGax.RequestOptions
@@ -76,6 +94,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:region:healthAggregationPolicy:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: RegionHealthAggregationPoliciesClient.DeleteRequest,
       options: GoogleGax.RequestOptions
@@ -119,6 +144,11 @@
     /// Returns the specified HealthAggregationPolicy resource in the given region.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:healthAggregationPolicy:)``
     public func `get`(
       request: RegionHealthAggregationPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.HealthAggregationPolicy {
@@ -129,6 +159,13 @@
     /// region using the parameters that are included in the request.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: RegionHealthAggregationPoliciesClient.InsertRequest,
       options: GoogleGax.RequestOptions
@@ -145,6 +182,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: RegionHealthAggregationPoliciesClient.InsertRequest,
       options: GoogleGax.RequestOptions
@@ -188,6 +232,13 @@
     /// Lists the HealthAggregationPolicies for a project in the given region.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:region:)``
     public func list(
       request: RegionHealthAggregationPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.HealthAggregationPolicyList {
@@ -200,6 +251,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:healthAggregationPolicy:body:)``
     public func patch(
       request: RegionHealthAggregationPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -217,6 +275,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:region:healthAggregationPolicy:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: RegionHealthAggregationPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -259,6 +324,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:region:resource:body:)``
     public func testIamPermissions(
       request: RegionHealthAggregationPoliciesClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions
@@ -361,6 +431,17 @@
 
   // Default implementations
   extension Clients.RegionHealthAggregationPoliciesProtocol {
+    /// Retrieves the list of all HealthAggregationPolicy resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: RegionHealthAggregationPoliciesClient.AggregatedListRequest)
       async throws -> GoogleCloudComputeV1.HealthAggregationPolicyAggregatedList
     {
@@ -374,6 +455,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of all HealthAggregationPolicy resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: RegionHealthAggregationPoliciesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), any Swift.Error>
@@ -389,6 +481,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: RegionHealthAggregationPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -406,6 +502,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of all HealthAggregationPolicy resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), any Swift.Error>
@@ -417,6 +524,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified HealthAggregationPolicy in the given region.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/delete(request:options:)``
     public func delete(request: RegionHealthAggregationPoliciesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -430,6 +544,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified HealthAggregationPolicy in the given region.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionHealthAggregationPoliciesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -443,6 +569,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified HealthAggregationPolicy in the given region.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -456,6 +594,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified HealthAggregationPolicy resource in the given region.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/get(request:options:)``
     public func `get`(request: RegionHealthAggregationPoliciesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.HealthAggregationPolicy
     {
@@ -468,6 +613,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified HealthAggregationPolicy resource in the given region.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -481,6 +633,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Create a HealthAggregationPolicy in the specified project in the given
+    /// region using the parameters that are included in the request.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/insert(request:options:)``
     public func insert(request: RegionHealthAggregationPoliciesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -494,6 +654,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Create a HealthAggregationPolicy in the specified project in the given
+    /// region using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionHealthAggregationPoliciesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -507,6 +680,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Create a HealthAggregationPolicy in the specified project in the given
+    /// region using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -520,6 +706,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists the HealthAggregationPolicies for a project in the given region.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/list(request:options:)``
     public func list(request: RegionHealthAggregationPoliciesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.HealthAggregationPolicyList
     {
@@ -532,6 +725,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the HealthAggregationPolicies for a project in the given region.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/list(request:options:)``
     public func listByItems(
       request: RegionHealthAggregationPoliciesClient.ListRequest
     ) -> some AsyncSequence<HealthAggregationPolicy, any Swift.Error> & Sendable {
@@ -541,6 +741,10 @@
     /// Lists the HealthAggregationPolicies for a project in the given region.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/list(request:options:)``
     public func listByItems(
       request: RegionHealthAggregationPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<HealthAggregationPolicy, any Swift.Error> & Sendable {
@@ -555,6 +759,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the HealthAggregationPolicies for a project in the given region.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -566,6 +777,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Updates the specified regional HealthAggregationPolicy
+    /// resource with the data included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/patch(request:options:)``
     public func patch(request: RegionHealthAggregationPoliciesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -578,6 +799,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified regional HealthAggregationPolicy
+    /// resource with the data included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: RegionHealthAggregationPoliciesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -590,6 +826,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified regional HealthAggregationPolicy
+    /// resource with the data included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -605,6 +856,13 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       request: RegionHealthAggregationPoliciesClient.TestIamPermissionsRequest
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -618,6 +876,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionHealthAggregationPolicies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionHealthAggregationPoliciesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -633,6 +898,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

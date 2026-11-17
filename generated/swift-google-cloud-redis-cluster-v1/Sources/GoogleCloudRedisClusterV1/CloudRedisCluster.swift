@@ -40,6 +40,10 @@ import Foundation
 /// * `projects/redpepper-1290/locations/us-central1/clusters/my-redis`
 ///
 /// @Snippet(path: "CloudRedisClusterQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudRedisClusterProtocol``
 public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, Sendable {
   let inner: any Clients.CloudRedisClusterStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -68,6 +72,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// available to the project are queried, and the results are aggregated.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listClusters(request:)``
+  /// - ``listClustersByItems(request:)``
+  /// - ``listClustersByItems(request:options:)``
+  /// - ``listClustersByItems(parent:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.ListClustersResponse {
@@ -85,6 +96,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// available to the project are queried, and the results are aggregated.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListAclPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAclPolicies(request:)``
+  /// - ``listAclPoliciesByItems(request:)``
+  /// - ``listAclPoliciesByItems(request:options:)``
+  /// - ``listAclPoliciesByItems(parent:)``
   public func listAclPolicies(
     request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.ListAclPoliciesResponse {
@@ -94,6 +112,11 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Gets the details of a specific Redis cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCluster(request:)``
+  /// - ``getCluster(name:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.Cluster {
@@ -103,6 +126,11 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Gets the details of a specific Redis Cluster ACL policy.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAclPolicy(request:)``
+  /// - ``getAclPolicy(name:)``
   public func getAclPolicy(
     request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.AclPolicy {
@@ -116,6 +144,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// after a few hours, so there is no need to call DeleteOperation.
   ///
   /// @Snippet(path: "CloudRedisCluster_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCluster(request:)``
+  /// - ``updateClusterPollingUntilDone(request:)``
+  /// - ``updateClusterPollingUntilDone(request:options:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   public func updateCluster(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -129,6 +164,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// after a few hours, so there is no need to call DeleteOperation.
   ///
   /// @Snippet(path: "CloudRedisCluster_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateClusterPollingUntilDone(request:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
+  /// - ``updateCluster(request:)``
+  /// - ``updateCluster(request:options:)``
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -165,6 +207,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// the response field.
   ///
   /// @Snippet(path: "CloudRedisCluster_UpdateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAclPolicy(request:)``
+  /// - ``updateAclPolicyPollingUntilDone(request:)``
+  /// - ``updateAclPolicyPollingUntilDone(request:options:)``
+  /// - ``updateAclPolicyPollingUntilDone(aclPolicy:updateMask:)``
   public func updateAclPolicy(
     request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -183,6 +232,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// the response field.
   ///
   /// @Snippet(path: "CloudRedisCluster_UpdateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAclPolicyPollingUntilDone(request:)``
+  /// - ``updateAclPolicyPollingUntilDone(aclPolicy:updateMask:)``
+  /// - ``updateAclPolicy(request:)``
+  /// - ``updateAclPolicy(request:options:)``
   public func updateAclPolicyPollingUntilDone(
     request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AclPolicy {
@@ -211,6 +267,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// deleted.
   ///
   /// @Snippet(path: "CloudRedisCluster_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCluster(request:)``
+  /// - ``deleteClusterPollingUntilDone(request:)``
+  /// - ``deleteClusterPollingUntilDone(request:options:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -221,6 +284,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// deleted.
   ///
   /// @Snippet(path: "CloudRedisCluster_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteClusterPollingUntilDone(request:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
+  /// - ``deleteCluster(request:)``
+  /// - ``deleteCluster(request:options:)``
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -250,6 +320,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// attached to a cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_DeleteAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAclPolicy(request:)``
+  /// - ``deleteAclPolicyPollingUntilDone(request:)``
+  /// - ``deleteAclPolicyPollingUntilDone(request:options:)``
+  /// - ``deleteAclPolicyPollingUntilDone(name:)``
   public func deleteAclPolicy(
     request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -261,6 +338,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// attached to a cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_DeleteAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAclPolicyPollingUntilDone(request:)``
+  /// - ``deleteAclPolicyPollingUntilDone(name:)``
+  /// - ``deleteAclPolicy(request:)``
+  /// - ``deleteAclPolicy(request:options:)``
   public func deleteAclPolicyPollingUntilDone(
     request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -288,6 +372,11 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Gets details of a specific ACL policy revision.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetAclPolicyRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAclPolicyRevision(request:)``
+  /// - ``getAclPolicyRevision(name:)``
   public func getAclPolicyRevision(
     request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.AclPolicyRevision {
@@ -297,6 +386,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Lists all ACL policy revisions in a given ACL policy.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListAclPolicyRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAclPolicyRevisions(request:)``
+  /// - ``listAclPolicyRevisionsByItems(request:)``
+  /// - ``listAclPolicyRevisionsByItems(request:options:)``
+  /// - ``listAclPolicyRevisionsByItems(parent:)``
   public func listAclPolicyRevisions(
     request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.ListAclPolicyRevisionsResponse {
@@ -313,6 +409,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// is no need to call DeleteOperation.
   ///
   /// @Snippet(path: "CloudRedisCluster_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCluster(request:)``
+  /// - ``createClusterPollingUntilDone(request:)``
+  /// - ``createClusterPollingUntilDone(request:options:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -329,6 +432,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// is no need to call DeleteOperation.
   ///
   /// @Snippet(path: "CloudRedisCluster_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createClusterPollingUntilDone(request:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
+  /// - ``createCluster(request:)``
+  /// - ``createCluster(request:options:)``
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -358,6 +468,11 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// immediately after the RPC returns.
   ///
   /// @Snippet(path: "CloudRedisCluster_CreateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAclPolicy(request:)``
+  /// - ``createAclPolicy(parent:aclPolicy:aclPolicyId:)``
   public func createAclPolicy(
     request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.AclPolicy {
@@ -367,6 +482,11 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Gets the details of certificate authority information for Redis cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetClusterCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getClusterCertificateAuthority(request:)``
+  /// - ``getClusterCertificateAuthority(name:)``
   public func getClusterCertificateAuthority(
     request: GetClusterCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.CertificateAuthority {
@@ -377,6 +497,11 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetSharedRegionalCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSharedRegionalCertificateAuthority(request:)``
+  /// - ``getSharedRegionalCertificateAuthority(name:)``
   public func getSharedRegionalCertificateAuthority(
     request: GetSharedRegionalCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.SharedRegionalCertificateAuthority {
@@ -386,6 +511,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Reschedules upcoming maintenance event.
   ///
   /// @Snippet(path: "CloudRedisCluster_RescheduleClusterMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rescheduleClusterMaintenance(request:)``
+  /// - ``rescheduleClusterMaintenancePollingUntilDone(request:)``
+  /// - ``rescheduleClusterMaintenancePollingUntilDone(request:options:)``
+  /// - ``rescheduleClusterMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
   public func rescheduleClusterMaintenance(
     request: RescheduleClusterMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -395,6 +527,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Reschedules upcoming maintenance event.
   ///
   /// @Snippet(path: "CloudRedisCluster_RescheduleClusterMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rescheduleClusterMaintenancePollingUntilDone(request:)``
+  /// - ``rescheduleClusterMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
+  /// - ``rescheduleClusterMaintenance(request:)``
+  /// - ``rescheduleClusterMaintenance(request:options:)``
   public func rescheduleClusterMaintenancePollingUntilDone(
     request: RescheduleClusterMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -426,6 +565,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// available to the project are queried, and the results are aggregated.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListBackupCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackupCollections(request:)``
+  /// - ``listBackupCollectionsByItems(request:)``
+  /// - ``listBackupCollectionsByItems(request:options:)``
+  /// - ``listBackupCollectionsByItems(parent:)``
   public func listBackupCollections(
     request: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.ListBackupCollectionsResponse {
@@ -435,6 +581,11 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Get a backup collection.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetBackupCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackupCollection(request:)``
+  /// - ``getBackupCollection(name:)``
   public func getBackupCollection(
     request: GetBackupCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.BackupCollection {
@@ -444,6 +595,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Lists all backups owned by a backup collection.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackups(request:)``
+  /// - ``listBackupsByItems(request:)``
+  /// - ``listBackupsByItems(request:options:)``
+  /// - ``listBackupsByItems(parent:)``
   public func listBackups(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.ListBackupsResponse {
@@ -453,6 +611,11 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Gets the details of a specific backup.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackup(request:)``
+  /// - ``getBackup(name:)``
   public func getBackup(
     request: GetBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.Backup {
@@ -462,6 +625,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Deletes a specific backup.
   ///
   /// @Snippet(path: "CloudRedisCluster_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackup(request:)``
+  /// - ``deleteBackupPollingUntilDone(request:)``
+  /// - ``deleteBackupPollingUntilDone(request:options:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
   public func deleteBackup(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -471,6 +641,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Deletes a specific backup.
   ///
   /// @Snippet(path: "CloudRedisCluster_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupPollingUntilDone(request:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
+  /// - ``deleteBackup(request:)``
+  /// - ``deleteBackup(request:options:)``
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -498,6 +675,12 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Exports a specific backup to a customer target Cloud Storage URI.
   ///
   /// @Snippet(path: "CloudRedisCluster_ExportBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportBackup(request:)``
+  /// - ``exportBackupPollingUntilDone(request:)``
+  /// - ``exportBackupPollingUntilDone(request:options:)``
   public func exportBackup(
     request: ExportBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -507,6 +690,12 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Exports a specific backup to a customer target Cloud Storage URI.
   ///
   /// @Snippet(path: "CloudRedisCluster_ExportBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportBackupPollingUntilDone(request:)``
+  /// - ``exportBackup(request:)``
+  /// - ``exportBackup(request:options:)``
   public func exportBackupPollingUntilDone(
     request: ExportBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -545,6 +734,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// needed for backup.
   ///
   /// @Snippet(path: "CloudRedisCluster_BackupCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``backupCluster(request:)``
+  /// - ``backupClusterPollingUntilDone(request:)``
+  /// - ``backupClusterPollingUntilDone(request:options:)``
+  /// - ``backupClusterPollingUntilDone(name:)``
   public func backupCluster(
     request: BackupClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -565,6 +761,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// needed for backup.
   ///
   /// @Snippet(path: "CloudRedisCluster_BackupCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``backupClusterPollingUntilDone(request:)``
+  /// - ``backupClusterPollingUntilDone(name:)``
+  /// - ``backupCluster(request:)``
+  /// - ``backupCluster(request:options:)``
   public func backupClusterPollingUntilDone(
     request: BackupClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -592,6 +795,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Lists all the token auth users for a token based auth enabled cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListTokenAuthUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTokenAuthUsers(request:)``
+  /// - ``listTokenAuthUsersByItems(request:)``
+  /// - ``listTokenAuthUsersByItems(request:options:)``
+  /// - ``listTokenAuthUsersByItems(parent:)``
   public func listTokenAuthUsers(
     request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.ListTokenAuthUsersResponse {
@@ -601,6 +811,11 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Gets a specific token auth user for a basic auth enabled cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTokenAuthUser(request:)``
+  /// - ``getTokenAuthUser(name:)``
   public func getTokenAuthUser(
     request: GetTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.TokenAuthUser {
@@ -610,6 +825,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Lists all the auth tokens for a specific token auth user.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListAuthTokens")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAuthTokens(request:)``
+  /// - ``listAuthTokensByItems(request:)``
+  /// - ``listAuthTokensByItems(request:options:)``
+  /// - ``listAuthTokensByItems(parent:)``
   public func listAuthTokens(
     request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.ListAuthTokensResponse {
@@ -619,6 +841,11 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Gets a specific auth token for a specific token auth user.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAuthToken(request:)``
+  /// - ``getAuthToken(name:)``
   public func getAuthToken(
     request: GetAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.AuthToken {
@@ -628,6 +855,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Adds a token auth user for a token based auth enabled cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_AddTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addTokenAuthUser(request:)``
+  /// - ``addTokenAuthUserPollingUntilDone(request:)``
+  /// - ``addTokenAuthUserPollingUntilDone(request:options:)``
+  /// - ``addTokenAuthUserPollingUntilDone(cluster:tokenAuthUser:)``
   public func addTokenAuthUser(
     request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -637,6 +871,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Adds a token auth user for a token based auth enabled cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_AddTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addTokenAuthUserPollingUntilDone(request:)``
+  /// - ``addTokenAuthUserPollingUntilDone(cluster:tokenAuthUser:)``
+  /// - ``addTokenAuthUser(request:)``
+  /// - ``addTokenAuthUser(request:options:)``
   public func addTokenAuthUserPollingUntilDone(
     request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -664,6 +905,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Deletes a token auth user for a token based auth enabled cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_DeleteTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTokenAuthUser(request:)``
+  /// - ``deleteTokenAuthUserPollingUntilDone(request:)``
+  /// - ``deleteTokenAuthUserPollingUntilDone(request:options:)``
+  /// - ``deleteTokenAuthUserPollingUntilDone(name:)``
   public func deleteTokenAuthUser(
     request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -673,6 +921,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Deletes a token auth user for a token based auth enabled cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_DeleteTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTokenAuthUserPollingUntilDone(request:)``
+  /// - ``deleteTokenAuthUserPollingUntilDone(name:)``
+  /// - ``deleteTokenAuthUser(request:)``
+  /// - ``deleteTokenAuthUser(request:options:)``
   public func deleteTokenAuthUserPollingUntilDone(
     request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -700,6 +955,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Adds a auth token for a user of a token based auth enabled cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_AddAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addAuthToken(request:)``
+  /// - ``addAuthTokenPollingUntilDone(request:)``
+  /// - ``addAuthTokenPollingUntilDone(request:options:)``
+  /// - ``addAuthTokenPollingUntilDone(tokenAuthUser:authToken:)``
   public func addAuthToken(
     request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -709,6 +971,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Adds a auth token for a user of a token based auth enabled cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_AddAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addAuthTokenPollingUntilDone(request:)``
+  /// - ``addAuthTokenPollingUntilDone(tokenAuthUser:authToken:)``
+  /// - ``addAuthToken(request:)``
+  /// - ``addAuthToken(request:options:)``
   public func addAuthTokenPollingUntilDone(
     request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> TokenAuthUser {
@@ -737,6 +1006,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Removes a auth token for a user of a token based auth enabled instance.
   ///
   /// @Snippet(path: "CloudRedisCluster_DeleteAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAuthToken(request:)``
+  /// - ``deleteAuthTokenPollingUntilDone(request:)``
+  /// - ``deleteAuthTokenPollingUntilDone(request:options:)``
+  /// - ``deleteAuthTokenPollingUntilDone(name:)``
   public func deleteAuthToken(
     request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -746,6 +1022,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Removes a auth token for a user of a token based auth enabled instance.
   ///
   /// @Snippet(path: "CloudRedisCluster_DeleteAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAuthTokenPollingUntilDone(request:)``
+  /// - ``deleteAuthTokenPollingUntilDone(name:)``
+  /// - ``deleteAuthToken(request:)``
+  /// - ``deleteAuthToken(request:options:)``
   public func deleteAuthTokenPollingUntilDone(
     request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -773,6 +1056,12 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -782,6 +1071,10 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -793,6 +1086,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudRedisCluster_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -815,6 +1115,11 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudRedisCluster_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -826,6 +1131,11 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudRedisCluster_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1084,6 +1394,21 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudRedisClusterProtocol {
+  /// Lists all Redis clusters owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listClusters(request:options:)``
   public func listClusters(request: ListClustersRequest) async throws
     -> GoogleCloudRedisClusterV1.ListClustersResponse
   {
@@ -1096,6 +1421,21 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all Redis clusters owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listClusters(request:options:)``
   public func listClustersByItems(
     request: ListClustersRequest
   ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
@@ -1113,6 +1453,10 @@ extension Clients.CloudRedisClusterProtocol {
   /// available to the project are queried, and the results are aggregated.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listClusters(request:options:)``
   public func listClustersByItems(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
@@ -1127,6 +1471,21 @@ extension Clients.CloudRedisClusterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all Redis clusters owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listClusters(request:options:)``
   public func listClustersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
@@ -1136,6 +1495,21 @@ extension Clients.CloudRedisClusterProtocol {
     return self.listClustersByItems(request: request)
   }
 
+  /// Lists all ACL policies owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAclPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listAclPolicies(request:options:)``
   public func listAclPolicies(request: ListAclPoliciesRequest) async throws
     -> GoogleCloudRedisClusterV1.ListAclPoliciesResponse
   {
@@ -1148,6 +1522,21 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all ACL policies owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAclPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listAclPolicies(request:options:)``
   public func listAclPoliciesByItems(
     request: ListAclPoliciesRequest
   ) -> some AsyncSequence<AclPolicy, any Swift.Error> & Sendable {
@@ -1165,6 +1554,10 @@ extension Clients.CloudRedisClusterProtocol {
   /// available to the project are queried, and the results are aggregated.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListAclPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listAclPolicies(request:options:)``
   public func listAclPoliciesByItems(
     request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AclPolicy, any Swift.Error> & Sendable {
@@ -1179,6 +1572,21 @@ extension Clients.CloudRedisClusterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all ACL policies owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAclPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listAclPolicies(request:options:)``
   public func listAclPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AclPolicy, any Swift.Error> & Sendable {
@@ -1188,6 +1596,13 @@ extension Clients.CloudRedisClusterProtocol {
     return self.listAclPoliciesByItems(request: request)
   }
 
+  /// Gets the details of a specific Redis cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getCluster(request:options:)``
   public func getCluster(request: GetClusterRequest) async throws
     -> GoogleCloudRedisClusterV1.Cluster
   {
@@ -1200,6 +1615,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a specific Redis cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getCluster(request:options:)``
   public func getCluster(
     name: Swift.String,
   ) async throws -> GoogleCloudRedisClusterV1.Cluster {
@@ -1209,6 +1631,13 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.getCluster(request: request)
   }
 
+  /// Gets the details of a specific Redis Cluster ACL policy.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getAclPolicy(request:options:)``
   public func getAclPolicy(request: GetAclPolicyRequest) async throws
     -> GoogleCloudRedisClusterV1.AclPolicy
   {
@@ -1221,6 +1650,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a specific Redis Cluster ACL policy.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getAclPolicy(request:options:)``
   public func getAclPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudRedisClusterV1.AclPolicy {
@@ -1230,6 +1666,17 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.getAclPolicy(request: request)
   }
 
+  /// Updates the metadata and configuration of a specific Redis cluster.
+  ///
+  /// Completed longrunning.Operation will contain the new cluster object
+  /// in the response field. The returned operation is automatically deleted
+  /// after a few hours, so there is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/updateCluster(request:options:)``
   public func updateCluster(request: UpdateClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1242,6 +1689,17 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the metadata and configuration of a specific Redis cluster.
+  ///
+  /// Completed longrunning.Operation will contain the new cluster object
+  /// in the response field. The returned operation is automatically deleted
+  /// after a few hours, so there is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/updateClusterPollingUntilDone(request:options:)``
   public func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> Cluster {
     return try await self.updateClusterPollingUntilDone(request: request, options: .init())
   }
@@ -1252,6 +1710,17 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the metadata and configuration of a specific Redis cluster.
+  ///
+  /// Completed longrunning.Operation will contain the new cluster object
+  /// in the response field. The returned operation is automatically deleted
+  /// after a few hours, so there is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/updateClusterPollingUntilDone(request:options:)``
   public func updateClusterPollingUntilDone(
     cluster: Cluster?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1263,6 +1732,22 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.updateClusterPollingUntilDone(request: request)
   }
 
+  /// Updates the ACL policy.
+  ///
+  /// The operation applies the updated ACL policy to all of the linked clusters.
+  /// If Memorystore can apply the policy to all clusters, then the operation
+  /// returns a SUCCESS status. If Memorystore can't apply the policy to all
+  /// clusters, then to ensure eventual consistency, Memorystore uses
+  /// reconciliation to apply the policy to the failed clusters.
+  ///
+  /// Completed longrunning.Operation will contain the new ACL policy object in
+  /// the response field.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_UpdateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/updateAclPolicy(request:options:)``
   public func updateAclPolicy(request: UpdateAclPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1275,6 +1760,22 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the ACL policy.
+  ///
+  /// The operation applies the updated ACL policy to all of the linked clusters.
+  /// If Memorystore can apply the policy to all clusters, then the operation
+  /// returns a SUCCESS status. If Memorystore can't apply the policy to all
+  /// clusters, then to ensure eventual consistency, Memorystore uses
+  /// reconciliation to apply the policy to the failed clusters.
+  ///
+  /// Completed longrunning.Operation will contain the new ACL policy object in
+  /// the response field.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_UpdateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/updateAclPolicyPollingUntilDone(request:options:)``
   public func updateAclPolicyPollingUntilDone(request: UpdateAclPolicyRequest) async throws
     -> AclPolicy
   {
@@ -1287,6 +1788,22 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the ACL policy.
+  ///
+  /// The operation applies the updated ACL policy to all of the linked clusters.
+  /// If Memorystore can apply the policy to all clusters, then the operation
+  /// returns a SUCCESS status. If Memorystore can't apply the policy to all
+  /// clusters, then to ensure eventual consistency, Memorystore uses
+  /// reconciliation to apply the policy to the failed clusters.
+  ///
+  /// Completed longrunning.Operation will contain the new ACL policy object in
+  /// the response field.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_UpdateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/updateAclPolicyPollingUntilDone(request:options:)``
   public func updateAclPolicyPollingUntilDone(
     aclPolicy: AclPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1298,6 +1815,14 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.updateAclPolicyPollingUntilDone(request: request)
   }
 
+  /// Deletes a specific Redis cluster. Cluster stops serving and data is
+  /// deleted.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteCluster(request:options:)``
   public func deleteCluster(request: DeleteClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1310,6 +1835,14 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific Redis cluster. Cluster stops serving and data is
+  /// deleted.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteClusterPollingUntilDone(request:options:)``
   public func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws {
     try await self.deleteClusterPollingUntilDone(request: request, options: .init())
   }
@@ -1320,6 +1853,14 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific Redis cluster. Cluster stops serving and data is
+  /// deleted.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteClusterPollingUntilDone(request:options:)``
   public func deleteClusterPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1329,6 +1870,15 @@ extension Clients.CloudRedisClusterProtocol {
     try await self.deleteClusterPollingUntilDone(request: request)
   }
 
+  /// Deletes a specific ACL policy. This action will delete the ACL policy and
+  /// all the rules associated with it. An ACL policy cannot be deleted if it is
+  /// attached to a cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteAclPolicy(request:options:)``
   public func deleteAclPolicy(request: DeleteAclPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1341,6 +1891,15 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific ACL policy. This action will delete the ACL policy and
+  /// all the rules associated with it. An ACL policy cannot be deleted if it is
+  /// attached to a cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteAclPolicyPollingUntilDone(request:options:)``
   public func deleteAclPolicyPollingUntilDone(request: DeleteAclPolicyRequest) async throws {
     try await self.deleteAclPolicyPollingUntilDone(request: request, options: .init())
   }
@@ -1351,6 +1910,15 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific ACL policy. This action will delete the ACL policy and
+  /// all the rules associated with it. An ACL policy cannot be deleted if it is
+  /// attached to a cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteAclPolicyPollingUntilDone(request:options:)``
   public func deleteAclPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1360,6 +1928,13 @@ extension Clients.CloudRedisClusterProtocol {
     try await self.deleteAclPolicyPollingUntilDone(request: request)
   }
 
+  /// Gets details of a specific ACL policy revision.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetAclPolicyRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getAclPolicyRevision(request:options:)``
   public func getAclPolicyRevision(request: GetAclPolicyRevisionRequest) async throws
     -> GoogleCloudRedisClusterV1.AclPolicyRevision
   {
@@ -1372,6 +1947,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a specific ACL policy revision.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetAclPolicyRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getAclPolicyRevision(request:options:)``
   public func getAclPolicyRevision(
     name: Swift.String,
   ) async throws -> GoogleCloudRedisClusterV1.AclPolicyRevision {
@@ -1381,6 +1963,13 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.getAclPolicyRevision(request: request)
   }
 
+  /// Lists all ACL policy revisions in a given ACL policy.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAclPolicyRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listAclPolicyRevisions(request:options:)``
   public func listAclPolicyRevisions(request: ListAclPolicyRevisionsRequest) async throws
     -> GoogleCloudRedisClusterV1.ListAclPolicyRevisionsResponse
   {
@@ -1393,6 +1982,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all ACL policy revisions in a given ACL policy.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAclPolicyRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listAclPolicyRevisions(request:options:)``
   public func listAclPolicyRevisionsByItems(
     request: ListAclPolicyRevisionsRequest
   ) -> some AsyncSequence<AclPolicyRevision, any Swift.Error> & Sendable {
@@ -1402,6 +1998,10 @@ extension Clients.CloudRedisClusterProtocol {
   /// Lists all ACL policy revisions in a given ACL policy.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListAclPolicyRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listAclPolicyRevisions(request:options:)``
   public func listAclPolicyRevisionsByItems(
     request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AclPolicyRevision, any Swift.Error> & Sendable {
@@ -1416,6 +2016,13 @@ extension Clients.CloudRedisClusterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all ACL policy revisions in a given ACL policy.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAclPolicyRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listAclPolicyRevisions(request:options:)``
   public func listAclPolicyRevisionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AclPolicyRevision, any Swift.Error> & Sendable {
@@ -1425,6 +2032,20 @@ extension Clients.CloudRedisClusterProtocol {
     return self.listAclPolicyRevisionsByItems(request: request)
   }
 
+  /// Creates a Redis cluster based on the specified properties.
+  /// The creation is executed asynchronously and callers may check the returned
+  /// operation to track its progress. Once the operation is completed the Redis
+  /// cluster will be fully functional. The completed longrunning.Operation will
+  /// contain the new cluster object in the response field.
+  ///
+  /// The returned operation is automatically deleted after a few hours, so there
+  /// is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/createCluster(request:options:)``
   public func createCluster(request: CreateClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1437,6 +2058,20 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Redis cluster based on the specified properties.
+  /// The creation is executed asynchronously and callers may check the returned
+  /// operation to track its progress. Once the operation is completed the Redis
+  /// cluster will be fully functional. The completed longrunning.Operation will
+  /// contain the new cluster object in the response field.
+  ///
+  /// The returned operation is automatically deleted after a few hours, so there
+  /// is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/createClusterPollingUntilDone(request:options:)``
   public func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> Cluster {
     return try await self.createClusterPollingUntilDone(request: request, options: .init())
   }
@@ -1447,6 +2082,20 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Redis cluster based on the specified properties.
+  /// The creation is executed asynchronously and callers may check the returned
+  /// operation to track its progress. Once the operation is completed the Redis
+  /// cluster will be fully functional. The completed longrunning.Operation will
+  /// contain the new cluster object in the response field.
+  ///
+  /// The returned operation is automatically deleted after a few hours, so there
+  /// is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/createClusterPollingUntilDone(request:options:)``
   public func createClusterPollingUntilDone(
     parent: Swift.String,
     cluster: Cluster?,
@@ -1460,6 +2109,15 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.createClusterPollingUntilDone(request: request)
   }
 
+  /// Creates an ACL policy.
+  /// The creation is executed synchronously and the policy is available for use
+  /// immediately after the RPC returns.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_CreateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/createAclPolicy(request:options:)``
   public func createAclPolicy(request: CreateAclPolicyRequest) async throws
     -> GoogleCloudRedisClusterV1.AclPolicy
   {
@@ -1472,6 +2130,15 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an ACL policy.
+  /// The creation is executed synchronously and the policy is available for use
+  /// immediately after the RPC returns.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_CreateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/createAclPolicy(request:options:)``
   public func createAclPolicy(
     parent: Swift.String,
     aclPolicy: AclPolicy?,
@@ -1485,6 +2152,13 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.createAclPolicy(request: request)
   }
 
+  /// Gets the details of certificate authority information for Redis cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetClusterCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getClusterCertificateAuthority(request:options:)``
   public func getClusterCertificateAuthority(request: GetClusterCertificateAuthorityRequest)
     async throws -> GoogleCloudRedisClusterV1.CertificateAuthority
   {
@@ -1497,6 +2171,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of certificate authority information for Redis cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetClusterCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getClusterCertificateAuthority(request:options:)``
   public func getClusterCertificateAuthority(
     name: Swift.String,
   ) async throws -> GoogleCloudRedisClusterV1.CertificateAuthority {
@@ -1506,6 +2187,14 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.getClusterCertificateAuthority(request: request)
   }
 
+  /// Gets the details of regional certificate authority information for Redis
+  /// cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetSharedRegionalCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getSharedRegionalCertificateAuthority(request:options:)``
   public func getSharedRegionalCertificateAuthority(
     request: GetSharedRegionalCertificateAuthorityRequest
   ) async throws -> GoogleCloudRedisClusterV1.SharedRegionalCertificateAuthority {
@@ -1518,6 +2207,14 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of regional certificate authority information for Redis
+  /// cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetSharedRegionalCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getSharedRegionalCertificateAuthority(request:options:)``
   public func getSharedRegionalCertificateAuthority(
     name: Swift.String,
   ) async throws -> GoogleCloudRedisClusterV1.SharedRegionalCertificateAuthority {
@@ -1527,6 +2224,13 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.getSharedRegionalCertificateAuthority(request: request)
   }
 
+  /// Reschedules upcoming maintenance event.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_RescheduleClusterMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/rescheduleClusterMaintenance(request:options:)``
   public func rescheduleClusterMaintenance(request: RescheduleClusterMaintenanceRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1539,6 +2243,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reschedules upcoming maintenance event.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_RescheduleClusterMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/rescheduleClusterMaintenancePollingUntilDone(request:options:)``
   public func rescheduleClusterMaintenancePollingUntilDone(
     request: RescheduleClusterMaintenanceRequest
   ) async throws -> Cluster {
@@ -1552,6 +2263,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reschedules upcoming maintenance event.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_RescheduleClusterMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/rescheduleClusterMaintenancePollingUntilDone(request:options:)``
   public func rescheduleClusterMaintenancePollingUntilDone(
     name: Swift.String,
     rescheduleType: RescheduleClusterMaintenanceRequest.RescheduleType,
@@ -1565,6 +2283,17 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.rescheduleClusterMaintenancePollingUntilDone(request: request)
   }
 
+  /// Lists all backup collections owned by a consumer project in either the
+  /// specified location (region) or all locations.
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListBackupCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listBackupCollections(request:options:)``
   public func listBackupCollections(request: ListBackupCollectionsRequest) async throws
     -> GoogleCloudRedisClusterV1.ListBackupCollectionsResponse
   {
@@ -1577,6 +2306,17 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all backup collections owned by a consumer project in either the
+  /// specified location (region) or all locations.
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListBackupCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listBackupCollections(request:options:)``
   public func listBackupCollectionsByItems(
     request: ListBackupCollectionsRequest
   ) -> some AsyncSequence<BackupCollection, any Swift.Error> & Sendable {
@@ -1590,6 +2330,10 @@ extension Clients.CloudRedisClusterProtocol {
   /// available to the project are queried, and the results are aggregated.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListBackupCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listBackupCollections(request:options:)``
   public func listBackupCollectionsByItems(
     request: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BackupCollection, any Swift.Error> & Sendable {
@@ -1604,6 +2348,17 @@ extension Clients.CloudRedisClusterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all backup collections owned by a consumer project in either the
+  /// specified location (region) or all locations.
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListBackupCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listBackupCollections(request:options:)``
   public func listBackupCollectionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BackupCollection, any Swift.Error> & Sendable {
@@ -1613,6 +2368,13 @@ extension Clients.CloudRedisClusterProtocol {
     return self.listBackupCollectionsByItems(request: request)
   }
 
+  /// Get a backup collection.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetBackupCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getBackupCollection(request:options:)``
   public func getBackupCollection(request: GetBackupCollectionRequest) async throws
     -> GoogleCloudRedisClusterV1.BackupCollection
   {
@@ -1625,6 +2387,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a backup collection.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetBackupCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getBackupCollection(request:options:)``
   public func getBackupCollection(
     name: Swift.String,
   ) async throws -> GoogleCloudRedisClusterV1.BackupCollection {
@@ -1634,6 +2403,13 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.getBackupCollection(request: request)
   }
 
+  /// Lists all backups owned by a backup collection.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listBackups(request:options:)``
   public func listBackups(request: ListBackupsRequest) async throws
     -> GoogleCloudRedisClusterV1.ListBackupsResponse
   {
@@ -1646,6 +2422,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all backups owned by a backup collection.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listBackups(request:options:)``
   public func listBackupsByItems(
     request: ListBackupsRequest
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -1655,6 +2438,10 @@ extension Clients.CloudRedisClusterProtocol {
   /// Lists all backups owned by a backup collection.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listBackups(request:options:)``
   public func listBackupsByItems(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -1669,6 +2456,13 @@ extension Clients.CloudRedisClusterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all backups owned by a backup collection.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listBackups(request:options:)``
   public func listBackupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -1678,6 +2472,13 @@ extension Clients.CloudRedisClusterProtocol {
     return self.listBackupsByItems(request: request)
   }
 
+  /// Gets the details of a specific backup.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getBackup(request:options:)``
   public func getBackup(request: GetBackupRequest) async throws -> GoogleCloudRedisClusterV1.Backup
   {
     try await self.getBackup(request: request, options: .init())
@@ -1689,6 +2490,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a specific backup.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getBackup(request:options:)``
   public func getBackup(
     name: Swift.String,
   ) async throws -> GoogleCloudRedisClusterV1.Backup {
@@ -1698,6 +2506,13 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.getBackup(request: request)
   }
 
+  /// Deletes a specific backup.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteBackup(request:options:)``
   public func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteBackup(request: request, options: .init())
@@ -1709,6 +2524,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific backup.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteBackupPollingUntilDone(request:options:)``
   public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws {
     try await self.deleteBackupPollingUntilDone(request: request, options: .init())
   }
@@ -1719,6 +2541,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific backup.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteBackupPollingUntilDone(request:options:)``
   public func deleteBackupPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1728,6 +2557,13 @@ extension Clients.CloudRedisClusterProtocol {
     try await self.deleteBackupPollingUntilDone(request: request)
   }
 
+  /// Exports a specific backup to a customer target Cloud Storage URI.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ExportBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/exportBackup(request:options:)``
   public func exportBackup(request: ExportBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.exportBackup(request: request, options: .init())
@@ -1739,6 +2575,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports a specific backup to a customer target Cloud Storage URI.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ExportBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/exportBackupPollingUntilDone(request:options:)``
   public func exportBackupPollingUntilDone(request: ExportBackupRequest) async throws -> Backup {
     return try await self.exportBackupPollingUntilDone(request: request, options: .init())
   }
@@ -1749,6 +2592,24 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Backup Redis Cluster.
+  /// If this is the first time a backup is being created, a backup collection
+  /// will be created at the backend, and this backup belongs to this collection.
+  /// Both collection and backup will have a resource name. Backup will be
+  /// executed for each shard. A replica (primary if nonHA) will be selected to
+  /// perform the execution. Backup call will be rejected if there is an ongoing
+  /// backup or update operation. Be aware that during preview, if the cluster's
+  /// internal software version is too old, critical update will be performed
+  /// before actual backup. Once the internal software version is updated to the
+  /// minimum version required by the backup feature, subsequent backups will not
+  /// require critical update. After preview, there will be no critical update
+  /// needed for backup.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_BackupCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/backupCluster(request:options:)``
   public func backupCluster(request: BackupClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1761,6 +2622,24 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Backup Redis Cluster.
+  /// If this is the first time a backup is being created, a backup collection
+  /// will be created at the backend, and this backup belongs to this collection.
+  /// Both collection and backup will have a resource name. Backup will be
+  /// executed for each shard. A replica (primary if nonHA) will be selected to
+  /// perform the execution. Backup call will be rejected if there is an ongoing
+  /// backup or update operation. Be aware that during preview, if the cluster's
+  /// internal software version is too old, critical update will be performed
+  /// before actual backup. Once the internal software version is updated to the
+  /// minimum version required by the backup feature, subsequent backups will not
+  /// require critical update. After preview, there will be no critical update
+  /// needed for backup.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_BackupCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/backupClusterPollingUntilDone(request:options:)``
   public func backupClusterPollingUntilDone(request: BackupClusterRequest) async throws -> Cluster {
     return try await self.backupClusterPollingUntilDone(request: request, options: .init())
   }
@@ -1771,6 +2650,24 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Backup Redis Cluster.
+  /// If this is the first time a backup is being created, a backup collection
+  /// will be created at the backend, and this backup belongs to this collection.
+  /// Both collection and backup will have a resource name. Backup will be
+  /// executed for each shard. A replica (primary if nonHA) will be selected to
+  /// perform the execution. Backup call will be rejected if there is an ongoing
+  /// backup or update operation. Be aware that during preview, if the cluster's
+  /// internal software version is too old, critical update will be performed
+  /// before actual backup. Once the internal software version is updated to the
+  /// minimum version required by the backup feature, subsequent backups will not
+  /// require critical update. After preview, there will be no critical update
+  /// needed for backup.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_BackupCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/backupClusterPollingUntilDone(request:options:)``
   public func backupClusterPollingUntilDone(
     name: Swift.String,
   ) async throws -> Cluster {
@@ -1780,6 +2677,13 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.backupClusterPollingUntilDone(request: request)
   }
 
+  /// Lists all the token auth users for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListTokenAuthUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listTokenAuthUsers(request:options:)``
   public func listTokenAuthUsers(request: ListTokenAuthUsersRequest) async throws
     -> GoogleCloudRedisClusterV1.ListTokenAuthUsersResponse
   {
@@ -1792,6 +2696,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the token auth users for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListTokenAuthUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listTokenAuthUsers(request:options:)``
   public func listTokenAuthUsersByItems(
     request: ListTokenAuthUsersRequest
   ) -> some AsyncSequence<TokenAuthUser, any Swift.Error> & Sendable {
@@ -1801,6 +2712,10 @@ extension Clients.CloudRedisClusterProtocol {
   /// Lists all the token auth users for a token based auth enabled cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListTokenAuthUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listTokenAuthUsers(request:options:)``
   public func listTokenAuthUsersByItems(
     request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TokenAuthUser, any Swift.Error> & Sendable {
@@ -1815,6 +2730,13 @@ extension Clients.CloudRedisClusterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the token auth users for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListTokenAuthUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listTokenAuthUsers(request:options:)``
   public func listTokenAuthUsersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<TokenAuthUser, any Swift.Error> & Sendable {
@@ -1824,6 +2746,13 @@ extension Clients.CloudRedisClusterProtocol {
     return self.listTokenAuthUsersByItems(request: request)
   }
 
+  /// Gets a specific token auth user for a basic auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getTokenAuthUser(request:options:)``
   public func getTokenAuthUser(request: GetTokenAuthUserRequest) async throws
     -> GoogleCloudRedisClusterV1.TokenAuthUser
   {
@@ -1836,6 +2765,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a specific token auth user for a basic auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getTokenAuthUser(request:options:)``
   public func getTokenAuthUser(
     name: Swift.String,
   ) async throws -> GoogleCloudRedisClusterV1.TokenAuthUser {
@@ -1845,6 +2781,13 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.getTokenAuthUser(request: request)
   }
 
+  /// Lists all the auth tokens for a specific token auth user.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAuthTokens")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listAuthTokens(request:options:)``
   public func listAuthTokens(request: ListAuthTokensRequest) async throws
     -> GoogleCloudRedisClusterV1.ListAuthTokensResponse
   {
@@ -1857,6 +2800,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the auth tokens for a specific token auth user.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAuthTokens")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listAuthTokens(request:options:)``
   public func listAuthTokensByItems(
     request: ListAuthTokensRequest
   ) -> some AsyncSequence<AuthToken, any Swift.Error> & Sendable {
@@ -1866,6 +2816,10 @@ extension Clients.CloudRedisClusterProtocol {
   /// Lists all the auth tokens for a specific token auth user.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListAuthTokens")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listAuthTokens(request:options:)``
   public func listAuthTokensByItems(
     request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AuthToken, any Swift.Error> & Sendable {
@@ -1880,6 +2834,13 @@ extension Clients.CloudRedisClusterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the auth tokens for a specific token auth user.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAuthTokens")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listAuthTokens(request:options:)``
   public func listAuthTokensByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AuthToken, any Swift.Error> & Sendable {
@@ -1889,6 +2850,13 @@ extension Clients.CloudRedisClusterProtocol {
     return self.listAuthTokensByItems(request: request)
   }
 
+  /// Gets a specific auth token for a specific token auth user.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getAuthToken(request:options:)``
   public func getAuthToken(request: GetAuthTokenRequest) async throws
     -> GoogleCloudRedisClusterV1.AuthToken
   {
@@ -1901,6 +2869,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a specific auth token for a specific token auth user.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getAuthToken(request:options:)``
   public func getAuthToken(
     name: Swift.String,
   ) async throws -> GoogleCloudRedisClusterV1.AuthToken {
@@ -1910,6 +2885,13 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.getAuthToken(request: request)
   }
 
+  /// Adds a token auth user for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_AddTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/addTokenAuthUser(request:options:)``
   public func addTokenAuthUser(request: AddTokenAuthUserRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1922,6 +2904,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a token auth user for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_AddTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/addTokenAuthUserPollingUntilDone(request:options:)``
   public func addTokenAuthUserPollingUntilDone(request: AddTokenAuthUserRequest) async throws
     -> Cluster
   {
@@ -1934,6 +2923,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a token auth user for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_AddTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/addTokenAuthUserPollingUntilDone(request:options:)``
   public func addTokenAuthUserPollingUntilDone(
     cluster: Swift.String,
     tokenAuthUser: Swift.String,
@@ -1945,6 +2941,13 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.addTokenAuthUserPollingUntilDone(request: request)
   }
 
+  /// Deletes a token auth user for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteTokenAuthUser(request:options:)``
   public func deleteTokenAuthUser(request: DeleteTokenAuthUserRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1957,6 +2960,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a token auth user for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteTokenAuthUserPollingUntilDone(request:options:)``
   public func deleteTokenAuthUserPollingUntilDone(request: DeleteTokenAuthUserRequest) async throws
   {
     try await self.deleteTokenAuthUserPollingUntilDone(request: request, options: .init())
@@ -1968,6 +2978,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a token auth user for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteTokenAuthUserPollingUntilDone(request:options:)``
   public func deleteTokenAuthUserPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1977,6 +2994,13 @@ extension Clients.CloudRedisClusterProtocol {
     try await self.deleteTokenAuthUserPollingUntilDone(request: request)
   }
 
+  /// Adds a auth token for a user of a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_AddAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/addAuthToken(request:options:)``
   public func addAuthToken(request: AddAuthTokenRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.addAuthToken(request: request, options: .init())
@@ -1988,6 +3012,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a auth token for a user of a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_AddAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/addAuthTokenPollingUntilDone(request:options:)``
   public func addAuthTokenPollingUntilDone(request: AddAuthTokenRequest) async throws
     -> TokenAuthUser
   {
@@ -2000,6 +3031,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a auth token for a user of a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_AddAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/addAuthTokenPollingUntilDone(request:options:)``
   public func addAuthTokenPollingUntilDone(
     tokenAuthUser: Swift.String,
     authToken: AuthToken?,
@@ -2011,6 +3049,13 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.addAuthTokenPollingUntilDone(request: request)
   }
 
+  /// Removes a auth token for a user of a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteAuthToken(request:options:)``
   public func deleteAuthToken(request: DeleteAuthTokenRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2023,6 +3068,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes a auth token for a user of a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteAuthTokenPollingUntilDone(request:options:)``
   public func deleteAuthTokenPollingUntilDone(request: DeleteAuthTokenRequest) async throws {
     try await self.deleteAuthTokenPollingUntilDone(request: request, options: .init())
   }
@@ -2033,6 +3085,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes a auth token for a user of a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteAuthTokenPollingUntilDone(request:options:)``
   public func deleteAuthTokenPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2042,6 +3101,13 @@ extension Clients.CloudRedisClusterProtocol {
     try await self.deleteAuthTokenPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -2054,6 +3120,13 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2063,6 +3136,10 @@ extension Clients.CloudRedisClusterProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2076,6 +3153,13 @@ extension Clients.CloudRedisClusterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -2088,6 +3172,15 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -2100,6 +3193,15 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2111,6 +3213,10 @@ extension Clients.CloudRedisClusterProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudRedisCluster_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2124,6 +3230,15 @@ extension Clients.CloudRedisClusterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -2135,6 +3250,9 @@ extension Clients.CloudRedisClusterProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2147,6 +3265,9 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -2156,6 +3277,15 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -2166,6 +3296,15 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -2175,6 +3314,15 @@ extension Clients.CloudRedisClusterProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedisCluster_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -2185,6 +3333,15 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedisCluster_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClusterClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

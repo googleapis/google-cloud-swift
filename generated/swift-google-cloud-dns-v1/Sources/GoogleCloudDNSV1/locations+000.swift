@@ -23,6 +23,10 @@ import Foundation
 /// Service for the `locations` resource.
 ///
 /// @Snippet(path: "locationsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/LocationsProtocol``
 public final class LocationsClient: Clients.LocationsProtocol, Sendable {
   let inner: any Clients.LocationsStub
 
@@ -39,6 +43,11 @@ public final class LocationsClient: Clients.LocationsProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "locations_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``get(request:)``
+  /// - ``get(name:)``
   public func `get`(
     request: LocationsClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Location {
@@ -48,6 +57,13 @@ public final class LocationsClient: Clients.LocationsProtocol, Sendable {
   /// Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
   ///
   /// @Snippet(path: "locations_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``list(request:)``
+  /// - ``listByItems(request:)``
+  /// - ``listByItems(request:options:)``
+  /// - ``listByItems(name:)``
   public func list(
     request: LocationsClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListLocationsResponse {
@@ -76,6 +92,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.LocationsProtocol {
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "locations_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LocationsClient/get(request:options:)``
   public func `get`(request: LocationsClient.GetRequest) async throws -> Location {
     try await self.`get`(request: request, options: .init())
   }
@@ -86,6 +109,13 @@ extension Clients.LocationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "locations_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LocationsClient/get(request:options:)``
   public func `get`(
     name: Swift.String,
   ) async throws -> Location {
@@ -95,6 +125,13 @@ extension Clients.LocationsProtocol {
     return try await self.`get`(request: request)
   }
 
+  /// Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
+  ///
+  /// @Snippet(path: "locations_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LocationsClient/list(request:options:)``
   public func list(request: LocationsClient.ListRequest) async throws -> ListLocationsResponse {
     try await self.list(request: request, options: .init())
   }
@@ -105,6 +142,13 @@ extension Clients.LocationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
+  ///
+  /// @Snippet(path: "locations_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LocationsClient/list(request:options:)``
   public func listByItems(
     request: LocationsClient.ListRequest
   ) -> some AsyncSequence<Location, any Swift.Error> & Sendable {
@@ -114,6 +158,10 @@ extension Clients.LocationsProtocol {
   /// Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
   ///
   /// @Snippet(path: "locations_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LocationsClient/list(request:options:)``
   public func listByItems(
     request: LocationsClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Location, any Swift.Error> & Sendable {
@@ -126,6 +174,13 @@ extension Clients.LocationsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
+  ///
+  /// @Snippet(path: "locations_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LocationsClient/list(request:options:)``
   public func listByItems(
     name: Swift.String,
   ) -> some AsyncSequence<Location, any Swift.Error> & Sendable {

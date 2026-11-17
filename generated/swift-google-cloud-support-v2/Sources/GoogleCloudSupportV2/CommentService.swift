@@ -23,6 +23,10 @@ import Foundation
 /// A service to manage comments on cases.
 ///
 /// @Snippet(path: "CommentServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CommentServiceProtocol``
 public final class CommentServiceClient: Clients.CommentServiceProtocol, Sendable {
   let inner: any Clients.CommentServiceStub
 
@@ -39,6 +43,13 @@ public final class CommentServiceClient: Clients.CommentServiceProtocol, Sendabl
   /// List all the comments associated with a case.
   ///
   /// @Snippet(path: "CommentService_ListComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listComments(request:)``
+  /// - ``listCommentsByItems(request:)``
+  /// - ``listCommentsByItems(request:options:)``
+  /// - ``listCommentsByItems(parent:)``
   public func listComments(
     request: ListCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.ListCommentsResponse {
@@ -50,6 +61,11 @@ public final class CommentServiceClient: Clients.CommentServiceProtocol, Sendabl
   /// The comment must have the following fields set: `body`.
   ///
   /// @Snippet(path: "CommentService_CreateComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createComment(request:)``
+  /// - ``createComment(parent:comment:)``
   public func createComment(
     request: CreateCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.Comment {
@@ -88,6 +104,11 @@ public final class CommentServiceClient: Clients.CommentServiceProtocol, Sendabl
   /// ```
   ///
   /// @Snippet(path: "CommentService_GetComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getComment(request:)``
+  /// - ``getComment(name:)``
   public func getComment(
     request: GetCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.Comment {
@@ -121,6 +142,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.CommentServiceProtocol {
+  /// List all the comments associated with a case.
+  ///
+  /// @Snippet(path: "CommentService_ListComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CommentServiceClient/listComments(request:options:)``
   public func listComments(request: ListCommentsRequest) async throws
     -> GoogleCloudSupportV2.ListCommentsResponse
   {
@@ -133,6 +161,13 @@ extension Clients.CommentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List all the comments associated with a case.
+  ///
+  /// @Snippet(path: "CommentService_ListComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CommentServiceClient/listComments(request:options:)``
   public func listCommentsByItems(
     request: ListCommentsRequest
   ) -> some AsyncSequence<Comment, any Swift.Error> & Sendable {
@@ -142,6 +177,10 @@ extension Clients.CommentServiceProtocol {
   /// List all the comments associated with a case.
   ///
   /// @Snippet(path: "CommentService_ListComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CommentServiceClient/listComments(request:options:)``
   public func listCommentsByItems(
     request: ListCommentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Comment, any Swift.Error> & Sendable {
@@ -155,6 +194,13 @@ extension Clients.CommentServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List all the comments associated with a case.
+  ///
+  /// @Snippet(path: "CommentService_ListComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CommentServiceClient/listComments(request:options:)``
   public func listCommentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Comment, any Swift.Error> & Sendable {
@@ -164,6 +210,15 @@ extension Clients.CommentServiceProtocol {
     return self.listCommentsByItems(request: request)
   }
 
+  /// Add a new comment to a case.
+  ///
+  /// The comment must have the following fields set: `body`.
+  ///
+  /// @Snippet(path: "CommentService_CreateComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CommentServiceClient/createComment(request:options:)``
   public func createComment(request: CreateCommentRequest) async throws
     -> GoogleCloudSupportV2.Comment
   {
@@ -176,6 +231,15 @@ extension Clients.CommentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Add a new comment to a case.
+  ///
+  /// The comment must have the following fields set: `body`.
+  ///
+  /// @Snippet(path: "CommentService_CreateComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CommentServiceClient/createComment(request:options:)``
   public func createComment(
     parent: Swift.String,
     comment: Comment?,
@@ -187,6 +251,42 @@ extension Clients.CommentServiceProtocol {
     return try await self.createComment(request: request)
   }
 
+  /// Retrieve a comment.
+  ///
+  /// EXAMPLES:
+  ///
+  /// cURL:
+  ///
+  /// ```shell
+  /// comment="projects/some-project/cases/43595344/comments/234567890"
+  /// curl \
+  ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+  ///   "https://cloudsupport.googleapis.com/v2/$comment"
+  /// ```
+  ///
+  /// Python:
+  ///
+  /// ```python
+  /// import googleapiclient.discovery
+  ///
+  /// api_version = "v2"
+  /// supportApiService = googleapiclient.discovery.build(
+  ///     serviceName="cloudsupport",
+  ///     version=api_version,
+  ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+  /// )
+  ///
+  /// request = supportApiService.cases().comments().get(
+  ///     name="projects/some-project/cases/43595344/comments/234567890",
+  /// )
+  /// print(request.execute())
+  /// ```
+  ///
+  /// @Snippet(path: "CommentService_GetComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CommentServiceClient/getComment(request:options:)``
   public func getComment(request: GetCommentRequest) async throws -> GoogleCloudSupportV2.Comment {
     try await self.getComment(request: request, options: .init())
   }
@@ -197,6 +297,42 @@ extension Clients.CommentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a comment.
+  ///
+  /// EXAMPLES:
+  ///
+  /// cURL:
+  ///
+  /// ```shell
+  /// comment="projects/some-project/cases/43595344/comments/234567890"
+  /// curl \
+  ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+  ///   "https://cloudsupport.googleapis.com/v2/$comment"
+  /// ```
+  ///
+  /// Python:
+  ///
+  /// ```python
+  /// import googleapiclient.discovery
+  ///
+  /// api_version = "v2"
+  /// supportApiService = googleapiclient.discovery.build(
+  ///     serviceName="cloudsupport",
+  ///     version=api_version,
+  ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+  /// )
+  ///
+  /// request = supportApiService.cases().comments().get(
+  ///     name="projects/some-project/cases/43595344/comments/234567890",
+  /// )
+  /// print(request.execute())
+  /// ```
+  ///
+  /// @Snippet(path: "CommentService_GetComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CommentServiceClient/getComment(request:options:)``
   public func getComment(
     name: Swift.String,
   ) async throws -> GoogleCloudSupportV2.Comment {

@@ -24,6 +24,10 @@
   /// Cloud SQL Workload Captures service.
   ///
   /// @Snippet(path: "SqlWorkloadCapturesServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlWorkloadCapturesServiceProtocol``
   public final class SqlWorkloadCapturesServiceClient: Clients.SqlWorkloadCapturesServiceProtocol,
     Sendable
   {
@@ -47,6 +51,10 @@
     /// configuration changes etc. before applying them to production.
     ///
     /// @Snippet(path: "SqlWorkloadCapturesService_Start")
+    ///
+    /// ## See Also
+    ///
+    /// - ``start(request:)``
     public func start(
       request: WorkloadCapturesStartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -57,6 +65,10 @@
     /// primary instance.
     ///
     /// @Snippet(path: "SqlWorkloadCapturesService_Stop")
+    ///
+    /// ## See Also
+    ///
+    /// - ``stop(request:)``
     public func stop(
       request: WorkloadCapturesStopRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -68,6 +80,10 @@
     /// production environment without affecting the primary instance.
     ///
     /// @Snippet(path: "SqlWorkloadCapturesService_StartReplay")
+    ///
+    /// ## See Also
+    ///
+    /// - ``startReplay(request:)``
     public func startReplay(
       request: WorkloadCapturesStartReplayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -77,6 +93,10 @@
     /// Stops an active workload replay on the target Cloud SQL replay instance.
     ///
     /// @Snippet(path: "SqlWorkloadCapturesService_StopReplay")
+    ///
+    /// ## See Also
+    ///
+    /// - ``stopReplay(request:)``
     public func stopReplay(
       request: WorkloadCapturesStopReplayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -86,6 +106,10 @@
     /// Lists all captured workloads associated with the instance.
     ///
     /// @Snippet(path: "SqlWorkloadCapturesService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
     public func list(
       request: SqlWorkloadCapturesListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.WorkloadCapturesListResponse {
@@ -129,6 +153,17 @@
 
   // Default implementations
   extension Clients.SqlWorkloadCapturesServiceProtocol {
+    /// Starts capturing the SQL queries, transactions, and other operations
+    /// executed on the primary instance. This traffic is securely stored and forms
+    /// a "captured workload". This workload can be replayed later on a different
+    /// instance to safely test performance impacts, database upgrades,
+    /// configuration changes etc. before applying them to production.
+    ///
+    /// @Snippet(path: "SqlWorkloadCapturesService_Start")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlWorkloadCapturesServiceClient/start(request:options:)``
     public func start(request: WorkloadCapturesStartRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -141,6 +176,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Stops capturing the query traffic and related operations executed on the
+    /// primary instance.
+    ///
+    /// @Snippet(path: "SqlWorkloadCapturesService_Stop")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlWorkloadCapturesServiceClient/stop(request:options:)``
     public func stop(request: WorkloadCapturesStopRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -153,6 +196,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Starts executing a captured workload on a separate Cloud SQL instance
+    /// provisioned for workload replay. This target instance simulates the
+    /// production environment without affecting the primary instance.
+    ///
+    /// @Snippet(path: "SqlWorkloadCapturesService_StartReplay")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlWorkloadCapturesServiceClient/startReplay(request:options:)``
     public func startReplay(request: WorkloadCapturesStartReplayRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -165,6 +217,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Stops an active workload replay on the target Cloud SQL replay instance.
+    ///
+    /// @Snippet(path: "SqlWorkloadCapturesService_StopReplay")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlWorkloadCapturesServiceClient/stopReplay(request:options:)``
     public func stopReplay(request: WorkloadCapturesStopReplayRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -177,6 +236,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all captured workloads associated with the instance.
+    ///
+    /// @Snippet(path: "SqlWorkloadCapturesService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlWorkloadCapturesServiceClient/list(request:options:)``
     public func list(request: SqlWorkloadCapturesListRequest) async throws
       -> GoogleCloudSqlV1.WorkloadCapturesListResponse
     {

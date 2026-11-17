@@ -25,6 +25,10 @@ import Foundation
 /// Streaming service for receiving and sending packets.
 ///
 /// @Snippet(path: "StreamingServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/StreamingServiceProtocol``
 public final class StreamingServiceClient: Clients.StreamingServiceProtocol, Sendable {
   let inner: any Clients.StreamingServiceStub
 
@@ -41,6 +45,10 @@ public final class StreamingServiceClient: Clients.StreamingServiceProtocol, Sen
   /// AcquireLease acquires a lease.
   ///
   /// @Snippet(path: "StreamingService_AcquireLease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``acquireLease(request:)``
   public func acquireLease(
     request: AcquireLeaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Lease {
@@ -50,6 +58,10 @@ public final class StreamingServiceClient: Clients.StreamingServiceProtocol, Sen
   /// RenewLease renews a lease.
   ///
   /// @Snippet(path: "StreamingService_RenewLease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``renewLease(request:)``
   public func renewLease(
     request: RenewLeaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Lease {
@@ -59,6 +71,10 @@ public final class StreamingServiceClient: Clients.StreamingServiceProtocol, Sen
   /// RleaseLease releases a lease.
   ///
   /// @Snippet(path: "StreamingService_ReleaseLease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``releaseLease(request:)``
   public func releaseLease(
     request: ReleaseLeaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ReleaseLeaseResponse {
@@ -68,6 +84,12 @@ public final class StreamingServiceClient: Clients.StreamingServiceProtocol, Sen
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "StreamingService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -77,6 +99,10 @@ public final class StreamingServiceClient: Clients.StreamingServiceProtocol, Sen
   /// Gets information about a location.
   ///
   /// @Snippet(path: "StreamingService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -88,6 +114,13 @@ public final class StreamingServiceClient: Clients.StreamingServiceProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "StreamingService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -110,6 +143,11 @@ public final class StreamingServiceClient: Clients.StreamingServiceProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "StreamingService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -121,6 +159,11 @@ public final class StreamingServiceClient: Clients.StreamingServiceProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "StreamingService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -179,6 +222,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.StreamingServiceProtocol {
+  /// AcquireLease acquires a lease.
+  ///
+  /// @Snippet(path: "StreamingService_AcquireLease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/acquireLease(request:options:)``
   public func acquireLease(request: AcquireLeaseRequest) async throws -> GoogleCloudVideoAIV1.Lease
   {
     try await self.acquireLease(request: request, options: .init())
@@ -190,6 +240,13 @@ extension Clients.StreamingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// RenewLease renews a lease.
+  ///
+  /// @Snippet(path: "StreamingService_RenewLease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/renewLease(request:options:)``
   public func renewLease(request: RenewLeaseRequest) async throws -> GoogleCloudVideoAIV1.Lease {
     try await self.renewLease(request: request, options: .init())
   }
@@ -200,6 +257,13 @@ extension Clients.StreamingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// RleaseLease releases a lease.
+  ///
+  /// @Snippet(path: "StreamingService_ReleaseLease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/releaseLease(request:options:)``
   public func releaseLease(request: ReleaseLeaseRequest) async throws
     -> GoogleCloudVideoAIV1.ReleaseLeaseResponse
   {
@@ -212,6 +276,13 @@ extension Clients.StreamingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "StreamingService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -224,6 +295,13 @@ extension Clients.StreamingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "StreamingService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -233,6 +311,10 @@ extension Clients.StreamingServiceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "StreamingService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -246,6 +328,13 @@ extension Clients.StreamingServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "StreamingService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -258,6 +347,15 @@ extension Clients.StreamingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamingService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -270,6 +368,15 @@ extension Clients.StreamingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamingService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -281,6 +388,10 @@ extension Clients.StreamingServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "StreamingService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -294,6 +405,15 @@ extension Clients.StreamingServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamingService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -305,6 +425,9 @@ extension Clients.StreamingServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -317,6 +440,9 @@ extension Clients.StreamingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -326,6 +452,15 @@ extension Clients.StreamingServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamingService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -336,6 +471,15 @@ extension Clients.StreamingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamingService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -345,6 +489,15 @@ extension Clients.StreamingServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamingService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -355,6 +508,15 @@ extension Clients.StreamingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamingService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamingServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

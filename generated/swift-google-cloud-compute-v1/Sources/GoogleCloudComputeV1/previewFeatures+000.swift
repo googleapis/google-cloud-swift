@@ -24,6 +24,10 @@
   /// Service for the `previewFeatures` resource.
   ///
   /// @Snippet(path: "previewFeaturesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/PreviewFeaturesProtocol``
   public final class PreviewFeaturesClient: Clients.PreviewFeaturesProtocol, Sendable {
     let inner: any Clients.PreviewFeaturesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,11 @@
     /// Returns the details of the given PreviewFeature.
     ///
     /// @Snippet(path: "previewFeatures_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:previewFeature:)``
     public func `get`(
       request: PreviewFeaturesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.PreviewFeature {
@@ -53,6 +62,13 @@
     /// Returns the details of the given PreviewFeature.
     ///
     /// @Snippet(path: "previewFeatures_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:)``
     public func list(
       request: PreviewFeaturesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.PreviewFeatureList {
@@ -63,6 +79,13 @@
     /// a PreviewFeature.
     ///
     /// @Snippet(path: "previewFeatures_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
+    /// - ``updatePollingUntilDone(project:previewFeature:body:)``
     public func update(
       request: PreviewFeaturesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -78,6 +101,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "previewFeatures_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(project:previewFeature:body:)``
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
     public func updatePollingUntilDone(
       request: PreviewFeaturesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -162,6 +192,13 @@
 
   // Default implementations
   extension Clients.PreviewFeaturesProtocol {
+    /// Returns the details of the given PreviewFeature.
+    ///
+    /// @Snippet(path: "previewFeatures_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PreviewFeaturesClient/get(request:options:)``
     public func `get`(request: PreviewFeaturesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.PreviewFeature
     {
@@ -174,6 +211,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the details of the given PreviewFeature.
+    ///
+    /// @Snippet(path: "previewFeatures_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PreviewFeaturesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       previewFeature: Swift.String,
@@ -185,6 +229,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Returns the details of the given PreviewFeature.
+    ///
+    /// @Snippet(path: "previewFeatures_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PreviewFeaturesClient/list(request:options:)``
     public func list(request: PreviewFeaturesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.PreviewFeatureList
     {
@@ -197,6 +248,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the details of the given PreviewFeature.
+    ///
+    /// @Snippet(path: "previewFeatures_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PreviewFeaturesClient/list(request:options:)``
     public func listByItems(
       request: PreviewFeaturesClient.ListRequest
     ) -> some AsyncSequence<PreviewFeature, any Swift.Error> & Sendable {
@@ -206,6 +264,10 @@
     /// Returns the details of the given PreviewFeature.
     ///
     /// @Snippet(path: "previewFeatures_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PreviewFeaturesClient/list(request:options:)``
     public func listByItems(
       request: PreviewFeaturesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<PreviewFeature, any Swift.Error> & Sendable {
@@ -219,6 +281,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the details of the given PreviewFeature.
+    ///
+    /// @Snippet(path: "previewFeatures_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PreviewFeaturesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<PreviewFeature, any Swift.Error> & Sendable {
@@ -228,6 +297,14 @@
       return self.listByItems(request: request)
     }
 
+    /// Patches the given PreviewFeature. This method is used to enable or disable
+    /// a PreviewFeature.
+    ///
+    /// @Snippet(path: "previewFeatures_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PreviewFeaturesClient/update(request:options:)``
     public func update(request: PreviewFeaturesClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -240,6 +317,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the given PreviewFeature. This method is used to enable or disable
+    /// a PreviewFeature.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "previewFeatures_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PreviewFeaturesClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: PreviewFeaturesClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -252,6 +342,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the given PreviewFeature. This method is used to enable or disable
+    /// a PreviewFeature.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "previewFeatures_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PreviewFeaturesClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       previewFeature: Swift.String,
@@ -265,6 +368,7 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

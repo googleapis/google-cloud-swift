@@ -30,6 +30,10 @@
   /// [google.cloud.dialogflow.cx.v3.SessionEntityType]: <doc:SessionEntityType>
   ///
   /// @Snippet(path: "SessionEntityTypesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SessionEntityTypesProtocol``
   public final class SessionEntityTypesClient: Clients.SessionEntityTypesProtocol, Sendable {
     let inner: any Clients.SessionEntityTypesStub
 
@@ -47,6 +51,13 @@
     /// Returns the list of all session entity types in the specified session.
     ///
     /// @Snippet(path: "SessionEntityTypes_ListSessionEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listSessionEntityTypes(request:)``
+    /// - ``listSessionEntityTypesByItems(request:)``
+    /// - ``listSessionEntityTypesByItems(request:options:)``
+    /// - ``listSessionEntityTypesByItems(parent:)``
     public func listSessionEntityTypes(
       request: ListSessionEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListSessionEntityTypesResponse {
@@ -56,6 +67,11 @@
     /// Retrieves the specified session entity type.
     ///
     /// @Snippet(path: "SessionEntityTypes_GetSessionEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getSessionEntityType(request:)``
+    /// - ``getSessionEntityType(name:)``
     public func getSessionEntityType(
       request: GetSessionEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.SessionEntityType {
@@ -65,6 +81,11 @@
     /// Creates a session entity type.
     ///
     /// @Snippet(path: "SessionEntityTypes_CreateSessionEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createSessionEntityType(request:)``
+    /// - ``createSessionEntityType(parent:sessionEntityType:)``
     public func createSessionEntityType(
       request: CreateSessionEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.SessionEntityType {
@@ -74,6 +95,11 @@
     /// Updates the specified session entity type.
     ///
     /// @Snippet(path: "SessionEntityTypes_UpdateSessionEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateSessionEntityType(request:)``
+    /// - ``updateSessionEntityType(sessionEntityType:updateMask:)``
     public func updateSessionEntityType(
       request: UpdateSessionEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.SessionEntityType {
@@ -83,6 +109,11 @@
     /// Deletes the specified session entity type.
     ///
     /// @Snippet(path: "SessionEntityTypes_DeleteSessionEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteSessionEntityType(request:)``
+    /// - ``deleteSessionEntityType(name:)``
     public func deleteSessionEntityType(
       request: DeleteSessionEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -109,6 +140,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "SessionEntityTypes_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -118,6 +155,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "SessionEntityTypes_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -129,6 +170,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SessionEntityTypes_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -151,6 +199,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SessionEntityTypes_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -214,6 +267,13 @@
 
   // Default implementations
   extension Clients.SessionEntityTypesProtocol {
+    /// Returns the list of all session entity types in the specified session.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_ListSessionEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/listSessionEntityTypes(request:options:)``
     public func listSessionEntityTypes(request: ListSessionEntityTypesRequest) async throws
       -> GoogleCloudDialogflowCXV3.ListSessionEntityTypesResponse
     {
@@ -226,6 +286,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of all session entity types in the specified session.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_ListSessionEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/listSessionEntityTypes(request:options:)``
     public func listSessionEntityTypesByItems(
       request: ListSessionEntityTypesRequest
     ) -> some AsyncSequence<SessionEntityType, any Swift.Error> & Sendable {
@@ -235,6 +302,10 @@
     /// Returns the list of all session entity types in the specified session.
     ///
     /// @Snippet(path: "SessionEntityTypes_ListSessionEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/listSessionEntityTypes(request:options:)``
     public func listSessionEntityTypesByItems(
       request: ListSessionEntityTypesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<SessionEntityType, any Swift.Error> & Sendable {
@@ -249,6 +320,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of all session entity types in the specified session.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_ListSessionEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/listSessionEntityTypes(request:options:)``
     public func listSessionEntityTypesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<SessionEntityType, any Swift.Error> & Sendable {
@@ -258,6 +336,13 @@
       return self.listSessionEntityTypesByItems(request: request)
     }
 
+    /// Retrieves the specified session entity type.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_GetSessionEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/getSessionEntityType(request:options:)``
     public func getSessionEntityType(request: GetSessionEntityTypeRequest) async throws
       -> GoogleCloudDialogflowCXV3.SessionEntityType
     {
@@ -270,6 +355,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified session entity type.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_GetSessionEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/getSessionEntityType(request:options:)``
     public func getSessionEntityType(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.SessionEntityType {
@@ -279,6 +371,13 @@
       return try await self.getSessionEntityType(request: request)
     }
 
+    /// Creates a session entity type.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_CreateSessionEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/createSessionEntityType(request:options:)``
     public func createSessionEntityType(request: CreateSessionEntityTypeRequest) async throws
       -> GoogleCloudDialogflowCXV3.SessionEntityType
     {
@@ -291,6 +390,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a session entity type.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_CreateSessionEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/createSessionEntityType(request:options:)``
     public func createSessionEntityType(
       parent: Swift.String,
       sessionEntityType: SessionEntityType?,
@@ -302,6 +408,13 @@
       return try await self.createSessionEntityType(request: request)
     }
 
+    /// Updates the specified session entity type.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_UpdateSessionEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/updateSessionEntityType(request:options:)``
     public func updateSessionEntityType(request: UpdateSessionEntityTypeRequest) async throws
       -> GoogleCloudDialogflowCXV3.SessionEntityType
     {
@@ -314,6 +427,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified session entity type.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_UpdateSessionEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/updateSessionEntityType(request:options:)``
     public func updateSessionEntityType(
       sessionEntityType: SessionEntityType?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -325,6 +445,13 @@
       return try await self.updateSessionEntityType(request: request)
     }
 
+    /// Deletes the specified session entity type.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_DeleteSessionEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/deleteSessionEntityType(request:options:)``
     public func deleteSessionEntityType(request: DeleteSessionEntityTypeRequest) async throws {
       try await self.deleteSessionEntityType(request: request, options: .init())
     }
@@ -335,6 +462,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified session entity type.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_DeleteSessionEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/deleteSessionEntityType(request:options:)``
     public func deleteSessionEntityType(
       name: Swift.String,
     ) async throws {
@@ -344,6 +478,30 @@
       try await self.deleteSessionEntityType(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "SessionEntityTypes_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -356,6 +514,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "SessionEntityTypes_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -382,6 +564,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "SessionEntityTypes_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -395,6 +581,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "SessionEntityTypes_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -407,6 +600,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SessionEntityTypes_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -419,6 +621,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SessionEntityTypes_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -430,6 +641,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SessionEntityTypes_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -443,6 +658,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SessionEntityTypes_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -454,6 +678,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -466,6 +693,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -475,6 +705,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SessionEntityTypes_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -485,6 +724,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SessionEntityTypes_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionEntityTypesClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

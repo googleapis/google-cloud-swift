@@ -24,6 +24,10 @@
   /// Service for the `publicAdvertisedPrefixes` resource.
   ///
   /// @Snippet(path: "publicAdvertisedPrefixesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/PublicAdvertisedPrefixesProtocol``
   public final class PublicAdvertisedPrefixesClient: Clients.PublicAdvertisedPrefixesProtocol,
     Sendable
   {
@@ -47,6 +51,13 @@
     /// Announces the specified PublicAdvertisedPrefix
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_announce")
+    ///
+    /// ## See Also
+    ///
+    /// - ``announce(request:)``
+    /// - ``announcePollingUntilDone(request:)``
+    /// - ``announcePollingUntilDone(request:options:)``
+    /// - ``announcePollingUntilDone(project:publicAdvertisedPrefix:)``
     public func announce(
       request: PublicAdvertisedPrefixesClient.AnnounceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -61,6 +72,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_announce")
+    ///
+    /// ## See Also
+    ///
+    /// - ``announcePollingUntilDone(request:)``
+    /// - ``announcePollingUntilDone(project:publicAdvertisedPrefix:)``
+    /// - ``announce(request:)``
+    /// - ``announce(request:options:)``
     public func announcePollingUntilDone(
       request: PublicAdvertisedPrefixesClient.AnnounceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -102,6 +120,13 @@
     /// Deletes the specified PublicAdvertisedPrefix
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:publicAdvertisedPrefix:)``
     public func delete(
       request: PublicAdvertisedPrefixesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -116,6 +141,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:publicAdvertisedPrefix:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: PublicAdvertisedPrefixesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -157,6 +189,11 @@
     /// Returns the specified PublicAdvertisedPrefix resource.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:publicAdvertisedPrefix:)``
     public func `get`(
       request: PublicAdvertisedPrefixesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.PublicAdvertisedPrefix {
@@ -167,6 +204,13 @@
     /// using the parameters that are included in the request.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: PublicAdvertisedPrefixesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -182,6 +226,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: PublicAdvertisedPrefixesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -223,6 +274,13 @@
     /// Lists the PublicAdvertisedPrefixes for a project.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:)``
     public func list(
       request: PublicAdvertisedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.PublicAdvertisedPrefixList {
@@ -235,6 +293,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:publicAdvertisedPrefix:body:)``
     public func patch(
       request: PublicAdvertisedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -252,6 +317,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:publicAdvertisedPrefix:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: PublicAdvertisedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -293,6 +365,13 @@
     /// Withdraws the specified PublicAdvertisedPrefix
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_withdraw")
+    ///
+    /// ## See Also
+    ///
+    /// - ``withdraw(request:)``
+    /// - ``withdrawPollingUntilDone(request:)``
+    /// - ``withdrawPollingUntilDone(request:options:)``
+    /// - ``withdrawPollingUntilDone(project:publicAdvertisedPrefix:)``
     public func withdraw(
       request: PublicAdvertisedPrefixesClient.WithdrawRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -307,6 +386,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_withdraw")
+    ///
+    /// ## See Also
+    ///
+    /// - ``withdrawPollingUntilDone(request:)``
+    /// - ``withdrawPollingUntilDone(project:publicAdvertisedPrefix:)``
+    /// - ``withdraw(request:)``
+    /// - ``withdraw(request:options:)``
     public func withdrawPollingUntilDone(
       request: PublicAdvertisedPrefixesClient.WithdrawRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -451,6 +537,13 @@
 
   // Default implementations
   extension Clients.PublicAdvertisedPrefixesProtocol {
+    /// Announces the specified PublicAdvertisedPrefix
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_announce")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/announce(request:options:)``
     public func announce(request: PublicAdvertisedPrefixesClient.AnnounceRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -463,6 +556,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Announces the specified PublicAdvertisedPrefix
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_announce")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/announcePollingUntilDone(request:options:)``
     public func announcePollingUntilDone(
       request: PublicAdvertisedPrefixesClient.AnnounceRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -475,6 +580,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Announces the specified PublicAdvertisedPrefix
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_announce")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/announcePollingUntilDone(request:options:)``
     public func announcePollingUntilDone(
       project: Swift.String,
       publicAdvertisedPrefix: Swift.String,
@@ -486,6 +603,13 @@
       return try await self.announcePollingUntilDone(request: request)
     }
 
+    /// Deletes the specified PublicAdvertisedPrefix
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/delete(request:options:)``
     public func delete(request: PublicAdvertisedPrefixesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -498,6 +622,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified PublicAdvertisedPrefix
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: PublicAdvertisedPrefixesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -510,6 +646,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified PublicAdvertisedPrefix
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       publicAdvertisedPrefix: Swift.String,
@@ -521,6 +669,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified PublicAdvertisedPrefix resource.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/get(request:options:)``
     public func `get`(request: PublicAdvertisedPrefixesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.PublicAdvertisedPrefix
     {
@@ -533,6 +688,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified PublicAdvertisedPrefix resource.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       publicAdvertisedPrefix: Swift.String,
@@ -544,6 +706,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a PublicAdvertisedPrefix in the specified project
+    /// using the parameters that are included in the request.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/insert(request:options:)``
     public func insert(request: PublicAdvertisedPrefixesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -556,6 +726,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a PublicAdvertisedPrefix in the specified project
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: PublicAdvertisedPrefixesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -568,6 +751,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a PublicAdvertisedPrefix in the specified project
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: PublicAdvertisedPrefix?,
@@ -579,6 +775,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists the PublicAdvertisedPrefixes for a project.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/list(request:options:)``
     public func list(request: PublicAdvertisedPrefixesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.PublicAdvertisedPrefixList
     {
@@ -591,6 +794,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the PublicAdvertisedPrefixes for a project.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/list(request:options:)``
     public func listByItems(
       request: PublicAdvertisedPrefixesClient.ListRequest
     ) -> some AsyncSequence<PublicAdvertisedPrefix, any Swift.Error> & Sendable {
@@ -600,6 +810,10 @@
     /// Lists the PublicAdvertisedPrefixes for a project.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/list(request:options:)``
     public func listByItems(
       request: PublicAdvertisedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<PublicAdvertisedPrefix, any Swift.Error> & Sendable {
@@ -614,6 +828,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the PublicAdvertisedPrefixes for a project.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<PublicAdvertisedPrefix, any Swift.Error> & Sendable {
@@ -623,6 +844,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Patches the specified Router resource with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/patch(request:options:)``
     public func patch(request: PublicAdvertisedPrefixesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -635,6 +866,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified Router resource with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: PublicAdvertisedPrefixesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -647,6 +893,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified Router resource with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       publicAdvertisedPrefix: Swift.String,
@@ -660,6 +921,13 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Withdraws the specified PublicAdvertisedPrefix
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_withdraw")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/withdraw(request:options:)``
     public func withdraw(request: PublicAdvertisedPrefixesClient.WithdrawRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -672,6 +940,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Withdraws the specified PublicAdvertisedPrefix
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_withdraw")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/withdrawPollingUntilDone(request:options:)``
     public func withdrawPollingUntilDone(
       request: PublicAdvertisedPrefixesClient.WithdrawRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -684,6 +964,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Withdraws the specified PublicAdvertisedPrefix
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "publicAdvertisedPrefixes_withdraw")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PublicAdvertisedPrefixesClient/withdrawPollingUntilDone(request:options:)``
     public func withdrawPollingUntilDone(
       project: Swift.String,
       publicAdvertisedPrefix: Swift.String,
@@ -695,6 +987,7 @@
       return try await self.withdrawPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

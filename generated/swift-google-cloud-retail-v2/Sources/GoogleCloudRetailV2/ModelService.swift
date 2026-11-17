@@ -36,6 +36,10 @@ import Foundation
 /// * Control their tuning schedule.
 ///
 /// @Snippet(path: "ModelServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ModelServiceProtocol``
 public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   let inner: any Clients.ModelServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -56,6 +60,13 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// Creates a new model.
   ///
   /// @Snippet(path: "ModelService_CreateModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createModel(request:)``
+  /// - ``createModelPollingUntilDone(request:)``
+  /// - ``createModelPollingUntilDone(request:options:)``
+  /// - ``createModelPollingUntilDone(parent:model:)``
   public func createModel(
     request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -65,6 +76,13 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// Creates a new model.
   ///
   /// @Snippet(path: "ModelService_CreateModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createModelPollingUntilDone(request:)``
+  /// - ``createModelPollingUntilDone(parent:model:)``
+  /// - ``createModel(request:)``
+  /// - ``createModel(request:options:)``
   public func createModelPollingUntilDone(
     request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Model {
@@ -92,6 +110,11 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// Gets a model.
   ///
   /// @Snippet(path: "ModelService_GetModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getModel(request:)``
+  /// - ``getModel(name:)``
   public func getModel(
     request: GetModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Model {
@@ -101,6 +124,11 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// Pauses the training of an existing model.
   ///
   /// @Snippet(path: "ModelService_PauseModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``pauseModel(request:)``
+  /// - ``pauseModel(name:)``
   public func pauseModel(
     request: PauseModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Model {
@@ -110,6 +138,11 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// Resumes the training of an existing model.
   ///
   /// @Snippet(path: "ModelService_ResumeModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resumeModel(request:)``
+  /// - ``resumeModel(name:)``
   public func resumeModel(
     request: ResumeModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Model {
@@ -119,6 +152,11 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// Deletes an existing model.
   ///
   /// @Snippet(path: "ModelService_DeleteModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteModel(request:)``
+  /// - ``deleteModel(name:)``
   public func deleteModel(
     request: DeleteModelRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -128,6 +166,13 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// Lists all the models linked to this event store.
   ///
   /// @Snippet(path: "ModelService_ListModels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listModels(request:)``
+  /// - ``listModelsByItems(request:)``
+  /// - ``listModelsByItems(request:options:)``
+  /// - ``listModelsByItems(parent:)``
   public func listModels(
     request: ListModelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ListModelsResponse {
@@ -140,6 +185,11 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// If other values are provided, this API method ignores them.
   ///
   /// @Snippet(path: "ModelService_UpdateModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateModel(request:)``
+  /// - ``updateModel(model:updateMask:)``
   public func updateModel(
     request: UpdateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Model {
@@ -149,6 +199,13 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// Tunes an existing model.
   ///
   /// @Snippet(path: "ModelService_TuneModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``tuneModel(request:)``
+  /// - ``tuneModelPollingUntilDone(request:)``
+  /// - ``tuneModelPollingUntilDone(request:options:)``
+  /// - ``tuneModelPollingUntilDone(name:)``
   public func tuneModel(
     request: TuneModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -158,6 +215,13 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// Tunes an existing model.
   ///
   /// @Snippet(path: "ModelService_TuneModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``tuneModelPollingUntilDone(request:)``
+  /// - ``tuneModelPollingUntilDone(name:)``
+  /// - ``tuneModel(request:)``
+  /// - ``tuneModel(request:options:)``
   public func tuneModelPollingUntilDone(
     request: TuneModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> TuneModelResponse {
@@ -188,6 +252,13 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ModelService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -272,6 +343,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ModelServiceProtocol {
+  /// Creates a new model.
+  ///
+  /// @Snippet(path: "ModelService_CreateModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/createModel(request:options:)``
   public func createModel(request: CreateModelRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createModel(request: request, options: .init())
   }
@@ -282,6 +360,13 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new model.
+  ///
+  /// @Snippet(path: "ModelService_CreateModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/createModelPollingUntilDone(request:options:)``
   public func createModelPollingUntilDone(request: CreateModelRequest) async throws -> Model {
     return try await self.createModelPollingUntilDone(request: request, options: .init())
   }
@@ -292,6 +377,13 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new model.
+  ///
+  /// @Snippet(path: "ModelService_CreateModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/createModelPollingUntilDone(request:options:)``
   public func createModelPollingUntilDone(
     parent: Swift.String,
     model: Model?,
@@ -303,6 +395,13 @@ extension Clients.ModelServiceProtocol {
     return try await self.createModelPollingUntilDone(request: request)
   }
 
+  /// Gets a model.
+  ///
+  /// @Snippet(path: "ModelService_GetModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/getModel(request:options:)``
   public func getModel(request: GetModelRequest) async throws -> GoogleCloudRetailV2.Model {
     try await self.getModel(request: request, options: .init())
   }
@@ -313,6 +412,13 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a model.
+  ///
+  /// @Snippet(path: "ModelService_GetModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/getModel(request:options:)``
   public func getModel(
     name: Swift.String,
   ) async throws -> GoogleCloudRetailV2.Model {
@@ -322,6 +428,13 @@ extension Clients.ModelServiceProtocol {
     return try await self.getModel(request: request)
   }
 
+  /// Pauses the training of an existing model.
+  ///
+  /// @Snippet(path: "ModelService_PauseModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/pauseModel(request:options:)``
   public func pauseModel(request: PauseModelRequest) async throws -> GoogleCloudRetailV2.Model {
     try await self.pauseModel(request: request, options: .init())
   }
@@ -332,6 +445,13 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Pauses the training of an existing model.
+  ///
+  /// @Snippet(path: "ModelService_PauseModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/pauseModel(request:options:)``
   public func pauseModel(
     name: Swift.String,
   ) async throws -> GoogleCloudRetailV2.Model {
@@ -341,6 +461,13 @@ extension Clients.ModelServiceProtocol {
     return try await self.pauseModel(request: request)
   }
 
+  /// Resumes the training of an existing model.
+  ///
+  /// @Snippet(path: "ModelService_ResumeModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/resumeModel(request:options:)``
   public func resumeModel(request: ResumeModelRequest) async throws -> GoogleCloudRetailV2.Model {
     try await self.resumeModel(request: request, options: .init())
   }
@@ -351,6 +478,13 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resumes the training of an existing model.
+  ///
+  /// @Snippet(path: "ModelService_ResumeModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/resumeModel(request:options:)``
   public func resumeModel(
     name: Swift.String,
   ) async throws -> GoogleCloudRetailV2.Model {
@@ -360,6 +494,13 @@ extension Clients.ModelServiceProtocol {
     return try await self.resumeModel(request: request)
   }
 
+  /// Deletes an existing model.
+  ///
+  /// @Snippet(path: "ModelService_DeleteModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/deleteModel(request:options:)``
   public func deleteModel(request: DeleteModelRequest) async throws {
     try await self.deleteModel(request: request, options: .init())
   }
@@ -370,6 +511,13 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an existing model.
+  ///
+  /// @Snippet(path: "ModelService_DeleteModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/deleteModel(request:options:)``
   public func deleteModel(
     name: Swift.String,
   ) async throws {
@@ -379,6 +527,13 @@ extension Clients.ModelServiceProtocol {
     try await self.deleteModel(request: request)
   }
 
+  /// Lists all the models linked to this event store.
+  ///
+  /// @Snippet(path: "ModelService_ListModels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/listModels(request:options:)``
   public func listModels(request: ListModelsRequest) async throws
     -> GoogleCloudRetailV2.ListModelsResponse
   {
@@ -391,6 +546,13 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the models linked to this event store.
+  ///
+  /// @Snippet(path: "ModelService_ListModels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/listModels(request:options:)``
   public func listModelsByItems(
     request: ListModelsRequest
   ) -> some AsyncSequence<Model, any Swift.Error> & Sendable {
@@ -400,6 +562,10 @@ extension Clients.ModelServiceProtocol {
   /// Lists all the models linked to this event store.
   ///
   /// @Snippet(path: "ModelService_ListModels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/listModels(request:options:)``
   public func listModelsByItems(
     request: ListModelsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Model, any Swift.Error> & Sendable {
@@ -413,6 +579,13 @@ extension Clients.ModelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the models linked to this event store.
+  ///
+  /// @Snippet(path: "ModelService_ListModels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/listModels(request:options:)``
   public func listModelsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Model, any Swift.Error> & Sendable {
@@ -422,6 +595,16 @@ extension Clients.ModelServiceProtocol {
     return self.listModelsByItems(request: request)
   }
 
+  /// Update of model metadata. Only fields that
+  /// currently can be updated are: `filtering_option` and
+  /// `periodic_tuning_state`.
+  /// If other values are provided, this API method ignores them.
+  ///
+  /// @Snippet(path: "ModelService_UpdateModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/updateModel(request:options:)``
   public func updateModel(request: UpdateModelRequest) async throws -> GoogleCloudRetailV2.Model {
     try await self.updateModel(request: request, options: .init())
   }
@@ -432,6 +615,16 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update of model metadata. Only fields that
+  /// currently can be updated are: `filtering_option` and
+  /// `periodic_tuning_state`.
+  /// If other values are provided, this API method ignores them.
+  ///
+  /// @Snippet(path: "ModelService_UpdateModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/updateModel(request:options:)``
   public func updateModel(
     model: Model?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -443,6 +636,13 @@ extension Clients.ModelServiceProtocol {
     return try await self.updateModel(request: request)
   }
 
+  /// Tunes an existing model.
+  ///
+  /// @Snippet(path: "ModelService_TuneModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/tuneModel(request:options:)``
   public func tuneModel(request: TuneModelRequest) async throws -> GoogleLongRunning.Operation {
     try await self.tuneModel(request: request, options: .init())
   }
@@ -453,6 +653,13 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Tunes an existing model.
+  ///
+  /// @Snippet(path: "ModelService_TuneModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/tuneModelPollingUntilDone(request:options:)``
   public func tuneModelPollingUntilDone(request: TuneModelRequest) async throws -> TuneModelResponse
   {
     return try await self.tuneModelPollingUntilDone(request: request, options: .init())
@@ -464,6 +671,13 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Tunes an existing model.
+  ///
+  /// @Snippet(path: "ModelService_TuneModel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/tuneModelPollingUntilDone(request:options:)``
   public func tuneModelPollingUntilDone(
     name: Swift.String,
   ) async throws -> TuneModelResponse {
@@ -473,6 +687,15 @@ extension Clients.ModelServiceProtocol {
     return try await self.tuneModelPollingUntilDone(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ModelService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -485,6 +708,15 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ModelService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -496,6 +728,10 @@ extension Clients.ModelServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ModelService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -509,6 +745,15 @@ extension Clients.ModelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ModelService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -520,6 +765,9 @@ extension Clients.ModelServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -532,6 +780,9 @@ extension Clients.ModelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

@@ -24,6 +24,10 @@
   /// Service for the `reservationBlocks` resource.
   ///
   /// @Snippet(path: "reservationBlocksQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ReservationBlocksProtocol``
   public final class ReservationBlocksClient: Clients.ReservationBlocksProtocol, Sendable {
     let inner: any Clients.ReservationBlocksStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,11 @@
     /// Retrieves information about the specified reservation block.
     ///
     /// @Snippet(path: "reservationBlocks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:zone:reservation:reservationBlock:)``
     public func `get`(
       request: ReservationBlocksClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReservationBlocksGetResponse {
@@ -54,6 +63,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "reservationBlocks_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(project:zone:parentResource:resource:)``
     public func getIamPolicy(
       request: ReservationBlocksClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -63,6 +77,13 @@
     /// Retrieves a list of reservation blocks under a single reservation.
     ///
     /// @Snippet(path: "reservationBlocks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:zone:reservation:)``
     public func list(
       request: ReservationBlocksClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReservationBlocksListResponse {
@@ -72,6 +93,13 @@
     /// Allows customers to perform maintenance on a reservation block
     ///
     /// @Snippet(path: "reservationBlocks_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``performMaintenance(request:)``
+    /// - ``performMaintenancePollingUntilDone(request:)``
+    /// - ``performMaintenancePollingUntilDone(request:options:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:reservation:reservationBlock:body:)``
     public func performMaintenance(
       request: ReservationBlocksClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -86,6 +114,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "reservationBlocks_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``performMaintenancePollingUntilDone(request:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:reservation:reservationBlock:body:)``
+    /// - ``performMaintenance(request:)``
+    /// - ``performMaintenance(request:options:)``
     public func performMaintenancePollingUntilDone(
       request: ReservationBlocksClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -129,6 +164,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "reservationBlocks_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(project:zone:parentResource:resource:body:)``
     public func setIamPolicy(
       request: ReservationBlocksClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -138,6 +178,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "reservationBlocks_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:zone:parentResource:resource:body:)``
     public func testIamPermissions(
       request: ReservationBlocksClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -208,6 +253,13 @@
 
   // Default implementations
   extension Clients.ReservationBlocksProtocol {
+    /// Retrieves information about the specified reservation block.
+    ///
+    /// @Snippet(path: "reservationBlocks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/get(request:options:)``
     public func `get`(request: ReservationBlocksClient.GetRequest) async throws
       -> GoogleCloudComputeV1.ReservationBlocksGetResponse
     {
@@ -220,6 +272,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves information about the specified reservation block.
+    ///
+    /// @Snippet(path: "reservationBlocks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -235,6 +294,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "reservationBlocks_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: ReservationBlocksClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -247,6 +314,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "reservationBlocks_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       zone: Swift.String,
@@ -262,6 +337,13 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Retrieves a list of reservation blocks under a single reservation.
+    ///
+    /// @Snippet(path: "reservationBlocks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/list(request:options:)``
     public func list(request: ReservationBlocksClient.ListRequest) async throws
       -> GoogleCloudComputeV1.ReservationBlocksListResponse
     {
@@ -274,6 +356,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of reservation blocks under a single reservation.
+    ///
+    /// @Snippet(path: "reservationBlocks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/list(request:options:)``
     public func listByItems(
       request: ReservationBlocksClient.ListRequest
     ) -> some AsyncSequence<ReservationBlock, any Swift.Error> & Sendable {
@@ -283,6 +372,10 @@
     /// Retrieves a list of reservation blocks under a single reservation.
     ///
     /// @Snippet(path: "reservationBlocks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/list(request:options:)``
     public func listByItems(
       request: ReservationBlocksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ReservationBlock, any Swift.Error> & Sendable {
@@ -297,6 +390,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of reservation blocks under a single reservation.
+    ///
+    /// @Snippet(path: "reservationBlocks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -310,6 +410,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Allows customers to perform maintenance on a reservation block
+    ///
+    /// @Snippet(path: "reservationBlocks_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/performMaintenance(request:options:)``
     public func performMaintenance(request: ReservationBlocksClient.PerformMaintenanceRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -322,6 +429,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Allows customers to perform maintenance on a reservation block
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "reservationBlocks_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/performMaintenancePollingUntilDone(request:options:)``
     public func performMaintenancePollingUntilDone(
       request: ReservationBlocksClient.PerformMaintenanceRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -334,6 +453,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Allows customers to perform maintenance on a reservation block
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "reservationBlocks_performMaintenance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/performMaintenancePollingUntilDone(request:options:)``
     public func performMaintenancePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -351,6 +482,14 @@
       return try await self.performMaintenancePollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "reservationBlocks_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: ReservationBlocksClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -363,6 +502,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "reservationBlocks_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       zone: Swift.String,
@@ -380,6 +527,13 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "reservationBlocks_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: ReservationBlocksClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -392,6 +546,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "reservationBlocks_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationBlocksClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       zone: Swift.String,
@@ -409,6 +570,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified zone-specific Operations resource.
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

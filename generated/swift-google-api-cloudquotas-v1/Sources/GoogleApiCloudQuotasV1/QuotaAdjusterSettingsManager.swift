@@ -29,6 +29,10 @@ import Foundation
 /// - Get the name of the configurations.
 ///
 /// @Snippet(path: "QuotaAdjusterSettingsManagerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/QuotaAdjusterSettingsManagerProtocol``
 public final class QuotaAdjusterSettingsManagerClient: Clients.QuotaAdjusterSettingsManagerProtocol,
   Sendable
 {
@@ -48,6 +52,11 @@ public final class QuotaAdjusterSettingsManagerClient: Clients.QuotaAdjusterSett
   /// Updates the QuotaAdjusterSettings for the specified resource.
   ///
   /// @Snippet(path: "QuotaAdjusterSettingsManager_UpdateQuotaAdjusterSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateQuotaAdjusterSettings(request:)``
+  /// - ``updateQuotaAdjusterSettings(quotaAdjusterSettings:updateMask:)``
   public func updateQuotaAdjusterSettings(
     request: UpdateQuotaAdjusterSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {
@@ -57,6 +66,11 @@ public final class QuotaAdjusterSettingsManagerClient: Clients.QuotaAdjusterSett
   /// Gets the QuotaAdjusterSettings for the specified resource.
   ///
   /// @Snippet(path: "QuotaAdjusterSettingsManager_GetQuotaAdjusterSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getQuotaAdjusterSettings(request:)``
+  /// - ``getQuotaAdjusterSettings(name:)``
   public func getQuotaAdjusterSettings(
     request: GetQuotaAdjusterSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {
@@ -85,6 +99,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.QuotaAdjusterSettingsManagerProtocol {
+  /// Updates the QuotaAdjusterSettings for the specified resource.
+  ///
+  /// @Snippet(path: "QuotaAdjusterSettingsManager_UpdateQuotaAdjusterSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``QuotaAdjusterSettingsManagerClient/updateQuotaAdjusterSettings(request:options:)``
   public func updateQuotaAdjusterSettings(request: UpdateQuotaAdjusterSettingsRequest) async throws
     -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings
   {
@@ -97,6 +118,13 @@ extension Clients.QuotaAdjusterSettingsManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the QuotaAdjusterSettings for the specified resource.
+  ///
+  /// @Snippet(path: "QuotaAdjusterSettingsManager_UpdateQuotaAdjusterSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``QuotaAdjusterSettingsManagerClient/updateQuotaAdjusterSettings(request:options:)``
   public func updateQuotaAdjusterSettings(
     quotaAdjusterSettings: QuotaAdjusterSettings?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -108,6 +136,13 @@ extension Clients.QuotaAdjusterSettingsManagerProtocol {
     return try await self.updateQuotaAdjusterSettings(request: request)
   }
 
+  /// Gets the QuotaAdjusterSettings for the specified resource.
+  ///
+  /// @Snippet(path: "QuotaAdjusterSettingsManager_GetQuotaAdjusterSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``QuotaAdjusterSettingsManagerClient/getQuotaAdjusterSettings(request:options:)``
   public func getQuotaAdjusterSettings(request: GetQuotaAdjusterSettingsRequest) async throws
     -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings
   {
@@ -120,6 +155,13 @@ extension Clients.QuotaAdjusterSettingsManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the QuotaAdjusterSettings for the specified resource.
+  ///
+  /// @Snippet(path: "QuotaAdjusterSettingsManager_GetQuotaAdjusterSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``QuotaAdjusterSettingsManagerClient/getQuotaAdjusterSettings(request:options:)``
   public func getQuotaAdjusterSettings(
     name: Swift.String,
   ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {

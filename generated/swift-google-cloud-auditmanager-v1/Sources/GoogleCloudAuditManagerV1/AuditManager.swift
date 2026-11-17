@@ -26,6 +26,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "AuditManagerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AuditManagerProtocol``
 public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   let inner: any Clients.AuditManagerStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,11 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// Creates a new audit schedule in a given project and location.
   ///
   /// @Snippet(path: "AuditManager_CreateAuditSchedule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAuditSchedule(request:)``
+  /// - ``createAuditSchedule(parent:auditSchedule:auditScheduleId:)``
   public func createAuditSchedule(
     request: CreateAuditScheduleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
@@ -55,6 +64,11 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// Updates an existing audit schedule.
   ///
   /// @Snippet(path: "AuditManager_UpdateAuditSchedule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAuditSchedule(request:)``
+  /// - ``updateAuditSchedule(auditSchedule:updateMask:)``
   public func updateAuditSchedule(
     request: UpdateAuditScheduleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
@@ -64,6 +78,11 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// Gets details of a single audit schedule.
   ///
   /// @Snippet(path: "AuditManager_GetAuditSchedule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAuditSchedule(request:)``
+  /// - ``getAuditSchedule(name:)``
   public func getAuditSchedule(
     request: GetAuditScheduleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
@@ -73,6 +92,13 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// Lists audit schedules in a given project and location.
   ///
   /// @Snippet(path: "AuditManager_ListAuditSchedules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAuditSchedules(request:)``
+  /// - ``listAuditSchedulesByItems(request:)``
+  /// - ``listAuditSchedulesByItems(request:options:)``
+  /// - ``listAuditSchedulesByItems(parent:)``
   public func listAuditSchedules(
     request: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse {
@@ -86,6 +112,11 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// then this method overrides the existing set of destinations.
   ///
   /// @Snippet(path: "AuditManager_EnrollResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``enrollResource(request:)``
+  /// - ``enrollResource(scope:destinations:)``
   public func enrollResource(
     request: EnrollResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.Enrollment {
@@ -102,6 +133,11 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   ///   scope of the framework.
   ///
   /// @Snippet(path: "AuditManager_GenerateAuditScopeReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateAuditScopeReport(request:)``
+  /// - ``generateAuditScopeReport(scope:complianceStandard:reportFormat:)``
   public func generateAuditScopeReport(
     request: GenerateAuditScopeReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.AuditScopeReport {
@@ -113,6 +149,13 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// progress.
   ///
   /// @Snippet(path: "AuditManager_GenerateAuditReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateAuditReport(request:)``
+  /// - ``generateAuditReportPollingUntilDone(request:)``
+  /// - ``generateAuditReportPollingUntilDone(request:options:)``
+  /// - ``generateAuditReportPollingUntilDone(scope:gcsUri:complianceStandard:reportFormat:)``
   public func generateAuditReport(
     request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -124,6 +167,13 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// progress.
   ///
   /// @Snippet(path: "AuditManager_GenerateAuditReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateAuditReportPollingUntilDone(request:)``
+  /// - ``generateAuditReportPollingUntilDone(scope:gcsUri:complianceStandard:reportFormat:)``
+  /// - ``generateAuditReport(request:)``
+  /// - ``generateAuditReport(request:options:)``
   public func generateAuditReportPollingUntilDone(
     request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuditReport {
@@ -152,6 +202,13 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// specify as the parent scope.
   ///
   /// @Snippet(path: "AuditManager_ListAuditReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAuditReports(request:)``
+  /// - ``listAuditReportsByItems(request:)``
+  /// - ``listAuditReportsByItems(request:options:)``
+  /// - ``listAuditReportsByItems(parent:)``
   public func listAuditReports(
     request: ListAuditReportsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse {
@@ -161,6 +218,11 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// Gets the full metadata and findings for an audit report.
   ///
   /// @Snippet(path: "AuditManager_GetAuditReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAuditReport(request:)``
+  /// - ``getAuditReport(name:)``
   public func getAuditReport(
     request: GetAuditReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.AuditReport {
@@ -170,6 +232,11 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// Gets a resource and its enrollment status.
   ///
   /// @Snippet(path: "AuditManager_GetResourceEnrollmentStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getResourceEnrollmentStatus(request:)``
+  /// - ``getResourceEnrollmentStatus(name:)``
   public func getResourceEnrollmentStatus(
     request: GetResourceEnrollmentStatusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus {
@@ -180,6 +247,13 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// their enrollments.
   ///
   /// @Snippet(path: "AuditManager_ListResourceEnrollmentStatuses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listResourceEnrollmentStatuses(request:)``
+  /// - ``listResourceEnrollmentStatusesByItems(request:)``
+  /// - ``listResourceEnrollmentStatusesByItems(request:options:)``
+  /// - ``listResourceEnrollmentStatusesByItems(parent:)``
   public func listResourceEnrollmentStatuses(
     request: ListResourceEnrollmentStatusesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse {
@@ -190,6 +264,13 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// regulatory standard.
   ///
   /// @Snippet(path: "AuditManager_ListControls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listControls(request:)``
+  /// - ``listControlsByItems(request:)``
+  /// - ``listControlsByItems(request:options:)``
+  /// - ``listControlsByItems(parent:)``
   public func listControls(
     request: ListControlsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse {
@@ -216,6 +297,12 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AuditManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -225,6 +312,10 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AuditManager_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -236,6 +327,13 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AuditManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -258,6 +356,11 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AuditManager_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -269,6 +372,11 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AuditManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -377,6 +485,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.AuditManagerProtocol {
+  /// Creates a new audit schedule in a given project and location.
+  ///
+  /// @Snippet(path: "AuditManager_CreateAuditSchedule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/createAuditSchedule(request:options:)``
   public func createAuditSchedule(request: CreateAuditScheduleRequest) async throws
     -> GoogleCloudAuditManagerV1.AuditSchedule
   {
@@ -389,6 +504,13 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new audit schedule in a given project and location.
+  ///
+  /// @Snippet(path: "AuditManager_CreateAuditSchedule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/createAuditSchedule(request:options:)``
   public func createAuditSchedule(
     parent: Swift.String,
     auditSchedule: AuditSchedule?,
@@ -402,6 +524,13 @@ extension Clients.AuditManagerProtocol {
     return try await self.createAuditSchedule(request: request)
   }
 
+  /// Updates an existing audit schedule.
+  ///
+  /// @Snippet(path: "AuditManager_UpdateAuditSchedule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/updateAuditSchedule(request:options:)``
   public func updateAuditSchedule(request: UpdateAuditScheduleRequest) async throws
     -> GoogleCloudAuditManagerV1.AuditSchedule
   {
@@ -414,6 +543,13 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing audit schedule.
+  ///
+  /// @Snippet(path: "AuditManager_UpdateAuditSchedule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/updateAuditSchedule(request:options:)``
   public func updateAuditSchedule(
     auditSchedule: AuditSchedule?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -425,6 +561,13 @@ extension Clients.AuditManagerProtocol {
     return try await self.updateAuditSchedule(request: request)
   }
 
+  /// Gets details of a single audit schedule.
+  ///
+  /// @Snippet(path: "AuditManager_GetAuditSchedule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/getAuditSchedule(request:options:)``
   public func getAuditSchedule(request: GetAuditScheduleRequest) async throws
     -> GoogleCloudAuditManagerV1.AuditSchedule
   {
@@ -437,6 +580,13 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single audit schedule.
+  ///
+  /// @Snippet(path: "AuditManager_GetAuditSchedule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/getAuditSchedule(request:options:)``
   public func getAuditSchedule(
     name: Swift.String,
   ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
@@ -446,6 +596,13 @@ extension Clients.AuditManagerProtocol {
     return try await self.getAuditSchedule(request: request)
   }
 
+  /// Lists audit schedules in a given project and location.
+  ///
+  /// @Snippet(path: "AuditManager_ListAuditSchedules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listAuditSchedules(request:options:)``
   public func listAuditSchedules(request: ListAuditSchedulesRequest) async throws
     -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse
   {
@@ -458,6 +615,13 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists audit schedules in a given project and location.
+  ///
+  /// @Snippet(path: "AuditManager_ListAuditSchedules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listAuditSchedules(request:options:)``
   public func listAuditSchedulesByItems(
     request: ListAuditSchedulesRequest
   ) -> some AsyncSequence<AuditSchedule, any Swift.Error> & Sendable {
@@ -467,6 +631,10 @@ extension Clients.AuditManagerProtocol {
   /// Lists audit schedules in a given project and location.
   ///
   /// @Snippet(path: "AuditManager_ListAuditSchedules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listAuditSchedules(request:options:)``
   public func listAuditSchedulesByItems(
     request: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AuditSchedule, any Swift.Error> & Sendable {
@@ -481,6 +649,13 @@ extension Clients.AuditManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists audit schedules in a given project and location.
+  ///
+  /// @Snippet(path: "AuditManager_ListAuditSchedules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listAuditSchedules(request:options:)``
   public func listAuditSchedulesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AuditSchedule, any Swift.Error> & Sendable {
@@ -490,6 +665,17 @@ extension Clients.AuditManagerProtocol {
     return self.listAuditSchedulesByItems(request: request)
   }
 
+  /// Adds your project, folder, or organization to Audit
+  /// Manager. This method creates the Audit Manager service agent in your
+  /// workload and grants required permissions to the service agent.
+  /// If you make this request on a workload that's already enrolled,
+  /// then this method overrides the existing set of destinations.
+  ///
+  /// @Snippet(path: "AuditManager_EnrollResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/enrollResource(request:options:)``
   public func enrollResource(request: EnrollResourceRequest) async throws
     -> GoogleCloudAuditManagerV1.Enrollment
   {
@@ -502,6 +688,17 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds your project, folder, or organization to Audit
+  /// Manager. This method creates the Audit Manager service agent in your
+  /// workload and grants required permissions to the service agent.
+  /// If you make this request on a workload that's already enrolled,
+  /// then this method overrides the existing set of destinations.
+  ///
+  /// @Snippet(path: "AuditManager_EnrollResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/enrollResource(request:options:)``
   public func enrollResource(
     scope: Swift.String,
     destinations: [EnrollResourceRequest.EligibleDestination],
@@ -513,6 +710,20 @@ extension Clients.AuditManagerProtocol {
     return try await self.enrollResource(request: request)
   }
 
+  /// Generates an audit scope report for the given standard.
+  ///
+  /// The report includes the following:
+  ///
+  /// * The technical attributes and constraints that Audit Manager uses to
+  ///   verify your compliance with a framework.
+  /// * A list of Google Cloud services and resources that are within the
+  ///   scope of the framework.
+  ///
+  /// @Snippet(path: "AuditManager_GenerateAuditScopeReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/generateAuditScopeReport(request:options:)``
   public func generateAuditScopeReport(request: GenerateAuditScopeReportRequest) async throws
     -> GoogleCloudAuditManagerV1.AuditScopeReport
   {
@@ -525,6 +736,20 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generates an audit scope report for the given standard.
+  ///
+  /// The report includes the following:
+  ///
+  /// * The technical attributes and constraints that Audit Manager uses to
+  ///   verify your compliance with a framework.
+  /// * A list of Google Cloud services and resources that are within the
+  ///   scope of the framework.
+  ///
+  /// @Snippet(path: "AuditManager_GenerateAuditScopeReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/generateAuditScopeReport(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -541,6 +766,15 @@ extension Clients.AuditManagerProtocol {
     return try await self.generateAuditScopeReport(request: request)
   }
 
+  /// Registers audit report generation requests. This method returns the
+  /// operation identifier that you can use to track the report generation
+  /// progress.
+  ///
+  /// @Snippet(path: "AuditManager_GenerateAuditReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/generateAuditReport(request:options:)``
   public func generateAuditReport(request: GenerateAuditReportRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -553,6 +787,15 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Registers audit report generation requests. This method returns the
+  /// operation identifier that you can use to track the report generation
+  /// progress.
+  ///
+  /// @Snippet(path: "AuditManager_GenerateAuditReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/generateAuditReportPollingUntilDone(request:options:)``
   public func generateAuditReportPollingUntilDone(request: GenerateAuditReportRequest) async throws
     -> AuditReport
   {
@@ -565,6 +808,15 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Registers audit report generation requests. This method returns the
+  /// operation identifier that you can use to track the report generation
+  /// progress.
+  ///
+  /// @Snippet(path: "AuditManager_GenerateAuditReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/generateAuditReportPollingUntilDone(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -583,6 +835,14 @@ extension Clients.AuditManagerProtocol {
     return try await self.generateAuditReportPollingUntilDone(request: request)
   }
 
+  /// Lists the audit reports for the organization, folder, or project that you
+  /// specify as the parent scope.
+  ///
+  /// @Snippet(path: "AuditManager_ListAuditReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listAuditReports(request:options:)``
   public func listAuditReports(request: ListAuditReportsRequest) async throws
     -> GoogleCloudAuditManagerV1.ListAuditReportsResponse
   {
@@ -595,6 +855,14 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the audit reports for the organization, folder, or project that you
+  /// specify as the parent scope.
+  ///
+  /// @Snippet(path: "AuditManager_ListAuditReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listAuditReports(request:options:)``
   public func listAuditReportsByItems(
     request: ListAuditReportsRequest
   ) -> some AsyncSequence<AuditReport, any Swift.Error> & Sendable {
@@ -605,6 +873,10 @@ extension Clients.AuditManagerProtocol {
   /// specify as the parent scope.
   ///
   /// @Snippet(path: "AuditManager_ListAuditReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listAuditReports(request:options:)``
   public func listAuditReportsByItems(
     request: ListAuditReportsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AuditReport, any Swift.Error> & Sendable {
@@ -619,6 +891,14 @@ extension Clients.AuditManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the audit reports for the organization, folder, or project that you
+  /// specify as the parent scope.
+  ///
+  /// @Snippet(path: "AuditManager_ListAuditReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listAuditReports(request:options:)``
   public func listAuditReportsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AuditReport, any Swift.Error> & Sendable {
@@ -628,6 +908,13 @@ extension Clients.AuditManagerProtocol {
     return self.listAuditReportsByItems(request: request)
   }
 
+  /// Gets the full metadata and findings for an audit report.
+  ///
+  /// @Snippet(path: "AuditManager_GetAuditReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/getAuditReport(request:options:)``
   public func getAuditReport(request: GetAuditReportRequest) async throws
     -> GoogleCloudAuditManagerV1.AuditReport
   {
@@ -640,6 +927,13 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the full metadata and findings for an audit report.
+  ///
+  /// @Snippet(path: "AuditManager_GetAuditReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/getAuditReport(request:options:)``
   public func getAuditReport(
     name: Swift.String,
   ) async throws -> GoogleCloudAuditManagerV1.AuditReport {
@@ -649,6 +943,13 @@ extension Clients.AuditManagerProtocol {
     return try await self.getAuditReport(request: request)
   }
 
+  /// Gets a resource and its enrollment status.
+  ///
+  /// @Snippet(path: "AuditManager_GetResourceEnrollmentStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/getResourceEnrollmentStatus(request:options:)``
   public func getResourceEnrollmentStatus(request: GetResourceEnrollmentStatusRequest) async throws
     -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus
   {
@@ -661,6 +962,13 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a resource and its enrollment status.
+  ///
+  /// @Snippet(path: "AuditManager_GetResourceEnrollmentStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/getResourceEnrollmentStatus(request:options:)``
   public func getResourceEnrollmentStatus(
     name: Swift.String,
   ) async throws -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus {
@@ -670,6 +978,14 @@ extension Clients.AuditManagerProtocol {
     return try await self.getResourceEnrollmentStatus(request: request)
   }
 
+  /// Lists all the folders and projects in an organization or folder, along with
+  /// their enrollments.
+  ///
+  /// @Snippet(path: "AuditManager_ListResourceEnrollmentStatuses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listResourceEnrollmentStatuses(request:options:)``
   public func listResourceEnrollmentStatuses(request: ListResourceEnrollmentStatusesRequest)
     async throws -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse
   {
@@ -682,6 +998,14 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the folders and projects in an organization or folder, along with
+  /// their enrollments.
+  ///
+  /// @Snippet(path: "AuditManager_ListResourceEnrollmentStatuses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listResourceEnrollmentStatuses(request:options:)``
   public func listResourceEnrollmentStatusesByItems(
     request: ListResourceEnrollmentStatusesRequest
   ) -> some AsyncSequence<ResourceEnrollmentStatus, any Swift.Error> & Sendable {
@@ -692,6 +1016,10 @@ extension Clients.AuditManagerProtocol {
   /// their enrollments.
   ///
   /// @Snippet(path: "AuditManager_ListResourceEnrollmentStatuses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listResourceEnrollmentStatuses(request:options:)``
   public func listResourceEnrollmentStatusesByItems(
     request: ListResourceEnrollmentStatusesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ResourceEnrollmentStatus, any Swift.Error> & Sendable {
@@ -706,6 +1034,14 @@ extension Clients.AuditManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the folders and projects in an organization or folder, along with
+  /// their enrollments.
+  ///
+  /// @Snippet(path: "AuditManager_ListResourceEnrollmentStatuses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listResourceEnrollmentStatuses(request:options:)``
   public func listResourceEnrollmentStatusesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ResourceEnrollmentStatus, any Swift.Error> & Sendable {
@@ -715,6 +1051,14 @@ extension Clients.AuditManagerProtocol {
     return self.listResourceEnrollmentStatusesByItems(request: request)
   }
 
+  /// Lists the controls that you must implement to become compliant to a
+  /// regulatory standard.
+  ///
+  /// @Snippet(path: "AuditManager_ListControls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listControls(request:options:)``
   public func listControls(request: ListControlsRequest) async throws
     -> GoogleCloudAuditManagerV1.ListControlsResponse
   {
@@ -727,6 +1071,14 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the controls that you must implement to become compliant to a
+  /// regulatory standard.
+  ///
+  /// @Snippet(path: "AuditManager_ListControls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listControls(request:options:)``
   public func listControlsByItems(
     request: ListControlsRequest
   ) -> some AsyncSequence<Control, any Swift.Error> & Sendable {
@@ -737,6 +1089,10 @@ extension Clients.AuditManagerProtocol {
   /// regulatory standard.
   ///
   /// @Snippet(path: "AuditManager_ListControls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listControls(request:options:)``
   public func listControlsByItems(
     request: ListControlsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Control, any Swift.Error> & Sendable {
@@ -751,6 +1107,14 @@ extension Clients.AuditManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the controls that you must implement to become compliant to a
+  /// regulatory standard.
+  ///
+  /// @Snippet(path: "AuditManager_ListControls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listControls(request:options:)``
   public func listControlsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Control, any Swift.Error> & Sendable {
@@ -760,6 +1124,30 @@ extension Clients.AuditManagerProtocol {
     return self.listControlsByItems(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AuditManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -772,6 +1160,30 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AuditManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -798,6 +1210,10 @@ extension Clients.AuditManagerProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AuditManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -811,6 +1227,13 @@ extension Clients.AuditManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "AuditManager_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -823,6 +1246,15 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuditManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -835,6 +1267,15 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuditManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -846,6 +1287,10 @@ extension Clients.AuditManagerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AuditManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -859,6 +1304,15 @@ extension Clients.AuditManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuditManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -870,6 +1324,9 @@ extension Clients.AuditManagerProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -882,6 +1339,9 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -891,6 +1351,15 @@ extension Clients.AuditManagerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuditManager_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -901,6 +1370,15 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuditManager_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -910,6 +1388,15 @@ extension Clients.AuditManagerProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuditManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -920,6 +1407,15 @@ extension Clients.AuditManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuditManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuditManagerClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

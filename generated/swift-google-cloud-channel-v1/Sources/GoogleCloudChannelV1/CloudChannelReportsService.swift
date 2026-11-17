@@ -31,6 +31,10 @@ import Foundation
 /// instead.
 ///
 /// @Snippet(path: "CloudChannelReportsServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudChannelReportsServiceProtocol``
 @available(*, deprecated)
 public final class CloudChannelReportsServiceClient: Clients.CloudChannelReportsServiceProtocol,
   Sendable
@@ -87,6 +91,12 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   /// [google.cloud.channel.v1.RunReportJobResponse.report_job]: <doc:RunReportJobResponse/reportJob>
   ///
   /// @Snippet(path: "CloudChannelReportsService_RunReportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runReportJob(request:)``
+  /// - ``runReportJobPollingUntilDone(request:)``
+  /// - ``runReportJobPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func runReportJob(
     request: RunReportJobRequest, options: GoogleGax.RequestOptions
@@ -129,6 +139,12 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   /// [google.cloud.channel.v1.RunReportJobResponse.report_job]: <doc:RunReportJobResponse/reportJob>
   ///
   /// @Snippet(path: "CloudChannelReportsService_RunReportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runReportJobPollingUntilDone(request:)``
+  /// - ``runReportJob(request:)``
+  /// - ``runReportJob(request:options:)``
   @available(*, deprecated)
   public func runReportJobPollingUntilDone(
     request: RunReportJobRequest, options: GoogleGax.RequestOptions
@@ -165,6 +181,13 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   /// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:options:)>
   ///
   /// @Snippet(path: "CloudChannelReportsService_FetchReportResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchReportResults(request:)``
+  /// - ``fetchReportResultsByItems(request:)``
+  /// - ``fetchReportResultsByItems(request:options:)``
+  /// - ``fetchReportResultsByItems(reportJob:)``
   @available(*, deprecated)
   public func fetchReportResults(
     request: FetchReportResultsRequest, options: GoogleGax.RequestOptions
@@ -180,6 +203,13 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   /// instead.
   ///
   /// @Snippet(path: "CloudChannelReportsService_ListReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReports(request:)``
+  /// - ``listReportsByItems(request:)``
+  /// - ``listReportsByItems(request:options:)``
+  /// - ``listReportsByItems(parent:)``
   @available(*, deprecated)
   public func listReports(
     request: ListReportsRequest, options: GoogleGax.RequestOptions
@@ -192,6 +222,13 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudChannelReportsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -214,6 +251,11 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudChannelReportsService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -225,6 +267,11 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudChannelReportsService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -284,6 +331,45 @@ extension Clients {
 // Default implementations
 @available(*, deprecated)
 extension Clients.CloudChannelReportsServiceProtocol {
+  /// Begins generation of data for a given report. The report
+  /// identifier is a UID (for example, `613bf59q`).
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The user doesn't have access to this report.
+  /// * INVALID_ARGUMENT: Required request parameters are missing
+  ///   or invalid.
+  /// * NOT_FOUND: The report identifier was not found.
+  /// * INTERNAL: Any non-user error related to a technical issue
+  ///   in the backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue
+  ///   in the backend. Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata contains an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// To get the results of report generation, call
+  /// [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]
+  /// with the
+  /// [RunReportJobResponse.report_job][google.cloud.channel.v1.RunReportJobResponse.report_job].
+  ///
+  /// Deprecated: Please use [Export Channel Services data to
+  /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+  /// instead.
+  ///
+  /// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:options:)>
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  /// [google.cloud.channel.v1.RunReportJobResponse.report_job]: <doc:RunReportJobResponse/reportJob>
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_RunReportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/runReportJob(request:options:)``
   @available(*, deprecated)
   public func runReportJob(request: RunReportJobRequest) async throws -> GoogleLongRunning.Operation
   {
@@ -297,6 +383,45 @@ extension Clients.CloudChannelReportsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Begins generation of data for a given report. The report
+  /// identifier is a UID (for example, `613bf59q`).
+  ///
+  /// Possible error codes:
+  ///
+  /// * PERMISSION_DENIED: The user doesn't have access to this report.
+  /// * INVALID_ARGUMENT: Required request parameters are missing
+  ///   or invalid.
+  /// * NOT_FOUND: The report identifier was not found.
+  /// * INTERNAL: Any non-user error related to a technical issue
+  ///   in the backend. Contact Cloud Channel support.
+  /// * UNKNOWN: Any non-user error related to a technical issue
+  ///   in the backend. Contact Cloud Channel support.
+  ///
+  /// Return value:
+  /// The ID of a long-running operation.
+  ///
+  /// To get the results of the operation, call the GetOperation method of
+  /// CloudChannelOperationsService. The Operation metadata contains an
+  /// instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
+  ///
+  /// To get the results of report generation, call
+  /// [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]
+  /// with the
+  /// [RunReportJobResponse.report_job][google.cloud.channel.v1.RunReportJobResponse.report_job].
+  ///
+  /// Deprecated: Please use [Export Channel Services data to
+  /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+  /// instead.
+  ///
+  /// [google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]: <doc:CloudChannelReportsServiceClient/fetchReportResults(request:options:)>
+  /// [google.cloud.channel.v1.OperationMetadata]: <doc:OperationMetadata>
+  /// [google.cloud.channel.v1.RunReportJobResponse.report_job]: <doc:RunReportJobResponse/reportJob>
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_RunReportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/runReportJobPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func runReportJobPollingUntilDone(request: RunReportJobRequest) async throws
     -> RunReportJobResponse
@@ -311,6 +436,20 @@ extension Clients.CloudChannelReportsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves data generated by
+  /// [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
+  ///
+  /// Deprecated: Please use [Export Channel Services data to
+  /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+  /// instead.
+  ///
+  /// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:options:)>
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_FetchReportResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/fetchReportResults(request:options:)``
   @available(*, deprecated)
   public func fetchReportResults(request: FetchReportResultsRequest) async throws
     -> GoogleCloudChannelV1.FetchReportResultsResponse
@@ -325,6 +464,20 @@ extension Clients.CloudChannelReportsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves data generated by
+  /// [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
+  ///
+  /// Deprecated: Please use [Export Channel Services data to
+  /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+  /// instead.
+  ///
+  /// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:options:)>
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_FetchReportResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/fetchReportResults(request:options:)``
   @available(*, deprecated)
   public func fetchReportResultsByItems(
     request: FetchReportResultsRequest
@@ -342,6 +495,10 @@ extension Clients.CloudChannelReportsServiceProtocol {
   /// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:options:)>
   ///
   /// @Snippet(path: "CloudChannelReportsService_FetchReportResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/fetchReportResults(request:options:)``
   @available(*, deprecated)
   public func fetchReportResultsByItems(
     request: FetchReportResultsRequest, options: GoogleGax.RequestOptions
@@ -357,6 +514,20 @@ extension Clients.CloudChannelReportsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieves data generated by
+  /// [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
+  ///
+  /// Deprecated: Please use [Export Channel Services data to
+  /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+  /// instead.
+  ///
+  /// [google.cloud.channel.v1.CloudChannelReportsService.RunReportJob]: <doc:CloudChannelReportsServiceClient/runReportJob(request:options:)>
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_FetchReportResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/fetchReportResults(request:options:)``
   @available(*, deprecated)
   public func fetchReportResultsByItems(
     reportJob: Swift.String,
@@ -367,6 +538,18 @@ extension Clients.CloudChannelReportsServiceProtocol {
     return self.fetchReportResultsByItems(request: request)
   }
 
+  /// Lists the reports that RunReportJob can run. These reports include an ID,
+  /// a description, and the list of columns that will be in the result.
+  ///
+  /// Deprecated: Please use [Export Channel Services data to
+  /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+  /// instead.
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_ListReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/listReports(request:options:)``
   @available(*, deprecated)
   public func listReports(request: ListReportsRequest) async throws
     -> GoogleCloudChannelV1.ListReportsResponse
@@ -381,6 +564,18 @@ extension Clients.CloudChannelReportsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the reports that RunReportJob can run. These reports include an ID,
+  /// a description, and the list of columns that will be in the result.
+  ///
+  /// Deprecated: Please use [Export Channel Services data to
+  /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+  /// instead.
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_ListReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/listReports(request:options:)``
   @available(*, deprecated)
   public func listReportsByItems(
     request: ListReportsRequest
@@ -396,6 +591,10 @@ extension Clients.CloudChannelReportsServiceProtocol {
   /// instead.
   ///
   /// @Snippet(path: "CloudChannelReportsService_ListReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/listReports(request:options:)``
   @available(*, deprecated)
   public func listReportsByItems(
     request: ListReportsRequest, options: GoogleGax.RequestOptions
@@ -410,6 +609,18 @@ extension Clients.CloudChannelReportsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the reports that RunReportJob can run. These reports include an ID,
+  /// a description, and the list of columns that will be in the result.
+  ///
+  /// Deprecated: Please use [Export Channel Services data to
+  /// BigQuery](https://cloud.google.com/channel/docs/rebilling/export-data-to-bigquery)
+  /// instead.
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_ListReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/listReports(request:options:)``
   @available(*, deprecated)
   public func listReportsByItems(
     parent: Swift.String,
@@ -420,6 +631,15 @@ extension Clients.CloudChannelReportsServiceProtocol {
     return self.listReportsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -432,6 +652,15 @@ extension Clients.CloudChannelReportsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -443,6 +672,10 @@ extension Clients.CloudChannelReportsServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudChannelReportsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -456,6 +689,15 @@ extension Clients.CloudChannelReportsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -467,6 +709,9 @@ extension Clients.CloudChannelReportsServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -479,6 +724,9 @@ extension Clients.CloudChannelReportsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -488,6 +736,15 @@ extension Clients.CloudChannelReportsServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -498,6 +755,15 @@ extension Clients.CloudChannelReportsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -507,6 +773,15 @@ extension Clients.CloudChannelReportsServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -517,6 +792,15 @@ extension Clients.CloudChannelReportsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudChannelReportsService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudChannelReportsServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

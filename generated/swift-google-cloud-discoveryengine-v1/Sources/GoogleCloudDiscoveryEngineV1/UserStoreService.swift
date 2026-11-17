@@ -26,6 +26,10 @@
   /// Service for managing User Stores.
   ///
   /// @Snippet(path: "UserStoreServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/UserStoreServiceProtocol``
   public final class UserStoreServiceClient: Clients.UserStoreServiceProtocol, Sendable {
     let inner: any Clients.UserStoreServiceStub
 
@@ -42,6 +46,11 @@
     /// Gets the User Store.
     ///
     /// @Snippet(path: "UserStoreService_GetUserStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getUserStore(request:)``
+    /// - ``getUserStore(name:)``
     public func getUserStore(
       request: GetUserStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.UserStore {
@@ -51,6 +60,11 @@
     /// Updates the User Store.
     ///
     /// @Snippet(path: "UserStoreService_UpdateUserStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateUserStore(request:)``
+    /// - ``updateUserStore(userStore:updateMask:)``
     public func updateUserStore(
       request: UpdateUserStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.UserStore {
@@ -62,6 +76,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "UserStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -84,6 +105,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "UserStoreService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -122,6 +148,13 @@
 
   // Default implementations
   extension Clients.UserStoreServiceProtocol {
+    /// Gets the User Store.
+    ///
+    /// @Snippet(path: "UserStoreService_GetUserStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserStoreServiceClient/getUserStore(request:options:)``
     public func getUserStore(request: GetUserStoreRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.UserStore
     {
@@ -134,6 +167,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the User Store.
+    ///
+    /// @Snippet(path: "UserStoreService_GetUserStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserStoreServiceClient/getUserStore(request:options:)``
     public func getUserStore(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.UserStore {
@@ -143,6 +183,13 @@
       return try await self.getUserStore(request: request)
     }
 
+    /// Updates the User Store.
+    ///
+    /// @Snippet(path: "UserStoreService_UpdateUserStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserStoreServiceClient/updateUserStore(request:options:)``
     public func updateUserStore(request: UpdateUserStoreRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.UserStore
     {
@@ -155,6 +202,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the User Store.
+    ///
+    /// @Snippet(path: "UserStoreService_UpdateUserStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserStoreServiceClient/updateUserStore(request:options:)``
     public func updateUserStore(
       userStore: UserStore?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -166,6 +220,15 @@
       return try await self.updateUserStore(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserStoreServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -178,6 +241,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserStoreServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -189,6 +261,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "UserStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserStoreServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -202,6 +278,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserStoreServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -213,6 +298,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -225,6 +313,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -234,6 +325,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserStoreService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserStoreServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -244,6 +344,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserStoreService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserStoreServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

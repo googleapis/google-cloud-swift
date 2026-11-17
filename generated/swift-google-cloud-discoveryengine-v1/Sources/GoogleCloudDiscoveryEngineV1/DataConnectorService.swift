@@ -26,6 +26,10 @@
   /// Service for data connector management.
   ///
   /// @Snippet(path: "DataConnectorServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/DataConnectorServiceProtocol``
   public final class DataConnectorServiceClient: Clients.DataConnectorServiceProtocol, Sendable {
     let inner: any Clients.DataConnectorServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -57,6 +61,13 @@
     /// [google.cloud.discoveryengine.v1.DataConnector]: <doc:DataConnector>
     ///
     /// @Snippet(path: "DataConnectorService_SetUpDataConnector")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setUpDataConnector(request:)``
+    /// - ``setUpDataConnectorPollingUntilDone(request:)``
+    /// - ``setUpDataConnectorPollingUntilDone(request:options:)``
+    /// - ``setUpDataConnectorPollingUntilDone(parent:collectionId:collectionDisplayName:dataConnector:)``
     public func setUpDataConnector(
       request: SetUpDataConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -76,6 +87,13 @@
     /// [google.cloud.discoveryengine.v1.DataConnector]: <doc:DataConnector>
     ///
     /// @Snippet(path: "DataConnectorService_SetUpDataConnector")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setUpDataConnectorPollingUntilDone(request:)``
+    /// - ``setUpDataConnectorPollingUntilDone(parent:collectionId:collectionDisplayName:dataConnector:)``
+    /// - ``setUpDataConnector(request:)``
+    /// - ``setUpDataConnector(request:options:)``
     public func setUpDataConnectorPollingUntilDone(
       request: SetUpDataConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> DataConnector {
@@ -110,6 +128,11 @@
     /// [google.cloud.discoveryengine.v1.DataConnector]: <doc:DataConnector>
     ///
     /// @Snippet(path: "DataConnectorService_GetDataConnector")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getDataConnector(request:)``
+    /// - ``getDataConnector(name:)``
     public func getDataConnector(
       request: GetDataConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.DataConnector {
@@ -121,6 +144,11 @@
     /// [google.cloud.discoveryengine.v1.DataConnector]: <doc:DataConnector>
     ///
     /// @Snippet(path: "DataConnectorService_UpdateDataConnector")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateDataConnector(request:)``
+    /// - ``updateDataConnector(dataConnector:updateMask:)``
     public func updateDataConnector(
       request: UpdateDataConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.DataConnector {
@@ -132,6 +160,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DataConnectorService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -154,6 +189,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DataConnectorService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -202,6 +242,23 @@
 
   // Default implementations
   extension Clients.DataConnectorServiceProtocol {
+    /// Creates a [Collection][google.cloud.discoveryengine.v1.Collection] and sets
+    /// up the [DataConnector][google.cloud.discoveryengine.v1.DataConnector] for
+    /// it. To stop a
+    /// [DataConnector][google.cloud.discoveryengine.v1.DataConnector] after setup,
+    /// use the
+    /// [CollectionService.DeleteCollection][google.cloud.discoveryengine.v1.CollectionService.DeleteCollection]
+    /// method.
+    ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
+    /// [google.cloud.discoveryengine.v1.CollectionService.DeleteCollection]: <doc:CollectionServiceClient/deleteCollection(request:options:)>
+    /// [google.cloud.discoveryengine.v1.DataConnector]: <doc:DataConnector>
+    ///
+    /// @Snippet(path: "DataConnectorService_SetUpDataConnector")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/setUpDataConnector(request:options:)``
     public func setUpDataConnector(request: SetUpDataConnectorRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -214,6 +271,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [Collection][google.cloud.discoveryengine.v1.Collection] and sets
+    /// up the [DataConnector][google.cloud.discoveryengine.v1.DataConnector] for
+    /// it. To stop a
+    /// [DataConnector][google.cloud.discoveryengine.v1.DataConnector] after setup,
+    /// use the
+    /// [CollectionService.DeleteCollection][google.cloud.discoveryengine.v1.CollectionService.DeleteCollection]
+    /// method.
+    ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
+    /// [google.cloud.discoveryengine.v1.CollectionService.DeleteCollection]: <doc:CollectionServiceClient/deleteCollection(request:options:)>
+    /// [google.cloud.discoveryengine.v1.DataConnector]: <doc:DataConnector>
+    ///
+    /// @Snippet(path: "DataConnectorService_SetUpDataConnector")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/setUpDataConnectorPollingUntilDone(request:options:)``
     public func setUpDataConnectorPollingUntilDone(request: SetUpDataConnectorRequest) async throws
       -> DataConnector
     {
@@ -226,6 +300,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [Collection][google.cloud.discoveryengine.v1.Collection] and sets
+    /// up the [DataConnector][google.cloud.discoveryengine.v1.DataConnector] for
+    /// it. To stop a
+    /// [DataConnector][google.cloud.discoveryengine.v1.DataConnector] after setup,
+    /// use the
+    /// [CollectionService.DeleteCollection][google.cloud.discoveryengine.v1.CollectionService.DeleteCollection]
+    /// method.
+    ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
+    /// [google.cloud.discoveryengine.v1.CollectionService.DeleteCollection]: <doc:CollectionServiceClient/deleteCollection(request:options:)>
+    /// [google.cloud.discoveryengine.v1.DataConnector]: <doc:DataConnector>
+    ///
+    /// @Snippet(path: "DataConnectorService_SetUpDataConnector")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/setUpDataConnectorPollingUntilDone(request:options:)``
     public func setUpDataConnectorPollingUntilDone(
       parent: Swift.String,
       collectionId: Swift.String,
@@ -241,6 +332,19 @@
       return try await self.setUpDataConnectorPollingUntilDone(request: request)
     }
 
+    /// Gets the [DataConnector][google.cloud.discoveryengine.v1.DataConnector].
+    /// [DataConnector][google.cloud.discoveryengine.v1.DataConnector] is a
+    /// singleton resource for each
+    /// [Collection][google.cloud.discoveryengine.v1.Collection].
+    ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
+    /// [google.cloud.discoveryengine.v1.DataConnector]: <doc:DataConnector>
+    ///
+    /// @Snippet(path: "DataConnectorService_GetDataConnector")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/getDataConnector(request:options:)``
     public func getDataConnector(request: GetDataConnectorRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.DataConnector
     {
@@ -253,6 +357,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the [DataConnector][google.cloud.discoveryengine.v1.DataConnector].
+    /// [DataConnector][google.cloud.discoveryengine.v1.DataConnector] is a
+    /// singleton resource for each
+    /// [Collection][google.cloud.discoveryengine.v1.Collection].
+    ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
+    /// [google.cloud.discoveryengine.v1.DataConnector]: <doc:DataConnector>
+    ///
+    /// @Snippet(path: "DataConnectorService_GetDataConnector")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/getDataConnector(request:options:)``
     public func getDataConnector(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.DataConnector {
@@ -262,6 +379,15 @@
       return try await self.getDataConnector(request: request)
     }
 
+    /// Updates a [DataConnector][google.cloud.discoveryengine.v1.DataConnector].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataConnector]: <doc:DataConnector>
+    ///
+    /// @Snippet(path: "DataConnectorService_UpdateDataConnector")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/updateDataConnector(request:options:)``
     public func updateDataConnector(request: UpdateDataConnectorRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.DataConnector
     {
@@ -274,6 +400,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a [DataConnector][google.cloud.discoveryengine.v1.DataConnector].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataConnector]: <doc:DataConnector>
+    ///
+    /// @Snippet(path: "DataConnectorService_UpdateDataConnector")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/updateDataConnector(request:options:)``
     public func updateDataConnector(
       dataConnector: DataConnector?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -285,6 +420,15 @@
       return try await self.updateDataConnector(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DataConnectorService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -297,6 +441,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DataConnectorService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -308,6 +461,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DataConnectorService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -321,6 +478,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DataConnectorService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -332,6 +498,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -344,6 +513,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -353,6 +525,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DataConnectorService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -363,6 +544,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DataConnectorService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataConnectorServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

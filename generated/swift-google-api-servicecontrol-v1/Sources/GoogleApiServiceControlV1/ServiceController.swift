@@ -27,6 +27,10 @@ import Foundation
 /// service](https://cloud.google.com/service-management/reference/rpc/google.api/servicemanagement.v1#google.api.servicemanagement.v1.ManagedService).
 ///
 /// @Snippet(path: "ServiceControllerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ServiceControllerProtocol``
 public final class ServiceControllerClient: Clients.ServiceControllerProtocol, Sendable {
   let inner: any Clients.ServiceControllerStub
 
@@ -61,6 +65,10 @@ public final class ServiceControllerClient: Clients.ServiceControllerProtocol, S
   /// [google.api.servicecontrol.v1.CheckRequest]: <doc:CheckRequest>
   ///
   /// @Snippet(path: "ServiceController_Check")
+  ///
+  /// ## See Also
+  ///
+  /// - ``check(request:)``
   public func check(
     request: CheckRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceControlV1.CheckResponse {
@@ -86,6 +94,10 @@ public final class ServiceControllerClient: Clients.ServiceControllerProtocol, S
   /// [google.api.servicecontrol.v1.ReportRequest]: <doc:ReportRequest>
   ///
   /// @Snippet(path: "ServiceController_Report")
+  ///
+  /// ## See Also
+  ///
+  /// - ``report(request:)``
   public func report(
     request: ReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceControlV1.ReportResponse {
@@ -114,6 +126,31 @@ extension Clients {
 
 // Default implementations
 extension Clients.ServiceControllerProtocol {
+  /// Checks whether an operation on a service should be allowed to proceed
+  /// based on the configuration of the service and related policies. It must be
+  /// called before the operation is executed.
+  ///
+  /// If feasible, the client should cache the check results and reuse them for
+  /// 60 seconds. In case of any server errors, the client should rely on the
+  /// cached results for much longer time to avoid outage.
+  /// WARNING: There is general 60s delay for the configuration and policy
+  /// propagation, therefore callers MUST NOT depend on the `Check` method having
+  /// the latest policy information.
+  ///
+  /// NOTE: the [CheckRequest][google.api.servicecontrol.v1.CheckRequest] has the
+  /// size limit (wire-format byte size) of 1MB.
+  ///
+  /// This method requires the `servicemanagement.services.check` permission
+  /// on the specified service. For more information, see
+  /// [Cloud IAM](https://cloud.google.com/iam).
+  ///
+  /// [google.api.servicecontrol.v1.CheckRequest]: <doc:CheckRequest>
+  ///
+  /// @Snippet(path: "ServiceController_Check")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceControllerClient/check(request:options:)``
   public func check(request: CheckRequest) async throws -> GoogleApiServiceControlV1.CheckResponse {
     try await self.check(request: request, options: .init())
   }
@@ -124,6 +161,29 @@ extension Clients.ServiceControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reports operation results to Google Service Control, such as logs and
+  /// metrics. It should be called after an operation is completed.
+  ///
+  /// If feasible, the client should aggregate reporting data for up to 5
+  /// seconds to reduce API traffic. Limiting aggregation to 5 seconds is to
+  /// reduce data loss during client crashes. Clients should carefully choose
+  /// the aggregation time window to avoid data loss risk more than 0.01%
+  /// for business and compliance reasons.
+  ///
+  /// NOTE: the [ReportRequest][google.api.servicecontrol.v1.ReportRequest] has
+  /// the size limit (wire-format byte size) of 1MB.
+  ///
+  /// This method requires the `servicemanagement.services.report` permission
+  /// on the specified service. For more information, see
+  /// [Google Cloud IAM](https://cloud.google.com/iam).
+  ///
+  /// [google.api.servicecontrol.v1.ReportRequest]: <doc:ReportRequest>
+  ///
+  /// @Snippet(path: "ServiceController_Report")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceControllerClient/report(request:options:)``
   public func report(request: ReportRequest) async throws
     -> GoogleApiServiceControlV1.ReportResponse
   {

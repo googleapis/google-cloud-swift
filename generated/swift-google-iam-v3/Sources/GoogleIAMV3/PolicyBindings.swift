@@ -26,6 +26,10 @@ import Foundation
 /// bindings.
 ///
 /// @Snippet(path: "PolicyBindingsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/PolicyBindingsProtocol``
 public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendable {
   let inner: any Clients.PolicyBindingsStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// After the binding is created, the policy is applied to the target.
   ///
   /// @Snippet(path: "PolicyBindings_CreatePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPolicyBinding(request:)``
+  /// - ``createPolicyBindingPollingUntilDone(request:)``
+  /// - ``createPolicyBindingPollingUntilDone(request:options:)``
+  /// - ``createPolicyBindingPollingUntilDone(parent:policyBinding:policyBindingId:)``
   public func createPolicyBinding(
     request: CreatePolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -59,6 +70,13 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// After the binding is created, the policy is applied to the target.
   ///
   /// @Snippet(path: "PolicyBindings_CreatePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPolicyBindingPollingUntilDone(request:)``
+  /// - ``createPolicyBindingPollingUntilDone(parent:policyBinding:policyBindingId:)``
+  /// - ``createPolicyBinding(request:)``
+  /// - ``createPolicyBinding(request:options:)``
   public func createPolicyBindingPollingUntilDone(
     request: CreatePolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> PolicyBinding {
@@ -87,6 +105,11 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// Gets a policy binding.
   ///
   /// @Snippet(path: "PolicyBindings_GetPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPolicyBinding(request:)``
+  /// - ``getPolicyBinding(name:)``
   public func getPolicyBinding(
     request: GetPolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.PolicyBinding {
@@ -98,6 +121,13 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// binding to update. Target and policy are immutable and cannot be updated.
   ///
   /// @Snippet(path: "PolicyBindings_UpdatePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePolicyBinding(request:)``
+  /// - ``updatePolicyBindingPollingUntilDone(request:)``
+  /// - ``updatePolicyBindingPollingUntilDone(request:options:)``
+  /// - ``updatePolicyBindingPollingUntilDone(policyBinding:updateMask:)``
   public func updatePolicyBinding(
     request: UpdatePolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -109,6 +139,13 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// binding to update. Target and policy are immutable and cannot be updated.
   ///
   /// @Snippet(path: "PolicyBindings_UpdatePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePolicyBindingPollingUntilDone(request:)``
+  /// - ``updatePolicyBindingPollingUntilDone(policyBinding:updateMask:)``
+  /// - ``updatePolicyBinding(request:)``
+  /// - ``updatePolicyBinding(request:options:)``
   public func updatePolicyBindingPollingUntilDone(
     request: UpdatePolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> PolicyBinding {
@@ -139,6 +176,13 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// After the binding is deleted, the policy no longer applies to the target.
   ///
   /// @Snippet(path: "PolicyBindings_DeletePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePolicyBinding(request:)``
+  /// - ``deletePolicyBindingPollingUntilDone(request:)``
+  /// - ``deletePolicyBindingPollingUntilDone(request:options:)``
+  /// - ``deletePolicyBindingPollingUntilDone(name:)``
   public func deletePolicyBinding(
     request: DeletePolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,6 +194,13 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// After the binding is deleted, the policy no longer applies to the target.
   ///
   /// @Snippet(path: "PolicyBindings_DeletePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePolicyBindingPollingUntilDone(request:)``
+  /// - ``deletePolicyBindingPollingUntilDone(name:)``
+  /// - ``deletePolicyBinding(request:)``
+  /// - ``deletePolicyBinding(request:options:)``
   public func deletePolicyBindingPollingUntilDone(
     request: DeletePolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -177,6 +228,13 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// Lists policy bindings.
   ///
   /// @Snippet(path: "PolicyBindings_ListPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPolicyBindings(request:)``
+  /// - ``listPolicyBindingsByItems(request:)``
+  /// - ``listPolicyBindingsByItems(request:options:)``
+  /// - ``listPolicyBindingsByItems(parent:)``
   public func listPolicyBindings(
     request: ListPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.ListPolicyBindingsResponse {
@@ -187,6 +245,13 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// directly to target.
   ///
   /// @Snippet(path: "PolicyBindings_SearchTargetPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchTargetPolicyBindings(request:)``
+  /// - ``searchTargetPolicyBindingsByItems(request:)``
+  /// - ``searchTargetPolicyBindingsByItems(request:options:)``
+  /// - ``searchTargetPolicyBindingsByItems(parent:target:)``
   public func searchTargetPolicyBindings(
     request: SearchTargetPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.SearchTargetPolicyBindingsResponse {
@@ -261,6 +326,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.PolicyBindingsProtocol {
+  /// Creates a policy binding and returns a long-running operation.
+  /// Callers will need the IAM permissions on both the policy and target.
+  /// After the binding is created, the policy is applied to the target.
+  ///
+  /// @Snippet(path: "PolicyBindings_CreatePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/createPolicyBinding(request:options:)``
   public func createPolicyBinding(request: CreatePolicyBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -273,6 +347,15 @@ extension Clients.PolicyBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a policy binding and returns a long-running operation.
+  /// Callers will need the IAM permissions on both the policy and target.
+  /// After the binding is created, the policy is applied to the target.
+  ///
+  /// @Snippet(path: "PolicyBindings_CreatePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/createPolicyBindingPollingUntilDone(request:options:)``
   public func createPolicyBindingPollingUntilDone(request: CreatePolicyBindingRequest) async throws
     -> PolicyBinding
   {
@@ -285,6 +368,15 @@ extension Clients.PolicyBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a policy binding and returns a long-running operation.
+  /// Callers will need the IAM permissions on both the policy and target.
+  /// After the binding is created, the policy is applied to the target.
+  ///
+  /// @Snippet(path: "PolicyBindings_CreatePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/createPolicyBindingPollingUntilDone(request:options:)``
   public func createPolicyBindingPollingUntilDone(
     parent: Swift.String,
     policyBinding: PolicyBinding?,
@@ -298,6 +390,13 @@ extension Clients.PolicyBindingsProtocol {
     return try await self.createPolicyBindingPollingUntilDone(request: request)
   }
 
+  /// Gets a policy binding.
+  ///
+  /// @Snippet(path: "PolicyBindings_GetPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/getPolicyBinding(request:options:)``
   public func getPolicyBinding(request: GetPolicyBindingRequest) async throws
     -> GoogleIAMV3.PolicyBinding
   {
@@ -310,6 +409,13 @@ extension Clients.PolicyBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a policy binding.
+  ///
+  /// @Snippet(path: "PolicyBindings_GetPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/getPolicyBinding(request:options:)``
   public func getPolicyBinding(
     name: Swift.String,
   ) async throws -> GoogleIAMV3.PolicyBinding {
@@ -319,6 +425,15 @@ extension Clients.PolicyBindingsProtocol {
     return try await self.getPolicyBinding(request: request)
   }
 
+  /// Updates a policy binding and returns a long-running operation.
+  /// Callers will need the IAM permissions on the policy and target in the
+  /// binding to update. Target and policy are immutable and cannot be updated.
+  ///
+  /// @Snippet(path: "PolicyBindings_UpdatePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/updatePolicyBinding(request:options:)``
   public func updatePolicyBinding(request: UpdatePolicyBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -331,6 +446,15 @@ extension Clients.PolicyBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a policy binding and returns a long-running operation.
+  /// Callers will need the IAM permissions on the policy and target in the
+  /// binding to update. Target and policy are immutable and cannot be updated.
+  ///
+  /// @Snippet(path: "PolicyBindings_UpdatePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/updatePolicyBindingPollingUntilDone(request:options:)``
   public func updatePolicyBindingPollingUntilDone(request: UpdatePolicyBindingRequest) async throws
     -> PolicyBinding
   {
@@ -343,6 +467,15 @@ extension Clients.PolicyBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a policy binding and returns a long-running operation.
+  /// Callers will need the IAM permissions on the policy and target in the
+  /// binding to update. Target and policy are immutable and cannot be updated.
+  ///
+  /// @Snippet(path: "PolicyBindings_UpdatePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/updatePolicyBindingPollingUntilDone(request:options:)``
   public func updatePolicyBindingPollingUntilDone(
     policyBinding: PolicyBinding?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -354,6 +487,15 @@ extension Clients.PolicyBindingsProtocol {
     return try await self.updatePolicyBindingPollingUntilDone(request: request)
   }
 
+  /// Deletes a policy binding and returns a long-running operation.
+  /// Callers will need the IAM permissions on both the policy and target.
+  /// After the binding is deleted, the policy no longer applies to the target.
+  ///
+  /// @Snippet(path: "PolicyBindings_DeletePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/deletePolicyBinding(request:options:)``
   public func deletePolicyBinding(request: DeletePolicyBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -366,6 +508,15 @@ extension Clients.PolicyBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a policy binding and returns a long-running operation.
+  /// Callers will need the IAM permissions on both the policy and target.
+  /// After the binding is deleted, the policy no longer applies to the target.
+  ///
+  /// @Snippet(path: "PolicyBindings_DeletePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/deletePolicyBindingPollingUntilDone(request:options:)``
   public func deletePolicyBindingPollingUntilDone(request: DeletePolicyBindingRequest) async throws
   {
     try await self.deletePolicyBindingPollingUntilDone(request: request, options: .init())
@@ -377,6 +528,15 @@ extension Clients.PolicyBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a policy binding and returns a long-running operation.
+  /// Callers will need the IAM permissions on both the policy and target.
+  /// After the binding is deleted, the policy no longer applies to the target.
+  ///
+  /// @Snippet(path: "PolicyBindings_DeletePolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/deletePolicyBindingPollingUntilDone(request:options:)``
   public func deletePolicyBindingPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -386,6 +546,13 @@ extension Clients.PolicyBindingsProtocol {
     try await self.deletePolicyBindingPollingUntilDone(request: request)
   }
 
+  /// Lists policy bindings.
+  ///
+  /// @Snippet(path: "PolicyBindings_ListPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/listPolicyBindings(request:options:)``
   public func listPolicyBindings(request: ListPolicyBindingsRequest) async throws
     -> GoogleIAMV3.ListPolicyBindingsResponse
   {
@@ -398,6 +565,13 @@ extension Clients.PolicyBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists policy bindings.
+  ///
+  /// @Snippet(path: "PolicyBindings_ListPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/listPolicyBindings(request:options:)``
   public func listPolicyBindingsByItems(
     request: ListPolicyBindingsRequest
   ) -> some AsyncSequence<PolicyBinding, any Swift.Error> & Sendable {
@@ -407,6 +581,10 @@ extension Clients.PolicyBindingsProtocol {
   /// Lists policy bindings.
   ///
   /// @Snippet(path: "PolicyBindings_ListPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/listPolicyBindings(request:options:)``
   public func listPolicyBindingsByItems(
     request: ListPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PolicyBinding, any Swift.Error> & Sendable {
@@ -420,6 +598,13 @@ extension Clients.PolicyBindingsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists policy bindings.
+  ///
+  /// @Snippet(path: "PolicyBindings_ListPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/listPolicyBindings(request:options:)``
   public func listPolicyBindingsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<PolicyBinding, any Swift.Error> & Sendable {
@@ -429,6 +614,14 @@ extension Clients.PolicyBindingsProtocol {
     return self.listPolicyBindingsByItems(request: request)
   }
 
+  /// Search policy bindings by target. Returns all policy binding objects bound
+  /// directly to target.
+  ///
+  /// @Snippet(path: "PolicyBindings_SearchTargetPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/searchTargetPolicyBindings(request:options:)``
   public func searchTargetPolicyBindings(request: SearchTargetPolicyBindingsRequest) async throws
     -> GoogleIAMV3.SearchTargetPolicyBindingsResponse
   {
@@ -441,6 +634,14 @@ extension Clients.PolicyBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Search policy bindings by target. Returns all policy binding objects bound
+  /// directly to target.
+  ///
+  /// @Snippet(path: "PolicyBindings_SearchTargetPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/searchTargetPolicyBindings(request:options:)``
   public func searchTargetPolicyBindingsByItems(
     request: SearchTargetPolicyBindingsRequest
   ) -> some AsyncSequence<PolicyBinding, any Swift.Error> & Sendable {
@@ -451,6 +652,10 @@ extension Clients.PolicyBindingsProtocol {
   /// directly to target.
   ///
   /// @Snippet(path: "PolicyBindings_SearchTargetPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/searchTargetPolicyBindings(request:options:)``
   public func searchTargetPolicyBindingsByItems(
     request: SearchTargetPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PolicyBinding, any Swift.Error> & Sendable {
@@ -465,6 +670,14 @@ extension Clients.PolicyBindingsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Search policy bindings by target. Returns all policy binding objects bound
+  /// directly to target.
+  ///
+  /// @Snippet(path: "PolicyBindings_SearchTargetPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyBindingsClient/searchTargetPolicyBindings(request:options:)``
   public func searchTargetPolicyBindingsByItems(
     parent: Swift.String,
     target: Swift.String,
@@ -476,6 +689,9 @@ extension Clients.PolicyBindingsProtocol {
     return self.searchTargetPolicyBindingsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -488,6 +704,9 @@ extension Clients.PolicyBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

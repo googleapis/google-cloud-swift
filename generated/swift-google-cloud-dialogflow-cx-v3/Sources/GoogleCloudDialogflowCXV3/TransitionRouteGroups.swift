@@ -30,6 +30,10 @@
   /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
   ///
   /// @Snippet(path: "TransitionRouteGroupsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/TransitionRouteGroupsProtocol``
   public final class TransitionRouteGroupsClient: Clients.TransitionRouteGroupsProtocol, Sendable {
     let inner: any Clients.TransitionRouteGroupsStub
 
@@ -47,6 +51,13 @@
     /// Returns the list of all transition route groups in the specified flow.
     ///
     /// @Snippet(path: "TransitionRouteGroups_ListTransitionRouteGroups")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listTransitionRouteGroups(request:)``
+    /// - ``listTransitionRouteGroupsByItems(request:)``
+    /// - ``listTransitionRouteGroupsByItems(request:options:)``
+    /// - ``listTransitionRouteGroupsByItems(parent:)``
     public func listTransitionRouteGroups(
       request: ListTransitionRouteGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListTransitionRouteGroupsResponse {
@@ -59,6 +70,11 @@
     /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
     ///
     /// @Snippet(path: "TransitionRouteGroups_GetTransitionRouteGroup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getTransitionRouteGroup(request:)``
+    /// - ``getTransitionRouteGroup(name:)``
     public func getTransitionRouteGroup(
       request: GetTransitionRouteGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.TransitionRouteGroup {
@@ -76,6 +92,11 @@
     /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
     ///
     /// @Snippet(path: "TransitionRouteGroups_CreateTransitionRouteGroup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createTransitionRouteGroup(request:)``
+    /// - ``createTransitionRouteGroup(parent:transitionRouteGroup:)``
     public func createTransitionRouteGroup(
       request: CreateTransitionRouteGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.TransitionRouteGroup {
@@ -92,6 +113,11 @@
     /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
     ///
     /// @Snippet(path: "TransitionRouteGroups_UpdateTransitionRouteGroup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateTransitionRouteGroup(request:)``
+    /// - ``updateTransitionRouteGroup(transitionRouteGroup:updateMask:)``
     public func updateTransitionRouteGroup(
       request: UpdateTransitionRouteGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.TransitionRouteGroup {
@@ -108,6 +134,11 @@
     /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
     ///
     /// @Snippet(path: "TransitionRouteGroups_DeleteTransitionRouteGroup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTransitionRouteGroup(request:)``
+    /// - ``deleteTransitionRouteGroup(name:)``
     public func deleteTransitionRouteGroup(
       request: DeleteTransitionRouteGroupRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -134,6 +165,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "TransitionRouteGroups_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -143,6 +180,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "TransitionRouteGroups_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -154,6 +195,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "TransitionRouteGroups_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -176,6 +224,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "TransitionRouteGroups_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -239,6 +292,13 @@
 
   // Default implementations
   extension Clients.TransitionRouteGroupsProtocol {
+    /// Returns the list of all transition route groups in the specified flow.
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_ListTransitionRouteGroups")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/listTransitionRouteGroups(request:options:)``
     public func listTransitionRouteGroups(request: ListTransitionRouteGroupsRequest) async throws
       -> GoogleCloudDialogflowCXV3.ListTransitionRouteGroupsResponse
     {
@@ -251,6 +311,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of all transition route groups in the specified flow.
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_ListTransitionRouteGroups")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/listTransitionRouteGroups(request:options:)``
     public func listTransitionRouteGroupsByItems(
       request: ListTransitionRouteGroupsRequest
     ) -> some AsyncSequence<TransitionRouteGroup, any Swift.Error> & Sendable {
@@ -260,6 +327,10 @@
     /// Returns the list of all transition route groups in the specified flow.
     ///
     /// @Snippet(path: "TransitionRouteGroups_ListTransitionRouteGroups")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/listTransitionRouteGroups(request:options:)``
     public func listTransitionRouteGroupsByItems(
       request: ListTransitionRouteGroupsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TransitionRouteGroup, any Swift.Error> & Sendable {
@@ -274,6 +345,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of all transition route groups in the specified flow.
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_ListTransitionRouteGroups")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/listTransitionRouteGroups(request:options:)``
     public func listTransitionRouteGroupsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<TransitionRouteGroup, any Swift.Error> & Sendable {
@@ -283,6 +361,16 @@
       return self.listTransitionRouteGroupsByItems(request: request)
     }
 
+    /// Retrieves the specified
+    /// [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_GetTransitionRouteGroup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/getTransitionRouteGroup(request:options:)``
     public func getTransitionRouteGroup(request: GetTransitionRouteGroupRequest) async throws
       -> GoogleCloudDialogflowCXV3.TransitionRouteGroup
     {
@@ -295,6 +383,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified
+    /// [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_GetTransitionRouteGroup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/getTransitionRouteGroup(request:options:)``
     public func getTransitionRouteGroup(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.TransitionRouteGroup {
@@ -304,6 +402,21 @@
       return try await self.getTransitionRouteGroup(request: request)
     }
 
+    /// Creates an
+    /// [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
+    /// in the specified flow.
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_CreateTransitionRouteGroup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/createTransitionRouteGroup(request:options:)``
     public func createTransitionRouteGroup(request: CreateTransitionRouteGroupRequest) async throws
       -> GoogleCloudDialogflowCXV3.TransitionRouteGroup
     {
@@ -316,6 +429,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an
+    /// [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
+    /// in the specified flow.
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_CreateTransitionRouteGroup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/createTransitionRouteGroup(request:options:)``
     public func createTransitionRouteGroup(
       parent: Swift.String,
       transitionRouteGroup: TransitionRouteGroup?,
@@ -327,6 +455,20 @@
       return try await self.createTransitionRouteGroup(request: request)
     }
 
+    /// Updates the specified
+    /// [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup].
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_UpdateTransitionRouteGroup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/updateTransitionRouteGroup(request:options:)``
     public func updateTransitionRouteGroup(request: UpdateTransitionRouteGroupRequest) async throws
       -> GoogleCloudDialogflowCXV3.TransitionRouteGroup
     {
@@ -339,6 +481,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified
+    /// [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup].
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_UpdateTransitionRouteGroup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/updateTransitionRouteGroup(request:options:)``
     public func updateTransitionRouteGroup(
       transitionRouteGroup: TransitionRouteGroup?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -350,6 +506,20 @@
       return try await self.updateTransitionRouteGroup(request: request)
     }
 
+    /// Deletes the specified
+    /// [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup].
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_DeleteTransitionRouteGroup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/deleteTransitionRouteGroup(request:options:)``
     public func deleteTransitionRouteGroup(request: DeleteTransitionRouteGroupRequest) async throws
     {
       try await self.deleteTransitionRouteGroup(request: request, options: .init())
@@ -361,6 +531,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified
+    /// [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup].
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_DeleteTransitionRouteGroup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/deleteTransitionRouteGroup(request:options:)``
     public func deleteTransitionRouteGroup(
       name: Swift.String,
     ) async throws {
@@ -370,6 +554,30 @@
       try await self.deleteTransitionRouteGroup(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -382,6 +590,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -408,6 +640,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "TransitionRouteGroups_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -421,6 +657,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -433,6 +676,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -445,6 +697,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -456,6 +717,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "TransitionRouteGroups_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -469,6 +734,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -480,6 +754,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -492,6 +769,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -501,6 +781,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -511,6 +800,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TransitionRouteGroups_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TransitionRouteGroupsClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

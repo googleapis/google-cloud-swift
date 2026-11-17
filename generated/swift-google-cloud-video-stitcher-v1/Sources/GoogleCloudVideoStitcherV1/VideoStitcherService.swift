@@ -29,6 +29,10 @@ import Foundation
 /// content with any standard VMAP compliant ad server.
 ///
 /// @Snippet(path: "VideoStitcherServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/VideoStitcherServiceProtocol``
 public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProtocol, Sendable {
   let inner: any Clients.VideoStitcherServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -50,6 +54,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Creates a new CDN key.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCdnKey(request:)``
+  /// - ``createCdnKeyPollingUntilDone(request:)``
+  /// - ``createCdnKeyPollingUntilDone(request:options:)``
+  /// - ``createCdnKeyPollingUntilDone(parent:cdnKey:cdnKeyId:)``
   public func createCdnKey(
     request: CreateCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -59,6 +70,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Creates a new CDN key.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCdnKeyPollingUntilDone(request:)``
+  /// - ``createCdnKeyPollingUntilDone(parent:cdnKey:cdnKeyId:)``
+  /// - ``createCdnKey(request:)``
+  /// - ``createCdnKey(request:options:)``
   public func createCdnKeyPollingUntilDone(
     request: CreateCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> CdnKey {
@@ -86,6 +104,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Lists all CDN keys in the specified project and location.
   ///
   /// @Snippet(path: "VideoStitcherService_ListCdnKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCdnKeys(request:)``
+  /// - ``listCdnKeysByItems(request:)``
+  /// - ``listCdnKeysByItems(request:options:)``
+  /// - ``listCdnKeysByItems(parent:)``
   public func listCdnKeys(
     request: ListCdnKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListCdnKeysResponse {
@@ -95,6 +120,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Returns the specified CDN key.
   ///
   /// @Snippet(path: "VideoStitcherService_GetCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCdnKey(request:)``
+  /// - ``getCdnKey(name:)``
   public func getCdnKey(
     request: GetCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.CdnKey {
@@ -104,6 +134,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Deletes the specified CDN key.
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCdnKey(request:)``
+  /// - ``deleteCdnKeyPollingUntilDone(request:)``
+  /// - ``deleteCdnKeyPollingUntilDone(request:options:)``
+  /// - ``deleteCdnKeyPollingUntilDone(name:)``
   public func deleteCdnKey(
     request: DeleteCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -113,6 +150,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Deletes the specified CDN key.
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCdnKeyPollingUntilDone(request:)``
+  /// - ``deleteCdnKeyPollingUntilDone(name:)``
+  /// - ``deleteCdnKey(request:)``
+  /// - ``deleteCdnKey(request:options:)``
   public func deleteCdnKeyPollingUntilDone(
     request: DeleteCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -141,6 +185,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// in the call method body.
   ///
   /// @Snippet(path: "VideoStitcherService_UpdateCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCdnKey(request:)``
+  /// - ``updateCdnKeyPollingUntilDone(request:)``
+  /// - ``updateCdnKeyPollingUntilDone(request:options:)``
+  /// - ``updateCdnKeyPollingUntilDone(cdnKey:updateMask:)``
   public func updateCdnKey(
     request: UpdateCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -151,6 +202,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// in the call method body.
   ///
   /// @Snippet(path: "VideoStitcherService_UpdateCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCdnKeyPollingUntilDone(request:)``
+  /// - ``updateCdnKeyPollingUntilDone(cdnKey:updateMask:)``
+  /// - ``updateCdnKey(request:)``
+  /// - ``updateCdnKey(request:options:)``
   public func updateCdnKeyPollingUntilDone(
     request: UpdateCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> CdnKey {
@@ -179,6 +237,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// tracking and playback metadata of the session.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateVodSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createVodSession(request:)``
+  /// - ``createVodSession(parent:vodSession:)``
   public func createVodSession(
     request: CreateVodSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.VodSession {
@@ -189,6 +252,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// logs for the specified VOD session.
   ///
   /// @Snippet(path: "VideoStitcherService_GetVodSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getVodSession(request:)``
+  /// - ``getVodSession(name:)``
   public func getVodSession(
     request: GetVodSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.VodSession {
@@ -199,6 +267,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// session.
   ///
   /// @Snippet(path: "VideoStitcherService_ListVodStitchDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listVodStitchDetails(request:)``
+  /// - ``listVodStitchDetailsByItems(request:)``
+  /// - ``listVodStitchDetailsByItems(request:options:)``
+  /// - ``listVodStitchDetailsByItems(parent:)``
   public func listVodStitchDetails(
     request: ListVodStitchDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListVodStitchDetailsResponse {
@@ -208,6 +283,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Returns the specified stitching information for the specified VOD session.
   ///
   /// @Snippet(path: "VideoStitcherService_GetVodStitchDetail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getVodStitchDetail(request:)``
+  /// - ``getVodStitchDetail(name:)``
   public func getVodStitchDetail(
     request: GetVodStitchDetailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.VodStitchDetail {
@@ -217,6 +297,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Return the list of ad tag details for the specified VOD session.
   ///
   /// @Snippet(path: "VideoStitcherService_ListVodAdTagDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listVodAdTagDetails(request:)``
+  /// - ``listVodAdTagDetailsByItems(request:)``
+  /// - ``listVodAdTagDetailsByItems(request:options:)``
+  /// - ``listVodAdTagDetailsByItems(parent:)``
   public func listVodAdTagDetails(
     request: ListVodAdTagDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListVodAdTagDetailsResponse {
@@ -226,6 +313,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Returns the specified ad tag detail for the specified VOD session.
   ///
   /// @Snippet(path: "VideoStitcherService_GetVodAdTagDetail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getVodAdTagDetail(request:)``
+  /// - ``getVodAdTagDetail(name:)``
   public func getVodAdTagDetail(
     request: GetVodAdTagDetailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.VodAdTagDetail {
@@ -235,6 +327,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Return the list of ad tag details for the specified live session.
   ///
   /// @Snippet(path: "VideoStitcherService_ListLiveAdTagDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLiveAdTagDetails(request:)``
+  /// - ``listLiveAdTagDetailsByItems(request:)``
+  /// - ``listLiveAdTagDetailsByItems(request:options:)``
+  /// - ``listLiveAdTagDetailsByItems(parent:)``
   public func listLiveAdTagDetails(
     request: ListLiveAdTagDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListLiveAdTagDetailsResponse {
@@ -244,6 +343,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Returns the specified ad tag detail for the specified live session.
   ///
   /// @Snippet(path: "VideoStitcherService_GetLiveAdTagDetail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLiveAdTagDetail(request:)``
+  /// - ``getLiveAdTagDetail(name:)``
   public func getLiveAdTagDetail(
     request: GetLiveAdTagDetailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.LiveAdTagDetail {
@@ -253,6 +357,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Creates a slate.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSlate(request:)``
+  /// - ``createSlatePollingUntilDone(request:)``
+  /// - ``createSlatePollingUntilDone(request:options:)``
+  /// - ``createSlatePollingUntilDone(parent:slate:slateId:)``
   public func createSlate(
     request: CreateSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -262,6 +373,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Creates a slate.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSlatePollingUntilDone(request:)``
+  /// - ``createSlatePollingUntilDone(parent:slate:slateId:)``
+  /// - ``createSlate(request:)``
+  /// - ``createSlate(request:options:)``
   public func createSlatePollingUntilDone(
     request: CreateSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Slate {
@@ -289,6 +407,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Lists all slates in the specified project and location.
   ///
   /// @Snippet(path: "VideoStitcherService_ListSlates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSlates(request:)``
+  /// - ``listSlatesByItems(request:)``
+  /// - ``listSlatesByItems(request:options:)``
+  /// - ``listSlatesByItems(parent:)``
   public func listSlates(
     request: ListSlatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListSlatesResponse {
@@ -298,6 +423,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Returns the specified slate.
   ///
   /// @Snippet(path: "VideoStitcherService_GetSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSlate(request:)``
+  /// - ``getSlate(name:)``
   public func getSlate(
     request: GetSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.Slate {
@@ -307,6 +437,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Updates the specified slate.
   ///
   /// @Snippet(path: "VideoStitcherService_UpdateSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSlate(request:)``
+  /// - ``updateSlatePollingUntilDone(request:)``
+  /// - ``updateSlatePollingUntilDone(request:options:)``
+  /// - ``updateSlatePollingUntilDone(slate:updateMask:)``
   public func updateSlate(
     request: UpdateSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -316,6 +453,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Updates the specified slate.
   ///
   /// @Snippet(path: "VideoStitcherService_UpdateSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSlatePollingUntilDone(request:)``
+  /// - ``updateSlatePollingUntilDone(slate:updateMask:)``
+  /// - ``updateSlate(request:)``
+  /// - ``updateSlate(request:options:)``
   public func updateSlatePollingUntilDone(
     request: UpdateSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Slate {
@@ -343,6 +487,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Deletes the specified slate.
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSlate(request:)``
+  /// - ``deleteSlatePollingUntilDone(request:)``
+  /// - ``deleteSlatePollingUntilDone(request:options:)``
+  /// - ``deleteSlatePollingUntilDone(name:)``
   public func deleteSlate(
     request: DeleteSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -352,6 +503,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Deletes the specified slate.
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSlatePollingUntilDone(request:)``
+  /// - ``deleteSlatePollingUntilDone(name:)``
+  /// - ``deleteSlate(request:)``
+  /// - ``deleteSlate(request:options:)``
   public func deleteSlatePollingUntilDone(
     request: DeleteSlateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -379,6 +537,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Creates a new live session.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateLiveSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLiveSession(request:)``
+  /// - ``createLiveSession(parent:liveSession:)``
   public func createLiveSession(
     request: CreateLiveSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.LiveSession {
@@ -388,6 +551,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Returns the details for the specified live session.
   ///
   /// @Snippet(path: "VideoStitcherService_GetLiveSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLiveSession(request:)``
+  /// - ``getLiveSession(name:)``
   public func getLiveSession(
     request: GetLiveSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.LiveSession {
@@ -398,6 +566,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// the specified region.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLiveConfig(request:)``
+  /// - ``createLiveConfigPollingUntilDone(request:)``
+  /// - ``createLiveConfigPollingUntilDone(request:options:)``
+  /// - ``createLiveConfigPollingUntilDone(parent:liveConfig:liveConfigId:)``
   public func createLiveConfig(
     request: CreateLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -408,6 +583,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// the specified region.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLiveConfigPollingUntilDone(request:)``
+  /// - ``createLiveConfigPollingUntilDone(parent:liveConfig:liveConfigId:)``
+  /// - ``createLiveConfig(request:)``
+  /// - ``createLiveConfig(request:options:)``
   public func createLiveConfigPollingUntilDone(
     request: CreateLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> LiveConfig {
@@ -436,6 +618,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// belong to the specified project and region.
   ///
   /// @Snippet(path: "VideoStitcherService_ListLiveConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLiveConfigs(request:)``
+  /// - ``listLiveConfigsByItems(request:)``
+  /// - ``listLiveConfigsByItems(request:options:)``
+  /// - ``listLiveConfigsByItems(parent:)``
   public func listLiveConfigs(
     request: ListLiveConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListLiveConfigsResponse {
@@ -446,6 +635,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Stitcher service.
   ///
   /// @Snippet(path: "VideoStitcherService_GetLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLiveConfig(request:)``
+  /// - ``getLiveConfig(name:)``
   public func getLiveConfig(
     request: GetLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.LiveConfig {
@@ -455,6 +649,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Deletes the specified live config.
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLiveConfig(request:)``
+  /// - ``deleteLiveConfigPollingUntilDone(request:)``
+  /// - ``deleteLiveConfigPollingUntilDone(request:options:)``
+  /// - ``deleteLiveConfigPollingUntilDone(name:)``
   public func deleteLiveConfig(
     request: DeleteLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -464,6 +665,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Deletes the specified live config.
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLiveConfigPollingUntilDone(request:)``
+  /// - ``deleteLiveConfigPollingUntilDone(name:)``
+  /// - ``deleteLiveConfig(request:)``
+  /// - ``deleteLiveConfig(request:options:)``
   public func deleteLiveConfigPollingUntilDone(
     request: DeleteLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -492,6 +700,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// in the call method body.
   ///
   /// @Snippet(path: "VideoStitcherService_UpdateLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateLiveConfig(request:)``
+  /// - ``updateLiveConfigPollingUntilDone(request:)``
+  /// - ``updateLiveConfigPollingUntilDone(request:options:)``
+  /// - ``updateLiveConfigPollingUntilDone(liveConfig:updateMask:)``
   public func updateLiveConfig(
     request: UpdateLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -502,6 +717,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// in the call method body.
   ///
   /// @Snippet(path: "VideoStitcherService_UpdateLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateLiveConfigPollingUntilDone(request:)``
+  /// - ``updateLiveConfigPollingUntilDone(liveConfig:updateMask:)``
+  /// - ``updateLiveConfig(request:)``
+  /// - ``updateLiveConfig(request:options:)``
   public func updateLiveConfigPollingUntilDone(
     request: UpdateLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> LiveConfig {
@@ -530,6 +752,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// the specified region.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createVodConfig(request:)``
+  /// - ``createVodConfigPollingUntilDone(request:)``
+  /// - ``createVodConfigPollingUntilDone(request:options:)``
+  /// - ``createVodConfigPollingUntilDone(parent:vodConfig:vodConfigId:)``
   public func createVodConfig(
     request: CreateVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -540,6 +769,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// the specified region.
   ///
   /// @Snippet(path: "VideoStitcherService_CreateVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createVodConfigPollingUntilDone(request:)``
+  /// - ``createVodConfigPollingUntilDone(parent:vodConfig:vodConfigId:)``
+  /// - ``createVodConfig(request:)``
+  /// - ``createVodConfig(request:options:)``
   public func createVodConfigPollingUntilDone(
     request: CreateVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> VodConfig {
@@ -568,6 +804,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// belong to the specified project and region.
   ///
   /// @Snippet(path: "VideoStitcherService_ListVodConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listVodConfigs(request:)``
+  /// - ``listVodConfigsByItems(request:)``
+  /// - ``listVodConfigsByItems(request:options:)``
+  /// - ``listVodConfigsByItems(parent:)``
   public func listVodConfigs(
     request: ListVodConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListVodConfigsResponse {
@@ -578,6 +821,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Stitcher API service.
   ///
   /// @Snippet(path: "VideoStitcherService_GetVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getVodConfig(request:)``
+  /// - ``getVodConfig(name:)``
   public func getVodConfig(
     request: GetVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.VodConfig {
@@ -587,6 +835,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Deletes the specified VOD config.
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteVodConfig(request:)``
+  /// - ``deleteVodConfigPollingUntilDone(request:)``
+  /// - ``deleteVodConfigPollingUntilDone(request:options:)``
+  /// - ``deleteVodConfigPollingUntilDone(name:)``
   public func deleteVodConfig(
     request: DeleteVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -596,6 +851,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// Deletes the specified VOD config.
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteVodConfigPollingUntilDone(request:)``
+  /// - ``deleteVodConfigPollingUntilDone(name:)``
+  /// - ``deleteVodConfig(request:)``
+  /// - ``deleteVodConfig(request:options:)``
   public func deleteVodConfigPollingUntilDone(
     request: DeleteVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -624,6 +886,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// in the call method body.
   ///
   /// @Snippet(path: "VideoStitcherService_UpdateVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateVodConfig(request:)``
+  /// - ``updateVodConfigPollingUntilDone(request:)``
+  /// - ``updateVodConfigPollingUntilDone(request:options:)``
+  /// - ``updateVodConfigPollingUntilDone(vodConfig:updateMask:)``
   public func updateVodConfig(
     request: UpdateVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -634,6 +903,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// in the call method body.
   ///
   /// @Snippet(path: "VideoStitcherService_UpdateVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateVodConfigPollingUntilDone(request:)``
+  /// - ``updateVodConfigPollingUntilDone(vodConfig:updateMask:)``
+  /// - ``updateVodConfig(request:)``
+  /// - ``updateVodConfig(request:options:)``
   public func updateVodConfigPollingUntilDone(
     request: UpdateVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> VodConfig {
@@ -663,6 +939,13 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VideoStitcherService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -685,6 +968,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VideoStitcherService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -696,6 +984,11 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VideoStitcherService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -939,6 +1232,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.VideoStitcherServiceProtocol {
+  /// Creates a new CDN key.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createCdnKey(request:options:)``
   public func createCdnKey(request: CreateCdnKeyRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createCdnKey(request: request, options: .init())
@@ -950,6 +1250,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new CDN key.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createCdnKeyPollingUntilDone(request:options:)``
   public func createCdnKeyPollingUntilDone(request: CreateCdnKeyRequest) async throws -> CdnKey {
     return try await self.createCdnKeyPollingUntilDone(request: request, options: .init())
   }
@@ -960,6 +1267,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new CDN key.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createCdnKeyPollingUntilDone(request:options:)``
   public func createCdnKeyPollingUntilDone(
     parent: Swift.String,
     cdnKey: CdnKey?,
@@ -973,6 +1287,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.createCdnKeyPollingUntilDone(request: request)
   }
 
+  /// Lists all CDN keys in the specified project and location.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListCdnKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listCdnKeys(request:options:)``
   public func listCdnKeys(request: ListCdnKeysRequest) async throws
     -> GoogleCloudVideoStitcherV1.ListCdnKeysResponse
   {
@@ -985,6 +1306,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all CDN keys in the specified project and location.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListCdnKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listCdnKeys(request:options:)``
   public func listCdnKeysByItems(
     request: ListCdnKeysRequest
   ) -> some AsyncSequence<CdnKey, any Swift.Error> & Sendable {
@@ -994,6 +1322,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// Lists all CDN keys in the specified project and location.
   ///
   /// @Snippet(path: "VideoStitcherService_ListCdnKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listCdnKeys(request:options:)``
   public func listCdnKeysByItems(
     request: ListCdnKeysRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CdnKey, any Swift.Error> & Sendable {
@@ -1008,6 +1340,13 @@ extension Clients.VideoStitcherServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all CDN keys in the specified project and location.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListCdnKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listCdnKeys(request:options:)``
   public func listCdnKeysByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<CdnKey, any Swift.Error> & Sendable {
@@ -1017,6 +1356,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return self.listCdnKeysByItems(request: request)
   }
 
+  /// Returns the specified CDN key.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getCdnKey(request:options:)``
   public func getCdnKey(request: GetCdnKeyRequest) async throws -> GoogleCloudVideoStitcherV1.CdnKey
   {
     try await self.getCdnKey(request: request, options: .init())
@@ -1028,6 +1374,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the specified CDN key.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getCdnKey(request:options:)``
   public func getCdnKey(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoStitcherV1.CdnKey {
@@ -1037,6 +1390,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.getCdnKey(request: request)
   }
 
+  /// Deletes the specified CDN key.
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteCdnKey(request:options:)``
   public func deleteCdnKey(request: DeleteCdnKeyRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteCdnKey(request: request, options: .init())
@@ -1048,6 +1408,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified CDN key.
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteCdnKeyPollingUntilDone(request:options:)``
   public func deleteCdnKeyPollingUntilDone(request: DeleteCdnKeyRequest) async throws {
     try await self.deleteCdnKeyPollingUntilDone(request: request, options: .init())
   }
@@ -1058,6 +1425,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified CDN key.
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteCdnKeyPollingUntilDone(request:options:)``
   public func deleteCdnKeyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1067,6 +1441,14 @@ extension Clients.VideoStitcherServiceProtocol {
     try await self.deleteCdnKeyPollingUntilDone(request: request)
   }
 
+  /// Updates the specified CDN key. Only update fields specified
+  /// in the call method body.
+  ///
+  /// @Snippet(path: "VideoStitcherService_UpdateCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/updateCdnKey(request:options:)``
   public func updateCdnKey(request: UpdateCdnKeyRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateCdnKey(request: request, options: .init())
@@ -1078,6 +1460,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified CDN key. Only update fields specified
+  /// in the call method body.
+  ///
+  /// @Snippet(path: "VideoStitcherService_UpdateCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/updateCdnKeyPollingUntilDone(request:options:)``
   public func updateCdnKeyPollingUntilDone(request: UpdateCdnKeyRequest) async throws -> CdnKey {
     return try await self.updateCdnKeyPollingUntilDone(request: request, options: .init())
   }
@@ -1088,6 +1478,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified CDN key. Only update fields specified
+  /// in the call method body.
+  ///
+  /// @Snippet(path: "VideoStitcherService_UpdateCdnKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/updateCdnKeyPollingUntilDone(request:options:)``
   public func updateCdnKeyPollingUntilDone(
     cdnKey: CdnKey?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1099,6 +1497,14 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.updateCdnKeyPollingUntilDone(request: request)
   }
 
+  /// Creates a client side playback VOD session and returns the full
+  /// tracking and playback metadata of the session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateVodSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createVodSession(request:options:)``
   public func createVodSession(request: CreateVodSessionRequest) async throws
     -> GoogleCloudVideoStitcherV1.VodSession
   {
@@ -1111,6 +1517,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a client side playback VOD session and returns the full
+  /// tracking and playback metadata of the session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateVodSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createVodSession(request:options:)``
   public func createVodSession(
     parent: Swift.String,
     vodSession: VodSession?,
@@ -1122,6 +1536,14 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.createVodSession(request: request)
   }
 
+  /// Returns the full tracking, playback metadata, and relevant ad-ops
+  /// logs for the specified VOD session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetVodSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getVodSession(request:options:)``
   public func getVodSession(request: GetVodSessionRequest) async throws
     -> GoogleCloudVideoStitcherV1.VodSession
   {
@@ -1134,6 +1556,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the full tracking, playback metadata, and relevant ad-ops
+  /// logs for the specified VOD session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetVodSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getVodSession(request:options:)``
   public func getVodSession(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoStitcherV1.VodSession {
@@ -1143,6 +1573,14 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.getVodSession(request: request)
   }
 
+  /// Returns a list of detailed stitching information of the specified VOD
+  /// session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListVodStitchDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listVodStitchDetails(request:options:)``
   public func listVodStitchDetails(request: ListVodStitchDetailsRequest) async throws
     -> GoogleCloudVideoStitcherV1.ListVodStitchDetailsResponse
   {
@@ -1155,6 +1593,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of detailed stitching information of the specified VOD
+  /// session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListVodStitchDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listVodStitchDetails(request:options:)``
   public func listVodStitchDetailsByItems(
     request: ListVodStitchDetailsRequest
   ) -> some AsyncSequence<VodStitchDetail, any Swift.Error> & Sendable {
@@ -1165,6 +1611,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// session.
   ///
   /// @Snippet(path: "VideoStitcherService_ListVodStitchDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listVodStitchDetails(request:options:)``
   public func listVodStitchDetailsByItems(
     request: ListVodStitchDetailsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<VodStitchDetail, any Swift.Error> & Sendable {
@@ -1179,6 +1629,14 @@ extension Clients.VideoStitcherServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns a list of detailed stitching information of the specified VOD
+  /// session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListVodStitchDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listVodStitchDetails(request:options:)``
   public func listVodStitchDetailsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<VodStitchDetail, any Swift.Error> & Sendable {
@@ -1188,6 +1646,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return self.listVodStitchDetailsByItems(request: request)
   }
 
+  /// Returns the specified stitching information for the specified VOD session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetVodStitchDetail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getVodStitchDetail(request:options:)``
   public func getVodStitchDetail(request: GetVodStitchDetailRequest) async throws
     -> GoogleCloudVideoStitcherV1.VodStitchDetail
   {
@@ -1200,6 +1665,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the specified stitching information for the specified VOD session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetVodStitchDetail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getVodStitchDetail(request:options:)``
   public func getVodStitchDetail(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoStitcherV1.VodStitchDetail {
@@ -1209,6 +1681,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.getVodStitchDetail(request: request)
   }
 
+  /// Return the list of ad tag details for the specified VOD session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListVodAdTagDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listVodAdTagDetails(request:options:)``
   public func listVodAdTagDetails(request: ListVodAdTagDetailsRequest) async throws
     -> GoogleCloudVideoStitcherV1.ListVodAdTagDetailsResponse
   {
@@ -1221,6 +1700,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Return the list of ad tag details for the specified VOD session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListVodAdTagDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listVodAdTagDetails(request:options:)``
   public func listVodAdTagDetailsByItems(
     request: ListVodAdTagDetailsRequest
   ) -> some AsyncSequence<VodAdTagDetail, any Swift.Error> & Sendable {
@@ -1230,6 +1716,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// Return the list of ad tag details for the specified VOD session.
   ///
   /// @Snippet(path: "VideoStitcherService_ListVodAdTagDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listVodAdTagDetails(request:options:)``
   public func listVodAdTagDetailsByItems(
     request: ListVodAdTagDetailsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<VodAdTagDetail, any Swift.Error> & Sendable {
@@ -1244,6 +1734,13 @@ extension Clients.VideoStitcherServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Return the list of ad tag details for the specified VOD session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListVodAdTagDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listVodAdTagDetails(request:options:)``
   public func listVodAdTagDetailsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<VodAdTagDetail, any Swift.Error> & Sendable {
@@ -1253,6 +1750,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return self.listVodAdTagDetailsByItems(request: request)
   }
 
+  /// Returns the specified ad tag detail for the specified VOD session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetVodAdTagDetail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getVodAdTagDetail(request:options:)``
   public func getVodAdTagDetail(request: GetVodAdTagDetailRequest) async throws
     -> GoogleCloudVideoStitcherV1.VodAdTagDetail
   {
@@ -1265,6 +1769,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the specified ad tag detail for the specified VOD session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetVodAdTagDetail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getVodAdTagDetail(request:options:)``
   public func getVodAdTagDetail(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoStitcherV1.VodAdTagDetail {
@@ -1274,6 +1785,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.getVodAdTagDetail(request: request)
   }
 
+  /// Return the list of ad tag details for the specified live session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListLiveAdTagDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listLiveAdTagDetails(request:options:)``
   public func listLiveAdTagDetails(request: ListLiveAdTagDetailsRequest) async throws
     -> GoogleCloudVideoStitcherV1.ListLiveAdTagDetailsResponse
   {
@@ -1286,6 +1804,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Return the list of ad tag details for the specified live session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListLiveAdTagDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listLiveAdTagDetails(request:options:)``
   public func listLiveAdTagDetailsByItems(
     request: ListLiveAdTagDetailsRequest
   ) -> some AsyncSequence<LiveAdTagDetail, any Swift.Error> & Sendable {
@@ -1295,6 +1820,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// Return the list of ad tag details for the specified live session.
   ///
   /// @Snippet(path: "VideoStitcherService_ListLiveAdTagDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listLiveAdTagDetails(request:options:)``
   public func listLiveAdTagDetailsByItems(
     request: ListLiveAdTagDetailsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<LiveAdTagDetail, any Swift.Error> & Sendable {
@@ -1309,6 +1838,13 @@ extension Clients.VideoStitcherServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Return the list of ad tag details for the specified live session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListLiveAdTagDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listLiveAdTagDetails(request:options:)``
   public func listLiveAdTagDetailsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<LiveAdTagDetail, any Swift.Error> & Sendable {
@@ -1318,6 +1854,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return self.listLiveAdTagDetailsByItems(request: request)
   }
 
+  /// Returns the specified ad tag detail for the specified live session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetLiveAdTagDetail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getLiveAdTagDetail(request:options:)``
   public func getLiveAdTagDetail(request: GetLiveAdTagDetailRequest) async throws
     -> GoogleCloudVideoStitcherV1.LiveAdTagDetail
   {
@@ -1330,6 +1873,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the specified ad tag detail for the specified live session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetLiveAdTagDetail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getLiveAdTagDetail(request:options:)``
   public func getLiveAdTagDetail(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoStitcherV1.LiveAdTagDetail {
@@ -1339,6 +1889,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.getLiveAdTagDetail(request: request)
   }
 
+  /// Creates a slate.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createSlate(request:options:)``
   public func createSlate(request: CreateSlateRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createSlate(request: request, options: .init())
   }
@@ -1349,6 +1906,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a slate.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createSlatePollingUntilDone(request:options:)``
   public func createSlatePollingUntilDone(request: CreateSlateRequest) async throws -> Slate {
     return try await self.createSlatePollingUntilDone(request: request, options: .init())
   }
@@ -1359,6 +1923,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a slate.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createSlatePollingUntilDone(request:options:)``
   public func createSlatePollingUntilDone(
     parent: Swift.String,
     slate: Slate?,
@@ -1372,6 +1943,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.createSlatePollingUntilDone(request: request)
   }
 
+  /// Lists all slates in the specified project and location.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListSlates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listSlates(request:options:)``
   public func listSlates(request: ListSlatesRequest) async throws
     -> GoogleCloudVideoStitcherV1.ListSlatesResponse
   {
@@ -1384,6 +1962,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all slates in the specified project and location.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListSlates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listSlates(request:options:)``
   public func listSlatesByItems(
     request: ListSlatesRequest
   ) -> some AsyncSequence<Slate, any Swift.Error> & Sendable {
@@ -1393,6 +1978,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// Lists all slates in the specified project and location.
   ///
   /// @Snippet(path: "VideoStitcherService_ListSlates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listSlates(request:options:)``
   public func listSlatesByItems(
     request: ListSlatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Slate, any Swift.Error> & Sendable {
@@ -1407,6 +1996,13 @@ extension Clients.VideoStitcherServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all slates in the specified project and location.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListSlates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listSlates(request:options:)``
   public func listSlatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Slate, any Swift.Error> & Sendable {
@@ -1416,6 +2012,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return self.listSlatesByItems(request: request)
   }
 
+  /// Returns the specified slate.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getSlate(request:options:)``
   public func getSlate(request: GetSlateRequest) async throws -> GoogleCloudVideoStitcherV1.Slate {
     try await self.getSlate(request: request, options: .init())
   }
@@ -1426,6 +2029,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the specified slate.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getSlate(request:options:)``
   public func getSlate(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoStitcherV1.Slate {
@@ -1435,6 +2045,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.getSlate(request: request)
   }
 
+  /// Updates the specified slate.
+  ///
+  /// @Snippet(path: "VideoStitcherService_UpdateSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/updateSlate(request:options:)``
   public func updateSlate(request: UpdateSlateRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateSlate(request: request, options: .init())
   }
@@ -1445,6 +2062,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified slate.
+  ///
+  /// @Snippet(path: "VideoStitcherService_UpdateSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/updateSlatePollingUntilDone(request:options:)``
   public func updateSlatePollingUntilDone(request: UpdateSlateRequest) async throws -> Slate {
     return try await self.updateSlatePollingUntilDone(request: request, options: .init())
   }
@@ -1455,6 +2079,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified slate.
+  ///
+  /// @Snippet(path: "VideoStitcherService_UpdateSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/updateSlatePollingUntilDone(request:options:)``
   public func updateSlatePollingUntilDone(
     slate: Slate?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1466,6 +2097,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.updateSlatePollingUntilDone(request: request)
   }
 
+  /// Deletes the specified slate.
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteSlate(request:options:)``
   public func deleteSlate(request: DeleteSlateRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteSlate(request: request, options: .init())
   }
@@ -1476,6 +2114,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified slate.
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteSlatePollingUntilDone(request:options:)``
   public func deleteSlatePollingUntilDone(request: DeleteSlateRequest) async throws {
     try await self.deleteSlatePollingUntilDone(request: request, options: .init())
   }
@@ -1486,6 +2131,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified slate.
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteSlate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteSlatePollingUntilDone(request:options:)``
   public func deleteSlatePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1495,6 +2147,13 @@ extension Clients.VideoStitcherServiceProtocol {
     try await self.deleteSlatePollingUntilDone(request: request)
   }
 
+  /// Creates a new live session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateLiveSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createLiveSession(request:options:)``
   public func createLiveSession(request: CreateLiveSessionRequest) async throws
     -> GoogleCloudVideoStitcherV1.LiveSession
   {
@@ -1507,6 +2166,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new live session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateLiveSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createLiveSession(request:options:)``
   public func createLiveSession(
     parent: Swift.String,
     liveSession: LiveSession?,
@@ -1518,6 +2184,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.createLiveSession(request: request)
   }
 
+  /// Returns the details for the specified live session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetLiveSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getLiveSession(request:options:)``
   public func getLiveSession(request: GetLiveSessionRequest) async throws
     -> GoogleCloudVideoStitcherV1.LiveSession
   {
@@ -1530,6 +2203,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the details for the specified live session.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetLiveSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getLiveSession(request:options:)``
   public func getLiveSession(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoStitcherV1.LiveSession {
@@ -1539,6 +2219,14 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.getLiveSession(request: request)
   }
 
+  /// Registers the live config with the provided unique ID in
+  /// the specified region.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createLiveConfig(request:options:)``
   public func createLiveConfig(request: CreateLiveConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1551,6 +2239,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Registers the live config with the provided unique ID in
+  /// the specified region.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createLiveConfigPollingUntilDone(request:options:)``
   public func createLiveConfigPollingUntilDone(request: CreateLiveConfigRequest) async throws
     -> LiveConfig
   {
@@ -1563,6 +2259,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Registers the live config with the provided unique ID in
+  /// the specified region.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createLiveConfigPollingUntilDone(request:options:)``
   public func createLiveConfigPollingUntilDone(
     parent: Swift.String,
     liveConfig: LiveConfig?,
@@ -1576,6 +2280,14 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.createLiveConfigPollingUntilDone(request: request)
   }
 
+  /// Lists all live configs managed by the Video Stitcher that
+  /// belong to the specified project and region.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListLiveConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listLiveConfigs(request:options:)``
   public func listLiveConfigs(request: ListLiveConfigsRequest) async throws
     -> GoogleCloudVideoStitcherV1.ListLiveConfigsResponse
   {
@@ -1588,6 +2300,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all live configs managed by the Video Stitcher that
+  /// belong to the specified project and region.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListLiveConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listLiveConfigs(request:options:)``
   public func listLiveConfigsByItems(
     request: ListLiveConfigsRequest
   ) -> some AsyncSequence<LiveConfig, any Swift.Error> & Sendable {
@@ -1598,6 +2318,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// belong to the specified project and region.
   ///
   /// @Snippet(path: "VideoStitcherService_ListLiveConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listLiveConfigs(request:options:)``
   public func listLiveConfigsByItems(
     request: ListLiveConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<LiveConfig, any Swift.Error> & Sendable {
@@ -1612,6 +2336,14 @@ extension Clients.VideoStitcherServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all live configs managed by the Video Stitcher that
+  /// belong to the specified project and region.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListLiveConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listLiveConfigs(request:options:)``
   public func listLiveConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<LiveConfig, any Swift.Error> & Sendable {
@@ -1621,6 +2353,14 @@ extension Clients.VideoStitcherServiceProtocol {
     return self.listLiveConfigsByItems(request: request)
   }
 
+  /// Returns the specified live config managed by the Video
+  /// Stitcher service.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getLiveConfig(request:options:)``
   public func getLiveConfig(request: GetLiveConfigRequest) async throws
     -> GoogleCloudVideoStitcherV1.LiveConfig
   {
@@ -1633,6 +2373,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the specified live config managed by the Video
+  /// Stitcher service.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getLiveConfig(request:options:)``
   public func getLiveConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoStitcherV1.LiveConfig {
@@ -1642,6 +2390,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.getLiveConfig(request: request)
   }
 
+  /// Deletes the specified live config.
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteLiveConfig(request:options:)``
   public func deleteLiveConfig(request: DeleteLiveConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1654,6 +2409,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified live config.
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteLiveConfigPollingUntilDone(request:options:)``
   public func deleteLiveConfigPollingUntilDone(request: DeleteLiveConfigRequest) async throws {
     try await self.deleteLiveConfigPollingUntilDone(request: request, options: .init())
   }
@@ -1664,6 +2426,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified live config.
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteLiveConfigPollingUntilDone(request:options:)``
   public func deleteLiveConfigPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1673,6 +2442,14 @@ extension Clients.VideoStitcherServiceProtocol {
     try await self.deleteLiveConfigPollingUntilDone(request: request)
   }
 
+  /// Updates the specified LiveConfig. Only update fields specified
+  /// in the call method body.
+  ///
+  /// @Snippet(path: "VideoStitcherService_UpdateLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/updateLiveConfig(request:options:)``
   public func updateLiveConfig(request: UpdateLiveConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1685,6 +2462,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified LiveConfig. Only update fields specified
+  /// in the call method body.
+  ///
+  /// @Snippet(path: "VideoStitcherService_UpdateLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/updateLiveConfigPollingUntilDone(request:options:)``
   public func updateLiveConfigPollingUntilDone(request: UpdateLiveConfigRequest) async throws
     -> LiveConfig
   {
@@ -1697,6 +2482,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified LiveConfig. Only update fields specified
+  /// in the call method body.
+  ///
+  /// @Snippet(path: "VideoStitcherService_UpdateLiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/updateLiveConfigPollingUntilDone(request:options:)``
   public func updateLiveConfigPollingUntilDone(
     liveConfig: LiveConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1708,6 +2501,14 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.updateLiveConfigPollingUntilDone(request: request)
   }
 
+  /// Registers the VOD config with the provided unique ID in
+  /// the specified region.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createVodConfig(request:options:)``
   public func createVodConfig(request: CreateVodConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1720,6 +2521,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Registers the VOD config with the provided unique ID in
+  /// the specified region.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createVodConfigPollingUntilDone(request:options:)``
   public func createVodConfigPollingUntilDone(request: CreateVodConfigRequest) async throws
     -> VodConfig
   {
@@ -1732,6 +2541,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Registers the VOD config with the provided unique ID in
+  /// the specified region.
+  ///
+  /// @Snippet(path: "VideoStitcherService_CreateVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/createVodConfigPollingUntilDone(request:options:)``
   public func createVodConfigPollingUntilDone(
     parent: Swift.String,
     vodConfig: VodConfig?,
@@ -1745,6 +2562,14 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.createVodConfigPollingUntilDone(request: request)
   }
 
+  /// Lists all VOD configs managed by the Video Stitcher API that
+  /// belong to the specified project and region.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListVodConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listVodConfigs(request:options:)``
   public func listVodConfigs(request: ListVodConfigsRequest) async throws
     -> GoogleCloudVideoStitcherV1.ListVodConfigsResponse
   {
@@ -1757,6 +2582,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all VOD configs managed by the Video Stitcher API that
+  /// belong to the specified project and region.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListVodConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listVodConfigs(request:options:)``
   public func listVodConfigsByItems(
     request: ListVodConfigsRequest
   ) -> some AsyncSequence<VodConfig, any Swift.Error> & Sendable {
@@ -1767,6 +2600,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// belong to the specified project and region.
   ///
   /// @Snippet(path: "VideoStitcherService_ListVodConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listVodConfigs(request:options:)``
   public func listVodConfigsByItems(
     request: ListVodConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<VodConfig, any Swift.Error> & Sendable {
@@ -1781,6 +2618,14 @@ extension Clients.VideoStitcherServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all VOD configs managed by the Video Stitcher API that
+  /// belong to the specified project and region.
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListVodConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listVodConfigs(request:options:)``
   public func listVodConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<VodConfig, any Swift.Error> & Sendable {
@@ -1790,6 +2635,14 @@ extension Clients.VideoStitcherServiceProtocol {
     return self.listVodConfigsByItems(request: request)
   }
 
+  /// Returns the specified VOD config managed by the Video
+  /// Stitcher API service.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getVodConfig(request:options:)``
   public func getVodConfig(request: GetVodConfigRequest) async throws
     -> GoogleCloudVideoStitcherV1.VodConfig
   {
@@ -1802,6 +2655,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the specified VOD config managed by the Video
+  /// Stitcher API service.
+  ///
+  /// @Snippet(path: "VideoStitcherService_GetVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/getVodConfig(request:options:)``
   public func getVodConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoStitcherV1.VodConfig {
@@ -1811,6 +2672,13 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.getVodConfig(request: request)
   }
 
+  /// Deletes the specified VOD config.
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteVodConfig(request:options:)``
   public func deleteVodConfig(request: DeleteVodConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1823,6 +2691,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified VOD config.
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteVodConfigPollingUntilDone(request:options:)``
   public func deleteVodConfigPollingUntilDone(request: DeleteVodConfigRequest) async throws {
     try await self.deleteVodConfigPollingUntilDone(request: request, options: .init())
   }
@@ -1833,6 +2708,13 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified VOD config.
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteVodConfigPollingUntilDone(request:options:)``
   public func deleteVodConfigPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1842,6 +2724,14 @@ extension Clients.VideoStitcherServiceProtocol {
     try await self.deleteVodConfigPollingUntilDone(request: request)
   }
 
+  /// Updates the specified VOD config. Only update fields specified
+  /// in the call method body.
+  ///
+  /// @Snippet(path: "VideoStitcherService_UpdateVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/updateVodConfig(request:options:)``
   public func updateVodConfig(request: UpdateVodConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1854,6 +2744,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified VOD config. Only update fields specified
+  /// in the call method body.
+  ///
+  /// @Snippet(path: "VideoStitcherService_UpdateVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/updateVodConfigPollingUntilDone(request:options:)``
   public func updateVodConfigPollingUntilDone(request: UpdateVodConfigRequest) async throws
     -> VodConfig
   {
@@ -1866,6 +2764,14 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified VOD config. Only update fields specified
+  /// in the call method body.
+  ///
+  /// @Snippet(path: "VideoStitcherService_UpdateVodConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/updateVodConfigPollingUntilDone(request:options:)``
   public func updateVodConfigPollingUntilDone(
     vodConfig: VodConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1877,6 +2783,15 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.updateVodConfigPollingUntilDone(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1889,6 +2804,15 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1900,6 +2824,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VideoStitcherService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1913,6 +2841,15 @@ extension Clients.VideoStitcherServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VideoStitcherService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1924,6 +2861,9 @@ extension Clients.VideoStitcherServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1936,6 +2876,9 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1945,6 +2888,15 @@ extension Clients.VideoStitcherServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1955,6 +2907,15 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VideoStitcherService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1964,6 +2925,15 @@ extension Clients.VideoStitcherServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VideoStitcherService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1974,6 +2944,15 @@ extension Clients.VideoStitcherServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VideoStitcherService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VideoStitcherServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -24,6 +24,10 @@
   /// Service for managing blue-green deployments.
   ///
   /// @Snippet(path: "BlueGreenDeploymentsServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/BlueGreenDeploymentsServiceProtocol``
   public final class BlueGreenDeploymentsServiceClient: Clients.BlueGreenDeploymentsServiceProtocol,
     Sendable
   {
@@ -43,6 +47,11 @@
     /// Creates a blue-green deployment under a given project and location.
     ///
     /// @Snippet(path: "BlueGreenDeploymentsService_CreateBlueGreenDeployment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createBlueGreenDeployment(request:)``
+    /// - ``createBlueGreenDeployment(parent:blueGreenDeployment:blueGreenDeploymentId:)``
     public func createBlueGreenDeployment(
       request: CreateBlueGreenDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -53,6 +62,11 @@
     /// location.
     ///
     /// @Snippet(path: "BlueGreenDeploymentsService_GetBlueGreenDeployment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getBlueGreenDeployment(request:)``
+    /// - ``getBlueGreenDeployment(name:)``
     public func getBlueGreenDeployment(
       request: GetBlueGreenDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.BlueGreenDeployment {
@@ -62,6 +76,11 @@
     /// Switches over to green instance for a blue-green deployment.
     ///
     /// @Snippet(path: "BlueGreenDeploymentsService_SwitchoverBlueGreenDeployment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``switchoverBlueGreenDeployment(request:)``
+    /// - ``switchoverBlueGreenDeployment(name:)``
     public func switchoverBlueGreenDeployment(
       request: SwitchoverBlueGreenDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -71,6 +90,13 @@
     /// Lists blue-green deployments under a given project.
     ///
     /// @Snippet(path: "BlueGreenDeploymentsService_ListBlueGreenDeployments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listBlueGreenDeployments(request:)``
+    /// - ``listBlueGreenDeploymentsByItems(request:)``
+    /// - ``listBlueGreenDeploymentsByItems(request:options:)``
+    /// - ``listBlueGreenDeploymentsByItems(parent:)``
     public func listBlueGreenDeployments(
       request: ListBlueGreenDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.ListBlueGreenDeploymentsResponse {
@@ -80,6 +106,11 @@
     /// Deletes a blue-green deployment.
     ///
     /// @Snippet(path: "BlueGreenDeploymentsService_DeleteBlueGreenDeployment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteBlueGreenDeployment(request:)``
+    /// - ``deleteBlueGreenDeployment(name:)``
     public func deleteBlueGreenDeployment(
       request: DeleteBlueGreenDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -123,6 +154,13 @@
 
   // Default implementations
   extension Clients.BlueGreenDeploymentsServiceProtocol {
+    /// Creates a blue-green deployment under a given project and location.
+    ///
+    /// @Snippet(path: "BlueGreenDeploymentsService_CreateBlueGreenDeployment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BlueGreenDeploymentsServiceClient/createBlueGreenDeployment(request:options:)``
     public func createBlueGreenDeployment(request: CreateBlueGreenDeploymentRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -135,6 +173,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a blue-green deployment under a given project and location.
+    ///
+    /// @Snippet(path: "BlueGreenDeploymentsService_CreateBlueGreenDeployment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BlueGreenDeploymentsServiceClient/createBlueGreenDeployment(request:options:)``
     public func createBlueGreenDeployment(
       parent: Swift.String,
       blueGreenDeployment: BlueGreenDeployment?,
@@ -148,6 +193,14 @@
       return try await self.createBlueGreenDeployment(request: request)
     }
 
+    /// Retrieves a blue-green deployment resource under a given project and
+    /// location.
+    ///
+    /// @Snippet(path: "BlueGreenDeploymentsService_GetBlueGreenDeployment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BlueGreenDeploymentsServiceClient/getBlueGreenDeployment(request:options:)``
     public func getBlueGreenDeployment(request: GetBlueGreenDeploymentRequest) async throws
       -> GoogleCloudSqlV1.BlueGreenDeployment
     {
@@ -160,6 +213,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a blue-green deployment resource under a given project and
+    /// location.
+    ///
+    /// @Snippet(path: "BlueGreenDeploymentsService_GetBlueGreenDeployment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BlueGreenDeploymentsServiceClient/getBlueGreenDeployment(request:options:)``
     public func getBlueGreenDeployment(
       name: Swift.String,
     ) async throws -> GoogleCloudSqlV1.BlueGreenDeployment {
@@ -169,6 +230,13 @@
       return try await self.getBlueGreenDeployment(request: request)
     }
 
+    /// Switches over to green instance for a blue-green deployment.
+    ///
+    /// @Snippet(path: "BlueGreenDeploymentsService_SwitchoverBlueGreenDeployment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BlueGreenDeploymentsServiceClient/switchoverBlueGreenDeployment(request:options:)``
     public func switchoverBlueGreenDeployment(request: SwitchoverBlueGreenDeploymentRequest)
       async throws -> GoogleCloudSqlV1.Operation
     {
@@ -181,6 +249,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Switches over to green instance for a blue-green deployment.
+    ///
+    /// @Snippet(path: "BlueGreenDeploymentsService_SwitchoverBlueGreenDeployment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BlueGreenDeploymentsServiceClient/switchoverBlueGreenDeployment(request:options:)``
     public func switchoverBlueGreenDeployment(
       name: Swift.String,
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -190,6 +265,13 @@
       return try await self.switchoverBlueGreenDeployment(request: request)
     }
 
+    /// Lists blue-green deployments under a given project.
+    ///
+    /// @Snippet(path: "BlueGreenDeploymentsService_ListBlueGreenDeployments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BlueGreenDeploymentsServiceClient/listBlueGreenDeployments(request:options:)``
     public func listBlueGreenDeployments(request: ListBlueGreenDeploymentsRequest) async throws
       -> GoogleCloudSqlV1.ListBlueGreenDeploymentsResponse
     {
@@ -202,6 +284,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists blue-green deployments under a given project.
+    ///
+    /// @Snippet(path: "BlueGreenDeploymentsService_ListBlueGreenDeployments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BlueGreenDeploymentsServiceClient/listBlueGreenDeployments(request:options:)``
     public func listBlueGreenDeploymentsByItems(
       request: ListBlueGreenDeploymentsRequest
     ) -> some AsyncSequence<BlueGreenDeployment, any Swift.Error> & Sendable {
@@ -211,6 +300,10 @@
     /// Lists blue-green deployments under a given project.
     ///
     /// @Snippet(path: "BlueGreenDeploymentsService_ListBlueGreenDeployments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BlueGreenDeploymentsServiceClient/listBlueGreenDeployments(request:options:)``
     public func listBlueGreenDeploymentsByItems(
       request: ListBlueGreenDeploymentsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<BlueGreenDeployment, any Swift.Error> & Sendable {
@@ -225,6 +318,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists blue-green deployments under a given project.
+    ///
+    /// @Snippet(path: "BlueGreenDeploymentsService_ListBlueGreenDeployments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BlueGreenDeploymentsServiceClient/listBlueGreenDeployments(request:options:)``
     public func listBlueGreenDeploymentsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<BlueGreenDeployment, any Swift.Error> & Sendable {
@@ -234,6 +334,13 @@
       return self.listBlueGreenDeploymentsByItems(request: request)
     }
 
+    /// Deletes a blue-green deployment.
+    ///
+    /// @Snippet(path: "BlueGreenDeploymentsService_DeleteBlueGreenDeployment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BlueGreenDeploymentsServiceClient/deleteBlueGreenDeployment(request:options:)``
     public func deleteBlueGreenDeployment(request: DeleteBlueGreenDeploymentRequest) async throws
       -> GoogleCloudSqlV1.Operation
     {
@@ -246,6 +353,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a blue-green deployment.
+    ///
+    /// @Snippet(path: "BlueGreenDeploymentsService_DeleteBlueGreenDeployment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``BlueGreenDeploymentsServiceClient/deleteBlueGreenDeployment(request:options:)``
     public func deleteBlueGreenDeployment(
       name: Swift.String,
     ) async throws -> GoogleCloudSqlV1.Operation {

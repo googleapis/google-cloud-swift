@@ -31,6 +31,10 @@ import Foundation
 /// [google.cloud.security.privateca.v1.CertificateAuthorityService]: <doc:CertificateAuthorityServiceClient>
 ///
 /// @Snippet(path: "CertificateAuthorityServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CertificateAuthorityServiceProtocol``
 public final class CertificateAuthorityServiceClient: Clients.CertificateAuthorityServiceProtocol,
   Sendable
 {
@@ -59,6 +63,11 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_CreateCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCertificate(request:)``
+  /// - ``createCertificate(parent:certificate:certificateId:)``
   public func createCertificate(
     request: CreateCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -70,6 +79,11 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_GetCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCertificate(request:)``
+  /// - ``getCertificate(name:)``
   public func getCertificate(
     request: GetCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -81,6 +95,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListCertificates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCertificates(request:)``
+  /// - ``listCertificatesByItems(request:)``
+  /// - ``listCertificatesByItems(request:options:)``
+  /// - ``listCertificatesByItems(parent:)``
   public func listCertificates(
     request: ListCertificatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse {
@@ -92,6 +113,11 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_RevokeCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``revokeCertificate(request:)``
+  /// - ``revokeCertificate(name:)``
   public func revokeCertificate(
     request: RevokeCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -106,6 +132,11 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.Certificate.labels]: <doc:Certificate/labels>
   ///
   /// @Snippet(path: "CertificateAuthorityService_UpdateCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCertificate(request:)``
+  /// - ``updateCertificate(certificate:updateMask:)``
   public func updateCertificate(
     request: UpdateCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -129,6 +160,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:options:)>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ActivateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``activateCertificateAuthority(request:)``
+  /// - ``activateCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``activateCertificateAuthorityPollingUntilDone(request:options:)``
+  /// - ``activateCertificateAuthorityPollingUntilDone(name:)``
   public func activateCertificateAuthority(
     request: ActivateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -152,6 +190,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:options:)>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ActivateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``activateCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``activateCertificateAuthorityPollingUntilDone(name:)``
+  /// - ``activateCertificateAuthority(request:)``
+  /// - ``activateCertificateAuthority(request:options:)``
   public func activateCertificateAuthorityPollingUntilDone(
     request: ActivateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -184,6 +229,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_CreateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCertificateAuthority(request:)``
+  /// - ``createCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``createCertificateAuthorityPollingUntilDone(request:options:)``
+  /// - ``createCertificateAuthorityPollingUntilDone(parent:certificateAuthority:certificateAuthorityId:)``
   public func createCertificateAuthority(
     request: CreateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -197,6 +249,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_CreateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``createCertificateAuthorityPollingUntilDone(parent:certificateAuthority:certificateAuthorityId:)``
+  /// - ``createCertificateAuthority(request:)``
+  /// - ``createCertificateAuthority(request:options:)``
   public func createCertificateAuthorityPollingUntilDone(
     request: CreateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -228,6 +287,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_DisableCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``disableCertificateAuthority(request:)``
+  /// - ``disableCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``disableCertificateAuthorityPollingUntilDone(request:options:)``
+  /// - ``disableCertificateAuthorityPollingUntilDone(name:)``
   public func disableCertificateAuthority(
     request: DisableCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -240,6 +306,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_DisableCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``disableCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``disableCertificateAuthorityPollingUntilDone(name:)``
+  /// - ``disableCertificateAuthority(request:)``
+  /// - ``disableCertificateAuthority(request:options:)``
   public func disableCertificateAuthorityPollingUntilDone(
     request: DisableCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -271,6 +344,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_EnableCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``enableCertificateAuthority(request:)``
+  /// - ``enableCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``enableCertificateAuthorityPollingUntilDone(request:options:)``
+  /// - ``enableCertificateAuthorityPollingUntilDone(name:)``
   public func enableCertificateAuthority(
     request: EnableCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -283,6 +363,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_EnableCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``enableCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``enableCertificateAuthorityPollingUntilDone(name:)``
+  /// - ``enableCertificateAuthority(request:)``
+  /// - ``enableCertificateAuthority(request:options:)``
   public func enableCertificateAuthorityPollingUntilDone(
     request: EnableCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -326,6 +413,11 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority]: <doc:CertificateAuthorityServiceClient/activateCertificateAuthority(request:options:)>
   ///
   /// @Snippet(path: "CertificateAuthorityService_FetchCertificateAuthorityCsr")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchCertificateAuthorityCsr(request:)``
+  /// - ``fetchCertificateAuthorityCsr(name:)``
   public func fetchCertificateAuthorityCsr(
     request: FetchCertificateAuthorityCsrRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse {
@@ -338,6 +430,11 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_GetCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCertificateAuthority(request:)``
+  /// - ``getCertificateAuthority(name:)``
   public func getCertificateAuthority(
     request: GetCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority {
@@ -350,6 +447,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListCertificateAuthorities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCertificateAuthorities(request:)``
+  /// - ``listCertificateAuthoritiesByItems(request:)``
+  /// - ``listCertificateAuthoritiesByItems(request:options:)``
+  /// - ``listCertificateAuthoritiesByItems(parent:)``
   public func listCertificateAuthorities(
     request: ListCertificateAuthoritiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse {
@@ -363,6 +467,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_UndeleteCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``undeleteCertificateAuthority(request:)``
+  /// - ``undeleteCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``undeleteCertificateAuthorityPollingUntilDone(request:options:)``
+  /// - ``undeleteCertificateAuthorityPollingUntilDone(name:)``
   public func undeleteCertificateAuthority(
     request: UndeleteCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -376,6 +487,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_UndeleteCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``undeleteCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``undeleteCertificateAuthorityPollingUntilDone(name:)``
+  /// - ``undeleteCertificateAuthority(request:)``
+  /// - ``undeleteCertificateAuthority(request:options:)``
   public func undeleteCertificateAuthorityPollingUntilDone(
     request: UndeleteCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -407,6 +525,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_DeleteCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCertificateAuthority(request:)``
+  /// - ``deleteCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``deleteCertificateAuthorityPollingUntilDone(request:options:)``
+  /// - ``deleteCertificateAuthorityPollingUntilDone(name:)``
   public func deleteCertificateAuthority(
     request: DeleteCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -419,6 +544,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_DeleteCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``deleteCertificateAuthorityPollingUntilDone(name:)``
+  /// - ``deleteCertificateAuthority(request:)``
+  /// - ``deleteCertificateAuthority(request:options:)``
   public func deleteCertificateAuthorityPollingUntilDone(
     request: DeleteCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -450,6 +582,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCertificateAuthority(request:)``
+  /// - ``updateCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``updateCertificateAuthorityPollingUntilDone(request:options:)``
+  /// - ``updateCertificateAuthorityPollingUntilDone(certificateAuthority:updateMask:)``
   public func updateCertificateAuthority(
     request: UpdateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -462,6 +601,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCertificateAuthorityPollingUntilDone(request:)``
+  /// - ``updateCertificateAuthorityPollingUntilDone(certificateAuthority:updateMask:)``
+  /// - ``updateCertificateAuthority(request:)``
+  /// - ``updateCertificateAuthority(request:options:)``
   public func updateCertificateAuthorityPollingUntilDone(
     request: UpdateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -492,6 +638,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
   ///
   /// @Snippet(path: "CertificateAuthorityService_CreateCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCaPool(request:)``
+  /// - ``createCaPoolPollingUntilDone(request:)``
+  /// - ``createCaPoolPollingUntilDone(request:options:)``
+  /// - ``createCaPoolPollingUntilDone(parent:caPool:caPoolId:)``
   public func createCaPool(
     request: CreateCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -503,6 +656,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
   ///
   /// @Snippet(path: "CertificateAuthorityService_CreateCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCaPoolPollingUntilDone(request:)``
+  /// - ``createCaPoolPollingUntilDone(parent:caPool:caPoolId:)``
+  /// - ``createCaPool(request:)``
+  /// - ``createCaPool(request:options:)``
   public func createCaPoolPollingUntilDone(
     request: CreateCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> CaPool {
@@ -532,6 +692,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
   ///
   /// @Snippet(path: "CertificateAuthorityService_UpdateCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCaPool(request:)``
+  /// - ``updateCaPoolPollingUntilDone(request:)``
+  /// - ``updateCaPoolPollingUntilDone(request:options:)``
+  /// - ``updateCaPoolPollingUntilDone(caPool:updateMask:)``
   public func updateCaPool(
     request: UpdateCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -543,6 +710,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
   ///
   /// @Snippet(path: "CertificateAuthorityService_UpdateCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCaPoolPollingUntilDone(request:)``
+  /// - ``updateCaPoolPollingUntilDone(caPool:updateMask:)``
+  /// - ``updateCaPool(request:)``
+  /// - ``updateCaPool(request:options:)``
   public func updateCaPoolPollingUntilDone(
     request: UpdateCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> CaPool {
@@ -572,6 +746,11 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
   ///
   /// @Snippet(path: "CertificateAuthorityService_GetCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCaPool(request:)``
+  /// - ``getCaPool(name:)``
   public func getCaPool(
     request: GetCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool {
@@ -583,6 +762,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListCaPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCaPools(request:)``
+  /// - ``listCaPoolsByItems(request:)``
+  /// - ``listCaPoolsByItems(request:options:)``
+  /// - ``listCaPoolsByItems(parent:)``
   public func listCaPools(
     request: ListCaPoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse {
@@ -594,6 +780,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
   ///
   /// @Snippet(path: "CertificateAuthorityService_DeleteCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCaPool(request:)``
+  /// - ``deleteCaPoolPollingUntilDone(request:)``
+  /// - ``deleteCaPoolPollingUntilDone(request:options:)``
+  /// - ``deleteCaPoolPollingUntilDone(name:)``
   public func deleteCaPool(
     request: DeleteCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -605,6 +798,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
   ///
   /// @Snippet(path: "CertificateAuthorityService_DeleteCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCaPoolPollingUntilDone(request:)``
+  /// - ``deleteCaPoolPollingUntilDone(name:)``
+  /// - ``deleteCaPool(request:)``
+  /// - ``deleteCaPool(request:options:)``
   public func deleteCaPoolPollingUntilDone(
     request: DeleteCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -637,6 +837,11 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
   ///
   /// @Snippet(path: "CertificateAuthorityService_FetchCaCerts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchCaCerts(request:)``
+  /// - ``fetchCaCerts(caPool:)``
   public func fetchCaCerts(
     request: FetchCaCertsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse {
@@ -649,6 +854,11 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
   ///
   /// @Snippet(path: "CertificateAuthorityService_GetCertificateRevocationList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCertificateRevocationList(request:)``
+  /// - ``getCertificateRevocationList(name:)``
   public func getCertificateRevocationList(
     request: GetCertificateRevocationListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList {
@@ -661,6 +871,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListCertificateRevocationLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCertificateRevocationLists(request:)``
+  /// - ``listCertificateRevocationListsByItems(request:)``
+  /// - ``listCertificateRevocationListsByItems(request:options:)``
+  /// - ``listCertificateRevocationListsByItems(parent:)``
   public func listCertificateRevocationLists(
     request: ListCertificateRevocationListsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse {
@@ -673,6 +890,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
   ///
   /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateRevocationList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCertificateRevocationList(request:)``
+  /// - ``updateCertificateRevocationListPollingUntilDone(request:)``
+  /// - ``updateCertificateRevocationListPollingUntilDone(request:options:)``
+  /// - ``updateCertificateRevocationListPollingUntilDone(certificateRevocationList:updateMask:)``
   public func updateCertificateRevocationList(
     request: UpdateCertificateRevocationListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -685,6 +909,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
   ///
   /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateRevocationList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCertificateRevocationListPollingUntilDone(request:)``
+  /// - ``updateCertificateRevocationListPollingUntilDone(certificateRevocationList:updateMask:)``
+  /// - ``updateCertificateRevocationList(request:)``
+  /// - ``updateCertificateRevocationList(request:options:)``
   public func updateCertificateRevocationListPollingUntilDone(
     request: UpdateCertificateRevocationListRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateRevocationList {
@@ -718,6 +949,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_CreateCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCertificateTemplate(request:)``
+  /// - ``createCertificateTemplatePollingUntilDone(request:)``
+  /// - ``createCertificateTemplatePollingUntilDone(request:options:)``
+  /// - ``createCertificateTemplatePollingUntilDone(parent:certificateTemplate:certificateTemplateId:)``
   public func createCertificateTemplate(
     request: CreateCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -731,6 +969,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_CreateCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCertificateTemplatePollingUntilDone(request:)``
+  /// - ``createCertificateTemplatePollingUntilDone(parent:certificateTemplate:certificateTemplateId:)``
+  /// - ``createCertificateTemplate(request:)``
+  /// - ``createCertificateTemplate(request:options:)``
   public func createCertificateTemplatePollingUntilDone(
     request: CreateCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateTemplate {
@@ -762,6 +1007,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_DeleteCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCertificateTemplate(request:)``
+  /// - ``deleteCertificateTemplatePollingUntilDone(request:)``
+  /// - ``deleteCertificateTemplatePollingUntilDone(request:options:)``
+  /// - ``deleteCertificateTemplatePollingUntilDone(name:)``
   public func deleteCertificateTemplate(
     request: DeleteCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -774,6 +1026,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_DeleteCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCertificateTemplatePollingUntilDone(request:)``
+  /// - ``deleteCertificateTemplatePollingUntilDone(name:)``
+  /// - ``deleteCertificateTemplate(request:)``
+  /// - ``deleteCertificateTemplate(request:options:)``
   public func deleteCertificateTemplatePollingUntilDone(
     request: DeleteCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -804,6 +1063,11 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_GetCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCertificateTemplate(request:)``
+  /// - ``getCertificateTemplate(name:)``
   public func getCertificateTemplate(
     request: GetCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate {
@@ -816,6 +1080,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListCertificateTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCertificateTemplates(request:)``
+  /// - ``listCertificateTemplatesByItems(request:)``
+  /// - ``listCertificateTemplatesByItems(request:options:)``
+  /// - ``listCertificateTemplatesByItems(parent:)``
   public func listCertificateTemplates(
     request: ListCertificateTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse {
@@ -828,6 +1099,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCertificateTemplate(request:)``
+  /// - ``updateCertificateTemplatePollingUntilDone(request:)``
+  /// - ``updateCertificateTemplatePollingUntilDone(request:options:)``
+  /// - ``updateCertificateTemplatePollingUntilDone(certificateTemplate:updateMask:)``
   public func updateCertificateTemplate(
     request: UpdateCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -840,6 +1118,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCertificateTemplatePollingUntilDone(request:)``
+  /// - ``updateCertificateTemplatePollingUntilDone(certificateTemplate:updateMask:)``
+  /// - ``updateCertificateTemplate(request:)``
+  /// - ``updateCertificateTemplate(request:options:)``
   public func updateCertificateTemplatePollingUntilDone(
     request: UpdateCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateTemplate {
@@ -885,6 +1170,12 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -894,6 +1185,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CertificateAuthorityService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -907,6 +1202,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// errors.
   ///
   /// @Snippet(path: "CertificateAuthorityService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -917,6 +1216,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "CertificateAuthorityService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -932,6 +1235,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "CertificateAuthorityService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -943,6 +1250,13 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -965,6 +1279,11 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CertificateAuthorityService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -976,6 +1295,11 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CertificateAuthorityService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1249,6 +1573,18 @@ extension Clients {
 
 // Default implementations
 extension Clients.CertificateAuthorityServiceProtocol {
+  /// Create a new [Certificate][google.cloud.security.privateca.v1.Certificate]
+  /// in a given Project, Location from a particular
+  /// [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CreateCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/createCertificate(request:options:)``
   public func createCertificate(request: CreateCertificateRequest) async throws
     -> GoogleCloudSecurityPrivateCAV1.Certificate
   {
@@ -1261,6 +1597,18 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new [Certificate][google.cloud.security.privateca.v1.Certificate]
+  /// in a given Project, Location from a particular
+  /// [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CreateCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/createCertificate(request:options:)``
   public func createCertificate(
     parent: Swift.String,
     certificate: Certificate?,
@@ -1274,6 +1622,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.createCertificate(request: request)
   }
 
+  /// Returns a [Certificate][google.cloud.security.privateca.v1.Certificate].
+  ///
+  /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_GetCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/getCertificate(request:options:)``
   public func getCertificate(request: GetCertificateRequest) async throws
     -> GoogleCloudSecurityPrivateCAV1.Certificate
   {
@@ -1286,6 +1643,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a [Certificate][google.cloud.security.privateca.v1.Certificate].
+  ///
+  /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_GetCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/getCertificate(request:options:)``
   public func getCertificate(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -1295,6 +1661,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.getCertificate(request: request)
   }
 
+  /// Lists [Certificates][google.cloud.security.privateca.v1.Certificate].
+  ///
+  /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCertificates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificates(request:options:)``
   public func listCertificates(request: ListCertificatesRequest) async throws
     -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse
   {
@@ -1307,6 +1682,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists [Certificates][google.cloud.security.privateca.v1.Certificate].
+  ///
+  /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCertificates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificates(request:options:)``
   public func listCertificatesByItems(
     request: ListCertificatesRequest
   ) -> some AsyncSequence<Certificate, any Swift.Error> & Sendable {
@@ -1318,6 +1702,10 @@ extension Clients.CertificateAuthorityServiceProtocol {
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListCertificates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificates(request:options:)``
   public func listCertificatesByItems(
     request: ListCertificatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Certificate, any Swift.Error> & Sendable {
@@ -1332,6 +1720,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists [Certificates][google.cloud.security.privateca.v1.Certificate].
+  ///
+  /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCertificates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificates(request:options:)``
   public func listCertificatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Certificate, any Swift.Error> & Sendable {
@@ -1341,6 +1738,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return self.listCertificatesByItems(request: request)
   }
 
+  /// Revoke a [Certificate][google.cloud.security.privateca.v1.Certificate].
+  ///
+  /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_RevokeCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/revokeCertificate(request:options:)``
   public func revokeCertificate(request: RevokeCertificateRequest) async throws
     -> GoogleCloudSecurityPrivateCAV1.Certificate
   {
@@ -1353,6 +1759,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Revoke a [Certificate][google.cloud.security.privateca.v1.Certificate].
+  ///
+  /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_RevokeCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/revokeCertificate(request:options:)``
   public func revokeCertificate(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -1362,6 +1777,18 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.revokeCertificate(request: request)
   }
 
+  /// Update a [Certificate][google.cloud.security.privateca.v1.Certificate].
+  /// Currently, the only field you can update is the
+  /// [labels][google.cloud.security.privateca.v1.Certificate.labels] field.
+  ///
+  /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
+  /// [google.cloud.security.privateca.v1.Certificate.labels]: <doc:Certificate/labels>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCertificate(request:options:)``
   public func updateCertificate(request: UpdateCertificateRequest) async throws
     -> GoogleCloudSecurityPrivateCAV1.Certificate
   {
@@ -1374,6 +1801,18 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a [Certificate][google.cloud.security.privateca.v1.Certificate].
+  /// Currently, the only field you can update is the
+  /// [labels][google.cloud.security.privateca.v1.Certificate.labels] field.
+  ///
+  /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
+  /// [google.cloud.security.privateca.v1.Certificate.labels]: <doc:Certificate/labels>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCertificate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCertificate(request:options:)``
   public func updateCertificate(
     certificate: Certificate?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1385,6 +1824,27 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.updateCertificate(request: request)
   }
 
+  /// Activate a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// that is in state
+  /// [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
+  /// and is of type
+  /// [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
+  /// After the parent Certificate Authority signs a certificate signing request
+  /// from
+  /// [FetchCertificateAuthorityCsr][google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr],
+  /// this method can complete the activation process.
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  /// [google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]: <doc:CertificateAuthority/State/awaitingUserActivation>
+  /// [google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]: <doc:CertificateAuthority/Type_/subordinate>
+  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:options:)>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ActivateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/activateCertificateAuthority(request:options:)``
   public func activateCertificateAuthority(request: ActivateCertificateAuthorityRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1397,6 +1857,27 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Activate a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// that is in state
+  /// [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
+  /// and is of type
+  /// [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
+  /// After the parent Certificate Authority signs a certificate signing request
+  /// from
+  /// [FetchCertificateAuthorityCsr][google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr],
+  /// this method can complete the activation process.
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  /// [google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]: <doc:CertificateAuthority/State/awaitingUserActivation>
+  /// [google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]: <doc:CertificateAuthority/Type_/subordinate>
+  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:options:)>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ActivateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/activateCertificateAuthorityPollingUntilDone(request:options:)``
   public func activateCertificateAuthorityPollingUntilDone(
     request: ActivateCertificateAuthorityRequest
   ) async throws -> CertificateAuthority {
@@ -1410,6 +1891,27 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Activate a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// that is in state
+  /// [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
+  /// and is of type
+  /// [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
+  /// After the parent Certificate Authority signs a certificate signing request
+  /// from
+  /// [FetchCertificateAuthorityCsr][google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr],
+  /// this method can complete the activation process.
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  /// [google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]: <doc:CertificateAuthority/State/awaitingUserActivation>
+  /// [google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]: <doc:CertificateAuthority/Type_/subordinate>
+  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr]: <doc:CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:options:)>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ActivateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/activateCertificateAuthorityPollingUntilDone(request:options:)``
   public func activateCertificateAuthorityPollingUntilDone(
     name: Swift.String,
   ) async throws -> CertificateAuthority {
@@ -1419,6 +1921,17 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.activateCertificateAuthorityPollingUntilDone(request: request)
   }
 
+  /// Create a new
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// in a given Project and Location.
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CreateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/createCertificateAuthority(request:options:)``
   public func createCertificateAuthority(request: CreateCertificateAuthorityRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1431,6 +1944,17 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// in a given Project and Location.
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CreateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/createCertificateAuthorityPollingUntilDone(request:options:)``
   public func createCertificateAuthorityPollingUntilDone(request: CreateCertificateAuthorityRequest)
     async throws -> CertificateAuthority
   {
@@ -1444,6 +1968,17 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// in a given Project and Location.
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CreateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/createCertificateAuthorityPollingUntilDone(request:options:)``
   public func createCertificateAuthorityPollingUntilDone(
     parent: Swift.String,
     certificateAuthority: CertificateAuthority?,
@@ -1457,6 +1992,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.createCertificateAuthorityPollingUntilDone(request: request)
   }
 
+  /// Disable a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DisableCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/disableCertificateAuthority(request:options:)``
   public func disableCertificateAuthority(request: DisableCertificateAuthorityRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1469,6 +2014,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Disable a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DisableCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/disableCertificateAuthorityPollingUntilDone(request:options:)``
   public func disableCertificateAuthorityPollingUntilDone(
     request: DisableCertificateAuthorityRequest
   ) async throws -> CertificateAuthority {
@@ -1482,6 +2037,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Disable a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DisableCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/disableCertificateAuthorityPollingUntilDone(request:options:)``
   public func disableCertificateAuthorityPollingUntilDone(
     name: Swift.String,
   ) async throws -> CertificateAuthority {
@@ -1491,6 +2056,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.disableCertificateAuthorityPollingUntilDone(request: request)
   }
 
+  /// Enable a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_EnableCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/enableCertificateAuthority(request:options:)``
   public func enableCertificateAuthority(request: EnableCertificateAuthorityRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1503,6 +2078,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enable a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_EnableCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/enableCertificateAuthorityPollingUntilDone(request:options:)``
   public func enableCertificateAuthorityPollingUntilDone(request: EnableCertificateAuthorityRequest)
     async throws -> CertificateAuthority
   {
@@ -1516,6 +2101,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enable a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_EnableCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/enableCertificateAuthorityPollingUntilDone(request:options:)``
   public func enableCertificateAuthorityPollingUntilDone(
     name: Swift.String,
   ) async throws -> CertificateAuthority {
@@ -1525,6 +2120,28 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.enableCertificateAuthorityPollingUntilDone(request: request)
   }
 
+  /// Fetch a certificate signing request (CSR) from a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// that is in state
+  /// [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
+  /// and is of type
+  /// [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
+  /// The CSR must then be signed by the desired parent Certificate Authority,
+  /// which could be another
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// resource, or could be an on-prem certificate authority. See also
+  /// [ActivateCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  /// [google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]: <doc:CertificateAuthority/State/awaitingUserActivation>
+  /// [google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]: <doc:CertificateAuthority/Type_/subordinate>
+  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority]: <doc:CertificateAuthorityServiceClient/activateCertificateAuthority(request:options:)>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_FetchCertificateAuthorityCsr")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:options:)``
   public func fetchCertificateAuthorityCsr(request: FetchCertificateAuthorityCsrRequest)
     async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse
   {
@@ -1537,6 +2154,28 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetch a certificate signing request (CSR) from a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// that is in state
+  /// [AWAITING_USER_ACTIVATION][google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]
+  /// and is of type
+  /// [SUBORDINATE][google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE].
+  /// The CSR must then be signed by the desired parent Certificate Authority,
+  /// which could be another
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// resource, or could be an on-prem certificate authority. See also
+  /// [ActivateCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  /// [google.cloud.security.privateca.v1.CertificateAuthority.State.AWAITING_USER_ACTIVATION]: <doc:CertificateAuthority/State/awaitingUserActivation>
+  /// [google.cloud.security.privateca.v1.CertificateAuthority.Type.SUBORDINATE]: <doc:CertificateAuthority/Type_/subordinate>
+  /// [google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority]: <doc:CertificateAuthorityServiceClient/activateCertificateAuthority(request:options:)>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_FetchCertificateAuthorityCsr")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/fetchCertificateAuthorityCsr(request:options:)``
   public func fetchCertificateAuthorityCsr(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse {
@@ -1546,6 +2185,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.fetchCertificateAuthorityCsr(request: request)
   }
 
+  /// Returns a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_GetCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/getCertificateAuthority(request:options:)``
   public func getCertificateAuthority(request: GetCertificateAuthorityRequest) async throws
     -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority
   {
@@ -1558,6 +2207,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_GetCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/getCertificateAuthority(request:options:)``
   public func getCertificateAuthority(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority {
@@ -1567,6 +2226,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.getCertificateAuthority(request: request)
   }
 
+  /// Lists
+  /// [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCertificateAuthorities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificateAuthorities(request:options:)``
   public func listCertificateAuthorities(request: ListCertificateAuthoritiesRequest) async throws
     -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse
   {
@@ -1579,6 +2248,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists
+  /// [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCertificateAuthorities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificateAuthorities(request:options:)``
   public func listCertificateAuthoritiesByItems(
     request: ListCertificateAuthoritiesRequest
   ) -> some AsyncSequence<CertificateAuthority, any Swift.Error> & Sendable {
@@ -1591,6 +2270,10 @@ extension Clients.CertificateAuthorityServiceProtocol {
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListCertificateAuthorities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificateAuthorities(request:options:)``
   public func listCertificateAuthoritiesByItems(
     request: ListCertificateAuthoritiesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CertificateAuthority, any Swift.Error> & Sendable {
@@ -1605,6 +2288,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists
+  /// [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCertificateAuthorities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificateAuthorities(request:options:)``
   public func listCertificateAuthoritiesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<CertificateAuthority, any Swift.Error> & Sendable {
@@ -1614,6 +2307,17 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return self.listCertificateAuthoritiesByItems(request: request)
   }
 
+  /// Undelete a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// that has been deleted.
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UndeleteCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/undeleteCertificateAuthority(request:options:)``
   public func undeleteCertificateAuthority(request: UndeleteCertificateAuthorityRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1626,6 +2330,17 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Undelete a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// that has been deleted.
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UndeleteCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/undeleteCertificateAuthorityPollingUntilDone(request:options:)``
   public func undeleteCertificateAuthorityPollingUntilDone(
     request: UndeleteCertificateAuthorityRequest
   ) async throws -> CertificateAuthority {
@@ -1639,6 +2354,17 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Undelete a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+  /// that has been deleted.
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UndeleteCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/undeleteCertificateAuthorityPollingUntilDone(request:options:)``
   public func undeleteCertificateAuthorityPollingUntilDone(
     name: Swift.String,
   ) async throws -> CertificateAuthority {
@@ -1648,6 +2374,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.undeleteCertificateAuthorityPollingUntilDone(request: request)
   }
 
+  /// Delete a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DeleteCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/deleteCertificateAuthority(request:options:)``
   public func deleteCertificateAuthority(request: DeleteCertificateAuthorityRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1660,6 +2396,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DeleteCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/deleteCertificateAuthorityPollingUntilDone(request:options:)``
   public func deleteCertificateAuthorityPollingUntilDone(request: DeleteCertificateAuthorityRequest)
     async throws -> CertificateAuthority
   {
@@ -1673,6 +2419,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DeleteCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/deleteCertificateAuthorityPollingUntilDone(request:options:)``
   public func deleteCertificateAuthorityPollingUntilDone(
     name: Swift.String,
   ) async throws -> CertificateAuthority {
@@ -1682,6 +2438,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.deleteCertificateAuthorityPollingUntilDone(request: request)
   }
 
+  /// Update a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCertificateAuthority(request:options:)``
   public func updateCertificateAuthority(request: UpdateCertificateAuthorityRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1694,6 +2460,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCertificateAuthorityPollingUntilDone(request:options:)``
   public func updateCertificateAuthorityPollingUntilDone(request: UpdateCertificateAuthorityRequest)
     async throws -> CertificateAuthority
   {
@@ -1707,6 +2483,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a
+  /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCertificateAuthorityPollingUntilDone(request:options:)``
   public func updateCertificateAuthorityPollingUntilDone(
     certificateAuthority: CertificateAuthority?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1718,6 +2504,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.updateCertificateAuthorityPollingUntilDone(request: request)
   }
 
+  /// Create a [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CreateCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/createCaPool(request:options:)``
   public func createCaPool(request: CreateCaPoolRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createCaPool(request: request, options: .init())
@@ -1729,6 +2524,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CreateCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/createCaPoolPollingUntilDone(request:options:)``
   public func createCaPoolPollingUntilDone(request: CreateCaPoolRequest) async throws -> CaPool {
     return try await self.createCaPoolPollingUntilDone(request: request, options: .init())
   }
@@ -1739,6 +2543,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CreateCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/createCaPoolPollingUntilDone(request:options:)``
   public func createCaPoolPollingUntilDone(
     parent: Swift.String,
     caPool: CaPool?,
@@ -1752,6 +2565,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.createCaPoolPollingUntilDone(request: request)
   }
 
+  /// Update a [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCaPool(request:options:)``
   public func updateCaPool(request: UpdateCaPoolRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateCaPool(request: request, options: .init())
@@ -1763,6 +2585,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCaPoolPollingUntilDone(request:options:)``
   public func updateCaPoolPollingUntilDone(request: UpdateCaPoolRequest) async throws -> CaPool {
     return try await self.updateCaPoolPollingUntilDone(request: request, options: .init())
   }
@@ -1773,6 +2604,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCaPoolPollingUntilDone(request:options:)``
   public func updateCaPoolPollingUntilDone(
     caPool: CaPool?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1784,6 +2624,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.updateCaPoolPollingUntilDone(request: request)
   }
 
+  /// Returns a [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_GetCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/getCaPool(request:options:)``
   public func getCaPool(request: GetCaPoolRequest) async throws
     -> GoogleCloudSecurityPrivateCAV1.CaPool
   {
@@ -1796,6 +2645,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_GetCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/getCaPool(request:options:)``
   public func getCaPool(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool {
@@ -1805,6 +2663,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.getCaPool(request: request)
   }
 
+  /// Lists [CaPools][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCaPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCaPools(request:options:)``
   public func listCaPools(request: ListCaPoolsRequest) async throws
     -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse
   {
@@ -1817,6 +2684,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists [CaPools][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCaPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCaPools(request:options:)``
   public func listCaPoolsByItems(
     request: ListCaPoolsRequest
   ) -> some AsyncSequence<CaPool, any Swift.Error> & Sendable {
@@ -1828,6 +2704,10 @@ extension Clients.CertificateAuthorityServiceProtocol {
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListCaPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCaPools(request:options:)``
   public func listCaPoolsByItems(
     request: ListCaPoolsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CaPool, any Swift.Error> & Sendable {
@@ -1842,6 +2722,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists [CaPools][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCaPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCaPools(request:options:)``
   public func listCaPoolsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<CaPool, any Swift.Error> & Sendable {
@@ -1851,6 +2740,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return self.listCaPoolsByItems(request: request)
   }
 
+  /// Delete a [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DeleteCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/deleteCaPool(request:options:)``
   public func deleteCaPool(request: DeleteCaPoolRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteCaPool(request: request, options: .init())
@@ -1862,6 +2760,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DeleteCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/deleteCaPoolPollingUntilDone(request:options:)``
   public func deleteCaPoolPollingUntilDone(request: DeleteCaPoolRequest) async throws {
     try await self.deleteCaPoolPollingUntilDone(request: request, options: .init())
   }
@@ -1872,6 +2779,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a [CaPool][google.cloud.security.privateca.v1.CaPool].
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DeleteCaPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/deleteCaPoolPollingUntilDone(request:options:)``
   public func deleteCaPoolPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1881,6 +2797,18 @@ extension Clients.CertificateAuthorityServiceProtocol {
     try await self.deleteCaPoolPollingUntilDone(request: request)
   }
 
+  /// FetchCaCerts returns the current trust anchor for the
+  /// [CaPool][google.cloud.security.privateca.v1.CaPool]. This will include CA
+  /// certificate chains for all certificate authorities in the ENABLED,
+  /// DISABLED, or STAGED states.
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_FetchCaCerts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/fetchCaCerts(request:options:)``
   public func fetchCaCerts(request: FetchCaCertsRequest) async throws
     -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse
   {
@@ -1893,6 +2821,18 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// FetchCaCerts returns the current trust anchor for the
+  /// [CaPool][google.cloud.security.privateca.v1.CaPool]. This will include CA
+  /// certificate chains for all certificate authorities in the ENABLED,
+  /// DISABLED, or STAGED states.
+  ///
+  /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_FetchCaCerts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/fetchCaCerts(request:options:)``
   public func fetchCaCerts(
     caPool: Swift.String,
   ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse {
@@ -1902,6 +2842,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.fetchCaCerts(request: request)
   }
 
+  /// Returns a
+  /// [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_GetCertificateRevocationList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/getCertificateRevocationList(request:options:)``
   public func getCertificateRevocationList(request: GetCertificateRevocationListRequest)
     async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList
   {
@@ -1914,6 +2864,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a
+  /// [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_GetCertificateRevocationList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/getCertificateRevocationList(request:options:)``
   public func getCertificateRevocationList(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList {
@@ -1923,6 +2883,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.getCertificateRevocationList(request: request)
   }
 
+  /// Lists
+  /// [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCertificateRevocationLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificateRevocationLists(request:options:)``
   public func listCertificateRevocationLists(request: ListCertificateRevocationListsRequest)
     async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse
   {
@@ -1935,6 +2905,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists
+  /// [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCertificateRevocationLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificateRevocationLists(request:options:)``
   public func listCertificateRevocationListsByItems(
     request: ListCertificateRevocationListsRequest
   ) -> some AsyncSequence<CertificateRevocationList, any Swift.Error> & Sendable {
@@ -1947,6 +2927,10 @@ extension Clients.CertificateAuthorityServiceProtocol {
   /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListCertificateRevocationLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificateRevocationLists(request:options:)``
   public func listCertificateRevocationListsByItems(
     request: ListCertificateRevocationListsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CertificateRevocationList, any Swift.Error> & Sendable {
@@ -1961,6 +2945,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists
+  /// [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCertificateRevocationLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificateRevocationLists(request:options:)``
   public func listCertificateRevocationListsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<CertificateRevocationList, any Swift.Error> & Sendable {
@@ -1970,6 +2964,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return self.listCertificateRevocationListsByItems(request: request)
   }
 
+  /// Update a
+  /// [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateRevocationList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCertificateRevocationList(request:options:)``
   public func updateCertificateRevocationList(request: UpdateCertificateRevocationListRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1982,6 +2986,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a
+  /// [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateRevocationList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCertificateRevocationListPollingUntilDone(request:options:)``
   public func updateCertificateRevocationListPollingUntilDone(
     request: UpdateCertificateRevocationListRequest
   ) async throws -> CertificateRevocationList {
@@ -1995,6 +3009,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a
+  /// [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateRevocationList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCertificateRevocationListPollingUntilDone(request:options:)``
   public func updateCertificateRevocationListPollingUntilDone(
     certificateRevocationList: CertificateRevocationList?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2006,6 +3030,17 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.updateCertificateRevocationListPollingUntilDone(request: request)
   }
 
+  /// Create a new
+  /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+  /// in a given Project and Location.
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CreateCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/createCertificateTemplate(request:options:)``
   public func createCertificateTemplate(request: CreateCertificateTemplateRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2018,6 +3053,17 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new
+  /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+  /// in a given Project and Location.
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CreateCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/createCertificateTemplatePollingUntilDone(request:options:)``
   public func createCertificateTemplatePollingUntilDone(request: CreateCertificateTemplateRequest)
     async throws -> CertificateTemplate
   {
@@ -2031,6 +3077,17 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new
+  /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
+  /// in a given Project and Location.
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CreateCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/createCertificateTemplatePollingUntilDone(request:options:)``
   public func createCertificateTemplatePollingUntilDone(
     parent: Swift.String,
     certificateTemplate: CertificateTemplate?,
@@ -2044,6 +3101,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.createCertificateTemplatePollingUntilDone(request: request)
   }
 
+  /// DeleteCertificateTemplate deletes a
+  /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DeleteCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/deleteCertificateTemplate(request:options:)``
   public func deleteCertificateTemplate(request: DeleteCertificateTemplateRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2056,6 +3123,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// DeleteCertificateTemplate deletes a
+  /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DeleteCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/deleteCertificateTemplatePollingUntilDone(request:options:)``
   public func deleteCertificateTemplatePollingUntilDone(request: DeleteCertificateTemplateRequest)
     async throws
   {
@@ -2068,6 +3145,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// DeleteCertificateTemplate deletes a
+  /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DeleteCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/deleteCertificateTemplatePollingUntilDone(request:options:)``
   public func deleteCertificateTemplatePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2077,6 +3164,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     try await self.deleteCertificateTemplatePollingUntilDone(request: request)
   }
 
+  /// Returns a
+  /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_GetCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/getCertificateTemplate(request:options:)``
   public func getCertificateTemplate(request: GetCertificateTemplateRequest) async throws
     -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate
   {
@@ -2089,6 +3186,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a
+  /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_GetCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/getCertificateTemplate(request:options:)``
   public func getCertificateTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate {
@@ -2098,6 +3205,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.getCertificateTemplate(request: request)
   }
 
+  /// Lists
+  /// [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCertificateTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificateTemplates(request:options:)``
   public func listCertificateTemplates(request: ListCertificateTemplatesRequest) async throws
     -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse
   {
@@ -2110,6 +3227,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists
+  /// [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCertificateTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificateTemplates(request:options:)``
   public func listCertificateTemplatesByItems(
     request: ListCertificateTemplatesRequest
   ) -> some AsyncSequence<CertificateTemplate, any Swift.Error> & Sendable {
@@ -2122,6 +3249,10 @@ extension Clients.CertificateAuthorityServiceProtocol {
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListCertificateTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificateTemplates(request:options:)``
   public func listCertificateTemplatesByItems(
     request: ListCertificateTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CertificateTemplate, any Swift.Error> & Sendable {
@@ -2136,6 +3267,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists
+  /// [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListCertificateTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listCertificateTemplates(request:options:)``
   public func listCertificateTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<CertificateTemplate, any Swift.Error> & Sendable {
@@ -2145,6 +3286,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return self.listCertificateTemplatesByItems(request: request)
   }
 
+  /// Update a
+  /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCertificateTemplate(request:options:)``
   public func updateCertificateTemplate(request: UpdateCertificateTemplateRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2157,6 +3308,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a
+  /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCertificateTemplatePollingUntilDone(request:options:)``
   public func updateCertificateTemplatePollingUntilDone(request: UpdateCertificateTemplateRequest)
     async throws -> CertificateTemplate
   {
@@ -2170,6 +3331,16 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a
+  /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
+  ///
+  /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_UpdateCertificateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/updateCertificateTemplatePollingUntilDone(request:options:)``
   public func updateCertificateTemplatePollingUntilDone(
     certificateTemplate: CertificateTemplate?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2181,6 +3352,30 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.updateCertificateTemplatePollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -2193,6 +3388,30 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2219,6 +3438,10 @@ extension Clients.CertificateAuthorityServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2232,6 +3455,13 @@ extension Clients.CertificateAuthorityServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -2244,6 +3474,17 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -2256,6 +3497,14 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -2268,6 +3517,19 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -2280,6 +3542,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -2292,6 +3563,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2303,6 +3583,10 @@ extension Clients.CertificateAuthorityServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CertificateAuthorityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2316,6 +3600,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -2327,6 +3620,9 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2339,6 +3635,9 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -2348,6 +3647,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -2358,6 +3666,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -2367,6 +3684,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -2377,6 +3703,15 @@ extension Clients.CertificateAuthorityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CertificateAuthorityService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CertificateAuthorityServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

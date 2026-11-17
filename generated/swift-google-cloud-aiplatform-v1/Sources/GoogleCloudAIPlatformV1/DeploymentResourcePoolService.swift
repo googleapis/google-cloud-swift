@@ -28,6 +28,10 @@
   /// A service that manages the DeploymentResourcePool resource.
   ///
   /// @Snippet(path: "DeploymentResourcePoolServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/DeploymentResourcePoolServiceProtocol``
   public final class DeploymentResourcePoolServiceClient: Clients
       .DeploymentResourcePoolServiceProtocol, Sendable
   {
@@ -51,6 +55,13 @@
     /// Create a DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_CreateDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createDeploymentResourcePool(request:)``
+    /// - ``createDeploymentResourcePoolPollingUntilDone(request:)``
+    /// - ``createDeploymentResourcePoolPollingUntilDone(request:options:)``
+    /// - ``createDeploymentResourcePoolPollingUntilDone(parent:deploymentResourcePool:deploymentResourcePoolId:)``
     public func createDeploymentResourcePool(
       request: CreateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -60,6 +71,13 @@
     /// Create a DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_CreateDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createDeploymentResourcePoolPollingUntilDone(request:)``
+    /// - ``createDeploymentResourcePoolPollingUntilDone(parent:deploymentResourcePool:deploymentResourcePoolId:)``
+    /// - ``createDeploymentResourcePool(request:)``
+    /// - ``createDeploymentResourcePool(request:options:)``
     public func createDeploymentResourcePoolPollingUntilDone(
       request: CreateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> DeploymentResourcePool {
@@ -89,6 +107,11 @@
     /// Get a DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_GetDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getDeploymentResourcePool(request:)``
+    /// - ``getDeploymentResourcePool(name:)``
     public func getDeploymentResourcePool(
       request: GetDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.DeploymentResourcePool {
@@ -98,6 +121,13 @@
     /// List DeploymentResourcePools in a location.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_ListDeploymentResourcePools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listDeploymentResourcePools(request:)``
+    /// - ``listDeploymentResourcePoolsByItems(request:)``
+    /// - ``listDeploymentResourcePoolsByItems(request:options:)``
+    /// - ``listDeploymentResourcePoolsByItems(parent:)``
     public func listDeploymentResourcePools(
       request: ListDeploymentResourcePoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListDeploymentResourcePoolsResponse {
@@ -107,6 +137,13 @@
     /// Update a DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_UpdateDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateDeploymentResourcePool(request:)``
+    /// - ``updateDeploymentResourcePoolPollingUntilDone(request:)``
+    /// - ``updateDeploymentResourcePoolPollingUntilDone(request:options:)``
+    /// - ``updateDeploymentResourcePoolPollingUntilDone(deploymentResourcePool:updateMask:)``
     public func updateDeploymentResourcePool(
       request: UpdateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -116,6 +153,13 @@
     /// Update a DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_UpdateDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateDeploymentResourcePoolPollingUntilDone(request:)``
+    /// - ``updateDeploymentResourcePoolPollingUntilDone(deploymentResourcePool:updateMask:)``
+    /// - ``updateDeploymentResourcePool(request:)``
+    /// - ``updateDeploymentResourcePool(request:options:)``
     public func updateDeploymentResourcePoolPollingUntilDone(
       request: UpdateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> DeploymentResourcePool {
@@ -145,6 +189,13 @@
     /// Delete a DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_DeleteDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteDeploymentResourcePool(request:)``
+    /// - ``deleteDeploymentResourcePoolPollingUntilDone(request:)``
+    /// - ``deleteDeploymentResourcePoolPollingUntilDone(request:options:)``
+    /// - ``deleteDeploymentResourcePoolPollingUntilDone(name:)``
     public func deleteDeploymentResourcePool(
       request: DeleteDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -154,6 +205,13 @@
     /// Delete a DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_DeleteDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteDeploymentResourcePoolPollingUntilDone(request:)``
+    /// - ``deleteDeploymentResourcePoolPollingUntilDone(name:)``
+    /// - ``deleteDeploymentResourcePool(request:)``
+    /// - ``deleteDeploymentResourcePool(request:options:)``
     public func deleteDeploymentResourcePoolPollingUntilDone(
       request: DeleteDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -182,6 +240,13 @@
     /// List DeployedModels that have been deployed on this DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_QueryDeployedModels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``queryDeployedModels(request:)``
+    /// - ``queryDeployedModelsByItems(request:)``
+    /// - ``queryDeployedModelsByItems(request:options:)``
+    /// - ``queryDeployedModelsByItems(deploymentResourcePool:)``
     public func queryDeployedModels(
       request: QueryDeployedModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.QueryDeployedModelsResponse {
@@ -191,6 +256,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -200,6 +271,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -213,6 +288,10 @@
     /// errors.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -223,6 +302,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -238,6 +321,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -249,6 +336,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -271,6 +365,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(request:)``
+    /// - ``deleteOperation(name:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -282,6 +381,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -293,6 +397,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -401,6 +509,13 @@
 
   // Default implementations
   extension Clients.DeploymentResourcePoolServiceProtocol {
+    /// Create a DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_CreateDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/createDeploymentResourcePool(request:options:)``
     public func createDeploymentResourcePool(request: CreateDeploymentResourcePoolRequest)
       async throws -> GoogleLongRunning.Operation
     {
@@ -413,6 +528,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Create a DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_CreateDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/createDeploymentResourcePoolPollingUntilDone(request:options:)``
     public func createDeploymentResourcePoolPollingUntilDone(
       request: CreateDeploymentResourcePoolRequest
     ) async throws -> DeploymentResourcePool {
@@ -426,6 +548,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Create a DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_CreateDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/createDeploymentResourcePoolPollingUntilDone(request:options:)``
     public func createDeploymentResourcePoolPollingUntilDone(
       parent: Swift.String,
       deploymentResourcePool: DeploymentResourcePool?,
@@ -439,6 +568,13 @@
       return try await self.createDeploymentResourcePoolPollingUntilDone(request: request)
     }
 
+    /// Get a DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_GetDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/getDeploymentResourcePool(request:options:)``
     public func getDeploymentResourcePool(request: GetDeploymentResourcePoolRequest) async throws
       -> GoogleCloudAIPlatformV1.DeploymentResourcePool
     {
@@ -451,6 +587,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Get a DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_GetDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/getDeploymentResourcePool(request:options:)``
     public func getDeploymentResourcePool(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.DeploymentResourcePool {
@@ -460,6 +603,13 @@
       return try await self.getDeploymentResourcePool(request: request)
     }
 
+    /// List DeploymentResourcePools in a location.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_ListDeploymentResourcePools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/listDeploymentResourcePools(request:options:)``
     public func listDeploymentResourcePools(request: ListDeploymentResourcePoolsRequest)
       async throws -> GoogleCloudAIPlatformV1.ListDeploymentResourcePoolsResponse
     {
@@ -472,6 +622,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// List DeploymentResourcePools in a location.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_ListDeploymentResourcePools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/listDeploymentResourcePools(request:options:)``
     public func listDeploymentResourcePoolsByItems(
       request: ListDeploymentResourcePoolsRequest
     ) -> some AsyncSequence<DeploymentResourcePool, any Swift.Error> & Sendable {
@@ -481,6 +638,10 @@
     /// List DeploymentResourcePools in a location.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_ListDeploymentResourcePools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/listDeploymentResourcePools(request:options:)``
     public func listDeploymentResourcePoolsByItems(
       request: ListDeploymentResourcePoolsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<DeploymentResourcePool, any Swift.Error> & Sendable {
@@ -495,6 +656,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// List DeploymentResourcePools in a location.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_ListDeploymentResourcePools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/listDeploymentResourcePools(request:options:)``
     public func listDeploymentResourcePoolsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<DeploymentResourcePool, any Swift.Error> & Sendable {
@@ -504,6 +672,13 @@
       return self.listDeploymentResourcePoolsByItems(request: request)
     }
 
+    /// Update a DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_UpdateDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/updateDeploymentResourcePool(request:options:)``
     public func updateDeploymentResourcePool(request: UpdateDeploymentResourcePoolRequest)
       async throws -> GoogleLongRunning.Operation
     {
@@ -516,6 +691,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Update a DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_UpdateDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/updateDeploymentResourcePoolPollingUntilDone(request:options:)``
     public func updateDeploymentResourcePoolPollingUntilDone(
       request: UpdateDeploymentResourcePoolRequest
     ) async throws -> DeploymentResourcePool {
@@ -529,6 +711,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Update a DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_UpdateDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/updateDeploymentResourcePoolPollingUntilDone(request:options:)``
     public func updateDeploymentResourcePoolPollingUntilDone(
       deploymentResourcePool: DeploymentResourcePool?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -540,6 +729,13 @@
       return try await self.updateDeploymentResourcePoolPollingUntilDone(request: request)
     }
 
+    /// Delete a DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_DeleteDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/deleteDeploymentResourcePool(request:options:)``
     public func deleteDeploymentResourcePool(request: DeleteDeploymentResourcePoolRequest)
       async throws -> GoogleLongRunning.Operation
     {
@@ -552,6 +748,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Delete a DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_DeleteDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/deleteDeploymentResourcePoolPollingUntilDone(request:options:)``
     public func deleteDeploymentResourcePoolPollingUntilDone(
       request: DeleteDeploymentResourcePoolRequest
     ) async throws {
@@ -565,6 +768,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Delete a DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_DeleteDeploymentResourcePool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/deleteDeploymentResourcePoolPollingUntilDone(request:options:)``
     public func deleteDeploymentResourcePoolPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -574,6 +784,13 @@
       try await self.deleteDeploymentResourcePoolPollingUntilDone(request: request)
     }
 
+    /// List DeployedModels that have been deployed on this DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_QueryDeployedModels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/queryDeployedModels(request:options:)``
     public func queryDeployedModels(request: QueryDeployedModelsRequest) async throws
       -> GoogleCloudAIPlatformV1.QueryDeployedModelsResponse
     {
@@ -586,6 +803,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// List DeployedModels that have been deployed on this DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_QueryDeployedModels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/queryDeployedModels(request:options:)``
     public func queryDeployedModelsByItems(
       request: QueryDeployedModelsRequest
     ) -> some AsyncSequence<DeployedModel, any Swift.Error> & Sendable {
@@ -595,6 +819,10 @@
     /// List DeployedModels that have been deployed on this DeploymentResourcePool.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_QueryDeployedModels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/queryDeployedModels(request:options:)``
     public func queryDeployedModelsByItems(
       request: QueryDeployedModelsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<DeployedModel, any Swift.Error> & Sendable {
@@ -609,6 +837,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// List DeployedModels that have been deployed on this DeploymentResourcePool.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_QueryDeployedModels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/queryDeployedModels(request:options:)``
     public func queryDeployedModelsByItems(
       deploymentResourcePool: Swift.String,
     ) -> some AsyncSequence<DeployedModel, any Swift.Error> & Sendable {
@@ -618,6 +853,13 @@
       return self.queryDeployedModelsByItems(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -630,6 +872,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -639,6 +888,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -652,6 +905,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -664,6 +924,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -676,6 +947,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -688,6 +967,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -700,6 +992,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -712,6 +1013,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -723,6 +1033,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DeploymentResourcePoolService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -736,6 +1050,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -747,6 +1070,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -759,6 +1085,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -768,6 +1097,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -778,6 +1116,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -787,6 +1134,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -797,6 +1153,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -806,6 +1171,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DeploymentResourcePoolService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DeploymentResourcePoolServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

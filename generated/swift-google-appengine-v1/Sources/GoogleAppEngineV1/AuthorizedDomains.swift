@@ -26,6 +26,10 @@ import Foundation
 /// [Webmaster Central](https://www.google.com/webmasters/verification/home).
 ///
 /// @Snippet(path: "AuthorizedDomainsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AuthorizedDomainsProtocol``
 public final class AuthorizedDomainsClient: Clients.AuthorizedDomainsProtocol, Sendable {
   let inner: any Clients.AuthorizedDomainsStub
 
@@ -42,6 +46,12 @@ public final class AuthorizedDomainsClient: Clients.AuthorizedDomainsProtocol, S
   /// Lists all domains the user is authorized to administer.
   ///
   /// @Snippet(path: "AuthorizedDomains_ListAuthorizedDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAuthorizedDomains(request:)``
+  /// - ``listAuthorizedDomainsByItems(request:)``
+  /// - ``listAuthorizedDomainsByItems(request:options:)``
   public func listAuthorizedDomains(
     request: ListAuthorizedDomainsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.ListAuthorizedDomainsResponse {
@@ -53,6 +63,13 @@ public final class AuthorizedDomainsClient: Clients.AuthorizedDomainsProtocol, S
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AuthorizedDomains_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -92,6 +109,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.AuthorizedDomainsProtocol {
+  /// Lists all domains the user is authorized to administer.
+  ///
+  /// @Snippet(path: "AuthorizedDomains_ListAuthorizedDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedDomainsClient/listAuthorizedDomains(request:options:)``
   public func listAuthorizedDomains(request: ListAuthorizedDomainsRequest) async throws
     -> GoogleAppEngineV1.ListAuthorizedDomainsResponse
   {
@@ -104,6 +128,13 @@ extension Clients.AuthorizedDomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all domains the user is authorized to administer.
+  ///
+  /// @Snippet(path: "AuthorizedDomains_ListAuthorizedDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedDomainsClient/listAuthorizedDomains(request:options:)``
   public func listAuthorizedDomainsByItems(
     request: ListAuthorizedDomainsRequest
   ) -> some AsyncSequence<AuthorizedDomain, any Swift.Error> & Sendable {
@@ -113,6 +144,10 @@ extension Clients.AuthorizedDomainsProtocol {
   /// Lists all domains the user is authorized to administer.
   ///
   /// @Snippet(path: "AuthorizedDomains_ListAuthorizedDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedDomainsClient/listAuthorizedDomains(request:options:)``
   public func listAuthorizedDomainsByItems(
     request: ListAuthorizedDomainsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AuthorizedDomain, any Swift.Error> & Sendable {
@@ -127,6 +162,15 @@ extension Clients.AuthorizedDomainsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuthorizedDomains_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedDomainsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -139,6 +183,15 @@ extension Clients.AuthorizedDomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuthorizedDomains_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedDomainsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -150,6 +203,10 @@ extension Clients.AuthorizedDomainsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AuthorizedDomains_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedDomainsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -163,6 +220,15 @@ extension Clients.AuthorizedDomainsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AuthorizedDomains_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AuthorizedDomainsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -174,6 +240,9 @@ extension Clients.AuthorizedDomainsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -186,6 +255,9 @@ extension Clients.AuthorizedDomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

@@ -26,6 +26,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "LicenseManagerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/LicenseManagerProtocol``
 public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendable {
   let inner: any Clients.LicenseManagerStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Lists Configurations in a given project and location.
   ///
   /// @Snippet(path: "LicenseManager_ListConfigurations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listConfigurations(request:)``
+  /// - ``listConfigurationsByItems(request:)``
+  /// - ``listConfigurationsByItems(request:options:)``
+  /// - ``listConfigurationsByItems(parent:)``
   public func listConfigurations(
     request: ListConfigurationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.ListConfigurationsResponse {
@@ -55,6 +66,11 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Gets details of a single Configuration.
   ///
   /// @Snippet(path: "LicenseManager_GetConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getConfiguration(request:)``
+  /// - ``getConfiguration(name:)``
   public func getConfiguration(
     request: GetConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.Configuration {
@@ -64,6 +80,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Creates a new Configuration in a given project and location.
   ///
   /// @Snippet(path: "LicenseManager_CreateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConfiguration(request:)``
+  /// - ``createConfigurationPollingUntilDone(request:)``
+  /// - ``createConfigurationPollingUntilDone(request:options:)``
+  /// - ``createConfigurationPollingUntilDone(parent:configuration:configurationId:)``
   public func createConfiguration(
     request: CreateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -73,6 +96,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Creates a new Configuration in a given project and location.
   ///
   /// @Snippet(path: "LicenseManager_CreateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConfigurationPollingUntilDone(request:)``
+  /// - ``createConfigurationPollingUntilDone(parent:configuration:configurationId:)``
+  /// - ``createConfiguration(request:)``
+  /// - ``createConfiguration(request:options:)``
   public func createConfigurationPollingUntilDone(
     request: CreateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Configuration {
@@ -101,6 +131,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Updates the parameters of a single Configuration.
   ///
   /// @Snippet(path: "LicenseManager_UpdateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConfiguration(request:)``
+  /// - ``updateConfigurationPollingUntilDone(request:)``
+  /// - ``updateConfigurationPollingUntilDone(request:options:)``
+  /// - ``updateConfigurationPollingUntilDone(configuration:updateMask:)``
   public func updateConfiguration(
     request: UpdateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -110,6 +147,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Updates the parameters of a single Configuration.
   ///
   /// @Snippet(path: "LicenseManager_UpdateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConfigurationPollingUntilDone(request:)``
+  /// - ``updateConfigurationPollingUntilDone(configuration:updateMask:)``
+  /// - ``updateConfiguration(request:)``
+  /// - ``updateConfiguration(request:options:)``
   public func updateConfigurationPollingUntilDone(
     request: UpdateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Configuration {
@@ -138,6 +182,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Deletes a single Configuration.
   ///
   /// @Snippet(path: "LicenseManager_DeleteConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConfiguration(request:)``
+  /// - ``deleteConfigurationPollingUntilDone(request:)``
+  /// - ``deleteConfigurationPollingUntilDone(request:options:)``
+  /// - ``deleteConfigurationPollingUntilDone(name:)``
   public func deleteConfiguration(
     request: DeleteConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -147,6 +198,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Deletes a single Configuration.
   ///
   /// @Snippet(path: "LicenseManager_DeleteConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConfigurationPollingUntilDone(request:)``
+  /// - ``deleteConfigurationPollingUntilDone(name:)``
+  /// - ``deleteConfiguration(request:)``
+  /// - ``deleteConfiguration(request:options:)``
   public func deleteConfigurationPollingUntilDone(
     request: DeleteConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -174,6 +232,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Lists Instances in a given project and location.
   ///
   /// @Snippet(path: "LicenseManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(request:)``
+  /// - ``listInstancesByItems(request:options:)``
+  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.ListInstancesResponse {
@@ -183,6 +248,11 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Gets details of a single Instance.
   ///
   /// @Snippet(path: "LicenseManager_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInstance(request:)``
+  /// - ``getInstance(name:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.Instance {
@@ -192,6 +262,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Deactivates the given configuration.
   ///
   /// @Snippet(path: "LicenseManager_DeactivateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deactivateConfiguration(request:)``
+  /// - ``deactivateConfigurationPollingUntilDone(request:)``
+  /// - ``deactivateConfigurationPollingUntilDone(request:options:)``
+  /// - ``deactivateConfigurationPollingUntilDone(name:)``
   public func deactivateConfiguration(
     request: DeactivateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -201,6 +278,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Deactivates the given configuration.
   ///
   /// @Snippet(path: "LicenseManager_DeactivateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deactivateConfigurationPollingUntilDone(request:)``
+  /// - ``deactivateConfigurationPollingUntilDone(name:)``
+  /// - ``deactivateConfiguration(request:)``
+  /// - ``deactivateConfiguration(request:options:)``
   public func deactivateConfigurationPollingUntilDone(
     request: DeactivateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Configuration {
@@ -229,6 +313,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Reactivates the given configuration.
   ///
   /// @Snippet(path: "LicenseManager_ReactivateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reactivateConfiguration(request:)``
+  /// - ``reactivateConfigurationPollingUntilDone(request:)``
+  /// - ``reactivateConfigurationPollingUntilDone(request:options:)``
+  /// - ``reactivateConfigurationPollingUntilDone(name:)``
   public func reactivateConfiguration(
     request: ReactivateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -238,6 +329,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Reactivates the given configuration.
   ///
   /// @Snippet(path: "LicenseManager_ReactivateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reactivateConfigurationPollingUntilDone(request:)``
+  /// - ``reactivateConfigurationPollingUntilDone(name:)``
+  /// - ``reactivateConfiguration(request:)``
+  /// - ``reactivateConfiguration(request:options:)``
   public func reactivateConfigurationPollingUntilDone(
     request: ReactivateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Configuration {
@@ -266,6 +364,11 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// License Usage information for a Configuration.
   ///
   /// @Snippet(path: "LicenseManager_QueryConfigurationLicenseUsage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryConfigurationLicenseUsage(request:)``
+  /// - ``queryConfigurationLicenseUsage(name:startTime:endTime:)``
   public func queryConfigurationLicenseUsage(
     request: QueryConfigurationLicenseUsageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.QueryConfigurationLicenseUsageResponse {
@@ -275,6 +378,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Aggregates Usage per Instance for a Configuration.
   ///
   /// @Snippet(path: "LicenseManager_AggregateUsage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``aggregateUsage(request:)``
+  /// - ``aggregateUsageByItems(request:)``
+  /// - ``aggregateUsageByItems(request:options:)``
+  /// - ``aggregateUsageByItems(name:startTime:endTime:)``
   public func aggregateUsage(
     request: AggregateUsageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.AggregateUsageResponse {
@@ -284,6 +394,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Lists Products in a given project and location.
   ///
   /// @Snippet(path: "LicenseManager_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listProducts(request:)``
+  /// - ``listProductsByItems(request:)``
+  /// - ``listProductsByItems(request:options:)``
+  /// - ``listProductsByItems(parent:)``
   public func listProducts(
     request: ListProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.ListProductsResponse {
@@ -293,6 +410,11 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Gets details of a single Product.
   ///
   /// @Snippet(path: "LicenseManager_GetProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getProduct(request:)``
+  /// - ``getProduct(name:)``
   public func getProduct(
     request: GetProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.Product {
@@ -302,6 +424,12 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "LicenseManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -311,6 +439,10 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// Gets information about a location.
   ///
   /// @Snippet(path: "LicenseManager_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -322,6 +454,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LicenseManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -344,6 +483,11 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LicenseManager_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -355,6 +499,11 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LicenseManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -488,6 +637,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.LicenseManagerProtocol {
+  /// Lists Configurations in a given project and location.
+  ///
+  /// @Snippet(path: "LicenseManager_ListConfigurations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listConfigurations(request:options:)``
   public func listConfigurations(request: ListConfigurationsRequest) async throws
     -> GoogleCloudLicenseManagerV1.ListConfigurationsResponse
   {
@@ -500,6 +656,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Configurations in a given project and location.
+  ///
+  /// @Snippet(path: "LicenseManager_ListConfigurations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listConfigurations(request:options:)``
   public func listConfigurationsByItems(
     request: ListConfigurationsRequest
   ) -> some AsyncSequence<Configuration, any Swift.Error> & Sendable {
@@ -509,6 +672,10 @@ extension Clients.LicenseManagerProtocol {
   /// Lists Configurations in a given project and location.
   ///
   /// @Snippet(path: "LicenseManager_ListConfigurations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listConfigurations(request:options:)``
   public func listConfigurationsByItems(
     request: ListConfigurationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Configuration, any Swift.Error> & Sendable {
@@ -523,6 +690,13 @@ extension Clients.LicenseManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Configurations in a given project and location.
+  ///
+  /// @Snippet(path: "LicenseManager_ListConfigurations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listConfigurations(request:options:)``
   public func listConfigurationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Configuration, any Swift.Error> & Sendable {
@@ -532,6 +706,13 @@ extension Clients.LicenseManagerProtocol {
     return self.listConfigurationsByItems(request: request)
   }
 
+  /// Gets details of a single Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_GetConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/getConfiguration(request:options:)``
   public func getConfiguration(request: GetConfigurationRequest) async throws
     -> GoogleCloudLicenseManagerV1.Configuration
   {
@@ -544,6 +725,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_GetConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/getConfiguration(request:options:)``
   public func getConfiguration(
     name: Swift.String,
   ) async throws -> GoogleCloudLicenseManagerV1.Configuration {
@@ -553,6 +741,13 @@ extension Clients.LicenseManagerProtocol {
     return try await self.getConfiguration(request: request)
   }
 
+  /// Creates a new Configuration in a given project and location.
+  ///
+  /// @Snippet(path: "LicenseManager_CreateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/createConfiguration(request:options:)``
   public func createConfiguration(request: CreateConfigurationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -565,6 +760,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Configuration in a given project and location.
+  ///
+  /// @Snippet(path: "LicenseManager_CreateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/createConfigurationPollingUntilDone(request:options:)``
   public func createConfigurationPollingUntilDone(request: CreateConfigurationRequest) async throws
     -> Configuration
   {
@@ -577,6 +779,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Configuration in a given project and location.
+  ///
+  /// @Snippet(path: "LicenseManager_CreateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/createConfigurationPollingUntilDone(request:options:)``
   public func createConfigurationPollingUntilDone(
     parent: Swift.String,
     configuration: Configuration?,
@@ -590,6 +799,13 @@ extension Clients.LicenseManagerProtocol {
     return try await self.createConfigurationPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_UpdateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/updateConfiguration(request:options:)``
   public func updateConfiguration(request: UpdateConfigurationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -602,6 +818,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_UpdateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/updateConfigurationPollingUntilDone(request:options:)``
   public func updateConfigurationPollingUntilDone(request: UpdateConfigurationRequest) async throws
     -> Configuration
   {
@@ -614,6 +837,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_UpdateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/updateConfigurationPollingUntilDone(request:options:)``
   public func updateConfigurationPollingUntilDone(
     configuration: Configuration?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -625,6 +855,13 @@ extension Clients.LicenseManagerProtocol {
     return try await self.updateConfigurationPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_DeleteConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/deleteConfiguration(request:options:)``
   public func deleteConfiguration(request: DeleteConfigurationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -637,6 +874,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_DeleteConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/deleteConfigurationPollingUntilDone(request:options:)``
   public func deleteConfigurationPollingUntilDone(request: DeleteConfigurationRequest) async throws
   {
     try await self.deleteConfigurationPollingUntilDone(request: request, options: .init())
@@ -648,6 +892,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_DeleteConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/deleteConfigurationPollingUntilDone(request:options:)``
   public func deleteConfigurationPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -657,6 +908,13 @@ extension Clients.LicenseManagerProtocol {
     try await self.deleteConfigurationPollingUntilDone(request: request)
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "LicenseManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listInstances(request:options:)``
   public func listInstances(request: ListInstancesRequest) async throws
     -> GoogleCloudLicenseManagerV1.ListInstancesResponse
   {
@@ -669,6 +927,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "LicenseManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -678,6 +943,10 @@ extension Clients.LicenseManagerProtocol {
   /// Lists Instances in a given project and location.
   ///
   /// @Snippet(path: "LicenseManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -692,6 +961,13 @@ extension Clients.LicenseManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "LicenseManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listInstances(request:options:)``
   public func listInstancesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -701,6 +977,13 @@ extension Clients.LicenseManagerProtocol {
     return self.listInstancesByItems(request: request)
   }
 
+  /// Gets details of a single Instance.
+  ///
+  /// @Snippet(path: "LicenseManager_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/getInstance(request:options:)``
   public func getInstance(request: GetInstanceRequest) async throws
     -> GoogleCloudLicenseManagerV1.Instance
   {
@@ -713,6 +996,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Instance.
+  ///
+  /// @Snippet(path: "LicenseManager_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/getInstance(request:options:)``
   public func getInstance(
     name: Swift.String,
   ) async throws -> GoogleCloudLicenseManagerV1.Instance {
@@ -722,6 +1012,13 @@ extension Clients.LicenseManagerProtocol {
     return try await self.getInstance(request: request)
   }
 
+  /// Deactivates the given configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_DeactivateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/deactivateConfiguration(request:options:)``
   public func deactivateConfiguration(request: DeactivateConfigurationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -734,6 +1031,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deactivates the given configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_DeactivateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/deactivateConfigurationPollingUntilDone(request:options:)``
   public func deactivateConfigurationPollingUntilDone(request: DeactivateConfigurationRequest)
     async throws -> Configuration
   {
@@ -747,6 +1051,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deactivates the given configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_DeactivateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/deactivateConfigurationPollingUntilDone(request:options:)``
   public func deactivateConfigurationPollingUntilDone(
     name: Swift.String,
   ) async throws -> Configuration {
@@ -756,6 +1067,13 @@ extension Clients.LicenseManagerProtocol {
     return try await self.deactivateConfigurationPollingUntilDone(request: request)
   }
 
+  /// Reactivates the given configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_ReactivateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/reactivateConfiguration(request:options:)``
   public func reactivateConfiguration(request: ReactivateConfigurationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -768,6 +1086,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reactivates the given configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_ReactivateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/reactivateConfigurationPollingUntilDone(request:options:)``
   public func reactivateConfigurationPollingUntilDone(request: ReactivateConfigurationRequest)
     async throws -> Configuration
   {
@@ -781,6 +1106,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reactivates the given configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_ReactivateConfiguration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/reactivateConfigurationPollingUntilDone(request:options:)``
   public func reactivateConfigurationPollingUntilDone(
     name: Swift.String,
   ) async throws -> Configuration {
@@ -790,6 +1122,13 @@ extension Clients.LicenseManagerProtocol {
     return try await self.reactivateConfigurationPollingUntilDone(request: request)
   }
 
+  /// License Usage information for a Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_QueryConfigurationLicenseUsage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/queryConfigurationLicenseUsage(request:options:)``
   public func queryConfigurationLicenseUsage(request: QueryConfigurationLicenseUsageRequest)
     async throws -> GoogleCloudLicenseManagerV1.QueryConfigurationLicenseUsageResponse
   {
@@ -802,6 +1141,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// License Usage information for a Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_QueryConfigurationLicenseUsage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/queryConfigurationLicenseUsage(request:options:)``
   public func queryConfigurationLicenseUsage(
     name: Swift.String,
     startTime: GoogleWKT.WKTTimestamp?,
@@ -815,6 +1161,13 @@ extension Clients.LicenseManagerProtocol {
     return try await self.queryConfigurationLicenseUsage(request: request)
   }
 
+  /// Aggregates Usage per Instance for a Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_AggregateUsage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/aggregateUsage(request:options:)``
   public func aggregateUsage(request: AggregateUsageRequest) async throws
     -> GoogleCloudLicenseManagerV1.AggregateUsageResponse
   {
@@ -827,6 +1180,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Aggregates Usage per Instance for a Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_AggregateUsage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/aggregateUsage(request:options:)``
   public func aggregateUsageByItems(
     request: AggregateUsageRequest
   ) -> some AsyncSequence<Usage, any Swift.Error> & Sendable {
@@ -836,6 +1196,10 @@ extension Clients.LicenseManagerProtocol {
   /// Aggregates Usage per Instance for a Configuration.
   ///
   /// @Snippet(path: "LicenseManager_AggregateUsage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/aggregateUsage(request:options:)``
   public func aggregateUsageByItems(
     request: AggregateUsageRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Usage, any Swift.Error> & Sendable {
@@ -850,6 +1214,13 @@ extension Clients.LicenseManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Aggregates Usage per Instance for a Configuration.
+  ///
+  /// @Snippet(path: "LicenseManager_AggregateUsage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/aggregateUsage(request:options:)``
   public func aggregateUsageByItems(
     name: Swift.String,
     startTime: GoogleWKT.WKTTimestamp?,
@@ -863,6 +1234,13 @@ extension Clients.LicenseManagerProtocol {
     return self.aggregateUsageByItems(request: request)
   }
 
+  /// Lists Products in a given project and location.
+  ///
+  /// @Snippet(path: "LicenseManager_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listProducts(request:options:)``
   public func listProducts(request: ListProductsRequest) async throws
     -> GoogleCloudLicenseManagerV1.ListProductsResponse
   {
@@ -875,6 +1253,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Products in a given project and location.
+  ///
+  /// @Snippet(path: "LicenseManager_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listProducts(request:options:)``
   public func listProductsByItems(
     request: ListProductsRequest
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -884,6 +1269,10 @@ extension Clients.LicenseManagerProtocol {
   /// Lists Products in a given project and location.
   ///
   /// @Snippet(path: "LicenseManager_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listProducts(request:options:)``
   public func listProductsByItems(
     request: ListProductsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -898,6 +1287,13 @@ extension Clients.LicenseManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Products in a given project and location.
+  ///
+  /// @Snippet(path: "LicenseManager_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listProducts(request:options:)``
   public func listProductsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -907,6 +1303,13 @@ extension Clients.LicenseManagerProtocol {
     return self.listProductsByItems(request: request)
   }
 
+  /// Gets details of a single Product.
+  ///
+  /// @Snippet(path: "LicenseManager_GetProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/getProduct(request:options:)``
   public func getProduct(request: GetProductRequest) async throws
     -> GoogleCloudLicenseManagerV1.Product
   {
@@ -919,6 +1322,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Product.
+  ///
+  /// @Snippet(path: "LicenseManager_GetProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/getProduct(request:options:)``
   public func getProduct(
     name: Swift.String,
   ) async throws -> GoogleCloudLicenseManagerV1.Product {
@@ -928,6 +1338,13 @@ extension Clients.LicenseManagerProtocol {
     return try await self.getProduct(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "LicenseManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -940,6 +1357,13 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "LicenseManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -949,6 +1373,10 @@ extension Clients.LicenseManagerProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "LicenseManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -962,6 +1390,13 @@ extension Clients.LicenseManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "LicenseManager_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -974,6 +1409,15 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LicenseManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -986,6 +1430,15 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LicenseManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -997,6 +1450,10 @@ extension Clients.LicenseManagerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LicenseManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1010,6 +1467,15 @@ extension Clients.LicenseManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LicenseManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1021,6 +1487,9 @@ extension Clients.LicenseManagerProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1033,6 +1502,9 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1042,6 +1514,15 @@ extension Clients.LicenseManagerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LicenseManager_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1052,6 +1533,15 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LicenseManager_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1061,6 +1551,15 @@ extension Clients.LicenseManagerProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LicenseManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1071,6 +1570,15 @@ extension Clients.LicenseManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LicenseManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagerClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

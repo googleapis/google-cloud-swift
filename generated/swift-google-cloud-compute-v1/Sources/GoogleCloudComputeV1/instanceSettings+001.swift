@@ -24,6 +24,10 @@
   /// Service for the `instanceSettings` resource.
   ///
   /// @Snippet(path: "instanceSettingsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/InstanceSettingsProtocol``
   public final class InstanceSettingsClient: Clients.InstanceSettingsProtocol, Sendable {
     let inner: any Clients.InstanceSettingsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,11 @@
     /// Get Instance settings.
     ///
     /// @Snippet(path: "instanceSettings_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:zone:)``
     public func `get`(
       request: InstanceSettingsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceSettings {
@@ -53,6 +62,13 @@
     /// Patch Instance settings
     ///
     /// @Snippet(path: "instanceSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:zone:body:)``
     public func patch(
       request: InstanceSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -67,6 +83,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:zone:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: InstanceSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -147,6 +170,13 @@
 
   // Default implementations
   extension Clients.InstanceSettingsProtocol {
+    /// Get Instance settings.
+    ///
+    /// @Snippet(path: "instanceSettings_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceSettingsClient/get(request:options:)``
     public func `get`(request: InstanceSettingsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.InstanceSettings
     {
@@ -159,6 +189,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Get Instance settings.
+    ///
+    /// @Snippet(path: "instanceSettings_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceSettingsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -170,6 +207,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Patch Instance settings
+    ///
+    /// @Snippet(path: "instanceSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceSettingsClient/patch(request:options:)``
     public func patch(request: InstanceSettingsClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -182,6 +226,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patch Instance settings
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceSettingsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: InstanceSettingsClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -194,6 +250,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patch Instance settings
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceSettingsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -207,6 +275,7 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified zone-specific Operations resource.
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

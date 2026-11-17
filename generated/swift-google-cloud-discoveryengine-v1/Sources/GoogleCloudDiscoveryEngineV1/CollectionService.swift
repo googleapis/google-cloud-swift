@@ -29,6 +29,10 @@
   /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
   ///
   /// @Snippet(path: "CollectionServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/CollectionServiceProtocol``
   public final class CollectionServiceClient: Clients.CollectionServiceProtocol, Sendable {
     let inner: any Clients.CollectionServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -51,6 +55,13 @@
     /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
     ///
     /// @Snippet(path: "CollectionService_DeleteCollection")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteCollection(request:)``
+    /// - ``deleteCollectionPollingUntilDone(request:)``
+    /// - ``deleteCollectionPollingUntilDone(request:options:)``
+    /// - ``deleteCollectionPollingUntilDone(name:)``
     public func deleteCollection(
       request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -62,6 +73,13 @@
     /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
     ///
     /// @Snippet(path: "CollectionService_DeleteCollection")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteCollectionPollingUntilDone(request:)``
+    /// - ``deleteCollectionPollingUntilDone(name:)``
+    /// - ``deleteCollection(request:)``
+    /// - ``deleteCollection(request:options:)``
     public func deleteCollectionPollingUntilDone(
       request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -95,6 +113,11 @@
     /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
     ///
     /// @Snippet(path: "CollectionService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(resource:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -118,6 +141,11 @@
     /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
     ///
     /// @Snippet(path: "CollectionService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(resource:policy:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -129,6 +157,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "CollectionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -151,6 +186,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "CollectionService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -199,6 +239,15 @@
 
   // Default implementations
   extension Clients.CollectionServiceProtocol {
+    /// Deletes a [Collection][google.cloud.discoveryengine.v1.Collection].
+    ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
+    ///
+    /// @Snippet(path: "CollectionService_DeleteCollection")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/deleteCollection(request:options:)``
     public func deleteCollection(request: DeleteCollectionRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -211,6 +260,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a [Collection][google.cloud.discoveryengine.v1.Collection].
+    ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
+    ///
+    /// @Snippet(path: "CollectionService_DeleteCollection")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/deleteCollectionPollingUntilDone(request:options:)``
     public func deleteCollectionPollingUntilDone(request: DeleteCollectionRequest) async throws {
       try await self.deleteCollectionPollingUntilDone(request: request, options: .init())
     }
@@ -221,6 +279,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a [Collection][google.cloud.discoveryengine.v1.Collection].
+    ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
+    ///
+    /// @Snippet(path: "CollectionService_DeleteCollection")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/deleteCollectionPollingUntilDone(request:options:)``
     public func deleteCollectionPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -230,6 +297,18 @@
       try await self.deleteCollectionPollingUntilDone(request: request)
     }
 
+    /// Gets the IAM access control policy for a
+    /// [Collection][google.cloud.discoveryengine.v1.Collection]. A `NOT_FOUND`
+    /// error is returned if the resource does not exist. An empty policy is
+    /// returned if the resource exists but does not have a policy set on it.
+    ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
+    ///
+    /// @Snippet(path: "CollectionService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -242,6 +321,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the IAM access control policy for a
+    /// [Collection][google.cloud.discoveryengine.v1.Collection]. A `NOT_FOUND`
+    /// error is returned if the resource does not exist. An empty policy is
+    /// returned if the resource exists but does not have a policy set on it.
+    ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
+    ///
+    /// @Snippet(path: "CollectionService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       resource: Swift.String,
     ) async throws -> GoogleIAMV1.Policy {
@@ -251,6 +342,27 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Sets the IAM access control policy for a
+    /// [Collection][google.cloud.discoveryengine.v1.Collection]. A `NOT_FOUND`
+    /// error is returned if the resource does not exist.
+    ///
+    /// **Important:** When setting a policy directly on a Collection resource,
+    /// the only recommended roles in the bindings are:
+    /// `roles/discoveryengine.admin`
+    /// `roles/discoveryengine.agentspaceAdmin`
+    /// `roles/discoveryengine.viewer`
+    /// `roles/discoveryengine.agentspaceViewer`
+    /// `roles/discoveryengine.user`
+    /// `roles/discoveryengine.agentspaceUser`
+    /// Attempting to grant any other role will result in a warning in logging.
+    ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
+    ///
+    /// @Snippet(path: "CollectionService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -263,6 +375,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the IAM access control policy for a
+    /// [Collection][google.cloud.discoveryengine.v1.Collection]. A `NOT_FOUND`
+    /// error is returned if the resource does not exist.
+    ///
+    /// **Important:** When setting a policy directly on a Collection resource,
+    /// the only recommended roles in the bindings are:
+    /// `roles/discoveryengine.admin`
+    /// `roles/discoveryengine.agentspaceAdmin`
+    /// `roles/discoveryengine.viewer`
+    /// `roles/discoveryengine.agentspaceViewer`
+    /// `roles/discoveryengine.user`
+    /// `roles/discoveryengine.agentspaceUser`
+    /// Attempting to grant any other role will result in a warning in logging.
+    ///
+    /// [google.cloud.discoveryengine.v1.Collection]: <doc:Collection>
+    ///
+    /// @Snippet(path: "CollectionService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       resource: Swift.String,
       policy: GoogleIAMV1.Policy?,
@@ -274,6 +407,15 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CollectionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -286,6 +428,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CollectionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -297,6 +448,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "CollectionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -310,6 +465,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CollectionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -321,6 +485,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -333,6 +500,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -342,6 +512,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CollectionService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -352,6 +531,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CollectionService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CollectionServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

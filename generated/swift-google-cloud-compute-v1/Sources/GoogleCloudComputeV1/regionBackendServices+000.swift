@@ -24,6 +24,10 @@
   /// Service for the `regionBackendServices` resource.
   ///
   /// @Snippet(path: "regionBackendServicesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionBackendServicesProtocol``
   public final class RegionBackendServicesClient: Clients.RegionBackendServicesProtocol, Sendable {
     let inner: any Clients.RegionBackendServicesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -45,6 +49,13 @@
     /// Deletes the specified regional BackendService resource.
     ///
     /// @Snippet(path: "regionBackendServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:backendService:)``
     public func delete(
       request: RegionBackendServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -59,6 +70,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionBackendServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:region:backendService:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: RegionBackendServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -101,6 +119,11 @@
     /// Returns the specified regional BackendService resource.
     ///
     /// @Snippet(path: "regionBackendServices_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:backendService:)``
     public func `get`(
       request: RegionBackendServicesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendService {
@@ -111,6 +134,11 @@
     /// regional BackendService.
     ///
     /// @Snippet(path: "regionBackendServices_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getHealth(request:)``
+    /// - ``getHealth(project:region:backendService:body:)``
     public func getHealth(
       request: RegionBackendServicesClient.GetHealthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendServiceGroupHealth {
@@ -121,6 +149,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "regionBackendServices_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(project:region:resource:)``
     public func getIamPolicy(
       request: RegionBackendServicesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -132,6 +165,13 @@
     /// Backend services overview.
     ///
     /// @Snippet(path: "regionBackendServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: RegionBackendServicesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -148,6 +188,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionBackendServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: RegionBackendServicesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -191,6 +238,13 @@
     /// specified project in the given region.
     ///
     /// @Snippet(path: "regionBackendServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:region:)``
     public func list(
       request: RegionBackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendServiceList {
@@ -203,6 +257,13 @@
     /// Network Load Balancers are not included in the response.
     ///
     /// @Snippet(path: "regionBackendServices_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listUsable(request:)``
+    /// - ``listUsableByItems(request:)``
+    /// - ``listUsableByItems(request:options:)``
+    /// - ``listUsableByItems(project:region:)``
     public func listUsable(
       request: RegionBackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendServiceListUsable {
@@ -216,6 +277,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "regionBackendServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:backendService:body:)``
     public func patch(
       request: RegionBackendServicesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -234,6 +302,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionBackendServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:region:backendService:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: RegionBackendServicesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -277,6 +352,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "regionBackendServices_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(project:region:resource:body:)``
     public func setIamPolicy(
       request: RegionBackendServicesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -288,6 +368,13 @@
     /// Cloud Armor Overview
     ///
     /// @Snippet(path: "regionBackendServices_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSecurityPolicy(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:options:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:region:backendService:body:)``
     public func setSecurityPolicy(
       request: RegionBackendServicesClient.SetSecurityPolicyRequest,
       options: GoogleGax.RequestOptions
@@ -305,6 +392,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionBackendServices_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSecurityPolicyPollingUntilDone(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:region:backendService:body:)``
+    /// - ``setSecurityPolicy(request:)``
+    /// - ``setSecurityPolicy(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       request: RegionBackendServicesClient.SetSecurityPolicyRequest,
       options: GoogleGax.RequestOptions
@@ -348,6 +442,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "regionBackendServices_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:region:resource:body:)``
     public func testIamPermissions(
       request: RegionBackendServicesClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions
@@ -361,6 +460,13 @@
     /// Backend services overview.
     ///
     /// @Snippet(path: "regionBackendServices_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
+    /// - ``updatePollingUntilDone(project:region:backendService:body:)``
     public func update(
       request: RegionBackendServicesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -378,6 +484,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionBackendServices_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(project:region:backendService:body:)``
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
     public func updatePollingUntilDone(
       request: RegionBackendServicesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -551,6 +664,13 @@
 
   // Default implementations
   extension Clients.RegionBackendServicesProtocol {
+    /// Deletes the specified regional BackendService resource.
+    ///
+    /// @Snippet(path: "regionBackendServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/delete(request:options:)``
     public func delete(request: RegionBackendServicesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -563,6 +683,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified regional BackendService resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionBackendServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionBackendServicesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -575,6 +707,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified regional BackendService resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionBackendServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -588,6 +732,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified regional BackendService resource.
+    ///
+    /// @Snippet(path: "regionBackendServices_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/get(request:options:)``
     public func `get`(request: RegionBackendServicesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.BackendService
     {
@@ -600,6 +751,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified regional BackendService resource.
+    ///
+    /// @Snippet(path: "regionBackendServices_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -613,6 +771,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the most recent health check results for this
+    /// regional BackendService.
+    ///
+    /// @Snippet(path: "regionBackendServices_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/getHealth(request:options:)``
     public func getHealth(request: RegionBackendServicesClient.GetHealthRequest) async throws
       -> GoogleCloudComputeV1.BackendServiceGroupHealth
     {
@@ -625,6 +791,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the most recent health check results for this
+    /// regional BackendService.
+    ///
+    /// @Snippet(path: "regionBackendServices_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/getHealth(request:options:)``
     public func getHealth(
       project: Swift.String,
       region: Swift.String,
@@ -640,6 +814,14 @@
       return try await self.getHealth(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "regionBackendServices_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: RegionBackendServicesClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -652,6 +834,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "regionBackendServices_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -665,6 +855,15 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates a regional BackendService resource in the specified project using
+    /// the data included in the request. For more information, see
+    /// Backend services overview.
+    ///
+    /// @Snippet(path: "regionBackendServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/insert(request:options:)``
     public func insert(request: RegionBackendServicesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -677,6 +876,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a regional BackendService resource in the specified project using
+    /// the data included in the request. For more information, see
+    /// Backend services overview.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionBackendServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionBackendServicesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -689,6 +902,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a regional BackendService resource in the specified project using
+    /// the data included in the request. For more information, see
+    /// Backend services overview.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionBackendServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -702,6 +929,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of regional BackendService resources available to the
+    /// specified project in the given region.
+    ///
+    /// @Snippet(path: "regionBackendServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/list(request:options:)``
     public func list(request: RegionBackendServicesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.BackendServiceList
     {
@@ -714,6 +949,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of regional BackendService resources available to the
+    /// specified project in the given region.
+    ///
+    /// @Snippet(path: "regionBackendServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/list(request:options:)``
     public func listByItems(
       request: RegionBackendServicesClient.ListRequest
     ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
@@ -724,6 +967,10 @@
     /// specified project in the given region.
     ///
     /// @Snippet(path: "regionBackendServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/list(request:options:)``
     public func listByItems(
       request: RegionBackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
@@ -737,6 +984,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of regional BackendService resources available to the
+    /// specified project in the given region.
+    ///
+    /// @Snippet(path: "regionBackendServices_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -748,6 +1003,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Retrieves a list of all usable backend services for Application Load
+    /// Balancers and Proxy Network Load Balancers in the specified project in the
+    /// given region. Backend services for external and internal passthrough
+    /// Network Load Balancers are not included in the response.
+    ///
+    /// @Snippet(path: "regionBackendServices_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/listUsable(request:options:)``
     public func listUsable(request: RegionBackendServicesClient.ListUsableRequest) async throws
       -> GoogleCloudComputeV1.BackendServiceListUsable
     {
@@ -760,6 +1025,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of all usable backend services for Application Load
+    /// Balancers and Proxy Network Load Balancers in the specified project in the
+    /// given region. Backend services for external and internal passthrough
+    /// Network Load Balancers are not included in the response.
+    ///
+    /// @Snippet(path: "regionBackendServices_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/listUsable(request:options:)``
     public func listUsableByItems(
       request: RegionBackendServicesClient.ListUsableRequest
     ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
@@ -772,6 +1047,10 @@
     /// Network Load Balancers are not included in the response.
     ///
     /// @Snippet(path: "regionBackendServices_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/listUsable(request:options:)``
     public func listUsableByItems(
       request: RegionBackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
@@ -786,6 +1065,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of all usable backend services for Application Load
+    /// Balancers and Proxy Network Load Balancers in the specified project in the
+    /// given region. Backend services for external and internal passthrough
+    /// Network Load Balancers are not included in the response.
+    ///
+    /// @Snippet(path: "regionBackendServices_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/listUsable(request:options:)``
     public func listUsableByItems(
       project: Swift.String,
       region: Swift.String,
@@ -797,6 +1086,17 @@
       return self.listUsableByItems(request: request)
     }
 
+    /// Updates the specified regional BackendService resource with the data
+    /// included in the request. For more information, see
+    /// Understanding backend services This method
+    /// supports PATCH semantics and uses the JSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "regionBackendServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/patch(request:options:)``
     public func patch(request: RegionBackendServicesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -809,6 +1109,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified regional BackendService resource with the data
+    /// included in the request. For more information, see
+    /// Understanding backend services This method
+    /// supports PATCH semantics and uses the JSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionBackendServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: RegionBackendServicesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -821,6 +1137,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified regional BackendService resource with the data
+    /// included in the request. For more information, see
+    /// Understanding backend services This method
+    /// supports PATCH semantics and uses the JSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionBackendServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -836,6 +1168,14 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "regionBackendServices_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: RegionBackendServicesClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -848,6 +1188,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "regionBackendServices_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -863,6 +1211,15 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified backend
+    /// service. For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// @Snippet(path: "regionBackendServices_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/setSecurityPolicy(request:options:)``
     public func setSecurityPolicy(request: RegionBackendServicesClient.SetSecurityPolicyRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -876,6 +1233,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified backend
+    /// service. For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionBackendServices_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/setSecurityPolicyPollingUntilDone(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       request: RegionBackendServicesClient.SetSecurityPolicyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -889,6 +1260,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified backend
+    /// service. For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionBackendServices_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/setSecurityPolicyPollingUntilDone(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -904,6 +1289,13 @@
       return try await self.setSecurityPolicyPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionBackendServices_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: RegionBackendServicesClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -917,6 +1309,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionBackendServices_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -932,6 +1331,16 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Updates the specified regional BackendService resource with the data
+    /// included in the request. For more information,
+    /// see
+    /// Backend services overview.
+    ///
+    /// @Snippet(path: "regionBackendServices_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/update(request:options:)``
     public func update(request: RegionBackendServicesClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -944,6 +1353,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified regional BackendService resource with the data
+    /// included in the request. For more information,
+    /// see
+    /// Backend services overview.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionBackendServices_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: RegionBackendServicesClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -956,6 +1380,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified regional BackendService resource with the data
+    /// included in the request. For more information,
+    /// see
+    /// Backend services overview.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionBackendServices_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionBackendServicesClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -971,6 +1410,7 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

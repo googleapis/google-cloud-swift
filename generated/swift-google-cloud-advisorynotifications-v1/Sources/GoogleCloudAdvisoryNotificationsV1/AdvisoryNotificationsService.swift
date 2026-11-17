@@ -23,6 +23,10 @@ import Foundation
 /// Service to manage Security and Privacy Notifications.
 ///
 /// @Snippet(path: "AdvisoryNotificationsServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AdvisoryNotificationsServiceProtocol``
 public final class AdvisoryNotificationsServiceClient: Clients.AdvisoryNotificationsServiceProtocol,
   Sendable
 {
@@ -42,6 +46,13 @@ public final class AdvisoryNotificationsServiceClient: Clients.AdvisoryNotificat
   /// Lists notifications under a given parent.
   ///
   /// @Snippet(path: "AdvisoryNotificationsService_ListNotifications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listNotifications(request:)``
+  /// - ``listNotificationsByItems(request:)``
+  /// - ``listNotificationsByItems(request:options:)``
+  /// - ``listNotificationsByItems(parent:)``
   public func listNotifications(
     request: ListNotificationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAdvisoryNotificationsV1.ListNotificationsResponse {
@@ -51,6 +62,11 @@ public final class AdvisoryNotificationsServiceClient: Clients.AdvisoryNotificat
   /// Gets a notification.
   ///
   /// @Snippet(path: "AdvisoryNotificationsService_GetNotification")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getNotification(request:)``
+  /// - ``getNotification(name:)``
   public func getNotification(
     request: GetNotificationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAdvisoryNotificationsV1.Notification {
@@ -60,6 +76,11 @@ public final class AdvisoryNotificationsServiceClient: Clients.AdvisoryNotificat
   /// Get notification settings.
   ///
   /// @Snippet(path: "AdvisoryNotificationsService_GetSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSettings(request:)``
+  /// - ``getSettings(name:)``
   public func getSettings(
     request: GetSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAdvisoryNotificationsV1.Settings {
@@ -69,6 +90,11 @@ public final class AdvisoryNotificationsServiceClient: Clients.AdvisoryNotificat
   /// Update notification settings.
   ///
   /// @Snippet(path: "AdvisoryNotificationsService_UpdateSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSettings(request:)``
+  /// - ``updateSettings(settings:)``
   public func updateSettings(
     request: UpdateSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAdvisoryNotificationsV1.Settings {
@@ -107,6 +133,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.AdvisoryNotificationsServiceProtocol {
+  /// Lists notifications under a given parent.
+  ///
+  /// @Snippet(path: "AdvisoryNotificationsService_ListNotifications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AdvisoryNotificationsServiceClient/listNotifications(request:options:)``
   public func listNotifications(request: ListNotificationsRequest) async throws
     -> GoogleCloudAdvisoryNotificationsV1.ListNotificationsResponse
   {
@@ -119,6 +152,13 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists notifications under a given parent.
+  ///
+  /// @Snippet(path: "AdvisoryNotificationsService_ListNotifications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AdvisoryNotificationsServiceClient/listNotifications(request:options:)``
   public func listNotificationsByItems(
     request: ListNotificationsRequest
   ) -> some AsyncSequence<Notification, any Swift.Error> & Sendable {
@@ -128,6 +168,10 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
   /// Lists notifications under a given parent.
   ///
   /// @Snippet(path: "AdvisoryNotificationsService_ListNotifications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AdvisoryNotificationsServiceClient/listNotifications(request:options:)``
   public func listNotificationsByItems(
     request: ListNotificationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Notification, any Swift.Error> & Sendable {
@@ -142,6 +186,13 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists notifications under a given parent.
+  ///
+  /// @Snippet(path: "AdvisoryNotificationsService_ListNotifications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AdvisoryNotificationsServiceClient/listNotifications(request:options:)``
   public func listNotificationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Notification, any Swift.Error> & Sendable {
@@ -151,6 +202,13 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
     return self.listNotificationsByItems(request: request)
   }
 
+  /// Gets a notification.
+  ///
+  /// @Snippet(path: "AdvisoryNotificationsService_GetNotification")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AdvisoryNotificationsServiceClient/getNotification(request:options:)``
   public func getNotification(request: GetNotificationRequest) async throws
     -> GoogleCloudAdvisoryNotificationsV1.Notification
   {
@@ -163,6 +221,13 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a notification.
+  ///
+  /// @Snippet(path: "AdvisoryNotificationsService_GetNotification")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AdvisoryNotificationsServiceClient/getNotification(request:options:)``
   public func getNotification(
     name: Swift.String,
   ) async throws -> GoogleCloudAdvisoryNotificationsV1.Notification {
@@ -172,6 +237,13 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
     return try await self.getNotification(request: request)
   }
 
+  /// Get notification settings.
+  ///
+  /// @Snippet(path: "AdvisoryNotificationsService_GetSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AdvisoryNotificationsServiceClient/getSettings(request:options:)``
   public func getSettings(request: GetSettingsRequest) async throws
     -> GoogleCloudAdvisoryNotificationsV1.Settings
   {
@@ -184,6 +256,13 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get notification settings.
+  ///
+  /// @Snippet(path: "AdvisoryNotificationsService_GetSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AdvisoryNotificationsServiceClient/getSettings(request:options:)``
   public func getSettings(
     name: Swift.String,
   ) async throws -> GoogleCloudAdvisoryNotificationsV1.Settings {
@@ -193,6 +272,13 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
     return try await self.getSettings(request: request)
   }
 
+  /// Update notification settings.
+  ///
+  /// @Snippet(path: "AdvisoryNotificationsService_UpdateSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AdvisoryNotificationsServiceClient/updateSettings(request:options:)``
   public func updateSettings(request: UpdateSettingsRequest) async throws
     -> GoogleCloudAdvisoryNotificationsV1.Settings
   {
@@ -205,6 +291,13 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update notification settings.
+  ///
+  /// @Snippet(path: "AdvisoryNotificationsService_UpdateSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AdvisoryNotificationsServiceClient/updateSettings(request:options:)``
   public func updateSettings(
     settings: Settings?,
   ) async throws -> GoogleCloudAdvisoryNotificationsV1.Settings {

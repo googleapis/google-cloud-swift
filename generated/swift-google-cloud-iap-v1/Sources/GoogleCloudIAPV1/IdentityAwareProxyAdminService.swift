@@ -25,6 +25,10 @@ import Foundation
 /// APIs for Identity-Aware Proxy Admin configurations.
 ///
 /// @Snippet(path: "IdentityAwareProxyAdminServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/IdentityAwareProxyAdminServiceProtocol``
 public final class IdentityAwareProxyAdminServiceClient: Clients
     .IdentityAwareProxyAdminServiceProtocol, Sendable
 {
@@ -47,6 +51,10 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   /// https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -59,6 +67,10 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   /// https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -71,6 +83,10 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   /// https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -80,6 +96,10 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   /// Gets the IAP settings on a particular IAP protected resource.
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_GetIapSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIapSettings(request:)``
   public func getIapSettings(
     request: GetIapSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.IapSettings {
@@ -90,6 +110,10 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   /// replaces all fields unless the `update_mask` is set.
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_UpdateIapSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateIapSettings(request:)``
   public func updateIapSettings(
     request: UpdateIapSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.IapSettings {
@@ -99,6 +123,10 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   /// Validates that a given CEL expression conforms to IAP restrictions.
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_ValidateIapAttributeExpression")
+  ///
+  /// ## See Also
+  ///
+  /// - ``validateIapAttributeExpression(request:)``
   public func validateIapAttributeExpression(
     request: ValidateIapAttributeExpressionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.ValidateIapAttributeExpressionResponse {
@@ -110,6 +138,13 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   /// `/v1/projects/123/iap_tunnel/locations/-/destGroups`
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_ListTunnelDestGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTunnelDestGroups(request:)``
+  /// - ``listTunnelDestGroupsByItems(request:)``
+  /// - ``listTunnelDestGroupsByItems(request:options:)``
+  /// - ``listTunnelDestGroupsByItems(parent:)``
   public func listTunnelDestGroups(
     request: ListTunnelDestGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.ListTunnelDestGroupsResponse {
@@ -119,6 +154,11 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   /// Creates a new TunnelDestGroup.
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_CreateTunnelDestGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTunnelDestGroup(request:)``
+  /// - ``createTunnelDestGroup(parent:tunnelDestGroup:tunnelDestGroupId:)``
   public func createTunnelDestGroup(
     request: CreateTunnelDestGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
@@ -128,6 +168,11 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   /// Retrieves an existing TunnelDestGroup.
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_GetTunnelDestGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTunnelDestGroup(request:)``
+  /// - ``getTunnelDestGroup(name:)``
   public func getTunnelDestGroup(
     request: GetTunnelDestGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
@@ -137,6 +182,11 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   /// Deletes a TunnelDestGroup.
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_DeleteTunnelDestGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTunnelDestGroup(request:)``
+  /// - ``deleteTunnelDestGroup(name:)``
   public func deleteTunnelDestGroup(
     request: DeleteTunnelDestGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -146,6 +196,11 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   /// Updates a TunnelDestGroup.
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_UpdateTunnelDestGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTunnelDestGroup(request:)``
+  /// - ``updateTunnelDestGroup(tunnelDestGroup:updateMask:)``
   public func updateTunnelDestGroup(
     request: UpdateTunnelDestGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
@@ -219,6 +274,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.IdentityAwareProxyAdminServiceProtocol {
+  /// Sets the access control policy for an Identity-Aware Proxy protected
+  /// resource. Replaces any existing policy.
+  /// More information about managing access via IAP can be found at:
+  /// https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -231,6 +296,16 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for an Identity-Aware Proxy protected
+  /// resource.
+  /// More information about managing access via IAP can be found at:
+  /// https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -243,6 +318,16 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the Identity-Aware Proxy protected
+  /// resource.
+  /// More information about managing access via IAP can be found at:
+  /// https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -255,6 +340,13 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the IAP settings on a particular IAP protected resource.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_GetIapSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/getIapSettings(request:options:)``
   public func getIapSettings(request: GetIapSettingsRequest) async throws
     -> GoogleCloudIAPV1.IapSettings
   {
@@ -267,6 +359,14 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the IAP settings on a particular IAP protected resource. It
+  /// replaces all fields unless the `update_mask` is set.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_UpdateIapSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/updateIapSettings(request:options:)``
   public func updateIapSettings(request: UpdateIapSettingsRequest) async throws
     -> GoogleCloudIAPV1.IapSettings
   {
@@ -279,6 +379,13 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Validates that a given CEL expression conforms to IAP restrictions.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_ValidateIapAttributeExpression")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/validateIapAttributeExpression(request:options:)``
   public func validateIapAttributeExpression(request: ValidateIapAttributeExpressionRequest)
     async throws -> GoogleCloudIAPV1.ValidateIapAttributeExpressionResponse
   {
@@ -291,6 +398,15 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the existing TunnelDestGroups. To group across all locations, use a
+  /// `-` as the location ID. For example:
+  /// `/v1/projects/123/iap_tunnel/locations/-/destGroups`
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_ListTunnelDestGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/listTunnelDestGroups(request:options:)``
   public func listTunnelDestGroups(request: ListTunnelDestGroupsRequest) async throws
     -> GoogleCloudIAPV1.ListTunnelDestGroupsResponse
   {
@@ -303,6 +419,15 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the existing TunnelDestGroups. To group across all locations, use a
+  /// `-` as the location ID. For example:
+  /// `/v1/projects/123/iap_tunnel/locations/-/destGroups`
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_ListTunnelDestGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/listTunnelDestGroups(request:options:)``
   public func listTunnelDestGroupsByItems(
     request: ListTunnelDestGroupsRequest
   ) -> some AsyncSequence<TunnelDestGroup, any Swift.Error> & Sendable {
@@ -314,6 +439,10 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
   /// `/v1/projects/123/iap_tunnel/locations/-/destGroups`
   ///
   /// @Snippet(path: "IdentityAwareProxyAdminService_ListTunnelDestGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/listTunnelDestGroups(request:options:)``
   public func listTunnelDestGroupsByItems(
     request: ListTunnelDestGroupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TunnelDestGroup, any Swift.Error> & Sendable {
@@ -328,6 +457,15 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the existing TunnelDestGroups. To group across all locations, use a
+  /// `-` as the location ID. For example:
+  /// `/v1/projects/123/iap_tunnel/locations/-/destGroups`
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_ListTunnelDestGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/listTunnelDestGroups(request:options:)``
   public func listTunnelDestGroupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<TunnelDestGroup, any Swift.Error> & Sendable {
@@ -337,6 +475,13 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     return self.listTunnelDestGroupsByItems(request: request)
   }
 
+  /// Creates a new TunnelDestGroup.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_CreateTunnelDestGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/createTunnelDestGroup(request:options:)``
   public func createTunnelDestGroup(request: CreateTunnelDestGroupRequest) async throws
     -> GoogleCloudIAPV1.TunnelDestGroup
   {
@@ -349,6 +494,13 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new TunnelDestGroup.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_CreateTunnelDestGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/createTunnelDestGroup(request:options:)``
   public func createTunnelDestGroup(
     parent: Swift.String,
     tunnelDestGroup: TunnelDestGroup?,
@@ -362,6 +514,13 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     return try await self.createTunnelDestGroup(request: request)
   }
 
+  /// Retrieves an existing TunnelDestGroup.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_GetTunnelDestGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/getTunnelDestGroup(request:options:)``
   public func getTunnelDestGroup(request: GetTunnelDestGroupRequest) async throws
     -> GoogleCloudIAPV1.TunnelDestGroup
   {
@@ -374,6 +533,13 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves an existing TunnelDestGroup.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_GetTunnelDestGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/getTunnelDestGroup(request:options:)``
   public func getTunnelDestGroup(
     name: Swift.String,
   ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
@@ -383,6 +549,13 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     return try await self.getTunnelDestGroup(request: request)
   }
 
+  /// Deletes a TunnelDestGroup.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_DeleteTunnelDestGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/deleteTunnelDestGroup(request:options:)``
   public func deleteTunnelDestGroup(request: DeleteTunnelDestGroupRequest) async throws {
     try await self.deleteTunnelDestGroup(request: request, options: .init())
   }
@@ -393,6 +566,13 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a TunnelDestGroup.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_DeleteTunnelDestGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/deleteTunnelDestGroup(request:options:)``
   public func deleteTunnelDestGroup(
     name: Swift.String,
   ) async throws {
@@ -402,6 +582,13 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     try await self.deleteTunnelDestGroup(request: request)
   }
 
+  /// Updates a TunnelDestGroup.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_UpdateTunnelDestGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/updateTunnelDestGroup(request:options:)``
   public func updateTunnelDestGroup(request: UpdateTunnelDestGroupRequest) async throws
     -> GoogleCloudIAPV1.TunnelDestGroup
   {
@@ -414,6 +601,13 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a TunnelDestGroup.
+  ///
+  /// @Snippet(path: "IdentityAwareProxyAdminService_UpdateTunnelDestGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityAwareProxyAdminServiceClient/updateTunnelDestGroup(request:options:)``
   public func updateTunnelDestGroup(
     tunnelDestGroup: TunnelDestGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,

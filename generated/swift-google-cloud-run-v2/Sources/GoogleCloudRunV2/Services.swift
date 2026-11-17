@@ -26,6 +26,10 @@ import Foundation
 /// Cloud Run Service Control Plane API
 ///
 /// @Snippet(path: "ServicesQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ServicesProtocol``
 public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   let inner: any Clients.ServicesStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,13 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// Creates a new Service in a given project and location.
   ///
   /// @Snippet(path: "Services_CreateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createService(request:)``
+  /// - ``createServicePollingUntilDone(request:)``
+  /// - ``createServicePollingUntilDone(request:options:)``
+  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
   public func createService(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -55,6 +66,13 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// Creates a new Service in a given project and location.
   ///
   /// @Snippet(path: "Services_CreateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServicePollingUntilDone(request:)``
+  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
+  /// - ``createService(request:)``
+  /// - ``createService(request:options:)``
   public func createServicePollingUntilDone(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Service {
@@ -82,6 +100,11 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// Gets information about a Service.
   ///
   /// @Snippet(path: "Services_GetService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getService(request:)``
+  /// - ``getService(name:)``
   public func getService(
     request: GetServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.Service {
@@ -91,6 +114,13 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// Lists Services. Results are sorted by creation time, descending.
   ///
   /// @Snippet(path: "Services_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServices(request:)``
+  /// - ``listServicesByItems(request:)``
+  /// - ``listServicesByItems(request:options:)``
+  /// - ``listServicesByItems(parent:)``
   public func listServices(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.ListServicesResponse {
@@ -100,6 +130,14 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// Updates a Service.
   ///
   /// @Snippet(path: "Services_UpdateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateService(request:)``
+  /// - ``updateServicePollingUntilDone(request:)``
+  /// - ``updateServicePollingUntilDone(request:options:)``
+  /// - ``updateServicePollingUntilDone(service:)``
+  /// - ``updateServicePollingUntilDone(service:updateMask:)``
   public func updateService(
     request: UpdateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -109,6 +147,14 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// Updates a Service.
   ///
   /// @Snippet(path: "Services_UpdateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServicePollingUntilDone(request:)``
+  /// - ``updateServicePollingUntilDone(service:)``
+  /// - ``updateServicePollingUntilDone(service:updateMask:)``
+  /// - ``updateService(request:)``
+  /// - ``updateService(request:options:)``
   public func updateServicePollingUntilDone(
     request: UpdateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Service {
@@ -138,6 +184,13 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// revisions.
   ///
   /// @Snippet(path: "Services_DeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteService(request:)``
+  /// - ``deleteServicePollingUntilDone(request:)``
+  /// - ``deleteServicePollingUntilDone(request:options:)``
+  /// - ``deleteServicePollingUntilDone(name:)``
   public func deleteService(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -149,6 +202,13 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// revisions.
   ///
   /// @Snippet(path: "Services_DeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServicePollingUntilDone(request:)``
+  /// - ``deleteServicePollingUntilDone(name:)``
+  /// - ``deleteService(request:)``
+  /// - ``deleteService(request:options:)``
   public func deleteServicePollingUntilDone(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Service {
@@ -177,6 +237,10 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// Cloud Run Service. This result does not include any inherited policies.
   ///
   /// @Snippet(path: "Services_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -187,6 +251,10 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// any existing policy.
   ///
   /// @Snippet(path: "Services_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -198,6 +266,10 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// There are no permissions required for making this API call.
   ///
   /// @Snippet(path: "Services_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -209,6 +281,13 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Services_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -231,6 +310,11 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Services_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -242,6 +326,10 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Services_WaitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``waitOperation(request:)``
   public func waitOperation(
     request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -330,6 +418,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ServicesProtocol {
+  /// Creates a new Service in a given project and location.
+  ///
+  /// @Snippet(path: "Services_CreateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/createService(request:options:)``
   public func createService(request: CreateServiceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -342,6 +437,13 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Service in a given project and location.
+  ///
+  /// @Snippet(path: "Services_CreateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/createServicePollingUntilDone(request:options:)``
   public func createServicePollingUntilDone(request: CreateServiceRequest) async throws -> Service {
     return try await self.createServicePollingUntilDone(request: request, options: .init())
   }
@@ -352,6 +454,13 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Service in a given project and location.
+  ///
+  /// @Snippet(path: "Services_CreateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/createServicePollingUntilDone(request:options:)``
   public func createServicePollingUntilDone(
     parent: Swift.String,
     service: Service?,
@@ -365,6 +474,13 @@ extension Clients.ServicesProtocol {
     return try await self.createServicePollingUntilDone(request: request)
   }
 
+  /// Gets information about a Service.
+  ///
+  /// @Snippet(path: "Services_GetService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/getService(request:options:)``
   public func getService(request: GetServiceRequest) async throws -> GoogleCloudRunV2.Service {
     try await self.getService(request: request, options: .init())
   }
@@ -375,6 +491,13 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information about a Service.
+  ///
+  /// @Snippet(path: "Services_GetService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/getService(request:options:)``
   public func getService(
     name: Swift.String,
   ) async throws -> GoogleCloudRunV2.Service {
@@ -384,6 +507,13 @@ extension Clients.ServicesProtocol {
     return try await self.getService(request: request)
   }
 
+  /// Lists Services. Results are sorted by creation time, descending.
+  ///
+  /// @Snippet(path: "Services_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/listServices(request:options:)``
   public func listServices(request: ListServicesRequest) async throws
     -> GoogleCloudRunV2.ListServicesResponse
   {
@@ -396,6 +526,13 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Services. Results are sorted by creation time, descending.
+  ///
+  /// @Snippet(path: "Services_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/listServices(request:options:)``
   public func listServicesByItems(
     request: ListServicesRequest
   ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
@@ -405,6 +542,10 @@ extension Clients.ServicesProtocol {
   /// Lists Services. Results are sorted by creation time, descending.
   ///
   /// @Snippet(path: "Services_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/listServices(request:options:)``
   public func listServicesByItems(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
@@ -418,6 +559,13 @@ extension Clients.ServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Services. Results are sorted by creation time, descending.
+  ///
+  /// @Snippet(path: "Services_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/listServices(request:options:)``
   public func listServicesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
@@ -427,6 +575,13 @@ extension Clients.ServicesProtocol {
     return self.listServicesByItems(request: request)
   }
 
+  /// Updates a Service.
+  ///
+  /// @Snippet(path: "Services_UpdateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/updateService(request:options:)``
   public func updateService(request: UpdateServiceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -439,6 +594,13 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Service.
+  ///
+  /// @Snippet(path: "Services_UpdateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/updateServicePollingUntilDone(request:options:)``
   public func updateServicePollingUntilDone(request: UpdateServiceRequest) async throws -> Service {
     return try await self.updateServicePollingUntilDone(request: request, options: .init())
   }
@@ -449,6 +611,13 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Service.
+  ///
+  /// @Snippet(path: "Services_UpdateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/updateServicePollingUntilDone(request:options:)``
   public func updateServicePollingUntilDone(
     service: Service?,
   ) async throws -> Service {
@@ -458,6 +627,13 @@ extension Clients.ServicesProtocol {
     return try await self.updateServicePollingUntilDone(request: request)
   }
 
+  /// Updates a Service.
+  ///
+  /// @Snippet(path: "Services_UpdateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/updateServicePollingUntilDone(request:options:)``
   public func updateServicePollingUntilDone(
     service: Service?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -469,6 +645,15 @@ extension Clients.ServicesProtocol {
     return try await self.updateServicePollingUntilDone(request: request)
   }
 
+  /// Deletes a Service.
+  /// This will cause the Service to stop serving traffic and will delete all
+  /// revisions.
+  ///
+  /// @Snippet(path: "Services_DeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/deleteService(request:options:)``
   public func deleteService(request: DeleteServiceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -481,6 +666,15 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Service.
+  /// This will cause the Service to stop serving traffic and will delete all
+  /// revisions.
+  ///
+  /// @Snippet(path: "Services_DeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/deleteServicePollingUntilDone(request:options:)``
   public func deleteServicePollingUntilDone(request: DeleteServiceRequest) async throws -> Service {
     return try await self.deleteServicePollingUntilDone(request: request, options: .init())
   }
@@ -491,6 +685,15 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Service.
+  /// This will cause the Service to stop serving traffic and will delete all
+  /// revisions.
+  ///
+  /// @Snippet(path: "Services_DeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/deleteServicePollingUntilDone(request:options:)``
   public func deleteServicePollingUntilDone(
     name: Swift.String,
   ) async throws -> Service {
@@ -500,6 +703,14 @@ extension Clients.ServicesProtocol {
     return try await self.deleteServicePollingUntilDone(request: request)
   }
 
+  /// Gets the IAM Access Control policy currently in effect for the given
+  /// Cloud Run Service. This result does not include any inherited policies.
+  ///
+  /// @Snippet(path: "Services_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -512,6 +723,14 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the IAM Access control policy for the specified Service. Overwrites
+  /// any existing policy.
+  ///
+  /// @Snippet(path: "Services_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -524,6 +743,15 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified Project.
+  ///
+  /// There are no permissions required for making this API call.
+  ///
+  /// @Snippet(path: "Services_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -536,6 +764,15 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Services_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -548,6 +785,15 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Services_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -559,6 +805,10 @@ extension Clients.ServicesProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Services_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -572,6 +822,15 @@ extension Clients.ServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Services_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -583,6 +842,9 @@ extension Clients.ServicesProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -595,6 +857,9 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -604,6 +869,15 @@ extension Clients.ServicesProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Services_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -614,6 +888,15 @@ extension Clients.ServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Services_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -623,6 +906,15 @@ extension Clients.ServicesProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Services_WaitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServicesClient/waitOperation(request:options:)``
   public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {

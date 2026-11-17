@@ -28,6 +28,10 @@
   /// [google.cloud.dialogflow.v2.Agent]: <doc:Agent>
   ///
   /// @Snippet(path: "AgentsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/AgentsProtocol``
   public final class AgentsClient: Clients.AgentsProtocol, Sendable {
     let inner: any Clients.AgentsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,11 @@
     /// Retrieves the specified agent.
     ///
     /// @Snippet(path: "Agents_GetAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getAgent(request:)``
+    /// - ``getAgent(parent:)``
     public func getAgent(
       request: GetAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Agent {
@@ -61,6 +70,11 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "Agents_SetAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setAgent(request:)``
+    /// - ``setAgent(agent:)``
     public func setAgent(
       request: SetAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Agent {
@@ -70,6 +84,11 @@
     /// Deletes the specified agent.
     ///
     /// @Snippet(path: "Agents_DeleteAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteAgent(request:)``
+    /// - ``deleteAgent(parent:)``
     public func deleteAgent(
       request: DeleteAgentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -85,6 +104,13 @@
     /// Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
     ///
     /// @Snippet(path: "Agents_SearchAgents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``searchAgents(request:)``
+    /// - ``searchAgentsByItems(request:)``
+    /// - ``searchAgentsByItems(request:options:)``
+    /// - ``searchAgentsByItems(parent:)``
     public func searchAgents(
       request: SearchAgentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SearchAgentsResponse {
@@ -107,6 +133,13 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "Agents_TrainAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``trainAgent(request:)``
+    /// - ``trainAgentPollingUntilDone(request:)``
+    /// - ``trainAgentPollingUntilDone(request:options:)``
+    /// - ``trainAgentPollingUntilDone(parent:)``
     public func trainAgent(
       request: TrainAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -129,6 +162,13 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "Agents_TrainAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``trainAgentPollingUntilDone(request:)``
+    /// - ``trainAgentPollingUntilDone(parent:)``
+    /// - ``trainAgent(request:)``
+    /// - ``trainAgent(request:options:)``
     public func trainAgentPollingUntilDone(
       request: TrainAgentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -168,6 +208,13 @@
     /// [google.cloud.dialogflow.v2.ExportAgentResponse]: <doc:ExportAgentResponse>
     ///
     /// @Snippet(path: "Agents_ExportAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportAgent(request:)``
+    /// - ``exportAgentPollingUntilDone(request:)``
+    /// - ``exportAgentPollingUntilDone(request:options:)``
+    /// - ``exportAgentPollingUntilDone(parent:)``
     public func exportAgent(
       request: ExportAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -188,6 +235,13 @@
     /// [google.cloud.dialogflow.v2.ExportAgentResponse]: <doc:ExportAgentResponse>
     ///
     /// @Snippet(path: "Agents_ExportAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportAgentPollingUntilDone(request:)``
+    /// - ``exportAgentPollingUntilDone(parent:)``
+    /// - ``exportAgent(request:)``
+    /// - ``exportAgent(request:options:)``
     public func exportAgentPollingUntilDone(
       request: ExportAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportAgentResponse {
@@ -245,6 +299,12 @@
     /// [google.cloud.dialogflow.v2.ImportAgentRequest]: <doc:ImportAgentRequest>
     ///
     /// @Snippet(path: "Agents_ImportAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importAgent(request:)``
+    /// - ``importAgentPollingUntilDone(request:)``
+    /// - ``importAgentPollingUntilDone(request:options:)``
     public func importAgent(
       request: ImportAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -283,6 +343,12 @@
     /// [google.cloud.dialogflow.v2.ImportAgentRequest]: <doc:ImportAgentRequest>
     ///
     /// @Snippet(path: "Agents_ImportAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importAgentPollingUntilDone(request:)``
+    /// - ``importAgent(request:)``
+    /// - ``importAgent(request:options:)``
     public func importAgentPollingUntilDone(
       request: ImportAgentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -337,6 +403,12 @@
     /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:options:)>
     ///
     /// @Snippet(path: "Agents_RestoreAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``restoreAgent(request:)``
+    /// - ``restoreAgentPollingUntilDone(request:)``
+    /// - ``restoreAgentPollingUntilDone(request:options:)``
     public func restoreAgent(
       request: RestoreAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -372,6 +444,12 @@
     /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:options:)>
     ///
     /// @Snippet(path: "Agents_RestoreAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``restoreAgentPollingUntilDone(request:)``
+    /// - ``restoreAgent(request:)``
+    /// - ``restoreAgent(request:options:)``
     public func restoreAgentPollingUntilDone(
       request: RestoreAgentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -401,6 +479,10 @@
     /// training time and is updated automatically when training is completed.
     ///
     /// @Snippet(path: "Agents_GetValidationResult")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getValidationResult(request:)``
     public func getValidationResult(
       request: GetValidationResultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ValidationResult {
@@ -427,6 +509,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Agents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -436,6 +524,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Agents_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -447,6 +539,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Agents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -469,6 +568,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Agents_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -572,6 +676,13 @@
 
   // Default implementations
   extension Clients.AgentsProtocol {
+    /// Retrieves the specified agent.
+    ///
+    /// @Snippet(path: "Agents_GetAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/getAgent(request:options:)``
     public func getAgent(request: GetAgentRequest) async throws -> GoogleCloudDialogflowV2.Agent {
       try await self.getAgent(request: request, options: .init())
     }
@@ -582,6 +693,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified agent.
+    ///
+    /// @Snippet(path: "Agents_GetAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/getAgent(request:options:)``
     public func getAgent(
       parent: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.Agent {
@@ -591,6 +709,17 @@
       return try await self.getAgent(request: request)
     }
 
+    /// Creates/updates the specified agent.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "Agents_SetAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/setAgent(request:options:)``
     public func setAgent(request: SetAgentRequest) async throws -> GoogleCloudDialogflowV2.Agent {
       try await self.setAgent(request: request, options: .init())
     }
@@ -601,6 +730,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates/updates the specified agent.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "Agents_SetAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/setAgent(request:options:)``
     public func setAgent(
       agent: Agent?,
     ) async throws -> GoogleCloudDialogflowV2.Agent {
@@ -610,6 +750,13 @@
       return try await self.setAgent(request: request)
     }
 
+    /// Deletes the specified agent.
+    ///
+    /// @Snippet(path: "Agents_DeleteAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/deleteAgent(request:options:)``
     public func deleteAgent(request: DeleteAgentRequest) async throws {
       try await self.deleteAgent(request: request, options: .init())
     }
@@ -620,6 +767,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified agent.
+    ///
+    /// @Snippet(path: "Agents_DeleteAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/deleteAgent(request:options:)``
     public func deleteAgent(
       parent: Swift.String,
     ) async throws {
@@ -629,6 +783,19 @@
       try await self.deleteAgent(request: request)
     }
 
+    /// Returns the list of agents.
+    ///
+    /// Since there is at most one conversational agent per project, this method is
+    /// useful primarily for listing all agents across projects the caller has
+    /// access to. One can achieve that with a wildcard project collection id "-".
+    /// Refer to [List
+    /// Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
+    ///
+    /// @Snippet(path: "Agents_SearchAgents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/searchAgents(request:options:)``
     public func searchAgents(request: SearchAgentsRequest) async throws
       -> GoogleCloudDialogflowV2.SearchAgentsResponse
     {
@@ -641,6 +808,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of agents.
+    ///
+    /// Since there is at most one conversational agent per project, this method is
+    /// useful primarily for listing all agents across projects the caller has
+    /// access to. One can achieve that with a wildcard project collection id "-".
+    /// Refer to [List
+    /// Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
+    ///
+    /// @Snippet(path: "Agents_SearchAgents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/searchAgents(request:options:)``
     public func searchAgentsByItems(
       request: SearchAgentsRequest
     ) -> some AsyncSequence<Agent, any Swift.Error> & Sendable {
@@ -656,6 +836,10 @@
     /// Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
     ///
     /// @Snippet(path: "Agents_SearchAgents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/searchAgents(request:options:)``
     public func searchAgentsByItems(
       request: SearchAgentsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Agent, any Swift.Error> & Sendable {
@@ -670,6 +854,19 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of agents.
+    ///
+    /// Since there is at most one conversational agent per project, this method is
+    /// useful primarily for listing all agents across projects the caller has
+    /// access to. One can achieve that with a wildcard project collection id "-".
+    /// Refer to [List
+    /// Sub-Collections](https://cloud.google.com/apis/design/design_patterns#list_sub-collections).
+    ///
+    /// @Snippet(path: "Agents_SearchAgents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/searchAgents(request:options:)``
     public func searchAgentsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Agent, any Swift.Error> & Sendable {
@@ -679,6 +876,26 @@
       return self.searchAgentsByItems(request: request)
     }
 
+    /// Trains the specified agent.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "Agents_TrainAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/trainAgent(request:options:)``
     public func trainAgent(request: TrainAgentRequest) async throws -> GoogleLongRunning.Operation {
       try await self.trainAgent(request: request, options: .init())
     }
@@ -689,6 +906,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Trains the specified agent.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "Agents_TrainAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/trainAgentPollingUntilDone(request:options:)``
     public func trainAgentPollingUntilDone(request: TrainAgentRequest) async throws {
       try await self.trainAgentPollingUntilDone(request: request, options: .init())
     }
@@ -699,6 +936,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Trains the specified agent.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "Agents_TrainAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/trainAgentPollingUntilDone(request:options:)``
     public func trainAgentPollingUntilDone(
       parent: Swift.String,
     ) async throws {
@@ -708,6 +965,24 @@
       try await self.trainAgentPollingUntilDone(request: request)
     }
 
+    /// Exports the specified agent to a ZIP file.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`:
+    /// [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]
+    ///
+    /// [google.cloud.dialogflow.v2.ExportAgentResponse]: <doc:ExportAgentResponse>
+    ///
+    /// @Snippet(path: "Agents_ExportAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/exportAgent(request:options:)``
     public func exportAgent(request: ExportAgentRequest) async throws -> GoogleLongRunning.Operation
     {
       try await self.exportAgent(request: request, options: .init())
@@ -719,6 +994,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports the specified agent to a ZIP file.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`:
+    /// [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]
+    ///
+    /// [google.cloud.dialogflow.v2.ExportAgentResponse]: <doc:ExportAgentResponse>
+    ///
+    /// @Snippet(path: "Agents_ExportAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/exportAgentPollingUntilDone(request:options:)``
     public func exportAgentPollingUntilDone(request: ExportAgentRequest) async throws
       -> ExportAgentResponse
     {
@@ -731,6 +1024,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports the specified agent to a ZIP file.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`:
+    /// [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]
+    ///
+    /// [google.cloud.dialogflow.v2.ExportAgentResponse]: <doc:ExportAgentResponse>
+    ///
+    /// @Snippet(path: "Agents_ExportAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/exportAgentPollingUntilDone(request:options:)``
     public func exportAgentPollingUntilDone(
       parent: Swift.String,
     ) async throws -> ExportAgentResponse {
@@ -740,6 +1051,42 @@
       return try await self.exportAgentPollingUntilDone(request: request)
     }
 
+    /// Imports the specified agent from a ZIP file.
+    ///
+    /// Uploads new intents and entity types without deleting the existing ones.
+    /// Intents and entity types with the same name are replaced with the new
+    /// versions from
+    /// [ImportAgentRequest][google.cloud.dialogflow.v2.ImportAgentRequest]. After
+    /// the import, the imported draft agent will be trained automatically (unless
+    /// disabled in agent settings). However, once the import is done, training may
+    /// not be completed yet. Please call
+    /// [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the
+    /// operation it returns in order to train explicitly.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// The operation only tracks when importing is complete, not when it is done
+    /// training.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:options:)>
+    /// [google.cloud.dialogflow.v2.ImportAgentRequest]: <doc:ImportAgentRequest>
+    ///
+    /// @Snippet(path: "Agents_ImportAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/importAgent(request:options:)``
     public func importAgent(request: ImportAgentRequest) async throws -> GoogleLongRunning.Operation
     {
       try await self.importAgent(request: request, options: .init())
@@ -751,6 +1098,42 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports the specified agent from a ZIP file.
+    ///
+    /// Uploads new intents and entity types without deleting the existing ones.
+    /// Intents and entity types with the same name are replaced with the new
+    /// versions from
+    /// [ImportAgentRequest][google.cloud.dialogflow.v2.ImportAgentRequest]. After
+    /// the import, the imported draft agent will be trained automatically (unless
+    /// disabled in agent settings). However, once the import is done, training may
+    /// not be completed yet. Please call
+    /// [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the
+    /// operation it returns in order to train explicitly.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// The operation only tracks when importing is complete, not when it is done
+    /// training.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:options:)>
+    /// [google.cloud.dialogflow.v2.ImportAgentRequest]: <doc:ImportAgentRequest>
+    ///
+    /// @Snippet(path: "Agents_ImportAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/importAgentPollingUntilDone(request:options:)``
     public func importAgentPollingUntilDone(request: ImportAgentRequest) async throws {
       try await self.importAgentPollingUntilDone(request: request, options: .init())
     }
@@ -761,6 +1144,39 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Restores the specified agent from a ZIP file.
+    ///
+    /// Replaces the current agent version with a new one. All the intents and
+    /// entity types in the older version are deleted. After the restore, the
+    /// restored draft agent will be trained automatically (unless disabled in
+    /// agent settings). However, once the restore is done, training may not be
+    /// completed yet. Please call
+    /// [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the
+    /// operation it returns in order to train explicitly.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// The operation only tracks when restoring is complete, not when it is done
+    /// training.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:options:)>
+    ///
+    /// @Snippet(path: "Agents_RestoreAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/restoreAgent(request:options:)``
     public func restoreAgent(request: RestoreAgentRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -773,6 +1189,39 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Restores the specified agent from a ZIP file.
+    ///
+    /// Replaces the current agent version with a new one. All the intents and
+    /// entity types in the older version are deleted. After the restore, the
+    /// restored draft agent will be trained automatically (unless disabled in
+    /// agent settings). However, once the restore is done, training may not be
+    /// completed yet. Please call
+    /// [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the
+    /// operation it returns in order to train explicitly.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// The operation only tracks when restoring is complete, not when it is done
+    /// training.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// [google.cloud.dialogflow.v2.Agents.TrainAgent]: <doc:AgentsClient/trainAgent(request:options:)>
+    ///
+    /// @Snippet(path: "Agents_RestoreAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/restoreAgentPollingUntilDone(request:options:)``
     public func restoreAgentPollingUntilDone(request: RestoreAgentRequest) async throws {
       try await self.restoreAgentPollingUntilDone(request: request, options: .init())
     }
@@ -783,6 +1232,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets agent validation result. Agent validation is performed during
+    /// training time and is updated automatically when training is completed.
+    ///
+    /// @Snippet(path: "Agents_GetValidationResult")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/getValidationResult(request:options:)``
     public func getValidationResult(request: GetValidationResultRequest) async throws
       -> GoogleCloudDialogflowV2.ValidationResult
     {
@@ -795,6 +1252,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Agents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -807,6 +1288,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Agents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -833,6 +1338,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Agents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -846,6 +1355,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "Agents_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -858,6 +1374,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Agents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -870,6 +1395,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Agents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -881,6 +1415,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Agents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -894,6 +1432,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Agents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -905,6 +1452,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -917,6 +1467,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -926,6 +1479,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Agents_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -936,6 +1498,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Agents_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AgentsClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

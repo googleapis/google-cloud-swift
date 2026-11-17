@@ -24,6 +24,10 @@
   /// Service for the `resourcePolicies` resource.
   ///
   /// @Snippet(path: "resourcePoliciesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ResourcePoliciesProtocol``
   public final class ResourcePoliciesClient: Clients.ResourcePoliciesProtocol, Sendable {
     let inner: any Clients.ResourcePoliciesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "resourcePolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
+    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: ResourcePoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ResourcePolicyAggregatedList {
@@ -56,6 +67,13 @@
     /// Deletes the specified resource policy.
     ///
     /// @Snippet(path: "resourcePolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:resourcePolicy:)``
     public func delete(
       request: ResourcePoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -70,6 +88,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "resourcePolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:region:resourcePolicy:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: ResourcePoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -112,6 +137,11 @@
     /// Retrieves all information of the specified resource policy.
     ///
     /// @Snippet(path: "resourcePolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:resourcePolicy:)``
     public func `get`(
       request: ResourcePoliciesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ResourcePolicy {
@@ -122,6 +152,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "resourcePolicies_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(project:region:resource:)``
     public func getIamPolicy(
       request: ResourcePoliciesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -131,6 +166,13 @@
     /// Creates a new resource policy.
     ///
     /// @Snippet(path: "resourcePolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: ResourcePoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -145,6 +187,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "resourcePolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: ResourcePoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -188,6 +237,13 @@
     /// specified project in specified region.
     ///
     /// @Snippet(path: "resourcePolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:region:)``
     public func list(
       request: ResourcePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ResourcePolicyList {
@@ -197,6 +253,13 @@
     /// Modify the specified resource policy.
     ///
     /// @Snippet(path: "resourcePolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:resourcePolicy:body:)``
     public func patch(
       request: ResourcePoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -211,6 +274,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "resourcePolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:region:resourcePolicy:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: ResourcePoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -254,6 +324,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "resourcePolicies_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(project:region:resource:body:)``
     public func setIamPolicy(
       request: ResourcePoliciesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -263,6 +338,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "resourcePolicies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:region:resource:body:)``
     public func testIamPermissions(
       request: ResourcePoliciesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -365,6 +445,16 @@
 
   // Default implementations
   extension Clients.ResourcePoliciesProtocol {
+    /// Retrieves an aggregated list of resource policies.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "resourcePolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: ResourcePoliciesClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.ResourcePolicyAggregatedList
     {
@@ -377,6 +467,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of resource policies.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "resourcePolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: ResourcePoliciesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, ResourcePoliciesScopedList), any Swift.Error> & Sendable
@@ -390,6 +490,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "resourcePolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: ResourcePoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, ResourcePoliciesScopedList), any Swift.Error> & Sendable
@@ -405,6 +509,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of resource policies.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "resourcePolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, ResourcePoliciesScopedList), any Swift.Error> & Sendable
@@ -415,6 +529,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified resource policy.
+    ///
+    /// @Snippet(path: "resourcePolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/delete(request:options:)``
     public func delete(request: ResourcePoliciesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -427,6 +548,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified resource policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "resourcePolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: ResourcePoliciesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -439,6 +572,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified resource policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "resourcePolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -452,6 +597,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Retrieves all information of the specified resource policy.
+    ///
+    /// @Snippet(path: "resourcePolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/get(request:options:)``
     public func `get`(request: ResourcePoliciesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.ResourcePolicy
     {
@@ -464,6 +616,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves all information of the specified resource policy.
+    ///
+    /// @Snippet(path: "resourcePolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -477,6 +636,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "resourcePolicies_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: ResourcePoliciesClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -489,6 +656,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "resourcePolicies_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -502,6 +677,13 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates a new resource policy.
+    ///
+    /// @Snippet(path: "resourcePolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/insert(request:options:)``
     public func insert(request: ResourcePoliciesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -514,6 +696,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new resource policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "resourcePolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: ResourcePoliciesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -526,6 +720,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new resource policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "resourcePolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -539,6 +745,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// A list all the resource policies that have been configured for the
+    /// specified project in specified region.
+    ///
+    /// @Snippet(path: "resourcePolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/list(request:options:)``
     public func list(request: ResourcePoliciesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.ResourcePolicyList
     {
@@ -551,6 +765,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// A list all the resource policies that have been configured for the
+    /// specified project in specified region.
+    ///
+    /// @Snippet(path: "resourcePolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/list(request:options:)``
     public func listByItems(
       request: ResourcePoliciesClient.ListRequest
     ) -> some AsyncSequence<ResourcePolicy, any Swift.Error> & Sendable {
@@ -561,6 +783,10 @@
     /// specified project in specified region.
     ///
     /// @Snippet(path: "resourcePolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/list(request:options:)``
     public func listByItems(
       request: ResourcePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ResourcePolicy, any Swift.Error> & Sendable {
@@ -574,6 +800,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// A list all the resource policies that have been configured for the
+    /// specified project in specified region.
+    ///
+    /// @Snippet(path: "resourcePolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -585,6 +819,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Modify the specified resource policy.
+    ///
+    /// @Snippet(path: "resourcePolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/patch(request:options:)``
     public func patch(request: ResourcePoliciesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -597,6 +838,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Modify the specified resource policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "resourcePolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: ResourcePoliciesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -609,6 +862,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Modify the specified resource policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "resourcePolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -624,6 +889,14 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "resourcePolicies_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: ResourcePoliciesClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -636,6 +909,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "resourcePolicies_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -651,6 +932,13 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "resourcePolicies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: ResourcePoliciesClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -663,6 +951,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "resourcePolicies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ResourcePoliciesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -678,6 +973,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

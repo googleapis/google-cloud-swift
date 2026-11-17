@@ -24,6 +24,10 @@ import Foundation
 /// Cloud Run Task Control Plane API.
 ///
 /// @Snippet(path: "TasksQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/TasksProtocol``
 public final class TasksClient: Clients.TasksProtocol, Sendable {
   let inner: any Clients.TasksStub
 
@@ -40,6 +44,11 @@ public final class TasksClient: Clients.TasksProtocol, Sendable {
   /// Gets information about a Task.
   ///
   /// @Snippet(path: "Tasks_GetTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTask(request:)``
+  /// - ``getTask(name:)``
   public func getTask(
     request: GetTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.Task {
@@ -49,6 +58,13 @@ public final class TasksClient: Clients.TasksProtocol, Sendable {
   /// Lists Tasks from an Execution of a Job.
   ///
   /// @Snippet(path: "Tasks_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTasks(request:)``
+  /// - ``listTasksByItems(request:)``
+  /// - ``listTasksByItems(request:options:)``
+  /// - ``listTasksByItems(parent:)``
   public func listTasks(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.ListTasksResponse {
@@ -60,6 +76,13 @@ public final class TasksClient: Clients.TasksProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Tasks_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -82,6 +105,11 @@ public final class TasksClient: Clients.TasksProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Tasks_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -93,6 +121,10 @@ public final class TasksClient: Clients.TasksProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Tasks_WaitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``waitOperation(request:)``
   public func waitOperation(
     request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -136,6 +168,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.TasksProtocol {
+  /// Gets information about a Task.
+  ///
+  /// @Snippet(path: "Tasks_GetTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/getTask(request:options:)``
   public func getTask(request: GetTaskRequest) async throws -> GoogleCloudRunV2.Task {
     try await self.getTask(request: request, options: .init())
   }
@@ -146,6 +185,13 @@ extension Clients.TasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information about a Task.
+  ///
+  /// @Snippet(path: "Tasks_GetTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/getTask(request:options:)``
   public func getTask(
     name: Swift.String,
   ) async throws -> GoogleCloudRunV2.Task {
@@ -155,6 +201,13 @@ extension Clients.TasksProtocol {
     return try await self.getTask(request: request)
   }
 
+  /// Lists Tasks from an Execution of a Job.
+  ///
+  /// @Snippet(path: "Tasks_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/listTasks(request:options:)``
   public func listTasks(request: ListTasksRequest) async throws
     -> GoogleCloudRunV2.ListTasksResponse
   {
@@ -167,6 +220,13 @@ extension Clients.TasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Tasks from an Execution of a Job.
+  ///
+  /// @Snippet(path: "Tasks_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/listTasks(request:options:)``
   public func listTasksByItems(
     request: ListTasksRequest
   ) -> some AsyncSequence<Task, any Swift.Error> & Sendable {
@@ -176,6 +236,10 @@ extension Clients.TasksProtocol {
   /// Lists Tasks from an Execution of a Job.
   ///
   /// @Snippet(path: "Tasks_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/listTasks(request:options:)``
   public func listTasksByItems(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Task, any Swift.Error> & Sendable {
@@ -189,6 +253,13 @@ extension Clients.TasksProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Tasks from an Execution of a Job.
+  ///
+  /// @Snippet(path: "Tasks_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/listTasks(request:options:)``
   public func listTasksByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Task, any Swift.Error> & Sendable {
@@ -198,6 +269,15 @@ extension Clients.TasksProtocol {
     return self.listTasksByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tasks_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -210,6 +290,15 @@ extension Clients.TasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tasks_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -221,6 +310,10 @@ extension Clients.TasksProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Tasks_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -234,6 +327,15 @@ extension Clients.TasksProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tasks_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -245,6 +347,9 @@ extension Clients.TasksProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -257,6 +362,9 @@ extension Clients.TasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -266,6 +374,15 @@ extension Clients.TasksProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tasks_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -276,6 +393,15 @@ extension Clients.TasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tasks_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -285,6 +411,15 @@ extension Clients.TasksProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tasks_WaitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TasksClient/waitOperation(request:options:)``
   public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {

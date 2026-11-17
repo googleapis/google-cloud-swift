@@ -32,6 +32,10 @@ import Foundation
 /// determine the status of the build.
 ///
 /// @Snippet(path: "CloudBuildQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudBuildProtocol``
 public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   let inner: any Clients.CloudBuildStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -56,6 +60,14 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// `SUCCESS` or `FAILURE`).
   ///
   /// @Snippet(path: "CloudBuild_CreateBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBuild(request:)``
+  /// - ``createBuildPollingUntilDone(request:)``
+  /// - ``createBuildPollingUntilDone(request:options:)``
+  /// - ``createBuildPollingUntilDone(projectId:build:)``
+  /// - ``createBuildPollingUntilDone(parent:)``
   public func createBuild(
     request: CreateBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -69,6 +81,14 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// `SUCCESS` or `FAILURE`).
   ///
   /// @Snippet(path: "CloudBuild_CreateBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBuildPollingUntilDone(request:)``
+  /// - ``createBuildPollingUntilDone(projectId:build:)``
+  /// - ``createBuildPollingUntilDone(parent:)``
+  /// - ``createBuild(request:)``
+  /// - ``createBuild(request:options:)``
   public func createBuildPollingUntilDone(
     request: CreateBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> Build {
@@ -99,6 +119,12 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// `FAILURE`, or `WORKING`), and timing information.
   ///
   /// @Snippet(path: "CloudBuild_GetBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBuild(request:)``
+  /// - ``getBuild(projectId:id:)``
+  /// - ``getBuild(name:)``
   public func getBuild(
     request: GetBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.Build {
@@ -111,6 +137,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// successfully or unsuccessfully.
   ///
   /// @Snippet(path: "CloudBuild_ListBuilds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBuilds(request:)``
+  /// - ``listBuildsByItems(request:)``
+  /// - ``listBuildsByItems(request:options:)``
+  /// - ``listBuildsByItems(projectId:filter:)``
   public func listBuilds(
     request: ListBuildsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.ListBuildsResponse {
@@ -120,6 +153,12 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Cancels a build in progress.
   ///
   /// @Snippet(path: "CloudBuild_CancelBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelBuild(request:)``
+  /// - ``cancelBuild(projectId:id:)``
+  /// - ``cancelBuild(name:)``
   public func cancelBuild(
     request: CancelBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.Build {
@@ -155,6 +194,14 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// lifecycle management settings.
   ///
   /// @Snippet(path: "CloudBuild_RetryBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``retryBuild(request:)``
+  /// - ``retryBuildPollingUntilDone(request:)``
+  /// - ``retryBuildPollingUntilDone(request:options:)``
+  /// - ``retryBuildPollingUntilDone(projectId:id:)``
+  /// - ``retryBuildPollingUntilDone(name:)``
   public func retryBuild(
     request: RetryBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -190,6 +237,14 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// lifecycle management settings.
   ///
   /// @Snippet(path: "CloudBuild_RetryBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``retryBuildPollingUntilDone(request:)``
+  /// - ``retryBuildPollingUntilDone(projectId:id:)``
+  /// - ``retryBuildPollingUntilDone(name:)``
+  /// - ``retryBuild(request:)``
+  /// - ``retryBuild(request:options:)``
   public func retryBuildPollingUntilDone(
     request: RetryBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> Build {
@@ -222,6 +277,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// If rejected, the returned LRO will be immediately done.
   ///
   /// @Snippet(path: "CloudBuild_ApproveBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``approveBuild(request:)``
+  /// - ``approveBuildPollingUntilDone(request:)``
+  /// - ``approveBuildPollingUntilDone(request:options:)``
+  /// - ``approveBuildPollingUntilDone(name:approvalResult:)``
   public func approveBuild(
     request: ApproveBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -236,6 +298,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// If rejected, the returned LRO will be immediately done.
   ///
   /// @Snippet(path: "CloudBuild_ApproveBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``approveBuildPollingUntilDone(request:)``
+  /// - ``approveBuildPollingUntilDone(name:approvalResult:)``
+  /// - ``approveBuild(request:)``
+  /// - ``approveBuild(request:options:)``
   public func approveBuildPollingUntilDone(
     request: ApproveBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> Build {
@@ -263,6 +332,12 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Creates a new `BuildTrigger`.
   ///
   /// @Snippet(path: "CloudBuild_CreateBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBuildTrigger(request:)``
+  /// - ``createBuildTrigger(projectId:trigger:)``
+  /// - ``createBuildTrigger(parent:)``
   public func createBuildTrigger(
     request: CreateBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.BuildTrigger {
@@ -272,6 +347,12 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Returns information about a `BuildTrigger`.
   ///
   /// @Snippet(path: "CloudBuild_GetBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBuildTrigger(request:)``
+  /// - ``getBuildTrigger(projectId:triggerId:)``
+  /// - ``getBuildTrigger(name:)``
   public func getBuildTrigger(
     request: GetBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.BuildTrigger {
@@ -281,6 +362,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Lists existing `BuildTrigger`s.
   ///
   /// @Snippet(path: "CloudBuild_ListBuildTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBuildTriggers(request:)``
+  /// - ``listBuildTriggersByItems(request:)``
+  /// - ``listBuildTriggersByItems(request:options:)``
+  /// - ``listBuildTriggersByItems(projectId:)``
   public func listBuildTriggers(
     request: ListBuildTriggersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.ListBuildTriggersResponse {
@@ -290,6 +378,12 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Deletes a `BuildTrigger` by its project ID and trigger ID.
   ///
   /// @Snippet(path: "CloudBuild_DeleteBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBuildTrigger(request:)``
+  /// - ``deleteBuildTrigger(projectId:triggerId:)``
+  /// - ``deleteBuildTrigger(name:)``
   public func deleteBuildTrigger(
     request: DeleteBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -299,6 +393,11 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Updates a `BuildTrigger` by its project ID and trigger ID.
   ///
   /// @Snippet(path: "CloudBuild_UpdateBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBuildTrigger(request:)``
+  /// - ``updateBuildTrigger(projectId:triggerId:trigger:)``
   public func updateBuildTrigger(
     request: UpdateBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.BuildTrigger {
@@ -314,6 +413,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// only be used when running global triggers.
   ///
   /// @Snippet(path: "CloudBuild_RunBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runBuildTrigger(request:)``
+  /// - ``runBuildTriggerPollingUntilDone(request:)``
+  /// - ``runBuildTriggerPollingUntilDone(request:options:)``
+  /// - ``runBuildTriggerPollingUntilDone(projectId:triggerId:source:)``
   public func runBuildTrigger(
     request: RunBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -329,6 +435,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// only be used when running global triggers.
   ///
   /// @Snippet(path: "CloudBuild_RunBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runBuildTriggerPollingUntilDone(request:)``
+  /// - ``runBuildTriggerPollingUntilDone(projectId:triggerId:source:)``
+  /// - ``runBuildTrigger(request:)``
+  /// - ``runBuildTrigger(request:options:)``
   public func runBuildTriggerPollingUntilDone(
     request: RunBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Build {
@@ -357,6 +470,10 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// webhook request targeted at a specific trigger.
   ///
   /// @Snippet(path: "CloudBuild_ReceiveTriggerWebhook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``receiveTriggerWebhook(request:)``
   public func receiveTriggerWebhook(
     request: ReceiveTriggerWebhookRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.ReceiveTriggerWebhookResponse {
@@ -366,6 +483,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Creates a `WorkerPool`.
   ///
   /// @Snippet(path: "CloudBuild_CreateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkerPool(request:)``
+  /// - ``createWorkerPoolPollingUntilDone(request:)``
+  /// - ``createWorkerPoolPollingUntilDone(request:options:)``
+  /// - ``createWorkerPoolPollingUntilDone(parent:workerPool:workerPoolId:)``
   public func createWorkerPool(
     request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -375,6 +499,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Creates a `WorkerPool`.
   ///
   /// @Snippet(path: "CloudBuild_CreateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkerPoolPollingUntilDone(request:)``
+  /// - ``createWorkerPoolPollingUntilDone(parent:workerPool:workerPoolId:)``
+  /// - ``createWorkerPool(request:)``
+  /// - ``createWorkerPool(request:options:)``
   public func createWorkerPoolPollingUntilDone(
     request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkerPool {
@@ -402,6 +533,11 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Returns details of a `WorkerPool`.
   ///
   /// @Snippet(path: "CloudBuild_GetWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getWorkerPool(request:)``
+  /// - ``getWorkerPool(name:)``
   public func getWorkerPool(
     request: GetWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.WorkerPool {
@@ -411,6 +547,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Deletes a `WorkerPool`.
   ///
   /// @Snippet(path: "CloudBuild_DeleteWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWorkerPool(request:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(request:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(request:options:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(name:)``
   public func deleteWorkerPool(
     request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -420,6 +563,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Deletes a `WorkerPool`.
   ///
   /// @Snippet(path: "CloudBuild_DeleteWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWorkerPoolPollingUntilDone(request:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(name:)``
+  /// - ``deleteWorkerPool(request:)``
+  /// - ``deleteWorkerPool(request:options:)``
   public func deleteWorkerPoolPollingUntilDone(
     request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -447,6 +597,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Updates a `WorkerPool`.
   ///
   /// @Snippet(path: "CloudBuild_UpdateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateWorkerPool(request:)``
+  /// - ``updateWorkerPoolPollingUntilDone(request:)``
+  /// - ``updateWorkerPoolPollingUntilDone(request:options:)``
+  /// - ``updateWorkerPoolPollingUntilDone(workerPool:updateMask:)``
   public func updateWorkerPool(
     request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -456,6 +613,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Updates a `WorkerPool`.
   ///
   /// @Snippet(path: "CloudBuild_UpdateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateWorkerPoolPollingUntilDone(request:)``
+  /// - ``updateWorkerPoolPollingUntilDone(workerPool:updateMask:)``
+  /// - ``updateWorkerPool(request:)``
+  /// - ``updateWorkerPool(request:options:)``
   public func updateWorkerPoolPollingUntilDone(
     request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkerPool {
@@ -483,6 +647,13 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Lists `WorkerPool`s.
   ///
   /// @Snippet(path: "CloudBuild_ListWorkerPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listWorkerPools(request:)``
+  /// - ``listWorkerPoolsByItems(request:)``
+  /// - ``listWorkerPoolsByItems(request:options:)``
+  /// - ``listWorkerPoolsByItems(parent:)``
   public func listWorkerPools(
     request: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.ListWorkerPoolsResponse {
@@ -492,6 +663,11 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// Returns the `DefaultServiceAccount` used by the project.
   ///
   /// @Snippet(path: "CloudBuild_GetDefaultServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDefaultServiceAccount(request:)``
+  /// - ``getDefaultServiceAccount(name:)``
   public func getDefaultServiceAccount(
     request: GetDefaultServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.DefaultServiceAccount {
@@ -514,6 +690,11 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudBuild_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -667,6 +848,17 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudBuildProtocol {
+  /// Starts a build with the specified configuration.
+  ///
+  /// This method returns a long-running `Operation`, which includes the build
+  /// ID. Pass the build ID to `GetBuild` to determine the build status (such as
+  /// `SUCCESS` or `FAILURE`).
+  ///
+  /// @Snippet(path: "CloudBuild_CreateBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/createBuild(request:options:)``
   public func createBuild(request: CreateBuildRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createBuild(request: request, options: .init())
   }
@@ -677,6 +869,17 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a build with the specified configuration.
+  ///
+  /// This method returns a long-running `Operation`, which includes the build
+  /// ID. Pass the build ID to `GetBuild` to determine the build status (such as
+  /// `SUCCESS` or `FAILURE`).
+  ///
+  /// @Snippet(path: "CloudBuild_CreateBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/createBuildPollingUntilDone(request:options:)``
   public func createBuildPollingUntilDone(request: CreateBuildRequest) async throws -> Build {
     return try await self.createBuildPollingUntilDone(request: request, options: .init())
   }
@@ -687,6 +890,17 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a build with the specified configuration.
+  ///
+  /// This method returns a long-running `Operation`, which includes the build
+  /// ID. Pass the build ID to `GetBuild` to determine the build status (such as
+  /// `SUCCESS` or `FAILURE`).
+  ///
+  /// @Snippet(path: "CloudBuild_CreateBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/createBuildPollingUntilDone(request:options:)``
   public func createBuildPollingUntilDone(
     projectId: Swift.String,
     build: Build?,
@@ -698,6 +912,17 @@ extension Clients.CloudBuildProtocol {
     return try await self.createBuildPollingUntilDone(request: request)
   }
 
+  /// Starts a build with the specified configuration.
+  ///
+  /// This method returns a long-running `Operation`, which includes the build
+  /// ID. Pass the build ID to `GetBuild` to determine the build status (such as
+  /// `SUCCESS` or `FAILURE`).
+  ///
+  /// @Snippet(path: "CloudBuild_CreateBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/createBuildPollingUntilDone(request:options:)``
   public func createBuildPollingUntilDone(
     parent: Swift.String,
   ) async throws -> Build {
@@ -707,6 +932,16 @@ extension Clients.CloudBuildProtocol {
     return try await self.createBuildPollingUntilDone(request: request)
   }
 
+  /// Returns information about a previously requested build.
+  ///
+  /// The `Build` that is returned includes its status (such as `SUCCESS`,
+  /// `FAILURE`, or `WORKING`), and timing information.
+  ///
+  /// @Snippet(path: "CloudBuild_GetBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/getBuild(request:options:)``
   public func getBuild(request: GetBuildRequest) async throws -> GoogleCloudBuildV1.Build {
     try await self.getBuild(request: request, options: .init())
   }
@@ -717,6 +952,16 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns information about a previously requested build.
+  ///
+  /// The `Build` that is returned includes its status (such as `SUCCESS`,
+  /// `FAILURE`, or `WORKING`), and timing information.
+  ///
+  /// @Snippet(path: "CloudBuild_GetBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/getBuild(request:options:)``
   public func getBuild(
     projectId: Swift.String,
     id: Swift.String,
@@ -728,6 +973,16 @@ extension Clients.CloudBuildProtocol {
     return try await self.getBuild(request: request)
   }
 
+  /// Returns information about a previously requested build.
+  ///
+  /// The `Build` that is returned includes its status (such as `SUCCESS`,
+  /// `FAILURE`, or `WORKING`), and timing information.
+  ///
+  /// @Snippet(path: "CloudBuild_GetBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/getBuild(request:options:)``
   public func getBuild(
     name: Swift.String,
   ) async throws -> GoogleCloudBuildV1.Build {
@@ -737,6 +992,16 @@ extension Clients.CloudBuildProtocol {
     return try await self.getBuild(request: request)
   }
 
+  /// Lists previously requested builds.
+  ///
+  /// Previously requested builds may still be in-progress, or may have finished
+  /// successfully or unsuccessfully.
+  ///
+  /// @Snippet(path: "CloudBuild_ListBuilds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/listBuilds(request:options:)``
   public func listBuilds(request: ListBuildsRequest) async throws
     -> GoogleCloudBuildV1.ListBuildsResponse
   {
@@ -749,6 +1014,16 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists previously requested builds.
+  ///
+  /// Previously requested builds may still be in-progress, or may have finished
+  /// successfully or unsuccessfully.
+  ///
+  /// @Snippet(path: "CloudBuild_ListBuilds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/listBuilds(request:options:)``
   public func listBuildsByItems(
     request: ListBuildsRequest
   ) -> some AsyncSequence<Build, any Swift.Error> & Sendable {
@@ -761,6 +1036,10 @@ extension Clients.CloudBuildProtocol {
   /// successfully or unsuccessfully.
   ///
   /// @Snippet(path: "CloudBuild_ListBuilds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/listBuilds(request:options:)``
   public func listBuildsByItems(
     request: ListBuildsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Build, any Swift.Error> & Sendable {
@@ -774,6 +1053,16 @@ extension Clients.CloudBuildProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists previously requested builds.
+  ///
+  /// Previously requested builds may still be in-progress, or may have finished
+  /// successfully or unsuccessfully.
+  ///
+  /// @Snippet(path: "CloudBuild_ListBuilds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/listBuilds(request:options:)``
   public func listBuildsByItems(
     projectId: Swift.String,
     filter: Swift.String,
@@ -785,6 +1074,13 @@ extension Clients.CloudBuildProtocol {
     return self.listBuildsByItems(request: request)
   }
 
+  /// Cancels a build in progress.
+  ///
+  /// @Snippet(path: "CloudBuild_CancelBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/cancelBuild(request:options:)``
   public func cancelBuild(request: CancelBuildRequest) async throws -> GoogleCloudBuildV1.Build {
     try await self.cancelBuild(request: request, options: .init())
   }
@@ -795,6 +1091,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancels a build in progress.
+  ///
+  /// @Snippet(path: "CloudBuild_CancelBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/cancelBuild(request:options:)``
   public func cancelBuild(
     projectId: Swift.String,
     id: Swift.String,
@@ -806,6 +1109,13 @@ extension Clients.CloudBuildProtocol {
     return try await self.cancelBuild(request: request)
   }
 
+  /// Cancels a build in progress.
+  ///
+  /// @Snippet(path: "CloudBuild_CancelBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/cancelBuild(request:options:)``
   public func cancelBuild(
     name: Swift.String,
   ) async throws -> GoogleCloudBuildV1.Build {
@@ -815,6 +1125,39 @@ extension Clients.CloudBuildProtocol {
     return try await self.cancelBuild(request: request)
   }
 
+  /// Creates a new build based on the specified build.
+  ///
+  /// This method creates a new build using the original build request, which may
+  /// or may not result in an identical build.
+  ///
+  /// For triggered builds:
+  ///
+  /// * Triggered builds resolve to a precise revision; therefore a retry of a
+  /// triggered build will result in a build that uses the same revision.
+  ///
+  /// For non-triggered builds that specify `RepoSource`:
+  ///
+  /// * If the original build built from the tip of a branch, the retried build
+  /// will build from the tip of that branch, which may not be the same revision
+  /// as the original build.
+  /// * If the original build specified a commit sha or revision ID, the retried
+  /// build will use the identical source.
+  ///
+  /// For builds that specify `StorageSource`:
+  ///
+  /// * If the original build pulled source from Cloud Storage without
+  /// specifying the generation of the object, the new build will use the current
+  /// object, which may be different from the original build source.
+  /// * If the original build pulled source from Cloud Storage and specified the
+  /// generation of the object, the new build will attempt to use the same
+  /// object, which may or may not be available depending on the bucket's
+  /// lifecycle management settings.
+  ///
+  /// @Snippet(path: "CloudBuild_RetryBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/retryBuild(request:options:)``
   public func retryBuild(request: RetryBuildRequest) async throws -> GoogleLongRunning.Operation {
     try await self.retryBuild(request: request, options: .init())
   }
@@ -825,6 +1168,39 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new build based on the specified build.
+  ///
+  /// This method creates a new build using the original build request, which may
+  /// or may not result in an identical build.
+  ///
+  /// For triggered builds:
+  ///
+  /// * Triggered builds resolve to a precise revision; therefore a retry of a
+  /// triggered build will result in a build that uses the same revision.
+  ///
+  /// For non-triggered builds that specify `RepoSource`:
+  ///
+  /// * If the original build built from the tip of a branch, the retried build
+  /// will build from the tip of that branch, which may not be the same revision
+  /// as the original build.
+  /// * If the original build specified a commit sha or revision ID, the retried
+  /// build will use the identical source.
+  ///
+  /// For builds that specify `StorageSource`:
+  ///
+  /// * If the original build pulled source from Cloud Storage without
+  /// specifying the generation of the object, the new build will use the current
+  /// object, which may be different from the original build source.
+  /// * If the original build pulled source from Cloud Storage and specified the
+  /// generation of the object, the new build will attempt to use the same
+  /// object, which may or may not be available depending on the bucket's
+  /// lifecycle management settings.
+  ///
+  /// @Snippet(path: "CloudBuild_RetryBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/retryBuildPollingUntilDone(request:options:)``
   public func retryBuildPollingUntilDone(request: RetryBuildRequest) async throws -> Build {
     return try await self.retryBuildPollingUntilDone(request: request, options: .init())
   }
@@ -835,6 +1211,39 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new build based on the specified build.
+  ///
+  /// This method creates a new build using the original build request, which may
+  /// or may not result in an identical build.
+  ///
+  /// For triggered builds:
+  ///
+  /// * Triggered builds resolve to a precise revision; therefore a retry of a
+  /// triggered build will result in a build that uses the same revision.
+  ///
+  /// For non-triggered builds that specify `RepoSource`:
+  ///
+  /// * If the original build built from the tip of a branch, the retried build
+  /// will build from the tip of that branch, which may not be the same revision
+  /// as the original build.
+  /// * If the original build specified a commit sha or revision ID, the retried
+  /// build will use the identical source.
+  ///
+  /// For builds that specify `StorageSource`:
+  ///
+  /// * If the original build pulled source from Cloud Storage without
+  /// specifying the generation of the object, the new build will use the current
+  /// object, which may be different from the original build source.
+  /// * If the original build pulled source from Cloud Storage and specified the
+  /// generation of the object, the new build will attempt to use the same
+  /// object, which may or may not be available depending on the bucket's
+  /// lifecycle management settings.
+  ///
+  /// @Snippet(path: "CloudBuild_RetryBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/retryBuildPollingUntilDone(request:options:)``
   public func retryBuildPollingUntilDone(
     projectId: Swift.String,
     id: Swift.String,
@@ -846,6 +1255,39 @@ extension Clients.CloudBuildProtocol {
     return try await self.retryBuildPollingUntilDone(request: request)
   }
 
+  /// Creates a new build based on the specified build.
+  ///
+  /// This method creates a new build using the original build request, which may
+  /// or may not result in an identical build.
+  ///
+  /// For triggered builds:
+  ///
+  /// * Triggered builds resolve to a precise revision; therefore a retry of a
+  /// triggered build will result in a build that uses the same revision.
+  ///
+  /// For non-triggered builds that specify `RepoSource`:
+  ///
+  /// * If the original build built from the tip of a branch, the retried build
+  /// will build from the tip of that branch, which may not be the same revision
+  /// as the original build.
+  /// * If the original build specified a commit sha or revision ID, the retried
+  /// build will use the identical source.
+  ///
+  /// For builds that specify `StorageSource`:
+  ///
+  /// * If the original build pulled source from Cloud Storage without
+  /// specifying the generation of the object, the new build will use the current
+  /// object, which may be different from the original build source.
+  /// * If the original build pulled source from Cloud Storage and specified the
+  /// generation of the object, the new build will attempt to use the same
+  /// object, which may or may not be available depending on the bucket's
+  /// lifecycle management settings.
+  ///
+  /// @Snippet(path: "CloudBuild_RetryBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/retryBuildPollingUntilDone(request:options:)``
   public func retryBuildPollingUntilDone(
     name: Swift.String,
   ) async throws -> Build {
@@ -855,6 +1297,18 @@ extension Clients.CloudBuildProtocol {
     return try await self.retryBuildPollingUntilDone(request: request)
   }
 
+  /// Approves or rejects a pending build.
+  ///
+  /// If approved, the returned long-running operation (LRO) will be analogous to
+  /// the LRO returned from a CreateBuild call.
+  ///
+  /// If rejected, the returned LRO will be immediately done.
+  ///
+  /// @Snippet(path: "CloudBuild_ApproveBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/approveBuild(request:options:)``
   public func approveBuild(request: ApproveBuildRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.approveBuild(request: request, options: .init())
@@ -866,6 +1320,18 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Approves or rejects a pending build.
+  ///
+  /// If approved, the returned long-running operation (LRO) will be analogous to
+  /// the LRO returned from a CreateBuild call.
+  ///
+  /// If rejected, the returned LRO will be immediately done.
+  ///
+  /// @Snippet(path: "CloudBuild_ApproveBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/approveBuildPollingUntilDone(request:options:)``
   public func approveBuildPollingUntilDone(request: ApproveBuildRequest) async throws -> Build {
     return try await self.approveBuildPollingUntilDone(request: request, options: .init())
   }
@@ -876,6 +1342,18 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Approves or rejects a pending build.
+  ///
+  /// If approved, the returned long-running operation (LRO) will be analogous to
+  /// the LRO returned from a CreateBuild call.
+  ///
+  /// If rejected, the returned LRO will be immediately done.
+  ///
+  /// @Snippet(path: "CloudBuild_ApproveBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/approveBuildPollingUntilDone(request:options:)``
   public func approveBuildPollingUntilDone(
     name: Swift.String,
     approvalResult: ApprovalResult?,
@@ -887,6 +1365,13 @@ extension Clients.CloudBuildProtocol {
     return try await self.approveBuildPollingUntilDone(request: request)
   }
 
+  /// Creates a new `BuildTrigger`.
+  ///
+  /// @Snippet(path: "CloudBuild_CreateBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/createBuildTrigger(request:options:)``
   public func createBuildTrigger(request: CreateBuildTriggerRequest) async throws
     -> GoogleCloudBuildV1.BuildTrigger
   {
@@ -899,6 +1384,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `BuildTrigger`.
+  ///
+  /// @Snippet(path: "CloudBuild_CreateBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/createBuildTrigger(request:options:)``
   public func createBuildTrigger(
     projectId: Swift.String,
     trigger: BuildTrigger?,
@@ -910,6 +1402,13 @@ extension Clients.CloudBuildProtocol {
     return try await self.createBuildTrigger(request: request)
   }
 
+  /// Creates a new `BuildTrigger`.
+  ///
+  /// @Snippet(path: "CloudBuild_CreateBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/createBuildTrigger(request:options:)``
   public func createBuildTrigger(
     parent: Swift.String,
   ) async throws -> GoogleCloudBuildV1.BuildTrigger {
@@ -919,6 +1418,13 @@ extension Clients.CloudBuildProtocol {
     return try await self.createBuildTrigger(request: request)
   }
 
+  /// Returns information about a `BuildTrigger`.
+  ///
+  /// @Snippet(path: "CloudBuild_GetBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/getBuildTrigger(request:options:)``
   public func getBuildTrigger(request: GetBuildTriggerRequest) async throws
     -> GoogleCloudBuildV1.BuildTrigger
   {
@@ -931,6 +1437,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns information about a `BuildTrigger`.
+  ///
+  /// @Snippet(path: "CloudBuild_GetBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/getBuildTrigger(request:options:)``
   public func getBuildTrigger(
     projectId: Swift.String,
     triggerId: Swift.String,
@@ -942,6 +1455,13 @@ extension Clients.CloudBuildProtocol {
     return try await self.getBuildTrigger(request: request)
   }
 
+  /// Returns information about a `BuildTrigger`.
+  ///
+  /// @Snippet(path: "CloudBuild_GetBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/getBuildTrigger(request:options:)``
   public func getBuildTrigger(
     name: Swift.String,
   ) async throws -> GoogleCloudBuildV1.BuildTrigger {
@@ -951,6 +1471,13 @@ extension Clients.CloudBuildProtocol {
     return try await self.getBuildTrigger(request: request)
   }
 
+  /// Lists existing `BuildTrigger`s.
+  ///
+  /// @Snippet(path: "CloudBuild_ListBuildTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/listBuildTriggers(request:options:)``
   public func listBuildTriggers(request: ListBuildTriggersRequest) async throws
     -> GoogleCloudBuildV1.ListBuildTriggersResponse
   {
@@ -963,6 +1490,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists existing `BuildTrigger`s.
+  ///
+  /// @Snippet(path: "CloudBuild_ListBuildTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/listBuildTriggers(request:options:)``
   public func listBuildTriggersByItems(
     request: ListBuildTriggersRequest
   ) -> some AsyncSequence<BuildTrigger, any Swift.Error> & Sendable {
@@ -972,6 +1506,10 @@ extension Clients.CloudBuildProtocol {
   /// Lists existing `BuildTrigger`s.
   ///
   /// @Snippet(path: "CloudBuild_ListBuildTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/listBuildTriggers(request:options:)``
   public func listBuildTriggersByItems(
     request: ListBuildTriggersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BuildTrigger, any Swift.Error> & Sendable {
@@ -986,6 +1524,13 @@ extension Clients.CloudBuildProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists existing `BuildTrigger`s.
+  ///
+  /// @Snippet(path: "CloudBuild_ListBuildTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/listBuildTriggers(request:options:)``
   public func listBuildTriggersByItems(
     projectId: Swift.String,
   ) -> some AsyncSequence<BuildTrigger, any Swift.Error> & Sendable {
@@ -995,6 +1540,13 @@ extension Clients.CloudBuildProtocol {
     return self.listBuildTriggersByItems(request: request)
   }
 
+  /// Deletes a `BuildTrigger` by its project ID and trigger ID.
+  ///
+  /// @Snippet(path: "CloudBuild_DeleteBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/deleteBuildTrigger(request:options:)``
   public func deleteBuildTrigger(request: DeleteBuildTriggerRequest) async throws {
     try await self.deleteBuildTrigger(request: request, options: .init())
   }
@@ -1005,6 +1557,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a `BuildTrigger` by its project ID and trigger ID.
+  ///
+  /// @Snippet(path: "CloudBuild_DeleteBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/deleteBuildTrigger(request:options:)``
   public func deleteBuildTrigger(
     projectId: Swift.String,
     triggerId: Swift.String,
@@ -1016,6 +1575,13 @@ extension Clients.CloudBuildProtocol {
     try await self.deleteBuildTrigger(request: request)
   }
 
+  /// Deletes a `BuildTrigger` by its project ID and trigger ID.
+  ///
+  /// @Snippet(path: "CloudBuild_DeleteBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/deleteBuildTrigger(request:options:)``
   public func deleteBuildTrigger(
     name: Swift.String,
   ) async throws {
@@ -1025,6 +1591,13 @@ extension Clients.CloudBuildProtocol {
     try await self.deleteBuildTrigger(request: request)
   }
 
+  /// Updates a `BuildTrigger` by its project ID and trigger ID.
+  ///
+  /// @Snippet(path: "CloudBuild_UpdateBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/updateBuildTrigger(request:options:)``
   public func updateBuildTrigger(request: UpdateBuildTriggerRequest) async throws
     -> GoogleCloudBuildV1.BuildTrigger
   {
@@ -1037,6 +1610,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a `BuildTrigger` by its project ID and trigger ID.
+  ///
+  /// @Snippet(path: "CloudBuild_UpdateBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/updateBuildTrigger(request:options:)``
   public func updateBuildTrigger(
     projectId: Swift.String,
     triggerId: Swift.String,
@@ -1050,6 +1630,19 @@ extension Clients.CloudBuildProtocol {
     return try await self.updateBuildTrigger(request: request)
   }
 
+  /// Runs a `BuildTrigger` at a particular source revision.
+  ///
+  /// To run a regional or global trigger, use the POST request
+  /// that includes the location endpoint in the path (ex.
+  /// v1/projects/{projectId}/locations/{region}/triggers/{triggerId}:run). The
+  /// POST request that does not include the location endpoint in the path can
+  /// only be used when running global triggers.
+  ///
+  /// @Snippet(path: "CloudBuild_RunBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/runBuildTrigger(request:options:)``
   public func runBuildTrigger(request: RunBuildTriggerRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1062,6 +1655,19 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Runs a `BuildTrigger` at a particular source revision.
+  ///
+  /// To run a regional or global trigger, use the POST request
+  /// that includes the location endpoint in the path (ex.
+  /// v1/projects/{projectId}/locations/{region}/triggers/{triggerId}:run). The
+  /// POST request that does not include the location endpoint in the path can
+  /// only be used when running global triggers.
+  ///
+  /// @Snippet(path: "CloudBuild_RunBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/runBuildTriggerPollingUntilDone(request:options:)``
   public func runBuildTriggerPollingUntilDone(request: RunBuildTriggerRequest) async throws -> Build
   {
     return try await self.runBuildTriggerPollingUntilDone(request: request, options: .init())
@@ -1073,6 +1679,19 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Runs a `BuildTrigger` at a particular source revision.
+  ///
+  /// To run a regional or global trigger, use the POST request
+  /// that includes the location endpoint in the path (ex.
+  /// v1/projects/{projectId}/locations/{region}/triggers/{triggerId}:run). The
+  /// POST request that does not include the location endpoint in the path can
+  /// only be used when running global triggers.
+  ///
+  /// @Snippet(path: "CloudBuild_RunBuildTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/runBuildTriggerPollingUntilDone(request:options:)``
   public func runBuildTriggerPollingUntilDone(
     projectId: Swift.String,
     triggerId: Swift.String,
@@ -1086,6 +1705,14 @@ extension Clients.CloudBuildProtocol {
     return try await self.runBuildTriggerPollingUntilDone(request: request)
   }
 
+  /// ReceiveTriggerWebhook [Experimental] is called when the API receives a
+  /// webhook request targeted at a specific trigger.
+  ///
+  /// @Snippet(path: "CloudBuild_ReceiveTriggerWebhook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/receiveTriggerWebhook(request:options:)``
   public func receiveTriggerWebhook(request: ReceiveTriggerWebhookRequest) async throws
     -> GoogleCloudBuildV1.ReceiveTriggerWebhookResponse
   {
@@ -1098,6 +1725,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a `WorkerPool`.
+  ///
+  /// @Snippet(path: "CloudBuild_CreateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/createWorkerPool(request:options:)``
   public func createWorkerPool(request: CreateWorkerPoolRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1110,6 +1744,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a `WorkerPool`.
+  ///
+  /// @Snippet(path: "CloudBuild_CreateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/createWorkerPoolPollingUntilDone(request:options:)``
   public func createWorkerPoolPollingUntilDone(request: CreateWorkerPoolRequest) async throws
     -> WorkerPool
   {
@@ -1122,6 +1763,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a `WorkerPool`.
+  ///
+  /// @Snippet(path: "CloudBuild_CreateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/createWorkerPoolPollingUntilDone(request:options:)``
   public func createWorkerPoolPollingUntilDone(
     parent: Swift.String,
     workerPool: WorkerPool?,
@@ -1135,6 +1783,13 @@ extension Clients.CloudBuildProtocol {
     return try await self.createWorkerPoolPollingUntilDone(request: request)
   }
 
+  /// Returns details of a `WorkerPool`.
+  ///
+  /// @Snippet(path: "CloudBuild_GetWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/getWorkerPool(request:options:)``
   public func getWorkerPool(request: GetWorkerPoolRequest) async throws
     -> GoogleCloudBuildV1.WorkerPool
   {
@@ -1147,6 +1802,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns details of a `WorkerPool`.
+  ///
+  /// @Snippet(path: "CloudBuild_GetWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/getWorkerPool(request:options:)``
   public func getWorkerPool(
     name: Swift.String,
   ) async throws -> GoogleCloudBuildV1.WorkerPool {
@@ -1156,6 +1818,13 @@ extension Clients.CloudBuildProtocol {
     return try await self.getWorkerPool(request: request)
   }
 
+  /// Deletes a `WorkerPool`.
+  ///
+  /// @Snippet(path: "CloudBuild_DeleteWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/deleteWorkerPool(request:options:)``
   public func deleteWorkerPool(request: DeleteWorkerPoolRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1168,6 +1837,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a `WorkerPool`.
+  ///
+  /// @Snippet(path: "CloudBuild_DeleteWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/deleteWorkerPoolPollingUntilDone(request:options:)``
   public func deleteWorkerPoolPollingUntilDone(request: DeleteWorkerPoolRequest) async throws {
     try await self.deleteWorkerPoolPollingUntilDone(request: request, options: .init())
   }
@@ -1178,6 +1854,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a `WorkerPool`.
+  ///
+  /// @Snippet(path: "CloudBuild_DeleteWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/deleteWorkerPoolPollingUntilDone(request:options:)``
   public func deleteWorkerPoolPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1187,6 +1870,13 @@ extension Clients.CloudBuildProtocol {
     try await self.deleteWorkerPoolPollingUntilDone(request: request)
   }
 
+  /// Updates a `WorkerPool`.
+  ///
+  /// @Snippet(path: "CloudBuild_UpdateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/updateWorkerPool(request:options:)``
   public func updateWorkerPool(request: UpdateWorkerPoolRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1199,6 +1889,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a `WorkerPool`.
+  ///
+  /// @Snippet(path: "CloudBuild_UpdateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/updateWorkerPoolPollingUntilDone(request:options:)``
   public func updateWorkerPoolPollingUntilDone(request: UpdateWorkerPoolRequest) async throws
     -> WorkerPool
   {
@@ -1211,6 +1908,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a `WorkerPool`.
+  ///
+  /// @Snippet(path: "CloudBuild_UpdateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/updateWorkerPoolPollingUntilDone(request:options:)``
   public func updateWorkerPoolPollingUntilDone(
     workerPool: WorkerPool?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1222,6 +1926,13 @@ extension Clients.CloudBuildProtocol {
     return try await self.updateWorkerPoolPollingUntilDone(request: request)
   }
 
+  /// Lists `WorkerPool`s.
+  ///
+  /// @Snippet(path: "CloudBuild_ListWorkerPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/listWorkerPools(request:options:)``
   public func listWorkerPools(request: ListWorkerPoolsRequest) async throws
     -> GoogleCloudBuildV1.ListWorkerPoolsResponse
   {
@@ -1234,6 +1945,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists `WorkerPool`s.
+  ///
+  /// @Snippet(path: "CloudBuild_ListWorkerPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/listWorkerPools(request:options:)``
   public func listWorkerPoolsByItems(
     request: ListWorkerPoolsRequest
   ) -> some AsyncSequence<WorkerPool, any Swift.Error> & Sendable {
@@ -1243,6 +1961,10 @@ extension Clients.CloudBuildProtocol {
   /// Lists `WorkerPool`s.
   ///
   /// @Snippet(path: "CloudBuild_ListWorkerPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/listWorkerPools(request:options:)``
   public func listWorkerPoolsByItems(
     request: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<WorkerPool, any Swift.Error> & Sendable {
@@ -1256,6 +1978,13 @@ extension Clients.CloudBuildProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists `WorkerPool`s.
+  ///
+  /// @Snippet(path: "CloudBuild_ListWorkerPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/listWorkerPools(request:options:)``
   public func listWorkerPoolsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<WorkerPool, any Swift.Error> & Sendable {
@@ -1265,6 +1994,13 @@ extension Clients.CloudBuildProtocol {
     return self.listWorkerPoolsByItems(request: request)
   }
 
+  /// Returns the `DefaultServiceAccount` used by the project.
+  ///
+  /// @Snippet(path: "CloudBuild_GetDefaultServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/getDefaultServiceAccount(request:options:)``
   public func getDefaultServiceAccount(request: GetDefaultServiceAccountRequest) async throws
     -> GoogleCloudBuildV1.DefaultServiceAccount
   {
@@ -1277,6 +2013,13 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the `DefaultServiceAccount` used by the project.
+  ///
+  /// @Snippet(path: "CloudBuild_GetDefaultServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/getDefaultServiceAccount(request:options:)``
   public func getDefaultServiceAccount(
     name: Swift.String,
   ) async throws -> GoogleCloudBuildV1.DefaultServiceAccount {
@@ -1286,6 +2029,9 @@ extension Clients.CloudBuildProtocol {
     return try await self.getDefaultServiceAccount(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1298,6 +2044,9 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1307,6 +2056,15 @@ extension Clients.CloudBuildProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudBuild_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1317,6 +2075,15 @@ extension Clients.CloudBuildProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudBuild_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudBuildClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -24,6 +24,10 @@ import Foundation
 /// This service lets you manage document schema.
 ///
 /// @Snippet(path: "DocumentSchemaServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DocumentSchemaServiceProtocol``
 public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServiceProtocol, Sendable {
   let inner: any Clients.DocumentSchemaServiceStub
 
@@ -41,6 +45,11 @@ public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServicePro
   /// Creates a document schema.
   ///
   /// @Snippet(path: "DocumentSchemaService_CreateDocumentSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDocumentSchema(request:)``
+  /// - ``createDocumentSchema(parent:documentSchema:)``
   public func createDocumentSchema(
     request: CreateDocumentSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema {
@@ -58,6 +67,11 @@ public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServicePro
   /// [google.cloud.contentwarehouse.v1.EnumTypeOptions.validation_check_disabled]: <doc:EnumTypeOptions/validationCheckDisabled>
   ///
   /// @Snippet(path: "DocumentSchemaService_UpdateDocumentSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDocumentSchema(request:)``
+  /// - ``updateDocumentSchema(name:documentSchema:)``
   public func updateDocumentSchema(
     request: UpdateDocumentSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema {
@@ -68,6 +82,11 @@ public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServicePro
   /// exist.
   ///
   /// @Snippet(path: "DocumentSchemaService_GetDocumentSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDocumentSchema(request:)``
+  /// - ``getDocumentSchema(name:)``
   public func getDocumentSchema(
     request: GetDocumentSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema {
@@ -79,6 +98,11 @@ public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServicePro
   /// depending on it.
   ///
   /// @Snippet(path: "DocumentSchemaService_DeleteDocumentSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDocumentSchema(request:)``
+  /// - ``deleteDocumentSchema(name:)``
   public func deleteDocumentSchema(
     request: DeleteDocumentSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -88,6 +112,13 @@ public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServicePro
   /// Lists document schemas.
   ///
   /// @Snippet(path: "DocumentSchemaService_ListDocumentSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDocumentSchemas(request:)``
+  /// - ``listDocumentSchemasByItems(request:)``
+  /// - ``listDocumentSchemasByItems(request:options:)``
+  /// - ``listDocumentSchemasByItems(parent:)``
   public func listDocumentSchemas(
     request: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.ListDocumentSchemasResponse {
@@ -142,6 +173,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DocumentSchemaServiceProtocol {
+  /// Creates a document schema.
+  ///
+  /// @Snippet(path: "DocumentSchemaService_CreateDocumentSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentSchemaServiceClient/createDocumentSchema(request:options:)``
   public func createDocumentSchema(request: CreateDocumentSchemaRequest) async throws
     -> GoogleCloudContentWarehouseV1.DocumentSchema
   {
@@ -154,6 +192,13 @@ extension Clients.DocumentSchemaServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a document schema.
+  ///
+  /// @Snippet(path: "DocumentSchemaService_CreateDocumentSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentSchemaServiceClient/createDocumentSchema(request:options:)``
   public func createDocumentSchema(
     parent: Swift.String,
     documentSchema: DocumentSchema?,
@@ -165,6 +210,21 @@ extension Clients.DocumentSchemaServiceProtocol {
     return try await self.createDocumentSchema(request: request)
   }
 
+  /// Updates a Document Schema. Returns INVALID_ARGUMENT if the name of the
+  /// Document Schema is non-empty and does not equal the existing name.
+  /// Supports only appending new properties, adding new ENUM possible values,
+  /// and updating the
+  /// [EnumTypeOptions.validation_check_disabled][google.cloud.contentwarehouse.v1.EnumTypeOptions.validation_check_disabled]
+  /// flag for ENUM possible values. Updating existing properties will result
+  /// into INVALID_ARGUMENT.
+  ///
+  /// [google.cloud.contentwarehouse.v1.EnumTypeOptions.validation_check_disabled]: <doc:EnumTypeOptions/validationCheckDisabled>
+  ///
+  /// @Snippet(path: "DocumentSchemaService_UpdateDocumentSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentSchemaServiceClient/updateDocumentSchema(request:options:)``
   public func updateDocumentSchema(request: UpdateDocumentSchemaRequest) async throws
     -> GoogleCloudContentWarehouseV1.DocumentSchema
   {
@@ -177,6 +237,21 @@ extension Clients.DocumentSchemaServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Document Schema. Returns INVALID_ARGUMENT if the name of the
+  /// Document Schema is non-empty and does not equal the existing name.
+  /// Supports only appending new properties, adding new ENUM possible values,
+  /// and updating the
+  /// [EnumTypeOptions.validation_check_disabled][google.cloud.contentwarehouse.v1.EnumTypeOptions.validation_check_disabled]
+  /// flag for ENUM possible values. Updating existing properties will result
+  /// into INVALID_ARGUMENT.
+  ///
+  /// [google.cloud.contentwarehouse.v1.EnumTypeOptions.validation_check_disabled]: <doc:EnumTypeOptions/validationCheckDisabled>
+  ///
+  /// @Snippet(path: "DocumentSchemaService_UpdateDocumentSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentSchemaServiceClient/updateDocumentSchema(request:options:)``
   public func updateDocumentSchema(
     name: Swift.String,
     documentSchema: DocumentSchema?,
@@ -188,6 +263,14 @@ extension Clients.DocumentSchemaServiceProtocol {
     return try await self.updateDocumentSchema(request: request)
   }
 
+  /// Gets a document schema. Returns NOT_FOUND if the document schema does not
+  /// exist.
+  ///
+  /// @Snippet(path: "DocumentSchemaService_GetDocumentSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentSchemaServiceClient/getDocumentSchema(request:options:)``
   public func getDocumentSchema(request: GetDocumentSchemaRequest) async throws
     -> GoogleCloudContentWarehouseV1.DocumentSchema
   {
@@ -200,6 +283,14 @@ extension Clients.DocumentSchemaServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a document schema. Returns NOT_FOUND if the document schema does not
+  /// exist.
+  ///
+  /// @Snippet(path: "DocumentSchemaService_GetDocumentSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentSchemaServiceClient/getDocumentSchema(request:options:)``
   public func getDocumentSchema(
     name: Swift.String,
   ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema {
@@ -209,6 +300,15 @@ extension Clients.DocumentSchemaServiceProtocol {
     return try await self.getDocumentSchema(request: request)
   }
 
+  /// Deletes a document schema. Returns NOT_FOUND if the document schema does
+  /// not exist. Returns BAD_REQUEST if the document schema has documents
+  /// depending on it.
+  ///
+  /// @Snippet(path: "DocumentSchemaService_DeleteDocumentSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentSchemaServiceClient/deleteDocumentSchema(request:options:)``
   public func deleteDocumentSchema(request: DeleteDocumentSchemaRequest) async throws {
     try await self.deleteDocumentSchema(request: request, options: .init())
   }
@@ -219,6 +319,15 @@ extension Clients.DocumentSchemaServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a document schema. Returns NOT_FOUND if the document schema does
+  /// not exist. Returns BAD_REQUEST if the document schema has documents
+  /// depending on it.
+  ///
+  /// @Snippet(path: "DocumentSchemaService_DeleteDocumentSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentSchemaServiceClient/deleteDocumentSchema(request:options:)``
   public func deleteDocumentSchema(
     name: Swift.String,
   ) async throws {
@@ -228,6 +337,13 @@ extension Clients.DocumentSchemaServiceProtocol {
     try await self.deleteDocumentSchema(request: request)
   }
 
+  /// Lists document schemas.
+  ///
+  /// @Snippet(path: "DocumentSchemaService_ListDocumentSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentSchemaServiceClient/listDocumentSchemas(request:options:)``
   public func listDocumentSchemas(request: ListDocumentSchemasRequest) async throws
     -> GoogleCloudContentWarehouseV1.ListDocumentSchemasResponse
   {
@@ -240,6 +356,13 @@ extension Clients.DocumentSchemaServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists document schemas.
+  ///
+  /// @Snippet(path: "DocumentSchemaService_ListDocumentSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentSchemaServiceClient/listDocumentSchemas(request:options:)``
   public func listDocumentSchemasByItems(
     request: ListDocumentSchemasRequest
   ) -> some AsyncSequence<DocumentSchema, any Swift.Error> & Sendable {
@@ -249,6 +372,10 @@ extension Clients.DocumentSchemaServiceProtocol {
   /// Lists document schemas.
   ///
   /// @Snippet(path: "DocumentSchemaService_ListDocumentSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentSchemaServiceClient/listDocumentSchemas(request:options:)``
   public func listDocumentSchemasByItems(
     request: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DocumentSchema, any Swift.Error> & Sendable {
@@ -263,6 +390,13 @@ extension Clients.DocumentSchemaServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists document schemas.
+  ///
+  /// @Snippet(path: "DocumentSchemaService_ListDocumentSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentSchemaServiceClient/listDocumentSchemas(request:options:)``
   public func listDocumentSchemasByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DocumentSchema, any Swift.Error> & Sendable {
@@ -272,6 +406,9 @@ extension Clients.DocumentSchemaServiceProtocol {
     return self.listDocumentSchemasByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -284,6 +421,9 @@ extension Clients.DocumentSchemaServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

@@ -26,6 +26,10 @@ import Foundation
 /// FeedsService contains procedures for managing Chronicle third-party feeds.
 ///
 /// @Snippet(path: "FeedsServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/FeedsServiceProtocol``
 public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   let inner: any Clients.FeedsServiceStub
 
@@ -43,6 +47,11 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// Storage buckets.
   ///
   /// @Snippet(path: "FeedsService_FetchServiceAccountForCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchServiceAccountForCustomer(request:)``
+  /// - ``fetchServiceAccountForCustomer(parent:)``
   public func fetchServiceAccountForCustomer(
     request: FetchServiceAccountForCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FeedServiceAccount {
@@ -52,6 +61,11 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// Creates a feed.
   ///
   /// @Snippet(path: "FeedsService_CreateFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createFeed(request:)``
+  /// - ``createFeed(parent:feed:)``
   public func createFeed(
     request: CreateFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -61,6 +75,11 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// Gets a feed.
   ///
   /// @Snippet(path: "FeedsService_GetFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFeed(request:)``
+  /// - ``getFeed(name:)``
   public func getFeed(
     request: GetFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -70,6 +89,11 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// Deletes a feed.
   ///
   /// @Snippet(path: "FeedsService_DeleteFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFeed(request:)``
+  /// - ``deleteFeed(name:)``
   public func deleteFeed(
     request: DeleteFeedRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -79,6 +103,11 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// Enable feed for ingestion.
   ///
   /// @Snippet(path: "FeedsService_EnableFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``enableFeed(request:)``
+  /// - ``enableFeed(name:)``
   public func enableFeed(
     request: EnableFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -88,6 +117,11 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// Disable feed for ingestion. Make FeedState ARCHIVED.
   ///
   /// @Snippet(path: "FeedsService_DisableFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``disableFeed(request:)``
+  /// - ``disableFeed(name:)``
   public func disableFeed(
     request: DisableFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -97,6 +131,13 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// Lists all feeds for the customer.
   ///
   /// @Snippet(path: "FeedsService_ListFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFeeds(request:)``
+  /// - ``listFeedsByItems(request:)``
+  /// - ``listFeedsByItems(request:options:)``
+  /// - ``listFeedsByItems(parent:)``
   public func listFeeds(
     request: ListFeedsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListFeedsResponse {
@@ -106,6 +147,13 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// Lists Packs for which feeds can be configured.
   ///
   /// @Snippet(path: "FeedsService_ListFeedPacks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFeedPacks(request:)``
+  /// - ``listFeedPacksByItems(request:)``
+  /// - ``listFeedPacksByItems(request:options:)``
+  /// - ``listFeedPacksByItems(parent:)``
   public func listFeedPacks(
     request: ListFeedPacksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListFeedPacksResponse {
@@ -115,6 +163,11 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// Gets a feed pack.
   ///
   /// @Snippet(path: "FeedsService_GetFeedPack")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFeedPack(request:)``
+  /// - ``getFeedPack(name:)``
   public func getFeedPack(
     request: GetFeedPackRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FeedPack {
@@ -124,6 +177,11 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// Updates the full feed.
   ///
   /// @Snippet(path: "FeedsService_UpdateFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFeed(request:)``
+  /// - ``updateFeed(feed:updateMask:)``
   public func updateFeed(
     request: UpdateFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -133,6 +191,13 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// List all FeedSourceTypeSchemas.
   ///
   /// @Snippet(path: "FeedsService_ListFeedSourceTypeSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFeedSourceTypeSchemas(request:)``
+  /// - ``listFeedSourceTypeSchemasByItems(request:)``
+  /// - ``listFeedSourceTypeSchemasByItems(request:options:)``
+  /// - ``listFeedSourceTypeSchemasByItems(parent:)``
   public func listFeedSourceTypeSchemas(
     request: ListFeedSourceTypeSchemasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListFeedSourceTypeSchemasResponse {
@@ -143,6 +208,13 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// FeedSourceType.
   ///
   /// @Snippet(path: "FeedsService_ListLogTypeSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLogTypeSchemas(request:)``
+  /// - ``listLogTypeSchemasByItems(request:)``
+  /// - ``listLogTypeSchemasByItems(request:options:)``
+  /// - ``listLogTypeSchemasByItems(parent:)``
   public func listLogTypeSchemas(
     request: ListLogTypeSchemasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListLogTypeSchemasResponse {
@@ -154,6 +226,11 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// entire request to be rejected.
   ///
   /// @Snippet(path: "FeedsService_ImportPushLogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importPushLogs(request:)``
+  /// - ``importPushLogs(parent:)``
   public func importPushLogs(
     request: ImportPushLogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -167,6 +244,11 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// invalidate the previously generated secret for the feed.
   ///
   /// @Snippet(path: "FeedsService_GenerateSecret")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateSecret(request:)``
+  /// - ``generateSecret(name:)``
   public func generateSecret(
     request: GenerateSecretRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.GenerateSecretResponse {
@@ -178,6 +260,13 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FeedsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -200,6 +289,11 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FeedsService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -211,6 +305,11 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FeedsService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -314,6 +413,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.FeedsServiceProtocol {
+  /// Fetch Chronicle's service account used for ingesting data from Cloud
+  /// Storage buckets.
+  ///
+  /// @Snippet(path: "FeedsService_FetchServiceAccountForCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/fetchServiceAccountForCustomer(request:options:)``
   public func fetchServiceAccountForCustomer(request: FetchServiceAccountForCustomerRequest)
     async throws -> GoogleCloudChronicleV1.FeedServiceAccount
   {
@@ -326,6 +433,14 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetch Chronicle's service account used for ingesting data from Cloud
+  /// Storage buckets.
+  ///
+  /// @Snippet(path: "FeedsService_FetchServiceAccountForCustomer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/fetchServiceAccountForCustomer(request:options:)``
   public func fetchServiceAccountForCustomer(
     parent: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.FeedServiceAccount {
@@ -335,6 +450,13 @@ extension Clients.FeedsServiceProtocol {
     return try await self.fetchServiceAccountForCustomer(request: request)
   }
 
+  /// Creates a feed.
+  ///
+  /// @Snippet(path: "FeedsService_CreateFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/createFeed(request:options:)``
   public func createFeed(request: CreateFeedRequest) async throws -> GoogleCloudChronicleV1.Feed {
     try await self.createFeed(request: request, options: .init())
   }
@@ -345,6 +467,13 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a feed.
+  ///
+  /// @Snippet(path: "FeedsService_CreateFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/createFeed(request:options:)``
   public func createFeed(
     parent: Swift.String,
     feed: Feed?,
@@ -356,6 +485,13 @@ extension Clients.FeedsServiceProtocol {
     return try await self.createFeed(request: request)
   }
 
+  /// Gets a feed.
+  ///
+  /// @Snippet(path: "FeedsService_GetFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/getFeed(request:options:)``
   public func getFeed(request: GetFeedRequest) async throws -> GoogleCloudChronicleV1.Feed {
     try await self.getFeed(request: request, options: .init())
   }
@@ -366,6 +502,13 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a feed.
+  ///
+  /// @Snippet(path: "FeedsService_GetFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/getFeed(request:options:)``
   public func getFeed(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -375,6 +518,13 @@ extension Clients.FeedsServiceProtocol {
     return try await self.getFeed(request: request)
   }
 
+  /// Deletes a feed.
+  ///
+  /// @Snippet(path: "FeedsService_DeleteFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/deleteFeed(request:options:)``
   public func deleteFeed(request: DeleteFeedRequest) async throws {
     try await self.deleteFeed(request: request, options: .init())
   }
@@ -385,6 +535,13 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a feed.
+  ///
+  /// @Snippet(path: "FeedsService_DeleteFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/deleteFeed(request:options:)``
   public func deleteFeed(
     name: Swift.String,
   ) async throws {
@@ -394,6 +551,13 @@ extension Clients.FeedsServiceProtocol {
     try await self.deleteFeed(request: request)
   }
 
+  /// Enable feed for ingestion.
+  ///
+  /// @Snippet(path: "FeedsService_EnableFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/enableFeed(request:options:)``
   public func enableFeed(request: EnableFeedRequest) async throws -> GoogleCloudChronicleV1.Feed {
     try await self.enableFeed(request: request, options: .init())
   }
@@ -404,6 +568,13 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enable feed for ingestion.
+  ///
+  /// @Snippet(path: "FeedsService_EnableFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/enableFeed(request:options:)``
   public func enableFeed(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -413,6 +584,13 @@ extension Clients.FeedsServiceProtocol {
     return try await self.enableFeed(request: request)
   }
 
+  /// Disable feed for ingestion. Make FeedState ARCHIVED.
+  ///
+  /// @Snippet(path: "FeedsService_DisableFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/disableFeed(request:options:)``
   public func disableFeed(request: DisableFeedRequest) async throws -> GoogleCloudChronicleV1.Feed {
     try await self.disableFeed(request: request, options: .init())
   }
@@ -423,6 +601,13 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Disable feed for ingestion. Make FeedState ARCHIVED.
+  ///
+  /// @Snippet(path: "FeedsService_DisableFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/disableFeed(request:options:)``
   public func disableFeed(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -432,6 +617,13 @@ extension Clients.FeedsServiceProtocol {
     return try await self.disableFeed(request: request)
   }
 
+  /// Lists all feeds for the customer.
+  ///
+  /// @Snippet(path: "FeedsService_ListFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listFeeds(request:options:)``
   public func listFeeds(request: ListFeedsRequest) async throws
     -> GoogleCloudChronicleV1.ListFeedsResponse
   {
@@ -444,6 +636,13 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all feeds for the customer.
+  ///
+  /// @Snippet(path: "FeedsService_ListFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listFeeds(request:options:)``
   public func listFeedsByItems(
     request: ListFeedsRequest
   ) -> some AsyncSequence<Feed, any Swift.Error> & Sendable {
@@ -453,6 +652,10 @@ extension Clients.FeedsServiceProtocol {
   /// Lists all feeds for the customer.
   ///
   /// @Snippet(path: "FeedsService_ListFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listFeeds(request:options:)``
   public func listFeedsByItems(
     request: ListFeedsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Feed, any Swift.Error> & Sendable {
@@ -466,6 +669,13 @@ extension Clients.FeedsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all feeds for the customer.
+  ///
+  /// @Snippet(path: "FeedsService_ListFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listFeeds(request:options:)``
   public func listFeedsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Feed, any Swift.Error> & Sendable {
@@ -475,6 +685,13 @@ extension Clients.FeedsServiceProtocol {
     return self.listFeedsByItems(request: request)
   }
 
+  /// Lists Packs for which feeds can be configured.
+  ///
+  /// @Snippet(path: "FeedsService_ListFeedPacks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listFeedPacks(request:options:)``
   public func listFeedPacks(request: ListFeedPacksRequest) async throws
     -> GoogleCloudChronicleV1.ListFeedPacksResponse
   {
@@ -487,6 +704,13 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Packs for which feeds can be configured.
+  ///
+  /// @Snippet(path: "FeedsService_ListFeedPacks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listFeedPacks(request:options:)``
   public func listFeedPacksByItems(
     request: ListFeedPacksRequest
   ) -> some AsyncSequence<FeedPack, any Swift.Error> & Sendable {
@@ -496,6 +720,10 @@ extension Clients.FeedsServiceProtocol {
   /// Lists Packs for which feeds can be configured.
   ///
   /// @Snippet(path: "FeedsService_ListFeedPacks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listFeedPacks(request:options:)``
   public func listFeedPacksByItems(
     request: ListFeedPacksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<FeedPack, any Swift.Error> & Sendable {
@@ -510,6 +738,13 @@ extension Clients.FeedsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Packs for which feeds can be configured.
+  ///
+  /// @Snippet(path: "FeedsService_ListFeedPacks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listFeedPacks(request:options:)``
   public func listFeedPacksByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<FeedPack, any Swift.Error> & Sendable {
@@ -519,6 +754,13 @@ extension Clients.FeedsServiceProtocol {
     return self.listFeedPacksByItems(request: request)
   }
 
+  /// Gets a feed pack.
+  ///
+  /// @Snippet(path: "FeedsService_GetFeedPack")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/getFeedPack(request:options:)``
   public func getFeedPack(request: GetFeedPackRequest) async throws
     -> GoogleCloudChronicleV1.FeedPack
   {
@@ -531,6 +773,13 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a feed pack.
+  ///
+  /// @Snippet(path: "FeedsService_GetFeedPack")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/getFeedPack(request:options:)``
   public func getFeedPack(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.FeedPack {
@@ -540,6 +789,13 @@ extension Clients.FeedsServiceProtocol {
     return try await self.getFeedPack(request: request)
   }
 
+  /// Updates the full feed.
+  ///
+  /// @Snippet(path: "FeedsService_UpdateFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/updateFeed(request:options:)``
   public func updateFeed(request: UpdateFeedRequest) async throws -> GoogleCloudChronicleV1.Feed {
     try await self.updateFeed(request: request, options: .init())
   }
@@ -550,6 +806,13 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the full feed.
+  ///
+  /// @Snippet(path: "FeedsService_UpdateFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/updateFeed(request:options:)``
   public func updateFeed(
     feed: Feed?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -561,6 +824,13 @@ extension Clients.FeedsServiceProtocol {
     return try await self.updateFeed(request: request)
   }
 
+  /// List all FeedSourceTypeSchemas.
+  ///
+  /// @Snippet(path: "FeedsService_ListFeedSourceTypeSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listFeedSourceTypeSchemas(request:options:)``
   public func listFeedSourceTypeSchemas(request: ListFeedSourceTypeSchemasRequest) async throws
     -> GoogleCloudChronicleV1.ListFeedSourceTypeSchemasResponse
   {
@@ -573,6 +843,13 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List all FeedSourceTypeSchemas.
+  ///
+  /// @Snippet(path: "FeedsService_ListFeedSourceTypeSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listFeedSourceTypeSchemas(request:options:)``
   public func listFeedSourceTypeSchemasByItems(
     request: ListFeedSourceTypeSchemasRequest
   ) -> some AsyncSequence<FeedSourceTypeSchema, any Swift.Error> & Sendable {
@@ -582,6 +859,10 @@ extension Clients.FeedsServiceProtocol {
   /// List all FeedSourceTypeSchemas.
   ///
   /// @Snippet(path: "FeedsService_ListFeedSourceTypeSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listFeedSourceTypeSchemas(request:options:)``
   public func listFeedSourceTypeSchemasByItems(
     request: ListFeedSourceTypeSchemasRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<FeedSourceTypeSchema, any Swift.Error> & Sendable {
@@ -596,6 +877,13 @@ extension Clients.FeedsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List all FeedSourceTypeSchemas.
+  ///
+  /// @Snippet(path: "FeedsService_ListFeedSourceTypeSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listFeedSourceTypeSchemas(request:options:)``
   public func listFeedSourceTypeSchemasByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<FeedSourceTypeSchema, any Swift.Error> & Sendable {
@@ -605,6 +893,14 @@ extension Clients.FeedsServiceProtocol {
     return self.listFeedSourceTypeSchemasByItems(request: request)
   }
 
+  /// List all LogTypeSchemas compatible with a given
+  /// FeedSourceType.
+  ///
+  /// @Snippet(path: "FeedsService_ListLogTypeSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listLogTypeSchemas(request:options:)``
   public func listLogTypeSchemas(request: ListLogTypeSchemasRequest) async throws
     -> GoogleCloudChronicleV1.ListLogTypeSchemasResponse
   {
@@ -617,6 +913,14 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List all LogTypeSchemas compatible with a given
+  /// FeedSourceType.
+  ///
+  /// @Snippet(path: "FeedsService_ListLogTypeSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listLogTypeSchemas(request:options:)``
   public func listLogTypeSchemasByItems(
     request: ListLogTypeSchemasRequest
   ) -> some AsyncSequence<LogTypeSchema, any Swift.Error> & Sendable {
@@ -627,6 +931,10 @@ extension Clients.FeedsServiceProtocol {
   /// FeedSourceType.
   ///
   /// @Snippet(path: "FeedsService_ListLogTypeSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listLogTypeSchemas(request:options:)``
   public func listLogTypeSchemasByItems(
     request: ListLogTypeSchemasRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<LogTypeSchema, any Swift.Error> & Sendable {
@@ -641,6 +949,14 @@ extension Clients.FeedsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List all LogTypeSchemas compatible with a given
+  /// FeedSourceType.
+  ///
+  /// @Snippet(path: "FeedsService_ListLogTypeSchemas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listLogTypeSchemas(request:options:)``
   public func listLogTypeSchemasByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<LogTypeSchema, any Swift.Error> & Sendable {
@@ -650,6 +966,15 @@ extension Clients.FeedsServiceProtocol {
     return self.listLogTypeSchemasByItems(request: request)
   }
 
+  /// Import logs coming from https push feeds.
+  /// All log entries must be valid UTF-8. A single invalid event will cause the
+  /// entire request to be rejected.
+  ///
+  /// @Snippet(path: "FeedsService_ImportPushLogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/importPushLogs(request:options:)``
   public func importPushLogs(request: ImportPushLogsRequest) async throws -> GoogleApi.HttpBody {
     try await self.importPushLogs(request: request, options: .init())
   }
@@ -660,6 +985,15 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Import logs coming from https push feeds.
+  /// All log entries must be valid UTF-8. A single invalid event will cause the
+  /// entire request to be rejected.
+  ///
+  /// @Snippet(path: "FeedsService_ImportPushLogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/importPushLogs(request:options:)``
   public func importPushLogs(
     parent: Swift.String,
   ) async throws -> GoogleApi.HttpBody {
@@ -669,6 +1003,17 @@ extension Clients.FeedsServiceProtocol {
     return try await self.importPushLogs(request: request)
   }
 
+  /// Generates a new secret for https push feeds which do not support jwt
+  /// tokens. Secrets once generated should be copied and stored in safe place
+  /// to be used while configuring https push feeds.Please note that you can
+  /// always generate a new secret again for a feed using this API but it will
+  /// invalidate the previously generated secret for the feed.
+  ///
+  /// @Snippet(path: "FeedsService_GenerateSecret")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/generateSecret(request:options:)``
   public func generateSecret(request: GenerateSecretRequest) async throws
     -> GoogleCloudChronicleV1.GenerateSecretResponse
   {
@@ -681,6 +1026,17 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generates a new secret for https push feeds which do not support jwt
+  /// tokens. Secrets once generated should be copied and stored in safe place
+  /// to be used while configuring https push feeds.Please note that you can
+  /// always generate a new secret again for a feed using this API but it will
+  /// invalidate the previously generated secret for the feed.
+  ///
+  /// @Snippet(path: "FeedsService_GenerateSecret")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/generateSecret(request:options:)``
   public func generateSecret(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.GenerateSecretResponse {
@@ -690,6 +1046,15 @@ extension Clients.FeedsServiceProtocol {
     return try await self.generateSecret(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FeedsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -702,6 +1067,15 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FeedsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -713,6 +1087,10 @@ extension Clients.FeedsServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FeedsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -726,6 +1104,15 @@ extension Clients.FeedsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FeedsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -737,6 +1124,9 @@ extension Clients.FeedsServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -749,6 +1139,9 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -758,6 +1151,15 @@ extension Clients.FeedsServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FeedsService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -768,6 +1170,15 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FeedsService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -777,6 +1188,15 @@ extension Clients.FeedsServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FeedsService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -787,6 +1207,15 @@ extension Clients.FeedsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FeedsService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FeedsServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

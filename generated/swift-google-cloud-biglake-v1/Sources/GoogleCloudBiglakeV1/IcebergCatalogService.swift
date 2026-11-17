@@ -32,6 +32,10 @@ import Foundation
 /// - FailoverIcebergCatalog
 ///
 /// @Snippet(path: "IcebergCatalogServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/IcebergCatalogServiceProtocol``
 public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServiceProtocol, Sendable {
   let inner: any Clients.IcebergCatalogServiceStub
 
@@ -56,6 +60,10 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// This is not a GCP resource.
   ///
   /// @Snippet(path: "IcebergCatalogService_GetIcebergCatalogConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIcebergCatalogConfig(request:)``
   public func getIcebergCatalogConfig(
     request: GetIcebergCatalogConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.IcebergCatalogConfig {
@@ -66,6 +74,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// nesting for namespaces.
   ///
   /// @Snippet(path: "IcebergCatalogService_ListIcebergNamespaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listIcebergNamespaces(request:)``
+  /// - ``listIcebergNamespaces(apiParent:)``
   public func listIcebergNamespaces(
     request: ListIcebergNamespacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.ListIcebergNamespacesResponse {
@@ -76,6 +89,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// method is HEAD).
   ///
   /// @Snippet(path: "IcebergCatalogService_GetIcebergNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIcebergNamespace(request:)``
+  /// - ``getIcebergNamespace(name:)``
   public func getIcebergNamespace(
     request: GetIcebergNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.IcebergNamespace {
@@ -85,6 +103,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Creates a namespace in the catalog.
   ///
   /// @Snippet(path: "IcebergCatalogService_CreateIcebergNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createIcebergNamespace(request:)``
+  /// - ``createIcebergNamespace(parent:icebergNamespace:)``
   public func createIcebergNamespace(
     request: CreateIcebergNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.IcebergNamespace {
@@ -94,6 +117,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Returns 204, not 200 on success.
   ///
   /// @Snippet(path: "IcebergCatalogService_DeleteIcebergNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteIcebergNamespace(request:)``
+  /// - ``deleteIcebergNamespace(name:)``
   public func deleteIcebergNamespace(
     request: DeleteIcebergNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -103,6 +131,10 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Updates namespace properties.
   ///
   /// @Snippet(path: "IcebergCatalogService_UpdateIcebergNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateIcebergNamespace(request:)``
   public func updateIcebergNamespace(
     request: UpdateIcebergNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.UpdateIcebergNamespaceResponse {
@@ -112,6 +144,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Lists table identifiers (not *tables*) in the namespace.
   ///
   /// @Snippet(path: "IcebergCatalogService_ListIcebergTableIdentifiers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listIcebergTableIdentifiers(request:)``
+  /// - ``listIcebergTableIdentifiers(parent:)``
   public func listIcebergTableIdentifiers(
     request: ListIcebergTableIdentifiersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.ListIcebergTableIdentifiersResponse {
@@ -121,6 +158,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Creates a table in the namespace.
   ///
   /// @Snippet(path: "IcebergCatalogService_CreateIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createIcebergTable(request:)``
+  /// - ``createIcebergTable(parent:)``
   public func createIcebergTable(
     request: CreateIcebergTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -130,6 +172,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Deletes a table in the namespace.
   ///
   /// @Snippet(path: "IcebergCatalogService_DeleteIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteIcebergTable(request:)``
+  /// - ``deleteIcebergTable(name:)``
   public func deleteIcebergTable(
     request: DeleteIcebergTableRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -139,6 +186,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Gets a table in the namespace.
   ///
   /// @Snippet(path: "IcebergCatalogService_GetIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIcebergTable(request:)``
+  /// - ``getIcebergTable(name:snapshots:)``
   public func getIcebergTable(
     request: GetIcebergTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -148,6 +200,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Loads credentials for a table in the namespace.
   ///
   /// @Snippet(path: "IcebergCatalogService_LoadIcebergTableCredentials")
+  ///
+  /// ## See Also
+  ///
+  /// - ``loadIcebergTableCredentials(request:)``
+  /// - ``loadIcebergTableCredentials(name:)``
   public func loadIcebergTableCredentials(
     request: GetIcebergTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.LoadIcebergTableCredentialsResponse {
@@ -158,6 +215,10 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Google API nomenclature.
   ///
   /// @Snippet(path: "IcebergCatalogService_UpdateIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateIcebergTable(request:)``
   public func updateIcebergTable(
     request: UpdateIcebergTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -167,6 +228,10 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Register a table using given metadata file location.
   ///
   /// @Snippet(path: "IcebergCatalogService_RegisterIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``registerIcebergTable(request:)``
   public func registerIcebergTable(
     request: RegisterIcebergTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -176,6 +241,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Reports a metrics report for a table.
   ///
   /// @Snippet(path: "IcebergCatalogService_ReportIcebergTableMetrics")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reportIcebergTableMetrics(request:)``
+  /// - ``reportIcebergTableMetrics(name:)``
   public func reportIcebergTableMetrics(
     request: ReportIcebergTableMetricsRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -185,6 +255,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Returns the Iceberg REST Catalog configuration options.
   ///
   /// @Snippet(path: "IcebergCatalogService_GetIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIcebergCatalog(request:)``
+  /// - ``getIcebergCatalog(name:)``
   public func getIcebergCatalog(
     request: GetIcebergCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
@@ -194,6 +269,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Lists the Iceberg REST Catalogs.
   ///
   /// @Snippet(path: "IcebergCatalogService_ListIcebergCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listIcebergCatalogs(request:)``
+  /// - ``listIcebergCatalogs(parent:)``
   public func listIcebergCatalogs(
     request: ListIcebergCatalogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.ListIcebergCatalogsResponse {
@@ -207,6 +287,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Delete is not supported for all catalog types.
   ///
   /// @Snippet(path: "IcebergCatalogService_DeleteIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteIcebergCatalog(request:)``
+  /// - ``deleteIcebergCatalog(name:)``
   public func deleteIcebergCatalog(
     request: DeleteIcebergCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -216,6 +301,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Update the Iceberg REST Catalog configuration options.
   ///
   /// @Snippet(path: "IcebergCatalogService_UpdateIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateIcebergCatalog(request:)``
+  /// - ``updateIcebergCatalog(icebergCatalog:updateMask:)``
   public func updateIcebergCatalog(
     request: UpdateIcebergCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
@@ -230,6 +320,12 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// permissions, the catalog will not be created.
   ///
   /// @Snippet(path: "IcebergCatalogService_CreateIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createIcebergCatalog(request:)``
+  /// - ``createIcebergCatalog(parent:icebergCatalog:icebergCatalogId:)``
+  /// - ``createIcebergCatalog(parent:icebergCatalog:icebergCatalogId:primaryLocation:)``
   public func createIcebergCatalog(
     request: CreateIcebergCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
@@ -239,6 +335,11 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   /// Failover the catalog to a new primary replica region.
   ///
   /// @Snippet(path: "IcebergCatalogService_FailoverIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``failoverIcebergCatalog(request:)``
+  /// - ``failoverIcebergCatalog(name:primaryReplica:)``
   public func failoverIcebergCatalog(
     request: FailoverIcebergCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.FailoverIcebergCatalogResponse {
@@ -357,6 +458,20 @@ extension Clients {
 
 // Default implementations
 extension Clients.IcebergCatalogServiceProtocol {
+  /// GetIcebergCatalogConfig lists all catalog configuration settings. Most
+  /// importantly it contains the optional `endpoints` field which lists what
+  /// methods this catalog supports, since we are not supporting all the methods
+  /// right now.
+  /// It returns all the methods defined in this service (subject to project
+  /// config allowlisting).
+  ///
+  /// This is not a GCP resource.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_GetIcebergCatalogConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/getIcebergCatalogConfig(request:options:)``
   public func getIcebergCatalogConfig(request: GetIcebergCatalogConfigRequest) async throws
     -> GoogleCloudBiglakeV1.IcebergCatalogConfig
   {
@@ -369,6 +484,14 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Iceberg namespaces in the catalog. We only support one level of
+  /// nesting for namespaces.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_ListIcebergNamespaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/listIcebergNamespaces(request:options:)``
   public func listIcebergNamespaces(request: ListIcebergNamespacesRequest) async throws
     -> GoogleCloudBiglakeV1.ListIcebergNamespacesResponse
   {
@@ -381,6 +504,14 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Iceberg namespaces in the catalog. We only support one level of
+  /// nesting for namespaces.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_ListIcebergNamespaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/listIcebergNamespaces(request:options:)``
   public func listIcebergNamespaces(
     apiParent: Swift.String,
   ) async throws -> GoogleCloudBiglakeV1.ListIcebergNamespacesResponse {
@@ -390,6 +521,14 @@ extension Clients.IcebergCatalogServiceProtocol {
     return try await self.listIcebergNamespaces(request: request)
   }
 
+  /// Gets an Iceberg namespace in the catalog (or checks if it exists, if the
+  /// method is HEAD).
+  ///
+  /// @Snippet(path: "IcebergCatalogService_GetIcebergNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/getIcebergNamespace(request:options:)``
   public func getIcebergNamespace(request: GetIcebergNamespaceRequest) async throws
     -> GoogleCloudBiglakeV1.IcebergNamespace
   {
@@ -402,6 +541,14 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an Iceberg namespace in the catalog (or checks if it exists, if the
+  /// method is HEAD).
+  ///
+  /// @Snippet(path: "IcebergCatalogService_GetIcebergNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/getIcebergNamespace(request:options:)``
   public func getIcebergNamespace(
     name: Swift.String,
   ) async throws -> GoogleCloudBiglakeV1.IcebergNamespace {
@@ -411,6 +558,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     return try await self.getIcebergNamespace(request: request)
   }
 
+  /// Creates a namespace in the catalog.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_CreateIcebergNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/createIcebergNamespace(request:options:)``
   public func createIcebergNamespace(request: CreateIcebergNamespaceRequest) async throws
     -> GoogleCloudBiglakeV1.IcebergNamespace
   {
@@ -423,6 +577,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a namespace in the catalog.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_CreateIcebergNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/createIcebergNamespace(request:options:)``
   public func createIcebergNamespace(
     parent: Swift.String,
     icebergNamespace: IcebergNamespace?,
@@ -434,6 +595,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     return try await self.createIcebergNamespace(request: request)
   }
 
+  /// Returns 204, not 200 on success.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_DeleteIcebergNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/deleteIcebergNamespace(request:options:)``
   public func deleteIcebergNamespace(request: DeleteIcebergNamespaceRequest) async throws {
     try await self.deleteIcebergNamespace(request: request, options: .init())
   }
@@ -444,6 +612,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns 204, not 200 on success.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_DeleteIcebergNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/deleteIcebergNamespace(request:options:)``
   public func deleteIcebergNamespace(
     name: Swift.String,
   ) async throws {
@@ -453,6 +628,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     try await self.deleteIcebergNamespace(request: request)
   }
 
+  /// Updates namespace properties.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_UpdateIcebergNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/updateIcebergNamespace(request:options:)``
   public func updateIcebergNamespace(request: UpdateIcebergNamespaceRequest) async throws
     -> GoogleCloudBiglakeV1.UpdateIcebergNamespaceResponse
   {
@@ -465,6 +647,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists table identifiers (not *tables*) in the namespace.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_ListIcebergTableIdentifiers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/listIcebergTableIdentifiers(request:options:)``
   public func listIcebergTableIdentifiers(request: ListIcebergTableIdentifiersRequest) async throws
     -> GoogleCloudBiglakeV1.ListIcebergTableIdentifiersResponse
   {
@@ -477,6 +666,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists table identifiers (not *tables*) in the namespace.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_ListIcebergTableIdentifiers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/listIcebergTableIdentifiers(request:options:)``
   public func listIcebergTableIdentifiers(
     parent: Swift.String,
   ) async throws -> GoogleCloudBiglakeV1.ListIcebergTableIdentifiersResponse {
@@ -486,6 +682,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     return try await self.listIcebergTableIdentifiers(request: request)
   }
 
+  /// Creates a table in the namespace.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_CreateIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/createIcebergTable(request:options:)``
   public func createIcebergTable(request: CreateIcebergTableRequest) async throws
     -> GoogleApi.HttpBody
   {
@@ -498,6 +701,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a table in the namespace.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_CreateIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/createIcebergTable(request:options:)``
   public func createIcebergTable(
     parent: Swift.String,
   ) async throws -> GoogleApi.HttpBody {
@@ -507,6 +717,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     return try await self.createIcebergTable(request: request)
   }
 
+  /// Deletes a table in the namespace.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_DeleteIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/deleteIcebergTable(request:options:)``
   public func deleteIcebergTable(request: DeleteIcebergTableRequest) async throws {
     try await self.deleteIcebergTable(request: request, options: .init())
   }
@@ -517,6 +734,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a table in the namespace.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_DeleteIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/deleteIcebergTable(request:options:)``
   public func deleteIcebergTable(
     name: Swift.String,
   ) async throws {
@@ -526,6 +750,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     try await self.deleteIcebergTable(request: request)
   }
 
+  /// Gets a table in the namespace.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_GetIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/getIcebergTable(request:options:)``
   public func getIcebergTable(request: GetIcebergTableRequest) async throws -> GoogleApi.HttpBody {
     try await self.getIcebergTable(request: request, options: .init())
   }
@@ -536,6 +767,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a table in the namespace.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_GetIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/getIcebergTable(request:options:)``
   public func getIcebergTable(
     name: Swift.String,
     snapshots: Swift.String,
@@ -547,6 +785,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     return try await self.getIcebergTable(request: request)
   }
 
+  /// Loads credentials for a table in the namespace.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_LoadIcebergTableCredentials")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/loadIcebergTableCredentials(request:options:)``
   public func loadIcebergTableCredentials(request: GetIcebergTableRequest) async throws
     -> GoogleCloudBiglakeV1.LoadIcebergTableCredentialsResponse
   {
@@ -559,6 +804,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Loads credentials for a table in the namespace.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_LoadIcebergTableCredentials")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/loadIcebergTableCredentials(request:options:)``
   public func loadIcebergTableCredentials(
     name: Swift.String,
   ) async throws -> GoogleCloudBiglakeV1.LoadIcebergTableCredentialsResponse {
@@ -568,6 +820,14 @@ extension Clients.IcebergCatalogServiceProtocol {
     return try await self.loadIcebergTableCredentials(request: request)
   }
 
+  /// This is CommitTable Iceberg API, which maps to `UpdateIcebergTable` in the
+  /// Google API nomenclature.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_UpdateIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/updateIcebergTable(request:options:)``
   public func updateIcebergTable(request: UpdateIcebergTableRequest) async throws
     -> GoogleApi.HttpBody
   {
@@ -580,6 +840,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Register a table using given metadata file location.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_RegisterIcebergTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/registerIcebergTable(request:options:)``
   public func registerIcebergTable(request: RegisterIcebergTableRequest) async throws
     -> GoogleApi.HttpBody
   {
@@ -592,6 +859,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reports a metrics report for a table.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_ReportIcebergTableMetrics")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/reportIcebergTableMetrics(request:options:)``
   public func reportIcebergTableMetrics(request: ReportIcebergTableMetricsRequest) async throws {
     try await self.reportIcebergTableMetrics(request: request, options: .init())
   }
@@ -602,6 +876,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reports a metrics report for a table.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_ReportIcebergTableMetrics")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/reportIcebergTableMetrics(request:options:)``
   public func reportIcebergTableMetrics(
     name: Swift.String,
   ) async throws {
@@ -611,6 +892,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     try await self.reportIcebergTableMetrics(request: request)
   }
 
+  /// Returns the Iceberg REST Catalog configuration options.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_GetIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/getIcebergCatalog(request:options:)``
   public func getIcebergCatalog(request: GetIcebergCatalogRequest) async throws
     -> GoogleCloudBiglakeV1.IcebergCatalog
   {
@@ -623,6 +911,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the Iceberg REST Catalog configuration options.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_GetIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/getIcebergCatalog(request:options:)``
   public func getIcebergCatalog(
     name: Swift.String,
   ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
@@ -632,6 +927,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     return try await self.getIcebergCatalog(request: request)
   }
 
+  /// Lists the Iceberg REST Catalogs.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_ListIcebergCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/listIcebergCatalogs(request:options:)``
   public func listIcebergCatalogs(request: ListIcebergCatalogsRequest) async throws
     -> GoogleCloudBiglakeV1.ListIcebergCatalogsResponse
   {
@@ -644,6 +946,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the Iceberg REST Catalogs.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_ListIcebergCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/listIcebergCatalogs(request:options:)``
   public func listIcebergCatalogs(
     parent: Swift.String,
   ) async throws -> GoogleCloudBiglakeV1.ListIcebergCatalogsResponse {
@@ -653,6 +962,17 @@ extension Clients.IcebergCatalogServiceProtocol {
     return try await self.listIcebergCatalogs(request: request)
   }
 
+  /// Deletes the Iceberg REST Catalog.
+  /// Delete does not delete a catalog that has contents -- at least one
+  /// namespace.
+  ///
+  /// Delete is not supported for all catalog types.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_DeleteIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/deleteIcebergCatalog(request:options:)``
   public func deleteIcebergCatalog(request: DeleteIcebergCatalogRequest) async throws {
     try await self.deleteIcebergCatalog(request: request, options: .init())
   }
@@ -663,6 +983,17 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the Iceberg REST Catalog.
+  /// Delete does not delete a catalog that has contents -- at least one
+  /// namespace.
+  ///
+  /// Delete is not supported for all catalog types.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_DeleteIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/deleteIcebergCatalog(request:options:)``
   public func deleteIcebergCatalog(
     name: Swift.String,
   ) async throws {
@@ -672,6 +1003,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     try await self.deleteIcebergCatalog(request: request)
   }
 
+  /// Update the Iceberg REST Catalog configuration options.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_UpdateIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/updateIcebergCatalog(request:options:)``
   public func updateIcebergCatalog(request: UpdateIcebergCatalogRequest) async throws
     -> GoogleCloudBiglakeV1.IcebergCatalog
   {
@@ -684,6 +1022,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update the Iceberg REST Catalog configuration options.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_UpdateIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/updateIcebergCatalog(request:options:)``
   public func updateIcebergCatalog(
     icebergCatalog: IcebergCatalog?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -695,6 +1040,18 @@ extension Clients.IcebergCatalogServiceProtocol {
     return try await self.updateIcebergCatalog(request: request)
   }
 
+  /// Creates the Iceberg REST Catalog.
+  /// Google Cloud Storage Bucket catalog id is the bucket for which the
+  /// catalog is created (e.g. `my-catalog` for `gs://my-catalog`).
+  ///
+  /// If the bucket does not exist, of the caller does not have bucket metadata
+  /// permissions, the catalog will not be created.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_CreateIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/createIcebergCatalog(request:options:)``
   public func createIcebergCatalog(request: CreateIcebergCatalogRequest) async throws
     -> GoogleCloudBiglakeV1.IcebergCatalog
   {
@@ -707,6 +1064,18 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates the Iceberg REST Catalog.
+  /// Google Cloud Storage Bucket catalog id is the bucket for which the
+  /// catalog is created (e.g. `my-catalog` for `gs://my-catalog`).
+  ///
+  /// If the bucket does not exist, of the caller does not have bucket metadata
+  /// permissions, the catalog will not be created.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_CreateIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/createIcebergCatalog(request:options:)``
   public func createIcebergCatalog(
     parent: Swift.String,
     icebergCatalog: IcebergCatalog?,
@@ -720,6 +1089,18 @@ extension Clients.IcebergCatalogServiceProtocol {
     return try await self.createIcebergCatalog(request: request)
   }
 
+  /// Creates the Iceberg REST Catalog.
+  /// Google Cloud Storage Bucket catalog id is the bucket for which the
+  /// catalog is created (e.g. `my-catalog` for `gs://my-catalog`).
+  ///
+  /// If the bucket does not exist, of the caller does not have bucket metadata
+  /// permissions, the catalog will not be created.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_CreateIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/createIcebergCatalog(request:options:)``
   public func createIcebergCatalog(
     parent: Swift.String,
     icebergCatalog: IcebergCatalog?,
@@ -735,6 +1116,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     return try await self.createIcebergCatalog(request: request)
   }
 
+  /// Failover the catalog to a new primary replica region.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_FailoverIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/failoverIcebergCatalog(request:options:)``
   public func failoverIcebergCatalog(request: FailoverIcebergCatalogRequest) async throws
     -> GoogleCloudBiglakeV1.FailoverIcebergCatalogResponse
   {
@@ -747,6 +1135,13 @@ extension Clients.IcebergCatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Failover the catalog to a new primary replica region.
+  ///
+  /// @Snippet(path: "IcebergCatalogService_FailoverIcebergCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IcebergCatalogServiceClient/failoverIcebergCatalog(request:options:)``
   public func failoverIcebergCatalog(
     name: Swift.String,
     primaryReplica: Swift.String,

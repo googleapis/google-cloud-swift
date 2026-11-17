@@ -28,6 +28,10 @@ import Foundation
 /// concatenation, and digital ad-stitch ready content generation.
 ///
 /// @Snippet(path: "TranscoderServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/TranscoderServiceProtocol``
 public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, Sendable {
   let inner: any Clients.TranscoderServiceStub
 
@@ -44,6 +48,11 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   /// Creates a job in the specified region.
   ///
   /// @Snippet(path: "TranscoderService_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createJob(request:)``
+  /// - ``createJob(parent:job:)``
   public func createJob(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoTranscoderV1.Job {
@@ -53,6 +62,13 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   /// Lists jobs in the specified region.
   ///
   /// @Snippet(path: "TranscoderService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(request:)``
+  /// - ``listJobsByItems(request:options:)``
+  /// - ``listJobsByItems(parent:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoTranscoderV1.ListJobsResponse {
@@ -62,6 +78,11 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   /// Returns the job data.
   ///
   /// @Snippet(path: "TranscoderService_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getJob(request:)``
+  /// - ``getJob(name:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoTranscoderV1.Job {
@@ -71,6 +92,11 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   /// Deletes a job.
   ///
   /// @Snippet(path: "TranscoderService_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteJob(request:)``
+  /// - ``deleteJob(name:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -80,6 +106,11 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   /// Creates a job template in the specified region.
   ///
   /// @Snippet(path: "TranscoderService_CreateJobTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createJobTemplate(request:)``
+  /// - ``createJobTemplate(parent:jobTemplate:jobTemplateId:)``
   public func createJobTemplate(
     request: CreateJobTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoTranscoderV1.JobTemplate {
@@ -89,6 +120,13 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   /// Lists job templates in the specified region.
   ///
   /// @Snippet(path: "TranscoderService_ListJobTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listJobTemplates(request:)``
+  /// - ``listJobTemplatesByItems(request:)``
+  /// - ``listJobTemplatesByItems(request:options:)``
+  /// - ``listJobTemplatesByItems(parent:)``
   public func listJobTemplates(
     request: ListJobTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoTranscoderV1.ListJobTemplatesResponse {
@@ -98,6 +136,11 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   /// Returns the job template data.
   ///
   /// @Snippet(path: "TranscoderService_GetJobTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getJobTemplate(request:)``
+  /// - ``getJobTemplate(name:)``
   public func getJobTemplate(
     request: GetJobTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoTranscoderV1.JobTemplate {
@@ -107,6 +150,11 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   /// Deletes a job template.
   ///
   /// @Snippet(path: "TranscoderService_DeleteJobTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteJobTemplate(request:)``
+  /// - ``deleteJobTemplate(name:)``
   public func deleteJobTemplate(
     request: DeleteJobTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -165,6 +213,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.TranscoderServiceProtocol {
+  /// Creates a job in the specified region.
+  ///
+  /// @Snippet(path: "TranscoderService_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/createJob(request:options:)``
   public func createJob(request: CreateJobRequest) async throws -> GoogleCloudVideoTranscoderV1.Job
   {
     try await self.createJob(request: request, options: .init())
@@ -176,6 +231,13 @@ extension Clients.TranscoderServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a job in the specified region.
+  ///
+  /// @Snippet(path: "TranscoderService_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/createJob(request:options:)``
   public func createJob(
     parent: Swift.String,
     job: Job?,
@@ -187,6 +249,13 @@ extension Clients.TranscoderServiceProtocol {
     return try await self.createJob(request: request)
   }
 
+  /// Lists jobs in the specified region.
+  ///
+  /// @Snippet(path: "TranscoderService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/listJobs(request:options:)``
   public func listJobs(request: ListJobsRequest) async throws
     -> GoogleCloudVideoTranscoderV1.ListJobsResponse
   {
@@ -199,6 +268,13 @@ extension Clients.TranscoderServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists jobs in the specified region.
+  ///
+  /// @Snippet(path: "TranscoderService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -208,6 +284,10 @@ extension Clients.TranscoderServiceProtocol {
   /// Lists jobs in the specified region.
   ///
   /// @Snippet(path: "TranscoderService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -222,6 +302,13 @@ extension Clients.TranscoderServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists jobs in the specified region.
+  ///
+  /// @Snippet(path: "TranscoderService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/listJobs(request:options:)``
   public func listJobsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -231,6 +318,13 @@ extension Clients.TranscoderServiceProtocol {
     return self.listJobsByItems(request: request)
   }
 
+  /// Returns the job data.
+  ///
+  /// @Snippet(path: "TranscoderService_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/getJob(request:options:)``
   public func getJob(request: GetJobRequest) async throws -> GoogleCloudVideoTranscoderV1.Job {
     try await self.getJob(request: request, options: .init())
   }
@@ -241,6 +335,13 @@ extension Clients.TranscoderServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the job data.
+  ///
+  /// @Snippet(path: "TranscoderService_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/getJob(request:options:)``
   public func getJob(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoTranscoderV1.Job {
@@ -250,6 +351,13 @@ extension Clients.TranscoderServiceProtocol {
     return try await self.getJob(request: request)
   }
 
+  /// Deletes a job.
+  ///
+  /// @Snippet(path: "TranscoderService_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/deleteJob(request:options:)``
   public func deleteJob(request: DeleteJobRequest) async throws {
     try await self.deleteJob(request: request, options: .init())
   }
@@ -260,6 +368,13 @@ extension Clients.TranscoderServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a job.
+  ///
+  /// @Snippet(path: "TranscoderService_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/deleteJob(request:options:)``
   public func deleteJob(
     name: Swift.String,
   ) async throws {
@@ -269,6 +384,13 @@ extension Clients.TranscoderServiceProtocol {
     try await self.deleteJob(request: request)
   }
 
+  /// Creates a job template in the specified region.
+  ///
+  /// @Snippet(path: "TranscoderService_CreateJobTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/createJobTemplate(request:options:)``
   public func createJobTemplate(request: CreateJobTemplateRequest) async throws
     -> GoogleCloudVideoTranscoderV1.JobTemplate
   {
@@ -281,6 +403,13 @@ extension Clients.TranscoderServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a job template in the specified region.
+  ///
+  /// @Snippet(path: "TranscoderService_CreateJobTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/createJobTemplate(request:options:)``
   public func createJobTemplate(
     parent: Swift.String,
     jobTemplate: JobTemplate?,
@@ -294,6 +423,13 @@ extension Clients.TranscoderServiceProtocol {
     return try await self.createJobTemplate(request: request)
   }
 
+  /// Lists job templates in the specified region.
+  ///
+  /// @Snippet(path: "TranscoderService_ListJobTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/listJobTemplates(request:options:)``
   public func listJobTemplates(request: ListJobTemplatesRequest) async throws
     -> GoogleCloudVideoTranscoderV1.ListJobTemplatesResponse
   {
@@ -306,6 +442,13 @@ extension Clients.TranscoderServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists job templates in the specified region.
+  ///
+  /// @Snippet(path: "TranscoderService_ListJobTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/listJobTemplates(request:options:)``
   public func listJobTemplatesByItems(
     request: ListJobTemplatesRequest
   ) -> some AsyncSequence<JobTemplate, any Swift.Error> & Sendable {
@@ -315,6 +458,10 @@ extension Clients.TranscoderServiceProtocol {
   /// Lists job templates in the specified region.
   ///
   /// @Snippet(path: "TranscoderService_ListJobTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/listJobTemplates(request:options:)``
   public func listJobTemplatesByItems(
     request: ListJobTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<JobTemplate, any Swift.Error> & Sendable {
@@ -329,6 +476,13 @@ extension Clients.TranscoderServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists job templates in the specified region.
+  ///
+  /// @Snippet(path: "TranscoderService_ListJobTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/listJobTemplates(request:options:)``
   public func listJobTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<JobTemplate, any Swift.Error> & Sendable {
@@ -338,6 +492,13 @@ extension Clients.TranscoderServiceProtocol {
     return self.listJobTemplatesByItems(request: request)
   }
 
+  /// Returns the job template data.
+  ///
+  /// @Snippet(path: "TranscoderService_GetJobTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/getJobTemplate(request:options:)``
   public func getJobTemplate(request: GetJobTemplateRequest) async throws
     -> GoogleCloudVideoTranscoderV1.JobTemplate
   {
@@ -350,6 +511,13 @@ extension Clients.TranscoderServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the job template data.
+  ///
+  /// @Snippet(path: "TranscoderService_GetJobTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/getJobTemplate(request:options:)``
   public func getJobTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoTranscoderV1.JobTemplate {
@@ -359,6 +527,13 @@ extension Clients.TranscoderServiceProtocol {
     return try await self.getJobTemplate(request: request)
   }
 
+  /// Deletes a job template.
+  ///
+  /// @Snippet(path: "TranscoderService_DeleteJobTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/deleteJobTemplate(request:options:)``
   public func deleteJobTemplate(request: DeleteJobTemplateRequest) async throws {
     try await self.deleteJobTemplate(request: request, options: .init())
   }
@@ -369,6 +544,13 @@ extension Clients.TranscoderServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a job template.
+  ///
+  /// @Snippet(path: "TranscoderService_DeleteJobTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TranscoderServiceClient/deleteJobTemplate(request:options:)``
   public func deleteJobTemplate(
     name: Swift.String,
   ) async throws {

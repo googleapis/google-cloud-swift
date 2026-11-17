@@ -26,6 +26,10 @@
   /// Service for managing license config related resources.
   ///
   /// @Snippet(path: "LicenseConfigServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/LicenseConfigServiceProtocol``
   public final class LicenseConfigServiceClient: Clients.LicenseConfigServiceProtocol, Sendable {
     let inner: any Clients.LicenseConfigServiceStub
 
@@ -47,6 +51,11 @@
     /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
     ///
     /// @Snippet(path: "LicenseConfigService_CreateLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createLicenseConfig(request:)``
+    /// - ``createLicenseConfig(parent:licenseConfig:licenseConfigId:)``
     public func createLicenseConfig(
       request: CreateLicenseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.LicenseConfig {
@@ -58,6 +67,11 @@
     /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
     ///
     /// @Snippet(path: "LicenseConfigService_UpdateLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateLicenseConfig(request:)``
+    /// - ``updateLicenseConfig(licenseConfig:updateMask:)``
     public func updateLicenseConfig(
       request: UpdateLicenseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.LicenseConfig {
@@ -69,6 +83,11 @@
     /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
     ///
     /// @Snippet(path: "LicenseConfigService_GetLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLicenseConfig(request:)``
+    /// - ``getLicenseConfig(name:)``
     public func getLicenseConfig(
       request: GetLicenseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.LicenseConfig {
@@ -82,6 +101,13 @@
     /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
     ///
     /// @Snippet(path: "LicenseConfigService_ListLicenseConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLicenseConfigs(request:)``
+    /// - ``listLicenseConfigsByItems(request:)``
+    /// - ``listLicenseConfigsByItems(request:options:)``
+    /// - ``listLicenseConfigsByItems(parent:)``
     public func listLicenseConfigs(
       request: ListLicenseConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsResponse {
@@ -95,6 +121,11 @@
     /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
     ///
     /// @Snippet(path: "LicenseConfigService_DistributeLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``distributeLicenseConfig(request:)``
+    /// - ``distributeLicenseConfig(billingAccountLicenseConfig:projectNumber:location:licenseCount:licenseConfigId:)``
     public func distributeLicenseConfig(
       request: DistributeLicenseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.DistributeLicenseConfigResponse {
@@ -108,6 +139,11 @@
     /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
     ///
     /// @Snippet(path: "LicenseConfigService_RetractLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``retractLicenseConfig(request:)``
+    /// - ``retractLicenseConfig(billingAccountLicenseConfig:licenseConfig:fullRetract:licenseCount:)``
     public func retractLicenseConfig(
       request: RetractLicenseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.RetractLicenseConfigResponse {
@@ -119,6 +155,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "LicenseConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -141,6 +184,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "LicenseConfigService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -199,6 +247,17 @@
 
   // Default implementations
   extension Clients.LicenseConfigServiceProtocol {
+    /// Creates a [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig]
+    /// This method should only be used for creating NotebookLm licenses or Gemini
+    /// Enterprise free trial licenses.
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_CreateLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/createLicenseConfig(request:options:)``
     public func createLicenseConfig(request: CreateLicenseConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.LicenseConfig
     {
@@ -211,6 +270,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig]
+    /// This method should only be used for creating NotebookLm licenses or Gemini
+    /// Enterprise free trial licenses.
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_CreateLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/createLicenseConfig(request:options:)``
     public func createLicenseConfig(
       parent: Swift.String,
       licenseConfig: LicenseConfig?,
@@ -224,6 +294,15 @@
       return try await self.createLicenseConfig(request: request)
     }
 
+    /// Updates the [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig]
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_UpdateLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/updateLicenseConfig(request:options:)``
     public func updateLicenseConfig(request: UpdateLicenseConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.LicenseConfig
     {
@@ -236,6 +315,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig]
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_UpdateLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/updateLicenseConfig(request:options:)``
     public func updateLicenseConfig(
       licenseConfig: LicenseConfig?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -247,6 +335,15 @@
       return try await self.updateLicenseConfig(request: request)
     }
 
+    /// Gets a [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig].
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_GetLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/getLicenseConfig(request:options:)``
     public func getLicenseConfig(request: GetLicenseConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.LicenseConfig
     {
@@ -259,6 +356,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig].
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_GetLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/getLicenseConfig(request:options:)``
     public func getLicenseConfig(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.LicenseConfig {
@@ -268,6 +374,17 @@
       return try await self.getLicenseConfig(request: request)
     }
 
+    /// Lists all the
+    /// [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig]s associated
+    /// with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_ListLicenseConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/listLicenseConfigs(request:options:)``
     public func listLicenseConfigs(request: ListLicenseConfigsRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsResponse
     {
@@ -280,6 +397,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all the
+    /// [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig]s associated
+    /// with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_ListLicenseConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/listLicenseConfigs(request:options:)``
     public func listLicenseConfigsByItems(
       request: ListLicenseConfigsRequest
     ) -> some AsyncSequence<LicenseConfig, any Swift.Error> & Sendable {
@@ -293,6 +421,10 @@
     /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
     ///
     /// @Snippet(path: "LicenseConfigService_ListLicenseConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/listLicenseConfigs(request:options:)``
     public func listLicenseConfigsByItems(
       request: ListLicenseConfigsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<LicenseConfig, any Swift.Error> & Sendable {
@@ -307,6 +439,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all the
+    /// [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig]s associated
+    /// with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_ListLicenseConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/listLicenseConfigs(request:options:)``
     public func listLicenseConfigsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<LicenseConfig, any Swift.Error> & Sendable {
@@ -316,6 +459,17 @@
       return self.listLicenseConfigsByItems(request: request)
     }
 
+    /// Distributes a
+    /// [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig] from billing
+    /// account level to project level.
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_DistributeLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/distributeLicenseConfig(request:options:)``
     public func distributeLicenseConfig(request: DistributeLicenseConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.DistributeLicenseConfigResponse
     {
@@ -328,6 +482,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Distributes a
+    /// [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig] from billing
+    /// account level to project level.
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_DistributeLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/distributeLicenseConfig(request:options:)``
     public func distributeLicenseConfig(
       billingAccountLicenseConfig: Swift.String,
       projectNumber: Swift.Int64,
@@ -345,6 +510,17 @@
       return try await self.distributeLicenseConfig(request: request)
     }
 
+    /// This method is called from the billing account side to retract the
+    /// [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig] from the
+    /// given project back to the billing account.
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_RetractLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/retractLicenseConfig(request:options:)``
     public func retractLicenseConfig(request: RetractLicenseConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.RetractLicenseConfigResponse
     {
@@ -357,6 +533,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// This method is called from the billing account side to retract the
+    /// [LicenseConfig][google.cloud.discoveryengine.v1.LicenseConfig] from the
+    /// given project back to the billing account.
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfig]: <doc:LicenseConfig>
+    ///
+    /// @Snippet(path: "LicenseConfigService_RetractLicenseConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/retractLicenseConfig(request:options:)``
     public func retractLicenseConfig(
       billingAccountLicenseConfig: Swift.String,
       licenseConfig: Swift.String,
@@ -372,6 +559,15 @@
       return try await self.retractLicenseConfig(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "LicenseConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -384,6 +580,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "LicenseConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -395,6 +600,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "LicenseConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -408,6 +617,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "LicenseConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -419,6 +637,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -431,6 +652,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -440,6 +664,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "LicenseConfigService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -450,6 +683,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "LicenseConfigService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicenseConfigServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

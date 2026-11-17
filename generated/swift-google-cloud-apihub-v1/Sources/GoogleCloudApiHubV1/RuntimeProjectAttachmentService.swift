@@ -25,6 +25,10 @@ import Foundation
 /// This service is used for managing the runtime project attachments.
 ///
 /// @Snippet(path: "RuntimeProjectAttachmentServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/RuntimeProjectAttachmentServiceProtocol``
 public final class RuntimeProjectAttachmentServiceClient: Clients
     .RuntimeProjectAttachmentServiceProtocol, Sendable
 {
@@ -44,6 +48,11 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   /// Attaches a runtime project to the host project.
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_CreateRuntimeProjectAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRuntimeProjectAttachment(request:)``
+  /// - ``createRuntimeProjectAttachment(parent:runtimeProjectAttachment:runtimeProjectAttachmentId:)``
   public func createRuntimeProjectAttachment(
     request: CreateRuntimeProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.RuntimeProjectAttachment {
@@ -53,6 +62,11 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   /// Gets a runtime project attachment.
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_GetRuntimeProjectAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRuntimeProjectAttachment(request:)``
+  /// - ``getRuntimeProjectAttachment(name:)``
   public func getRuntimeProjectAttachment(
     request: GetRuntimeProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.RuntimeProjectAttachment {
@@ -62,6 +76,13 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   /// List runtime projects attached to the host project.
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_ListRuntimeProjectAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRuntimeProjectAttachments(request:)``
+  /// - ``listRuntimeProjectAttachmentsByItems(request:)``
+  /// - ``listRuntimeProjectAttachmentsByItems(request:options:)``
+  /// - ``listRuntimeProjectAttachmentsByItems(parent:)``
   public func listRuntimeProjectAttachments(
     request: ListRuntimeProjectAttachmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListRuntimeProjectAttachmentsResponse {
@@ -72,6 +93,11 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   /// the runtime project from the host project.
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_DeleteRuntimeProjectAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRuntimeProjectAttachment(request:)``
+  /// - ``deleteRuntimeProjectAttachment(name:)``
   public func deleteRuntimeProjectAttachment(
     request: DeleteRuntimeProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -82,6 +108,11 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   /// of any project.
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_LookupRuntimeProjectAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``lookupRuntimeProjectAttachment(request:)``
+  /// - ``lookupRuntimeProjectAttachment(name:)``
   public func lookupRuntimeProjectAttachment(
     request: LookupRuntimeProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.LookupRuntimeProjectAttachmentResponse {
@@ -91,6 +122,12 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -100,6 +137,10 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   /// Gets information about a location.
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -111,6 +152,13 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -133,6 +181,11 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -144,6 +197,11 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -212,6 +270,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.RuntimeProjectAttachmentServiceProtocol {
+  /// Attaches a runtime project to the host project.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_CreateRuntimeProjectAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/createRuntimeProjectAttachment(request:options:)``
   public func createRuntimeProjectAttachment(request: CreateRuntimeProjectAttachmentRequest)
     async throws -> GoogleCloudApiHubV1.RuntimeProjectAttachment
   {
@@ -224,6 +289,13 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Attaches a runtime project to the host project.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_CreateRuntimeProjectAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/createRuntimeProjectAttachment(request:options:)``
   public func createRuntimeProjectAttachment(
     parent: Swift.String,
     runtimeProjectAttachment: RuntimeProjectAttachment?,
@@ -237,6 +309,13 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     return try await self.createRuntimeProjectAttachment(request: request)
   }
 
+  /// Gets a runtime project attachment.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_GetRuntimeProjectAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/getRuntimeProjectAttachment(request:options:)``
   public func getRuntimeProjectAttachment(request: GetRuntimeProjectAttachmentRequest) async throws
     -> GoogleCloudApiHubV1.RuntimeProjectAttachment
   {
@@ -249,6 +328,13 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a runtime project attachment.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_GetRuntimeProjectAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/getRuntimeProjectAttachment(request:options:)``
   public func getRuntimeProjectAttachment(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.RuntimeProjectAttachment {
@@ -258,6 +344,13 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     return try await self.getRuntimeProjectAttachment(request: request)
   }
 
+  /// List runtime projects attached to the host project.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_ListRuntimeProjectAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/listRuntimeProjectAttachments(request:options:)``
   public func listRuntimeProjectAttachments(request: ListRuntimeProjectAttachmentsRequest)
     async throws -> GoogleCloudApiHubV1.ListRuntimeProjectAttachmentsResponse
   {
@@ -270,6 +363,13 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List runtime projects attached to the host project.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_ListRuntimeProjectAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/listRuntimeProjectAttachments(request:options:)``
   public func listRuntimeProjectAttachmentsByItems(
     request: ListRuntimeProjectAttachmentsRequest
   ) -> some AsyncSequence<RuntimeProjectAttachment, any Swift.Error> & Sendable {
@@ -279,6 +379,10 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
   /// List runtime projects attached to the host project.
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_ListRuntimeProjectAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/listRuntimeProjectAttachments(request:options:)``
   public func listRuntimeProjectAttachmentsByItems(
     request: ListRuntimeProjectAttachmentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<RuntimeProjectAttachment, any Swift.Error> & Sendable {
@@ -293,6 +397,13 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List runtime projects attached to the host project.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_ListRuntimeProjectAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/listRuntimeProjectAttachments(request:options:)``
   public func listRuntimeProjectAttachmentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<RuntimeProjectAttachment, any Swift.Error> & Sendable {
@@ -302,6 +413,14 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     return self.listRuntimeProjectAttachmentsByItems(request: request)
   }
 
+  /// Delete a runtime project attachment in the API Hub. This call will detach
+  /// the runtime project from the host project.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_DeleteRuntimeProjectAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/deleteRuntimeProjectAttachment(request:options:)``
   public func deleteRuntimeProjectAttachment(request: DeleteRuntimeProjectAttachmentRequest)
     async throws
   {
@@ -314,6 +433,14 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a runtime project attachment in the API Hub. This call will detach
+  /// the runtime project from the host project.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_DeleteRuntimeProjectAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/deleteRuntimeProjectAttachment(request:options:)``
   public func deleteRuntimeProjectAttachment(
     name: Swift.String,
   ) async throws {
@@ -323,6 +450,14 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     try await self.deleteRuntimeProjectAttachment(request: request)
   }
 
+  /// Look up a runtime project attachment. This API can be called in the context
+  /// of any project.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_LookupRuntimeProjectAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/lookupRuntimeProjectAttachment(request:options:)``
   public func lookupRuntimeProjectAttachment(request: LookupRuntimeProjectAttachmentRequest)
     async throws -> GoogleCloudApiHubV1.LookupRuntimeProjectAttachmentResponse
   {
@@ -335,6 +470,14 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Look up a runtime project attachment. This API can be called in the context
+  /// of any project.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_LookupRuntimeProjectAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/lookupRuntimeProjectAttachment(request:options:)``
   public func lookupRuntimeProjectAttachment(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.LookupRuntimeProjectAttachmentResponse {
@@ -344,6 +487,13 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     return try await self.lookupRuntimeProjectAttachment(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -356,6 +506,13 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -365,6 +522,10 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -378,6 +539,13 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -390,6 +558,15 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -402,6 +579,15 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -413,6 +599,10 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "RuntimeProjectAttachmentService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -426,6 +616,15 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -437,6 +636,9 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -449,6 +651,9 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -458,6 +663,15 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -468,6 +682,15 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -477,6 +700,15 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -487,6 +719,15 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "RuntimeProjectAttachmentService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuntimeProjectAttachmentServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -24,6 +24,10 @@ import Foundation
 /// Service for making recommendation prediction.
 ///
 /// @Snippet(path: "PredictionServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/PredictionServiceProtocol``
 public final class PredictionServiceClient: Clients.PredictionServiceProtocol, Sendable {
   let inner: any Clients.PredictionServiceStub
 
@@ -40,6 +44,10 @@ public final class PredictionServiceClient: Clients.PredictionServiceProtocol, S
   /// Makes a recommendation prediction.
   ///
   /// @Snippet(path: "PredictionService_Predict")
+  ///
+  /// ## See Also
+  ///
+  /// - ``predict(request:)``
   public func predict(
     request: PredictRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.PredictResponse {
@@ -51,6 +59,13 @@ public final class PredictionServiceClient: Clients.PredictionServiceProtocol, S
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "PredictionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -90,6 +105,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.PredictionServiceProtocol {
+  /// Makes a recommendation prediction.
+  ///
+  /// @Snippet(path: "PredictionService_Predict")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PredictionServiceClient/predict(request:options:)``
   public func predict(request: PredictRequest) async throws -> GoogleCloudRetailV2.PredictResponse {
     try await self.predict(request: request, options: .init())
   }
@@ -100,6 +122,15 @@ extension Clients.PredictionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "PredictionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PredictionServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -112,6 +143,15 @@ extension Clients.PredictionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "PredictionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PredictionServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -123,6 +163,10 @@ extension Clients.PredictionServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "PredictionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PredictionServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -136,6 +180,15 @@ extension Clients.PredictionServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "PredictionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PredictionServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -147,6 +200,9 @@ extension Clients.PredictionServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -159,6 +215,9 @@ extension Clients.PredictionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

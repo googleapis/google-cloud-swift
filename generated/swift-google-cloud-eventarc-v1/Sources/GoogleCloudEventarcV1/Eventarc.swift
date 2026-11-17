@@ -28,6 +28,10 @@ import Foundation
 /// Google Cloud services and forward them to supported destinations.
 ///
 /// @Snippet(path: "EventarcQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/EventarcProtocol``
 public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   let inner: any Clients.EventarcStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Get a single trigger.
   ///
   /// @Snippet(path: "Eventarc_GetTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTrigger(request:)``
+  /// - ``getTrigger(name:)``
   public func getTrigger(
     request: GetTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.Trigger {
@@ -57,6 +66,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// List triggers.
   ///
   /// @Snippet(path: "Eventarc_ListTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTriggers(request:)``
+  /// - ``listTriggersByItems(request:)``
+  /// - ``listTriggersByItems(request:options:)``
+  /// - ``listTriggersByItems(parent:)``
   public func listTriggers(
     request: ListTriggersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListTriggersResponse {
@@ -66,6 +82,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new trigger in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTrigger(request:)``
+  /// - ``createTriggerPollingUntilDone(request:)``
+  /// - ``createTriggerPollingUntilDone(request:options:)``
+  /// - ``createTriggerPollingUntilDone(parent:trigger:triggerId:)``
   public func createTrigger(
     request: CreateTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -75,6 +98,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new trigger in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTriggerPollingUntilDone(request:)``
+  /// - ``createTriggerPollingUntilDone(parent:trigger:triggerId:)``
+  /// - ``createTrigger(request:)``
+  /// - ``createTrigger(request:options:)``
   public func createTriggerPollingUntilDone(
     request: CreateTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Trigger {
@@ -102,6 +132,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single trigger.
   ///
   /// @Snippet(path: "Eventarc_UpdateTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTrigger(request:)``
+  /// - ``updateTriggerPollingUntilDone(request:)``
+  /// - ``updateTriggerPollingUntilDone(request:options:)``
+  /// - ``updateTriggerPollingUntilDone(trigger:updateMask:allowMissing:)``
   public func updateTrigger(
     request: UpdateTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -111,6 +148,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single trigger.
   ///
   /// @Snippet(path: "Eventarc_UpdateTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTriggerPollingUntilDone(request:)``
+  /// - ``updateTriggerPollingUntilDone(trigger:updateMask:allowMissing:)``
+  /// - ``updateTrigger(request:)``
+  /// - ``updateTrigger(request:options:)``
   public func updateTriggerPollingUntilDone(
     request: UpdateTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Trigger {
@@ -138,6 +182,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single trigger.
   ///
   /// @Snippet(path: "Eventarc_DeleteTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTrigger(request:)``
+  /// - ``deleteTriggerPollingUntilDone(request:)``
+  /// - ``deleteTriggerPollingUntilDone(request:options:)``
+  /// - ``deleteTriggerPollingUntilDone(name:allowMissing:)``
   public func deleteTrigger(
     request: DeleteTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -147,6 +198,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single trigger.
   ///
   /// @Snippet(path: "Eventarc_DeleteTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTriggerPollingUntilDone(request:)``
+  /// - ``deleteTriggerPollingUntilDone(name:allowMissing:)``
+  /// - ``deleteTrigger(request:)``
+  /// - ``deleteTrigger(request:options:)``
   public func deleteTriggerPollingUntilDone(
     request: DeleteTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Trigger {
@@ -174,6 +232,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Get a single Channel.
   ///
   /// @Snippet(path: "Eventarc_GetChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getChannel(request:)``
+  /// - ``getChannel(name:)``
   public func getChannel(
     request: GetChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.Channel {
@@ -183,6 +246,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// List channels.
   ///
   /// @Snippet(path: "Eventarc_ListChannels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listChannels(request:)``
+  /// - ``listChannelsByItems(request:)``
+  /// - ``listChannelsByItems(request:options:)``
+  /// - ``listChannelsByItems(parent:)``
   public func listChannels(
     request: ListChannelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListChannelsResponse {
@@ -192,6 +262,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new channel in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createChannel(request:)``
+  /// - ``createChannelPollingUntilDone(request:)``
+  /// - ``createChannelPollingUntilDone(request:options:)``
+  /// - ``createChannelPollingUntilDone(parent:channel:channelId:)``
   public func createChannel(
     request: CreateChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -201,6 +278,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new channel in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createChannelPollingUntilDone(request:)``
+  /// - ``createChannelPollingUntilDone(parent:channel:channelId:)``
+  /// - ``createChannel(request:)``
+  /// - ``createChannel(request:options:)``
   public func createChannelPollingUntilDone(
     request: CreateChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Channel {
@@ -228,6 +312,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single channel.
   ///
   /// @Snippet(path: "Eventarc_UpdateChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateChannel(request:)``
+  /// - ``updateChannelPollingUntilDone(request:)``
+  /// - ``updateChannelPollingUntilDone(request:options:)``
+  /// - ``updateChannelPollingUntilDone(channel:updateMask:)``
   public func updateChannel(
     request: UpdateChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -237,6 +328,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single channel.
   ///
   /// @Snippet(path: "Eventarc_UpdateChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateChannelPollingUntilDone(request:)``
+  /// - ``updateChannelPollingUntilDone(channel:updateMask:)``
+  /// - ``updateChannel(request:)``
+  /// - ``updateChannel(request:options:)``
   public func updateChannelPollingUntilDone(
     request: UpdateChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Channel {
@@ -264,6 +362,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single channel.
   ///
   /// @Snippet(path: "Eventarc_DeleteChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteChannel(request:)``
+  /// - ``deleteChannelPollingUntilDone(request:)``
+  /// - ``deleteChannelPollingUntilDone(request:options:)``
+  /// - ``deleteChannelPollingUntilDone(name:)``
   public func deleteChannel(
     request: DeleteChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -273,6 +378,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single channel.
   ///
   /// @Snippet(path: "Eventarc_DeleteChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteChannelPollingUntilDone(request:)``
+  /// - ``deleteChannelPollingUntilDone(name:)``
+  /// - ``deleteChannel(request:)``
+  /// - ``deleteChannel(request:options:)``
   public func deleteChannelPollingUntilDone(
     request: DeleteChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Channel {
@@ -300,6 +412,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Get a single Provider.
   ///
   /// @Snippet(path: "Eventarc_GetProvider")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getProvider(request:)``
+  /// - ``getProvider(name:)``
   public func getProvider(
     request: GetProviderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.Provider {
@@ -309,6 +426,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// List providers.
   ///
   /// @Snippet(path: "Eventarc_ListProviders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listProviders(request:)``
+  /// - ``listProvidersByItems(request:)``
+  /// - ``listProvidersByItems(request:options:)``
+  /// - ``listProvidersByItems(parent:)``
   public func listProviders(
     request: ListProvidersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListProvidersResponse {
@@ -318,6 +442,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Get a single ChannelConnection.
   ///
   /// @Snippet(path: "Eventarc_GetChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getChannelConnection(request:)``
+  /// - ``getChannelConnection(name:)``
   public func getChannelConnection(
     request: GetChannelConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ChannelConnection {
@@ -327,6 +456,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// List channel connections.
   ///
   /// @Snippet(path: "Eventarc_ListChannelConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listChannelConnections(request:)``
+  /// - ``listChannelConnectionsByItems(request:)``
+  /// - ``listChannelConnectionsByItems(request:options:)``
+  /// - ``listChannelConnectionsByItems(parent:)``
   public func listChannelConnections(
     request: ListChannelConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListChannelConnectionsResponse {
@@ -336,6 +472,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new ChannelConnection in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createChannelConnection(request:)``
+  /// - ``createChannelConnectionPollingUntilDone(request:)``
+  /// - ``createChannelConnectionPollingUntilDone(request:options:)``
+  /// - ``createChannelConnectionPollingUntilDone(parent:channelConnection:channelConnectionId:)``
   public func createChannelConnection(
     request: CreateChannelConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -345,6 +488,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new ChannelConnection in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createChannelConnectionPollingUntilDone(request:)``
+  /// - ``createChannelConnectionPollingUntilDone(parent:channelConnection:channelConnectionId:)``
+  /// - ``createChannelConnection(request:)``
+  /// - ``createChannelConnection(request:options:)``
   public func createChannelConnectionPollingUntilDone(
     request: CreateChannelConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> ChannelConnection {
@@ -373,6 +523,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single ChannelConnection.
   ///
   /// @Snippet(path: "Eventarc_DeleteChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteChannelConnection(request:)``
+  /// - ``deleteChannelConnectionPollingUntilDone(request:)``
+  /// - ``deleteChannelConnectionPollingUntilDone(request:options:)``
+  /// - ``deleteChannelConnectionPollingUntilDone(name:)``
   public func deleteChannelConnection(
     request: DeleteChannelConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -382,6 +539,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single ChannelConnection.
   ///
   /// @Snippet(path: "Eventarc_DeleteChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteChannelConnectionPollingUntilDone(request:)``
+  /// - ``deleteChannelConnectionPollingUntilDone(name:)``
+  /// - ``deleteChannelConnection(request:)``
+  /// - ``deleteChannelConnection(request:options:)``
   public func deleteChannelConnectionPollingUntilDone(
     request: DeleteChannelConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> ChannelConnection {
@@ -412,6 +576,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// projectID.
   ///
   /// @Snippet(path: "Eventarc_GetGoogleChannelConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGoogleChannelConfig(request:)``
+  /// - ``getGoogleChannelConfig(name:)``
   public func getGoogleChannelConfig(
     request: GetGoogleChannelConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.GoogleChannelConfig {
@@ -421,6 +590,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single GoogleChannelConfig
   ///
   /// @Snippet(path: "Eventarc_UpdateGoogleChannelConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGoogleChannelConfig(request:)``
+  /// - ``updateGoogleChannelConfig(googleChannelConfig:updateMask:)``
   public func updateGoogleChannelConfig(
     request: UpdateGoogleChannelConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.GoogleChannelConfig {
@@ -430,6 +604,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Get a single MessageBus.
   ///
   /// @Snippet(path: "Eventarc_GetMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMessageBus(request:)``
+  /// - ``getMessageBus(name:)``
   public func getMessageBus(
     request: GetMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.MessageBus {
@@ -439,6 +618,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// List message buses.
   ///
   /// @Snippet(path: "Eventarc_ListMessageBuses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMessageBuses(request:)``
+  /// - ``listMessageBusesByItems(request:)``
+  /// - ``listMessageBusesByItems(request:options:)``
+  /// - ``listMessageBusesByItems(parent:)``
   public func listMessageBuses(
     request: ListMessageBusesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListMessageBusesResponse {
@@ -448,6 +634,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// List message bus enrollments.
   ///
   /// @Snippet(path: "Eventarc_ListMessageBusEnrollments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMessageBusEnrollments(request:)``
+  /// - ``listMessageBusEnrollments(parent:)``
   public func listMessageBusEnrollments(
     request: ListMessageBusEnrollmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListMessageBusEnrollmentsResponse {
@@ -457,6 +648,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new MessageBus in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMessageBus(request:)``
+  /// - ``createMessageBusPollingUntilDone(request:)``
+  /// - ``createMessageBusPollingUntilDone(request:options:)``
+  /// - ``createMessageBusPollingUntilDone(parent:messageBus:messageBusId:)``
   public func createMessageBus(
     request: CreateMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -466,6 +664,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new MessageBus in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMessageBusPollingUntilDone(request:)``
+  /// - ``createMessageBusPollingUntilDone(parent:messageBus:messageBusId:)``
+  /// - ``createMessageBus(request:)``
+  /// - ``createMessageBus(request:options:)``
   public func createMessageBusPollingUntilDone(
     request: CreateMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> MessageBus {
@@ -493,6 +698,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single message bus.
   ///
   /// @Snippet(path: "Eventarc_UpdateMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMessageBus(request:)``
+  /// - ``updateMessageBusPollingUntilDone(request:)``
+  /// - ``updateMessageBusPollingUntilDone(request:options:)``
+  /// - ``updateMessageBusPollingUntilDone(messageBus:updateMask:)``
   public func updateMessageBus(
     request: UpdateMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -502,6 +714,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single message bus.
   ///
   /// @Snippet(path: "Eventarc_UpdateMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMessageBusPollingUntilDone(request:)``
+  /// - ``updateMessageBusPollingUntilDone(messageBus:updateMask:)``
+  /// - ``updateMessageBus(request:)``
+  /// - ``updateMessageBus(request:options:)``
   public func updateMessageBusPollingUntilDone(
     request: UpdateMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> MessageBus {
@@ -529,6 +748,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single message bus.
   ///
   /// @Snippet(path: "Eventarc_DeleteMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMessageBus(request:)``
+  /// - ``deleteMessageBusPollingUntilDone(request:)``
+  /// - ``deleteMessageBusPollingUntilDone(request:options:)``
+  /// - ``deleteMessageBusPollingUntilDone(name:etag:)``
   public func deleteMessageBus(
     request: DeleteMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -538,6 +764,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single message bus.
   ///
   /// @Snippet(path: "Eventarc_DeleteMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMessageBusPollingUntilDone(request:)``
+  /// - ``deleteMessageBusPollingUntilDone(name:etag:)``
+  /// - ``deleteMessageBus(request:)``
+  /// - ``deleteMessageBus(request:options:)``
   public func deleteMessageBusPollingUntilDone(
     request: DeleteMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> MessageBus {
@@ -565,6 +798,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Get a single Enrollment.
   ///
   /// @Snippet(path: "Eventarc_GetEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEnrollment(request:)``
+  /// - ``getEnrollment(name:)``
   public func getEnrollment(
     request: GetEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.Enrollment {
@@ -574,6 +812,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// List Enrollments.
   ///
   /// @Snippet(path: "Eventarc_ListEnrollments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEnrollments(request:)``
+  /// - ``listEnrollmentsByItems(request:)``
+  /// - ``listEnrollmentsByItems(request:options:)``
+  /// - ``listEnrollmentsByItems(parent:)``
   public func listEnrollments(
     request: ListEnrollmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListEnrollmentsResponse {
@@ -583,6 +828,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new Enrollment in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEnrollment(request:)``
+  /// - ``createEnrollmentPollingUntilDone(request:)``
+  /// - ``createEnrollmentPollingUntilDone(request:options:)``
+  /// - ``createEnrollmentPollingUntilDone(parent:enrollment:enrollmentId:)``
   public func createEnrollment(
     request: CreateEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -592,6 +844,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new Enrollment in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEnrollmentPollingUntilDone(request:)``
+  /// - ``createEnrollmentPollingUntilDone(parent:enrollment:enrollmentId:)``
+  /// - ``createEnrollment(request:)``
+  /// - ``createEnrollment(request:options:)``
   public func createEnrollmentPollingUntilDone(
     request: CreateEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Enrollment {
@@ -619,6 +878,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single Enrollment.
   ///
   /// @Snippet(path: "Eventarc_UpdateEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEnrollment(request:)``
+  /// - ``updateEnrollmentPollingUntilDone(request:)``
+  /// - ``updateEnrollmentPollingUntilDone(request:options:)``
+  /// - ``updateEnrollmentPollingUntilDone(enrollment:updateMask:)``
   public func updateEnrollment(
     request: UpdateEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -628,6 +894,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single Enrollment.
   ///
   /// @Snippet(path: "Eventarc_UpdateEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEnrollmentPollingUntilDone(request:)``
+  /// - ``updateEnrollmentPollingUntilDone(enrollment:updateMask:)``
+  /// - ``updateEnrollment(request:)``
+  /// - ``updateEnrollment(request:options:)``
   public func updateEnrollmentPollingUntilDone(
     request: UpdateEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Enrollment {
@@ -655,6 +928,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single Enrollment.
   ///
   /// @Snippet(path: "Eventarc_DeleteEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEnrollment(request:)``
+  /// - ``deleteEnrollmentPollingUntilDone(request:)``
+  /// - ``deleteEnrollmentPollingUntilDone(request:options:)``
+  /// - ``deleteEnrollmentPollingUntilDone(name:etag:)``
   public func deleteEnrollment(
     request: DeleteEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -664,6 +944,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single Enrollment.
   ///
   /// @Snippet(path: "Eventarc_DeleteEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEnrollmentPollingUntilDone(request:)``
+  /// - ``deleteEnrollmentPollingUntilDone(name:etag:)``
+  /// - ``deleteEnrollment(request:)``
+  /// - ``deleteEnrollment(request:options:)``
   public func deleteEnrollmentPollingUntilDone(
     request: DeleteEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Enrollment {
@@ -691,6 +978,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Get a single Pipeline.
   ///
   /// @Snippet(path: "Eventarc_GetPipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPipeline(request:)``
+  /// - ``getPipeline(name:)``
   public func getPipeline(
     request: GetPipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.Pipeline {
@@ -700,6 +992,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// List pipelines.
   ///
   /// @Snippet(path: "Eventarc_ListPipelines")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPipelines(request:)``
+  /// - ``listPipelinesByItems(request:)``
+  /// - ``listPipelinesByItems(request:options:)``
+  /// - ``listPipelinesByItems(parent:)``
   public func listPipelines(
     request: ListPipelinesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListPipelinesResponse {
@@ -709,6 +1008,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new Pipeline in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreatePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPipeline(request:)``
+  /// - ``createPipelinePollingUntilDone(request:)``
+  /// - ``createPipelinePollingUntilDone(request:options:)``
+  /// - ``createPipelinePollingUntilDone(parent:pipeline:pipelineId:)``
   public func createPipeline(
     request: CreatePipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -718,6 +1024,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new Pipeline in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreatePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPipelinePollingUntilDone(request:)``
+  /// - ``createPipelinePollingUntilDone(parent:pipeline:pipelineId:)``
+  /// - ``createPipeline(request:)``
+  /// - ``createPipeline(request:options:)``
   public func createPipelinePollingUntilDone(
     request: CreatePipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> Pipeline {
@@ -745,6 +1058,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single pipeline.
   ///
   /// @Snippet(path: "Eventarc_UpdatePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePipeline(request:)``
+  /// - ``updatePipelinePollingUntilDone(request:)``
+  /// - ``updatePipelinePollingUntilDone(request:options:)``
+  /// - ``updatePipelinePollingUntilDone(pipeline:updateMask:)``
   public func updatePipeline(
     request: UpdatePipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -754,6 +1074,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single pipeline.
   ///
   /// @Snippet(path: "Eventarc_UpdatePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePipelinePollingUntilDone(request:)``
+  /// - ``updatePipelinePollingUntilDone(pipeline:updateMask:)``
+  /// - ``updatePipeline(request:)``
+  /// - ``updatePipeline(request:options:)``
   public func updatePipelinePollingUntilDone(
     request: UpdatePipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> Pipeline {
@@ -781,6 +1108,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single pipeline.
   ///
   /// @Snippet(path: "Eventarc_DeletePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePipeline(request:)``
+  /// - ``deletePipelinePollingUntilDone(request:)``
+  /// - ``deletePipelinePollingUntilDone(request:options:)``
+  /// - ``deletePipelinePollingUntilDone(name:etag:)``
   public func deletePipeline(
     request: DeletePipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -790,6 +1124,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single pipeline.
   ///
   /// @Snippet(path: "Eventarc_DeletePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePipelinePollingUntilDone(request:)``
+  /// - ``deletePipelinePollingUntilDone(name:etag:)``
+  /// - ``deletePipeline(request:)``
+  /// - ``deletePipeline(request:options:)``
   public func deletePipelinePollingUntilDone(
     request: DeletePipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> Pipeline {
@@ -817,6 +1158,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Get a single GoogleApiSource.
   ///
   /// @Snippet(path: "Eventarc_GetGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGoogleApiSource(request:)``
+  /// - ``getGoogleApiSource(name:)``
   public func getGoogleApiSource(
     request: GetGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.GoogleApiSource {
@@ -826,6 +1172,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// List GoogleApiSources.
   ///
   /// @Snippet(path: "Eventarc_ListGoogleApiSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listGoogleApiSources(request:)``
+  /// - ``listGoogleApiSourcesByItems(request:)``
+  /// - ``listGoogleApiSourcesByItems(request:options:)``
+  /// - ``listGoogleApiSourcesByItems(parent:)``
   public func listGoogleApiSources(
     request: ListGoogleApiSourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListGoogleApiSourcesResponse {
@@ -835,6 +1188,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new GoogleApiSource in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGoogleApiSource(request:)``
+  /// - ``createGoogleApiSourcePollingUntilDone(request:)``
+  /// - ``createGoogleApiSourcePollingUntilDone(request:options:)``
+  /// - ``createGoogleApiSourcePollingUntilDone(parent:googleApiSource:googleApiSourceId:)``
   public func createGoogleApiSource(
     request: CreateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -844,6 +1204,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Create a new GoogleApiSource in a particular project and location.
   ///
   /// @Snippet(path: "Eventarc_CreateGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGoogleApiSourcePollingUntilDone(request:)``
+  /// - ``createGoogleApiSourcePollingUntilDone(parent:googleApiSource:googleApiSourceId:)``
+  /// - ``createGoogleApiSource(request:)``
+  /// - ``createGoogleApiSource(request:options:)``
   public func createGoogleApiSourcePollingUntilDone(
     request: CreateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiSource {
@@ -872,6 +1239,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single GoogleApiSource.
   ///
   /// @Snippet(path: "Eventarc_UpdateGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGoogleApiSource(request:)``
+  /// - ``updateGoogleApiSourcePollingUntilDone(request:)``
+  /// - ``updateGoogleApiSourcePollingUntilDone(request:options:)``
+  /// - ``updateGoogleApiSourcePollingUntilDone(googleApiSource:updateMask:)``
   public func updateGoogleApiSource(
     request: UpdateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -881,6 +1255,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Update a single GoogleApiSource.
   ///
   /// @Snippet(path: "Eventarc_UpdateGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGoogleApiSourcePollingUntilDone(request:)``
+  /// - ``updateGoogleApiSourcePollingUntilDone(googleApiSource:updateMask:)``
+  /// - ``updateGoogleApiSource(request:)``
+  /// - ``updateGoogleApiSource(request:options:)``
   public func updateGoogleApiSourcePollingUntilDone(
     request: UpdateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiSource {
@@ -909,6 +1290,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single GoogleApiSource.
   ///
   /// @Snippet(path: "Eventarc_DeleteGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGoogleApiSource(request:)``
+  /// - ``deleteGoogleApiSourcePollingUntilDone(request:)``
+  /// - ``deleteGoogleApiSourcePollingUntilDone(request:options:)``
+  /// - ``deleteGoogleApiSourcePollingUntilDone(name:etag:)``
   public func deleteGoogleApiSource(
     request: DeleteGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -918,6 +1306,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Delete a single GoogleApiSource.
   ///
   /// @Snippet(path: "Eventarc_DeleteGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGoogleApiSourcePollingUntilDone(request:)``
+  /// - ``deleteGoogleApiSourcePollingUntilDone(name:etag:)``
+  /// - ``deleteGoogleApiSource(request:)``
+  /// - ``deleteGoogleApiSource(request:options:)``
   public func deleteGoogleApiSourcePollingUntilDone(
     request: DeleteGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiSource {
@@ -946,6 +1341,12 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Eventarc_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -955,6 +1356,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Eventarc_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -968,6 +1373,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// errors.
   ///
   /// @Snippet(path: "Eventarc_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -978,6 +1387,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "Eventarc_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -993,6 +1406,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "Eventarc_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1004,6 +1421,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Eventarc_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1026,6 +1450,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Eventarc_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1037,6 +1466,11 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Eventarc_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1390,6 +1824,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.EventarcProtocol {
+  /// Get a single trigger.
+  ///
+  /// @Snippet(path: "Eventarc_GetTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getTrigger(request:options:)``
   public func getTrigger(request: GetTriggerRequest) async throws -> GoogleCloudEventarcV1.Trigger {
     try await self.getTrigger(request: request, options: .init())
   }
@@ -1400,6 +1841,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a single trigger.
+  ///
+  /// @Snippet(path: "Eventarc_GetTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getTrigger(request:options:)``
   public func getTrigger(
     name: Swift.String,
   ) async throws -> GoogleCloudEventarcV1.Trigger {
@@ -1409,6 +1857,13 @@ extension Clients.EventarcProtocol {
     return try await self.getTrigger(request: request)
   }
 
+  /// List triggers.
+  ///
+  /// @Snippet(path: "Eventarc_ListTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listTriggers(request:options:)``
   public func listTriggers(request: ListTriggersRequest) async throws
     -> GoogleCloudEventarcV1.ListTriggersResponse
   {
@@ -1421,6 +1876,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List triggers.
+  ///
+  /// @Snippet(path: "Eventarc_ListTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listTriggers(request:options:)``
   public func listTriggersByItems(
     request: ListTriggersRequest
   ) -> some AsyncSequence<Trigger, any Swift.Error> & Sendable {
@@ -1430,6 +1892,10 @@ extension Clients.EventarcProtocol {
   /// List triggers.
   ///
   /// @Snippet(path: "Eventarc_ListTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listTriggers(request:options:)``
   public func listTriggersByItems(
     request: ListTriggersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Trigger, any Swift.Error> & Sendable {
@@ -1443,6 +1909,13 @@ extension Clients.EventarcProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List triggers.
+  ///
+  /// @Snippet(path: "Eventarc_ListTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listTriggers(request:options:)``
   public func listTriggersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Trigger, any Swift.Error> & Sendable {
@@ -1452,6 +1925,13 @@ extension Clients.EventarcProtocol {
     return self.listTriggersByItems(request: request)
   }
 
+  /// Create a new trigger in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createTrigger(request:options:)``
   public func createTrigger(request: CreateTriggerRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1464,6 +1944,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new trigger in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createTriggerPollingUntilDone(request:options:)``
   public func createTriggerPollingUntilDone(request: CreateTriggerRequest) async throws -> Trigger {
     return try await self.createTriggerPollingUntilDone(request: request, options: .init())
   }
@@ -1474,6 +1961,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new trigger in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createTriggerPollingUntilDone(request:options:)``
   public func createTriggerPollingUntilDone(
     parent: Swift.String,
     trigger: Trigger?,
@@ -1487,6 +1981,13 @@ extension Clients.EventarcProtocol {
     return try await self.createTriggerPollingUntilDone(request: request)
   }
 
+  /// Update a single trigger.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateTrigger(request:options:)``
   public func updateTrigger(request: UpdateTriggerRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1499,6 +2000,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single trigger.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateTriggerPollingUntilDone(request:options:)``
   public func updateTriggerPollingUntilDone(request: UpdateTriggerRequest) async throws -> Trigger {
     return try await self.updateTriggerPollingUntilDone(request: request, options: .init())
   }
@@ -1509,6 +2017,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single trigger.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateTriggerPollingUntilDone(request:options:)``
   public func updateTriggerPollingUntilDone(
     trigger: Trigger?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1522,6 +2037,13 @@ extension Clients.EventarcProtocol {
     return try await self.updateTriggerPollingUntilDone(request: request)
   }
 
+  /// Delete a single trigger.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteTrigger(request:options:)``
   public func deleteTrigger(request: DeleteTriggerRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1534,6 +2056,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single trigger.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteTriggerPollingUntilDone(request:options:)``
   public func deleteTriggerPollingUntilDone(request: DeleteTriggerRequest) async throws -> Trigger {
     return try await self.deleteTriggerPollingUntilDone(request: request, options: .init())
   }
@@ -1544,6 +2073,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single trigger.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteTriggerPollingUntilDone(request:options:)``
   public func deleteTriggerPollingUntilDone(
     name: Swift.String,
     allowMissing: Swift.Bool,
@@ -1555,6 +2091,13 @@ extension Clients.EventarcProtocol {
     return try await self.deleteTriggerPollingUntilDone(request: request)
   }
 
+  /// Get a single Channel.
+  ///
+  /// @Snippet(path: "Eventarc_GetChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getChannel(request:options:)``
   public func getChannel(request: GetChannelRequest) async throws -> GoogleCloudEventarcV1.Channel {
     try await self.getChannel(request: request, options: .init())
   }
@@ -1565,6 +2108,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a single Channel.
+  ///
+  /// @Snippet(path: "Eventarc_GetChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getChannel(request:options:)``
   public func getChannel(
     name: Swift.String,
   ) async throws -> GoogleCloudEventarcV1.Channel {
@@ -1574,6 +2124,13 @@ extension Clients.EventarcProtocol {
     return try await self.getChannel(request: request)
   }
 
+  /// List channels.
+  ///
+  /// @Snippet(path: "Eventarc_ListChannels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listChannels(request:options:)``
   public func listChannels(request: ListChannelsRequest) async throws
     -> GoogleCloudEventarcV1.ListChannelsResponse
   {
@@ -1586,6 +2143,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List channels.
+  ///
+  /// @Snippet(path: "Eventarc_ListChannels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listChannels(request:options:)``
   public func listChannelsByItems(
     request: ListChannelsRequest
   ) -> some AsyncSequence<Channel, any Swift.Error> & Sendable {
@@ -1595,6 +2159,10 @@ extension Clients.EventarcProtocol {
   /// List channels.
   ///
   /// @Snippet(path: "Eventarc_ListChannels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listChannels(request:options:)``
   public func listChannelsByItems(
     request: ListChannelsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Channel, any Swift.Error> & Sendable {
@@ -1608,6 +2176,13 @@ extension Clients.EventarcProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List channels.
+  ///
+  /// @Snippet(path: "Eventarc_ListChannels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listChannels(request:options:)``
   public func listChannelsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Channel, any Swift.Error> & Sendable {
@@ -1617,6 +2192,13 @@ extension Clients.EventarcProtocol {
     return self.listChannelsByItems(request: request)
   }
 
+  /// Create a new channel in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createChannel(request:options:)``
   public func createChannel(request: CreateChannelRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1629,6 +2211,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new channel in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createChannelPollingUntilDone(request:options:)``
   public func createChannelPollingUntilDone(request: CreateChannelRequest) async throws -> Channel {
     return try await self.createChannelPollingUntilDone(request: request, options: .init())
   }
@@ -1639,6 +2228,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new channel in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createChannelPollingUntilDone(request:options:)``
   public func createChannelPollingUntilDone(
     parent: Swift.String,
     channel: Channel?,
@@ -1652,6 +2248,13 @@ extension Clients.EventarcProtocol {
     return try await self.createChannelPollingUntilDone(request: request)
   }
 
+  /// Update a single channel.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateChannel(request:options:)``
   public func updateChannel(request: UpdateChannelRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1664,6 +2267,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single channel.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateChannelPollingUntilDone(request:options:)``
   public func updateChannelPollingUntilDone(request: UpdateChannelRequest) async throws -> Channel {
     return try await self.updateChannelPollingUntilDone(request: request, options: .init())
   }
@@ -1674,6 +2284,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single channel.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateChannelPollingUntilDone(request:options:)``
   public func updateChannelPollingUntilDone(
     channel: Channel?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1685,6 +2302,13 @@ extension Clients.EventarcProtocol {
     return try await self.updateChannelPollingUntilDone(request: request)
   }
 
+  /// Delete a single channel.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteChannel(request:options:)``
   public func deleteChannel(request: DeleteChannelRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1697,6 +2321,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single channel.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteChannelPollingUntilDone(request:options:)``
   public func deleteChannelPollingUntilDone(request: DeleteChannelRequest) async throws -> Channel {
     return try await self.deleteChannelPollingUntilDone(request: request, options: .init())
   }
@@ -1707,6 +2338,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single channel.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteChannelPollingUntilDone(request:options:)``
   public func deleteChannelPollingUntilDone(
     name: Swift.String,
   ) async throws -> Channel {
@@ -1716,6 +2354,13 @@ extension Clients.EventarcProtocol {
     return try await self.deleteChannelPollingUntilDone(request: request)
   }
 
+  /// Get a single Provider.
+  ///
+  /// @Snippet(path: "Eventarc_GetProvider")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getProvider(request:options:)``
   public func getProvider(request: GetProviderRequest) async throws
     -> GoogleCloudEventarcV1.Provider
   {
@@ -1728,6 +2373,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a single Provider.
+  ///
+  /// @Snippet(path: "Eventarc_GetProvider")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getProvider(request:options:)``
   public func getProvider(
     name: Swift.String,
   ) async throws -> GoogleCloudEventarcV1.Provider {
@@ -1737,6 +2389,13 @@ extension Clients.EventarcProtocol {
     return try await self.getProvider(request: request)
   }
 
+  /// List providers.
+  ///
+  /// @Snippet(path: "Eventarc_ListProviders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listProviders(request:options:)``
   public func listProviders(request: ListProvidersRequest) async throws
     -> GoogleCloudEventarcV1.ListProvidersResponse
   {
@@ -1749,6 +2408,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List providers.
+  ///
+  /// @Snippet(path: "Eventarc_ListProviders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listProviders(request:options:)``
   public func listProvidersByItems(
     request: ListProvidersRequest
   ) -> some AsyncSequence<Provider, any Swift.Error> & Sendable {
@@ -1758,6 +2424,10 @@ extension Clients.EventarcProtocol {
   /// List providers.
   ///
   /// @Snippet(path: "Eventarc_ListProviders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listProviders(request:options:)``
   public func listProvidersByItems(
     request: ListProvidersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Provider, any Swift.Error> & Sendable {
@@ -1771,6 +2441,13 @@ extension Clients.EventarcProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List providers.
+  ///
+  /// @Snippet(path: "Eventarc_ListProviders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listProviders(request:options:)``
   public func listProvidersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Provider, any Swift.Error> & Sendable {
@@ -1780,6 +2457,13 @@ extension Clients.EventarcProtocol {
     return self.listProvidersByItems(request: request)
   }
 
+  /// Get a single ChannelConnection.
+  ///
+  /// @Snippet(path: "Eventarc_GetChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getChannelConnection(request:options:)``
   public func getChannelConnection(request: GetChannelConnectionRequest) async throws
     -> GoogleCloudEventarcV1.ChannelConnection
   {
@@ -1792,6 +2476,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a single ChannelConnection.
+  ///
+  /// @Snippet(path: "Eventarc_GetChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getChannelConnection(request:options:)``
   public func getChannelConnection(
     name: Swift.String,
   ) async throws -> GoogleCloudEventarcV1.ChannelConnection {
@@ -1801,6 +2492,13 @@ extension Clients.EventarcProtocol {
     return try await self.getChannelConnection(request: request)
   }
 
+  /// List channel connections.
+  ///
+  /// @Snippet(path: "Eventarc_ListChannelConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listChannelConnections(request:options:)``
   public func listChannelConnections(request: ListChannelConnectionsRequest) async throws
     -> GoogleCloudEventarcV1.ListChannelConnectionsResponse
   {
@@ -1813,6 +2511,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List channel connections.
+  ///
+  /// @Snippet(path: "Eventarc_ListChannelConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listChannelConnections(request:options:)``
   public func listChannelConnectionsByItems(
     request: ListChannelConnectionsRequest
   ) -> some AsyncSequence<ChannelConnection, any Swift.Error> & Sendable {
@@ -1822,6 +2527,10 @@ extension Clients.EventarcProtocol {
   /// List channel connections.
   ///
   /// @Snippet(path: "Eventarc_ListChannelConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listChannelConnections(request:options:)``
   public func listChannelConnectionsByItems(
     request: ListChannelConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ChannelConnection, any Swift.Error> & Sendable {
@@ -1836,6 +2545,13 @@ extension Clients.EventarcProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List channel connections.
+  ///
+  /// @Snippet(path: "Eventarc_ListChannelConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listChannelConnections(request:options:)``
   public func listChannelConnectionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ChannelConnection, any Swift.Error> & Sendable {
@@ -1845,6 +2561,13 @@ extension Clients.EventarcProtocol {
     return self.listChannelConnectionsByItems(request: request)
   }
 
+  /// Create a new ChannelConnection in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createChannelConnection(request:options:)``
   public func createChannelConnection(request: CreateChannelConnectionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1857,6 +2580,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new ChannelConnection in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createChannelConnectionPollingUntilDone(request:options:)``
   public func createChannelConnectionPollingUntilDone(request: CreateChannelConnectionRequest)
     async throws -> ChannelConnection
   {
@@ -1870,6 +2600,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new ChannelConnection in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createChannelConnectionPollingUntilDone(request:options:)``
   public func createChannelConnectionPollingUntilDone(
     parent: Swift.String,
     channelConnection: ChannelConnection?,
@@ -1883,6 +2620,13 @@ extension Clients.EventarcProtocol {
     return try await self.createChannelConnectionPollingUntilDone(request: request)
   }
 
+  /// Delete a single ChannelConnection.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteChannelConnection(request:options:)``
   public func deleteChannelConnection(request: DeleteChannelConnectionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1895,6 +2639,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single ChannelConnection.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteChannelConnectionPollingUntilDone(request:options:)``
   public func deleteChannelConnectionPollingUntilDone(request: DeleteChannelConnectionRequest)
     async throws -> ChannelConnection
   {
@@ -1908,6 +2659,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single ChannelConnection.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteChannelConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteChannelConnectionPollingUntilDone(request:options:)``
   public func deleteChannelConnectionPollingUntilDone(
     name: Swift.String,
   ) async throws -> ChannelConnection {
@@ -1917,6 +2675,15 @@ extension Clients.EventarcProtocol {
     return try await self.deleteChannelConnectionPollingUntilDone(request: request)
   }
 
+  /// Get a GoogleChannelConfig.
+  /// The name of the GoogleChannelConfig in the response is ALWAYS coded with
+  /// projectID.
+  ///
+  /// @Snippet(path: "Eventarc_GetGoogleChannelConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getGoogleChannelConfig(request:options:)``
   public func getGoogleChannelConfig(request: GetGoogleChannelConfigRequest) async throws
     -> GoogleCloudEventarcV1.GoogleChannelConfig
   {
@@ -1929,6 +2696,15 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a GoogleChannelConfig.
+  /// The name of the GoogleChannelConfig in the response is ALWAYS coded with
+  /// projectID.
+  ///
+  /// @Snippet(path: "Eventarc_GetGoogleChannelConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getGoogleChannelConfig(request:options:)``
   public func getGoogleChannelConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudEventarcV1.GoogleChannelConfig {
@@ -1938,6 +2714,13 @@ extension Clients.EventarcProtocol {
     return try await self.getGoogleChannelConfig(request: request)
   }
 
+  /// Update a single GoogleChannelConfig
+  ///
+  /// @Snippet(path: "Eventarc_UpdateGoogleChannelConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateGoogleChannelConfig(request:options:)``
   public func updateGoogleChannelConfig(request: UpdateGoogleChannelConfigRequest) async throws
     -> GoogleCloudEventarcV1.GoogleChannelConfig
   {
@@ -1950,6 +2733,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single GoogleChannelConfig
+  ///
+  /// @Snippet(path: "Eventarc_UpdateGoogleChannelConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateGoogleChannelConfig(request:options:)``
   public func updateGoogleChannelConfig(
     googleChannelConfig: GoogleChannelConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1961,6 +2751,13 @@ extension Clients.EventarcProtocol {
     return try await self.updateGoogleChannelConfig(request: request)
   }
 
+  /// Get a single MessageBus.
+  ///
+  /// @Snippet(path: "Eventarc_GetMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getMessageBus(request:options:)``
   public func getMessageBus(request: GetMessageBusRequest) async throws
     -> GoogleCloudEventarcV1.MessageBus
   {
@@ -1973,6 +2770,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a single MessageBus.
+  ///
+  /// @Snippet(path: "Eventarc_GetMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getMessageBus(request:options:)``
   public func getMessageBus(
     name: Swift.String,
   ) async throws -> GoogleCloudEventarcV1.MessageBus {
@@ -1982,6 +2786,13 @@ extension Clients.EventarcProtocol {
     return try await self.getMessageBus(request: request)
   }
 
+  /// List message buses.
+  ///
+  /// @Snippet(path: "Eventarc_ListMessageBuses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listMessageBuses(request:options:)``
   public func listMessageBuses(request: ListMessageBusesRequest) async throws
     -> GoogleCloudEventarcV1.ListMessageBusesResponse
   {
@@ -1994,6 +2805,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List message buses.
+  ///
+  /// @Snippet(path: "Eventarc_ListMessageBuses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listMessageBuses(request:options:)``
   public func listMessageBusesByItems(
     request: ListMessageBusesRequest
   ) -> some AsyncSequence<MessageBus, any Swift.Error> & Sendable {
@@ -2003,6 +2821,10 @@ extension Clients.EventarcProtocol {
   /// List message buses.
   ///
   /// @Snippet(path: "Eventarc_ListMessageBuses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listMessageBuses(request:options:)``
   public func listMessageBusesByItems(
     request: ListMessageBusesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MessageBus, any Swift.Error> & Sendable {
@@ -2017,6 +2839,13 @@ extension Clients.EventarcProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List message buses.
+  ///
+  /// @Snippet(path: "Eventarc_ListMessageBuses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listMessageBuses(request:options:)``
   public func listMessageBusesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MessageBus, any Swift.Error> & Sendable {
@@ -2026,6 +2855,13 @@ extension Clients.EventarcProtocol {
     return self.listMessageBusesByItems(request: request)
   }
 
+  /// List message bus enrollments.
+  ///
+  /// @Snippet(path: "Eventarc_ListMessageBusEnrollments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listMessageBusEnrollments(request:options:)``
   public func listMessageBusEnrollments(request: ListMessageBusEnrollmentsRequest) async throws
     -> GoogleCloudEventarcV1.ListMessageBusEnrollmentsResponse
   {
@@ -2038,6 +2874,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List message bus enrollments.
+  ///
+  /// @Snippet(path: "Eventarc_ListMessageBusEnrollments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listMessageBusEnrollments(request:options:)``
   public func listMessageBusEnrollments(
     parent: Swift.String,
   ) async throws -> GoogleCloudEventarcV1.ListMessageBusEnrollmentsResponse {
@@ -2047,6 +2890,13 @@ extension Clients.EventarcProtocol {
     return try await self.listMessageBusEnrollments(request: request)
   }
 
+  /// Create a new MessageBus in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createMessageBus(request:options:)``
   public func createMessageBus(request: CreateMessageBusRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2059,6 +2909,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new MessageBus in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createMessageBusPollingUntilDone(request:options:)``
   public func createMessageBusPollingUntilDone(request: CreateMessageBusRequest) async throws
     -> MessageBus
   {
@@ -2071,6 +2928,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new MessageBus in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createMessageBusPollingUntilDone(request:options:)``
   public func createMessageBusPollingUntilDone(
     parent: Swift.String,
     messageBus: MessageBus?,
@@ -2084,6 +2948,13 @@ extension Clients.EventarcProtocol {
     return try await self.createMessageBusPollingUntilDone(request: request)
   }
 
+  /// Update a single message bus.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateMessageBus(request:options:)``
   public func updateMessageBus(request: UpdateMessageBusRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2096,6 +2967,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single message bus.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateMessageBusPollingUntilDone(request:options:)``
   public func updateMessageBusPollingUntilDone(request: UpdateMessageBusRequest) async throws
     -> MessageBus
   {
@@ -2108,6 +2986,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single message bus.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateMessageBusPollingUntilDone(request:options:)``
   public func updateMessageBusPollingUntilDone(
     messageBus: MessageBus?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2119,6 +3004,13 @@ extension Clients.EventarcProtocol {
     return try await self.updateMessageBusPollingUntilDone(request: request)
   }
 
+  /// Delete a single message bus.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteMessageBus(request:options:)``
   public func deleteMessageBus(request: DeleteMessageBusRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2131,6 +3023,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single message bus.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteMessageBusPollingUntilDone(request:options:)``
   public func deleteMessageBusPollingUntilDone(request: DeleteMessageBusRequest) async throws
     -> MessageBus
   {
@@ -2143,6 +3042,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single message bus.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteMessageBus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteMessageBusPollingUntilDone(request:options:)``
   public func deleteMessageBusPollingUntilDone(
     name: Swift.String,
     etag: Swift.String,
@@ -2154,6 +3060,13 @@ extension Clients.EventarcProtocol {
     return try await self.deleteMessageBusPollingUntilDone(request: request)
   }
 
+  /// Get a single Enrollment.
+  ///
+  /// @Snippet(path: "Eventarc_GetEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getEnrollment(request:options:)``
   public func getEnrollment(request: GetEnrollmentRequest) async throws
     -> GoogleCloudEventarcV1.Enrollment
   {
@@ -2166,6 +3079,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a single Enrollment.
+  ///
+  /// @Snippet(path: "Eventarc_GetEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getEnrollment(request:options:)``
   public func getEnrollment(
     name: Swift.String,
   ) async throws -> GoogleCloudEventarcV1.Enrollment {
@@ -2175,6 +3095,13 @@ extension Clients.EventarcProtocol {
     return try await self.getEnrollment(request: request)
   }
 
+  /// List Enrollments.
+  ///
+  /// @Snippet(path: "Eventarc_ListEnrollments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listEnrollments(request:options:)``
   public func listEnrollments(request: ListEnrollmentsRequest) async throws
     -> GoogleCloudEventarcV1.ListEnrollmentsResponse
   {
@@ -2187,6 +3114,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List Enrollments.
+  ///
+  /// @Snippet(path: "Eventarc_ListEnrollments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listEnrollments(request:options:)``
   public func listEnrollmentsByItems(
     request: ListEnrollmentsRequest
   ) -> some AsyncSequence<Enrollment, any Swift.Error> & Sendable {
@@ -2196,6 +3130,10 @@ extension Clients.EventarcProtocol {
   /// List Enrollments.
   ///
   /// @Snippet(path: "Eventarc_ListEnrollments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listEnrollments(request:options:)``
   public func listEnrollmentsByItems(
     request: ListEnrollmentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Enrollment, any Swift.Error> & Sendable {
@@ -2210,6 +3148,13 @@ extension Clients.EventarcProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List Enrollments.
+  ///
+  /// @Snippet(path: "Eventarc_ListEnrollments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listEnrollments(request:options:)``
   public func listEnrollmentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Enrollment, any Swift.Error> & Sendable {
@@ -2219,6 +3164,13 @@ extension Clients.EventarcProtocol {
     return self.listEnrollmentsByItems(request: request)
   }
 
+  /// Create a new Enrollment in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createEnrollment(request:options:)``
   public func createEnrollment(request: CreateEnrollmentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2231,6 +3183,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new Enrollment in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createEnrollmentPollingUntilDone(request:options:)``
   public func createEnrollmentPollingUntilDone(request: CreateEnrollmentRequest) async throws
     -> Enrollment
   {
@@ -2243,6 +3202,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new Enrollment in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createEnrollmentPollingUntilDone(request:options:)``
   public func createEnrollmentPollingUntilDone(
     parent: Swift.String,
     enrollment: Enrollment?,
@@ -2256,6 +3222,13 @@ extension Clients.EventarcProtocol {
     return try await self.createEnrollmentPollingUntilDone(request: request)
   }
 
+  /// Update a single Enrollment.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateEnrollment(request:options:)``
   public func updateEnrollment(request: UpdateEnrollmentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2268,6 +3241,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single Enrollment.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateEnrollmentPollingUntilDone(request:options:)``
   public func updateEnrollmentPollingUntilDone(request: UpdateEnrollmentRequest) async throws
     -> Enrollment
   {
@@ -2280,6 +3260,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single Enrollment.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateEnrollmentPollingUntilDone(request:options:)``
   public func updateEnrollmentPollingUntilDone(
     enrollment: Enrollment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2291,6 +3278,13 @@ extension Clients.EventarcProtocol {
     return try await self.updateEnrollmentPollingUntilDone(request: request)
   }
 
+  /// Delete a single Enrollment.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteEnrollment(request:options:)``
   public func deleteEnrollment(request: DeleteEnrollmentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2303,6 +3297,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single Enrollment.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteEnrollmentPollingUntilDone(request:options:)``
   public func deleteEnrollmentPollingUntilDone(request: DeleteEnrollmentRequest) async throws
     -> Enrollment
   {
@@ -2315,6 +3316,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single Enrollment.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteEnrollmentPollingUntilDone(request:options:)``
   public func deleteEnrollmentPollingUntilDone(
     name: Swift.String,
     etag: Swift.String,
@@ -2326,6 +3334,13 @@ extension Clients.EventarcProtocol {
     return try await self.deleteEnrollmentPollingUntilDone(request: request)
   }
 
+  /// Get a single Pipeline.
+  ///
+  /// @Snippet(path: "Eventarc_GetPipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getPipeline(request:options:)``
   public func getPipeline(request: GetPipelineRequest) async throws
     -> GoogleCloudEventarcV1.Pipeline
   {
@@ -2338,6 +3353,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a single Pipeline.
+  ///
+  /// @Snippet(path: "Eventarc_GetPipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getPipeline(request:options:)``
   public func getPipeline(
     name: Swift.String,
   ) async throws -> GoogleCloudEventarcV1.Pipeline {
@@ -2347,6 +3369,13 @@ extension Clients.EventarcProtocol {
     return try await self.getPipeline(request: request)
   }
 
+  /// List pipelines.
+  ///
+  /// @Snippet(path: "Eventarc_ListPipelines")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listPipelines(request:options:)``
   public func listPipelines(request: ListPipelinesRequest) async throws
     -> GoogleCloudEventarcV1.ListPipelinesResponse
   {
@@ -2359,6 +3388,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List pipelines.
+  ///
+  /// @Snippet(path: "Eventarc_ListPipelines")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listPipelines(request:options:)``
   public func listPipelinesByItems(
     request: ListPipelinesRequest
   ) -> some AsyncSequence<Pipeline, any Swift.Error> & Sendable {
@@ -2368,6 +3404,10 @@ extension Clients.EventarcProtocol {
   /// List pipelines.
   ///
   /// @Snippet(path: "Eventarc_ListPipelines")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listPipelines(request:options:)``
   public func listPipelinesByItems(
     request: ListPipelinesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Pipeline, any Swift.Error> & Sendable {
@@ -2381,6 +3421,13 @@ extension Clients.EventarcProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List pipelines.
+  ///
+  /// @Snippet(path: "Eventarc_ListPipelines")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listPipelines(request:options:)``
   public func listPipelinesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Pipeline, any Swift.Error> & Sendable {
@@ -2390,6 +3437,13 @@ extension Clients.EventarcProtocol {
     return self.listPipelinesByItems(request: request)
   }
 
+  /// Create a new Pipeline in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreatePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createPipeline(request:options:)``
   public func createPipeline(request: CreatePipelineRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2402,6 +3456,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new Pipeline in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreatePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createPipelinePollingUntilDone(request:options:)``
   public func createPipelinePollingUntilDone(request: CreatePipelineRequest) async throws
     -> Pipeline
   {
@@ -2414,6 +3475,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new Pipeline in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreatePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createPipelinePollingUntilDone(request:options:)``
   public func createPipelinePollingUntilDone(
     parent: Swift.String,
     pipeline: Pipeline?,
@@ -2427,6 +3495,13 @@ extension Clients.EventarcProtocol {
     return try await self.createPipelinePollingUntilDone(request: request)
   }
 
+  /// Update a single pipeline.
+  ///
+  /// @Snippet(path: "Eventarc_UpdatePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updatePipeline(request:options:)``
   public func updatePipeline(request: UpdatePipelineRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2439,6 +3514,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single pipeline.
+  ///
+  /// @Snippet(path: "Eventarc_UpdatePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updatePipelinePollingUntilDone(request:options:)``
   public func updatePipelinePollingUntilDone(request: UpdatePipelineRequest) async throws
     -> Pipeline
   {
@@ -2451,6 +3533,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single pipeline.
+  ///
+  /// @Snippet(path: "Eventarc_UpdatePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updatePipelinePollingUntilDone(request:options:)``
   public func updatePipelinePollingUntilDone(
     pipeline: Pipeline?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2462,6 +3551,13 @@ extension Clients.EventarcProtocol {
     return try await self.updatePipelinePollingUntilDone(request: request)
   }
 
+  /// Delete a single pipeline.
+  ///
+  /// @Snippet(path: "Eventarc_DeletePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deletePipeline(request:options:)``
   public func deletePipeline(request: DeletePipelineRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2474,6 +3570,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single pipeline.
+  ///
+  /// @Snippet(path: "Eventarc_DeletePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deletePipelinePollingUntilDone(request:options:)``
   public func deletePipelinePollingUntilDone(request: DeletePipelineRequest) async throws
     -> Pipeline
   {
@@ -2486,6 +3589,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single pipeline.
+  ///
+  /// @Snippet(path: "Eventarc_DeletePipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deletePipelinePollingUntilDone(request:options:)``
   public func deletePipelinePollingUntilDone(
     name: Swift.String,
     etag: Swift.String,
@@ -2497,6 +3607,13 @@ extension Clients.EventarcProtocol {
     return try await self.deletePipelinePollingUntilDone(request: request)
   }
 
+  /// Get a single GoogleApiSource.
+  ///
+  /// @Snippet(path: "Eventarc_GetGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getGoogleApiSource(request:options:)``
   public func getGoogleApiSource(request: GetGoogleApiSourceRequest) async throws
     -> GoogleCloudEventarcV1.GoogleApiSource
   {
@@ -2509,6 +3626,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a single GoogleApiSource.
+  ///
+  /// @Snippet(path: "Eventarc_GetGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getGoogleApiSource(request:options:)``
   public func getGoogleApiSource(
     name: Swift.String,
   ) async throws -> GoogleCloudEventarcV1.GoogleApiSource {
@@ -2518,6 +3642,13 @@ extension Clients.EventarcProtocol {
     return try await self.getGoogleApiSource(request: request)
   }
 
+  /// List GoogleApiSources.
+  ///
+  /// @Snippet(path: "Eventarc_ListGoogleApiSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listGoogleApiSources(request:options:)``
   public func listGoogleApiSources(request: ListGoogleApiSourcesRequest) async throws
     -> GoogleCloudEventarcV1.ListGoogleApiSourcesResponse
   {
@@ -2530,6 +3661,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List GoogleApiSources.
+  ///
+  /// @Snippet(path: "Eventarc_ListGoogleApiSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listGoogleApiSources(request:options:)``
   public func listGoogleApiSourcesByItems(
     request: ListGoogleApiSourcesRequest
   ) -> some AsyncSequence<GoogleApiSource, any Swift.Error> & Sendable {
@@ -2539,6 +3677,10 @@ extension Clients.EventarcProtocol {
   /// List GoogleApiSources.
   ///
   /// @Snippet(path: "Eventarc_ListGoogleApiSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listGoogleApiSources(request:options:)``
   public func listGoogleApiSourcesByItems(
     request: ListGoogleApiSourcesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleApiSource, any Swift.Error> & Sendable {
@@ -2553,6 +3695,13 @@ extension Clients.EventarcProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List GoogleApiSources.
+  ///
+  /// @Snippet(path: "Eventarc_ListGoogleApiSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listGoogleApiSources(request:options:)``
   public func listGoogleApiSourcesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GoogleApiSource, any Swift.Error> & Sendable {
@@ -2562,6 +3711,13 @@ extension Clients.EventarcProtocol {
     return self.listGoogleApiSourcesByItems(request: request)
   }
 
+  /// Create a new GoogleApiSource in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createGoogleApiSource(request:options:)``
   public func createGoogleApiSource(request: CreateGoogleApiSourceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2574,6 +3730,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new GoogleApiSource in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createGoogleApiSourcePollingUntilDone(request:options:)``
   public func createGoogleApiSourcePollingUntilDone(request: CreateGoogleApiSourceRequest)
     async throws -> GoogleApiSource
   {
@@ -2586,6 +3749,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new GoogleApiSource in a particular project and location.
+  ///
+  /// @Snippet(path: "Eventarc_CreateGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/createGoogleApiSourcePollingUntilDone(request:options:)``
   public func createGoogleApiSourcePollingUntilDone(
     parent: Swift.String,
     googleApiSource: GoogleApiSource?,
@@ -2599,6 +3769,13 @@ extension Clients.EventarcProtocol {
     return try await self.createGoogleApiSourcePollingUntilDone(request: request)
   }
 
+  /// Update a single GoogleApiSource.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateGoogleApiSource(request:options:)``
   public func updateGoogleApiSource(request: UpdateGoogleApiSourceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2611,6 +3788,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single GoogleApiSource.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateGoogleApiSourcePollingUntilDone(request:options:)``
   public func updateGoogleApiSourcePollingUntilDone(request: UpdateGoogleApiSourceRequest)
     async throws -> GoogleApiSource
   {
@@ -2623,6 +3807,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single GoogleApiSource.
+  ///
+  /// @Snippet(path: "Eventarc_UpdateGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/updateGoogleApiSourcePollingUntilDone(request:options:)``
   public func updateGoogleApiSourcePollingUntilDone(
     googleApiSource: GoogleApiSource?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2634,6 +3825,13 @@ extension Clients.EventarcProtocol {
     return try await self.updateGoogleApiSourcePollingUntilDone(request: request)
   }
 
+  /// Delete a single GoogleApiSource.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteGoogleApiSource(request:options:)``
   public func deleteGoogleApiSource(request: DeleteGoogleApiSourceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2646,6 +3844,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single GoogleApiSource.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteGoogleApiSourcePollingUntilDone(request:options:)``
   public func deleteGoogleApiSourcePollingUntilDone(request: DeleteGoogleApiSourceRequest)
     async throws -> GoogleApiSource
   {
@@ -2658,6 +3863,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single GoogleApiSource.
+  ///
+  /// @Snippet(path: "Eventarc_DeleteGoogleApiSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteGoogleApiSourcePollingUntilDone(request:options:)``
   public func deleteGoogleApiSourcePollingUntilDone(
     name: Swift.String,
     etag: Swift.String,
@@ -2669,6 +3881,13 @@ extension Clients.EventarcProtocol {
     return try await self.deleteGoogleApiSourcePollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Eventarc_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -2681,6 +3900,13 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Eventarc_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2690,6 +3916,10 @@ extension Clients.EventarcProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Eventarc_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2703,6 +3933,13 @@ extension Clients.EventarcProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "Eventarc_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -2715,6 +3952,17 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "Eventarc_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -2727,6 +3975,14 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "Eventarc_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -2739,6 +3995,19 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "Eventarc_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -2751,6 +4020,15 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Eventarc_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -2763,6 +4041,15 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Eventarc_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2774,6 +4061,10 @@ extension Clients.EventarcProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Eventarc_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2787,6 +4078,15 @@ extension Clients.EventarcProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Eventarc_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -2798,6 +4098,9 @@ extension Clients.EventarcProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2810,6 +4113,9 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -2819,6 +4125,15 @@ extension Clients.EventarcProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Eventarc_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -2829,6 +4144,15 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Eventarc_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -2838,6 +4162,15 @@ extension Clients.EventarcProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Eventarc_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -2848,6 +4181,15 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Eventarc_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EventarcClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -25,6 +25,10 @@ import Foundation
 /// Manages the API keys associated with projects.
 ///
 /// @Snippet(path: "ApiKeysQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ApiKeysProtocol``
 public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   let inner: any Clients.ApiKeysStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_CreateKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createKey(request:)``
+  /// - ``createKeyPollingUntilDone(request:)``
+  /// - ``createKeyPollingUntilDone(request:options:)``
+  /// - ``createKeyPollingUntilDone(parent:key:keyId:)``
   public func createKey(
     request: CreateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -60,6 +71,13 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_CreateKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createKeyPollingUntilDone(request:)``
+  /// - ``createKeyPollingUntilDone(parent:key:keyId:)``
+  /// - ``createKey(request:)``
+  /// - ``createKey(request:options:)``
   public func createKeyPollingUntilDone(
     request: CreateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Key {
@@ -91,6 +109,13 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_ListKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listKeys(request:)``
+  /// - ``listKeysByItems(request:)``
+  /// - ``listKeysByItems(request:options:)``
+  /// - ``listKeysByItems(parent:)``
   public func listKeys(
     request: ListKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiApiKeysV1.ListKeysResponse {
@@ -104,6 +129,11 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_GetKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getKey(request:)``
+  /// - ``getKey(name:)``
   public func getKey(
     request: GetKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiApiKeysV1.Key {
@@ -116,6 +146,11 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_GetKeyString")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getKeyString(request:)``
+  /// - ``getKeyString(name:)``
   public func getKeyString(
     request: GetKeyStringRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiApiKeysV1.GetKeyStringResponse {
@@ -129,6 +164,13 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_UpdateKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateKey(request:)``
+  /// - ``updateKeyPollingUntilDone(request:)``
+  /// - ``updateKeyPollingUntilDone(request:options:)``
+  /// - ``updateKeyPollingUntilDone(key:updateMask:)``
   public func updateKey(
     request: UpdateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -142,6 +184,13 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_UpdateKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateKeyPollingUntilDone(request:)``
+  /// - ``updateKeyPollingUntilDone(key:updateMask:)``
+  /// - ``updateKey(request:)``
+  /// - ``updateKey(request:options:)``
   public func updateKeyPollingUntilDone(
     request: UpdateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Key {
@@ -173,6 +222,13 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_DeleteKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteKey(request:)``
+  /// - ``deleteKeyPollingUntilDone(request:)``
+  /// - ``deleteKeyPollingUntilDone(request:options:)``
+  /// - ``deleteKeyPollingUntilDone(name:)``
   public func deleteKey(
     request: DeleteKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -186,6 +242,13 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_DeleteKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteKeyPollingUntilDone(request:)``
+  /// - ``deleteKeyPollingUntilDone(name:)``
+  /// - ``deleteKey(request:)``
+  /// - ``deleteKey(request:options:)``
   public func deleteKeyPollingUntilDone(
     request: DeleteKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Key {
@@ -216,6 +279,12 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_UndeleteKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``undeleteKey(request:)``
+  /// - ``undeleteKeyPollingUntilDone(request:)``
+  /// - ``undeleteKeyPollingUntilDone(request:options:)``
   public func undeleteKey(
     request: UndeleteKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -228,6 +297,12 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_UndeleteKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``undeleteKeyPollingUntilDone(request:)``
+  /// - ``undeleteKey(request:)``
+  /// - ``undeleteKey(request:options:)``
   public func undeleteKeyPollingUntilDone(
     request: UndeleteKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Key {
@@ -259,6 +334,10 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// on the parent project.
   ///
   /// @Snippet(path: "ApiKeys_LookupKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``lookupKey(request:)``
   public func lookupKey(
     request: LookupKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiApiKeysV1.LookupKeyResponse {
@@ -348,6 +427,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.ApiKeysProtocol {
+  /// Creates a new API key.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_CreateKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/createKey(request:options:)``
   public func createKey(request: CreateKeyRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createKey(request: request, options: .init())
   }
@@ -358,6 +447,16 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new API key.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_CreateKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/createKeyPollingUntilDone(request:options:)``
   public func createKeyPollingUntilDone(request: CreateKeyRequest) async throws -> Key {
     return try await self.createKeyPollingUntilDone(request: request, options: .init())
   }
@@ -368,6 +467,16 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new API key.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_CreateKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/createKeyPollingUntilDone(request:options:)``
   public func createKeyPollingUntilDone(
     parent: Swift.String,
     key: Key?,
@@ -381,6 +490,17 @@ extension Clients.ApiKeysProtocol {
     return try await self.createKeyPollingUntilDone(request: request)
   }
 
+  /// Lists the API keys owned by a project. The key string of the API key
+  /// isn't included in the response.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_ListKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/listKeys(request:options:)``
   public func listKeys(request: ListKeysRequest) async throws -> GoogleApiApiKeysV1.ListKeysResponse
   {
     try await self.listKeys(request: request, options: .init())
@@ -392,6 +512,17 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the API keys owned by a project. The key string of the API key
+  /// isn't included in the response.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_ListKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/listKeys(request:options:)``
   public func listKeysByItems(
     request: ListKeysRequest
   ) -> some AsyncSequence<Key, any Swift.Error> & Sendable {
@@ -405,6 +536,10 @@ extension Clients.ApiKeysProtocol {
   /// location is `global`.
   ///
   /// @Snippet(path: "ApiKeys_ListKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/listKeys(request:options:)``
   public func listKeysByItems(
     request: ListKeysRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Key, any Swift.Error> & Sendable {
@@ -418,6 +553,17 @@ extension Clients.ApiKeysProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the API keys owned by a project. The key string of the API key
+  /// isn't included in the response.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_ListKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/listKeys(request:options:)``
   public func listKeysByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Key, any Swift.Error> & Sendable {
@@ -427,6 +573,17 @@ extension Clients.ApiKeysProtocol {
     return self.listKeysByItems(request: request)
   }
 
+  /// Gets the metadata for an API key. The key string of the API key
+  /// isn't included in the response.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_GetKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/getKey(request:options:)``
   public func getKey(request: GetKeyRequest) async throws -> GoogleApiApiKeysV1.Key {
     try await self.getKey(request: request, options: .init())
   }
@@ -437,6 +594,17 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the metadata for an API key. The key string of the API key
+  /// isn't included in the response.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_GetKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/getKey(request:options:)``
   public func getKey(
     name: Swift.String,
   ) async throws -> GoogleApiApiKeysV1.Key {
@@ -446,6 +614,16 @@ extension Clients.ApiKeysProtocol {
     return try await self.getKey(request: request)
   }
 
+  /// Get the key string for an API key.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_GetKeyString")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/getKeyString(request:options:)``
   public func getKeyString(request: GetKeyStringRequest) async throws
     -> GoogleApiApiKeysV1.GetKeyStringResponse
   {
@@ -458,6 +636,16 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the key string for an API key.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_GetKeyString")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/getKeyString(request:options:)``
   public func getKeyString(
     name: Swift.String,
   ) async throws -> GoogleApiApiKeysV1.GetKeyStringResponse {
@@ -467,6 +655,17 @@ extension Clients.ApiKeysProtocol {
     return try await self.getKeyString(request: request)
   }
 
+  /// Patches the modifiable fields of an API key.
+  /// The key string of the API key isn't included in the response.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_UpdateKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/updateKey(request:options:)``
   public func updateKey(request: UpdateKeyRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateKey(request: request, options: .init())
   }
@@ -477,6 +676,17 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Patches the modifiable fields of an API key.
+  /// The key string of the API key isn't included in the response.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_UpdateKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/updateKeyPollingUntilDone(request:options:)``
   public func updateKeyPollingUntilDone(request: UpdateKeyRequest) async throws -> Key {
     return try await self.updateKeyPollingUntilDone(request: request, options: .init())
   }
@@ -487,6 +697,17 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Patches the modifiable fields of an API key.
+  /// The key string of the API key isn't included in the response.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_UpdateKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/updateKeyPollingUntilDone(request:options:)``
   public func updateKeyPollingUntilDone(
     key: Key?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -498,6 +719,17 @@ extension Clients.ApiKeysProtocol {
     return try await self.updateKeyPollingUntilDone(request: request)
   }
 
+  /// Deletes an API key. Deleted key can be retrieved within 30 days of
+  /// deletion. Afterward, key will be purged from the project.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_DeleteKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/deleteKey(request:options:)``
   public func deleteKey(request: DeleteKeyRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteKey(request: request, options: .init())
   }
@@ -508,6 +740,17 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an API key. Deleted key can be retrieved within 30 days of
+  /// deletion. Afterward, key will be purged from the project.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_DeleteKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/deleteKeyPollingUntilDone(request:options:)``
   public func deleteKeyPollingUntilDone(request: DeleteKeyRequest) async throws -> Key {
     return try await self.deleteKeyPollingUntilDone(request: request, options: .init())
   }
@@ -518,6 +761,17 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an API key. Deleted key can be retrieved within 30 days of
+  /// deletion. Afterward, key will be purged from the project.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_DeleteKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/deleteKeyPollingUntilDone(request:options:)``
   public func deleteKeyPollingUntilDone(
     name: Swift.String,
   ) async throws -> Key {
@@ -527,6 +781,16 @@ extension Clients.ApiKeysProtocol {
     return try await self.deleteKeyPollingUntilDone(request: request)
   }
 
+  /// Undeletes an API key which was deleted within 30 days.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_UndeleteKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/undeleteKey(request:options:)``
   public func undeleteKey(request: UndeleteKeyRequest) async throws -> GoogleLongRunning.Operation {
     try await self.undeleteKey(request: request, options: .init())
   }
@@ -537,6 +801,16 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Undeletes an API key which was deleted within 30 days.
+  ///
+  /// NOTE: Key is a global resource; hence the only supported value for
+  /// location is `global`.
+  ///
+  /// @Snippet(path: "ApiKeys_UndeleteKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/undeleteKeyPollingUntilDone(request:options:)``
   public func undeleteKeyPollingUntilDone(request: UndeleteKeyRequest) async throws -> Key {
     return try await self.undeleteKeyPollingUntilDone(request: request, options: .init())
   }
@@ -547,6 +821,17 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Find the parent project and resource name of the API
+  /// key that matches the key string in the request. If the API key has been
+  /// purged, resource name will not be set.
+  /// The service account must have the `apikeys.keys.lookup` permission
+  /// on the parent project.
+  ///
+  /// @Snippet(path: "ApiKeys_LookupKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ApiKeysClient/lookupKey(request:options:)``
   public func lookupKey(request: LookupKeyRequest) async throws
     -> GoogleApiApiKeysV1.LookupKeyResponse
   {
@@ -559,6 +844,9 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -571,6 +859,9 @@ extension Clients.ApiKeysProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

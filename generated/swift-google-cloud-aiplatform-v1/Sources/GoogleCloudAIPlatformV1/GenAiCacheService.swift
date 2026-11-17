@@ -28,6 +28,10 @@
   /// Service for managing Vertex AI's CachedContent resource.
   ///
   /// @Snippet(path: "GenAiCacheServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/GenAiCacheServiceProtocol``
   public final class GenAiCacheServiceClient: Clients.GenAiCacheServiceProtocol, Sendable {
     let inner: any Clients.GenAiCacheServiceStub
 
@@ -45,6 +49,11 @@
     /// data storage, and users need to pay for the cache data storage.
     ///
     /// @Snippet(path: "GenAiCacheService_CreateCachedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createCachedContent(request:)``
+    /// - ``createCachedContent(parent:cachedContent:)``
     public func createCachedContent(
       request: CreateCachedContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.CachedContent {
@@ -54,6 +63,11 @@
     /// Gets cached content configurations
     ///
     /// @Snippet(path: "GenAiCacheService_GetCachedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getCachedContent(request:)``
+    /// - ``getCachedContent(name:)``
     public func getCachedContent(
       request: GetCachedContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.CachedContent {
@@ -63,6 +77,11 @@
     /// Updates cached content configurations
     ///
     /// @Snippet(path: "GenAiCacheService_UpdateCachedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateCachedContent(request:)``
+    /// - ``updateCachedContent(cachedContent:updateMask:)``
     public func updateCachedContent(
       request: UpdateCachedContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.CachedContent {
@@ -72,6 +91,11 @@
     /// Deletes cached content
     ///
     /// @Snippet(path: "GenAiCacheService_DeleteCachedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteCachedContent(request:)``
+    /// - ``deleteCachedContent(name:)``
     public func deleteCachedContent(
       request: DeleteCachedContentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -81,6 +105,13 @@
     /// Lists cached contents in a project
     ///
     /// @Snippet(path: "GenAiCacheService_ListCachedContents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listCachedContents(request:)``
+    /// - ``listCachedContentsByItems(request:)``
+    /// - ``listCachedContentsByItems(request:options:)``
+    /// - ``listCachedContentsByItems(parent:)``
     public func listCachedContents(
       request: ListCachedContentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListCachedContentsResponse {
@@ -90,6 +121,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "GenAiCacheService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -99,6 +136,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "GenAiCacheService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -112,6 +153,10 @@
     /// errors.
     ///
     /// @Snippet(path: "GenAiCacheService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -122,6 +167,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "GenAiCacheService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -137,6 +186,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "GenAiCacheService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -148,6 +201,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GenAiCacheService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -170,6 +230,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GenAiCacheService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(request:)``
+    /// - ``deleteOperation(name:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -181,6 +246,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GenAiCacheService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -192,6 +262,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GenAiCacheService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -280,6 +354,14 @@
 
   // Default implementations
   extension Clients.GenAiCacheServiceProtocol {
+    /// Creates cached content, this call will initialize the cached content in the
+    /// data storage, and users need to pay for the cache data storage.
+    ///
+    /// @Snippet(path: "GenAiCacheService_CreateCachedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/createCachedContent(request:options:)``
     public func createCachedContent(request: CreateCachedContentRequest) async throws
       -> GoogleCloudAIPlatformV1.CachedContent
     {
@@ -292,6 +374,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates cached content, this call will initialize the cached content in the
+    /// data storage, and users need to pay for the cache data storage.
+    ///
+    /// @Snippet(path: "GenAiCacheService_CreateCachedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/createCachedContent(request:options:)``
     public func createCachedContent(
       parent: Swift.String,
       cachedContent: CachedContent?,
@@ -303,6 +393,13 @@
       return try await self.createCachedContent(request: request)
     }
 
+    /// Gets cached content configurations
+    ///
+    /// @Snippet(path: "GenAiCacheService_GetCachedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/getCachedContent(request:options:)``
     public func getCachedContent(request: GetCachedContentRequest) async throws
       -> GoogleCloudAIPlatformV1.CachedContent
     {
@@ -315,6 +412,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets cached content configurations
+    ///
+    /// @Snippet(path: "GenAiCacheService_GetCachedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/getCachedContent(request:options:)``
     public func getCachedContent(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.CachedContent {
@@ -324,6 +428,13 @@
       return try await self.getCachedContent(request: request)
     }
 
+    /// Updates cached content configurations
+    ///
+    /// @Snippet(path: "GenAiCacheService_UpdateCachedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/updateCachedContent(request:options:)``
     public func updateCachedContent(request: UpdateCachedContentRequest) async throws
       -> GoogleCloudAIPlatformV1.CachedContent
     {
@@ -336,6 +447,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates cached content configurations
+    ///
+    /// @Snippet(path: "GenAiCacheService_UpdateCachedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/updateCachedContent(request:options:)``
     public func updateCachedContent(
       cachedContent: CachedContent?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -347,6 +465,13 @@
       return try await self.updateCachedContent(request: request)
     }
 
+    /// Deletes cached content
+    ///
+    /// @Snippet(path: "GenAiCacheService_DeleteCachedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/deleteCachedContent(request:options:)``
     public func deleteCachedContent(request: DeleteCachedContentRequest) async throws {
       try await self.deleteCachedContent(request: request, options: .init())
     }
@@ -357,6 +482,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes cached content
+    ///
+    /// @Snippet(path: "GenAiCacheService_DeleteCachedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/deleteCachedContent(request:options:)``
     public func deleteCachedContent(
       name: Swift.String,
     ) async throws {
@@ -366,6 +498,13 @@
       try await self.deleteCachedContent(request: request)
     }
 
+    /// Lists cached contents in a project
+    ///
+    /// @Snippet(path: "GenAiCacheService_ListCachedContents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/listCachedContents(request:options:)``
     public func listCachedContents(request: ListCachedContentsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListCachedContentsResponse
     {
@@ -378,6 +517,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists cached contents in a project
+    ///
+    /// @Snippet(path: "GenAiCacheService_ListCachedContents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/listCachedContents(request:options:)``
     public func listCachedContentsByItems(
       request: ListCachedContentsRequest
     ) -> some AsyncSequence<CachedContent, any Swift.Error> & Sendable {
@@ -387,6 +533,10 @@
     /// Lists cached contents in a project
     ///
     /// @Snippet(path: "GenAiCacheService_ListCachedContents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/listCachedContents(request:options:)``
     public func listCachedContentsByItems(
       request: ListCachedContentsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<CachedContent, any Swift.Error> & Sendable {
@@ -401,6 +551,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists cached contents in a project
+    ///
+    /// @Snippet(path: "GenAiCacheService_ListCachedContents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/listCachedContents(request:options:)``
     public func listCachedContentsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<CachedContent, any Swift.Error> & Sendable {
@@ -410,6 +567,13 @@
       return self.listCachedContentsByItems(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "GenAiCacheService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -422,6 +586,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "GenAiCacheService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -431,6 +602,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "GenAiCacheService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -444,6 +619,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "GenAiCacheService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -456,6 +638,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "GenAiCacheService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -468,6 +661,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "GenAiCacheService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -480,6 +681,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "GenAiCacheService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -492,6 +706,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GenAiCacheService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -504,6 +727,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GenAiCacheService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -515,6 +747,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GenAiCacheService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -528,6 +764,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GenAiCacheService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -539,6 +784,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -551,6 +799,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -560,6 +811,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GenAiCacheService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -570,6 +830,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GenAiCacheService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -579,6 +848,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GenAiCacheService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -589,6 +867,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GenAiCacheService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -598,6 +885,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GenAiCacheService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GenAiCacheServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

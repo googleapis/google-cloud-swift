@@ -24,6 +24,10 @@
   /// Service for the `instanceGroupManagerResizeRequests` resource.
   ///
   /// @Snippet(path: "instanceGroupManagerResizeRequestsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/InstanceGroupManagerResizeRequestsProtocol``
   public final class InstanceGroupManagerResizeRequestsClient: Clients
       .InstanceGroupManagerResizeRequestsProtocol, Sendable
   {
@@ -50,6 +54,13 @@
     /// queue.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_cancel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancel(request:)``
+    /// - ``cancelPollingUntilDone(request:)``
+    /// - ``cancelPollingUntilDone(request:options:)``
+    /// - ``cancelPollingUntilDone(project:zone:instanceGroupManager:resizeRequest:)``
     public func cancel(
       request: InstanceGroupManagerResizeRequestsClient.CancelRequest,
       options: GoogleGax.RequestOptions
@@ -68,6 +79,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_cancel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelPollingUntilDone(request:)``
+    /// - ``cancelPollingUntilDone(project:zone:instanceGroupManager:resizeRequest:)``
+    /// - ``cancel(request:)``
+    /// - ``cancel(request:options:)``
     public func cancelPollingUntilDone(
       request: InstanceGroupManagerResizeRequestsClient.CancelRequest,
       options: GoogleGax.RequestOptions
@@ -113,6 +131,13 @@
     /// were provisioned previously.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:zone:instanceGroupManager:resizeRequest:)``
     public func delete(
       request: InstanceGroupManagerResizeRequestsClient.DeleteRequest,
       options: GoogleGax.RequestOptions
@@ -130,6 +155,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:zone:instanceGroupManager:resizeRequest:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: InstanceGroupManagerResizeRequestsClient.DeleteRequest,
       options: GoogleGax.RequestOptions
@@ -173,6 +205,11 @@
     /// Returns all of the details about the specified resize request.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:zone:instanceGroupManager:resizeRequest:)``
     public func `get`(
       request: InstanceGroupManagerResizeRequestsClient.GetRequest,
       options: GoogleGax.RequestOptions
@@ -184,6 +221,13 @@
     /// or queues VM creation.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:zone:instanceGroupManager:body:)``
     public func insert(
       request: InstanceGroupManagerResizeRequestsClient.InsertRequest,
       options: GoogleGax.RequestOptions
@@ -200,6 +244,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:zone:instanceGroupManager:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: InstanceGroupManagerResizeRequestsClient.InsertRequest,
       options: GoogleGax.RequestOptions
@@ -244,6 +295,13 @@
     /// managed instance group.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:zone:instanceGroupManager:)``
     public func list(
       request: InstanceGroupManagerResizeRequestsClient.ListRequest,
       options: GoogleGax.RequestOptions
@@ -335,6 +393,16 @@
 
   // Default implementations
   extension Clients.InstanceGroupManagerResizeRequestsProtocol {
+    /// Cancels the specified resize request and removes it from the queue.
+    /// Cancelled resize request does no longer wait for the resources to be
+    /// provisioned. Cancel is only possible for requests that are accepted in the
+    /// queue.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_cancel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/cancel(request:options:)``
     public func cancel(request: InstanceGroupManagerResizeRequestsClient.CancelRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -348,6 +416,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Cancels the specified resize request and removes it from the queue.
+    /// Cancelled resize request does no longer wait for the resources to be
+    /// provisioned. Cancel is only possible for requests that are accepted in the
+    /// queue.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_cancel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/cancelPollingUntilDone(request:options:)``
     public func cancelPollingUntilDone(
       request: InstanceGroupManagerResizeRequestsClient.CancelRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -361,6 +444,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Cancels the specified resize request and removes it from the queue.
+    /// Cancelled resize request does no longer wait for the resources to be
+    /// provisioned. Cancel is only possible for requests that are accepted in the
+    /// queue.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_cancel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/cancelPollingUntilDone(request:options:)``
     public func cancelPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -376,6 +474,15 @@
       return try await self.cancelPollingUntilDone(request: request)
     }
 
+    /// Deletes the specified, inactive resize request. Requests that are still
+    /// active cannot be deleted. Deleting request does not delete instances that
+    /// were provisioned previously.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/delete(request:options:)``
     public func delete(request: InstanceGroupManagerResizeRequestsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -389,6 +496,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified, inactive resize request. Requests that are still
+    /// active cannot be deleted. Deleting request does not delete instances that
+    /// were provisioned previously.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: InstanceGroupManagerResizeRequestsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -402,6 +523,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified, inactive resize request. Requests that are still
+    /// active cannot be deleted. Deleting request does not delete instances that
+    /// were provisioned previously.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -417,6 +552,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns all of the details about the specified resize request.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/get(request:options:)``
     public func `get`(request: InstanceGroupManagerResizeRequestsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.InstanceGroupManagerResizeRequest
     {
@@ -430,6 +572,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns all of the details about the specified resize request.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -445,6 +594,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a new resize request that starts provisioning VMs immediately
+    /// or queues VM creation.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/insert(request:options:)``
     public func insert(request: InstanceGroupManagerResizeRequestsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -458,6 +615,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new resize request that starts provisioning VMs immediately
+    /// or queues VM creation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: InstanceGroupManagerResizeRequestsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -471,6 +641,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new resize request that starts provisioning VMs immediately
+    /// or queues VM creation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -486,6 +669,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of resize requests that are contained in the
+    /// managed instance group.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/list(request:options:)``
     public func list(request: InstanceGroupManagerResizeRequestsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.InstanceGroupManagerResizeRequestsListResponse
     {
@@ -499,6 +690,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of resize requests that are contained in the
+    /// managed instance group.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/list(request:options:)``
     public func listByItems(
       request: InstanceGroupManagerResizeRequestsClient.ListRequest
     ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, any Swift.Error> & Sendable {
@@ -509,6 +708,10 @@
     /// managed instance group.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/list(request:options:)``
     public func listByItems(
       request: InstanceGroupManagerResizeRequestsClient.ListRequest,
       options: GoogleGax.RequestOptions
@@ -524,6 +727,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of resize requests that are contained in the
+    /// managed instance group.
+    ///
+    /// @Snippet(path: "instanceGroupManagerResizeRequests_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupManagerResizeRequestsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -537,6 +748,7 @@
       return self.listByItems(request: request)
     }
 
+    /// Retrieves the specified zone-specific Operations resource.
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

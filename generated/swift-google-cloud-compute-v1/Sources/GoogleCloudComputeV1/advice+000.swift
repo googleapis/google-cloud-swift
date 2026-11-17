@@ -24,6 +24,10 @@
   /// Service for the `advice` resource.
   ///
   /// @Snippet(path: "adviceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/AdviceProtocol``
   public final class AdviceClient: Clients.AdviceProtocol, Sendable {
     let inner: any Clients.AdviceStub
 
@@ -43,6 +47,11 @@
     /// resources.
     ///
     /// @Snippet(path: "advice_calendarMode")
+    ///
+    /// ## See Also
+    ///
+    /// - ``calendarMode(request:)``
+    /// - ``calendarMode(project:region:body:)``
     public func calendarMode(
       request: AdviceClient.CalendarModeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CalendarModeAdviceResponse {
@@ -54,6 +63,11 @@
     /// capacity.
     ///
     /// @Snippet(path: "advice_capacity")
+    ///
+    /// ## See Also
+    ///
+    /// - ``capacity(request:)``
+    /// - ``capacity(project:region:body:)``
     public func capacity(
       request: AdviceClient.CapacityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CapacityAdviceResponse {
@@ -63,6 +77,11 @@
     /// Gets the capacity history.
     ///
     /// @Snippet(path: "advice_capacityHistory")
+    ///
+    /// ## See Also
+    ///
+    /// - ``capacityHistory(request:)``
+    /// - ``capacityHistory(project:region:body:)``
     public func capacityHistory(
       request: AdviceClient.CapacityHistoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CapacityHistoryResponse {
@@ -96,6 +115,16 @@
 
   // Default implementations
   extension Clients.AdviceProtocol {
+    /// Advise how, where and when to create the requested amount of instances
+    /// with specified accelerators, within the specified time and location limits.
+    /// The method recommends creating future reservations for the requested
+    /// resources.
+    ///
+    /// @Snippet(path: "advice_calendarMode")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AdviceClient/calendarMode(request:options:)``
     public func calendarMode(request: AdviceClient.CalendarModeRequest) async throws
       -> GoogleCloudComputeV1.CalendarModeAdviceResponse
     {
@@ -108,6 +137,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Advise how, where and when to create the requested amount of instances
+    /// with specified accelerators, within the specified time and location limits.
+    /// The method recommends creating future reservations for the requested
+    /// resources.
+    ///
+    /// @Snippet(path: "advice_calendarMode")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AdviceClient/calendarMode(request:options:)``
     public func calendarMode(
       project: Swift.String,
       region: Swift.String,
@@ -121,6 +160,15 @@
       return try await self.calendarMode(request: request)
     }
 
+    /// Advice on making real-time decisions (such as choosing zone or
+    /// machine types) during deployment to maximize your chances of obtaining
+    /// capacity.
+    ///
+    /// @Snippet(path: "advice_capacity")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AdviceClient/capacity(request:options:)``
     public func capacity(request: AdviceClient.CapacityRequest) async throws
       -> GoogleCloudComputeV1.CapacityAdviceResponse
     {
@@ -133,6 +181,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Advice on making real-time decisions (such as choosing zone or
+    /// machine types) during deployment to maximize your chances of obtaining
+    /// capacity.
+    ///
+    /// @Snippet(path: "advice_capacity")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AdviceClient/capacity(request:options:)``
     public func capacity(
       project: Swift.String,
       region: Swift.String,
@@ -146,6 +203,13 @@
       return try await self.capacity(request: request)
     }
 
+    /// Gets the capacity history.
+    ///
+    /// @Snippet(path: "advice_capacityHistory")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AdviceClient/capacityHistory(request:options:)``
     public func capacityHistory(request: AdviceClient.CapacityHistoryRequest) async throws
       -> GoogleCloudComputeV1.CapacityHistoryResponse
     {
@@ -158,6 +222,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the capacity history.
+    ///
+    /// @Snippet(path: "advice_capacityHistory")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AdviceClient/capacityHistory(request:options:)``
     public func capacityHistory(
       project: Swift.String,
       region: Swift.String,

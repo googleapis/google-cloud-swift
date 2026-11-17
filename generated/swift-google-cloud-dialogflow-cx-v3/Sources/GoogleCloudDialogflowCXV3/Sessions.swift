@@ -31,6 +31,10 @@
   /// [google.cloud.dialogflow.cx.v3.Sessions.DetectIntent]: <doc:SessionsClient/detectIntent(request:options:)>
   ///
   /// @Snippet(path: "SessionsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SessionsProtocol``
   public final class SessionsClient: Clients.SessionsProtocol, Sendable {
     let inner: any Clients.SessionsStub
 
@@ -54,6 +58,10 @@
     /// environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).
     ///
     /// @Snippet(path: "Sessions_DetectIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``detectIntent(request:)``
     public func detectIntent(
       request: DetectIntentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.DetectIntentResponse {
@@ -64,6 +72,10 @@
     /// status.
     ///
     /// @Snippet(path: "Sessions_MatchIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``matchIntent(request:)``
     public func matchIntent(
       request: MatchIntentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.MatchIntentResponse {
@@ -82,6 +94,10 @@
     /// [google.cloud.dialogflow.cx.v3.Sessions.MatchIntent]: <doc:SessionsClient/matchIntent(request:options:)>
     ///
     /// @Snippet(path: "Sessions_FulfillIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``fulfillIntent(request:)``
     public func fulfillIntent(
       request: FulfillIntentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.FulfillIntentResponse {
@@ -92,6 +108,10 @@
     /// response.
     ///
     /// @Snippet(path: "Sessions_SubmitAnswerFeedback")
+    ///
+    /// ## See Also
+    ///
+    /// - ``submitAnswerFeedback(request:)``
     public func submitAnswerFeedback(
       request: SubmitAnswerFeedbackRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.AnswerFeedback {
@@ -118,6 +138,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Sessions_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -127,6 +153,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Sessions_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -138,6 +168,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Sessions_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -160,6 +197,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Sessions_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -218,6 +260,20 @@
 
   // Default implementations
   extension Clients.SessionsProtocol {
+    /// Processes a natural language query and returns structured, actionable data
+    /// as a result. This method is not idempotent, because it may cause session
+    /// entity types to be updated, which in turn might affect results of future
+    /// queries.
+    ///
+    /// Note: Always use agent versions for production traffic.
+    /// See [Versions and
+    /// environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).
+    ///
+    /// @Snippet(path: "Sessions_DetectIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/detectIntent(request:options:)``
     public func detectIntent(request: DetectIntentRequest) async throws
       -> GoogleCloudDialogflowCXV3.DetectIntentResponse
     {
@@ -230,6 +286,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns preliminary intent match results, doesn't change the session
+    /// status.
+    ///
+    /// @Snippet(path: "Sessions_MatchIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/matchIntent(request:options:)``
     public func matchIntent(request: MatchIntentRequest) async throws
       -> GoogleCloudDialogflowCXV3.MatchIntentResponse
     {
@@ -242,6 +306,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Fulfills a matched intent returned by
+    /// [MatchIntent][google.cloud.dialogflow.cx.v3.Sessions.MatchIntent]. Must be
+    /// called after
+    /// [MatchIntent][google.cloud.dialogflow.cx.v3.Sessions.MatchIntent], with
+    /// input from
+    /// [MatchIntentResponse][google.cloud.dialogflow.cx.v3.MatchIntentResponse].
+    /// Otherwise, the behavior is undefined.
+    ///
+    /// [google.cloud.dialogflow.cx.v3.MatchIntentResponse]: <doc:MatchIntentResponse>
+    /// [google.cloud.dialogflow.cx.v3.Sessions.MatchIntent]: <doc:SessionsClient/matchIntent(request:options:)>
+    ///
+    /// @Snippet(path: "Sessions_FulfillIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/fulfillIntent(request:options:)``
     public func fulfillIntent(request: FulfillIntentRequest) async throws
       -> GoogleCloudDialogflowCXV3.FulfillIntentResponse
     {
@@ -254,6 +334,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the feedback received from the user for a single turn of the bot
+    /// response.
+    ///
+    /// @Snippet(path: "Sessions_SubmitAnswerFeedback")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/submitAnswerFeedback(request:options:)``
     public func submitAnswerFeedback(request: SubmitAnswerFeedbackRequest) async throws
       -> GoogleCloudDialogflowCXV3.AnswerFeedback
     {
@@ -266,6 +354,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Sessions_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -278,6 +390,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Sessions_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -304,6 +440,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Sessions_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -317,6 +457,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "Sessions_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -329,6 +476,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Sessions_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -341,6 +497,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Sessions_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -352,6 +517,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Sessions_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -365,6 +534,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Sessions_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -376,6 +554,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -388,6 +569,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -397,6 +581,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Sessions_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -407,6 +600,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Sessions_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionsClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

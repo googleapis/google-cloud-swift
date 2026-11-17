@@ -26,6 +26,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "HypercomputeClusterQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/HypercomputeClusterProtocol``
 public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtocol, Sendable {
   let inner: any Clients.HypercomputeClusterStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// Lists Clusters in a given project and location.
   ///
   /// @Snippet(path: "HypercomputeCluster_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listClusters(request:)``
+  /// - ``listClustersByItems(request:)``
+  /// - ``listClustersByItems(request:options:)``
+  /// - ``listClustersByItems(parent:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudHypercomputeClusterV1.ListClustersResponse {
@@ -56,6 +67,11 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// Gets details of a single Cluster.
   ///
   /// @Snippet(path: "HypercomputeCluster_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCluster(request:)``
+  /// - ``getCluster(name:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudHypercomputeClusterV1.Cluster {
@@ -65,6 +81,13 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// Creates a new Cluster in a given project and location.
   ///
   /// @Snippet(path: "HypercomputeCluster_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCluster(request:)``
+  /// - ``createClusterPollingUntilDone(request:)``
+  /// - ``createClusterPollingUntilDone(request:options:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -74,6 +97,13 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// Creates a new Cluster in a given project and location.
   ///
   /// @Snippet(path: "HypercomputeCluster_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createClusterPollingUntilDone(request:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
+  /// - ``createCluster(request:)``
+  /// - ``createCluster(request:options:)``
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -101,6 +131,13 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// Updates the parameters of a single Cluster.
   ///
   /// @Snippet(path: "HypercomputeCluster_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCluster(request:)``
+  /// - ``updateClusterPollingUntilDone(request:)``
+  /// - ``updateClusterPollingUntilDone(request:options:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   public func updateCluster(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -110,6 +147,13 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// Updates the parameters of a single Cluster.
   ///
   /// @Snippet(path: "HypercomputeCluster_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateClusterPollingUntilDone(request:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
+  /// - ``updateCluster(request:)``
+  /// - ``updateCluster(request:options:)``
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -137,6 +181,13 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// Deletes a single Cluster.
   ///
   /// @Snippet(path: "HypercomputeCluster_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCluster(request:)``
+  /// - ``deleteClusterPollingUntilDone(request:)``
+  /// - ``deleteClusterPollingUntilDone(request:options:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -146,6 +197,13 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// Deletes a single Cluster.
   ///
   /// @Snippet(path: "HypercomputeCluster_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteClusterPollingUntilDone(request:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
+  /// - ``deleteCluster(request:)``
+  /// - ``deleteCluster(request:options:)``
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -180,6 +238,12 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// to the project.
   ///
   /// @Snippet(path: "HypercomputeCluster_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -189,6 +253,10 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// Gets information about a location.
   ///
   /// @Snippet(path: "HypercomputeCluster_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -200,6 +268,13 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "HypercomputeCluster_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -222,6 +297,11 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "HypercomputeCluster_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -233,6 +313,11 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "HypercomputeCluster_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -316,6 +401,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.HypercomputeClusterProtocol {
+  /// Lists Clusters in a given project and location.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/listClusters(request:options:)``
   public func listClusters(request: ListClustersRequest) async throws
     -> GoogleCloudHypercomputeClusterV1.ListClustersResponse
   {
@@ -328,6 +420,13 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Clusters in a given project and location.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/listClusters(request:options:)``
   public func listClustersByItems(
     request: ListClustersRequest
   ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
@@ -337,6 +436,10 @@ extension Clients.HypercomputeClusterProtocol {
   /// Lists Clusters in a given project and location.
   ///
   /// @Snippet(path: "HypercomputeCluster_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/listClusters(request:options:)``
   public func listClustersByItems(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
@@ -351,6 +454,13 @@ extension Clients.HypercomputeClusterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Clusters in a given project and location.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/listClusters(request:options:)``
   public func listClustersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
@@ -360,6 +470,13 @@ extension Clients.HypercomputeClusterProtocol {
     return self.listClustersByItems(request: request)
   }
 
+  /// Gets details of a single Cluster.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/getCluster(request:options:)``
   public func getCluster(request: GetClusterRequest) async throws
     -> GoogleCloudHypercomputeClusterV1.Cluster
   {
@@ -372,6 +489,13 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Cluster.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/getCluster(request:options:)``
   public func getCluster(
     name: Swift.String,
   ) async throws -> GoogleCloudHypercomputeClusterV1.Cluster {
@@ -381,6 +505,13 @@ extension Clients.HypercomputeClusterProtocol {
     return try await self.getCluster(request: request)
   }
 
+  /// Creates a new Cluster in a given project and location.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/createCluster(request:options:)``
   public func createCluster(request: CreateClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -393,6 +524,13 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Cluster in a given project and location.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/createClusterPollingUntilDone(request:options:)``
   public func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> Cluster {
     return try await self.createClusterPollingUntilDone(request: request, options: .init())
   }
@@ -403,6 +541,13 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Cluster in a given project and location.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/createClusterPollingUntilDone(request:options:)``
   public func createClusterPollingUntilDone(
     parent: Swift.String,
     cluster: Cluster?,
@@ -416,6 +561,13 @@ extension Clients.HypercomputeClusterProtocol {
     return try await self.createClusterPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Cluster.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/updateCluster(request:options:)``
   public func updateCluster(request: UpdateClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -428,6 +580,13 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Cluster.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/updateClusterPollingUntilDone(request:options:)``
   public func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> Cluster {
     return try await self.updateClusterPollingUntilDone(request: request, options: .init())
   }
@@ -438,6 +597,13 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Cluster.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/updateClusterPollingUntilDone(request:options:)``
   public func updateClusterPollingUntilDone(
     cluster: Cluster?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -449,6 +615,13 @@ extension Clients.HypercomputeClusterProtocol {
     return try await self.updateClusterPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Cluster.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/deleteCluster(request:options:)``
   public func deleteCluster(request: DeleteClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -461,6 +634,13 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Cluster.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/deleteClusterPollingUntilDone(request:options:)``
   public func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws {
     try await self.deleteClusterPollingUntilDone(request: request, options: .init())
   }
@@ -471,6 +651,13 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Cluster.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/deleteClusterPollingUntilDone(request:options:)``
   public func deleteClusterPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -480,6 +667,20 @@ extension Clients.HypercomputeClusterProtocol {
     try await self.deleteClusterPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  /// This method can be called in two ways:
+  ///
+  /// *   **List all public locations:** Use the path `GET /v1/locations`.
+  /// *   **List project-visible locations:** Use the path
+  /// `GET /v1/projects/{project_id}/locations`. This may include public
+  /// locations as well as private or other locations specifically visible
+  /// to the project.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -492,6 +693,20 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  /// This method can be called in two ways:
+  ///
+  /// *   **List all public locations:** Use the path `GET /v1/locations`.
+  /// *   **List project-visible locations:** Use the path
+  /// `GET /v1/projects/{project_id}/locations`. This may include public
+  /// locations as well as private or other locations specifically visible
+  /// to the project.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -508,6 +723,10 @@ extension Clients.HypercomputeClusterProtocol {
   /// to the project.
   ///
   /// @Snippet(path: "HypercomputeCluster_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -521,6 +740,13 @@ extension Clients.HypercomputeClusterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "HypercomputeCluster_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -533,6 +759,15 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HypercomputeCluster_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -545,6 +780,15 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HypercomputeCluster_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -556,6 +800,10 @@ extension Clients.HypercomputeClusterProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "HypercomputeCluster_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -569,6 +817,15 @@ extension Clients.HypercomputeClusterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HypercomputeCluster_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -580,6 +837,9 @@ extension Clients.HypercomputeClusterProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -592,6 +852,9 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -601,6 +864,15 @@ extension Clients.HypercomputeClusterProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HypercomputeCluster_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -611,6 +883,15 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HypercomputeCluster_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -620,6 +901,15 @@ extension Clients.HypercomputeClusterProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HypercomputeCluster_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -630,6 +920,15 @@ extension Clients.HypercomputeClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HypercomputeCluster_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HypercomputeClusterClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

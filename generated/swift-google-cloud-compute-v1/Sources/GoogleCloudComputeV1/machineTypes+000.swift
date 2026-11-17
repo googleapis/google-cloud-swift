@@ -24,6 +24,10 @@
   /// Service for the `machineTypes` resource.
   ///
   /// @Snippet(path: "machineTypesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/MachineTypesProtocol``
   public final class MachineTypesClient: Clients.MachineTypesProtocol, Sendable {
     let inner: any Clients.MachineTypesStub
 
@@ -43,6 +47,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "machineTypes_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
+    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: MachineTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.MachineTypeAggregatedList {
@@ -52,6 +63,11 @@
     /// Returns the specified machine type.
     ///
     /// @Snippet(path: "machineTypes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:zone:machineType:)``
     public func `get`(
       request: MachineTypesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.MachineType {
@@ -62,6 +78,13 @@
     /// project.
     ///
     /// @Snippet(path: "machineTypes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:zone:)``
     public func list(
       request: MachineTypesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.MachineTypeList {
@@ -95,6 +118,16 @@
 
   // Default implementations
   extension Clients.MachineTypesProtocol {
+    /// Retrieves an aggregated list of machine types.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "machineTypes_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineTypesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: MachineTypesClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.MachineTypeAggregatedList
     {
@@ -107,6 +140,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of machine types.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "machineTypes_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineTypesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: MachineTypesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, MachineTypesScopedList), any Swift.Error> & Sendable {
@@ -119,6 +162,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "machineTypes_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineTypesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: MachineTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, MachineTypesScopedList), any Swift.Error> & Sendable {
@@ -133,6 +180,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of machine types.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "machineTypes_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineTypesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, MachineTypesScopedList), any Swift.Error> & Sendable {
@@ -142,6 +199,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Returns the specified machine type.
+    ///
+    /// @Snippet(path: "machineTypes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineTypesClient/get(request:options:)``
     public func `get`(request: MachineTypesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.MachineType
     {
@@ -154,6 +218,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified machine type.
+    ///
+    /// @Snippet(path: "machineTypes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineTypesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -167,6 +238,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Retrieves a list of machine types available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "machineTypes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineTypesClient/list(request:options:)``
     public func list(request: MachineTypesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.MachineTypeList
     {
@@ -179,6 +258,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of machine types available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "machineTypes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineTypesClient/list(request:options:)``
     public func listByItems(
       request: MachineTypesClient.ListRequest
     ) -> some AsyncSequence<MachineType, any Swift.Error> & Sendable {
@@ -189,6 +276,10 @@
     /// project.
     ///
     /// @Snippet(path: "machineTypes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineTypesClient/list(request:options:)``
     public func listByItems(
       request: MachineTypesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<MachineType, any Swift.Error> & Sendable {
@@ -202,6 +293,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of machine types available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "machineTypes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineTypesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,

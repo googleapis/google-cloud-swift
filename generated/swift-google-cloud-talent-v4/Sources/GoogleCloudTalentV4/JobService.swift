@@ -25,6 +25,10 @@ import Foundation
 /// A service handles job management, including job CRUD, enumeration and search.
 ///
 /// @Snippet(path: "JobServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/JobServiceProtocol``
 public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   let inner: any Clients.JobServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,11 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// up to 5 minutes.
   ///
   /// @Snippet(path: "JobService_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createJob(request:)``
+  /// - ``createJob(parent:job:)``
   public func createJob(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Job {
@@ -57,6 +66,13 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// Begins executing a batch create jobs operation.
   ///
   /// @Snippet(path: "JobService_BatchCreateJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchCreateJobs(request:)``
+  /// - ``batchCreateJobsPollingUntilDone(request:)``
+  /// - ``batchCreateJobsPollingUntilDone(request:options:)``
+  /// - ``batchCreateJobsPollingUntilDone(parent:jobs:)``
   public func batchCreateJobs(
     request: BatchCreateJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -66,6 +82,13 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// Begins executing a batch create jobs operation.
   ///
   /// @Snippet(path: "JobService_BatchCreateJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchCreateJobsPollingUntilDone(request:)``
+  /// - ``batchCreateJobsPollingUntilDone(parent:jobs:)``
+  /// - ``batchCreateJobs(request:)``
+  /// - ``batchCreateJobs(request:options:)``
   public func batchCreateJobsPollingUntilDone(
     request: BatchCreateJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchCreateJobsResponse {
@@ -96,6 +119,11 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// within the last 90 days.
   ///
   /// @Snippet(path: "JobService_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getJob(request:)``
+  /// - ``getJob(name:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Job {
@@ -108,6 +136,11 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// seconds, but it may take up to 5 minutes.
   ///
   /// @Snippet(path: "JobService_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateJob(request:)``
+  /// - ``updateJob(job:updateMask:)``
   public func updateJob(
     request: UpdateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Job {
@@ -117,6 +150,13 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// Begins executing a batch update jobs operation.
   ///
   /// @Snippet(path: "JobService_BatchUpdateJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchUpdateJobs(request:)``
+  /// - ``batchUpdateJobsPollingUntilDone(request:)``
+  /// - ``batchUpdateJobsPollingUntilDone(request:options:)``
+  /// - ``batchUpdateJobsPollingUntilDone(parent:jobs:)``
   public func batchUpdateJobs(
     request: BatchUpdateJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -126,6 +166,13 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// Begins executing a batch update jobs operation.
   ///
   /// @Snippet(path: "JobService_BatchUpdateJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchUpdateJobsPollingUntilDone(request:)``
+  /// - ``batchUpdateJobsPollingUntilDone(parent:jobs:)``
+  /// - ``batchUpdateJobs(request:)``
+  /// - ``batchUpdateJobs(request:options:)``
   public func batchUpdateJobsPollingUntilDone(
     request: BatchUpdateJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchUpdateJobsResponse {
@@ -158,6 +205,11 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// up to 5 minutes.
   ///
   /// @Snippet(path: "JobService_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteJob(request:)``
+  /// - ``deleteJob(name:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -167,6 +219,13 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// Begins executing a batch delete jobs operation.
   ///
   /// @Snippet(path: "JobService_BatchDeleteJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchDeleteJobs(request:)``
+  /// - ``batchDeleteJobsPollingUntilDone(request:)``
+  /// - ``batchDeleteJobsPollingUntilDone(request:options:)``
+  /// - ``batchDeleteJobsPollingUntilDone(parent:names:)``
   public func batchDeleteJobs(
     request: BatchDeleteJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -176,6 +235,13 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// Begins executing a batch delete jobs operation.
   ///
   /// @Snippet(path: "JobService_BatchDeleteJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchDeleteJobsPollingUntilDone(request:)``
+  /// - ``batchDeleteJobsPollingUntilDone(parent:names:)``
+  /// - ``batchDeleteJobs(request:)``
+  /// - ``batchDeleteJobs(request:options:)``
   public func batchDeleteJobsPollingUntilDone(
     request: BatchDeleteJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchDeleteJobsResponse {
@@ -205,6 +271,13 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// Lists jobs by filter.
   ///
   /// @Snippet(path: "JobService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(request:)``
+  /// - ``listJobsByItems(request:options:)``
+  /// - ``listJobsByItems(parent:filter:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.ListJobsResponse {
@@ -223,6 +296,10 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// [google.cloud.talent.v4.SearchJobsRequest]: <doc:SearchJobsRequest>
   ///
   /// @Snippet(path: "JobService_SearchJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchJobs(request:)``
   public func searchJobs(
     request: SearchJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.SearchJobsResponse {
@@ -246,6 +323,10 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// [google.cloud.talent.v4.SearchJobsRequest]: <doc:SearchJobsRequest>
   ///
   /// @Snippet(path: "JobService_SearchJobsForAlert")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchJobsForAlert(request:)``
   public func searchJobsForAlert(
     request: SearchJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.SearchJobsResponse {
@@ -340,6 +421,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.JobServiceProtocol {
+  /// Creates a new job.
+  ///
+  /// Typically, the job becomes searchable within 10 seconds, but it may take
+  /// up to 5 minutes.
+  ///
+  /// @Snippet(path: "JobService_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/createJob(request:options:)``
   public func createJob(request: CreateJobRequest) async throws -> GoogleCloudTalentV4.Job {
     try await self.createJob(request: request, options: .init())
   }
@@ -350,6 +441,16 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new job.
+  ///
+  /// Typically, the job becomes searchable within 10 seconds, but it may take
+  /// up to 5 minutes.
+  ///
+  /// @Snippet(path: "JobService_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/createJob(request:options:)``
   public func createJob(
     parent: Swift.String,
     job: Job?,
@@ -361,6 +462,13 @@ extension Clients.JobServiceProtocol {
     return try await self.createJob(request: request)
   }
 
+  /// Begins executing a batch create jobs operation.
+  ///
+  /// @Snippet(path: "JobService_BatchCreateJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/batchCreateJobs(request:options:)``
   public func batchCreateJobs(request: BatchCreateJobsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -373,6 +481,13 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Begins executing a batch create jobs operation.
+  ///
+  /// @Snippet(path: "JobService_BatchCreateJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/batchCreateJobsPollingUntilDone(request:options:)``
   public func batchCreateJobsPollingUntilDone(request: BatchCreateJobsRequest) async throws
     -> BatchCreateJobsResponse
   {
@@ -385,6 +500,13 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Begins executing a batch create jobs operation.
+  ///
+  /// @Snippet(path: "JobService_BatchCreateJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/batchCreateJobsPollingUntilDone(request:options:)``
   public func batchCreateJobsPollingUntilDone(
     parent: Swift.String,
     jobs: [Job],
@@ -396,6 +518,14 @@ extension Clients.JobServiceProtocol {
     return try await self.batchCreateJobsPollingUntilDone(request: request)
   }
 
+  /// Retrieves the specified job, whose status is OPEN or recently EXPIRED
+  /// within the last 90 days.
+  ///
+  /// @Snippet(path: "JobService_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/getJob(request:options:)``
   public func getJob(request: GetJobRequest) async throws -> GoogleCloudTalentV4.Job {
     try await self.getJob(request: request, options: .init())
   }
@@ -406,6 +536,14 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the specified job, whose status is OPEN or recently EXPIRED
+  /// within the last 90 days.
+  ///
+  /// @Snippet(path: "JobService_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/getJob(request:options:)``
   public func getJob(
     name: Swift.String,
   ) async throws -> GoogleCloudTalentV4.Job {
@@ -415,6 +553,16 @@ extension Clients.JobServiceProtocol {
     return try await self.getJob(request: request)
   }
 
+  /// Updates specified job.
+  ///
+  /// Typically, updated contents become visible in search results within 10
+  /// seconds, but it may take up to 5 minutes.
+  ///
+  /// @Snippet(path: "JobService_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/updateJob(request:options:)``
   public func updateJob(request: UpdateJobRequest) async throws -> GoogleCloudTalentV4.Job {
     try await self.updateJob(request: request, options: .init())
   }
@@ -425,6 +573,16 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates specified job.
+  ///
+  /// Typically, updated contents become visible in search results within 10
+  /// seconds, but it may take up to 5 minutes.
+  ///
+  /// @Snippet(path: "JobService_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/updateJob(request:options:)``
   public func updateJob(
     job: Job?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -436,6 +594,13 @@ extension Clients.JobServiceProtocol {
     return try await self.updateJob(request: request)
   }
 
+  /// Begins executing a batch update jobs operation.
+  ///
+  /// @Snippet(path: "JobService_BatchUpdateJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/batchUpdateJobs(request:options:)``
   public func batchUpdateJobs(request: BatchUpdateJobsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -448,6 +613,13 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Begins executing a batch update jobs operation.
+  ///
+  /// @Snippet(path: "JobService_BatchUpdateJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/batchUpdateJobsPollingUntilDone(request:options:)``
   public func batchUpdateJobsPollingUntilDone(request: BatchUpdateJobsRequest) async throws
     -> BatchUpdateJobsResponse
   {
@@ -460,6 +632,13 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Begins executing a batch update jobs operation.
+  ///
+  /// @Snippet(path: "JobService_BatchUpdateJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/batchUpdateJobsPollingUntilDone(request:options:)``
   public func batchUpdateJobsPollingUntilDone(
     parent: Swift.String,
     jobs: [Job],
@@ -471,6 +650,16 @@ extension Clients.JobServiceProtocol {
     return try await self.batchUpdateJobsPollingUntilDone(request: request)
   }
 
+  /// Deletes the specified job.
+  ///
+  /// Typically, the job becomes unsearchable within 10 seconds, but it may take
+  /// up to 5 minutes.
+  ///
+  /// @Snippet(path: "JobService_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/deleteJob(request:options:)``
   public func deleteJob(request: DeleteJobRequest) async throws {
     try await self.deleteJob(request: request, options: .init())
   }
@@ -481,6 +670,16 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified job.
+  ///
+  /// Typically, the job becomes unsearchable within 10 seconds, but it may take
+  /// up to 5 minutes.
+  ///
+  /// @Snippet(path: "JobService_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/deleteJob(request:options:)``
   public func deleteJob(
     name: Swift.String,
   ) async throws {
@@ -490,6 +689,13 @@ extension Clients.JobServiceProtocol {
     try await self.deleteJob(request: request)
   }
 
+  /// Begins executing a batch delete jobs operation.
+  ///
+  /// @Snippet(path: "JobService_BatchDeleteJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/batchDeleteJobs(request:options:)``
   public func batchDeleteJobs(request: BatchDeleteJobsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -502,6 +708,13 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Begins executing a batch delete jobs operation.
+  ///
+  /// @Snippet(path: "JobService_BatchDeleteJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/batchDeleteJobsPollingUntilDone(request:options:)``
   public func batchDeleteJobsPollingUntilDone(request: BatchDeleteJobsRequest) async throws
     -> BatchDeleteJobsResponse
   {
@@ -514,6 +727,13 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Begins executing a batch delete jobs operation.
+  ///
+  /// @Snippet(path: "JobService_BatchDeleteJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/batchDeleteJobsPollingUntilDone(request:options:)``
   public func batchDeleteJobsPollingUntilDone(
     parent: Swift.String,
     names: [Swift.String],
@@ -525,6 +745,13 @@ extension Clients.JobServiceProtocol {
     return try await self.batchDeleteJobsPollingUntilDone(request: request)
   }
 
+  /// Lists jobs by filter.
+  ///
+  /// @Snippet(path: "JobService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/listJobs(request:options:)``
   public func listJobs(request: ListJobsRequest) async throws
     -> GoogleCloudTalentV4.ListJobsResponse
   {
@@ -537,6 +764,13 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists jobs by filter.
+  ///
+  /// @Snippet(path: "JobService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -546,6 +780,10 @@ extension Clients.JobServiceProtocol {
   /// Lists jobs by filter.
   ///
   /// @Snippet(path: "JobService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -559,6 +797,13 @@ extension Clients.JobServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists jobs by filter.
+  ///
+  /// @Snippet(path: "JobService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/listJobs(request:options:)``
   public func listJobsByItems(
     parent: Swift.String,
     filter: Swift.String,
@@ -570,6 +815,22 @@ extension Clients.JobServiceProtocol {
     return self.listJobsByItems(request: request)
   }
 
+  /// Searches for jobs using the provided
+  /// [SearchJobsRequest][google.cloud.talent.v4.SearchJobsRequest].
+  ///
+  /// This call constrains the
+  /// [visibility][google.cloud.talent.v4.Job.visibility] of jobs present in the
+  /// database, and only returns jobs that the caller has permission to search
+  /// against.
+  ///
+  /// [google.cloud.talent.v4.Job.visibility]: <doc:Job/visibility>
+  /// [google.cloud.talent.v4.SearchJobsRequest]: <doc:SearchJobsRequest>
+  ///
+  /// @Snippet(path: "JobService_SearchJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/searchJobs(request:options:)``
   public func searchJobs(request: SearchJobsRequest) async throws
     -> GoogleCloudTalentV4.SearchJobsResponse
   {
@@ -582,6 +843,27 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Searches for jobs using the provided
+  /// [SearchJobsRequest][google.cloud.talent.v4.SearchJobsRequest].
+  ///
+  /// This API call is intended for the use case of targeting passive job
+  /// seekers (for example, job seekers who have signed up to receive email
+  /// alerts about potential job opportunities), it has different algorithmic
+  /// adjustments that are designed to specifically target passive job seekers.
+  ///
+  /// This call constrains the
+  /// [visibility][google.cloud.talent.v4.Job.visibility] of jobs present in the
+  /// database, and only returns jobs the caller has permission to search
+  /// against.
+  ///
+  /// [google.cloud.talent.v4.Job.visibility]: <doc:Job/visibility>
+  /// [google.cloud.talent.v4.SearchJobsRequest]: <doc:SearchJobsRequest>
+  ///
+  /// @Snippet(path: "JobService_SearchJobsForAlert")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobServiceClient/searchJobsForAlert(request:options:)``
   public func searchJobsForAlert(request: SearchJobsRequest) async throws
     -> GoogleCloudTalentV4.SearchJobsResponse
   {
@@ -594,6 +876,9 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -606,6 +891,9 @@ extension Clients.JobServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

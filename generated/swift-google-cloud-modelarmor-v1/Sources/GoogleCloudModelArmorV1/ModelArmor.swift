@@ -25,6 +25,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "ModelArmorQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ModelArmorProtocol``
 public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   let inner: any Clients.ModelArmorStub
 
@@ -41,6 +45,13 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// Lists Templates in a given project and location.
   ///
   /// @Snippet(path: "ModelArmor_ListTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTemplates(request:)``
+  /// - ``listTemplatesByItems(request:)``
+  /// - ``listTemplatesByItems(request:options:)``
+  /// - ``listTemplatesByItems(parent:)``
   public func listTemplates(
     request: ListTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse {
@@ -50,6 +61,11 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// Gets details of a single Template.
   ///
   /// @Snippet(path: "ModelArmor_GetTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTemplate(request:)``
+  /// - ``getTemplate(name:)``
   public func getTemplate(
     request: GetTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.Template {
@@ -59,6 +75,11 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// Creates a new Template in a given project and location.
   ///
   /// @Snippet(path: "ModelArmor_CreateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTemplate(request:)``
+  /// - ``createTemplate(parent:template:templateId:)``
   public func createTemplate(
     request: CreateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.Template {
@@ -68,6 +89,11 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// Updates the parameters of a single Template.
   ///
   /// @Snippet(path: "ModelArmor_UpdateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTemplate(request:)``
+  /// - ``updateTemplate(template:updateMask:)``
   public func updateTemplate(
     request: UpdateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.Template {
@@ -77,6 +103,11 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// Deletes a single Template.
   ///
   /// @Snippet(path: "ModelArmor_DeleteTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTemplate(request:)``
+  /// - ``deleteTemplate(name:)``
   public func deleteTemplate(
     request: DeleteTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -86,6 +117,11 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// Gets details of a single floor setting of a project
   ///
   /// @Snippet(path: "ModelArmor_GetFloorSetting")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFloorSetting(request:)``
+  /// - ``getFloorSetting(name:)``
   public func getFloorSetting(
     request: GetFloorSettingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.FloorSetting {
@@ -95,6 +131,11 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// Updates the parameters of a single floor setting of a project
   ///
   /// @Snippet(path: "ModelArmor_UpdateFloorSetting")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFloorSetting(request:)``
+  /// - ``updateFloorSetting(floorSetting:updateMask:)``
   public func updateFloorSetting(
     request: UpdateFloorSettingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.FloorSetting {
@@ -104,6 +145,10 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// Sanitizes User Prompt.
   ///
   /// @Snippet(path: "ModelArmor_SanitizeUserPrompt")
+  ///
+  /// ## See Also
+  ///
+  /// - ``sanitizeUserPrompt(request:)``
   public func sanitizeUserPrompt(
     request: SanitizeUserPromptRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.SanitizeUserPromptResponse {
@@ -113,6 +158,10 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// Sanitizes Model Response.
   ///
   /// @Snippet(path: "ModelArmor_SanitizeModelResponse")
+  ///
+  /// ## See Also
+  ///
+  /// - ``sanitizeModelResponse(request:)``
   public func sanitizeModelResponse(
     request: SanitizeModelResponseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.SanitizeModelResponseResponse {
@@ -139,6 +188,12 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "ModelArmor_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -148,6 +203,10 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ModelArmor_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -221,6 +280,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ModelArmorProtocol {
+  /// Lists Templates in a given project and location.
+  ///
+  /// @Snippet(path: "ModelArmor_ListTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/listTemplates(request:options:)``
   public func listTemplates(request: ListTemplatesRequest) async throws
     -> GoogleCloudModelArmorV1.ListTemplatesResponse
   {
@@ -233,6 +299,13 @@ extension Clients.ModelArmorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Templates in a given project and location.
+  ///
+  /// @Snippet(path: "ModelArmor_ListTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/listTemplates(request:options:)``
   public func listTemplatesByItems(
     request: ListTemplatesRequest
   ) -> some AsyncSequence<Template, any Swift.Error> & Sendable {
@@ -242,6 +315,10 @@ extension Clients.ModelArmorProtocol {
   /// Lists Templates in a given project and location.
   ///
   /// @Snippet(path: "ModelArmor_ListTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/listTemplates(request:options:)``
   public func listTemplatesByItems(
     request: ListTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Template, any Swift.Error> & Sendable {
@@ -256,6 +333,13 @@ extension Clients.ModelArmorProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Templates in a given project and location.
+  ///
+  /// @Snippet(path: "ModelArmor_ListTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/listTemplates(request:options:)``
   public func listTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Template, any Swift.Error> & Sendable {
@@ -265,6 +349,13 @@ extension Clients.ModelArmorProtocol {
     return self.listTemplatesByItems(request: request)
   }
 
+  /// Gets details of a single Template.
+  ///
+  /// @Snippet(path: "ModelArmor_GetTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/getTemplate(request:options:)``
   public func getTemplate(request: GetTemplateRequest) async throws
     -> GoogleCloudModelArmorV1.Template
   {
@@ -277,6 +368,13 @@ extension Clients.ModelArmorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Template.
+  ///
+  /// @Snippet(path: "ModelArmor_GetTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/getTemplate(request:options:)``
   public func getTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudModelArmorV1.Template {
@@ -286,6 +384,13 @@ extension Clients.ModelArmorProtocol {
     return try await self.getTemplate(request: request)
   }
 
+  /// Creates a new Template in a given project and location.
+  ///
+  /// @Snippet(path: "ModelArmor_CreateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/createTemplate(request:options:)``
   public func createTemplate(request: CreateTemplateRequest) async throws
     -> GoogleCloudModelArmorV1.Template
   {
@@ -298,6 +403,13 @@ extension Clients.ModelArmorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Template in a given project and location.
+  ///
+  /// @Snippet(path: "ModelArmor_CreateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/createTemplate(request:options:)``
   public func createTemplate(
     parent: Swift.String,
     template: Template?,
@@ -311,6 +423,13 @@ extension Clients.ModelArmorProtocol {
     return try await self.createTemplate(request: request)
   }
 
+  /// Updates the parameters of a single Template.
+  ///
+  /// @Snippet(path: "ModelArmor_UpdateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/updateTemplate(request:options:)``
   public func updateTemplate(request: UpdateTemplateRequest) async throws
     -> GoogleCloudModelArmorV1.Template
   {
@@ -323,6 +442,13 @@ extension Clients.ModelArmorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Template.
+  ///
+  /// @Snippet(path: "ModelArmor_UpdateTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/updateTemplate(request:options:)``
   public func updateTemplate(
     template: Template?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -334,6 +460,13 @@ extension Clients.ModelArmorProtocol {
     return try await self.updateTemplate(request: request)
   }
 
+  /// Deletes a single Template.
+  ///
+  /// @Snippet(path: "ModelArmor_DeleteTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/deleteTemplate(request:options:)``
   public func deleteTemplate(request: DeleteTemplateRequest) async throws {
     try await self.deleteTemplate(request: request, options: .init())
   }
@@ -344,6 +477,13 @@ extension Clients.ModelArmorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Template.
+  ///
+  /// @Snippet(path: "ModelArmor_DeleteTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/deleteTemplate(request:options:)``
   public func deleteTemplate(
     name: Swift.String,
   ) async throws {
@@ -353,6 +493,13 @@ extension Clients.ModelArmorProtocol {
     try await self.deleteTemplate(request: request)
   }
 
+  /// Gets details of a single floor setting of a project
+  ///
+  /// @Snippet(path: "ModelArmor_GetFloorSetting")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/getFloorSetting(request:options:)``
   public func getFloorSetting(request: GetFloorSettingRequest) async throws
     -> GoogleCloudModelArmorV1.FloorSetting
   {
@@ -365,6 +512,13 @@ extension Clients.ModelArmorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single floor setting of a project
+  ///
+  /// @Snippet(path: "ModelArmor_GetFloorSetting")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/getFloorSetting(request:options:)``
   public func getFloorSetting(
     name: Swift.String,
   ) async throws -> GoogleCloudModelArmorV1.FloorSetting {
@@ -374,6 +528,13 @@ extension Clients.ModelArmorProtocol {
     return try await self.getFloorSetting(request: request)
   }
 
+  /// Updates the parameters of a single floor setting of a project
+  ///
+  /// @Snippet(path: "ModelArmor_UpdateFloorSetting")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/updateFloorSetting(request:options:)``
   public func updateFloorSetting(request: UpdateFloorSettingRequest) async throws
     -> GoogleCloudModelArmorV1.FloorSetting
   {
@@ -386,6 +547,13 @@ extension Clients.ModelArmorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single floor setting of a project
+  ///
+  /// @Snippet(path: "ModelArmor_UpdateFloorSetting")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/updateFloorSetting(request:options:)``
   public func updateFloorSetting(
     floorSetting: FloorSetting?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -397,6 +565,13 @@ extension Clients.ModelArmorProtocol {
     return try await self.updateFloorSetting(request: request)
   }
 
+  /// Sanitizes User Prompt.
+  ///
+  /// @Snippet(path: "ModelArmor_SanitizeUserPrompt")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/sanitizeUserPrompt(request:options:)``
   public func sanitizeUserPrompt(request: SanitizeUserPromptRequest) async throws
     -> GoogleCloudModelArmorV1.SanitizeUserPromptResponse
   {
@@ -409,6 +584,13 @@ extension Clients.ModelArmorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sanitizes Model Response.
+  ///
+  /// @Snippet(path: "ModelArmor_SanitizeModelResponse")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/sanitizeModelResponse(request:options:)``
   public func sanitizeModelResponse(request: SanitizeModelResponseRequest) async throws
     -> GoogleCloudModelArmorV1.SanitizeModelResponseResponse
   {
@@ -421,6 +603,30 @@ extension Clients.ModelArmorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "ModelArmor_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -433,6 +639,30 @@ extension Clients.ModelArmorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "ModelArmor_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -459,6 +689,10 @@ extension Clients.ModelArmorProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "ModelArmor_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -472,6 +706,13 @@ extension Clients.ModelArmorProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "ModelArmor_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ModelArmorClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {

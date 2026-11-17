@@ -25,6 +25,10 @@
   /// Service for managing site search related resources.
   ///
   /// @Snippet(path: "SiteSearchEngineServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SiteSearchEngineServiceProtocol``
   public final class SiteSearchEngineServiceClient: Clients.SiteSearchEngineServiceProtocol,
     Sendable
   {
@@ -51,6 +55,11 @@
     /// [google.cloud.discoveryengine.v1.SiteSearchEngine]: <doc:SiteSearchEngine>
     ///
     /// @Snippet(path: "SiteSearchEngineService_GetSiteSearchEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getSiteSearchEngine(request:)``
+    /// - ``getSiteSearchEngine(name:)``
     public func getSiteSearchEngine(
       request: GetSiteSearchEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.SiteSearchEngine {
@@ -62,6 +71,13 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_CreateTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createTargetSite(request:)``
+    /// - ``createTargetSitePollingUntilDone(request:)``
+    /// - ``createTargetSitePollingUntilDone(request:options:)``
+    /// - ``createTargetSitePollingUntilDone(parent:targetSite:)``
     public func createTargetSite(
       request: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -73,6 +89,13 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_CreateTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createTargetSitePollingUntilDone(request:)``
+    /// - ``createTargetSitePollingUntilDone(parent:targetSite:)``
+    /// - ``createTargetSite(request:)``
+    /// - ``createTargetSite(request:options:)``
     public func createTargetSitePollingUntilDone(
       request: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> TargetSite {
@@ -104,6 +127,12 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_BatchCreateTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchCreateTargetSites(request:)``
+    /// - ``batchCreateTargetSitesPollingUntilDone(request:)``
+    /// - ``batchCreateTargetSitesPollingUntilDone(request:options:)``
     public func batchCreateTargetSites(
       request: BatchCreateTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -116,6 +145,12 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_BatchCreateTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchCreateTargetSitesPollingUntilDone(request:)``
+    /// - ``batchCreateTargetSites(request:)``
+    /// - ``batchCreateTargetSites(request:options:)``
     public func batchCreateTargetSitesPollingUntilDone(
       request: BatchCreateTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchCreateTargetSitesResponse {
@@ -147,6 +182,11 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_GetTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getTargetSite(request:)``
+    /// - ``getTargetSite(name:)``
     public func getTargetSite(
       request: GetTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.TargetSite {
@@ -158,6 +198,13 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_UpdateTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateTargetSite(request:)``
+    /// - ``updateTargetSitePollingUntilDone(request:)``
+    /// - ``updateTargetSitePollingUntilDone(request:options:)``
+    /// - ``updateTargetSitePollingUntilDone(targetSite:)``
     public func updateTargetSite(
       request: UpdateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -169,6 +216,13 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_UpdateTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateTargetSitePollingUntilDone(request:)``
+    /// - ``updateTargetSitePollingUntilDone(targetSite:)``
+    /// - ``updateTargetSite(request:)``
+    /// - ``updateTargetSite(request:options:)``
     public func updateTargetSitePollingUntilDone(
       request: UpdateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> TargetSite {
@@ -199,6 +253,13 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_DeleteTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTargetSite(request:)``
+    /// - ``deleteTargetSitePollingUntilDone(request:)``
+    /// - ``deleteTargetSitePollingUntilDone(request:options:)``
+    /// - ``deleteTargetSitePollingUntilDone(name:)``
     public func deleteTargetSite(
       request: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -210,6 +271,13 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_DeleteTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTargetSitePollingUntilDone(request:)``
+    /// - ``deleteTargetSitePollingUntilDone(name:)``
+    /// - ``deleteTargetSite(request:)``
+    /// - ``deleteTargetSite(request:options:)``
     public func deleteTargetSitePollingUntilDone(
       request: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -240,6 +308,13 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_ListTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listTargetSites(request:)``
+    /// - ``listTargetSitesByItems(request:)``
+    /// - ``listTargetSitesByItems(request:options:)``
+    /// - ``listTargetSitesByItems(parent:)``
     public func listTargetSites(
       request: ListTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListTargetSitesResponse {
@@ -251,6 +326,13 @@
     /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
     ///
     /// @Snippet(path: "SiteSearchEngineService_CreateSitemap")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createSitemap(request:)``
+    /// - ``createSitemapPollingUntilDone(request:)``
+    /// - ``createSitemapPollingUntilDone(request:options:)``
+    /// - ``createSitemapPollingUntilDone(parent:sitemap:)``
     public func createSitemap(
       request: CreateSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -262,6 +344,13 @@
     /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
     ///
     /// @Snippet(path: "SiteSearchEngineService_CreateSitemap")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createSitemapPollingUntilDone(request:)``
+    /// - ``createSitemapPollingUntilDone(parent:sitemap:)``
+    /// - ``createSitemap(request:)``
+    /// - ``createSitemap(request:options:)``
     public func createSitemapPollingUntilDone(
       request: CreateSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> Sitemap {
@@ -291,6 +380,13 @@
     /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
     ///
     /// @Snippet(path: "SiteSearchEngineService_DeleteSitemap")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteSitemap(request:)``
+    /// - ``deleteSitemapPollingUntilDone(request:)``
+    /// - ``deleteSitemapPollingUntilDone(request:options:)``
+    /// - ``deleteSitemapPollingUntilDone(name:)``
     public func deleteSitemap(
       request: DeleteSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -302,6 +398,13 @@
     /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
     ///
     /// @Snippet(path: "SiteSearchEngineService_DeleteSitemap")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteSitemapPollingUntilDone(request:)``
+    /// - ``deleteSitemapPollingUntilDone(name:)``
+    /// - ``deleteSitemap(request:)``
+    /// - ``deleteSitemap(request:options:)``
     public func deleteSitemapPollingUntilDone(
       request: DeleteSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -334,6 +437,11 @@
     /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
     ///
     /// @Snippet(path: "SiteSearchEngineService_FetchSitemaps")
+    ///
+    /// ## See Also
+    ///
+    /// - ``fetchSitemaps(request:)``
+    /// - ``fetchSitemaps(parent:)``
     public func fetchSitemaps(
       request: FetchSitemapsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.FetchSitemapsResponse {
@@ -343,6 +451,12 @@
     /// Upgrade from basic site search to advanced site search.
     ///
     /// @Snippet(path: "SiteSearchEngineService_EnableAdvancedSiteSearch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``enableAdvancedSiteSearch(request:)``
+    /// - ``enableAdvancedSiteSearchPollingUntilDone(request:)``
+    /// - ``enableAdvancedSiteSearchPollingUntilDone(request:options:)``
     public func enableAdvancedSiteSearch(
       request: EnableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -352,6 +466,12 @@
     /// Upgrade from basic site search to advanced site search.
     ///
     /// @Snippet(path: "SiteSearchEngineService_EnableAdvancedSiteSearch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``enableAdvancedSiteSearchPollingUntilDone(request:)``
+    /// - ``enableAdvancedSiteSearch(request:)``
+    /// - ``enableAdvancedSiteSearch(request:options:)``
     public func enableAdvancedSiteSearchPollingUntilDone(
       request: EnableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> EnableAdvancedSiteSearchResponse {
@@ -381,6 +501,12 @@
     /// Downgrade from advanced site search to basic site search.
     ///
     /// @Snippet(path: "SiteSearchEngineService_DisableAdvancedSiteSearch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``disableAdvancedSiteSearch(request:)``
+    /// - ``disableAdvancedSiteSearchPollingUntilDone(request:)``
+    /// - ``disableAdvancedSiteSearchPollingUntilDone(request:options:)``
     public func disableAdvancedSiteSearch(
       request: DisableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -390,6 +516,12 @@
     /// Downgrade from advanced site search to basic site search.
     ///
     /// @Snippet(path: "SiteSearchEngineService_DisableAdvancedSiteSearch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``disableAdvancedSiteSearchPollingUntilDone(request:)``
+    /// - ``disableAdvancedSiteSearch(request:)``
+    /// - ``disableAdvancedSiteSearch(request:options:)``
     public func disableAdvancedSiteSearchPollingUntilDone(
       request: DisableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> DisableAdvancedSiteSearchResponse {
@@ -419,6 +551,12 @@
     /// Request on-demand recrawl for a list of URIs.
     ///
     /// @Snippet(path: "SiteSearchEngineService_RecrawlUris")
+    ///
+    /// ## See Also
+    ///
+    /// - ``recrawlUris(request:)``
+    /// - ``recrawlUrisPollingUntilDone(request:)``
+    /// - ``recrawlUrisPollingUntilDone(request:options:)``
     public func recrawlUris(
       request: RecrawlUrisRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -428,6 +566,12 @@
     /// Request on-demand recrawl for a list of URIs.
     ///
     /// @Snippet(path: "SiteSearchEngineService_RecrawlUris")
+    ///
+    /// ## See Also
+    ///
+    /// - ``recrawlUrisPollingUntilDone(request:)``
+    /// - ``recrawlUris(request:)``
+    /// - ``recrawlUris(request:options:)``
     public func recrawlUrisPollingUntilDone(
       request: RecrawlUrisRequest, options: GoogleGax.RequestOptions
     ) async throws -> RecrawlUrisResponse {
@@ -458,6 +602,12 @@
     /// verification.
     ///
     /// @Snippet(path: "SiteSearchEngineService_BatchVerifyTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchVerifyTargetSites(request:)``
+    /// - ``batchVerifyTargetSitesPollingUntilDone(request:)``
+    /// - ``batchVerifyTargetSitesPollingUntilDone(request:options:)``
     public func batchVerifyTargetSites(
       request: BatchVerifyTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -469,6 +619,12 @@
     /// verification.
     ///
     /// @Snippet(path: "SiteSearchEngineService_BatchVerifyTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchVerifyTargetSitesPollingUntilDone(request:)``
+    /// - ``batchVerifyTargetSites(request:)``
+    /// - ``batchVerifyTargetSites(request:options:)``
     public func batchVerifyTargetSitesPollingUntilDone(
       request: BatchVerifyTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchVerifyTargetSitesResponse {
@@ -500,6 +656,12 @@
     /// state at the moment.
     ///
     /// @Snippet(path: "SiteSearchEngineService_FetchDomainVerificationStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``fetchDomainVerificationStatus(request:)``
+    /// - ``fetchDomainVerificationStatusByItems(request:)``
+    /// - ``fetchDomainVerificationStatusByItems(request:options:)``
     public func fetchDomainVerificationStatus(
       request: FetchDomainVerificationStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.FetchDomainVerificationStatusResponse {
@@ -511,6 +673,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SiteSearchEngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -533,6 +702,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SiteSearchEngineService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -686,6 +860,16 @@
 
   // Default implementations
   extension Clients.SiteSearchEngineServiceProtocol {
+    /// Gets the
+    /// [SiteSearchEngine][google.cloud.discoveryengine.v1.SiteSearchEngine].
+    ///
+    /// [google.cloud.discoveryengine.v1.SiteSearchEngine]: <doc:SiteSearchEngine>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_GetSiteSearchEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/getSiteSearchEngine(request:options:)``
     public func getSiteSearchEngine(request: GetSiteSearchEngineRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.SiteSearchEngine
     {
@@ -698,6 +882,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the
+    /// [SiteSearchEngine][google.cloud.discoveryengine.v1.SiteSearchEngine].
+    ///
+    /// [google.cloud.discoveryengine.v1.SiteSearchEngine]: <doc:SiteSearchEngine>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_GetSiteSearchEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/getSiteSearchEngine(request:options:)``
     public func getSiteSearchEngine(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.SiteSearchEngine {
@@ -707,6 +901,15 @@
       return try await self.getSiteSearchEngine(request: request)
     }
 
+    /// Creates a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_CreateTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/createTargetSite(request:options:)``
     public func createTargetSite(request: CreateTargetSiteRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -719,6 +922,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_CreateTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/createTargetSitePollingUntilDone(request:options:)``
     public func createTargetSitePollingUntilDone(request: CreateTargetSiteRequest) async throws
       -> TargetSite
     {
@@ -731,6 +943,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_CreateTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/createTargetSitePollingUntilDone(request:options:)``
     public func createTargetSitePollingUntilDone(
       parent: Swift.String,
       targetSite: TargetSite?,
@@ -742,6 +963,16 @@
       return try await self.createTargetSitePollingUntilDone(request: request)
     }
 
+    /// Creates [TargetSite][google.cloud.discoveryengine.v1.TargetSite] in a
+    /// batch.
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_BatchCreateTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/batchCreateTargetSites(request:options:)``
     public func batchCreateTargetSites(request: BatchCreateTargetSitesRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -754,6 +985,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates [TargetSite][google.cloud.discoveryengine.v1.TargetSite] in a
+    /// batch.
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_BatchCreateTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/batchCreateTargetSitesPollingUntilDone(request:options:)``
     public func batchCreateTargetSitesPollingUntilDone(request: BatchCreateTargetSitesRequest)
       async throws -> BatchCreateTargetSitesResponse
     {
@@ -767,6 +1008,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_GetTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/getTargetSite(request:options:)``
     public func getTargetSite(request: GetTargetSiteRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.TargetSite
     {
@@ -779,6 +1029,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_GetTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/getTargetSite(request:options:)``
     public func getTargetSite(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.TargetSite {
@@ -788,6 +1047,15 @@
       return try await self.getTargetSite(request: request)
     }
 
+    /// Updates a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_UpdateTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/updateTargetSite(request:options:)``
     public func updateTargetSite(request: UpdateTargetSiteRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -800,6 +1068,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_UpdateTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/updateTargetSitePollingUntilDone(request:options:)``
     public func updateTargetSitePollingUntilDone(request: UpdateTargetSiteRequest) async throws
       -> TargetSite
     {
@@ -812,6 +1089,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_UpdateTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/updateTargetSitePollingUntilDone(request:options:)``
     public func updateTargetSitePollingUntilDone(
       targetSite: TargetSite?,
     ) async throws -> TargetSite {
@@ -821,6 +1107,15 @@
       return try await self.updateTargetSitePollingUntilDone(request: request)
     }
 
+    /// Deletes a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_DeleteTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/deleteTargetSite(request:options:)``
     public func deleteTargetSite(request: DeleteTargetSiteRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -833,6 +1128,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_DeleteTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/deleteTargetSitePollingUntilDone(request:options:)``
     public func deleteTargetSitePollingUntilDone(request: DeleteTargetSiteRequest) async throws {
       try await self.deleteTargetSitePollingUntilDone(request: request, options: .init())
     }
@@ -843,6 +1147,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a [TargetSite][google.cloud.discoveryengine.v1.TargetSite].
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_DeleteTargetSite")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/deleteTargetSitePollingUntilDone(request:options:)``
     public func deleteTargetSitePollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -852,6 +1165,15 @@
       try await self.deleteTargetSitePollingUntilDone(request: request)
     }
 
+    /// Gets a list of [TargetSite][google.cloud.discoveryengine.v1.TargetSite]s.
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_ListTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/listTargetSites(request:options:)``
     public func listTargetSites(request: ListTargetSitesRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListTargetSitesResponse
     {
@@ -864,6 +1186,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a list of [TargetSite][google.cloud.discoveryengine.v1.TargetSite]s.
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_ListTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/listTargetSites(request:options:)``
     public func listTargetSitesByItems(
       request: ListTargetSitesRequest
     ) -> some AsyncSequence<TargetSite, any Swift.Error> & Sendable {
@@ -875,6 +1206,10 @@
     /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
     ///
     /// @Snippet(path: "SiteSearchEngineService_ListTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/listTargetSites(request:options:)``
     public func listTargetSitesByItems(
       request: ListTargetSitesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TargetSite, any Swift.Error> & Sendable {
@@ -889,6 +1224,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets a list of [TargetSite][google.cloud.discoveryengine.v1.TargetSite]s.
+    ///
+    /// [google.cloud.discoveryengine.v1.TargetSite]: <doc:TargetSite>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_ListTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/listTargetSites(request:options:)``
     public func listTargetSitesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<TargetSite, any Swift.Error> & Sendable {
@@ -898,6 +1242,15 @@
       return self.listTargetSitesByItems(request: request)
     }
 
+    /// Creates a [Sitemap][google.cloud.discoveryengine.v1.Sitemap].
+    ///
+    /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_CreateSitemap")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/createSitemap(request:options:)``
     public func createSitemap(request: CreateSitemapRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -910,6 +1263,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [Sitemap][google.cloud.discoveryengine.v1.Sitemap].
+    ///
+    /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_CreateSitemap")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/createSitemapPollingUntilDone(request:options:)``
     public func createSitemapPollingUntilDone(request: CreateSitemapRequest) async throws -> Sitemap
     {
       return try await self.createSitemapPollingUntilDone(request: request, options: .init())
@@ -921,6 +1283,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [Sitemap][google.cloud.discoveryengine.v1.Sitemap].
+    ///
+    /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_CreateSitemap")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/createSitemapPollingUntilDone(request:options:)``
     public func createSitemapPollingUntilDone(
       parent: Swift.String,
       sitemap: Sitemap?,
@@ -932,6 +1303,15 @@
       return try await self.createSitemapPollingUntilDone(request: request)
     }
 
+    /// Deletes a [Sitemap][google.cloud.discoveryengine.v1.Sitemap].
+    ///
+    /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_DeleteSitemap")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/deleteSitemap(request:options:)``
     public func deleteSitemap(request: DeleteSitemapRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -944,6 +1324,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a [Sitemap][google.cloud.discoveryengine.v1.Sitemap].
+    ///
+    /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_DeleteSitemap")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/deleteSitemapPollingUntilDone(request:options:)``
     public func deleteSitemapPollingUntilDone(request: DeleteSitemapRequest) async throws {
       try await self.deleteSitemapPollingUntilDone(request: request, options: .init())
     }
@@ -954,6 +1343,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a [Sitemap][google.cloud.discoveryengine.v1.Sitemap].
+    ///
+    /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_DeleteSitemap")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/deleteSitemapPollingUntilDone(request:options:)``
     public func deleteSitemapPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -963,6 +1361,17 @@
       try await self.deleteSitemapPollingUntilDone(request: request)
     }
 
+    /// Fetch [Sitemap][google.cloud.discoveryengine.v1.Sitemap]s in a
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_FetchSitemaps")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/fetchSitemaps(request:options:)``
     public func fetchSitemaps(request: FetchSitemapsRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.FetchSitemapsResponse
     {
@@ -975,6 +1384,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Fetch [Sitemap][google.cloud.discoveryengine.v1.Sitemap]s in a
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_FetchSitemaps")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/fetchSitemaps(request:options:)``
     public func fetchSitemaps(
       parent: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.FetchSitemapsResponse {
@@ -984,6 +1404,13 @@
       return try await self.fetchSitemaps(request: request)
     }
 
+    /// Upgrade from basic site search to advanced site search.
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_EnableAdvancedSiteSearch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/enableAdvancedSiteSearch(request:options:)``
     public func enableAdvancedSiteSearch(request: EnableAdvancedSiteSearchRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -996,6 +1423,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Upgrade from basic site search to advanced site search.
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_EnableAdvancedSiteSearch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/enableAdvancedSiteSearchPollingUntilDone(request:options:)``
     public func enableAdvancedSiteSearchPollingUntilDone(request: EnableAdvancedSiteSearchRequest)
       async throws -> EnableAdvancedSiteSearchResponse
     {
@@ -1009,6 +1443,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Downgrade from advanced site search to basic site search.
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_DisableAdvancedSiteSearch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/disableAdvancedSiteSearch(request:options:)``
     public func disableAdvancedSiteSearch(request: DisableAdvancedSiteSearchRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1021,6 +1462,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Downgrade from advanced site search to basic site search.
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_DisableAdvancedSiteSearch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/disableAdvancedSiteSearchPollingUntilDone(request:options:)``
     public func disableAdvancedSiteSearchPollingUntilDone(request: DisableAdvancedSiteSearchRequest)
       async throws -> DisableAdvancedSiteSearchResponse
     {
@@ -1034,6 +1482,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Request on-demand recrawl for a list of URIs.
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_RecrawlUris")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/recrawlUris(request:options:)``
     public func recrawlUris(request: RecrawlUrisRequest) async throws -> GoogleLongRunning.Operation
     {
       try await self.recrawlUris(request: request, options: .init())
@@ -1045,6 +1500,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Request on-demand recrawl for a list of URIs.
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_RecrawlUris")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/recrawlUrisPollingUntilDone(request:options:)``
     public func recrawlUrisPollingUntilDone(request: RecrawlUrisRequest) async throws
       -> RecrawlUrisResponse
     {
@@ -1057,6 +1519,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Verify target sites' ownership and validity.
+    /// This API sends all the target sites under site search engine for
+    /// verification.
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_BatchVerifyTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/batchVerifyTargetSites(request:options:)``
     public func batchVerifyTargetSites(request: BatchVerifyTargetSitesRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1069,6 +1540,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Verify target sites' ownership and validity.
+    /// This API sends all the target sites under site search engine for
+    /// verification.
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_BatchVerifyTargetSites")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/batchVerifyTargetSitesPollingUntilDone(request:options:)``
     public func batchVerifyTargetSitesPollingUntilDone(request: BatchVerifyTargetSitesRequest)
       async throws -> BatchVerifyTargetSitesResponse
     {
@@ -1082,6 +1562,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns list of target sites with its domain verification status.
+    /// This method can only be called under data store with BASIC_SITE_SEARCH
+    /// state at the moment.
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_FetchDomainVerificationStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/fetchDomainVerificationStatus(request:options:)``
     public func fetchDomainVerificationStatus(request: FetchDomainVerificationStatusRequest)
       async throws -> GoogleCloudDiscoveryEngineV1.FetchDomainVerificationStatusResponse
     {
@@ -1094,6 +1583,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns list of target sites with its domain verification status.
+    /// This method can only be called under data store with BASIC_SITE_SEARCH
+    /// state at the moment.
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_FetchDomainVerificationStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/fetchDomainVerificationStatus(request:options:)``
     public func fetchDomainVerificationStatusByItems(
       request: FetchDomainVerificationStatusRequest
     ) -> some AsyncSequence<TargetSite, any Swift.Error> & Sendable {
@@ -1105,6 +1603,10 @@
     /// state at the moment.
     ///
     /// @Snippet(path: "SiteSearchEngineService_FetchDomainVerificationStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/fetchDomainVerificationStatus(request:options:)``
     public func fetchDomainVerificationStatusByItems(
       request: FetchDomainVerificationStatusRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TargetSite, any Swift.Error> & Sendable {
@@ -1119,6 +1621,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -1131,6 +1642,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1142,6 +1662,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SiteSearchEngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1155,6 +1679,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -1166,6 +1699,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1178,6 +1714,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -1187,6 +1726,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -1197,6 +1745,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SiteSearchEngineService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SiteSearchEngineServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

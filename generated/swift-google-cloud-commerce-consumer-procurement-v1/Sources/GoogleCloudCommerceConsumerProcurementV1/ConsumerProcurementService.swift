@@ -34,6 +34,10 @@ import Foundation
 /// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService]: <doc:ConsumerProcurementServiceClient>
 ///
 /// @Snippet(path: "ConsumerProcurementServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ConsumerProcurementServiceProtocol``
 public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurementServiceProtocol,
   Sendable
 {
@@ -68,6 +72,12 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
   ///
   /// @Snippet(path: "ConsumerProcurementService_PlaceOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``placeOrder(request:)``
+  /// - ``placeOrderPollingUntilDone(request:)``
+  /// - ``placeOrderPollingUntilDone(request:options:)``
   public func placeOrder(
     request: PlaceOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -88,6 +98,12 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
   ///
   /// @Snippet(path: "ConsumerProcurementService_PlaceOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``placeOrderPollingUntilDone(request:)``
+  /// - ``placeOrder(request:)``
+  /// - ``placeOrder(request:options:)``
   public func placeOrderPollingUntilDone(
     request: PlaceOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Order {
@@ -118,6 +134,11 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
   ///
   /// @Snippet(path: "ConsumerProcurementService_GetOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getOrder(request:)``
+  /// - ``getOrder(name:)``
   public func getOrder(
     request: GetOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.Order {
@@ -131,6 +152,13 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
   ///
   /// @Snippet(path: "ConsumerProcurementService_ListOrders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOrders(request:)``
+  /// - ``listOrdersByItems(request:)``
+  /// - ``listOrdersByItems(request:options:)``
+  /// - ``listOrdersByItems(parent:)``
   public func listOrders(
     request: ListOrdersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse {
@@ -143,6 +171,12 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
   ///
   /// @Snippet(path: "ConsumerProcurementService_ModifyOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``modifyOrder(request:)``
+  /// - ``modifyOrderPollingUntilDone(request:)``
+  /// - ``modifyOrderPollingUntilDone(request:options:)``
   public func modifyOrder(
     request: ModifyOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -155,6 +189,12 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
   ///
   /// @Snippet(path: "ConsumerProcurementService_ModifyOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``modifyOrderPollingUntilDone(request:)``
+  /// - ``modifyOrder(request:)``
+  /// - ``modifyOrder(request:options:)``
   public func modifyOrderPollingUntilDone(
     request: ModifyOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Order {
@@ -186,6 +226,12 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
   ///
   /// @Snippet(path: "ConsumerProcurementService_CancelOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOrder(request:)``
+  /// - ``cancelOrderPollingUntilDone(request:)``
+  /// - ``cancelOrderPollingUntilDone(request:options:)``
   public func cancelOrder(
     request: CancelOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -199,6 +245,12 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
   ///
   /// @Snippet(path: "ConsumerProcurementService_CancelOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOrderPollingUntilDone(request:)``
+  /// - ``cancelOrder(request:)``
+  /// - ``cancelOrder(request:options:)``
   public func cancelOrderPollingUntilDone(
     request: CancelOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Order {
@@ -286,6 +338,24 @@ extension Clients {
 
 // Default implementations
 extension Clients.ConsumerProcurementServiceProtocol {
+  /// Creates a new [Order][google.cloud.commerce.consumer.procurement.v1.Order].
+  ///
+  /// This API only supports GCP spend-based committed use
+  /// discounts specified by GCP documentation.
+  ///
+  /// The returned long-running operation is in-progress until the backend
+  /// completes the creation of the resource. Once completed, the order is
+  /// in
+  /// [OrderState.ORDER_STATE_ACTIVE][google.cloud.commerce.consumer.procurement.v1.OrderState.ORDER_STATE_ACTIVE].
+  /// In case of failure, the order resource will be removed.
+  ///
+  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
+  ///
+  /// @Snippet(path: "ConsumerProcurementService_PlaceOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConsumerProcurementServiceClient/placeOrder(request:options:)``
   public func placeOrder(request: PlaceOrderRequest) async throws -> GoogleLongRunning.Operation {
     try await self.placeOrder(request: request, options: .init())
   }
@@ -296,6 +366,24 @@ extension Clients.ConsumerProcurementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new [Order][google.cloud.commerce.consumer.procurement.v1.Order].
+  ///
+  /// This API only supports GCP spend-based committed use
+  /// discounts specified by GCP documentation.
+  ///
+  /// The returned long-running operation is in-progress until the backend
+  /// completes the creation of the resource. Once completed, the order is
+  /// in
+  /// [OrderState.ORDER_STATE_ACTIVE][google.cloud.commerce.consumer.procurement.v1.OrderState.ORDER_STATE_ACTIVE].
+  /// In case of failure, the order resource will be removed.
+  ///
+  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
+  ///
+  /// @Snippet(path: "ConsumerProcurementService_PlaceOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConsumerProcurementServiceClient/placeOrderPollingUntilDone(request:options:)``
   public func placeOrderPollingUntilDone(request: PlaceOrderRequest) async throws -> Order {
     return try await self.placeOrderPollingUntilDone(request: request, options: .init())
   }
@@ -306,6 +394,16 @@ extension Clients.ConsumerProcurementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the requested
+  /// [Order][google.cloud.commerce.consumer.procurement.v1.Order] resource.
+  ///
+  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
+  ///
+  /// @Snippet(path: "ConsumerProcurementService_GetOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConsumerProcurementServiceClient/getOrder(request:options:)``
   public func getOrder(request: GetOrderRequest) async throws
     -> GoogleCloudCommerceConsumerProcurementV1.Order
   {
@@ -318,6 +416,16 @@ extension Clients.ConsumerProcurementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the requested
+  /// [Order][google.cloud.commerce.consumer.procurement.v1.Order] resource.
+  ///
+  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
+  ///
+  /// @Snippet(path: "ConsumerProcurementService_GetOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConsumerProcurementServiceClient/getOrder(request:options:)``
   public func getOrder(
     name: Swift.String,
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.Order {
@@ -327,6 +435,17 @@ extension Clients.ConsumerProcurementServiceProtocol {
     return try await self.getOrder(request: request)
   }
 
+  /// Lists [Order][google.cloud.commerce.consumer.procurement.v1.Order]
+  /// resources that the user has access to, within the scope of the parent
+  /// resource.
+  ///
+  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
+  ///
+  /// @Snippet(path: "ConsumerProcurementService_ListOrders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConsumerProcurementServiceClient/listOrders(request:options:)``
   public func listOrders(request: ListOrdersRequest) async throws
     -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse
   {
@@ -339,6 +458,17 @@ extension Clients.ConsumerProcurementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists [Order][google.cloud.commerce.consumer.procurement.v1.Order]
+  /// resources that the user has access to, within the scope of the parent
+  /// resource.
+  ///
+  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
+  ///
+  /// @Snippet(path: "ConsumerProcurementService_ListOrders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConsumerProcurementServiceClient/listOrders(request:options:)``
   public func listOrdersByItems(
     request: ListOrdersRequest
   ) -> some AsyncSequence<Order, any Swift.Error> & Sendable {
@@ -352,6 +482,10 @@ extension Clients.ConsumerProcurementServiceProtocol {
   /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
   ///
   /// @Snippet(path: "ConsumerProcurementService_ListOrders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConsumerProcurementServiceClient/listOrders(request:options:)``
   public func listOrdersByItems(
     request: ListOrdersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Order, any Swift.Error> & Sendable {
@@ -366,6 +500,17 @@ extension Clients.ConsumerProcurementServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists [Order][google.cloud.commerce.consumer.procurement.v1.Order]
+  /// resources that the user has access to, within the scope of the parent
+  /// resource.
+  ///
+  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
+  ///
+  /// @Snippet(path: "ConsumerProcurementService_ListOrders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConsumerProcurementServiceClient/listOrders(request:options:)``
   public func listOrdersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Order, any Swift.Error> & Sendable {
@@ -375,6 +520,16 @@ extension Clients.ConsumerProcurementServiceProtocol {
     return self.listOrdersByItems(request: request)
   }
 
+  /// Modifies an existing
+  /// [Order][google.cloud.commerce.consumer.procurement.v1.Order] resource.
+  ///
+  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
+  ///
+  /// @Snippet(path: "ConsumerProcurementService_ModifyOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConsumerProcurementServiceClient/modifyOrder(request:options:)``
   public func modifyOrder(request: ModifyOrderRequest) async throws -> GoogleLongRunning.Operation {
     try await self.modifyOrder(request: request, options: .init())
   }
@@ -385,6 +540,16 @@ extension Clients.ConsumerProcurementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Modifies an existing
+  /// [Order][google.cloud.commerce.consumer.procurement.v1.Order] resource.
+  ///
+  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
+  ///
+  /// @Snippet(path: "ConsumerProcurementService_ModifyOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConsumerProcurementServiceClient/modifyOrderPollingUntilDone(request:options:)``
   public func modifyOrderPollingUntilDone(request: ModifyOrderRequest) async throws -> Order {
     return try await self.modifyOrderPollingUntilDone(request: request, options: .init())
   }
@@ -395,6 +560,17 @@ extension Clients.ConsumerProcurementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancels an existing
+  /// [Order][google.cloud.commerce.consumer.procurement.v1.Order]. Every product
+  /// procured in the Order will be cancelled.
+  ///
+  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
+  ///
+  /// @Snippet(path: "ConsumerProcurementService_CancelOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConsumerProcurementServiceClient/cancelOrder(request:options:)``
   public func cancelOrder(request: CancelOrderRequest) async throws -> GoogleLongRunning.Operation {
     try await self.cancelOrder(request: request, options: .init())
   }
@@ -405,6 +581,17 @@ extension Clients.ConsumerProcurementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancels an existing
+  /// [Order][google.cloud.commerce.consumer.procurement.v1.Order]. Every product
+  /// procured in the Order will be cancelled.
+  ///
+  /// [google.cloud.commerce.consumer.procurement.v1.Order]: <doc:Order>
+  ///
+  /// @Snippet(path: "ConsumerProcurementService_CancelOrder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConsumerProcurementServiceClient/cancelOrderPollingUntilDone(request:options:)``
   public func cancelOrderPollingUntilDone(request: CancelOrderRequest) async throws -> Order {
     return try await self.cancelOrderPollingUntilDone(request: request, options: .init())
   }
@@ -415,6 +602,9 @@ extension Clients.ConsumerProcurementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -427,6 +617,9 @@ extension Clients.ConsumerProcurementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

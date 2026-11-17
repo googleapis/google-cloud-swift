@@ -27,6 +27,10 @@
   /// Service for managing companion agents.
   ///
   /// @Snippet(path: "CompanionAgentsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/CompanionAgentsProtocol``
   public final class CompanionAgentsClient: Clients.CompanionAgentsProtocol, Sendable {
     let inner: any Clients.CompanionAgentsStub
 
@@ -43,6 +47,11 @@
     /// Creates a companion agent.
     ///
     /// @Snippet(path: "CompanionAgents_CreateCompanionAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createCompanionAgent(request:)``
+    /// - ``createCompanionAgent(parent:companionAgent:companionAgentId:)``
     public func createCompanionAgent(
       request: CreateCompanionAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.CompanionAgent {
@@ -52,6 +61,11 @@
     /// Gets a companion agent.
     ///
     /// @Snippet(path: "CompanionAgents_GetCompanionAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getCompanionAgent(request:)``
+    /// - ``getCompanionAgent(name:)``
     public func getCompanionAgent(
       request: GetCompanionAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.CompanionAgent {
@@ -61,6 +75,11 @@
     /// Updates a companion agent.
     ///
     /// @Snippet(path: "CompanionAgents_UpdateCompanionAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateCompanionAgent(request:)``
+    /// - ``updateCompanionAgent(companionAgent:updateMask:)``
     public func updateCompanionAgent(
       request: UpdateCompanionAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.CompanionAgent {
@@ -70,6 +89,11 @@
     /// Deletes a companion agent.
     ///
     /// @Snippet(path: "CompanionAgents_DeleteCompanionAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteCompanionAgent(request:)``
+    /// - ``deleteCompanionAgent(name:)``
     public func deleteCompanionAgent(
       request: DeleteCompanionAgentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -79,6 +103,13 @@
     /// Lists companion agents.
     ///
     /// @Snippet(path: "CompanionAgents_ListCompanionAgents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listCompanionAgents(request:)``
+    /// - ``listCompanionAgentsByItems(request:)``
+    /// - ``listCompanionAgentsByItems(request:options:)``
+    /// - ``listCompanionAgentsByItems(parent:)``
     public func listCompanionAgents(
       request: ListCompanionAgentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListCompanionAgentsResponse {
@@ -105,6 +136,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "CompanionAgents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -114,6 +151,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "CompanionAgents_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -125,6 +166,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "CompanionAgents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -147,6 +195,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "CompanionAgents_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -210,6 +263,13 @@
 
   // Default implementations
   extension Clients.CompanionAgentsProtocol {
+    /// Creates a companion agent.
+    ///
+    /// @Snippet(path: "CompanionAgents_CreateCompanionAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/createCompanionAgent(request:options:)``
     public func createCompanionAgent(request: CreateCompanionAgentRequest) async throws
       -> GoogleCloudDialogflowV2.CompanionAgent
     {
@@ -222,6 +282,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a companion agent.
+    ///
+    /// @Snippet(path: "CompanionAgents_CreateCompanionAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/createCompanionAgent(request:options:)``
     public func createCompanionAgent(
       parent: Swift.String,
       companionAgent: CompanionAgent?,
@@ -235,6 +302,13 @@
       return try await self.createCompanionAgent(request: request)
     }
 
+    /// Gets a companion agent.
+    ///
+    /// @Snippet(path: "CompanionAgents_GetCompanionAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/getCompanionAgent(request:options:)``
     public func getCompanionAgent(request: GetCompanionAgentRequest) async throws
       -> GoogleCloudDialogflowV2.CompanionAgent
     {
@@ -247,6 +321,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a companion agent.
+    ///
+    /// @Snippet(path: "CompanionAgents_GetCompanionAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/getCompanionAgent(request:options:)``
     public func getCompanionAgent(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.CompanionAgent {
@@ -256,6 +337,13 @@
       return try await self.getCompanionAgent(request: request)
     }
 
+    /// Updates a companion agent.
+    ///
+    /// @Snippet(path: "CompanionAgents_UpdateCompanionAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/updateCompanionAgent(request:options:)``
     public func updateCompanionAgent(request: UpdateCompanionAgentRequest) async throws
       -> GoogleCloudDialogflowV2.CompanionAgent
     {
@@ -268,6 +356,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a companion agent.
+    ///
+    /// @Snippet(path: "CompanionAgents_UpdateCompanionAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/updateCompanionAgent(request:options:)``
     public func updateCompanionAgent(
       companionAgent: CompanionAgent?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -279,6 +374,13 @@
       return try await self.updateCompanionAgent(request: request)
     }
 
+    /// Deletes a companion agent.
+    ///
+    /// @Snippet(path: "CompanionAgents_DeleteCompanionAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/deleteCompanionAgent(request:options:)``
     public func deleteCompanionAgent(request: DeleteCompanionAgentRequest) async throws {
       try await self.deleteCompanionAgent(request: request, options: .init())
     }
@@ -289,6 +391,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a companion agent.
+    ///
+    /// @Snippet(path: "CompanionAgents_DeleteCompanionAgent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/deleteCompanionAgent(request:options:)``
     public func deleteCompanionAgent(
       name: Swift.String,
     ) async throws {
@@ -298,6 +407,13 @@
       try await self.deleteCompanionAgent(request: request)
     }
 
+    /// Lists companion agents.
+    ///
+    /// @Snippet(path: "CompanionAgents_ListCompanionAgents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/listCompanionAgents(request:options:)``
     public func listCompanionAgents(request: ListCompanionAgentsRequest) async throws
       -> GoogleCloudDialogflowV2.ListCompanionAgentsResponse
     {
@@ -310,6 +426,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists companion agents.
+    ///
+    /// @Snippet(path: "CompanionAgents_ListCompanionAgents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/listCompanionAgents(request:options:)``
     public func listCompanionAgentsByItems(
       request: ListCompanionAgentsRequest
     ) -> some AsyncSequence<CompanionAgent, any Swift.Error> & Sendable {
@@ -319,6 +442,10 @@
     /// Lists companion agents.
     ///
     /// @Snippet(path: "CompanionAgents_ListCompanionAgents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/listCompanionAgents(request:options:)``
     public func listCompanionAgentsByItems(
       request: ListCompanionAgentsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<CompanionAgent, any Swift.Error> & Sendable {
@@ -333,6 +460,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists companion agents.
+    ///
+    /// @Snippet(path: "CompanionAgents_ListCompanionAgents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/listCompanionAgents(request:options:)``
     public func listCompanionAgentsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<CompanionAgent, any Swift.Error> & Sendable {
@@ -342,6 +476,30 @@
       return self.listCompanionAgentsByItems(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "CompanionAgents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -354,6 +512,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "CompanionAgents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -380,6 +562,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "CompanionAgents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -393,6 +579,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "CompanionAgents_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -405,6 +598,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CompanionAgents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -417,6 +619,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CompanionAgents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -428,6 +639,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "CompanionAgents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -441,6 +656,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CompanionAgents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -452,6 +676,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -464,6 +691,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -473,6 +703,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CompanionAgents_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -483,6 +722,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "CompanionAgents_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``CompanionAgentsClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

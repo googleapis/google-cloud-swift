@@ -30,6 +30,10 @@ import Foundation
 /// - List/Get pending and historical quota preference.
 ///
 /// @Snippet(path: "CloudQuotasQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudQuotasProtocol``
 public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   let inner: any Clients.CloudQuotasStub
 
@@ -46,6 +50,13 @@ public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   /// Lists QuotaInfos of all quotas for a given project, folder or organization.
   ///
   /// @Snippet(path: "CloudQuotas_ListQuotaInfos")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listQuotaInfos(request:)``
+  /// - ``listQuotaInfosByItems(request:)``
+  /// - ``listQuotaInfosByItems(request:options:)``
+  /// - ``listQuotaInfosByItems(parent:)``
   public func listQuotaInfos(
     request: ListQuotaInfosRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.ListQuotaInfosResponse {
@@ -55,6 +66,11 @@ public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   /// Retrieve the QuotaInfo of a quota for a project, folder or organization.
   ///
   /// @Snippet(path: "CloudQuotas_GetQuotaInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getQuotaInfo(request:)``
+  /// - ``getQuotaInfo(name:)``
   public func getQuotaInfo(
     request: GetQuotaInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.QuotaInfo {
@@ -64,6 +80,13 @@ public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   /// Lists QuotaPreferences in a given project, folder or organization.
   ///
   /// @Snippet(path: "CloudQuotas_ListQuotaPreferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listQuotaPreferences(request:)``
+  /// - ``listQuotaPreferencesByItems(request:)``
+  /// - ``listQuotaPreferencesByItems(request:options:)``
+  /// - ``listQuotaPreferencesByItems(parent:)``
   public func listQuotaPreferences(
     request: ListQuotaPreferencesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.ListQuotaPreferencesResponse {
@@ -73,6 +96,11 @@ public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   /// Gets details of a single QuotaPreference.
   ///
   /// @Snippet(path: "CloudQuotas_GetQuotaPreference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getQuotaPreference(request:)``
+  /// - ``getQuotaPreference(name:)``
   public func getQuotaPreference(
     request: GetQuotaPreferenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
@@ -82,6 +110,12 @@ public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   /// Creates a new QuotaPreference that declares the desired value for a quota.
   ///
   /// @Snippet(path: "CloudQuotas_CreateQuotaPreference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createQuotaPreference(request:)``
+  /// - ``createQuotaPreference(parent:quotaPreference:quotaPreferenceId:)``
+  /// - ``createQuotaPreference(parent:quotaPreference:)``
   public func createQuotaPreference(
     request: CreateQuotaPreferenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
@@ -92,6 +126,11 @@ public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   /// config in any states, not just the ones pending approval.
   ///
   /// @Snippet(path: "CloudQuotas_UpdateQuotaPreference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateQuotaPreference(request:)``
+  /// - ``updateQuotaPreference(quotaPreference:updateMask:)``
   public func updateQuotaPreference(
     request: UpdateQuotaPreferenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
@@ -140,6 +179,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudQuotasProtocol {
+  /// Lists QuotaInfos of all quotas for a given project, folder or organization.
+  ///
+  /// @Snippet(path: "CloudQuotas_ListQuotaInfos")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/listQuotaInfos(request:options:)``
   public func listQuotaInfos(request: ListQuotaInfosRequest) async throws
     -> GoogleApiCloudQuotasV1.ListQuotaInfosResponse
   {
@@ -152,6 +198,13 @@ extension Clients.CloudQuotasProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists QuotaInfos of all quotas for a given project, folder or organization.
+  ///
+  /// @Snippet(path: "CloudQuotas_ListQuotaInfos")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/listQuotaInfos(request:options:)``
   public func listQuotaInfosByItems(
     request: ListQuotaInfosRequest
   ) -> some AsyncSequence<QuotaInfo, any Swift.Error> & Sendable {
@@ -161,6 +214,10 @@ extension Clients.CloudQuotasProtocol {
   /// Lists QuotaInfos of all quotas for a given project, folder or organization.
   ///
   /// @Snippet(path: "CloudQuotas_ListQuotaInfos")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/listQuotaInfos(request:options:)``
   public func listQuotaInfosByItems(
     request: ListQuotaInfosRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<QuotaInfo, any Swift.Error> & Sendable {
@@ -175,6 +232,13 @@ extension Clients.CloudQuotasProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists QuotaInfos of all quotas for a given project, folder or organization.
+  ///
+  /// @Snippet(path: "CloudQuotas_ListQuotaInfos")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/listQuotaInfos(request:options:)``
   public func listQuotaInfosByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<QuotaInfo, any Swift.Error> & Sendable {
@@ -184,6 +248,13 @@ extension Clients.CloudQuotasProtocol {
     return self.listQuotaInfosByItems(request: request)
   }
 
+  /// Retrieve the QuotaInfo of a quota for a project, folder or organization.
+  ///
+  /// @Snippet(path: "CloudQuotas_GetQuotaInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/getQuotaInfo(request:options:)``
   public func getQuotaInfo(request: GetQuotaInfoRequest) async throws
     -> GoogleApiCloudQuotasV1.QuotaInfo
   {
@@ -196,6 +267,13 @@ extension Clients.CloudQuotasProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve the QuotaInfo of a quota for a project, folder or organization.
+  ///
+  /// @Snippet(path: "CloudQuotas_GetQuotaInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/getQuotaInfo(request:options:)``
   public func getQuotaInfo(
     name: Swift.String,
   ) async throws -> GoogleApiCloudQuotasV1.QuotaInfo {
@@ -205,6 +283,13 @@ extension Clients.CloudQuotasProtocol {
     return try await self.getQuotaInfo(request: request)
   }
 
+  /// Lists QuotaPreferences in a given project, folder or organization.
+  ///
+  /// @Snippet(path: "CloudQuotas_ListQuotaPreferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/listQuotaPreferences(request:options:)``
   public func listQuotaPreferences(request: ListQuotaPreferencesRequest) async throws
     -> GoogleApiCloudQuotasV1.ListQuotaPreferencesResponse
   {
@@ -217,6 +302,13 @@ extension Clients.CloudQuotasProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists QuotaPreferences in a given project, folder or organization.
+  ///
+  /// @Snippet(path: "CloudQuotas_ListQuotaPreferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/listQuotaPreferences(request:options:)``
   public func listQuotaPreferencesByItems(
     request: ListQuotaPreferencesRequest
   ) -> some AsyncSequence<QuotaPreference, any Swift.Error> & Sendable {
@@ -226,6 +318,10 @@ extension Clients.CloudQuotasProtocol {
   /// Lists QuotaPreferences in a given project, folder or organization.
   ///
   /// @Snippet(path: "CloudQuotas_ListQuotaPreferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/listQuotaPreferences(request:options:)``
   public func listQuotaPreferencesByItems(
     request: ListQuotaPreferencesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<QuotaPreference, any Swift.Error> & Sendable {
@@ -240,6 +336,13 @@ extension Clients.CloudQuotasProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists QuotaPreferences in a given project, folder or organization.
+  ///
+  /// @Snippet(path: "CloudQuotas_ListQuotaPreferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/listQuotaPreferences(request:options:)``
   public func listQuotaPreferencesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<QuotaPreference, any Swift.Error> & Sendable {
@@ -249,6 +352,13 @@ extension Clients.CloudQuotasProtocol {
     return self.listQuotaPreferencesByItems(request: request)
   }
 
+  /// Gets details of a single QuotaPreference.
+  ///
+  /// @Snippet(path: "CloudQuotas_GetQuotaPreference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/getQuotaPreference(request:options:)``
   public func getQuotaPreference(request: GetQuotaPreferenceRequest) async throws
     -> GoogleApiCloudQuotasV1.QuotaPreference
   {
@@ -261,6 +371,13 @@ extension Clients.CloudQuotasProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single QuotaPreference.
+  ///
+  /// @Snippet(path: "CloudQuotas_GetQuotaPreference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/getQuotaPreference(request:options:)``
   public func getQuotaPreference(
     name: Swift.String,
   ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
@@ -270,6 +387,13 @@ extension Clients.CloudQuotasProtocol {
     return try await self.getQuotaPreference(request: request)
   }
 
+  /// Creates a new QuotaPreference that declares the desired value for a quota.
+  ///
+  /// @Snippet(path: "CloudQuotas_CreateQuotaPreference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/createQuotaPreference(request:options:)``
   public func createQuotaPreference(request: CreateQuotaPreferenceRequest) async throws
     -> GoogleApiCloudQuotasV1.QuotaPreference
   {
@@ -282,6 +406,13 @@ extension Clients.CloudQuotasProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new QuotaPreference that declares the desired value for a quota.
+  ///
+  /// @Snippet(path: "CloudQuotas_CreateQuotaPreference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/createQuotaPreference(request:options:)``
   public func createQuotaPreference(
     parent: Swift.String,
     quotaPreference: QuotaPreference?,
@@ -295,6 +426,13 @@ extension Clients.CloudQuotasProtocol {
     return try await self.createQuotaPreference(request: request)
   }
 
+  /// Creates a new QuotaPreference that declares the desired value for a quota.
+  ///
+  /// @Snippet(path: "CloudQuotas_CreateQuotaPreference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/createQuotaPreference(request:options:)``
   public func createQuotaPreference(
     parent: Swift.String,
     quotaPreference: QuotaPreference?,
@@ -306,6 +444,14 @@ extension Clients.CloudQuotasProtocol {
     return try await self.createQuotaPreference(request: request)
   }
 
+  /// Updates the parameters of a single QuotaPreference. It can updates the
+  /// config in any states, not just the ones pending approval.
+  ///
+  /// @Snippet(path: "CloudQuotas_UpdateQuotaPreference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/updateQuotaPreference(request:options:)``
   public func updateQuotaPreference(request: UpdateQuotaPreferenceRequest) async throws
     -> GoogleApiCloudQuotasV1.QuotaPreference
   {
@@ -318,6 +464,14 @@ extension Clients.CloudQuotasProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single QuotaPreference. It can updates the
+  /// config in any states, not just the ones pending approval.
+  ///
+  /// @Snippet(path: "CloudQuotas_UpdateQuotaPreference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudQuotasClient/updateQuotaPreference(request:options:)``
   public func updateQuotaPreference(
     quotaPreference: QuotaPreference?,
     updateMask: GoogleWKT.WKTFieldMask?,

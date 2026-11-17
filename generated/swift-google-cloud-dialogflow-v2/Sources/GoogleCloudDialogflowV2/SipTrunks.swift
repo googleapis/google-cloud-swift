@@ -29,6 +29,10 @@
   /// [google.cloud.dialogflow.v2.SipTrunk]: <doc:SipTrunk>
   ///
   /// @Snippet(path: "SipTrunksQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SipTrunksProtocol``
   public final class SipTrunksClient: Clients.SipTrunksProtocol, Sendable {
     let inner: any Clients.SipTrunksStub
 
@@ -45,6 +49,11 @@
     /// Creates a SipTrunk for a specified location.
     ///
     /// @Snippet(path: "SipTrunks_CreateSipTrunk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createSipTrunk(request:)``
+    /// - ``createSipTrunk(parent:sipTrunk:)``
     public func createSipTrunk(
       request: CreateSipTrunkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SipTrunk {
@@ -54,6 +63,11 @@
     /// Deletes a specified SipTrunk.
     ///
     /// @Snippet(path: "SipTrunks_DeleteSipTrunk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteSipTrunk(request:)``
+    /// - ``deleteSipTrunk(name:)``
     public func deleteSipTrunk(
       request: DeleteSipTrunkRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -63,6 +77,13 @@
     /// Returns a list of SipTrunks in the specified location.
     ///
     /// @Snippet(path: "SipTrunks_ListSipTrunks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listSipTrunks(request:)``
+    /// - ``listSipTrunksByItems(request:)``
+    /// - ``listSipTrunksByItems(request:options:)``
+    /// - ``listSipTrunksByItems(parent:)``
     public func listSipTrunks(
       request: ListSipTrunksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListSipTrunksResponse {
@@ -72,6 +93,11 @@
     /// Retrieves the specified SipTrunk.
     ///
     /// @Snippet(path: "SipTrunks_GetSipTrunk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getSipTrunk(request:)``
+    /// - ``getSipTrunk(name:)``
     public func getSipTrunk(
       request: GetSipTrunkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SipTrunk {
@@ -81,6 +107,11 @@
     /// Updates the specified SipTrunk.
     ///
     /// @Snippet(path: "SipTrunks_UpdateSipTrunk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateSipTrunk(request:)``
+    /// - ``updateSipTrunk(sipTrunk:updateMask:)``
     public func updateSipTrunk(
       request: UpdateSipTrunkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SipTrunk {
@@ -107,6 +138,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "SipTrunks_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -116,6 +153,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "SipTrunks_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -127,6 +168,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SipTrunks_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -149,6 +197,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SipTrunks_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -212,6 +265,13 @@
 
   // Default implementations
   extension Clients.SipTrunksProtocol {
+    /// Creates a SipTrunk for a specified location.
+    ///
+    /// @Snippet(path: "SipTrunks_CreateSipTrunk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/createSipTrunk(request:options:)``
     public func createSipTrunk(request: CreateSipTrunkRequest) async throws
       -> GoogleCloudDialogflowV2.SipTrunk
     {
@@ -224,6 +284,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a SipTrunk for a specified location.
+    ///
+    /// @Snippet(path: "SipTrunks_CreateSipTrunk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/createSipTrunk(request:options:)``
     public func createSipTrunk(
       parent: Swift.String,
       sipTrunk: SipTrunk?,
@@ -235,6 +302,13 @@
       return try await self.createSipTrunk(request: request)
     }
 
+    /// Deletes a specified SipTrunk.
+    ///
+    /// @Snippet(path: "SipTrunks_DeleteSipTrunk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/deleteSipTrunk(request:options:)``
     public func deleteSipTrunk(request: DeleteSipTrunkRequest) async throws {
       try await self.deleteSipTrunk(request: request, options: .init())
     }
@@ -245,6 +319,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a specified SipTrunk.
+    ///
+    /// @Snippet(path: "SipTrunks_DeleteSipTrunk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/deleteSipTrunk(request:options:)``
     public func deleteSipTrunk(
       name: Swift.String,
     ) async throws {
@@ -254,6 +335,13 @@
       try await self.deleteSipTrunk(request: request)
     }
 
+    /// Returns a list of SipTrunks in the specified location.
+    ///
+    /// @Snippet(path: "SipTrunks_ListSipTrunks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/listSipTrunks(request:options:)``
     public func listSipTrunks(request: ListSipTrunksRequest) async throws
       -> GoogleCloudDialogflowV2.ListSipTrunksResponse
     {
@@ -266,6 +354,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns a list of SipTrunks in the specified location.
+    ///
+    /// @Snippet(path: "SipTrunks_ListSipTrunks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/listSipTrunks(request:options:)``
     public func listSipTrunksByItems(
       request: ListSipTrunksRequest
     ) -> some AsyncSequence<SipTrunk, any Swift.Error> & Sendable {
@@ -275,6 +370,10 @@
     /// Returns a list of SipTrunks in the specified location.
     ///
     /// @Snippet(path: "SipTrunks_ListSipTrunks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/listSipTrunks(request:options:)``
     public func listSipTrunksByItems(
       request: ListSipTrunksRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<SipTrunk, any Swift.Error> & Sendable {
@@ -289,6 +388,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns a list of SipTrunks in the specified location.
+    ///
+    /// @Snippet(path: "SipTrunks_ListSipTrunks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/listSipTrunks(request:options:)``
     public func listSipTrunksByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<SipTrunk, any Swift.Error> & Sendable {
@@ -298,6 +404,13 @@
       return self.listSipTrunksByItems(request: request)
     }
 
+    /// Retrieves the specified SipTrunk.
+    ///
+    /// @Snippet(path: "SipTrunks_GetSipTrunk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/getSipTrunk(request:options:)``
     public func getSipTrunk(request: GetSipTrunkRequest) async throws
       -> GoogleCloudDialogflowV2.SipTrunk
     {
@@ -310,6 +423,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified SipTrunk.
+    ///
+    /// @Snippet(path: "SipTrunks_GetSipTrunk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/getSipTrunk(request:options:)``
     public func getSipTrunk(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.SipTrunk {
@@ -319,6 +439,13 @@
       return try await self.getSipTrunk(request: request)
     }
 
+    /// Updates the specified SipTrunk.
+    ///
+    /// @Snippet(path: "SipTrunks_UpdateSipTrunk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/updateSipTrunk(request:options:)``
     public func updateSipTrunk(request: UpdateSipTrunkRequest) async throws
       -> GoogleCloudDialogflowV2.SipTrunk
     {
@@ -331,6 +458,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified SipTrunk.
+    ///
+    /// @Snippet(path: "SipTrunks_UpdateSipTrunk")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/updateSipTrunk(request:options:)``
     public func updateSipTrunk(
       sipTrunk: SipTrunk?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -342,6 +476,30 @@
       return try await self.updateSipTrunk(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "SipTrunks_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -354,6 +512,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "SipTrunks_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -380,6 +562,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "SipTrunks_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -393,6 +579,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "SipTrunks_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -405,6 +598,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SipTrunks_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -417,6 +619,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SipTrunks_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -428,6 +639,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SipTrunks_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -441,6 +656,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SipTrunks_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -452,6 +676,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -464,6 +691,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -473,6 +703,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SipTrunks_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -483,6 +722,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SipTrunks_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SipTrunksClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

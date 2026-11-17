@@ -29,6 +29,10 @@ import Foundation
 /// Data Profile, Data Quality) for the data source.
 ///
 /// @Snippet(path: "DataScanServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DataScanServiceProtocol``
 public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Sendable {
   let inner: any Clients.DataScanServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -49,6 +53,13 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Creates a DataScan resource.
   ///
   /// @Snippet(path: "DataScanService_CreateDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDataScan(request:)``
+  /// - ``createDataScanPollingUntilDone(request:)``
+  /// - ``createDataScanPollingUntilDone(request:options:)``
+  /// - ``createDataScanPollingUntilDone(parent:dataScan:dataScanId:)``
   public func createDataScan(
     request: CreateDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -58,6 +69,13 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Creates a DataScan resource.
   ///
   /// @Snippet(path: "DataScanService_CreateDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDataScanPollingUntilDone(request:)``
+  /// - ``createDataScanPollingUntilDone(parent:dataScan:dataScanId:)``
+  /// - ``createDataScan(request:)``
+  /// - ``createDataScan(request:options:)``
   public func createDataScanPollingUntilDone(
     request: CreateDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataScan {
@@ -85,6 +103,13 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Updates a DataScan resource.
   ///
   /// @Snippet(path: "DataScanService_UpdateDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataScan(request:)``
+  /// - ``updateDataScanPollingUntilDone(request:)``
+  /// - ``updateDataScanPollingUntilDone(request:options:)``
+  /// - ``updateDataScanPollingUntilDone(dataScan:updateMask:)``
   public func updateDataScan(
     request: UpdateDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -94,6 +119,13 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Updates a DataScan resource.
   ///
   /// @Snippet(path: "DataScanService_UpdateDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataScanPollingUntilDone(request:)``
+  /// - ``updateDataScanPollingUntilDone(dataScan:updateMask:)``
+  /// - ``updateDataScan(request:)``
+  /// - ``updateDataScan(request:options:)``
   public func updateDataScanPollingUntilDone(
     request: UpdateDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataScan {
@@ -121,6 +153,13 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Deletes a DataScan resource.
   ///
   /// @Snippet(path: "DataScanService_DeleteDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDataScan(request:)``
+  /// - ``deleteDataScanPollingUntilDone(request:)``
+  /// - ``deleteDataScanPollingUntilDone(request:options:)``
+  /// - ``deleteDataScanPollingUntilDone(name:)``
   public func deleteDataScan(
     request: DeleteDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -130,6 +169,13 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Deletes a DataScan resource.
   ///
   /// @Snippet(path: "DataScanService_DeleteDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDataScanPollingUntilDone(request:)``
+  /// - ``deleteDataScanPollingUntilDone(name:)``
+  /// - ``deleteDataScan(request:)``
+  /// - ``deleteDataScan(request:options:)``
   public func deleteDataScanPollingUntilDone(
     request: DeleteDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -157,6 +203,11 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Gets a DataScan resource.
   ///
   /// @Snippet(path: "DataScanService_GetDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDataScan(request:)``
+  /// - ``getDataScan(name:)``
   public func getDataScan(
     request: GetDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.DataScan {
@@ -166,6 +217,13 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Lists DataScans.
   ///
   /// @Snippet(path: "DataScanService_ListDataScans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDataScans(request:)``
+  /// - ``listDataScansByItems(request:)``
+  /// - ``listDataScansByItems(request:options:)``
+  /// - ``listDataScansByItems(parent:)``
   public func listDataScans(
     request: ListDataScansRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListDataScansResponse {
@@ -175,6 +233,11 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Runs an on-demand execution of a DataScan
   ///
   /// @Snippet(path: "DataScanService_RunDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runDataScan(request:)``
+  /// - ``runDataScan(name:)``
   public func runDataScan(
     request: RunDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.RunDataScanResponse {
@@ -184,6 +247,11 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Gets a DataScanJob resource.
   ///
   /// @Snippet(path: "DataScanService_GetDataScanJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDataScanJob(request:)``
+  /// - ``getDataScanJob(name:)``
   public func getDataScanJob(
     request: GetDataScanJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.DataScanJob {
@@ -193,6 +261,13 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Lists DataScanJobs under the given DataScan.
   ///
   /// @Snippet(path: "DataScanService_ListDataScanJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDataScanJobs(request:)``
+  /// - ``listDataScanJobsByItems(request:)``
+  /// - ``listDataScanJobsByItems(request:options:)``
+  /// - ``listDataScanJobsByItems(parent:)``
   public func listDataScanJobs(
     request: ListDataScanJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListDataScanJobsResponse {
@@ -202,6 +277,11 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Cancels a running/pending DataScan job.
   ///
   /// @Snippet(path: "DataScanService_CancelDataScanJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelDataScanJob(request:)``
+  /// - ``cancelDataScanJob(name:)``
   public func cancelDataScanJob(
     request: CancelDataScanJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.CancelDataScanJobResponse {
@@ -214,6 +294,11 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Use the recommendations to build rules for a data quality scan.
   ///
   /// @Snippet(path: "DataScanService_GenerateDataQualityRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateDataQualityRules(request:)``
+  /// - ``generateDataQualityRules(name:)``
   public func generateDataQualityRules(
     request: GenerateDataQualityRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.GenerateDataQualityRulesResponse {
@@ -240,6 +325,12 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DataScanService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -249,6 +340,10 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// Gets information about a location.
   ///
   /// @Snippet(path: "DataScanService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -262,6 +357,10 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// errors.
   ///
   /// @Snippet(path: "DataScanService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -272,6 +371,10 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "DataScanService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -287,6 +390,10 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "DataScanService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -298,6 +405,13 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataScanService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -320,6 +434,11 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataScanService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -331,6 +450,11 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataScanService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -454,6 +578,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DataScanServiceProtocol {
+  /// Creates a DataScan resource.
+  ///
+  /// @Snippet(path: "DataScanService_CreateDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/createDataScan(request:options:)``
   public func createDataScan(request: CreateDataScanRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -466,6 +597,13 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a DataScan resource.
+  ///
+  /// @Snippet(path: "DataScanService_CreateDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/createDataScanPollingUntilDone(request:options:)``
   public func createDataScanPollingUntilDone(request: CreateDataScanRequest) async throws
     -> DataScan
   {
@@ -478,6 +616,13 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a DataScan resource.
+  ///
+  /// @Snippet(path: "DataScanService_CreateDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/createDataScanPollingUntilDone(request:options:)``
   public func createDataScanPollingUntilDone(
     parent: Swift.String,
     dataScan: DataScan?,
@@ -491,6 +636,13 @@ extension Clients.DataScanServiceProtocol {
     return try await self.createDataScanPollingUntilDone(request: request)
   }
 
+  /// Updates a DataScan resource.
+  ///
+  /// @Snippet(path: "DataScanService_UpdateDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/updateDataScan(request:options:)``
   public func updateDataScan(request: UpdateDataScanRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -503,6 +655,13 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a DataScan resource.
+  ///
+  /// @Snippet(path: "DataScanService_UpdateDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/updateDataScanPollingUntilDone(request:options:)``
   public func updateDataScanPollingUntilDone(request: UpdateDataScanRequest) async throws
     -> DataScan
   {
@@ -515,6 +674,13 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a DataScan resource.
+  ///
+  /// @Snippet(path: "DataScanService_UpdateDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/updateDataScanPollingUntilDone(request:options:)``
   public func updateDataScanPollingUntilDone(
     dataScan: DataScan?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -526,6 +692,13 @@ extension Clients.DataScanServiceProtocol {
     return try await self.updateDataScanPollingUntilDone(request: request)
   }
 
+  /// Deletes a DataScan resource.
+  ///
+  /// @Snippet(path: "DataScanService_DeleteDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/deleteDataScan(request:options:)``
   public func deleteDataScan(request: DeleteDataScanRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -538,6 +711,13 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a DataScan resource.
+  ///
+  /// @Snippet(path: "DataScanService_DeleteDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/deleteDataScanPollingUntilDone(request:options:)``
   public func deleteDataScanPollingUntilDone(request: DeleteDataScanRequest) async throws {
     try await self.deleteDataScanPollingUntilDone(request: request, options: .init())
   }
@@ -548,6 +728,13 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a DataScan resource.
+  ///
+  /// @Snippet(path: "DataScanService_DeleteDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/deleteDataScanPollingUntilDone(request:options:)``
   public func deleteDataScanPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -557,6 +744,13 @@ extension Clients.DataScanServiceProtocol {
     try await self.deleteDataScanPollingUntilDone(request: request)
   }
 
+  /// Gets a DataScan resource.
+  ///
+  /// @Snippet(path: "DataScanService_GetDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/getDataScan(request:options:)``
   public func getDataScan(request: GetDataScanRequest) async throws
     -> GoogleCloudDataplexV1.DataScan
   {
@@ -569,6 +763,13 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a DataScan resource.
+  ///
+  /// @Snippet(path: "DataScanService_GetDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/getDataScan(request:options:)``
   public func getDataScan(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.DataScan {
@@ -578,6 +779,13 @@ extension Clients.DataScanServiceProtocol {
     return try await self.getDataScan(request: request)
   }
 
+  /// Lists DataScans.
+  ///
+  /// @Snippet(path: "DataScanService_ListDataScans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listDataScans(request:options:)``
   public func listDataScans(request: ListDataScansRequest) async throws
     -> GoogleCloudDataplexV1.ListDataScansResponse
   {
@@ -590,6 +798,13 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists DataScans.
+  ///
+  /// @Snippet(path: "DataScanService_ListDataScans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listDataScans(request:options:)``
   public func listDataScansByItems(
     request: ListDataScansRequest
   ) -> some AsyncSequence<DataScan, any Swift.Error> & Sendable {
@@ -599,6 +814,10 @@ extension Clients.DataScanServiceProtocol {
   /// Lists DataScans.
   ///
   /// @Snippet(path: "DataScanService_ListDataScans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listDataScans(request:options:)``
   public func listDataScansByItems(
     request: ListDataScansRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataScan, any Swift.Error> & Sendable {
@@ -612,6 +831,13 @@ extension Clients.DataScanServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists DataScans.
+  ///
+  /// @Snippet(path: "DataScanService_ListDataScans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listDataScans(request:options:)``
   public func listDataScansByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DataScan, any Swift.Error> & Sendable {
@@ -621,6 +847,13 @@ extension Clients.DataScanServiceProtocol {
     return self.listDataScansByItems(request: request)
   }
 
+  /// Runs an on-demand execution of a DataScan
+  ///
+  /// @Snippet(path: "DataScanService_RunDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/runDataScan(request:options:)``
   public func runDataScan(request: RunDataScanRequest) async throws
     -> GoogleCloudDataplexV1.RunDataScanResponse
   {
@@ -633,6 +866,13 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Runs an on-demand execution of a DataScan
+  ///
+  /// @Snippet(path: "DataScanService_RunDataScan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/runDataScan(request:options:)``
   public func runDataScan(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.RunDataScanResponse {
@@ -642,6 +882,13 @@ extension Clients.DataScanServiceProtocol {
     return try await self.runDataScan(request: request)
   }
 
+  /// Gets a DataScanJob resource.
+  ///
+  /// @Snippet(path: "DataScanService_GetDataScanJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/getDataScanJob(request:options:)``
   public func getDataScanJob(request: GetDataScanJobRequest) async throws
     -> GoogleCloudDataplexV1.DataScanJob
   {
@@ -654,6 +901,13 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a DataScanJob resource.
+  ///
+  /// @Snippet(path: "DataScanService_GetDataScanJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/getDataScanJob(request:options:)``
   public func getDataScanJob(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.DataScanJob {
@@ -663,6 +917,13 @@ extension Clients.DataScanServiceProtocol {
     return try await self.getDataScanJob(request: request)
   }
 
+  /// Lists DataScanJobs under the given DataScan.
+  ///
+  /// @Snippet(path: "DataScanService_ListDataScanJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listDataScanJobs(request:options:)``
   public func listDataScanJobs(request: ListDataScanJobsRequest) async throws
     -> GoogleCloudDataplexV1.ListDataScanJobsResponse
   {
@@ -675,6 +936,13 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists DataScanJobs under the given DataScan.
+  ///
+  /// @Snippet(path: "DataScanService_ListDataScanJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listDataScanJobs(request:options:)``
   public func listDataScanJobsByItems(
     request: ListDataScanJobsRequest
   ) -> some AsyncSequence<DataScanJob, any Swift.Error> & Sendable {
@@ -684,6 +952,10 @@ extension Clients.DataScanServiceProtocol {
   /// Lists DataScanJobs under the given DataScan.
   ///
   /// @Snippet(path: "DataScanService_ListDataScanJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listDataScanJobs(request:options:)``
   public func listDataScanJobsByItems(
     request: ListDataScanJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataScanJob, any Swift.Error> & Sendable {
@@ -698,6 +970,13 @@ extension Clients.DataScanServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists DataScanJobs under the given DataScan.
+  ///
+  /// @Snippet(path: "DataScanService_ListDataScanJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listDataScanJobs(request:options:)``
   public func listDataScanJobsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DataScanJob, any Swift.Error> & Sendable {
@@ -707,6 +986,13 @@ extension Clients.DataScanServiceProtocol {
     return self.listDataScanJobsByItems(request: request)
   }
 
+  /// Cancels a running/pending DataScan job.
+  ///
+  /// @Snippet(path: "DataScanService_CancelDataScanJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/cancelDataScanJob(request:options:)``
   public func cancelDataScanJob(request: CancelDataScanJobRequest) async throws
     -> GoogleCloudDataplexV1.CancelDataScanJobResponse
   {
@@ -719,6 +1005,13 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancels a running/pending DataScan job.
+  ///
+  /// @Snippet(path: "DataScanService_CancelDataScanJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/cancelDataScanJob(request:options:)``
   public func cancelDataScanJob(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.CancelDataScanJobResponse {
@@ -728,6 +1021,16 @@ extension Clients.DataScanServiceProtocol {
     return try await self.cancelDataScanJob(request: request)
   }
 
+  /// Generates recommended data quality rules based on the results of a data
+  /// profiling scan.
+  ///
+  /// Use the recommendations to build rules for a data quality scan.
+  ///
+  /// @Snippet(path: "DataScanService_GenerateDataQualityRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/generateDataQualityRules(request:options:)``
   public func generateDataQualityRules(request: GenerateDataQualityRulesRequest) async throws
     -> GoogleCloudDataplexV1.GenerateDataQualityRulesResponse
   {
@@ -740,6 +1043,16 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generates recommended data quality rules based on the results of a data
+  /// profiling scan.
+  ///
+  /// Use the recommendations to build rules for a data quality scan.
+  ///
+  /// @Snippet(path: "DataScanService_GenerateDataQualityRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/generateDataQualityRules(request:options:)``
   public func generateDataQualityRules(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.GenerateDataQualityRulesResponse {
@@ -749,6 +1062,30 @@ extension Clients.DataScanServiceProtocol {
     return try await self.generateDataQualityRules(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DataScanService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -761,6 +1098,30 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DataScanService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -787,6 +1148,10 @@ extension Clients.DataScanServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DataScanService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -800,6 +1165,13 @@ extension Clients.DataScanServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "DataScanService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -812,6 +1184,17 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "DataScanService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -824,6 +1207,14 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "DataScanService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -836,6 +1227,19 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "DataScanService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -848,6 +1252,15 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataScanService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -860,6 +1273,15 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataScanService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -871,6 +1293,10 @@ extension Clients.DataScanServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataScanService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -884,6 +1310,15 @@ extension Clients.DataScanServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataScanService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -895,6 +1330,9 @@ extension Clients.DataScanServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -907,6 +1345,9 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -916,6 +1357,15 @@ extension Clients.DataScanServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataScanService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -926,6 +1376,15 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataScanService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -935,6 +1394,15 @@ extension Clients.DataScanServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataScanService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -945,6 +1413,15 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataScanService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataScanServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -24,6 +24,10 @@
   /// Service for the `snapshotSettings` resource.
   ///
   /// @Snippet(path: "snapshotSettingsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SnapshotSettingsProtocol``
   public final class SnapshotSettingsClient: Clients.SnapshotSettingsProtocol, Sendable {
     let inner: any Clients.SnapshotSettingsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,11 @@
     /// Get snapshot settings.
     ///
     /// @Snippet(path: "snapshotSettings_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:)``
     public func `get`(
       request: SnapshotSettingsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SnapshotSettings {
@@ -53,6 +62,13 @@
     /// Patch snapshot settings.
     ///
     /// @Snippet(path: "snapshotSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:body:)``
     public func patch(
       request: SnapshotSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -67,6 +83,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "snapshotSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: SnapshotSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -146,6 +169,13 @@
 
   // Default implementations
   extension Clients.SnapshotSettingsProtocol {
+    /// Get snapshot settings.
+    ///
+    /// @Snippet(path: "snapshotSettings_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SnapshotSettingsClient/get(request:options:)``
     public func `get`(request: SnapshotSettingsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.SnapshotSettings
     {
@@ -158,6 +188,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Get snapshot settings.
+    ///
+    /// @Snippet(path: "snapshotSettings_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SnapshotSettingsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
     ) async throws -> GoogleCloudComputeV1.SnapshotSettings {
@@ -167,6 +204,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Patch snapshot settings.
+    ///
+    /// @Snippet(path: "snapshotSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SnapshotSettingsClient/patch(request:options:)``
     public func patch(request: SnapshotSettingsClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -179,6 +223,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patch snapshot settings.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "snapshotSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SnapshotSettingsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: SnapshotSettingsClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -191,6 +247,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patch snapshot settings.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "snapshotSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SnapshotSettingsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       body: SnapshotSettings?,
@@ -202,6 +270,7 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

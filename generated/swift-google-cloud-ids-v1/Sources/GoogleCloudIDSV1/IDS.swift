@@ -24,6 +24,10 @@ import Foundation
 /// The IDS Service
 ///
 /// @Snippet(path: "IDSQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/IDSProtocol``
 public final class IDSClient: Clients.IDSProtocol, Sendable {
   let inner: any Clients.IDSStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// Lists Endpoints in a given project and location.
   ///
   /// @Snippet(path: "IDS_ListEndpoints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEndpoints(request:)``
+  /// - ``listEndpointsByItems(request:)``
+  /// - ``listEndpointsByItems(request:options:)``
+  /// - ``listEndpointsByItems(parent:)``
   public func listEndpoints(
     request: ListEndpointsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIDSV1.ListEndpointsResponse {
@@ -53,6 +64,11 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// Gets details of a single Endpoint.
   ///
   /// @Snippet(path: "IDS_GetEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEndpoint(request:)``
+  /// - ``getEndpoint(name:)``
   public func getEndpoint(
     request: GetEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIDSV1.Endpoint {
@@ -62,6 +78,13 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// Creates a new Endpoint in a given project and location.
   ///
   /// @Snippet(path: "IDS_CreateEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEndpoint(request:)``
+  /// - ``createEndpointPollingUntilDone(request:)``
+  /// - ``createEndpointPollingUntilDone(request:options:)``
+  /// - ``createEndpointPollingUntilDone(parent:endpoint:endpointId:)``
   public func createEndpoint(
     request: CreateEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -71,6 +94,13 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// Creates a new Endpoint in a given project and location.
   ///
   /// @Snippet(path: "IDS_CreateEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEndpointPollingUntilDone(request:)``
+  /// - ``createEndpointPollingUntilDone(parent:endpoint:endpointId:)``
+  /// - ``createEndpoint(request:)``
+  /// - ``createEndpoint(request:options:)``
   public func createEndpointPollingUntilDone(
     request: CreateEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> Endpoint {
@@ -98,6 +128,13 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// Deletes a single Endpoint.
   ///
   /// @Snippet(path: "IDS_DeleteEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEndpoint(request:)``
+  /// - ``deleteEndpointPollingUntilDone(request:)``
+  /// - ``deleteEndpointPollingUntilDone(request:options:)``
+  /// - ``deleteEndpointPollingUntilDone(name:)``
   public func deleteEndpoint(
     request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -107,6 +144,13 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// Deletes a single Endpoint.
   ///
   /// @Snippet(path: "IDS_DeleteEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEndpointPollingUntilDone(request:)``
+  /// - ``deleteEndpointPollingUntilDone(name:)``
+  /// - ``deleteEndpoint(request:)``
+  /// - ``deleteEndpoint(request:options:)``
   public func deleteEndpointPollingUntilDone(
     request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -136,6 +180,13 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "IDS_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -158,6 +209,11 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "IDS_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -169,6 +225,11 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "IDS_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -232,6 +293,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.IDSProtocol {
+  /// Lists Endpoints in a given project and location.
+  ///
+  /// @Snippet(path: "IDS_ListEndpoints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/listEndpoints(request:options:)``
   public func listEndpoints(request: ListEndpointsRequest) async throws
     -> GoogleCloudIDSV1.ListEndpointsResponse
   {
@@ -244,6 +312,13 @@ extension Clients.IDSProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Endpoints in a given project and location.
+  ///
+  /// @Snippet(path: "IDS_ListEndpoints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/listEndpoints(request:options:)``
   public func listEndpointsByItems(
     request: ListEndpointsRequest
   ) -> some AsyncSequence<Endpoint, any Swift.Error> & Sendable {
@@ -253,6 +328,10 @@ extension Clients.IDSProtocol {
   /// Lists Endpoints in a given project and location.
   ///
   /// @Snippet(path: "IDS_ListEndpoints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/listEndpoints(request:options:)``
   public func listEndpointsByItems(
     request: ListEndpointsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Endpoint, any Swift.Error> & Sendable {
@@ -266,6 +345,13 @@ extension Clients.IDSProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Endpoints in a given project and location.
+  ///
+  /// @Snippet(path: "IDS_ListEndpoints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/listEndpoints(request:options:)``
   public func listEndpointsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Endpoint, any Swift.Error> & Sendable {
@@ -275,6 +361,13 @@ extension Clients.IDSProtocol {
     return self.listEndpointsByItems(request: request)
   }
 
+  /// Gets details of a single Endpoint.
+  ///
+  /// @Snippet(path: "IDS_GetEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/getEndpoint(request:options:)``
   public func getEndpoint(request: GetEndpointRequest) async throws -> GoogleCloudIDSV1.Endpoint {
     try await self.getEndpoint(request: request, options: .init())
   }
@@ -285,6 +378,13 @@ extension Clients.IDSProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Endpoint.
+  ///
+  /// @Snippet(path: "IDS_GetEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/getEndpoint(request:options:)``
   public func getEndpoint(
     name: Swift.String,
   ) async throws -> GoogleCloudIDSV1.Endpoint {
@@ -294,6 +394,13 @@ extension Clients.IDSProtocol {
     return try await self.getEndpoint(request: request)
   }
 
+  /// Creates a new Endpoint in a given project and location.
+  ///
+  /// @Snippet(path: "IDS_CreateEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/createEndpoint(request:options:)``
   public func createEndpoint(request: CreateEndpointRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -306,6 +413,13 @@ extension Clients.IDSProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Endpoint in a given project and location.
+  ///
+  /// @Snippet(path: "IDS_CreateEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/createEndpointPollingUntilDone(request:options:)``
   public func createEndpointPollingUntilDone(request: CreateEndpointRequest) async throws
     -> Endpoint
   {
@@ -318,6 +432,13 @@ extension Clients.IDSProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Endpoint in a given project and location.
+  ///
+  /// @Snippet(path: "IDS_CreateEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/createEndpointPollingUntilDone(request:options:)``
   public func createEndpointPollingUntilDone(
     parent: Swift.String,
     endpoint: Endpoint?,
@@ -331,6 +452,13 @@ extension Clients.IDSProtocol {
     return try await self.createEndpointPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Endpoint.
+  ///
+  /// @Snippet(path: "IDS_DeleteEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/deleteEndpoint(request:options:)``
   public func deleteEndpoint(request: DeleteEndpointRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -343,6 +471,13 @@ extension Clients.IDSProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Endpoint.
+  ///
+  /// @Snippet(path: "IDS_DeleteEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/deleteEndpointPollingUntilDone(request:options:)``
   public func deleteEndpointPollingUntilDone(request: DeleteEndpointRequest) async throws {
     try await self.deleteEndpointPollingUntilDone(request: request, options: .init())
   }
@@ -353,6 +488,13 @@ extension Clients.IDSProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Endpoint.
+  ///
+  /// @Snippet(path: "IDS_DeleteEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/deleteEndpointPollingUntilDone(request:options:)``
   public func deleteEndpointPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -362,6 +504,15 @@ extension Clients.IDSProtocol {
     try await self.deleteEndpointPollingUntilDone(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "IDS_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -374,6 +525,15 @@ extension Clients.IDSProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "IDS_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -385,6 +545,10 @@ extension Clients.IDSProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "IDS_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -398,6 +562,15 @@ extension Clients.IDSProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "IDS_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -409,6 +582,9 @@ extension Clients.IDSProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -421,6 +597,9 @@ extension Clients.IDSProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -430,6 +609,15 @@ extension Clients.IDSProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "IDS_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -440,6 +628,15 @@ extension Clients.IDSProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "IDS_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -449,6 +646,15 @@ extension Clients.IDSProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "IDS_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -459,6 +665,15 @@ extension Clients.IDSProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "IDS_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IDSClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

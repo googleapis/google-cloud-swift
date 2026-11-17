@@ -24,6 +24,10 @@ import Foundation
 /// InstanceService provides the entry interface for the Chronicle API.
 ///
 /// @Snippet(path: "InstanceServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/InstanceServiceProtocol``
 public final class InstanceServiceClient: Clients.InstanceServiceProtocol, Sendable {
   let inner: any Clients.InstanceServiceStub
 
@@ -40,6 +44,11 @@ public final class InstanceServiceClient: Clients.InstanceServiceProtocol, Senda
   /// Gets a Instance.
   ///
   /// @Snippet(path: "InstanceService_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInstance(request:)``
+  /// - ``getInstance(name:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Instance {
@@ -51,6 +60,13 @@ public final class InstanceServiceClient: Clients.InstanceServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "InstanceService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -73,6 +89,11 @@ public final class InstanceServiceClient: Clients.InstanceServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "InstanceService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -84,6 +105,11 @@ public final class InstanceServiceClient: Clients.InstanceServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "InstanceService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -122,6 +148,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.InstanceServiceProtocol {
+  /// Gets a Instance.
+  ///
+  /// @Snippet(path: "InstanceService_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstanceServiceClient/getInstance(request:options:)``
   public func getInstance(request: GetInstanceRequest) async throws
     -> GoogleCloudChronicleV1.Instance
   {
@@ -134,6 +167,13 @@ extension Clients.InstanceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a Instance.
+  ///
+  /// @Snippet(path: "InstanceService_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstanceServiceClient/getInstance(request:options:)``
   public func getInstance(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.Instance {
@@ -143,6 +183,15 @@ extension Clients.InstanceServiceProtocol {
     return try await self.getInstance(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "InstanceService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstanceServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -155,6 +204,15 @@ extension Clients.InstanceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "InstanceService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstanceServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -166,6 +224,10 @@ extension Clients.InstanceServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "InstanceService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstanceServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -179,6 +241,15 @@ extension Clients.InstanceServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "InstanceService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstanceServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -190,6 +261,9 @@ extension Clients.InstanceServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -202,6 +276,9 @@ extension Clients.InstanceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -211,6 +288,15 @@ extension Clients.InstanceServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "InstanceService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstanceServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -221,6 +307,15 @@ extension Clients.InstanceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "InstanceService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstanceServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -230,6 +325,15 @@ extension Clients.InstanceServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "InstanceService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstanceServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -240,6 +344,15 @@ extension Clients.InstanceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "InstanceService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstanceServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

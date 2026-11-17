@@ -44,6 +44,10 @@ import Foundation
 /// resources is no longer permitted. Use Security Gateway instead.
 ///
 /// @Snippet(path: "AppConnectorsServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AppConnectorsServiceProtocol``
 @available(*, deprecated)
 public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProtocol, Sendable {
   let inner: any Clients.AppConnectorsServiceStub
@@ -66,6 +70,13 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// Lists AppConnectors in a given project and location.
   ///
   /// @Snippet(path: "AppConnectorsService_ListAppConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAppConnectors(request:)``
+  /// - ``listAppConnectorsByItems(request:)``
+  /// - ``listAppConnectorsByItems(request:options:)``
+  /// - ``listAppConnectorsByItems(parent:)``
   @available(*, deprecated)
   public func listAppConnectors(
     request: ListAppConnectorsRequest, options: GoogleGax.RequestOptions
@@ -76,6 +87,11 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// Gets details of a single AppConnector.
   ///
   /// @Snippet(path: "AppConnectorsService_GetAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAppConnector(request:)``
+  /// - ``getAppConnector(name:)``
   @available(*, deprecated)
   public func getAppConnector(
     request: GetAppConnectorRequest, options: GoogleGax.RequestOptions
@@ -86,6 +102,13 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// Creates a new AppConnector in a given project and location.
   ///
   /// @Snippet(path: "AppConnectorsService_CreateAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAppConnector(request:)``
+  /// - ``createAppConnectorPollingUntilDone(request:)``
+  /// - ``createAppConnectorPollingUntilDone(request:options:)``
+  /// - ``createAppConnectorPollingUntilDone(parent:appConnector:appConnectorId:)``
   @available(*, deprecated)
   public func createAppConnector(
     request: CreateAppConnectorRequest, options: GoogleGax.RequestOptions
@@ -96,6 +119,13 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// Creates a new AppConnector in a given project and location.
   ///
   /// @Snippet(path: "AppConnectorsService_CreateAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAppConnectorPollingUntilDone(request:)``
+  /// - ``createAppConnectorPollingUntilDone(parent:appConnector:appConnectorId:)``
+  /// - ``createAppConnector(request:)``
+  /// - ``createAppConnector(request:options:)``
   @available(*, deprecated)
   public func createAppConnectorPollingUntilDone(
     request: CreateAppConnectorRequest, options: GoogleGax.RequestOptions
@@ -125,6 +155,13 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// Updates the parameters of a single AppConnector.
   ///
   /// @Snippet(path: "AppConnectorsService_UpdateAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAppConnector(request:)``
+  /// - ``updateAppConnectorPollingUntilDone(request:)``
+  /// - ``updateAppConnectorPollingUntilDone(request:options:)``
+  /// - ``updateAppConnectorPollingUntilDone(appConnector:updateMask:)``
   @available(*, deprecated)
   public func updateAppConnector(
     request: UpdateAppConnectorRequest, options: GoogleGax.RequestOptions
@@ -135,6 +172,13 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// Updates the parameters of a single AppConnector.
   ///
   /// @Snippet(path: "AppConnectorsService_UpdateAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAppConnectorPollingUntilDone(request:)``
+  /// - ``updateAppConnectorPollingUntilDone(appConnector:updateMask:)``
+  /// - ``updateAppConnector(request:)``
+  /// - ``updateAppConnector(request:options:)``
   @available(*, deprecated)
   public func updateAppConnectorPollingUntilDone(
     request: UpdateAppConnectorRequest, options: GoogleGax.RequestOptions
@@ -164,6 +208,13 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// Deletes a single AppConnector.
   ///
   /// @Snippet(path: "AppConnectorsService_DeleteAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAppConnector(request:)``
+  /// - ``deleteAppConnectorPollingUntilDone(request:)``
+  /// - ``deleteAppConnectorPollingUntilDone(request:options:)``
+  /// - ``deleteAppConnectorPollingUntilDone(name:)``
   @available(*, deprecated)
   public func deleteAppConnector(
     request: DeleteAppConnectorRequest, options: GoogleGax.RequestOptions
@@ -174,6 +225,13 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// Deletes a single AppConnector.
   ///
   /// @Snippet(path: "AppConnectorsService_DeleteAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAppConnectorPollingUntilDone(request:)``
+  /// - ``deleteAppConnectorPollingUntilDone(name:)``
+  /// - ``deleteAppConnector(request:)``
+  /// - ``deleteAppConnector(request:options:)``
   @available(*, deprecated)
   public func deleteAppConnectorPollingUntilDone(
     request: DeleteAppConnectorRequest, options: GoogleGax.RequestOptions
@@ -203,6 +261,11 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// An internal method called by a AppConnector to get its container config.
   ///
   /// @Snippet(path: "AppConnectorsService_ResolveInstanceConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resolveInstanceConfig(request:)``
+  /// - ``resolveInstanceConfig(appConnector:)``
   @available(*, deprecated)
   public func resolveInstanceConfig(
     request: ResolveInstanceConfigRequest, options: GoogleGax.RequestOptions
@@ -213,6 +276,13 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// Report status for a given connector.
   ///
   /// @Snippet(path: "AppConnectorsService_ReportStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reportStatus(request:)``
+  /// - ``reportStatusPollingUntilDone(request:)``
+  /// - ``reportStatusPollingUntilDone(request:options:)``
+  /// - ``reportStatusPollingUntilDone(appConnector:resourceInfo:)``
   @available(*, deprecated)
   public func reportStatus(
     request: ReportStatusRequest, options: GoogleGax.RequestOptions
@@ -223,6 +293,13 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// Report status for a given connector.
   ///
   /// @Snippet(path: "AppConnectorsService_ReportStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reportStatusPollingUntilDone(request:)``
+  /// - ``reportStatusPollingUntilDone(appConnector:resourceInfo:)``
+  /// - ``reportStatus(request:)``
+  /// - ``reportStatus(request:options:)``
   @available(*, deprecated)
   public func reportStatusPollingUntilDone(
     request: ReportStatusRequest, options: GoogleGax.RequestOptions
@@ -269,6 +346,12 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AppConnectorsService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -278,6 +361,10 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AppConnectorsService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -291,6 +378,10 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// errors.
   ///
   /// @Snippet(path: "AppConnectorsService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -301,6 +392,10 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "AppConnectorsService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -316,6 +411,10 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "AppConnectorsService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -327,6 +426,13 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppConnectorsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -349,6 +455,11 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppConnectorsService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -360,6 +471,11 @@ public final class AppConnectorsServiceClient: Clients.AppConnectorsServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppConnectorsService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -486,6 +602,13 @@ extension Clients {
 // Default implementations
 @available(*, deprecated)
 extension Clients.AppConnectorsServiceProtocol {
+  /// Lists AppConnectors in a given project and location.
+  ///
+  /// @Snippet(path: "AppConnectorsService_ListAppConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/listAppConnectors(request:options:)``
   @available(*, deprecated)
   public func listAppConnectors(request: ListAppConnectorsRequest) async throws
     -> GoogleCloudBeyondCorpAppConnectorsV1.ListAppConnectorsResponse
@@ -500,6 +623,13 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists AppConnectors in a given project and location.
+  ///
+  /// @Snippet(path: "AppConnectorsService_ListAppConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/listAppConnectors(request:options:)``
   @available(*, deprecated)
   public func listAppConnectorsByItems(
     request: ListAppConnectorsRequest
@@ -510,6 +640,10 @@ extension Clients.AppConnectorsServiceProtocol {
   /// Lists AppConnectors in a given project and location.
   ///
   /// @Snippet(path: "AppConnectorsService_ListAppConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/listAppConnectors(request:options:)``
   @available(*, deprecated)
   public func listAppConnectorsByItems(
     request: ListAppConnectorsRequest, options: GoogleGax.RequestOptions
@@ -525,6 +659,13 @@ extension Clients.AppConnectorsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists AppConnectors in a given project and location.
+  ///
+  /// @Snippet(path: "AppConnectorsService_ListAppConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/listAppConnectors(request:options:)``
   @available(*, deprecated)
   public func listAppConnectorsByItems(
     parent: Swift.String,
@@ -535,6 +676,13 @@ extension Clients.AppConnectorsServiceProtocol {
     return self.listAppConnectorsByItems(request: request)
   }
 
+  /// Gets details of a single AppConnector.
+  ///
+  /// @Snippet(path: "AppConnectorsService_GetAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/getAppConnector(request:options:)``
   @available(*, deprecated)
   public func getAppConnector(request: GetAppConnectorRequest) async throws
     -> GoogleCloudBeyondCorpAppConnectorsV1.AppConnector
@@ -549,6 +697,13 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single AppConnector.
+  ///
+  /// @Snippet(path: "AppConnectorsService_GetAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/getAppConnector(request:options:)``
   @available(*, deprecated)
   public func getAppConnector(
     name: Swift.String,
@@ -559,6 +714,13 @@ extension Clients.AppConnectorsServiceProtocol {
     return try await self.getAppConnector(request: request)
   }
 
+  /// Creates a new AppConnector in a given project and location.
+  ///
+  /// @Snippet(path: "AppConnectorsService_CreateAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/createAppConnector(request:options:)``
   @available(*, deprecated)
   public func createAppConnector(request: CreateAppConnectorRequest) async throws
     -> GoogleLongRunning.Operation
@@ -573,6 +735,13 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AppConnector in a given project and location.
+  ///
+  /// @Snippet(path: "AppConnectorsService_CreateAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/createAppConnectorPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func createAppConnectorPollingUntilDone(request: CreateAppConnectorRequest) async throws
     -> AppConnector
@@ -587,6 +756,13 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AppConnector in a given project and location.
+  ///
+  /// @Snippet(path: "AppConnectorsService_CreateAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/createAppConnectorPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func createAppConnectorPollingUntilDone(
     parent: Swift.String,
@@ -601,6 +777,13 @@ extension Clients.AppConnectorsServiceProtocol {
     return try await self.createAppConnectorPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single AppConnector.
+  ///
+  /// @Snippet(path: "AppConnectorsService_UpdateAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/updateAppConnector(request:options:)``
   @available(*, deprecated)
   public func updateAppConnector(request: UpdateAppConnectorRequest) async throws
     -> GoogleLongRunning.Operation
@@ -615,6 +798,13 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single AppConnector.
+  ///
+  /// @Snippet(path: "AppConnectorsService_UpdateAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/updateAppConnectorPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func updateAppConnectorPollingUntilDone(request: UpdateAppConnectorRequest) async throws
     -> AppConnector
@@ -629,6 +819,13 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single AppConnector.
+  ///
+  /// @Snippet(path: "AppConnectorsService_UpdateAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/updateAppConnectorPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func updateAppConnectorPollingUntilDone(
     appConnector: AppConnector?,
@@ -641,6 +838,13 @@ extension Clients.AppConnectorsServiceProtocol {
     return try await self.updateAppConnectorPollingUntilDone(request: request)
   }
 
+  /// Deletes a single AppConnector.
+  ///
+  /// @Snippet(path: "AppConnectorsService_DeleteAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/deleteAppConnector(request:options:)``
   @available(*, deprecated)
   public func deleteAppConnector(request: DeleteAppConnectorRequest) async throws
     -> GoogleLongRunning.Operation
@@ -655,6 +859,13 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single AppConnector.
+  ///
+  /// @Snippet(path: "AppConnectorsService_DeleteAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/deleteAppConnectorPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func deleteAppConnectorPollingUntilDone(request: DeleteAppConnectorRequest) async throws {
     try await self.deleteAppConnectorPollingUntilDone(request: request, options: .init())
@@ -667,6 +878,13 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single AppConnector.
+  ///
+  /// @Snippet(path: "AppConnectorsService_DeleteAppConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/deleteAppConnectorPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func deleteAppConnectorPollingUntilDone(
     name: Swift.String,
@@ -677,6 +895,14 @@ extension Clients.AppConnectorsServiceProtocol {
     try await self.deleteAppConnectorPollingUntilDone(request: request)
   }
 
+  /// Gets instance configuration for a given AppConnector.
+  /// An internal method called by a AppConnector to get its container config.
+  ///
+  /// @Snippet(path: "AppConnectorsService_ResolveInstanceConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/resolveInstanceConfig(request:options:)``
   @available(*, deprecated)
   public func resolveInstanceConfig(request: ResolveInstanceConfigRequest) async throws
     -> GoogleCloudBeyondCorpAppConnectorsV1.ResolveInstanceConfigResponse
@@ -691,6 +917,14 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets instance configuration for a given AppConnector.
+  /// An internal method called by a AppConnector to get its container config.
+  ///
+  /// @Snippet(path: "AppConnectorsService_ResolveInstanceConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/resolveInstanceConfig(request:options:)``
   @available(*, deprecated)
   public func resolveInstanceConfig(
     appConnector: Swift.String,
@@ -701,6 +935,13 @@ extension Clients.AppConnectorsServiceProtocol {
     return try await self.resolveInstanceConfig(request: request)
   }
 
+  /// Report status for a given connector.
+  ///
+  /// @Snippet(path: "AppConnectorsService_ReportStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/reportStatus(request:options:)``
   @available(*, deprecated)
   public func reportStatus(request: ReportStatusRequest) async throws -> GoogleLongRunning.Operation
   {
@@ -714,6 +955,13 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Report status for a given connector.
+  ///
+  /// @Snippet(path: "AppConnectorsService_ReportStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/reportStatusPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func reportStatusPollingUntilDone(request: ReportStatusRequest) async throws
     -> AppConnector
@@ -728,6 +976,13 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Report status for a given connector.
+  ///
+  /// @Snippet(path: "AppConnectorsService_ReportStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/reportStatusPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func reportStatusPollingUntilDone(
     appConnector: Swift.String,
@@ -740,6 +995,30 @@ extension Clients.AppConnectorsServiceProtocol {
     return try await self.reportStatusPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AppConnectorsService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -752,6 +1031,30 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AppConnectorsService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -778,6 +1081,10 @@ extension Clients.AppConnectorsServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AppConnectorsService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -791,6 +1098,13 @@ extension Clients.AppConnectorsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "AppConnectorsService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -803,6 +1117,17 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "AppConnectorsService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -815,6 +1140,14 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "AppConnectorsService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -827,6 +1160,19 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "AppConnectorsService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -839,6 +1185,15 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppConnectorsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -851,6 +1206,15 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppConnectorsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -862,6 +1226,10 @@ extension Clients.AppConnectorsServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppConnectorsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -875,6 +1243,15 @@ extension Clients.AppConnectorsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppConnectorsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -886,6 +1263,9 @@ extension Clients.AppConnectorsServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -898,6 +1278,9 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -907,6 +1290,15 @@ extension Clients.AppConnectorsServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppConnectorsService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -917,6 +1309,15 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppConnectorsService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -926,6 +1327,15 @@ extension Clients.AppConnectorsServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppConnectorsService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -936,6 +1346,15 @@ extension Clients.AppConnectorsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppConnectorsService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppConnectorsServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -24,6 +24,10 @@ import Foundation
 /// API for working with the system policy.
 ///
 /// @Snippet(path: "SystemPolicyV1Quickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SystemPolicyV1Protocol``
 public final class SystemPolicyV1Client: Clients.SystemPolicyV1Protocol, Sendable {
   let inner: any Clients.SystemPolicyV1Stub
 
@@ -40,6 +44,11 @@ public final class SystemPolicyV1Client: Clients.SystemPolicyV1Protocol, Sendabl
   /// Gets the current system policy in the specified location.
   ///
   /// @Snippet(path: "SystemPolicyV1_GetSystemPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSystemPolicy(request:)``
+  /// - ``getSystemPolicy(name:)``
   public func getSystemPolicy(
     request: GetSystemPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {
@@ -53,6 +62,10 @@ public final class SystemPolicyV1Client: Clients.SystemPolicyV1Protocol, Sendabl
   /// errors.
   ///
   /// @Snippet(path: "SystemPolicyV1_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -63,6 +76,10 @@ public final class SystemPolicyV1Client: Clients.SystemPolicyV1Protocol, Sendabl
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "SystemPolicyV1_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -78,6 +95,10 @@ public final class SystemPolicyV1Client: Clients.SystemPolicyV1Protocol, Sendabl
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "SystemPolicyV1_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -116,6 +137,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.SystemPolicyV1Protocol {
+  /// Gets the current system policy in the specified location.
+  ///
+  /// @Snippet(path: "SystemPolicyV1_GetSystemPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SystemPolicyV1Client/getSystemPolicy(request:options:)``
   public func getSystemPolicy(request: GetSystemPolicyRequest) async throws
     -> GoogleCloudBinaryAuthorizationV1.Policy
   {
@@ -128,6 +156,13 @@ extension Clients.SystemPolicyV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the current system policy in the specified location.
+  ///
+  /// @Snippet(path: "SystemPolicyV1_GetSystemPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SystemPolicyV1Client/getSystemPolicy(request:options:)``
   public func getSystemPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {
@@ -137,6 +172,17 @@ extension Clients.SystemPolicyV1Protocol {
     return try await self.getSystemPolicy(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "SystemPolicyV1_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SystemPolicyV1Client/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -149,6 +195,14 @@ extension Clients.SystemPolicyV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "SystemPolicyV1_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SystemPolicyV1Client/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -161,6 +215,19 @@ extension Clients.SystemPolicyV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "SystemPolicyV1_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SystemPolicyV1Client/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {

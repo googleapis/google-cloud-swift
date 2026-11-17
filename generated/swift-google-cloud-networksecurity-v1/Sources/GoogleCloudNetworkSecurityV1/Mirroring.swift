@@ -27,6 +27,10 @@ import Foundation
 /// PM2 is the "out-of-band" flavor of the Network Security Integrations product.
 ///
 /// @Snippet(path: "MirroringQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/MirroringProtocol``
 public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   let inner: any Clients.MirroringStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/132.
   ///
   /// @Snippet(path: "Mirroring_ListMirroringEndpointGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMirroringEndpointGroups(request:)``
+  /// - ``listMirroringEndpointGroupsByItems(request:)``
+  /// - ``listMirroringEndpointGroupsByItems(request:options:)``
+  /// - ``listMirroringEndpointGroupsByItems(parent:)``
   public func listMirroringEndpointGroups(
     request: ListMirroringEndpointGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupsResponse {
@@ -58,6 +69,11 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/131.
   ///
   /// @Snippet(path: "Mirroring_GetMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMirroringEndpointGroup(request:)``
+  /// - ``getMirroringEndpointGroup(name:)``
   public func getMirroringEndpointGroup(
     request: GetMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringEndpointGroup {
@@ -68,6 +84,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/133.
   ///
   /// @Snippet(path: "Mirroring_CreateMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMirroringEndpointGroup(request:)``
+  /// - ``createMirroringEndpointGroupPollingUntilDone(request:)``
+  /// - ``createMirroringEndpointGroupPollingUntilDone(request:options:)``
+  /// - ``createMirroringEndpointGroupPollingUntilDone(parent:mirroringEndpointGroup:mirroringEndpointGroupId:)``
   public func createMirroringEndpointGroup(
     request: CreateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -78,6 +101,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/133.
   ///
   /// @Snippet(path: "Mirroring_CreateMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMirroringEndpointGroupPollingUntilDone(request:)``
+  /// - ``createMirroringEndpointGroupPollingUntilDone(parent:mirroringEndpointGroup:mirroringEndpointGroupId:)``
+  /// - ``createMirroringEndpointGroup(request:)``
+  /// - ``createMirroringEndpointGroup(request:options:)``
   public func createMirroringEndpointGroupPollingUntilDone(
     request: CreateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringEndpointGroup {
@@ -107,6 +137,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/134.
   ///
   /// @Snippet(path: "Mirroring_UpdateMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMirroringEndpointGroup(request:)``
+  /// - ``updateMirroringEndpointGroupPollingUntilDone(request:)``
+  /// - ``updateMirroringEndpointGroupPollingUntilDone(request:options:)``
+  /// - ``updateMirroringEndpointGroupPollingUntilDone(mirroringEndpointGroup:updateMask:)``
   public func updateMirroringEndpointGroup(
     request: UpdateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -117,6 +154,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/134.
   ///
   /// @Snippet(path: "Mirroring_UpdateMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMirroringEndpointGroupPollingUntilDone(request:)``
+  /// - ``updateMirroringEndpointGroupPollingUntilDone(mirroringEndpointGroup:updateMask:)``
+  /// - ``updateMirroringEndpointGroup(request:)``
+  /// - ``updateMirroringEndpointGroup(request:options:)``
   public func updateMirroringEndpointGroupPollingUntilDone(
     request: UpdateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringEndpointGroup {
@@ -146,6 +190,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/135.
   ///
   /// @Snippet(path: "Mirroring_DeleteMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMirroringEndpointGroup(request:)``
+  /// - ``deleteMirroringEndpointGroupPollingUntilDone(request:)``
+  /// - ``deleteMirroringEndpointGroupPollingUntilDone(request:options:)``
+  /// - ``deleteMirroringEndpointGroupPollingUntilDone(name:)``
   public func deleteMirroringEndpointGroup(
     request: DeleteMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -156,6 +207,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/135.
   ///
   /// @Snippet(path: "Mirroring_DeleteMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMirroringEndpointGroupPollingUntilDone(request:)``
+  /// - ``deleteMirroringEndpointGroupPollingUntilDone(name:)``
+  /// - ``deleteMirroringEndpointGroup(request:)``
+  /// - ``deleteMirroringEndpointGroup(request:options:)``
   public func deleteMirroringEndpointGroupPollingUntilDone(
     request: DeleteMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -184,6 +242,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/132.
   ///
   /// @Snippet(path: "Mirroring_ListMirroringEndpointGroupAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMirroringEndpointGroupAssociations(request:)``
+  /// - ``listMirroringEndpointGroupAssociationsByItems(request:)``
+  /// - ``listMirroringEndpointGroupAssociationsByItems(request:options:)``
+  /// - ``listMirroringEndpointGroupAssociationsByItems(parent:)``
   public func listMirroringEndpointGroupAssociations(
     request: ListMirroringEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupAssociationsResponse {
@@ -194,6 +259,11 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/131.
   ///
   /// @Snippet(path: "Mirroring_GetMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMirroringEndpointGroupAssociation(request:)``
+  /// - ``getMirroringEndpointGroupAssociation(name:)``
   public func getMirroringEndpointGroupAssociation(
     request: GetMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringEndpointGroupAssociation {
@@ -204,6 +274,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/133.
   ///
   /// @Snippet(path: "Mirroring_CreateMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMirroringEndpointGroupAssociation(request:)``
+  /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(request:)``
+  /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(request:options:)``
+  /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(parent:mirroringEndpointGroupAssociation:mirroringEndpointGroupAssociationId:)``
   public func createMirroringEndpointGroupAssociation(
     request: CreateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -214,6 +291,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/133.
   ///
   /// @Snippet(path: "Mirroring_CreateMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(request:)``
+  /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(parent:mirroringEndpointGroupAssociation:mirroringEndpointGroupAssociationId:)``
+  /// - ``createMirroringEndpointGroupAssociation(request:)``
+  /// - ``createMirroringEndpointGroupAssociation(request:options:)``
   public func createMirroringEndpointGroupAssociationPollingUntilDone(
     request: CreateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringEndpointGroupAssociation {
@@ -245,6 +329,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/134.
   ///
   /// @Snippet(path: "Mirroring_UpdateMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMirroringEndpointGroupAssociation(request:)``
+  /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(request:)``
+  /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(request:options:)``
+  /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(mirroringEndpointGroupAssociation:updateMask:)``
   public func updateMirroringEndpointGroupAssociation(
     request: UpdateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -255,6 +346,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/134.
   ///
   /// @Snippet(path: "Mirroring_UpdateMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(request:)``
+  /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(mirroringEndpointGroupAssociation:updateMask:)``
+  /// - ``updateMirroringEndpointGroupAssociation(request:)``
+  /// - ``updateMirroringEndpointGroupAssociation(request:options:)``
   public func updateMirroringEndpointGroupAssociationPollingUntilDone(
     request: UpdateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringEndpointGroupAssociation {
@@ -286,6 +384,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/135.
   ///
   /// @Snippet(path: "Mirroring_DeleteMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMirroringEndpointGroupAssociation(request:)``
+  /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(request:)``
+  /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(request:options:)``
+  /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(name:)``
   public func deleteMirroringEndpointGroupAssociation(
     request: DeleteMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -296,6 +401,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/135.
   ///
   /// @Snippet(path: "Mirroring_DeleteMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(request:)``
+  /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(name:)``
+  /// - ``deleteMirroringEndpointGroupAssociation(request:)``
+  /// - ``deleteMirroringEndpointGroupAssociation(request:options:)``
   public func deleteMirroringEndpointGroupAssociationPollingUntilDone(
     request: DeleteMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -325,6 +437,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/132.
   ///
   /// @Snippet(path: "Mirroring_ListMirroringDeploymentGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMirroringDeploymentGroups(request:)``
+  /// - ``listMirroringDeploymentGroupsByItems(request:)``
+  /// - ``listMirroringDeploymentGroupsByItems(request:options:)``
+  /// - ``listMirroringDeploymentGroupsByItems(parent:)``
   public func listMirroringDeploymentGroups(
     request: ListMirroringDeploymentGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentGroupsResponse {
@@ -335,6 +454,11 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/131.
   ///
   /// @Snippet(path: "Mirroring_GetMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMirroringDeploymentGroup(request:)``
+  /// - ``getMirroringDeploymentGroup(name:)``
   public func getMirroringDeploymentGroup(
     request: GetMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringDeploymentGroup {
@@ -345,6 +469,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/133.
   ///
   /// @Snippet(path: "Mirroring_CreateMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMirroringDeploymentGroup(request:)``
+  /// - ``createMirroringDeploymentGroupPollingUntilDone(request:)``
+  /// - ``createMirroringDeploymentGroupPollingUntilDone(request:options:)``
+  /// - ``createMirroringDeploymentGroupPollingUntilDone(parent:mirroringDeploymentGroup:mirroringDeploymentGroupId:)``
   public func createMirroringDeploymentGroup(
     request: CreateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -355,6 +486,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/133.
   ///
   /// @Snippet(path: "Mirroring_CreateMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMirroringDeploymentGroupPollingUntilDone(request:)``
+  /// - ``createMirroringDeploymentGroupPollingUntilDone(parent:mirroringDeploymentGroup:mirroringDeploymentGroupId:)``
+  /// - ``createMirroringDeploymentGroup(request:)``
+  /// - ``createMirroringDeploymentGroup(request:options:)``
   public func createMirroringDeploymentGroupPollingUntilDone(
     request: CreateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringDeploymentGroup {
@@ -385,6 +523,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/134.
   ///
   /// @Snippet(path: "Mirroring_UpdateMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMirroringDeploymentGroup(request:)``
+  /// - ``updateMirroringDeploymentGroupPollingUntilDone(request:)``
+  /// - ``updateMirroringDeploymentGroupPollingUntilDone(request:options:)``
+  /// - ``updateMirroringDeploymentGroupPollingUntilDone(mirroringDeploymentGroup:updateMask:)``
   public func updateMirroringDeploymentGroup(
     request: UpdateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -395,6 +540,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/134.
   ///
   /// @Snippet(path: "Mirroring_UpdateMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMirroringDeploymentGroupPollingUntilDone(request:)``
+  /// - ``updateMirroringDeploymentGroupPollingUntilDone(mirroringDeploymentGroup:updateMask:)``
+  /// - ``updateMirroringDeploymentGroup(request:)``
+  /// - ``updateMirroringDeploymentGroup(request:options:)``
   public func updateMirroringDeploymentGroupPollingUntilDone(
     request: UpdateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringDeploymentGroup {
@@ -425,6 +577,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/135.
   ///
   /// @Snippet(path: "Mirroring_DeleteMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMirroringDeploymentGroup(request:)``
+  /// - ``deleteMirroringDeploymentGroupPollingUntilDone(request:)``
+  /// - ``deleteMirroringDeploymentGroupPollingUntilDone(request:options:)``
+  /// - ``deleteMirroringDeploymentGroupPollingUntilDone(name:)``
   public func deleteMirroringDeploymentGroup(
     request: DeleteMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -435,6 +594,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/135.
   ///
   /// @Snippet(path: "Mirroring_DeleteMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMirroringDeploymentGroupPollingUntilDone(request:)``
+  /// - ``deleteMirroringDeploymentGroupPollingUntilDone(name:)``
+  /// - ``deleteMirroringDeploymentGroup(request:)``
+  /// - ``deleteMirroringDeploymentGroup(request:options:)``
   public func deleteMirroringDeploymentGroupPollingUntilDone(
     request: DeleteMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -463,6 +629,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/132.
   ///
   /// @Snippet(path: "Mirroring_ListMirroringDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMirroringDeployments(request:)``
+  /// - ``listMirroringDeploymentsByItems(request:)``
+  /// - ``listMirroringDeploymentsByItems(request:options:)``
+  /// - ``listMirroringDeploymentsByItems(parent:)``
   public func listMirroringDeployments(
     request: ListMirroringDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentsResponse {
@@ -473,6 +646,11 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/131.
   ///
   /// @Snippet(path: "Mirroring_GetMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMirroringDeployment(request:)``
+  /// - ``getMirroringDeployment(name:)``
   public func getMirroringDeployment(
     request: GetMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringDeployment {
@@ -483,6 +661,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/133.
   ///
   /// @Snippet(path: "Mirroring_CreateMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMirroringDeployment(request:)``
+  /// - ``createMirroringDeploymentPollingUntilDone(request:)``
+  /// - ``createMirroringDeploymentPollingUntilDone(request:options:)``
+  /// - ``createMirroringDeploymentPollingUntilDone(parent:mirroringDeployment:mirroringDeploymentId:)``
   public func createMirroringDeployment(
     request: CreateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -493,6 +678,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/133.
   ///
   /// @Snippet(path: "Mirroring_CreateMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMirroringDeploymentPollingUntilDone(request:)``
+  /// - ``createMirroringDeploymentPollingUntilDone(parent:mirroringDeployment:mirroringDeploymentId:)``
+  /// - ``createMirroringDeployment(request:)``
+  /// - ``createMirroringDeployment(request:options:)``
   public func createMirroringDeploymentPollingUntilDone(
     request: CreateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringDeployment {
@@ -522,6 +714,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/134.
   ///
   /// @Snippet(path: "Mirroring_UpdateMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMirroringDeployment(request:)``
+  /// - ``updateMirroringDeploymentPollingUntilDone(request:)``
+  /// - ``updateMirroringDeploymentPollingUntilDone(request:options:)``
+  /// - ``updateMirroringDeploymentPollingUntilDone(mirroringDeployment:updateMask:)``
   public func updateMirroringDeployment(
     request: UpdateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -532,6 +731,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/134.
   ///
   /// @Snippet(path: "Mirroring_UpdateMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMirroringDeploymentPollingUntilDone(request:)``
+  /// - ``updateMirroringDeploymentPollingUntilDone(mirroringDeployment:updateMask:)``
+  /// - ``updateMirroringDeployment(request:)``
+  /// - ``updateMirroringDeployment(request:options:)``
   public func updateMirroringDeploymentPollingUntilDone(
     request: UpdateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringDeployment {
@@ -561,6 +767,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/135.
   ///
   /// @Snippet(path: "Mirroring_DeleteMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMirroringDeployment(request:)``
+  /// - ``deleteMirroringDeploymentPollingUntilDone(request:)``
+  /// - ``deleteMirroringDeploymentPollingUntilDone(request:options:)``
+  /// - ``deleteMirroringDeploymentPollingUntilDone(name:)``
   public func deleteMirroringDeployment(
     request: DeleteMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -571,6 +784,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// See https://google.aip.dev/135.
   ///
   /// @Snippet(path: "Mirroring_DeleteMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMirroringDeploymentPollingUntilDone(request:)``
+  /// - ``deleteMirroringDeploymentPollingUntilDone(name:)``
+  /// - ``deleteMirroringDeployment(request:)``
+  /// - ``deleteMirroringDeployment(request:options:)``
   public func deleteMirroringDeploymentPollingUntilDone(
     request: DeleteMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -615,6 +835,12 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Mirroring_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -624,6 +850,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Mirroring_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -637,6 +867,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// errors.
   ///
   /// @Snippet(path: "Mirroring_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -647,6 +881,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "Mirroring_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -662,6 +900,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "Mirroring_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -673,6 +915,13 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Mirroring_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -695,6 +944,11 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Mirroring_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -706,6 +960,11 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Mirroring_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -924,6 +1183,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.MirroringProtocol {
+  /// Lists endpoint groups in a given project and location.
+  /// See https://google.aip.dev/132.
+  ///
+  /// @Snippet(path: "Mirroring_ListMirroringEndpointGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringEndpointGroups(request:options:)``
   public func listMirroringEndpointGroups(request: ListMirroringEndpointGroupsRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupsResponse
   {
@@ -936,6 +1203,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists endpoint groups in a given project and location.
+  /// See https://google.aip.dev/132.
+  ///
+  /// @Snippet(path: "Mirroring_ListMirroringEndpointGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringEndpointGroups(request:options:)``
   public func listMirroringEndpointGroupsByItems(
     request: ListMirroringEndpointGroupsRequest
   ) -> some AsyncSequence<MirroringEndpointGroup, any Swift.Error> & Sendable {
@@ -946,6 +1221,10 @@ extension Clients.MirroringProtocol {
   /// See https://google.aip.dev/132.
   ///
   /// @Snippet(path: "Mirroring_ListMirroringEndpointGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringEndpointGroups(request:options:)``
   public func listMirroringEndpointGroupsByItems(
     request: ListMirroringEndpointGroupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MirroringEndpointGroup, any Swift.Error> & Sendable {
@@ -960,6 +1239,14 @@ extension Clients.MirroringProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists endpoint groups in a given project and location.
+  /// See https://google.aip.dev/132.
+  ///
+  /// @Snippet(path: "Mirroring_ListMirroringEndpointGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringEndpointGroups(request:options:)``
   public func listMirroringEndpointGroupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MirroringEndpointGroup, any Swift.Error> & Sendable {
@@ -969,6 +1256,14 @@ extension Clients.MirroringProtocol {
     return self.listMirroringEndpointGroupsByItems(request: request)
   }
 
+  /// Gets a specific endpoint group.
+  /// See https://google.aip.dev/131.
+  ///
+  /// @Snippet(path: "Mirroring_GetMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/getMirroringEndpointGroup(request:options:)``
   public func getMirroringEndpointGroup(request: GetMirroringEndpointGroupRequest) async throws
     -> GoogleCloudNetworkSecurityV1.MirroringEndpointGroup
   {
@@ -981,6 +1276,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a specific endpoint group.
+  /// See https://google.aip.dev/131.
+  ///
+  /// @Snippet(path: "Mirroring_GetMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/getMirroringEndpointGroup(request:options:)``
   public func getMirroringEndpointGroup(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringEndpointGroup {
@@ -990,6 +1293,14 @@ extension Clients.MirroringProtocol {
     return try await self.getMirroringEndpointGroup(request: request)
   }
 
+  /// Creates an endpoint group in a given project and location.
+  /// See https://google.aip.dev/133.
+  ///
+  /// @Snippet(path: "Mirroring_CreateMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/createMirroringEndpointGroup(request:options:)``
   public func createMirroringEndpointGroup(request: CreateMirroringEndpointGroupRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1002,6 +1313,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an endpoint group in a given project and location.
+  /// See https://google.aip.dev/133.
+  ///
+  /// @Snippet(path: "Mirroring_CreateMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/createMirroringEndpointGroupPollingUntilDone(request:options:)``
   public func createMirroringEndpointGroupPollingUntilDone(
     request: CreateMirroringEndpointGroupRequest
   ) async throws -> MirroringEndpointGroup {
@@ -1015,6 +1334,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an endpoint group in a given project and location.
+  /// See https://google.aip.dev/133.
+  ///
+  /// @Snippet(path: "Mirroring_CreateMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/createMirroringEndpointGroupPollingUntilDone(request:options:)``
   public func createMirroringEndpointGroupPollingUntilDone(
     parent: Swift.String,
     mirroringEndpointGroup: MirroringEndpointGroup?,
@@ -1028,6 +1355,14 @@ extension Clients.MirroringProtocol {
     return try await self.createMirroringEndpointGroupPollingUntilDone(request: request)
   }
 
+  /// Updates an endpoint group.
+  /// See https://google.aip.dev/134.
+  ///
+  /// @Snippet(path: "Mirroring_UpdateMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/updateMirroringEndpointGroup(request:options:)``
   public func updateMirroringEndpointGroup(request: UpdateMirroringEndpointGroupRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1040,6 +1375,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an endpoint group.
+  /// See https://google.aip.dev/134.
+  ///
+  /// @Snippet(path: "Mirroring_UpdateMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/updateMirroringEndpointGroupPollingUntilDone(request:options:)``
   public func updateMirroringEndpointGroupPollingUntilDone(
     request: UpdateMirroringEndpointGroupRequest
   ) async throws -> MirroringEndpointGroup {
@@ -1053,6 +1396,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an endpoint group.
+  /// See https://google.aip.dev/134.
+  ///
+  /// @Snippet(path: "Mirroring_UpdateMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/updateMirroringEndpointGroupPollingUntilDone(request:options:)``
   public func updateMirroringEndpointGroupPollingUntilDone(
     mirroringEndpointGroup: MirroringEndpointGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1064,6 +1415,14 @@ extension Clients.MirroringProtocol {
     return try await self.updateMirroringEndpointGroupPollingUntilDone(request: request)
   }
 
+  /// Deletes an endpoint group.
+  /// See https://google.aip.dev/135.
+  ///
+  /// @Snippet(path: "Mirroring_DeleteMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteMirroringEndpointGroup(request:options:)``
   public func deleteMirroringEndpointGroup(request: DeleteMirroringEndpointGroupRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1076,6 +1435,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an endpoint group.
+  /// See https://google.aip.dev/135.
+  ///
+  /// @Snippet(path: "Mirroring_DeleteMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteMirroringEndpointGroupPollingUntilDone(request:options:)``
   public func deleteMirroringEndpointGroupPollingUntilDone(
     request: DeleteMirroringEndpointGroupRequest
   ) async throws {
@@ -1088,6 +1455,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an endpoint group.
+  /// See https://google.aip.dev/135.
+  ///
+  /// @Snippet(path: "Mirroring_DeleteMirroringEndpointGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteMirroringEndpointGroupPollingUntilDone(request:options:)``
   public func deleteMirroringEndpointGroupPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1097,6 +1472,14 @@ extension Clients.MirroringProtocol {
     try await self.deleteMirroringEndpointGroupPollingUntilDone(request: request)
   }
 
+  /// Lists associations in a given project and location.
+  /// See https://google.aip.dev/132.
+  ///
+  /// @Snippet(path: "Mirroring_ListMirroringEndpointGroupAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringEndpointGroupAssociations(request:options:)``
   public func listMirroringEndpointGroupAssociations(
     request: ListMirroringEndpointGroupAssociationsRequest
   ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupAssociationsResponse {
@@ -1109,6 +1492,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists associations in a given project and location.
+  /// See https://google.aip.dev/132.
+  ///
+  /// @Snippet(path: "Mirroring_ListMirroringEndpointGroupAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringEndpointGroupAssociations(request:options:)``
   public func listMirroringEndpointGroupAssociationsByItems(
     request: ListMirroringEndpointGroupAssociationsRequest
   ) -> some AsyncSequence<MirroringEndpointGroupAssociation, any Swift.Error> & Sendable {
@@ -1119,6 +1510,10 @@ extension Clients.MirroringProtocol {
   /// See https://google.aip.dev/132.
   ///
   /// @Snippet(path: "Mirroring_ListMirroringEndpointGroupAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringEndpointGroupAssociations(request:options:)``
   public func listMirroringEndpointGroupAssociationsByItems(
     request: ListMirroringEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MirroringEndpointGroupAssociation, any Swift.Error> & Sendable {
@@ -1134,6 +1529,14 @@ extension Clients.MirroringProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists associations in a given project and location.
+  /// See https://google.aip.dev/132.
+  ///
+  /// @Snippet(path: "Mirroring_ListMirroringEndpointGroupAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringEndpointGroupAssociations(request:options:)``
   public func listMirroringEndpointGroupAssociationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MirroringEndpointGroupAssociation, any Swift.Error> & Sendable {
@@ -1143,6 +1546,14 @@ extension Clients.MirroringProtocol {
     return self.listMirroringEndpointGroupAssociationsByItems(request: request)
   }
 
+  /// Gets a specific association.
+  /// See https://google.aip.dev/131.
+  ///
+  /// @Snippet(path: "Mirroring_GetMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/getMirroringEndpointGroupAssociation(request:options:)``
   public func getMirroringEndpointGroupAssociation(
     request: GetMirroringEndpointGroupAssociationRequest
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringEndpointGroupAssociation {
@@ -1155,6 +1566,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a specific association.
+  /// See https://google.aip.dev/131.
+  ///
+  /// @Snippet(path: "Mirroring_GetMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/getMirroringEndpointGroupAssociation(request:options:)``
   public func getMirroringEndpointGroupAssociation(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringEndpointGroupAssociation {
@@ -1164,6 +1583,14 @@ extension Clients.MirroringProtocol {
     return try await self.getMirroringEndpointGroupAssociation(request: request)
   }
 
+  /// Creates an association in a given project and location.
+  /// See https://google.aip.dev/133.
+  ///
+  /// @Snippet(path: "Mirroring_CreateMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/createMirroringEndpointGroupAssociation(request:options:)``
   public func createMirroringEndpointGroupAssociation(
     request: CreateMirroringEndpointGroupAssociationRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -1176,6 +1603,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an association in a given project and location.
+  /// See https://google.aip.dev/133.
+  ///
+  /// @Snippet(path: "Mirroring_CreateMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/createMirroringEndpointGroupAssociationPollingUntilDone(request:options:)``
   public func createMirroringEndpointGroupAssociationPollingUntilDone(
     request: CreateMirroringEndpointGroupAssociationRequest
   ) async throws -> MirroringEndpointGroupAssociation {
@@ -1189,6 +1624,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an association in a given project and location.
+  /// See https://google.aip.dev/133.
+  ///
+  /// @Snippet(path: "Mirroring_CreateMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/createMirroringEndpointGroupAssociationPollingUntilDone(request:options:)``
   public func createMirroringEndpointGroupAssociationPollingUntilDone(
     parent: Swift.String,
     mirroringEndpointGroupAssociation: MirroringEndpointGroupAssociation?,
@@ -1202,6 +1645,14 @@ extension Clients.MirroringProtocol {
     return try await self.createMirroringEndpointGroupAssociationPollingUntilDone(request: request)
   }
 
+  /// Updates an association.
+  /// See https://google.aip.dev/134.
+  ///
+  /// @Snippet(path: "Mirroring_UpdateMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/updateMirroringEndpointGroupAssociation(request:options:)``
   public func updateMirroringEndpointGroupAssociation(
     request: UpdateMirroringEndpointGroupAssociationRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -1214,6 +1665,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an association.
+  /// See https://google.aip.dev/134.
+  ///
+  /// @Snippet(path: "Mirroring_UpdateMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/updateMirroringEndpointGroupAssociationPollingUntilDone(request:options:)``
   public func updateMirroringEndpointGroupAssociationPollingUntilDone(
     request: UpdateMirroringEndpointGroupAssociationRequest
   ) async throws -> MirroringEndpointGroupAssociation {
@@ -1227,6 +1686,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an association.
+  /// See https://google.aip.dev/134.
+  ///
+  /// @Snippet(path: "Mirroring_UpdateMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/updateMirroringEndpointGroupAssociationPollingUntilDone(request:options:)``
   public func updateMirroringEndpointGroupAssociationPollingUntilDone(
     mirroringEndpointGroupAssociation: MirroringEndpointGroupAssociation?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1238,6 +1705,14 @@ extension Clients.MirroringProtocol {
     return try await self.updateMirroringEndpointGroupAssociationPollingUntilDone(request: request)
   }
 
+  /// Deletes an association.
+  /// See https://google.aip.dev/135.
+  ///
+  /// @Snippet(path: "Mirroring_DeleteMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteMirroringEndpointGroupAssociation(request:options:)``
   public func deleteMirroringEndpointGroupAssociation(
     request: DeleteMirroringEndpointGroupAssociationRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -1250,6 +1725,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an association.
+  /// See https://google.aip.dev/135.
+  ///
+  /// @Snippet(path: "Mirroring_DeleteMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteMirroringEndpointGroupAssociationPollingUntilDone(request:options:)``
   public func deleteMirroringEndpointGroupAssociationPollingUntilDone(
     request: DeleteMirroringEndpointGroupAssociationRequest
   ) async throws {
@@ -1263,6 +1746,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an association.
+  /// See https://google.aip.dev/135.
+  ///
+  /// @Snippet(path: "Mirroring_DeleteMirroringEndpointGroupAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteMirroringEndpointGroupAssociationPollingUntilDone(request:options:)``
   public func deleteMirroringEndpointGroupAssociationPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1272,6 +1763,14 @@ extension Clients.MirroringProtocol {
     try await self.deleteMirroringEndpointGroupAssociationPollingUntilDone(request: request)
   }
 
+  /// Lists deployment groups in a given project and location.
+  /// See https://google.aip.dev/132.
+  ///
+  /// @Snippet(path: "Mirroring_ListMirroringDeploymentGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringDeploymentGroups(request:options:)``
   public func listMirroringDeploymentGroups(request: ListMirroringDeploymentGroupsRequest)
     async throws -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentGroupsResponse
   {
@@ -1284,6 +1783,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists deployment groups in a given project and location.
+  /// See https://google.aip.dev/132.
+  ///
+  /// @Snippet(path: "Mirroring_ListMirroringDeploymentGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringDeploymentGroups(request:options:)``
   public func listMirroringDeploymentGroupsByItems(
     request: ListMirroringDeploymentGroupsRequest
   ) -> some AsyncSequence<MirroringDeploymentGroup, any Swift.Error> & Sendable {
@@ -1294,6 +1801,10 @@ extension Clients.MirroringProtocol {
   /// See https://google.aip.dev/132.
   ///
   /// @Snippet(path: "Mirroring_ListMirroringDeploymentGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringDeploymentGroups(request:options:)``
   public func listMirroringDeploymentGroupsByItems(
     request: ListMirroringDeploymentGroupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MirroringDeploymentGroup, any Swift.Error> & Sendable {
@@ -1308,6 +1819,14 @@ extension Clients.MirroringProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists deployment groups in a given project and location.
+  /// See https://google.aip.dev/132.
+  ///
+  /// @Snippet(path: "Mirroring_ListMirroringDeploymentGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringDeploymentGroups(request:options:)``
   public func listMirroringDeploymentGroupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MirroringDeploymentGroup, any Swift.Error> & Sendable {
@@ -1317,6 +1836,14 @@ extension Clients.MirroringProtocol {
     return self.listMirroringDeploymentGroupsByItems(request: request)
   }
 
+  /// Gets a specific deployment group.
+  /// See https://google.aip.dev/131.
+  ///
+  /// @Snippet(path: "Mirroring_GetMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/getMirroringDeploymentGroup(request:options:)``
   public func getMirroringDeploymentGroup(request: GetMirroringDeploymentGroupRequest) async throws
     -> GoogleCloudNetworkSecurityV1.MirroringDeploymentGroup
   {
@@ -1329,6 +1856,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a specific deployment group.
+  /// See https://google.aip.dev/131.
+  ///
+  /// @Snippet(path: "Mirroring_GetMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/getMirroringDeploymentGroup(request:options:)``
   public func getMirroringDeploymentGroup(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringDeploymentGroup {
@@ -1338,6 +1873,14 @@ extension Clients.MirroringProtocol {
     return try await self.getMirroringDeploymentGroup(request: request)
   }
 
+  /// Creates a deployment group in a given project and location.
+  /// See https://google.aip.dev/133.
+  ///
+  /// @Snippet(path: "Mirroring_CreateMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/createMirroringDeploymentGroup(request:options:)``
   public func createMirroringDeploymentGroup(request: CreateMirroringDeploymentGroupRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1350,6 +1893,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a deployment group in a given project and location.
+  /// See https://google.aip.dev/133.
+  ///
+  /// @Snippet(path: "Mirroring_CreateMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/createMirroringDeploymentGroupPollingUntilDone(request:options:)``
   public func createMirroringDeploymentGroupPollingUntilDone(
     request: CreateMirroringDeploymentGroupRequest
   ) async throws -> MirroringDeploymentGroup {
@@ -1363,6 +1914,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a deployment group in a given project and location.
+  /// See https://google.aip.dev/133.
+  ///
+  /// @Snippet(path: "Mirroring_CreateMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/createMirroringDeploymentGroupPollingUntilDone(request:options:)``
   public func createMirroringDeploymentGroupPollingUntilDone(
     parent: Swift.String,
     mirroringDeploymentGroup: MirroringDeploymentGroup?,
@@ -1376,6 +1935,14 @@ extension Clients.MirroringProtocol {
     return try await self.createMirroringDeploymentGroupPollingUntilDone(request: request)
   }
 
+  /// Updates a deployment group.
+  /// See https://google.aip.dev/134.
+  ///
+  /// @Snippet(path: "Mirroring_UpdateMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/updateMirroringDeploymentGroup(request:options:)``
   public func updateMirroringDeploymentGroup(request: UpdateMirroringDeploymentGroupRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1388,6 +1955,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a deployment group.
+  /// See https://google.aip.dev/134.
+  ///
+  /// @Snippet(path: "Mirroring_UpdateMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/updateMirroringDeploymentGroupPollingUntilDone(request:options:)``
   public func updateMirroringDeploymentGroupPollingUntilDone(
     request: UpdateMirroringDeploymentGroupRequest
   ) async throws -> MirroringDeploymentGroup {
@@ -1401,6 +1976,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a deployment group.
+  /// See https://google.aip.dev/134.
+  ///
+  /// @Snippet(path: "Mirroring_UpdateMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/updateMirroringDeploymentGroupPollingUntilDone(request:options:)``
   public func updateMirroringDeploymentGroupPollingUntilDone(
     mirroringDeploymentGroup: MirroringDeploymentGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1412,6 +1995,14 @@ extension Clients.MirroringProtocol {
     return try await self.updateMirroringDeploymentGroupPollingUntilDone(request: request)
   }
 
+  /// Deletes a deployment group.
+  /// See https://google.aip.dev/135.
+  ///
+  /// @Snippet(path: "Mirroring_DeleteMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteMirroringDeploymentGroup(request:options:)``
   public func deleteMirroringDeploymentGroup(request: DeleteMirroringDeploymentGroupRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1424,6 +2015,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a deployment group.
+  /// See https://google.aip.dev/135.
+  ///
+  /// @Snippet(path: "Mirroring_DeleteMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteMirroringDeploymentGroupPollingUntilDone(request:options:)``
   public func deleteMirroringDeploymentGroupPollingUntilDone(
     request: DeleteMirroringDeploymentGroupRequest
   ) async throws {
@@ -1437,6 +2036,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a deployment group.
+  /// See https://google.aip.dev/135.
+  ///
+  /// @Snippet(path: "Mirroring_DeleteMirroringDeploymentGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteMirroringDeploymentGroupPollingUntilDone(request:options:)``
   public func deleteMirroringDeploymentGroupPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1446,6 +2053,14 @@ extension Clients.MirroringProtocol {
     try await self.deleteMirroringDeploymentGroupPollingUntilDone(request: request)
   }
 
+  /// Lists deployments in a given project and location.
+  /// See https://google.aip.dev/132.
+  ///
+  /// @Snippet(path: "Mirroring_ListMirroringDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringDeployments(request:options:)``
   public func listMirroringDeployments(request: ListMirroringDeploymentsRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentsResponse
   {
@@ -1458,6 +2073,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists deployments in a given project and location.
+  /// See https://google.aip.dev/132.
+  ///
+  /// @Snippet(path: "Mirroring_ListMirroringDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringDeployments(request:options:)``
   public func listMirroringDeploymentsByItems(
     request: ListMirroringDeploymentsRequest
   ) -> some AsyncSequence<MirroringDeployment, any Swift.Error> & Sendable {
@@ -1468,6 +2091,10 @@ extension Clients.MirroringProtocol {
   /// See https://google.aip.dev/132.
   ///
   /// @Snippet(path: "Mirroring_ListMirroringDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringDeployments(request:options:)``
   public func listMirroringDeploymentsByItems(
     request: ListMirroringDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MirroringDeployment, any Swift.Error> & Sendable {
@@ -1482,6 +2109,14 @@ extension Clients.MirroringProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists deployments in a given project and location.
+  /// See https://google.aip.dev/132.
+  ///
+  /// @Snippet(path: "Mirroring_ListMirroringDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listMirroringDeployments(request:options:)``
   public func listMirroringDeploymentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MirroringDeployment, any Swift.Error> & Sendable {
@@ -1491,6 +2126,14 @@ extension Clients.MirroringProtocol {
     return self.listMirroringDeploymentsByItems(request: request)
   }
 
+  /// Gets a specific deployment.
+  /// See https://google.aip.dev/131.
+  ///
+  /// @Snippet(path: "Mirroring_GetMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/getMirroringDeployment(request:options:)``
   public func getMirroringDeployment(request: GetMirroringDeploymentRequest) async throws
     -> GoogleCloudNetworkSecurityV1.MirroringDeployment
   {
@@ -1503,6 +2146,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a specific deployment.
+  /// See https://google.aip.dev/131.
+  ///
+  /// @Snippet(path: "Mirroring_GetMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/getMirroringDeployment(request:options:)``
   public func getMirroringDeployment(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringDeployment {
@@ -1512,6 +2163,14 @@ extension Clients.MirroringProtocol {
     return try await self.getMirroringDeployment(request: request)
   }
 
+  /// Creates a deployment in a given project and location.
+  /// See https://google.aip.dev/133.
+  ///
+  /// @Snippet(path: "Mirroring_CreateMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/createMirroringDeployment(request:options:)``
   public func createMirroringDeployment(request: CreateMirroringDeploymentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1524,6 +2183,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a deployment in a given project and location.
+  /// See https://google.aip.dev/133.
+  ///
+  /// @Snippet(path: "Mirroring_CreateMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/createMirroringDeploymentPollingUntilDone(request:options:)``
   public func createMirroringDeploymentPollingUntilDone(request: CreateMirroringDeploymentRequest)
     async throws -> MirroringDeployment
   {
@@ -1537,6 +2204,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a deployment in a given project and location.
+  /// See https://google.aip.dev/133.
+  ///
+  /// @Snippet(path: "Mirroring_CreateMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/createMirroringDeploymentPollingUntilDone(request:options:)``
   public func createMirroringDeploymentPollingUntilDone(
     parent: Swift.String,
     mirroringDeployment: MirroringDeployment?,
@@ -1550,6 +2225,14 @@ extension Clients.MirroringProtocol {
     return try await self.createMirroringDeploymentPollingUntilDone(request: request)
   }
 
+  /// Updates a deployment.
+  /// See https://google.aip.dev/134.
+  ///
+  /// @Snippet(path: "Mirroring_UpdateMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/updateMirroringDeployment(request:options:)``
   public func updateMirroringDeployment(request: UpdateMirroringDeploymentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1562,6 +2245,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a deployment.
+  /// See https://google.aip.dev/134.
+  ///
+  /// @Snippet(path: "Mirroring_UpdateMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/updateMirroringDeploymentPollingUntilDone(request:options:)``
   public func updateMirroringDeploymentPollingUntilDone(request: UpdateMirroringDeploymentRequest)
     async throws -> MirroringDeployment
   {
@@ -1575,6 +2266,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a deployment.
+  /// See https://google.aip.dev/134.
+  ///
+  /// @Snippet(path: "Mirroring_UpdateMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/updateMirroringDeploymentPollingUntilDone(request:options:)``
   public func updateMirroringDeploymentPollingUntilDone(
     mirroringDeployment: MirroringDeployment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1586,6 +2285,14 @@ extension Clients.MirroringProtocol {
     return try await self.updateMirroringDeploymentPollingUntilDone(request: request)
   }
 
+  /// Deletes a deployment.
+  /// See https://google.aip.dev/135.
+  ///
+  /// @Snippet(path: "Mirroring_DeleteMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteMirroringDeployment(request:options:)``
   public func deleteMirroringDeployment(request: DeleteMirroringDeploymentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1598,6 +2305,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a deployment.
+  /// See https://google.aip.dev/135.
+  ///
+  /// @Snippet(path: "Mirroring_DeleteMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteMirroringDeploymentPollingUntilDone(request:options:)``
   public func deleteMirroringDeploymentPollingUntilDone(request: DeleteMirroringDeploymentRequest)
     async throws
   {
@@ -1610,6 +2325,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a deployment.
+  /// See https://google.aip.dev/135.
+  ///
+  /// @Snippet(path: "Mirroring_DeleteMirroringDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteMirroringDeploymentPollingUntilDone(request:options:)``
   public func deleteMirroringDeploymentPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1619,6 +2342,30 @@ extension Clients.MirroringProtocol {
     try await self.deleteMirroringDeploymentPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Mirroring_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1631,6 +2378,30 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Mirroring_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1657,6 +2428,10 @@ extension Clients.MirroringProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Mirroring_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1670,6 +2445,13 @@ extension Clients.MirroringProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "Mirroring_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1682,6 +2464,17 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "Mirroring_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1694,6 +2487,14 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "Mirroring_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1706,6 +2507,19 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "Mirroring_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -1718,6 +2532,15 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Mirroring_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1730,6 +2553,15 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Mirroring_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1741,6 +2573,10 @@ extension Clients.MirroringProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Mirroring_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1754,6 +2590,15 @@ extension Clients.MirroringProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Mirroring_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1765,6 +2610,9 @@ extension Clients.MirroringProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1777,6 +2625,9 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1786,6 +2637,15 @@ extension Clients.MirroringProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Mirroring_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1796,6 +2656,15 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Mirroring_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1805,6 +2674,15 @@ extension Clients.MirroringProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Mirroring_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1815,6 +2693,15 @@ extension Clients.MirroringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Mirroring_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MirroringClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

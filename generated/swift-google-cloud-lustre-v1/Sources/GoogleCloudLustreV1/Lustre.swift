@@ -27,6 +27,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "LustreQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/LustreProtocol``
 public final class LustreClient: Clients.LustreProtocol, Sendable {
   let inner: any Clients.LustreStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Lists instances in a given project and location.
   ///
   /// @Snippet(path: "Lustre_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(request:)``
+  /// - ``listInstancesByItems(request:options:)``
+  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLustreV1.ListInstancesResponse {
@@ -56,6 +67,11 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Gets details of a single instance.
   ///
   /// @Snippet(path: "Lustre_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInstance(request:)``
+  /// - ``getInstance(name:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLustreV1.Instance {
@@ -65,6 +81,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Creates a new instance in a given project and location.
   ///
   /// @Snippet(path: "Lustre_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(request:)``
+  /// - ``createInstancePollingUntilDone(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -74,6 +97,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Creates a new instance in a given project and location.
   ///
   /// @Snippet(path: "Lustre_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInstancePollingUntilDone(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstance(request:)``
+  /// - ``createInstance(request:options:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -101,6 +131,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Updates the parameters of a single instance.
   ///
   /// @Snippet(path: "Lustre_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
+  /// - ``updateInstancePollingUntilDone(request:options:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -110,6 +147,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Updates the parameters of a single instance.
   ///
   /// @Snippet(path: "Lustre_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateInstancePollingUntilDone(request:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstance(request:)``
+  /// - ``updateInstance(request:options:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -137,6 +181,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Deletes a single instance.
   ///
   /// @Snippet(path: "Lustre_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
+  /// - ``deleteInstancePollingUntilDone(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -146,6 +197,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Deletes a single instance.
   ///
   /// @Snippet(path: "Lustre_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstancePollingUntilDone(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstance(request:options:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -173,6 +231,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Reschedules a planned maintenance event for a specific instance.
   ///
   /// @Snippet(path: "Lustre_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rescheduleMaintenance(request:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(request:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(request:options:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(name:reschedule:)``
   public func rescheduleMaintenance(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -182,6 +247,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Reschedules a planned maintenance event for a specific instance.
   ///
   /// @Snippet(path: "Lustre_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rescheduleMaintenancePollingUntilDone(request:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(name:reschedule:)``
+  /// - ``rescheduleMaintenance(request:)``
+  /// - ``rescheduleMaintenance(request:options:)``
   public func rescheduleMaintenancePollingUntilDone(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -209,6 +281,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Imports data from Cloud Storage to a Managed Lustre instance.
   ///
   /// @Snippet(path: "Lustre_ImportData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importData(request:)``
+  /// - ``importDataPollingUntilDone(request:)``
+  /// - ``importDataPollingUntilDone(request:options:)``
+  /// - ``importDataPollingUntilDone(name:)``
   public func importData(
     request: ImportDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -218,6 +297,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Imports data from Cloud Storage to a Managed Lustre instance.
   ///
   /// @Snippet(path: "Lustre_ImportData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importDataPollingUntilDone(request:)``
+  /// - ``importDataPollingUntilDone(name:)``
+  /// - ``importData(request:)``
+  /// - ``importData(request:options:)``
   public func importDataPollingUntilDone(
     request: ImportDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportDataResponse {
@@ -246,6 +332,12 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Exports data from a Managed Lustre instance to Cloud Storage.
   ///
   /// @Snippet(path: "Lustre_ExportData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportData(request:)``
+  /// - ``exportDataPollingUntilDone(request:)``
+  /// - ``exportDataPollingUntilDone(request:options:)``
   public func exportData(
     request: ExportDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -255,6 +347,12 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Exports data from a Managed Lustre instance to Cloud Storage.
   ///
   /// @Snippet(path: "Lustre_ExportData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportDataPollingUntilDone(request:)``
+  /// - ``exportData(request:)``
+  /// - ``exportData(request:options:)``
   public func exportDataPollingUntilDone(
     request: ExportDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportDataResponse {
@@ -283,6 +381,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Creates a new mirror in a given instance.
   ///
   /// @Snippet(path: "Lustre_CreateMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMirror(request:)``
+  /// - ``createMirrorPollingUntilDone(request:)``
+  /// - ``createMirrorPollingUntilDone(request:options:)``
+  /// - ``createMirrorPollingUntilDone(parent:mirror:mirrorId:)``
   public func createMirror(
     request: CreateMirrorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -292,6 +397,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Creates a new mirror in a given instance.
   ///
   /// @Snippet(path: "Lustre_CreateMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMirrorPollingUntilDone(request:)``
+  /// - ``createMirrorPollingUntilDone(parent:mirror:mirrorId:)``
+  /// - ``createMirror(request:)``
+  /// - ``createMirror(request:options:)``
   public func createMirrorPollingUntilDone(
     request: CreateMirrorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Mirror {
@@ -319,6 +431,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Updates the parameters of a single mirror.
   ///
   /// @Snippet(path: "Lustre_UpdateMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMirror(request:)``
+  /// - ``updateMirrorPollingUntilDone(request:)``
+  /// - ``updateMirrorPollingUntilDone(request:options:)``
+  /// - ``updateMirrorPollingUntilDone(mirror:updateMask:)``
   public func updateMirror(
     request: UpdateMirrorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -328,6 +447,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Updates the parameters of a single mirror.
   ///
   /// @Snippet(path: "Lustre_UpdateMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMirrorPollingUntilDone(request:)``
+  /// - ``updateMirrorPollingUntilDone(mirror:updateMask:)``
+  /// - ``updateMirror(request:)``
+  /// - ``updateMirror(request:options:)``
   public func updateMirrorPollingUntilDone(
     request: UpdateMirrorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Mirror {
@@ -355,6 +481,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Deletes a single mirror.
   ///
   /// @Snippet(path: "Lustre_DeleteMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMirror(request:)``
+  /// - ``deleteMirrorPollingUntilDone(request:)``
+  /// - ``deleteMirrorPollingUntilDone(request:options:)``
+  /// - ``deleteMirrorPollingUntilDone(name:)``
   public func deleteMirror(
     request: DeleteMirrorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -364,6 +497,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Deletes a single mirror.
   ///
   /// @Snippet(path: "Lustre_DeleteMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMirrorPollingUntilDone(request:)``
+  /// - ``deleteMirrorPollingUntilDone(name:)``
+  /// - ``deleteMirror(request:)``
+  /// - ``deleteMirror(request:options:)``
   public func deleteMirrorPollingUntilDone(
     request: DeleteMirrorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -391,6 +531,11 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Gets details of a single mirror.
   ///
   /// @Snippet(path: "Lustre_GetMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMirror(request:)``
+  /// - ``getMirror(name:)``
   public func getMirror(
     request: GetMirrorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLustreV1.Mirror {
@@ -400,6 +545,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Gets details of multiple mirrors under a given instance.
   ///
   /// @Snippet(path: "Lustre_ListMirrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMirrors(request:)``
+  /// - ``listMirrorsByItems(request:)``
+  /// - ``listMirrorsByItems(request:options:)``
+  /// - ``listMirrorsByItems(parent:)``
   public func listMirrors(
     request: ListMirrorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLustreV1.ListMirrorsResponse {
@@ -409,6 +561,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Creates a directory policy resource.
   ///
   /// @Snippet(path: "Lustre_CreateDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDirectoryPolicy(request:)``
+  /// - ``createDirectoryPolicyPollingUntilDone(request:)``
+  /// - ``createDirectoryPolicyPollingUntilDone(request:options:)``
+  /// - ``createDirectoryPolicyPollingUntilDone(parent:directoryPolicy:directoryPolicyId:)``
   public func createDirectoryPolicy(
     request: CreateDirectoryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -418,6 +577,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Creates a directory policy resource.
   ///
   /// @Snippet(path: "Lustre_CreateDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDirectoryPolicyPollingUntilDone(request:)``
+  /// - ``createDirectoryPolicyPollingUntilDone(parent:directoryPolicy:directoryPolicyId:)``
+  /// - ``createDirectoryPolicy(request:)``
+  /// - ``createDirectoryPolicy(request:options:)``
   public func createDirectoryPolicyPollingUntilDone(
     request: CreateDirectoryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> DirectoryPolicy {
@@ -446,6 +612,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Deletes a directory policy resource.
   ///
   /// @Snippet(path: "Lustre_DeleteDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDirectoryPolicy(request:)``
+  /// - ``deleteDirectoryPolicyPollingUntilDone(request:)``
+  /// - ``deleteDirectoryPolicyPollingUntilDone(request:options:)``
+  /// - ``deleteDirectoryPolicyPollingUntilDone(name:)``
   public func deleteDirectoryPolicy(
     request: DeleteDirectoryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -455,6 +628,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Deletes a directory policy resource.
   ///
   /// @Snippet(path: "Lustre_DeleteDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDirectoryPolicyPollingUntilDone(request:)``
+  /// - ``deleteDirectoryPolicyPollingUntilDone(name:)``
+  /// - ``deleteDirectoryPolicy(request:)``
+  /// - ``deleteDirectoryPolicy(request:options:)``
   public func deleteDirectoryPolicyPollingUntilDone(
     request: DeleteDirectoryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -482,6 +662,11 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Gets details of a single directory policy.
   ///
   /// @Snippet(path: "Lustre_GetDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDirectoryPolicy(request:)``
+  /// - ``getDirectoryPolicy(name:)``
   public func getDirectoryPolicy(
     request: GetDirectoryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLustreV1.DirectoryPolicy {
@@ -491,6 +676,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Gets details of multiple directory policies under a given instance.
   ///
   /// @Snippet(path: "Lustre_ListDirectoryPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDirectoryPolicies(request:)``
+  /// - ``listDirectoryPoliciesByItems(request:)``
+  /// - ``listDirectoryPoliciesByItems(request:options:)``
+  /// - ``listDirectoryPoliciesByItems(parent:)``
   public func listDirectoryPolicies(
     request: ListDirectoryPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLustreV1.ListDirectoryPoliciesResponse {
@@ -517,6 +709,12 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Lustre_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -526,6 +724,10 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Lustre_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -539,6 +741,10 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// errors.
   ///
   /// @Snippet(path: "Lustre_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -549,6 +755,10 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "Lustre_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -564,6 +774,10 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "Lustre_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -575,6 +789,13 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Lustre_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -597,6 +818,11 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Lustre_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -608,6 +834,11 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Lustre_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -806,6 +1037,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.LustreProtocol {
+  /// Lists instances in a given project and location.
+  ///
+  /// @Snippet(path: "Lustre_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listInstances(request:options:)``
   public func listInstances(request: ListInstancesRequest) async throws
     -> GoogleCloudLustreV1.ListInstancesResponse
   {
@@ -818,6 +1056,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists instances in a given project and location.
+  ///
+  /// @Snippet(path: "Lustre_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -827,6 +1072,10 @@ extension Clients.LustreProtocol {
   /// Lists instances in a given project and location.
   ///
   /// @Snippet(path: "Lustre_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -840,6 +1089,13 @@ extension Clients.LustreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists instances in a given project and location.
+  ///
+  /// @Snippet(path: "Lustre_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listInstances(request:options:)``
   public func listInstancesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -849,6 +1105,13 @@ extension Clients.LustreProtocol {
     return self.listInstancesByItems(request: request)
   }
 
+  /// Gets details of a single instance.
+  ///
+  /// @Snippet(path: "Lustre_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/getInstance(request:options:)``
   public func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudLustreV1.Instance
   {
     try await self.getInstance(request: request, options: .init())
@@ -860,6 +1123,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single instance.
+  ///
+  /// @Snippet(path: "Lustre_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/getInstance(request:options:)``
   public func getInstance(
     name: Swift.String,
   ) async throws -> GoogleCloudLustreV1.Instance {
@@ -869,6 +1139,13 @@ extension Clients.LustreProtocol {
     return try await self.getInstance(request: request)
   }
 
+  /// Creates a new instance in a given project and location.
+  ///
+  /// @Snippet(path: "Lustre_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/createInstance(request:options:)``
   public func createInstance(request: CreateInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -881,6 +1158,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new instance in a given project and location.
+  ///
+  /// @Snippet(path: "Lustre_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/createInstancePollingUntilDone(request:options:)``
   public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
     -> Instance
   {
@@ -893,6 +1177,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new instance in a given project and location.
+  ///
+  /// @Snippet(path: "Lustre_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/createInstancePollingUntilDone(request:options:)``
   public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
@@ -906,6 +1197,13 @@ extension Clients.LustreProtocol {
     return try await self.createInstancePollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single instance.
+  ///
+  /// @Snippet(path: "Lustre_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/updateInstance(request:options:)``
   public func updateInstance(request: UpdateInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -918,6 +1216,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single instance.
+  ///
+  /// @Snippet(path: "Lustre_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/updateInstancePollingUntilDone(request:options:)``
   public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
     -> Instance
   {
@@ -930,6 +1235,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single instance.
+  ///
+  /// @Snippet(path: "Lustre_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/updateInstancePollingUntilDone(request:options:)``
   public func updateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -941,6 +1253,13 @@ extension Clients.LustreProtocol {
     return try await self.updateInstancePollingUntilDone(request: request)
   }
 
+  /// Deletes a single instance.
+  ///
+  /// @Snippet(path: "Lustre_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/deleteInstance(request:options:)``
   public func deleteInstance(request: DeleteInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -953,6 +1272,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single instance.
+  ///
+  /// @Snippet(path: "Lustre_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws {
     try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
@@ -963,6 +1289,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single instance.
+  ///
+  /// @Snippet(path: "Lustre_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -972,6 +1305,13 @@ extension Clients.LustreProtocol {
     try await self.deleteInstancePollingUntilDone(request: request)
   }
 
+  /// Reschedules a planned maintenance event for a specific instance.
+  ///
+  /// @Snippet(path: "Lustre_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/rescheduleMaintenance(request:options:)``
   public func rescheduleMaintenance(request: RescheduleMaintenanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -984,6 +1324,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reschedules a planned maintenance event for a specific instance.
+  ///
+  /// @Snippet(path: "Lustre_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/rescheduleMaintenancePollingUntilDone(request:options:)``
   public func rescheduleMaintenancePollingUntilDone(request: RescheduleMaintenanceRequest)
     async throws -> Instance
   {
@@ -996,6 +1343,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reschedules a planned maintenance event for a specific instance.
+  ///
+  /// @Snippet(path: "Lustre_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/rescheduleMaintenancePollingUntilDone(request:options:)``
   public func rescheduleMaintenancePollingUntilDone(
     name: Swift.String,
     reschedule: RescheduleMaintenanceRequest.Reschedule?,
@@ -1007,6 +1361,13 @@ extension Clients.LustreProtocol {
     return try await self.rescheduleMaintenancePollingUntilDone(request: request)
   }
 
+  /// Imports data from Cloud Storage to a Managed Lustre instance.
+  ///
+  /// @Snippet(path: "Lustre_ImportData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/importData(request:options:)``
   public func importData(request: ImportDataRequest) async throws -> GoogleLongRunning.Operation {
     try await self.importData(request: request, options: .init())
   }
@@ -1017,6 +1378,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports data from Cloud Storage to a Managed Lustre instance.
+  ///
+  /// @Snippet(path: "Lustre_ImportData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/importDataPollingUntilDone(request:options:)``
   public func importDataPollingUntilDone(request: ImportDataRequest) async throws
     -> ImportDataResponse
   {
@@ -1029,6 +1397,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports data from Cloud Storage to a Managed Lustre instance.
+  ///
+  /// @Snippet(path: "Lustre_ImportData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/importDataPollingUntilDone(request:options:)``
   public func importDataPollingUntilDone(
     name: Swift.String,
   ) async throws -> ImportDataResponse {
@@ -1038,6 +1413,13 @@ extension Clients.LustreProtocol {
     return try await self.importDataPollingUntilDone(request: request)
   }
 
+  /// Exports data from a Managed Lustre instance to Cloud Storage.
+  ///
+  /// @Snippet(path: "Lustre_ExportData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/exportData(request:options:)``
   public func exportData(request: ExportDataRequest) async throws -> GoogleLongRunning.Operation {
     try await self.exportData(request: request, options: .init())
   }
@@ -1048,6 +1430,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports data from a Managed Lustre instance to Cloud Storage.
+  ///
+  /// @Snippet(path: "Lustre_ExportData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/exportDataPollingUntilDone(request:options:)``
   public func exportDataPollingUntilDone(request: ExportDataRequest) async throws
     -> ExportDataResponse
   {
@@ -1060,6 +1449,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new mirror in a given instance.
+  ///
+  /// @Snippet(path: "Lustre_CreateMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/createMirror(request:options:)``
   public func createMirror(request: CreateMirrorRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createMirror(request: request, options: .init())
@@ -1071,6 +1467,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new mirror in a given instance.
+  ///
+  /// @Snippet(path: "Lustre_CreateMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/createMirrorPollingUntilDone(request:options:)``
   public func createMirrorPollingUntilDone(request: CreateMirrorRequest) async throws -> Mirror {
     return try await self.createMirrorPollingUntilDone(request: request, options: .init())
   }
@@ -1081,6 +1484,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new mirror in a given instance.
+  ///
+  /// @Snippet(path: "Lustre_CreateMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/createMirrorPollingUntilDone(request:options:)``
   public func createMirrorPollingUntilDone(
     parent: Swift.String,
     mirror: Mirror?,
@@ -1094,6 +1504,13 @@ extension Clients.LustreProtocol {
     return try await self.createMirrorPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_UpdateMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/updateMirror(request:options:)``
   public func updateMirror(request: UpdateMirrorRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateMirror(request: request, options: .init())
@@ -1105,6 +1522,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_UpdateMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/updateMirrorPollingUntilDone(request:options:)``
   public func updateMirrorPollingUntilDone(request: UpdateMirrorRequest) async throws -> Mirror {
     return try await self.updateMirrorPollingUntilDone(request: request, options: .init())
   }
@@ -1115,6 +1539,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_UpdateMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/updateMirrorPollingUntilDone(request:options:)``
   public func updateMirrorPollingUntilDone(
     mirror: Mirror?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1126,6 +1557,13 @@ extension Clients.LustreProtocol {
     return try await self.updateMirrorPollingUntilDone(request: request)
   }
 
+  /// Deletes a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_DeleteMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/deleteMirror(request:options:)``
   public func deleteMirror(request: DeleteMirrorRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteMirror(request: request, options: .init())
@@ -1137,6 +1575,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_DeleteMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/deleteMirrorPollingUntilDone(request:options:)``
   public func deleteMirrorPollingUntilDone(request: DeleteMirrorRequest) async throws {
     try await self.deleteMirrorPollingUntilDone(request: request, options: .init())
   }
@@ -1147,6 +1592,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_DeleteMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/deleteMirrorPollingUntilDone(request:options:)``
   public func deleteMirrorPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1156,6 +1608,13 @@ extension Clients.LustreProtocol {
     try await self.deleteMirrorPollingUntilDone(request: request)
   }
 
+  /// Gets details of a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_GetMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/getMirror(request:options:)``
   public func getMirror(request: GetMirrorRequest) async throws -> GoogleCloudLustreV1.Mirror {
     try await self.getMirror(request: request, options: .init())
   }
@@ -1166,6 +1625,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_GetMirror")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/getMirror(request:options:)``
   public func getMirror(
     name: Swift.String,
   ) async throws -> GoogleCloudLustreV1.Mirror {
@@ -1175,6 +1641,13 @@ extension Clients.LustreProtocol {
     return try await self.getMirror(request: request)
   }
 
+  /// Gets details of multiple mirrors under a given instance.
+  ///
+  /// @Snippet(path: "Lustre_ListMirrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listMirrors(request:options:)``
   public func listMirrors(request: ListMirrorsRequest) async throws
     -> GoogleCloudLustreV1.ListMirrorsResponse
   {
@@ -1187,6 +1660,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of multiple mirrors under a given instance.
+  ///
+  /// @Snippet(path: "Lustre_ListMirrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listMirrors(request:options:)``
   public func listMirrorsByItems(
     request: ListMirrorsRequest
   ) -> some AsyncSequence<Mirror, any Swift.Error> & Sendable {
@@ -1196,6 +1676,10 @@ extension Clients.LustreProtocol {
   /// Gets details of multiple mirrors under a given instance.
   ///
   /// @Snippet(path: "Lustre_ListMirrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listMirrors(request:options:)``
   public func listMirrorsByItems(
     request: ListMirrorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Mirror, any Swift.Error> & Sendable {
@@ -1209,6 +1693,13 @@ extension Clients.LustreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets details of multiple mirrors under a given instance.
+  ///
+  /// @Snippet(path: "Lustre_ListMirrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listMirrors(request:options:)``
   public func listMirrorsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Mirror, any Swift.Error> & Sendable {
@@ -1218,6 +1709,13 @@ extension Clients.LustreProtocol {
     return self.listMirrorsByItems(request: request)
   }
 
+  /// Creates a directory policy resource.
+  ///
+  /// @Snippet(path: "Lustre_CreateDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/createDirectoryPolicy(request:options:)``
   public func createDirectoryPolicy(request: CreateDirectoryPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1230,6 +1728,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a directory policy resource.
+  ///
+  /// @Snippet(path: "Lustre_CreateDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/createDirectoryPolicyPollingUntilDone(request:options:)``
   public func createDirectoryPolicyPollingUntilDone(request: CreateDirectoryPolicyRequest)
     async throws -> DirectoryPolicy
   {
@@ -1242,6 +1747,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a directory policy resource.
+  ///
+  /// @Snippet(path: "Lustre_CreateDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/createDirectoryPolicyPollingUntilDone(request:options:)``
   public func createDirectoryPolicyPollingUntilDone(
     parent: Swift.String,
     directoryPolicy: DirectoryPolicy?,
@@ -1255,6 +1767,13 @@ extension Clients.LustreProtocol {
     return try await self.createDirectoryPolicyPollingUntilDone(request: request)
   }
 
+  /// Deletes a directory policy resource.
+  ///
+  /// @Snippet(path: "Lustre_DeleteDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/deleteDirectoryPolicy(request:options:)``
   public func deleteDirectoryPolicy(request: DeleteDirectoryPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1267,6 +1786,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a directory policy resource.
+  ///
+  /// @Snippet(path: "Lustre_DeleteDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/deleteDirectoryPolicyPollingUntilDone(request:options:)``
   public func deleteDirectoryPolicyPollingUntilDone(request: DeleteDirectoryPolicyRequest)
     async throws
   {
@@ -1279,6 +1805,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a directory policy resource.
+  ///
+  /// @Snippet(path: "Lustre_DeleteDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/deleteDirectoryPolicyPollingUntilDone(request:options:)``
   public func deleteDirectoryPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1288,6 +1821,13 @@ extension Clients.LustreProtocol {
     try await self.deleteDirectoryPolicyPollingUntilDone(request: request)
   }
 
+  /// Gets details of a single directory policy.
+  ///
+  /// @Snippet(path: "Lustre_GetDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/getDirectoryPolicy(request:options:)``
   public func getDirectoryPolicy(request: GetDirectoryPolicyRequest) async throws
     -> GoogleCloudLustreV1.DirectoryPolicy
   {
@@ -1300,6 +1840,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single directory policy.
+  ///
+  /// @Snippet(path: "Lustre_GetDirectoryPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/getDirectoryPolicy(request:options:)``
   public func getDirectoryPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudLustreV1.DirectoryPolicy {
@@ -1309,6 +1856,13 @@ extension Clients.LustreProtocol {
     return try await self.getDirectoryPolicy(request: request)
   }
 
+  /// Gets details of multiple directory policies under a given instance.
+  ///
+  /// @Snippet(path: "Lustre_ListDirectoryPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listDirectoryPolicies(request:options:)``
   public func listDirectoryPolicies(request: ListDirectoryPoliciesRequest) async throws
     -> GoogleCloudLustreV1.ListDirectoryPoliciesResponse
   {
@@ -1321,6 +1875,13 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of multiple directory policies under a given instance.
+  ///
+  /// @Snippet(path: "Lustre_ListDirectoryPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listDirectoryPolicies(request:options:)``
   public func listDirectoryPoliciesByItems(
     request: ListDirectoryPoliciesRequest
   ) -> some AsyncSequence<DirectoryPolicy, any Swift.Error> & Sendable {
@@ -1330,6 +1891,10 @@ extension Clients.LustreProtocol {
   /// Gets details of multiple directory policies under a given instance.
   ///
   /// @Snippet(path: "Lustre_ListDirectoryPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listDirectoryPolicies(request:options:)``
   public func listDirectoryPoliciesByItems(
     request: ListDirectoryPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DirectoryPolicy, any Swift.Error> & Sendable {
@@ -1344,6 +1909,13 @@ extension Clients.LustreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets details of multiple directory policies under a given instance.
+  ///
+  /// @Snippet(path: "Lustre_ListDirectoryPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listDirectoryPolicies(request:options:)``
   public func listDirectoryPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DirectoryPolicy, any Swift.Error> & Sendable {
@@ -1353,6 +1925,30 @@ extension Clients.LustreProtocol {
     return self.listDirectoryPoliciesByItems(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Lustre_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1365,6 +1961,30 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Lustre_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1391,6 +2011,10 @@ extension Clients.LustreProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Lustre_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1404,6 +2028,13 @@ extension Clients.LustreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "Lustre_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1416,6 +2047,17 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "Lustre_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1428,6 +2070,14 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "Lustre_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1440,6 +2090,19 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "Lustre_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -1452,6 +2115,15 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Lustre_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1464,6 +2136,15 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Lustre_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1475,6 +2156,10 @@ extension Clients.LustreProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Lustre_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1488,6 +2173,15 @@ extension Clients.LustreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Lustre_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1499,6 +2193,9 @@ extension Clients.LustreProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1511,6 +2208,9 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1520,6 +2220,15 @@ extension Clients.LustreProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Lustre_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1530,6 +2239,15 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Lustre_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1539,6 +2257,15 @@ extension Clients.LustreProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Lustre_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1549,6 +2276,15 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Lustre_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LustreClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

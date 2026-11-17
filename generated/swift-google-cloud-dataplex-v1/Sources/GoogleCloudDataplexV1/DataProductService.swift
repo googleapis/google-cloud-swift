@@ -28,6 +28,10 @@ import Foundation
 /// the underlying data assets.
 ///
 /// @Snippet(path: "DataProductServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DataProductServiceProtocol``
 public final class DataProductServiceClient: Clients.DataProductServiceProtocol, Sendable {
   let inner: any Clients.DataProductServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Creates a data product.
   ///
   /// @Snippet(path: "DataProductService_CreateDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDataProduct(request:)``
+  /// - ``createDataProductPollingUntilDone(request:)``
+  /// - ``createDataProductPollingUntilDone(request:options:)``
+  /// - ``createDataProductPollingUntilDone(parent:dataProduct:dataProductId:)``
   public func createDataProduct(
     request: CreateDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -57,6 +68,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Creates a data product.
   ///
   /// @Snippet(path: "DataProductService_CreateDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDataProductPollingUntilDone(request:)``
+  /// - ``createDataProductPollingUntilDone(parent:dataProduct:dataProductId:)``
+  /// - ``createDataProduct(request:)``
+  /// - ``createDataProduct(request:options:)``
   public func createDataProductPollingUntilDone(
     request: CreateDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataProduct {
@@ -85,6 +103,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// empty (i.e. contains at least one data asset).
   ///
   /// @Snippet(path: "DataProductService_DeleteDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDataProduct(request:)``
+  /// - ``deleteDataProductPollingUntilDone(request:)``
+  /// - ``deleteDataProductPollingUntilDone(request:options:)``
+  /// - ``deleteDataProductPollingUntilDone(name:)``
   public func deleteDataProduct(
     request: DeleteDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -95,6 +120,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// empty (i.e. contains at least one data asset).
   ///
   /// @Snippet(path: "DataProductService_DeleteDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDataProductPollingUntilDone(request:)``
+  /// - ``deleteDataProductPollingUntilDone(name:)``
+  /// - ``deleteDataProduct(request:)``
+  /// - ``deleteDataProduct(request:options:)``
   public func deleteDataProductPollingUntilDone(
     request: DeleteDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -122,6 +154,11 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Gets a data product.
   ///
   /// @Snippet(path: "DataProductService_GetDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDataProduct(request:)``
+  /// - ``getDataProduct(name:)``
   public func getDataProduct(
     request: GetDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.DataProduct {
@@ -131,6 +168,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Lists data products for a given project.
   ///
   /// @Snippet(path: "DataProductService_ListDataProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDataProducts(request:)``
+  /// - ``listDataProductsByItems(request:)``
+  /// - ``listDataProductsByItems(request:options:)``
+  /// - ``listDataProductsByItems(parent:)``
   public func listDataProducts(
     request: ListDataProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListDataProductsResponse {
@@ -140,6 +184,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Updates a data product.
   ///
   /// @Snippet(path: "DataProductService_UpdateDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataProduct(request:)``
+  /// - ``updateDataProductPollingUntilDone(request:)``
+  /// - ``updateDataProductPollingUntilDone(request:options:)``
+  /// - ``updateDataProductPollingUntilDone(dataProduct:updateMask:)``
   public func updateDataProduct(
     request: UpdateDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -149,6 +200,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Updates a data product.
   ///
   /// @Snippet(path: "DataProductService_UpdateDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataProductPollingUntilDone(request:)``
+  /// - ``updateDataProductPollingUntilDone(dataProduct:updateMask:)``
+  /// - ``updateDataProduct(request:)``
+  /// - ``updateDataProduct(request:options:)``
   public func updateDataProductPollingUntilDone(
     request: UpdateDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataProduct {
@@ -178,6 +236,11 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// granted before they will be able to access the data product assets.
   ///
   /// @Snippet(path: "DataProductService_RequestDataProductAccess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``requestDataProductAccess(request:)``
+  /// - ``requestDataProductAccess(parent:changeRequest:)``
   public func requestDataProductAccess(
     request: RequestDataProductAccessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.RequestDataProductAccessResponse {
@@ -187,6 +250,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Creates a data asset.
   ///
   /// @Snippet(path: "DataProductService_CreateDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDataAsset(request:)``
+  /// - ``createDataAssetPollingUntilDone(request:)``
+  /// - ``createDataAssetPollingUntilDone(request:options:)``
+  /// - ``createDataAssetPollingUntilDone(parent:dataAsset:dataAssetId:)``
   public func createDataAsset(
     request: CreateDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -196,6 +266,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Creates a data asset.
   ///
   /// @Snippet(path: "DataProductService_CreateDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDataAssetPollingUntilDone(request:)``
+  /// - ``createDataAssetPollingUntilDone(parent:dataAsset:dataAssetId:)``
+  /// - ``createDataAsset(request:)``
+  /// - ``createDataAsset(request:options:)``
   public func createDataAssetPollingUntilDone(
     request: CreateDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataAsset {
@@ -223,6 +300,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Updates a data asset.
   ///
   /// @Snippet(path: "DataProductService_UpdateDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataAsset(request:)``
+  /// - ``updateDataAssetPollingUntilDone(request:)``
+  /// - ``updateDataAssetPollingUntilDone(request:options:)``
+  /// - ``updateDataAssetPollingUntilDone(dataAsset:updateMask:)``
   public func updateDataAsset(
     request: UpdateDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -232,6 +316,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Updates a data asset.
   ///
   /// @Snippet(path: "DataProductService_UpdateDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataAssetPollingUntilDone(request:)``
+  /// - ``updateDataAssetPollingUntilDone(dataAsset:updateMask:)``
+  /// - ``updateDataAsset(request:)``
+  /// - ``updateDataAsset(request:options:)``
   public func updateDataAssetPollingUntilDone(
     request: UpdateDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataAsset {
@@ -259,6 +350,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Deletes a data asset.
   ///
   /// @Snippet(path: "DataProductService_DeleteDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDataAsset(request:)``
+  /// - ``deleteDataAssetPollingUntilDone(request:)``
+  /// - ``deleteDataAssetPollingUntilDone(request:options:)``
+  /// - ``deleteDataAssetPollingUntilDone(name:)``
   public func deleteDataAsset(
     request: DeleteDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -268,6 +366,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Deletes a data asset.
   ///
   /// @Snippet(path: "DataProductService_DeleteDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDataAssetPollingUntilDone(request:)``
+  /// - ``deleteDataAssetPollingUntilDone(name:)``
+  /// - ``deleteDataAsset(request:)``
+  /// - ``deleteDataAsset(request:options:)``
   public func deleteDataAssetPollingUntilDone(
     request: DeleteDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -295,6 +400,11 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Gets a data asset.
   ///
   /// @Snippet(path: "DataProductService_GetDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDataAsset(request:)``
+  /// - ``getDataAsset(name:)``
   public func getDataAsset(
     request: GetDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.DataAsset {
@@ -304,6 +414,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Lists data assets for a given data product.
   ///
   /// @Snippet(path: "DataProductService_ListDataAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDataAssets(request:)``
+  /// - ``listDataAssetsByItems(request:)``
+  /// - ``listDataAssetsByItems(request:options:)``
+  /// - ``listDataAssetsByItems(parent:)``
   public func listDataAssets(
     request: ListDataAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListDataAssetsResponse {
@@ -330,6 +447,12 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DataProductService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -339,6 +462,10 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// Gets information about a location.
   ///
   /// @Snippet(path: "DataProductService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -352,6 +479,10 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// errors.
   ///
   /// @Snippet(path: "DataProductService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -362,6 +493,10 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "DataProductService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -377,6 +512,10 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "DataProductService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -388,6 +527,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataProductService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -410,6 +556,11 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataProductService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -421,6 +572,11 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataProductService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -564,6 +720,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DataProductServiceProtocol {
+  /// Creates a data product.
+  ///
+  /// @Snippet(path: "DataProductService_CreateDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/createDataProduct(request:options:)``
   public func createDataProduct(request: CreateDataProductRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -576,6 +739,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a data product.
+  ///
+  /// @Snippet(path: "DataProductService_CreateDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/createDataProductPollingUntilDone(request:options:)``
   public func createDataProductPollingUntilDone(request: CreateDataProductRequest) async throws
     -> DataProduct
   {
@@ -588,6 +758,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a data product.
+  ///
+  /// @Snippet(path: "DataProductService_CreateDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/createDataProductPollingUntilDone(request:options:)``
   public func createDataProductPollingUntilDone(
     parent: Swift.String,
     dataProduct: DataProduct?,
@@ -601,6 +778,14 @@ extension Clients.DataProductServiceProtocol {
     return try await self.createDataProductPollingUntilDone(request: request)
   }
 
+  /// Deletes a data product. The deletion will fail if the data product is not
+  /// empty (i.e. contains at least one data asset).
+  ///
+  /// @Snippet(path: "DataProductService_DeleteDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/deleteDataProduct(request:options:)``
   public func deleteDataProduct(request: DeleteDataProductRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -613,6 +798,14 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a data product. The deletion will fail if the data product is not
+  /// empty (i.e. contains at least one data asset).
+  ///
+  /// @Snippet(path: "DataProductService_DeleteDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/deleteDataProductPollingUntilDone(request:options:)``
   public func deleteDataProductPollingUntilDone(request: DeleteDataProductRequest) async throws {
     try await self.deleteDataProductPollingUntilDone(request: request, options: .init())
   }
@@ -623,6 +816,14 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a data product. The deletion will fail if the data product is not
+  /// empty (i.e. contains at least one data asset).
+  ///
+  /// @Snippet(path: "DataProductService_DeleteDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/deleteDataProductPollingUntilDone(request:options:)``
   public func deleteDataProductPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -632,6 +833,13 @@ extension Clients.DataProductServiceProtocol {
     try await self.deleteDataProductPollingUntilDone(request: request)
   }
 
+  /// Gets a data product.
+  ///
+  /// @Snippet(path: "DataProductService_GetDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/getDataProduct(request:options:)``
   public func getDataProduct(request: GetDataProductRequest) async throws
     -> GoogleCloudDataplexV1.DataProduct
   {
@@ -644,6 +852,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a data product.
+  ///
+  /// @Snippet(path: "DataProductService_GetDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/getDataProduct(request:options:)``
   public func getDataProduct(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.DataProduct {
@@ -653,6 +868,13 @@ extension Clients.DataProductServiceProtocol {
     return try await self.getDataProduct(request: request)
   }
 
+  /// Lists data products for a given project.
+  ///
+  /// @Snippet(path: "DataProductService_ListDataProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listDataProducts(request:options:)``
   public func listDataProducts(request: ListDataProductsRequest) async throws
     -> GoogleCloudDataplexV1.ListDataProductsResponse
   {
@@ -665,6 +887,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists data products for a given project.
+  ///
+  /// @Snippet(path: "DataProductService_ListDataProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listDataProducts(request:options:)``
   public func listDataProductsByItems(
     request: ListDataProductsRequest
   ) -> some AsyncSequence<DataProduct, any Swift.Error> & Sendable {
@@ -674,6 +903,10 @@ extension Clients.DataProductServiceProtocol {
   /// Lists data products for a given project.
   ///
   /// @Snippet(path: "DataProductService_ListDataProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listDataProducts(request:options:)``
   public func listDataProductsByItems(
     request: ListDataProductsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataProduct, any Swift.Error> & Sendable {
@@ -688,6 +921,13 @@ extension Clients.DataProductServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists data products for a given project.
+  ///
+  /// @Snippet(path: "DataProductService_ListDataProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listDataProducts(request:options:)``
   public func listDataProductsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DataProduct, any Swift.Error> & Sendable {
@@ -697,6 +937,13 @@ extension Clients.DataProductServiceProtocol {
     return self.listDataProductsByItems(request: request)
   }
 
+  /// Updates a data product.
+  ///
+  /// @Snippet(path: "DataProductService_UpdateDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/updateDataProduct(request:options:)``
   public func updateDataProduct(request: UpdateDataProductRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -709,6 +956,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a data product.
+  ///
+  /// @Snippet(path: "DataProductService_UpdateDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/updateDataProductPollingUntilDone(request:options:)``
   public func updateDataProductPollingUntilDone(request: UpdateDataProductRequest) async throws
     -> DataProduct
   {
@@ -721,6 +975,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a data product.
+  ///
+  /// @Snippet(path: "DataProductService_UpdateDataProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/updateDataProductPollingUntilDone(request:options:)``
   public func updateDataProductPollingUntilDone(
     dataProduct: DataProduct?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -732,6 +993,15 @@ extension Clients.DataProductServiceProtocol {
     return try await self.updateDataProductPollingUntilDone(request: request)
   }
 
+  /// Requests access to a data product. This will trigger an access approval
+  /// workflow, and the requester will need to wait for the approval to be
+  /// granted before they will be able to access the data product assets.
+  ///
+  /// @Snippet(path: "DataProductService_RequestDataProductAccess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/requestDataProductAccess(request:options:)``
   public func requestDataProductAccess(request: RequestDataProductAccessRequest) async throws
     -> GoogleCloudDataplexV1.RequestDataProductAccessResponse
   {
@@ -744,6 +1014,15 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Requests access to a data product. This will trigger an access approval
+  /// workflow, and the requester will need to wait for the approval to be
+  /// granted before they will be able to access the data product assets.
+  ///
+  /// @Snippet(path: "DataProductService_RequestDataProductAccess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/requestDataProductAccess(request:options:)``
   public func requestDataProductAccess(
     parent: Swift.String,
     changeRequest: ChangeRequest?,
@@ -755,6 +1034,13 @@ extension Clients.DataProductServiceProtocol {
     return try await self.requestDataProductAccess(request: request)
   }
 
+  /// Creates a data asset.
+  ///
+  /// @Snippet(path: "DataProductService_CreateDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/createDataAsset(request:options:)``
   public func createDataAsset(request: CreateDataAssetRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -767,6 +1053,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a data asset.
+  ///
+  /// @Snippet(path: "DataProductService_CreateDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/createDataAssetPollingUntilDone(request:options:)``
   public func createDataAssetPollingUntilDone(request: CreateDataAssetRequest) async throws
     -> DataAsset
   {
@@ -779,6 +1072,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a data asset.
+  ///
+  /// @Snippet(path: "DataProductService_CreateDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/createDataAssetPollingUntilDone(request:options:)``
   public func createDataAssetPollingUntilDone(
     parent: Swift.String,
     dataAsset: DataAsset?,
@@ -792,6 +1092,13 @@ extension Clients.DataProductServiceProtocol {
     return try await self.createDataAssetPollingUntilDone(request: request)
   }
 
+  /// Updates a data asset.
+  ///
+  /// @Snippet(path: "DataProductService_UpdateDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/updateDataAsset(request:options:)``
   public func updateDataAsset(request: UpdateDataAssetRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -804,6 +1111,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a data asset.
+  ///
+  /// @Snippet(path: "DataProductService_UpdateDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/updateDataAssetPollingUntilDone(request:options:)``
   public func updateDataAssetPollingUntilDone(request: UpdateDataAssetRequest) async throws
     -> DataAsset
   {
@@ -816,6 +1130,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a data asset.
+  ///
+  /// @Snippet(path: "DataProductService_UpdateDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/updateDataAssetPollingUntilDone(request:options:)``
   public func updateDataAssetPollingUntilDone(
     dataAsset: DataAsset?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -827,6 +1148,13 @@ extension Clients.DataProductServiceProtocol {
     return try await self.updateDataAssetPollingUntilDone(request: request)
   }
 
+  /// Deletes a data asset.
+  ///
+  /// @Snippet(path: "DataProductService_DeleteDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/deleteDataAsset(request:options:)``
   public func deleteDataAsset(request: DeleteDataAssetRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -839,6 +1167,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a data asset.
+  ///
+  /// @Snippet(path: "DataProductService_DeleteDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/deleteDataAssetPollingUntilDone(request:options:)``
   public func deleteDataAssetPollingUntilDone(request: DeleteDataAssetRequest) async throws {
     try await self.deleteDataAssetPollingUntilDone(request: request, options: .init())
   }
@@ -849,6 +1184,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a data asset.
+  ///
+  /// @Snippet(path: "DataProductService_DeleteDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/deleteDataAssetPollingUntilDone(request:options:)``
   public func deleteDataAssetPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -858,6 +1200,13 @@ extension Clients.DataProductServiceProtocol {
     try await self.deleteDataAssetPollingUntilDone(request: request)
   }
 
+  /// Gets a data asset.
+  ///
+  /// @Snippet(path: "DataProductService_GetDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/getDataAsset(request:options:)``
   public func getDataAsset(request: GetDataAssetRequest) async throws
     -> GoogleCloudDataplexV1.DataAsset
   {
@@ -870,6 +1219,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a data asset.
+  ///
+  /// @Snippet(path: "DataProductService_GetDataAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/getDataAsset(request:options:)``
   public func getDataAsset(
     name: Swift.String,
   ) async throws -> GoogleCloudDataplexV1.DataAsset {
@@ -879,6 +1235,13 @@ extension Clients.DataProductServiceProtocol {
     return try await self.getDataAsset(request: request)
   }
 
+  /// Lists data assets for a given data product.
+  ///
+  /// @Snippet(path: "DataProductService_ListDataAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listDataAssets(request:options:)``
   public func listDataAssets(request: ListDataAssetsRequest) async throws
     -> GoogleCloudDataplexV1.ListDataAssetsResponse
   {
@@ -891,6 +1254,13 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists data assets for a given data product.
+  ///
+  /// @Snippet(path: "DataProductService_ListDataAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listDataAssets(request:options:)``
   public func listDataAssetsByItems(
     request: ListDataAssetsRequest
   ) -> some AsyncSequence<DataAsset, any Swift.Error> & Sendable {
@@ -900,6 +1270,10 @@ extension Clients.DataProductServiceProtocol {
   /// Lists data assets for a given data product.
   ///
   /// @Snippet(path: "DataProductService_ListDataAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listDataAssets(request:options:)``
   public func listDataAssetsByItems(
     request: ListDataAssetsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataAsset, any Swift.Error> & Sendable {
@@ -914,6 +1288,13 @@ extension Clients.DataProductServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists data assets for a given data product.
+  ///
+  /// @Snippet(path: "DataProductService_ListDataAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listDataAssets(request:options:)``
   public func listDataAssetsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DataAsset, any Swift.Error> & Sendable {
@@ -923,6 +1304,30 @@ extension Clients.DataProductServiceProtocol {
     return self.listDataAssetsByItems(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DataProductService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -935,6 +1340,30 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DataProductService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -961,6 +1390,10 @@ extension Clients.DataProductServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DataProductService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -974,6 +1407,13 @@ extension Clients.DataProductServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "DataProductService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -986,6 +1426,17 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "DataProductService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -998,6 +1449,14 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "DataProductService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1010,6 +1469,19 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "DataProductService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -1022,6 +1494,15 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataProductService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1034,6 +1515,15 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataProductService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1045,6 +1535,10 @@ extension Clients.DataProductServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataProductService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1058,6 +1552,15 @@ extension Clients.DataProductServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataProductService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1069,6 +1572,9 @@ extension Clients.DataProductServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1081,6 +1587,9 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1090,6 +1599,15 @@ extension Clients.DataProductServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataProductService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1100,6 +1618,15 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataProductService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1109,6 +1636,15 @@ extension Clients.DataProductServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataProductService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1119,6 +1655,15 @@ extension Clients.DataProductServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataProductService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataProductServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

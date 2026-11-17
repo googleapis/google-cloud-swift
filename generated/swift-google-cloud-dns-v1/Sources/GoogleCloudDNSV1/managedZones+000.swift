@@ -23,6 +23,10 @@ import Foundation
 /// Service for the `managedZones` resource.
 ///
 /// @Snippet(path: "managedZonesQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ManagedZonesProtocol``
 public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   let inner: any Clients.ManagedZonesStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -43,6 +47,11 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// Creates a new ManagedZone. Note: While `dns.managedZones.create` is the baseline permission required to invoke this method, additional permissions are required if the managed zone configuration references other resources.
   ///
   /// @Snippet(path: "managedZones_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``create(request:)``
+  /// - ``create(project:body:)``
   public func create(
     request: ManagedZonesClient.CreateRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedZone {
@@ -52,6 +61,11 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// Deletes a previously created ManagedZone.
   ///
   /// @Snippet(path: "managedZones_delete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``delete(request:)``
+  /// - ``delete(project:managedZone:)``
   public func delete(
     request: ManagedZonesClient.DeleteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -61,6 +75,11 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// Fetches the representation of an existing ManagedZone.
   ///
   /// @Snippet(path: "managedZones_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``get(request:)``
+  /// - ``get(project:managedZone:)``
   public func `get`(
     request: ManagedZonesClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedZone {
@@ -70,6 +89,11 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "managedZones_getIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
+  /// - ``getIamPolicy(resource:body:)``
   public func getIamPolicy(
     request: ManagedZonesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIamV1Policy {
@@ -79,6 +103,13 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// Enumerates ManagedZones that have been created but not yet deleted.
   ///
   /// @Snippet(path: "managedZones_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``list(request:)``
+  /// - ``listByItems(request:)``
+  /// - ``listByItems(request:options:)``
+  /// - ``listByItems(project:)``
   public func list(
     request: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedZonesListResponse {
@@ -88,6 +119,13 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// Applies a partial update to an existing ManagedZone.
   ///
   /// @Snippet(path: "managedZones_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``patch(request:)``
+  /// - ``patchPollingUntilDone(request:)``
+  /// - ``patchPollingUntilDone(request:options:)``
+  /// - ``patchPollingUntilDone(project:managedZone:body:)``
   public func patch(
     request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> Operation {
@@ -102,6 +140,13 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   ///   method once the operation completes.
   ///
   /// @Snippet(path: "managedZones_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``patchPollingUntilDone(request:)``
+  /// - ``patchPollingUntilDone(project:managedZone:body:)``
+  /// - ``patch(request:)``
+  /// - ``patch(request:options:)``
   public func patchPollingUntilDone(
     request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> Operation {
@@ -141,6 +186,11 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
   ///
   /// @Snippet(path: "managedZones_setIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
+  /// - ``setIamPolicy(resource:body:)``
   public func setIamPolicy(
     request: ManagedZonesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIamV1Policy {
@@ -150,6 +200,11 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// Returns permissions that a caller has on the specified resource. If the resource does not exist, this returns an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "managedZones_testIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
+  /// - ``testIamPermissions(resource:body:)``
   public func testIamPermissions(
     request: ManagedZonesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIamV1TestIamPermissionsResponse {
@@ -159,6 +214,13 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// Updates an existing ManagedZone.
   ///
   /// @Snippet(path: "managedZones_update")
+  ///
+  /// ## See Also
+  ///
+  /// - ``update(request:)``
+  /// - ``updatePollingUntilDone(request:)``
+  /// - ``updatePollingUntilDone(request:options:)``
+  /// - ``updatePollingUntilDone(project:managedZone:body:)``
   public func update(
     request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Operation {
@@ -173,6 +235,13 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   ///   method once the operation completes.
   ///
   /// @Snippet(path: "managedZones_update")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePollingUntilDone(request:)``
+  /// - ``updatePollingUntilDone(project:managedZone:body:)``
+  /// - ``update(request:)``
+  /// - ``update(request:options:)``
   public func updatePollingUntilDone(
     request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Operation {
@@ -295,6 +364,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ManagedZonesProtocol {
+  /// Creates a new ManagedZone. Note: While `dns.managedZones.create` is the baseline permission required to invoke this method, additional permissions are required if the managed zone configuration references other resources.
+  ///
+  /// @Snippet(path: "managedZones_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/create(request:options:)``
   public func create(request: ManagedZonesClient.CreateRequest) async throws -> ManagedZone {
     try await self.create(request: request, options: .init())
   }
@@ -305,6 +381,13 @@ extension Clients.ManagedZonesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ManagedZone. Note: While `dns.managedZones.create` is the baseline permission required to invoke this method, additional permissions are required if the managed zone configuration references other resources.
+  ///
+  /// @Snippet(path: "managedZones_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/create(request:options:)``
   public func create(
     project: Swift.String,
     body: ManagedZone?,
@@ -316,6 +399,13 @@ extension Clients.ManagedZonesProtocol {
     return try await self.create(request: request)
   }
 
+  /// Deletes a previously created ManagedZone.
+  ///
+  /// @Snippet(path: "managedZones_delete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/delete(request:options:)``
   public func delete(request: ManagedZonesClient.DeleteRequest) async throws {
     try await self.delete(request: request, options: .init())
   }
@@ -326,6 +416,13 @@ extension Clients.ManagedZonesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a previously created ManagedZone.
+  ///
+  /// @Snippet(path: "managedZones_delete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/delete(request:options:)``
   public func delete(
     project: Swift.String,
     managedZone: Swift.String,
@@ -337,6 +434,13 @@ extension Clients.ManagedZonesProtocol {
     try await self.delete(request: request)
   }
 
+  /// Fetches the representation of an existing ManagedZone.
+  ///
+  /// @Snippet(path: "managedZones_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/get(request:options:)``
   public func `get`(request: ManagedZonesClient.GetRequest) async throws -> ManagedZone {
     try await self.`get`(request: request, options: .init())
   }
@@ -347,6 +451,13 @@ extension Clients.ManagedZonesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches the representation of an existing ManagedZone.
+  ///
+  /// @Snippet(path: "managedZones_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/get(request:options:)``
   public func `get`(
     project: Swift.String,
     managedZone: Swift.String,
@@ -358,6 +469,13 @@ extension Clients.ManagedZonesProtocol {
     return try await self.`get`(request: request)
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "managedZones_getIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: ManagedZonesClient.GetIamPolicyRequest) async throws
     -> GoogleIamV1Policy
   {
@@ -370,6 +488,13 @@ extension Clients.ManagedZonesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "managedZones_getIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/getIamPolicy(request:options:)``
   public func getIamPolicy(
     resource: Swift.String,
     body: GoogleIamV1GetIamPolicyRequest?,
@@ -381,6 +506,13 @@ extension Clients.ManagedZonesProtocol {
     return try await self.getIamPolicy(request: request)
   }
 
+  /// Enumerates ManagedZones that have been created but not yet deleted.
+  ///
+  /// @Snippet(path: "managedZones_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/list(request:options:)``
   public func list(request: ManagedZonesClient.ListRequest) async throws -> ManagedZonesListResponse
   {
     try await self.list(request: request, options: .init())
@@ -392,6 +524,13 @@ extension Clients.ManagedZonesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enumerates ManagedZones that have been created but not yet deleted.
+  ///
+  /// @Snippet(path: "managedZones_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/list(request:options:)``
   public func listByItems(
     request: ManagedZonesClient.ListRequest
   ) -> some AsyncSequence<ManagedZone, any Swift.Error> & Sendable {
@@ -401,6 +540,10 @@ extension Clients.ManagedZonesProtocol {
   /// Enumerates ManagedZones that have been created but not yet deleted.
   ///
   /// @Snippet(path: "managedZones_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/list(request:options:)``
   public func listByItems(
     request: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ManagedZone, any Swift.Error> & Sendable {
@@ -413,6 +556,13 @@ extension Clients.ManagedZonesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Enumerates ManagedZones that have been created but not yet deleted.
+  ///
+  /// @Snippet(path: "managedZones_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/list(request:options:)``
   public func listByItems(
     project: Swift.String,
   ) -> some AsyncSequence<ManagedZone, any Swift.Error> & Sendable {
@@ -422,6 +572,13 @@ extension Clients.ManagedZonesProtocol {
     return self.listByItems(request: request)
   }
 
+  /// Applies a partial update to an existing ManagedZone.
+  ///
+  /// @Snippet(path: "managedZones_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/patch(request:options:)``
   public func patch(request: ManagedZonesClient.PatchRequest) async throws -> Operation {
     try await self.patch(request: request, options: .init())
   }
@@ -432,6 +589,18 @@ extension Clients.ManagedZonesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Applies a partial update to an existing ManagedZone.
+  ///
+  /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+  ///   resource, Discovery-based operations return the terminal `Operation`
+  ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+  ///   method once the operation completes.
+  ///
+  /// @Snippet(path: "managedZones_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/patchPollingUntilDone(request:options:)``
   public func patchPollingUntilDone(
     request: ManagedZonesClient.PatchRequest
   ) async throws -> Operation {
@@ -444,6 +613,18 @@ extension Clients.ManagedZonesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Applies a partial update to an existing ManagedZone.
+  ///
+  /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+  ///   resource, Discovery-based operations return the terminal `Operation`
+  ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+  ///   method once the operation completes.
+  ///
+  /// @Snippet(path: "managedZones_patch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/patchPollingUntilDone(request:options:)``
   public func patchPollingUntilDone(
     project: Swift.String,
     managedZone: Swift.String,
@@ -457,6 +638,13 @@ extension Clients.ManagedZonesProtocol {
     return try await self.patchPollingUntilDone(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+  ///
+  /// @Snippet(path: "managedZones_setIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: ManagedZonesClient.SetIamPolicyRequest) async throws
     -> GoogleIamV1Policy
   {
@@ -469,6 +657,13 @@ extension Clients.ManagedZonesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+  ///
+  /// @Snippet(path: "managedZones_setIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/setIamPolicy(request:options:)``
   public func setIamPolicy(
     resource: Swift.String,
     body: GoogleIamV1SetIamPolicyRequest?,
@@ -480,6 +675,13 @@ extension Clients.ManagedZonesProtocol {
     return try await self.setIamPolicy(request: request)
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the resource does not exist, this returns an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "managedZones_testIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: ManagedZonesClient.TestIamPermissionsRequest) async throws
     -> GoogleIamV1TestIamPermissionsResponse
   {
@@ -492,6 +694,13 @@ extension Clients.ManagedZonesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the resource does not exist, this returns an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "managedZones_testIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/testIamPermissions(request:options:)``
   public func testIamPermissions(
     resource: Swift.String,
     body: GoogleIamV1TestIamPermissionsRequest?,
@@ -503,6 +712,13 @@ extension Clients.ManagedZonesProtocol {
     return try await self.testIamPermissions(request: request)
   }
 
+  /// Updates an existing ManagedZone.
+  ///
+  /// @Snippet(path: "managedZones_update")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/update(request:options:)``
   public func update(request: ManagedZonesClient.UpdateRequest) async throws -> Operation {
     try await self.update(request: request, options: .init())
   }
@@ -513,6 +729,18 @@ extension Clients.ManagedZonesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing ManagedZone.
+  ///
+  /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+  ///   resource, Discovery-based operations return the terminal `Operation`
+  ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+  ///   method once the operation completes.
+  ///
+  /// @Snippet(path: "managedZones_update")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/updatePollingUntilDone(request:options:)``
   public func updatePollingUntilDone(
     request: ManagedZonesClient.UpdateRequest
   ) async throws -> Operation {
@@ -525,6 +753,18 @@ extension Clients.ManagedZonesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing ManagedZone.
+  ///
+  /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+  ///   resource, Discovery-based operations return the terminal `Operation`
+  ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+  ///   method once the operation completes.
+  ///
+  /// @Snippet(path: "managedZones_update")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZonesClient/updatePollingUntilDone(request:options:)``
   public func updatePollingUntilDone(
     project: Swift.String,
     managedZone: Swift.String,
@@ -538,6 +778,7 @@ extension Clients.ManagedZonesProtocol {
     return try await self.updatePollingUntilDone(request: request)
   }
 
+  /// Fetches the representation of an existing Operation.
   public func getOperation(request: ManagedZoneOperationsClient.GetRequest) async throws
     -> Operation
   {

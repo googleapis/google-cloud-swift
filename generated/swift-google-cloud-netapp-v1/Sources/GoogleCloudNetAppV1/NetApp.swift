@@ -26,6 +26,10 @@ import Foundation
 /// NetApp Files Google Cloud Service
 ///
 /// @Snippet(path: "NetAppQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/NetAppProtocol``
 public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   let inner: any Clients.NetAppStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns descriptions of all storage pools owned by the caller.
   ///
   /// @Snippet(path: "NetApp_ListStoragePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listStoragePools(request:)``
+  /// - ``listStoragePoolsByItems(request:)``
+  /// - ``listStoragePoolsByItems(request:options:)``
+  /// - ``listStoragePoolsByItems(parent:)``
   public func listStoragePools(
     request: ListStoragePoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListStoragePoolsResponse {
@@ -55,6 +66,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates a new storage pool.
   ///
   /// @Snippet(path: "NetApp_CreateStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createStoragePool(request:)``
+  /// - ``createStoragePoolPollingUntilDone(request:)``
+  /// - ``createStoragePoolPollingUntilDone(request:options:)``
+  /// - ``createStoragePoolPollingUntilDone(parent:storagePool:storagePoolId:)``
   public func createStoragePool(
     request: CreateStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -64,6 +82,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates a new storage pool.
   ///
   /// @Snippet(path: "NetApp_CreateStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createStoragePoolPollingUntilDone(request:)``
+  /// - ``createStoragePoolPollingUntilDone(parent:storagePool:storagePoolId:)``
+  /// - ``createStoragePool(request:)``
+  /// - ``createStoragePool(request:options:)``
   public func createStoragePoolPollingUntilDone(
     request: CreateStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> StoragePool {
@@ -91,6 +116,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns the description of the specified storage pool by poolId.
   ///
   /// @Snippet(path: "NetApp_GetStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getStoragePool(request:)``
+  /// - ``getStoragePool(name:)``
   public func getStoragePool(
     request: GetStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.StoragePool {
@@ -100,6 +130,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the storage pool properties with the full spec
   ///
   /// @Snippet(path: "NetApp_UpdateStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateStoragePool(request:)``
+  /// - ``updateStoragePoolPollingUntilDone(request:)``
+  /// - ``updateStoragePoolPollingUntilDone(request:options:)``
+  /// - ``updateStoragePoolPollingUntilDone(storagePool:updateMask:)``
   public func updateStoragePool(
     request: UpdateStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -109,6 +146,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the storage pool properties with the full spec
   ///
   /// @Snippet(path: "NetApp_UpdateStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateStoragePoolPollingUntilDone(request:)``
+  /// - ``updateStoragePoolPollingUntilDone(storagePool:updateMask:)``
+  /// - ``updateStoragePool(request:)``
+  /// - ``updateStoragePool(request:options:)``
   public func updateStoragePoolPollingUntilDone(
     request: UpdateStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> StoragePool {
@@ -136,6 +180,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Warning! This operation will permanently delete the storage pool.
   ///
   /// @Snippet(path: "NetApp_DeleteStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteStoragePool(request:)``
+  /// - ``deleteStoragePoolPollingUntilDone(request:)``
+  /// - ``deleteStoragePoolPollingUntilDone(request:options:)``
+  /// - ``deleteStoragePoolPollingUntilDone(name:)``
   public func deleteStoragePool(
     request: DeleteStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -145,6 +196,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Warning! This operation will permanently delete the storage pool.
   ///
   /// @Snippet(path: "NetApp_DeleteStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteStoragePoolPollingUntilDone(request:)``
+  /// - ``deleteStoragePoolPollingUntilDone(name:)``
+  /// - ``deleteStoragePool(request:)``
+  /// - ``deleteStoragePool(request:options:)``
   public func deleteStoragePoolPollingUntilDone(
     request: DeleteStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -173,6 +231,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// policy attached to the storage pool.
   ///
   /// @Snippet(path: "NetApp_ValidateDirectoryService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``validateDirectoryService(request:)``
+  /// - ``validateDirectoryServicePollingUntilDone(request:)``
+  /// - ``validateDirectoryServicePollingUntilDone(request:options:)``
   public func validateDirectoryService(
     request: ValidateDirectoryServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -183,6 +247,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// policy attached to the storage pool.
   ///
   /// @Snippet(path: "NetApp_ValidateDirectoryService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``validateDirectoryServicePollingUntilDone(request:)``
+  /// - ``validateDirectoryService(request:)``
+  /// - ``validateDirectoryService(request:options:)``
   public func validateDirectoryServicePollingUntilDone(
     request: ValidateDirectoryServiceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -211,6 +281,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// storagePool.
   ///
   /// @Snippet(path: "NetApp_SwitchActiveReplicaZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``switchActiveReplicaZone(request:)``
+  /// - ``switchActiveReplicaZonePollingUntilDone(request:)``
+  /// - ``switchActiveReplicaZonePollingUntilDone(request:options:)``
   public func switchActiveReplicaZone(
     request: SwitchActiveReplicaZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -221,6 +297,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// storagePool.
   ///
   /// @Snippet(path: "NetApp_SwitchActiveReplicaZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``switchActiveReplicaZonePollingUntilDone(request:)``
+  /// - ``switchActiveReplicaZone(request:)``
+  /// - ``switchActiveReplicaZone(request:options:)``
   public func switchActiveReplicaZonePollingUntilDone(
     request: SwitchActiveReplicaZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> StoragePool {
@@ -248,6 +330,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Lists Volumes in a given project.
   ///
   /// @Snippet(path: "NetApp_ListVolumes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listVolumes(request:)``
+  /// - ``listVolumesByItems(request:)``
+  /// - ``listVolumesByItems(request:options:)``
+  /// - ``listVolumesByItems(parent:)``
   public func listVolumes(
     request: ListVolumesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListVolumesResponse {
@@ -257,6 +346,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Gets details of a single Volume.
   ///
   /// @Snippet(path: "NetApp_GetVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getVolume(request:)``
+  /// - ``getVolume(name:)``
   public func getVolume(
     request: GetVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.Volume {
@@ -266,6 +360,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates a new Volume in a given project and location.
   ///
   /// @Snippet(path: "NetApp_CreateVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createVolume(request:)``
+  /// - ``createVolumePollingUntilDone(request:)``
+  /// - ``createVolumePollingUntilDone(request:options:)``
+  /// - ``createVolumePollingUntilDone(parent:volume:volumeId:)``
   public func createVolume(
     request: CreateVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -275,6 +376,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates a new Volume in a given project and location.
   ///
   /// @Snippet(path: "NetApp_CreateVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createVolumePollingUntilDone(request:)``
+  /// - ``createVolumePollingUntilDone(parent:volume:volumeId:)``
+  /// - ``createVolume(request:)``
+  /// - ``createVolume(request:options:)``
   public func createVolumePollingUntilDone(
     request: CreateVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
@@ -302,6 +410,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the parameters of a single Volume.
   ///
   /// @Snippet(path: "NetApp_UpdateVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateVolume(request:)``
+  /// - ``updateVolumePollingUntilDone(request:)``
+  /// - ``updateVolumePollingUntilDone(request:options:)``
+  /// - ``updateVolumePollingUntilDone(volume:updateMask:)``
   public func updateVolume(
     request: UpdateVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -311,6 +426,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the parameters of a single Volume.
   ///
   /// @Snippet(path: "NetApp_UpdateVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateVolumePollingUntilDone(request:)``
+  /// - ``updateVolumePollingUntilDone(volume:updateMask:)``
+  /// - ``updateVolume(request:)``
+  /// - ``updateVolume(request:options:)``
   public func updateVolumePollingUntilDone(
     request: UpdateVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
@@ -338,6 +460,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Deletes a single Volume.
   ///
   /// @Snippet(path: "NetApp_DeleteVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteVolume(request:)``
+  /// - ``deleteVolumePollingUntilDone(request:)``
+  /// - ``deleteVolumePollingUntilDone(request:options:)``
+  /// - ``deleteVolumePollingUntilDone(name:)``
   public func deleteVolume(
     request: DeleteVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -347,6 +476,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Deletes a single Volume.
   ///
   /// @Snippet(path: "NetApp_DeleteVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteVolumePollingUntilDone(request:)``
+  /// - ``deleteVolumePollingUntilDone(name:)``
+  /// - ``deleteVolume(request:)``
+  /// - ``deleteVolume(request:options:)``
   public func deleteVolumePollingUntilDone(
     request: DeleteVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -376,6 +512,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// snapshot was created.
   ///
   /// @Snippet(path: "NetApp_RevertVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``revertVolume(request:)``
+  /// - ``revertVolumePollingUntilDone(request:)``
+  /// - ``revertVolumePollingUntilDone(request:options:)``
   public func revertVolume(
     request: RevertVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -387,6 +529,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// snapshot was created.
   ///
   /// @Snippet(path: "NetApp_RevertVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``revertVolumePollingUntilDone(request:)``
+  /// - ``revertVolume(request:)``
+  /// - ``revertVolume(request:options:)``
   public func revertVolumePollingUntilDone(
     request: RevertVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
@@ -417,6 +565,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// For volumes that are not clones, this operation will return an error.
   ///
   /// @Snippet(path: "NetApp_StartSplit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startSplit(request:)``
+  /// - ``startSplitPollingUntilDone(request:)``
+  /// - ``startSplitPollingUntilDone(request:options:)``
+  /// - ``startSplitPollingUntilDone(name:)``
   public func startSplit(
     request: StartSplitRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -429,6 +584,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// For volumes that are not clones, this operation will return an error.
   ///
   /// @Snippet(path: "NetApp_StartSplit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startSplitPollingUntilDone(request:)``
+  /// - ``startSplitPollingUntilDone(name:)``
+  /// - ``startSplit(request:)``
+  /// - ``startSplit(request:options:)``
   public func startSplitPollingUntilDone(
     request: StartSplitRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
@@ -458,6 +620,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// that are not clones, this method will return an error.
   ///
   /// @Snippet(path: "NetApp_GetSplitStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSplitStatus(request:)``
+  /// - ``getSplitStatus(name:)``
   public func getSplitStatus(
     request: GetSplitStatusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.SplitStatus {
@@ -468,6 +635,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// peerings between the GCNV and OnPrem clusters.
   ///
   /// @Snippet(path: "NetApp_EstablishVolumePeering")
+  ///
+  /// ## See Also
+  ///
+  /// - ``establishVolumePeering(request:)``
+  /// - ``establishVolumePeeringPollingUntilDone(request:)``
+  /// - ``establishVolumePeeringPollingUntilDone(request:options:)``
   public func establishVolumePeering(
     request: EstablishVolumePeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -478,6 +651,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// peerings between the GCNV and OnPrem clusters.
   ///
   /// @Snippet(path: "NetApp_EstablishVolumePeering")
+  ///
+  /// ## See Also
+  ///
+  /// - ``establishVolumePeeringPollingUntilDone(request:)``
+  /// - ``establishVolumePeering(request:)``
+  /// - ``establishVolumePeering(request:options:)``
   public func establishVolumePeeringPollingUntilDone(
     request: EstablishVolumePeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
@@ -505,6 +684,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns descriptions of all snapshots for a volume.
   ///
   /// @Snippet(path: "NetApp_ListSnapshots")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSnapshots(request:)``
+  /// - ``listSnapshotsByItems(request:)``
+  /// - ``listSnapshotsByItems(request:options:)``
+  /// - ``listSnapshotsByItems(parent:)``
   public func listSnapshots(
     request: ListSnapshotsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListSnapshotsResponse {
@@ -514,6 +700,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Describe a snapshot for a volume.
   ///
   /// @Snippet(path: "NetApp_GetSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSnapshot(request:)``
+  /// - ``getSnapshot(name:)``
   public func getSnapshot(
     request: GetSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.Snapshot {
@@ -523,6 +714,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Create a new snapshot for a volume.
   ///
   /// @Snippet(path: "NetApp_CreateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSnapshot(request:)``
+  /// - ``createSnapshotPollingUntilDone(request:)``
+  /// - ``createSnapshotPollingUntilDone(request:options:)``
+  /// - ``createSnapshotPollingUntilDone(parent:snapshot:snapshotId:)``
   public func createSnapshot(
     request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -532,6 +730,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Create a new snapshot for a volume.
   ///
   /// @Snippet(path: "NetApp_CreateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSnapshotPollingUntilDone(request:)``
+  /// - ``createSnapshotPollingUntilDone(parent:snapshot:snapshotId:)``
+  /// - ``createSnapshot(request:)``
+  /// - ``createSnapshot(request:options:)``
   public func createSnapshotPollingUntilDone(
     request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> Snapshot {
@@ -559,6 +764,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Deletes a snapshot.
   ///
   /// @Snippet(path: "NetApp_DeleteSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSnapshot(request:)``
+  /// - ``deleteSnapshotPollingUntilDone(request:)``
+  /// - ``deleteSnapshotPollingUntilDone(request:options:)``
+  /// - ``deleteSnapshotPollingUntilDone(name:)``
   public func deleteSnapshot(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -568,6 +780,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Deletes a snapshot.
   ///
   /// @Snippet(path: "NetApp_DeleteSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSnapshotPollingUntilDone(request:)``
+  /// - ``deleteSnapshotPollingUntilDone(name:)``
+  /// - ``deleteSnapshot(request:)``
+  /// - ``deleteSnapshot(request:options:)``
   public func deleteSnapshotPollingUntilDone(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -595,6 +814,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the settings of a specific snapshot.
   ///
   /// @Snippet(path: "NetApp_UpdateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSnapshot(request:)``
+  /// - ``updateSnapshotPollingUntilDone(request:)``
+  /// - ``updateSnapshotPollingUntilDone(request:options:)``
+  /// - ``updateSnapshotPollingUntilDone(snapshot:updateMask:)``
   public func updateSnapshot(
     request: UpdateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -604,6 +830,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the settings of a specific snapshot.
   ///
   /// @Snippet(path: "NetApp_UpdateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSnapshotPollingUntilDone(request:)``
+  /// - ``updateSnapshotPollingUntilDone(snapshot:updateMask:)``
+  /// - ``updateSnapshot(request:)``
+  /// - ``updateSnapshot(request:options:)``
   public func updateSnapshotPollingUntilDone(
     request: UpdateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> Snapshot {
@@ -631,6 +864,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Lists active directories.
   ///
   /// @Snippet(path: "NetApp_ListActiveDirectories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listActiveDirectories(request:)``
+  /// - ``listActiveDirectoriesByItems(request:)``
+  /// - ``listActiveDirectoriesByItems(request:options:)``
+  /// - ``listActiveDirectoriesByItems(parent:)``
   public func listActiveDirectories(
     request: ListActiveDirectoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListActiveDirectoriesResponse {
@@ -640,6 +880,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Describes a specified active directory.
   ///
   /// @Snippet(path: "NetApp_GetActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getActiveDirectory(request:)``
+  /// - ``getActiveDirectory(name:)``
   public func getActiveDirectory(
     request: GetActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ActiveDirectory {
@@ -650,6 +895,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates the active directory specified in the request.
   ///
   /// @Snippet(path: "NetApp_CreateActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createActiveDirectory(request:)``
+  /// - ``createActiveDirectoryPollingUntilDone(request:)``
+  /// - ``createActiveDirectoryPollingUntilDone(request:options:)``
+  /// - ``createActiveDirectoryPollingUntilDone(parent:activeDirectory:activeDirectoryId:)``
   public func createActiveDirectory(
     request: CreateActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -660,6 +912,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates the active directory specified in the request.
   ///
   /// @Snippet(path: "NetApp_CreateActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createActiveDirectoryPollingUntilDone(request:)``
+  /// - ``createActiveDirectoryPollingUntilDone(parent:activeDirectory:activeDirectoryId:)``
+  /// - ``createActiveDirectory(request:)``
+  /// - ``createActiveDirectory(request:options:)``
   public func createActiveDirectoryPollingUntilDone(
     request: CreateActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> ActiveDirectory {
@@ -688,6 +947,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Update the parameters of an active directories.
   ///
   /// @Snippet(path: "NetApp_UpdateActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateActiveDirectory(request:)``
+  /// - ``updateActiveDirectoryPollingUntilDone(request:)``
+  /// - ``updateActiveDirectoryPollingUntilDone(request:options:)``
+  /// - ``updateActiveDirectoryPollingUntilDone(activeDirectory:updateMask:)``
   public func updateActiveDirectory(
     request: UpdateActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -697,6 +963,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Update the parameters of an active directories.
   ///
   /// @Snippet(path: "NetApp_UpdateActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateActiveDirectoryPollingUntilDone(request:)``
+  /// - ``updateActiveDirectoryPollingUntilDone(activeDirectory:updateMask:)``
+  /// - ``updateActiveDirectory(request:)``
+  /// - ``updateActiveDirectory(request:options:)``
   public func updateActiveDirectoryPollingUntilDone(
     request: UpdateActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> ActiveDirectory {
@@ -725,6 +998,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Delete the active directory specified in the request.
   ///
   /// @Snippet(path: "NetApp_DeleteActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteActiveDirectory(request:)``
+  /// - ``deleteActiveDirectoryPollingUntilDone(request:)``
+  /// - ``deleteActiveDirectoryPollingUntilDone(request:options:)``
+  /// - ``deleteActiveDirectoryPollingUntilDone(name:)``
   public func deleteActiveDirectory(
     request: DeleteActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -734,6 +1014,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Delete the active directory specified in the request.
   ///
   /// @Snippet(path: "NetApp_DeleteActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteActiveDirectoryPollingUntilDone(request:)``
+  /// - ``deleteActiveDirectoryPollingUntilDone(name:)``
+  /// - ``deleteActiveDirectory(request:)``
+  /// - ``deleteActiveDirectory(request:options:)``
   public func deleteActiveDirectoryPollingUntilDone(
     request: DeleteActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -761,6 +1048,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns descriptions of all KMS configs owned by the caller.
   ///
   /// @Snippet(path: "NetApp_ListKmsConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listKmsConfigs(request:)``
+  /// - ``listKmsConfigsByItems(request:)``
+  /// - ``listKmsConfigsByItems(request:options:)``
+  /// - ``listKmsConfigsByItems(parent:)``
   public func listKmsConfigs(
     request: ListKmsConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListKmsConfigsResponse {
@@ -770,6 +1064,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates a new KMS config.
   ///
   /// @Snippet(path: "NetApp_CreateKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createKmsConfig(request:)``
+  /// - ``createKmsConfigPollingUntilDone(request:)``
+  /// - ``createKmsConfigPollingUntilDone(request:options:)``
+  /// - ``createKmsConfigPollingUntilDone(parent:kmsConfig:kmsConfigId:)``
   public func createKmsConfig(
     request: CreateKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -779,6 +1080,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates a new KMS config.
   ///
   /// @Snippet(path: "NetApp_CreateKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createKmsConfigPollingUntilDone(request:)``
+  /// - ``createKmsConfigPollingUntilDone(parent:kmsConfig:kmsConfigId:)``
+  /// - ``createKmsConfig(request:)``
+  /// - ``createKmsConfig(request:options:)``
   public func createKmsConfigPollingUntilDone(
     request: CreateKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> KmsConfig {
@@ -806,6 +1114,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns the description of the specified KMS config by kms_config_id.
   ///
   /// @Snippet(path: "NetApp_GetKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getKmsConfig(request:)``
+  /// - ``getKmsConfig(name:)``
   public func getKmsConfig(
     request: GetKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.KmsConfig {
@@ -815,6 +1128,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the Kms config properties with the full spec
   ///
   /// @Snippet(path: "NetApp_UpdateKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateKmsConfig(request:)``
+  /// - ``updateKmsConfigPollingUntilDone(request:)``
+  /// - ``updateKmsConfigPollingUntilDone(request:options:)``
+  /// - ``updateKmsConfigPollingUntilDone(kmsConfig:updateMask:)``
   public func updateKmsConfig(
     request: UpdateKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -824,6 +1144,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the Kms config properties with the full spec
   ///
   /// @Snippet(path: "NetApp_UpdateKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateKmsConfigPollingUntilDone(request:)``
+  /// - ``updateKmsConfigPollingUntilDone(kmsConfig:updateMask:)``
+  /// - ``updateKmsConfig(request:)``
+  /// - ``updateKmsConfig(request:options:)``
   public func updateKmsConfigPollingUntilDone(
     request: UpdateKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> KmsConfig {
@@ -852,6 +1179,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// KMS config for the whole region.
   ///
   /// @Snippet(path: "NetApp_EncryptVolumes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``encryptVolumes(request:)``
+  /// - ``encryptVolumesPollingUntilDone(request:)``
+  /// - ``encryptVolumesPollingUntilDone(request:options:)``
   public func encryptVolumes(
     request: EncryptVolumesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -862,6 +1195,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// KMS config for the whole region.
   ///
   /// @Snippet(path: "NetApp_EncryptVolumes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``encryptVolumesPollingUntilDone(request:)``
+  /// - ``encryptVolumes(request:)``
+  /// - ``encryptVolumes(request:options:)``
   public func encryptVolumesPollingUntilDone(
     request: EncryptVolumesRequest, options: GoogleGax.RequestOptions
   ) async throws -> KmsConfig {
@@ -889,6 +1228,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Verifies KMS config reachability.
   ///
   /// @Snippet(path: "NetApp_VerifyKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``verifyKmsConfig(request:)``
   public func verifyKmsConfig(
     request: VerifyKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.VerifyKmsConfigResponse {
@@ -898,6 +1241,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Warning! This operation will permanently delete the Kms config.
   ///
   /// @Snippet(path: "NetApp_DeleteKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteKmsConfig(request:)``
+  /// - ``deleteKmsConfigPollingUntilDone(request:)``
+  /// - ``deleteKmsConfigPollingUntilDone(request:options:)``
+  /// - ``deleteKmsConfigPollingUntilDone(name:)``
   public func deleteKmsConfig(
     request: DeleteKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -907,6 +1257,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Warning! This operation will permanently delete the Kms config.
   ///
   /// @Snippet(path: "NetApp_DeleteKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteKmsConfigPollingUntilDone(request:)``
+  /// - ``deleteKmsConfigPollingUntilDone(name:)``
+  /// - ``deleteKmsConfig(request:)``
+  /// - ``deleteKmsConfig(request:options:)``
   public func deleteKmsConfigPollingUntilDone(
     request: DeleteKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -934,6 +1291,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns descriptions of all replications for a volume.
   ///
   /// @Snippet(path: "NetApp_ListReplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReplications(request:)``
+  /// - ``listReplicationsByItems(request:)``
+  /// - ``listReplicationsByItems(request:options:)``
+  /// - ``listReplicationsByItems(parent:)``
   public func listReplications(
     request: ListReplicationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListReplicationsResponse {
@@ -943,6 +1307,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Describe a replication for a volume.
   ///
   /// @Snippet(path: "NetApp_GetReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getReplication(request:)``
+  /// - ``getReplication(name:)``
   public func getReplication(
     request: GetReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.Replication {
@@ -952,6 +1321,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Create a new replication for a volume.
   ///
   /// @Snippet(path: "NetApp_CreateReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReplication(request:)``
+  /// - ``createReplicationPollingUntilDone(request:)``
+  /// - ``createReplicationPollingUntilDone(request:options:)``
+  /// - ``createReplicationPollingUntilDone(parent:replication:replicationId:)``
   public func createReplication(
     request: CreateReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -961,6 +1337,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Create a new replication for a volume.
   ///
   /// @Snippet(path: "NetApp_CreateReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReplicationPollingUntilDone(request:)``
+  /// - ``createReplicationPollingUntilDone(parent:replication:replicationId:)``
+  /// - ``createReplication(request:)``
+  /// - ``createReplication(request:options:)``
   public func createReplicationPollingUntilDone(
     request: CreateReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -988,6 +1371,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Deletes a replication.
   ///
   /// @Snippet(path: "NetApp_DeleteReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteReplication(request:)``
+  /// - ``deleteReplicationPollingUntilDone(request:)``
+  /// - ``deleteReplicationPollingUntilDone(request:options:)``
+  /// - ``deleteReplicationPollingUntilDone(name:)``
   public func deleteReplication(
     request: DeleteReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -997,6 +1387,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Deletes a replication.
   ///
   /// @Snippet(path: "NetApp_DeleteReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteReplicationPollingUntilDone(request:)``
+  /// - ``deleteReplicationPollingUntilDone(name:)``
+  /// - ``deleteReplication(request:)``
+  /// - ``deleteReplication(request:options:)``
   public func deleteReplicationPollingUntilDone(
     request: DeleteReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1024,6 +1421,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the settings of a specific replication.
   ///
   /// @Snippet(path: "NetApp_UpdateReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateReplication(request:)``
+  /// - ``updateReplicationPollingUntilDone(request:)``
+  /// - ``updateReplicationPollingUntilDone(request:options:)``
+  /// - ``updateReplicationPollingUntilDone(replication:updateMask:)``
   public func updateReplication(
     request: UpdateReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1033,6 +1437,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the settings of a specific replication.
   ///
   /// @Snippet(path: "NetApp_UpdateReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateReplicationPollingUntilDone(request:)``
+  /// - ``updateReplicationPollingUntilDone(replication:updateMask:)``
+  /// - ``updateReplication(request:)``
+  /// - ``updateReplication(request:options:)``
   public func updateReplicationPollingUntilDone(
     request: UpdateReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1060,6 +1471,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Stop Cross Region Replication.
   ///
   /// @Snippet(path: "NetApp_StopReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``stopReplication(request:)``
+  /// - ``stopReplicationPollingUntilDone(request:)``
+  /// - ``stopReplicationPollingUntilDone(request:options:)``
   public func stopReplication(
     request: StopReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1069,6 +1486,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Stop Cross Region Replication.
   ///
   /// @Snippet(path: "NetApp_StopReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``stopReplicationPollingUntilDone(request:)``
+  /// - ``stopReplication(request:)``
+  /// - ``stopReplication(request:options:)``
   public func stopReplicationPollingUntilDone(
     request: StopReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1096,6 +1519,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Resume Cross Region Replication.
   ///
   /// @Snippet(path: "NetApp_ResumeReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resumeReplication(request:)``
+  /// - ``resumeReplicationPollingUntilDone(request:)``
+  /// - ``resumeReplicationPollingUntilDone(request:options:)``
   public func resumeReplication(
     request: ResumeReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1105,6 +1534,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Resume Cross Region Replication.
   ///
   /// @Snippet(path: "NetApp_ResumeReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resumeReplicationPollingUntilDone(request:)``
+  /// - ``resumeReplication(request:)``
+  /// - ``resumeReplication(request:options:)``
   public func resumeReplicationPollingUntilDone(
     request: ResumeReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1133,6 +1568,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// destination becomes source.
   ///
   /// @Snippet(path: "NetApp_ReverseReplicationDirection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reverseReplicationDirection(request:)``
+  /// - ``reverseReplicationDirectionPollingUntilDone(request:)``
+  /// - ``reverseReplicationDirectionPollingUntilDone(request:options:)``
   public func reverseReplicationDirection(
     request: ReverseReplicationDirectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1143,6 +1584,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// destination becomes source.
   ///
   /// @Snippet(path: "NetApp_ReverseReplicationDirection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reverseReplicationDirectionPollingUntilDone(request:)``
+  /// - ``reverseReplicationDirection(request:)``
+  /// - ``reverseReplicationDirection(request:options:)``
   public func reverseReplicationDirectionPollingUntilDone(
     request: ReverseReplicationDirectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1170,6 +1617,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Establish replication peering.
   ///
   /// @Snippet(path: "NetApp_EstablishPeering")
+  ///
+  /// ## See Also
+  ///
+  /// - ``establishPeering(request:)``
+  /// - ``establishPeeringPollingUntilDone(request:)``
+  /// - ``establishPeeringPollingUntilDone(request:options:)``
   public func establishPeering(
     request: EstablishPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1179,6 +1632,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Establish replication peering.
   ///
   /// @Snippet(path: "NetApp_EstablishPeering")
+  ///
+  /// ## See Also
+  ///
+  /// - ``establishPeeringPollingUntilDone(request:)``
+  /// - ``establishPeering(request:)``
+  /// - ``establishPeering(request:options:)``
   public func establishPeeringPollingUntilDone(
     request: EstablishPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1207,6 +1666,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// source to destination.
   ///
   /// @Snippet(path: "NetApp_SyncReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``syncReplication(request:)``
+  /// - ``syncReplicationPollingUntilDone(request:)``
+  /// - ``syncReplicationPollingUntilDone(request:options:)``
   public func syncReplication(
     request: SyncReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1217,6 +1682,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// source to destination.
   ///
   /// @Snippet(path: "NetApp_SyncReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``syncReplicationPollingUntilDone(request:)``
+  /// - ``syncReplication(request:)``
+  /// - ``syncReplication(request:options:)``
   public func syncReplicationPollingUntilDone(
     request: SyncReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1244,6 +1715,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates new backup vault
   ///
   /// @Snippet(path: "NetApp_CreateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackupVault(request:)``
+  /// - ``createBackupVaultPollingUntilDone(request:)``
+  /// - ``createBackupVaultPollingUntilDone(request:options:)``
+  /// - ``createBackupVaultPollingUntilDone(parent:backupVault:backupVaultId:)``
   public func createBackupVault(
     request: CreateBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1253,6 +1731,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates new backup vault
   ///
   /// @Snippet(path: "NetApp_CreateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackupVaultPollingUntilDone(request:)``
+  /// - ``createBackupVaultPollingUntilDone(parent:backupVault:backupVaultId:)``
+  /// - ``createBackupVault(request:)``
+  /// - ``createBackupVault(request:options:)``
   public func createBackupVaultPollingUntilDone(
     request: CreateBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupVault {
@@ -1280,6 +1765,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns the description of the specified backup vault
   ///
   /// @Snippet(path: "NetApp_GetBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackupVault(request:)``
+  /// - ``getBackupVault(name:)``
   public func getBackupVault(
     request: GetBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.BackupVault {
@@ -1289,6 +1779,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns list of all available backup vaults.
   ///
   /// @Snippet(path: "NetApp_ListBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackupVaults(request:)``
+  /// - ``listBackupVaultsByItems(request:)``
+  /// - ``listBackupVaultsByItems(request:options:)``
+  /// - ``listBackupVaultsByItems(parent:)``
   public func listBackupVaults(
     request: ListBackupVaultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListBackupVaultsResponse {
@@ -1298,6 +1795,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the settings of a specific backup vault.
   ///
   /// @Snippet(path: "NetApp_UpdateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupVault(request:)``
+  /// - ``updateBackupVaultPollingUntilDone(request:)``
+  /// - ``updateBackupVaultPollingUntilDone(request:options:)``
+  /// - ``updateBackupVaultPollingUntilDone(backupVault:updateMask:)``
   public func updateBackupVault(
     request: UpdateBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1307,6 +1811,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the settings of a specific backup vault.
   ///
   /// @Snippet(path: "NetApp_UpdateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupVaultPollingUntilDone(request:)``
+  /// - ``updateBackupVaultPollingUntilDone(backupVault:updateMask:)``
+  /// - ``updateBackupVault(request:)``
+  /// - ``updateBackupVault(request:options:)``
   public func updateBackupVaultPollingUntilDone(
     request: UpdateBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupVault {
@@ -1334,6 +1845,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Warning! This operation will permanently delete the backup vault.
   ///
   /// @Snippet(path: "NetApp_DeleteBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupVault(request:)``
+  /// - ``deleteBackupVaultPollingUntilDone(request:)``
+  /// - ``deleteBackupVaultPollingUntilDone(request:options:)``
+  /// - ``deleteBackupVaultPollingUntilDone(name:)``
   public func deleteBackupVault(
     request: DeleteBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1343,6 +1861,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Warning! This operation will permanently delete the backup vault.
   ///
   /// @Snippet(path: "NetApp_DeleteBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupVaultPollingUntilDone(request:)``
+  /// - ``deleteBackupVaultPollingUntilDone(name:)``
+  /// - ``deleteBackupVault(request:)``
+  /// - ``deleteBackupVault(request:options:)``
   public func deleteBackupVaultPollingUntilDone(
     request: DeleteBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1373,6 +1898,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// initiate the backup creation.
   ///
   /// @Snippet(path: "NetApp_CreateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackup(request:)``
+  /// - ``createBackupPollingUntilDone(request:)``
+  /// - ``createBackupPollingUntilDone(request:options:)``
+  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
   public func createBackup(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1385,6 +1917,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// initiate the backup creation.
   ///
   /// @Snippet(path: "NetApp_CreateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackupPollingUntilDone(request:)``
+  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
+  /// - ``createBackup(request:)``
+  /// - ``createBackup(request:options:)``
   public func createBackupPollingUntilDone(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -1412,6 +1951,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns the description of the specified backup
   ///
   /// @Snippet(path: "NetApp_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackup(request:)``
+  /// - ``getBackup(name:)``
   public func getBackup(
     request: GetBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.Backup {
@@ -1421,6 +1965,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns descriptions of all backups for a backupVault.
   ///
   /// @Snippet(path: "NetApp_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackups(request:)``
+  /// - ``listBackupsByItems(request:)``
+  /// - ``listBackupsByItems(request:options:)``
+  /// - ``listBackupsByItems(parent:)``
   public func listBackups(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListBackupsResponse {
@@ -1430,6 +1981,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Warning! This operation will permanently delete the backup.
   ///
   /// @Snippet(path: "NetApp_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackup(request:)``
+  /// - ``deleteBackupPollingUntilDone(request:)``
+  /// - ``deleteBackupPollingUntilDone(request:options:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
   public func deleteBackup(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1439,6 +1997,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Warning! This operation will permanently delete the backup.
   ///
   /// @Snippet(path: "NetApp_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupPollingUntilDone(request:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
+  /// - ``deleteBackup(request:)``
+  /// - ``deleteBackup(request:options:)``
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1466,6 +2031,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Update backup with full spec.
   ///
   /// @Snippet(path: "NetApp_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackup(request:)``
+  /// - ``updateBackupPollingUntilDone(request:)``
+  /// - ``updateBackupPollingUntilDone(request:options:)``
+  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
   public func updateBackup(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1475,6 +2047,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Update backup with full spec.
   ///
   /// @Snippet(path: "NetApp_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupPollingUntilDone(request:)``
+  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
+  /// - ``updateBackup(request:)``
+  /// - ``updateBackup(request:options:)``
   public func updateBackupPollingUntilDone(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -1502,6 +2081,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates new backup policy
   ///
   /// @Snippet(path: "NetApp_CreateBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackupPolicy(request:)``
+  /// - ``createBackupPolicyPollingUntilDone(request:)``
+  /// - ``createBackupPolicyPollingUntilDone(request:options:)``
+  /// - ``createBackupPolicyPollingUntilDone(parent:backupPolicy:backupPolicyId:)``
   public func createBackupPolicy(
     request: CreateBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1511,6 +2097,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates new backup policy
   ///
   /// @Snippet(path: "NetApp_CreateBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackupPolicyPollingUntilDone(request:)``
+  /// - ``createBackupPolicyPollingUntilDone(parent:backupPolicy:backupPolicyId:)``
+  /// - ``createBackupPolicy(request:)``
+  /// - ``createBackupPolicy(request:options:)``
   public func createBackupPolicyPollingUntilDone(
     request: CreateBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupPolicy {
@@ -1539,6 +2132,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns the description of the specified backup policy by backup_policy_id.
   ///
   /// @Snippet(path: "NetApp_GetBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackupPolicy(request:)``
+  /// - ``getBackupPolicy(name:)``
   public func getBackupPolicy(
     request: GetBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.BackupPolicy {
@@ -1548,6 +2146,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns list of all available backup policies.
   ///
   /// @Snippet(path: "NetApp_ListBackupPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackupPolicies(request:)``
+  /// - ``listBackupPoliciesByItems(request:)``
+  /// - ``listBackupPoliciesByItems(request:options:)``
+  /// - ``listBackupPoliciesByItems(parent:)``
   public func listBackupPolicies(
     request: ListBackupPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListBackupPoliciesResponse {
@@ -1557,6 +2162,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates settings of a specific backup policy.
   ///
   /// @Snippet(path: "NetApp_UpdateBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupPolicy(request:)``
+  /// - ``updateBackupPolicyPollingUntilDone(request:)``
+  /// - ``updateBackupPolicyPollingUntilDone(request:options:)``
+  /// - ``updateBackupPolicyPollingUntilDone(backupPolicy:updateMask:)``
   public func updateBackupPolicy(
     request: UpdateBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1566,6 +2178,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates settings of a specific backup policy.
   ///
   /// @Snippet(path: "NetApp_UpdateBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupPolicyPollingUntilDone(request:)``
+  /// - ``updateBackupPolicyPollingUntilDone(backupPolicy:updateMask:)``
+  /// - ``updateBackupPolicy(request:)``
+  /// - ``updateBackupPolicy(request:options:)``
   public func updateBackupPolicyPollingUntilDone(
     request: UpdateBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupPolicy {
@@ -1594,6 +2213,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Warning! This operation will permanently delete the backup policy.
   ///
   /// @Snippet(path: "NetApp_DeleteBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupPolicy(request:)``
+  /// - ``deleteBackupPolicyPollingUntilDone(request:)``
+  /// - ``deleteBackupPolicyPollingUntilDone(request:options:)``
+  /// - ``deleteBackupPolicyPollingUntilDone(name:)``
   public func deleteBackupPolicy(
     request: DeleteBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1603,6 +2229,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Warning! This operation will permanently delete the backup policy.
   ///
   /// @Snippet(path: "NetApp_DeleteBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupPolicyPollingUntilDone(request:)``
+  /// - ``deleteBackupPolicyPollingUntilDone(name:)``
+  /// - ``deleteBackupPolicy(request:)``
+  /// - ``deleteBackupPolicy(request:options:)``
   public func deleteBackupPolicyPollingUntilDone(
     request: DeleteBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1630,6 +2263,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns list of all quota rules in a location.
   ///
   /// @Snippet(path: "NetApp_ListQuotaRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listQuotaRules(request:)``
+  /// - ``listQuotaRulesByItems(request:)``
+  /// - ``listQuotaRulesByItems(request:options:)``
+  /// - ``listQuotaRulesByItems(parent:)``
   public func listQuotaRules(
     request: ListQuotaRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListQuotaRulesResponse {
@@ -1639,6 +2279,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns details of the specified quota rule.
   ///
   /// @Snippet(path: "NetApp_GetQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getQuotaRule(request:)``
+  /// - ``getQuotaRule(name:)``
   public func getQuotaRule(
     request: GetQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.QuotaRule {
@@ -1648,6 +2293,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates a new quota rule.
   ///
   /// @Snippet(path: "NetApp_CreateQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createQuotaRule(request:)``
+  /// - ``createQuotaRulePollingUntilDone(request:)``
+  /// - ``createQuotaRulePollingUntilDone(request:options:)``
+  /// - ``createQuotaRulePollingUntilDone(parent:quotaRule:quotaRuleId:)``
   public func createQuotaRule(
     request: CreateQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1657,6 +2309,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates a new quota rule.
   ///
   /// @Snippet(path: "NetApp_CreateQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createQuotaRulePollingUntilDone(request:)``
+  /// - ``createQuotaRulePollingUntilDone(parent:quotaRule:quotaRuleId:)``
+  /// - ``createQuotaRule(request:)``
+  /// - ``createQuotaRule(request:options:)``
   public func createQuotaRulePollingUntilDone(
     request: CreateQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> QuotaRule {
@@ -1684,6 +2343,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates a quota rule.
   ///
   /// @Snippet(path: "NetApp_UpdateQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateQuotaRule(request:)``
+  /// - ``updateQuotaRulePollingUntilDone(request:)``
+  /// - ``updateQuotaRulePollingUntilDone(request:options:)``
+  /// - ``updateQuotaRulePollingUntilDone(quotaRule:updateMask:)``
   public func updateQuotaRule(
     request: UpdateQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1693,6 +2359,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates a quota rule.
   ///
   /// @Snippet(path: "NetApp_UpdateQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateQuotaRulePollingUntilDone(request:)``
+  /// - ``updateQuotaRulePollingUntilDone(quotaRule:updateMask:)``
+  /// - ``updateQuotaRule(request:)``
+  /// - ``updateQuotaRule(request:options:)``
   public func updateQuotaRulePollingUntilDone(
     request: UpdateQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> QuotaRule {
@@ -1720,6 +2393,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Deletes a quota rule.
   ///
   /// @Snippet(path: "NetApp_DeleteQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteQuotaRule(request:)``
+  /// - ``deleteQuotaRulePollingUntilDone(request:)``
+  /// - ``deleteQuotaRulePollingUntilDone(request:options:)``
+  /// - ``deleteQuotaRulePollingUntilDone(name:)``
   public func deleteQuotaRule(
     request: DeleteQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1729,6 +2409,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Deletes a quota rule.
   ///
   /// @Snippet(path: "NetApp_DeleteQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteQuotaRulePollingUntilDone(request:)``
+  /// - ``deleteQuotaRulePollingUntilDone(name:)``
+  /// - ``deleteQuotaRule(request:)``
+  /// - ``deleteQuotaRule(request:options:)``
   public func deleteQuotaRulePollingUntilDone(
     request: DeleteQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1756,6 +2443,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Restore files from a backup to a volume.
   ///
   /// @Snippet(path: "NetApp_RestoreBackupFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restoreBackupFiles(request:)``
+  /// - ``restoreBackupFilesPollingUntilDone(request:)``
+  /// - ``restoreBackupFilesPollingUntilDone(request:options:)``
   public func restoreBackupFiles(
     request: RestoreBackupFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1765,6 +2458,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Restore files from a backup to a volume.
   ///
   /// @Snippet(path: "NetApp_RestoreBackupFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restoreBackupFilesPollingUntilDone(request:)``
+  /// - ``restoreBackupFiles(request:)``
+  /// - ``restoreBackupFiles(request:options:)``
   public func restoreBackupFilesPollingUntilDone(
     request: RestoreBackupFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> RestoreBackupFilesResponse {
@@ -1795,6 +2494,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// host groups across all locations.
   ///
   /// @Snippet(path: "NetApp_ListHostGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listHostGroups(request:)``
+  /// - ``listHostGroupsByItems(request:)``
+  /// - ``listHostGroupsByItems(request:options:)``
+  /// - ``listHostGroupsByItems(parent:)``
   public func listHostGroups(
     request: ListHostGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListHostGroupsResponse {
@@ -1804,6 +2510,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Returns details of the specified host group.
   ///
   /// @Snippet(path: "NetApp_GetHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getHostGroup(request:)``
+  /// - ``getHostGroup(name:)``
   public func getHostGroup(
     request: GetHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.HostGroup {
@@ -1813,6 +2524,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates a new host group.
   ///
   /// @Snippet(path: "NetApp_CreateHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createHostGroup(request:)``
+  /// - ``createHostGroupPollingUntilDone(request:)``
+  /// - ``createHostGroupPollingUntilDone(request:options:)``
+  /// - ``createHostGroupPollingUntilDone(parent:hostGroup:hostGroupId:)``
   public func createHostGroup(
     request: CreateHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1822,6 +2540,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Creates a new host group.
   ///
   /// @Snippet(path: "NetApp_CreateHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createHostGroupPollingUntilDone(request:)``
+  /// - ``createHostGroupPollingUntilDone(parent:hostGroup:hostGroupId:)``
+  /// - ``createHostGroup(request:)``
+  /// - ``createHostGroup(request:options:)``
   public func createHostGroupPollingUntilDone(
     request: CreateHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> HostGroup {
@@ -1849,6 +2574,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates an existing host group.
   ///
   /// @Snippet(path: "NetApp_UpdateHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateHostGroup(request:)``
+  /// - ``updateHostGroupPollingUntilDone(request:)``
+  /// - ``updateHostGroupPollingUntilDone(request:options:)``
+  /// - ``updateHostGroupPollingUntilDone(hostGroup:updateMask:)``
   public func updateHostGroup(
     request: UpdateHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1858,6 +2590,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates an existing host group.
   ///
   /// @Snippet(path: "NetApp_UpdateHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateHostGroupPollingUntilDone(request:)``
+  /// - ``updateHostGroupPollingUntilDone(hostGroup:updateMask:)``
+  /// - ``updateHostGroup(request:)``
+  /// - ``updateHostGroup(request:options:)``
   public func updateHostGroupPollingUntilDone(
     request: UpdateHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> HostGroup {
@@ -1885,6 +2624,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Deletes a host group.
   ///
   /// @Snippet(path: "NetApp_DeleteHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteHostGroup(request:)``
+  /// - ``deleteHostGroupPollingUntilDone(request:)``
+  /// - ``deleteHostGroupPollingUntilDone(request:options:)``
+  /// - ``deleteHostGroupPollingUntilDone(name:)``
   public func deleteHostGroup(
     request: DeleteHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1894,6 +2640,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Deletes a host group.
   ///
   /// @Snippet(path: "NetApp_DeleteHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteHostGroupPollingUntilDone(request:)``
+  /// - ``deleteHostGroupPollingUntilDone(name:)``
+  /// - ``deleteHostGroup(request:)``
+  /// - ``deleteHostGroup(request:options:)``
   public func deleteHostGroupPollingUntilDone(
     request: DeleteHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1922,6 +2675,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// `StoragePool` cluster.
   ///
   /// @Snippet(path: "NetApp_ExecuteOntapPost")
+  ///
+  /// ## See Also
+  ///
+  /// - ``executeOntapPost(request:)``
   public func executeOntapPost(
     request: ExecuteOntapPostRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ExecuteOntapPostResponse {
@@ -1932,6 +2689,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// `StoragePool` cluster.
   ///
   /// @Snippet(path: "NetApp_ExecuteOntapGet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``executeOntapGet(request:)``
   public func executeOntapGet(
     request: ExecuteOntapGetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ExecuteOntapGetResponse {
@@ -1942,6 +2703,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// `StoragePool` cluster.
   ///
   /// @Snippet(path: "NetApp_ExecuteOntapDelete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``executeOntapDelete(request:)``
   public func executeOntapDelete(
     request: ExecuteOntapDeleteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ExecuteOntapDeleteResponse {
@@ -1952,6 +2717,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// `StoragePool` cluster.
   ///
   /// @Snippet(path: "NetApp_ExecuteOntapPatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``executeOntapPatch(request:)``
   public func executeOntapPatch(
     request: ExecuteOntapPatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ExecuteOntapPatchResponse {
@@ -1961,6 +2730,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Restores a backup to an ONTAP-mode volume.
   ///
   /// @Snippet(path: "NetApp_RestoreVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restoreVolume(request:)``
+  /// - ``restoreVolumePollingUntilDone(request:)``
+  /// - ``restoreVolumePollingUntilDone(request:options:)``
+  /// - ``restoreVolumePollingUntilDone(name:backupSource:ontapVolumeTarget:)``
   public func restoreVolume(
     request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1970,6 +2746,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Restores a backup to an ONTAP-mode volume.
   ///
   /// @Snippet(path: "NetApp_RestoreVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restoreVolumePollingUntilDone(request:)``
+  /// - ``restoreVolumePollingUntilDone(name:backupSource:ontapVolumeTarget:)``
+  /// - ``restoreVolume(request:)``
+  /// - ``restoreVolume(request:options:)``
   public func restoreVolumePollingUntilDone(
     request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> RestoreVolumeResponse {
@@ -1998,6 +2781,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Lists backup configurations for all volumes in an ONTAP-mode Storage Pool.
   ///
   /// @Snippet(path: "NetApp_ListBackupConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackupConfigs(request:)``
+  /// - ``listBackupConfigsByItems(request:)``
+  /// - ``listBackupConfigsByItems(request:options:)``
+  /// - ``listBackupConfigsByItems(parent:)``
   public func listBackupConfigs(
     request: ListBackupConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListBackupConfigsResponse {
@@ -2007,6 +2797,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the backup configuration for an ONTAP-mode volume.
   ///
   /// @Snippet(path: "NetApp_UpdateBackupConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupConfig(request:)``
+  /// - ``updateBackupConfigPollingUntilDone(request:)``
+  /// - ``updateBackupConfigPollingUntilDone(request:options:)``
+  /// - ``updateBackupConfigPollingUntilDone(name:volumeUuid:backupConfig:updateMask:)``
   public func updateBackupConfig(
     request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2016,6 +2813,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Updates the backup configuration for an ONTAP-mode volume.
   ///
   /// @Snippet(path: "NetApp_UpdateBackupConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupConfigPollingUntilDone(request:)``
+  /// - ``updateBackupConfigPollingUntilDone(name:volumeUuid:backupConfig:updateMask:)``
+  /// - ``updateBackupConfig(request:)``
+  /// - ``updateBackupConfig(request:options:)``
   public func updateBackupConfigPollingUntilDone(
     request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> UpdateBackupConfigResponse {
@@ -2062,6 +2866,12 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "NetApp_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -2071,6 +2881,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "NetApp_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -2082,6 +2896,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetApp_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2104,6 +2925,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetApp_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2115,6 +2941,11 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetApp_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2773,6 +3604,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.NetAppProtocol {
+  /// Returns descriptions of all storage pools owned by the caller.
+  ///
+  /// @Snippet(path: "NetApp_ListStoragePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listStoragePools(request:options:)``
   public func listStoragePools(request: ListStoragePoolsRequest) async throws
     -> GoogleCloudNetAppV1.ListStoragePoolsResponse
   {
@@ -2785,6 +3623,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns descriptions of all storage pools owned by the caller.
+  ///
+  /// @Snippet(path: "NetApp_ListStoragePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listStoragePools(request:options:)``
   public func listStoragePoolsByItems(
     request: ListStoragePoolsRequest
   ) -> some AsyncSequence<StoragePool, any Swift.Error> & Sendable {
@@ -2794,6 +3639,10 @@ extension Clients.NetAppProtocol {
   /// Returns descriptions of all storage pools owned by the caller.
   ///
   /// @Snippet(path: "NetApp_ListStoragePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listStoragePools(request:options:)``
   public func listStoragePoolsByItems(
     request: ListStoragePoolsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<StoragePool, any Swift.Error> & Sendable {
@@ -2808,6 +3657,13 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns descriptions of all storage pools owned by the caller.
+  ///
+  /// @Snippet(path: "NetApp_ListStoragePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listStoragePools(request:options:)``
   public func listStoragePoolsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<StoragePool, any Swift.Error> & Sendable {
@@ -2817,6 +3673,13 @@ extension Clients.NetAppProtocol {
     return self.listStoragePoolsByItems(request: request)
   }
 
+  /// Creates a new storage pool.
+  ///
+  /// @Snippet(path: "NetApp_CreateStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createStoragePool(request:options:)``
   public func createStoragePool(request: CreateStoragePoolRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2829,6 +3692,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new storage pool.
+  ///
+  /// @Snippet(path: "NetApp_CreateStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createStoragePoolPollingUntilDone(request:options:)``
   public func createStoragePoolPollingUntilDone(request: CreateStoragePoolRequest) async throws
     -> StoragePool
   {
@@ -2841,6 +3711,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new storage pool.
+  ///
+  /// @Snippet(path: "NetApp_CreateStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createStoragePoolPollingUntilDone(request:options:)``
   public func createStoragePoolPollingUntilDone(
     parent: Swift.String,
     storagePool: StoragePool?,
@@ -2854,6 +3731,13 @@ extension Clients.NetAppProtocol {
     return try await self.createStoragePoolPollingUntilDone(request: request)
   }
 
+  /// Returns the description of the specified storage pool by poolId.
+  ///
+  /// @Snippet(path: "NetApp_GetStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getStoragePool(request:options:)``
   public func getStoragePool(request: GetStoragePoolRequest) async throws
     -> GoogleCloudNetAppV1.StoragePool
   {
@@ -2866,6 +3750,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the description of the specified storage pool by poolId.
+  ///
+  /// @Snippet(path: "NetApp_GetStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getStoragePool(request:options:)``
   public func getStoragePool(
     name: Swift.String,
   ) async throws -> GoogleCloudNetAppV1.StoragePool {
@@ -2875,6 +3766,13 @@ extension Clients.NetAppProtocol {
     return try await self.getStoragePool(request: request)
   }
 
+  /// Updates the storage pool properties with the full spec
+  ///
+  /// @Snippet(path: "NetApp_UpdateStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateStoragePool(request:options:)``
   public func updateStoragePool(request: UpdateStoragePoolRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2887,6 +3785,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the storage pool properties with the full spec
+  ///
+  /// @Snippet(path: "NetApp_UpdateStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateStoragePoolPollingUntilDone(request:options:)``
   public func updateStoragePoolPollingUntilDone(request: UpdateStoragePoolRequest) async throws
     -> StoragePool
   {
@@ -2899,6 +3804,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the storage pool properties with the full spec
+  ///
+  /// @Snippet(path: "NetApp_UpdateStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateStoragePoolPollingUntilDone(request:options:)``
   public func updateStoragePoolPollingUntilDone(
     storagePool: StoragePool?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2910,6 +3822,13 @@ extension Clients.NetAppProtocol {
     return try await self.updateStoragePoolPollingUntilDone(request: request)
   }
 
+  /// Warning! This operation will permanently delete the storage pool.
+  ///
+  /// @Snippet(path: "NetApp_DeleteStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteStoragePool(request:options:)``
   public func deleteStoragePool(request: DeleteStoragePoolRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2922,6 +3841,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Warning! This operation will permanently delete the storage pool.
+  ///
+  /// @Snippet(path: "NetApp_DeleteStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteStoragePoolPollingUntilDone(request:options:)``
   public func deleteStoragePoolPollingUntilDone(request: DeleteStoragePoolRequest) async throws {
     try await self.deleteStoragePoolPollingUntilDone(request: request, options: .init())
   }
@@ -2932,6 +3858,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Warning! This operation will permanently delete the storage pool.
+  ///
+  /// @Snippet(path: "NetApp_DeleteStoragePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteStoragePoolPollingUntilDone(request:options:)``
   public func deleteStoragePoolPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2941,6 +3874,14 @@ extension Clients.NetAppProtocol {
     try await self.deleteStoragePoolPollingUntilDone(request: request)
   }
 
+  /// ValidateDirectoryService does a connectivity check for a directory service
+  /// policy attached to the storage pool.
+  ///
+  /// @Snippet(path: "NetApp_ValidateDirectoryService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/validateDirectoryService(request:options:)``
   public func validateDirectoryService(request: ValidateDirectoryServiceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2953,6 +3894,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// ValidateDirectoryService does a connectivity check for a directory service
+  /// policy attached to the storage pool.
+  ///
+  /// @Snippet(path: "NetApp_ValidateDirectoryService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/validateDirectoryServicePollingUntilDone(request:options:)``
   public func validateDirectoryServicePollingUntilDone(request: ValidateDirectoryServiceRequest)
     async throws
   {
@@ -2965,6 +3914,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This operation will switch the active/replica zone for a regional
+  /// storagePool.
+  ///
+  /// @Snippet(path: "NetApp_SwitchActiveReplicaZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/switchActiveReplicaZone(request:options:)``
   public func switchActiveReplicaZone(request: SwitchActiveReplicaZoneRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2977,6 +3934,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This operation will switch the active/replica zone for a regional
+  /// storagePool.
+  ///
+  /// @Snippet(path: "NetApp_SwitchActiveReplicaZone")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/switchActiveReplicaZonePollingUntilDone(request:options:)``
   public func switchActiveReplicaZonePollingUntilDone(request: SwitchActiveReplicaZoneRequest)
     async throws -> StoragePool
   {
@@ -2990,6 +3955,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Volumes in a given project.
+  ///
+  /// @Snippet(path: "NetApp_ListVolumes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listVolumes(request:options:)``
   public func listVolumes(request: ListVolumesRequest) async throws
     -> GoogleCloudNetAppV1.ListVolumesResponse
   {
@@ -3002,6 +3974,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Volumes in a given project.
+  ///
+  /// @Snippet(path: "NetApp_ListVolumes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listVolumes(request:options:)``
   public func listVolumesByItems(
     request: ListVolumesRequest
   ) -> some AsyncSequence<Volume, any Swift.Error> & Sendable {
@@ -3011,6 +3990,10 @@ extension Clients.NetAppProtocol {
   /// Lists Volumes in a given project.
   ///
   /// @Snippet(path: "NetApp_ListVolumes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listVolumes(request:options:)``
   public func listVolumesByItems(
     request: ListVolumesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Volume, any Swift.Error> & Sendable {
@@ -3024,6 +4007,13 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Volumes in a given project.
+  ///
+  /// @Snippet(path: "NetApp_ListVolumes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listVolumes(request:options:)``
   public func listVolumesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Volume, any Swift.Error> & Sendable {
@@ -3033,6 +4023,13 @@ extension Clients.NetAppProtocol {
     return self.listVolumesByItems(request: request)
   }
 
+  /// Gets details of a single Volume.
+  ///
+  /// @Snippet(path: "NetApp_GetVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getVolume(request:options:)``
   public func getVolume(request: GetVolumeRequest) async throws -> GoogleCloudNetAppV1.Volume {
     try await self.getVolume(request: request, options: .init())
   }
@@ -3043,6 +4040,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Volume.
+  ///
+  /// @Snippet(path: "NetApp_GetVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getVolume(request:options:)``
   public func getVolume(
     name: Swift.String,
   ) async throws -> GoogleCloudNetAppV1.Volume {
@@ -3052,6 +4056,13 @@ extension Clients.NetAppProtocol {
     return try await self.getVolume(request: request)
   }
 
+  /// Creates a new Volume in a given project and location.
+  ///
+  /// @Snippet(path: "NetApp_CreateVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createVolume(request:options:)``
   public func createVolume(request: CreateVolumeRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createVolume(request: request, options: .init())
@@ -3063,6 +4074,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Volume in a given project and location.
+  ///
+  /// @Snippet(path: "NetApp_CreateVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createVolumePollingUntilDone(request:options:)``
   public func createVolumePollingUntilDone(request: CreateVolumeRequest) async throws -> Volume {
     return try await self.createVolumePollingUntilDone(request: request, options: .init())
   }
@@ -3073,6 +4091,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Volume in a given project and location.
+  ///
+  /// @Snippet(path: "NetApp_CreateVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createVolumePollingUntilDone(request:options:)``
   public func createVolumePollingUntilDone(
     parent: Swift.String,
     volume: Volume?,
@@ -3086,6 +4111,13 @@ extension Clients.NetAppProtocol {
     return try await self.createVolumePollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Volume.
+  ///
+  /// @Snippet(path: "NetApp_UpdateVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateVolume(request:options:)``
   public func updateVolume(request: UpdateVolumeRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateVolume(request: request, options: .init())
@@ -3097,6 +4129,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Volume.
+  ///
+  /// @Snippet(path: "NetApp_UpdateVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateVolumePollingUntilDone(request:options:)``
   public func updateVolumePollingUntilDone(request: UpdateVolumeRequest) async throws -> Volume {
     return try await self.updateVolumePollingUntilDone(request: request, options: .init())
   }
@@ -3107,6 +4146,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Volume.
+  ///
+  /// @Snippet(path: "NetApp_UpdateVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateVolumePollingUntilDone(request:options:)``
   public func updateVolumePollingUntilDone(
     volume: Volume?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3118,6 +4164,13 @@ extension Clients.NetAppProtocol {
     return try await self.updateVolumePollingUntilDone(request: request)
   }
 
+  /// Deletes a single Volume.
+  ///
+  /// @Snippet(path: "NetApp_DeleteVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteVolume(request:options:)``
   public func deleteVolume(request: DeleteVolumeRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteVolume(request: request, options: .init())
@@ -3129,6 +4182,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Volume.
+  ///
+  /// @Snippet(path: "NetApp_DeleteVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteVolumePollingUntilDone(request:options:)``
   public func deleteVolumePollingUntilDone(request: DeleteVolumeRequest) async throws {
     try await self.deleteVolumePollingUntilDone(request: request, options: .init())
   }
@@ -3139,6 +4199,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Volume.
+  ///
+  /// @Snippet(path: "NetApp_DeleteVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteVolumePollingUntilDone(request:options:)``
   public func deleteVolumePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3148,6 +4215,15 @@ extension Clients.NetAppProtocol {
     try await self.deleteVolumePollingUntilDone(request: request)
   }
 
+  /// Revert an existing volume to a specified snapshot.
+  /// Warning! This operation will permanently revert all changes made after the
+  /// snapshot was created.
+  ///
+  /// @Snippet(path: "NetApp_RevertVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/revertVolume(request:options:)``
   public func revertVolume(request: RevertVolumeRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.revertVolume(request: request, options: .init())
@@ -3159,6 +4235,15 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Revert an existing volume to a specified snapshot.
+  /// Warning! This operation will permanently revert all changes made after the
+  /// snapshot was created.
+  ///
+  /// @Snippet(path: "NetApp_RevertVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/revertVolumePollingUntilDone(request:options:)``
   public func revertVolumePollingUntilDone(request: RevertVolumeRequest) async throws -> Volume {
     return try await self.revertVolumePollingUntilDone(request: request, options: .init())
   }
@@ -3169,6 +4254,16 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Splits a clone volume from its source volume.
+  /// This operation will only work for volumes which have clone_details
+  /// set(clones).
+  /// For volumes that are not clones, this operation will return an error.
+  ///
+  /// @Snippet(path: "NetApp_StartSplit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/startSplit(request:options:)``
   public func startSplit(request: StartSplitRequest) async throws -> GoogleLongRunning.Operation {
     try await self.startSplit(request: request, options: .init())
   }
@@ -3179,6 +4274,16 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Splits a clone volume from its source volume.
+  /// This operation will only work for volumes which have clone_details
+  /// set(clones).
+  /// For volumes that are not clones, this operation will return an error.
+  ///
+  /// @Snippet(path: "NetApp_StartSplit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/startSplitPollingUntilDone(request:options:)``
   public func startSplitPollingUntilDone(request: StartSplitRequest) async throws -> Volume {
     return try await self.startSplitPollingUntilDone(request: request, options: .init())
   }
@@ -3189,6 +4294,16 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Splits a clone volume from its source volume.
+  /// This operation will only work for volumes which have clone_details
+  /// set(clones).
+  /// For volumes that are not clones, this operation will return an error.
+  ///
+  /// @Snippet(path: "NetApp_StartSplit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/startSplitPollingUntilDone(request:options:)``
   public func startSplitPollingUntilDone(
     name: Swift.String,
   ) async throws -> Volume {
@@ -3198,6 +4313,15 @@ extension Clients.NetAppProtocol {
     return try await self.startSplitPollingUntilDone(request: request)
   }
 
+  /// Retrieves the current state, progress, and details of a split operation for
+  /// a volume. This method is relevant when the volume is a clone. For volumes
+  /// that are not clones, this method will return an error.
+  ///
+  /// @Snippet(path: "NetApp_GetSplitStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getSplitStatus(request:options:)``
   public func getSplitStatus(request: GetSplitStatusRequest) async throws
     -> GoogleCloudNetAppV1.SplitStatus
   {
@@ -3210,6 +4334,15 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the current state, progress, and details of a split operation for
+  /// a volume. This method is relevant when the volume is a clone. For volumes
+  /// that are not clones, this method will return an error.
+  ///
+  /// @Snippet(path: "NetApp_GetSplitStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getSplitStatus(request:options:)``
   public func getSplitStatus(
     name: Swift.String,
   ) async throws -> GoogleCloudNetAppV1.SplitStatus {
@@ -3219,6 +4352,14 @@ extension Clients.NetAppProtocol {
     return try await self.getSplitStatus(request: request)
   }
 
+  /// Establish volume peering. This is used to establish cluster and svm
+  /// peerings between the GCNV and OnPrem clusters.
+  ///
+  /// @Snippet(path: "NetApp_EstablishVolumePeering")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/establishVolumePeering(request:options:)``
   public func establishVolumePeering(request: EstablishVolumePeeringRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3231,6 +4372,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Establish volume peering. This is used to establish cluster and svm
+  /// peerings between the GCNV and OnPrem clusters.
+  ///
+  /// @Snippet(path: "NetApp_EstablishVolumePeering")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/establishVolumePeeringPollingUntilDone(request:options:)``
   public func establishVolumePeeringPollingUntilDone(request: EstablishVolumePeeringRequest)
     async throws -> Volume
   {
@@ -3243,6 +4392,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns descriptions of all snapshots for a volume.
+  ///
+  /// @Snippet(path: "NetApp_ListSnapshots")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listSnapshots(request:options:)``
   public func listSnapshots(request: ListSnapshotsRequest) async throws
     -> GoogleCloudNetAppV1.ListSnapshotsResponse
   {
@@ -3255,6 +4411,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns descriptions of all snapshots for a volume.
+  ///
+  /// @Snippet(path: "NetApp_ListSnapshots")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listSnapshots(request:options:)``
   public func listSnapshotsByItems(
     request: ListSnapshotsRequest
   ) -> some AsyncSequence<Snapshot, any Swift.Error> & Sendable {
@@ -3264,6 +4427,10 @@ extension Clients.NetAppProtocol {
   /// Returns descriptions of all snapshots for a volume.
   ///
   /// @Snippet(path: "NetApp_ListSnapshots")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listSnapshots(request:options:)``
   public func listSnapshotsByItems(
     request: ListSnapshotsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Snapshot, any Swift.Error> & Sendable {
@@ -3277,6 +4444,13 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns descriptions of all snapshots for a volume.
+  ///
+  /// @Snippet(path: "NetApp_ListSnapshots")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listSnapshots(request:options:)``
   public func listSnapshotsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Snapshot, any Swift.Error> & Sendable {
@@ -3286,6 +4460,13 @@ extension Clients.NetAppProtocol {
     return self.listSnapshotsByItems(request: request)
   }
 
+  /// Describe a snapshot for a volume.
+  ///
+  /// @Snippet(path: "NetApp_GetSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getSnapshot(request:options:)``
   public func getSnapshot(request: GetSnapshotRequest) async throws -> GoogleCloudNetAppV1.Snapshot
   {
     try await self.getSnapshot(request: request, options: .init())
@@ -3297,6 +4478,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Describe a snapshot for a volume.
+  ///
+  /// @Snippet(path: "NetApp_GetSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getSnapshot(request:options:)``
   public func getSnapshot(
     name: Swift.String,
   ) async throws -> GoogleCloudNetAppV1.Snapshot {
@@ -3306,6 +4494,13 @@ extension Clients.NetAppProtocol {
     return try await self.getSnapshot(request: request)
   }
 
+  /// Create a new snapshot for a volume.
+  ///
+  /// @Snippet(path: "NetApp_CreateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createSnapshot(request:options:)``
   public func createSnapshot(request: CreateSnapshotRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3318,6 +4513,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new snapshot for a volume.
+  ///
+  /// @Snippet(path: "NetApp_CreateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createSnapshotPollingUntilDone(request:options:)``
   public func createSnapshotPollingUntilDone(request: CreateSnapshotRequest) async throws
     -> Snapshot
   {
@@ -3330,6 +4532,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new snapshot for a volume.
+  ///
+  /// @Snippet(path: "NetApp_CreateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createSnapshotPollingUntilDone(request:options:)``
   public func createSnapshotPollingUntilDone(
     parent: Swift.String,
     snapshot: Snapshot?,
@@ -3343,6 +4552,13 @@ extension Clients.NetAppProtocol {
     return try await self.createSnapshotPollingUntilDone(request: request)
   }
 
+  /// Deletes a snapshot.
+  ///
+  /// @Snippet(path: "NetApp_DeleteSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteSnapshot(request:options:)``
   public func deleteSnapshot(request: DeleteSnapshotRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3355,6 +4571,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a snapshot.
+  ///
+  /// @Snippet(path: "NetApp_DeleteSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteSnapshotPollingUntilDone(request:options:)``
   public func deleteSnapshotPollingUntilDone(request: DeleteSnapshotRequest) async throws {
     try await self.deleteSnapshotPollingUntilDone(request: request, options: .init())
   }
@@ -3365,6 +4588,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a snapshot.
+  ///
+  /// @Snippet(path: "NetApp_DeleteSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteSnapshotPollingUntilDone(request:options:)``
   public func deleteSnapshotPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3374,6 +4604,13 @@ extension Clients.NetAppProtocol {
     try await self.deleteSnapshotPollingUntilDone(request: request)
   }
 
+  /// Updates the settings of a specific snapshot.
+  ///
+  /// @Snippet(path: "NetApp_UpdateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateSnapshot(request:options:)``
   public func updateSnapshot(request: UpdateSnapshotRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3386,6 +4623,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific snapshot.
+  ///
+  /// @Snippet(path: "NetApp_UpdateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateSnapshotPollingUntilDone(request:options:)``
   public func updateSnapshotPollingUntilDone(request: UpdateSnapshotRequest) async throws
     -> Snapshot
   {
@@ -3398,6 +4642,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific snapshot.
+  ///
+  /// @Snippet(path: "NetApp_UpdateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateSnapshotPollingUntilDone(request:options:)``
   public func updateSnapshotPollingUntilDone(
     snapshot: Snapshot?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3409,6 +4660,13 @@ extension Clients.NetAppProtocol {
     return try await self.updateSnapshotPollingUntilDone(request: request)
   }
 
+  /// Lists active directories.
+  ///
+  /// @Snippet(path: "NetApp_ListActiveDirectories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listActiveDirectories(request:options:)``
   public func listActiveDirectories(request: ListActiveDirectoriesRequest) async throws
     -> GoogleCloudNetAppV1.ListActiveDirectoriesResponse
   {
@@ -3421,6 +4679,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists active directories.
+  ///
+  /// @Snippet(path: "NetApp_ListActiveDirectories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listActiveDirectories(request:options:)``
   public func listActiveDirectoriesByItems(
     request: ListActiveDirectoriesRequest
   ) -> some AsyncSequence<ActiveDirectory, any Swift.Error> & Sendable {
@@ -3430,6 +4695,10 @@ extension Clients.NetAppProtocol {
   /// Lists active directories.
   ///
   /// @Snippet(path: "NetApp_ListActiveDirectories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listActiveDirectories(request:options:)``
   public func listActiveDirectoriesByItems(
     request: ListActiveDirectoriesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ActiveDirectory, any Swift.Error> & Sendable {
@@ -3444,6 +4713,13 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists active directories.
+  ///
+  /// @Snippet(path: "NetApp_ListActiveDirectories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listActiveDirectories(request:options:)``
   public func listActiveDirectoriesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ActiveDirectory, any Swift.Error> & Sendable {
@@ -3453,6 +4729,13 @@ extension Clients.NetAppProtocol {
     return self.listActiveDirectoriesByItems(request: request)
   }
 
+  /// Describes a specified active directory.
+  ///
+  /// @Snippet(path: "NetApp_GetActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getActiveDirectory(request:options:)``
   public func getActiveDirectory(request: GetActiveDirectoryRequest) async throws
     -> GoogleCloudNetAppV1.ActiveDirectory
   {
@@ -3465,6 +4748,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Describes a specified active directory.
+  ///
+  /// @Snippet(path: "NetApp_GetActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getActiveDirectory(request:options:)``
   public func getActiveDirectory(
     name: Swift.String,
   ) async throws -> GoogleCloudNetAppV1.ActiveDirectory {
@@ -3474,6 +4764,14 @@ extension Clients.NetAppProtocol {
     return try await self.getActiveDirectory(request: request)
   }
 
+  /// CreateActiveDirectory
+  /// Creates the active directory specified in the request.
+  ///
+  /// @Snippet(path: "NetApp_CreateActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createActiveDirectory(request:options:)``
   public func createActiveDirectory(request: CreateActiveDirectoryRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3486,6 +4784,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// CreateActiveDirectory
+  /// Creates the active directory specified in the request.
+  ///
+  /// @Snippet(path: "NetApp_CreateActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createActiveDirectoryPollingUntilDone(request:options:)``
   public func createActiveDirectoryPollingUntilDone(request: CreateActiveDirectoryRequest)
     async throws -> ActiveDirectory
   {
@@ -3498,6 +4804,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// CreateActiveDirectory
+  /// Creates the active directory specified in the request.
+  ///
+  /// @Snippet(path: "NetApp_CreateActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createActiveDirectoryPollingUntilDone(request:options:)``
   public func createActiveDirectoryPollingUntilDone(
     parent: Swift.String,
     activeDirectory: ActiveDirectory?,
@@ -3511,6 +4825,13 @@ extension Clients.NetAppProtocol {
     return try await self.createActiveDirectoryPollingUntilDone(request: request)
   }
 
+  /// Update the parameters of an active directories.
+  ///
+  /// @Snippet(path: "NetApp_UpdateActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateActiveDirectory(request:options:)``
   public func updateActiveDirectory(request: UpdateActiveDirectoryRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3523,6 +4844,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update the parameters of an active directories.
+  ///
+  /// @Snippet(path: "NetApp_UpdateActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateActiveDirectoryPollingUntilDone(request:options:)``
   public func updateActiveDirectoryPollingUntilDone(request: UpdateActiveDirectoryRequest)
     async throws -> ActiveDirectory
   {
@@ -3535,6 +4863,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update the parameters of an active directories.
+  ///
+  /// @Snippet(path: "NetApp_UpdateActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateActiveDirectoryPollingUntilDone(request:options:)``
   public func updateActiveDirectoryPollingUntilDone(
     activeDirectory: ActiveDirectory?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3546,6 +4881,13 @@ extension Clients.NetAppProtocol {
     return try await self.updateActiveDirectoryPollingUntilDone(request: request)
   }
 
+  /// Delete the active directory specified in the request.
+  ///
+  /// @Snippet(path: "NetApp_DeleteActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteActiveDirectory(request:options:)``
   public func deleteActiveDirectory(request: DeleteActiveDirectoryRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3558,6 +4900,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete the active directory specified in the request.
+  ///
+  /// @Snippet(path: "NetApp_DeleteActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteActiveDirectoryPollingUntilDone(request:options:)``
   public func deleteActiveDirectoryPollingUntilDone(request: DeleteActiveDirectoryRequest)
     async throws
   {
@@ -3570,6 +4919,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete the active directory specified in the request.
+  ///
+  /// @Snippet(path: "NetApp_DeleteActiveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteActiveDirectoryPollingUntilDone(request:options:)``
   public func deleteActiveDirectoryPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3579,6 +4935,13 @@ extension Clients.NetAppProtocol {
     try await self.deleteActiveDirectoryPollingUntilDone(request: request)
   }
 
+  /// Returns descriptions of all KMS configs owned by the caller.
+  ///
+  /// @Snippet(path: "NetApp_ListKmsConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listKmsConfigs(request:options:)``
   public func listKmsConfigs(request: ListKmsConfigsRequest) async throws
     -> GoogleCloudNetAppV1.ListKmsConfigsResponse
   {
@@ -3591,6 +4954,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns descriptions of all KMS configs owned by the caller.
+  ///
+  /// @Snippet(path: "NetApp_ListKmsConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listKmsConfigs(request:options:)``
   public func listKmsConfigsByItems(
     request: ListKmsConfigsRequest
   ) -> some AsyncSequence<KmsConfig, any Swift.Error> & Sendable {
@@ -3600,6 +4970,10 @@ extension Clients.NetAppProtocol {
   /// Returns descriptions of all KMS configs owned by the caller.
   ///
   /// @Snippet(path: "NetApp_ListKmsConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listKmsConfigs(request:options:)``
   public func listKmsConfigsByItems(
     request: ListKmsConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<KmsConfig, any Swift.Error> & Sendable {
@@ -3613,6 +4987,13 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns descriptions of all KMS configs owned by the caller.
+  ///
+  /// @Snippet(path: "NetApp_ListKmsConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listKmsConfigs(request:options:)``
   public func listKmsConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<KmsConfig, any Swift.Error> & Sendable {
@@ -3622,6 +5003,13 @@ extension Clients.NetAppProtocol {
     return self.listKmsConfigsByItems(request: request)
   }
 
+  /// Creates a new KMS config.
+  ///
+  /// @Snippet(path: "NetApp_CreateKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createKmsConfig(request:options:)``
   public func createKmsConfig(request: CreateKmsConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3634,6 +5022,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new KMS config.
+  ///
+  /// @Snippet(path: "NetApp_CreateKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createKmsConfigPollingUntilDone(request:options:)``
   public func createKmsConfigPollingUntilDone(request: CreateKmsConfigRequest) async throws
     -> KmsConfig
   {
@@ -3646,6 +5041,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new KMS config.
+  ///
+  /// @Snippet(path: "NetApp_CreateKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createKmsConfigPollingUntilDone(request:options:)``
   public func createKmsConfigPollingUntilDone(
     parent: Swift.String,
     kmsConfig: KmsConfig?,
@@ -3659,6 +5061,13 @@ extension Clients.NetAppProtocol {
     return try await self.createKmsConfigPollingUntilDone(request: request)
   }
 
+  /// Returns the description of the specified KMS config by kms_config_id.
+  ///
+  /// @Snippet(path: "NetApp_GetKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getKmsConfig(request:options:)``
   public func getKmsConfig(request: GetKmsConfigRequest) async throws
     -> GoogleCloudNetAppV1.KmsConfig
   {
@@ -3671,6 +5080,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the description of the specified KMS config by kms_config_id.
+  ///
+  /// @Snippet(path: "NetApp_GetKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getKmsConfig(request:options:)``
   public func getKmsConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudNetAppV1.KmsConfig {
@@ -3680,6 +5096,13 @@ extension Clients.NetAppProtocol {
     return try await self.getKmsConfig(request: request)
   }
 
+  /// Updates the Kms config properties with the full spec
+  ///
+  /// @Snippet(path: "NetApp_UpdateKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateKmsConfig(request:options:)``
   public func updateKmsConfig(request: UpdateKmsConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3692,6 +5115,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the Kms config properties with the full spec
+  ///
+  /// @Snippet(path: "NetApp_UpdateKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateKmsConfigPollingUntilDone(request:options:)``
   public func updateKmsConfigPollingUntilDone(request: UpdateKmsConfigRequest) async throws
     -> KmsConfig
   {
@@ -3704,6 +5134,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the Kms config properties with the full spec
+  ///
+  /// @Snippet(path: "NetApp_UpdateKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateKmsConfigPollingUntilDone(request:options:)``
   public func updateKmsConfigPollingUntilDone(
     kmsConfig: KmsConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3715,6 +5152,14 @@ extension Clients.NetAppProtocol {
     return try await self.updateKmsConfigPollingUntilDone(request: request)
   }
 
+  /// Encrypt the existing volumes without CMEK encryption with the desired the
+  /// KMS config for the whole region.
+  ///
+  /// @Snippet(path: "NetApp_EncryptVolumes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/encryptVolumes(request:options:)``
   public func encryptVolumes(request: EncryptVolumesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3727,6 +5172,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Encrypt the existing volumes without CMEK encryption with the desired the
+  /// KMS config for the whole region.
+  ///
+  /// @Snippet(path: "NetApp_EncryptVolumes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/encryptVolumesPollingUntilDone(request:options:)``
   public func encryptVolumesPollingUntilDone(request: EncryptVolumesRequest) async throws
     -> KmsConfig
   {
@@ -3739,6 +5192,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Verifies KMS config reachability.
+  ///
+  /// @Snippet(path: "NetApp_VerifyKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/verifyKmsConfig(request:options:)``
   public func verifyKmsConfig(request: VerifyKmsConfigRequest) async throws
     -> GoogleCloudNetAppV1.VerifyKmsConfigResponse
   {
@@ -3751,6 +5211,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Warning! This operation will permanently delete the Kms config.
+  ///
+  /// @Snippet(path: "NetApp_DeleteKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteKmsConfig(request:options:)``
   public func deleteKmsConfig(request: DeleteKmsConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3763,6 +5230,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Warning! This operation will permanently delete the Kms config.
+  ///
+  /// @Snippet(path: "NetApp_DeleteKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteKmsConfigPollingUntilDone(request:options:)``
   public func deleteKmsConfigPollingUntilDone(request: DeleteKmsConfigRequest) async throws {
     try await self.deleteKmsConfigPollingUntilDone(request: request, options: .init())
   }
@@ -3773,6 +5247,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Warning! This operation will permanently delete the Kms config.
+  ///
+  /// @Snippet(path: "NetApp_DeleteKmsConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteKmsConfigPollingUntilDone(request:options:)``
   public func deleteKmsConfigPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3782,6 +5263,13 @@ extension Clients.NetAppProtocol {
     try await self.deleteKmsConfigPollingUntilDone(request: request)
   }
 
+  /// Returns descriptions of all replications for a volume.
+  ///
+  /// @Snippet(path: "NetApp_ListReplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listReplications(request:options:)``
   public func listReplications(request: ListReplicationsRequest) async throws
     -> GoogleCloudNetAppV1.ListReplicationsResponse
   {
@@ -3794,6 +5282,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns descriptions of all replications for a volume.
+  ///
+  /// @Snippet(path: "NetApp_ListReplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listReplications(request:options:)``
   public func listReplicationsByItems(
     request: ListReplicationsRequest
   ) -> some AsyncSequence<Replication, any Swift.Error> & Sendable {
@@ -3803,6 +5298,10 @@ extension Clients.NetAppProtocol {
   /// Returns descriptions of all replications for a volume.
   ///
   /// @Snippet(path: "NetApp_ListReplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listReplications(request:options:)``
   public func listReplicationsByItems(
     request: ListReplicationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Replication, any Swift.Error> & Sendable {
@@ -3817,6 +5316,13 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns descriptions of all replications for a volume.
+  ///
+  /// @Snippet(path: "NetApp_ListReplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listReplications(request:options:)``
   public func listReplicationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Replication, any Swift.Error> & Sendable {
@@ -3826,6 +5332,13 @@ extension Clients.NetAppProtocol {
     return self.listReplicationsByItems(request: request)
   }
 
+  /// Describe a replication for a volume.
+  ///
+  /// @Snippet(path: "NetApp_GetReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getReplication(request:options:)``
   public func getReplication(request: GetReplicationRequest) async throws
     -> GoogleCloudNetAppV1.Replication
   {
@@ -3838,6 +5351,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Describe a replication for a volume.
+  ///
+  /// @Snippet(path: "NetApp_GetReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getReplication(request:options:)``
   public func getReplication(
     name: Swift.String,
   ) async throws -> GoogleCloudNetAppV1.Replication {
@@ -3847,6 +5367,13 @@ extension Clients.NetAppProtocol {
     return try await self.getReplication(request: request)
   }
 
+  /// Create a new replication for a volume.
+  ///
+  /// @Snippet(path: "NetApp_CreateReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createReplication(request:options:)``
   public func createReplication(request: CreateReplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3859,6 +5386,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new replication for a volume.
+  ///
+  /// @Snippet(path: "NetApp_CreateReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createReplicationPollingUntilDone(request:options:)``
   public func createReplicationPollingUntilDone(request: CreateReplicationRequest) async throws
     -> Replication
   {
@@ -3871,6 +5405,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new replication for a volume.
+  ///
+  /// @Snippet(path: "NetApp_CreateReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createReplicationPollingUntilDone(request:options:)``
   public func createReplicationPollingUntilDone(
     parent: Swift.String,
     replication: Replication?,
@@ -3884,6 +5425,13 @@ extension Clients.NetAppProtocol {
     return try await self.createReplicationPollingUntilDone(request: request)
   }
 
+  /// Deletes a replication.
+  ///
+  /// @Snippet(path: "NetApp_DeleteReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteReplication(request:options:)``
   public func deleteReplication(request: DeleteReplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3896,6 +5444,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a replication.
+  ///
+  /// @Snippet(path: "NetApp_DeleteReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteReplicationPollingUntilDone(request:options:)``
   public func deleteReplicationPollingUntilDone(request: DeleteReplicationRequest) async throws {
     try await self.deleteReplicationPollingUntilDone(request: request, options: .init())
   }
@@ -3906,6 +5461,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a replication.
+  ///
+  /// @Snippet(path: "NetApp_DeleteReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteReplicationPollingUntilDone(request:options:)``
   public func deleteReplicationPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3915,6 +5477,13 @@ extension Clients.NetAppProtocol {
     try await self.deleteReplicationPollingUntilDone(request: request)
   }
 
+  /// Updates the settings of a specific replication.
+  ///
+  /// @Snippet(path: "NetApp_UpdateReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateReplication(request:options:)``
   public func updateReplication(request: UpdateReplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3927,6 +5496,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific replication.
+  ///
+  /// @Snippet(path: "NetApp_UpdateReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateReplicationPollingUntilDone(request:options:)``
   public func updateReplicationPollingUntilDone(request: UpdateReplicationRequest) async throws
     -> Replication
   {
@@ -3939,6 +5515,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific replication.
+  ///
+  /// @Snippet(path: "NetApp_UpdateReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateReplicationPollingUntilDone(request:options:)``
   public func updateReplicationPollingUntilDone(
     replication: Replication?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3950,6 +5533,13 @@ extension Clients.NetAppProtocol {
     return try await self.updateReplicationPollingUntilDone(request: request)
   }
 
+  /// Stop Cross Region Replication.
+  ///
+  /// @Snippet(path: "NetApp_StopReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/stopReplication(request:options:)``
   public func stopReplication(request: StopReplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3962,6 +5552,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Stop Cross Region Replication.
+  ///
+  /// @Snippet(path: "NetApp_StopReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/stopReplicationPollingUntilDone(request:options:)``
   public func stopReplicationPollingUntilDone(request: StopReplicationRequest) async throws
     -> Replication
   {
@@ -3974,6 +5571,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resume Cross Region Replication.
+  ///
+  /// @Snippet(path: "NetApp_ResumeReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/resumeReplication(request:options:)``
   public func resumeReplication(request: ResumeReplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3986,6 +5590,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resume Cross Region Replication.
+  ///
+  /// @Snippet(path: "NetApp_ResumeReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/resumeReplicationPollingUntilDone(request:options:)``
   public func resumeReplicationPollingUntilDone(request: ResumeReplicationRequest) async throws
     -> Replication
   {
@@ -3998,6 +5609,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reverses direction of replication. Source becomes destination and
+  /// destination becomes source.
+  ///
+  /// @Snippet(path: "NetApp_ReverseReplicationDirection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/reverseReplicationDirection(request:options:)``
   public func reverseReplicationDirection(request: ReverseReplicationDirectionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4010,6 +5629,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reverses direction of replication. Source becomes destination and
+  /// destination becomes source.
+  ///
+  /// @Snippet(path: "NetApp_ReverseReplicationDirection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/reverseReplicationDirectionPollingUntilDone(request:options:)``
   public func reverseReplicationDirectionPollingUntilDone(
     request: ReverseReplicationDirectionRequest
   ) async throws -> Replication {
@@ -4023,6 +5650,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Establish replication peering.
+  ///
+  /// @Snippet(path: "NetApp_EstablishPeering")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/establishPeering(request:options:)``
   public func establishPeering(request: EstablishPeeringRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4035,6 +5669,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Establish replication peering.
+  ///
+  /// @Snippet(path: "NetApp_EstablishPeering")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/establishPeeringPollingUntilDone(request:options:)``
   public func establishPeeringPollingUntilDone(request: EstablishPeeringRequest) async throws
     -> Replication
   {
@@ -4047,6 +5688,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Syncs the replication. This will invoke one time volume data transfer from
+  /// source to destination.
+  ///
+  /// @Snippet(path: "NetApp_SyncReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/syncReplication(request:options:)``
   public func syncReplication(request: SyncReplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4059,6 +5708,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Syncs the replication. This will invoke one time volume data transfer from
+  /// source to destination.
+  ///
+  /// @Snippet(path: "NetApp_SyncReplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/syncReplicationPollingUntilDone(request:options:)``
   public func syncReplicationPollingUntilDone(request: SyncReplicationRequest) async throws
     -> Replication
   {
@@ -4071,6 +5728,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates new backup vault
+  ///
+  /// @Snippet(path: "NetApp_CreateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createBackupVault(request:options:)``
   public func createBackupVault(request: CreateBackupVaultRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4083,6 +5747,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates new backup vault
+  ///
+  /// @Snippet(path: "NetApp_CreateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createBackupVaultPollingUntilDone(request:options:)``
   public func createBackupVaultPollingUntilDone(request: CreateBackupVaultRequest) async throws
     -> BackupVault
   {
@@ -4095,6 +5766,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates new backup vault
+  ///
+  /// @Snippet(path: "NetApp_CreateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createBackupVaultPollingUntilDone(request:options:)``
   public func createBackupVaultPollingUntilDone(
     parent: Swift.String,
     backupVault: BackupVault?,
@@ -4108,6 +5786,13 @@ extension Clients.NetAppProtocol {
     return try await self.createBackupVaultPollingUntilDone(request: request)
   }
 
+  /// Returns the description of the specified backup vault
+  ///
+  /// @Snippet(path: "NetApp_GetBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getBackupVault(request:options:)``
   public func getBackupVault(request: GetBackupVaultRequest) async throws
     -> GoogleCloudNetAppV1.BackupVault
   {
@@ -4120,6 +5805,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the description of the specified backup vault
+  ///
+  /// @Snippet(path: "NetApp_GetBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getBackupVault(request:options:)``
   public func getBackupVault(
     name: Swift.String,
   ) async throws -> GoogleCloudNetAppV1.BackupVault {
@@ -4129,6 +5821,13 @@ extension Clients.NetAppProtocol {
     return try await self.getBackupVault(request: request)
   }
 
+  /// Returns list of all available backup vaults.
+  ///
+  /// @Snippet(path: "NetApp_ListBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackupVaults(request:options:)``
   public func listBackupVaults(request: ListBackupVaultsRequest) async throws
     -> GoogleCloudNetAppV1.ListBackupVaultsResponse
   {
@@ -4141,6 +5840,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns list of all available backup vaults.
+  ///
+  /// @Snippet(path: "NetApp_ListBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackupVaults(request:options:)``
   public func listBackupVaultsByItems(
     request: ListBackupVaultsRequest
   ) -> some AsyncSequence<BackupVault, any Swift.Error> & Sendable {
@@ -4150,6 +5856,10 @@ extension Clients.NetAppProtocol {
   /// Returns list of all available backup vaults.
   ///
   /// @Snippet(path: "NetApp_ListBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackupVaults(request:options:)``
   public func listBackupVaultsByItems(
     request: ListBackupVaultsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BackupVault, any Swift.Error> & Sendable {
@@ -4164,6 +5874,13 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns list of all available backup vaults.
+  ///
+  /// @Snippet(path: "NetApp_ListBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackupVaults(request:options:)``
   public func listBackupVaultsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BackupVault, any Swift.Error> & Sendable {
@@ -4173,6 +5890,13 @@ extension Clients.NetAppProtocol {
     return self.listBackupVaultsByItems(request: request)
   }
 
+  /// Updates the settings of a specific backup vault.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateBackupVault(request:options:)``
   public func updateBackupVault(request: UpdateBackupVaultRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4185,6 +5909,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific backup vault.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateBackupVaultPollingUntilDone(request:options:)``
   public func updateBackupVaultPollingUntilDone(request: UpdateBackupVaultRequest) async throws
     -> BackupVault
   {
@@ -4197,6 +5928,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific backup vault.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateBackupVaultPollingUntilDone(request:options:)``
   public func updateBackupVaultPollingUntilDone(
     backupVault: BackupVault?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -4208,6 +5946,13 @@ extension Clients.NetAppProtocol {
     return try await self.updateBackupVaultPollingUntilDone(request: request)
   }
 
+  /// Warning! This operation will permanently delete the backup vault.
+  ///
+  /// @Snippet(path: "NetApp_DeleteBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteBackupVault(request:options:)``
   public func deleteBackupVault(request: DeleteBackupVaultRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4220,6 +5965,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Warning! This operation will permanently delete the backup vault.
+  ///
+  /// @Snippet(path: "NetApp_DeleteBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteBackupVaultPollingUntilDone(request:options:)``
   public func deleteBackupVaultPollingUntilDone(request: DeleteBackupVaultRequest) async throws {
     try await self.deleteBackupVaultPollingUntilDone(request: request, options: .init())
   }
@@ -4230,6 +5982,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Warning! This operation will permanently delete the backup vault.
+  ///
+  /// @Snippet(path: "NetApp_DeleteBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteBackupVaultPollingUntilDone(request:options:)``
   public func deleteBackupVaultPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -4239,6 +5998,16 @@ extension Clients.NetAppProtocol {
     try await self.deleteBackupVaultPollingUntilDone(request: request)
   }
 
+  /// Creates a backup from the volume specified in the request
+  /// The backup can be created from the given snapshot if specified in the
+  /// request. If no snapshot specified, there'll be a new snapshot taken to
+  /// initiate the backup creation.
+  ///
+  /// @Snippet(path: "NetApp_CreateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createBackup(request:options:)``
   public func createBackup(request: CreateBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createBackup(request: request, options: .init())
@@ -4250,6 +6019,16 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a backup from the volume specified in the request
+  /// The backup can be created from the given snapshot if specified in the
+  /// request. If no snapshot specified, there'll be a new snapshot taken to
+  /// initiate the backup creation.
+  ///
+  /// @Snippet(path: "NetApp_CreateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createBackupPollingUntilDone(request:options:)``
   public func createBackupPollingUntilDone(request: CreateBackupRequest) async throws -> Backup {
     return try await self.createBackupPollingUntilDone(request: request, options: .init())
   }
@@ -4260,6 +6039,16 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a backup from the volume specified in the request
+  /// The backup can be created from the given snapshot if specified in the
+  /// request. If no snapshot specified, there'll be a new snapshot taken to
+  /// initiate the backup creation.
+  ///
+  /// @Snippet(path: "NetApp_CreateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createBackupPollingUntilDone(request:options:)``
   public func createBackupPollingUntilDone(
     parent: Swift.String,
     backup: Backup?,
@@ -4273,6 +6062,13 @@ extension Clients.NetAppProtocol {
     return try await self.createBackupPollingUntilDone(request: request)
   }
 
+  /// Returns the description of the specified backup
+  ///
+  /// @Snippet(path: "NetApp_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getBackup(request:options:)``
   public func getBackup(request: GetBackupRequest) async throws -> GoogleCloudNetAppV1.Backup {
     try await self.getBackup(request: request, options: .init())
   }
@@ -4283,6 +6079,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the description of the specified backup
+  ///
+  /// @Snippet(path: "NetApp_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getBackup(request:options:)``
   public func getBackup(
     name: Swift.String,
   ) async throws -> GoogleCloudNetAppV1.Backup {
@@ -4292,6 +6095,13 @@ extension Clients.NetAppProtocol {
     return try await self.getBackup(request: request)
   }
 
+  /// Returns descriptions of all backups for a backupVault.
+  ///
+  /// @Snippet(path: "NetApp_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackups(request:options:)``
   public func listBackups(request: ListBackupsRequest) async throws
     -> GoogleCloudNetAppV1.ListBackupsResponse
   {
@@ -4304,6 +6114,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns descriptions of all backups for a backupVault.
+  ///
+  /// @Snippet(path: "NetApp_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackups(request:options:)``
   public func listBackupsByItems(
     request: ListBackupsRequest
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -4313,6 +6130,10 @@ extension Clients.NetAppProtocol {
   /// Returns descriptions of all backups for a backupVault.
   ///
   /// @Snippet(path: "NetApp_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackups(request:options:)``
   public func listBackupsByItems(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -4326,6 +6147,13 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns descriptions of all backups for a backupVault.
+  ///
+  /// @Snippet(path: "NetApp_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackups(request:options:)``
   public func listBackupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -4335,6 +6163,13 @@ extension Clients.NetAppProtocol {
     return self.listBackupsByItems(request: request)
   }
 
+  /// Warning! This operation will permanently delete the backup.
+  ///
+  /// @Snippet(path: "NetApp_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteBackup(request:options:)``
   public func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteBackup(request: request, options: .init())
@@ -4346,6 +6181,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Warning! This operation will permanently delete the backup.
+  ///
+  /// @Snippet(path: "NetApp_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteBackupPollingUntilDone(request:options:)``
   public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws {
     try await self.deleteBackupPollingUntilDone(request: request, options: .init())
   }
@@ -4356,6 +6198,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Warning! This operation will permanently delete the backup.
+  ///
+  /// @Snippet(path: "NetApp_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteBackupPollingUntilDone(request:options:)``
   public func deleteBackupPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -4365,6 +6214,13 @@ extension Clients.NetAppProtocol {
     try await self.deleteBackupPollingUntilDone(request: request)
   }
 
+  /// Update backup with full spec.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateBackup(request:options:)``
   public func updateBackup(request: UpdateBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateBackup(request: request, options: .init())
@@ -4376,6 +6232,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update backup with full spec.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateBackupPollingUntilDone(request:options:)``
   public func updateBackupPollingUntilDone(request: UpdateBackupRequest) async throws -> Backup {
     return try await self.updateBackupPollingUntilDone(request: request, options: .init())
   }
@@ -4386,6 +6249,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update backup with full spec.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateBackupPollingUntilDone(request:options:)``
   public func updateBackupPollingUntilDone(
     backup: Backup?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -4397,6 +6267,13 @@ extension Clients.NetAppProtocol {
     return try await self.updateBackupPollingUntilDone(request: request)
   }
 
+  /// Creates new backup policy
+  ///
+  /// @Snippet(path: "NetApp_CreateBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createBackupPolicy(request:options:)``
   public func createBackupPolicy(request: CreateBackupPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4409,6 +6286,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates new backup policy
+  ///
+  /// @Snippet(path: "NetApp_CreateBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createBackupPolicyPollingUntilDone(request:options:)``
   public func createBackupPolicyPollingUntilDone(request: CreateBackupPolicyRequest) async throws
     -> BackupPolicy
   {
@@ -4421,6 +6305,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates new backup policy
+  ///
+  /// @Snippet(path: "NetApp_CreateBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createBackupPolicyPollingUntilDone(request:options:)``
   public func createBackupPolicyPollingUntilDone(
     parent: Swift.String,
     backupPolicy: BackupPolicy?,
@@ -4434,6 +6325,13 @@ extension Clients.NetAppProtocol {
     return try await self.createBackupPolicyPollingUntilDone(request: request)
   }
 
+  /// Returns the description of the specified backup policy by backup_policy_id.
+  ///
+  /// @Snippet(path: "NetApp_GetBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getBackupPolicy(request:options:)``
   public func getBackupPolicy(request: GetBackupPolicyRequest) async throws
     -> GoogleCloudNetAppV1.BackupPolicy
   {
@@ -4446,6 +6344,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the description of the specified backup policy by backup_policy_id.
+  ///
+  /// @Snippet(path: "NetApp_GetBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getBackupPolicy(request:options:)``
   public func getBackupPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudNetAppV1.BackupPolicy {
@@ -4455,6 +6360,13 @@ extension Clients.NetAppProtocol {
     return try await self.getBackupPolicy(request: request)
   }
 
+  /// Returns list of all available backup policies.
+  ///
+  /// @Snippet(path: "NetApp_ListBackupPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackupPolicies(request:options:)``
   public func listBackupPolicies(request: ListBackupPoliciesRequest) async throws
     -> GoogleCloudNetAppV1.ListBackupPoliciesResponse
   {
@@ -4467,6 +6379,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns list of all available backup policies.
+  ///
+  /// @Snippet(path: "NetApp_ListBackupPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackupPolicies(request:options:)``
   public func listBackupPoliciesByItems(
     request: ListBackupPoliciesRequest
   ) -> some AsyncSequence<BackupPolicy, any Swift.Error> & Sendable {
@@ -4476,6 +6395,10 @@ extension Clients.NetAppProtocol {
   /// Returns list of all available backup policies.
   ///
   /// @Snippet(path: "NetApp_ListBackupPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackupPolicies(request:options:)``
   public func listBackupPoliciesByItems(
     request: ListBackupPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BackupPolicy, any Swift.Error> & Sendable {
@@ -4490,6 +6413,13 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns list of all available backup policies.
+  ///
+  /// @Snippet(path: "NetApp_ListBackupPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackupPolicies(request:options:)``
   public func listBackupPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BackupPolicy, any Swift.Error> & Sendable {
@@ -4499,6 +6429,13 @@ extension Clients.NetAppProtocol {
     return self.listBackupPoliciesByItems(request: request)
   }
 
+  /// Updates settings of a specific backup policy.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateBackupPolicy(request:options:)``
   public func updateBackupPolicy(request: UpdateBackupPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4511,6 +6448,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates settings of a specific backup policy.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateBackupPolicyPollingUntilDone(request:options:)``
   public func updateBackupPolicyPollingUntilDone(request: UpdateBackupPolicyRequest) async throws
     -> BackupPolicy
   {
@@ -4523,6 +6467,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates settings of a specific backup policy.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateBackupPolicyPollingUntilDone(request:options:)``
   public func updateBackupPolicyPollingUntilDone(
     backupPolicy: BackupPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -4534,6 +6485,13 @@ extension Clients.NetAppProtocol {
     return try await self.updateBackupPolicyPollingUntilDone(request: request)
   }
 
+  /// Warning! This operation will permanently delete the backup policy.
+  ///
+  /// @Snippet(path: "NetApp_DeleteBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteBackupPolicy(request:options:)``
   public func deleteBackupPolicy(request: DeleteBackupPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4546,6 +6504,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Warning! This operation will permanently delete the backup policy.
+  ///
+  /// @Snippet(path: "NetApp_DeleteBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteBackupPolicyPollingUntilDone(request:options:)``
   public func deleteBackupPolicyPollingUntilDone(request: DeleteBackupPolicyRequest) async throws {
     try await self.deleteBackupPolicyPollingUntilDone(request: request, options: .init())
   }
@@ -4556,6 +6521,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Warning! This operation will permanently delete the backup policy.
+  ///
+  /// @Snippet(path: "NetApp_DeleteBackupPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteBackupPolicyPollingUntilDone(request:options:)``
   public func deleteBackupPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -4565,6 +6537,13 @@ extension Clients.NetAppProtocol {
     try await self.deleteBackupPolicyPollingUntilDone(request: request)
   }
 
+  /// Returns list of all quota rules in a location.
+  ///
+  /// @Snippet(path: "NetApp_ListQuotaRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listQuotaRules(request:options:)``
   public func listQuotaRules(request: ListQuotaRulesRequest) async throws
     -> GoogleCloudNetAppV1.ListQuotaRulesResponse
   {
@@ -4577,6 +6556,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns list of all quota rules in a location.
+  ///
+  /// @Snippet(path: "NetApp_ListQuotaRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listQuotaRules(request:options:)``
   public func listQuotaRulesByItems(
     request: ListQuotaRulesRequest
   ) -> some AsyncSequence<QuotaRule, any Swift.Error> & Sendable {
@@ -4586,6 +6572,10 @@ extension Clients.NetAppProtocol {
   /// Returns list of all quota rules in a location.
   ///
   /// @Snippet(path: "NetApp_ListQuotaRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listQuotaRules(request:options:)``
   public func listQuotaRulesByItems(
     request: ListQuotaRulesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<QuotaRule, any Swift.Error> & Sendable {
@@ -4599,6 +6589,13 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns list of all quota rules in a location.
+  ///
+  /// @Snippet(path: "NetApp_ListQuotaRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listQuotaRules(request:options:)``
   public func listQuotaRulesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<QuotaRule, any Swift.Error> & Sendable {
@@ -4608,6 +6605,13 @@ extension Clients.NetAppProtocol {
     return self.listQuotaRulesByItems(request: request)
   }
 
+  /// Returns details of the specified quota rule.
+  ///
+  /// @Snippet(path: "NetApp_GetQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getQuotaRule(request:options:)``
   public func getQuotaRule(request: GetQuotaRuleRequest) async throws
     -> GoogleCloudNetAppV1.QuotaRule
   {
@@ -4620,6 +6624,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns details of the specified quota rule.
+  ///
+  /// @Snippet(path: "NetApp_GetQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getQuotaRule(request:options:)``
   public func getQuotaRule(
     name: Swift.String,
   ) async throws -> GoogleCloudNetAppV1.QuotaRule {
@@ -4629,6 +6640,13 @@ extension Clients.NetAppProtocol {
     return try await self.getQuotaRule(request: request)
   }
 
+  /// Creates a new quota rule.
+  ///
+  /// @Snippet(path: "NetApp_CreateQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createQuotaRule(request:options:)``
   public func createQuotaRule(request: CreateQuotaRuleRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4641,6 +6659,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new quota rule.
+  ///
+  /// @Snippet(path: "NetApp_CreateQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createQuotaRulePollingUntilDone(request:options:)``
   public func createQuotaRulePollingUntilDone(request: CreateQuotaRuleRequest) async throws
     -> QuotaRule
   {
@@ -4653,6 +6678,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new quota rule.
+  ///
+  /// @Snippet(path: "NetApp_CreateQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createQuotaRulePollingUntilDone(request:options:)``
   public func createQuotaRulePollingUntilDone(
     parent: Swift.String,
     quotaRule: QuotaRule?,
@@ -4666,6 +6698,13 @@ extension Clients.NetAppProtocol {
     return try await self.createQuotaRulePollingUntilDone(request: request)
   }
 
+  /// Updates a quota rule.
+  ///
+  /// @Snippet(path: "NetApp_UpdateQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateQuotaRule(request:options:)``
   public func updateQuotaRule(request: UpdateQuotaRuleRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4678,6 +6717,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a quota rule.
+  ///
+  /// @Snippet(path: "NetApp_UpdateQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateQuotaRulePollingUntilDone(request:options:)``
   public func updateQuotaRulePollingUntilDone(request: UpdateQuotaRuleRequest) async throws
     -> QuotaRule
   {
@@ -4690,6 +6736,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a quota rule.
+  ///
+  /// @Snippet(path: "NetApp_UpdateQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateQuotaRulePollingUntilDone(request:options:)``
   public func updateQuotaRulePollingUntilDone(
     quotaRule: QuotaRule?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -4701,6 +6754,13 @@ extension Clients.NetAppProtocol {
     return try await self.updateQuotaRulePollingUntilDone(request: request)
   }
 
+  /// Deletes a quota rule.
+  ///
+  /// @Snippet(path: "NetApp_DeleteQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteQuotaRule(request:options:)``
   public func deleteQuotaRule(request: DeleteQuotaRuleRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4713,6 +6773,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a quota rule.
+  ///
+  /// @Snippet(path: "NetApp_DeleteQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteQuotaRulePollingUntilDone(request:options:)``
   public func deleteQuotaRulePollingUntilDone(request: DeleteQuotaRuleRequest) async throws {
     try await self.deleteQuotaRulePollingUntilDone(request: request, options: .init())
   }
@@ -4723,6 +6790,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a quota rule.
+  ///
+  /// @Snippet(path: "NetApp_DeleteQuotaRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteQuotaRulePollingUntilDone(request:options:)``
   public func deleteQuotaRulePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -4732,6 +6806,13 @@ extension Clients.NetAppProtocol {
     try await self.deleteQuotaRulePollingUntilDone(request: request)
   }
 
+  /// Restore files from a backup to a volume.
+  ///
+  /// @Snippet(path: "NetApp_RestoreBackupFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/restoreBackupFiles(request:options:)``
   public func restoreBackupFiles(request: RestoreBackupFilesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4744,6 +6825,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restore files from a backup to a volume.
+  ///
+  /// @Snippet(path: "NetApp_RestoreBackupFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/restoreBackupFilesPollingUntilDone(request:options:)``
   public func restoreBackupFilesPollingUntilDone(request: RestoreBackupFilesRequest) async throws
     -> RestoreBackupFilesResponse
   {
@@ -4756,6 +6844,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of host groups in a `location`. Use `-` as location to list
+  /// host groups across all locations.
+  ///
+  /// @Snippet(path: "NetApp_ListHostGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listHostGroups(request:options:)``
   public func listHostGroups(request: ListHostGroupsRequest) async throws
     -> GoogleCloudNetAppV1.ListHostGroupsResponse
   {
@@ -4768,6 +6864,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of host groups in a `location`. Use `-` as location to list
+  /// host groups across all locations.
+  ///
+  /// @Snippet(path: "NetApp_ListHostGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listHostGroups(request:options:)``
   public func listHostGroupsByItems(
     request: ListHostGroupsRequest
   ) -> some AsyncSequence<HostGroup, any Swift.Error> & Sendable {
@@ -4778,6 +6882,10 @@ extension Clients.NetAppProtocol {
   /// host groups across all locations.
   ///
   /// @Snippet(path: "NetApp_ListHostGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listHostGroups(request:options:)``
   public func listHostGroupsByItems(
     request: ListHostGroupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<HostGroup, any Swift.Error> & Sendable {
@@ -4791,6 +6899,14 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns a list of host groups in a `location`. Use `-` as location to list
+  /// host groups across all locations.
+  ///
+  /// @Snippet(path: "NetApp_ListHostGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listHostGroups(request:options:)``
   public func listHostGroupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<HostGroup, any Swift.Error> & Sendable {
@@ -4800,6 +6916,13 @@ extension Clients.NetAppProtocol {
     return self.listHostGroupsByItems(request: request)
   }
 
+  /// Returns details of the specified host group.
+  ///
+  /// @Snippet(path: "NetApp_GetHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getHostGroup(request:options:)``
   public func getHostGroup(request: GetHostGroupRequest) async throws
     -> GoogleCloudNetAppV1.HostGroup
   {
@@ -4812,6 +6935,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns details of the specified host group.
+  ///
+  /// @Snippet(path: "NetApp_GetHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getHostGroup(request:options:)``
   public func getHostGroup(
     name: Swift.String,
   ) async throws -> GoogleCloudNetAppV1.HostGroup {
@@ -4821,6 +6951,13 @@ extension Clients.NetAppProtocol {
     return try await self.getHostGroup(request: request)
   }
 
+  /// Creates a new host group.
+  ///
+  /// @Snippet(path: "NetApp_CreateHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createHostGroup(request:options:)``
   public func createHostGroup(request: CreateHostGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4833,6 +6970,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new host group.
+  ///
+  /// @Snippet(path: "NetApp_CreateHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createHostGroupPollingUntilDone(request:options:)``
   public func createHostGroupPollingUntilDone(request: CreateHostGroupRequest) async throws
     -> HostGroup
   {
@@ -4845,6 +6989,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new host group.
+  ///
+  /// @Snippet(path: "NetApp_CreateHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/createHostGroupPollingUntilDone(request:options:)``
   public func createHostGroupPollingUntilDone(
     parent: Swift.String,
     hostGroup: HostGroup?,
@@ -4858,6 +7009,13 @@ extension Clients.NetAppProtocol {
     return try await self.createHostGroupPollingUntilDone(request: request)
   }
 
+  /// Updates an existing host group.
+  ///
+  /// @Snippet(path: "NetApp_UpdateHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateHostGroup(request:options:)``
   public func updateHostGroup(request: UpdateHostGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4870,6 +7028,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing host group.
+  ///
+  /// @Snippet(path: "NetApp_UpdateHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateHostGroupPollingUntilDone(request:options:)``
   public func updateHostGroupPollingUntilDone(request: UpdateHostGroupRequest) async throws
     -> HostGroup
   {
@@ -4882,6 +7047,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing host group.
+  ///
+  /// @Snippet(path: "NetApp_UpdateHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateHostGroupPollingUntilDone(request:options:)``
   public func updateHostGroupPollingUntilDone(
     hostGroup: HostGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -4893,6 +7065,13 @@ extension Clients.NetAppProtocol {
     return try await self.updateHostGroupPollingUntilDone(request: request)
   }
 
+  /// Deletes a host group.
+  ///
+  /// @Snippet(path: "NetApp_DeleteHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteHostGroup(request:options:)``
   public func deleteHostGroup(request: DeleteHostGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4905,6 +7084,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a host group.
+  ///
+  /// @Snippet(path: "NetApp_DeleteHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteHostGroupPollingUntilDone(request:options:)``
   public func deleteHostGroupPollingUntilDone(request: DeleteHostGroupRequest) async throws {
     try await self.deleteHostGroupPollingUntilDone(request: request, options: .init())
   }
@@ -4915,6 +7101,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a host group.
+  ///
+  /// @Snippet(path: "NetApp_DeleteHostGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteHostGroupPollingUntilDone(request:options:)``
   public func deleteHostGroupPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -4924,6 +7117,14 @@ extension Clients.NetAppProtocol {
     try await self.deleteHostGroupPollingUntilDone(request: request)
   }
 
+  /// `ExecuteOntapPost` sends the ONTAP `POST` request to the
+  /// `StoragePool` cluster.
+  ///
+  /// @Snippet(path: "NetApp_ExecuteOntapPost")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/executeOntapPost(request:options:)``
   public func executeOntapPost(request: ExecuteOntapPostRequest) async throws
     -> GoogleCloudNetAppV1.ExecuteOntapPostResponse
   {
@@ -4936,6 +7137,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// `ExecuteOntapGet` sends the ONTAP `GET` request to the
+  /// `StoragePool` cluster.
+  ///
+  /// @Snippet(path: "NetApp_ExecuteOntapGet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/executeOntapGet(request:options:)``
   public func executeOntapGet(request: ExecuteOntapGetRequest) async throws
     -> GoogleCloudNetAppV1.ExecuteOntapGetResponse
   {
@@ -4948,6 +7157,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// `ExecuteOntapDelete` sends the ONTAP `DELETE` request to the
+  /// `StoragePool` cluster.
+  ///
+  /// @Snippet(path: "NetApp_ExecuteOntapDelete")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/executeOntapDelete(request:options:)``
   public func executeOntapDelete(request: ExecuteOntapDeleteRequest) async throws
     -> GoogleCloudNetAppV1.ExecuteOntapDeleteResponse
   {
@@ -4960,6 +7177,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// `ExecuteOntapPatch` sends the ONTAP `PATCH` request to the
+  /// `StoragePool` cluster.
+  ///
+  /// @Snippet(path: "NetApp_ExecuteOntapPatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/executeOntapPatch(request:options:)``
   public func executeOntapPatch(request: ExecuteOntapPatchRequest) async throws
     -> GoogleCloudNetAppV1.ExecuteOntapPatchResponse
   {
@@ -4972,6 +7197,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restores a backup to an ONTAP-mode volume.
+  ///
+  /// @Snippet(path: "NetApp_RestoreVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/restoreVolume(request:options:)``
   public func restoreVolume(request: RestoreVolumeRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4984,6 +7216,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restores a backup to an ONTAP-mode volume.
+  ///
+  /// @Snippet(path: "NetApp_RestoreVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/restoreVolumePollingUntilDone(request:options:)``
   public func restoreVolumePollingUntilDone(request: RestoreVolumeRequest) async throws
     -> RestoreVolumeResponse
   {
@@ -4996,6 +7235,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restores a backup to an ONTAP-mode volume.
+  ///
+  /// @Snippet(path: "NetApp_RestoreVolume")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/restoreVolumePollingUntilDone(request:options:)``
   public func restoreVolumePollingUntilDone(
     name: Swift.String,
     backupSource: BackupSource,
@@ -5009,6 +7255,13 @@ extension Clients.NetAppProtocol {
     return try await self.restoreVolumePollingUntilDone(request: request)
   }
 
+  /// Lists backup configurations for all volumes in an ONTAP-mode Storage Pool.
+  ///
+  /// @Snippet(path: "NetApp_ListBackupConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackupConfigs(request:options:)``
   public func listBackupConfigs(request: ListBackupConfigsRequest) async throws
     -> GoogleCloudNetAppV1.ListBackupConfigsResponse
   {
@@ -5021,6 +7274,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists backup configurations for all volumes in an ONTAP-mode Storage Pool.
+  ///
+  /// @Snippet(path: "NetApp_ListBackupConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackupConfigs(request:options:)``
   public func listBackupConfigsByItems(
     request: ListBackupConfigsRequest
   ) -> some AsyncSequence<VolumeBackupConfig, any Swift.Error> & Sendable {
@@ -5030,6 +7290,10 @@ extension Clients.NetAppProtocol {
   /// Lists backup configurations for all volumes in an ONTAP-mode Storage Pool.
   ///
   /// @Snippet(path: "NetApp_ListBackupConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackupConfigs(request:options:)``
   public func listBackupConfigsByItems(
     request: ListBackupConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<VolumeBackupConfig, any Swift.Error> & Sendable {
@@ -5044,6 +7308,13 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists backup configurations for all volumes in an ONTAP-mode Storage Pool.
+  ///
+  /// @Snippet(path: "NetApp_ListBackupConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listBackupConfigs(request:options:)``
   public func listBackupConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<VolumeBackupConfig, any Swift.Error> & Sendable {
@@ -5053,6 +7324,13 @@ extension Clients.NetAppProtocol {
     return self.listBackupConfigsByItems(request: request)
   }
 
+  /// Updates the backup configuration for an ONTAP-mode volume.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackupConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateBackupConfig(request:options:)``
   public func updateBackupConfig(request: UpdateBackupConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -5065,6 +7343,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the backup configuration for an ONTAP-mode volume.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackupConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateBackupConfigPollingUntilDone(request:options:)``
   public func updateBackupConfigPollingUntilDone(request: UpdateBackupConfigRequest) async throws
     -> UpdateBackupConfigResponse
   {
@@ -5077,6 +7362,13 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the backup configuration for an ONTAP-mode volume.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackupConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/updateBackupConfigPollingUntilDone(request:options:)``
   public func updateBackupConfigPollingUntilDone(
     name: Swift.String,
     volumeUuid: Swift.String,
@@ -5092,6 +7384,30 @@ extension Clients.NetAppProtocol {
     return try await self.updateBackupConfigPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "NetApp_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -5104,6 +7420,30 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "NetApp_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -5130,6 +7470,10 @@ extension Clients.NetAppProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "NetApp_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -5143,6 +7487,13 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "NetApp_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -5155,6 +7506,15 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetApp_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -5167,6 +7527,15 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetApp_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -5178,6 +7547,10 @@ extension Clients.NetAppProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetApp_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -5191,6 +7564,15 @@ extension Clients.NetAppProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetApp_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -5202,6 +7584,9 @@ extension Clients.NetAppProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -5214,6 +7599,9 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -5223,6 +7611,15 @@ extension Clients.NetAppProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetApp_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -5233,6 +7630,15 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetApp_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -5242,6 +7648,15 @@ extension Clients.NetAppProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetApp_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -5252,6 +7667,15 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetApp_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetAppClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

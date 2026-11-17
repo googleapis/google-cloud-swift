@@ -25,6 +25,10 @@ import Foundation
 /// EntityService contains apis for finding entities.
 ///
 /// @Snippet(path: "EntityServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/EntityServiceProtocol``
 public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable {
   let inner: any Clients.EntityServiceStub
 
@@ -41,6 +45,11 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   /// Gets watchlist details for the given watchlist ID.
   ///
   /// @Snippet(path: "EntityService_GetWatchlist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getWatchlist(request:)``
+  /// - ``getWatchlist(name:)``
   public func getWatchlist(
     request: GetWatchlistRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Watchlist {
@@ -50,6 +59,13 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   /// Lists all watchlists for the given instance.
   ///
   /// @Snippet(path: "EntityService_ListWatchlists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listWatchlists(request:)``
+  /// - ``listWatchlistsByItems(request:)``
+  /// - ``listWatchlistsByItems(request:options:)``
+  /// - ``listWatchlistsByItems(parent:)``
   public func listWatchlists(
     request: ListWatchlistsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListWatchlistsResponse {
@@ -60,6 +76,11 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   /// Note that there can be at most 200 watchlists per instance.
   ///
   /// @Snippet(path: "EntityService_CreateWatchlist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWatchlist(request:)``
+  /// - ``createWatchlist(parent:watchlist:watchlistId:)``
   public func createWatchlist(
     request: CreateWatchlistRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Watchlist {
@@ -69,6 +90,11 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   /// Updates the watchlist for the given instance.
   ///
   /// @Snippet(path: "EntityService_UpdateWatchlist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateWatchlist(request:)``
+  /// - ``updateWatchlist(watchlist:updateMask:)``
   public func updateWatchlist(
     request: UpdateWatchlistRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Watchlist {
@@ -78,6 +104,11 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   /// Deletes the watchlist for the given instance.
   ///
   /// @Snippet(path: "EntityService_DeleteWatchlist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWatchlist(request:)``
+  /// - ``deleteWatchlist(name:force:)``
   public func deleteWatchlist(
     request: DeleteWatchlistRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -89,6 +120,13 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "EntityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -111,6 +149,11 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "EntityService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -122,6 +165,11 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "EntityService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -180,6 +228,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.EntityServiceProtocol {
+  /// Gets watchlist details for the given watchlist ID.
+  ///
+  /// @Snippet(path: "EntityService_GetWatchlist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/getWatchlist(request:options:)``
   public func getWatchlist(request: GetWatchlistRequest) async throws
     -> GoogleCloudChronicleV1.Watchlist
   {
@@ -192,6 +247,13 @@ extension Clients.EntityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets watchlist details for the given watchlist ID.
+  ///
+  /// @Snippet(path: "EntityService_GetWatchlist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/getWatchlist(request:options:)``
   public func getWatchlist(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.Watchlist {
@@ -201,6 +263,13 @@ extension Clients.EntityServiceProtocol {
     return try await self.getWatchlist(request: request)
   }
 
+  /// Lists all watchlists for the given instance.
+  ///
+  /// @Snippet(path: "EntityService_ListWatchlists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/listWatchlists(request:options:)``
   public func listWatchlists(request: ListWatchlistsRequest) async throws
     -> GoogleCloudChronicleV1.ListWatchlistsResponse
   {
@@ -213,6 +282,13 @@ extension Clients.EntityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all watchlists for the given instance.
+  ///
+  /// @Snippet(path: "EntityService_ListWatchlists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/listWatchlists(request:options:)``
   public func listWatchlistsByItems(
     request: ListWatchlistsRequest
   ) -> some AsyncSequence<Watchlist, any Swift.Error> & Sendable {
@@ -222,6 +298,10 @@ extension Clients.EntityServiceProtocol {
   /// Lists all watchlists for the given instance.
   ///
   /// @Snippet(path: "EntityService_ListWatchlists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/listWatchlists(request:options:)``
   public func listWatchlistsByItems(
     request: ListWatchlistsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Watchlist, any Swift.Error> & Sendable {
@@ -236,6 +316,13 @@ extension Clients.EntityServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all watchlists for the given instance.
+  ///
+  /// @Snippet(path: "EntityService_ListWatchlists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/listWatchlists(request:options:)``
   public func listWatchlistsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Watchlist, any Swift.Error> & Sendable {
@@ -245,6 +332,14 @@ extension Clients.EntityServiceProtocol {
     return self.listWatchlistsByItems(request: request)
   }
 
+  /// Creates a watchlist for the given instance.
+  /// Note that there can be at most 200 watchlists per instance.
+  ///
+  /// @Snippet(path: "EntityService_CreateWatchlist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/createWatchlist(request:options:)``
   public func createWatchlist(request: CreateWatchlistRequest) async throws
     -> GoogleCloudChronicleV1.Watchlist
   {
@@ -257,6 +352,14 @@ extension Clients.EntityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a watchlist for the given instance.
+  /// Note that there can be at most 200 watchlists per instance.
+  ///
+  /// @Snippet(path: "EntityService_CreateWatchlist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/createWatchlist(request:options:)``
   public func createWatchlist(
     parent: Swift.String,
     watchlist: Watchlist?,
@@ -270,6 +373,13 @@ extension Clients.EntityServiceProtocol {
     return try await self.createWatchlist(request: request)
   }
 
+  /// Updates the watchlist for the given instance.
+  ///
+  /// @Snippet(path: "EntityService_UpdateWatchlist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/updateWatchlist(request:options:)``
   public func updateWatchlist(request: UpdateWatchlistRequest) async throws
     -> GoogleCloudChronicleV1.Watchlist
   {
@@ -282,6 +392,13 @@ extension Clients.EntityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the watchlist for the given instance.
+  ///
+  /// @Snippet(path: "EntityService_UpdateWatchlist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/updateWatchlist(request:options:)``
   public func updateWatchlist(
     watchlist: Watchlist?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -293,6 +410,13 @@ extension Clients.EntityServiceProtocol {
     return try await self.updateWatchlist(request: request)
   }
 
+  /// Deletes the watchlist for the given instance.
+  ///
+  /// @Snippet(path: "EntityService_DeleteWatchlist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/deleteWatchlist(request:options:)``
   public func deleteWatchlist(request: DeleteWatchlistRequest) async throws {
     try await self.deleteWatchlist(request: request, options: .init())
   }
@@ -303,6 +427,13 @@ extension Clients.EntityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the watchlist for the given instance.
+  ///
+  /// @Snippet(path: "EntityService_DeleteWatchlist")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/deleteWatchlist(request:options:)``
   public func deleteWatchlist(
     name: Swift.String,
     force: Swift.Bool,
@@ -314,6 +445,15 @@ extension Clients.EntityServiceProtocol {
     try await self.deleteWatchlist(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "EntityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -326,6 +466,15 @@ extension Clients.EntityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "EntityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -337,6 +486,10 @@ extension Clients.EntityServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "EntityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -350,6 +503,15 @@ extension Clients.EntityServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "EntityService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -361,6 +523,9 @@ extension Clients.EntityServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -373,6 +538,9 @@ extension Clients.EntityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -382,6 +550,15 @@ extension Clients.EntityServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "EntityService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -392,6 +569,15 @@ extension Clients.EntityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "EntityService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -401,6 +587,15 @@ extension Clients.EntityServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "EntityService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -411,6 +606,15 @@ extension Clients.EntityServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "EntityService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EntityServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

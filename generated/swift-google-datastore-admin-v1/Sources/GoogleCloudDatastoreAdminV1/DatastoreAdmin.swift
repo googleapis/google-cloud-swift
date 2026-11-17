@@ -70,6 +70,10 @@ import Foundation
 /// service google.longrunning.Operations.
 ///
 /// @Snippet(path: "DatastoreAdminQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DatastoreAdminProtocol``
 public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendable {
   let inner: any Clients.DatastoreAdminStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -97,6 +101,13 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// Cloud Storage.
   ///
   /// @Snippet(path: "DatastoreAdmin_ExportEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportEntities(request:)``
+  /// - ``exportEntitiesPollingUntilDone(request:)``
+  /// - ``exportEntitiesPollingUntilDone(request:options:)``
+  /// - ``exportEntitiesPollingUntilDone(projectId:labels:entityFilter:outputUrlPrefix:)``
   public func exportEntities(
     request: ExportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -113,6 +124,13 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// Cloud Storage.
   ///
   /// @Snippet(path: "DatastoreAdmin_ExportEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportEntitiesPollingUntilDone(request:)``
+  /// - ``exportEntitiesPollingUntilDone(projectId:labels:entityFilter:outputUrlPrefix:)``
+  /// - ``exportEntities(request:)``
+  /// - ``exportEntities(request:options:)``
   public func exportEntitiesPollingUntilDone(
     request: ExportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportEntitiesResponse {
@@ -145,6 +163,13 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// that a subset of the data has already been imported to Cloud Datastore.
   ///
   /// @Snippet(path: "DatastoreAdmin_ImportEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importEntities(request:)``
+  /// - ``importEntitiesPollingUntilDone(request:)``
+  /// - ``importEntitiesPollingUntilDone(request:options:)``
+  /// - ``importEntitiesPollingUntilDone(projectId:labels:inputUrl:entityFilter:)``
   public func importEntities(
     request: ImportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -158,6 +183,13 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// that a subset of the data has already been imported to Cloud Datastore.
   ///
   /// @Snippet(path: "DatastoreAdmin_ImportEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importEntitiesPollingUntilDone(request:)``
+  /// - ``importEntitiesPollingUntilDone(projectId:labels:inputUrl:entityFilter:)``
+  /// - ``importEntities(request:)``
+  /// - ``importEntities(request:options:)``
   public func importEntitiesPollingUntilDone(
     request: ImportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -201,6 +233,12 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_CreateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createIndex(request:)``
+  /// - ``createIndexPollingUntilDone(request:)``
+  /// - ``createIndexPollingUntilDone(request:options:)``
   public func createIndex(
     request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -226,6 +264,12 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_CreateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createIndexPollingUntilDone(request:)``
+  /// - ``createIndex(request:)``
+  /// - ``createIndex(request:options:)``
   public func createIndexPollingUntilDone(
     request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> Index {
@@ -267,6 +311,12 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_DeleteIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteIndex(request:)``
+  /// - ``deleteIndexPollingUntilDone(request:)``
+  /// - ``deleteIndexPollingUntilDone(request:options:)``
   public func deleteIndex(
     request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -290,6 +340,12 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "DatastoreAdmin_DeleteIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteIndexPollingUntilDone(request:)``
+  /// - ``deleteIndex(request:)``
+  /// - ``deleteIndex(request:options:)``
   public func deleteIndexPollingUntilDone(
     request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> Index {
@@ -317,6 +373,10 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// Gets an index.
   ///
   /// @Snippet(path: "DatastoreAdmin_GetIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIndex(request:)``
   public func getIndex(
     request: GetIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastoreAdminV1.Index {
@@ -328,6 +388,12 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// occasionally return stale results.
   ///
   /// @Snippet(path: "DatastoreAdmin_ListIndexes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listIndexes(request:)``
+  /// - ``listIndexesByItems(request:)``
+  /// - ``listIndexesByItems(request:options:)``
   public func listIndexes(
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastoreAdminV1.ListIndexesResponse {
@@ -339,6 +405,13 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DatastoreAdmin_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -361,6 +434,11 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DatastoreAdmin_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -372,6 +450,11 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DatastoreAdmin_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -455,6 +538,20 @@ extension Clients {
 
 // Default implementations
 extension Clients.DatastoreAdminProtocol {
+  /// Exports a copy of all or a subset of entities from Google Cloud Datastore
+  /// to another storage system, such as Google Cloud Storage. Recent updates to
+  /// entities may not be reflected in the export. The export occurs in the
+  /// background and its progress can be monitored and managed via the
+  /// Operation resource that is created. The output of an export may only be
+  /// used once the associated operation is done. If an export operation is
+  /// cancelled before completion it may leave partial data behind in Google
+  /// Cloud Storage.
+  ///
+  /// @Snippet(path: "DatastoreAdmin_ExportEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/exportEntities(request:options:)``
   public func exportEntities(request: ExportEntitiesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -467,6 +564,20 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports a copy of all or a subset of entities from Google Cloud Datastore
+  /// to another storage system, such as Google Cloud Storage. Recent updates to
+  /// entities may not be reflected in the export. The export occurs in the
+  /// background and its progress can be monitored and managed via the
+  /// Operation resource that is created. The output of an export may only be
+  /// used once the associated operation is done. If an export operation is
+  /// cancelled before completion it may leave partial data behind in Google
+  /// Cloud Storage.
+  ///
+  /// @Snippet(path: "DatastoreAdmin_ExportEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/exportEntitiesPollingUntilDone(request:options:)``
   public func exportEntitiesPollingUntilDone(request: ExportEntitiesRequest) async throws
     -> ExportEntitiesResponse
   {
@@ -479,6 +590,20 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports a copy of all or a subset of entities from Google Cloud Datastore
+  /// to another storage system, such as Google Cloud Storage. Recent updates to
+  /// entities may not be reflected in the export. The export occurs in the
+  /// background and its progress can be monitored and managed via the
+  /// Operation resource that is created. The output of an export may only be
+  /// used once the associated operation is done. If an export operation is
+  /// cancelled before completion it may leave partial data behind in Google
+  /// Cloud Storage.
+  ///
+  /// @Snippet(path: "DatastoreAdmin_ExportEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/exportEntitiesPollingUntilDone(request:options:)``
   public func exportEntitiesPollingUntilDone(
     projectId: Swift.String,
     labels: [Swift.String: Swift.String],
@@ -494,6 +619,17 @@ extension Clients.DatastoreAdminProtocol {
     return try await self.exportEntitiesPollingUntilDone(request: request)
   }
 
+  /// Imports entities into Google Cloud Datastore. Existing entities with the
+  /// same key are overwritten. The import occurs in the background and its
+  /// progress can be monitored and managed via the Operation resource that is
+  /// created. If an ImportEntities operation is cancelled, it is possible
+  /// that a subset of the data has already been imported to Cloud Datastore.
+  ///
+  /// @Snippet(path: "DatastoreAdmin_ImportEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/importEntities(request:options:)``
   public func importEntities(request: ImportEntitiesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -506,6 +642,17 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports entities into Google Cloud Datastore. Existing entities with the
+  /// same key are overwritten. The import occurs in the background and its
+  /// progress can be monitored and managed via the Operation resource that is
+  /// created. If an ImportEntities operation is cancelled, it is possible
+  /// that a subset of the data has already been imported to Cloud Datastore.
+  ///
+  /// @Snippet(path: "DatastoreAdmin_ImportEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/importEntitiesPollingUntilDone(request:options:)``
   public func importEntitiesPollingUntilDone(request: ImportEntitiesRequest) async throws {
     try await self.importEntitiesPollingUntilDone(request: request, options: .init())
   }
@@ -516,6 +663,17 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports entities into Google Cloud Datastore. Existing entities with the
+  /// same key are overwritten. The import occurs in the background and its
+  /// progress can be monitored and managed via the Operation resource that is
+  /// created. If an ImportEntities operation is cancelled, it is possible
+  /// that a subset of the data has already been imported to Cloud Datastore.
+  ///
+  /// @Snippet(path: "DatastoreAdmin_ImportEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/importEntitiesPollingUntilDone(request:options:)``
   public func importEntitiesPollingUntilDone(
     projectId: Swift.String,
     labels: [Swift.String: Swift.String],
@@ -531,6 +689,29 @@ extension Clients.DatastoreAdminProtocol {
     try await self.importEntitiesPollingUntilDone(request: request)
   }
 
+  /// Creates the specified index.
+  /// A newly created index's initial state is `CREATING`. On completion of the
+  /// returned [google.longrunning.Operation][google.longrunning.Operation], the
+  /// state will be `READY`. If the index already exists, the call will return an
+  /// `ALREADY_EXISTS` status.
+  ///
+  /// During index creation, the process could result in an error, in which
+  /// case the index will move to the `ERROR` state. The process can be recovered
+  /// by fixing the data that caused the error, removing the index with
+  /// [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex], then
+  /// re-creating the index with [create]
+  /// [google.datastore.admin.v1.DatastoreAdmin.CreateIndex].
+  ///
+  /// Indexes with a single property cannot be created.
+  ///
+  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "DatastoreAdmin_CreateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/createIndex(request:options:)``
   public func createIndex(request: CreateIndexRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createIndex(request: request, options: .init())
   }
@@ -541,6 +722,29 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates the specified index.
+  /// A newly created index's initial state is `CREATING`. On completion of the
+  /// returned [google.longrunning.Operation][google.longrunning.Operation], the
+  /// state will be `READY`. If the index already exists, the call will return an
+  /// `ALREADY_EXISTS` status.
+  ///
+  /// During index creation, the process could result in an error, in which
+  /// case the index will move to the `ERROR` state. The process can be recovered
+  /// by fixing the data that caused the error, removing the index with
+  /// [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex], then
+  /// re-creating the index with [create]
+  /// [google.datastore.admin.v1.DatastoreAdmin.CreateIndex].
+  ///
+  /// Indexes with a single property cannot be created.
+  ///
+  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:options:)>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "DatastoreAdmin_CreateIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/createIndexPollingUntilDone(request:options:)``
   public func createIndexPollingUntilDone(request: CreateIndexRequest) async throws -> Index {
     return try await self.createIndexPollingUntilDone(request: request, options: .init())
   }
@@ -551,6 +755,27 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an existing index.
+  /// An index can only be deleted if it is in a `READY` or `ERROR` state. On
+  /// successful execution of the request, the index will be in a `DELETING`
+  /// [state][google.datastore.admin.v1.Index.State]. And on completion of the
+  /// returned [google.longrunning.Operation][google.longrunning.Operation], the
+  /// index will be removed.
+  ///
+  /// During index deletion, the process could result in an error, in which
+  /// case the index will move to the `ERROR` state. The process can be recovered
+  /// by fixing the data that caused the error, followed by calling
+  /// [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex] again.
+  ///
+  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:options:)>
+  /// [google.datastore.admin.v1.Index.State]: <doc:Index/State>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "DatastoreAdmin_DeleteIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/deleteIndex(request:options:)``
   public func deleteIndex(request: DeleteIndexRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteIndex(request: request, options: .init())
   }
@@ -561,6 +786,27 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an existing index.
+  /// An index can only be deleted if it is in a `READY` or `ERROR` state. On
+  /// successful execution of the request, the index will be in a `DELETING`
+  /// [state][google.datastore.admin.v1.Index.State]. And on completion of the
+  /// returned [google.longrunning.Operation][google.longrunning.Operation], the
+  /// index will be removed.
+  ///
+  /// During index deletion, the process could result in an error, in which
+  /// case the index will move to the `ERROR` state. The process can be recovered
+  /// by fixing the data that caused the error, followed by calling
+  /// [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex] again.
+  ///
+  /// [google.datastore.admin.v1.DatastoreAdmin.DeleteIndex]: <doc:DatastoreAdminClient/deleteIndex(request:options:)>
+  /// [google.datastore.admin.v1.Index.State]: <doc:Index/State>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "DatastoreAdmin_DeleteIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/deleteIndexPollingUntilDone(request:options:)``
   public func deleteIndexPollingUntilDone(request: DeleteIndexRequest) async throws -> Index {
     return try await self.deleteIndexPollingUntilDone(request: request, options: .init())
   }
@@ -571,6 +817,13 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an index.
+  ///
+  /// @Snippet(path: "DatastoreAdmin_GetIndex")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/getIndex(request:options:)``
   public func getIndex(request: GetIndexRequest) async throws -> GoogleCloudDatastoreAdminV1.Index {
     try await self.getIndex(request: request, options: .init())
   }
@@ -581,6 +834,15 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the indexes that match the specified filters.  Datastore uses an
+  /// eventually consistent query to fetch the list of indexes and may
+  /// occasionally return stale results.
+  ///
+  /// @Snippet(path: "DatastoreAdmin_ListIndexes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/listIndexes(request:options:)``
   public func listIndexes(request: ListIndexesRequest) async throws
     -> GoogleCloudDatastoreAdminV1.ListIndexesResponse
   {
@@ -593,6 +855,15 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the indexes that match the specified filters.  Datastore uses an
+  /// eventually consistent query to fetch the list of indexes and may
+  /// occasionally return stale results.
+  ///
+  /// @Snippet(path: "DatastoreAdmin_ListIndexes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/listIndexes(request:options:)``
   public func listIndexesByItems(
     request: ListIndexesRequest
   ) -> some AsyncSequence<Index, any Swift.Error> & Sendable {
@@ -604,6 +875,10 @@ extension Clients.DatastoreAdminProtocol {
   /// occasionally return stale results.
   ///
   /// @Snippet(path: "DatastoreAdmin_ListIndexes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/listIndexes(request:options:)``
   public func listIndexesByItems(
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Index, any Swift.Error> & Sendable {
@@ -618,6 +893,15 @@ extension Clients.DatastoreAdminProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DatastoreAdmin_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -630,6 +914,15 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DatastoreAdmin_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -641,6 +934,10 @@ extension Clients.DatastoreAdminProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DatastoreAdmin_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -654,6 +951,15 @@ extension Clients.DatastoreAdminProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DatastoreAdmin_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -665,6 +971,9 @@ extension Clients.DatastoreAdminProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -677,6 +986,9 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -686,6 +998,15 @@ extension Clients.DatastoreAdminProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DatastoreAdmin_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -696,6 +1017,15 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DatastoreAdmin_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -705,6 +1035,15 @@ extension Clients.DatastoreAdminProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DatastoreAdmin_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -715,6 +1054,15 @@ extension Clients.DatastoreAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DatastoreAdmin_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DatastoreAdminClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -36,6 +36,10 @@ import Foundation
 /// AccessPolicies
 ///
 /// @Snippet(path: "AccessContextManagerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AccessContextManagerProtocol``
 public final class AccessContextManagerClient: Clients.AccessContextManagerProtocol, Sendable {
   let inner: any Clients.AccessContextManagerStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -59,6 +63,12 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// organization.
   ///
   /// @Snippet(path: "AccessContextManager_ListAccessPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAccessPolicies(request:)``
+  /// - ``listAccessPoliciesByItems(request:)``
+  /// - ``listAccessPoliciesByItems(request:options:)``
   public func listAccessPolicies(
     request: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIdentityAccessContextManagerV1.ListAccessPoliciesResponse {
@@ -69,6 +79,11 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// [google.identity.accesscontextmanager.v1.AccessPolicy] based on the name.
   ///
   /// @Snippet(path: "AccessContextManager_GetAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAccessPolicy(request:)``
+  /// - ``getAccessPolicy(name:)``
   public func getAccessPolicy(
     request: GetAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIdentityAccessContextManagerV1.AccessPolicy {
@@ -82,6 +97,12 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// BadRequest proto.
   ///
   /// @Snippet(path: "AccessContextManager_CreateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAccessPolicy(request:)``
+  /// - ``createAccessPolicyPollingUntilDone(request:)``
+  /// - ``createAccessPolicyPollingUntilDone(request:options:)``
   public func createAccessPolicy(
     request: AccessPolicy, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -95,6 +116,12 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// BadRequest proto.
   ///
   /// @Snippet(path: "AccessContextManager_CreateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAccessPolicyPollingUntilDone(request:)``
+  /// - ``createAccessPolicy(request:)``
+  /// - ``createAccessPolicy(request:options:)``
   public func createAccessPolicyPollingUntilDone(
     request: AccessPolicy, options: GoogleGax.RequestOptions
   ) async throws -> AccessPolicy {
@@ -128,6 +155,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// to long-lasting storage.
   ///
   /// @Snippet(path: "AccessContextManager_UpdateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAccessPolicy(request:)``
+  /// - ``updateAccessPolicyPollingUntilDone(request:)``
+  /// - ``updateAccessPolicyPollingUntilDone(request:options:)``
+  /// - ``updateAccessPolicyPollingUntilDone(policy:updateMask:)``
   public func updateAccessPolicy(
     request: UpdateAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -142,6 +176,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// to long-lasting storage.
   ///
   /// @Snippet(path: "AccessContextManager_UpdateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAccessPolicyPollingUntilDone(request:)``
+  /// - ``updateAccessPolicyPollingUntilDone(policy:updateMask:)``
+  /// - ``updateAccessPolicy(request:)``
+  /// - ``updateAccessPolicy(request:options:)``
   public func updateAccessPolicyPollingUntilDone(
     request: UpdateAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AccessPolicy {
@@ -174,6 +215,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// is removed from long-lasting storage.
   ///
   /// @Snippet(path: "AccessContextManager_DeleteAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAccessPolicy(request:)``
+  /// - ``deleteAccessPolicyPollingUntilDone(request:)``
+  /// - ``deleteAccessPolicyPollingUntilDone(request:options:)``
+  /// - ``deleteAccessPolicyPollingUntilDone(name:)``
   public func deleteAccessPolicy(
     request: DeleteAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -187,6 +235,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// is removed from long-lasting storage.
   ///
   /// @Snippet(path: "AccessContextManager_DeleteAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAccessPolicyPollingUntilDone(request:)``
+  /// - ``deleteAccessPolicyPollingUntilDone(name:)``
+  /// - ``deleteAccessPolicy(request:)``
+  /// - ``deleteAccessPolicy(request:options:)``
   public func deleteAccessPolicyPollingUntilDone(
     request: DeleteAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -216,6 +271,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// policy.
   ///
   /// @Snippet(path: "AccessContextManager_ListAccessLevels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAccessLevels(request:)``
+  /// - ``listAccessLevelsByItems(request:)``
+  /// - ``listAccessLevelsByItems(request:options:)``
+  /// - ``listAccessLevelsByItems(parent:)``
   public func listAccessLevels(
     request: ListAccessLevelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIdentityAccessContextManagerV1.ListAccessLevelsResponse {
@@ -227,6 +289,11 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// name.
   ///
   /// @Snippet(path: "AccessContextManager_GetAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAccessLevel(request:)``
+  /// - ``getAccessLevel(name:)``
   public func getAccessLevel(
     request: GetAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIdentityAccessContextManagerV1.AccessLevel {
@@ -242,6 +309,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// errors, an error response is returned for the first error encountered.
   ///
   /// @Snippet(path: "AccessContextManager_CreateAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAccessLevel(request:)``
+  /// - ``createAccessLevelPollingUntilDone(request:)``
+  /// - ``createAccessLevelPollingUntilDone(request:options:)``
+  /// - ``createAccessLevelPollingUntilDone(parent:accessLevel:)``
   public func createAccessLevel(
     request: CreateAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -257,6 +331,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// errors, an error response is returned for the first error encountered.
   ///
   /// @Snippet(path: "AccessContextManager_CreateAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAccessLevelPollingUntilDone(request:)``
+  /// - ``createAccessLevelPollingUntilDone(parent:accessLevel:)``
+  /// - ``createAccessLevel(request:)``
+  /// - ``createAccessLevel(request:options:)``
   public func createAccessLevelPollingUntilDone(
     request: CreateAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws -> AccessLevel {
@@ -291,6 +372,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// errors, an error response is returned for the first error encountered.
   ///
   /// @Snippet(path: "AccessContextManager_UpdateAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAccessLevel(request:)``
+  /// - ``updateAccessLevelPollingUntilDone(request:)``
+  /// - ``updateAccessLevelPollingUntilDone(request:options:)``
+  /// - ``updateAccessLevelPollingUntilDone(accessLevel:updateMask:)``
   public func updateAccessLevel(
     request: UpdateAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -307,6 +395,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// errors, an error response is returned for the first error encountered.
   ///
   /// @Snippet(path: "AccessContextManager_UpdateAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAccessLevelPollingUntilDone(request:)``
+  /// - ``updateAccessLevelPollingUntilDone(accessLevel:updateMask:)``
+  /// - ``updateAccessLevel(request:)``
+  /// - ``updateAccessLevel(request:options:)``
   public func updateAccessLevelPollingUntilDone(
     request: UpdateAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws -> AccessLevel {
@@ -339,6 +434,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// from long-lasting storage.
   ///
   /// @Snippet(path: "AccessContextManager_DeleteAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAccessLevel(request:)``
+  /// - ``deleteAccessLevelPollingUntilDone(request:)``
+  /// - ``deleteAccessLevelPollingUntilDone(request:options:)``
+  /// - ``deleteAccessLevelPollingUntilDone(name:)``
   public func deleteAccessLevel(
     request: DeleteAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -353,6 +455,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// from long-lasting storage.
   ///
   /// @Snippet(path: "AccessContextManager_DeleteAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAccessLevelPollingUntilDone(request:)``
+  /// - ``deleteAccessLevelPollingUntilDone(name:)``
+  /// - ``deleteAccessLevel(request:)``
+  /// - ``deleteAccessLevel(request:options:)``
   public func deleteAccessLevelPollingUntilDone(
     request: DeleteAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -396,6 +505,12 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// error.
   ///
   /// @Snippet(path: "AccessContextManager_ReplaceAccessLevels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``replaceAccessLevels(request:)``
+  /// - ``replaceAccessLevelsPollingUntilDone(request:)``
+  /// - ``replaceAccessLevelsPollingUntilDone(request:options:)``
   public func replaceAccessLevels(
     request: ReplaceAccessLevelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -421,6 +536,12 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// error.
   ///
   /// @Snippet(path: "AccessContextManager_ReplaceAccessLevels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``replaceAccessLevelsPollingUntilDone(request:)``
+  /// - ``replaceAccessLevels(request:)``
+  /// - ``replaceAccessLevels(request:options:)``
   public func replaceAccessLevelsPollingUntilDone(
     request: ReplaceAccessLevelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ReplaceAccessLevelsResponse {
@@ -452,6 +573,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// access policy.
   ///
   /// @Snippet(path: "AccessContextManager_ListServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServicePerimeters(request:)``
+  /// - ``listServicePerimetersByItems(request:)``
+  /// - ``listServicePerimetersByItems(request:options:)``
+  /// - ``listServicePerimetersByItems(parent:)``
   public func listServicePerimeters(
     request: ListServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIdentityAccessContextManagerV1.ListServicePerimetersResponse {
@@ -463,6 +591,11 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// resource name.
   ///
   /// @Snippet(path: "AccessContextManager_GetServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getServicePerimeter(request:)``
+  /// - ``getServicePerimeter(name:)``
   public func getServicePerimeter(
     request: GetServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIdentityAccessContextManagerV1.ServicePerimeter {
@@ -479,6 +612,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// errors, an error response is returned for the first error encountered.
   ///
   /// @Snippet(path: "AccessContextManager_CreateServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServicePerimeter(request:)``
+  /// - ``createServicePerimeterPollingUntilDone(request:)``
+  /// - ``createServicePerimeterPollingUntilDone(request:options:)``
+  /// - ``createServicePerimeterPollingUntilDone(parent:servicePerimeter:)``
   public func createServicePerimeter(
     request: CreateServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -495,6 +635,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// errors, an error response is returned for the first error encountered.
   ///
   /// @Snippet(path: "AccessContextManager_CreateServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServicePerimeterPollingUntilDone(request:)``
+  /// - ``createServicePerimeterPollingUntilDone(parent:servicePerimeter:)``
+  /// - ``createServicePerimeter(request:)``
+  /// - ``createServicePerimeter(request:options:)``
   public func createServicePerimeterPollingUntilDone(
     request: CreateServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServicePerimeter {
@@ -530,6 +677,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// errors, an error response is returned for the first error encountered.
   ///
   /// @Snippet(path: "AccessContextManager_UpdateServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServicePerimeter(request:)``
+  /// - ``updateServicePerimeterPollingUntilDone(request:)``
+  /// - ``updateServicePerimeterPollingUntilDone(request:options:)``
+  /// - ``updateServicePerimeterPollingUntilDone(servicePerimeter:updateMask:)``
   public func updateServicePerimeter(
     request: UpdateServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -546,6 +700,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// errors, an error response is returned for the first error encountered.
   ///
   /// @Snippet(path: "AccessContextManager_UpdateServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServicePerimeterPollingUntilDone(request:)``
+  /// - ``updateServicePerimeterPollingUntilDone(servicePerimeter:updateMask:)``
+  /// - ``updateServicePerimeter(request:)``
+  /// - ``updateServicePerimeter(request:options:)``
   public func updateServicePerimeterPollingUntilDone(
     request: UpdateServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServicePerimeter {
@@ -579,6 +740,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// long-lasting storage.
   ///
   /// @Snippet(path: "AccessContextManager_DeleteServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServicePerimeter(request:)``
+  /// - ``deleteServicePerimeterPollingUntilDone(request:)``
+  /// - ``deleteServicePerimeterPollingUntilDone(request:options:)``
+  /// - ``deleteServicePerimeterPollingUntilDone(name:)``
   public func deleteServicePerimeter(
     request: DeleteServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -593,6 +761,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// long-lasting storage.
   ///
   /// @Snippet(path: "AccessContextManager_DeleteServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServicePerimeterPollingUntilDone(request:)``
+  /// - ``deleteServicePerimeterPollingUntilDone(name:)``
+  /// - ``deleteServicePerimeter(request:)``
+  /// - ``deleteServicePerimeter(request:options:)``
   public func deleteServicePerimeterPollingUntilDone(
     request: DeleteServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -632,6 +807,12 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// ReplaceServicePerimetersResponse.
   ///
   /// @Snippet(path: "AccessContextManager_ReplaceServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``replaceServicePerimeters(request:)``
+  /// - ``replaceServicePerimetersPollingUntilDone(request:)``
+  /// - ``replaceServicePerimetersPollingUntilDone(request:options:)``
   public func replaceServicePerimeters(
     request: ReplaceServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -653,6 +834,12 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// ReplaceServicePerimetersResponse.
   ///
   /// @Snippet(path: "AccessContextManager_ReplaceServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``replaceServicePerimetersPollingUntilDone(request:)``
+  /// - ``replaceServicePerimeters(request:)``
+  /// - ``replaceServicePerimeters(request:options:)``
   public func replaceServicePerimetersPollingUntilDone(
     request: ReplaceServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) async throws -> ReplaceServicePerimetersResponse {
@@ -698,6 +885,12 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// [google.identity.accesscontextmanager.v1.AccessPolicy]: <doc:AccessPolicy>
   ///
   /// @Snippet(path: "AccessContextManager_CommitServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``commitServicePerimeters(request:)``
+  /// - ``commitServicePerimetersPollingUntilDone(request:)``
+  /// - ``commitServicePerimetersPollingUntilDone(request:options:)``
   public func commitServicePerimeters(
     request: CommitServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -723,6 +916,12 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// [google.identity.accesscontextmanager.v1.AccessPolicy]: <doc:AccessPolicy>
   ///
   /// @Snippet(path: "AccessContextManager_CommitServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``commitServicePerimetersPollingUntilDone(request:)``
+  /// - ``commitServicePerimeters(request:)``
+  /// - ``commitServicePerimeters(request:options:)``
   public func commitServicePerimetersPollingUntilDone(
     request: CommitServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) async throws -> CommitServicePerimetersResponse {
@@ -754,6 +953,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// Google Cloud organization.
   ///
   /// @Snippet(path: "AccessContextManager_ListGcpUserAccessBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listGcpUserAccessBindings(request:)``
+  /// - ``listGcpUserAccessBindingsByItems(request:)``
+  /// - ``listGcpUserAccessBindingsByItems(request:options:)``
+  /// - ``listGcpUserAccessBindingsByItems(parent:)``
   public func listGcpUserAccessBindings(
     request: ListGcpUserAccessBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIdentityAccessContextManagerV1.ListGcpUserAccessBindingsResponse {
@@ -765,6 +971,11 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// the given name.
   ///
   /// @Snippet(path: "AccessContextManager_GetGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGcpUserAccessBinding(request:)``
+  /// - ``getGcpUserAccessBinding(name:)``
   public func getGcpUserAccessBinding(
     request: GetGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIdentityAccessContextManagerV1.GcpUserAccessBinding {
@@ -783,6 +994,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// time.
   ///
   /// @Snippet(path: "AccessContextManager_CreateGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGcpUserAccessBinding(request:)``
+  /// - ``createGcpUserAccessBindingPollingUntilDone(request:)``
+  /// - ``createGcpUserAccessBindingPollingUntilDone(request:options:)``
+  /// - ``createGcpUserAccessBindingPollingUntilDone(parent:gcpUserAccessBinding:)``
   public func createGcpUserAccessBinding(
     request: CreateGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -801,6 +1019,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// time.
   ///
   /// @Snippet(path: "AccessContextManager_CreateGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGcpUserAccessBindingPollingUntilDone(request:)``
+  /// - ``createGcpUserAccessBindingPollingUntilDone(parent:gcpUserAccessBinding:)``
+  /// - ``createGcpUserAccessBinding(request:)``
+  /// - ``createGcpUserAccessBinding(request:options:)``
   public func createGcpUserAccessBindingPollingUntilDone(
     request: CreateGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GcpUserAccessBinding {
@@ -833,6 +1058,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// more time.
   ///
   /// @Snippet(path: "AccessContextManager_UpdateGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGcpUserAccessBinding(request:)``
+  /// - ``updateGcpUserAccessBindingPollingUntilDone(request:)``
+  /// - ``updateGcpUserAccessBindingPollingUntilDone(request:options:)``
+  /// - ``updateGcpUserAccessBindingPollingUntilDone(gcpUserAccessBinding:updateMask:)``
   public func updateGcpUserAccessBinding(
     request: UpdateGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -846,6 +1078,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// more time.
   ///
   /// @Snippet(path: "AccessContextManager_UpdateGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGcpUserAccessBindingPollingUntilDone(request:)``
+  /// - ``updateGcpUserAccessBindingPollingUntilDone(gcpUserAccessBinding:updateMask:)``
+  /// - ``updateGcpUserAccessBinding(request:)``
+  /// - ``updateGcpUserAccessBinding(request:options:)``
   public func updateGcpUserAccessBindingPollingUntilDone(
     request: UpdateGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GcpUserAccessBinding {
@@ -878,6 +1117,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// more time.
   ///
   /// @Snippet(path: "AccessContextManager_DeleteGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGcpUserAccessBinding(request:)``
+  /// - ``deleteGcpUserAccessBindingPollingUntilDone(request:)``
+  /// - ``deleteGcpUserAccessBindingPollingUntilDone(request:options:)``
+  /// - ``deleteGcpUserAccessBindingPollingUntilDone(name:)``
   public func deleteGcpUserAccessBinding(
     request: DeleteGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -891,6 +1137,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// more time.
   ///
   /// @Snippet(path: "AccessContextManager_DeleteGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGcpUserAccessBindingPollingUntilDone(request:)``
+  /// - ``deleteGcpUserAccessBindingPollingUntilDone(name:)``
+  /// - ``deleteGcpUserAccessBinding(request:)``
+  /// - ``deleteGcpUserAccessBinding(request:options:)``
   public func deleteGcpUserAccessBindingPollingUntilDone(
     request: DeleteGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -925,6 +1178,10 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// [google.identity.accesscontextmanager.v1.AccessPolicy]: <doc:AccessPolicy>
   ///
   /// @Snippet(path: "AccessContextManager_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -937,6 +1194,10 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// [google.identity.accesscontextmanager.v1.AccessPolicy]: <doc:AccessPolicy>
   ///
   /// @Snippet(path: "AccessContextManager_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -954,6 +1215,10 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
   /// [google.identity.accesscontextmanager.v1.AccessPolicy]: <doc:AccessPolicy>
   ///
   /// @Snippet(path: "AccessContextManager_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1188,6 +1453,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.AccessContextManagerProtocol {
+  /// Lists all [access policies]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy] in an
+  /// organization.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListAccessPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listAccessPolicies(request:options:)``
   public func listAccessPolicies(request: ListAccessPoliciesRequest) async throws
     -> GoogleIdentityAccessContextManagerV1.ListAccessPoliciesResponse
   {
@@ -1200,6 +1474,15 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all [access policies]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy] in an
+  /// organization.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListAccessPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listAccessPolicies(request:options:)``
   public func listAccessPoliciesByItems(
     request: ListAccessPoliciesRequest
   ) -> some AsyncSequence<AccessPolicy, any Swift.Error> & Sendable {
@@ -1211,6 +1494,10 @@ extension Clients.AccessContextManagerProtocol {
   /// organization.
   ///
   /// @Snippet(path: "AccessContextManager_ListAccessPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listAccessPolicies(request:options:)``
   public func listAccessPoliciesByItems(
     request: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AccessPolicy, any Swift.Error> & Sendable {
@@ -1225,6 +1512,14 @@ extension Clients.AccessContextManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns an [access policy]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy] based on the name.
+  ///
+  /// @Snippet(path: "AccessContextManager_GetAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/getAccessPolicy(request:options:)``
   public func getAccessPolicy(request: GetAccessPolicyRequest) async throws
     -> GoogleIdentityAccessContextManagerV1.AccessPolicy
   {
@@ -1237,6 +1532,14 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns an [access policy]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy] based on the name.
+  ///
+  /// @Snippet(path: "AccessContextManager_GetAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/getAccessPolicy(request:options:)``
   public func getAccessPolicy(
     name: Swift.String,
   ) async throws -> GoogleIdentityAccessContextManagerV1.AccessPolicy {
@@ -1246,6 +1549,17 @@ extension Clients.AccessContextManagerProtocol {
     return try await self.getAccessPolicy(request: request)
   }
 
+  /// Creates an access policy. This method fails if the organization already has
+  /// an access policy. The long-running operation has a successful status
+  /// after the access policy propagates to long-lasting storage.
+  /// Syntactic and basic semantic errors are returned in `metadata` as a
+  /// BadRequest proto.
+  ///
+  /// @Snippet(path: "AccessContextManager_CreateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/createAccessPolicy(request:options:)``
   public func createAccessPolicy(request: AccessPolicy) async throws -> GoogleLongRunning.Operation
   {
     try await self.createAccessPolicy(request: request, options: .init())
@@ -1257,6 +1571,17 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an access policy. This method fails if the organization already has
+  /// an access policy. The long-running operation has a successful status
+  /// after the access policy propagates to long-lasting storage.
+  /// Syntactic and basic semantic errors are returned in `metadata` as a
+  /// BadRequest proto.
+  ///
+  /// @Snippet(path: "AccessContextManager_CreateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/createAccessPolicyPollingUntilDone(request:options:)``
   public func createAccessPolicyPollingUntilDone(request: AccessPolicy) async throws -> AccessPolicy
   {
     return try await self.createAccessPolicyPollingUntilDone(request: request, options: .init())
@@ -1268,6 +1593,18 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an [access policy]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy]. The
+  /// long-running operation from this RPC has a successful status after the
+  /// changes to the [access policy]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy] propagate
+  /// to long-lasting storage.
+  ///
+  /// @Snippet(path: "AccessContextManager_UpdateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/updateAccessPolicy(request:options:)``
   public func updateAccessPolicy(request: UpdateAccessPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1280,6 +1617,18 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an [access policy]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy]. The
+  /// long-running operation from this RPC has a successful status after the
+  /// changes to the [access policy]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy] propagate
+  /// to long-lasting storage.
+  ///
+  /// @Snippet(path: "AccessContextManager_UpdateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/updateAccessPolicyPollingUntilDone(request:options:)``
   public func updateAccessPolicyPollingUntilDone(request: UpdateAccessPolicyRequest) async throws
     -> AccessPolicy
   {
@@ -1292,6 +1641,18 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an [access policy]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy]. The
+  /// long-running operation from this RPC has a successful status after the
+  /// changes to the [access policy]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy] propagate
+  /// to long-lasting storage.
+  ///
+  /// @Snippet(path: "AccessContextManager_UpdateAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/updateAccessPolicyPollingUntilDone(request:options:)``
   public func updateAccessPolicyPollingUntilDone(
     policy: AccessPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1303,6 +1664,17 @@ extension Clients.AccessContextManagerProtocol {
     return try await self.updateAccessPolicyPollingUntilDone(request: request)
   }
 
+  /// Deletes an [access policy]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy] based on the
+  /// resource name. The long-running operation has a successful status after the
+  /// [access policy] [google.identity.accesscontextmanager.v1.AccessPolicy]
+  /// is removed from long-lasting storage.
+  ///
+  /// @Snippet(path: "AccessContextManager_DeleteAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/deleteAccessPolicy(request:options:)``
   public func deleteAccessPolicy(request: DeleteAccessPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1315,6 +1687,17 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an [access policy]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy] based on the
+  /// resource name. The long-running operation has a successful status after the
+  /// [access policy] [google.identity.accesscontextmanager.v1.AccessPolicy]
+  /// is removed from long-lasting storage.
+  ///
+  /// @Snippet(path: "AccessContextManager_DeleteAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/deleteAccessPolicyPollingUntilDone(request:options:)``
   public func deleteAccessPolicyPollingUntilDone(request: DeleteAccessPolicyRequest) async throws {
     try await self.deleteAccessPolicyPollingUntilDone(request: request, options: .init())
   }
@@ -1325,6 +1708,17 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an [access policy]
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy] based on the
+  /// resource name. The long-running operation has a successful status after the
+  /// [access policy] [google.identity.accesscontextmanager.v1.AccessPolicy]
+  /// is removed from long-lasting storage.
+  ///
+  /// @Snippet(path: "AccessContextManager_DeleteAccessPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/deleteAccessPolicyPollingUntilDone(request:options:)``
   public func deleteAccessPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1334,6 +1728,15 @@ extension Clients.AccessContextManagerProtocol {
     try await self.deleteAccessPolicyPollingUntilDone(request: request)
   }
 
+  /// Lists all [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] for an access
+  /// policy.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListAccessLevels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listAccessLevels(request:options:)``
   public func listAccessLevels(request: ListAccessLevelsRequest) async throws
     -> GoogleIdentityAccessContextManagerV1.ListAccessLevelsResponse
   {
@@ -1346,6 +1749,15 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] for an access
+  /// policy.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListAccessLevels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listAccessLevels(request:options:)``
   public func listAccessLevelsByItems(
     request: ListAccessLevelsRequest
   ) -> some AsyncSequence<AccessLevel, any Swift.Error> & Sendable {
@@ -1357,6 +1769,10 @@ extension Clients.AccessContextManagerProtocol {
   /// policy.
   ///
   /// @Snippet(path: "AccessContextManager_ListAccessLevels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listAccessLevels(request:options:)``
   public func listAccessLevelsByItems(
     request: ListAccessLevelsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AccessLevel, any Swift.Error> & Sendable {
@@ -1371,6 +1787,15 @@ extension Clients.AccessContextManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] for an access
+  /// policy.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListAccessLevels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listAccessLevels(request:options:)``
   public func listAccessLevelsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AccessLevel, any Swift.Error> & Sendable {
@@ -1380,6 +1805,15 @@ extension Clients.AccessContextManagerProtocol {
     return self.listAccessLevelsByItems(request: request)
   }
 
+  /// Gets an [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] based on the resource
+  /// name.
+  ///
+  /// @Snippet(path: "AccessContextManager_GetAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/getAccessLevel(request:options:)``
   public func getAccessLevel(request: GetAccessLevelRequest) async throws
     -> GoogleIdentityAccessContextManagerV1.AccessLevel
   {
@@ -1392,6 +1826,15 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] based on the resource
+  /// name.
+  ///
+  /// @Snippet(path: "AccessContextManager_GetAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/getAccessLevel(request:options:)``
   public func getAccessLevel(
     name: Swift.String,
   ) async throws -> GoogleIdentityAccessContextManagerV1.AccessLevel {
@@ -1401,6 +1844,19 @@ extension Clients.AccessContextManagerProtocol {
     return try await self.getAccessLevel(request: request)
   }
 
+  /// Creates an [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel]. The long-running
+  /// operation from this RPC has a successful status after the [access
+  /// level] [google.identity.accesscontextmanager.v1.AccessLevel]
+  /// propagates to long-lasting storage. If [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] contain
+  /// errors, an error response is returned for the first error encountered.
+  ///
+  /// @Snippet(path: "AccessContextManager_CreateAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/createAccessLevel(request:options:)``
   public func createAccessLevel(request: CreateAccessLevelRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1413,6 +1869,19 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel]. The long-running
+  /// operation from this RPC has a successful status after the [access
+  /// level] [google.identity.accesscontextmanager.v1.AccessLevel]
+  /// propagates to long-lasting storage. If [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] contain
+  /// errors, an error response is returned for the first error encountered.
+  ///
+  /// @Snippet(path: "AccessContextManager_CreateAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/createAccessLevelPollingUntilDone(request:options:)``
   public func createAccessLevelPollingUntilDone(request: CreateAccessLevelRequest) async throws
     -> AccessLevel
   {
@@ -1425,6 +1894,19 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel]. The long-running
+  /// operation from this RPC has a successful status after the [access
+  /// level] [google.identity.accesscontextmanager.v1.AccessLevel]
+  /// propagates to long-lasting storage. If [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] contain
+  /// errors, an error response is returned for the first error encountered.
+  ///
+  /// @Snippet(path: "AccessContextManager_CreateAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/createAccessLevelPollingUntilDone(request:options:)``
   public func createAccessLevelPollingUntilDone(
     parent: Swift.String,
     accessLevel: AccessLevel?,
@@ -1436,6 +1918,20 @@ extension Clients.AccessContextManagerProtocol {
     return try await self.createAccessLevelPollingUntilDone(request: request)
   }
 
+  /// Updates an [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel]. The long-running
+  /// operation from this RPC has a successful status after the changes to
+  /// the [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] propagate
+  /// to long-lasting storage. If [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] contain
+  /// errors, an error response is returned for the first error encountered.
+  ///
+  /// @Snippet(path: "AccessContextManager_UpdateAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/updateAccessLevel(request:options:)``
   public func updateAccessLevel(request: UpdateAccessLevelRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1448,6 +1944,20 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel]. The long-running
+  /// operation from this RPC has a successful status after the changes to
+  /// the [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] propagate
+  /// to long-lasting storage. If [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] contain
+  /// errors, an error response is returned for the first error encountered.
+  ///
+  /// @Snippet(path: "AccessContextManager_UpdateAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/updateAccessLevelPollingUntilDone(request:options:)``
   public func updateAccessLevelPollingUntilDone(request: UpdateAccessLevelRequest) async throws
     -> AccessLevel
   {
@@ -1460,6 +1970,20 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel]. The long-running
+  /// operation from this RPC has a successful status after the changes to
+  /// the [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] propagate
+  /// to long-lasting storage. If [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] contain
+  /// errors, an error response is returned for the first error encountered.
+  ///
+  /// @Snippet(path: "AccessContextManager_UpdateAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/updateAccessLevelPollingUntilDone(request:options:)``
   public func updateAccessLevelPollingUntilDone(
     accessLevel: AccessLevel?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1471,6 +1995,18 @@ extension Clients.AccessContextManagerProtocol {
     return try await self.updateAccessLevelPollingUntilDone(request: request)
   }
 
+  /// Deletes an [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] based on the resource
+  /// name. The long-running operation from this RPC has a successful status
+  /// after the [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] has been removed
+  /// from long-lasting storage.
+  ///
+  /// @Snippet(path: "AccessContextManager_DeleteAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/deleteAccessLevel(request:options:)``
   public func deleteAccessLevel(request: DeleteAccessLevelRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1483,6 +2019,18 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] based on the resource
+  /// name. The long-running operation from this RPC has a successful status
+  /// after the [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] has been removed
+  /// from long-lasting storage.
+  ///
+  /// @Snippet(path: "AccessContextManager_DeleteAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/deleteAccessLevelPollingUntilDone(request:options:)``
   public func deleteAccessLevelPollingUntilDone(request: DeleteAccessLevelRequest) async throws {
     try await self.deleteAccessLevelPollingUntilDone(request: request, options: .init())
   }
@@ -1493,6 +2041,18 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] based on the resource
+  /// name. The long-running operation from this RPC has a successful status
+  /// after the [access level]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] has been removed
+  /// from long-lasting storage.
+  ///
+  /// @Snippet(path: "AccessContextManager_DeleteAccessLevel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/deleteAccessLevelPollingUntilDone(request:options:)``
   public func deleteAccessLevelPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1502,6 +2062,29 @@ extension Clients.AccessContextManagerProtocol {
     try await self.deleteAccessLevelPollingUntilDone(request: request)
   }
 
+  /// Replaces all existing [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] in an [access
+  /// policy] [google.identity.accesscontextmanager.v1.AccessPolicy] with
+  /// the [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] provided. This
+  /// is done atomically. The long-running operation from this RPC has a
+  /// successful status after all replacements propagate to long-lasting
+  /// storage. If the replacement contains errors, an error response is returned
+  /// for the first error encountered.  Upon error, the replacement is cancelled,
+  /// and existing [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] are not
+  /// affected. The Operation.response field contains
+  /// ReplaceAccessLevelsResponse. Removing [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] contained in existing
+  /// [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] result in an
+  /// error.
+  ///
+  /// @Snippet(path: "AccessContextManager_ReplaceAccessLevels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/replaceAccessLevels(request:options:)``
   public func replaceAccessLevels(request: ReplaceAccessLevelsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1514,6 +2097,29 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Replaces all existing [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] in an [access
+  /// policy] [google.identity.accesscontextmanager.v1.AccessPolicy] with
+  /// the [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] provided. This
+  /// is done atomically. The long-running operation from this RPC has a
+  /// successful status after all replacements propagate to long-lasting
+  /// storage. If the replacement contains errors, an error response is returned
+  /// for the first error encountered.  Upon error, the replacement is cancelled,
+  /// and existing [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] are not
+  /// affected. The Operation.response field contains
+  /// ReplaceAccessLevelsResponse. Removing [access levels]
+  /// [google.identity.accesscontextmanager.v1.AccessLevel] contained in existing
+  /// [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] result in an
+  /// error.
+  ///
+  /// @Snippet(path: "AccessContextManager_ReplaceAccessLevels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/replaceAccessLevelsPollingUntilDone(request:options:)``
   public func replaceAccessLevelsPollingUntilDone(request: ReplaceAccessLevelsRequest) async throws
     -> ReplaceAccessLevelsResponse
   {
@@ -1526,6 +2132,15 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] for an
+  /// access policy.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listServicePerimeters(request:options:)``
   public func listServicePerimeters(request: ListServicePerimetersRequest) async throws
     -> GoogleIdentityAccessContextManagerV1.ListServicePerimetersResponse
   {
@@ -1538,6 +2153,15 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] for an
+  /// access policy.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listServicePerimeters(request:options:)``
   public func listServicePerimetersByItems(
     request: ListServicePerimetersRequest
   ) -> some AsyncSequence<ServicePerimeter, any Swift.Error> & Sendable {
@@ -1549,6 +2173,10 @@ extension Clients.AccessContextManagerProtocol {
   /// access policy.
   ///
   /// @Snippet(path: "AccessContextManager_ListServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listServicePerimeters(request:options:)``
   public func listServicePerimetersByItems(
     request: ListServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ServicePerimeter, any Swift.Error> & Sendable {
@@ -1563,6 +2191,15 @@ extension Clients.AccessContextManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] for an
+  /// access policy.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listServicePerimeters(request:options:)``
   public func listServicePerimetersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ServicePerimeter, any Swift.Error> & Sendable {
@@ -1572,6 +2209,15 @@ extension Clients.AccessContextManagerProtocol {
     return self.listServicePerimetersByItems(request: request)
   }
 
+  /// Gets a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] based on the
+  /// resource name.
+  ///
+  /// @Snippet(path: "AccessContextManager_GetServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/getServicePerimeter(request:options:)``
   public func getServicePerimeter(request: GetServicePerimeterRequest) async throws
     -> GoogleIdentityAccessContextManagerV1.ServicePerimeter
   {
@@ -1584,6 +2230,15 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] based on the
+  /// resource name.
+  ///
+  /// @Snippet(path: "AccessContextManager_GetServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/getServicePerimeter(request:options:)``
   public func getServicePerimeter(
     name: Swift.String,
   ) async throws -> GoogleIdentityAccessContextManagerV1.ServicePerimeter {
@@ -1593,6 +2248,20 @@ extension Clients.AccessContextManagerProtocol {
     return try await self.getServicePerimeter(request: request)
   }
 
+  /// Creates a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter]. The
+  /// long-running operation from this RPC has a successful status after the
+  /// [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter]
+  /// propagates to long-lasting storage. If a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] contains
+  /// errors, an error response is returned for the first error encountered.
+  ///
+  /// @Snippet(path: "AccessContextManager_CreateServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/createServicePerimeter(request:options:)``
   public func createServicePerimeter(request: CreateServicePerimeterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1605,6 +2274,20 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter]. The
+  /// long-running operation from this RPC has a successful status after the
+  /// [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter]
+  /// propagates to long-lasting storage. If a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] contains
+  /// errors, an error response is returned for the first error encountered.
+  ///
+  /// @Snippet(path: "AccessContextManager_CreateServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/createServicePerimeterPollingUntilDone(request:options:)``
   public func createServicePerimeterPollingUntilDone(request: CreateServicePerimeterRequest)
     async throws -> ServicePerimeter
   {
@@ -1617,6 +2300,20 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter]. The
+  /// long-running operation from this RPC has a successful status after the
+  /// [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter]
+  /// propagates to long-lasting storage. If a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] contains
+  /// errors, an error response is returned for the first error encountered.
+  ///
+  /// @Snippet(path: "AccessContextManager_CreateServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/createServicePerimeterPollingUntilDone(request:options:)``
   public func createServicePerimeterPollingUntilDone(
     parent: Swift.String,
     servicePerimeter: ServicePerimeter?,
@@ -1628,6 +2325,20 @@ extension Clients.AccessContextManagerProtocol {
     return try await self.createServicePerimeterPollingUntilDone(request: request)
   }
 
+  /// Updates a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter]. The
+  /// long-running operation from this RPC has a successful status after the
+  /// [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter]
+  /// propagates to long-lasting storage. If a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] contains
+  /// errors, an error response is returned for the first error encountered.
+  ///
+  /// @Snippet(path: "AccessContextManager_UpdateServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/updateServicePerimeter(request:options:)``
   public func updateServicePerimeter(request: UpdateServicePerimeterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1640,6 +2351,20 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter]. The
+  /// long-running operation from this RPC has a successful status after the
+  /// [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter]
+  /// propagates to long-lasting storage. If a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] contains
+  /// errors, an error response is returned for the first error encountered.
+  ///
+  /// @Snippet(path: "AccessContextManager_UpdateServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/updateServicePerimeterPollingUntilDone(request:options:)``
   public func updateServicePerimeterPollingUntilDone(request: UpdateServicePerimeterRequest)
     async throws -> ServicePerimeter
   {
@@ -1652,6 +2377,20 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter]. The
+  /// long-running operation from this RPC has a successful status after the
+  /// [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter]
+  /// propagates to long-lasting storage. If a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] contains
+  /// errors, an error response is returned for the first error encountered.
+  ///
+  /// @Snippet(path: "AccessContextManager_UpdateServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/updateServicePerimeterPollingUntilDone(request:options:)``
   public func updateServicePerimeterPollingUntilDone(
     servicePerimeter: ServicePerimeter?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1663,6 +2402,18 @@ extension Clients.AccessContextManagerProtocol {
     return try await self.updateServicePerimeterPollingUntilDone(request: request)
   }
 
+  /// Deletes a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] based on the
+  /// resource name. The long-running operation from this RPC has a successful
+  /// status after the [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] is removed from
+  /// long-lasting storage.
+  ///
+  /// @Snippet(path: "AccessContextManager_DeleteServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/deleteServicePerimeter(request:options:)``
   public func deleteServicePerimeter(request: DeleteServicePerimeterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1675,6 +2426,18 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] based on the
+  /// resource name. The long-running operation from this RPC has a successful
+  /// status after the [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] is removed from
+  /// long-lasting storage.
+  ///
+  /// @Snippet(path: "AccessContextManager_DeleteServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/deleteServicePerimeterPollingUntilDone(request:options:)``
   public func deleteServicePerimeterPollingUntilDone(request: DeleteServicePerimeterRequest)
     async throws
   {
@@ -1687,6 +2450,18 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] based on the
+  /// resource name. The long-running operation from this RPC has a successful
+  /// status after the [service perimeter]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] is removed from
+  /// long-lasting storage.
+  ///
+  /// @Snippet(path: "AccessContextManager_DeleteServicePerimeter")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/deleteServicePerimeterPollingUntilDone(request:options:)``
   public func deleteServicePerimeterPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1696,6 +2471,25 @@ extension Clients.AccessContextManagerProtocol {
     try await self.deleteServicePerimeterPollingUntilDone(request: request)
   }
 
+  /// Replace all existing [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] in an [access
+  /// policy] [google.identity.accesscontextmanager.v1.AccessPolicy] with the
+  /// [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] provided. This
+  /// is done atomically. The long-running operation from this RPC has a
+  /// successful status after all replacements propagate to long-lasting storage.
+  /// Replacements containing errors result in an error response for the first
+  /// error encountered. Upon an error, replacement are cancelled and existing
+  /// [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] are not
+  /// affected. The Operation.response field contains
+  /// ReplaceServicePerimetersResponse.
+  ///
+  /// @Snippet(path: "AccessContextManager_ReplaceServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/replaceServicePerimeters(request:options:)``
   public func replaceServicePerimeters(request: ReplaceServicePerimetersRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1708,6 +2502,25 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Replace all existing [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] in an [access
+  /// policy] [google.identity.accesscontextmanager.v1.AccessPolicy] with the
+  /// [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] provided. This
+  /// is done atomically. The long-running operation from this RPC has a
+  /// successful status after all replacements propagate to long-lasting storage.
+  /// Replacements containing errors result in an error response for the first
+  /// error encountered. Upon an error, replacement are cancelled and existing
+  /// [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] are not
+  /// affected. The Operation.response field contains
+  /// ReplaceServicePerimetersResponse.
+  ///
+  /// @Snippet(path: "AccessContextManager_ReplaceServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/replaceServicePerimetersPollingUntilDone(request:options:)``
   public func replaceServicePerimetersPollingUntilDone(request: ReplaceServicePerimetersRequest)
     async throws -> ReplaceServicePerimetersResponse
   {
@@ -1721,6 +2534,29 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Commits the dry-run specification for all the [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] in an
+  /// [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+  /// A commit operation on a service perimeter involves copying its `spec` field
+  /// to the `status` field of the service perimeter. Only [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] with
+  /// `use_explicit_dry_run_spec` field set to true are affected by a commit
+  /// operation. The long-running operation from this RPC has a successful
+  /// status after the dry-run specifications for all the [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] have been
+  /// committed. If a commit fails, it causes the long-running operation to
+  /// return an error response and the entire commit operation is cancelled.
+  /// When successful, the Operation.response field contains
+  /// CommitServicePerimetersResponse. The `dry_run` and the `spec` fields are
+  /// cleared after a successful commit operation.
+  ///
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy]: <doc:AccessPolicy>
+  ///
+  /// @Snippet(path: "AccessContextManager_CommitServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/commitServicePerimeters(request:options:)``
   public func commitServicePerimeters(request: CommitServicePerimetersRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1733,6 +2569,29 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Commits the dry-run specification for all the [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] in an
+  /// [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+  /// A commit operation on a service perimeter involves copying its `spec` field
+  /// to the `status` field of the service perimeter. Only [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] with
+  /// `use_explicit_dry_run_spec` field set to true are affected by a commit
+  /// operation. The long-running operation from this RPC has a successful
+  /// status after the dry-run specifications for all the [service perimeters]
+  /// [google.identity.accesscontextmanager.v1.ServicePerimeter] have been
+  /// committed. If a commit fails, it causes the long-running operation to
+  /// return an error response and the entire commit operation is cancelled.
+  /// When successful, the Operation.response field contains
+  /// CommitServicePerimetersResponse. The `dry_run` and the `spec` fields are
+  /// cleared after a successful commit operation.
+  ///
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy]: <doc:AccessPolicy>
+  ///
+  /// @Snippet(path: "AccessContextManager_CommitServicePerimeters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/commitServicePerimetersPollingUntilDone(request:options:)``
   public func commitServicePerimetersPollingUntilDone(request: CommitServicePerimetersRequest)
     async throws -> CommitServicePerimetersResponse
   {
@@ -1746,6 +2605,15 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all [GcpUserAccessBindings]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding] for a
+  /// Google Cloud organization.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListGcpUserAccessBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listGcpUserAccessBindings(request:options:)``
   public func listGcpUserAccessBindings(request: ListGcpUserAccessBindingsRequest) async throws
     -> GoogleIdentityAccessContextManagerV1.ListGcpUserAccessBindingsResponse
   {
@@ -1758,6 +2626,15 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all [GcpUserAccessBindings]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding] for a
+  /// Google Cloud organization.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListGcpUserAccessBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listGcpUserAccessBindings(request:options:)``
   public func listGcpUserAccessBindingsByItems(
     request: ListGcpUserAccessBindingsRequest
   ) -> some AsyncSequence<GcpUserAccessBinding, any Swift.Error> & Sendable {
@@ -1769,6 +2646,10 @@ extension Clients.AccessContextManagerProtocol {
   /// Google Cloud organization.
   ///
   /// @Snippet(path: "AccessContextManager_ListGcpUserAccessBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listGcpUserAccessBindings(request:options:)``
   public func listGcpUserAccessBindingsByItems(
     request: ListGcpUserAccessBindingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GcpUserAccessBinding, any Swift.Error> & Sendable {
@@ -1783,6 +2664,15 @@ extension Clients.AccessContextManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all [GcpUserAccessBindings]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding] for a
+  /// Google Cloud organization.
+  ///
+  /// @Snippet(path: "AccessContextManager_ListGcpUserAccessBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/listGcpUserAccessBindings(request:options:)``
   public func listGcpUserAccessBindingsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GcpUserAccessBinding, any Swift.Error> & Sendable {
@@ -1792,6 +2682,15 @@ extension Clients.AccessContextManagerProtocol {
     return self.listGcpUserAccessBindingsByItems(request: request)
   }
 
+  /// Gets the [GcpUserAccessBinding]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding] with
+  /// the given name.
+  ///
+  /// @Snippet(path: "AccessContextManager_GetGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/getGcpUserAccessBinding(request:options:)``
   public func getGcpUserAccessBinding(request: GetGcpUserAccessBindingRequest) async throws
     -> GoogleIdentityAccessContextManagerV1.GcpUserAccessBinding
   {
@@ -1804,6 +2703,15 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the [GcpUserAccessBinding]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding] with
+  /// the given name.
+  ///
+  /// @Snippet(path: "AccessContextManager_GetGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/getGcpUserAccessBinding(request:options:)``
   public func getGcpUserAccessBinding(
     name: Swift.String,
   ) async throws -> GoogleIdentityAccessContextManagerV1.GcpUserAccessBinding {
@@ -1813,6 +2721,22 @@ extension Clients.AccessContextManagerProtocol {
     return try await self.getGcpUserAccessBinding(request: request)
   }
 
+  /// Creates a [GcpUserAccessBinding]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]. If the
+  /// client specifies a [name]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding.name],
+  /// the server ignores it. Fails if a resource already exists with the same
+  /// [group_key]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding.group_key].
+  /// Completion of this long-running operation does not necessarily signify that
+  /// the new binding is deployed onto all affected users, which may take more
+  /// time.
+  ///
+  /// @Snippet(path: "AccessContextManager_CreateGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/createGcpUserAccessBinding(request:options:)``
   public func createGcpUserAccessBinding(request: CreateGcpUserAccessBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1825,6 +2749,22 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a [GcpUserAccessBinding]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]. If the
+  /// client specifies a [name]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding.name],
+  /// the server ignores it. Fails if a resource already exists with the same
+  /// [group_key]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding.group_key].
+  /// Completion of this long-running operation does not necessarily signify that
+  /// the new binding is deployed onto all affected users, which may take more
+  /// time.
+  ///
+  /// @Snippet(path: "AccessContextManager_CreateGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/createGcpUserAccessBindingPollingUntilDone(request:options:)``
   public func createGcpUserAccessBindingPollingUntilDone(request: CreateGcpUserAccessBindingRequest)
     async throws -> GcpUserAccessBinding
   {
@@ -1838,6 +2778,22 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a [GcpUserAccessBinding]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]. If the
+  /// client specifies a [name]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding.name],
+  /// the server ignores it. Fails if a resource already exists with the same
+  /// [group_key]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding.group_key].
+  /// Completion of this long-running operation does not necessarily signify that
+  /// the new binding is deployed onto all affected users, which may take more
+  /// time.
+  ///
+  /// @Snippet(path: "AccessContextManager_CreateGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/createGcpUserAccessBindingPollingUntilDone(request:options:)``
   public func createGcpUserAccessBindingPollingUntilDone(
     parent: Swift.String,
     gcpUserAccessBinding: GcpUserAccessBinding?,
@@ -1849,6 +2805,17 @@ extension Clients.AccessContextManagerProtocol {
     return try await self.createGcpUserAccessBindingPollingUntilDone(request: request)
   }
 
+  /// Updates a [GcpUserAccessBinding]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding].
+  /// Completion of this long-running operation does not necessarily signify that
+  /// the changed binding is deployed onto all affected users, which may take
+  /// more time.
+  ///
+  /// @Snippet(path: "AccessContextManager_UpdateGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/updateGcpUserAccessBinding(request:options:)``
   public func updateGcpUserAccessBinding(request: UpdateGcpUserAccessBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1861,6 +2828,17 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a [GcpUserAccessBinding]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding].
+  /// Completion of this long-running operation does not necessarily signify that
+  /// the changed binding is deployed onto all affected users, which may take
+  /// more time.
+  ///
+  /// @Snippet(path: "AccessContextManager_UpdateGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/updateGcpUserAccessBindingPollingUntilDone(request:options:)``
   public func updateGcpUserAccessBindingPollingUntilDone(request: UpdateGcpUserAccessBindingRequest)
     async throws -> GcpUserAccessBinding
   {
@@ -1874,6 +2852,17 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a [GcpUserAccessBinding]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding].
+  /// Completion of this long-running operation does not necessarily signify that
+  /// the changed binding is deployed onto all affected users, which may take
+  /// more time.
+  ///
+  /// @Snippet(path: "AccessContextManager_UpdateGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/updateGcpUserAccessBindingPollingUntilDone(request:options:)``
   public func updateGcpUserAccessBindingPollingUntilDone(
     gcpUserAccessBinding: GcpUserAccessBinding?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1885,6 +2874,17 @@ extension Clients.AccessContextManagerProtocol {
     return try await self.updateGcpUserAccessBindingPollingUntilDone(request: request)
   }
 
+  /// Deletes a [GcpUserAccessBinding]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding].
+  /// Completion of this long-running operation does not necessarily signify that
+  /// the binding deletion is deployed onto all affected users, which may take
+  /// more time.
+  ///
+  /// @Snippet(path: "AccessContextManager_DeleteGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/deleteGcpUserAccessBinding(request:options:)``
   public func deleteGcpUserAccessBinding(request: DeleteGcpUserAccessBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1897,6 +2897,17 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a [GcpUserAccessBinding]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding].
+  /// Completion of this long-running operation does not necessarily signify that
+  /// the binding deletion is deployed onto all affected users, which may take
+  /// more time.
+  ///
+  /// @Snippet(path: "AccessContextManager_DeleteGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/deleteGcpUserAccessBindingPollingUntilDone(request:options:)``
   public func deleteGcpUserAccessBindingPollingUntilDone(request: DeleteGcpUserAccessBindingRequest)
     async throws
   {
@@ -1909,6 +2920,17 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a [GcpUserAccessBinding]
+  /// [google.identity.accesscontextmanager.v1.GcpUserAccessBinding].
+  /// Completion of this long-running operation does not necessarily signify that
+  /// the binding deletion is deployed onto all affected users, which may take
+  /// more time.
+  ///
+  /// @Snippet(path: "AccessContextManager_DeleteGcpUserAccessBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/deleteGcpUserAccessBindingPollingUntilDone(request:options:)``
   public func deleteGcpUserAccessBindingPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1918,6 +2940,20 @@ extension Clients.AccessContextManagerProtocol {
     try await self.deleteGcpUserAccessBindingPollingUntilDone(request: request)
   }
 
+  /// Sets the IAM policy for the specified Access Context Manager
+  /// [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+  /// This method replaces the existing IAM policy on the access policy. The IAM
+  /// policy controls the set of users who can perform specific operations on the
+  /// Access Context Manager [access
+  /// policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+  ///
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy]: <doc:AccessPolicy>
+  ///
+  /// @Snippet(path: "AccessContextManager_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1930,6 +2966,16 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the IAM policy for the specified Access Context Manager
+  /// [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+  ///
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy]: <doc:AccessPolicy>
+  ///
+  /// @Snippet(path: "AccessContextManager_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1942,6 +2988,21 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the IAM permissions that the caller has on the specified Access
+  /// Context Manager resource. The resource can be an
+  /// [AccessPolicy][google.identity.accesscontextmanager.v1.AccessPolicy],
+  /// [AccessLevel][google.identity.accesscontextmanager.v1.AccessLevel], or
+  /// [ServicePerimeter][google.identity.accesscontextmanager.v1.ServicePerimeter
+  /// ]. This method does not support other resources.
+  ///
+  /// [google.identity.accesscontextmanager.v1.AccessLevel]: <doc:AccessLevel>
+  /// [google.identity.accesscontextmanager.v1.AccessPolicy]: <doc:AccessPolicy>
+  ///
+  /// @Snippet(path: "AccessContextManager_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AccessContextManagerClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -1954,6 +3015,9 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1966,6 +3030,9 @@ extension Clients.AccessContextManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

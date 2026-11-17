@@ -28,6 +28,10 @@ import Foundation
 /// TPU API v2
 ///
 /// @Snippet(path: "TpuQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/TpuProtocol``
 public final class TpuClient: Clients.TpuProtocol, Sendable {
   let inner: any Clients.TpuStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Lists nodes.
   ///
   /// @Snippet(path: "Tpu_ListNodes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listNodes(request:)``
+  /// - ``listNodesByItems(request:)``
+  /// - ``listNodesByItems(request:options:)``
+  /// - ``listNodesByItems(parent:)``
   public func listNodes(
     request: ListNodesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.ListNodesResponse {
@@ -57,6 +68,11 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Gets the details of a node.
   ///
   /// @Snippet(path: "Tpu_GetNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getNode(request:)``
+  /// - ``getNode(name:)``
   public func getNode(
     request: GetNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.Node {
@@ -66,6 +82,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Creates a node.
   ///
   /// @Snippet(path: "Tpu_CreateNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createNode(request:)``
+  /// - ``createNodePollingUntilDone(request:)``
+  /// - ``createNodePollingUntilDone(request:options:)``
+  /// - ``createNodePollingUntilDone(parent:node:nodeId:)``
   public func createNode(
     request: CreateNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -75,6 +98,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Creates a node.
   ///
   /// @Snippet(path: "Tpu_CreateNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createNodePollingUntilDone(request:)``
+  /// - ``createNodePollingUntilDone(parent:node:nodeId:)``
+  /// - ``createNode(request:)``
+  /// - ``createNode(request:options:)``
   public func createNodePollingUntilDone(
     request: CreateNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Node {
@@ -102,6 +132,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Deletes a node.
   ///
   /// @Snippet(path: "Tpu_DeleteNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteNode(request:)``
+  /// - ``deleteNodePollingUntilDone(request:)``
+  /// - ``deleteNodePollingUntilDone(request:options:)``
+  /// - ``deleteNodePollingUntilDone(name:)``
   public func deleteNode(
     request: DeleteNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -111,6 +148,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Deletes a node.
   ///
   /// @Snippet(path: "Tpu_DeleteNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteNodePollingUntilDone(request:)``
+  /// - ``deleteNodePollingUntilDone(name:)``
+  /// - ``deleteNode(request:)``
+  /// - ``deleteNode(request:options:)``
   public func deleteNodePollingUntilDone(
     request: DeleteNodeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -138,6 +182,12 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Stops a node. This operation is only available with single TPU nodes.
   ///
   /// @Snippet(path: "Tpu_StopNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``stopNode(request:)``
+  /// - ``stopNodePollingUntilDone(request:)``
+  /// - ``stopNodePollingUntilDone(request:options:)``
   public func stopNode(
     request: StopNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -147,6 +197,12 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Stops a node. This operation is only available with single TPU nodes.
   ///
   /// @Snippet(path: "Tpu_StopNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``stopNodePollingUntilDone(request:)``
+  /// - ``stopNode(request:)``
+  /// - ``stopNode(request:options:)``
   public func stopNodePollingUntilDone(
     request: StopNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Node {
@@ -174,6 +230,12 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Starts a node.
   ///
   /// @Snippet(path: "Tpu_StartNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startNode(request:)``
+  /// - ``startNodePollingUntilDone(request:)``
+  /// - ``startNodePollingUntilDone(request:options:)``
   public func startNode(
     request: StartNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -183,6 +245,12 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Starts a node.
   ///
   /// @Snippet(path: "Tpu_StartNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startNodePollingUntilDone(request:)``
+  /// - ``startNode(request:)``
+  /// - ``startNode(request:options:)``
   public func startNodePollingUntilDone(
     request: StartNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Node {
@@ -210,6 +278,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Updates the configurations of a node.
   ///
   /// @Snippet(path: "Tpu_UpdateNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateNode(request:)``
+  /// - ``updateNodePollingUntilDone(request:)``
+  /// - ``updateNodePollingUntilDone(request:options:)``
+  /// - ``updateNodePollingUntilDone(node:updateMask:)``
   public func updateNode(
     request: UpdateNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -219,6 +294,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Updates the configurations of a node.
   ///
   /// @Snippet(path: "Tpu_UpdateNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateNodePollingUntilDone(request:)``
+  /// - ``updateNodePollingUntilDone(node:updateMask:)``
+  /// - ``updateNode(request:)``
+  /// - ``updateNode(request:options:)``
   public func updateNodePollingUntilDone(
     request: UpdateNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Node {
@@ -246,6 +328,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Lists queued resources.
   ///
   /// @Snippet(path: "Tpu_ListQueuedResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listQueuedResources(request:)``
+  /// - ``listQueuedResourcesByItems(request:)``
+  /// - ``listQueuedResourcesByItems(request:options:)``
+  /// - ``listQueuedResourcesByItems(parent:)``
   public func listQueuedResources(
     request: ListQueuedResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.ListQueuedResourcesResponse {
@@ -255,6 +344,11 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Gets details of a queued resource.
   ///
   /// @Snippet(path: "Tpu_GetQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getQueuedResource(request:)``
+  /// - ``getQueuedResource(name:)``
   public func getQueuedResource(
     request: GetQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.QueuedResource {
@@ -264,6 +358,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Creates a QueuedResource TPU instance.
   ///
   /// @Snippet(path: "Tpu_CreateQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createQueuedResource(request:)``
+  /// - ``createQueuedResourcePollingUntilDone(request:)``
+  /// - ``createQueuedResourcePollingUntilDone(request:options:)``
+  /// - ``createQueuedResourcePollingUntilDone(parent:queuedResource:queuedResourceId:)``
   public func createQueuedResource(
     request: CreateQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -273,6 +374,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Creates a QueuedResource TPU instance.
   ///
   /// @Snippet(path: "Tpu_CreateQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createQueuedResourcePollingUntilDone(request:)``
+  /// - ``createQueuedResourcePollingUntilDone(parent:queuedResource:queuedResourceId:)``
+  /// - ``createQueuedResource(request:)``
+  /// - ``createQueuedResource(request:options:)``
   public func createQueuedResourcePollingUntilDone(
     request: CreateQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> QueuedResource {
@@ -301,6 +409,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Deletes a QueuedResource TPU instance.
   ///
   /// @Snippet(path: "Tpu_DeleteQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteQueuedResource(request:)``
+  /// - ``deleteQueuedResourcePollingUntilDone(request:)``
+  /// - ``deleteQueuedResourcePollingUntilDone(request:options:)``
+  /// - ``deleteQueuedResourcePollingUntilDone(name:)``
   public func deleteQueuedResource(
     request: DeleteQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -310,6 +425,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Deletes a QueuedResource TPU instance.
   ///
   /// @Snippet(path: "Tpu_DeleteQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteQueuedResourcePollingUntilDone(request:)``
+  /// - ``deleteQueuedResourcePollingUntilDone(name:)``
+  /// - ``deleteQueuedResource(request:)``
+  /// - ``deleteQueuedResource(request:options:)``
   public func deleteQueuedResourcePollingUntilDone(
     request: DeleteQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -337,6 +459,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Resets a QueuedResource TPU instance
   ///
   /// @Snippet(path: "Tpu_ResetQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resetQueuedResource(request:)``
+  /// - ``resetQueuedResourcePollingUntilDone(request:)``
+  /// - ``resetQueuedResourcePollingUntilDone(request:options:)``
+  /// - ``resetQueuedResourcePollingUntilDone(name:)``
   public func resetQueuedResource(
     request: ResetQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -346,6 +475,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Resets a QueuedResource TPU instance
   ///
   /// @Snippet(path: "Tpu_ResetQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resetQueuedResourcePollingUntilDone(request:)``
+  /// - ``resetQueuedResourcePollingUntilDone(name:)``
+  /// - ``resetQueuedResource(request:)``
+  /// - ``resetQueuedResource(request:options:)``
   public func resetQueuedResourcePollingUntilDone(
     request: ResetQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> QueuedResource {
@@ -374,6 +510,10 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Generates the Cloud TPU service identity for the project.
   ///
   /// @Snippet(path: "Tpu_GenerateServiceIdentity")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateServiceIdentity(request:)``
   public func generateServiceIdentity(
     request: GenerateServiceIdentityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.GenerateServiceIdentityResponse {
@@ -383,6 +523,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Lists accelerator types supported by this API.
   ///
   /// @Snippet(path: "Tpu_ListAcceleratorTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAcceleratorTypes(request:)``
+  /// - ``listAcceleratorTypesByItems(request:)``
+  /// - ``listAcceleratorTypesByItems(request:options:)``
+  /// - ``listAcceleratorTypesByItems(parent:)``
   public func listAcceleratorTypes(
     request: ListAcceleratorTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.ListAcceleratorTypesResponse {
@@ -392,6 +539,11 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Gets AcceleratorType.
   ///
   /// @Snippet(path: "Tpu_GetAcceleratorType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAcceleratorType(request:)``
+  /// - ``getAcceleratorType(name:)``
   public func getAcceleratorType(
     request: GetAcceleratorTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.AcceleratorType {
@@ -401,6 +553,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Lists runtime versions supported by this API.
   ///
   /// @Snippet(path: "Tpu_ListRuntimeVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRuntimeVersions(request:)``
+  /// - ``listRuntimeVersionsByItems(request:)``
+  /// - ``listRuntimeVersionsByItems(request:options:)``
+  /// - ``listRuntimeVersionsByItems(parent:)``
   public func listRuntimeVersions(
     request: ListRuntimeVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.ListRuntimeVersionsResponse {
@@ -410,6 +569,11 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Gets a runtime version.
   ///
   /// @Snippet(path: "Tpu_GetRuntimeVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRuntimeVersion(request:)``
+  /// - ``getRuntimeVersion(name:)``
   public func getRuntimeVersion(
     request: GetRuntimeVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.RuntimeVersion {
@@ -419,6 +583,10 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Retrieves the guest attributes for the node.
   ///
   /// @Snippet(path: "Tpu_GetGuestAttributes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGuestAttributes(request:)``
   public func getGuestAttributes(
     request: GetGuestAttributesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.GetGuestAttributesResponse {
@@ -428,6 +596,12 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Tpu_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -437,6 +611,10 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Tpu_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -448,6 +626,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Tpu_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -470,6 +655,11 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Tpu_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -481,6 +671,11 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Tpu_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -654,6 +849,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.TpuProtocol {
+  /// Lists nodes.
+  ///
+  /// @Snippet(path: "Tpu_ListNodes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listNodes(request:options:)``
   public func listNodes(request: ListNodesRequest) async throws
     -> GoogleCloudTpuV2.ListNodesResponse
   {
@@ -666,6 +868,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists nodes.
+  ///
+  /// @Snippet(path: "Tpu_ListNodes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listNodes(request:options:)``
   public func listNodesByItems(
     request: ListNodesRequest
   ) -> some AsyncSequence<Node, any Swift.Error> & Sendable {
@@ -675,6 +884,10 @@ extension Clients.TpuProtocol {
   /// Lists nodes.
   ///
   /// @Snippet(path: "Tpu_ListNodes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listNodes(request:options:)``
   public func listNodesByItems(
     request: ListNodesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Node, any Swift.Error> & Sendable {
@@ -688,6 +901,13 @@ extension Clients.TpuProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists nodes.
+  ///
+  /// @Snippet(path: "Tpu_ListNodes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listNodes(request:options:)``
   public func listNodesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Node, any Swift.Error> & Sendable {
@@ -697,6 +917,13 @@ extension Clients.TpuProtocol {
     return self.listNodesByItems(request: request)
   }
 
+  /// Gets the details of a node.
+  ///
+  /// @Snippet(path: "Tpu_GetNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/getNode(request:options:)``
   public func getNode(request: GetNodeRequest) async throws -> GoogleCloudTpuV2.Node {
     try await self.getNode(request: request, options: .init())
   }
@@ -707,6 +934,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a node.
+  ///
+  /// @Snippet(path: "Tpu_GetNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/getNode(request:options:)``
   public func getNode(
     name: Swift.String,
   ) async throws -> GoogleCloudTpuV2.Node {
@@ -716,6 +950,13 @@ extension Clients.TpuProtocol {
     return try await self.getNode(request: request)
   }
 
+  /// Creates a node.
+  ///
+  /// @Snippet(path: "Tpu_CreateNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/createNode(request:options:)``
   public func createNode(request: CreateNodeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createNode(request: request, options: .init())
   }
@@ -726,6 +967,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a node.
+  ///
+  /// @Snippet(path: "Tpu_CreateNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/createNodePollingUntilDone(request:options:)``
   public func createNodePollingUntilDone(request: CreateNodeRequest) async throws -> Node {
     return try await self.createNodePollingUntilDone(request: request, options: .init())
   }
@@ -736,6 +984,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a node.
+  ///
+  /// @Snippet(path: "Tpu_CreateNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/createNodePollingUntilDone(request:options:)``
   public func createNodePollingUntilDone(
     parent: Swift.String,
     node: Node?,
@@ -749,6 +1004,13 @@ extension Clients.TpuProtocol {
     return try await self.createNodePollingUntilDone(request: request)
   }
 
+  /// Deletes a node.
+  ///
+  /// @Snippet(path: "Tpu_DeleteNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/deleteNode(request:options:)``
   public func deleteNode(request: DeleteNodeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteNode(request: request, options: .init())
   }
@@ -759,6 +1021,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a node.
+  ///
+  /// @Snippet(path: "Tpu_DeleteNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/deleteNodePollingUntilDone(request:options:)``
   public func deleteNodePollingUntilDone(request: DeleteNodeRequest) async throws {
     try await self.deleteNodePollingUntilDone(request: request, options: .init())
   }
@@ -769,6 +1038,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a node.
+  ///
+  /// @Snippet(path: "Tpu_DeleteNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/deleteNodePollingUntilDone(request:options:)``
   public func deleteNodePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -778,6 +1054,13 @@ extension Clients.TpuProtocol {
     try await self.deleteNodePollingUntilDone(request: request)
   }
 
+  /// Stops a node. This operation is only available with single TPU nodes.
+  ///
+  /// @Snippet(path: "Tpu_StopNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/stopNode(request:options:)``
   public func stopNode(request: StopNodeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.stopNode(request: request, options: .init())
   }
@@ -788,6 +1071,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Stops a node. This operation is only available with single TPU nodes.
+  ///
+  /// @Snippet(path: "Tpu_StopNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/stopNodePollingUntilDone(request:options:)``
   public func stopNodePollingUntilDone(request: StopNodeRequest) async throws -> Node {
     return try await self.stopNodePollingUntilDone(request: request, options: .init())
   }
@@ -798,6 +1088,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a node.
+  ///
+  /// @Snippet(path: "Tpu_StartNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/startNode(request:options:)``
   public func startNode(request: StartNodeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.startNode(request: request, options: .init())
   }
@@ -808,6 +1105,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a node.
+  ///
+  /// @Snippet(path: "Tpu_StartNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/startNodePollingUntilDone(request:options:)``
   public func startNodePollingUntilDone(request: StartNodeRequest) async throws -> Node {
     return try await self.startNodePollingUntilDone(request: request, options: .init())
   }
@@ -818,6 +1122,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the configurations of a node.
+  ///
+  /// @Snippet(path: "Tpu_UpdateNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/updateNode(request:options:)``
   public func updateNode(request: UpdateNodeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateNode(request: request, options: .init())
   }
@@ -828,6 +1139,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the configurations of a node.
+  ///
+  /// @Snippet(path: "Tpu_UpdateNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/updateNodePollingUntilDone(request:options:)``
   public func updateNodePollingUntilDone(request: UpdateNodeRequest) async throws -> Node {
     return try await self.updateNodePollingUntilDone(request: request, options: .init())
   }
@@ -838,6 +1156,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the configurations of a node.
+  ///
+  /// @Snippet(path: "Tpu_UpdateNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/updateNodePollingUntilDone(request:options:)``
   public func updateNodePollingUntilDone(
     node: Node?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -849,6 +1174,13 @@ extension Clients.TpuProtocol {
     return try await self.updateNodePollingUntilDone(request: request)
   }
 
+  /// Lists queued resources.
+  ///
+  /// @Snippet(path: "Tpu_ListQueuedResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listQueuedResources(request:options:)``
   public func listQueuedResources(request: ListQueuedResourcesRequest) async throws
     -> GoogleCloudTpuV2.ListQueuedResourcesResponse
   {
@@ -861,6 +1193,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists queued resources.
+  ///
+  /// @Snippet(path: "Tpu_ListQueuedResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listQueuedResources(request:options:)``
   public func listQueuedResourcesByItems(
     request: ListQueuedResourcesRequest
   ) -> some AsyncSequence<QueuedResource, any Swift.Error> & Sendable {
@@ -870,6 +1209,10 @@ extension Clients.TpuProtocol {
   /// Lists queued resources.
   ///
   /// @Snippet(path: "Tpu_ListQueuedResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listQueuedResources(request:options:)``
   public func listQueuedResourcesByItems(
     request: ListQueuedResourcesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<QueuedResource, any Swift.Error> & Sendable {
@@ -884,6 +1227,13 @@ extension Clients.TpuProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists queued resources.
+  ///
+  /// @Snippet(path: "Tpu_ListQueuedResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listQueuedResources(request:options:)``
   public func listQueuedResourcesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<QueuedResource, any Swift.Error> & Sendable {
@@ -893,6 +1243,13 @@ extension Clients.TpuProtocol {
     return self.listQueuedResourcesByItems(request: request)
   }
 
+  /// Gets details of a queued resource.
+  ///
+  /// @Snippet(path: "Tpu_GetQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/getQueuedResource(request:options:)``
   public func getQueuedResource(request: GetQueuedResourceRequest) async throws
     -> GoogleCloudTpuV2.QueuedResource
   {
@@ -905,6 +1262,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a queued resource.
+  ///
+  /// @Snippet(path: "Tpu_GetQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/getQueuedResource(request:options:)``
   public func getQueuedResource(
     name: Swift.String,
   ) async throws -> GoogleCloudTpuV2.QueuedResource {
@@ -914,6 +1278,13 @@ extension Clients.TpuProtocol {
     return try await self.getQueuedResource(request: request)
   }
 
+  /// Creates a QueuedResource TPU instance.
+  ///
+  /// @Snippet(path: "Tpu_CreateQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/createQueuedResource(request:options:)``
   public func createQueuedResource(request: CreateQueuedResourceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -926,6 +1297,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a QueuedResource TPU instance.
+  ///
+  /// @Snippet(path: "Tpu_CreateQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/createQueuedResourcePollingUntilDone(request:options:)``
   public func createQueuedResourcePollingUntilDone(request: CreateQueuedResourceRequest)
     async throws -> QueuedResource
   {
@@ -938,6 +1316,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a QueuedResource TPU instance.
+  ///
+  /// @Snippet(path: "Tpu_CreateQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/createQueuedResourcePollingUntilDone(request:options:)``
   public func createQueuedResourcePollingUntilDone(
     parent: Swift.String,
     queuedResource: QueuedResource?,
@@ -951,6 +1336,13 @@ extension Clients.TpuProtocol {
     return try await self.createQueuedResourcePollingUntilDone(request: request)
   }
 
+  /// Deletes a QueuedResource TPU instance.
+  ///
+  /// @Snippet(path: "Tpu_DeleteQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/deleteQueuedResource(request:options:)``
   public func deleteQueuedResource(request: DeleteQueuedResourceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -963,6 +1355,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a QueuedResource TPU instance.
+  ///
+  /// @Snippet(path: "Tpu_DeleteQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/deleteQueuedResourcePollingUntilDone(request:options:)``
   public func deleteQueuedResourcePollingUntilDone(request: DeleteQueuedResourceRequest)
     async throws
   {
@@ -975,6 +1374,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a QueuedResource TPU instance.
+  ///
+  /// @Snippet(path: "Tpu_DeleteQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/deleteQueuedResourcePollingUntilDone(request:options:)``
   public func deleteQueuedResourcePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -984,6 +1390,13 @@ extension Clients.TpuProtocol {
     try await self.deleteQueuedResourcePollingUntilDone(request: request)
   }
 
+  /// Resets a QueuedResource TPU instance
+  ///
+  /// @Snippet(path: "Tpu_ResetQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/resetQueuedResource(request:options:)``
   public func resetQueuedResource(request: ResetQueuedResourceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -996,6 +1409,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resets a QueuedResource TPU instance
+  ///
+  /// @Snippet(path: "Tpu_ResetQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/resetQueuedResourcePollingUntilDone(request:options:)``
   public func resetQueuedResourcePollingUntilDone(request: ResetQueuedResourceRequest) async throws
     -> QueuedResource
   {
@@ -1008,6 +1428,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resets a QueuedResource TPU instance
+  ///
+  /// @Snippet(path: "Tpu_ResetQueuedResource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/resetQueuedResourcePollingUntilDone(request:options:)``
   public func resetQueuedResourcePollingUntilDone(
     name: Swift.String,
   ) async throws -> QueuedResource {
@@ -1017,6 +1444,13 @@ extension Clients.TpuProtocol {
     return try await self.resetQueuedResourcePollingUntilDone(request: request)
   }
 
+  /// Generates the Cloud TPU service identity for the project.
+  ///
+  /// @Snippet(path: "Tpu_GenerateServiceIdentity")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/generateServiceIdentity(request:options:)``
   public func generateServiceIdentity(request: GenerateServiceIdentityRequest) async throws
     -> GoogleCloudTpuV2.GenerateServiceIdentityResponse
   {
@@ -1029,6 +1463,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists accelerator types supported by this API.
+  ///
+  /// @Snippet(path: "Tpu_ListAcceleratorTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listAcceleratorTypes(request:options:)``
   public func listAcceleratorTypes(request: ListAcceleratorTypesRequest) async throws
     -> GoogleCloudTpuV2.ListAcceleratorTypesResponse
   {
@@ -1041,6 +1482,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists accelerator types supported by this API.
+  ///
+  /// @Snippet(path: "Tpu_ListAcceleratorTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listAcceleratorTypes(request:options:)``
   public func listAcceleratorTypesByItems(
     request: ListAcceleratorTypesRequest
   ) -> some AsyncSequence<AcceleratorType, any Swift.Error> & Sendable {
@@ -1050,6 +1498,10 @@ extension Clients.TpuProtocol {
   /// Lists accelerator types supported by this API.
   ///
   /// @Snippet(path: "Tpu_ListAcceleratorTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listAcceleratorTypes(request:options:)``
   public func listAcceleratorTypesByItems(
     request: ListAcceleratorTypesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AcceleratorType, any Swift.Error> & Sendable {
@@ -1064,6 +1516,13 @@ extension Clients.TpuProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists accelerator types supported by this API.
+  ///
+  /// @Snippet(path: "Tpu_ListAcceleratorTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listAcceleratorTypes(request:options:)``
   public func listAcceleratorTypesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AcceleratorType, any Swift.Error> & Sendable {
@@ -1073,6 +1532,13 @@ extension Clients.TpuProtocol {
     return self.listAcceleratorTypesByItems(request: request)
   }
 
+  /// Gets AcceleratorType.
+  ///
+  /// @Snippet(path: "Tpu_GetAcceleratorType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/getAcceleratorType(request:options:)``
   public func getAcceleratorType(request: GetAcceleratorTypeRequest) async throws
     -> GoogleCloudTpuV2.AcceleratorType
   {
@@ -1085,6 +1551,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets AcceleratorType.
+  ///
+  /// @Snippet(path: "Tpu_GetAcceleratorType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/getAcceleratorType(request:options:)``
   public func getAcceleratorType(
     name: Swift.String,
   ) async throws -> GoogleCloudTpuV2.AcceleratorType {
@@ -1094,6 +1567,13 @@ extension Clients.TpuProtocol {
     return try await self.getAcceleratorType(request: request)
   }
 
+  /// Lists runtime versions supported by this API.
+  ///
+  /// @Snippet(path: "Tpu_ListRuntimeVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listRuntimeVersions(request:options:)``
   public func listRuntimeVersions(request: ListRuntimeVersionsRequest) async throws
     -> GoogleCloudTpuV2.ListRuntimeVersionsResponse
   {
@@ -1106,6 +1586,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists runtime versions supported by this API.
+  ///
+  /// @Snippet(path: "Tpu_ListRuntimeVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listRuntimeVersions(request:options:)``
   public func listRuntimeVersionsByItems(
     request: ListRuntimeVersionsRequest
   ) -> some AsyncSequence<RuntimeVersion, any Swift.Error> & Sendable {
@@ -1115,6 +1602,10 @@ extension Clients.TpuProtocol {
   /// Lists runtime versions supported by this API.
   ///
   /// @Snippet(path: "Tpu_ListRuntimeVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listRuntimeVersions(request:options:)``
   public func listRuntimeVersionsByItems(
     request: ListRuntimeVersionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<RuntimeVersion, any Swift.Error> & Sendable {
@@ -1129,6 +1620,13 @@ extension Clients.TpuProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists runtime versions supported by this API.
+  ///
+  /// @Snippet(path: "Tpu_ListRuntimeVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listRuntimeVersions(request:options:)``
   public func listRuntimeVersionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<RuntimeVersion, any Swift.Error> & Sendable {
@@ -1138,6 +1636,13 @@ extension Clients.TpuProtocol {
     return self.listRuntimeVersionsByItems(request: request)
   }
 
+  /// Gets a runtime version.
+  ///
+  /// @Snippet(path: "Tpu_GetRuntimeVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/getRuntimeVersion(request:options:)``
   public func getRuntimeVersion(request: GetRuntimeVersionRequest) async throws
     -> GoogleCloudTpuV2.RuntimeVersion
   {
@@ -1150,6 +1655,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a runtime version.
+  ///
+  /// @Snippet(path: "Tpu_GetRuntimeVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/getRuntimeVersion(request:options:)``
   public func getRuntimeVersion(
     name: Swift.String,
   ) async throws -> GoogleCloudTpuV2.RuntimeVersion {
@@ -1159,6 +1671,13 @@ extension Clients.TpuProtocol {
     return try await self.getRuntimeVersion(request: request)
   }
 
+  /// Retrieves the guest attributes for the node.
+  ///
+  /// @Snippet(path: "Tpu_GetGuestAttributes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/getGuestAttributes(request:options:)``
   public func getGuestAttributes(request: GetGuestAttributesRequest) async throws
     -> GoogleCloudTpuV2.GetGuestAttributesResponse
   {
@@ -1171,6 +1690,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Tpu_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1183,6 +1709,13 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Tpu_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1192,6 +1725,10 @@ extension Clients.TpuProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Tpu_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1205,6 +1742,13 @@ extension Clients.TpuProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "Tpu_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1217,6 +1761,15 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tpu_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1229,6 +1782,15 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tpu_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1240,6 +1802,10 @@ extension Clients.TpuProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Tpu_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1253,6 +1819,15 @@ extension Clients.TpuProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tpu_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1264,6 +1839,9 @@ extension Clients.TpuProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1276,6 +1854,9 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1285,6 +1866,15 @@ extension Clients.TpuProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tpu_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1295,6 +1885,15 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tpu_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1304,6 +1903,15 @@ extension Clients.TpuProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tpu_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1314,6 +1922,15 @@ extension Clients.TpuProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Tpu_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TpuClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

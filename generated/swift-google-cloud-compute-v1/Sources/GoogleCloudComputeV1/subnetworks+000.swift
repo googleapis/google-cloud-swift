@@ -24,6 +24,10 @@
   /// Service for the `subnetworks` resource.
   ///
   /// @Snippet(path: "subnetworksQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SubnetworksProtocol``
   public final class SubnetworksClient: Clients.SubnetworksProtocol, Sendable {
     let inner: any Clients.SubnetworksStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "subnetworks_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
+    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: SubnetworksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SubnetworkAggregatedList {
@@ -56,6 +67,13 @@
     /// Deletes the specified subnetwork.
     ///
     /// @Snippet(path: "subnetworks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:subnetwork:)``
     public func delete(
       request: SubnetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -70,6 +88,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "subnetworks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:region:subnetwork:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: SubnetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -112,6 +137,13 @@
     /// Expands the IP CIDR range of the subnetwork to a specified value.
     ///
     /// @Snippet(path: "subnetworks_expandIpCidrRange")
+    ///
+    /// ## See Also
+    ///
+    /// - ``expandIpCidrRange(request:)``
+    /// - ``expandIpCidrRangePollingUntilDone(request:)``
+    /// - ``expandIpCidrRangePollingUntilDone(request:options:)``
+    /// - ``expandIpCidrRangePollingUntilDone(project:region:subnetwork:body:)``
     public func expandIpCidrRange(
       request: SubnetworksClient.ExpandIpCidrRangeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -126,6 +158,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "subnetworks_expandIpCidrRange")
+    ///
+    /// ## See Also
+    ///
+    /// - ``expandIpCidrRangePollingUntilDone(request:)``
+    /// - ``expandIpCidrRangePollingUntilDone(project:region:subnetwork:body:)``
+    /// - ``expandIpCidrRange(request:)``
+    /// - ``expandIpCidrRange(request:options:)``
     public func expandIpCidrRangePollingUntilDone(
       request: SubnetworksClient.ExpandIpCidrRangeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -168,6 +207,11 @@
     /// Returns the specified subnetwork.
     ///
     /// @Snippet(path: "subnetworks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:subnetwork:)``
     public func `get`(
       request: SubnetworksClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Subnetwork {
@@ -178,6 +222,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "subnetworks_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(project:region:resource:)``
     public func getIamPolicy(
       request: SubnetworksClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -188,6 +237,13 @@
     /// included in the request.
     ///
     /// @Snippet(path: "subnetworks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: SubnetworksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -203,6 +259,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "subnetworks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: SubnetworksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -246,6 +309,13 @@
     /// project.
     ///
     /// @Snippet(path: "subnetworks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:region:)``
     public func list(
       request: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SubnetworkList {
@@ -255,6 +325,13 @@
     /// Retrieves an aggregated list of all usable subnetworks in the project.
     ///
     /// @Snippet(path: "subnetworks_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listUsable(request:)``
+    /// - ``listUsableByItems(request:)``
+    /// - ``listUsableByItems(request:options:)``
+    /// - ``listUsableByItems(project:)``
     public func listUsable(
       request: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList {
@@ -268,6 +345,13 @@
     /// subnetwork resource being patched.
     ///
     /// @Snippet(path: "subnetworks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:subnetwork:body:)``
     public func patch(
       request: SubnetworksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -286,6 +370,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "subnetworks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:region:subnetwork:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: SubnetworksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -329,6 +420,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "subnetworks_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(project:region:resource:body:)``
     public func setIamPolicy(
       request: SubnetworksClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -339,6 +435,13 @@
     /// external IP addresses through Private Google Access.
     ///
     /// @Snippet(path: "subnetworks_setPrivateIpGoogleAccess")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setPrivateIpGoogleAccess(request:)``
+    /// - ``setPrivateIpGoogleAccessPollingUntilDone(request:)``
+    /// - ``setPrivateIpGoogleAccessPollingUntilDone(request:options:)``
+    /// - ``setPrivateIpGoogleAccessPollingUntilDone(project:region:subnetwork:body:)``
     public func setPrivateIpGoogleAccess(
       request: SubnetworksClient.SetPrivateIpGoogleAccessRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -354,6 +457,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "subnetworks_setPrivateIpGoogleAccess")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setPrivateIpGoogleAccessPollingUntilDone(request:)``
+    /// - ``setPrivateIpGoogleAccessPollingUntilDone(project:region:subnetwork:body:)``
+    /// - ``setPrivateIpGoogleAccess(request:)``
+    /// - ``setPrivateIpGoogleAccess(request:options:)``
     public func setPrivateIpGoogleAccessPollingUntilDone(
       request: SubnetworksClient.SetPrivateIpGoogleAccessRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -396,6 +506,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "subnetworks_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:region:resource:body:)``
     public func testIamPermissions(
       request: SubnetworksClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -535,6 +650,16 @@
 
   // Default implementations
   extension Clients.SubnetworksProtocol {
+    /// Retrieves an aggregated list of subnetworks.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "subnetworks_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/aggregatedList(request:options:)``
     public func aggregatedList(request: SubnetworksClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.SubnetworkAggregatedList
     {
@@ -547,6 +672,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of subnetworks.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "subnetworks_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: SubnetworksClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, SubnetworksScopedList), any Swift.Error> & Sendable {
@@ -559,6 +694,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "subnetworks_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: SubnetworksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, SubnetworksScopedList), any Swift.Error> & Sendable {
@@ -573,6 +712,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of subnetworks.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "subnetworks_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, SubnetworksScopedList), any Swift.Error> & Sendable {
@@ -582,6 +731,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified subnetwork.
+    ///
+    /// @Snippet(path: "subnetworks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/delete(request:options:)``
     public func delete(request: SubnetworksClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -594,6 +750,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified subnetwork.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "subnetworks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: SubnetworksClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -606,6 +774,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified subnetwork.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "subnetworks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -619,6 +799,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Expands the IP CIDR range of the subnetwork to a specified value.
+    ///
+    /// @Snippet(path: "subnetworks_expandIpCidrRange")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/expandIpCidrRange(request:options:)``
     public func expandIpCidrRange(request: SubnetworksClient.ExpandIpCidrRangeRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -631,6 +818,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Expands the IP CIDR range of the subnetwork to a specified value.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "subnetworks_expandIpCidrRange")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/expandIpCidrRangePollingUntilDone(request:options:)``
     public func expandIpCidrRangePollingUntilDone(
       request: SubnetworksClient.ExpandIpCidrRangeRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -643,6 +842,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Expands the IP CIDR range of the subnetwork to a specified value.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "subnetworks_expandIpCidrRange")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/expandIpCidrRangePollingUntilDone(request:options:)``
     public func expandIpCidrRangePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -658,6 +869,13 @@
       return try await self.expandIpCidrRangePollingUntilDone(request: request)
     }
 
+    /// Returns the specified subnetwork.
+    ///
+    /// @Snippet(path: "subnetworks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/get(request:options:)``
     public func `get`(request: SubnetworksClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Subnetwork
     {
@@ -670,6 +888,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified subnetwork.
+    ///
+    /// @Snippet(path: "subnetworks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -683,6 +908,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "subnetworks_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: SubnetworksClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -695,6 +928,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "subnetworks_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -708,6 +949,14 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates a subnetwork in the specified project using the data
+    /// included in the request.
+    ///
+    /// @Snippet(path: "subnetworks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/insert(request:options:)``
     public func insert(request: SubnetworksClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -720,6 +969,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a subnetwork in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "subnetworks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: SubnetworksClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -732,6 +994,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a subnetwork in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "subnetworks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -745,6 +1020,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of subnetworks available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "subnetworks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/list(request:options:)``
     public func list(request: SubnetworksClient.ListRequest) async throws
       -> GoogleCloudComputeV1.SubnetworkList
     {
@@ -757,6 +1040,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of subnetworks available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "subnetworks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/list(request:options:)``
     public func listByItems(
       request: SubnetworksClient.ListRequest
     ) -> some AsyncSequence<Subnetwork, any Swift.Error> & Sendable {
@@ -767,6 +1058,10 @@
     /// project.
     ///
     /// @Snippet(path: "subnetworks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/list(request:options:)``
     public func listByItems(
       request: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Subnetwork, any Swift.Error> & Sendable {
@@ -780,6 +1075,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of subnetworks available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "subnetworks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -791,6 +1094,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Retrieves an aggregated list of all usable subnetworks in the project.
+    ///
+    /// @Snippet(path: "subnetworks_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/listUsable(request:options:)``
     public func listUsable(request: SubnetworksClient.ListUsableRequest) async throws
       -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList
     {
@@ -803,6 +1113,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of all usable subnetworks in the project.
+    ///
+    /// @Snippet(path: "subnetworks_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/listUsable(request:options:)``
     public func listUsableByItems(
       request: SubnetworksClient.ListUsableRequest
     ) -> some AsyncSequence<UsableSubnetwork, any Swift.Error> & Sendable {
@@ -812,6 +1129,10 @@
     /// Retrieves an aggregated list of all usable subnetworks in the project.
     ///
     /// @Snippet(path: "subnetworks_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/listUsable(request:options:)``
     public func listUsableByItems(
       request: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<UsableSubnetwork, any Swift.Error> & Sendable {
@@ -826,6 +1147,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of all usable subnetworks in the project.
+    ///
+    /// @Snippet(path: "subnetworks_listUsable")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/listUsable(request:options:)``
     public func listUsableByItems(
       project: Swift.String,
     ) -> some AsyncSequence<UsableSubnetwork, any Swift.Error> & Sendable {
@@ -835,6 +1163,17 @@
       return self.listUsableByItems(request: request)
     }
 
+    /// Patches the specified subnetwork with the data included in the request.
+    /// Only certain fields can be updated with a patch request
+    /// as indicated in the field descriptions.
+    /// You must specify the current fingerprint of the
+    /// subnetwork resource being patched.
+    ///
+    /// @Snippet(path: "subnetworks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/patch(request:options:)``
     public func patch(request: SubnetworksClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -847,6 +1186,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified subnetwork with the data included in the request.
+    /// Only certain fields can be updated with a patch request
+    /// as indicated in the field descriptions.
+    /// You must specify the current fingerprint of the
+    /// subnetwork resource being patched.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "subnetworks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: SubnetworksClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -859,6 +1214,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified subnetwork with the data included in the request.
+    /// Only certain fields can be updated with a patch request
+    /// as indicated in the field descriptions.
+    /// You must specify the current fingerprint of the
+    /// subnetwork resource being patched.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "subnetworks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -874,6 +1245,14 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "subnetworks_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: SubnetworksClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -886,6 +1265,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "subnetworks_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -901,6 +1288,14 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Set whether VMs in this subnet can access Google services without assigning
+    /// external IP addresses through Private Google Access.
+    ///
+    /// @Snippet(path: "subnetworks_setPrivateIpGoogleAccess")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/setPrivateIpGoogleAccess(request:options:)``
     public func setPrivateIpGoogleAccess(request: SubnetworksClient.SetPrivateIpGoogleAccessRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -913,6 +1308,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Set whether VMs in this subnet can access Google services without assigning
+    /// external IP addresses through Private Google Access.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "subnetworks_setPrivateIpGoogleAccess")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/setPrivateIpGoogleAccessPollingUntilDone(request:options:)``
     public func setPrivateIpGoogleAccessPollingUntilDone(
       request: SubnetworksClient.SetPrivateIpGoogleAccessRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -926,6 +1334,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Set whether VMs in this subnet can access Google services without assigning
+    /// external IP addresses through Private Google Access.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "subnetworks_setPrivateIpGoogleAccess")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/setPrivateIpGoogleAccessPollingUntilDone(request:options:)``
     public func setPrivateIpGoogleAccessPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -941,6 +1362,13 @@
       return try await self.setPrivateIpGoogleAccessPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "subnetworks_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: SubnetworksClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -953,6 +1381,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "subnetworks_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SubnetworksClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -968,6 +1403,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

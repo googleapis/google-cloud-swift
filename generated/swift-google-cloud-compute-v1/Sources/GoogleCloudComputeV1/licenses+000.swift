@@ -24,6 +24,10 @@
   /// Service for the `licenses` resource.
   ///
   /// @Snippet(path: "licensesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/LicensesProtocol``
   public final class LicensesClient: Clients.LicensesProtocol, Sendable {
     let inner: any Clients.LicensesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@
     /// images.
     ///
     /// @Snippet(path: "licenses_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:license:)``
     public func delete(
       request: LicensesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -64,6 +75,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "licenses_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:license:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: LicensesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -108,6 +126,11 @@
     /// images.
     ///
     /// @Snippet(path: "licenses_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:license:)``
     public func `get`(
       request: LicensesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.License {
@@ -121,6 +144,11 @@
     /// images.
     ///
     /// @Snippet(path: "licenses_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(project:resource:)``
     public func getIamPolicy(
       request: LicensesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -133,6 +161,13 @@
     /// images.
     ///
     /// @Snippet(path: "licenses_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: LicensesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -150,6 +185,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "licenses_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: LicensesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -199,6 +241,13 @@
     /// images.
     ///
     /// @Snippet(path: "licenses_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:)``
     public func list(
       request: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.LicensesListResponse {
@@ -212,6 +261,11 @@
     /// images.
     ///
     /// @Snippet(path: "licenses_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(project:resource:body:)``
     public func setIamPolicy(
       request: LicensesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -224,6 +278,11 @@
     /// images.
     ///
     /// @Snippet(path: "licenses_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:resource:body:)``
     public func testIamPermissions(
       request: LicensesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -236,6 +295,13 @@
     /// images.
     ///
     /// @Snippet(path: "licenses_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
+    /// - ``updatePollingUntilDone(project:license:body:)``
     public func update(
       request: LicensesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -253,6 +319,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "licenses_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(project:license:body:)``
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
     public func updatePollingUntilDone(
       request: LicensesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -382,6 +455,16 @@
 
   // Default implementations
   extension Clients.LicensesProtocol {
+    /// Deletes the specified license.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/delete(request:options:)``
     public func delete(request: LicensesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -394,6 +477,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified license.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "licenses_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: LicensesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -406,6 +504,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified license.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "licenses_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       license: Swift.String,
@@ -417,6 +530,16 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified License resource.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/get(request:options:)``
     public func `get`(request: LicensesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.License
     {
@@ -429,6 +552,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified License resource.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       license: Swift.String,
@@ -440,6 +573,17 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: LicensesClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -452,6 +596,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -463,6 +618,16 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Create a License resource in the specified project.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/insert(request:options:)``
     public func insert(request: LicensesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -475,6 +640,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Create a License resource in the specified project.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "licenses_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: LicensesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -487,6 +667,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Create a License resource in the specified project.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "licenses_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: License?,
@@ -498,6 +693,21 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of licenses
+    /// available in the specified project. This method does not
+    /// get any licenses that belong to other projects, including licenses attached
+    /// to publicly-available images, like Debian 9. If you want to get a list of
+    /// publicly-available licenses, use this method to make a request to the
+    /// respective image project, such as debian-cloud orwindows-cloud.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/list(request:options:)``
     public func list(request: LicensesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.LicensesListResponse
     {
@@ -510,6 +720,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of licenses
+    /// available in the specified project. This method does not
+    /// get any licenses that belong to other projects, including licenses attached
+    /// to publicly-available images, like Debian 9. If you want to get a list of
+    /// publicly-available licenses, use this method to make a request to the
+    /// respective image project, such as debian-cloud orwindows-cloud.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/list(request:options:)``
     public func listByItems(
       request: LicensesClient.ListRequest
     ) -> some AsyncSequence<License, any Swift.Error> & Sendable {
@@ -527,6 +752,10 @@
     /// images.
     ///
     /// @Snippet(path: "licenses_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/list(request:options:)``
     public func listByItems(
       request: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<License, any Swift.Error> & Sendable {
@@ -540,6 +769,21 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of licenses
+    /// available in the specified project. This method does not
+    /// get any licenses that belong to other projects, including licenses attached
+    /// to publicly-available images, like Debian 9. If you want to get a list of
+    /// publicly-available licenses, use this method to make a request to the
+    /// respective image project, such as debian-cloud orwindows-cloud.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<License, any Swift.Error> & Sendable {
@@ -549,6 +793,17 @@
       return self.listByItems(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: LicensesClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -561,6 +816,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -574,6 +840,16 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: LicensesClient.TestIamPermissionsRequest) async throws
       -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -586,6 +862,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       resource: Swift.String,
@@ -599,6 +885,16 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Updates a License resource in the specified project.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// @Snippet(path: "licenses_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/update(request:options:)``
     public func update(request: LicensesClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -611,6 +907,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a License resource in the specified project.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "licenses_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: LicensesClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -623,6 +934,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a License resource in the specified project.
+    ///  *Caution* This resource is intended
+    /// for use only by third-party partners who are creatingCloud Marketplace
+    /// images.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "licenses_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``LicensesClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       license: Swift.String,
@@ -636,6 +962,7 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

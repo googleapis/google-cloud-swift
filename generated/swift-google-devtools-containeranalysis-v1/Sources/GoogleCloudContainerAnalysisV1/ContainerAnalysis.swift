@@ -36,6 +36,10 @@ import Foundation
 /// image with the vulnerability referring to that note.
 ///
 /// @Snippet(path: "ContainerAnalysisQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ContainerAnalysisProtocol``
 public final class ContainerAnalysisClient: Clients.ContainerAnalysisProtocol, Sendable {
   let inner: any Clients.ContainerAnalysisStub
 
@@ -59,6 +63,11 @@ public final class ContainerAnalysisClient: Clients.ContainerAnalysisProtocol, S
   /// occurrences.
   ///
   /// @Snippet(path: "ContainerAnalysis_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
+  /// - ``setIamPolicy(resource:policy:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -75,6 +84,11 @@ public final class ContainerAnalysisClient: Clients.ContainerAnalysisProtocol, S
   /// occurrences.
   ///
   /// @Snippet(path: "ContainerAnalysis_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
+  /// - ``getIamPolicy(resource:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -90,6 +104,11 @@ public final class ContainerAnalysisClient: Clients.ContainerAnalysisProtocol, S
   /// occurrences.
   ///
   /// @Snippet(path: "ContainerAnalysis_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
+  /// - ``testIamPermissions(resource:permissions:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -99,6 +118,11 @@ public final class ContainerAnalysisClient: Clients.ContainerAnalysisProtocol, S
   /// Gets a summary of the number and severity of occurrences.
   ///
   /// @Snippet(path: "ContainerAnalysis_GetVulnerabilityOccurrencesSummary")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getVulnerabilityOccurrencesSummary(request:)``
+  /// - ``getVulnerabilityOccurrencesSummary(parent:filter:)``
   public func getVulnerabilityOccurrencesSummary(
     request: GetVulnerabilityOccurrencesSummaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerAnalysisV1.VulnerabilityOccurrencesSummary {
@@ -108,6 +132,10 @@ public final class ContainerAnalysisClient: Clients.ContainerAnalysisProtocol, S
   /// Generates an SBOM for the given resource.
   ///
   /// @Snippet(path: "ContainerAnalysis_ExportSBOM")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportSbom(request:)``
   public func exportSbom(
     request: ExportSBOMRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerAnalysisV1.ExportSBOMResponse {
@@ -151,6 +179,20 @@ extension Clients {
 
 // Default implementations
 extension Clients.ContainerAnalysisProtocol {
+  /// Sets the access control policy on the specified note or occurrence.
+  /// Requires `containeranalysis.notes.setIamPolicy` or
+  /// `containeranalysis.occurrences.setIamPolicy` permission if the resource is
+  /// a note or an occurrence, respectively.
+  ///
+  /// The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for
+  /// notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for
+  /// occurrences.
+  ///
+  /// @Snippet(path: "ContainerAnalysis_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ContainerAnalysisClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -163,6 +205,20 @@ extension Clients.ContainerAnalysisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified note or occurrence.
+  /// Requires `containeranalysis.notes.setIamPolicy` or
+  /// `containeranalysis.occurrences.setIamPolicy` permission if the resource is
+  /// a note or an occurrence, respectively.
+  ///
+  /// The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for
+  /// notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for
+  /// occurrences.
+  ///
+  /// @Snippet(path: "ContainerAnalysis_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ContainerAnalysisClient/setIamPolicy(request:options:)``
   public func setIamPolicy(
     resource: Swift.String,
     policy: GoogleIAMV1.Policy?,
@@ -174,6 +230,20 @@ extension Clients.ContainerAnalysisProtocol {
     return try await self.setIamPolicy(request: request)
   }
 
+  /// Gets the access control policy for a note or an occurrence resource.
+  /// Requires `containeranalysis.notes.setIamPolicy` or
+  /// `containeranalysis.occurrences.setIamPolicy` permission if the resource is
+  /// a note or occurrence, respectively.
+  ///
+  /// The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for
+  /// notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for
+  /// occurrences.
+  ///
+  /// @Snippet(path: "ContainerAnalysis_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ContainerAnalysisClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -186,6 +256,20 @@ extension Clients.ContainerAnalysisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a note or an occurrence resource.
+  /// Requires `containeranalysis.notes.setIamPolicy` or
+  /// `containeranalysis.occurrences.setIamPolicy` permission if the resource is
+  /// a note or occurrence, respectively.
+  ///
+  /// The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for
+  /// notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for
+  /// occurrences.
+  ///
+  /// @Snippet(path: "ContainerAnalysis_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ContainerAnalysisClient/getIamPolicy(request:options:)``
   public func getIamPolicy(
     resource: Swift.String,
   ) async throws -> GoogleIAMV1.Policy {
@@ -195,6 +279,19 @@ extension Clients.ContainerAnalysisProtocol {
     return try await self.getIamPolicy(request: request)
   }
 
+  /// Returns the permissions that a caller has on the specified note or
+  /// occurrence. Requires list permission on the project (for example,
+  /// `containeranalysis.notes.list`).
+  ///
+  /// The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for
+  /// notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for
+  /// occurrences.
+  ///
+  /// @Snippet(path: "ContainerAnalysis_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ContainerAnalysisClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -207,6 +304,19 @@ extension Clients.ContainerAnalysisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the permissions that a caller has on the specified note or
+  /// occurrence. Requires list permission on the project (for example,
+  /// `containeranalysis.notes.list`).
+  ///
+  /// The resource takes the format `projects/[PROJECT_ID]/notes/[NOTE_ID]` for
+  /// notes and `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]` for
+  /// occurrences.
+  ///
+  /// @Snippet(path: "ContainerAnalysis_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ContainerAnalysisClient/testIamPermissions(request:options:)``
   public func testIamPermissions(
     resource: Swift.String,
     permissions: [Swift.String],
@@ -218,6 +328,13 @@ extension Clients.ContainerAnalysisProtocol {
     return try await self.testIamPermissions(request: request)
   }
 
+  /// Gets a summary of the number and severity of occurrences.
+  ///
+  /// @Snippet(path: "ContainerAnalysis_GetVulnerabilityOccurrencesSummary")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ContainerAnalysisClient/getVulnerabilityOccurrencesSummary(request:options:)``
   public func getVulnerabilityOccurrencesSummary(request: GetVulnerabilityOccurrencesSummaryRequest)
     async throws -> GoogleCloudContainerAnalysisV1.VulnerabilityOccurrencesSummary
   {
@@ -230,6 +347,13 @@ extension Clients.ContainerAnalysisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a summary of the number and severity of occurrences.
+  ///
+  /// @Snippet(path: "ContainerAnalysis_GetVulnerabilityOccurrencesSummary")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ContainerAnalysisClient/getVulnerabilityOccurrencesSummary(request:options:)``
   public func getVulnerabilityOccurrencesSummary(
     parent: Swift.String,
     filter: Swift.String,
@@ -241,6 +365,13 @@ extension Clients.ContainerAnalysisProtocol {
     return try await self.getVulnerabilityOccurrencesSummary(request: request)
   }
 
+  /// Generates an SBOM for the given resource.
+  ///
+  /// @Snippet(path: "ContainerAnalysis_ExportSBOM")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ContainerAnalysisClient/exportSbom(request:options:)``
   public func exportSbom(request: ExportSBOMRequest) async throws
     -> GoogleCloudContainerAnalysisV1.ExportSBOMResponse
   {

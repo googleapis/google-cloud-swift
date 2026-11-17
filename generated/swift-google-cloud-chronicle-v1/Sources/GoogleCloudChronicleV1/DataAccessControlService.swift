@@ -26,6 +26,10 @@ import Foundation
 /// access control.
 ///
 /// @Snippet(path: "DataAccessControlServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DataAccessControlServiceProtocol``
 public final class DataAccessControlServiceClient: Clients.DataAccessControlServiceProtocol,
   Sendable
 {
@@ -50,6 +54,11 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// to UDM queries over event data.
   ///
   /// @Snippet(path: "DataAccessControlService_CreateDataAccessLabel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDataAccessLabel(request:)``
+  /// - ``createDataAccessLabel(parent:dataAccessLabel:dataAccessLabelId:)``
   public func createDataAccessLabel(
     request: CreateDataAccessLabelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
@@ -59,6 +68,11 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// Gets a data access label.
   ///
   /// @Snippet(path: "DataAccessControlService_GetDataAccessLabel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDataAccessLabel(request:)``
+  /// - ``getDataAccessLabel(name:)``
   public func getDataAccessLabel(
     request: GetDataAccessLabelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
@@ -68,6 +82,13 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// Lists all data access labels for the customer.
   ///
   /// @Snippet(path: "DataAccessControlService_ListDataAccessLabels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDataAccessLabels(request:)``
+  /// - ``listDataAccessLabelsByItems(request:)``
+  /// - ``listDataAccessLabelsByItems(request:options:)``
+  /// - ``listDataAccessLabelsByItems(parent:)``
   public func listDataAccessLabels(
     request: ListDataAccessLabelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListDataAccessLabelsResponse {
@@ -77,6 +98,11 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// Updates a data access label.
   ///
   /// @Snippet(path: "DataAccessControlService_UpdateDataAccessLabel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataAccessLabel(request:)``
+  /// - ``updateDataAccessLabel(dataAccessLabel:updateMask:)``
   public func updateDataAccessLabel(
     request: UpdateDataAccessLabelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
@@ -88,6 +114,11 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// will not be removed from old data that still refers to it.
   ///
   /// @Snippet(path: "DataAccessControlService_DeleteDataAccessLabel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDataAccessLabel(request:)``
+  /// - ``deleteDataAccessLabel(name:)``
   public func deleteDataAccessLabel(
     request: DeleteDataAccessLabelRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -102,6 +133,11 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// not labeled with either C or D.
   ///
   /// @Snippet(path: "DataAccessControlService_CreateDataAccessScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDataAccessScope(request:)``
+  /// - ``createDataAccessScope(parent:dataAccessScope:dataAccessScopeId:)``
   public func createDataAccessScope(
     request: CreateDataAccessScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
@@ -111,6 +147,11 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// Retrieves an existing data access scope.
   ///
   /// @Snippet(path: "DataAccessControlService_GetDataAccessScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDataAccessScope(request:)``
+  /// - ``getDataAccessScope(name:)``
   public func getDataAccessScope(
     request: GetDataAccessScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
@@ -120,6 +161,13 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// Lists all existing data access scopes for the customer.
   ///
   /// @Snippet(path: "DataAccessControlService_ListDataAccessScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDataAccessScopes(request:)``
+  /// - ``listDataAccessScopesByItems(request:)``
+  /// - ``listDataAccessScopesByItems(request:options:)``
+  /// - ``listDataAccessScopesByItems(parent:)``
   public func listDataAccessScopes(
     request: ListDataAccessScopesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListDataAccessScopesResponse {
@@ -129,6 +177,11 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// Updates a data access scope.
   ///
   /// @Snippet(path: "DataAccessControlService_UpdateDataAccessScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataAccessScope(request:)``
+  /// - ``updateDataAccessScope(dataAccessScope:updateMask:)``
   public func updateDataAccessScope(
     request: UpdateDataAccessScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
@@ -138,6 +191,11 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// Deletes a data access scope.
   ///
   /// @Snippet(path: "DataAccessControlService_DeleteDataAccessScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDataAccessScope(request:)``
+  /// - ``deleteDataAccessScope(name:)``
   public func deleteDataAccessScope(
     request: DeleteDataAccessScopeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -149,6 +207,13 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataAccessControlService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -171,6 +236,11 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataAccessControlService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -182,6 +252,11 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataAccessControlService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -265,6 +340,18 @@ extension Clients {
 
 // Default implementations
 extension Clients.DataAccessControlServiceProtocol {
+  /// Creates a data access label.
+  /// Data access labels are applied to incoming event data and selected in data
+  /// access scopes (another resource), and only users with scopes containing the
+  /// label can see data with that label. Currently, the data access label
+  /// resource only includes custom labels, which are labels that correspond
+  /// to UDM queries over event data.
+  ///
+  /// @Snippet(path: "DataAccessControlService_CreateDataAccessLabel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/createDataAccessLabel(request:options:)``
   public func createDataAccessLabel(request: CreateDataAccessLabelRequest) async throws
     -> GoogleCloudChronicleV1.DataAccessLabel
   {
@@ -277,6 +364,18 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a data access label.
+  /// Data access labels are applied to incoming event data and selected in data
+  /// access scopes (another resource), and only users with scopes containing the
+  /// label can see data with that label. Currently, the data access label
+  /// resource only includes custom labels, which are labels that correspond
+  /// to UDM queries over event data.
+  ///
+  /// @Snippet(path: "DataAccessControlService_CreateDataAccessLabel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/createDataAccessLabel(request:options:)``
   public func createDataAccessLabel(
     parent: Swift.String,
     dataAccessLabel: DataAccessLabel?,
@@ -290,6 +389,13 @@ extension Clients.DataAccessControlServiceProtocol {
     return try await self.createDataAccessLabel(request: request)
   }
 
+  /// Gets a data access label.
+  ///
+  /// @Snippet(path: "DataAccessControlService_GetDataAccessLabel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/getDataAccessLabel(request:options:)``
   public func getDataAccessLabel(request: GetDataAccessLabelRequest) async throws
     -> GoogleCloudChronicleV1.DataAccessLabel
   {
@@ -302,6 +408,13 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a data access label.
+  ///
+  /// @Snippet(path: "DataAccessControlService_GetDataAccessLabel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/getDataAccessLabel(request:options:)``
   public func getDataAccessLabel(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
@@ -311,6 +424,13 @@ extension Clients.DataAccessControlServiceProtocol {
     return try await self.getDataAccessLabel(request: request)
   }
 
+  /// Lists all data access labels for the customer.
+  ///
+  /// @Snippet(path: "DataAccessControlService_ListDataAccessLabels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/listDataAccessLabels(request:options:)``
   public func listDataAccessLabels(request: ListDataAccessLabelsRequest) async throws
     -> GoogleCloudChronicleV1.ListDataAccessLabelsResponse
   {
@@ -323,6 +443,13 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all data access labels for the customer.
+  ///
+  /// @Snippet(path: "DataAccessControlService_ListDataAccessLabels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/listDataAccessLabels(request:options:)``
   public func listDataAccessLabelsByItems(
     request: ListDataAccessLabelsRequest
   ) -> some AsyncSequence<DataAccessLabel, any Swift.Error> & Sendable {
@@ -332,6 +459,10 @@ extension Clients.DataAccessControlServiceProtocol {
   /// Lists all data access labels for the customer.
   ///
   /// @Snippet(path: "DataAccessControlService_ListDataAccessLabels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/listDataAccessLabels(request:options:)``
   public func listDataAccessLabelsByItems(
     request: ListDataAccessLabelsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataAccessLabel, any Swift.Error> & Sendable {
@@ -346,6 +477,13 @@ extension Clients.DataAccessControlServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all data access labels for the customer.
+  ///
+  /// @Snippet(path: "DataAccessControlService_ListDataAccessLabels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/listDataAccessLabels(request:options:)``
   public func listDataAccessLabelsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DataAccessLabel, any Swift.Error> & Sendable {
@@ -355,6 +493,13 @@ extension Clients.DataAccessControlServiceProtocol {
     return self.listDataAccessLabelsByItems(request: request)
   }
 
+  /// Updates a data access label.
+  ///
+  /// @Snippet(path: "DataAccessControlService_UpdateDataAccessLabel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/updateDataAccessLabel(request:options:)``
   public func updateDataAccessLabel(request: UpdateDataAccessLabelRequest) async throws
     -> GoogleCloudChronicleV1.DataAccessLabel
   {
@@ -367,6 +512,13 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a data access label.
+  ///
+  /// @Snippet(path: "DataAccessControlService_UpdateDataAccessLabel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/updateDataAccessLabel(request:options:)``
   public func updateDataAccessLabel(
     dataAccessLabel: DataAccessLabel?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -378,6 +530,15 @@ extension Clients.DataAccessControlServiceProtocol {
     return try await self.updateDataAccessLabel(request: request)
   }
 
+  /// Deletes a data access label. When a label is deleted, new
+  /// data that enters in the system will not receive the label, but the label
+  /// will not be removed from old data that still refers to it.
+  ///
+  /// @Snippet(path: "DataAccessControlService_DeleteDataAccessLabel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/deleteDataAccessLabel(request:options:)``
   public func deleteDataAccessLabel(request: DeleteDataAccessLabelRequest) async throws {
     try await self.deleteDataAccessLabel(request: request, options: .init())
   }
@@ -388,6 +549,15 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a data access label. When a label is deleted, new
+  /// data that enters in the system will not receive the label, but the label
+  /// will not be removed from old data that still refers to it.
+  ///
+  /// @Snippet(path: "DataAccessControlService_DeleteDataAccessLabel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/deleteDataAccessLabel(request:options:)``
   public func deleteDataAccessLabel(
     name: Swift.String,
   ) async throws {
@@ -397,6 +567,18 @@ extension Clients.DataAccessControlServiceProtocol {
     try await self.deleteDataAccessLabel(request: request)
   }
 
+  /// Creates a data access scope.
+  /// Data access scope is a combination of allowed and denied labels attached
+  /// to a permission group. If a scope has allowed labels A and B and denied
+  /// labels C and D, then the group of people attached to the scope
+  /// will have permissions to see all events labeled with A or B (or both) and
+  /// not labeled with either C or D.
+  ///
+  /// @Snippet(path: "DataAccessControlService_CreateDataAccessScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/createDataAccessScope(request:options:)``
   public func createDataAccessScope(request: CreateDataAccessScopeRequest) async throws
     -> GoogleCloudChronicleV1.DataAccessScope
   {
@@ -409,6 +591,18 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a data access scope.
+  /// Data access scope is a combination of allowed and denied labels attached
+  /// to a permission group. If a scope has allowed labels A and B and denied
+  /// labels C and D, then the group of people attached to the scope
+  /// will have permissions to see all events labeled with A or B (or both) and
+  /// not labeled with either C or D.
+  ///
+  /// @Snippet(path: "DataAccessControlService_CreateDataAccessScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/createDataAccessScope(request:options:)``
   public func createDataAccessScope(
     parent: Swift.String,
     dataAccessScope: DataAccessScope?,
@@ -422,6 +616,13 @@ extension Clients.DataAccessControlServiceProtocol {
     return try await self.createDataAccessScope(request: request)
   }
 
+  /// Retrieves an existing data access scope.
+  ///
+  /// @Snippet(path: "DataAccessControlService_GetDataAccessScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/getDataAccessScope(request:options:)``
   public func getDataAccessScope(request: GetDataAccessScopeRequest) async throws
     -> GoogleCloudChronicleV1.DataAccessScope
   {
@@ -434,6 +635,13 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves an existing data access scope.
+  ///
+  /// @Snippet(path: "DataAccessControlService_GetDataAccessScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/getDataAccessScope(request:options:)``
   public func getDataAccessScope(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
@@ -443,6 +651,13 @@ extension Clients.DataAccessControlServiceProtocol {
     return try await self.getDataAccessScope(request: request)
   }
 
+  /// Lists all existing data access scopes for the customer.
+  ///
+  /// @Snippet(path: "DataAccessControlService_ListDataAccessScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/listDataAccessScopes(request:options:)``
   public func listDataAccessScopes(request: ListDataAccessScopesRequest) async throws
     -> GoogleCloudChronicleV1.ListDataAccessScopesResponse
   {
@@ -455,6 +670,13 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all existing data access scopes for the customer.
+  ///
+  /// @Snippet(path: "DataAccessControlService_ListDataAccessScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/listDataAccessScopes(request:options:)``
   public func listDataAccessScopesByItems(
     request: ListDataAccessScopesRequest
   ) -> some AsyncSequence<DataAccessScope, any Swift.Error> & Sendable {
@@ -464,6 +686,10 @@ extension Clients.DataAccessControlServiceProtocol {
   /// Lists all existing data access scopes for the customer.
   ///
   /// @Snippet(path: "DataAccessControlService_ListDataAccessScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/listDataAccessScopes(request:options:)``
   public func listDataAccessScopesByItems(
     request: ListDataAccessScopesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataAccessScope, any Swift.Error> & Sendable {
@@ -478,6 +704,13 @@ extension Clients.DataAccessControlServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all existing data access scopes for the customer.
+  ///
+  /// @Snippet(path: "DataAccessControlService_ListDataAccessScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/listDataAccessScopes(request:options:)``
   public func listDataAccessScopesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DataAccessScope, any Swift.Error> & Sendable {
@@ -487,6 +720,13 @@ extension Clients.DataAccessControlServiceProtocol {
     return self.listDataAccessScopesByItems(request: request)
   }
 
+  /// Updates a data access scope.
+  ///
+  /// @Snippet(path: "DataAccessControlService_UpdateDataAccessScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/updateDataAccessScope(request:options:)``
   public func updateDataAccessScope(request: UpdateDataAccessScopeRequest) async throws
     -> GoogleCloudChronicleV1.DataAccessScope
   {
@@ -499,6 +739,13 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a data access scope.
+  ///
+  /// @Snippet(path: "DataAccessControlService_UpdateDataAccessScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/updateDataAccessScope(request:options:)``
   public func updateDataAccessScope(
     dataAccessScope: DataAccessScope?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -510,6 +757,13 @@ extension Clients.DataAccessControlServiceProtocol {
     return try await self.updateDataAccessScope(request: request)
   }
 
+  /// Deletes a data access scope.
+  ///
+  /// @Snippet(path: "DataAccessControlService_DeleteDataAccessScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/deleteDataAccessScope(request:options:)``
   public func deleteDataAccessScope(request: DeleteDataAccessScopeRequest) async throws {
     try await self.deleteDataAccessScope(request: request, options: .init())
   }
@@ -520,6 +774,13 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a data access scope.
+  ///
+  /// @Snippet(path: "DataAccessControlService_DeleteDataAccessScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/deleteDataAccessScope(request:options:)``
   public func deleteDataAccessScope(
     name: Swift.String,
   ) async throws {
@@ -529,6 +790,15 @@ extension Clients.DataAccessControlServiceProtocol {
     try await self.deleteDataAccessScope(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataAccessControlService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -541,6 +811,15 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataAccessControlService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -552,6 +831,10 @@ extension Clients.DataAccessControlServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataAccessControlService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -565,6 +848,15 @@ extension Clients.DataAccessControlServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataAccessControlService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -576,6 +868,9 @@ extension Clients.DataAccessControlServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -588,6 +883,9 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -597,6 +895,15 @@ extension Clients.DataAccessControlServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataAccessControlService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -607,6 +914,15 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataAccessControlService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -616,6 +932,15 @@ extension Clients.DataAccessControlServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataAccessControlService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -626,6 +951,15 @@ extension Clients.DataAccessControlServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataAccessControlService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataAccessControlServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -29,6 +29,10 @@
   /// [google.cloud.discoveryengine.v1.ServingConfig]: <doc:ServingConfig>
   ///
   /// @Snippet(path: "ServingConfigServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ServingConfigServiceProtocol``
   public final class ServingConfigServiceClient: Clients.ServingConfigServiceProtocol, Sendable {
     let inner: any Clients.ServingConfigServiceStub
 
@@ -57,6 +61,11 @@
     /// [google.cloud.discoveryengine.v1.ServingConfig]: <doc:ServingConfig>
     ///
     /// @Snippet(path: "ServingConfigService_CreateServingConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createServingConfig(request:)``
+    /// - ``createServingConfig(parent:servingConfig:servingConfigId:)``
     public func createServingConfig(
       request: CreateServingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
@@ -68,6 +77,11 @@
     /// Returns a NOT_FOUND error if the ServingConfig does not exist.
     ///
     /// @Snippet(path: "ServingConfigService_DeleteServingConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteServingConfig(request:)``
+    /// - ``deleteServingConfig(name:)``
     public func deleteServingConfig(
       request: DeleteServingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -79,6 +93,11 @@
     /// Returns a NOT_FOUND error if the ServingConfig does not exist.
     ///
     /// @Snippet(path: "ServingConfigService_UpdateServingConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateServingConfig(request:)``
+    /// - ``updateServingConfig(servingConfig:updateMask:)``
     public func updateServingConfig(
       request: UpdateServingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
@@ -90,6 +109,11 @@
     /// Returns a NotFound error if the ServingConfig does not exist.
     ///
     /// @Snippet(path: "ServingConfigService_GetServingConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getServingConfig(request:)``
+    /// - ``getServingConfig(name:)``
     public func getServingConfig(
       request: GetServingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
@@ -99,6 +123,13 @@
     /// Lists all ServingConfigs linked to this dataStore.
     ///
     /// @Snippet(path: "ServingConfigService_ListServingConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listServingConfigs(request:)``
+    /// - ``listServingConfigsByItems(request:)``
+    /// - ``listServingConfigsByItems(request:options:)``
+    /// - ``listServingConfigsByItems(parent:)``
     public func listServingConfigs(
       request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListServingConfigsResponse {
@@ -110,6 +141,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ServingConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -132,6 +170,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ServingConfigService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -185,6 +228,24 @@
 
   // Default implementations
   extension Clients.ServingConfigServiceProtocol {
+    /// Creates a ServingConfig.
+    ///
+    /// Note: The Google Cloud console works only with the default serving config.
+    /// Additional ServingConfigs can be created and managed only via the API.
+    ///
+    /// A maximum of 100
+    /// [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]s are allowed
+    /// in an [Engine][google.cloud.discoveryengine.v1.Engine], otherwise a
+    /// RESOURCE_EXHAUSTED error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    /// [google.cloud.discoveryengine.v1.ServingConfig]: <doc:ServingConfig>
+    ///
+    /// @Snippet(path: "ServingConfigService_CreateServingConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/createServingConfig(request:options:)``
     public func createServingConfig(request: CreateServingConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ServingConfig
     {
@@ -197,6 +258,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a ServingConfig.
+    ///
+    /// Note: The Google Cloud console works only with the default serving config.
+    /// Additional ServingConfigs can be created and managed only via the API.
+    ///
+    /// A maximum of 100
+    /// [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]s are allowed
+    /// in an [Engine][google.cloud.discoveryengine.v1.Engine], otherwise a
+    /// RESOURCE_EXHAUSTED error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    /// [google.cloud.discoveryengine.v1.ServingConfig]: <doc:ServingConfig>
+    ///
+    /// @Snippet(path: "ServingConfigService_CreateServingConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/createServingConfig(request:options:)``
     public func createServingConfig(
       parent: Swift.String,
       servingConfig: ServingConfig?,
@@ -210,6 +289,15 @@
       return try await self.createServingConfig(request: request)
     }
 
+    /// Deletes a ServingConfig.
+    ///
+    /// Returns a NOT_FOUND error if the ServingConfig does not exist.
+    ///
+    /// @Snippet(path: "ServingConfigService_DeleteServingConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/deleteServingConfig(request:options:)``
     public func deleteServingConfig(request: DeleteServingConfigRequest) async throws {
       try await self.deleteServingConfig(request: request, options: .init())
     }
@@ -220,6 +308,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a ServingConfig.
+    ///
+    /// Returns a NOT_FOUND error if the ServingConfig does not exist.
+    ///
+    /// @Snippet(path: "ServingConfigService_DeleteServingConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/deleteServingConfig(request:options:)``
     public func deleteServingConfig(
       name: Swift.String,
     ) async throws {
@@ -229,6 +326,15 @@
       try await self.deleteServingConfig(request: request)
     }
 
+    /// Updates a ServingConfig.
+    ///
+    /// Returns a NOT_FOUND error if the ServingConfig does not exist.
+    ///
+    /// @Snippet(path: "ServingConfigService_UpdateServingConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/updateServingConfig(request:options:)``
     public func updateServingConfig(request: UpdateServingConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ServingConfig
     {
@@ -241,6 +347,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a ServingConfig.
+    ///
+    /// Returns a NOT_FOUND error if the ServingConfig does not exist.
+    ///
+    /// @Snippet(path: "ServingConfigService_UpdateServingConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/updateServingConfig(request:options:)``
     public func updateServingConfig(
       servingConfig: ServingConfig?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -252,6 +367,15 @@
       return try await self.updateServingConfig(request: request)
     }
 
+    /// Gets a ServingConfig.
+    ///
+    /// Returns a NotFound error if the ServingConfig does not exist.
+    ///
+    /// @Snippet(path: "ServingConfigService_GetServingConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/getServingConfig(request:options:)``
     public func getServingConfig(request: GetServingConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ServingConfig
     {
@@ -264,6 +388,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a ServingConfig.
+    ///
+    /// Returns a NotFound error if the ServingConfig does not exist.
+    ///
+    /// @Snippet(path: "ServingConfigService_GetServingConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/getServingConfig(request:options:)``
     public func getServingConfig(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
@@ -273,6 +406,13 @@
       return try await self.getServingConfig(request: request)
     }
 
+    /// Lists all ServingConfigs linked to this dataStore.
+    ///
+    /// @Snippet(path: "ServingConfigService_ListServingConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/listServingConfigs(request:options:)``
     public func listServingConfigs(request: ListServingConfigsRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListServingConfigsResponse
     {
@@ -285,6 +425,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all ServingConfigs linked to this dataStore.
+    ///
+    /// @Snippet(path: "ServingConfigService_ListServingConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/listServingConfigs(request:options:)``
     public func listServingConfigsByItems(
       request: ListServingConfigsRequest
     ) -> some AsyncSequence<ServingConfig, any Swift.Error> & Sendable {
@@ -294,6 +441,10 @@
     /// Lists all ServingConfigs linked to this dataStore.
     ///
     /// @Snippet(path: "ServingConfigService_ListServingConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/listServingConfigs(request:options:)``
     public func listServingConfigsByItems(
       request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ServingConfig, any Swift.Error> & Sendable {
@@ -308,6 +459,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all ServingConfigs linked to this dataStore.
+    ///
+    /// @Snippet(path: "ServingConfigService_ListServingConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/listServingConfigs(request:options:)``
     public func listServingConfigsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<ServingConfig, any Swift.Error> & Sendable {
@@ -317,6 +475,15 @@
       return self.listServingConfigsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ServingConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -329,6 +496,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ServingConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -340,6 +516,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ServingConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -353,6 +533,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ServingConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -364,6 +553,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -376,6 +568,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -385,6 +580,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ServingConfigService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -395,6 +599,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ServingConfigService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServingConfigServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

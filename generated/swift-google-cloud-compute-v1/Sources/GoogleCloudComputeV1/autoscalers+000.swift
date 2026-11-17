@@ -24,6 +24,10 @@
   /// Service for the `autoscalers` resource.
   ///
   /// @Snippet(path: "autoscalersQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/AutoscalersProtocol``
   public final class AutoscalersClient: Clients.AutoscalersProtocol, Sendable {
     let inner: any Clients.AutoscalersStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "autoscalers_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
+    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: AutoscalersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.AutoscalerAggregatedList {
@@ -56,6 +67,13 @@
     /// Deletes the specified autoscaler.
     ///
     /// @Snippet(path: "autoscalers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:zone:autoscaler:)``
     public func delete(
       request: AutoscalersClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -70,6 +88,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "autoscalers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:zone:autoscaler:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: AutoscalersClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -112,6 +137,11 @@
     /// Returns the specified autoscaler resource.
     ///
     /// @Snippet(path: "autoscalers_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:zone:autoscaler:)``
     public func `get`(
       request: AutoscalersClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Autoscaler {
@@ -122,6 +152,13 @@
     /// included in the request.
     ///
     /// @Snippet(path: "autoscalers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
     public func insert(
       request: AutoscalersClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -137,6 +174,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "autoscalers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: AutoscalersClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -180,6 +224,13 @@
     /// the specified zone.
     ///
     /// @Snippet(path: "autoscalers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:zone:)``
     public func list(
       request: AutoscalersClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.AutoscalerList {
@@ -192,6 +243,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "autoscalers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:zone:body:)``
     public func patch(
       request: AutoscalersClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -209,6 +267,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "autoscalers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:zone:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: AutoscalersClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -251,6 +316,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "autoscalers_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(project:zone:resource:body:)``
     public func testIamPermissions(
       request: AutoscalersClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -261,6 +331,13 @@
     /// included in the request.
     ///
     /// @Snippet(path: "autoscalers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
+    /// - ``updatePollingUntilDone(project:zone:body:)``
     public func update(
       request: AutoscalersClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -276,6 +353,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "autoscalers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(project:zone:body:)``
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
     public func updatePollingUntilDone(
       request: AutoscalersClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -416,6 +500,16 @@
 
   // Default implementations
   extension Clients.AutoscalersProtocol {
+    /// Retrieves an aggregated list of autoscalers.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "autoscalers_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/aggregatedList(request:options:)``
     public func aggregatedList(request: AutoscalersClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.AutoscalerAggregatedList
     {
@@ -428,6 +522,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of autoscalers.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "autoscalers_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: AutoscalersClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, AutoscalersScopedList), any Swift.Error> & Sendable {
@@ -440,6 +544,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "autoscalers_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: AutoscalersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, AutoscalersScopedList), any Swift.Error> & Sendable {
@@ -454,6 +562,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of autoscalers.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "autoscalers_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, AutoscalersScopedList), any Swift.Error> & Sendable {
@@ -463,6 +581,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified autoscaler.
+    ///
+    /// @Snippet(path: "autoscalers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/delete(request:options:)``
     public func delete(request: AutoscalersClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -475,6 +600,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified autoscaler.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "autoscalers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: AutoscalersClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -487,6 +624,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified autoscaler.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "autoscalers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -500,6 +649,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified autoscaler resource.
+    ///
+    /// @Snippet(path: "autoscalers_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/get(request:options:)``
     public func `get`(request: AutoscalersClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Autoscaler
     {
@@ -512,6 +668,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified autoscaler resource.
+    ///
+    /// @Snippet(path: "autoscalers_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -525,6 +688,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates an autoscaler in the specified project using the data
+    /// included in the request.
+    ///
+    /// @Snippet(path: "autoscalers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/insert(request:options:)``
     public func insert(request: AutoscalersClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -537,6 +708,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an autoscaler in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "autoscalers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: AutoscalersClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -549,6 +733,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an autoscaler in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "autoscalers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -562,6 +759,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of autoscalers contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "autoscalers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/list(request:options:)``
     public func list(request: AutoscalersClient.ListRequest) async throws
       -> GoogleCloudComputeV1.AutoscalerList
     {
@@ -574,6 +779,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of autoscalers contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "autoscalers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/list(request:options:)``
     public func listByItems(
       request: AutoscalersClient.ListRequest
     ) -> some AsyncSequence<Autoscaler, any Swift.Error> & Sendable {
@@ -584,6 +797,10 @@
     /// the specified zone.
     ///
     /// @Snippet(path: "autoscalers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/list(request:options:)``
     public func listByItems(
       request: AutoscalersClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Autoscaler, any Swift.Error> & Sendable {
@@ -597,6 +814,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of autoscalers contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "autoscalers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -608,6 +833,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Updates an autoscaler in the specified project using the data
+    /// included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "autoscalers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/patch(request:options:)``
     public func patch(request: AutoscalersClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -620,6 +855,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an autoscaler in the specified project using the data
+    /// included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "autoscalers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: AutoscalersClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -632,6 +882,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an autoscaler in the specified project using the data
+    /// included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "autoscalers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -645,6 +910,13 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "autoscalers_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: AutoscalersClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -657,6 +929,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "autoscalers_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       zone: Swift.String,
@@ -672,6 +951,14 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Updates an autoscaler in the specified project using the data
+    /// included in the request.
+    ///
+    /// @Snippet(path: "autoscalers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/update(request:options:)``
     public func update(request: AutoscalersClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -684,6 +971,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an autoscaler in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "autoscalers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: AutoscalersClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -696,6 +996,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an autoscaler in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "autoscalers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AutoscalersClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -709,6 +1022,7 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified zone-specific Operations resource.
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

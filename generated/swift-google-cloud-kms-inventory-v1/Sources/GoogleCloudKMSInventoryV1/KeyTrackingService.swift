@@ -24,6 +24,10 @@ import Foundation
 /// given Cloud KMS key via CMEK.
 ///
 /// @Snippet(path: "KeyTrackingServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/KeyTrackingServiceProtocol``
 public final class KeyTrackingServiceClient: Clients.KeyTrackingServiceProtocol, Sendable {
   let inner: any Clients.KeyTrackingServiceStub
 
@@ -53,6 +57,11 @@ public final class KeyTrackingServiceClient: Clients.KeyTrackingServiceProtocol,
   /// [google.cloud.kms.v1.CryptoKey]: https://www.google.com/search?q=Swift+google.cloud.kms.v1+GoogleCloudKMSV1.CryptoKey
   ///
   /// @Snippet(path: "KeyTrackingService_GetProtectedResourcesSummary")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getProtectedResourcesSummary(request:)``
+  /// - ``getProtectedResourcesSummary(name:)``
   public func getProtectedResourcesSummary(
     request: GetProtectedResourcesSummaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSInventoryV1.ProtectedResourcesSummary {
@@ -66,6 +75,13 @@ public final class KeyTrackingServiceClient: Clients.KeyTrackingServiceProtocol,
   /// [google.cloud.kms.v1.CryptoKey]: https://www.google.com/search?q=Swift+google.cloud.kms.v1+GoogleCloudKMSV1.CryptoKey
   ///
   /// @Snippet(path: "KeyTrackingService_SearchProtectedResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchProtectedResources(request:)``
+  /// - ``searchProtectedResourcesByItems(request:)``
+  /// - ``searchProtectedResourcesByItems(request:options:)``
+  /// - ``searchProtectedResourcesByItems(scope:cryptoKey:)``
   public func searchProtectedResources(
     request: SearchProtectedResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse {
@@ -94,6 +110,26 @@ extension Clients {
 
 // Default implementations
 extension Clients.KeyTrackingServiceProtocol {
+  /// Returns aggregate information about the resources protected by the given
+  /// Cloud KMS [CryptoKey][google.cloud.kms.v1.CryptoKey]. By default,
+  /// summary of resources within the same Cloud organization as the key will be
+  /// returned, which requires the KMS organization service account to be
+  /// configured(refer
+  /// https://docs.cloud.google.com/kms/docs/view-key-usage#required-roles).
+  /// If the KMS organization service account is not configured or key's project
+  /// is not part of an organization, set
+  /// [fallback_scope][google.cloud.kms.inventory.v1.GetProtectedResourcesSummaryRequest.fallback_scope]
+  /// to `FALLBACK_SCOPE_PROJECT` to retrieve a summary of protected resources
+  /// within the key's project.
+  ///
+  /// [google.cloud.kms.inventory.v1.GetProtectedResourcesSummaryRequest.fallback_scope]: <doc:GetProtectedResourcesSummaryRequest/fallbackScope>
+  /// [google.cloud.kms.v1.CryptoKey]: https://www.google.com/search?q=Swift+google.cloud.kms.v1+GoogleCloudKMSV1.CryptoKey
+  ///
+  /// @Snippet(path: "KeyTrackingService_GetProtectedResourcesSummary")
+  ///
+  /// ## See Also
+  ///
+  /// - ``KeyTrackingServiceClient/getProtectedResourcesSummary(request:options:)``
   public func getProtectedResourcesSummary(request: GetProtectedResourcesSummaryRequest)
     async throws -> GoogleCloudKMSInventoryV1.ProtectedResourcesSummary
   {
@@ -106,6 +142,26 @@ extension Clients.KeyTrackingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns aggregate information about the resources protected by the given
+  /// Cloud KMS [CryptoKey][google.cloud.kms.v1.CryptoKey]. By default,
+  /// summary of resources within the same Cloud organization as the key will be
+  /// returned, which requires the KMS organization service account to be
+  /// configured(refer
+  /// https://docs.cloud.google.com/kms/docs/view-key-usage#required-roles).
+  /// If the KMS organization service account is not configured or key's project
+  /// is not part of an organization, set
+  /// [fallback_scope][google.cloud.kms.inventory.v1.GetProtectedResourcesSummaryRequest.fallback_scope]
+  /// to `FALLBACK_SCOPE_PROJECT` to retrieve a summary of protected resources
+  /// within the key's project.
+  ///
+  /// [google.cloud.kms.inventory.v1.GetProtectedResourcesSummaryRequest.fallback_scope]: <doc:GetProtectedResourcesSummaryRequest/fallbackScope>
+  /// [google.cloud.kms.v1.CryptoKey]: https://www.google.com/search?q=Swift+google.cloud.kms.v1+GoogleCloudKMSV1.CryptoKey
+  ///
+  /// @Snippet(path: "KeyTrackingService_GetProtectedResourcesSummary")
+  ///
+  /// ## See Also
+  ///
+  /// - ``KeyTrackingServiceClient/getProtectedResourcesSummary(request:options:)``
   public func getProtectedResourcesSummary(
     name: Swift.String,
   ) async throws -> GoogleCloudKMSInventoryV1.ProtectedResourcesSummary {
@@ -115,6 +171,17 @@ extension Clients.KeyTrackingServiceProtocol {
     return try await self.getProtectedResourcesSummary(request: request)
   }
 
+  /// Returns metadata about the resources protected by the given Cloud KMS
+  /// [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud
+  /// organization/project.
+  ///
+  /// [google.cloud.kms.v1.CryptoKey]: https://www.google.com/search?q=Swift+google.cloud.kms.v1+GoogleCloudKMSV1.CryptoKey
+  ///
+  /// @Snippet(path: "KeyTrackingService_SearchProtectedResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``KeyTrackingServiceClient/searchProtectedResources(request:options:)``
   public func searchProtectedResources(request: SearchProtectedResourcesRequest) async throws
     -> GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse
   {
@@ -127,6 +194,17 @@ extension Clients.KeyTrackingServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns metadata about the resources protected by the given Cloud KMS
+  /// [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud
+  /// organization/project.
+  ///
+  /// [google.cloud.kms.v1.CryptoKey]: https://www.google.com/search?q=Swift+google.cloud.kms.v1+GoogleCloudKMSV1.CryptoKey
+  ///
+  /// @Snippet(path: "KeyTrackingService_SearchProtectedResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``KeyTrackingServiceClient/searchProtectedResources(request:options:)``
   public func searchProtectedResourcesByItems(
     request: SearchProtectedResourcesRequest
   ) -> some AsyncSequence<ProtectedResource, any Swift.Error> & Sendable {
@@ -140,6 +218,10 @@ extension Clients.KeyTrackingServiceProtocol {
   /// [google.cloud.kms.v1.CryptoKey]: https://www.google.com/search?q=Swift+google.cloud.kms.v1+GoogleCloudKMSV1.CryptoKey
   ///
   /// @Snippet(path: "KeyTrackingService_SearchProtectedResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``KeyTrackingServiceClient/searchProtectedResources(request:options:)``
   public func searchProtectedResourcesByItems(
     request: SearchProtectedResourcesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ProtectedResource, any Swift.Error> & Sendable {
@@ -154,6 +236,17 @@ extension Clients.KeyTrackingServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns metadata about the resources protected by the given Cloud KMS
+  /// [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud
+  /// organization/project.
+  ///
+  /// [google.cloud.kms.v1.CryptoKey]: https://www.google.com/search?q=Swift+google.cloud.kms.v1+GoogleCloudKMSV1.CryptoKey
+  ///
+  /// @Snippet(path: "KeyTrackingService_SearchProtectedResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``KeyTrackingServiceClient/searchProtectedResources(request:options:)``
   public func searchProtectedResourcesByItems(
     scope: Swift.String,
     cryptoKey: Swift.String,

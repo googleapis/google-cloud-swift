@@ -24,6 +24,10 @@ import Foundation
 /// Cloud Run Execution Control Plane API.
 ///
 /// @Snippet(path: "ExecutionsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ExecutionsProtocol``
 public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   let inner: any Clients.ExecutionsStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,11 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// Gets information about an Execution.
   ///
   /// @Snippet(path: "Executions_GetExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getExecution(request:)``
+  /// - ``getExecution(name:)``
   public func getExecution(
     request: GetExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.Execution {
@@ -54,6 +63,13 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// descending.
   ///
   /// @Snippet(path: "Executions_ListExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listExecutions(request:)``
+  /// - ``listExecutionsByItems(request:)``
+  /// - ``listExecutionsByItems(request:options:)``
+  /// - ``listExecutionsByItems(parent:)``
   public func listExecutions(
     request: ListExecutionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.ListExecutionsResponse {
@@ -63,6 +79,13 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// Deletes an Execution.
   ///
   /// @Snippet(path: "Executions_DeleteExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteExecution(request:)``
+  /// - ``deleteExecutionPollingUntilDone(request:)``
+  /// - ``deleteExecutionPollingUntilDone(request:options:)``
+  /// - ``deleteExecutionPollingUntilDone(name:)``
   public func deleteExecution(
     request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -72,6 +95,13 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// Deletes an Execution.
   ///
   /// @Snippet(path: "Executions_DeleteExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteExecutionPollingUntilDone(request:)``
+  /// - ``deleteExecutionPollingUntilDone(name:)``
+  /// - ``deleteExecution(request:)``
+  /// - ``deleteExecution(request:options:)``
   public func deleteExecutionPollingUntilDone(
     request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Execution {
@@ -99,6 +129,13 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// Cancels an Execution.
   ///
   /// @Snippet(path: "Executions_CancelExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelExecution(request:)``
+  /// - ``cancelExecutionPollingUntilDone(request:)``
+  /// - ``cancelExecutionPollingUntilDone(request:options:)``
+  /// - ``cancelExecutionPollingUntilDone(name:)``
   public func cancelExecution(
     request: CancelExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -108,6 +145,13 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// Cancels an Execution.
   ///
   /// @Snippet(path: "Executions_CancelExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelExecutionPollingUntilDone(request:)``
+  /// - ``cancelExecutionPollingUntilDone(name:)``
+  /// - ``cancelExecution(request:)``
+  /// - ``cancelExecution(request:options:)``
   public func cancelExecutionPollingUntilDone(
     request: CancelExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Execution {
@@ -137,6 +181,13 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Executions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -159,6 +210,11 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Executions_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -170,6 +226,10 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Executions_WaitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``waitOperation(request:)``
   public func waitOperation(
     request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -233,6 +293,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ExecutionsProtocol {
+  /// Gets information about an Execution.
+  ///
+  /// @Snippet(path: "Executions_GetExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/getExecution(request:options:)``
   public func getExecution(request: GetExecutionRequest) async throws -> GoogleCloudRunV2.Execution
   {
     try await self.getExecution(request: request, options: .init())
@@ -244,6 +311,13 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information about an Execution.
+  ///
+  /// @Snippet(path: "Executions_GetExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/getExecution(request:options:)``
   public func getExecution(
     name: Swift.String,
   ) async throws -> GoogleCloudRunV2.Execution {
@@ -253,6 +327,14 @@ extension Clients.ExecutionsProtocol {
     return try await self.getExecution(request: request)
   }
 
+  /// Lists Executions from a Job. Results are sorted by creation time,
+  /// descending.
+  ///
+  /// @Snippet(path: "Executions_ListExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/listExecutions(request:options:)``
   public func listExecutions(request: ListExecutionsRequest) async throws
     -> GoogleCloudRunV2.ListExecutionsResponse
   {
@@ -265,6 +347,14 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Executions from a Job. Results are sorted by creation time,
+  /// descending.
+  ///
+  /// @Snippet(path: "Executions_ListExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/listExecutions(request:options:)``
   public func listExecutionsByItems(
     request: ListExecutionsRequest
   ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
@@ -275,6 +365,10 @@ extension Clients.ExecutionsProtocol {
   /// descending.
   ///
   /// @Snippet(path: "Executions_ListExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/listExecutions(request:options:)``
   public func listExecutionsByItems(
     request: ListExecutionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
@@ -288,6 +382,14 @@ extension Clients.ExecutionsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Executions from a Job. Results are sorted by creation time,
+  /// descending.
+  ///
+  /// @Snippet(path: "Executions_ListExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/listExecutions(request:options:)``
   public func listExecutionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
@@ -297,6 +399,13 @@ extension Clients.ExecutionsProtocol {
     return self.listExecutionsByItems(request: request)
   }
 
+  /// Deletes an Execution.
+  ///
+  /// @Snippet(path: "Executions_DeleteExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/deleteExecution(request:options:)``
   public func deleteExecution(request: DeleteExecutionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -309,6 +418,13 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an Execution.
+  ///
+  /// @Snippet(path: "Executions_DeleteExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/deleteExecutionPollingUntilDone(request:options:)``
   public func deleteExecutionPollingUntilDone(request: DeleteExecutionRequest) async throws
     -> Execution
   {
@@ -321,6 +437,13 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an Execution.
+  ///
+  /// @Snippet(path: "Executions_DeleteExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/deleteExecutionPollingUntilDone(request:options:)``
   public func deleteExecutionPollingUntilDone(
     name: Swift.String,
   ) async throws -> Execution {
@@ -330,6 +453,13 @@ extension Clients.ExecutionsProtocol {
     return try await self.deleteExecutionPollingUntilDone(request: request)
   }
 
+  /// Cancels an Execution.
+  ///
+  /// @Snippet(path: "Executions_CancelExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/cancelExecution(request:options:)``
   public func cancelExecution(request: CancelExecutionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -342,6 +472,13 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancels an Execution.
+  ///
+  /// @Snippet(path: "Executions_CancelExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/cancelExecutionPollingUntilDone(request:options:)``
   public func cancelExecutionPollingUntilDone(request: CancelExecutionRequest) async throws
     -> Execution
   {
@@ -354,6 +491,13 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancels an Execution.
+  ///
+  /// @Snippet(path: "Executions_CancelExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/cancelExecutionPollingUntilDone(request:options:)``
   public func cancelExecutionPollingUntilDone(
     name: Swift.String,
   ) async throws -> Execution {
@@ -363,6 +507,15 @@ extension Clients.ExecutionsProtocol {
     return try await self.cancelExecutionPollingUntilDone(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Executions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -375,6 +528,15 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Executions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -386,6 +548,10 @@ extension Clients.ExecutionsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Executions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -399,6 +565,15 @@ extension Clients.ExecutionsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Executions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -410,6 +585,9 @@ extension Clients.ExecutionsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -422,6 +600,9 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -431,6 +612,15 @@ extension Clients.ExecutionsProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Executions_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -441,6 +631,15 @@ extension Clients.ExecutionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Executions_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -450,6 +649,15 @@ extension Clients.ExecutionsProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Executions_WaitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ExecutionsClient/waitOperation(request:options:)``
   public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {

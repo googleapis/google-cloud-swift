@@ -24,6 +24,10 @@
   /// Service for the `regionSecurityPolicies` resource.
   ///
   /// @Snippet(path: "regionSecurityPoliciesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionSecurityPoliciesProtocol``
   public final class RegionSecurityPoliciesClient: Clients.RegionSecurityPoliciesProtocol, Sendable
   {
     let inner: any Clients.RegionSecurityPoliciesStub
@@ -46,6 +50,13 @@
     /// Inserts a rule into a security policy.
     ///
     /// @Snippet(path: "regionSecurityPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addRule(request:)``
+    /// - ``addRulePollingUntilDone(request:)``
+    /// - ``addRulePollingUntilDone(request:options:)``
+    /// - ``addRulePollingUntilDone(project:region:securityPolicy:body:)``
     public func addRule(
       request: RegionSecurityPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -60,6 +71,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSecurityPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addRulePollingUntilDone(request:)``
+    /// - ``addRulePollingUntilDone(project:region:securityPolicy:body:)``
+    /// - ``addRule(request:)``
+    /// - ``addRule(request:options:)``
     public func addRulePollingUntilDone(
       request: RegionSecurityPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -102,6 +120,13 @@
     /// Deletes the specified policy.
     ///
     /// @Snippet(path: "regionSecurityPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:securityPolicy:)``
     public func delete(
       request: RegionSecurityPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -116,6 +141,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSecurityPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(project:region:securityPolicy:)``
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
     public func deletePollingUntilDone(
       request: RegionSecurityPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -158,6 +190,11 @@
     /// List all of the ordered rules present in a single specified policy.
     ///
     /// @Snippet(path: "regionSecurityPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(project:region:securityPolicy:)``
     public func `get`(
       request: RegionSecurityPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SecurityPolicy {
@@ -167,6 +204,11 @@
     /// Gets a rule at the specified priority.
     ///
     /// @Snippet(path: "regionSecurityPolicies_getRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getRule(request:)``
+    /// - ``getRule(project:region:securityPolicy:)``
     public func getRule(
       request: RegionSecurityPoliciesClient.GetRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SecurityPolicyRule {
@@ -177,6 +219,13 @@
     /// the request.
     ///
     /// @Snippet(path: "regionSecurityPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: RegionSecurityPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -192,6 +241,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSecurityPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
     public func insertPollingUntilDone(
       request: RegionSecurityPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -235,6 +291,13 @@
     /// and region.
     ///
     /// @Snippet(path: "regionSecurityPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
+    /// - ``listByItems(project:region:)``
     public func list(
       request: RegionSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SecurityPolicyList {
@@ -248,6 +311,13 @@
     /// instead.
     ///
     /// @Snippet(path: "regionSecurityPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:securityPolicy:body:)``
     public func patch(
       request: RegionSecurityPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -266,6 +336,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSecurityPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(project:region:securityPolicy:body:)``
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
     public func patchPollingUntilDone(
       request: RegionSecurityPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -309,6 +386,13 @@
     /// leave the fields empty and specify them in the updateMask.
     ///
     /// @Snippet(path: "regionSecurityPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchRule(request:)``
+    /// - ``patchRulePollingUntilDone(request:)``
+    /// - ``patchRulePollingUntilDone(request:options:)``
+    /// - ``patchRulePollingUntilDone(project:region:securityPolicy:body:)``
     public func patchRule(
       request: RegionSecurityPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -324,6 +408,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSecurityPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchRulePollingUntilDone(request:)``
+    /// - ``patchRulePollingUntilDone(project:region:securityPolicy:body:)``
+    /// - ``patchRule(request:)``
+    /// - ``patchRule(request:options:)``
     public func patchRulePollingUntilDone(
       request: RegionSecurityPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -366,6 +457,13 @@
     /// Deletes a rule at the specified priority.
     ///
     /// @Snippet(path: "regionSecurityPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeRule(request:)``
+    /// - ``removeRulePollingUntilDone(request:)``
+    /// - ``removeRulePollingUntilDone(request:options:)``
+    /// - ``removeRulePollingUntilDone(project:region:securityPolicy:)``
     public func removeRule(
       request: RegionSecurityPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -380,6 +478,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSecurityPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeRulePollingUntilDone(request:)``
+    /// - ``removeRulePollingUntilDone(project:region:securityPolicy:)``
+    /// - ``removeRule(request:)``
+    /// - ``removeRule(request:options:)``
     public func removeRulePollingUntilDone(
       request: RegionSecurityPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -424,6 +529,13 @@
     /// documentation.
     ///
     /// @Snippet(path: "regionSecurityPolicies_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabels(request:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
+    /// - ``setLabelsPollingUntilDone(request:options:)``
+    /// - ``setLabelsPollingUntilDone(project:region:resource:body:)``
     public func setLabels(
       request: RegionSecurityPoliciesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -440,6 +552,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSecurityPolicies_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabelsPollingUntilDone(request:)``
+    /// - ``setLabelsPollingUntilDone(project:region:resource:body:)``
+    /// - ``setLabels(request:)``
+    /// - ``setLabels(request:options:)``
     public func setLabelsPollingUntilDone(
       request: RegionSecurityPoliciesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -620,6 +739,13 @@
 
   // Default implementations
   extension Clients.RegionSecurityPoliciesProtocol {
+    /// Inserts a rule into a security policy.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/addRule(request:options:)``
     public func addRule(request: RegionSecurityPoliciesClient.AddRuleRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -632,6 +758,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts a rule into a security policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/addRulePollingUntilDone(request:options:)``
     public func addRulePollingUntilDone(
       request: RegionSecurityPoliciesClient.AddRuleRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -644,6 +782,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts a rule into a security policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/addRulePollingUntilDone(request:options:)``
     public func addRulePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -659,6 +809,13 @@
       return try await self.addRulePollingUntilDone(request: request)
     }
 
+    /// Deletes the specified policy.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/delete(request:options:)``
     public func delete(request: RegionSecurityPoliciesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -671,6 +828,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionSecurityPoliciesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -683,6 +852,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -696,6 +877,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// List all of the ordered rules present in a single specified policy.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/get(request:options:)``
     public func `get`(request: RegionSecurityPoliciesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.SecurityPolicy
     {
@@ -708,6 +896,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// List all of the ordered rules present in a single specified policy.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -721,6 +916,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets a rule at the specified priority.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_getRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/getRule(request:options:)``
     public func getRule(request: RegionSecurityPoliciesClient.GetRuleRequest) async throws
       -> GoogleCloudComputeV1.SecurityPolicyRule
     {
@@ -733,6 +935,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a rule at the specified priority.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_getRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/getRule(request:options:)``
     public func getRule(
       project: Swift.String,
       region: Swift.String,
@@ -746,6 +955,14 @@
       return try await self.getRule(request: request)
     }
 
+    /// Creates a new policy in the specified project using the data included in
+    /// the request.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/insert(request:options:)``
     public func insert(request: RegionSecurityPoliciesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -758,6 +975,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new policy in the specified project using the data included in
+    /// the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionSecurityPoliciesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -770,6 +1000,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new policy in the specified project using the data included in
+    /// the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -783,6 +1026,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// List all the policies that have been configured for the specified project
+    /// and region.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/list(request:options:)``
     public func list(request: RegionSecurityPoliciesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.SecurityPolicyList
     {
@@ -795,6 +1046,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// List all the policies that have been configured for the specified project
+    /// and region.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/list(request:options:)``
     public func listByItems(
       request: RegionSecurityPoliciesClient.ListRequest
     ) -> some AsyncSequence<SecurityPolicy, any Swift.Error> & Sendable {
@@ -805,6 +1064,10 @@
     /// and region.
     ///
     /// @Snippet(path: "regionSecurityPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/list(request:options:)``
     public func listByItems(
       request: RegionSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<SecurityPolicy, any Swift.Error> & Sendable {
@@ -818,6 +1081,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// List all the policies that have been configured for the specified project
+    /// and region.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -829,6 +1100,17 @@
       return self.listByItems(request: request)
     }
 
+    /// Patches the specified policy with the data included in the request. To
+    /// clear fields in the policy, leave the fields empty and specify them in the
+    /// updateMask. This cannot be used to be update the rules in the policy.
+    /// Please use the per rule methods like addRule, patchRule, and removeRule
+    /// instead.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/patch(request:options:)``
     public func patch(request: RegionSecurityPoliciesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -841,6 +1123,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified policy with the data included in the request. To
+    /// clear fields in the policy, leave the fields empty and specify them in the
+    /// updateMask. This cannot be used to be update the rules in the policy.
+    /// Please use the per rule methods like addRule, patchRule, and removeRule
+    /// instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: RegionSecurityPoliciesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -853,6 +1151,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified policy with the data included in the request. To
+    /// clear fields in the policy, leave the fields empty and specify them in the
+    /// updateMask. This cannot be used to be update the rules in the policy.
+    /// Please use the per rule methods like addRule, patchRule, and removeRule
+    /// instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -868,6 +1182,14 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Patches a rule at the specified priority. To clear fields in the rule,
+    /// leave the fields empty and specify them in the updateMask.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/patchRule(request:options:)``
     public func patchRule(request: RegionSecurityPoliciesClient.PatchRuleRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -880,6 +1202,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches a rule at the specified priority. To clear fields in the rule,
+    /// leave the fields empty and specify them in the updateMask.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/patchRulePollingUntilDone(request:options:)``
     public func patchRulePollingUntilDone(
       request: RegionSecurityPoliciesClient.PatchRuleRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -892,6 +1227,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches a rule at the specified priority. To clear fields in the rule,
+    /// leave the fields empty and specify them in the updateMask.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/patchRulePollingUntilDone(request:options:)``
     public func patchRulePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -907,6 +1255,13 @@
       return try await self.patchRulePollingUntilDone(request: request)
     }
 
+    /// Deletes a rule at the specified priority.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/removeRule(request:options:)``
     public func removeRule(request: RegionSecurityPoliciesClient.RemoveRuleRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -919,6 +1274,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a rule at the specified priority.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/removeRulePollingUntilDone(request:options:)``
     public func removeRulePollingUntilDone(
       request: RegionSecurityPoliciesClient.RemoveRuleRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -931,6 +1298,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a rule at the specified priority.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/removeRulePollingUntilDone(request:options:)``
     public func removeRulePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -944,6 +1323,15 @@
       return try await self.removeRulePollingUntilDone(request: request)
     }
 
+    /// Sets the labels on a security policy. To learn more about labels,
+    /// read the Labeling Resources
+    /// documentation.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/setLabels(request:options:)``
     public func setLabels(request: RegionSecurityPoliciesClient.SetLabelsRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -956,6 +1344,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on a security policy. To learn more about labels,
+    /// read the Labeling Resources
+    /// documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       request: RegionSecurityPoliciesClient.SetLabelsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -968,6 +1370,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on a security policy. To learn more about labels,
+    /// read the Labeling Resources
+    /// documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSecurityPolicies_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSecurityPoliciesClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -983,6 +1399,7 @@
       return try await self.setLabelsPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

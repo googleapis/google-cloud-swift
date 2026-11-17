@@ -29,6 +29,10 @@ import Foundation
 /// e2e solution for customer to build their own computer vision application.
 ///
 /// @Snippet(path: "StreamsServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/StreamsServiceProtocol``
 public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendable {
   let inner: any Clients.StreamsServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -49,6 +53,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Lists Clusters in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listClusters(request:)``
+  /// - ``listClustersByItems(request:)``
+  /// - ``listClustersByItems(request:options:)``
+  /// - ``listClustersByItems(parent:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListClustersResponse {
@@ -58,6 +69,11 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Gets details of a single Cluster.
   ///
   /// @Snippet(path: "StreamsService_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCluster(request:)``
+  /// - ``getCluster(name:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Cluster {
@@ -67,6 +83,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Creates a new Cluster in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCluster(request:)``
+  /// - ``createClusterPollingUntilDone(request:)``
+  /// - ``createClusterPollingUntilDone(request:options:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -76,6 +99,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Creates a new Cluster in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createClusterPollingUntilDone(request:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
+  /// - ``createCluster(request:)``
+  /// - ``createCluster(request:options:)``
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -103,6 +133,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Updates the parameters of a single Cluster.
   ///
   /// @Snippet(path: "StreamsService_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCluster(request:)``
+  /// - ``updateClusterPollingUntilDone(request:)``
+  /// - ``updateClusterPollingUntilDone(request:options:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   public func updateCluster(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -112,6 +149,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Updates the parameters of a single Cluster.
   ///
   /// @Snippet(path: "StreamsService_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateClusterPollingUntilDone(request:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
+  /// - ``updateCluster(request:)``
+  /// - ``updateCluster(request:options:)``
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -139,6 +183,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Deletes a single Cluster.
   ///
   /// @Snippet(path: "StreamsService_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCluster(request:)``
+  /// - ``deleteClusterPollingUntilDone(request:)``
+  /// - ``deleteClusterPollingUntilDone(request:options:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -148,6 +199,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Deletes a single Cluster.
   ///
   /// @Snippet(path: "StreamsService_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteClusterPollingUntilDone(request:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
+  /// - ``deleteCluster(request:)``
+  /// - ``deleteCluster(request:options:)``
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -175,6 +233,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Lists Streams in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_ListStreams")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listStreams(request:)``
+  /// - ``listStreamsByItems(request:)``
+  /// - ``listStreamsByItems(request:options:)``
+  /// - ``listStreamsByItems(parent:)``
   public func listStreams(
     request: ListStreamsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListStreamsResponse {
@@ -184,6 +249,11 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Gets details of a single Stream.
   ///
   /// @Snippet(path: "StreamsService_GetStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getStream(request:)``
+  /// - ``getStream(name:)``
   public func getStream(
     request: GetStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Stream {
@@ -193,6 +263,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Creates a new Stream in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_CreateStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createStream(request:)``
+  /// - ``createStreamPollingUntilDone(request:)``
+  /// - ``createStreamPollingUntilDone(request:options:)``
+  /// - ``createStreamPollingUntilDone(parent:stream:streamId:)``
   public func createStream(
     request: CreateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -202,6 +279,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Creates a new Stream in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_CreateStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createStreamPollingUntilDone(request:)``
+  /// - ``createStreamPollingUntilDone(parent:stream:streamId:)``
+  /// - ``createStream(request:)``
+  /// - ``createStream(request:options:)``
   public func createStreamPollingUntilDone(
     request: CreateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> Stream {
@@ -229,6 +313,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Updates the parameters of a single Stream.
   ///
   /// @Snippet(path: "StreamsService_UpdateStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateStream(request:)``
+  /// - ``updateStreamPollingUntilDone(request:)``
+  /// - ``updateStreamPollingUntilDone(request:options:)``
+  /// - ``updateStreamPollingUntilDone(stream:updateMask:)``
   public func updateStream(
     request: UpdateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -238,6 +329,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Updates the parameters of a single Stream.
   ///
   /// @Snippet(path: "StreamsService_UpdateStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateStreamPollingUntilDone(request:)``
+  /// - ``updateStreamPollingUntilDone(stream:updateMask:)``
+  /// - ``updateStream(request:)``
+  /// - ``updateStream(request:options:)``
   public func updateStreamPollingUntilDone(
     request: UpdateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> Stream {
@@ -265,6 +363,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Deletes a single Stream.
   ///
   /// @Snippet(path: "StreamsService_DeleteStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteStream(request:)``
+  /// - ``deleteStreamPollingUntilDone(request:)``
+  /// - ``deleteStreamPollingUntilDone(request:options:)``
+  /// - ``deleteStreamPollingUntilDone(name:)``
   public func deleteStream(
     request: DeleteStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -274,6 +379,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Deletes a single Stream.
   ///
   /// @Snippet(path: "StreamsService_DeleteStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteStreamPollingUntilDone(request:)``
+  /// - ``deleteStreamPollingUntilDone(name:)``
+  /// - ``deleteStream(request:)``
+  /// - ``deleteStream(request:options:)``
   public func deleteStreamPollingUntilDone(
     request: DeleteStreamRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -301,6 +413,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Gets the thumbnail (image snapshot) of a single Stream.
   ///
   /// @Snippet(path: "StreamsService_GetStreamThumbnail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getStreamThumbnail(request:)``
+  /// - ``getStreamThumbnailPollingUntilDone(request:)``
+  /// - ``getStreamThumbnailPollingUntilDone(request:options:)``
+  /// - ``getStreamThumbnailPollingUntilDone(stream:gcsObjectName:)``
   public func getStreamThumbnail(
     request: GetStreamThumbnailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -310,6 +429,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Gets the thumbnail (image snapshot) of a single Stream.
   ///
   /// @Snippet(path: "StreamsService_GetStreamThumbnail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getStreamThumbnailPollingUntilDone(request:)``
+  /// - ``getStreamThumbnailPollingUntilDone(stream:gcsObjectName:)``
+  /// - ``getStreamThumbnail(request:)``
+  /// - ``getStreamThumbnail(request:options:)``
   public func getStreamThumbnailPollingUntilDone(
     request: GetStreamThumbnailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GetStreamThumbnailResponse {
@@ -339,6 +465,11 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Generate the JWT auth token required to get the stream HLS contents.
   ///
   /// @Snippet(path: "StreamsService_GenerateStreamHlsToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateStreamHlsToken(request:)``
+  /// - ``generateStreamHlsToken(stream:)``
   public func generateStreamHlsToken(
     request: GenerateStreamHlsTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.GenerateStreamHlsTokenResponse {
@@ -348,6 +479,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Lists Events in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_ListEvents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEvents(request:)``
+  /// - ``listEventsByItems(request:)``
+  /// - ``listEventsByItems(request:options:)``
+  /// - ``listEventsByItems(parent:)``
   public func listEvents(
     request: ListEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListEventsResponse {
@@ -357,6 +495,11 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Gets details of a single Event.
   ///
   /// @Snippet(path: "StreamsService_GetEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEvent(request:)``
+  /// - ``getEvent(name:)``
   public func getEvent(
     request: GetEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Event {
@@ -366,6 +509,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Creates a new Event in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_CreateEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEvent(request:)``
+  /// - ``createEventPollingUntilDone(request:)``
+  /// - ``createEventPollingUntilDone(request:options:)``
+  /// - ``createEventPollingUntilDone(parent:event:eventId:)``
   public func createEvent(
     request: CreateEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -375,6 +525,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Creates a new Event in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_CreateEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEventPollingUntilDone(request:)``
+  /// - ``createEventPollingUntilDone(parent:event:eventId:)``
+  /// - ``createEvent(request:)``
+  /// - ``createEvent(request:options:)``
   public func createEventPollingUntilDone(
     request: CreateEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> Event {
@@ -402,6 +559,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Updates the parameters of a single Event.
   ///
   /// @Snippet(path: "StreamsService_UpdateEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEvent(request:)``
+  /// - ``updateEventPollingUntilDone(request:)``
+  /// - ``updateEventPollingUntilDone(request:options:)``
+  /// - ``updateEventPollingUntilDone(event:updateMask:)``
   public func updateEvent(
     request: UpdateEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -411,6 +575,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Updates the parameters of a single Event.
   ///
   /// @Snippet(path: "StreamsService_UpdateEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEventPollingUntilDone(request:)``
+  /// - ``updateEventPollingUntilDone(event:updateMask:)``
+  /// - ``updateEvent(request:)``
+  /// - ``updateEvent(request:options:)``
   public func updateEventPollingUntilDone(
     request: UpdateEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> Event {
@@ -438,6 +609,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Deletes a single Event.
   ///
   /// @Snippet(path: "StreamsService_DeleteEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEvent(request:)``
+  /// - ``deleteEventPollingUntilDone(request:)``
+  /// - ``deleteEventPollingUntilDone(request:options:)``
+  /// - ``deleteEventPollingUntilDone(name:)``
   public func deleteEvent(
     request: DeleteEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -447,6 +625,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Deletes a single Event.
   ///
   /// @Snippet(path: "StreamsService_DeleteEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEventPollingUntilDone(request:)``
+  /// - ``deleteEventPollingUntilDone(name:)``
+  /// - ``deleteEvent(request:)``
+  /// - ``deleteEvent(request:options:)``
   public func deleteEventPollingUntilDone(
     request: DeleteEventRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -474,6 +659,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Lists Series in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_ListSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSeries(request:)``
+  /// - ``listSeriesByItems(request:)``
+  /// - ``listSeriesByItems(request:options:)``
+  /// - ``listSeriesByItems(parent:)``
   public func listSeries(
     request: ListSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListSeriesResponse {
@@ -483,6 +675,11 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Gets details of a single Series.
   ///
   /// @Snippet(path: "StreamsService_GetSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSeries(request:)``
+  /// - ``getSeries(name:)``
   public func getSeries(
     request: GetSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Series {
@@ -492,6 +689,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Creates a new Series in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_CreateSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSeries(request:)``
+  /// - ``createSeriesPollingUntilDone(request:)``
+  /// - ``createSeriesPollingUntilDone(request:options:)``
+  /// - ``createSeriesPollingUntilDone(parent:series:seriesId:)``
   public func createSeries(
     request: CreateSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -501,6 +705,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Creates a new Series in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_CreateSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSeriesPollingUntilDone(request:)``
+  /// - ``createSeriesPollingUntilDone(parent:series:seriesId:)``
+  /// - ``createSeries(request:)``
+  /// - ``createSeries(request:options:)``
   public func createSeriesPollingUntilDone(
     request: CreateSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> Series {
@@ -528,6 +739,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Updates the parameters of a single Event.
   ///
   /// @Snippet(path: "StreamsService_UpdateSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSeries(request:)``
+  /// - ``updateSeriesPollingUntilDone(request:)``
+  /// - ``updateSeriesPollingUntilDone(request:options:)``
+  /// - ``updateSeriesPollingUntilDone(series:updateMask:)``
   public func updateSeries(
     request: UpdateSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -537,6 +755,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Updates the parameters of a single Event.
   ///
   /// @Snippet(path: "StreamsService_UpdateSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSeriesPollingUntilDone(request:)``
+  /// - ``updateSeriesPollingUntilDone(series:updateMask:)``
+  /// - ``updateSeries(request:)``
+  /// - ``updateSeries(request:options:)``
   public func updateSeriesPollingUntilDone(
     request: UpdateSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> Series {
@@ -564,6 +789,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Deletes a single Series.
   ///
   /// @Snippet(path: "StreamsService_DeleteSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSeries(request:)``
+  /// - ``deleteSeriesPollingUntilDone(request:)``
+  /// - ``deleteSeriesPollingUntilDone(request:options:)``
+  /// - ``deleteSeriesPollingUntilDone(name:)``
   public func deleteSeries(
     request: DeleteSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -573,6 +805,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Deletes a single Series.
   ///
   /// @Snippet(path: "StreamsService_DeleteSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSeriesPollingUntilDone(request:)``
+  /// - ``deleteSeriesPollingUntilDone(name:)``
+  /// - ``deleteSeries(request:)``
+  /// - ``deleteSeries(request:options:)``
   public func deleteSeriesPollingUntilDone(
     request: DeleteSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -600,6 +839,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Materialize a channel.
   ///
   /// @Snippet(path: "StreamsService_MaterializeChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``materializeChannel(request:)``
+  /// - ``materializeChannelPollingUntilDone(request:)``
+  /// - ``materializeChannelPollingUntilDone(request:options:)``
+  /// - ``materializeChannelPollingUntilDone(parent:channel:channelId:)``
   public func materializeChannel(
     request: MaterializeChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -609,6 +855,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Materialize a channel.
   ///
   /// @Snippet(path: "StreamsService_MaterializeChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``materializeChannelPollingUntilDone(request:)``
+  /// - ``materializeChannelPollingUntilDone(parent:channel:channelId:)``
+  /// - ``materializeChannel(request:)``
+  /// - ``materializeChannel(request:options:)``
   public func materializeChannelPollingUntilDone(
     request: MaterializeChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Channel {
@@ -636,6 +889,12 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "StreamsService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -645,6 +904,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// Gets information about a location.
   ///
   /// @Snippet(path: "StreamsService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -656,6 +919,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "StreamsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -678,6 +948,11 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "StreamsService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -689,6 +964,11 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "StreamsService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -917,6 +1197,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.StreamsServiceProtocol {
+  /// Lists Clusters in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listClusters(request:options:)``
   public func listClusters(request: ListClustersRequest) async throws
     -> GoogleCloudVideoAIV1.ListClustersResponse
   {
@@ -929,6 +1216,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Clusters in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listClusters(request:options:)``
   public func listClustersByItems(
     request: ListClustersRequest
   ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
@@ -938,6 +1232,10 @@ extension Clients.StreamsServiceProtocol {
   /// Lists Clusters in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listClusters(request:options:)``
   public func listClustersByItems(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
@@ -951,6 +1249,13 @@ extension Clients.StreamsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Clusters in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listClusters(request:options:)``
   public func listClustersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
@@ -960,6 +1265,13 @@ extension Clients.StreamsServiceProtocol {
     return self.listClustersByItems(request: request)
   }
 
+  /// Gets details of a single Cluster.
+  ///
+  /// @Snippet(path: "StreamsService_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/getCluster(request:options:)``
   public func getCluster(request: GetClusterRequest) async throws -> GoogleCloudVideoAIV1.Cluster {
     try await self.getCluster(request: request, options: .init())
   }
@@ -970,6 +1282,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Cluster.
+  ///
+  /// @Snippet(path: "StreamsService_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/getCluster(request:options:)``
   public func getCluster(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.Cluster {
@@ -979,6 +1298,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.getCluster(request: request)
   }
 
+  /// Creates a new Cluster in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/createCluster(request:options:)``
   public func createCluster(request: CreateClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -991,6 +1317,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Cluster in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/createClusterPollingUntilDone(request:options:)``
   public func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> Cluster {
     return try await self.createClusterPollingUntilDone(request: request, options: .init())
   }
@@ -1001,6 +1334,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Cluster in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/createClusterPollingUntilDone(request:options:)``
   public func createClusterPollingUntilDone(
     parent: Swift.String,
     cluster: Cluster?,
@@ -1014,6 +1354,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.createClusterPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Cluster.
+  ///
+  /// @Snippet(path: "StreamsService_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/updateCluster(request:options:)``
   public func updateCluster(request: UpdateClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1026,6 +1373,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Cluster.
+  ///
+  /// @Snippet(path: "StreamsService_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/updateClusterPollingUntilDone(request:options:)``
   public func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> Cluster {
     return try await self.updateClusterPollingUntilDone(request: request, options: .init())
   }
@@ -1036,6 +1390,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Cluster.
+  ///
+  /// @Snippet(path: "StreamsService_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/updateClusterPollingUntilDone(request:options:)``
   public func updateClusterPollingUntilDone(
     cluster: Cluster?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1047,6 +1408,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.updateClusterPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Cluster.
+  ///
+  /// @Snippet(path: "StreamsService_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteCluster(request:options:)``
   public func deleteCluster(request: DeleteClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1059,6 +1427,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Cluster.
+  ///
+  /// @Snippet(path: "StreamsService_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteClusterPollingUntilDone(request:options:)``
   public func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws {
     try await self.deleteClusterPollingUntilDone(request: request, options: .init())
   }
@@ -1069,6 +1444,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Cluster.
+  ///
+  /// @Snippet(path: "StreamsService_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteClusterPollingUntilDone(request:options:)``
   public func deleteClusterPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1078,6 +1460,13 @@ extension Clients.StreamsServiceProtocol {
     try await self.deleteClusterPollingUntilDone(request: request)
   }
 
+  /// Lists Streams in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_ListStreams")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listStreams(request:options:)``
   public func listStreams(request: ListStreamsRequest) async throws
     -> GoogleCloudVideoAIV1.ListStreamsResponse
   {
@@ -1090,6 +1479,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Streams in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_ListStreams")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listStreams(request:options:)``
   public func listStreamsByItems(
     request: ListStreamsRequest
   ) -> some AsyncSequence<Stream, any Swift.Error> & Sendable {
@@ -1099,6 +1495,10 @@ extension Clients.StreamsServiceProtocol {
   /// Lists Streams in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_ListStreams")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listStreams(request:options:)``
   public func listStreamsByItems(
     request: ListStreamsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Stream, any Swift.Error> & Sendable {
@@ -1112,6 +1512,13 @@ extension Clients.StreamsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Streams in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_ListStreams")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listStreams(request:options:)``
   public func listStreamsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Stream, any Swift.Error> & Sendable {
@@ -1121,6 +1528,13 @@ extension Clients.StreamsServiceProtocol {
     return self.listStreamsByItems(request: request)
   }
 
+  /// Gets details of a single Stream.
+  ///
+  /// @Snippet(path: "StreamsService_GetStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/getStream(request:options:)``
   public func getStream(request: GetStreamRequest) async throws -> GoogleCloudVideoAIV1.Stream {
     try await self.getStream(request: request, options: .init())
   }
@@ -1131,6 +1545,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Stream.
+  ///
+  /// @Snippet(path: "StreamsService_GetStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/getStream(request:options:)``
   public func getStream(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.Stream {
@@ -1140,6 +1561,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.getStream(request: request)
   }
 
+  /// Creates a new Stream in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_CreateStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/createStream(request:options:)``
   public func createStream(request: CreateStreamRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createStream(request: request, options: .init())
@@ -1151,6 +1579,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Stream in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_CreateStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/createStreamPollingUntilDone(request:options:)``
   public func createStreamPollingUntilDone(request: CreateStreamRequest) async throws -> Stream {
     return try await self.createStreamPollingUntilDone(request: request, options: .init())
   }
@@ -1161,6 +1596,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Stream in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_CreateStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/createStreamPollingUntilDone(request:options:)``
   public func createStreamPollingUntilDone(
     parent: Swift.String,
     stream: Stream?,
@@ -1174,6 +1616,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.createStreamPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Stream.
+  ///
+  /// @Snippet(path: "StreamsService_UpdateStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/updateStream(request:options:)``
   public func updateStream(request: UpdateStreamRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateStream(request: request, options: .init())
@@ -1185,6 +1634,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Stream.
+  ///
+  /// @Snippet(path: "StreamsService_UpdateStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/updateStreamPollingUntilDone(request:options:)``
   public func updateStreamPollingUntilDone(request: UpdateStreamRequest) async throws -> Stream {
     return try await self.updateStreamPollingUntilDone(request: request, options: .init())
   }
@@ -1195,6 +1651,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Stream.
+  ///
+  /// @Snippet(path: "StreamsService_UpdateStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/updateStreamPollingUntilDone(request:options:)``
   public func updateStreamPollingUntilDone(
     stream: Stream?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1206,6 +1669,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.updateStreamPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Stream.
+  ///
+  /// @Snippet(path: "StreamsService_DeleteStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteStream(request:options:)``
   public func deleteStream(request: DeleteStreamRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteStream(request: request, options: .init())
@@ -1217,6 +1687,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Stream.
+  ///
+  /// @Snippet(path: "StreamsService_DeleteStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteStreamPollingUntilDone(request:options:)``
   public func deleteStreamPollingUntilDone(request: DeleteStreamRequest) async throws {
     try await self.deleteStreamPollingUntilDone(request: request, options: .init())
   }
@@ -1227,6 +1704,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Stream.
+  ///
+  /// @Snippet(path: "StreamsService_DeleteStream")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteStreamPollingUntilDone(request:options:)``
   public func deleteStreamPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1236,6 +1720,13 @@ extension Clients.StreamsServiceProtocol {
     try await self.deleteStreamPollingUntilDone(request: request)
   }
 
+  /// Gets the thumbnail (image snapshot) of a single Stream.
+  ///
+  /// @Snippet(path: "StreamsService_GetStreamThumbnail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/getStreamThumbnail(request:options:)``
   public func getStreamThumbnail(request: GetStreamThumbnailRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1248,6 +1739,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the thumbnail (image snapshot) of a single Stream.
+  ///
+  /// @Snippet(path: "StreamsService_GetStreamThumbnail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/getStreamThumbnailPollingUntilDone(request:options:)``
   public func getStreamThumbnailPollingUntilDone(request: GetStreamThumbnailRequest) async throws
     -> GetStreamThumbnailResponse
   {
@@ -1260,6 +1758,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the thumbnail (image snapshot) of a single Stream.
+  ///
+  /// @Snippet(path: "StreamsService_GetStreamThumbnail")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/getStreamThumbnailPollingUntilDone(request:options:)``
   public func getStreamThumbnailPollingUntilDone(
     stream: Swift.String,
     gcsObjectName: Swift.String,
@@ -1271,6 +1776,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.getStreamThumbnailPollingUntilDone(request: request)
   }
 
+  /// Generate the JWT auth token required to get the stream HLS contents.
+  ///
+  /// @Snippet(path: "StreamsService_GenerateStreamHlsToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/generateStreamHlsToken(request:options:)``
   public func generateStreamHlsToken(request: GenerateStreamHlsTokenRequest) async throws
     -> GoogleCloudVideoAIV1.GenerateStreamHlsTokenResponse
   {
@@ -1283,6 +1795,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generate the JWT auth token required to get the stream HLS contents.
+  ///
+  /// @Snippet(path: "StreamsService_GenerateStreamHlsToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/generateStreamHlsToken(request:options:)``
   public func generateStreamHlsToken(
     stream: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.GenerateStreamHlsTokenResponse {
@@ -1292,6 +1811,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.generateStreamHlsToken(request: request)
   }
 
+  /// Lists Events in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_ListEvents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listEvents(request:options:)``
   public func listEvents(request: ListEventsRequest) async throws
     -> GoogleCloudVideoAIV1.ListEventsResponse
   {
@@ -1304,6 +1830,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Events in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_ListEvents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listEvents(request:options:)``
   public func listEventsByItems(
     request: ListEventsRequest
   ) -> some AsyncSequence<Event, any Swift.Error> & Sendable {
@@ -1313,6 +1846,10 @@ extension Clients.StreamsServiceProtocol {
   /// Lists Events in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_ListEvents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listEvents(request:options:)``
   public func listEventsByItems(
     request: ListEventsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Event, any Swift.Error> & Sendable {
@@ -1326,6 +1863,13 @@ extension Clients.StreamsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Events in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_ListEvents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listEvents(request:options:)``
   public func listEventsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Event, any Swift.Error> & Sendable {
@@ -1335,6 +1879,13 @@ extension Clients.StreamsServiceProtocol {
     return self.listEventsByItems(request: request)
   }
 
+  /// Gets details of a single Event.
+  ///
+  /// @Snippet(path: "StreamsService_GetEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/getEvent(request:options:)``
   public func getEvent(request: GetEventRequest) async throws -> GoogleCloudVideoAIV1.Event {
     try await self.getEvent(request: request, options: .init())
   }
@@ -1345,6 +1896,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Event.
+  ///
+  /// @Snippet(path: "StreamsService_GetEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/getEvent(request:options:)``
   public func getEvent(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.Event {
@@ -1354,6 +1912,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.getEvent(request: request)
   }
 
+  /// Creates a new Event in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_CreateEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/createEvent(request:options:)``
   public func createEvent(request: CreateEventRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createEvent(request: request, options: .init())
   }
@@ -1364,6 +1929,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Event in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_CreateEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/createEventPollingUntilDone(request:options:)``
   public func createEventPollingUntilDone(request: CreateEventRequest) async throws -> Event {
     return try await self.createEventPollingUntilDone(request: request, options: .init())
   }
@@ -1374,6 +1946,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Event in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_CreateEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/createEventPollingUntilDone(request:options:)``
   public func createEventPollingUntilDone(
     parent: Swift.String,
     event: Event?,
@@ -1387,6 +1966,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.createEventPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Event.
+  ///
+  /// @Snippet(path: "StreamsService_UpdateEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/updateEvent(request:options:)``
   public func updateEvent(request: UpdateEventRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateEvent(request: request, options: .init())
   }
@@ -1397,6 +1983,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Event.
+  ///
+  /// @Snippet(path: "StreamsService_UpdateEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/updateEventPollingUntilDone(request:options:)``
   public func updateEventPollingUntilDone(request: UpdateEventRequest) async throws -> Event {
     return try await self.updateEventPollingUntilDone(request: request, options: .init())
   }
@@ -1407,6 +2000,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Event.
+  ///
+  /// @Snippet(path: "StreamsService_UpdateEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/updateEventPollingUntilDone(request:options:)``
   public func updateEventPollingUntilDone(
     event: Event?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1418,6 +2018,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.updateEventPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Event.
+  ///
+  /// @Snippet(path: "StreamsService_DeleteEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteEvent(request:options:)``
   public func deleteEvent(request: DeleteEventRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteEvent(request: request, options: .init())
   }
@@ -1428,6 +2035,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Event.
+  ///
+  /// @Snippet(path: "StreamsService_DeleteEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteEventPollingUntilDone(request:options:)``
   public func deleteEventPollingUntilDone(request: DeleteEventRequest) async throws {
     try await self.deleteEventPollingUntilDone(request: request, options: .init())
   }
@@ -1438,6 +2052,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Event.
+  ///
+  /// @Snippet(path: "StreamsService_DeleteEvent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteEventPollingUntilDone(request:options:)``
   public func deleteEventPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1447,6 +2068,13 @@ extension Clients.StreamsServiceProtocol {
     try await self.deleteEventPollingUntilDone(request: request)
   }
 
+  /// Lists Series in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_ListSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listSeries(request:options:)``
   public func listSeries(request: ListSeriesRequest) async throws
     -> GoogleCloudVideoAIV1.ListSeriesResponse
   {
@@ -1459,6 +2087,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Series in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_ListSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listSeries(request:options:)``
   public func listSeriesByItems(
     request: ListSeriesRequest
   ) -> some AsyncSequence<Series, any Swift.Error> & Sendable {
@@ -1468,6 +2103,10 @@ extension Clients.StreamsServiceProtocol {
   /// Lists Series in a given project and location.
   ///
   /// @Snippet(path: "StreamsService_ListSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listSeries(request:options:)``
   public func listSeriesByItems(
     request: ListSeriesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Series, any Swift.Error> & Sendable {
@@ -1481,6 +2120,13 @@ extension Clients.StreamsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Series in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_ListSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listSeries(request:options:)``
   public func listSeriesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Series, any Swift.Error> & Sendable {
@@ -1490,6 +2136,13 @@ extension Clients.StreamsServiceProtocol {
     return self.listSeriesByItems(request: request)
   }
 
+  /// Gets details of a single Series.
+  ///
+  /// @Snippet(path: "StreamsService_GetSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/getSeries(request:options:)``
   public func getSeries(request: GetSeriesRequest) async throws -> GoogleCloudVideoAIV1.Series {
     try await self.getSeries(request: request, options: .init())
   }
@@ -1500,6 +2153,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Series.
+  ///
+  /// @Snippet(path: "StreamsService_GetSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/getSeries(request:options:)``
   public func getSeries(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.Series {
@@ -1509,6 +2169,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.getSeries(request: request)
   }
 
+  /// Creates a new Series in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_CreateSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/createSeries(request:options:)``
   public func createSeries(request: CreateSeriesRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createSeries(request: request, options: .init())
@@ -1520,6 +2187,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Series in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_CreateSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/createSeriesPollingUntilDone(request:options:)``
   public func createSeriesPollingUntilDone(request: CreateSeriesRequest) async throws -> Series {
     return try await self.createSeriesPollingUntilDone(request: request, options: .init())
   }
@@ -1530,6 +2204,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Series in a given project and location.
+  ///
+  /// @Snippet(path: "StreamsService_CreateSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/createSeriesPollingUntilDone(request:options:)``
   public func createSeriesPollingUntilDone(
     parent: Swift.String,
     series: Series?,
@@ -1543,6 +2224,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.createSeriesPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Event.
+  ///
+  /// @Snippet(path: "StreamsService_UpdateSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/updateSeries(request:options:)``
   public func updateSeries(request: UpdateSeriesRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateSeries(request: request, options: .init())
@@ -1554,6 +2242,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Event.
+  ///
+  /// @Snippet(path: "StreamsService_UpdateSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/updateSeriesPollingUntilDone(request:options:)``
   public func updateSeriesPollingUntilDone(request: UpdateSeriesRequest) async throws -> Series {
     return try await self.updateSeriesPollingUntilDone(request: request, options: .init())
   }
@@ -1564,6 +2259,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Event.
+  ///
+  /// @Snippet(path: "StreamsService_UpdateSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/updateSeriesPollingUntilDone(request:options:)``
   public func updateSeriesPollingUntilDone(
     series: Series?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1575,6 +2277,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.updateSeriesPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Series.
+  ///
+  /// @Snippet(path: "StreamsService_DeleteSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteSeries(request:options:)``
   public func deleteSeries(request: DeleteSeriesRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteSeries(request: request, options: .init())
@@ -1586,6 +2295,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Series.
+  ///
+  /// @Snippet(path: "StreamsService_DeleteSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteSeriesPollingUntilDone(request:options:)``
   public func deleteSeriesPollingUntilDone(request: DeleteSeriesRequest) async throws {
     try await self.deleteSeriesPollingUntilDone(request: request, options: .init())
   }
@@ -1596,6 +2312,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Series.
+  ///
+  /// @Snippet(path: "StreamsService_DeleteSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteSeriesPollingUntilDone(request:options:)``
   public func deleteSeriesPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1605,6 +2328,13 @@ extension Clients.StreamsServiceProtocol {
     try await self.deleteSeriesPollingUntilDone(request: request)
   }
 
+  /// Materialize a channel.
+  ///
+  /// @Snippet(path: "StreamsService_MaterializeChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/materializeChannel(request:options:)``
   public func materializeChannel(request: MaterializeChannelRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1617,6 +2347,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Materialize a channel.
+  ///
+  /// @Snippet(path: "StreamsService_MaterializeChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/materializeChannelPollingUntilDone(request:options:)``
   public func materializeChannelPollingUntilDone(request: MaterializeChannelRequest) async throws
     -> Channel
   {
@@ -1629,6 +2366,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Materialize a channel.
+  ///
+  /// @Snippet(path: "StreamsService_MaterializeChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/materializeChannelPollingUntilDone(request:options:)``
   public func materializeChannelPollingUntilDone(
     parent: Swift.String,
     channel: Channel?,
@@ -1642,6 +2386,13 @@ extension Clients.StreamsServiceProtocol {
     return try await self.materializeChannelPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "StreamsService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1654,6 +2405,13 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "StreamsService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1663,6 +2421,10 @@ extension Clients.StreamsServiceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "StreamsService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1676,6 +2438,13 @@ extension Clients.StreamsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "StreamsService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1688,6 +2457,15 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1700,6 +2478,15 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1711,6 +2498,10 @@ extension Clients.StreamsServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "StreamsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1724,6 +2515,15 @@ extension Clients.StreamsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1735,6 +2535,9 @@ extension Clients.StreamsServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1747,6 +2550,9 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1756,6 +2562,15 @@ extension Clients.StreamsServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamsService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1766,6 +2581,15 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamsService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1775,6 +2599,15 @@ extension Clients.StreamsServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamsService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1785,6 +2618,15 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "StreamsService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StreamsServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

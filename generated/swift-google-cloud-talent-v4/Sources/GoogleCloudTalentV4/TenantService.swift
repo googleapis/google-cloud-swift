@@ -25,6 +25,10 @@ import Foundation
 /// A service that handles tenant management, including CRUD and enumeration.
 ///
 /// @Snippet(path: "TenantServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/TenantServiceProtocol``
 public final class TenantServiceClient: Clients.TenantServiceProtocol, Sendable {
   let inner: any Clients.TenantServiceStub
 
@@ -41,6 +45,11 @@ public final class TenantServiceClient: Clients.TenantServiceProtocol, Sendable 
   /// Creates a new tenant entity.
   ///
   /// @Snippet(path: "TenantService_CreateTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTenant(request:)``
+  /// - ``createTenant(parent:tenant:)``
   public func createTenant(
     request: CreateTenantRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Tenant {
@@ -50,6 +59,11 @@ public final class TenantServiceClient: Clients.TenantServiceProtocol, Sendable 
   /// Retrieves specified tenant.
   ///
   /// @Snippet(path: "TenantService_GetTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTenant(request:)``
+  /// - ``getTenant(name:)``
   public func getTenant(
     request: GetTenantRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Tenant {
@@ -59,6 +73,11 @@ public final class TenantServiceClient: Clients.TenantServiceProtocol, Sendable 
   /// Updates specified tenant.
   ///
   /// @Snippet(path: "TenantService_UpdateTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTenant(request:)``
+  /// - ``updateTenant(tenant:updateMask:)``
   public func updateTenant(
     request: UpdateTenantRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Tenant {
@@ -68,6 +87,11 @@ public final class TenantServiceClient: Clients.TenantServiceProtocol, Sendable 
   /// Deletes specified tenant.
   ///
   /// @Snippet(path: "TenantService_DeleteTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTenant(request:)``
+  /// - ``deleteTenant(name:)``
   public func deleteTenant(
     request: DeleteTenantRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -77,6 +101,13 @@ public final class TenantServiceClient: Clients.TenantServiceProtocol, Sendable 
   /// Lists all tenants associated with the project.
   ///
   /// @Snippet(path: "TenantService_ListTenants")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTenants(request:)``
+  /// - ``listTenantsByItems(request:)``
+  /// - ``listTenantsByItems(request:options:)``
+  /// - ``listTenantsByItems(parent:)``
   public func listTenants(
     request: ListTenantsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.ListTenantsResponse {
@@ -131,6 +162,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.TenantServiceProtocol {
+  /// Creates a new tenant entity.
+  ///
+  /// @Snippet(path: "TenantService_CreateTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TenantServiceClient/createTenant(request:options:)``
   public func createTenant(request: CreateTenantRequest) async throws -> GoogleCloudTalentV4.Tenant
   {
     try await self.createTenant(request: request, options: .init())
@@ -142,6 +180,13 @@ extension Clients.TenantServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new tenant entity.
+  ///
+  /// @Snippet(path: "TenantService_CreateTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TenantServiceClient/createTenant(request:options:)``
   public func createTenant(
     parent: Swift.String,
     tenant: Tenant?,
@@ -153,6 +198,13 @@ extension Clients.TenantServiceProtocol {
     return try await self.createTenant(request: request)
   }
 
+  /// Retrieves specified tenant.
+  ///
+  /// @Snippet(path: "TenantService_GetTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TenantServiceClient/getTenant(request:options:)``
   public func getTenant(request: GetTenantRequest) async throws -> GoogleCloudTalentV4.Tenant {
     try await self.getTenant(request: request, options: .init())
   }
@@ -163,6 +215,13 @@ extension Clients.TenantServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves specified tenant.
+  ///
+  /// @Snippet(path: "TenantService_GetTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TenantServiceClient/getTenant(request:options:)``
   public func getTenant(
     name: Swift.String,
   ) async throws -> GoogleCloudTalentV4.Tenant {
@@ -172,6 +231,13 @@ extension Clients.TenantServiceProtocol {
     return try await self.getTenant(request: request)
   }
 
+  /// Updates specified tenant.
+  ///
+  /// @Snippet(path: "TenantService_UpdateTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TenantServiceClient/updateTenant(request:options:)``
   public func updateTenant(request: UpdateTenantRequest) async throws -> GoogleCloudTalentV4.Tenant
   {
     try await self.updateTenant(request: request, options: .init())
@@ -183,6 +249,13 @@ extension Clients.TenantServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates specified tenant.
+  ///
+  /// @Snippet(path: "TenantService_UpdateTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TenantServiceClient/updateTenant(request:options:)``
   public func updateTenant(
     tenant: Tenant?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -194,6 +267,13 @@ extension Clients.TenantServiceProtocol {
     return try await self.updateTenant(request: request)
   }
 
+  /// Deletes specified tenant.
+  ///
+  /// @Snippet(path: "TenantService_DeleteTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TenantServiceClient/deleteTenant(request:options:)``
   public func deleteTenant(request: DeleteTenantRequest) async throws {
     try await self.deleteTenant(request: request, options: .init())
   }
@@ -204,6 +284,13 @@ extension Clients.TenantServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes specified tenant.
+  ///
+  /// @Snippet(path: "TenantService_DeleteTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TenantServiceClient/deleteTenant(request:options:)``
   public func deleteTenant(
     name: Swift.String,
   ) async throws {
@@ -213,6 +300,13 @@ extension Clients.TenantServiceProtocol {
     try await self.deleteTenant(request: request)
   }
 
+  /// Lists all tenants associated with the project.
+  ///
+  /// @Snippet(path: "TenantService_ListTenants")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TenantServiceClient/listTenants(request:options:)``
   public func listTenants(request: ListTenantsRequest) async throws
     -> GoogleCloudTalentV4.ListTenantsResponse
   {
@@ -225,6 +319,13 @@ extension Clients.TenantServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all tenants associated with the project.
+  ///
+  /// @Snippet(path: "TenantService_ListTenants")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TenantServiceClient/listTenants(request:options:)``
   public func listTenantsByItems(
     request: ListTenantsRequest
   ) -> some AsyncSequence<Tenant, any Swift.Error> & Sendable {
@@ -234,6 +335,10 @@ extension Clients.TenantServiceProtocol {
   /// Lists all tenants associated with the project.
   ///
   /// @Snippet(path: "TenantService_ListTenants")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TenantServiceClient/listTenants(request:options:)``
   public func listTenantsByItems(
     request: ListTenantsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Tenant, any Swift.Error> & Sendable {
@@ -247,6 +352,13 @@ extension Clients.TenantServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all tenants associated with the project.
+  ///
+  /// @Snippet(path: "TenantService_ListTenants")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TenantServiceClient/listTenants(request:options:)``
   public func listTenantsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Tenant, any Swift.Error> & Sendable {
@@ -256,6 +368,9 @@ extension Clients.TenantServiceProtocol {
     return self.listTenantsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -268,6 +383,9 @@ extension Clients.TenantServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

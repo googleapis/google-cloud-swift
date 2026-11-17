@@ -27,6 +27,10 @@ import Foundation
 /// and can be used to create, read, and delete blockchain nodes.
 ///
 /// @Snippet(path: "BlockchainNodeEngineQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/BlockchainNodeEngineProtocol``
 public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProtocol, Sendable {
   let inner: any Clients.BlockchainNodeEngineStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Lists blockchain nodes in a given project and location.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_ListBlockchainNodes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBlockchainNodes(request:)``
+  /// - ``listBlockchainNodesByItems(request:)``
+  /// - ``listBlockchainNodesByItems(request:options:)``
+  /// - ``listBlockchainNodesByItems(parent:)``
   public func listBlockchainNodes(
     request: ListBlockchainNodesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBlockChainNodeEngineV1.ListBlockchainNodesResponse {
@@ -57,6 +68,11 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Gets details of a single blockchain node.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_GetBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBlockchainNode(request:)``
+  /// - ``getBlockchainNode(name:)``
   public func getBlockchainNode(
     request: GetBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBlockChainNodeEngineV1.BlockchainNode {
@@ -66,6 +82,13 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Creates a new blockchain node in a given project and location.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_CreateBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBlockchainNode(request:)``
+  /// - ``createBlockchainNodePollingUntilDone(request:)``
+  /// - ``createBlockchainNodePollingUntilDone(request:options:)``
+  /// - ``createBlockchainNodePollingUntilDone(parent:blockchainNode:blockchainNodeId:)``
   public func createBlockchainNode(
     request: CreateBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -75,6 +98,13 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Creates a new blockchain node in a given project and location.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_CreateBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBlockchainNodePollingUntilDone(request:)``
+  /// - ``createBlockchainNodePollingUntilDone(parent:blockchainNode:blockchainNodeId:)``
+  /// - ``createBlockchainNode(request:)``
+  /// - ``createBlockchainNode(request:options:)``
   public func createBlockchainNodePollingUntilDone(
     request: CreateBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> BlockchainNode {
@@ -103,6 +133,13 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Updates the parameters of a single blockchain node.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_UpdateBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBlockchainNode(request:)``
+  /// - ``updateBlockchainNodePollingUntilDone(request:)``
+  /// - ``updateBlockchainNodePollingUntilDone(request:options:)``
+  /// - ``updateBlockchainNodePollingUntilDone(blockchainNode:updateMask:)``
   public func updateBlockchainNode(
     request: UpdateBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -112,6 +149,13 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Updates the parameters of a single blockchain node.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_UpdateBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBlockchainNodePollingUntilDone(request:)``
+  /// - ``updateBlockchainNodePollingUntilDone(blockchainNode:updateMask:)``
+  /// - ``updateBlockchainNode(request:)``
+  /// - ``updateBlockchainNode(request:options:)``
   public func updateBlockchainNodePollingUntilDone(
     request: UpdateBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> BlockchainNode {
@@ -140,6 +184,13 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Deletes a single blockchain node.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_DeleteBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBlockchainNode(request:)``
+  /// - ``deleteBlockchainNodePollingUntilDone(request:)``
+  /// - ``deleteBlockchainNodePollingUntilDone(request:options:)``
+  /// - ``deleteBlockchainNodePollingUntilDone(name:)``
   public func deleteBlockchainNode(
     request: DeleteBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -149,6 +200,13 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Deletes a single blockchain node.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_DeleteBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBlockchainNodePollingUntilDone(request:)``
+  /// - ``deleteBlockchainNodePollingUntilDone(name:)``
+  /// - ``deleteBlockchainNode(request:)``
+  /// - ``deleteBlockchainNode(request:options:)``
   public func deleteBlockchainNodePollingUntilDone(
     request: DeleteBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -176,6 +234,12 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -185,6 +249,10 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// Gets information about a location.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -196,6 +264,13 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BlockchainNodeEngine_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -218,6 +293,11 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BlockchainNodeEngine_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -229,6 +309,11 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BlockchainNodeEngine_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -312,6 +397,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.BlockchainNodeEngineProtocol {
+  /// Lists blockchain nodes in a given project and location.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_ListBlockchainNodes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/listBlockchainNodes(request:options:)``
   public func listBlockchainNodes(request: ListBlockchainNodesRequest) async throws
     -> GoogleCloudBlockChainNodeEngineV1.ListBlockchainNodesResponse
   {
@@ -324,6 +416,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists blockchain nodes in a given project and location.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_ListBlockchainNodes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/listBlockchainNodes(request:options:)``
   public func listBlockchainNodesByItems(
     request: ListBlockchainNodesRequest
   ) -> some AsyncSequence<BlockchainNode, any Swift.Error> & Sendable {
@@ -333,6 +432,10 @@ extension Clients.BlockchainNodeEngineProtocol {
   /// Lists blockchain nodes in a given project and location.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_ListBlockchainNodes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/listBlockchainNodes(request:options:)``
   public func listBlockchainNodesByItems(
     request: ListBlockchainNodesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BlockchainNode, any Swift.Error> & Sendable {
@@ -347,6 +450,13 @@ extension Clients.BlockchainNodeEngineProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists blockchain nodes in a given project and location.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_ListBlockchainNodes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/listBlockchainNodes(request:options:)``
   public func listBlockchainNodesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BlockchainNode, any Swift.Error> & Sendable {
@@ -356,6 +466,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     return self.listBlockchainNodesByItems(request: request)
   }
 
+  /// Gets details of a single blockchain node.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_GetBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/getBlockchainNode(request:options:)``
   public func getBlockchainNode(request: GetBlockchainNodeRequest) async throws
     -> GoogleCloudBlockChainNodeEngineV1.BlockchainNode
   {
@@ -368,6 +485,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single blockchain node.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_GetBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/getBlockchainNode(request:options:)``
   public func getBlockchainNode(
     name: Swift.String,
   ) async throws -> GoogleCloudBlockChainNodeEngineV1.BlockchainNode {
@@ -377,6 +501,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     return try await self.getBlockchainNode(request: request)
   }
 
+  /// Creates a new blockchain node in a given project and location.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_CreateBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/createBlockchainNode(request:options:)``
   public func createBlockchainNode(request: CreateBlockchainNodeRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -389,6 +520,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new blockchain node in a given project and location.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_CreateBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/createBlockchainNodePollingUntilDone(request:options:)``
   public func createBlockchainNodePollingUntilDone(request: CreateBlockchainNodeRequest)
     async throws -> BlockchainNode
   {
@@ -401,6 +539,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new blockchain node in a given project and location.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_CreateBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/createBlockchainNodePollingUntilDone(request:options:)``
   public func createBlockchainNodePollingUntilDone(
     parent: Swift.String,
     blockchainNode: BlockchainNode?,
@@ -414,6 +559,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     return try await self.createBlockchainNodePollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single blockchain node.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_UpdateBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/updateBlockchainNode(request:options:)``
   public func updateBlockchainNode(request: UpdateBlockchainNodeRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -426,6 +578,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single blockchain node.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_UpdateBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/updateBlockchainNodePollingUntilDone(request:options:)``
   public func updateBlockchainNodePollingUntilDone(request: UpdateBlockchainNodeRequest)
     async throws -> BlockchainNode
   {
@@ -438,6 +597,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single blockchain node.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_UpdateBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/updateBlockchainNodePollingUntilDone(request:options:)``
   public func updateBlockchainNodePollingUntilDone(
     blockchainNode: BlockchainNode?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -449,6 +615,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     return try await self.updateBlockchainNodePollingUntilDone(request: request)
   }
 
+  /// Deletes a single blockchain node.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_DeleteBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/deleteBlockchainNode(request:options:)``
   public func deleteBlockchainNode(request: DeleteBlockchainNodeRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -461,6 +634,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single blockchain node.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_DeleteBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/deleteBlockchainNodePollingUntilDone(request:options:)``
   public func deleteBlockchainNodePollingUntilDone(request: DeleteBlockchainNodeRequest)
     async throws
   {
@@ -473,6 +653,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single blockchain node.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_DeleteBlockchainNode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/deleteBlockchainNodePollingUntilDone(request:options:)``
   public func deleteBlockchainNodePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -482,6 +669,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     try await self.deleteBlockchainNodePollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -494,6 +688,13 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -503,6 +704,10 @@ extension Clients.BlockchainNodeEngineProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "BlockchainNodeEngine_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -516,6 +721,13 @@ extension Clients.BlockchainNodeEngineProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -528,6 +740,15 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -540,6 +761,15 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -551,6 +781,10 @@ extension Clients.BlockchainNodeEngineProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BlockchainNodeEngine_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -564,6 +798,15 @@ extension Clients.BlockchainNodeEngineProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -575,6 +818,9 @@ extension Clients.BlockchainNodeEngineProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -587,6 +833,9 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -596,6 +845,15 @@ extension Clients.BlockchainNodeEngineProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -606,6 +864,15 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -615,6 +882,15 @@ extension Clients.BlockchainNodeEngineProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -625,6 +901,15 @@ extension Clients.BlockchainNodeEngineProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BlockchainNodeEngine_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BlockchainNodeEngineClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

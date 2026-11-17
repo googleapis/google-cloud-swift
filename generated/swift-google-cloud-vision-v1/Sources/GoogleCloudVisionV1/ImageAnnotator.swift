@@ -26,6 +26,10 @@ import Foundation
 /// ImageAnnotator service returns detected entities from the images.
 ///
 /// @Snippet(path: "ImageAnnotatorQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ImageAnnotatorProtocol``
 public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendable {
   let inner: any Clients.ImageAnnotatorStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,11 @@ public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendabl
   /// Run image detection and annotation for a batch of images.
   ///
   /// @Snippet(path: "ImageAnnotator_BatchAnnotateImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchAnnotateImages(request:)``
+  /// - ``batchAnnotateImages(requests:)``
   public func batchAnnotateImages(
     request: BatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.BatchAnnotateImagesResponse {
@@ -61,6 +70,11 @@ public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendabl
   /// extracted.
   ///
   /// @Snippet(path: "ImageAnnotator_BatchAnnotateFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchAnnotateFiles(request:)``
+  /// - ``batchAnnotateFiles(requests:)``
   public func batchAnnotateFiles(
     request: BatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.BatchAnnotateFilesResponse {
@@ -78,6 +92,13 @@ public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendabl
   /// GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
   ///
   /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``asyncBatchAnnotateImages(request:)``
+  /// - ``asyncBatchAnnotateImagesPollingUntilDone(request:)``
+  /// - ``asyncBatchAnnotateImagesPollingUntilDone(request:options:)``
+  /// - ``asyncBatchAnnotateImagesPollingUntilDone(requests:outputConfig:)``
   public func asyncBatchAnnotateImages(
     request: AsyncBatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -95,6 +116,13 @@ public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendabl
   /// GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
   ///
   /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``asyncBatchAnnotateImagesPollingUntilDone(request:)``
+  /// - ``asyncBatchAnnotateImagesPollingUntilDone(requests:outputConfig:)``
+  /// - ``asyncBatchAnnotateImages(request:)``
+  /// - ``asyncBatchAnnotateImages(request:options:)``
   public func asyncBatchAnnotateImagesPollingUntilDone(
     request: AsyncBatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> AsyncBatchAnnotateImagesResponse {
@@ -129,6 +157,13 @@ public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendabl
   /// `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
   ///
   /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``asyncBatchAnnotateFiles(request:)``
+  /// - ``asyncBatchAnnotateFilesPollingUntilDone(request:)``
+  /// - ``asyncBatchAnnotateFilesPollingUntilDone(request:options:)``
+  /// - ``asyncBatchAnnotateFilesPollingUntilDone(requests:)``
   public func asyncBatchAnnotateFiles(
     request: AsyncBatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -143,6 +178,13 @@ public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendabl
   /// `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
   ///
   /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``asyncBatchAnnotateFilesPollingUntilDone(request:)``
+  /// - ``asyncBatchAnnotateFilesPollingUntilDone(requests:)``
+  /// - ``asyncBatchAnnotateFiles(request:)``
+  /// - ``asyncBatchAnnotateFiles(request:options:)``
   public func asyncBatchAnnotateFilesPollingUntilDone(
     request: AsyncBatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> AsyncBatchAnnotateFilesResponse {
@@ -222,6 +264,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ImageAnnotatorProtocol {
+  /// Run image detection and annotation for a batch of images.
+  ///
+  /// @Snippet(path: "ImageAnnotator_BatchAnnotateImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageAnnotatorClient/batchAnnotateImages(request:options:)``
   public func batchAnnotateImages(request: BatchAnnotateImagesRequest) async throws
     -> GoogleCloudVisionV1.BatchAnnotateImagesResponse
   {
@@ -234,6 +283,13 @@ extension Clients.ImageAnnotatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Run image detection and annotation for a batch of images.
+  ///
+  /// @Snippet(path: "ImageAnnotator_BatchAnnotateImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageAnnotatorClient/batchAnnotateImages(request:options:)``
   public func batchAnnotateImages(
     requests: [AnnotateImageRequest],
   ) async throws -> GoogleCloudVisionV1.BatchAnnotateImagesResponse {
@@ -243,6 +299,19 @@ extension Clients.ImageAnnotatorProtocol {
     return try await self.batchAnnotateImages(request: request)
   }
 
+  /// Service that performs image detection and annotation for a batch of files.
+  /// Now only "application/pdf", "image/tiff" and "image/gif" are supported.
+  ///
+  /// This service will extract at most 5 (customers can specify which 5 in
+  /// AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each
+  /// file provided and perform detection and annotation for each image
+  /// extracted.
+  ///
+  /// @Snippet(path: "ImageAnnotator_BatchAnnotateFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageAnnotatorClient/batchAnnotateFiles(request:options:)``
   public func batchAnnotateFiles(request: BatchAnnotateFilesRequest) async throws
     -> GoogleCloudVisionV1.BatchAnnotateFilesResponse
   {
@@ -255,6 +324,19 @@ extension Clients.ImageAnnotatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Service that performs image detection and annotation for a batch of files.
+  /// Now only "application/pdf", "image/tiff" and "image/gif" are supported.
+  ///
+  /// This service will extract at most 5 (customers can specify which 5 in
+  /// AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each
+  /// file provided and perform detection and annotation for each image
+  /// extracted.
+  ///
+  /// @Snippet(path: "ImageAnnotator_BatchAnnotateFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageAnnotatorClient/batchAnnotateFiles(request:options:)``
   public func batchAnnotateFiles(
     requests: [AnnotateFileRequest],
   ) async throws -> GoogleCloudVisionV1.BatchAnnotateFilesResponse {
@@ -264,6 +346,21 @@ extension Clients.ImageAnnotatorProtocol {
     return try await self.batchAnnotateFiles(request: request)
   }
 
+  /// Run asynchronous image detection and annotation for a list of images.
+  ///
+  /// Progress and results can be retrieved through the
+  /// `google.longrunning.Operations` interface.
+  /// `Operation.metadata` contains `OperationMetadata` (metadata).
+  /// `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).
+  ///
+  /// This service will write image annotation outputs to json files in customer
+  /// GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+  ///
+  /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageAnnotatorClient/asyncBatchAnnotateImages(request:options:)``
   public func asyncBatchAnnotateImages(request: AsyncBatchAnnotateImagesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -276,6 +373,21 @@ extension Clients.ImageAnnotatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Run asynchronous image detection and annotation for a list of images.
+  ///
+  /// Progress and results can be retrieved through the
+  /// `google.longrunning.Operations` interface.
+  /// `Operation.metadata` contains `OperationMetadata` (metadata).
+  /// `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).
+  ///
+  /// This service will write image annotation outputs to json files in customer
+  /// GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+  ///
+  /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageAnnotatorClient/asyncBatchAnnotateImagesPollingUntilDone(request:options:)``
   public func asyncBatchAnnotateImagesPollingUntilDone(request: AsyncBatchAnnotateImagesRequest)
     async throws -> AsyncBatchAnnotateImagesResponse
   {
@@ -289,6 +401,21 @@ extension Clients.ImageAnnotatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Run asynchronous image detection and annotation for a list of images.
+  ///
+  /// Progress and results can be retrieved through the
+  /// `google.longrunning.Operations` interface.
+  /// `Operation.metadata` contains `OperationMetadata` (metadata).
+  /// `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).
+  ///
+  /// This service will write image annotation outputs to json files in customer
+  /// GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+  ///
+  /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageAnnotatorClient/asyncBatchAnnotateImagesPollingUntilDone(request:options:)``
   public func asyncBatchAnnotateImagesPollingUntilDone(
     requests: [AnnotateImageRequest],
     outputConfig: OutputConfig?,
@@ -300,6 +427,18 @@ extension Clients.ImageAnnotatorProtocol {
     return try await self.asyncBatchAnnotateImagesPollingUntilDone(request: request)
   }
 
+  /// Run asynchronous image detection and annotation for a list of generic
+  /// files, such as PDF files, which may contain multiple pages and multiple
+  /// images per page. Progress and results can be retrieved through the
+  /// `google.longrunning.Operations` interface.
+  /// `Operation.metadata` contains `OperationMetadata` (metadata).
+  /// `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+  ///
+  /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageAnnotatorClient/asyncBatchAnnotateFiles(request:options:)``
   public func asyncBatchAnnotateFiles(request: AsyncBatchAnnotateFilesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -312,6 +451,18 @@ extension Clients.ImageAnnotatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Run asynchronous image detection and annotation for a list of generic
+  /// files, such as PDF files, which may contain multiple pages and multiple
+  /// images per page. Progress and results can be retrieved through the
+  /// `google.longrunning.Operations` interface.
+  /// `Operation.metadata` contains `OperationMetadata` (metadata).
+  /// `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+  ///
+  /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageAnnotatorClient/asyncBatchAnnotateFilesPollingUntilDone(request:options:)``
   public func asyncBatchAnnotateFilesPollingUntilDone(request: AsyncBatchAnnotateFilesRequest)
     async throws -> AsyncBatchAnnotateFilesResponse
   {
@@ -325,6 +476,18 @@ extension Clients.ImageAnnotatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Run asynchronous image detection and annotation for a list of generic
+  /// files, such as PDF files, which may contain multiple pages and multiple
+  /// images per page. Progress and results can be retrieved through the
+  /// `google.longrunning.Operations` interface.
+  /// `Operation.metadata` contains `OperationMetadata` (metadata).
+  /// `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+  ///
+  /// @Snippet(path: "ImageAnnotator_AsyncBatchAnnotateFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageAnnotatorClient/asyncBatchAnnotateFilesPollingUntilDone(request:options:)``
   public func asyncBatchAnnotateFilesPollingUntilDone(
     requests: [AsyncAnnotateFileRequest],
   ) async throws -> AsyncBatchAnnotateFilesResponse {
@@ -334,6 +497,9 @@ extension Clients.ImageAnnotatorProtocol {
     return try await self.asyncBatchAnnotateFilesPollingUntilDone(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -346,6 +512,9 @@ extension Clients.ImageAnnotatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

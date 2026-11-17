@@ -37,6 +37,10 @@ import Foundation
 /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
 ///
 /// @Snippet(path: "SimulatorQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SimulatorProtocol``
 public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   let inner: any Clients.SimulatorStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -60,6 +64,11 @@ public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
   ///
   /// @Snippet(path: "Simulator_GetReplay")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getReplay(request:)``
+  /// - ``getReplay(name:)``
   public func getReplay(
     request: GetReplayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPolicySimulatorV1.Replay {
@@ -73,6 +82,13 @@ public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   /// [google.cloud.policysimulator.v1.ReplayConfig]: <doc:ReplayConfig>
   ///
   /// @Snippet(path: "Simulator_CreateReplay")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReplay(request:)``
+  /// - ``createReplayPollingUntilDone(request:)``
+  /// - ``createReplayPollingUntilDone(request:options:)``
+  /// - ``createReplayPollingUntilDone(parent:replay:)``
   public func createReplay(
     request: CreateReplayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -86,6 +102,13 @@ public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   /// [google.cloud.policysimulator.v1.ReplayConfig]: <doc:ReplayConfig>
   ///
   /// @Snippet(path: "Simulator_CreateReplay")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReplayPollingUntilDone(request:)``
+  /// - ``createReplayPollingUntilDone(parent:replay:)``
+  /// - ``createReplay(request:)``
+  /// - ``createReplay(request:options:)``
   public func createReplayPollingUntilDone(
     request: CreateReplayRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replay {
@@ -116,6 +139,13 @@ public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
   ///
   /// @Snippet(path: "Simulator_ListReplayResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReplayResults(request:)``
+  /// - ``listReplayResultsByItems(request:)``
+  /// - ``listReplayResultsByItems(request:options:)``
+  /// - ``listReplayResultsByItems(parent:)``
   public func listReplayResults(
     request: ListReplayResultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPolicySimulatorV1.ListReplayResultsResponse {
@@ -127,6 +157,13 @@ public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Simulator_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -181,6 +218,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.SimulatorProtocol {
+  /// Gets the specified [Replay][google.cloud.policysimulator.v1.Replay]. Each
+  /// `Replay` is available for at least 7 days.
+  ///
+  /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
+  ///
+  /// @Snippet(path: "Simulator_GetReplay")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/getReplay(request:options:)``
   public func getReplay(request: GetReplayRequest) async throws
     -> GoogleCloudPolicySimulatorV1.Replay
   {
@@ -193,6 +240,16 @@ extension Clients.SimulatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the specified [Replay][google.cloud.policysimulator.v1.Replay]. Each
+  /// `Replay` is available for at least 7 days.
+  ///
+  /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
+  ///
+  /// @Snippet(path: "Simulator_GetReplay")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/getReplay(request:options:)``
   public func getReplay(
     name: Swift.String,
   ) async throws -> GoogleCloudPolicySimulatorV1.Replay {
@@ -202,6 +259,17 @@ extension Clients.SimulatorProtocol {
     return try await self.getReplay(request: request)
   }
 
+  /// Creates and starts a [Replay][google.cloud.policysimulator.v1.Replay] using
+  /// the given [ReplayConfig][google.cloud.policysimulator.v1.ReplayConfig].
+  ///
+  /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
+  /// [google.cloud.policysimulator.v1.ReplayConfig]: <doc:ReplayConfig>
+  ///
+  /// @Snippet(path: "Simulator_CreateReplay")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/createReplay(request:options:)``
   public func createReplay(request: CreateReplayRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createReplay(request: request, options: .init())
@@ -213,6 +281,17 @@ extension Clients.SimulatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates and starts a [Replay][google.cloud.policysimulator.v1.Replay] using
+  /// the given [ReplayConfig][google.cloud.policysimulator.v1.ReplayConfig].
+  ///
+  /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
+  /// [google.cloud.policysimulator.v1.ReplayConfig]: <doc:ReplayConfig>
+  ///
+  /// @Snippet(path: "Simulator_CreateReplay")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/createReplayPollingUntilDone(request:options:)``
   public func createReplayPollingUntilDone(request: CreateReplayRequest) async throws -> Replay {
     return try await self.createReplayPollingUntilDone(request: request, options: .init())
   }
@@ -223,6 +302,17 @@ extension Clients.SimulatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates and starts a [Replay][google.cloud.policysimulator.v1.Replay] using
+  /// the given [ReplayConfig][google.cloud.policysimulator.v1.ReplayConfig].
+  ///
+  /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
+  /// [google.cloud.policysimulator.v1.ReplayConfig]: <doc:ReplayConfig>
+  ///
+  /// @Snippet(path: "Simulator_CreateReplay")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/createReplayPollingUntilDone(request:options:)``
   public func createReplayPollingUntilDone(
     parent: Swift.String,
     replay: Replay?,
@@ -234,6 +324,16 @@ extension Clients.SimulatorProtocol {
     return try await self.createReplayPollingUntilDone(request: request)
   }
 
+  /// Lists the results of running a
+  /// [Replay][google.cloud.policysimulator.v1.Replay].
+  ///
+  /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
+  ///
+  /// @Snippet(path: "Simulator_ListReplayResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/listReplayResults(request:options:)``
   public func listReplayResults(request: ListReplayResultsRequest) async throws
     -> GoogleCloudPolicySimulatorV1.ListReplayResultsResponse
   {
@@ -246,6 +346,16 @@ extension Clients.SimulatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the results of running a
+  /// [Replay][google.cloud.policysimulator.v1.Replay].
+  ///
+  /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
+  ///
+  /// @Snippet(path: "Simulator_ListReplayResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/listReplayResults(request:options:)``
   public func listReplayResultsByItems(
     request: ListReplayResultsRequest
   ) -> some AsyncSequence<ReplayResult, any Swift.Error> & Sendable {
@@ -258,6 +368,10 @@ extension Clients.SimulatorProtocol {
   /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
   ///
   /// @Snippet(path: "Simulator_ListReplayResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/listReplayResults(request:options:)``
   public func listReplayResultsByItems(
     request: ListReplayResultsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ReplayResult, any Swift.Error> & Sendable {
@@ -272,6 +386,16 @@ extension Clients.SimulatorProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the results of running a
+  /// [Replay][google.cloud.policysimulator.v1.Replay].
+  ///
+  /// [google.cloud.policysimulator.v1.Replay]: <doc:Replay>
+  ///
+  /// @Snippet(path: "Simulator_ListReplayResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/listReplayResults(request:options:)``
   public func listReplayResultsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ReplayResult, any Swift.Error> & Sendable {
@@ -281,6 +405,15 @@ extension Clients.SimulatorProtocol {
     return self.listReplayResultsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Simulator_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -293,6 +426,15 @@ extension Clients.SimulatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Simulator_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -304,6 +446,10 @@ extension Clients.SimulatorProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Simulator_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -317,6 +463,15 @@ extension Clients.SimulatorProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Simulator_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SimulatorClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -328,6 +483,9 @@ extension Clients.SimulatorProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -340,6 +498,9 @@ extension Clients.SimulatorProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

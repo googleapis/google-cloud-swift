@@ -28,6 +28,10 @@
   /// datalabeling.googleapis.com and ml.googleapis.com to Vertex AI.
   ///
   /// @Snippet(path: "MigrationServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/MigrationServiceProtocol``
   public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sendable {
     let inner: any Clients.MigrationServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -50,6 +54,13 @@
     /// Vertex AI's given location.
     ///
     /// @Snippet(path: "MigrationService_SearchMigratableResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``searchMigratableResources(request:)``
+    /// - ``searchMigratableResourcesByItems(request:)``
+    /// - ``searchMigratableResourcesByItems(request:options:)``
+    /// - ``searchMigratableResourcesByItems(parent:)``
     public func searchMigratableResources(
       request: SearchMigratableResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.SearchMigratableResourcesResponse {
@@ -60,6 +71,13 @@
     /// and datalabeling.googleapis.com to Vertex AI.
     ///
     /// @Snippet(path: "MigrationService_BatchMigrateResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchMigrateResources(request:)``
+    /// - ``batchMigrateResourcesPollingUntilDone(request:)``
+    /// - ``batchMigrateResourcesPollingUntilDone(request:options:)``
+    /// - ``batchMigrateResourcesPollingUntilDone(parent:migrateResourceRequests:)``
     public func batchMigrateResources(
       request: BatchMigrateResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -70,6 +88,13 @@
     /// and datalabeling.googleapis.com to Vertex AI.
     ///
     /// @Snippet(path: "MigrationService_BatchMigrateResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchMigrateResourcesPollingUntilDone(request:)``
+    /// - ``batchMigrateResourcesPollingUntilDone(parent:migrateResourceRequests:)``
+    /// - ``batchMigrateResources(request:)``
+    /// - ``batchMigrateResources(request:options:)``
     public func batchMigrateResourcesPollingUntilDone(
       request: BatchMigrateResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchMigrateResourcesResponse {
@@ -99,6 +124,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "MigrationService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -108,6 +139,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "MigrationService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -121,6 +156,10 @@
     /// errors.
     ///
     /// @Snippet(path: "MigrationService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -131,6 +170,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "MigrationService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -146,6 +189,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "MigrationService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -157,6 +204,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "MigrationService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -179,6 +233,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "MigrationService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(request:)``
+    /// - ``deleteOperation(name:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -190,6 +249,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "MigrationService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -201,6 +265,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "MigrationService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -279,6 +347,15 @@
 
   // Default implementations
   extension Clients.MigrationServiceProtocol {
+    /// Searches all of the resources in automl.googleapis.com,
+    /// datalabeling.googleapis.com and ml.googleapis.com that can be migrated to
+    /// Vertex AI's given location.
+    ///
+    /// @Snippet(path: "MigrationService_SearchMigratableResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/searchMigratableResources(request:options:)``
     public func searchMigratableResources(request: SearchMigratableResourcesRequest) async throws
       -> GoogleCloudAIPlatformV1.SearchMigratableResourcesResponse
     {
@@ -291,6 +368,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Searches all of the resources in automl.googleapis.com,
+    /// datalabeling.googleapis.com and ml.googleapis.com that can be migrated to
+    /// Vertex AI's given location.
+    ///
+    /// @Snippet(path: "MigrationService_SearchMigratableResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/searchMigratableResources(request:options:)``
     public func searchMigratableResourcesByItems(
       request: SearchMigratableResourcesRequest
     ) -> some AsyncSequence<MigratableResource, any Swift.Error> & Sendable {
@@ -302,6 +388,10 @@
     /// Vertex AI's given location.
     ///
     /// @Snippet(path: "MigrationService_SearchMigratableResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/searchMigratableResources(request:options:)``
     public func searchMigratableResourcesByItems(
       request: SearchMigratableResourcesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<MigratableResource, any Swift.Error> & Sendable {
@@ -316,6 +406,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Searches all of the resources in automl.googleapis.com,
+    /// datalabeling.googleapis.com and ml.googleapis.com that can be migrated to
+    /// Vertex AI's given location.
+    ///
+    /// @Snippet(path: "MigrationService_SearchMigratableResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/searchMigratableResources(request:options:)``
     public func searchMigratableResourcesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<MigratableResource, any Swift.Error> & Sendable {
@@ -325,6 +424,14 @@
       return self.searchMigratableResourcesByItems(request: request)
     }
 
+    /// Batch migrates resources from ml.googleapis.com, automl.googleapis.com,
+    /// and datalabeling.googleapis.com to Vertex AI.
+    ///
+    /// @Snippet(path: "MigrationService_BatchMigrateResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/batchMigrateResources(request:options:)``
     public func batchMigrateResources(request: BatchMigrateResourcesRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -337,6 +444,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Batch migrates resources from ml.googleapis.com, automl.googleapis.com,
+    /// and datalabeling.googleapis.com to Vertex AI.
+    ///
+    /// @Snippet(path: "MigrationService_BatchMigrateResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/batchMigrateResourcesPollingUntilDone(request:options:)``
     public func batchMigrateResourcesPollingUntilDone(request: BatchMigrateResourcesRequest)
       async throws -> BatchMigrateResourcesResponse
     {
@@ -350,6 +465,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Batch migrates resources from ml.googleapis.com, automl.googleapis.com,
+    /// and datalabeling.googleapis.com to Vertex AI.
+    ///
+    /// @Snippet(path: "MigrationService_BatchMigrateResources")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/batchMigrateResourcesPollingUntilDone(request:options:)``
     public func batchMigrateResourcesPollingUntilDone(
       parent: Swift.String,
       migrateResourceRequests: [MigrateResourceRequest],
@@ -361,6 +484,13 @@
       return try await self.batchMigrateResourcesPollingUntilDone(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "MigrationService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -373,6 +503,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "MigrationService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -382,6 +519,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "MigrationService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -395,6 +536,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "MigrationService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -407,6 +555,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "MigrationService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -419,6 +578,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "MigrationService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -431,6 +598,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "MigrationService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -443,6 +623,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MigrationService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -455,6 +644,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MigrationService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -466,6 +664,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "MigrationService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -479,6 +681,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MigrationService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -490,6 +701,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -502,6 +716,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -511,6 +728,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MigrationService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -521,6 +747,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MigrationService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -530,6 +765,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MigrationService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -540,6 +784,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MigrationService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -549,6 +802,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MigrationService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MigrationServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

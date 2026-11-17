@@ -25,6 +25,10 @@
   /// Service for managing Identity Mapping Stores.
   ///
   /// @Snippet(path: "IdentityMappingStoreServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/IdentityMappingStoreServiceProtocol``
   public final class IdentityMappingStoreServiceClient: Clients.IdentityMappingStoreServiceProtocol,
     Sendable
   {
@@ -48,6 +52,11 @@
     /// Creates a new Identity Mapping Store.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_CreateIdentityMappingStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createIdentityMappingStore(request:)``
+    /// - ``createIdentityMappingStore(parent:identityMappingStore:identityMappingStoreId:)``
     public func createIdentityMappingStore(
       request: CreateIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.IdentityMappingStore {
@@ -57,6 +66,11 @@
     /// Gets the Identity Mapping Store.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_GetIdentityMappingStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIdentityMappingStore(request:)``
+    /// - ``getIdentityMappingStore(name:)``
     public func getIdentityMappingStore(
       request: GetIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.IdentityMappingStore {
@@ -66,6 +80,13 @@
     /// Deletes the Identity Mapping Store.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_DeleteIdentityMappingStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteIdentityMappingStore(request:)``
+    /// - ``deleteIdentityMappingStorePollingUntilDone(request:)``
+    /// - ``deleteIdentityMappingStorePollingUntilDone(request:options:)``
+    /// - ``deleteIdentityMappingStorePollingUntilDone(name:)``
     public func deleteIdentityMappingStore(
       request: DeleteIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -75,6 +96,13 @@
     /// Deletes the Identity Mapping Store.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_DeleteIdentityMappingStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteIdentityMappingStorePollingUntilDone(request:)``
+    /// - ``deleteIdentityMappingStorePollingUntilDone(name:)``
+    /// - ``deleteIdentityMappingStore(request:)``
+    /// - ``deleteIdentityMappingStore(request:options:)``
     public func deleteIdentityMappingStorePollingUntilDone(
       request: DeleteIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -103,6 +131,12 @@
     /// Imports a list of Identity Mapping Entries to an Identity Mapping Store.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_ImportIdentityMappings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importIdentityMappings(request:)``
+    /// - ``importIdentityMappingsPollingUntilDone(request:)``
+    /// - ``importIdentityMappingsPollingUntilDone(request:options:)``
     public func importIdentityMappings(
       request: ImportIdentityMappingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -112,6 +146,12 @@
     /// Imports a list of Identity Mapping Entries to an Identity Mapping Store.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_ImportIdentityMappings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importIdentityMappingsPollingUntilDone(request:)``
+    /// - ``importIdentityMappings(request:)``
+    /// - ``importIdentityMappings(request:options:)``
     public func importIdentityMappingsPollingUntilDone(
       request: ImportIdentityMappingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportIdentityMappingsResponse {
@@ -142,6 +182,12 @@
     /// Store.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_PurgeIdentityMappings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeIdentityMappings(request:)``
+    /// - ``purgeIdentityMappingsPollingUntilDone(request:)``
+    /// - ``purgeIdentityMappingsPollingUntilDone(request:options:)``
     public func purgeIdentityMappings(
       request: PurgeIdentityMappingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -152,6 +198,12 @@
     /// Store.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_PurgeIdentityMappings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeIdentityMappingsPollingUntilDone(request:)``
+    /// - ``purgeIdentityMappings(request:)``
+    /// - ``purgeIdentityMappings(request:options:)``
     public func purgeIdentityMappingsPollingUntilDone(
       request: PurgeIdentityMappingsRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -180,6 +232,12 @@
     /// Lists Identity Mappings in an Identity Mapping Store.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listIdentityMappings(request:)``
+    /// - ``listIdentityMappingsByItems(request:)``
+    /// - ``listIdentityMappingsByItems(request:options:)``
     public func listIdentityMappings(
       request: ListIdentityMappingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListIdentityMappingsResponse {
@@ -189,6 +247,13 @@
     /// Lists all Identity Mapping Stores.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappingStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listIdentityMappingStores(request:)``
+    /// - ``listIdentityMappingStoresByItems(request:)``
+    /// - ``listIdentityMappingStoresByItems(request:options:)``
+    /// - ``listIdentityMappingStoresByItems(parent:)``
     public func listIdentityMappingStores(
       request: ListIdentityMappingStoresRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListIdentityMappingStoresResponse {
@@ -200,6 +265,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "IdentityMappingStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -222,6 +294,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "IdentityMappingStoreService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -300,6 +377,13 @@
 
   // Default implementations
   extension Clients.IdentityMappingStoreServiceProtocol {
+    /// Creates a new Identity Mapping Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_CreateIdentityMappingStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/createIdentityMappingStore(request:options:)``
     public func createIdentityMappingStore(request: CreateIdentityMappingStoreRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.IdentityMappingStore
     {
@@ -312,6 +396,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new Identity Mapping Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_CreateIdentityMappingStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/createIdentityMappingStore(request:options:)``
     public func createIdentityMappingStore(
       parent: Swift.String,
       identityMappingStore: IdentityMappingStore?,
@@ -325,6 +416,13 @@
       return try await self.createIdentityMappingStore(request: request)
     }
 
+    /// Gets the Identity Mapping Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_GetIdentityMappingStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/getIdentityMappingStore(request:options:)``
     public func getIdentityMappingStore(request: GetIdentityMappingStoreRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.IdentityMappingStore
     {
@@ -337,6 +435,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the Identity Mapping Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_GetIdentityMappingStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/getIdentityMappingStore(request:options:)``
     public func getIdentityMappingStore(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.IdentityMappingStore {
@@ -346,6 +451,13 @@
       return try await self.getIdentityMappingStore(request: request)
     }
 
+    /// Deletes the Identity Mapping Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_DeleteIdentityMappingStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/deleteIdentityMappingStore(request:options:)``
     public func deleteIdentityMappingStore(request: DeleteIdentityMappingStoreRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -358,6 +470,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the Identity Mapping Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_DeleteIdentityMappingStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/deleteIdentityMappingStorePollingUntilDone(request:options:)``
     public func deleteIdentityMappingStorePollingUntilDone(
       request: DeleteIdentityMappingStoreRequest
     ) async throws {
@@ -370,6 +489,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the Identity Mapping Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_DeleteIdentityMappingStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/deleteIdentityMappingStorePollingUntilDone(request:options:)``
     public func deleteIdentityMappingStorePollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -379,6 +505,13 @@
       try await self.deleteIdentityMappingStorePollingUntilDone(request: request)
     }
 
+    /// Imports a list of Identity Mapping Entries to an Identity Mapping Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_ImportIdentityMappings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/importIdentityMappings(request:options:)``
     public func importIdentityMappings(request: ImportIdentityMappingsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -391,6 +524,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports a list of Identity Mapping Entries to an Identity Mapping Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_ImportIdentityMappings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/importIdentityMappingsPollingUntilDone(request:options:)``
     public func importIdentityMappingsPollingUntilDone(request: ImportIdentityMappingsRequest)
       async throws -> ImportIdentityMappingsResponse
     {
@@ -404,6 +544,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Purges specified or all Identity Mapping Entries from an Identity Mapping
+    /// Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_PurgeIdentityMappings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/purgeIdentityMappings(request:options:)``
     public func purgeIdentityMappings(request: PurgeIdentityMappingsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -416,6 +564,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Purges specified or all Identity Mapping Entries from an Identity Mapping
+    /// Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_PurgeIdentityMappings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/purgeIdentityMappingsPollingUntilDone(request:options:)``
     public func purgeIdentityMappingsPollingUntilDone(request: PurgeIdentityMappingsRequest)
       async throws
     {
@@ -428,6 +584,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists Identity Mappings in an Identity Mapping Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/listIdentityMappings(request:options:)``
     public func listIdentityMappings(request: ListIdentityMappingsRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListIdentityMappingsResponse
     {
@@ -440,6 +603,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists Identity Mappings in an Identity Mapping Store.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/listIdentityMappings(request:options:)``
     public func listIdentityMappingsByItems(
       request: ListIdentityMappingsRequest
     ) -> some AsyncSequence<IdentityMappingEntry, any Swift.Error> & Sendable {
@@ -449,6 +619,10 @@
     /// Lists Identity Mappings in an Identity Mapping Store.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/listIdentityMappings(request:options:)``
     public func listIdentityMappingsByItems(
       request: ListIdentityMappingsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<IdentityMappingEntry, any Swift.Error> & Sendable {
@@ -463,6 +637,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all Identity Mapping Stores.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappingStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/listIdentityMappingStores(request:options:)``
     public func listIdentityMappingStores(request: ListIdentityMappingStoresRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListIdentityMappingStoresResponse
     {
@@ -475,6 +656,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all Identity Mapping Stores.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappingStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/listIdentityMappingStores(request:options:)``
     public func listIdentityMappingStoresByItems(
       request: ListIdentityMappingStoresRequest
     ) -> some AsyncSequence<IdentityMappingStore, any Swift.Error> & Sendable {
@@ -484,6 +672,10 @@
     /// Lists all Identity Mapping Stores.
     ///
     /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappingStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/listIdentityMappingStores(request:options:)``
     public func listIdentityMappingStoresByItems(
       request: ListIdentityMappingStoresRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<IdentityMappingStore, any Swift.Error> & Sendable {
@@ -498,6 +690,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all Identity Mapping Stores.
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappingStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/listIdentityMappingStores(request:options:)``
     public func listIdentityMappingStoresByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<IdentityMappingStore, any Swift.Error> & Sendable {
@@ -507,6 +706,15 @@
       return self.listIdentityMappingStoresByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -519,6 +727,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -530,6 +747,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "IdentityMappingStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -543,6 +764,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -554,6 +784,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -566,6 +799,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -575,6 +811,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -585,6 +830,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IdentityMappingStoreService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IdentityMappingStoreServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

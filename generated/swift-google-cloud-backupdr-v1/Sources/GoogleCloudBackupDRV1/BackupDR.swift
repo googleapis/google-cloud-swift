@@ -27,6 +27,10 @@ import Foundation
 /// The BackupDR Service
 ///
 /// @Snippet(path: "BackupDRQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/BackupDRProtocol``
 public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   let inner: any Clients.BackupDRStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists ManagementServers in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListManagementServers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listManagementServers(request:)``
+  /// - ``listManagementServersByItems(request:)``
+  /// - ``listManagementServersByItems(request:options:)``
+  /// - ``listManagementServersByItems(parent:)``
   public func listManagementServers(
     request: ListManagementServersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListManagementServersResponse {
@@ -56,6 +67,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Gets details of a single ManagementServer.
   ///
   /// @Snippet(path: "BackupDR_GetManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getManagementServer(request:)``
+  /// - ``getManagementServer(name:)``
   public func getManagementServer(
     request: GetManagementServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ManagementServer {
@@ -65,6 +81,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Creates a new ManagementServer in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_CreateManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createManagementServer(request:)``
+  /// - ``createManagementServerPollingUntilDone(request:)``
+  /// - ``createManagementServerPollingUntilDone(request:options:)``
+  /// - ``createManagementServerPollingUntilDone(parent:managementServer:managementServerId:)``
   public func createManagementServer(
     request: CreateManagementServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -74,6 +97,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Creates a new ManagementServer in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_CreateManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createManagementServerPollingUntilDone(request:)``
+  /// - ``createManagementServerPollingUntilDone(parent:managementServer:managementServerId:)``
+  /// - ``createManagementServer(request:)``
+  /// - ``createManagementServer(request:options:)``
   public func createManagementServerPollingUntilDone(
     request: CreateManagementServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagementServer {
@@ -102,6 +132,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a single ManagementServer.
   ///
   /// @Snippet(path: "BackupDR_DeleteManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteManagementServer(request:)``
+  /// - ``deleteManagementServerPollingUntilDone(request:)``
+  /// - ``deleteManagementServerPollingUntilDone(request:options:)``
+  /// - ``deleteManagementServerPollingUntilDone(name:)``
   public func deleteManagementServer(
     request: DeleteManagementServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -111,6 +148,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a single ManagementServer.
   ///
   /// @Snippet(path: "BackupDR_DeleteManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteManagementServerPollingUntilDone(request:)``
+  /// - ``deleteManagementServerPollingUntilDone(name:)``
+  /// - ``deleteManagementServer(request:)``
+  /// - ``deleteManagementServer(request:options:)``
   public func deleteManagementServerPollingUntilDone(
     request: DeleteManagementServerRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -138,6 +182,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Creates a new BackupVault in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_CreateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackupVault(request:)``
+  /// - ``createBackupVaultPollingUntilDone(request:)``
+  /// - ``createBackupVaultPollingUntilDone(request:options:)``
+  /// - ``createBackupVaultPollingUntilDone(parent:backupVault:backupVaultId:)``
   public func createBackupVault(
     request: CreateBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -147,6 +198,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Creates a new BackupVault in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_CreateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackupVaultPollingUntilDone(request:)``
+  /// - ``createBackupVaultPollingUntilDone(parent:backupVault:backupVaultId:)``
+  /// - ``createBackupVault(request:)``
+  /// - ``createBackupVault(request:options:)``
   public func createBackupVaultPollingUntilDone(
     request: CreateBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupVault {
@@ -174,6 +232,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists BackupVaults in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackupVaults(request:)``
+  /// - ``listBackupVaultsByItems(request:)``
+  /// - ``listBackupVaultsByItems(request:options:)``
+  /// - ``listBackupVaultsByItems(parent:)``
   public func listBackupVaults(
     request: ListBackupVaultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListBackupVaultsResponse {
@@ -185,6 +250,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// backupdr.backupVaults.get permission.
   ///
   /// @Snippet(path: "BackupDR_FetchUsableBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchUsableBackupVaults(request:)``
+  /// - ``fetchUsableBackupVaultsByItems(request:)``
+  /// - ``fetchUsableBackupVaultsByItems(request:options:)``
+  /// - ``fetchUsableBackupVaultsByItems(parent:)``
   public func fetchUsableBackupVaults(
     request: FetchUsableBackupVaultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.FetchUsableBackupVaultsResponse {
@@ -194,6 +266,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Gets details of a BackupVault.
   ///
   /// @Snippet(path: "BackupDR_GetBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackupVault(request:)``
+  /// - ``getBackupVault(name:)``
   public func getBackupVault(
     request: GetBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.BackupVault {
@@ -203,6 +280,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Updates the settings of a BackupVault.
   ///
   /// @Snippet(path: "BackupDR_UpdateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupVault(request:)``
+  /// - ``updateBackupVaultPollingUntilDone(request:)``
+  /// - ``updateBackupVaultPollingUntilDone(request:options:)``
+  /// - ``updateBackupVaultPollingUntilDone(backupVault:updateMask:)``
   public func updateBackupVault(
     request: UpdateBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -212,6 +296,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Updates the settings of a BackupVault.
   ///
   /// @Snippet(path: "BackupDR_UpdateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupVaultPollingUntilDone(request:)``
+  /// - ``updateBackupVaultPollingUntilDone(backupVault:updateMask:)``
+  /// - ``updateBackupVault(request:)``
+  /// - ``updateBackupVault(request:options:)``
   public func updateBackupVaultPollingUntilDone(
     request: UpdateBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupVault {
@@ -239,6 +330,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a BackupVault.
   ///
   /// @Snippet(path: "BackupDR_DeleteBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupVault(request:)``
+  /// - ``deleteBackupVaultPollingUntilDone(request:)``
+  /// - ``deleteBackupVaultPollingUntilDone(request:options:)``
+  /// - ``deleteBackupVaultPollingUntilDone(name:)``
   public func deleteBackupVault(
     request: DeleteBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -248,6 +346,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a BackupVault.
   ///
   /// @Snippet(path: "BackupDR_DeleteBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupVaultPollingUntilDone(request:)``
+  /// - ``deleteBackupVaultPollingUntilDone(name:)``
+  /// - ``deleteBackupVault(request:)``
+  /// - ``deleteBackupVault(request:options:)``
   public func deleteBackupVaultPollingUntilDone(
     request: DeleteBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -275,6 +380,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists DataSources in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListDataSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDataSources(request:)``
+  /// - ``listDataSourcesByItems(request:)``
+  /// - ``listDataSourcesByItems(request:options:)``
+  /// - ``listDataSourcesByItems(parent:)``
   public func listDataSources(
     request: ListDataSourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListDataSourcesResponse {
@@ -284,6 +396,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Gets details of a DataSource.
   ///
   /// @Snippet(path: "BackupDR_GetDataSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDataSource(request:)``
+  /// - ``getDataSource(name:)``
   public func getDataSource(
     request: GetDataSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.DataSource {
@@ -293,6 +410,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Updates the settings of a DataSource.
   ///
   /// @Snippet(path: "BackupDR_UpdateDataSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataSource(request:)``
+  /// - ``updateDataSourcePollingUntilDone(request:)``
+  /// - ``updateDataSourcePollingUntilDone(request:options:)``
+  /// - ``updateDataSourcePollingUntilDone(dataSource:updateMask:)``
   public func updateDataSource(
     request: UpdateDataSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -302,6 +426,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Updates the settings of a DataSource.
   ///
   /// @Snippet(path: "BackupDR_UpdateDataSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataSourcePollingUntilDone(request:)``
+  /// - ``updateDataSourcePollingUntilDone(dataSource:updateMask:)``
+  /// - ``updateDataSource(request:)``
+  /// - ``updateDataSource(request:options:)``
   public func updateDataSourcePollingUntilDone(
     request: UpdateDataSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataSource {
@@ -329,6 +460,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists Backups in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackups(request:)``
+  /// - ``listBackupsByItems(request:)``
+  /// - ``listBackupsByItems(request:options:)``
+  /// - ``listBackupsByItems(parent:)``
   public func listBackups(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListBackupsResponse {
@@ -338,6 +476,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Fetch Backups for a given resource type.
   ///
   /// @Snippet(path: "BackupDR_FetchBackupsForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchBackupsForResourceType(request:)``
+  /// - ``fetchBackupsForResourceTypeByItems(request:)``
+  /// - ``fetchBackupsForResourceTypeByItems(request:options:)``
+  /// - ``fetchBackupsForResourceTypeByItems(parent:resourceType:)``
   public func fetchBackupsForResourceType(
     request: FetchBackupsForResourceTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.FetchBackupsForResourceTypeResponse {
@@ -347,6 +492,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Gets details of a Backup.
   ///
   /// @Snippet(path: "BackupDR_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackup(request:)``
+  /// - ``getBackup(name:)``
   public func getBackup(
     request: GetBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.Backup {
@@ -356,6 +506,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Updates the settings of a Backup.
   ///
   /// @Snippet(path: "BackupDR_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackup(request:)``
+  /// - ``updateBackupPollingUntilDone(request:)``
+  /// - ``updateBackupPollingUntilDone(request:options:)``
+  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
   public func updateBackup(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -365,6 +522,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Updates the settings of a Backup.
   ///
   /// @Snippet(path: "BackupDR_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupPollingUntilDone(request:)``
+  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
+  /// - ``updateBackup(request:)``
+  /// - ``updateBackup(request:options:)``
   public func updateBackupPollingUntilDone(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -392,6 +556,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a Backup.
   ///
   /// @Snippet(path: "BackupDR_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackup(request:)``
+  /// - ``deleteBackupPollingUntilDone(request:)``
+  /// - ``deleteBackupPollingUntilDone(request:options:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
   public func deleteBackup(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -401,6 +572,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a Backup.
   ///
   /// @Snippet(path: "BackupDR_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupPollingUntilDone(request:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
+  /// - ``deleteBackup(request:)``
+  /// - ``deleteBackup(request:options:)``
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -428,6 +606,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Restore from a Backup
   ///
   /// @Snippet(path: "BackupDR_RestoreBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restoreBackup(request:)``
+  /// - ``restoreBackupPollingUntilDone(request:)``
+  /// - ``restoreBackupPollingUntilDone(request:options:)``
+  /// - ``restoreBackupPollingUntilDone(name:)``
   public func restoreBackup(
     request: RestoreBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -437,6 +622,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Restore from a Backup
   ///
   /// @Snippet(path: "BackupDR_RestoreBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restoreBackupPollingUntilDone(request:)``
+  /// - ``restoreBackupPollingUntilDone(name:)``
+  /// - ``restoreBackup(request:)``
+  /// - ``restoreBackup(request:options:)``
   public func restoreBackupPollingUntilDone(
     request: RestoreBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> RestoreBackupResponse {
@@ -465,6 +657,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Create a BackupPlan
   ///
   /// @Snippet(path: "BackupDR_CreateBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackupPlan(request:)``
+  /// - ``createBackupPlanPollingUntilDone(request:)``
+  /// - ``createBackupPlanPollingUntilDone(request:options:)``
+  /// - ``createBackupPlanPollingUntilDone(parent:backupPlan:backupPlanId:)``
   public func createBackupPlan(
     request: CreateBackupPlanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -474,6 +673,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Create a BackupPlan
   ///
   /// @Snippet(path: "BackupDR_CreateBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackupPlanPollingUntilDone(request:)``
+  /// - ``createBackupPlanPollingUntilDone(parent:backupPlan:backupPlanId:)``
+  /// - ``createBackupPlan(request:)``
+  /// - ``createBackupPlan(request:options:)``
   public func createBackupPlanPollingUntilDone(
     request: CreateBackupPlanRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupPlan {
@@ -501,6 +707,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Update a BackupPlan.
   ///
   /// @Snippet(path: "BackupDR_UpdateBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupPlan(request:)``
+  /// - ``updateBackupPlanPollingUntilDone(request:)``
+  /// - ``updateBackupPlanPollingUntilDone(request:options:)``
+  /// - ``updateBackupPlanPollingUntilDone(backupPlan:updateMask:)``
   public func updateBackupPlan(
     request: UpdateBackupPlanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -510,6 +723,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Update a BackupPlan.
   ///
   /// @Snippet(path: "BackupDR_UpdateBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupPlanPollingUntilDone(request:)``
+  /// - ``updateBackupPlanPollingUntilDone(backupPlan:updateMask:)``
+  /// - ``updateBackupPlan(request:)``
+  /// - ``updateBackupPlan(request:options:)``
   public func updateBackupPlanPollingUntilDone(
     request: UpdateBackupPlanRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupPlan {
@@ -537,6 +757,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Gets details of a single BackupPlan.
   ///
   /// @Snippet(path: "BackupDR_GetBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackupPlan(request:)``
+  /// - ``getBackupPlan(name:)``
   public func getBackupPlan(
     request: GetBackupPlanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.BackupPlan {
@@ -546,6 +771,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists BackupPlans in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListBackupPlans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackupPlans(request:)``
+  /// - ``listBackupPlansByItems(request:)``
+  /// - ``listBackupPlansByItems(request:options:)``
+  /// - ``listBackupPlansByItems(parent:)``
   public func listBackupPlans(
     request: ListBackupPlansRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListBackupPlansResponse {
@@ -555,6 +787,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a single BackupPlan.
   ///
   /// @Snippet(path: "BackupDR_DeleteBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupPlan(request:)``
+  /// - ``deleteBackupPlanPollingUntilDone(request:)``
+  /// - ``deleteBackupPlanPollingUntilDone(request:options:)``
+  /// - ``deleteBackupPlanPollingUntilDone(name:)``
   public func deleteBackupPlan(
     request: DeleteBackupPlanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -564,6 +803,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a single BackupPlan.
   ///
   /// @Snippet(path: "BackupDR_DeleteBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupPlanPollingUntilDone(request:)``
+  /// - ``deleteBackupPlanPollingUntilDone(name:)``
+  /// - ``deleteBackupPlan(request:)``
+  /// - ``deleteBackupPlan(request:options:)``
   public func deleteBackupPlanPollingUntilDone(
     request: DeleteBackupPlanRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -591,6 +837,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Gets details of a single BackupPlanRevision.
   ///
   /// @Snippet(path: "BackupDR_GetBackupPlanRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackupPlanRevision(request:)``
+  /// - ``getBackupPlanRevision(name:)``
   public func getBackupPlanRevision(
     request: GetBackupPlanRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.BackupPlanRevision {
@@ -600,6 +851,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists BackupPlanRevisions in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListBackupPlanRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackupPlanRevisions(request:)``
+  /// - ``listBackupPlanRevisionsByItems(request:)``
+  /// - ``listBackupPlanRevisionsByItems(request:options:)``
+  /// - ``listBackupPlanRevisionsByItems(parent:)``
   public func listBackupPlanRevisions(
     request: ListBackupPlanRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListBackupPlanRevisionsResponse {
@@ -609,6 +867,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Create a BackupPlanAssociation
   ///
   /// @Snippet(path: "BackupDR_CreateBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackupPlanAssociation(request:)``
+  /// - ``createBackupPlanAssociationPollingUntilDone(request:)``
+  /// - ``createBackupPlanAssociationPollingUntilDone(request:options:)``
+  /// - ``createBackupPlanAssociationPollingUntilDone(parent:backupPlanAssociation:backupPlanAssociationId:)``
   public func createBackupPlanAssociation(
     request: CreateBackupPlanAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -618,6 +883,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Create a BackupPlanAssociation
   ///
   /// @Snippet(path: "BackupDR_CreateBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackupPlanAssociationPollingUntilDone(request:)``
+  /// - ``createBackupPlanAssociationPollingUntilDone(parent:backupPlanAssociation:backupPlanAssociationId:)``
+  /// - ``createBackupPlanAssociation(request:)``
+  /// - ``createBackupPlanAssociation(request:options:)``
   public func createBackupPlanAssociationPollingUntilDone(
     request: CreateBackupPlanAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupPlanAssociation {
@@ -646,6 +918,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Update a BackupPlanAssociation.
   ///
   /// @Snippet(path: "BackupDR_UpdateBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupPlanAssociation(request:)``
+  /// - ``updateBackupPlanAssociationPollingUntilDone(request:)``
+  /// - ``updateBackupPlanAssociationPollingUntilDone(request:options:)``
+  /// - ``updateBackupPlanAssociationPollingUntilDone(backupPlanAssociation:updateMask:)``
   public func updateBackupPlanAssociation(
     request: UpdateBackupPlanAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -655,6 +934,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Update a BackupPlanAssociation.
   ///
   /// @Snippet(path: "BackupDR_UpdateBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackupPlanAssociationPollingUntilDone(request:)``
+  /// - ``updateBackupPlanAssociationPollingUntilDone(backupPlanAssociation:updateMask:)``
+  /// - ``updateBackupPlanAssociation(request:)``
+  /// - ``updateBackupPlanAssociation(request:options:)``
   public func updateBackupPlanAssociationPollingUntilDone(
     request: UpdateBackupPlanAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupPlanAssociation {
@@ -683,6 +969,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Gets details of a single BackupPlanAssociation.
   ///
   /// @Snippet(path: "BackupDR_GetBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackupPlanAssociation(request:)``
+  /// - ``getBackupPlanAssociation(name:)``
   public func getBackupPlanAssociation(
     request: GetBackupPlanAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.BackupPlanAssociation {
@@ -692,6 +983,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists BackupPlanAssociations in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListBackupPlanAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackupPlanAssociations(request:)``
+  /// - ``listBackupPlanAssociationsByItems(request:)``
+  /// - ``listBackupPlanAssociationsByItems(request:options:)``
+  /// - ``listBackupPlanAssociationsByItems(parent:)``
   public func listBackupPlanAssociations(
     request: ListBackupPlanAssociationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListBackupPlanAssociationsResponse {
@@ -701,6 +999,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// List BackupPlanAssociations for a given resource type.
   ///
   /// @Snippet(path: "BackupDR_FetchBackupPlanAssociationsForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchBackupPlanAssociationsForResourceType(request:)``
+  /// - ``fetchBackupPlanAssociationsForResourceTypeByItems(request:)``
+  /// - ``fetchBackupPlanAssociationsForResourceTypeByItems(request:options:)``
+  /// - ``fetchBackupPlanAssociationsForResourceTypeByItems(parent:resourceType:)``
   public func fetchBackupPlanAssociationsForResourceType(
     request: FetchBackupPlanAssociationsForResourceTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.FetchBackupPlanAssociationsForResourceTypeResponse {
@@ -711,6 +1016,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a single BackupPlanAssociation.
   ///
   /// @Snippet(path: "BackupDR_DeleteBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupPlanAssociation(request:)``
+  /// - ``deleteBackupPlanAssociationPollingUntilDone(request:)``
+  /// - ``deleteBackupPlanAssociationPollingUntilDone(request:options:)``
+  /// - ``deleteBackupPlanAssociationPollingUntilDone(name:)``
   public func deleteBackupPlanAssociation(
     request: DeleteBackupPlanAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -720,6 +1032,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a single BackupPlanAssociation.
   ///
   /// @Snippet(path: "BackupDR_DeleteBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackupPlanAssociationPollingUntilDone(request:)``
+  /// - ``deleteBackupPlanAssociationPollingUntilDone(name:)``
+  /// - ``deleteBackupPlanAssociation(request:)``
+  /// - ``deleteBackupPlanAssociation(request:options:)``
   public func deleteBackupPlanAssociationPollingUntilDone(
     request: DeleteBackupPlanAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -747,6 +1066,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Triggers a new Backup.
   ///
   /// @Snippet(path: "BackupDR_TriggerBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``triggerBackup(request:)``
+  /// - ``triggerBackupPollingUntilDone(request:)``
+  /// - ``triggerBackupPollingUntilDone(request:options:)``
+  /// - ``triggerBackupPollingUntilDone(name:ruleId:)``
   public func triggerBackup(
     request: TriggerBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -756,6 +1082,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Triggers a new Backup.
   ///
   /// @Snippet(path: "BackupDR_TriggerBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``triggerBackupPollingUntilDone(request:)``
+  /// - ``triggerBackupPollingUntilDone(name:ruleId:)``
+  /// - ``triggerBackup(request:)``
+  /// - ``triggerBackup(request:options:)``
   public func triggerBackupPollingUntilDone(
     request: TriggerBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupPlanAssociation {
@@ -784,6 +1117,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Gets details of a single DataSourceReference.
   ///
   /// @Snippet(path: "BackupDR_GetDataSourceReference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDataSourceReference(request:)``
+  /// - ``getDataSourceReference(name:)``
   public func getDataSourceReference(
     request: GetDataSourceReferenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.DataSourceReference {
@@ -793,6 +1131,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists DataSourceReferences for a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListDataSourceReferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDataSourceReferences(request:)``
+  /// - ``listDataSourceReferencesByItems(request:)``
+  /// - ``listDataSourceReferencesByItems(request:options:)``
+  /// - ``listDataSourceReferencesByItems(parent:)``
   public func listDataSourceReferences(
     request: ListDataSourceReferencesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListDataSourceReferencesResponse {
@@ -802,6 +1147,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Fetch DataSourceReferences for a given project, location and resource type.
   ///
   /// @Snippet(path: "BackupDR_FetchDataSourceReferencesForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchDataSourceReferencesForResourceType(request:)``
+  /// - ``fetchDataSourceReferencesForResourceTypeByItems(request:)``
+  /// - ``fetchDataSourceReferencesForResourceTypeByItems(request:options:)``
+  /// - ``fetchDataSourceReferencesForResourceTypeByItems(parent:resourceType:)``
   public func fetchDataSourceReferencesForResourceType(
     request: FetchDataSourceReferencesForResourceTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.FetchDataSourceReferencesForResourceTypeResponse {
@@ -812,6 +1164,12 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Initializes the service related config for a project.
   ///
   /// @Snippet(path: "BackupDR_InitializeService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``initializeService(request:)``
+  /// - ``initializeServicePollingUntilDone(request:)``
+  /// - ``initializeServicePollingUntilDone(request:options:)``
   public func initializeService(
     request: InitializeServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -821,6 +1179,12 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Initializes the service related config for a project.
   ///
   /// @Snippet(path: "BackupDR_InitializeService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``initializeServicePollingUntilDone(request:)``
+  /// - ``initializeService(request:)``
+  /// - ``initializeService(request:options:)``
   public func initializeServicePollingUntilDone(
     request: InitializeServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> InitializeServiceResponse {
@@ -850,6 +1214,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Creates a new AutoProtectionPolicy in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAutoProtectionPolicy(request:)``
+  /// - ``createAutoProtectionPolicyPollingUntilDone(request:)``
+  /// - ``createAutoProtectionPolicyPollingUntilDone(request:options:)``
+  /// - ``createAutoProtectionPolicyPollingUntilDone(parent:autoProtectionPolicy:autoProtectionPolicyId:)``
   public func createAutoProtectionPolicy(
     request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -859,6 +1230,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Creates a new AutoProtectionPolicy in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAutoProtectionPolicyPollingUntilDone(request:)``
+  /// - ``createAutoProtectionPolicyPollingUntilDone(parent:autoProtectionPolicy:autoProtectionPolicyId:)``
+  /// - ``createAutoProtectionPolicy(request:)``
+  /// - ``createAutoProtectionPolicy(request:options:)``
   public func createAutoProtectionPolicyPollingUntilDone(
     request: CreateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AutoProtectionPolicy {
@@ -887,6 +1265,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists AutoProtectionPolicies for a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListAutoProtectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAutoProtectionPolicies(request:)``
+  /// - ``listAutoProtectionPoliciesByItems(request:)``
+  /// - ``listAutoProtectionPoliciesByItems(request:options:)``
+  /// - ``listAutoProtectionPoliciesByItems(parent:)``
   public func listAutoProtectionPolicies(
     request: ListAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse {
@@ -896,6 +1281,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Gets details of a single AutoProtectionPolicy.
   ///
   /// @Snippet(path: "BackupDR_GetAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAutoProtectionPolicy(request:)``
+  /// - ``getAutoProtectionPolicy(name:)``
   public func getAutoProtectionPolicy(
     request: GetAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicy {
@@ -905,6 +1295,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Updates the parameters of a single AutoProtectionPolicy.
   ///
   /// @Snippet(path: "BackupDR_UpdateAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAutoProtectionPolicy(request:)``
+  /// - ``updateAutoProtectionPolicyPollingUntilDone(request:)``
+  /// - ``updateAutoProtectionPolicyPollingUntilDone(request:options:)``
+  /// - ``updateAutoProtectionPolicyPollingUntilDone(autoProtectionPolicy:updateMask:)``
   public func updateAutoProtectionPolicy(
     request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -914,6 +1311,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Updates the parameters of a single AutoProtectionPolicy.
   ///
   /// @Snippet(path: "BackupDR_UpdateAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAutoProtectionPolicyPollingUntilDone(request:)``
+  /// - ``updateAutoProtectionPolicyPollingUntilDone(autoProtectionPolicy:updateMask:)``
+  /// - ``updateAutoProtectionPolicy(request:)``
+  /// - ``updateAutoProtectionPolicy(request:options:)``
   public func updateAutoProtectionPolicyPollingUntilDone(
     request: UpdateAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AutoProtectionPolicy {
@@ -942,6 +1346,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a single AutoProtectionPolicy.
   ///
   /// @Snippet(path: "BackupDR_DeleteAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAutoProtectionPolicy(request:)``
+  /// - ``deleteAutoProtectionPolicyPollingUntilDone(request:)``
+  /// - ``deleteAutoProtectionPolicyPollingUntilDone(request:options:)``
+  /// - ``deleteAutoProtectionPolicyPollingUntilDone(name:)``
   public func deleteAutoProtectionPolicy(
     request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -951,6 +1362,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a single AutoProtectionPolicy.
   ///
   /// @Snippet(path: "BackupDR_DeleteAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAutoProtectionPolicyPollingUntilDone(request:)``
+  /// - ``deleteAutoProtectionPolicyPollingUntilDone(name:)``
+  /// - ``deleteAutoProtectionPolicy(request:)``
+  /// - ``deleteAutoProtectionPolicy(request:options:)``
   public func deleteAutoProtectionPolicyPollingUntilDone(
     request: DeleteAutoProtectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -979,6 +1397,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// location.
   ///
   /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAutoProtectionPolicyBinding(request:)``
+  /// - ``createAutoProtectionPolicyBindingPollingUntilDone(request:)``
+  /// - ``createAutoProtectionPolicyBindingPollingUntilDone(request:options:)``
+  /// - ``createAutoProtectionPolicyBindingPollingUntilDone(parent:autoProtectionPolicyBinding:autoProtectionPolicyBindingId:)``
   public func createAutoProtectionPolicyBinding(
     request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -989,6 +1414,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// location.
   ///
   /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAutoProtectionPolicyBindingPollingUntilDone(request:)``
+  /// - ``createAutoProtectionPolicyBindingPollingUntilDone(parent:autoProtectionPolicyBinding:autoProtectionPolicyBindingId:)``
+  /// - ``createAutoProtectionPolicyBinding(request:)``
+  /// - ``createAutoProtectionPolicyBinding(request:options:)``
   public func createAutoProtectionPolicyBindingPollingUntilDone(
     request: CreateAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> AutoProtectionPolicyBinding {
@@ -1018,6 +1450,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Returns the auto protection policy binding read from the CCFE tables.
   ///
   /// @Snippet(path: "BackupDR_GetAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAutoProtectionPolicyBinding(request:)``
+  /// - ``getAutoProtectionPolicyBinding(name:)``
   public func getAutoProtectionPolicyBinding(
     request: GetAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding {
@@ -1027,6 +1464,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Returns the auto protection policy bindings read from the CCFE tables.
   ///
   /// @Snippet(path: "BackupDR_ListAutoProtectionPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAutoProtectionPolicyBindings(request:)``
+  /// - ``listAutoProtectionPolicyBindingsByItems(request:)``
+  /// - ``listAutoProtectionPolicyBindingsByItems(request:options:)``
+  /// - ``listAutoProtectionPolicyBindingsByItems(parent:)``
   public func listAutoProtectionPolicyBindings(
     request: ListAutoProtectionPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse {
@@ -1036,6 +1480,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists AppliedAutoProtectionPolicies in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListAppliedAutoProtectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAppliedAutoProtectionPolicies(request:)``
+  /// - ``listAppliedAutoProtectionPoliciesByItems(request:)``
+  /// - ``listAppliedAutoProtectionPoliciesByItems(request:options:)``
+  /// - ``listAppliedAutoProtectionPoliciesByItems(parent:)``
   public func listAppliedAutoProtectionPolicies(
     request: ListAppliedAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse {
@@ -1046,6 +1497,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// AutoProtectionPolicy Binding
   ///
   /// @Snippet(path: "BackupDR_InitiateDeleteAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``initiateDeleteAutoProtectionPolicyBinding(request:)``
+  /// - ``initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(request:)``
+  /// - ``initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(request:options:)``
+  /// - ``initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(name:)``
   public func initiateDeleteAutoProtectionPolicyBinding(
     request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1057,6 +1515,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// AutoProtectionPolicy Binding
   ///
   /// @Snippet(path: "BackupDR_InitiateDeleteAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(request:)``
+  /// - ``initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(name:)``
+  /// - ``initiateDeleteAutoProtectionPolicyBinding(request:)``
+  /// - ``initiateDeleteAutoProtectionPolicyBinding(request:options:)``
   public func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
     request: InitiateDeleteAutoProtectionPolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> AutoProtectionPolicyBinding {
@@ -1087,6 +1552,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists Binding Matching Resources for a given AutoProtectionPolicyBinding.
   ///
   /// @Snippet(path: "BackupDR_ListBindingMatchingResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBindingMatchingResources(request:)``
+  /// - ``listBindingMatchingResourcesByItems(request:)``
+  /// - ``listBindingMatchingResourcesByItems(request:options:)``
+  /// - ``listBindingMatchingResourcesByItems(parent:)``
   public func listBindingMatchingResources(
     request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse {
@@ -1096,6 +1568,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Creates a new RestoreTemplate in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_CreateRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRestoreTemplate(request:)``
+  /// - ``createRestoreTemplatePollingUntilDone(request:)``
+  /// - ``createRestoreTemplatePollingUntilDone(request:options:)``
+  /// - ``createRestoreTemplatePollingUntilDone(parent:restoreTemplate:restoreTemplateId:)``
   public func createRestoreTemplate(
     request: CreateRestoreTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1105,6 +1584,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Creates a new RestoreTemplate in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_CreateRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRestoreTemplatePollingUntilDone(request:)``
+  /// - ``createRestoreTemplatePollingUntilDone(parent:restoreTemplate:restoreTemplateId:)``
+  /// - ``createRestoreTemplate(request:)``
+  /// - ``createRestoreTemplate(request:options:)``
   public func createRestoreTemplatePollingUntilDone(
     request: CreateRestoreTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> RestoreTemplate {
@@ -1133,6 +1619,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Gets details of a RestoreTemplate.
   ///
   /// @Snippet(path: "BackupDR_GetRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRestoreTemplate(request:)``
+  /// - ``getRestoreTemplate(name:)``
   public func getRestoreTemplate(
     request: GetRestoreTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.RestoreTemplate {
@@ -1142,6 +1633,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists RestoreTemplates in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListRestoreTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRestoreTemplates(request:)``
+  /// - ``listRestoreTemplatesByItems(request:)``
+  /// - ``listRestoreTemplatesByItems(request:options:)``
+  /// - ``listRestoreTemplatesByItems(parent:)``
   public func listRestoreTemplates(
     request: ListRestoreTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListRestoreTemplatesResponse {
@@ -1151,6 +1649,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Updates the settings of a RestoreTemplate.
   ///
   /// @Snippet(path: "BackupDR_UpdateRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRestoreTemplate(request:)``
+  /// - ``updateRestoreTemplatePollingUntilDone(request:)``
+  /// - ``updateRestoreTemplatePollingUntilDone(request:options:)``
+  /// - ``updateRestoreTemplatePollingUntilDone(restoreTemplate:updateMask:)``
   public func updateRestoreTemplate(
     request: UpdateRestoreTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1160,6 +1665,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Updates the settings of a RestoreTemplate.
   ///
   /// @Snippet(path: "BackupDR_UpdateRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRestoreTemplatePollingUntilDone(request:)``
+  /// - ``updateRestoreTemplatePollingUntilDone(restoreTemplate:updateMask:)``
+  /// - ``updateRestoreTemplate(request:)``
+  /// - ``updateRestoreTemplate(request:options:)``
   public func updateRestoreTemplatePollingUntilDone(
     request: UpdateRestoreTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> RestoreTemplate {
@@ -1188,6 +1700,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a RestoreTemplate.
   ///
   /// @Snippet(path: "BackupDR_DeleteRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRestoreTemplate(request:)``
+  /// - ``deleteRestoreTemplatePollingUntilDone(request:)``
+  /// - ``deleteRestoreTemplatePollingUntilDone(request:options:)``
+  /// - ``deleteRestoreTemplatePollingUntilDone(name:)``
   public func deleteRestoreTemplate(
     request: DeleteRestoreTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1197,6 +1716,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Deletes a RestoreTemplate.
   ///
   /// @Snippet(path: "BackupDR_DeleteRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRestoreTemplatePollingUntilDone(request:)``
+  /// - ``deleteRestoreTemplatePollingUntilDone(name:)``
+  /// - ``deleteRestoreTemplate(request:)``
+  /// - ``deleteRestoreTemplate(request:options:)``
   public func deleteRestoreTemplatePollingUntilDone(
     request: DeleteRestoreTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1224,6 +1750,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Runs a RestoreTemplate.
   ///
   /// @Snippet(path: "BackupDR_RunRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runRestoreTemplate(request:)``
+  /// - ``runRestoreTemplatePollingUntilDone(request:)``
+  /// - ``runRestoreTemplatePollingUntilDone(request:options:)``
+  /// - ``runRestoreTemplatePollingUntilDone(name:)``
   public func runRestoreTemplate(
     request: RunRestoreTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1233,6 +1766,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Runs a RestoreTemplate.
   ///
   /// @Snippet(path: "BackupDR_RunRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runRestoreTemplatePollingUntilDone(request:)``
+  /// - ``runRestoreTemplatePollingUntilDone(name:)``
+  /// - ``runRestoreTemplate(request:)``
+  /// - ``runRestoreTemplate(request:options:)``
   public func runRestoreTemplatePollingUntilDone(
     request: RunRestoreTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> RunRestoreTemplateResponse {
@@ -1262,6 +1802,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Gets details of a RestoreTemplateExecution.
   ///
   /// @Snippet(path: "BackupDR_GetRestoreTemplateExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRestoreTemplateExecution(request:)``
+  /// - ``getRestoreTemplateExecution(name:)``
   public func getRestoreTemplateExecution(
     request: GetRestoreTemplateExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.RestoreTemplateExecution {
@@ -1272,6 +1817,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// template.
   ///
   /// @Snippet(path: "BackupDR_ListRestoreTemplateExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRestoreTemplateExecutions(request:)``
+  /// - ``listRestoreTemplateExecutionsByItems(request:)``
+  /// - ``listRestoreTemplateExecutionsByItems(request:options:)``
+  /// - ``listRestoreTemplateExecutionsByItems(parent:)``
   public func listRestoreTemplateExecutions(
     request: ListRestoreTemplateExecutionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListRestoreTemplateExecutionsResponse {
@@ -1281,6 +1833,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Triggers cleanup of restored resources created during execution.
   ///
   /// @Snippet(path: "BackupDR_TriggerRestoreCleanup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``triggerRestoreCleanup(request:)``
+  /// - ``triggerRestoreCleanupPollingUntilDone(request:)``
+  /// - ``triggerRestoreCleanupPollingUntilDone(request:options:)``
+  /// - ``triggerRestoreCleanupPollingUntilDone(name:)``
   public func triggerRestoreCleanup(
     request: TriggerRestoreCleanupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1290,6 +1849,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Triggers cleanup of restored resources created during execution.
   ///
   /// @Snippet(path: "BackupDR_TriggerRestoreCleanup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``triggerRestoreCleanupPollingUntilDone(request:)``
+  /// - ``triggerRestoreCleanupPollingUntilDone(name:)``
+  /// - ``triggerRestoreCleanup(request:)``
+  /// - ``triggerRestoreCleanup(request:options:)``
   public func triggerRestoreCleanupPollingUntilDone(
     request: TriggerRestoreCleanupRequest, options: GoogleGax.RequestOptions
   ) async throws -> RestoreTemplateExecution {
@@ -1319,6 +1885,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Creates a new RestoreVerificationPlan in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRestoreVerificationPlan(request:)``
+  /// - ``createRestoreVerificationPlanPollingUntilDone(request:)``
+  /// - ``createRestoreVerificationPlanPollingUntilDone(request:options:)``
+  /// - ``createRestoreVerificationPlanPollingUntilDone(parent:restoreVerificationPlan:restoreVerificationPlanId:)``
   public func createRestoreVerificationPlan(
     request: CreateRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1328,6 +1901,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Creates a new RestoreVerificationPlan in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRestoreVerificationPlanPollingUntilDone(request:)``
+  /// - ``createRestoreVerificationPlanPollingUntilDone(parent:restoreVerificationPlan:restoreVerificationPlanId:)``
+  /// - ``createRestoreVerificationPlan(request:)``
+  /// - ``createRestoreVerificationPlan(request:options:)``
   public func createRestoreVerificationPlanPollingUntilDone(
     request: CreateRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
   ) async throws -> RestoreVerificationPlan {
@@ -1358,6 +1938,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// RestoreVerificationPlan.
   ///
   /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRestoreVerificationPlanAssociation(request:)``
+  /// - ``createRestoreVerificationPlanAssociationPollingUntilDone(request:)``
+  /// - ``createRestoreVerificationPlanAssociationPollingUntilDone(request:options:)``
+  /// - ``createRestoreVerificationPlanAssociationPollingUntilDone(parent:restoreVerificationPlanAssociation:restoreVerificationPlanAssociationId:)``
   public func createRestoreVerificationPlanAssociation(
     request: CreateRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1369,6 +1956,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// RestoreVerificationPlan.
   ///
   /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRestoreVerificationPlanAssociationPollingUntilDone(request:)``
+  /// - ``createRestoreVerificationPlanAssociationPollingUntilDone(parent:restoreVerificationPlanAssociation:restoreVerificationPlanAssociationId:)``
+  /// - ``createRestoreVerificationPlanAssociation(request:)``
+  /// - ``createRestoreVerificationPlanAssociation(request:options:)``
   public func createRestoreVerificationPlanAssociationPollingUntilDone(
     request: CreateRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> RestoreVerificationPlanAssociation {
@@ -1400,6 +1994,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// RestoreVerificationPlan.
   ///
   /// @Snippet(path: "BackupDR_GetRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRestoreVerificationPlanAssociation(request:)``
+  /// - ``getRestoreVerificationPlanAssociation(name:)``
   public func getRestoreVerificationPlanAssociation(
     request: GetRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlanAssociation {
@@ -1410,6 +2009,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// RestoreVerificationPlan.
   ///
   /// @Snippet(path: "BackupDR_ListRestoreVerificationPlanAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRestoreVerificationPlanAssociations(request:)``
+  /// - ``listRestoreVerificationPlanAssociationsByItems(request:)``
+  /// - ``listRestoreVerificationPlanAssociationsByItems(request:options:)``
+  /// - ``listRestoreVerificationPlanAssociationsByItems(parent:)``
   public func listRestoreVerificationPlanAssociations(
     request: ListRestoreVerificationPlanAssociationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlanAssociationsResponse {
@@ -1420,6 +2026,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// RestoreVerificationPlan.
   ///
   /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRestoreVerificationPlanAssociation(request:)``
+  /// - ``deleteRestoreVerificationPlanAssociationPollingUntilDone(request:)``
+  /// - ``deleteRestoreVerificationPlanAssociationPollingUntilDone(request:options:)``
+  /// - ``deleteRestoreVerificationPlanAssociationPollingUntilDone(name:)``
   public func deleteRestoreVerificationPlanAssociation(
     request: DeleteRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1431,6 +2044,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// RestoreVerificationPlan.
   ///
   /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRestoreVerificationPlanAssociationPollingUntilDone(request:)``
+  /// - ``deleteRestoreVerificationPlanAssociationPollingUntilDone(name:)``
+  /// - ``deleteRestoreVerificationPlanAssociation(request:)``
+  /// - ``deleteRestoreVerificationPlanAssociation(request:options:)``
   public func deleteRestoreVerificationPlanAssociationPollingUntilDone(
     request: DeleteRestoreVerificationPlanAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1460,6 +2080,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// RestoreVerificationPlan.
   ///
   /// @Snippet(path: "BackupDR_TriggerRestoreVerification")
+  ///
+  /// ## See Also
+  ///
+  /// - ``triggerRestoreVerification(request:)``
+  /// - ``triggerRestoreVerificationPollingUntilDone(request:)``
+  /// - ``triggerRestoreVerificationPollingUntilDone(request:options:)``
+  /// - ``triggerRestoreVerificationPollingUntilDone(name:)``
   public func triggerRestoreVerification(
     request: TriggerRestoreVerificationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1470,6 +2097,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// RestoreVerificationPlan.
   ///
   /// @Snippet(path: "BackupDR_TriggerRestoreVerification")
+  ///
+  /// ## See Also
+  ///
+  /// - ``triggerRestoreVerificationPollingUntilDone(request:)``
+  /// - ``triggerRestoreVerificationPollingUntilDone(name:)``
+  /// - ``triggerRestoreVerification(request:)``
+  /// - ``triggerRestoreVerification(request:options:)``
   public func triggerRestoreVerificationPollingUntilDone(
     request: TriggerRestoreVerificationRequest, options: GoogleGax.RequestOptions
   ) async throws -> TriggerRestoreVerificationResponse {
@@ -1500,6 +2134,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// RestoreVerificationPlan.
   ///
   /// @Snippet(path: "BackupDR_GetRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRestoreVerificationPlan(request:)``
+  /// - ``getRestoreVerificationPlan(name:)``
   public func getRestoreVerificationPlan(
     request: GetRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlan {
@@ -1509,6 +2148,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists RestoreVerificationPlans in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListRestoreVerificationPlans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRestoreVerificationPlans(request:)``
+  /// - ``listRestoreVerificationPlansByItems(request:)``
+  /// - ``listRestoreVerificationPlansByItems(request:options:)``
+  /// - ``listRestoreVerificationPlansByItems(parent:)``
   public func listRestoreVerificationPlans(
     request: ListRestoreVerificationPlansRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlansResponse {
@@ -1520,6 +2166,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// RestoreVerificationPlan will also be deleted.
   ///
   /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRestoreVerificationPlan(request:)``
+  /// - ``deleteRestoreVerificationPlanPollingUntilDone(request:)``
+  /// - ``deleteRestoreVerificationPlanPollingUntilDone(request:options:)``
+  /// - ``deleteRestoreVerificationPlanPollingUntilDone(name:)``
   public func deleteRestoreVerificationPlan(
     request: DeleteRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1531,6 +2184,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// RestoreVerificationPlan will also be deleted.
   ///
   /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRestoreVerificationPlanPollingUntilDone(request:)``
+  /// - ``deleteRestoreVerificationPlanPollingUntilDone(name:)``
+  /// - ``deleteRestoreVerificationPlan(request:)``
+  /// - ``deleteRestoreVerificationPlan(request:options:)``
   public func deleteRestoreVerificationPlanPollingUntilDone(
     request: DeleteRestoreVerificationPlanRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1558,6 +2218,12 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "BackupDR_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1567,6 +2233,10 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "BackupDR_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -1580,6 +2250,10 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// errors.
   ///
   /// @Snippet(path: "BackupDR_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -1590,6 +2264,10 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "BackupDR_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -1605,6 +2283,10 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "BackupDR_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1616,6 +2298,13 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BackupDR_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1638,6 +2327,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BackupDR_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1649,6 +2343,11 @@ public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BackupDR_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2197,6 +2896,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.BackupDRProtocol {
+  /// Lists ManagementServers in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListManagementServers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listManagementServers(request:options:)``
   public func listManagementServers(request: ListManagementServersRequest) async throws
     -> GoogleCloudBackupDRV1.ListManagementServersResponse
   {
@@ -2209,6 +2915,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ManagementServers in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListManagementServers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listManagementServers(request:options:)``
   public func listManagementServersByItems(
     request: ListManagementServersRequest
   ) -> some AsyncSequence<ManagementServer, any Swift.Error> & Sendable {
@@ -2218,6 +2931,10 @@ extension Clients.BackupDRProtocol {
   /// Lists ManagementServers in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListManagementServers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listManagementServers(request:options:)``
   public func listManagementServersByItems(
     request: ListManagementServersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ManagementServer, any Swift.Error> & Sendable {
@@ -2232,6 +2949,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ManagementServers in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListManagementServers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listManagementServers(request:options:)``
   public func listManagementServersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ManagementServer, any Swift.Error> & Sendable {
@@ -2241,6 +2965,13 @@ extension Clients.BackupDRProtocol {
     return self.listManagementServersByItems(request: request)
   }
 
+  /// Gets details of a single ManagementServer.
+  ///
+  /// @Snippet(path: "BackupDR_GetManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getManagementServer(request:options:)``
   public func getManagementServer(request: GetManagementServerRequest) async throws
     -> GoogleCloudBackupDRV1.ManagementServer
   {
@@ -2253,6 +2984,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single ManagementServer.
+  ///
+  /// @Snippet(path: "BackupDR_GetManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getManagementServer(request:options:)``
   public func getManagementServer(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.ManagementServer {
@@ -2262,6 +3000,13 @@ extension Clients.BackupDRProtocol {
     return try await self.getManagementServer(request: request)
   }
 
+  /// Creates a new ManagementServer in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createManagementServer(request:options:)``
   public func createManagementServer(request: CreateManagementServerRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2274,6 +3019,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ManagementServer in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createManagementServerPollingUntilDone(request:options:)``
   public func createManagementServerPollingUntilDone(request: CreateManagementServerRequest)
     async throws -> ManagementServer
   {
@@ -2286,6 +3038,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ManagementServer in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createManagementServerPollingUntilDone(request:options:)``
   public func createManagementServerPollingUntilDone(
     parent: Swift.String,
     managementServer: ManagementServer?,
@@ -2299,6 +3058,13 @@ extension Clients.BackupDRProtocol {
     return try await self.createManagementServerPollingUntilDone(request: request)
   }
 
+  /// Deletes a single ManagementServer.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteManagementServer(request:options:)``
   public func deleteManagementServer(request: DeleteManagementServerRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2311,6 +3077,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ManagementServer.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteManagementServerPollingUntilDone(request:options:)``
   public func deleteManagementServerPollingUntilDone(request: DeleteManagementServerRequest)
     async throws
   {
@@ -2323,6 +3096,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ManagementServer.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteManagementServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteManagementServerPollingUntilDone(request:options:)``
   public func deleteManagementServerPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2332,6 +3112,13 @@ extension Clients.BackupDRProtocol {
     try await self.deleteManagementServerPollingUntilDone(request: request)
   }
 
+  /// Creates a new BackupVault in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createBackupVault(request:options:)``
   public func createBackupVault(request: CreateBackupVaultRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2344,6 +3131,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new BackupVault in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createBackupVaultPollingUntilDone(request:options:)``
   public func createBackupVaultPollingUntilDone(request: CreateBackupVaultRequest) async throws
     -> BackupVault
   {
@@ -2356,6 +3150,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new BackupVault in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createBackupVaultPollingUntilDone(request:options:)``
   public func createBackupVaultPollingUntilDone(
     parent: Swift.String,
     backupVault: BackupVault?,
@@ -2369,6 +3170,13 @@ extension Clients.BackupDRProtocol {
     return try await self.createBackupVaultPollingUntilDone(request: request)
   }
 
+  /// Lists BackupVaults in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupVaults(request:options:)``
   public func listBackupVaults(request: ListBackupVaultsRequest) async throws
     -> GoogleCloudBackupDRV1.ListBackupVaultsResponse
   {
@@ -2381,6 +3189,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists BackupVaults in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupVaults(request:options:)``
   public func listBackupVaultsByItems(
     request: ListBackupVaultsRequest
   ) -> some AsyncSequence<BackupVault, any Swift.Error> & Sendable {
@@ -2390,6 +3205,10 @@ extension Clients.BackupDRProtocol {
   /// Lists BackupVaults in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupVaults(request:options:)``
   public func listBackupVaultsByItems(
     request: ListBackupVaultsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BackupVault, any Swift.Error> & Sendable {
@@ -2404,6 +3223,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists BackupVaults in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupVaults(request:options:)``
   public func listBackupVaultsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BackupVault, any Swift.Error> & Sendable {
@@ -2413,6 +3239,15 @@ extension Clients.BackupDRProtocol {
     return self.listBackupVaultsByItems(request: request)
   }
 
+  /// FetchUsableBackupVaults lists usable BackupVaults in a given project and
+  /// location. Usable BackupVault are the ones that user has
+  /// backupdr.backupVaults.get permission.
+  ///
+  /// @Snippet(path: "BackupDR_FetchUsableBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchUsableBackupVaults(request:options:)``
   public func fetchUsableBackupVaults(request: FetchUsableBackupVaultsRequest) async throws
     -> GoogleCloudBackupDRV1.FetchUsableBackupVaultsResponse
   {
@@ -2425,6 +3260,15 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// FetchUsableBackupVaults lists usable BackupVaults in a given project and
+  /// location. Usable BackupVault are the ones that user has
+  /// backupdr.backupVaults.get permission.
+  ///
+  /// @Snippet(path: "BackupDR_FetchUsableBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchUsableBackupVaults(request:options:)``
   public func fetchUsableBackupVaultsByItems(
     request: FetchUsableBackupVaultsRequest
   ) -> some AsyncSequence<BackupVault, any Swift.Error> & Sendable {
@@ -2436,6 +3280,10 @@ extension Clients.BackupDRProtocol {
   /// backupdr.backupVaults.get permission.
   ///
   /// @Snippet(path: "BackupDR_FetchUsableBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchUsableBackupVaults(request:options:)``
   public func fetchUsableBackupVaultsByItems(
     request: FetchUsableBackupVaultsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BackupVault, any Swift.Error> & Sendable {
@@ -2450,6 +3298,15 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// FetchUsableBackupVaults lists usable BackupVaults in a given project and
+  /// location. Usable BackupVault are the ones that user has
+  /// backupdr.backupVaults.get permission.
+  ///
+  /// @Snippet(path: "BackupDR_FetchUsableBackupVaults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchUsableBackupVaults(request:options:)``
   public func fetchUsableBackupVaultsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BackupVault, any Swift.Error> & Sendable {
@@ -2459,6 +3316,13 @@ extension Clients.BackupDRProtocol {
     return self.fetchUsableBackupVaultsByItems(request: request)
   }
 
+  /// Gets details of a BackupVault.
+  ///
+  /// @Snippet(path: "BackupDR_GetBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getBackupVault(request:options:)``
   public func getBackupVault(request: GetBackupVaultRequest) async throws
     -> GoogleCloudBackupDRV1.BackupVault
   {
@@ -2471,6 +3335,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a BackupVault.
+  ///
+  /// @Snippet(path: "BackupDR_GetBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getBackupVault(request:options:)``
   public func getBackupVault(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.BackupVault {
@@ -2480,6 +3351,13 @@ extension Clients.BackupDRProtocol {
     return try await self.getBackupVault(request: request)
   }
 
+  /// Updates the settings of a BackupVault.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateBackupVault(request:options:)``
   public func updateBackupVault(request: UpdateBackupVaultRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2492,6 +3370,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a BackupVault.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateBackupVaultPollingUntilDone(request:options:)``
   public func updateBackupVaultPollingUntilDone(request: UpdateBackupVaultRequest) async throws
     -> BackupVault
   {
@@ -2504,6 +3389,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a BackupVault.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateBackupVaultPollingUntilDone(request:options:)``
   public func updateBackupVaultPollingUntilDone(
     backupVault: BackupVault?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2515,6 +3407,13 @@ extension Clients.BackupDRProtocol {
     return try await self.updateBackupVaultPollingUntilDone(request: request)
   }
 
+  /// Deletes a BackupVault.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteBackupVault(request:options:)``
   public func deleteBackupVault(request: DeleteBackupVaultRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2527,6 +3426,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a BackupVault.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteBackupVaultPollingUntilDone(request:options:)``
   public func deleteBackupVaultPollingUntilDone(request: DeleteBackupVaultRequest) async throws {
     try await self.deleteBackupVaultPollingUntilDone(request: request, options: .init())
   }
@@ -2537,6 +3443,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a BackupVault.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteBackupVault")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteBackupVaultPollingUntilDone(request:options:)``
   public func deleteBackupVaultPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2546,6 +3459,13 @@ extension Clients.BackupDRProtocol {
     try await self.deleteBackupVaultPollingUntilDone(request: request)
   }
 
+  /// Lists DataSources in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListDataSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listDataSources(request:options:)``
   public func listDataSources(request: ListDataSourcesRequest) async throws
     -> GoogleCloudBackupDRV1.ListDataSourcesResponse
   {
@@ -2558,6 +3478,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists DataSources in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListDataSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listDataSources(request:options:)``
   public func listDataSourcesByItems(
     request: ListDataSourcesRequest
   ) -> some AsyncSequence<DataSource, any Swift.Error> & Sendable {
@@ -2567,6 +3494,10 @@ extension Clients.BackupDRProtocol {
   /// Lists DataSources in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListDataSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listDataSources(request:options:)``
   public func listDataSourcesByItems(
     request: ListDataSourcesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataSource, any Swift.Error> & Sendable {
@@ -2581,6 +3512,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists DataSources in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListDataSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listDataSources(request:options:)``
   public func listDataSourcesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DataSource, any Swift.Error> & Sendable {
@@ -2590,6 +3528,13 @@ extension Clients.BackupDRProtocol {
     return self.listDataSourcesByItems(request: request)
   }
 
+  /// Gets details of a DataSource.
+  ///
+  /// @Snippet(path: "BackupDR_GetDataSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getDataSource(request:options:)``
   public func getDataSource(request: GetDataSourceRequest) async throws
     -> GoogleCloudBackupDRV1.DataSource
   {
@@ -2602,6 +3547,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a DataSource.
+  ///
+  /// @Snippet(path: "BackupDR_GetDataSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getDataSource(request:options:)``
   public func getDataSource(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.DataSource {
@@ -2611,6 +3563,13 @@ extension Clients.BackupDRProtocol {
     return try await self.getDataSource(request: request)
   }
 
+  /// Updates the settings of a DataSource.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateDataSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateDataSource(request:options:)``
   public func updateDataSource(request: UpdateDataSourceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2623,6 +3582,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a DataSource.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateDataSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateDataSourcePollingUntilDone(request:options:)``
   public func updateDataSourcePollingUntilDone(request: UpdateDataSourceRequest) async throws
     -> DataSource
   {
@@ -2635,6 +3601,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a DataSource.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateDataSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateDataSourcePollingUntilDone(request:options:)``
   public func updateDataSourcePollingUntilDone(
     dataSource: DataSource?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2646,6 +3619,13 @@ extension Clients.BackupDRProtocol {
     return try await self.updateDataSourcePollingUntilDone(request: request)
   }
 
+  /// Lists Backups in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackups(request:options:)``
   public func listBackups(request: ListBackupsRequest) async throws
     -> GoogleCloudBackupDRV1.ListBackupsResponse
   {
@@ -2658,6 +3638,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Backups in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackups(request:options:)``
   public func listBackupsByItems(
     request: ListBackupsRequest
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -2667,6 +3654,10 @@ extension Clients.BackupDRProtocol {
   /// Lists Backups in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackups(request:options:)``
   public func listBackupsByItems(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -2680,6 +3671,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Backups in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackups(request:options:)``
   public func listBackupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -2689,6 +3687,13 @@ extension Clients.BackupDRProtocol {
     return self.listBackupsByItems(request: request)
   }
 
+  /// Fetch Backups for a given resource type.
+  ///
+  /// @Snippet(path: "BackupDR_FetchBackupsForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchBackupsForResourceType(request:options:)``
   public func fetchBackupsForResourceType(request: FetchBackupsForResourceTypeRequest) async throws
     -> GoogleCloudBackupDRV1.FetchBackupsForResourceTypeResponse
   {
@@ -2701,6 +3706,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetch Backups for a given resource type.
+  ///
+  /// @Snippet(path: "BackupDR_FetchBackupsForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchBackupsForResourceType(request:options:)``
   public func fetchBackupsForResourceTypeByItems(
     request: FetchBackupsForResourceTypeRequest
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -2710,6 +3722,10 @@ extension Clients.BackupDRProtocol {
   /// Fetch Backups for a given resource type.
   ///
   /// @Snippet(path: "BackupDR_FetchBackupsForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchBackupsForResourceType(request:options:)``
   public func fetchBackupsForResourceTypeByItems(
     request: FetchBackupsForResourceTypeRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -2724,6 +3740,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Fetch Backups for a given resource type.
+  ///
+  /// @Snippet(path: "BackupDR_FetchBackupsForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchBackupsForResourceType(request:options:)``
   public func fetchBackupsForResourceTypeByItems(
     parent: Swift.String,
     resourceType: Swift.String,
@@ -2735,6 +3758,13 @@ extension Clients.BackupDRProtocol {
     return self.fetchBackupsForResourceTypeByItems(request: request)
   }
 
+  /// Gets details of a Backup.
+  ///
+  /// @Snippet(path: "BackupDR_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getBackup(request:options:)``
   public func getBackup(request: GetBackupRequest) async throws -> GoogleCloudBackupDRV1.Backup {
     try await self.getBackup(request: request, options: .init())
   }
@@ -2745,6 +3775,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a Backup.
+  ///
+  /// @Snippet(path: "BackupDR_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getBackup(request:options:)``
   public func getBackup(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.Backup {
@@ -2754,6 +3791,13 @@ extension Clients.BackupDRProtocol {
     return try await self.getBackup(request: request)
   }
 
+  /// Updates the settings of a Backup.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateBackup(request:options:)``
   public func updateBackup(request: UpdateBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateBackup(request: request, options: .init())
@@ -2765,6 +3809,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a Backup.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateBackupPollingUntilDone(request:options:)``
   public func updateBackupPollingUntilDone(request: UpdateBackupRequest) async throws -> Backup {
     return try await self.updateBackupPollingUntilDone(request: request, options: .init())
   }
@@ -2775,6 +3826,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a Backup.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateBackupPollingUntilDone(request:options:)``
   public func updateBackupPollingUntilDone(
     backup: Backup?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2786,6 +3844,13 @@ extension Clients.BackupDRProtocol {
     return try await self.updateBackupPollingUntilDone(request: request)
   }
 
+  /// Deletes a Backup.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteBackup(request:options:)``
   public func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteBackup(request: request, options: .init())
@@ -2797,6 +3862,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Backup.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteBackupPollingUntilDone(request:options:)``
   public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws -> Backup {
     return try await self.deleteBackupPollingUntilDone(request: request, options: .init())
   }
@@ -2807,6 +3879,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Backup.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteBackupPollingUntilDone(request:options:)``
   public func deleteBackupPollingUntilDone(
     name: Swift.String,
   ) async throws -> Backup {
@@ -2816,6 +3895,13 @@ extension Clients.BackupDRProtocol {
     return try await self.deleteBackupPollingUntilDone(request: request)
   }
 
+  /// Restore from a Backup
+  ///
+  /// @Snippet(path: "BackupDR_RestoreBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/restoreBackup(request:options:)``
   public func restoreBackup(request: RestoreBackupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2828,6 +3914,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restore from a Backup
+  ///
+  /// @Snippet(path: "BackupDR_RestoreBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/restoreBackupPollingUntilDone(request:options:)``
   public func restoreBackupPollingUntilDone(request: RestoreBackupRequest) async throws
     -> RestoreBackupResponse
   {
@@ -2840,6 +3933,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restore from a Backup
+  ///
+  /// @Snippet(path: "BackupDR_RestoreBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/restoreBackupPollingUntilDone(request:options:)``
   public func restoreBackupPollingUntilDone(
     name: Swift.String,
   ) async throws -> RestoreBackupResponse {
@@ -2849,6 +3949,13 @@ extension Clients.BackupDRProtocol {
     return try await self.restoreBackupPollingUntilDone(request: request)
   }
 
+  /// Create a BackupPlan
+  ///
+  /// @Snippet(path: "BackupDR_CreateBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createBackupPlan(request:options:)``
   public func createBackupPlan(request: CreateBackupPlanRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2861,6 +3968,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a BackupPlan
+  ///
+  /// @Snippet(path: "BackupDR_CreateBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createBackupPlanPollingUntilDone(request:options:)``
   public func createBackupPlanPollingUntilDone(request: CreateBackupPlanRequest) async throws
     -> BackupPlan
   {
@@ -2873,6 +3987,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a BackupPlan
+  ///
+  /// @Snippet(path: "BackupDR_CreateBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createBackupPlanPollingUntilDone(request:options:)``
   public func createBackupPlanPollingUntilDone(
     parent: Swift.String,
     backupPlan: BackupPlan?,
@@ -2886,6 +4007,13 @@ extension Clients.BackupDRProtocol {
     return try await self.createBackupPlanPollingUntilDone(request: request)
   }
 
+  /// Update a BackupPlan.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateBackupPlan(request:options:)``
   public func updateBackupPlan(request: UpdateBackupPlanRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2898,6 +4026,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a BackupPlan.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateBackupPlanPollingUntilDone(request:options:)``
   public func updateBackupPlanPollingUntilDone(request: UpdateBackupPlanRequest) async throws
     -> BackupPlan
   {
@@ -2910,6 +4045,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a BackupPlan.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateBackupPlanPollingUntilDone(request:options:)``
   public func updateBackupPlanPollingUntilDone(
     backupPlan: BackupPlan?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2921,6 +4063,13 @@ extension Clients.BackupDRProtocol {
     return try await self.updateBackupPlanPollingUntilDone(request: request)
   }
 
+  /// Gets details of a single BackupPlan.
+  ///
+  /// @Snippet(path: "BackupDR_GetBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getBackupPlan(request:options:)``
   public func getBackupPlan(request: GetBackupPlanRequest) async throws
     -> GoogleCloudBackupDRV1.BackupPlan
   {
@@ -2933,6 +4082,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single BackupPlan.
+  ///
+  /// @Snippet(path: "BackupDR_GetBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getBackupPlan(request:options:)``
   public func getBackupPlan(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.BackupPlan {
@@ -2942,6 +4098,13 @@ extension Clients.BackupDRProtocol {
     return try await self.getBackupPlan(request: request)
   }
 
+  /// Lists BackupPlans in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackupPlans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupPlans(request:options:)``
   public func listBackupPlans(request: ListBackupPlansRequest) async throws
     -> GoogleCloudBackupDRV1.ListBackupPlansResponse
   {
@@ -2954,6 +4117,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists BackupPlans in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackupPlans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupPlans(request:options:)``
   public func listBackupPlansByItems(
     request: ListBackupPlansRequest
   ) -> some AsyncSequence<BackupPlan, any Swift.Error> & Sendable {
@@ -2963,6 +4133,10 @@ extension Clients.BackupDRProtocol {
   /// Lists BackupPlans in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListBackupPlans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupPlans(request:options:)``
   public func listBackupPlansByItems(
     request: ListBackupPlansRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BackupPlan, any Swift.Error> & Sendable {
@@ -2977,6 +4151,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists BackupPlans in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackupPlans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupPlans(request:options:)``
   public func listBackupPlansByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BackupPlan, any Swift.Error> & Sendable {
@@ -2986,6 +4167,13 @@ extension Clients.BackupDRProtocol {
     return self.listBackupPlansByItems(request: request)
   }
 
+  /// Deletes a single BackupPlan.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteBackupPlan(request:options:)``
   public func deleteBackupPlan(request: DeleteBackupPlanRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2998,6 +4186,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single BackupPlan.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteBackupPlanPollingUntilDone(request:options:)``
   public func deleteBackupPlanPollingUntilDone(request: DeleteBackupPlanRequest) async throws {
     try await self.deleteBackupPlanPollingUntilDone(request: request, options: .init())
   }
@@ -3008,6 +4203,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single BackupPlan.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteBackupPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteBackupPlanPollingUntilDone(request:options:)``
   public func deleteBackupPlanPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3017,6 +4219,13 @@ extension Clients.BackupDRProtocol {
     try await self.deleteBackupPlanPollingUntilDone(request: request)
   }
 
+  /// Gets details of a single BackupPlanRevision.
+  ///
+  /// @Snippet(path: "BackupDR_GetBackupPlanRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getBackupPlanRevision(request:options:)``
   public func getBackupPlanRevision(request: GetBackupPlanRevisionRequest) async throws
     -> GoogleCloudBackupDRV1.BackupPlanRevision
   {
@@ -3029,6 +4238,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single BackupPlanRevision.
+  ///
+  /// @Snippet(path: "BackupDR_GetBackupPlanRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getBackupPlanRevision(request:options:)``
   public func getBackupPlanRevision(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.BackupPlanRevision {
@@ -3038,6 +4254,13 @@ extension Clients.BackupDRProtocol {
     return try await self.getBackupPlanRevision(request: request)
   }
 
+  /// Lists BackupPlanRevisions in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackupPlanRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupPlanRevisions(request:options:)``
   public func listBackupPlanRevisions(request: ListBackupPlanRevisionsRequest) async throws
     -> GoogleCloudBackupDRV1.ListBackupPlanRevisionsResponse
   {
@@ -3050,6 +4273,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists BackupPlanRevisions in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackupPlanRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupPlanRevisions(request:options:)``
   public func listBackupPlanRevisionsByItems(
     request: ListBackupPlanRevisionsRequest
   ) -> some AsyncSequence<BackupPlanRevision, any Swift.Error> & Sendable {
@@ -3059,6 +4289,10 @@ extension Clients.BackupDRProtocol {
   /// Lists BackupPlanRevisions in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListBackupPlanRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupPlanRevisions(request:options:)``
   public func listBackupPlanRevisionsByItems(
     request: ListBackupPlanRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BackupPlanRevision, any Swift.Error> & Sendable {
@@ -3073,6 +4307,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists BackupPlanRevisions in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackupPlanRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupPlanRevisions(request:options:)``
   public func listBackupPlanRevisionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BackupPlanRevision, any Swift.Error> & Sendable {
@@ -3082,6 +4323,13 @@ extension Clients.BackupDRProtocol {
     return self.listBackupPlanRevisionsByItems(request: request)
   }
 
+  /// Create a BackupPlanAssociation
+  ///
+  /// @Snippet(path: "BackupDR_CreateBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createBackupPlanAssociation(request:options:)``
   public func createBackupPlanAssociation(request: CreateBackupPlanAssociationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3094,6 +4342,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a BackupPlanAssociation
+  ///
+  /// @Snippet(path: "BackupDR_CreateBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createBackupPlanAssociationPollingUntilDone(request:options:)``
   public func createBackupPlanAssociationPollingUntilDone(
     request: CreateBackupPlanAssociationRequest
   ) async throws -> BackupPlanAssociation {
@@ -3107,6 +4362,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a BackupPlanAssociation
+  ///
+  /// @Snippet(path: "BackupDR_CreateBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createBackupPlanAssociationPollingUntilDone(request:options:)``
   public func createBackupPlanAssociationPollingUntilDone(
     parent: Swift.String,
     backupPlanAssociation: BackupPlanAssociation?,
@@ -3120,6 +4382,13 @@ extension Clients.BackupDRProtocol {
     return try await self.createBackupPlanAssociationPollingUntilDone(request: request)
   }
 
+  /// Update a BackupPlanAssociation.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateBackupPlanAssociation(request:options:)``
   public func updateBackupPlanAssociation(request: UpdateBackupPlanAssociationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3132,6 +4401,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a BackupPlanAssociation.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateBackupPlanAssociationPollingUntilDone(request:options:)``
   public func updateBackupPlanAssociationPollingUntilDone(
     request: UpdateBackupPlanAssociationRequest
   ) async throws -> BackupPlanAssociation {
@@ -3145,6 +4421,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a BackupPlanAssociation.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateBackupPlanAssociationPollingUntilDone(request:options:)``
   public func updateBackupPlanAssociationPollingUntilDone(
     backupPlanAssociation: BackupPlanAssociation?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3156,6 +4439,13 @@ extension Clients.BackupDRProtocol {
     return try await self.updateBackupPlanAssociationPollingUntilDone(request: request)
   }
 
+  /// Gets details of a single BackupPlanAssociation.
+  ///
+  /// @Snippet(path: "BackupDR_GetBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getBackupPlanAssociation(request:options:)``
   public func getBackupPlanAssociation(request: GetBackupPlanAssociationRequest) async throws
     -> GoogleCloudBackupDRV1.BackupPlanAssociation
   {
@@ -3168,6 +4458,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single BackupPlanAssociation.
+  ///
+  /// @Snippet(path: "BackupDR_GetBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getBackupPlanAssociation(request:options:)``
   public func getBackupPlanAssociation(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.BackupPlanAssociation {
@@ -3177,6 +4474,13 @@ extension Clients.BackupDRProtocol {
     return try await self.getBackupPlanAssociation(request: request)
   }
 
+  /// Lists BackupPlanAssociations in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackupPlanAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupPlanAssociations(request:options:)``
   public func listBackupPlanAssociations(request: ListBackupPlanAssociationsRequest) async throws
     -> GoogleCloudBackupDRV1.ListBackupPlanAssociationsResponse
   {
@@ -3189,6 +4493,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists BackupPlanAssociations in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackupPlanAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupPlanAssociations(request:options:)``
   public func listBackupPlanAssociationsByItems(
     request: ListBackupPlanAssociationsRequest
   ) -> some AsyncSequence<BackupPlanAssociation, any Swift.Error> & Sendable {
@@ -3198,6 +4509,10 @@ extension Clients.BackupDRProtocol {
   /// Lists BackupPlanAssociations in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListBackupPlanAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupPlanAssociations(request:options:)``
   public func listBackupPlanAssociationsByItems(
     request: ListBackupPlanAssociationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BackupPlanAssociation, any Swift.Error> & Sendable {
@@ -3212,6 +4527,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists BackupPlanAssociations in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListBackupPlanAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBackupPlanAssociations(request:options:)``
   public func listBackupPlanAssociationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BackupPlanAssociation, any Swift.Error> & Sendable {
@@ -3221,6 +4543,13 @@ extension Clients.BackupDRProtocol {
     return self.listBackupPlanAssociationsByItems(request: request)
   }
 
+  /// List BackupPlanAssociations for a given resource type.
+  ///
+  /// @Snippet(path: "BackupDR_FetchBackupPlanAssociationsForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchBackupPlanAssociationsForResourceType(request:options:)``
   public func fetchBackupPlanAssociationsForResourceType(
     request: FetchBackupPlanAssociationsForResourceTypeRequest
   ) async throws -> GoogleCloudBackupDRV1.FetchBackupPlanAssociationsForResourceTypeResponse {
@@ -3233,6 +4562,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List BackupPlanAssociations for a given resource type.
+  ///
+  /// @Snippet(path: "BackupDR_FetchBackupPlanAssociationsForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchBackupPlanAssociationsForResourceType(request:options:)``
   public func fetchBackupPlanAssociationsForResourceTypeByItems(
     request: FetchBackupPlanAssociationsForResourceTypeRequest
   ) -> some AsyncSequence<BackupPlanAssociation, any Swift.Error> & Sendable {
@@ -3242,6 +4578,10 @@ extension Clients.BackupDRProtocol {
   /// List BackupPlanAssociations for a given resource type.
   ///
   /// @Snippet(path: "BackupDR_FetchBackupPlanAssociationsForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchBackupPlanAssociationsForResourceType(request:options:)``
   public func fetchBackupPlanAssociationsForResourceTypeByItems(
     request: FetchBackupPlanAssociationsForResourceTypeRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BackupPlanAssociation, any Swift.Error> & Sendable {
@@ -3257,6 +4597,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List BackupPlanAssociations for a given resource type.
+  ///
+  /// @Snippet(path: "BackupDR_FetchBackupPlanAssociationsForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchBackupPlanAssociationsForResourceType(request:options:)``
   public func fetchBackupPlanAssociationsForResourceTypeByItems(
     parent: Swift.String,
     resourceType: Swift.String,
@@ -3268,6 +4615,13 @@ extension Clients.BackupDRProtocol {
     return self.fetchBackupPlanAssociationsForResourceTypeByItems(request: request)
   }
 
+  /// Deletes a single BackupPlanAssociation.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteBackupPlanAssociation(request:options:)``
   public func deleteBackupPlanAssociation(request: DeleteBackupPlanAssociationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3280,6 +4634,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single BackupPlanAssociation.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteBackupPlanAssociationPollingUntilDone(request:options:)``
   public func deleteBackupPlanAssociationPollingUntilDone(
     request: DeleteBackupPlanAssociationRequest
   ) async throws {
@@ -3292,6 +4653,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single BackupPlanAssociation.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteBackupPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteBackupPlanAssociationPollingUntilDone(request:options:)``
   public func deleteBackupPlanAssociationPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3301,6 +4669,13 @@ extension Clients.BackupDRProtocol {
     try await self.deleteBackupPlanAssociationPollingUntilDone(request: request)
   }
 
+  /// Triggers a new Backup.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/triggerBackup(request:options:)``
   public func triggerBackup(request: TriggerBackupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3313,6 +4688,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Triggers a new Backup.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/triggerBackupPollingUntilDone(request:options:)``
   public func triggerBackupPollingUntilDone(request: TriggerBackupRequest) async throws
     -> BackupPlanAssociation
   {
@@ -3325,6 +4707,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Triggers a new Backup.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/triggerBackupPollingUntilDone(request:options:)``
   public func triggerBackupPollingUntilDone(
     name: Swift.String,
     ruleId: Swift.String,
@@ -3336,6 +4725,13 @@ extension Clients.BackupDRProtocol {
     return try await self.triggerBackupPollingUntilDone(request: request)
   }
 
+  /// Gets details of a single DataSourceReference.
+  ///
+  /// @Snippet(path: "BackupDR_GetDataSourceReference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getDataSourceReference(request:options:)``
   public func getDataSourceReference(request: GetDataSourceReferenceRequest) async throws
     -> GoogleCloudBackupDRV1.DataSourceReference
   {
@@ -3348,6 +4744,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single DataSourceReference.
+  ///
+  /// @Snippet(path: "BackupDR_GetDataSourceReference")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getDataSourceReference(request:options:)``
   public func getDataSourceReference(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.DataSourceReference {
@@ -3357,6 +4760,13 @@ extension Clients.BackupDRProtocol {
     return try await self.getDataSourceReference(request: request)
   }
 
+  /// Lists DataSourceReferences for a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListDataSourceReferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listDataSourceReferences(request:options:)``
   public func listDataSourceReferences(request: ListDataSourceReferencesRequest) async throws
     -> GoogleCloudBackupDRV1.ListDataSourceReferencesResponse
   {
@@ -3369,6 +4779,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists DataSourceReferences for a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListDataSourceReferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listDataSourceReferences(request:options:)``
   public func listDataSourceReferencesByItems(
     request: ListDataSourceReferencesRequest
   ) -> some AsyncSequence<DataSourceReference, any Swift.Error> & Sendable {
@@ -3378,6 +4795,10 @@ extension Clients.BackupDRProtocol {
   /// Lists DataSourceReferences for a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListDataSourceReferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listDataSourceReferences(request:options:)``
   public func listDataSourceReferencesByItems(
     request: ListDataSourceReferencesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataSourceReference, any Swift.Error> & Sendable {
@@ -3392,6 +4813,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists DataSourceReferences for a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListDataSourceReferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listDataSourceReferences(request:options:)``
   public func listDataSourceReferencesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DataSourceReference, any Swift.Error> & Sendable {
@@ -3401,6 +4829,13 @@ extension Clients.BackupDRProtocol {
     return self.listDataSourceReferencesByItems(request: request)
   }
 
+  /// Fetch DataSourceReferences for a given project, location and resource type.
+  ///
+  /// @Snippet(path: "BackupDR_FetchDataSourceReferencesForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchDataSourceReferencesForResourceType(request:options:)``
   public func fetchDataSourceReferencesForResourceType(
     request: FetchDataSourceReferencesForResourceTypeRequest
   ) async throws -> GoogleCloudBackupDRV1.FetchDataSourceReferencesForResourceTypeResponse {
@@ -3413,6 +4848,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetch DataSourceReferences for a given project, location and resource type.
+  ///
+  /// @Snippet(path: "BackupDR_FetchDataSourceReferencesForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchDataSourceReferencesForResourceType(request:options:)``
   public func fetchDataSourceReferencesForResourceTypeByItems(
     request: FetchDataSourceReferencesForResourceTypeRequest
   ) -> some AsyncSequence<DataSourceReference, any Swift.Error> & Sendable {
@@ -3422,6 +4864,10 @@ extension Clients.BackupDRProtocol {
   /// Fetch DataSourceReferences for a given project, location and resource type.
   ///
   /// @Snippet(path: "BackupDR_FetchDataSourceReferencesForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchDataSourceReferencesForResourceType(request:options:)``
   public func fetchDataSourceReferencesForResourceTypeByItems(
     request: FetchDataSourceReferencesForResourceTypeRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataSourceReference, any Swift.Error> & Sendable {
@@ -3437,6 +4883,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Fetch DataSourceReferences for a given project, location and resource type.
+  ///
+  /// @Snippet(path: "BackupDR_FetchDataSourceReferencesForResourceType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/fetchDataSourceReferencesForResourceType(request:options:)``
   public func fetchDataSourceReferencesForResourceTypeByItems(
     parent: Swift.String,
     resourceType: Swift.String,
@@ -3448,6 +4901,13 @@ extension Clients.BackupDRProtocol {
     return self.fetchDataSourceReferencesForResourceTypeByItems(request: request)
   }
 
+  /// Initializes the service related config for a project.
+  ///
+  /// @Snippet(path: "BackupDR_InitializeService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/initializeService(request:options:)``
   public func initializeService(request: InitializeServiceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3460,6 +4920,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Initializes the service related config for a project.
+  ///
+  /// @Snippet(path: "BackupDR_InitializeService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/initializeServicePollingUntilDone(request:options:)``
   public func initializeServicePollingUntilDone(request: InitializeServiceRequest) async throws
     -> InitializeServiceResponse
   {
@@ -3472,6 +4939,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AutoProtectionPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createAutoProtectionPolicy(request:options:)``
   public func createAutoProtectionPolicy(request: CreateAutoProtectionPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3484,6 +4958,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AutoProtectionPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createAutoProtectionPolicyPollingUntilDone(request:options:)``
   public func createAutoProtectionPolicyPollingUntilDone(request: CreateAutoProtectionPolicyRequest)
     async throws -> AutoProtectionPolicy
   {
@@ -3497,6 +4978,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AutoProtectionPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createAutoProtectionPolicyPollingUntilDone(request:options:)``
   public func createAutoProtectionPolicyPollingUntilDone(
     parent: Swift.String,
     autoProtectionPolicy: AutoProtectionPolicy?,
@@ -3510,6 +4998,13 @@ extension Clients.BackupDRProtocol {
     return try await self.createAutoProtectionPolicyPollingUntilDone(request: request)
   }
 
+  /// Lists AutoProtectionPolicies for a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listAutoProtectionPolicies(request:options:)``
   public func listAutoProtectionPolicies(request: ListAutoProtectionPoliciesRequest) async throws
     -> GoogleCloudBackupDRV1.ListAutoProtectionPoliciesResponse
   {
@@ -3522,6 +5017,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists AutoProtectionPolicies for a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listAutoProtectionPolicies(request:options:)``
   public func listAutoProtectionPoliciesByItems(
     request: ListAutoProtectionPoliciesRequest
   ) -> some AsyncSequence<AutoProtectionPolicy, any Swift.Error> & Sendable {
@@ -3531,6 +5033,10 @@ extension Clients.BackupDRProtocol {
   /// Lists AutoProtectionPolicies for a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListAutoProtectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listAutoProtectionPolicies(request:options:)``
   public func listAutoProtectionPoliciesByItems(
     request: ListAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AutoProtectionPolicy, any Swift.Error> & Sendable {
@@ -3545,6 +5051,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists AutoProtectionPolicies for a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listAutoProtectionPolicies(request:options:)``
   public func listAutoProtectionPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AutoProtectionPolicy, any Swift.Error> & Sendable {
@@ -3554,6 +5067,13 @@ extension Clients.BackupDRProtocol {
     return self.listAutoProtectionPoliciesByItems(request: request)
   }
 
+  /// Gets details of a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_GetAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getAutoProtectionPolicy(request:options:)``
   public func getAutoProtectionPolicy(request: GetAutoProtectionPolicyRequest) async throws
     -> GoogleCloudBackupDRV1.AutoProtectionPolicy
   {
@@ -3566,6 +5086,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_GetAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getAutoProtectionPolicy(request:options:)``
   public func getAutoProtectionPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicy {
@@ -3575,6 +5102,13 @@ extension Clients.BackupDRProtocol {
     return try await self.getAutoProtectionPolicy(request: request)
   }
 
+  /// Updates the parameters of a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateAutoProtectionPolicy(request:options:)``
   public func updateAutoProtectionPolicy(request: UpdateAutoProtectionPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3587,6 +5121,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateAutoProtectionPolicyPollingUntilDone(request:options:)``
   public func updateAutoProtectionPolicyPollingUntilDone(request: UpdateAutoProtectionPolicyRequest)
     async throws -> AutoProtectionPolicy
   {
@@ -3600,6 +5141,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateAutoProtectionPolicyPollingUntilDone(request:options:)``
   public func updateAutoProtectionPolicyPollingUntilDone(
     autoProtectionPolicy: AutoProtectionPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3611,6 +5159,13 @@ extension Clients.BackupDRProtocol {
     return try await self.updateAutoProtectionPolicyPollingUntilDone(request: request)
   }
 
+  /// Deletes a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteAutoProtectionPolicy(request:options:)``
   public func deleteAutoProtectionPolicy(request: DeleteAutoProtectionPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3623,6 +5178,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteAutoProtectionPolicyPollingUntilDone(request:options:)``
   public func deleteAutoProtectionPolicyPollingUntilDone(request: DeleteAutoProtectionPolicyRequest)
     async throws
   {
@@ -3635,6 +5197,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single AutoProtectionPolicy.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteAutoProtectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteAutoProtectionPolicyPollingUntilDone(request:options:)``
   public func deleteAutoProtectionPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3644,6 +5213,14 @@ extension Clients.BackupDRProtocol {
     try await self.deleteAutoProtectionPolicyPollingUntilDone(request: request)
   }
 
+  /// Creates a new AutoProtectionPolicyBinding in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createAutoProtectionPolicyBinding(request:options:)``
   public func createAutoProtectionPolicyBinding(request: CreateAutoProtectionPolicyBindingRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -3656,6 +5233,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AutoProtectionPolicyBinding in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createAutoProtectionPolicyBindingPollingUntilDone(request:options:)``
   public func createAutoProtectionPolicyBindingPollingUntilDone(
     request: CreateAutoProtectionPolicyBindingRequest
   ) async throws -> AutoProtectionPolicyBinding {
@@ -3669,6 +5254,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AutoProtectionPolicyBinding in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createAutoProtectionPolicyBindingPollingUntilDone(request:options:)``
   public func createAutoProtectionPolicyBindingPollingUntilDone(
     parent: Swift.String,
     autoProtectionPolicyBinding: AutoProtectionPolicyBinding?,
@@ -3682,6 +5275,13 @@ extension Clients.BackupDRProtocol {
     return try await self.createAutoProtectionPolicyBindingPollingUntilDone(request: request)
   }
 
+  /// Returns the auto protection policy binding read from the CCFE tables.
+  ///
+  /// @Snippet(path: "BackupDR_GetAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getAutoProtectionPolicyBinding(request:options:)``
   public func getAutoProtectionPolicyBinding(request: GetAutoProtectionPolicyBindingRequest)
     async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding
   {
@@ -3694,6 +5294,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the auto protection policy binding read from the CCFE tables.
+  ///
+  /// @Snippet(path: "BackupDR_GetAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getAutoProtectionPolicyBinding(request:options:)``
   public func getAutoProtectionPolicyBinding(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.AutoProtectionPolicyBinding {
@@ -3703,6 +5310,13 @@ extension Clients.BackupDRProtocol {
     return try await self.getAutoProtectionPolicyBinding(request: request)
   }
 
+  /// Returns the auto protection policy bindings read from the CCFE tables.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listAutoProtectionPolicyBindings(request:options:)``
   public func listAutoProtectionPolicyBindings(request: ListAutoProtectionPolicyBindingsRequest)
     async throws -> GoogleCloudBackupDRV1.ListAutoProtectionPolicyBindingsResponse
   {
@@ -3715,6 +5329,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the auto protection policy bindings read from the CCFE tables.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listAutoProtectionPolicyBindings(request:options:)``
   public func listAutoProtectionPolicyBindingsByItems(
     request: ListAutoProtectionPolicyBindingsRequest
   ) -> some AsyncSequence<AutoProtectionPolicyBinding, any Swift.Error> & Sendable {
@@ -3724,6 +5345,10 @@ extension Clients.BackupDRProtocol {
   /// Returns the auto protection policy bindings read from the CCFE tables.
   ///
   /// @Snippet(path: "BackupDR_ListAutoProtectionPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listAutoProtectionPolicyBindings(request:options:)``
   public func listAutoProtectionPolicyBindingsByItems(
     request: ListAutoProtectionPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AutoProtectionPolicyBinding, any Swift.Error> & Sendable {
@@ -3738,6 +5363,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns the auto protection policy bindings read from the CCFE tables.
+  ///
+  /// @Snippet(path: "BackupDR_ListAutoProtectionPolicyBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listAutoProtectionPolicyBindings(request:options:)``
   public func listAutoProtectionPolicyBindingsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AutoProtectionPolicyBinding, any Swift.Error> & Sendable {
@@ -3747,6 +5379,13 @@ extension Clients.BackupDRProtocol {
     return self.listAutoProtectionPolicyBindingsByItems(request: request)
   }
 
+  /// Lists AppliedAutoProtectionPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAppliedAutoProtectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listAppliedAutoProtectionPolicies(request:options:)``
   public func listAppliedAutoProtectionPolicies(request: ListAppliedAutoProtectionPoliciesRequest)
     async throws -> GoogleCloudBackupDRV1.ListAppliedAutoProtectionPoliciesResponse
   {
@@ -3759,6 +5398,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists AppliedAutoProtectionPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAppliedAutoProtectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listAppliedAutoProtectionPolicies(request:options:)``
   public func listAppliedAutoProtectionPoliciesByItems(
     request: ListAppliedAutoProtectionPoliciesRequest
   ) -> some AsyncSequence<AppliedAutoProtectionPolicy, any Swift.Error> & Sendable {
@@ -3768,6 +5414,10 @@ extension Clients.BackupDRProtocol {
   /// Lists AppliedAutoProtectionPolicies in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListAppliedAutoProtectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listAppliedAutoProtectionPolicies(request:options:)``
   public func listAppliedAutoProtectionPoliciesByItems(
     request: ListAppliedAutoProtectionPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AppliedAutoProtectionPolicy, any Swift.Error> & Sendable {
@@ -3782,6 +5432,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists AppliedAutoProtectionPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListAppliedAutoProtectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listAppliedAutoProtectionPolicies(request:options:)``
   public func listAppliedAutoProtectionPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AppliedAutoProtectionPolicy, any Swift.Error> & Sendable {
@@ -3791,6 +5448,14 @@ extension Clients.BackupDRProtocol {
     return self.listAppliedAutoProtectionPoliciesByItems(request: request)
   }
 
+  /// InitiateDeleteAutoProtectionPolicyBinding initiates delete for
+  /// AutoProtectionPolicy Binding
+  ///
+  /// @Snippet(path: "BackupDR_InitiateDeleteAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/initiateDeleteAutoProtectionPolicyBinding(request:options:)``
   public func initiateDeleteAutoProtectionPolicyBinding(
     request: InitiateDeleteAutoProtectionPolicyBindingRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -3803,6 +5468,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// InitiateDeleteAutoProtectionPolicyBinding initiates delete for
+  /// AutoProtectionPolicy Binding
+  ///
+  /// @Snippet(path: "BackupDR_InitiateDeleteAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(request:options:)``
   public func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
     request: InitiateDeleteAutoProtectionPolicyBindingRequest
   ) async throws -> AutoProtectionPolicyBinding {
@@ -3816,6 +5489,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// InitiateDeleteAutoProtectionPolicyBinding initiates delete for
+  /// AutoProtectionPolicy Binding
+  ///
+  /// @Snippet(path: "BackupDR_InitiateDeleteAutoProtectionPolicyBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(request:options:)``
   public func initiateDeleteAutoProtectionPolicyBindingPollingUntilDone(
     name: Swift.String,
   ) async throws -> AutoProtectionPolicyBinding {
@@ -3826,6 +5507,13 @@ extension Clients.BackupDRProtocol {
       request: request)
   }
 
+  /// Lists Binding Matching Resources for a given AutoProtectionPolicyBinding.
+  ///
+  /// @Snippet(path: "BackupDR_ListBindingMatchingResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBindingMatchingResources(request:options:)``
   public func listBindingMatchingResources(request: ListBindingMatchingResourcesRequest)
     async throws -> GoogleCloudBackupDRV1.ListBindingMatchingResourcesResponse
   {
@@ -3838,6 +5526,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Binding Matching Resources for a given AutoProtectionPolicyBinding.
+  ///
+  /// @Snippet(path: "BackupDR_ListBindingMatchingResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBindingMatchingResources(request:options:)``
   public func listBindingMatchingResourcesByItems(
     request: ListBindingMatchingResourcesRequest
   ) -> some AsyncSequence<BindingMatchingResource, any Swift.Error> & Sendable {
@@ -3847,6 +5542,10 @@ extension Clients.BackupDRProtocol {
   /// Lists Binding Matching Resources for a given AutoProtectionPolicyBinding.
   ///
   /// @Snippet(path: "BackupDR_ListBindingMatchingResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBindingMatchingResources(request:options:)``
   public func listBindingMatchingResourcesByItems(
     request: ListBindingMatchingResourcesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BindingMatchingResource, any Swift.Error> & Sendable {
@@ -3861,6 +5560,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Binding Matching Resources for a given AutoProtectionPolicyBinding.
+  ///
+  /// @Snippet(path: "BackupDR_ListBindingMatchingResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listBindingMatchingResources(request:options:)``
   public func listBindingMatchingResourcesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BindingMatchingResource, any Swift.Error> & Sendable {
@@ -3870,6 +5576,13 @@ extension Clients.BackupDRProtocol {
     return self.listBindingMatchingResourcesByItems(request: request)
   }
 
+  /// Creates a new RestoreTemplate in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createRestoreTemplate(request:options:)``
   public func createRestoreTemplate(request: CreateRestoreTemplateRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3882,6 +5595,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new RestoreTemplate in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createRestoreTemplatePollingUntilDone(request:options:)``
   public func createRestoreTemplatePollingUntilDone(request: CreateRestoreTemplateRequest)
     async throws -> RestoreTemplate
   {
@@ -3894,6 +5614,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new RestoreTemplate in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createRestoreTemplatePollingUntilDone(request:options:)``
   public func createRestoreTemplatePollingUntilDone(
     parent: Swift.String,
     restoreTemplate: RestoreTemplate?,
@@ -3907,6 +5634,13 @@ extension Clients.BackupDRProtocol {
     return try await self.createRestoreTemplatePollingUntilDone(request: request)
   }
 
+  /// Gets details of a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_GetRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getRestoreTemplate(request:options:)``
   public func getRestoreTemplate(request: GetRestoreTemplateRequest) async throws
     -> GoogleCloudBackupDRV1.RestoreTemplate
   {
@@ -3919,6 +5653,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_GetRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getRestoreTemplate(request:options:)``
   public func getRestoreTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.RestoreTemplate {
@@ -3928,6 +5669,13 @@ extension Clients.BackupDRProtocol {
     return try await self.getRestoreTemplate(request: request)
   }
 
+  /// Lists RestoreTemplates in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreTemplates(request:options:)``
   public func listRestoreTemplates(request: ListRestoreTemplatesRequest) async throws
     -> GoogleCloudBackupDRV1.ListRestoreTemplatesResponse
   {
@@ -3940,6 +5688,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists RestoreTemplates in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreTemplates(request:options:)``
   public func listRestoreTemplatesByItems(
     request: ListRestoreTemplatesRequest
   ) -> some AsyncSequence<RestoreTemplate, any Swift.Error> & Sendable {
@@ -3949,6 +5704,10 @@ extension Clients.BackupDRProtocol {
   /// Lists RestoreTemplates in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListRestoreTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreTemplates(request:options:)``
   public func listRestoreTemplatesByItems(
     request: ListRestoreTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<RestoreTemplate, any Swift.Error> & Sendable {
@@ -3963,6 +5722,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists RestoreTemplates in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreTemplates(request:options:)``
   public func listRestoreTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<RestoreTemplate, any Swift.Error> & Sendable {
@@ -3972,6 +5738,13 @@ extension Clients.BackupDRProtocol {
     return self.listRestoreTemplatesByItems(request: request)
   }
 
+  /// Updates the settings of a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateRestoreTemplate(request:options:)``
   public func updateRestoreTemplate(request: UpdateRestoreTemplateRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3984,6 +5757,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateRestoreTemplatePollingUntilDone(request:options:)``
   public func updateRestoreTemplatePollingUntilDone(request: UpdateRestoreTemplateRequest)
     async throws -> RestoreTemplate
   {
@@ -3996,6 +5776,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_UpdateRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/updateRestoreTemplatePollingUntilDone(request:options:)``
   public func updateRestoreTemplatePollingUntilDone(
     restoreTemplate: RestoreTemplate?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -4007,6 +5794,13 @@ extension Clients.BackupDRProtocol {
     return try await self.updateRestoreTemplatePollingUntilDone(request: request)
   }
 
+  /// Deletes a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteRestoreTemplate(request:options:)``
   public func deleteRestoreTemplate(request: DeleteRestoreTemplateRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4019,6 +5813,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteRestoreTemplatePollingUntilDone(request:options:)``
   public func deleteRestoreTemplatePollingUntilDone(request: DeleteRestoreTemplateRequest)
     async throws
   {
@@ -4031,6 +5832,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteRestoreTemplatePollingUntilDone(request:options:)``
   public func deleteRestoreTemplatePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -4040,6 +5848,13 @@ extension Clients.BackupDRProtocol {
     try await self.deleteRestoreTemplatePollingUntilDone(request: request)
   }
 
+  /// Runs a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_RunRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/runRestoreTemplate(request:options:)``
   public func runRestoreTemplate(request: RunRestoreTemplateRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4052,6 +5867,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Runs a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_RunRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/runRestoreTemplatePollingUntilDone(request:options:)``
   public func runRestoreTemplatePollingUntilDone(request: RunRestoreTemplateRequest) async throws
     -> RunRestoreTemplateResponse
   {
@@ -4064,6 +5886,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Runs a RestoreTemplate.
+  ///
+  /// @Snippet(path: "BackupDR_RunRestoreTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/runRestoreTemplatePollingUntilDone(request:options:)``
   public func runRestoreTemplatePollingUntilDone(
     name: Swift.String,
   ) async throws -> RunRestoreTemplateResponse {
@@ -4073,6 +5902,13 @@ extension Clients.BackupDRProtocol {
     return try await self.runRestoreTemplatePollingUntilDone(request: request)
   }
 
+  /// Gets details of a RestoreTemplateExecution.
+  ///
+  /// @Snippet(path: "BackupDR_GetRestoreTemplateExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getRestoreTemplateExecution(request:options:)``
   public func getRestoreTemplateExecution(request: GetRestoreTemplateExecutionRequest) async throws
     -> GoogleCloudBackupDRV1.RestoreTemplateExecution
   {
@@ -4085,6 +5921,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a RestoreTemplateExecution.
+  ///
+  /// @Snippet(path: "BackupDR_GetRestoreTemplateExecution")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getRestoreTemplateExecution(request:options:)``
   public func getRestoreTemplateExecution(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.RestoreTemplateExecution {
@@ -4094,6 +5937,14 @@ extension Clients.BackupDRProtocol {
     return try await self.getRestoreTemplateExecution(request: request)
   }
 
+  /// Lists RestoreTemplateExecutions in a given project, location and restore
+  /// template.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreTemplateExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreTemplateExecutions(request:options:)``
   public func listRestoreTemplateExecutions(request: ListRestoreTemplateExecutionsRequest)
     async throws -> GoogleCloudBackupDRV1.ListRestoreTemplateExecutionsResponse
   {
@@ -4106,6 +5957,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists RestoreTemplateExecutions in a given project, location and restore
+  /// template.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreTemplateExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreTemplateExecutions(request:options:)``
   public func listRestoreTemplateExecutionsByItems(
     request: ListRestoreTemplateExecutionsRequest
   ) -> some AsyncSequence<RestoreTemplateExecution, any Swift.Error> & Sendable {
@@ -4116,6 +5975,10 @@ extension Clients.BackupDRProtocol {
   /// template.
   ///
   /// @Snippet(path: "BackupDR_ListRestoreTemplateExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreTemplateExecutions(request:options:)``
   public func listRestoreTemplateExecutionsByItems(
     request: ListRestoreTemplateExecutionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<RestoreTemplateExecution, any Swift.Error> & Sendable {
@@ -4130,6 +5993,14 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists RestoreTemplateExecutions in a given project, location and restore
+  /// template.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreTemplateExecutions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreTemplateExecutions(request:options:)``
   public func listRestoreTemplateExecutionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<RestoreTemplateExecution, any Swift.Error> & Sendable {
@@ -4139,6 +6010,13 @@ extension Clients.BackupDRProtocol {
     return self.listRestoreTemplateExecutionsByItems(request: request)
   }
 
+  /// Triggers cleanup of restored resources created during execution.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerRestoreCleanup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/triggerRestoreCleanup(request:options:)``
   public func triggerRestoreCleanup(request: TriggerRestoreCleanupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4151,6 +6029,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Triggers cleanup of restored resources created during execution.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerRestoreCleanup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/triggerRestoreCleanupPollingUntilDone(request:options:)``
   public func triggerRestoreCleanupPollingUntilDone(request: TriggerRestoreCleanupRequest)
     async throws -> RestoreTemplateExecution
   {
@@ -4163,6 +6048,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Triggers cleanup of restored resources created during execution.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerRestoreCleanup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/triggerRestoreCleanupPollingUntilDone(request:options:)``
   public func triggerRestoreCleanupPollingUntilDone(
     name: Swift.String,
   ) async throws -> RestoreTemplateExecution {
@@ -4172,6 +6064,13 @@ extension Clients.BackupDRProtocol {
     return try await self.triggerRestoreCleanupPollingUntilDone(request: request)
   }
 
+  /// Creates a new RestoreVerificationPlan in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createRestoreVerificationPlan(request:options:)``
   public func createRestoreVerificationPlan(request: CreateRestoreVerificationPlanRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -4184,6 +6083,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new RestoreVerificationPlan in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createRestoreVerificationPlanPollingUntilDone(request:options:)``
   public func createRestoreVerificationPlanPollingUntilDone(
     request: CreateRestoreVerificationPlanRequest
   ) async throws -> RestoreVerificationPlan {
@@ -4197,6 +6103,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new RestoreVerificationPlan in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createRestoreVerificationPlanPollingUntilDone(request:options:)``
   public func createRestoreVerificationPlanPollingUntilDone(
     parent: Swift.String,
     restoreVerificationPlan: RestoreVerificationPlan?,
@@ -4210,6 +6123,14 @@ extension Clients.BackupDRProtocol {
     return try await self.createRestoreVerificationPlanPollingUntilDone(request: request)
   }
 
+  /// Creates a new RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createRestoreVerificationPlanAssociation(request:options:)``
   public func createRestoreVerificationPlanAssociation(
     request: CreateRestoreVerificationPlanAssociationRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -4222,6 +6143,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createRestoreVerificationPlanAssociationPollingUntilDone(request:options:)``
   public func createRestoreVerificationPlanAssociationPollingUntilDone(
     request: CreateRestoreVerificationPlanAssociationRequest
   ) async throws -> RestoreVerificationPlanAssociation {
@@ -4235,6 +6164,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_CreateRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/createRestoreVerificationPlanAssociationPollingUntilDone(request:options:)``
   public func createRestoreVerificationPlanAssociationPollingUntilDone(
     parent: Swift.String,
     restoreVerificationPlanAssociation: RestoreVerificationPlanAssociation?,
@@ -4248,6 +6185,14 @@ extension Clients.BackupDRProtocol {
     return try await self.createRestoreVerificationPlanAssociationPollingUntilDone(request: request)
   }
 
+  /// Gets details of a single RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_GetRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getRestoreVerificationPlanAssociation(request:options:)``
   public func getRestoreVerificationPlanAssociation(
     request: GetRestoreVerificationPlanAssociationRequest
   ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlanAssociation {
@@ -4260,6 +6205,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_GetRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getRestoreVerificationPlanAssociation(request:options:)``
   public func getRestoreVerificationPlanAssociation(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlanAssociation {
@@ -4269,6 +6222,14 @@ extension Clients.BackupDRProtocol {
     return try await self.getRestoreVerificationPlanAssociation(request: request)
   }
 
+  /// Lists RestoreVerificationPlanAssociations in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreVerificationPlanAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreVerificationPlanAssociations(request:options:)``
   public func listRestoreVerificationPlanAssociations(
     request: ListRestoreVerificationPlanAssociationsRequest
   ) async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlanAssociationsResponse {
@@ -4281,6 +6242,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists RestoreVerificationPlanAssociations in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreVerificationPlanAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreVerificationPlanAssociations(request:options:)``
   public func listRestoreVerificationPlanAssociationsByItems(
     request: ListRestoreVerificationPlanAssociationsRequest
   ) -> some AsyncSequence<RestoreVerificationPlanAssociation, any Swift.Error> & Sendable {
@@ -4291,6 +6260,10 @@ extension Clients.BackupDRProtocol {
   /// RestoreVerificationPlan.
   ///
   /// @Snippet(path: "BackupDR_ListRestoreVerificationPlanAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreVerificationPlanAssociations(request:options:)``
   public func listRestoreVerificationPlanAssociationsByItems(
     request: ListRestoreVerificationPlanAssociationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<RestoreVerificationPlanAssociation, any Swift.Error> & Sendable {
@@ -4306,6 +6279,14 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists RestoreVerificationPlanAssociations in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreVerificationPlanAssociations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreVerificationPlanAssociations(request:options:)``
   public func listRestoreVerificationPlanAssociationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<RestoreVerificationPlanAssociation, any Swift.Error> & Sendable {
@@ -4315,6 +6296,14 @@ extension Clients.BackupDRProtocol {
     return self.listRestoreVerificationPlanAssociationsByItems(request: request)
   }
 
+  /// Deletes a single RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteRestoreVerificationPlanAssociation(request:options:)``
   public func deleteRestoreVerificationPlanAssociation(
     request: DeleteRestoreVerificationPlanAssociationRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -4327,6 +6316,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteRestoreVerificationPlanAssociationPollingUntilDone(request:options:)``
   public func deleteRestoreVerificationPlanAssociationPollingUntilDone(
     request: DeleteRestoreVerificationPlanAssociationRequest
   ) async throws {
@@ -4340,6 +6337,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single RestoreVerificationPlanAssociation in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlanAssociation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteRestoreVerificationPlanAssociationPollingUntilDone(request:options:)``
   public func deleteRestoreVerificationPlanAssociationPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -4349,6 +6354,14 @@ extension Clients.BackupDRProtocol {
     try await self.deleteRestoreVerificationPlanAssociationPollingUntilDone(request: request)
   }
 
+  /// Triggers a new Restore Verification for the association in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerRestoreVerification")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/triggerRestoreVerification(request:options:)``
   public func triggerRestoreVerification(request: TriggerRestoreVerificationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4361,6 +6374,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Triggers a new Restore Verification for the association in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerRestoreVerification")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/triggerRestoreVerificationPollingUntilDone(request:options:)``
   public func triggerRestoreVerificationPollingUntilDone(request: TriggerRestoreVerificationRequest)
     async throws -> TriggerRestoreVerificationResponse
   {
@@ -4374,6 +6395,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Triggers a new Restore Verification for the association in a given
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_TriggerRestoreVerification")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/triggerRestoreVerificationPollingUntilDone(request:options:)``
   public func triggerRestoreVerificationPollingUntilDone(
     name: Swift.String,
   ) async throws -> TriggerRestoreVerificationResponse {
@@ -4383,6 +6412,14 @@ extension Clients.BackupDRProtocol {
     return try await self.triggerRestoreVerificationPollingUntilDone(request: request)
   }
 
+  /// Gets details of a single RestoreVerificationPlan. Returns the requested
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_GetRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getRestoreVerificationPlan(request:options:)``
   public func getRestoreVerificationPlan(request: GetRestoreVerificationPlanRequest) async throws
     -> GoogleCloudBackupDRV1.RestoreVerificationPlan
   {
@@ -4395,6 +6432,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single RestoreVerificationPlan. Returns the requested
+  /// RestoreVerificationPlan.
+  ///
+  /// @Snippet(path: "BackupDR_GetRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getRestoreVerificationPlan(request:options:)``
   public func getRestoreVerificationPlan(
     name: Swift.String,
   ) async throws -> GoogleCloudBackupDRV1.RestoreVerificationPlan {
@@ -4404,6 +6449,13 @@ extension Clients.BackupDRProtocol {
     return try await self.getRestoreVerificationPlan(request: request)
   }
 
+  /// Lists RestoreVerificationPlans in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreVerificationPlans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreVerificationPlans(request:options:)``
   public func listRestoreVerificationPlans(request: ListRestoreVerificationPlansRequest)
     async throws -> GoogleCloudBackupDRV1.ListRestoreVerificationPlansResponse
   {
@@ -4416,6 +6468,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists RestoreVerificationPlans in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreVerificationPlans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreVerificationPlans(request:options:)``
   public func listRestoreVerificationPlansByItems(
     request: ListRestoreVerificationPlansRequest
   ) -> some AsyncSequence<RestoreVerificationPlan, any Swift.Error> & Sendable {
@@ -4425,6 +6484,10 @@ extension Clients.BackupDRProtocol {
   /// Lists RestoreVerificationPlans in a given project and location.
   ///
   /// @Snippet(path: "BackupDR_ListRestoreVerificationPlans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreVerificationPlans(request:options:)``
   public func listRestoreVerificationPlansByItems(
     request: ListRestoreVerificationPlansRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<RestoreVerificationPlan, any Swift.Error> & Sendable {
@@ -4439,6 +6502,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists RestoreVerificationPlans in a given project and location.
+  ///
+  /// @Snippet(path: "BackupDR_ListRestoreVerificationPlans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listRestoreVerificationPlans(request:options:)``
   public func listRestoreVerificationPlansByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<RestoreVerificationPlan, any Swift.Error> & Sendable {
@@ -4448,6 +6518,15 @@ extension Clients.BackupDRProtocol {
     return self.listRestoreVerificationPlansByItems(request: request)
   }
 
+  /// Deletes a single RestoreVerificationPlan. If the `force` flag is set to
+  /// `true`, any RestoreVerificationPlanAssociations linked to this
+  /// RestoreVerificationPlan will also be deleted.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteRestoreVerificationPlan(request:options:)``
   public func deleteRestoreVerificationPlan(request: DeleteRestoreVerificationPlanRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -4460,6 +6539,15 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single RestoreVerificationPlan. If the `force` flag is set to
+  /// `true`, any RestoreVerificationPlanAssociations linked to this
+  /// RestoreVerificationPlan will also be deleted.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteRestoreVerificationPlanPollingUntilDone(request:options:)``
   public func deleteRestoreVerificationPlanPollingUntilDone(
     request: DeleteRestoreVerificationPlanRequest
   ) async throws {
@@ -4472,6 +6560,15 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single RestoreVerificationPlan. If the `force` flag is set to
+  /// `true`, any RestoreVerificationPlanAssociations linked to this
+  /// RestoreVerificationPlan will also be deleted.
+  ///
+  /// @Snippet(path: "BackupDR_DeleteRestoreVerificationPlan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteRestoreVerificationPlanPollingUntilDone(request:options:)``
   public func deleteRestoreVerificationPlanPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -4481,6 +6578,13 @@ extension Clients.BackupDRProtocol {
     try await self.deleteRestoreVerificationPlanPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "BackupDR_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -4493,6 +6597,13 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "BackupDR_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -4502,6 +6613,10 @@ extension Clients.BackupDRProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "BackupDR_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -4515,6 +6630,13 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "BackupDR_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -4527,6 +6649,17 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "BackupDR_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -4539,6 +6672,14 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "BackupDR_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -4551,6 +6692,19 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "BackupDR_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -4563,6 +6717,15 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDR_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -4575,6 +6738,15 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDR_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -4586,6 +6758,10 @@ extension Clients.BackupDRProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BackupDR_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -4599,6 +6775,15 @@ extension Clients.BackupDRProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDR_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -4610,6 +6795,9 @@ extension Clients.BackupDRProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4622,6 +6810,9 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -4631,6 +6822,15 @@ extension Clients.BackupDRProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDR_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -4641,6 +6841,15 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDR_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -4650,6 +6859,15 @@ extension Clients.BackupDRProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDR_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -4660,6 +6878,15 @@ extension Clients.BackupDRProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BackupDR_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BackupDRClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

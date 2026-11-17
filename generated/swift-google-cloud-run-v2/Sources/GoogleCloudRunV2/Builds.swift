@@ -24,6 +24,10 @@ import Foundation
 /// Cloud Run Build Control Plane API
 ///
 /// @Snippet(path: "BuildsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/BuildsProtocol``
 public final class BuildsClient: Clients.BuildsProtocol, Sendable {
   let inner: any Clients.BuildsStub
 
@@ -40,6 +44,10 @@ public final class BuildsClient: Clients.BuildsProtocol, Sendable {
   /// Submits a build in a given project.
   ///
   /// @Snippet(path: "Builds_SubmitBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``submitBuild(request:)``
   public func submitBuild(
     request: SubmitBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.SubmitBuildResponse {
@@ -51,6 +59,13 @@ public final class BuildsClient: Clients.BuildsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Builds_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -73,6 +88,11 @@ public final class BuildsClient: Clients.BuildsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Builds_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -84,6 +104,10 @@ public final class BuildsClient: Clients.BuildsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Builds_WaitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``waitOperation(request:)``
   public func waitOperation(
     request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -122,6 +146,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.BuildsProtocol {
+  /// Submits a build in a given project.
+  ///
+  /// @Snippet(path: "Builds_SubmitBuild")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BuildsClient/submitBuild(request:options:)``
   public func submitBuild(request: SubmitBuildRequest) async throws
     -> GoogleCloudRunV2.SubmitBuildResponse
   {
@@ -134,6 +165,15 @@ extension Clients.BuildsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Builds_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BuildsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -146,6 +186,15 @@ extension Clients.BuildsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Builds_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BuildsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -157,6 +206,10 @@ extension Clients.BuildsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Builds_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BuildsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -170,6 +223,15 @@ extension Clients.BuildsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Builds_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BuildsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -181,6 +243,9 @@ extension Clients.BuildsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -193,6 +258,9 @@ extension Clients.BuildsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -202,6 +270,15 @@ extension Clients.BuildsProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Builds_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BuildsClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -212,6 +289,15 @@ extension Clients.BuildsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Builds_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BuildsClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -221,6 +307,15 @@ extension Clients.BuildsProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Builds_WaitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BuildsClient/waitOperation(request:options:)``
   public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {

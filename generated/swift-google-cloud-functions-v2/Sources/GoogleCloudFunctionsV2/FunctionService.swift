@@ -32,6 +32,10 @@ import Foundation
 /// executed and how it is triggered.
 ///
 /// @Snippet(path: "FunctionServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/FunctionServiceProtocol``
 public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Sendable {
   let inner: any Clients.FunctionServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -52,6 +56,11 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// Returns a function with the given name from the requested project.
   ///
   /// @Snippet(path: "FunctionService_GetFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFunction(request:)``
+  /// - ``getFunction(name:)``
   public func getFunction(
     request: GetFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFunctionsV2.Function {
@@ -61,6 +70,13 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// Returns a list of functions that belong to the requested project.
   ///
   /// @Snippet(path: "FunctionService_ListFunctions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFunctions(request:)``
+  /// - ``listFunctionsByItems(request:)``
+  /// - ``listFunctionsByItems(request:options:)``
+  /// - ``listFunctionsByItems(parent:)``
   public func listFunctions(
     request: ListFunctionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFunctionsV2.ListFunctionsResponse {
@@ -72,6 +88,13 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// `ALREADY_EXISTS` error.
   ///
   /// @Snippet(path: "FunctionService_CreateFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createFunction(request:)``
+  /// - ``createFunctionPollingUntilDone(request:)``
+  /// - ``createFunctionPollingUntilDone(request:options:)``
+  /// - ``createFunctionPollingUntilDone(parent:function:functionId:)``
   public func createFunction(
     request: CreateFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -83,6 +106,13 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// `ALREADY_EXISTS` error.
   ///
   /// @Snippet(path: "FunctionService_CreateFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createFunctionPollingUntilDone(request:)``
+  /// - ``createFunctionPollingUntilDone(parent:function:functionId:)``
+  /// - ``createFunction(request:)``
+  /// - ``createFunction(request:options:)``
   public func createFunctionPollingUntilDone(
     request: CreateFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Function {
@@ -110,6 +140,13 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// Updates existing function.
   ///
   /// @Snippet(path: "FunctionService_UpdateFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFunction(request:)``
+  /// - ``updateFunctionPollingUntilDone(request:)``
+  /// - ``updateFunctionPollingUntilDone(request:options:)``
+  /// - ``updateFunctionPollingUntilDone(function:updateMask:)``
   public func updateFunction(
     request: UpdateFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -119,6 +156,13 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// Updates existing function.
   ///
   /// @Snippet(path: "FunctionService_UpdateFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFunctionPollingUntilDone(request:)``
+  /// - ``updateFunctionPollingUntilDone(function:updateMask:)``
+  /// - ``updateFunction(request:)``
+  /// - ``updateFunction(request:options:)``
   public func updateFunctionPollingUntilDone(
     request: UpdateFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Function {
@@ -148,6 +192,13 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// remove this function.
   ///
   /// @Snippet(path: "FunctionService_DeleteFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFunction(request:)``
+  /// - ``deleteFunctionPollingUntilDone(request:)``
+  /// - ``deleteFunctionPollingUntilDone(request:options:)``
+  /// - ``deleteFunctionPollingUntilDone(name:)``
   public func deleteFunction(
     request: DeleteFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -159,6 +210,13 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// remove this function.
   ///
   /// @Snippet(path: "FunctionService_DeleteFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFunctionPollingUntilDone(request:)``
+  /// - ``deleteFunctionPollingUntilDone(name:)``
+  /// - ``deleteFunction(request:)``
+  /// - ``deleteFunction(request:options:)``
   public func deleteFunctionPollingUntilDone(
     request: DeleteFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -208,6 +266,10 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// * `Authorization: Bearer YOUR_TOKEN`
   ///
   /// @Snippet(path: "FunctionService_GenerateUploadUrl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateUploadUrl(request:)``
   public func generateUploadUrl(
     request: GenerateUploadUrlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFunctionsV2.GenerateUploadUrlResponse {
@@ -221,6 +283,10 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// https://cloud.google.com/storage/docs/access-control/signed-urls
   ///
   /// @Snippet(path: "FunctionService_GenerateDownloadUrl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateDownloadUrl(request:)``
   public func generateDownloadUrl(
     request: GenerateDownloadUrlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFunctionsV2.GenerateDownloadUrlResponse {
@@ -230,6 +296,11 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// Returns a list of runtimes that are supported for the requested project.
   ///
   /// @Snippet(path: "FunctionService_ListRuntimes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRuntimes(request:)``
+  /// - ``listRuntimes(parent:)``
   public func listRuntimes(
     request: ListRuntimesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFunctionsV2.ListRuntimesResponse {
@@ -239,6 +310,12 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "FunctionService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -252,6 +329,10 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// errors.
   ///
   /// @Snippet(path: "FunctionService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -262,6 +343,10 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "FunctionService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -277,6 +362,10 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "FunctionService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -288,6 +377,13 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FunctionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -397,6 +493,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.FunctionServiceProtocol {
+  /// Returns a function with the given name from the requested project.
+  ///
+  /// @Snippet(path: "FunctionService_GetFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/getFunction(request:options:)``
   public func getFunction(request: GetFunctionRequest) async throws
     -> GoogleCloudFunctionsV2.Function
   {
@@ -409,6 +512,13 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a function with the given name from the requested project.
+  ///
+  /// @Snippet(path: "FunctionService_GetFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/getFunction(request:options:)``
   public func getFunction(
     name: Swift.String,
   ) async throws -> GoogleCloudFunctionsV2.Function {
@@ -418,6 +528,13 @@ extension Clients.FunctionServiceProtocol {
     return try await self.getFunction(request: request)
   }
 
+  /// Returns a list of functions that belong to the requested project.
+  ///
+  /// @Snippet(path: "FunctionService_ListFunctions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listFunctions(request:options:)``
   public func listFunctions(request: ListFunctionsRequest) async throws
     -> GoogleCloudFunctionsV2.ListFunctionsResponse
   {
@@ -430,6 +547,13 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of functions that belong to the requested project.
+  ///
+  /// @Snippet(path: "FunctionService_ListFunctions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listFunctions(request:options:)``
   public func listFunctionsByItems(
     request: ListFunctionsRequest
   ) -> some AsyncSequence<Function, any Swift.Error> & Sendable {
@@ -439,6 +563,10 @@ extension Clients.FunctionServiceProtocol {
   /// Returns a list of functions that belong to the requested project.
   ///
   /// @Snippet(path: "FunctionService_ListFunctions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listFunctions(request:options:)``
   public func listFunctionsByItems(
     request: ListFunctionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Function, any Swift.Error> & Sendable {
@@ -453,6 +581,13 @@ extension Clients.FunctionServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns a list of functions that belong to the requested project.
+  ///
+  /// @Snippet(path: "FunctionService_ListFunctions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listFunctions(request:options:)``
   public func listFunctionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Function, any Swift.Error> & Sendable {
@@ -462,6 +597,15 @@ extension Clients.FunctionServiceProtocol {
     return self.listFunctionsByItems(request: request)
   }
 
+  /// Creates a new function. If a function with the given name already exists in
+  /// the specified project, the long running operation will return
+  /// `ALREADY_EXISTS` error.
+  ///
+  /// @Snippet(path: "FunctionService_CreateFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/createFunction(request:options:)``
   public func createFunction(request: CreateFunctionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -474,6 +618,15 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new function. If a function with the given name already exists in
+  /// the specified project, the long running operation will return
+  /// `ALREADY_EXISTS` error.
+  ///
+  /// @Snippet(path: "FunctionService_CreateFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/createFunctionPollingUntilDone(request:options:)``
   public func createFunctionPollingUntilDone(request: CreateFunctionRequest) async throws
     -> Function
   {
@@ -486,6 +639,15 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new function. If a function with the given name already exists in
+  /// the specified project, the long running operation will return
+  /// `ALREADY_EXISTS` error.
+  ///
+  /// @Snippet(path: "FunctionService_CreateFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/createFunctionPollingUntilDone(request:options:)``
   public func createFunctionPollingUntilDone(
     parent: Swift.String,
     function: Function?,
@@ -499,6 +661,13 @@ extension Clients.FunctionServiceProtocol {
     return try await self.createFunctionPollingUntilDone(request: request)
   }
 
+  /// Updates existing function.
+  ///
+  /// @Snippet(path: "FunctionService_UpdateFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/updateFunction(request:options:)``
   public func updateFunction(request: UpdateFunctionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -511,6 +680,13 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates existing function.
+  ///
+  /// @Snippet(path: "FunctionService_UpdateFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/updateFunctionPollingUntilDone(request:options:)``
   public func updateFunctionPollingUntilDone(request: UpdateFunctionRequest) async throws
     -> Function
   {
@@ -523,6 +699,13 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates existing function.
+  ///
+  /// @Snippet(path: "FunctionService_UpdateFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/updateFunctionPollingUntilDone(request:options:)``
   public func updateFunctionPollingUntilDone(
     function: Function?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -534,6 +717,15 @@ extension Clients.FunctionServiceProtocol {
     return try await self.updateFunctionPollingUntilDone(request: request)
   }
 
+  /// Deletes a function with the given name from the specified project. If the
+  /// given function is used by some trigger, the trigger will be updated to
+  /// remove this function.
+  ///
+  /// @Snippet(path: "FunctionService_DeleteFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/deleteFunction(request:options:)``
   public func deleteFunction(request: DeleteFunctionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -546,6 +738,15 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a function with the given name from the specified project. If the
+  /// given function is used by some trigger, the trigger will be updated to
+  /// remove this function.
+  ///
+  /// @Snippet(path: "FunctionService_DeleteFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/deleteFunctionPollingUntilDone(request:options:)``
   public func deleteFunctionPollingUntilDone(request: DeleteFunctionRequest) async throws {
     try await self.deleteFunctionPollingUntilDone(request: request, options: .init())
   }
@@ -556,6 +757,15 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a function with the given name from the specified project. If the
+  /// given function is used by some trigger, the trigger will be updated to
+  /// remove this function.
+  ///
+  /// @Snippet(path: "FunctionService_DeleteFunction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/deleteFunctionPollingUntilDone(request:options:)``
   public func deleteFunctionPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -565,6 +775,35 @@ extension Clients.FunctionServiceProtocol {
     try await self.deleteFunctionPollingUntilDone(request: request)
   }
 
+  /// Returns a signed URL for uploading a function source code.
+  /// For more information about the signed URL usage see:
+  /// https://cloud.google.com/storage/docs/access-control/signed-urls.
+  /// Once the function source code upload is complete, the used signed
+  /// URL should be provided in CreateFunction or UpdateFunction request
+  /// as a reference to the function source code.
+  ///
+  /// When uploading source code to the generated signed URL, please follow
+  /// these restrictions:
+  ///
+  /// * Source file type should be a zip file.
+  /// * No credentials should be attached - the signed URLs provide access to the
+  ///   target bucket using internal service identity; if credentials were
+  ///   attached, the identity from the credentials would be used, but that
+  ///   identity does not have permissions to upload files to the URL.
+  ///
+  /// When making a HTTP PUT request, specify this header:
+  ///
+  /// * `content-type: application/zip`
+  ///
+  /// Do not specify this header:
+  ///
+  /// * `Authorization: Bearer YOUR_TOKEN`
+  ///
+  /// @Snippet(path: "FunctionService_GenerateUploadUrl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/generateUploadUrl(request:options:)``
   public func generateUploadUrl(request: GenerateUploadUrlRequest) async throws
     -> GoogleCloudFunctionsV2.GenerateUploadUrlResponse
   {
@@ -577,6 +816,17 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a signed URL for downloading deployed function source code.
+  /// The URL is only valid for a limited period and should be used within
+  /// 30 minutes of generation.
+  /// For more information about the signed URL usage see:
+  /// https://cloud.google.com/storage/docs/access-control/signed-urls
+  ///
+  /// @Snippet(path: "FunctionService_GenerateDownloadUrl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/generateDownloadUrl(request:options:)``
   public func generateDownloadUrl(request: GenerateDownloadUrlRequest) async throws
     -> GoogleCloudFunctionsV2.GenerateDownloadUrlResponse
   {
@@ -589,6 +839,13 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of runtimes that are supported for the requested project.
+  ///
+  /// @Snippet(path: "FunctionService_ListRuntimes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listRuntimes(request:options:)``
   public func listRuntimes(request: ListRuntimesRequest) async throws
     -> GoogleCloudFunctionsV2.ListRuntimesResponse
   {
@@ -601,6 +858,13 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of runtimes that are supported for the requested project.
+  ///
+  /// @Snippet(path: "FunctionService_ListRuntimes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listRuntimes(request:options:)``
   public func listRuntimes(
     parent: Swift.String,
   ) async throws -> GoogleCloudFunctionsV2.ListRuntimesResponse {
@@ -610,6 +874,13 @@ extension Clients.FunctionServiceProtocol {
     return try await self.listRuntimes(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "FunctionService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -622,6 +893,13 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "FunctionService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -631,6 +909,10 @@ extension Clients.FunctionServiceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "FunctionService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -644,6 +926,17 @@ extension Clients.FunctionServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "FunctionService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -656,6 +949,14 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "FunctionService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -668,6 +969,19 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "FunctionService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -680,6 +994,15 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FunctionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -692,6 +1015,15 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FunctionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -703,6 +1035,10 @@ extension Clients.FunctionServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FunctionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -716,6 +1052,15 @@ extension Clients.FunctionServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FunctionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FunctionServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -727,6 +1072,9 @@ extension Clients.FunctionServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -739,6 +1087,9 @@ extension Clients.FunctionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

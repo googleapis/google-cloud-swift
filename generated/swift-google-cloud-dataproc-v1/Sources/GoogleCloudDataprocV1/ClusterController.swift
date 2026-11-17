@@ -27,6 +27,10 @@ import Foundation
 /// of Compute Engine instances.
 ///
 /// @Snippet(path: "ClusterControllerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ClusterControllerProtocol``
 public final class ClusterControllerClient: Clients.ClusterControllerProtocol, Sendable {
   let inner: any Clients.ClusterControllerStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -51,6 +55,13 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "ClusterController_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCluster(request:)``
+  /// - ``createClusterPollingUntilDone(request:)``
+  /// - ``createClusterPollingUntilDone(request:options:)``
+  /// - ``createClusterPollingUntilDone(projectId:region:cluster:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -64,6 +75,13 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "ClusterController_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createClusterPollingUntilDone(request:)``
+  /// - ``createClusterPollingUntilDone(projectId:region:cluster:)``
+  /// - ``createCluster(request:)``
+  /// - ``createCluster(request:options:)``
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -99,6 +117,13 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "ClusterController_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCluster(request:)``
+  /// - ``updateClusterPollingUntilDone(request:)``
+  /// - ``updateClusterPollingUntilDone(request:options:)``
+  /// - ``updateClusterPollingUntilDone(projectId:region:clusterName:cluster:updateMask:)``
   public func updateCluster(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -116,6 +141,13 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "ClusterController_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateClusterPollingUntilDone(request:)``
+  /// - ``updateClusterPollingUntilDone(projectId:region:clusterName:cluster:updateMask:)``
+  /// - ``updateCluster(request:)``
+  /// - ``updateCluster(request:options:)``
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -143,6 +175,12 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// Stops a cluster in a project.
   ///
   /// @Snippet(path: "ClusterController_StopCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``stopCluster(request:)``
+  /// - ``stopClusterPollingUntilDone(request:)``
+  /// - ``stopClusterPollingUntilDone(request:options:)``
   public func stopCluster(
     request: StopClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -152,6 +190,12 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// Stops a cluster in a project.
   ///
   /// @Snippet(path: "ClusterController_StopCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``stopClusterPollingUntilDone(request:)``
+  /// - ``stopCluster(request:)``
+  /// - ``stopCluster(request:options:)``
   public func stopClusterPollingUntilDone(
     request: StopClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -179,6 +223,12 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// Starts a cluster in a project.
   ///
   /// @Snippet(path: "ClusterController_StartCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startCluster(request:)``
+  /// - ``startClusterPollingUntilDone(request:)``
+  /// - ``startClusterPollingUntilDone(request:options:)``
   public func startCluster(
     request: StartClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -188,6 +238,12 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// Starts a cluster in a project.
   ///
   /// @Snippet(path: "ClusterController_StartCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startClusterPollingUntilDone(request:)``
+  /// - ``startCluster(request:)``
+  /// - ``startCluster(request:options:)``
   public func startClusterPollingUntilDone(
     request: StartClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -219,6 +275,13 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "ClusterController_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCluster(request:)``
+  /// - ``deleteClusterPollingUntilDone(request:)``
+  /// - ``deleteClusterPollingUntilDone(request:options:)``
+  /// - ``deleteClusterPollingUntilDone(projectId:region:clusterName:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -232,6 +295,13 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
   ///
   /// @Snippet(path: "ClusterController_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteClusterPollingUntilDone(request:)``
+  /// - ``deleteClusterPollingUntilDone(projectId:region:clusterName:)``
+  /// - ``deleteCluster(request:)``
+  /// - ``deleteCluster(request:options:)``
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -259,6 +329,11 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// Gets the resource representation for a cluster in a project.
   ///
   /// @Snippet(path: "ClusterController_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCluster(request:)``
+  /// - ``getCluster(projectId:region:clusterName:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.Cluster {
@@ -268,6 +343,14 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// Lists all regions/{region}/clusters in a project alphabetically.
   ///
   /// @Snippet(path: "ClusterController_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listClusters(request:)``
+  /// - ``listClustersByItems(request:)``
+  /// - ``listClustersByItems(request:options:)``
+  /// - ``listClustersByItems(projectId:region:)``
+  /// - ``listClustersByItems(projectId:region:filter:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.ListClustersResponse {
@@ -286,6 +369,13 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
   ///
   /// @Snippet(path: "ClusterController_DiagnoseCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``diagnoseCluster(request:)``
+  /// - ``diagnoseClusterPollingUntilDone(request:)``
+  /// - ``diagnoseClusterPollingUntilDone(request:options:)``
+  /// - ``diagnoseClusterPollingUntilDone(projectId:region:clusterName:)``
   public func diagnoseCluster(
     request: DiagnoseClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -304,6 +394,13 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
   ///
   /// @Snippet(path: "ClusterController_DiagnoseCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``diagnoseClusterPollingUntilDone(request:)``
+  /// - ``diagnoseClusterPollingUntilDone(projectId:region:clusterName:)``
+  /// - ``diagnoseCluster(request:)``
+  /// - ``diagnoseCluster(request:options:)``
   public func diagnoseClusterPollingUntilDone(
     request: DiagnoseClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> DiagnoseClusterResults {
@@ -336,6 +433,10 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// errors.
   ///
   /// @Snippet(path: "ClusterController_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -346,6 +447,10 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "ClusterController_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -361,6 +466,10 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "ClusterController_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -372,6 +481,13 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ClusterController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -394,6 +510,11 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ClusterController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -405,6 +526,11 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ClusterController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -523,6 +649,17 @@ extension Clients {
 
 // Default implementations
 extension Clients.ClusterControllerProtocol {
+  /// Creates a cluster in a project. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "ClusterController_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/createCluster(request:options:)``
   public func createCluster(request: CreateClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -535,6 +672,17 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a cluster in a project. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "ClusterController_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/createClusterPollingUntilDone(request:options:)``
   public func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> Cluster {
     return try await self.createClusterPollingUntilDone(request: request, options: .init())
   }
@@ -545,6 +693,17 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a cluster in a project. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "ClusterController_CreateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/createClusterPollingUntilDone(request:options:)``
   public func createClusterPollingUntilDone(
     projectId: Swift.String,
     region: Swift.String,
@@ -558,6 +717,21 @@ extension Clients.ClusterControllerProtocol {
     return try await self.createClusterPollingUntilDone(request: request)
   }
 
+  /// Updates a cluster in a project. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+  /// The cluster must be in a
+  /// [`RUNNING`][google.cloud.dataproc.v1.ClusterStatus.State] state or an error
+  /// is returned.
+  ///
+  /// [google.cloud.dataproc.v1.ClusterStatus.State]: <doc:ClusterStatus/State>
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "ClusterController_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/updateCluster(request:options:)``
   public func updateCluster(request: UpdateClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -570,6 +744,21 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a cluster in a project. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+  /// The cluster must be in a
+  /// [`RUNNING`][google.cloud.dataproc.v1.ClusterStatus.State] state or an error
+  /// is returned.
+  ///
+  /// [google.cloud.dataproc.v1.ClusterStatus.State]: <doc:ClusterStatus/State>
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "ClusterController_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/updateClusterPollingUntilDone(request:options:)``
   public func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> Cluster {
     return try await self.updateClusterPollingUntilDone(request: request, options: .init())
   }
@@ -580,6 +769,21 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a cluster in a project. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+  /// The cluster must be in a
+  /// [`RUNNING`][google.cloud.dataproc.v1.ClusterStatus.State] state or an error
+  /// is returned.
+  ///
+  /// [google.cloud.dataproc.v1.ClusterStatus.State]: <doc:ClusterStatus/State>
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "ClusterController_UpdateCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/updateClusterPollingUntilDone(request:options:)``
   public func updateClusterPollingUntilDone(
     projectId: Swift.String,
     region: Swift.String,
@@ -597,6 +801,13 @@ extension Clients.ClusterControllerProtocol {
     return try await self.updateClusterPollingUntilDone(request: request)
   }
 
+  /// Stops a cluster in a project.
+  ///
+  /// @Snippet(path: "ClusterController_StopCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/stopCluster(request:options:)``
   public func stopCluster(request: StopClusterRequest) async throws -> GoogleLongRunning.Operation {
     try await self.stopCluster(request: request, options: .init())
   }
@@ -607,6 +818,13 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Stops a cluster in a project.
+  ///
+  /// @Snippet(path: "ClusterController_StopCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/stopClusterPollingUntilDone(request:options:)``
   public func stopClusterPollingUntilDone(request: StopClusterRequest) async throws -> Cluster {
     return try await self.stopClusterPollingUntilDone(request: request, options: .init())
   }
@@ -617,6 +835,13 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a cluster in a project.
+  ///
+  /// @Snippet(path: "ClusterController_StartCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/startCluster(request:options:)``
   public func startCluster(request: StartClusterRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.startCluster(request: request, options: .init())
@@ -628,6 +853,13 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a cluster in a project.
+  ///
+  /// @Snippet(path: "ClusterController_StartCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/startClusterPollingUntilDone(request:options:)``
   public func startClusterPollingUntilDone(request: StartClusterRequest) async throws -> Cluster {
     return try await self.startClusterPollingUntilDone(request: request, options: .init())
   }
@@ -638,6 +870,17 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a cluster in a project. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "ClusterController_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/deleteCluster(request:options:)``
   public func deleteCluster(request: DeleteClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -650,6 +893,17 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a cluster in a project. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "ClusterController_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/deleteClusterPollingUntilDone(request:options:)``
   public func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws {
     try await self.deleteClusterPollingUntilDone(request: request, options: .init())
   }
@@ -660,6 +914,17 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a cluster in a project. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  ///
+  /// @Snippet(path: "ClusterController_DeleteCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/deleteClusterPollingUntilDone(request:options:)``
   public func deleteClusterPollingUntilDone(
     projectId: Swift.String,
     region: Swift.String,
@@ -673,6 +938,13 @@ extension Clients.ClusterControllerProtocol {
     try await self.deleteClusterPollingUntilDone(request: request)
   }
 
+  /// Gets the resource representation for a cluster in a project.
+  ///
+  /// @Snippet(path: "ClusterController_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/getCluster(request:options:)``
   public func getCluster(request: GetClusterRequest) async throws -> GoogleCloudDataprocV1.Cluster {
     try await self.getCluster(request: request, options: .init())
   }
@@ -683,6 +955,13 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the resource representation for a cluster in a project.
+  ///
+  /// @Snippet(path: "ClusterController_GetCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/getCluster(request:options:)``
   public func getCluster(
     projectId: Swift.String,
     region: Swift.String,
@@ -696,6 +975,13 @@ extension Clients.ClusterControllerProtocol {
     return try await self.getCluster(request: request)
   }
 
+  /// Lists all regions/{region}/clusters in a project alphabetically.
+  ///
+  /// @Snippet(path: "ClusterController_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/listClusters(request:options:)``
   public func listClusters(request: ListClustersRequest) async throws
     -> GoogleCloudDataprocV1.ListClustersResponse
   {
@@ -708,6 +994,13 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all regions/{region}/clusters in a project alphabetically.
+  ///
+  /// @Snippet(path: "ClusterController_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/listClusters(request:options:)``
   public func listClustersByItems(
     request: ListClustersRequest
   ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
@@ -717,6 +1010,10 @@ extension Clients.ClusterControllerProtocol {
   /// Lists all regions/{region}/clusters in a project alphabetically.
   ///
   /// @Snippet(path: "ClusterController_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/listClusters(request:options:)``
   public func listClustersByItems(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
@@ -730,6 +1027,13 @@ extension Clients.ClusterControllerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all regions/{region}/clusters in a project alphabetically.
+  ///
+  /// @Snippet(path: "ClusterController_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/listClusters(request:options:)``
   public func listClustersByItems(
     projectId: Swift.String,
     region: Swift.String,
@@ -741,6 +1045,13 @@ extension Clients.ClusterControllerProtocol {
     return self.listClustersByItems(request: request)
   }
 
+  /// Lists all regions/{region}/clusters in a project alphabetically.
+  ///
+  /// @Snippet(path: "ClusterController_ListClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/listClusters(request:options:)``
   public func listClustersByItems(
     projectId: Swift.String,
     region: Swift.String,
@@ -754,6 +1065,22 @@ extension Clients.ClusterControllerProtocol {
     return self.listClustersByItems(request: request)
   }
 
+  /// Gets cluster diagnostic information. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+  /// After the operation completes,
+  /// [Operation.response][google.longrunning.Operation.response]
+  /// contains
+  /// [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
+  ///
+  /// @Snippet(path: "ClusterController_DiagnoseCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/diagnoseCluster(request:options:)``
   public func diagnoseCluster(request: DiagnoseClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -766,6 +1093,22 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets cluster diagnostic information. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+  /// After the operation completes,
+  /// [Operation.response][google.longrunning.Operation.response]
+  /// contains
+  /// [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
+  ///
+  /// @Snippet(path: "ClusterController_DiagnoseCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/diagnoseClusterPollingUntilDone(request:options:)``
   public func diagnoseClusterPollingUntilDone(request: DiagnoseClusterRequest) async throws
     -> DiagnoseClusterResults
   {
@@ -778,6 +1121,22 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets cluster diagnostic information. The returned
+  /// [Operation.metadata][google.longrunning.Operation.metadata] will be
+  /// [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+  /// After the operation completes,
+  /// [Operation.response][google.longrunning.Operation.response]
+  /// contains
+  /// [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
+  ///
+  /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
+  ///
+  /// @Snippet(path: "ClusterController_DiagnoseCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/diagnoseClusterPollingUntilDone(request:options:)``
   public func diagnoseClusterPollingUntilDone(
     projectId: Swift.String,
     region: Swift.String,
@@ -791,6 +1150,17 @@ extension Clients.ClusterControllerProtocol {
     return try await self.diagnoseClusterPollingUntilDone(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "ClusterController_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -803,6 +1173,14 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "ClusterController_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -815,6 +1193,19 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "ClusterController_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -827,6 +1218,15 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClusterController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -839,6 +1239,15 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClusterController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -850,6 +1259,10 @@ extension Clients.ClusterControllerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ClusterController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -863,6 +1276,15 @@ extension Clients.ClusterControllerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClusterController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -874,6 +1296,9 @@ extension Clients.ClusterControllerProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -886,6 +1311,9 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -895,6 +1323,15 @@ extension Clients.ClusterControllerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClusterController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -905,6 +1342,15 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClusterController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -914,6 +1360,15 @@ extension Clients.ClusterControllerProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClusterController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -924,6 +1379,15 @@ extension Clients.ClusterControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ClusterController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ClusterControllerClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

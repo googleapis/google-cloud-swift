@@ -25,6 +25,10 @@ import Foundation
 /// Service for ingesting and querying logs.
 ///
 /// @Snippet(path: "LoggingServiceV2Quickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/LoggingServiceV2Protocol``
 public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sendable {
   let inner: any Clients.LoggingServiceV2Stub
 
@@ -44,6 +48,11 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
   /// delete operation with a timestamp before the operation will be deleted.
   ///
   /// @Snippet(path: "LoggingServiceV2_DeleteLog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLog(request:)``
+  /// - ``deleteLog(logName:)``
   public func deleteLog(
     request: DeleteLogRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -59,6 +68,11 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
   /// folders)
   ///
   /// @Snippet(path: "LoggingServiceV2_WriteLogEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``writeLogEntries(request:)``
+  /// - ``writeLogEntries(logName:resource:labels:entries:)``
   public func writeLogEntries(
     request: WriteLogEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.WriteLogEntriesResponse {
@@ -71,6 +85,13 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
   /// Logs](https://cloud.google.com/logging/docs/export).
   ///
   /// @Snippet(path: "LoggingServiceV2_ListLogEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLogEntries(request:)``
+  /// - ``listLogEntriesByItems(request:)``
+  /// - ``listLogEntriesByItems(request:options:)``
+  /// - ``listLogEntriesByItems(resourceNames:filter:orderBy:)``
   public func listLogEntries(
     request: ListLogEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListLogEntriesResponse {
@@ -80,6 +101,12 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
   /// Lists the descriptors for monitored resource types used by Logging.
   ///
   /// @Snippet(path: "LoggingServiceV2_ListMonitoredResourceDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMonitoredResourceDescriptors(request:)``
+  /// - ``listMonitoredResourceDescriptorsByItems(request:)``
+  /// - ``listMonitoredResourceDescriptorsByItems(request:options:)``
   public func listMonitoredResourceDescriptors(
     request: ListMonitoredResourceDescriptorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListMonitoredResourceDescriptorsResponse {
@@ -90,6 +117,11 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
   /// Only logs that have entries are listed.
   ///
   /// @Snippet(path: "LoggingServiceV2_ListLogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLogs(request:)``
+  /// - ``listLogs(parent:)``
   public func listLogs(
     request: ListLogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListLogsResponse {
@@ -101,6 +133,13 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LoggingServiceV2_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -123,6 +162,11 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LoggingServiceV2_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -176,6 +220,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.LoggingServiceV2Protocol {
+  /// Deletes all the log entries in a log for the _Default Log Bucket. The log
+  /// reappears if it receives new entries. Log entries written shortly before
+  /// the delete operation might not be deleted. Entries received after the
+  /// delete operation with a timestamp before the operation will be deleted.
+  ///
+  /// @Snippet(path: "LoggingServiceV2_DeleteLog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/deleteLog(request:options:)``
   public func deleteLog(request: DeleteLogRequest) async throws {
     try await self.deleteLog(request: request, options: .init())
   }
@@ -186,6 +240,16 @@ extension Clients.LoggingServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes all the log entries in a log for the _Default Log Bucket. The log
+  /// reappears if it receives new entries. Log entries written shortly before
+  /// the delete operation might not be deleted. Entries received after the
+  /// delete operation with a timestamp before the operation will be deleted.
+  ///
+  /// @Snippet(path: "LoggingServiceV2_DeleteLog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/deleteLog(request:options:)``
   public func deleteLog(
     logName: Swift.String,
   ) async throws {
@@ -195,6 +259,19 @@ extension Clients.LoggingServiceV2Protocol {
     try await self.deleteLog(request: request)
   }
 
+  /// Writes log entries to Logging. This API method is the
+  /// only way to send log entries to Logging. This method
+  /// is used, directly or indirectly, by the Logging agent
+  /// (fluentd) and all logging libraries configured to use Logging.
+  /// A single request may contain log entries for a maximum of 1000
+  /// different resources (projects, organizations, billing accounts or
+  /// folders)
+  ///
+  /// @Snippet(path: "LoggingServiceV2_WriteLogEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/writeLogEntries(request:options:)``
   public func writeLogEntries(request: WriteLogEntriesRequest) async throws
     -> GoogleCloudLoggingV2.WriteLogEntriesResponse
   {
@@ -207,6 +284,19 @@ extension Clients.LoggingServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Writes log entries to Logging. This API method is the
+  /// only way to send log entries to Logging. This method
+  /// is used, directly or indirectly, by the Logging agent
+  /// (fluentd) and all logging libraries configured to use Logging.
+  /// A single request may contain log entries for a maximum of 1000
+  /// different resources (projects, organizations, billing accounts or
+  /// folders)
+  ///
+  /// @Snippet(path: "LoggingServiceV2_WriteLogEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/writeLogEntries(request:options:)``
   public func writeLogEntries(
     logName: Swift.String,
     resource: GoogleApi.MonitoredResource?,
@@ -222,6 +312,16 @@ extension Clients.LoggingServiceV2Protocol {
     return try await self.writeLogEntries(request: request)
   }
 
+  /// Lists log entries.  Use this method to retrieve log entries that originated
+  /// from a project/folder/organization/billing account.  For ways to export log
+  /// entries, see [Exporting
+  /// Logs](https://cloud.google.com/logging/docs/export).
+  ///
+  /// @Snippet(path: "LoggingServiceV2_ListLogEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listLogEntries(request:options:)``
   public func listLogEntries(request: ListLogEntriesRequest) async throws
     -> GoogleCloudLoggingV2.ListLogEntriesResponse
   {
@@ -234,6 +334,16 @@ extension Clients.LoggingServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists log entries.  Use this method to retrieve log entries that originated
+  /// from a project/folder/organization/billing account.  For ways to export log
+  /// entries, see [Exporting
+  /// Logs](https://cloud.google.com/logging/docs/export).
+  ///
+  /// @Snippet(path: "LoggingServiceV2_ListLogEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listLogEntries(request:options:)``
   public func listLogEntriesByItems(
     request: ListLogEntriesRequest
   ) -> some AsyncSequence<LogEntry, any Swift.Error> & Sendable {
@@ -246,6 +356,10 @@ extension Clients.LoggingServiceV2Protocol {
   /// Logs](https://cloud.google.com/logging/docs/export).
   ///
   /// @Snippet(path: "LoggingServiceV2_ListLogEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listLogEntries(request:options:)``
   public func listLogEntriesByItems(
     request: ListLogEntriesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<LogEntry, any Swift.Error> & Sendable {
@@ -259,6 +373,16 @@ extension Clients.LoggingServiceV2Protocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists log entries.  Use this method to retrieve log entries that originated
+  /// from a project/folder/organization/billing account.  For ways to export log
+  /// entries, see [Exporting
+  /// Logs](https://cloud.google.com/logging/docs/export).
+  ///
+  /// @Snippet(path: "LoggingServiceV2_ListLogEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listLogEntries(request:options:)``
   public func listLogEntriesByItems(
     resourceNames: [Swift.String],
     filter: Swift.String,
@@ -272,6 +396,13 @@ extension Clients.LoggingServiceV2Protocol {
     return self.listLogEntriesByItems(request: request)
   }
 
+  /// Lists the descriptors for monitored resource types used by Logging.
+  ///
+  /// @Snippet(path: "LoggingServiceV2_ListMonitoredResourceDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listMonitoredResourceDescriptors(request:options:)``
   public func listMonitoredResourceDescriptors(request: ListMonitoredResourceDescriptorsRequest)
     async throws -> GoogleCloudLoggingV2.ListMonitoredResourceDescriptorsResponse
   {
@@ -284,6 +415,13 @@ extension Clients.LoggingServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the descriptors for monitored resource types used by Logging.
+  ///
+  /// @Snippet(path: "LoggingServiceV2_ListMonitoredResourceDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listMonitoredResourceDescriptors(request:options:)``
   public func listMonitoredResourceDescriptorsByItems(
     request: ListMonitoredResourceDescriptorsRequest
   ) -> some AsyncSequence<GoogleApi.MonitoredResourceDescriptor, any Swift.Error> & Sendable {
@@ -293,6 +431,10 @@ extension Clients.LoggingServiceV2Protocol {
   /// Lists the descriptors for monitored resource types used by Logging.
   ///
   /// @Snippet(path: "LoggingServiceV2_ListMonitoredResourceDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listMonitoredResourceDescriptors(request:options:)``
   public func listMonitoredResourceDescriptorsByItems(
     request: ListMonitoredResourceDescriptorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleApi.MonitoredResourceDescriptor, any Swift.Error> & Sendable {
@@ -307,6 +449,14 @@ extension Clients.LoggingServiceV2Protocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the logs in projects, organizations, folders, or billing accounts.
+  /// Only logs that have entries are listed.
+  ///
+  /// @Snippet(path: "LoggingServiceV2_ListLogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listLogs(request:options:)``
   public func listLogs(request: ListLogsRequest) async throws
     -> GoogleCloudLoggingV2.ListLogsResponse
   {
@@ -319,6 +469,14 @@ extension Clients.LoggingServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the logs in projects, organizations, folders, or billing accounts.
+  /// Only logs that have entries are listed.
+  ///
+  /// @Snippet(path: "LoggingServiceV2_ListLogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listLogs(request:options:)``
   public func listLogs(
     parent: Swift.String,
   ) async throws -> GoogleCloudLoggingV2.ListLogsResponse {
@@ -328,6 +486,15 @@ extension Clients.LoggingServiceV2Protocol {
     return try await self.listLogs(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LoggingServiceV2_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -340,6 +507,15 @@ extension Clients.LoggingServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LoggingServiceV2_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -351,6 +527,10 @@ extension Clients.LoggingServiceV2Protocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LoggingServiceV2_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -364,6 +544,15 @@ extension Clients.LoggingServiceV2Protocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LoggingServiceV2_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -375,6 +564,9 @@ extension Clients.LoggingServiceV2Protocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -387,6 +579,9 @@ extension Clients.LoggingServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -396,6 +591,15 @@ extension Clients.LoggingServiceV2Protocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LoggingServiceV2_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -406,6 +610,15 @@ extension Clients.LoggingServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LoggingServiceV2_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LoggingServiceV2Client/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

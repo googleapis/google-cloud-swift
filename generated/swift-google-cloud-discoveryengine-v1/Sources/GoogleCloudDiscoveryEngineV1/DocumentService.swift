@@ -29,6 +29,10 @@
   /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
   ///
   /// @Snippet(path: "DocumentServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/DocumentServiceProtocol``
   public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Sendable {
     let inner: any Clients.DocumentServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -51,6 +55,11 @@
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     ///
     /// @Snippet(path: "DocumentService_GetDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getDocument(request:)``
+    /// - ``getDocument(name:)``
     public func getDocument(
       request: GetDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Document {
@@ -62,6 +71,13 @@
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     ///
     /// @Snippet(path: "DocumentService_ListDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listDocuments(request:)``
+    /// - ``listDocumentsByItems(request:)``
+    /// - ``listDocumentsByItems(request:options:)``
+    /// - ``listDocumentsByItems(parent:)``
     public func listDocuments(
       request: ListDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListDocumentsResponse {
@@ -73,6 +89,11 @@
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     ///
     /// @Snippet(path: "DocumentService_CreateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createDocument(request:)``
+    /// - ``createDocument(parent:document:documentId:)``
     public func createDocument(
       request: CreateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Document {
@@ -84,6 +105,11 @@
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     ///
     /// @Snippet(path: "DocumentService_UpdateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateDocument(request:)``
+    /// - ``updateDocument(document:updateMask:)``
     public func updateDocument(
       request: UpdateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Document {
@@ -95,6 +121,11 @@
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     ///
     /// @Snippet(path: "DocumentService_DeleteDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteDocument(request:)``
+    /// - ``deleteDocument(name:)``
     public func deleteDocument(
       request: DeleteDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -112,6 +143,12 @@
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     ///
     /// @Snippet(path: "DocumentService_ImportDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importDocuments(request:)``
+    /// - ``importDocumentsPollingUntilDone(request:)``
+    /// - ``importDocumentsPollingUntilDone(request:options:)``
     public func importDocuments(
       request: ImportDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -129,6 +166,12 @@
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     ///
     /// @Snippet(path: "DocumentService_ImportDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importDocumentsPollingUntilDone(request:)``
+    /// - ``importDocuments(request:)``
+    /// - ``importDocuments(request:options:)``
     public func importDocumentsPollingUntilDone(
       request: ImportDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportDocumentsResponse {
@@ -178,6 +221,12 @@
     /// [google.cloud.discoveryengine.v1.PurgeDocumentsRequest.force]: <doc:PurgeDocumentsRequest/force>
     ///
     /// @Snippet(path: "DocumentService_PurgeDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeDocuments(request:)``
+    /// - ``purgeDocumentsPollingUntilDone(request:)``
+    /// - ``purgeDocumentsPollingUntilDone(request:options:)``
     public func purgeDocuments(
       request: PurgeDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -207,6 +256,12 @@
     /// [google.cloud.discoveryengine.v1.PurgeDocumentsRequest.force]: <doc:PurgeDocumentsRequest/force>
     ///
     /// @Snippet(path: "DocumentService_PurgeDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeDocumentsPollingUntilDone(request:)``
+    /// - ``purgeDocuments(request:)``
+    /// - ``purgeDocuments(request:options:)``
     public func purgeDocumentsPollingUntilDone(
       request: PurgeDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeDocumentsResponse {
@@ -240,6 +295,11 @@
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     ///
     /// @Snippet(path: "DocumentService_BatchGetDocumentsMetadata")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchGetDocumentsMetadata(request:)``
+    /// - ``batchGetDocumentsMetadata(parent:)``
     public func batchGetDocumentsMetadata(
       request: BatchGetDocumentsMetadataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.BatchGetDocumentsMetadataResponse {
@@ -251,6 +311,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DocumentService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
+    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -273,6 +340,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DocumentService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(request:)``
+    /// - ``cancelOperation(name:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -351,6 +423,15 @@
 
   // Default implementations
   extension Clients.DocumentServiceProtocol {
+    /// Gets a [Document][google.cloud.discoveryengine.v1.Document].
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_GetDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/getDocument(request:options:)``
     public func getDocument(request: GetDocumentRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Document
     {
@@ -363,6 +444,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a [Document][google.cloud.discoveryengine.v1.Document].
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_GetDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/getDocument(request:options:)``
     public func getDocument(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Document {
@@ -372,6 +462,15 @@
       return try await self.getDocument(request: request)
     }
 
+    /// Gets a list of [Document][google.cloud.discoveryengine.v1.Document]s.
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_ListDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/listDocuments(request:options:)``
     public func listDocuments(request: ListDocumentsRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListDocumentsResponse
     {
@@ -384,6 +483,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a list of [Document][google.cloud.discoveryengine.v1.Document]s.
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_ListDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/listDocuments(request:options:)``
     public func listDocumentsByItems(
       request: ListDocumentsRequest
     ) -> some AsyncSequence<Document, any Swift.Error> & Sendable {
@@ -395,6 +503,10 @@
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     ///
     /// @Snippet(path: "DocumentService_ListDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/listDocuments(request:options:)``
     public func listDocumentsByItems(
       request: ListDocumentsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Document, any Swift.Error> & Sendable {
@@ -409,6 +521,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets a list of [Document][google.cloud.discoveryengine.v1.Document]s.
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_ListDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/listDocuments(request:options:)``
     public func listDocumentsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Document, any Swift.Error> & Sendable {
@@ -418,6 +539,15 @@
       return self.listDocumentsByItems(request: request)
     }
 
+    /// Creates a [Document][google.cloud.discoveryengine.v1.Document].
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_CreateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/createDocument(request:options:)``
     public func createDocument(request: CreateDocumentRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Document
     {
@@ -430,6 +560,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [Document][google.cloud.discoveryengine.v1.Document].
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_CreateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/createDocument(request:options:)``
     public func createDocument(
       parent: Swift.String,
       document: Document?,
@@ -443,6 +582,15 @@
       return try await self.createDocument(request: request)
     }
 
+    /// Updates a [Document][google.cloud.discoveryengine.v1.Document].
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_UpdateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/updateDocument(request:options:)``
     public func updateDocument(request: UpdateDocumentRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Document
     {
@@ -455,6 +603,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a [Document][google.cloud.discoveryengine.v1.Document].
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_UpdateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/updateDocument(request:options:)``
     public func updateDocument(
       document: Document?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -466,6 +623,15 @@
       return try await self.updateDocument(request: request)
     }
 
+    /// Deletes a [Document][google.cloud.discoveryengine.v1.Document].
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_DeleteDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/deleteDocument(request:options:)``
     public func deleteDocument(request: DeleteDocumentRequest) async throws {
       try await self.deleteDocument(request: request, options: .init())
     }
@@ -476,6 +642,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a [Document][google.cloud.discoveryengine.v1.Document].
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_DeleteDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/deleteDocument(request:options:)``
     public func deleteDocument(
       name: Swift.String,
     ) async throws {
@@ -485,6 +660,21 @@
       try await self.deleteDocument(request: request)
     }
 
+    /// Bulk import of multiple
+    /// [Document][google.cloud.discoveryengine.v1.Document]s. Request processing
+    /// may be synchronous. Non-existing items are created.
+    ///
+    /// Note: It is possible for a subset of the
+    /// [Document][google.cloud.discoveryengine.v1.Document]s to be successfully
+    /// updated.
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_ImportDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/importDocuments(request:options:)``
     public func importDocuments(request: ImportDocumentsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -497,6 +687,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Bulk import of multiple
+    /// [Document][google.cloud.discoveryengine.v1.Document]s. Request processing
+    /// may be synchronous. Non-existing items are created.
+    ///
+    /// Note: It is possible for a subset of the
+    /// [Document][google.cloud.discoveryengine.v1.Document]s to be successfully
+    /// updated.
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_ImportDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/importDocumentsPollingUntilDone(request:options:)``
     public func importDocumentsPollingUntilDone(request: ImportDocumentsRequest) async throws
       -> ImportDocumentsResponse
     {
@@ -509,6 +714,33 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Permanently deletes all selected
+    /// [Document][google.cloud.discoveryengine.v1.Document]s in a branch.
+    ///
+    /// This process is asynchronous. Depending on the number of
+    /// [Document][google.cloud.discoveryengine.v1.Document]s to be deleted, this
+    /// operation can take hours to complete. Before the delete operation
+    /// completes, some [Document][google.cloud.discoveryengine.v1.Document]s might
+    /// still be returned by
+    /// [DocumentService.GetDocument][google.cloud.discoveryengine.v1.DocumentService.GetDocument]
+    /// or
+    /// [DocumentService.ListDocuments][google.cloud.discoveryengine.v1.DocumentService.ListDocuments].
+    ///
+    /// To get a list of the [Document][google.cloud.discoveryengine.v1.Document]s
+    /// to be deleted, set
+    /// [PurgeDocumentsRequest.force][google.cloud.discoveryengine.v1.PurgeDocumentsRequest.force]
+    /// to false.
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentServiceClient/getDocument(request:options:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:options:)>
+    /// [google.cloud.discoveryengine.v1.PurgeDocumentsRequest.force]: <doc:PurgeDocumentsRequest/force>
+    ///
+    /// @Snippet(path: "DocumentService_PurgeDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/purgeDocuments(request:options:)``
     public func purgeDocuments(request: PurgeDocumentsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -521,6 +753,33 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Permanently deletes all selected
+    /// [Document][google.cloud.discoveryengine.v1.Document]s in a branch.
+    ///
+    /// This process is asynchronous. Depending on the number of
+    /// [Document][google.cloud.discoveryengine.v1.Document]s to be deleted, this
+    /// operation can take hours to complete. Before the delete operation
+    /// completes, some [Document][google.cloud.discoveryengine.v1.Document]s might
+    /// still be returned by
+    /// [DocumentService.GetDocument][google.cloud.discoveryengine.v1.DocumentService.GetDocument]
+    /// or
+    /// [DocumentService.ListDocuments][google.cloud.discoveryengine.v1.DocumentService.ListDocuments].
+    ///
+    /// To get a list of the [Document][google.cloud.discoveryengine.v1.Document]s
+    /// to be deleted, set
+    /// [PurgeDocumentsRequest.force][google.cloud.discoveryengine.v1.PurgeDocumentsRequest.force]
+    /// to false.
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    /// [google.cloud.discoveryengine.v1.DocumentService.GetDocument]: <doc:DocumentServiceClient/getDocument(request:options:)>
+    /// [google.cloud.discoveryengine.v1.DocumentService.ListDocuments]: <doc:DocumentServiceClient/listDocuments(request:options:)>
+    /// [google.cloud.discoveryengine.v1.PurgeDocumentsRequest.force]: <doc:PurgeDocumentsRequest/force>
+    ///
+    /// @Snippet(path: "DocumentService_PurgeDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/purgeDocumentsPollingUntilDone(request:options:)``
     public func purgeDocumentsPollingUntilDone(request: PurgeDocumentsRequest) async throws
       -> PurgeDocumentsResponse
     {
@@ -533,6 +792,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets index freshness metadata for
+    /// [Document][google.cloud.discoveryengine.v1.Document]s. Supported for
+    /// website search only.
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_BatchGetDocumentsMetadata")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/batchGetDocumentsMetadata(request:options:)``
     public func batchGetDocumentsMetadata(request: BatchGetDocumentsMetadataRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.BatchGetDocumentsMetadataResponse
     {
@@ -545,6 +815,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets index freshness metadata for
+    /// [Document][google.cloud.discoveryengine.v1.Document]s. Supported for
+    /// website search only.
+    ///
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    ///
+    /// @Snippet(path: "DocumentService_BatchGetDocumentsMetadata")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/batchGetDocumentsMetadata(request:options:)``
     public func batchGetDocumentsMetadata(
       parent: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.BatchGetDocumentsMetadataResponse {
@@ -554,6 +835,15 @@
       return try await self.batchGetDocumentsMetadata(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DocumentService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -566,6 +856,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DocumentService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -577,6 +876,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DocumentService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -590,6 +893,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DocumentService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -601,6 +913,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -613,6 +928,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -622,6 +940,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DocumentService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -632,6 +959,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DocumentService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

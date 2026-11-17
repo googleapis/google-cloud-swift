@@ -25,6 +25,10 @@ import Foundation
 /// ReferenceListService provides an interface for managing reference lists.
 ///
 /// @Snippet(path: "ReferenceListServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ReferenceListServiceProtocol``
 public final class ReferenceListServiceClient: Clients.ReferenceListServiceProtocol, Sendable {
   let inner: any Clients.ReferenceListServiceStub
 
@@ -42,6 +46,11 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   /// Gets a single reference list.
   ///
   /// @Snippet(path: "ReferenceListService_GetReferenceList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getReferenceList(request:)``
+  /// - ``getReferenceList(name:)``
   public func getReferenceList(
     request: GetReferenceListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ReferenceList {
@@ -51,6 +60,13 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   /// Lists a collection of reference lists.
   ///
   /// @Snippet(path: "ReferenceListService_ListReferenceLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReferenceLists(request:)``
+  /// - ``listReferenceListsByItems(request:)``
+  /// - ``listReferenceListsByItems(request:options:)``
+  /// - ``listReferenceListsByItems(parent:)``
   public func listReferenceLists(
     request: ListReferenceListsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListReferenceListsResponse {
@@ -60,6 +76,11 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   /// Creates a new reference list.
   ///
   /// @Snippet(path: "ReferenceListService_CreateReferenceList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReferenceList(request:)``
+  /// - ``createReferenceList(parent:referenceList:referenceListId:)``
   public func createReferenceList(
     request: CreateReferenceListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ReferenceList {
@@ -69,6 +90,11 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   /// Updates an existing reference list.
   ///
   /// @Snippet(path: "ReferenceListService_UpdateReferenceList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateReferenceList(request:)``
+  /// - ``updateReferenceList(referenceList:updateMask:)``
   public func updateReferenceList(
     request: UpdateReferenceListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ReferenceList {
@@ -78,6 +104,10 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   /// VerifyReferenceList validates list content and returns line errors, if any.
   ///
   /// @Snippet(path: "ReferenceListService_VerifyReferenceList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``verifyReferenceList(request:)``
   public func verifyReferenceList(
     request: VerifyReferenceListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.VerifyReferenceListResponse {
@@ -89,6 +119,13 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ReferenceListService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
+  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -111,6 +148,11 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ReferenceListService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(request:)``
+  /// - ``deleteOperation(name:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -122,6 +164,11 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ReferenceListService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(request:)``
+  /// - ``cancelOperation(name:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -180,6 +227,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ReferenceListServiceProtocol {
+  /// Gets a single reference list.
+  ///
+  /// @Snippet(path: "ReferenceListService_GetReferenceList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/getReferenceList(request:options:)``
   public func getReferenceList(request: GetReferenceListRequest) async throws
     -> GoogleCloudChronicleV1.ReferenceList
   {
@@ -192,6 +246,13 @@ extension Clients.ReferenceListServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a single reference list.
+  ///
+  /// @Snippet(path: "ReferenceListService_GetReferenceList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/getReferenceList(request:options:)``
   public func getReferenceList(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.ReferenceList {
@@ -201,6 +262,13 @@ extension Clients.ReferenceListServiceProtocol {
     return try await self.getReferenceList(request: request)
   }
 
+  /// Lists a collection of reference lists.
+  ///
+  /// @Snippet(path: "ReferenceListService_ListReferenceLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/listReferenceLists(request:options:)``
   public func listReferenceLists(request: ListReferenceListsRequest) async throws
     -> GoogleCloudChronicleV1.ListReferenceListsResponse
   {
@@ -213,6 +281,13 @@ extension Clients.ReferenceListServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists a collection of reference lists.
+  ///
+  /// @Snippet(path: "ReferenceListService_ListReferenceLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/listReferenceLists(request:options:)``
   public func listReferenceListsByItems(
     request: ListReferenceListsRequest
   ) -> some AsyncSequence<ReferenceList, any Swift.Error> & Sendable {
@@ -222,6 +297,10 @@ extension Clients.ReferenceListServiceProtocol {
   /// Lists a collection of reference lists.
   ///
   /// @Snippet(path: "ReferenceListService_ListReferenceLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/listReferenceLists(request:options:)``
   public func listReferenceListsByItems(
     request: ListReferenceListsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ReferenceList, any Swift.Error> & Sendable {
@@ -236,6 +315,13 @@ extension Clients.ReferenceListServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists a collection of reference lists.
+  ///
+  /// @Snippet(path: "ReferenceListService_ListReferenceLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/listReferenceLists(request:options:)``
   public func listReferenceListsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ReferenceList, any Swift.Error> & Sendable {
@@ -245,6 +331,13 @@ extension Clients.ReferenceListServiceProtocol {
     return self.listReferenceListsByItems(request: request)
   }
 
+  /// Creates a new reference list.
+  ///
+  /// @Snippet(path: "ReferenceListService_CreateReferenceList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/createReferenceList(request:options:)``
   public func createReferenceList(request: CreateReferenceListRequest) async throws
     -> GoogleCloudChronicleV1.ReferenceList
   {
@@ -257,6 +350,13 @@ extension Clients.ReferenceListServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new reference list.
+  ///
+  /// @Snippet(path: "ReferenceListService_CreateReferenceList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/createReferenceList(request:options:)``
   public func createReferenceList(
     parent: Swift.String,
     referenceList: ReferenceList?,
@@ -270,6 +370,13 @@ extension Clients.ReferenceListServiceProtocol {
     return try await self.createReferenceList(request: request)
   }
 
+  /// Updates an existing reference list.
+  ///
+  /// @Snippet(path: "ReferenceListService_UpdateReferenceList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/updateReferenceList(request:options:)``
   public func updateReferenceList(request: UpdateReferenceListRequest) async throws
     -> GoogleCloudChronicleV1.ReferenceList
   {
@@ -282,6 +389,13 @@ extension Clients.ReferenceListServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing reference list.
+  ///
+  /// @Snippet(path: "ReferenceListService_UpdateReferenceList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/updateReferenceList(request:options:)``
   public func updateReferenceList(
     referenceList: ReferenceList?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -293,6 +407,13 @@ extension Clients.ReferenceListServiceProtocol {
     return try await self.updateReferenceList(request: request)
   }
 
+  /// VerifyReferenceList validates list content and returns line errors, if any.
+  ///
+  /// @Snippet(path: "ReferenceListService_VerifyReferenceList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/verifyReferenceList(request:options:)``
   public func verifyReferenceList(request: VerifyReferenceListRequest) async throws
     -> GoogleCloudChronicleV1.VerifyReferenceListResponse
   {
@@ -305,6 +426,15 @@ extension Clients.ReferenceListServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReferenceListService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -317,6 +447,15 @@ extension Clients.ReferenceListServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReferenceListService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -328,6 +467,10 @@ extension Clients.ReferenceListServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ReferenceListService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -341,6 +484,15 @@ extension Clients.ReferenceListServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReferenceListService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -352,6 +504,9 @@ extension Clients.ReferenceListServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -364,6 +519,9 @@ extension Clients.ReferenceListServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -373,6 +531,15 @@ extension Clients.ReferenceListServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReferenceListService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -383,6 +550,15 @@ extension Clients.ReferenceListServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReferenceListService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -392,6 +568,15 @@ extension Clients.ReferenceListServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReferenceListService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -402,6 +587,15 @@ extension Clients.ReferenceListServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ReferenceListService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReferenceListServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {
